@@ -6,7 +6,7 @@
   global.WaypointEffectRegistry.register({
     id: "dustParticles",
     name: "Dust Particles",
-    description: "Floating dust motes in light",
+    description: "Dust motes in warm light",
     layer: "canvas",
     zIndex: 25,
     defaults: { intensity: 45, speed: 20, opacity: 40, scale: 45, randomness: 55 },

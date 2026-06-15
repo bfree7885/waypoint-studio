@@ -4,19 +4,63 @@
   var TAB_IDS = ["living-scene", "parallax", "photography", "learn", "export"];
   var activeTab = "living-scene";
   var onChange = null;
+  var tablist = null;
+
+  function getTabButtons() {
+    if (!tablist) return [];
+    return Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+  }
+
+  function focusTabButton(tabId) {
+    var btn = tablist && tablist.querySelector('[data-tab="' + tabId + '"]');
+    if (btn) btn.focus();
+  }
 
   function init(config) {
-    var tablist = config.tablist;
+    tablist = config.tablist;
     if (!tablist) return;
     onChange = config.onChange || null;
 
-    tablist.querySelectorAll("[data-tab]").forEach(function (btn) {
+    getTabButtons().forEach(function (btn, index) {
+      btn.setAttribute("tabindex", index === 0 ? "0" : "-1");
       btn.addEventListener("click", function () {
         switchTo(btn.getAttribute("data-tab"));
       });
     });
 
+    tablist.addEventListener("keydown", handleKeydown);
     switchTo(activeTab, true);
+  }
+
+  function handleKeydown(e) {
+    var buttons = getTabButtons();
+    if (!buttons.length) return;
+
+    var current = buttons.indexOf(document.activeElement);
+    if (current === -1) return;
+
+    var next = current;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      next = (current + 1) % buttons.length;
+      e.preventDefault();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      next = (current - 1 + buttons.length) % buttons.length;
+      e.preventDefault();
+    } else if (e.key === "Home") {
+      next = 0;
+      e.preventDefault();
+    } else if (e.key === "End") {
+      next = buttons.length - 1;
+      e.preventDefault();
+    } else {
+      return;
+    }
+
+    buttons.forEach(function (btn, i) {
+      btn.setAttribute("tabindex", i === next ? "0" : "-1");
+    });
+    buttons[next].focus();
+    switchTo(buttons[next].getAttribute("data-tab"));
   }
 
   function switchTo(tabId, silent) {
@@ -36,6 +80,7 @@
       if (btn) {
         btn.classList.toggle("is-active", on);
         btn.setAttribute("aria-selected", on ? "true" : "false");
+        btn.setAttribute("tabindex", on ? "0" : "-1");
       }
       if (topBtn) {
         topBtn.classList.toggle("is-active", on);
@@ -55,6 +100,7 @@
     TAB_IDS: TAB_IDS,
     init: init,
     switchTo: switchTo,
-    getActive: getActive
+    getActive: getActive,
+    focusTabButton: focusTabButton
   };
 })(window);

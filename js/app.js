@@ -11,18 +11,18 @@
   var PARALLAX_SLIDER_KEYS = ["sensitivity", "strength", "depthStrength", "smoothing", "zoom"];
 
   var STUDIO_PARAMS = [
-    { key: "intensity", label: "Intensity" },
-    { key: "speed", label: "Speed" },
+    { key: "intensity", label: "Amount" },
+    { key: "speed", label: "Pace" },
     { key: "opacity", label: "Opacity" },
-    { key: "scale", label: "Scale" },
-    { key: "randomness", label: "Randomness" }
+    { key: "scale", label: "Size" },
+    { key: "randomness", label: "Variation" }
   ];
 
   var CAMERA_PARAMS = [
-    { key: "zoomAmount", label: "Zoom amount" },
-    { key: "horizontalDrift", label: "Horizontal drift" },
-    { key: "verticalDrift", label: "Vertical drift" },
-    { key: "rotation", label: "Rotation" }
+    { key: "zoomAmount", label: "Near" },
+    { key: "horizontalDrift", label: "Wander" },
+    { key: "verticalDrift", label: "Lift" },
+    { key: "rotation", label: "Tilt" }
   ];
 
   var SCENE_PRESETS = [];
@@ -67,6 +67,9 @@
     els.parallaxPresetsGrid = $("parallax-presets-grid");
     els.parallaxTiltHint = $("parallax-tilt-hint");
     els.parallaxStage = $("parallax-stage");
+    els.workspaceUploadError = $("workspace-upload-error");
+    els.livingSidebar = $("living-sidebar");
+    els.exportDownloadBtn = $("btn-export-download");
 
     loadPresets();
     buildCameraSliders();
@@ -78,11 +81,59 @@
     bindParallax();
     bindStudio();
     bindTabs();
+    bindExport();
     bindResize();
     setWorkspaceState(false);
     setParallaxState(false);
     initParallaxEngine();
     initPhotography();
+    if (window.WaypointLearn) window.WaypointLearn.init();
+    updateSidebarAwaitingImage();
+    updateExportActions();
+  }
+
+  function validateUploadFile(file) {
+    return window.WaypointFileUpload
+      ? window.WaypointFileUpload.validate(file)
+      : { ok: true };
+  }
+
+  function resetFileInput(input) {
+    if (window.WaypointFileUpload) window.WaypointFileUpload.resetInput(input);
+    else if (input) input.value = "";
+  }
+
+  function revokeIfBlob(url) {
+    if (window.WaypointFileUpload) window.WaypointFileUpload.revokeIfBlob(url);
+    else if (url && url.indexOf("blob:") === 0) URL.revokeObjectURL(url);
+  }
+
+  function updateSidebarAwaitingImage() {
+    if (!els.livingSidebar) return;
+    var awaiting = !imageLoaded;
+    els.livingSidebar.classList.toggle("is-awaiting-image", awaiting);
+  }
+
+  function updateWorkspaceContentState() {
+    if (!els.workspace) return;
+    els.workspace.classList.toggle("has-content", imageLoaded || parallaxImageLoaded);
+  }
+
+  function updateExportActions() {
+    if (!els.exportDownloadBtn) return;
+    els.exportDownloadBtn.disabled = !imageLoaded;
+  }
+
+  function bindExport() {
+    if (!els.exportDownloadBtn) return;
+    els.exportDownloadBtn.addEventListener("click", function () {
+      if (!imageLoaded || !els.exportCanvas || !window.WaypointExport) return;
+      updateExportPreview();
+      var name = (els.previewMeta && els.previewMeta.textContent)
+        ? els.previewMeta.textContent.replace(/\.[^.]+$/, "") + "-scene.png"
+        : "scene.png";
+      window.WaypointExport.downloadSnapshot(els.exportCanvas, name);
+    });
   }
 
   function initPhotography() {
@@ -240,7 +291,7 @@
       analysis.labels.forEach(function (item) {
         var tag = document.createElement("span");
         tag.className = "analysis-tag";
-        tag.textContent = item.label + " · " + Math.round(item.score * 100) + "%";
+        tag.textContent = item.label;
         els.analysisTags.appendChild(tag);
       });
     }
@@ -256,10 +307,6 @@
         btn.className = "recommendation-card";
         btn.setAttribute("data-preset", rec.presetId);
 
-        var rank = document.createElement("span");
-        rank.className = "recommendation-rank";
-        rank.textContent = String(index + 1);
-
         var copy = document.createElement("span");
         copy.className = "recommendation-copy";
 
@@ -273,7 +320,6 @@
 
         copy.appendChild(title);
         copy.appendChild(reason);
-        btn.appendChild(rank);
         btn.appendChild(copy);
 
         btn.addEventListener("click", function () {
@@ -543,18 +589,18 @@
 
     if (!available) {
       els.parallaxTiltHint.hidden = false;
-      els.parallaxTiltHint.textContent = "Tilt is not available on this device — using mouse or touch instead.";
+      els.parallaxTiltHint.textContent = "Tilt unavailable — using pointer input.";
       return;
     }
 
     if (window.WaypointParallax.isTiltActive()) {
       els.parallaxTiltHint.hidden = false;
-      els.parallaxTiltHint.textContent = "Tilt active — move your phone gently to explore depth.";
+      els.parallaxTiltHint.textContent = "Tilt active.";
       return;
     }
 
     els.parallaxTiltHint.hidden = false;
-    els.parallaxTiltHint.textContent = "Tilt enabled — mouse or touch will be used until orientation is granted.";
+    els.parallaxTiltHint.textContent = "Awaiting orientation permission.";
   }
 
   function initParallaxEngine() {
@@ -590,6 +636,7 @@
         if (els.parallaxFileInput.files && els.parallaxFileInput.files[0]) {
           loadParallaxFile(els.parallaxFileInput.files[0]);
         }
+        resetFileInput(els.parallaxFileInput);
       });
     }
 
@@ -660,13 +707,9 @@
     });
   }
 
-  function revokeIfBlob(url) {
-    if (url && url.indexOf("blob:") === 0) URL.revokeObjectURL(url);
-  }
-
   function loadPhotoForLivingScene(url, title) {
     hideError();
-    var label = title || "Portfolio photograph";
+    var label = title || "Photograph";
     var img = new Image();
     img.onload = function () {
       revokeIfBlob(imageUrl);
@@ -681,14 +724,14 @@
       scrollToWorkspace();
     };
     img.onerror = function () {
-      showError("Could not load that photograph.");
+      showError("This file couldn't be opened.");
     };
     img.src = url;
   }
 
   function loadPhotoForParallax(url, title) {
     hideError();
-    var label = title || "Portfolio photograph";
+    var label = title || "Photograph";
     var img = new Image();
     img.onload = function () {
       revokeIfBlob(imageUrl);
@@ -705,7 +748,7 @@
       scrollToWorkspace();
     };
     img.onerror = function () {
-      showError("Could not load that photograph.");
+      showError("This file couldn't be opened.");
     };
     img.src = url;
   }
@@ -752,6 +795,7 @@
 
     els.fileInput.addEventListener("change", function () {
       if (els.fileInput.files && els.fileInput.files[0]) loadFile(els.fileInput.files[0]);
+      resetFileInput(els.fileInput);
     });
 
     if (els.previewShell) {
@@ -772,16 +816,13 @@
 
   function loadFile(file) {
     hideError();
-    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
-      showError("Please choose a JPG, PNG, or WebP image.");
-      return;
-    }
-    if (file.size > 20 * 1024 * 1024) {
-      showError("Image must be under 20 MB.");
+    var check = validateUploadFile(file);
+    if (!check.ok) {
+      showError(check.message);
       return;
     }
 
-    if (imageUrl) URL.revokeObjectURL(imageUrl);
+    revokeIfBlob(imageUrl);
     imageUrl = URL.createObjectURL(file);
     imageLoaded = false;
 
@@ -797,7 +838,7 @@
       scrollToWorkspace();
     };
     img.onerror = function () {
-      showError("Could not load that image.");
+      showError("This file couldn't be opened.");
       imageLoaded = false;
       hideRecommendations();
       setWorkspaceState(false);
@@ -809,7 +850,7 @@
     if (!els.sceneImg) return;
     els.sceneImg.src = src;
     els.sceneImg.hidden = false;
-    els.sceneImg.alt = "Your landscape with motion effects";
+    els.sceneImg.alt = fileName || "Scene preview";
     if (els.previewMeta && fileName) els.previewMeta.textContent = fileName;
   }
 
@@ -818,6 +859,9 @@
     if (els.previewEmpty) els.previewEmpty.hidden = hasImage;
     if (els.sceneFrame) els.sceneFrame.hidden = !hasImage;
     if (els.hero) els.hero.classList.toggle("is-compact", hasImage || parallaxImageLoaded);
+    updateSidebarAwaitingImage();
+    updateWorkspaceContentState();
+    updateExportActions();
   }
 
   function setParallaxState(hasImage, fileName) {
@@ -826,6 +870,7 @@
     if (els.parallaxFrame) els.parallaxFrame.hidden = !hasImage;
     if (els.parallaxMeta && fileName) els.parallaxMeta.textContent = fileName;
     if (els.hero) els.hero.classList.toggle("is-compact", hasImage || imageLoaded);
+    updateWorkspaceContentState();
     if (hasImage && window.WaypointTabs && window.WaypointTabs.getActive() === "parallax" && window.WaypointParallax) {
       window.WaypointParallax.start();
       updateParallaxTiltHint();
@@ -841,17 +886,14 @@
 
   function loadParallaxFile(file) {
     hideError();
-    if (!file.type.match(/^image\/(jpeg|png|webp)$/)) {
-      showError("Please choose a JPG, PNG, or WebP image.");
-      return;
-    }
-    if (file.size > 20 * 1024 * 1024) {
-      showError("Image must be under 20 MB.");
+    var check = validateUploadFile(file);
+    if (!check.ok) {
+      showError(check.message);
       return;
     }
 
     if (parallaxImageUrl && parallaxImageUrl !== imageUrl) {
-      URL.revokeObjectURL(parallaxImageUrl);
+      revokeIfBlob(parallaxImageUrl);
     }
     parallaxImageUrl = URL.createObjectURL(file);
 
@@ -860,12 +902,17 @@
       if (window.WaypointParallax) {
         window.WaypointParallax.setImage(parallaxImageUrl);
       }
+      if (parallaxImageUrl !== imageUrl) revokeIfBlob(imageUrl);
+      imageUrl = parallaxImageUrl;
+      imageLoaded = true;
+      setSceneImage(imageUrl, file.name);
+      setWorkspaceState(true);
       setParallaxState(true, file.name);
       if (window.WaypointTabs) window.WaypointTabs.switchTo("parallax");
       scrollToWorkspace();
     };
     img.onerror = function () {
-      showError("Could not load that image.");
+      showError("This file couldn't be opened.");
       setParallaxState(false);
     };
     img.src = parallaxImageUrl;
@@ -879,13 +926,19 @@
   }
 
   function showError(msg) {
-    if (!els.uploadError) return;
-    els.uploadError.textContent = msg;
-    els.uploadError.hidden = false;
+    if (els.uploadError) {
+      els.uploadError.textContent = msg;
+      els.uploadError.hidden = false;
+    }
+    if (els.workspaceUploadError) {
+      els.workspaceUploadError.textContent = msg;
+      els.workspaceUploadError.hidden = false;
+    }
   }
 
   function hideError() {
     if (els.uploadError) els.uploadError.hidden = true;
+    if (els.workspaceUploadError) els.workspaceUploadError.hidden = true;
   }
 
   function applyEffects() {

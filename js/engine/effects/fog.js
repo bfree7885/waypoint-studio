@@ -7,7 +7,7 @@
   function syncDom(inst, ctx) {
     if (!rootEl) return;
     var p = Base.resolveParams(inst.getParams());
-    var dur = Math.max(8, 130 - p.speed * 1.1);
+    var dur = Math.max(12, 150 - p.speed * 1.1);
 
     rootEl.style.setProperty("--fx-opacity", String(p.alpha(0.06, 0.72)));
     rootEl.style.setProperty("--fx-speed", dur + "s");
@@ -18,7 +18,7 @@
   global.WaypointEffectRegistry.register({
     id: "fog",
     name: "Fog",
-    description: "Mist drifting across the frame",
+    description: "Soft mist across the frame",
     layer: "dom",
     zIndex: 10,
     defaults: { intensity: 55, speed: 35, opacity: 50, scale: 55, randomness: 40 },

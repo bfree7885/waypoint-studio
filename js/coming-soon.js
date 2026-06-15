@@ -1,74 +1,70 @@
 (function (global) {
   "use strict";
 
-  /**
-   * Future AI & export features — placeholder cards for the roadmap UI.
-   * Wire real implementations by id when each feature ships.
-   */
   var GROUPS = [
     {
       id: "intelligence",
       title: "Scene intelligence",
-      subtitle: "Understand your photograph automatically",
+      subtitle: "",
       features: [
         {
           id: "depth-estimation",
-          title: "Automatic depth estimation",
-          description: "Build a depth map from a single frame for true parallax and layer separation."
+          title: "Automatic depth",
+          description: "Depth maps from a single frame for true layer separation."
         },
         {
           id: "object-masking",
           title: "Object masking",
-          description: "Isolate sky, water, trees, and subjects for targeted animation."
+          description: "Isolate sky, water, trees, and subjects for targeted motion."
         }
       ]
     },
     {
       id: "motion",
       title: "Motion & atmosphere",
-      subtitle: "Per-element animation beyond overlays",
+      subtitle: "",
       features: [
         {
           id: "tree-animation",
-          title: "Separate tree animation",
-          description: "Independent sway and rustle on masked tree layers."
+          title: "Tree animation",
+          description: "Independent sway on masked canopy layers."
         },
         {
           id: "moving-clouds",
           title: "Moving clouds",
-          description: "AI-guided cloud motion matched to your sky geometry."
+          description: "Cloud motion matched to sky geometry."
         },
         {
           id: "rippling-water-ai",
           title: "Rippling water",
-          description: "Physically believable surface distortion on water regions."
+          description: "Believable surface distortion on water regions."
         },
         {
           id: "animated-waterfalls",
-          title: "Animated waterfalls",
-          description: "Flowing cascade motion on detected waterfall areas."
+          title: "Waterfalls",
+          description: "Flowing cascade motion on detected falls."
         },
         {
           id: "wildlife-insertion",
-          title: "Wildlife insertion",
-          description: "Place subtle, natural wildlife into compatible scenes."
+          title: "Wildlife placement",
+          description: "Subtle, natural wildlife in compatible scenes."
         }
       ]
     },
     {
       id: "sky",
       title: "Sky & night",
-      subtitle: "Celestial effects with scene-aware blending",
+      subtitle: "",
       features: [
         {
           id: "moon-phases",
           title: "Moon phases",
-          description: "Place and animate a moon that matches your sky perspective."
+          description: "Moon placement matched to sky perspective."
         },
         {
           id: "aurora",
           title: "Aurora",
-          description: "Northern lights with color and motion tuned to the horizon."
+          description: "Northern lights tuned to the horizon."
         },
         {
           id: "milky-way",
@@ -78,14 +74,14 @@
         {
           id: "meteor-showers",
           title: "Meteor showers",
-          description: "Streaking meteors with natural timing and direction."
+          description: "Streaking meteors with natural timing."
         }
       ]
     },
     {
       id: "transform",
       title: "Transformation",
-      subtitle: "Change time and season across the frame",
+      subtitle: "",
       features: [
         {
           id: "season-conversion",
@@ -94,15 +90,15 @@
         },
         {
           id: "timelapse-creation",
-          title: "Time-lapse creation",
-          description: "Generate day-to-night or weather-progression sequences."
+          title: "Time-lapse",
+          description: "Day-to-night and weather-progression sequences."
         }
       ]
     },
     {
       id: "export",
       title: "Export & delivery",
-      subtitle: "Share living scenes beyond the browser preview",
+      subtitle: "",
       features: [
         {
           id: "video-export",
@@ -112,12 +108,12 @@
         {
           id: "live-photos",
           title: "Live Photos",
-          description: "Short motion clips formatted for phone lock screens."
+          description: "Short motion clips for phone lock screens."
         },
         {
           id: "desktop-wallpapers",
           title: "Desktop wallpapers",
-          description: "High-resolution animated wallpapers for macOS and Windows."
+          description: "High-resolution animated wallpapers."
         }
       ]
     }
@@ -154,7 +150,7 @@
 
     var badge = document.createElement("span");
     badge.className = "coming-soon-badge";
-    badge.textContent = "Coming soon";
+    badge.textContent = "On the horizon";
 
     var title = document.createElement("h4");
     title.className = "coming-soon-title";
@@ -194,12 +190,15 @@
       groupTitle.className = "coming-soon-group-title";
       groupTitle.textContent = group.title;
 
-      var groupSub = document.createElement("p");
-      groupSub.className = "coming-soon-group-sub muted";
-      groupSub.textContent = group.subtitle;
-
       head.appendChild(groupTitle);
-      head.appendChild(groupSub);
+
+      if (group.subtitle) {
+        var groupSub = document.createElement("p");
+        groupSub.className = "coming-soon-group-sub muted";
+        groupSub.textContent = group.subtitle;
+        head.appendChild(groupSub);
+      }
+
       section.appendChild(head);
 
       var grid = document.createElement("div");

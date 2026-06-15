@@ -6,7 +6,7 @@
   global.WaypointEffectRegistry.register({
     id: "rain",
     name: "Rain",
-    description: "Falling rain overlay",
+    description: "Rain on the lens",
     layer: "canvas",
     zIndex: 30,
     defaults: { intensity: 55, speed: 60, opacity: 55, scale: 45, randomness: 40 },
@@ -26,8 +26,8 @@
             drops.push({
               x: Math.random() * ctx.width,
               y: Math.random() * ctx.height,
-              len: (6 + Math.random() * 14) * p.sizeMul,
-              speed: 2 + Math.random() * 7 * p.speedMul,
+              len: (6 + Math.random() * 14) * p.sizeMul * (0.75 + Math.random() * 0.5),
+              speed: (2 + Math.random() * 7 * p.speedMul) * (0.8 + Math.random() * 0.4),
               skew: p.rand(0.8)
             });
           }
@@ -39,8 +39,8 @@
           var p = Base.resolveParams(inst.getParams());
 
           particles.forEach(function (d) {
-            d.x += (-0.3 + d.skew) * p.speedMul;
-            d.y += d.speed;
+            d.x += (-0.3 + d.skew) * p.speedMul * (0.85 + Math.sin(ctx.frame * 0.02 + d.y * 0.01) * 0.15);
+            d.y += d.speed * (0.92 + Math.sin(ctx.frame * 0.03 + d.x * 0.008) * 0.12);
             if (d.y > ctx.height + 20 || d.x < -20 || d.x > ctx.width + 20) {
               d.y = -10;
               d.x = Math.random() * ctx.width;

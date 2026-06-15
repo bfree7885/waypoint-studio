@@ -2,6 +2,8 @@
 
 Bring quiet, cinematic motion to landscape and nature photographs — entirely in your browser.
 
+Part of the **Waypoint Studio** ecosystem. Shared UI tokens, components, and patterns live in [`design-system/`](design-system/README.md) (WDS). The **Learn** tab uses the [Waypoint Education Framework](design-system/education/README.md) (WEF).
+
 ## AI agents (Cursor)
 
 Role definitions for faster development live in [`.ai-agents/`](.ai-agents/README.md) — product, design, engineering, motion, education, QA, and release. Mission: **Observe. Understand. Create. Share.**

@@ -1,0 +1,74 @@
+{
+  "$schema": "./schema.json",
+  "version": "1.0.0",
+  "product": "example-product",
+  "mission": "Bring Nature to Life.",
+  "intro": "One sentence describing who this curriculum is for.",
+  "tracks": [
+    {
+      "id": "track-id",
+      "title": "Track title",
+      "subtitle": "Optional track description",
+      "domains": ["field-skills"],
+      "lessons": [
+        {
+          "id": "lesson-id",
+          "title": "Lesson title",
+          "subtitle": "",
+          "domains": ["species", "ecology"],
+          "level": "beginner",
+          "durationMinutes": 10,
+          "summary": "Optional one-line summary for search cards",
+          "sections": {
+            "what": {
+              "body": "Definition or concept introduction."
+            },
+            "why": {
+              "body": "Why this knowledge matters in the field or at home."
+            },
+            "identify": {
+              "bullets": [
+                "Key characteristic one",
+                "Key characteristic two"
+              ],
+              "skipped": false
+            },
+            "howItWorks": {
+              "steps": [
+                "First mechanism or process",
+                "Second step"
+              ]
+            },
+            "fieldObservations": {
+              "prompts": [
+                "What to notice on your next outing",
+                "Optional reflection prompt"
+              ]
+            },
+            "mistakes": {
+              "bullets": [
+                "Common error learners make"
+              ]
+            },
+            "ethics": {
+              "body": "Responsible practice."
+            },
+            "safety": {
+              "body": "Hazards and precautions. Omit or set skipped when not applicable."
+            },
+            "related": [
+              { "id": "other-lesson-id", "title": "Related lesson title" }
+            ],
+            "challenge": {
+              "body": "A concrete task to try in the field or studio."
+            },
+            "quiz": {
+              "status": "future",
+              "items": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,77 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="scenes">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Scenes — bring quiet, cinematic motion to your landscape photographs.">
-  <title>Waypoint Scenes</title>
+  <meta name="description" content="Bring Nature to Life — a quiet studio for nature photographers returning from the field.">
+  <title>Waypoint Scenes — Bring Nature to Life</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system/css/wds.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/studio-shell.css">
 </head>
 <body>
+  <a class="skip-link" href="#workspace">Skip to studio</a>
   <div class="app" id="app">
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href="#">
+        <a class="brand" href="#workspace">
           <span class="brand-mark" aria-hidden="true"></span>
           <span class="brand-name">Waypoint Scenes</span>
         </a>
-        <nav class="topbar-nav" aria-label="Primary">
-          <button type="button" class="btn btn-ghost btn-sm" id="btn-upload-nav">Upload</button>
-          <button type="button" class="topbar-link topbar-tab-link" data-tab="living-scene">Living Scene</button>
-          <button type="button" class="topbar-link topbar-tab-link" data-tab="parallax">Parallax</button>
-          <button type="button" class="topbar-link topbar-tab-link" data-tab="photography">Photography</button>
-          <button type="button" class="topbar-link topbar-tab-link" data-tab="learn">Learn</button>
-          <button type="button" class="topbar-link topbar-tab-link" data-tab="export">Export</button>
+        <nav class="topbar-nav" aria-label="Studio">
+          <button type="button" class="btn btn-ghost btn-sm" id="btn-upload-nav">Unpack</button>
         </nav>
       </div>
     </header>
 
     <section class="hero" id="hero">
       <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-hearth" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="hero-eyebrow">Creative motion studio</p>
-        <h1 class="hero-title">Turn still landscapes<br><em>into living scenes</em></h1>
-        <p class="hero-lead">Add cinematic drift, weather, and atmosphere — or explore interactive 2.5D parallax. Everything runs locally in your browser.</p>
+        <p class="hero-eyebrow">Bring Nature to Life</p>
+        <h1 class="hero-title">You made it home.<br><em>Let the day breathe.</em></h1>
+        <p class="hero-lead">Unpack today's frames by the fire. Give still photographs quiet life — on your machine, for your eyes.</p>
         <div class="hero-actions">
-          <button type="button" class="btn btn-primary btn-lg" id="btn-upload-hero">
-            <span class="btn-icon" aria-hidden="true">↑</span>
-            Upload photograph
-          </button>
-          <p class="hero-hint">JPG, PNG, or WebP · up to 20 MB</p>
+          <button type="button" class="btn btn-primary btn-lg" id="btn-upload-hero">Unpack a frame</button>
+          <p class="hero-hint">JPG, PNG, WebP · 20 MB</p>
         </div>
       </div>
-      <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" hidden>
+      <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/svg+xml" hidden>
       <p class="upload-error" id="upload-error" role="alert" hidden></p>
     </section>
 
-    <main class="workspace" id="workspace">
-      <nav class="workspace-tabs" id="workspace-tabs" role="tablist" aria-label="Workspace modes">
+    <main class="workspace studio" id="workspace">
+      <p class="workspace-upload-error" id="workspace-upload-error" role="alert" hidden></p>
+
+      <nav class="workspace-tabs" id="workspace-tabs" role="tablist" aria-label="Studios">
         <button type="button" class="workspace-tab is-active" role="tab" id="tab-btn-living-scene" data-tab="living-scene" aria-selected="true" aria-controls="tab-living-scene">Living Scene</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-parallax" data-tab="parallax" aria-selected="false" aria-controls="tab-parallax">Interactive Parallax</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-photography" data-tab="photography" aria-selected="false" aria-controls="tab-photography">Photography</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-learn" data-tab="learn" aria-selected="false" aria-controls="tab-learn">Learn</button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-parallax" data-tab="parallax" aria-selected="false" aria-controls="tab-parallax">Parallax</button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-photography" data-tab="photography" aria-selected="false" aria-controls="tab-photography">Collections</button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-learn" data-tab="learn" aria-selected="false" aria-controls="tab-learn">Field Guide</button>
         <button type="button" class="workspace-tab" role="tab" id="tab-btn-export" data-tab="export" aria-selected="false" aria-controls="tab-export">Export</button>
       </nav>
 
-      <!-- Living Scene -->
       <section class="tab-panel is-active" id="tab-living-scene" role="tabpanel" aria-labelledby="tab-btn-living-scene">
         <div class="workspace-layout">
           <div class="workspace-canvas">
             <div class="preview-shell" id="preview-shell">
               <div class="preview-empty" id="preview-empty">
                 <div class="preview-empty-icon" aria-hidden="true">
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="6" y="10" width="36" height="28" rx="4" stroke="currentColor" stroke-width="1.5"/>
-                    <circle cx="16" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M6 32l10-8 8 6 10-12 8 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="1"/>
+                    <path d="M8 30l9-7 7 5 12-10 4 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p class="preview-empty-title">Your living scene</p>
-                <p class="preview-empty-text">Upload a landscape photograph. Camera drift, fog, rain, and other overlays render live in this canvas.</p>
-                <button type="button" class="btn btn-secondary" id="btn-upload-empty">Choose image</button>
+                <p class="preview-empty-title">Set a frame on the easel</p>
+                <p class="preview-empty-text">Fog drifts. Light changes. The day continues.</p>
+                <button type="button" class="btn btn-secondary" id="btn-upload-empty">Unpack a frame</button>
               </div>
 
               <div class="scene-frame" id="scene-frame" hidden>
@@ -87,131 +83,118 @@
                   <canvas class="overlay-canvas" id="canvas-effects" aria-hidden="true"></canvas>
                 </div>
                 <div class="preview-chrome">
-                  <span class="preview-badge" id="preview-badge">Living preview</span>
+                  <span class="preview-badge" id="preview-badge">Living Scene</span>
                   <span class="preview-meta muted" id="preview-meta"></span>
                 </div>
               </div>
             </div>
           </div>
 
-          <aside class="workspace-sidebar">
+          <aside class="workspace-sidebar" id="living-sidebar">
             <section class="panel glass-panel effects-studio" id="effects-studio" aria-labelledby="studio-heading">
               <header class="panel-header">
-                <h2 class="panel-title" id="studio-heading">Effects Studio</h2>
-                <p class="panel-subtitle">Adjust camera and overlays in real time. Sliders appear when an effect is enabled.</p>
+                <h2 class="panel-title" id="studio-heading">Atmosphere</h2>
               </header>
-
               <div class="studio-block studio-camera" id="studio-camera">
-                <h3 class="studio-block-title">Camera movement</h3>
+                <h3 class="studio-block-title">Observation</h3>
                 <div class="studio-sliders" id="camera-sliders"></div>
               </div>
-
               <div class="studio-block studio-overlays">
-                <h3 class="studio-block-title">Overlays</h3>
+                <h3 class="studio-block-title">Layers</h3>
                 <div class="effect-modules-list" id="effects-grid"></div>
               </div>
             </section>
 
             <section class="panel glass-panel" id="scene-presets" aria-labelledby="presets-heading">
               <header class="panel-header">
-                <h2 class="panel-title" id="presets-heading">Scene Presets</h2>
-                <p class="panel-subtitle">Curated moods to start from. Fine-tune in Effects Studio.</p>
+                <h2 class="panel-title" id="presets-heading">Moods</h2>
               </header>
-
               <div class="preset-recommendations" id="preset-recommendations" hidden>
-                <h3 class="studio-block-title">Recommended for your photo</h3>
+                <h3 class="studio-block-title">What we noticed</h3>
                 <p class="analysis-summary muted" id="analysis-summary"></p>
-                <div class="analysis-tags" id="analysis-tags" aria-label="Detected scene elements"></div>
+                <div class="analysis-tags" id="analysis-tags" aria-label="Scene elements"></div>
                 <div class="recommendation-list" id="recommendation-list"></div>
               </div>
-
               <div class="presets-list" id="presets-grid"></div>
             </section>
           </aside>
         </div>
       </section>
 
-      <!-- Interactive Parallax -->
       <section class="tab-panel" id="tab-parallax" role="tabpanel" aria-labelledby="tab-btn-parallax" hidden>
         <div class="workspace-layout">
           <div class="workspace-canvas">
             <div class="preview-shell parallax-shell" id="parallax-shell">
               <div class="preview-empty" id="parallax-empty">
                 <div class="preview-empty-icon" aria-hidden="true">
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="8" y="12" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M8 28l8-6 6 4 10-8 8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M20 8l4 4M28 8l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <svg width="40" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="12" width="32" height="24" rx="2" stroke="currentColor" stroke-width="1"/>
+                    <path d="M8 30l9-7 7 5 12-10 4 12" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
-                <p class="preview-empty-title">Interactive parallax preview</p>
-                <p class="preview-empty-text">Upload a photo, then move your mouse or tilt your phone to feel subtle 2.5D depth.</p>
-                <button type="button" class="btn btn-secondary" id="btn-upload-parallax-empty">Choose image</button>
+                <p class="preview-empty-title">Lean into the frame</p>
+                <p class="preview-empty-text">Presence, not weather — like looking through a cabin window.</p>
+                <button type="button" class="btn btn-secondary" id="btn-upload-parallax-empty">Unpack a frame</button>
               </div>
 
               <div class="parallax-frame" id="parallax-frame" hidden>
                 <div class="parallax-stage-wrap">
                   <div class="parallax-stage" id="parallax-stage">
-                    <div class="parallax-viewport" id="parallax-viewport" tabindex="0" aria-label="Parallax preview — move mouse or tilt device to explore depth">
+                    <div class="parallax-viewport" id="parallax-viewport" tabindex="0" aria-label="Parallax preview">
                       <div class="parallax-layer parallax-layer-bg" data-layer="background">
                         <img class="parallax-img" id="parallax-img-bg" alt="" hidden>
-                        <span class="parallax-layer-label">Background</span>
                       </div>
                       <div class="parallax-layer parallax-layer-mid" data-layer="midground">
                         <img class="parallax-img" id="parallax-img-mid" alt="" hidden>
-                        <span class="parallax-layer-label">Midground</span>
                       </div>
                       <div class="parallax-layer parallax-layer-fg" data-layer="foreground">
                         <img class="parallax-img" id="parallax-img-fg" alt="" hidden>
-                        <span class="parallax-layer-label">Foreground</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="preview-chrome">
-                  <span class="preview-badge preview-badge-parallax">2.5D parallax</span>
+                  <span class="preview-badge preview-badge-parallax">Parallax</span>
                   <span class="preview-meta muted" id="parallax-meta"></span>
                 </div>
               </div>
             </div>
-            <p class="parallax-soon-note muted" id="parallax-soon-note">True depth layers and subject masking coming soon.</p>
           </div>
 
           <aside class="workspace-sidebar">
             <section class="panel glass-panel" id="parallax-controls" aria-labelledby="parallax-heading">
               <header class="panel-header">
-                <h2 class="panel-title" id="parallax-heading">Parallax Controls</h2>
-                <p class="panel-subtitle">Separate from weather and atmosphere effects — pure interactive depth.</p>
+                <h2 class="panel-title" id="parallax-heading">Presence</h2>
               </header>
 
               <div class="parallax-upload-row">
-                <button type="button" class="btn btn-secondary btn-sm" id="btn-upload-parallax">Upload image</button>
-                <input type="file" id="parallax-file-input" accept="image/jpeg,image/png,image/webp" hidden>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-upload-parallax">Unpack</button>
+                <input type="file" id="parallax-file-input" accept="image/jpeg,image/png,image/webp,image/svg+xml" hidden>
               </div>
 
               <div class="parallax-presets-block">
-                <h3 class="studio-block-title">Parallax presets</h3>
+                <h3 class="studio-block-title">Moods</h3>
                 <div class="parallax-presets-list" id="parallax-presets-grid"></div>
               </div>
 
               <div class="studio-sliders parallax-sliders" id="parallax-sliders">
                 <div class="fx-param">
                   <div class="fx-param-head">
-                    <label for="px-sensitivity">Motion sensitivity</label>
+                    <label for="px-sensitivity">Response</label>
                     <span class="fx-param-val" data-val="px:sensitivity">28%</span>
                   </div>
                   <input type="range" class="range-slider range-slider-sm" id="px-sensitivity" data-param="px:sensitivity" min="0" max="100" value="28">
                 </div>
                 <div class="fx-param">
                   <div class="fx-param-head">
-                    <label for="px-strength">Movement strength</label>
+                    <label for="px-strength">Motion</label>
                     <span class="fx-param-val" data-val="px:strength">20%</span>
                   </div>
                   <input type="range" class="range-slider range-slider-sm" id="px-strength" data-param="px:strength" min="0" max="100" value="20">
                 </div>
                 <div class="fx-param">
                   <div class="fx-param-head">
-                    <label for="px-depth-strength">Depth strength</label>
+                    <label for="px-depth-strength">Separation</label>
                     <span class="fx-param-val" data-val="px:depthStrength">40%</span>
                   </div>
                   <input type="range" class="range-slider range-slider-sm" id="px-depth-strength" data-param="px:depthStrength" min="0" max="100" value="40">
@@ -225,7 +208,7 @@
                 </div>
                 <div class="fx-param">
                   <div class="fx-param-head">
-                    <label for="px-zoom">Zoom amount</label>
+                    <label for="px-zoom">Zoom</label>
                     <span class="fx-param-val" data-val="px:zoom">26%</span>
                   </div>
                   <input type="range" class="range-slider range-slider-sm" id="px-zoom" data-param="px:zoom" min="0" max="100" value="26">
@@ -236,8 +219,7 @@
                 <input type="checkbox" id="px-auto-drift" checked>
                 <span class="effect-toggle-track"><span class="effect-toggle-thumb"></span></span>
                 <span class="effect-toggle-copy">
-                  <span class="effect-name">Auto-drift</span>
-                  <span class="effect-desc">A slow ambient wander when you are not moving the scene.</span>
+                  <span class="effect-name">Drift</span>
                 </span>
               </label>
 
@@ -245,112 +227,89 @@
                 <input type="checkbox" id="px-tilt-enabled">
                 <span class="effect-toggle-track"><span class="effect-toggle-thumb"></span></span>
                 <span class="effect-toggle-copy">
-                  <span class="effect-name">Device tilt (mobile)</span>
-                  <span class="effect-desc">Uses phone orientation when available; mouse or touch otherwise.</span>
+                  <span class="effect-name">Tilt</span>
                 </span>
               </label>
               <p class="parallax-tilt-hint muted" id="parallax-tilt-hint" hidden></p>
 
-              <button type="button" class="btn btn-ghost btn-sm parallax-reset-btn" id="btn-parallax-reset">Reset position</button>
+              <button type="button" class="btn btn-ghost btn-sm parallax-reset-btn" id="btn-parallax-reset">Restore</button>
             </section>
           </aside>
         </div>
       </section>
 
-      <!-- Photography -->
       <section class="tab-panel" id="tab-photography" role="tabpanel" aria-labelledby="tab-btn-photography" hidden>
         <div class="darkroom" id="photography-layout">
           <header class="darkroom-journal-header">
             <div class="darkroom-rule" aria-hidden="true"></div>
-            <p class="darkroom-kicker">Field journal · Portfolio · Studio</p>
-            <h2 class="darkroom-title">Field &amp; Wild</h2>
-            <p class="darkroom-lead">Landscape, wildlife, and weather from the trail — archived with care, offered without noise.</p>
+            <p class="darkroom-kicker">From the trail</p>
+            <h2 class="darkroom-title">Back from the field</h2>
+            <p class="darkroom-lead">Frames you carried home — captioned, located, ready for the hearth.</p>
           </header>
 
-          <div id="photo-hero" class="photo-hero-mount" aria-label="Featured photograph"></div>
+          <div id="photo-hero" class="photo-hero-mount" aria-label="Featured frame"></div>
 
           <section class="darkroom-archive" aria-labelledby="darkroom-archive-heading">
             <div class="darkroom-archive-head">
               <div class="darkroom-archive-copy">
-                <h3 class="darkroom-archive-title" id="darkroom-archive-heading">Archive</h3>
-                <p class="darkroom-archive-sub muted">Select a category or browse the full collection.</p>
+                <h3 class="darkroom-archive-title" id="darkroom-archive-heading">On the wall</h3>
               </div>
-              <nav class="photo-filter-chips" id="photo-categories" aria-label="Photography categories"></nav>
+              <nav class="photo-filter-chips" id="photo-categories" aria-label="Categories"></nav>
             </div>
-            <div id="photo-gallery" class="photo-gallery-mount" aria-label="Photography gallery"></div>
+            <div id="photo-gallery" class="photo-gallery-mount" aria-label="Gallery"></div>
           </section>
         </div>
 
         <div id="photo-modal" class="photo-modal" hidden aria-live="polite"></div>
       </section>
 
-      <!-- Learn -->
       <section class="tab-panel" id="tab-learn" role="tabpanel" aria-labelledby="tab-btn-learn" hidden>
         <div class="learn-layout">
           <div class="learn-intro glass-panel">
-            <h2 class="panel-title">How Waypoint Scenes works</h2>
-            <p class="panel-subtitle">Portfolio, creative modes, and export tools — everything in one calm workspace.</p>
+            <p class="learn-mission">Bring Nature to Life</p>
+            <h2 class="panel-title">Field guide</h2>
+            <p class="panel-subtitle">For the quiet hour after sunset — when you want to see more clearly, inside and out.</p>
           </div>
 
-          <div class="learn-grid">
-            <article class="learn-card glass-panel">
-              <h3 class="learn-card-title">Photography</h3>
-              <p class="learn-card-text">Browse a calm portfolio of landscape, wildlife, and field work. Open any image to read captions, location, and gear notes — then send it to Living Scene or Interactive Parallax.</p>
-              <button type="button" class="btn btn-ghost btn-sm learn-goto" data-tab="photography">Open Photography</button>
-            </article>
-
-            <article class="learn-card glass-panel">
-              <h3 class="learn-card-title">Living Scene</h3>
-              <p class="learn-card-text">Upload a landscape and apply subtle camera drift with layered weather and atmosphere — fog, rain, snow, fireflies, and more. Start from a Scene Preset or tune every slider in Effects Studio.</p>
-              <button type="button" class="btn btn-ghost btn-sm learn-goto" data-tab="living-scene">Open Living Scene</button>
-            </article>
-
-            <article class="learn-card glass-panel">
-              <h3 class="learn-card-title">Interactive Parallax</h3>
-              <p class="learn-card-text">A separate 2.5D mode: your photo responds to mouse movement or phone tilt with layered translate and zoom. No weather overlays — just responsive depth. True subject masking arrives in a future update.</p>
-              <button type="button" class="btn btn-ghost btn-sm learn-goto" data-tab="parallax">Open Parallax</button>
-            </article>
-
-            <article class="learn-card glass-panel">
-              <h3 class="learn-card-title">Export</h3>
-              <p class="learn-card-text">Capture a snapshot of your living scene today. Video export, Live Photos, and desktop wallpapers are on the Waypoint roadmap.</p>
-              <button type="button" class="btn btn-ghost btn-sm learn-goto" data-tab="export">Open Export</button>
-            </article>
-          </div>
+          <div id="learn-curriculum" class="learn-curriculum" aria-label="Field guide"></div>
 
           <section class="panel glass-panel coming-soon-panel" id="coming-soon-panel" aria-labelledby="coming-soon-heading">
             <header class="panel-header">
-              <h2 class="panel-title" id="coming-soon-heading">Coming Soon</h2>
-              <p class="panel-subtitle">AI-powered motion, depth masking, and export features on the Waypoint roadmap.</p>
+              <h2 class="panel-title" id="coming-soon-heading">On the horizon</h2>
+              <p class="panel-subtitle">Layer masks, video export, and scene intelligence — still gathering light.</p>
             </header>
-            <div class="coming-soon-panel-inner" id="coming-soon-mount" aria-label="Upcoming features"></div>
+            <div class="coming-soon-panel-inner" id="coming-soon-mount" aria-label="Roadmap"></div>
           </section>
         </div>
       </section>
 
-      <!-- Export -->
       <section class="tab-panel" id="tab-export" role="tabpanel" aria-labelledby="tab-btn-export" hidden>
         <div class="export-layout">
           <section class="panel glass-panel export-panel-main" id="export-panel" aria-labelledby="export-heading">
             <header class="panel-header">
-              <h2 class="panel-title" id="export-heading">Export</h2>
-              <p class="panel-subtitle">Snapshot preview of your Living Scene. Interactive Parallax export is not available yet.</p>
+              <h2 class="panel-title" id="export-heading">Share</h2>
             </header>
             <div class="export-thumb-wrap">
-              <canvas id="export-canvas" width="320" height="200" aria-label="Export preview thumbnail"></canvas>
-              <p class="export-empty-note muted" id="export-empty-note">Upload a photo in Living Scene to generate a preview.</p>
+              <canvas id="export-canvas" width="640" height="400" aria-label="Export preview"></canvas>
+              <p class="export-empty-note muted" id="export-empty-note">Bring a Living Scene to the hearth first.</p>
             </div>
-            <p class="export-roadmap-note muted">Video export, Live Photos, and desktop wallpapers are listed under <button type="button" class="inline-link learn-goto" data-tab="learn">Learn → Coming Soon</button>.</p>
+            <div class="export-actions">
+              <button type="button" class="btn btn-primary" id="btn-export-download" disabled>Save this moment</button>
+            </div>
+            <p class="export-roadmap-note muted">Video export is on the horizon. <button type="button" class="inline-link learn-goto" data-tab="learn">Field Guide</button></p>
           </section>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Waypoint Scenes · Private, in-browser processing · No account required</p>
+      <p>Bring Nature to Life</p>
     </footer>
   </div>
 
+  <script src="js/utils/motion-preference.js"></script>
+  <script src="js/utils/file-upload.js"></script>
+  <script src="js/studio/copy.js"></script>
   <script src="js/engine/effect-base.js"></script>
   <script src="js/engine/registry.js"></script>
   <script src="js/engine/effects/fog.js"></script>
@@ -363,6 +322,9 @@
   <script src="js/engine/effects/leaf-drift.js"></script>
   <script src="js/engine/runtime.js"></script>
   <script src="js/effects.js"></script>
+  <script src="design-system/js/wds-core.js"></script>
+  <script src="design-system/js/wds-education.js"></script>
+  <script src="design-system/js/wds-education-factory.js"></script>
   <script src="js/coming-soon.js"></script>
   <script src="js/export.js"></script>
   <script src="js/scene-presets.js"></script>
@@ -372,6 +334,8 @@
   <script src="js/parallax.js"></script>
   <script src="js/photography-data.js"></script>
   <script src="js/photography.js"></script>
+  <script src="js/learn-content.js"></script>
+  <script src="js/learn.js"></script>
   <script src="js/tabs.js"></script>
   <script src="js/app.js"></script>
 </body>

@@ -5,7 +5,7 @@
     {
       id: "gentle-drift",
       name: "Gentle Drift",
-      description: "Barely-there motion with a slow ambient wander.",
+      description: "Barely-there motion at rest.",
       zoom: 26,
       strength: 20,
       smoothing: 78,
@@ -16,7 +16,7 @@
     {
       id: "deep-forest",
       name: "Deep Forest",
-      description: "Layered depth with rich, forest-like separation.",
+      description: "Rich separation between canopy layers.",
       zoom: 34,
       strength: 26,
       smoothing: 70,
@@ -27,7 +27,7 @@
     {
       id: "mountain-vista",
       name: "Mountain Vista",
-      description: "Wide framing and slow horizon drift.",
+      description: "Wide framing, slow horizon drift.",
       zoom: 42,
       strength: 24,
       smoothing: 74,
@@ -38,7 +38,7 @@
     {
       id: "water-reflection",
       name: "Water Reflection",
-      description: "Ultra-smooth, low-amplitude motion like a still lake.",
+      description: "Ultra-smooth, like a still lake.",
       zoom: 30,
       strength: 18,
       smoothing: 82,
@@ -49,7 +49,7 @@
     {
       id: "cinematic-push",
       name: "Cinematic Push",
-      description: "A quiet forward pull — responsive but restrained.",
+      description: "A quiet forward pull.",
       zoom: 38,
       strength: 32,
       smoothing: 62,

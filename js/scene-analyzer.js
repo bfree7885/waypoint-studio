@@ -129,7 +129,7 @@
       ["trees", "Trees"],
       ["mountains", "Mountains"],
       ["clouds", "Clouds"],
-      ["fields", "Open fields"],
+      ["fields", "Meadow"],
       ["snow", "Snow"],
       ["foreground", "Foreground"]
     ];

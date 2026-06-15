@@ -26,6 +26,8 @@
     targetY: 0,
     currentX: 0,
     currentY: 0,
+    velX: 0,
+    velY: 0,
     cardTiltX: 0,
     cardTiltY: 0,
 
@@ -139,12 +141,29 @@
 
     var smooth = getSettings().smoothing;
     var lambda = scale(smooth, 5.5, 16);
-    state.currentX = expSmooth(state.currentX, state.targetX, lambda, dt);
-    state.currentY = expSmooth(state.currentY, state.targetY, lambda, dt);
+    var reduced = global.WaypointMotionPreference && global.WaypointMotionPreference.prefersReducedMotion();
 
-    var cardLambda = lambda * 0.85;
-    state.cardTiltX = expSmooth(state.cardTiltX, state.currentX, cardLambda, dt);
-    state.cardTiltY = expSmooth(state.cardTiltY, state.currentY, cardLambda, dt);
+    if (reduced) {
+      state.velX = 0;
+      state.velY = 0;
+      state.currentX = expSmooth(state.currentX, state.targetX, 4, dt);
+      state.currentY = expSmooth(state.currentY, state.targetY, 4, dt);
+      state.cardTiltX = 0;
+      state.cardTiltY = 0;
+    } else {
+      var spring = lambda * 0.85;
+      var damping = 0.78 + scale(smooth, 0, 0.16);
+      state.velX = (state.velX + (state.targetX - state.currentX) * spring * dt * 60) * damping;
+      state.velY = (state.velY + (state.targetY - state.currentY) * spring * dt * 60) * damping;
+      state.currentX += state.velX;
+      state.currentY += state.velY;
+      state.currentX = expSmooth(state.currentX, state.targetX, lambda * 0.35, dt);
+      state.currentY = expSmooth(state.currentY, state.targetY, lambda * 0.35, dt);
+
+      var cardLambda = lambda * 0.85;
+      state.cardTiltX = expSmooth(state.cardTiltX, state.currentX, cardLambda, dt);
+      state.cardTiltY = expSmooth(state.cardTiltY, state.currentY, cardLambda, dt);
+    }
 
     applyTransforms();
     state.raf = requestAnimationFrame(tick);
@@ -194,6 +213,25 @@
       setPointerNorm(0, 0);
     };
 
+    state.handlers.keydown = function (e) {
+      if (!pointerActive()) return;
+      var step = 0.035;
+      if (e.key === "ArrowLeft") {
+        setPointerNorm(state.pointerX - step, state.pointerY);
+        e.preventDefault();
+      } else if (e.key === "ArrowRight") {
+        setPointerNorm(state.pointerX + step, state.pointerY);
+        e.preventDefault();
+      } else if (e.key === "ArrowUp") {
+        setPointerNorm(state.pointerX, state.pointerY - step);
+        e.preventDefault();
+      } else if (e.key === "ArrowDown") {
+        setPointerNorm(state.pointerX, state.pointerY + step);
+        e.preventDefault();
+      }
+    };
+
+    vp.addEventListener("keydown", state.handlers.keydown);
     vp.addEventListener("mousemove", state.handlers.mousemove);
     vp.addEventListener("mouseleave", state.handlers.mouseleave);
     vp.addEventListener("touchstart", state.handlers.touchstart, { passive: true });
@@ -228,6 +266,7 @@
     var vp = state.viewport;
     var h = state.handlers;
     if (h.mousemove) vp.removeEventListener("mousemove", h.mousemove);
+    if (h.keydown) vp.removeEventListener("keydown", h.keydown);
     if (h.mouseleave) vp.removeEventListener("mouseleave", h.mouseleave);
     if (h.touchstart) vp.removeEventListener("touchstart", h.touchstart);
     if (h.touchmove) vp.removeEventListener("touchmove", h.touchmove);
@@ -340,6 +379,8 @@
     state.targetY = 0;
     state.currentX = 0;
     state.currentY = 0;
+    state.velX = 0;
+    state.velY = 0;
     state.cardTiltX = 0;
     state.cardTiltY = 0;
     state.tiltBaseline = null;

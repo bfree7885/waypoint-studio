@@ -466,12 +466,22 @@ body::after {
 }
 
 .scene-bg-inner.is-camera-motion {
-  animation: studio-camera var(--cam-duration, 60s) ease-in-out infinite alternate;
+  animation: studio-camera var(--cam-duration, 90s) ease-in-out infinite alternate;
 }
 
 @keyframes studio-camera {
   0% {
-    transform: scale(var(--cam-zoom-min, 1.02)) translate(0, 0) rotate(calc(var(--cam-rot, 0deg) * -1));
+    transform: scale(var(--cam-zoom-min, 1.02)) translate(0, 0) rotate(calc(var(--cam-rot, 0deg) * -0.6));
+  }
+  35% {
+    transform: scale(calc((var(--cam-zoom-min, 1.02) + var(--cam-zoom-max, 1.08)) / 2))
+      translate(calc(var(--cam-drift-x, 1%) * 0.4), calc(var(--cam-drift-y, 0.5%) * -0.3))
+      rotate(calc(var(--cam-rot, 0deg) * 0.35));
+  }
+  68% {
+    transform: scale(calc(var(--cam-zoom-max, 1.08) * 0.98))
+      translate(calc(var(--cam-drift-x, 1%) * 0.75), calc(var(--cam-drift-y, 0.5%) * 0.55))
+      rotate(calc(var(--cam-rot, 0deg) * -0.25));
   }
   100% {
     transform: scale(var(--cam-zoom-max, 1.08)) translate(var(--cam-drift-x, 1%), var(--cam-drift-y, 0.5%)) rotate(var(--cam-rot, 0deg));
@@ -509,7 +519,7 @@ body::after {
     rgba(210, 222, 235, 0.18) 55%,
     transparent 100%
   );
-  animation: fx-drift-a var(--fx-speed, 42s) linear infinite;
+  animation: fx-drift-a var(--fx-speed, 42s) ease-in-out infinite alternate;
 }
 
 .fx-fog-b {
@@ -522,7 +532,7 @@ body::after {
     rgba(190, 205, 220, 0.14) 65%,
     transparent 100%
   );
-  animation: fx-drift-b var(--fx-speed, 58s) linear infinite reverse;
+  animation: fx-drift-b var(--fx-speed, 58s) ease-in-out infinite alternate-reverse;
 }
 
 @keyframes fx-drift-a {

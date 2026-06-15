@@ -39,7 +39,7 @@
   global.WaypointEffectRegistry.register({
     id: "cloudDrift",
     name: "Cloud Drift",
-    description: "Soft clouds sliding overhead",
+    description: "Clouds sliding overhead",
     layer: "dom",
     zIndex: 15,
     defaults: { intensity: 45, speed: 30, opacity: 40, scale: 50, randomness: 35 },

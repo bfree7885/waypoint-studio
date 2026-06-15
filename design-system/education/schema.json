@@ -1,0 +1,108 @@
+{
+  "$id": "https://waypoint.studio/schemas/wef-curriculum.json",
+  "title": "Waypoint Education Framework Curriculum",
+  "type": "object",
+  "required": ["version", "tracks"],
+  "properties": {
+    "version": { "type": "string" },
+    "product": { "type": "string" },
+    "mission": { "type": "string" },
+    "intro": { "type": "string" },
+    "tracks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/track" }
+    }
+  },
+  "$defs": {
+    "track": {
+      "type": "object",
+      "required": ["id", "title", "lessons"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "domains": { "type": "array", "items": { "type": "string" } },
+        "lessons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/lesson" }
+        }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["id", "title", "sections"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "domains": { "type": "array", "items": { "type": "string" } },
+        "level": { "enum": ["intro", "beginner", "intermediate", "advanced"] },
+        "durationMinutes": { "type": "number" },
+        "summary": { "type": "string" },
+        "sections": { "$ref": "#/$defs/sections" },
+        "related": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "required": ["id"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "title": { "type": "string" }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "sectionContent": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "bullets": { "type": "array", "items": { "type": "string" } },
+        "prompts": { "type": "array", "items": { "type": "string" } },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "sections": {
+      "type": "object",
+      "properties": {
+        "what": { "$ref": "#/$defs/sectionContent" },
+        "why": { "$ref": "#/$defs/sectionContent" },
+        "identify": { "$ref": "#/$defs/sectionContent" },
+        "howItWorks": { "$ref": "#/$defs/sectionContent" },
+        "fieldObservations": { "$ref": "#/$defs/sectionContent" },
+        "mistakes": { "$ref": "#/$defs/sectionContent" },
+        "ethics": { "$ref": "#/$defs/sectionContent" },
+        "safety": { "$ref": "#/$defs/sectionContent" },
+        "challenge": { "$ref": "#/$defs/sectionContent" },
+        "quiz": {
+          "type": "object",
+          "properties": {
+            "status": { "enum": ["future", "ready"] },
+            "futureMessage": { "type": "string" },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["question", "choices", "answer"],
+                "properties": {
+                  "question": { "type": "string" },
+                  "choices": { "type": "array", "items": { "type": "string" } },
+                  "answer": { "type": "integer" },
+                  "explanation": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

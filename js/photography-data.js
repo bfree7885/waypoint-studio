@@ -7,7 +7,7 @@
     { id: "forests", label: "Forests" },
     { id: "weather", label: "Weather" },
     { id: "astronomy", label: "Astronomy" },
-    { id: "field-notes", label: "Field Notes" }
+    { id: "field-notes", label: "Notes" }
   ];
 
   var PHOTOS = [

@@ -1,11 +1,5 @@
-(function () {
+(function (global) {
   "use strict";
-
-  /**
-   * Export handlers — see WaypointComingSoon for UI placeholders.
-   * Video export, Live Photos, and desktop wallpapers are grouped under
-   * coming-soon id: video-export, live-photos, desktop-wallpapers.
-   */
 
   function notImplemented(name) {
     return function () {
@@ -15,10 +9,6 @@
     };
   }
 
-  /**
-   * Looping video export — wire here when ready.
-   * @param {object} config — scene refs from app.js getEffectConfig() plus exportCanvas
-   */
   function exportVideo(config) {
     notImplemented("exportVideo")();
   }
@@ -31,9 +21,39 @@
     notImplemented("exportDesktopWallpapers")();
   }
 
-  window.WaypointExport = {
+  /**
+   * Download the export preview canvas as a PNG snapshot.
+   * @param {HTMLCanvasElement} canvas
+   * @param {string} [filename]
+   * @returns {boolean}
+   */
+  function downloadSnapshot(canvas, filename) {
+    if (!canvas || !canvas.width || !canvas.height) return false;
+
+    try {
+      canvas.toBlob(function (blob) {
+        if (!blob) return;
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = filename || "waypoint-scene.png";
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, "image/png");
+      return true;
+    } catch (e) {
+      console.warn("[WaypointExport] Snapshot download failed.", e);
+      return false;
+    }
+  }
+
+  global.WaypointExport = {
     exportVideo: exportVideo,
     exportLivePhotos: exportLivePhotos,
-    exportDesktopWallpapers: exportDesktopWallpapers
+    exportDesktopWallpapers: exportDesktopWallpapers,
+    downloadSnapshot: downloadSnapshot
   };
-})();
+})(window);

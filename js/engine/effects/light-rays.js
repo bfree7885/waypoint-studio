@@ -19,7 +19,7 @@
   global.WaypointEffectRegistry.register({
     id: "lightRays",
     name: "Light Rays",
-    description: "Cinematic sun beams from above",
+    description: "Sun beams through haze",
     layer: "dom",
     zIndex: 20,
     defaults: { intensity: 40, speed: 25, opacity: 35, scale: 55, randomness: 30 },

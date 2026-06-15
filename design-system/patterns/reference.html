@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WDS Reference — Waypoint Studio Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+  <style>
+    .ref-section { max-width: var(--wds-max-content); margin: 0 auto; padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem); }
+    .ref-section + .ref-section { border-top: 1px solid var(--wds-border-subtle); }
+    .ref-grid { display: grid; gap: var(--wds-space-4); grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .ref-row { display: flex; flex-wrap: wrap; gap: var(--wds-space-3); align-items: center; }
+    .ref-swatch { height: 3rem; border-radius: var(--wds-radius-md); border: 1px solid var(--wds-border-subtle); }
+    .ref-product-picker { display: flex; flex-wrap: wrap; gap: var(--wds-space-2); margin-bottom: var(--wds-space-6); }
+    .demo-map { min-height: 200px; background: linear-gradient(180deg, #1a2332 0%, #0c0b09 100%); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to reference</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../README.md">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">WDS Reference</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="wds-hero is-compact">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Waypoint Studio Design System</p>
+        <h1 class="wds-display-xl">One ecosystem.<br><em class="wds-em">Eight products.</em></h1>
+        <p class="wds-lead">Living component gallery for typography, tokens, and patterns.</p>
+      </div>
+    </section>
+
+    <main id="main">
+      <section class="ref-section" aria-labelledby="ref-products">
+        <h2 id="ref-products" class="wds-heading">Product accents</h2>
+        <div class="ref-product-picker" id="product-picker">
+          <button type="button" class="wds-chip is-active" data-product="scenes">Scenes</button>
+          <button type="button" class="wds-chip" data-product="foragecast">ForageCast</button>
+          <button type="button" class="wds-chip" data-product="shed-hunting">Shed Hunting</button>
+          <button type="button" class="wds-chip" data-product="fieldry">Fieldry</button>
+          <button type="button" class="wds-chip" data-product="steepleaf">Steepleaf</button>
+          <button type="button" class="wds-chip" data-product="savant-sommelier">Savant Sommelier</button>
+          <button type="button" class="wds-chip" data-product="signalterrain">SignalTerrain</button>
+          <button type="button" class="wds-chip" data-product="terrainbound">Terrainbound</button>
+        </div>
+        <div class="ref-row">
+          <div class="ref-swatch" style="background: var(--wds-accent);"></div>
+          <div class="ref-swatch" style="background: var(--wds-warm);"></div>
+          <div class="ref-swatch" style="background: var(--wds-accent-dim);"></div>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-type">
+        <h2 id="ref-type" class="wds-heading">Typography</h2>
+        <p class="wds-display-xl">Display XL</p>
+        <p class="wds-display-lg">Display LG</p>
+        <p class="wds-display-md">Display MD</p>
+        <p class="wds-lead">Lead — quiet body for heroes and intros.</p>
+        <p class="wds-body">Body — secondary copy in panels and sidebars.</p>
+        <p class="wds-caption">Caption — hints, metadata, file limits.</p>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-buttons">
+        <h2 id="ref-buttons" class="wds-heading">Buttons</h2>
+        <div class="ref-row">
+          <button type="button" class="wds-btn wds-btn--primary">Primary</button>
+          <button type="button" class="wds-btn wds-btn--secondary">Secondary</button>
+          <button type="button" class="wds-btn wds-btn--ghost">Ghost</button>
+          <button type="button" class="wds-btn wds-btn--primary wds-btn--lg">Large</button>
+          <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm">Small</button>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-tabs">
+        <h2 id="ref-tabs" class="wds-heading">Tabs</h2>
+        <nav class="wds-tabs" id="demo-tabs" role="tablist" aria-label="Demo tabs">
+          <button type="button" class="wds-tab is-active" role="tab" data-tab="a" aria-selected="true" aria-controls="demo-a">One</button>
+          <button type="button" class="wds-tab" role="tab" data-tab="b" aria-selected="false" aria-controls="demo-b">Two</button>
+          <button type="button" class="wds-tab" role="tab" data-tab="c" aria-selected="false" aria-controls="demo-c">Three</button>
+        </nav>
+        <div id="demo-a" class="tab-panel is-active" role="tabpanel" style="padding-top: var(--wds-space-4);">
+          <p class="wds-body">Tab panel A</p>
+        </div>
+        <div id="demo-b" class="tab-panel" role="tabpanel" hidden style="padding-top: var(--wds-space-4);">
+          <p class="wds-body">Tab panel B</p>
+        </div>
+        <div id="demo-c" class="tab-panel" role="tabpanel" hidden style="padding-top: var(--wds-space-4);">
+          <p class="wds-body">Tab panel C</p>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-cards">
+        <h2 id="ref-cards" class="wds-heading">Cards & panels</h2>
+        <div class="wds-panel">
+          <header class="wds-panel__header">
+            <h3 class="wds-panel__title">Panel title</h3>
+          </header>
+          <div class="ref-grid">
+            <button type="button" class="wds-card wds-card--interactive">
+              <h4 class="wds-card__title">Mist at dawn</h4>
+              <p class="wds-card__desc">Soft lift, cool shadows</p>
+            </button>
+            <button type="button" class="wds-card wds-card--interactive">
+              <h4 class="wds-card__title">Golden hour</h4>
+              <p class="wds-card__desc">Warm drift, long shadows</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-forms">
+        <h2 id="ref-forms" class="wds-heading">Forms</h2>
+        <div class="wds-field" style="max-width: 24rem;">
+          <label class="wds-label" for="demo-input">Title</label>
+          <input class="wds-input" id="demo-input" type="text" placeholder="Morning at the creek">
+        </div>
+        <label class="wds-toggle" style="margin-top: var(--wds-space-4);">
+          <input type="checkbox" checked>
+          <span class="wds-toggle__track"><span class="wds-toggle__thumb"></span></span>
+          <span class="wds-body">Gentle drift</span>
+        </label>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-search">
+        <h2 id="ref-search" class="wds-heading">Search</h2>
+        <div class="wds-search" style="max-width: 20rem;">
+          <span class="wds-search__icon" aria-hidden="true">⌕</span>
+          <input class="wds-search__input" id="demo-search" type="search" placeholder="Filter…" autocomplete="off">
+          <button type="button" class="wds-search__clear" id="demo-search-clear" hidden>Clear</button>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-empty">
+        <h2 id="ref-empty" class="wds-heading">Empty state</h2>
+        <div class="wds-empty" style="min-height: 240px; border: 1px dashed var(--wds-border-subtle); border-radius: var(--wds-radius-xl);">
+          <h3 class="wds-empty__title">Nothing here yet</h3>
+          <p class="wds-empty__text">Unpack a frame to begin.</p>
+          <button type="button" class="wds-btn wds-btn--primary">Unpack a frame</button>
+        </div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-wef">
+        <h2 id="ref-wef" class="wds-heading">Education framework (WEF)</h2>
+        <p class="wds-body">Eleven fixed sections per lesson. Quiz stub shown below.</p>
+        <div id="wef-demo" class="wef-track glass-panel" style="padding: var(--wds-space-6); margin-top: var(--wds-space-4);"></div>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-lesson">
+        <h2 id="ref-lesson" class="wds-heading">Lesson block</h2>
+        <article class="wds-lesson">
+          <h3 class="wds-lesson__title">Reading the light</h3>
+          <ol class="wds-steps">
+            <li><span class="wds-step-num">1</span> Notice where shadow softens.</li>
+            <li><span class="wds-step-num">2</span> Name the direction of light.</li>
+          </ol>
+          <div class="wds-field-block wds-field-block--exercise">
+            <span class="wds-field-label">In the field</span>
+            Find one subject lit from behind.
+          </div>
+        </article>
+      </section>
+
+      <section class="ref-section" aria-labelledby="ref-map">
+        <h2 id="ref-map" class="wds-heading">Map chrome</h2>
+        <div class="wds-map">
+          <div class="wds-map__canvas demo-map"></div>
+          <div class="wds-map__chrome">
+            <span class="wds-map__coords">43.6591° N, 70.2568° W</span>
+            <span>SignalTerrain</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wds-footer">Waypoint Studio Design System · Bring Nature to Life</footer>
+  </div>
+
+  <script src="../js/wds-core.js"></script>
+  <script src="../js/wds-tabs.js"></script>
+  <script src="../js/wds-search.js"></script>
+  <script src="../js/wds-education.js"></script>
+  <script src="../js/wds-education-factory.js"></script>
+  <script>
+    WDS.tabs.init({
+      tablist: document.getElementById("demo-tabs"),
+      panelPrefix: "demo-",
+      initialTab: "a"
+    });
+
+    WDS.search.bind({
+      input: document.getElementById("demo-search"),
+      clear: document.getElementById("demo-search-clear"),
+      onQuery: function () {}
+    });
+
+    document.getElementById("product-picker").addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-product]");
+      if (!btn) return;
+      WDS.core.setProduct(btn.getAttribute("data-product"));
+      document.querySelectorAll("#product-picker .wds-chip").forEach(function (chip) {
+        chip.classList.toggle("is-active", chip === btn);
+        chip.setAttribute("aria-pressed", chip === btn ? "true" : "false");
+      });
+    });
+
+    (function () {
+      var demo = WDS.education.factory.createLesson("wef-structure-demo", "Lesson template structure", {
+        domains: ["field-skills"],
+        level: "intro",
+        sections: {
+          what: { body: "Framework demo — not a real lesson." },
+          why: { body: "Shows how every product teaches with the same shape." },
+          identify: { skipped: true, skipReason: "Skipped when identification does not apply." },
+          howItWorks: { steps: ["Sections render in fixed order.", "Empty sections are omitted."] },
+          fieldObservations: { prompts: ["Notice how each block is labeled the same across products."] },
+          mistakes: { bullets: ["Inventing a new template per product."] },
+          ethics: { body: "Teach responsible practice in every domain." },
+          safety: { body: "Surface hazards in safety — never only in mistakes." },
+          challenge: { body: "Open a second product and confirm the Learn tab feels familiar." },
+          quiz: { status: "future", items: [] }
+        }
+      });
+      document.getElementById("wef-demo").innerHTML = WDS.education.renderLesson(demo, { showSkipped: true });
+    })();
+  </script>
+</body>
+</html>

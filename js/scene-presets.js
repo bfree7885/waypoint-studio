@@ -13,10 +13,10 @@
   ];
 
   var DEFAULT_CAMERA = {
-    zoomAmount: 45,
-    horizontalDrift: 40,
-    verticalDrift: 30,
-    rotation: 15
+    zoomAmount: 36,
+    horizontalDrift: 26,
+    verticalDrift: 16,
+    rotation: 7
   };
 
   /** Baseline slider values for disabled overlays. */
@@ -82,7 +82,7 @@
         buildPreset(
           "morning-mist",
           "Morning Mist",
-          "Soft dawn haze lifting slowly — quiet, pale, and unhurried.",
+          "Soft dawn haze — quiet, pale, unhurried.",
           { zoomAmount: 38, horizontalDrift: 22, verticalDrift: 14, rotation: 6 },
           {
             fog: { intensity: 58, speed: 18, opacity: 42, scale: 62, randomness: 28 },
@@ -93,7 +93,7 @@
         buildPreset(
           "dense-fog",
           "Dense Fog",
-          "Thick, enveloping mist — visibility fades and the world feels close and muted.",
+          "Thick mist — visibility fades, the world feels close.",
           { zoomAmount: 28, horizontalDrift: 18, verticalDrift: 10, rotation: 4 },
           {
             fog: { intensity: 88, speed: 12, opacity: 72, scale: 78, randomness: 22 },
@@ -103,7 +103,7 @@
         buildPreset(
           "golden-hour",
           "Golden Hour",
-          "Warm low sun, floating dust, and gentle rays — rich, honeyed, and calm.",
+          "Warm low sun, dust motes, and gentle rays.",
           { zoomAmount: 52, horizontalDrift: 28, verticalDrift: 18, rotation: 8 },
           {
             lightRays: { intensity: 62, speed: 20, opacity: 48, scale: 58, randomness: 25 },
@@ -114,7 +114,7 @@
         buildPreset(
           "blue-hour",
           "Blue Hour",
-          "Cool twilight stillness — soft fog and a slow, reverent camera drift.",
+          "Cool twilight — soft fog and slow drift.",
           { zoomAmount: 42, horizontalDrift: 32, verticalDrift: 22, rotation: 10 },
           {
             fog: { intensity: 45, speed: 16, opacity: 38, scale: 55, randomness: 32 },
@@ -125,7 +125,7 @@
         buildPreset(
           "thunderstorm",
           "Thunderstorm",
-          "Heavy rain, rolling clouds, and brooding fog — dramatic and restless.",
+          "Heavy rain, rolling clouds, and brooding fog.",
           { zoomAmount: 22, horizontalDrift: 58, verticalDrift: 38, rotation: 20 },
           {
             rain: { intensity: 85, speed: 78, opacity: 62, scale: 52, randomness: 55 },
@@ -136,7 +136,7 @@
         buildPreset(
           "winter-stillness",
           "Winter Stillness",
-          "Gentle snowfall over a hushed landscape — crisp, slow, and serene.",
+          "Gentle snowfall over a hushed landscape.",
           { zoomAmount: 35, horizontalDrift: 24, verticalDrift: 16, rotation: 5 },
           {
             snow: { intensity: 72, speed: 28, opacity: 58, scale: 48, randomness: 42 },
@@ -146,7 +146,7 @@
         buildPreset(
           "spring-rain",
           "Spring Rain",
-          "Light rain with fresh mist and drifting leaves — renewal after the thaw.",
+          "Light rain, fresh mist, drifting leaves.",
           { zoomAmount: 40, horizontalDrift: 30, verticalDrift: 20, rotation: 9 },
           {
             rain: { intensity: 48, speed: 42, opacity: 40, scale: 40, randomness: 38 },
@@ -157,7 +157,7 @@
         buildPreset(
           "firefly-evening",
           "Firefly Evening",
-          "Warm dusk with blinking lights in the meadow — magical and intimate.",
+          "Warm dusk with fireflies in the meadow.",
           { zoomAmount: 48, horizontalDrift: 36, verticalDrift: 26, rotation: 11 },
           {
             fireflies: { intensity: 58, speed: 28, opacity: 62, scale: 48, randomness: 52 },
@@ -167,7 +167,7 @@
         buildPreset(
           "mountain-wind",
           "Mountain Wind",
-          "Clouds and leaves pushed by alpine air — open, airy, and in motion.",
+          "Clouds and leaves in alpine air.",
           { zoomAmount: 44, horizontalDrift: 62, verticalDrift: 28, rotation: 16 },
           {
             cloudDrift: { intensity: 70, speed: 55, opacity: 42, scale: 62, randomness: 48 },
@@ -178,7 +178,7 @@
         buildPreset(
           "still-lake",
           "Still Lake",
-          "Barely-there motion — mirror water, breath-fog, and absolute calm.",
+          "Mirror water, breath-fog, absolute calm.",
           { zoomAmount: 32, horizontalDrift: 12, verticalDrift: 8, rotation: 3 },
           {
             fog: { intensity: 28, speed: 8, opacity: 22, scale: 42, randomness: 15 },
@@ -189,7 +189,7 @@
         buildPreset(
           "rippling-water",
           "Rippling Water",
-          "Gentle surface shimmer — calm water with soft light and drifting haze.",
+          "Gentle surface shimmer with soft light.",
           { zoomAmount: 36, horizontalDrift: 42, verticalDrift: 16, rotation: 7 },
           {
             fog: { intensity: 30, speed: 18, opacity: 24, scale: 46, randomness: 28 },

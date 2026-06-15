@@ -1,0 +1,369 @@
+/**
+ * Waypoint Education Framework — Styles
+ * Lesson template sections, curriculum layout, domain tags.
+ */
+
+/* ——— Curriculum shell ——— */
+.wef-curriculum {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+}
+
+.wef-intro {
+  padding: var(--wds-space-6);
+}
+
+.wef-mission {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary);
+}
+
+.wef-intro-text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+  max-width: 48ch;
+}
+
+.wef-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+}
+
+/* ——— Track ——— */
+.wef-track {
+  padding: var(--wds-space-6);
+}
+
+.wef-track-title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.wef-track-sub {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+  line-height: var(--wds-leading-normal);
+}
+
+.wef-lessons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-8);
+  margin-top: var(--wds-space-6);
+}
+
+/* ——— Lesson ——— */
+.wef-lesson {
+  padding-bottom: var(--wds-space-6);
+  border-bottom: 1px solid var(--wds-border-subtle);
+  scroll-margin-top: calc(var(--wds-topbar-h) + var(--wds-space-4));
+  transition: background var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.wef-lesson:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.wef-lesson.is-highlighted {
+  background: var(--wds-accent-dim);
+  border-radius: var(--wds-radius-md);
+  margin-inline: calc(-1 * var(--wds-space-3));
+  padding-inline: var(--wds-space-3);
+}
+
+.wef-lesson-header {
+  margin-bottom: var(--wds-space-4);
+}
+
+.wef-lesson-title {
+  margin: var(--wds-space-2) 0 var(--wds-space-1);
+  font-size: var(--wds-text-md);
+  font-weight: 500;
+  font-family: var(--wds-font-body);
+}
+
+.wef-lesson-subtitle {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+}
+
+.wef-lesson-meta {
+  display: flex;
+  gap: var(--wds-space-3);
+  margin-top: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+  text-transform: capitalize;
+}
+
+.wef-lesson-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+/* ——— Domain tags ——— */
+.wef-domain-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+}
+
+.wef-domain-tags--track {
+  margin-top: var(--wds-space-3);
+}
+
+.wef-domain-tag {
+  padding: 0.15rem 0.5rem;
+  font-size: var(--wds-text-xs);
+  letter-spacing: var(--wds-tracking-normal);
+  color: var(--wds-text-tertiary);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-pill);
+}
+
+/* ——— Section blocks (canonical template) ——— */
+.wef-section {
+  padding: var(--wds-space-3) var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  border-radius: var(--wds-radius-md);
+}
+
+.wef-section-label {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--wds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary);
+}
+
+.wef-section-body p {
+  margin: 0;
+  color: var(--wds-text-secondary);
+}
+
+.wef-section-body p + p {
+  margin-top: var(--wds-space-2);
+}
+
+.wef-section--what {
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-border);
+}
+
+.wef-section--why {
+  background: var(--wds-warm-dim);
+  border-left: 2px solid var(--wds-warm);
+}
+
+.wef-section--identify {
+  background: var(--wds-accent-dim);
+  border-left: 2px solid var(--wds-accent);
+}
+
+.wef-section--how {
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.wef-section--field {
+  background: var(--wds-accent-dim);
+  border-left: 2px solid var(--wds-accent);
+}
+
+.wef-section--mistakes {
+  background: rgba(184, 137, 106, 0.08);
+  border-left: 2px solid rgba(184, 137, 106, 0.45);
+}
+
+.wef-section--ethics {
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-warm);
+}
+
+.wef-section--safety {
+  background: rgba(180, 90, 78, 0.08);
+  border-left: 2px solid var(--wds-danger-border);
+}
+
+.wef-section--challenge {
+  background: var(--wds-inset);
+  border-left: 2px solid rgba(201, 169, 110, 0.5);
+}
+
+.wef-section--related {
+  background: transparent;
+  padding-left: 0;
+}
+
+.wef-section--quiz.is-future {
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+}
+
+.wef-skipped,
+.wef-quiz-future {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  font-style: italic;
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Steps & lists ——— */
+.wef-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.wef-steps li {
+  display: flex;
+  gap: var(--wds-space-3);
+  align-items: flex-start;
+  color: var(--wds-text-secondary);
+}
+
+.wef-step-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  color: var(--wds-accent);
+  background: var(--wds-accent-dim);
+  border-radius: var(--wds-radius-sm);
+}
+
+.wef-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--wds-text-secondary);
+}
+
+.wef-bullets li + li {
+  margin-top: var(--wds-space-2);
+}
+
+.wef-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.wef-prompt-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--wds-tracking-wide);
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary);
+}
+
+.wef-prompt p {
+  margin: 0;
+}
+
+/* ——— Related lessons ——— */
+.wef-related-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+}
+
+.wef-related-link {
+  padding: 0.3rem 0.65rem;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  text-decoration: none;
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-pill);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out), color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.wef-related-link:hover {
+  color: var(--wds-text);
+  border-color: var(--wds-border);
+}
+
+/* ——— Quiz (future / interactive) ——— */
+.wef-quiz-item + .wef-quiz-item {
+  margin-top: var(--wds-space-4);
+  padding-top: var(--wds-space-4);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+.wef-quiz-question {
+  margin: 0 0 var(--wds-space-3);
+  font-weight: 500;
+  color: var(--wds-text);
+}
+
+.wef-quiz-choices {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+}
+
+.wef-quiz-choice {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: var(--wds-text-sm);
+  text-align: left;
+  color: var(--wds-text-secondary);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  cursor: pointer;
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.wef-quiz-choice:hover {
+  border-color: var(--wds-border);
+  color: var(--wds-text);
+}
+
+/* ——— Learn layout aliases (Waypoint Scenes) ——— */
+.learn-curriculum .wef-track,
+.learn-curriculum .wef-intro {
+  /* inherits glass-panel from track class */
+}
+
+.learn-intro + .learn-curriculum .wef-curriculum {
+  gap: var(--wds-space-6);
+}
+
+/* Legacy blocks still supported alongside WEF */
+.learn-field-block,
+.wef-section--field {
+  /* shared field observation styling */
+}

@@ -1,0 +1,13 @@
+/**
+ * Waypoint Studio Design System
+ * Single import for all products.
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="path/to/design-system/css/wds.css">
+ *   <html data-product="scenes">
+ */
+
+@import url("wds-tokens.css");
+@import url("wds-base.css");
+@import url("wds-components.css");
+@import url("wds-education.css");

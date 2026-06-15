@@ -1,0 +1,198 @@
+/**
+ * Waypoint Studio Design System — Tokens
+ * Canonical variables for every product in the ecosystem.
+ * Override accents per product via [data-product] on <html>.
+ */
+
+:root {
+  /* ——— Color primitives ——— */
+  --wds-ink-950: #0a0907;
+  --wds-ink-900: #0f0e0c;
+  --wds-ink-800: #161412;
+  --wds-ink-700: #1e1c19;
+  --wds-ink-600: #2a2724;
+  --wds-parchment: #f5f0e8;
+  --wds-parchment-muted: rgba(245, 240, 232, 0.64);
+  --wds-parchment-dim: rgba(245, 240, 232, 0.38);
+  --wds-sage: #a8bfb0;
+  --wds-sage-dim: rgba(168, 191, 176, 0.14);
+  --wds-hearth: #c9a96e;
+  --wds-hearth-dim: rgba(201, 169, 110, 0.14);
+  --wds-clay: #b8896a;
+  --wds-moss: #3d5c4e;
+  --wds-fog: rgba(255, 248, 235, 0.07);
+  --wds-fog-subtle: rgba(255, 248, 235, 0.04);
+  --wds-danger: #e8c4bc;
+  --wds-danger-bg: rgba(80, 36, 32, 0.35);
+  --wds-danger-border: rgba(180, 90, 78, 0.25);
+
+  /* ——— Semantic (default = scenes) ——— */
+  --wds-bg: var(--wds-ink-950);
+  --wds-surface: var(--wds-ink-900);
+  --wds-elevated: var(--wds-ink-800);
+  --wds-inset: #0c0b09;
+  --wds-border: var(--wds-fog);
+  --wds-border-subtle: var(--wds-fog-subtle);
+  --wds-text: var(--wds-parchment);
+  --wds-text-secondary: var(--wds-parchment-muted);
+  --wds-text-tertiary: var(--wds-parchment-dim);
+  --wds-accent: var(--wds-sage);
+  --wds-accent-dim: var(--wds-sage-dim);
+  --wds-warm: var(--wds-hearth);
+  --wds-warm-dim: var(--wds-hearth-dim);
+  --wds-focus: var(--wds-accent);
+  --wds-on-accent: var(--wds-ink-950);
+
+  /* ——— Typography ——— */
+  --wds-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --wds-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --wds-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --wds-text-xs: 0.6875rem;
+  --wds-text-sm: 0.8125rem;
+  --wds-text-base: 0.875rem;
+  --wds-text-md: 1rem;
+  --wds-text-lg: 1.125rem;
+  --wds-text-xl: 1.375rem;
+  --wds-text-2xl: 1.75rem;
+  --wds-text-3xl: clamp(2.25rem, 6vw, 3.25rem);
+
+  --wds-leading-tight: 1.12;
+  --wds-leading-normal: 1.55;
+  --wds-leading-relaxed: 1.65;
+  --wds-tracking-tight: -0.03em;
+  --wds-tracking-normal: 0.01em;
+  --wds-tracking-wide: 0.08em;
+  --wds-tracking-wider: 0.12em;
+
+  /* ——— Spacing (4px base) ——— */
+  --wds-space-1: 0.25rem;
+  --wds-space-2: 0.5rem;
+  --wds-space-3: 0.75rem;
+  --wds-space-4: 1rem;
+  --wds-space-5: 1.25rem;
+  --wds-space-6: 1.5rem;
+  --wds-space-8: 2rem;
+  --wds-space-10: 2.5rem;
+  --wds-space-12: 3rem;
+  --wds-space-16: 4rem;
+
+  /* ——— Radius ——— */
+  --wds-radius-sm: 6px;
+  --wds-radius-md: 10px;
+  --wds-radius-lg: 14px;
+  --wds-radius-xl: 18px;
+  --wds-radius-2xl: 24px;
+  --wds-radius-pill: 999px;
+
+  /* ——— Elevation ——— */
+  --wds-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --wds-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --wds-shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.55);
+  --wds-shadow-stage: var(--wds-shadow-lg), 0 0 0 1px rgba(255, 248, 235, 0.04);
+
+  /* ——— Layout ——— */
+  --wds-max-content: 1320px;
+  --wds-max-reading: 42rem;
+  --wds-max-narrow: 32rem;
+  --wds-topbar-h: 3.25rem;
+  --wds-sidebar-w: min(340px, 30vw);
+
+  /* ——— Motion ——— */
+  --wds-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --wds-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  --wds-duration-instant: 120ms;
+  --wds-duration-calm: 280ms;
+  --wds-duration-slow: 480ms;
+
+  /* ——— Z-index ——— */
+  --wds-z-base: 1;
+  --wds-z-sticky: 100;
+  --wds-z-overlay: 200;
+  --wds-z-modal: 300;
+  --wds-z-toast: 400;
+}
+
+/* ——— Product accents ——— */
+[data-product="scenes"] {
+  --wds-accent: #a8bfb0;
+  --wds-accent-dim: rgba(168, 191, 176, 0.14);
+  --wds-warm: #c9a96e;
+  --wds-product-glow: rgba(47, 82, 68, 0.22);
+}
+
+[data-product="foragecast"] {
+  --wds-accent: #c4a574;
+  --wds-accent-dim: rgba(196, 165, 116, 0.14);
+  --wds-warm: #d4a574;
+  --wds-product-glow: rgba(120, 88, 48, 0.2);
+}
+
+[data-product="shed-hunting"] {
+  --wds-accent: #a89078;
+  --wds-accent-dim: rgba(168, 144, 120, 0.14);
+  --wds-warm: #c9a882;
+  --wds-product-glow: rgba(92, 72, 52, 0.22);
+}
+
+[data-product="fieldry"] {
+  --wds-accent: #b8956f;
+  --wds-accent-dim: rgba(184, 149, 111, 0.14);
+  --wds-warm: #d4b896;
+  --wds-product-glow: rgba(100, 72, 48, 0.18);
+}
+
+[data-product="steepleaf"] {
+  --wds-accent: #8faf8a;
+  --wds-accent-dim: rgba(143, 175, 138, 0.14);
+  --wds-warm: #a8c49a;
+  --wds-product-glow: rgba(56, 92, 64, 0.2);
+}
+
+[data-product="savant-sommelier"] {
+  --wds-accent: #b8889a;
+  --wds-accent-dim: rgba(184, 136, 154, 0.14);
+  --wds-warm: #c9a574;
+  --wds-product-glow: rgba(72, 40, 56, 0.22);
+}
+
+[data-product="signalterrain"] {
+  --wds-accent: #8aa4b8;
+  --wds-accent-dim: rgba(138, 164, 184, 0.14);
+  --wds-warm: #9ab0c4;
+  --wds-product-glow: rgba(48, 72, 96, 0.22);
+}
+
+[data-product="terrainbound"] {
+  --wds-accent: #9a9a94;
+  --wds-accent-dim: rgba(154, 154, 148, 0.14);
+  --wds-warm: #b8a888;
+  --wds-product-glow: rgba(64, 64, 60, 0.22);
+}
+
+/* Legacy alias map (Waypoint Scenes) */
+:root {
+  --ws-bg: var(--wds-bg);
+  --ws-surface: var(--wds-surface);
+  --ws-elevated: var(--wds-elevated);
+  --ws-inset: var(--wds-inset);
+  --ws-border: var(--wds-border);
+  --ws-border-subtle: var(--wds-border-subtle);
+  --ws-text: var(--wds-text);
+  --ws-text-secondary: var(--wds-text-secondary);
+  --ws-text-tertiary: var(--wds-text-tertiary);
+  --ws-accent: var(--wds-accent);
+  --ws-accent-dim: var(--wds-accent-dim);
+  --ws-warm: var(--wds-warm);
+  --ws-radius-shell: var(--wds-radius-xl);
+  --ws-radius-control: var(--wds-radius-md);
+  --ws-shadow-stage: var(--wds-shadow-stage);
+  --ws-space-xs: var(--wds-space-2);
+  --ws-space-sm: var(--wds-space-3);
+  --ws-space-md: var(--wds-space-4);
+  --ws-space-lg: var(--wds-space-6);
+  --ws-space-xl: var(--wds-space-8);
+  --topbar-h: var(--wds-topbar-h);
+  --font-display: var(--wds-font-display);
+  --font-body: var(--wds-font-body);
+}

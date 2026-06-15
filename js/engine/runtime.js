@@ -78,7 +78,7 @@
     inner.style.setProperty("--cam-rot", rot.toFixed(2) + "deg");
     inner.style.setProperty(
       "--cam-duration",
-      String(Math.max(36, 110 - (cam.horizontalDrift || 0) * 0.45)) + "s"
+      String(Math.max(48, 140 - (cam.horizontalDrift || 0) * 0.35)) + "s"
     );
   }
 

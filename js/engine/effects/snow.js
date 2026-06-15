@@ -6,7 +6,7 @@
   global.WaypointEffectRegistry.register({
     id: "snow",
     name: "Snow",
-    description: "Light snowfall with drift",
+    description: "Gentle snowfall",
     layer: "canvas",
     zIndex: 35,
     defaults: { intensity: 50, speed: 35, opacity: 50, scale: 50, randomness: 45 },
@@ -40,8 +40,9 @@
           var p = Base.resolveParams(inst.getParams());
 
           particles.forEach(function (f) {
-            f.x += f.drift + Math.sin(f.y * 0.018 + f.wobble) * 0.15 * p.jitter;
-            f.y += f.speed;
+            f.wobble += 0.008 * p.speedMul;
+            f.x += f.drift + Math.sin(f.y * 0.018 + f.wobble) * 0.22 * p.jitter;
+            f.y += f.speed * (0.9 + Math.sin(f.wobble * 1.3) * 0.08);
             if (f.y > ctx.height + 8 || f.x < -8 || f.x > ctx.width + 8) {
               f.y = -4;
               f.x = Math.random() * ctx.width;

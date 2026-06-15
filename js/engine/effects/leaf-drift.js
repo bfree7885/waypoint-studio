@@ -23,7 +23,7 @@
   global.WaypointEffectRegistry.register({
     id: "leafDrift",
     name: "Leaf Drift",
-    description: "Autumn leaves tumbling down",
+    description: "Leaves drifting on the wind",
     layer: "canvas",
     zIndex: 45,
     defaults: { intensity: 35, speed: 40, opacity: 50, scale: 50, randomness: 50 },
