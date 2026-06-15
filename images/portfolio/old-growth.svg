@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" role="img" aria-label="Old Growth placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#3d6b4f" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#243d33" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0f1a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="120" y="80" width="36" height="340" rx="8" fill="rgba(255,255,255,0.04)"/><rect x="280" y="40" width="48" height="380" rx="8" fill="rgba(255,255,255,0.06)"/><rect x="520" y="100" width="40" height="320" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="32" y="388" fill="rgba(246,245,242,0.35)" font-family="Georgia, serif" font-size="18" letter-spacing="0.08em">OLD GROWTH</text>
+</svg>

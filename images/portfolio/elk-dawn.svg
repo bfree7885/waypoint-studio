@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" role="img" aria-label="Elk at Dawn placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#c9a87c" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#6b5a3a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2a2418"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <ellipse cx="400" cy="300" rx="120" ry="70" fill="rgba(255,255,255,0.05)"/><ellipse cx="520" cy="260" rx="40" ry="28" fill="rgba(255,255,255,0.04)"/>
+  <text x="32" y="388" fill="rgba(246,245,242,0.35)" font-family="Georgia, serif" font-size="18" letter-spacing="0.08em">ELK AT DAWN</text>
+</svg>

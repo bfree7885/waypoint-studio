@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" role="img" aria-label="Milky Way placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#4a5880" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#1a2540" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#080c14"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="620" cy="120" r="3" fill="rgba(255,255,255,0.5)"/><circle cx="540" cy="80" r="2" fill="rgba(255,255,255,0.35)"/><circle cx="700" cy="160" r="2" fill="rgba(255,255,255,0.35)"/><path d="M0 280 Q400 220 800 300 L800 420 L0 420 Z" fill="rgba(255,255,255,0.05)"/>
+  <text x="32" y="388" fill="rgba(246,245,242,0.35)" font-family="Georgia, serif" font-size="18" letter-spacing="0.08em">MILKY WAY</text>
+</svg>

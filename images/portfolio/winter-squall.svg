@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" role="img" aria-label="Winter Squall placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%" stop-color="#c8d4dc" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#4a5868" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#161c22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <ellipse cx="400" cy="200" rx="220" ry="90" fill="rgba(255,255,255,0.07)"/><path d="M180 320 Q400 260 620 320 L620 420 L180 420 Z" fill="rgba(255,255,255,0.04)"/>
+  <text x="32" y="388" fill="rgba(246,245,242,0.35)" font-family="Georgia, serif" font-size="18" letter-spacing="0.08em">WINTER SQUALL</text>
+</svg>
