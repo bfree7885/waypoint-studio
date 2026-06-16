@@ -1,0 +1,52 @@
+/**
+ * Waypoint Studio — shared icon + gallery styles
+ */
+.wds-gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  margin-bottom: var(--wds-space-6);
+}
+
+.wds-gallery__caption {
+  display: block;
+  padding: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.wds-species-figure {
+  margin: 0;
+  border-radius: var(--wds-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+}
+
+.wds-species-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.wds-species-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+}
+
+.wef-learn-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+}
+
+.wef-learn-intro {
+  padding: var(--wds-space-6);
+}
+
+.wef-curriculum-mount {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+}

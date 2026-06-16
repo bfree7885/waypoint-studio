@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-product="PRODUCT_SLUG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PRODUCT_DESCRIPTION">
+  <title>PRODUCT_NAME — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app" id="app">
+    <!-- Topbar: WDS.nav.renderTopbar() or static -->
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="#main">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">PRODUCT_NAME</span>
+        </a>
+        <nav class="wds-nav" aria-label="Primary">
+          <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm">Sign in</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="wds-hero">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Bring Nature to Life</p>
+        <h1 class="wds-display-xl">PRODUCT_HERO</h1>
+        <p class="wds-lead">PRODUCT_LEAD</p>
+        <button type="button" class="wds-btn wds-btn--primary wds-btn--lg">Primary action</button>
+      </div>
+    </section>
+
+    <main id="main" class="workspace">
+      <!-- Workspace tabs: every product includes Learn -->
+      <nav class="wds-tabs" id="workspace-tabs" role="tablist" aria-label="Workspace">
+        <button type="button" class="wds-tab is-active" role="tab" data-tab="home" aria-selected="true" aria-controls="tab-home">Home</button>
+        <button type="button" class="wds-tab" role="tab" data-tab="learn" aria-selected="false" aria-controls="tab-learn">Learn</button>
+      </nav>
+
+      <section class="tab-panel is-active" id="tab-home" role="tabpanel" aria-labelledby="tab-btn-home">
+        <div class="wds-empty">
+          <h2 class="wds-empty__title">Product workspace</h2>
+          <p class="wds-empty__text">Domain-specific UI goes here.</p>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-learn" role="tabpanel" aria-labelledby="tab-btn-learn" hidden>
+        <!-- Required: Learn section via WEF -->
+        <div class="wef-learn-shell">
+          <div class="wef-learn-intro glass-panel">
+            <p class="wef-mission">Bring Nature to Life.</p>
+            <h2 class="wds-display-md">Learn</h2>
+            <p class="wds-lead">Curriculum intro for this product.</p>
+          </div>
+          <div id="learn-curriculum" class="wef-curriculum-mount" aria-label="Curriculum"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wds-footer">Waypoint Studio</footer>
+  </div>
+
+  <script src="../js/wds.js" defer></script>
+  <script src="../content/PRODUCT-curriculum.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      WDS.tabs.init({ tablist: document.getElementById("workspace-tabs") });
+      if (window.ProductCurriculum) {
+        WDS.education.renderCurriculum(
+          document.getElementById("learn-curriculum"),
+          window.ProductCurriculum
+        );
+      }
+    });
+  </script>
+</body>
+</html>

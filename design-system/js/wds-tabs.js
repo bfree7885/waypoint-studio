@@ -18,6 +18,16 @@
   var tabAttr = "data-tab";
   var onChange = null;
   var activeTab = null;
+  var syncSelectors = [];
+
+  function syncExternalTabs(tabId) {
+    syncSelectors.forEach(function (rule) {
+      document.querySelectorAll(rule.selector || "").forEach(function (el) {
+        var id = el.getAttribute(rule.attr || "data-tab");
+        el.classList.toggle(rule.activeClass || "is-active", id === tabId);
+      });
+    });
+  }
 
   function getTabButtons() {
     if (!tablist) return [];
@@ -53,6 +63,8 @@
         panel.hidden = !on;
       }
     });
+
+    syncExternalTabs(tabId);
 
     if (!silent && onChange && prev !== tabId) {
       onChange(prev, tabId);
@@ -95,6 +107,7 @@
     panelPrefix = config.panelPrefix || "tab-";
     tabAttr = config.tabAttr || "data-tab";
     onChange = config.onChange || null;
+    syncSelectors = config.syncSelectors || [];
 
     var buttons = getTabButtons();
     var initial = config.initialTab || getTabId(buttons[0]) || null;

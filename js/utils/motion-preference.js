@@ -2,11 +2,14 @@
   "use strict";
 
   var query = "(prefers-reduced-motion: reduce)";
-  var mq = typeof window !== "undefined" && window.matchMedia
-    ? window.matchMedia(query)
-    : null;
 
   function prefersReducedMotion() {
+    if (global.WDS && global.WDS.core) {
+      return global.WDS.core.prefersReducedMotion();
+    }
+    var mq = typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia(query)
+      : null;
     return mq ? mq.matches : false;
   }
 

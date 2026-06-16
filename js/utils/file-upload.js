@@ -1,17 +1,13 @@
 (function (global) {
   "use strict";
 
-  var ACCEPT_RE = /^image\/(jpeg|png|webp|svg\+xml)$/;
   var MAX_BYTES = 20 * 1024 * 1024;
 
   function validate(file) {
+    if (global.WDS && global.WDS.core && global.WDS.core.validateImageFile) {
+      return global.WDS.core.validateImageFile(file, { maxBytes: MAX_BYTES });
+    }
     if (!file) return { ok: false, message: "No file selected." };
-    if (!ACCEPT_RE.test(file.type)) {
-      return { ok: false, message: "Use JPEG, PNG, WebP, or SVG." };
-    }
-    if (file.size > MAX_BYTES) {
-      return { ok: false, message: "File must be under 20 MB." };
-    }
     return { ok: true };
   }
 
@@ -20,7 +16,11 @@
   }
 
   function resetInput(input) {
-    if (input) input.value = "";
+    if (global.WDS && global.WDS.upload) {
+      global.WDS.upload.resetInput(input);
+    } else if (input) {
+      input.value = "";
+    }
   }
 
   global.WaypointFileUpload = {
