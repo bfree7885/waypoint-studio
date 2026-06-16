@@ -94,6 +94,41 @@ It should NOT feel like:
 - clickbait
 - generic SaaS
 
+## Privacy Philosophy
+
+Waypoint Studio is built for thoughtful individuals, not social media.
+
+The default experience is private.
+
+Users own their observations.
+
+Users own their photographs.
+
+Users own their field notes.
+
+Users own their journals.
+
+Citizen science participation is always optional.
+
+When contributing observations:
+
+- personal identity is never required
+- location privacy should be respected
+- users always understand what is being shared
+- anonymous contribution is preferred
+- users may opt out entirely
+
+Waypoint Studio will never prioritize:
+
+- likes
+- followers
+- social feeds
+- engagement metrics
+- popularity rankings
+- algorithmic timelines
+
+The goal is to encourage outdoor exploration, not online attention.
+
 ## Citizen Science
 
 Whenever appropriate, users may optionally contribute observations that support education, research, conservation, and ecological understanding.

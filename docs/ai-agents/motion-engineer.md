@@ -4,7 +4,7 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** at the project root.
+Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
 
 **Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
 

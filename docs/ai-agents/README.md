@@ -4,7 +4,7 @@
 
 This folder defines focused AI roles for building **Waypoint Studio** products inside Cursor. Copy an agent file into context (`@.ai-agents/product-lead.md`) or paste its example prompt to stay on mission.
 
-**Waypoint Scenes** is the current runnable app: Living Scene, Parallax, Collections, Field Guide, and Export — plain HTML/CSS/JS, no build step. All agents serve the wider Waypoint Studio ecosystem defined in [`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md) and [`design-system/ECOSYSTEM-BLUEPRINT.md`](../design-system/ECOSYSTEM-BLUEPRINT.md).
+**Waypoint Scenes** is the current runnable app: Living Scene, Parallax, Collections, Field Guide, and Export — plain HTML/CSS/JS, no build step. All agents serve the wider Waypoint Studio ecosystem defined in [`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md), [`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md), and [`ECOSYSTEM-BLUEPRINT.md`](../ECOSYSTEM-BLUEPRINT.md).
 
 ---
 
@@ -12,7 +12,8 @@ This folder defines focused AI roles for building **Waypoint Studio** products i
 
 Before making suggestions or writing code, **every agent** must read and obey:
 
-**[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)**
+1. **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** — supreme law  
+2. **[`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md)** — educational philosophy and learning cycle
 
 ### Reject
 
@@ -170,7 +171,8 @@ Verify      →  QA Tester checklist + Constitution compliance before launch
 | Learn | `js/learn-content.js`, `js/learn.js`, `#tab-learn` |
 | Tools / Export | `js/export.js`, `#tab-export` |
 | Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
-| Experience blueprint | `design-system/ECOSYSTEM-BLUEPRINT.md` |
+| Waypoint Method | `WAYPOINT-METHOD.md` |
+| Experience blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 
 ---
 

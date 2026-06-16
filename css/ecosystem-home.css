@@ -1,0 +1,187 @@
+/**
+ * Waypoint Studio — ecosystem homepage styles
+ */
+.ws-home-hero {
+  position: relative;
+  min-height: clamp(420px, 72vh, 720px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+.ws-home-hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+.ws-home-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 9, 7, 0.35) 0%,
+    rgba(10, 9, 7, 0.55) 45%,
+    rgba(10, 9, 7, 0.92) 100%
+  );
+}
+
+.ws-home-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+}
+
+.ws-home-section {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: var(--wds-space-12) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.ws-home-section:last-of-type {
+  border-bottom: none;
+}
+
+.ws-home-section--tight {
+  padding-block: var(--wds-space-8);
+}
+
+.ws-mission {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.ws-mission-words {
+  margin: var(--wds-space-4) 0 0;
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: var(--wds-tracking-wide);
+  color: var(--wds-warm);
+}
+
+.ws-featured-photo {
+  margin: 0;
+  border-radius: var(--wds-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+  box-shadow: var(--wds-shadow-md);
+}
+
+.ws-featured-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+}
+
+.ws-featured-caption {
+  padding: var(--wds-space-4) var(--wds-space-6);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  background: var(--wds-surface);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+.ws-card-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.ws-experience-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--wds-space-6);
+  text-decoration: none;
+  color: inherit;
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out), box-shadow var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.ws-experience-card:hover {
+  border-color: var(--wds-border);
+  box-shadow: var(--wds-shadow-sm);
+}
+
+.ws-experience-card__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+}
+
+.ws-experience-card__desc {
+  margin: 0 0 var(--wds-space-4);
+  flex: 1;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-experience-card__cta {
+  font-size: var(--wds-text-sm);
+  font-weight: 500;
+  color: var(--wds-warm);
+}
+
+.ws-experience-card.is-live {
+  border-color: rgba(168, 191, 176, 0.25);
+}
+
+.ws-experience-card.is-soon {
+  opacity: 0.85;
+}
+
+.ws-note-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-4);
+}
+
+.ws-note-list li {
+  padding: var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-warm);
+  border-radius: var(--wds-radius-md);
+}
+
+.ws-citizen {
+  max-width: 42rem;
+  padding: var(--wds-space-6);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+}
+
+.ws-topnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+}
+
+.ws-topnav a {
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  text-decoration: none;
+}
+
+.ws-topnav a:hover {
+  color: var(--wds-text);
+}

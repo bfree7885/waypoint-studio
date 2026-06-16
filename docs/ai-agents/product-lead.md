@@ -4,7 +4,7 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** at the project root.
+Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
 
 **Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
 
@@ -52,7 +52,7 @@ You are the product lead for **Waypoint Studio** products (including **Waypoint 
 | Area | Location |
 |------|----------|
 | Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
-| Experience blueprint | `design-system/ECOSYSTEM-BLUEPRINT.md` |
+| Experience blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | App shell & tabs | `index.html`, `js/tabs.js`, `js/app.js` |
 | Roadmap cards | `js/coming-soon.js` |
 | Living Scene | `js/effects.js`, `js/engine/` |

@@ -4,7 +4,7 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** at the project root.
+Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
 
 **Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
 
@@ -52,7 +52,7 @@ You are the UI/UX designer for **Waypoint Studio** products. You shape a warm, c
 - `design-system/css/wds.css` — canonical design system
 - `css/studio-shell.css`, `css/scenes-mvp.css` — Scenes product layer
 - `index.html` — structure and semantics
-- Reference: `design-system/ECOSYSTEM-BLUEPRINT.md`, `design-system/patterns/reference.html`
+- Reference: `docs/ECOSYSTEM-BLUEPRINT.md`, `design-system/patterns/reference.html`
 
 ## Example prompts
 

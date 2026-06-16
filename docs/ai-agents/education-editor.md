@@ -4,7 +4,7 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** at the project root.
+Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
 
 **Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
 
@@ -54,7 +54,7 @@ You write **Learn** content for Waypoint Studio products — field guide and lab
 | WEF engine | `design-system/education/`, `js/wds-education.js` |
 | Scenes curriculum | `js/learn-content.js` |
 | Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
-| Blueprint | `design-system/ECOSYSTEM-BLUEPRINT.md` |
+| Blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | Coming Soon | `js/coming-soon.js` (reference only) |
 
 ## Content tracks (every product)
