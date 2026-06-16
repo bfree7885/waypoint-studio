@@ -31,8 +31,12 @@
   function renderFilters(categories, activeId, options) {
     options = options || {};
     var chipClass = options.chipClass || "wds-chip";
+    var list = categories.slice();
+    if (options.includeAll) {
+      list.unshift({ id: "all", label: options.allLabel || "All" });
+    }
     var html = "";
-    categories.forEach(function (cat) {
+    list.forEach(function (cat) {
       var id = cat.id || cat;
       var label = cat.label || cat;
       var on = id === activeId;
@@ -61,11 +65,13 @@
   function renderGallery(items, options) {
     options = options || {};
     var masonry = options.masonry !== false ? " wds-gallery--masonry" : "";
-    return (
-      '<div class="wds-gallery' + masonry + '" data-wds-gallery>' +
-        items.map(function (item, i) { return renderItem(item, i, options); }).join("") +
-      "</div>"
-    );
+    var inner = items.map(function (item, i) {
+      if (typeof options.itemRenderer === "function") {
+        return options.itemRenderer(item, i);
+      }
+      return renderItem(item, i, options);
+    }).join("");
+    return '<div class="wds-gallery' + masonry + '" data-wds-gallery>' + inner + "</div>";
   }
 
   function bindFilters(container, onSelect) {

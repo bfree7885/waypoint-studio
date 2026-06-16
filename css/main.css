@@ -292,45 +292,7 @@ body::after {
   animation: fade-up 0.9s var(--ease-out) 0.15s both;
 }
 
-.workspace-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  padding: 0.35rem;
-  border-radius: var(--radius-lg);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-}
-
-.workspace-tab {
-  flex: 1 1 auto;
-  min-width: 7rem;
-  padding: 0.55rem 1rem;
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--slate-400);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition:
-    color 0.2s var(--ease-out),
-    background 0.2s var(--ease-out),
-    box-shadow 0.2s var(--ease-out);
-}
-
-.workspace-tab:hover {
-  color: var(--white-soft);
-  background: var(--glass-highlight);
-}
-
-.workspace-tab.is-active {
-  color: var(--white-soft);
-  background: var(--forest-light);
-  box-shadow: inset 0 0 0 1px rgba(143, 175, 154, 0.18);
-}
+/* Workspace tabs: canonical styles in design-system/css/wds-components.css */
 
 .topbar-tab-link {
   font-family: inherit;

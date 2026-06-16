@@ -2,7 +2,7 @@
 
 **Mission:** Observe. Understand. Create. Share.  
 **Target:** v0.1.0 public MVP  
-**Launch readiness score (post-review):** 78 / 100
+**Launch readiness score (post-review):** 82 / 100
 
 ---
 
@@ -14,7 +14,7 @@
 - [x] Photography — portfolio, modal, workflow buttons
 - [x] Learn — 101/102 curriculum framework
 - [x] Export — preview + PNG snapshot download
-- [ ] Real portfolio images in `assets/Images/` (placeholders OK for soft launch)
+- [x] Real portfolio images in `assets/Images/` (3 wired for soft launch; remaining SVG placeholders)
 
 ### Quality
 - [x] Upload validation + workspace error banner
@@ -38,7 +38,9 @@
 
 | Priority | Task |
 |----------|------|
-| High | Replace SVG portfolio placeholders with `assets/Images/` |
+| High | Wire remaining portfolio entries to `assets/Images/` |
+| High | Mobile tab navigation (scroll + short labels) — done v0.1.0 prep |
+| High | WDS.gallery for Collections — done v0.1.0 prep |
 | High | Video export (stub exists) |
 | Medium | True parallax depth layers / subject masking |
 | Medium | Learn tab illustrations or short inline videos |

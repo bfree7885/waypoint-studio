@@ -15,7 +15,12 @@
     trapHandler: null
   };
 
+  function galleryApi() {
+    return global.WDS && global.WDS.gallery;
+  }
+
   function escapeHtml(str) {
+    if (galleryApi()) return galleryApi().escapeHtml(str);
     if (!str) return "";
     return String(str)
       .replace(/&/g, "&amp;")
@@ -76,16 +81,18 @@
   function renderCategories() {
     if (!state.categoriesMount || !global.WaypointPhotographyData) return;
 
-    var cats = global.WaypointPhotographyData.categories();
-    var html = '<button type="button" class="photo-filter-chip is-active" data-category="all" aria-pressed="true">All</button>';
-    cats.forEach(function (cat) {
-      var active = state.activeCategory === cat.id;
-      html +=
-        '<button type="button" class="photo-filter-chip' + (active ? " is-active" : "") + '" ' +
-        'data-category="' + cat.id + '" aria-pressed="' + (active ? "true" : "false") + '">' +
-        escapeHtml(cat.label) + "</button>";
-    });
-    state.categoriesMount.innerHTML = html;
+    var api = galleryApi();
+    if (!api) return;
+
+    state.categoriesMount.innerHTML = api.renderFilters(
+      global.WaypointPhotographyData.categories(),
+      state.activeCategory,
+      {
+        chipClass: "photo-filter-chip",
+        includeAll: true,
+        ariaLabel: "Filter collections"
+      }
+    );
   }
 
   function renderHero() {
@@ -100,7 +107,7 @@
 
     state.heroMount.innerHTML =
       '<section class="photo-hero">' +
-        '<button type="button" class="photo-hero-hit" data-photo-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
+        '<button type="button" class="photo-hero-hit wds-gallery__hit" data-photo-id="' + photo.id + '" data-item-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
           '<img class="photo-hero-img" src="' + escapeHtml(photo.image) + '" alt="' + escapeHtml(photo.title) + '">' +
           '<div class="photo-hero-scrim" aria-hidden="true"></div>' +
           '<div class="photo-hero-inner">' +
@@ -123,10 +130,10 @@
   function photoCardHtml(photo, index) {
     var sizeClass = masonryClass(index);
     return (
-      '<article class="photo-card ' + sizeClass + '" data-photo-id="' + photo.id + '">' +
-        '<button type="button" class="photo-card-hit" data-photo-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
+      '<article class="wds-gallery__item photo-card ' + sizeClass + '" data-photo-id="' + photo.id + '">' +
+        '<button type="button" class="photo-card-hit wds-gallery__hit" data-photo-id="' + photo.id + '" data-item-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
           '<div class="photo-card-frame">' +
-            '<img class="photo-card-img" src="' + escapeHtml(photo.image) + '" alt="" loading="lazy">' +
+            '<img class="photo-card-img wds-gallery__img" src="' + escapeHtml(photo.image) + '" alt="" loading="lazy">' +
             '<div class="photo-card-shade" aria-hidden="true"></div>' +
             '<div class="photo-card-overlay">' +
               '<span class="photo-card-category">' + escapeHtml(categoryLabel(photo.category)) + "</span>" +
@@ -146,10 +153,16 @@
       return;
     }
 
-    state.galleryMount.innerHTML =
-      '<div class="photo-masonry">' +
-      photos.map(function (photo, i) { return photoCardHtml(photo, i); }).join("") +
-      "</div>";
+    var api = galleryApi();
+    if (!api) {
+      state.galleryMount.innerHTML = '<p class="photo-gallery-empty muted">Gallery unavailable.</p>';
+      return;
+    }
+
+    state.galleryMount.innerHTML = api.renderGallery(photos, {
+      masonry: true,
+      itemRenderer: photoCardHtml
+    });
   }
 
   function metaItem(label, value) {
@@ -324,6 +337,10 @@
     }
   }
 
+  function resolvePhotoId(el) {
+    return el.getAttribute("data-photo-id") || el.getAttribute("data-item-id");
+  }
+
   function handleClick(e) {
     var actionBtn = e.target.closest("[data-action][data-photo-id]");
     if (actionBtn) {
@@ -338,14 +355,15 @@
       return;
     }
 
-    var photoBtn = e.target.closest(".photo-card-hit, .photo-hero-hit");
-    if (photoBtn && photoBtn.getAttribute("data-photo-id")) {
-      openPhoto(photoBtn.getAttribute("data-photo-id"));
+    var photoBtn = e.target.closest(".photo-card-hit, .photo-hero-hit, .wds-gallery__hit");
+    if (photoBtn) {
+      var id = resolvePhotoId(photoBtn);
+      if (id) openPhoto(id);
     }
   }
 
   function handleCategoryClick(e) {
-    var btn = e.target.closest(".photo-filter-chip");
+    var btn = e.target.closest(".photo-filter-chip, [data-category]");
     if (!btn) return;
     state.activeCategory = btn.getAttribute("data-category") || "all";
     closeDetail();

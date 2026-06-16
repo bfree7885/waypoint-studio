@@ -14,7 +14,7 @@
     {
       id: "mist-valley",
       title: "Mist Valley at First Light",
-      image: "images/portfolio/mist-valley.svg",
+      image: "assets/Images/mist-valley.jpg",
       category: "landscapes",
       date: "2025-03-14",
       location: "Olympic Peninsula, Washington",
@@ -28,7 +28,7 @@
     {
       id: "elk-dawn",
       title: "Elk at Dawn",
-      image: "images/portfolio/elk-dawn.svg",
+      image: "assets/Images/image0.jpeg",
       category: "wildlife",
       date: "2024-11-02",
       location: "Rocky Mountain National Park, Colorado",
@@ -42,7 +42,7 @@
     {
       id: "old-growth",
       title: "Old Growth Cedar",
-      image: "images/portfolio/old-growth.svg",
+      image: "assets/Images/Edited-8190413.JPG",
       category: "forests",
       date: "2025-01-19",
       location: "Hoh Rain Forest, Washington",

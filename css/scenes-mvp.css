@@ -1,0 +1,75 @@
+/**
+ * Waypoint Scenes v0.1.0 — product overrides
+ * Mobile tabs, gallery bridge, safe dedup of WDS chrome.
+ */
+
+/* ——— Responsive tab labels ——— */
+.tab-text--short {
+  display: none;
+}
+
+/* ——— Mobile workspace tabs (5 studios) ——— */
+@media (max-width: 720px) {
+  .tab-text--full {
+    display: none;
+  }
+
+  .tab-text--short {
+    display: inline;
+  }
+
+  .workspace-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 2px;
+    margin-inline: calc(-1 * clamp(1rem, 3vw, 2rem));
+    padding: 3px clamp(1rem, 3vw, 2rem);
+    scroll-snap-type: x proximity;
+  }
+
+  .workspace-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .workspace-tab {
+    flex: 0 0 auto;
+    min-width: max-content;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.7rem;
+    scroll-snap-align: start;
+  }
+}
+
+/* ——— Collections: WDS gallery + Scenes card chrome ——— */
+.photo-gallery-mount .wds-gallery--masonry {
+  column-gap: var(--wds-space-4, var(--ws-space-md));
+}
+
+.photo-gallery-mount .wds-gallery__item.photo-card {
+  break-inside: avoid;
+  margin-bottom: var(--wds-space-4, var(--ws-space-md));
+}
+
+.photo-gallery-mount .wds-gallery-filters,
+#photo-categories.wds-gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  margin-bottom: var(--wds-space-6);
+}
+
+/* Hero hit uses shared gallery selector */
+.photo-hero-hit.wds-gallery__hit {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}

@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="design-system/css/wds.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/studio-shell.css">
+  <link rel="stylesheet" href="css/scenes-mvp.css">
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to studio</a>
@@ -47,11 +48,11 @@
       <p class="workspace-upload-error" id="workspace-upload-error" role="alert" hidden></p>
 
       <nav class="workspace-tabs" id="workspace-tabs" role="tablist" aria-label="Studios">
-        <button type="button" class="workspace-tab is-active" role="tab" id="tab-btn-living-scene" data-tab="living-scene" aria-selected="true" aria-controls="tab-living-scene">Living Scene</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-parallax" data-tab="parallax" aria-selected="false" aria-controls="tab-parallax">Parallax</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-photography" data-tab="photography" aria-selected="false" aria-controls="tab-photography">Collections</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-learn" data-tab="learn" aria-selected="false" aria-controls="tab-learn">Field Guide</button>
-        <button type="button" class="workspace-tab" role="tab" id="tab-btn-export" data-tab="export" aria-selected="false" aria-controls="tab-export">Export</button>
+        <button type="button" class="workspace-tab is-active" role="tab" id="tab-btn-living-scene" data-tab="living-scene" aria-selected="true" aria-controls="tab-living-scene" aria-label="Living Scene"><span class="tab-text tab-text--full">Living Scene</span><span class="tab-text tab-text--short" aria-hidden="true">Living</span></button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-parallax" data-tab="parallax" aria-selected="false" aria-controls="tab-parallax" aria-label="Parallax"><span class="tab-text tab-text--full">Parallax</span><span class="tab-text tab-text--short" aria-hidden="true">Depth</span></button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-photography" data-tab="photography" aria-selected="false" aria-controls="tab-photography" aria-label="Collections"><span class="tab-text tab-text--full">Collections</span><span class="tab-text tab-text--short" aria-hidden="true">Gallery</span></button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-learn" data-tab="learn" aria-selected="false" aria-controls="tab-learn" aria-label="Field Guide"><span class="tab-text tab-text--full">Field Guide</span><span class="tab-text tab-text--short" aria-hidden="true">Guide</span></button>
+        <button type="button" class="workspace-tab" role="tab" id="tab-btn-export" data-tab="export" aria-selected="false" aria-controls="tab-export" aria-label="Export"><span class="tab-text tab-text--full">Export</span><span class="tab-text tab-text--short" aria-hidden="true">Share</span></button>
       </nav>
 
       <section class="tab-panel is-active" id="tab-living-scene" role="tabpanel" aria-labelledby="tab-btn-living-scene">
@@ -310,6 +311,7 @@
   <script src="design-system/js/wds-core.js"></script>
   <script src="design-system/js/wds-tabs.js"></script>
   <script src="design-system/js/wds-upload.js"></script>
+  <script src="design-system/js/wds-gallery.js"></script>
   <script src="design-system/js/wds-education.js"></script>
   <script src="design-system/js/wds-education-factory.js"></script>
   <script src="js/utils/motion-preference.js"></script>
