@@ -88,6 +88,7 @@ Key groups: color primitives, semantic surfaces, typography scale, 4px spacing g
 - [Motion philosophy](docs/MOTION.md)
 - [Reference gallery](patterns/reference.html)
 - [Education Framework](education/README.md) — shared Learn engine (WEF)
+- [Ecosystem Blueprint](ECOSYSTEM-BLUEPRINT.md) — master IA: Home, Learn, Gallery, Field Notes, News, Videos, Tools
 - [Unified Roadmap](ROADMAP.md)
 - [Product shell template](patterns/product-shell.html)
 

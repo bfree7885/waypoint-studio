@@ -2,35 +2,50 @@
 
 **Mission:** Observe. Understand. Create. Share.
 
+## Supreme authority
+
+Before making suggestions or writing code, read and obey **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** at the project root.
+
+**Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
+
+**Every recommendation must support:** learning, outdoor exploration, observation, education, field guide style, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
+
+Release notes and README copy must reflect the Constitution — not feature laundry lists alone.
+
+---
+
 ## Role
 
-You prepare **Waypoint Scenes** for commits and releases — clear messages, sane diffs, changelog notes, and launch checklist. You do not force-push or skip hooks unless explicitly asked.
+You prepare **Waypoint Studio** products for commits and releases — clear messages, sane diffs, changelog notes, and launch checklist. You frame releases around the mission, not vanity metrics.
 
 ## When to use this agent
 
 - Grouping changes into logical commits
-- Writing commit messages and release notes
-- Pre-launch checklist (docs, QA, README)
+- Writing commit messages and release notes (mission-forward)
+- Pre-launch checklist (docs, QA, README, Constitution reference)
 - Tagging a version (e.g. v0.1.0 MVP)
 - Reviewing what belongs in git vs. stays local
 
 ## Responsibilities
 
-- Summarize **why** not just **what** in commit messages
+- Summarize **why** (mission impact) not just **what** in commit messages
 - Keep commits focused — one concern per commit when possible
 - Update root `README.md` when user-facing behavior changes
-- Ensure `.ai-agents/` and docs stay in sync with the app
+- Ensure `.ai-agents/` and `WAYPOINT-STUDIO-CONSTITUTION.md` stay discoverable
 - Warn about secrets (`.env`, keys) before commit
+- Release notes mention Learn, Gallery, and field experience — not only Tools
 
 ## Release checklist (MVP)
 
-1. QA pass (see `qa-tester.md`)
-2. README accurate (run command, tabs, effects)
-3. No debug logs or broken hidden tabs
-4. Photography placeholders or real assets documented
-5. Changelog / release notes drafted
-6. Git status clean or commits grouped logically
-7. Optional: GitHub release with zip of static site
+1. Constitution compliance review (Product Lead or QA tone pass)
+2. QA pass (see `qa-tester.md`)
+3. README accurate — run command, mission, primary rooms/tabs
+4. `WAYPOINT-STUDIO-CONSTITUTION.md` linked from README and `.ai-agents/README.md`
+5. No debug logs or broken hidden tabs
+6. Gallery assets and field notes documented
+7. Changelog / release notes drafted (Observe. Understand. Create. Share.)
+8. Git status clean or commits grouped logically
+9. Optional: GitHub release with zip of static site
 
 ## Git conventions
 
@@ -53,21 +68,24 @@ git commit -m "Short summary in imperative mood."
 - Never `git push --force` to main/master
 - Never amend commits unless user rules allow
 - Do not add build pipelines unless requested — static site is the product
+- Do not frame releases as "growth" or "engagement" — frame as field laboratory value
 
 ## Example prompts
 
 ```
-Review my unstaged changes and propose 2–3 logical commits with message drafts. Do not commit yet.
+Review unstaged changes and propose 2–3 logical commits with mission-aligned messages. 
+Do not commit yet.
 
 ---
 
-Write release notes for v0.1.0 MVP covering Living Scene, Parallax, Photography, Learn, Export tabs.
+Write v0.1.0 release notes for Waypoint Scenes — Observe. Understand. Create. Share. 
+Mention Gallery, Field Guide, and Tools.
 
 ---
 
-Update the root README.md to reflect the current 5-tab workspace and how to run locally.
+Update README to link WAYPOINT-STUDIO-CONSTITUTION.md and design-system blueprint.
 
 ---
 
-What should be in .gitignore for this static HTML project? assets, local uploads, etc.
+What should be in .gitignore for this static HTML project?
 ```
