@@ -93,7 +93,7 @@ Key groups: color primitives, semantic surfaces, typography scale, 4px spacing g
 - [Shared content library](content/README.md) — placeholder cards (50×6)
 - [Field Guide Standards](../docs/FIELD-GUIDE-STANDARDS.md) — official educational page standard
 - [Product FGDS Audit](../docs/PRODUCT-FGDS-AUDIT.md) — per-product inheritance
-- [Ecosystem layer](ecosystem/README.md) — `product-registry.json` + `WDS.ecosystem`
+- [Content Engine](content-engine/README.md) — regional publishing (`WDS.contentEngine`)
 - [Ecosystem Blueprint](../docs/ECOSYSTEM-BLUEPRINT.md) — master IA: Home, Learn, Gallery, Field Notes, News, Videos, Tools
 - [Unified Roadmap](../docs/ROADMAP.md)
 - [Constitution](../docs/WAYPOINT-STUDIO-CONSTITUTION.md) · [Waypoint Method](../docs/WAYPOINT-METHOD.md)

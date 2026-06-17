@@ -1,0 +1,294 @@
+/**
+ * Waypoint Content Engine — section styles
+ * Regional field-guide homepage blocks. See docs/WAYPOINT-CONTENT-ENGINE.md
+ */
+
+.wce-region-tag {
+  display: inline-block;
+  margin-bottom: var(--wds-space-3);
+  padding: var(--wds-space-1) var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-full);
+}
+
+.wce-scope {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  color: var(--wds-text-tertiary);
+  letter-spacing: 0.02em;
+}
+
+.wce-week-banner {
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-xl);
+}
+
+.wce-week-banner__title {
+  margin: 0 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.wce-week-banner__summary {
+  margin: 0 0 var(--wds-space-5);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-week-grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: var(--wds-space-5);
+}
+
+.wce-week-block {
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-week-block__label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wds-warm);
+}
+
+.wce-week-block__text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+}
+
+.wce-week-split {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: 1fr 1fr;
+  padding-top: var(--wds-space-4);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+@media (max-width: 640px) {
+  .wce-week-split { grid-template-columns: 1fr; }
+}
+
+.wce-week-split__label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  color: var(--wds-text-tertiary);
+  text-transform: uppercase;
+}
+
+.wce-week-split__text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-field-notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.wce-field-note {
+  padding: var(--wds-space-4) var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 2px solid var(--wds-warm);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-field-note__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-bottom: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+.wce-field-note__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+}
+
+.wce-field-note__body {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-field-note__try {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  font-style: italic;
+  color: var(--wds-text-secondary);
+}
+
+.wce-seasonal-grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.wce-seasonal-item {
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-seasonal-item__name {
+  margin: 0 0 var(--wds-space-1);
+  font-weight: 500;
+  font-size: var(--wds-text-sm);
+}
+
+.wce-seasonal-item__status {
+  display: inline-block;
+  margin-bottom: var(--wds-space-2);
+  padding: 2px var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--wds-warm);
+  background: var(--wds-surface);
+  border-radius: var(--wds-radius-sm);
+}
+
+.wce-seasonal-item__note {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+}
+
+.wce-investigation {
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-accent);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wce-investigation__question {
+  margin: var(--wds-space-2) 0 var(--wds-space-4);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-style: italic;
+  color: var(--wds-text-secondary);
+}
+
+.wce-investigation__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-bottom: var(--wds-space-4);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+.wce-investigation__steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-meta {
+  margin-top: var(--wds-space-4);
+  padding-top: var(--wds-space-4);
+  border-top: 1px solid var(--wds-border-subtle);
+  font-size: var(--wds-text-xs);
+  line-height: 1.6;
+  color: var(--wds-text-tertiary);
+}
+
+.wce-meta p { margin: 0 0 var(--wds-space-1); }
+
+.wce-essay-frames {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.wce-essay-frame {
+  margin: 0;
+  border-radius: var(--wds-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+}
+
+.wce-essay-frame__slot { aspect-ratio: 4 / 3; min-height: auto; }
+
+.wce-essay-frame figcaption {
+  padding: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  background: var(--wds-surface);
+}
+
+.wce-species-id {
+  margin: var(--wds-space-4) 0;
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-accent);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-species-id ul {
+  margin: var(--wds-space-2) 0 0;
+  padding-left: 1.25rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-teacher {
+  padding: var(--wds-space-6);
+  background: linear-gradient(165deg, var(--wds-inset) 0%, var(--wds-surface) 100%);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wce-teacher__objectives {
+  margin: var(--wds-space-3) 0;
+  padding-left: 1.25rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-conservation {
+  padding: var(--wds-space-5);
+  background: var(--wds-accent-dim);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}

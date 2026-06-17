@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "defaultRegion": "pike-county-pa",
+  "contentTypesFile": "content-types.json",
+  "regionsPath": "regions/",
+  "description": "Waypoint Content Engine — regional field-guide publishing. No APIs, no feeds, private by default."
+}

@@ -1,0 +1,229 @@
+{
+  "version": "1.0.0",
+  "region": {
+    "id": "pike-county-pa",
+    "name": "Pike County",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands",
+    "watersheds": ["Delaware River", "Lackawaxen River", "Wallenpaupack Creek"],
+    "defaultScope": "L1-county"
+  },
+  "weekOf": "2026-05-30",
+  "season": "late spring",
+  "thisWeekOutdoors": {
+    "id": "two-pike-2026-22",
+    "scope": "L1-county",
+    "title": "Learn the valley fog; test it on Saturday's ridge walk",
+    "summary": "Morel season is closing below 1,200 feet. Mountain laurel is opening on north-facing ledges. Afternoon thunderstorms may build after 3 p.m. — plan morning field time.",
+    "weekdayFocus": "Read the species spotlight and teacher's lab. Note three spring ephemerals still in bloom on your commute walk.",
+    "weekendPrompt": "Complete the Delaware River ravine investigation — fog line, birdsong, and one photograph from a fixed bearing.",
+    "blocks": [
+      { "label": "Weather", "text": "Humid, highs near 74°F. Valley fog possible at dawn along the Delaware. Thunderstorm chance Saturday afternoon." },
+      { "label": "Phenology", "text": "Spring ephemerals fading in low woods. Mountain laurel buds swelling — first blooms expected on cooler slopes by Sunday." },
+      { "label": "Wildlife", "text": "Black bear activity increasing near bird feeders and campgrounds. Whitetail bucks in velvet — antler growth accelerating." },
+      { "label": "Trails", "text": "Muddy in ravines after Thursday rain. Rocky ridges drying fast. Check DWGNRA alerts before Pawling / Milford climbs." }
+    ],
+    "photography": { "caption": "Delaware River fog at dawn · placeholder — May 30, Milford vicinity, 58°F, calm", "placeholder": true },
+    "relatedLessons": ["lesson-101", "lesson-203"],
+    "relatedTools": ["signalterrain", "terrainbound"],
+    "outdoorChallenge": "Saturday: be on trail by 8 a.m. before convection builds.",
+    "citizenScience": "Optional: submit fog duration observation (anonymous, county-level only).",
+    "subscriptionValue": "Free this week. Subscribers: full May archive + Monroe & Wayne counties."
+  },
+  "regionalFieldNotes": [
+    {
+      "id": "rfn-pike-001",
+      "scope": "L1-county",
+      "date": "2026-05-30",
+      "title": "Morel season winding down below 1,200 ft",
+      "body": "Yellow morels (Morchella americana) still reported in old apple orchards near Matamoras and along ash–elm edges in Dingman Township. Above 1,400 ft on the plateau: mostly done. Ethics reminder: cut at soil line; leave small specimens; never trespass.",
+      "tryThis": "Walk one south-facing slope and one north-facing slope — note where soil moisture lingers.",
+      "relatedLessons": ["lesson-201"],
+      "relatedTools": ["foragecast"],
+      "citizenScience": "Optional phenology note — no harvest location required."
+    },
+    {
+      "id": "rfn-pike-002",
+      "scope": "L1-county",
+      "date": "2026-05-29",
+      "title": "Black bears on the move — secure attractants",
+      "body": "PA Game Commission reports increased bear sightings in Lackawaxen and Shohola townships. Cubs visible with sows near riparian corridors. Remove feeders at night; store trash in bear-resistant containers.",
+      "tryThis": "From a safe distance, note one sign of bear activity (scat, claw mark, overturned log) without approaching.",
+      "relatedLessons": ["lesson-501"],
+      "relatedTools": ["fieldry"],
+      "citizenScience": "Report only through official PA channels if required — never precise home locations."
+    },
+    {
+      "id": "rfn-pike-003",
+      "scope": "L2-state",
+      "date": "2026-05-28",
+      "title": "Pennsylvania warbler migration tail",
+      "body": "Late migrants still possible along the Delaware Water Gap — Blackburnian and magnolia warblers in canopy oaks. Breeding birds establishing territories: ovenbird, red-eyed vireo, wood thrush.",
+      "tryThis": "Five-minute sound map at dawn: mark three distinct songs.",
+      "relatedLessons": ["lesson-305"],
+      "relatedTools": ["steepleaf"],
+      "citizenScience": "Optional eBird checklist — location obscured to hotspot."
+    },
+    {
+      "id": "rfn-pike-004",
+      "scope": "L1-county",
+      "date": "2026-05-27",
+      "title": "Trail conditions after rain",
+      "body": "Hornbecks Creek and Adams Creek trails muddy with standing water in low sections. Ridge trails (Milford Knob, Cliff Park) drying. Creek crossings running higher than last week.",
+      "tryThis": "If you turn back because of mud, write why — that is good field judgment.",
+      "relatedLessons": ["lesson-804"],
+      "relatedTools": ["terrainbound"],
+      "citizenScience": null
+    }
+  ],
+  "seasonalWatch": {
+    "id": "sw-pike-2026-late-spring",
+    "scope": "L1-county",
+    "title": "Late spring phenology — Pike County",
+    "items": [
+      { "name": "Yellow morel", "status": "peaking-low", "note": "Low elevations and river bottoms — ending soon" },
+      { "name": "Chanterelle", "status": "watch", "note": "Too early — watch late June after sustained rain on oak ridges" },
+      { "name": "Mountain laurel", "status": "opening", "note": "North slopes and ravines 800–1,400 ft — peak next week" },
+      { "name": "Spring ephemerals", "status": "fading", "note": "Trillium, trout lily, spring beauty — last flowers on cool slopes" },
+      { "name": "Highbush blueberry", "status": "watch", "note": "Flower fade; green fruit set — harvest late July on balds" },
+      { "name": "Whitetail antler growth", "status": "active", "note": "Bucks in velvet — observe at field edges at dawn" },
+      { "name": "Brood X cicadas", "status": "not-local", "note": "Minimal in Pike — regional emergence south and east of Poconos" }
+    ],
+    "relatedLessons": ["lesson-601"],
+    "relatedTools": ["foragecast", "steepleaf"],
+    "outdoorChallenge": "Pick one watch species and photograph it from the same bearing twice this week.",
+    "citizenScience": "Optional phenology phase score — anonymous plot ID.",
+    "subscriptionValue": "Subscribers: full phenology calendar + historical comparison."
+  },
+  "weekendFieldInvestigation": {
+    "id": "wfi-pike-2026-22",
+    "scope": "L1-county",
+    "title": "Delaware River ravine — fog line and birdsong",
+    "drivingQuestion": "How does the valley fog line change sound, light, and species activity between dawn and 10 a.m.?",
+    "when": "Saturday or Sunday morning — start 30 minutes before sunrise",
+    "duration": "90 minutes",
+    "materials": ["Notebook", "Pencil", "Camera or phone for one evidence photo", "Light jacket"],
+    "place": "Public trail along Delaware River — Cliff Park, Milford Beach boardwalk, or DWGNRA river access (your choice)",
+    "steps": [
+      "BEFORE YOU GO: Check thunderstorm forecast — leave ridge if storms approach. Bear-aware food storage.",
+      "OBSERVE (15 min): Sit at one spot. List 5 seen, 3 heard, 1 smelled. Note fog height relative to river.",
+      "ASK: What question does the fog raise about temperature and sound?",
+      "PHOTOGRAPH: Wide frame showing fog line + one detail (leaf, bird, rock) with date and time in notes.",
+      "CONNECT: Name two links between water, slope, and what you heard.",
+      "REFLECT: What did you expect before you arrived?",
+      "RETURN: Repeat same bearing next month for phenology comparison."
+    ],
+    "relatedLessons": ["lesson-203", "lesson-305"],
+    "relatedTools": ["fieldry", "waypoint-scenes"],
+    "citizenScience": "Optional fog + birdsong checklist — county rounded, anonymous.",
+    "subscriptionValue": "Printable PDF + rubric for educators (subscriber)."
+  },
+  "researchBrief": {
+    "id": "rb-pike-2026-01",
+    "scope": "L3-region",
+    "title": "Earlier leaf-out on south-facing Appalachian slopes",
+    "summary": "Regional studies show south-facing plots green 8–12 days before north-facing plots at equal elevation — relevant when timing morel, laurel, and blueberry observations in the Poconos.",
+    "localApplication": "In Pike County, compare a south-facing Lackawaxen hillside with a north-facing ravine near Dingman Falls this weekend. Score leaf-out 1–5 on the same tree species if possible.",
+    "source": "Placeholder — Northeast regional phenology network summary",
+    "relatedLessons": ["lesson-601", "lesson-102"],
+    "relatedTools": ["foragecast"],
+    "outdoorChallenge": "Two-slope comparison walk — 45 minutes.",
+    "citizenScience": "Optional paired photos — location obscured.",
+    "subscriptionValue": "Full citation list + educator discussion guide."
+  },
+  "featuredVideo": {
+    "id": "vid-pike-2026-22",
+    "scope": "L1-county",
+    "title": "Reading valley fog along the Delaware",
+    "durationMinutes": 5,
+    "summary": "Show fog pooling at the river before explaining inversion basics. Ends with: find your local fog line Saturday morning.",
+    "placeholder": true,
+    "relatedLessons": ["lesson-203"],
+    "relatedTools": ["signalterrain"],
+    "outdoorChallenge": "Film not required — observe only.",
+    "citizenScience": null,
+    "subscriptionValue": "Video archive + transcript."
+  },
+  "photoEssay": {
+    "id": "pe-pike-2026-05",
+    "scope": "L1-county",
+    "title": "Eight frames: spring ephemerals fading in hemlock ravine",
+    "summary": "A walk through Dingman Glen — trout lily leaves yellowing, trillium petals dropping, fern fiddleheads uncurling. Evidence of the handoff from spring to early summer.",
+    "frames": [
+      { "caption": "Ravine boardwalk · overcast · 8:12 a.m.", "placeholder": true },
+      { "caption": "Trout lily — senescing leaves", "placeholder": true },
+      { "caption": "White trillium — petal drop on forest floor", "placeholder": true },
+      { "caption": "Fiddlehead cluster · north slope", "placeholder": true }
+    ],
+    "relatedLessons": ["lesson-201", "lesson-103"],
+    "relatedTools": ["waypoint-scenes", "fieldry"],
+    "outdoorChallenge": "Return to same ravine in three weeks — one photograph.",
+    "citizenScience": "Optional repeat photography.",
+    "subscriptionValue": "Full-resolution gallery download."
+  },
+  "speciesSpotlight": {
+    "id": "ss-pike-2026-22",
+    "scope": "L1-county",
+    "commonName": "Mountain laurel",
+    "scientificName": "Kalmia latifolia",
+    "title": "Mountain laurel — buds opening on cool slopes",
+    "summary": "Pennsylvania's state flower. Look for pink-tinged buds in dense umbels; waxy leaves with yellow chevron. Blooms peak late May through June depending on elevation.",
+    "identification": [
+      "Evergreen shrub, 3–15 ft; twisted stems",
+      "Leaves alternate, oval, yellow vein arc on inner edge",
+      "Flowers in terminal clusters — pink buds open to white cups",
+      "Often on acidic, rocky slopes with oak and hemlock"
+    ],
+    "ethics": "Do not pick blooms in state forests or park boundaries. Photograph from trail.",
+    "relatedLessons": ["lesson-201", "lesson-505"],
+    "relatedTools": ["steepleaf"],
+    "outdoorChallenge": "Find laurel on a north-facing slope vs. south-facing — note bud stage difference.",
+    "citizenScience": "Optional bloom stage photo — plot anonymous.",
+    "subscriptionValue": "Full FGDS species page + look-alike guide."
+  },
+  "teachersNotebook": {
+    "id": "tn-pike-2026-22",
+    "scope": "L1-county",
+    "title": "Lab: Spring ephemeral transect (50 minutes outdoors)",
+    "gradeBand": "6–10 Earth Science",
+    "objectives": [
+      "Score leaf-out or bloom stage along a 50 m transect",
+      "Relate aspect to phenology using field evidence",
+      "Record metadata: date, weather, slope direction"
+    ],
+    "materials": ["String or flags", "Clipboard", "Pencil", "Optional hand lens"],
+    "safety": ["Stay on school grounds or approved park", "Tick check after field block", "Thunderstorm plan"],
+    "procedure": [
+      "10 min intro indoors — driving question only",
+      "30 min field — pairs walk transect, record every 10 m",
+      "10 min reflect — one sentence per pair: what surprised us?"
+    ],
+    "relatedLessons": ["lesson-601", "lesson-105"],
+    "relatedTools": ["fieldry"],
+    "outdoorChallenge": "Homework: one photograph from home window with three-line journal entry.",
+    "citizenScience": "Class may opt in to regional phenology network — parental permission required.",
+    "subscriptionValue": "Educator tier: PA standards alignment + printable worksheet."
+  },
+  "conservationUpdate": {
+    "id": "cu-pike-2026-05",
+    "scope": "L1-county",
+    "title": "DWGNRA trail maintenance and streambank stabilization",
+    "summary": "National Park Service crews working on erosion control along Delaware River access paths near Milford. Temporary detours possible weekends. Project protects brook trout habitat and reduces sediment after flood events.",
+    "whatYouCanDo": "Stay on marked paths; volunteer trail days posted through Friends of DWGNRA.",
+    "relatedLessons": ["lesson-505"],
+    "relatedTools": [],
+    "outdoorChallenge": "Visit a public viewpoint; note one sign of erosion control or recovery.",
+    "citizenScience": "Stream watch volunteers needed — optional, training provided.",
+    "subscriptionValue": "Conservation project archive + maps."
+  },
+  "catalog": {
+    "topics": [
+      "morel season", "chanterelle timing", "black bear activity", "mountain laurel bloom",
+      "blueberry season", "spring ephemerals", "deer antler growth", "bird migration",
+      "fog and valley inversions", "thunderstorms", "moon and meteor events", "trail conditions",
+      "conservation updates", "brook trout", "hemlock ravine", "rattlesnake awareness",
+      "tick safety", "river fog", "Pocono plateau frost", "oak mast year"
+    ]
+  }
+}

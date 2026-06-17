@@ -388,6 +388,24 @@
 
         applyProductTheme(product);
 
+        if (product.contentEngineRegion && global.WDS.contentEngine) {
+          mount.innerHTML = renderTopbar(product) + renderHero(product) + '<div id="wds-ce-mount"></div>';
+          var ceMount = mount.querySelector("#wds-ce-mount");
+          return global.WDS.contentEngine.init({
+            region: product.contentEngineRegion,
+            base: config.base + "content-engine/",
+            mount: ceMount,
+            wrapMain: true,
+            includeCitizenScience: true,
+            privacyHref: (product.studioHref && product.studioHref.indexOf("..") === 0)
+              ? "../../docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy"
+              : "docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy"
+          }).then(function (data) {
+            mount.removeAttribute("aria-busy");
+            return { product: product, regionBundle: data };
+          });
+        }
+
         return Promise.all([
           loadContent("lessons"),
           loadContent("news"),

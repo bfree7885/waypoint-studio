@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Engine Demo — Pike County PA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../index.html">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Content Engine</span>
+        </a>
+        <nav class="wds-nav">
+          <a class="wds-btn wds-btn--ghost wds-btn--sm" href="README.md">Docs</a>
+        </nav>
+      </div>
+    </header>
+    <section class="wds-hero is-compact">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Pike County, Pennsylvania</p>
+        <h1 class="wds-display-xl">Waypoint Content Engine</h1>
+        <p class="wds-lead">Learn during the week. Test it outside on the weekend.</p>
+      </div>
+    </section>
+    <div id="wds-content-engine" data-wds-region="pike-county-pa"></div>
+    <footer class="wds-footer">Waypoint Studio</footer>
+  </div>
+  <script src="../js/wds.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      function boot() {
+        if (window.WDS && WDS.contentEngine) {
+          WDS.contentEngine.init({
+            region: "pike-county-pa",
+            base: "./",
+            mount: document.getElementById("wds-content-engine"),
+            wrapMain: true
+          });
+        } else requestAnimationFrame(boot);
+      }
+      boot();
+    });
+  </script>
+</body>
+</html>

@@ -55,7 +55,8 @@
         "seasonal-journal", "field-investigation"
       ],
       "photographyLayout": "gallery-grid",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "scenes": {
       "slug": "scenes",
@@ -80,6 +81,7 @@
       "fieldGuideTemplates": ["photography", "weather", "habitat", "species", "field-investigation", "outdoor-challenge"],
       "photographyLayout": "darkroom-featured",
       "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa",
       "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages"
     },
     "foragecast": {
@@ -104,7 +106,8 @@
       ],
       "fieldGuideTemplates": ["species", "habitat", "ecosystem", "outdoor-challenge", "seasonal-journal", "field-investigation"],
       "photographyLayout": "species-plate",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "fieldry": {
       "slug": "fieldry",
@@ -128,7 +131,8 @@
       ],
       "fieldGuideTemplates": ["seasonal-journal", "field-investigation", "equipment", "photography", "research-brief"],
       "photographyLayout": "journal-evidence",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "shed-hunting": {
       "slug": "shed-hunting",
@@ -152,7 +156,8 @@
       ],
       "fieldGuideTemplates": ["species", "habitat", "geology", "field-investigation", "outdoor-challenge", "equipment"],
       "photographyLayout": "sign-evidence",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "steepleaf": {
       "slug": "steepleaf",
@@ -177,7 +182,8 @@
       ],
       "fieldGuideTemplates": ["species", "habitat", "ecosystem", "seasonal-journal", "field-investigation", "research-brief"],
       "photographyLayout": "species-plate",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "savant-sommelier": {
       "slug": "savant-sommelier",
@@ -201,7 +207,8 @@
       ],
       "fieldGuideTemplates": ["ecosystem", "geology", "weather", "habitat", "research-brief", "photography"],
       "photographyLayout": "terroir-landscape",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "signalterrain": {
       "slug": "signalterrain",
@@ -226,7 +233,8 @@
       ],
       "fieldGuideTemplates": ["geology", "weather", "equipment", "habitat", "field-investigation", "research-brief"],
       "photographyLayout": "map-horizon",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     },
     "terrainbound": {
       "slug": "terrainbound",
@@ -251,7 +259,8 @@
       ],
       "fieldGuideTemplates": ["weather", "geology", "equipment", "outdoor-challenge", "seasonal-journal", "field-investigation"],
       "photographyLayout": "trail-evidence",
-      "citizenScience": { "enabled": true, "optIn": true }
+      "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
     }
   }
 }
