@@ -3,31 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn when and where life offers itself — field-guide lessons, maps, and patient observation.">
-  <title>ForageCast — Waypoint Studio</title>
+  <meta name="description" content="ForageCast — what is the forest ready for this week? Pike County field guide for ethical foraging: learn conditions, species, and where to look.">
+  <title>ForageCast — What is the forest ready for this week?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="css/foragecast-home.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app">
-    <div id="wds-product-home" data-wds-product="foragecast"></div>
-    <footer class="wds-footer">Waypoint Studio · Observe · Understand · Create · Share</footer>
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Waypoint Studio</span>
+        </a>
+        <nav class="ws-topnav" aria-label="ForageCast sections">
+          <a href="#regional-status">Region</a>
+          <a href="#species-spotlight">Species</a>
+          <a href="#prediction-preview">Season table</a>
+          <a href="#learn">Learn</a>
+          <a href="#weekend-field-investigation">Weekend</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="fc-page">
+      <div id="foragecast-home" aria-busy="true">
+        <section class="fc-hero" aria-label="Loading">
+          <p class="wds-eyebrow">ForageCast</p>
+          <p class="fc-hero__lead">Opening the field guide…</p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="wds-footer">
+      ForageCast · Pike County, PA ·
+      <a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md">Constitution</a> ·
+      <a href="../../docs/WAYPOINT-METHOD.md">Method</a> ·
+      <a href="../../docs/WAYPOINT-CONTENT-ENGINE.md">Content Engine</a>
+    </footer>
   </div>
-  <script src="../../design-system/js/wds.js" defer></script>
-  <script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-      function boot() {
-        if (window.WDS && WDS.ecosystem) {
-          WDS.ecosystem.initProductHome({ product: "foragecast", base: "../../design-system/" });
-        } else {
-          requestAnimationFrame(boot);
-        }
-      }
-      boot();
-    });
-  </script>
+  <script src="js/foragecast-home.js" defer></script>
 </body>
 </html>

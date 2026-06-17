@@ -1,0 +1,419 @@
+/**
+ * ForageCast homepage — field guide, not dashboard
+ */
+
+.fc-page {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+}
+
+.fc-hero {
+  position: relative;
+  padding: var(--wds-space-12) clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  border-bottom: 1px solid var(--wds-border-subtle);
+  background: linear-gradient(180deg, var(--wds-accent-dim) 0%, transparent 100%);
+}
+
+.fc-hero__question {
+  margin: 0 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.fc-hero__lead {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.fc-section {
+  padding: var(--wds-space-10) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.fc-section__eyebrow {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.fc-section__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.fc-section__lead {
+  margin: 0 0 var(--wds-space-6);
+  max-width: 42rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* Regional status */
+.fc-status-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .fc-status-grid { grid-template-columns: 1fr; }
+}
+
+.fc-weather-card {
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-weather-card__temp {
+  margin: var(--wds-space-2) 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+}
+
+.fc-weather-card dl {
+  margin: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.fc-weather-card dt {
+  font-weight: 500;
+  color: var(--wds-text-tertiary);
+  margin-top: var(--wds-space-2);
+}
+
+.fc-weather-card dd { margin: var(--wds-space-1) 0 0; }
+
+.fc-outlook-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+}
+
+.fc-outlook-list li {
+  display: grid;
+  grid-template-columns: minmax(7rem, 9rem) 6rem 1fr;
+  gap: var(--wds-space-3);
+  padding: var(--wds-space-3) var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-md);
+  align-items: baseline;
+}
+
+@media (max-width: 540px) {
+  .fc-outlook-list li { grid-template-columns: 1fr; gap: var(--wds-space-1); }
+}
+
+.fc-outlook-list__species { font-weight: 500; }
+
+.fc-outlook-list__status {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--wds-warm);
+}
+
+.fc-outlook-list__note { color: var(--wds-text-secondary); }
+
+/* Week banner */
+.fc-week-card {
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-week-split {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--wds-space-5);
+  padding-top: var(--wds-space-4);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+@media (max-width: 640px) {
+  .fc-week-split { grid-template-columns: 1fr; }
+}
+
+/* Species spotlight layout */
+.fc-spotlight {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(200px, 1fr) minmax(260px, 1.2fr);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .fc-spotlight { grid-template-columns: 1fr; }
+}
+
+.fc-spotlight__visuals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-4);
+}
+
+.fc-plate-slot {
+  min-height: 11rem;
+}
+
+.fc-habitat-slot {
+  min-height: 8rem;
+}
+
+/* Prediction / heat map */
+.fc-prediction {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: 1fr minmax(220px, 280px);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .fc-prediction { grid-template-columns: 1fr; }
+}
+
+.fc-heatmap {
+  position: relative;
+  min-height: 16rem;
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.fc-heatmap__cell {
+  border-radius: var(--wds-radius-sm);
+  min-height: 3rem;
+}
+
+.fc-heatmap__cell--high { background: rgba(168, 191, 176, 0.45); }
+.fc-heatmap__cell--moderate { background: rgba(168, 191, 176, 0.2); }
+.fc-heatmap__cell--low { background: rgba(80, 75, 68, 0.25); }
+
+.fc-heatmap__label {
+  position: absolute;
+  bottom: var(--wds-space-3);
+  left: var(--wds-space-4);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.fc-legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.fc-legend li {
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  padding-left: var(--wds-space-4);
+  position: relative;
+}
+
+.fc-legend li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+}
+
+.fc-legend li:nth-child(1)::before { background: rgba(168, 191, 176, 0.7); }
+.fc-legend li:nth-child(2)::before { background: rgba(168, 191, 176, 0.35); }
+.fc-legend li:nth-child(3)::before { background: rgba(80, 75, 68, 0.35); }
+
+.fc-tool-callout {
+  margin-top: var(--wds-space-4);
+  padding: var(--wds-space-4);
+  background: var(--wds-accent-dim);
+  border-radius: var(--wds-radius-md);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* Lessons */
+.fc-lesson-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.fc-lesson {
+  display: flex;
+  flex-direction: column;
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-lesson__subtitle {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-warm);
+  letter-spacing: 0.02em;
+}
+
+.fc-lesson__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+}
+
+.fc-lesson__summary {
+  margin: 0 0 var(--wds-space-3);
+  flex: 1;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.fc-lesson__outdoor {
+  margin: 0;
+  padding-top: var(--wds-space-3);
+  border-top: 1px solid var(--wds-border-subtle);
+  font-size: var(--wds-text-sm);
+  font-style: italic;
+  color: var(--wds-text-secondary);
+}
+
+.fc-lesson__meta {
+  margin-top: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+/* Investigation */
+.fc-investigation {
+  padding: var(--wds-space-6);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-accent);
+  border-radius: var(--wds-radius-lg);
+  background: var(--wds-surface);
+}
+
+.fc-investigation__question {
+  margin: var(--wds-space-2) 0 var(--wds-space-4);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-style: italic;
+  color: var(--wds-text-secondary);
+}
+
+.fc-investigation__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-bottom: var(--wds-space-4);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+.fc-investigation ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+}
+
+/* Field notes journal */
+.fc-journal {
+  padding: var(--wds-space-5) var(--wds-space-5) var(--wds-space-8);
+  font-family: var(--wds-font-display);
+  background: linear-gradient(165deg, #f4efe6 0%, #ebe4d8 100%);
+  color: #3d3830;
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  max-width: 28rem;
+}
+
+.fc-journal li {
+  margin-bottom: var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.fc-journal__reminder {
+  margin-top: var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.fc-citizen {
+  max-width: 42rem;
+  padding: var(--wds-space-5);
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-media-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  padding: var(--wds-space-5);
+  text-align: center;
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-media-slot__label {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.fc-media-slot__hint {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+  max-width: 24ch;
+}

@@ -1,0 +1,127 @@
+{
+  "version": "1.0.0",
+  "product": "foragecast",
+  "weekOf": "2026-05-30",
+  "season": "late spring",
+  "region": {
+    "county": "Pike County",
+    "state": "Pennsylvania",
+    "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands"
+  },
+  "hero": {
+    "question": "What is the forest ready for this week?",
+    "lead": "Not a guess from a photo — a reading of moisture, trees, slope, and season. Learn what the Poconos are offering; go outside to see if the forest agrees."
+  },
+  "regionalStatus": {
+    "scope": "L1-county",
+    "headline": "Pike County · late spring",
+    "summary": "Morels fading below 1,200 feet. Chanterelles still weeks away — watch oak ridges after sustained June rain. Morning field windows best before afternoon storms.",
+    "weather": {
+      "label": "This week",
+      "high": "74°F",
+      "low": "52°F",
+      "conditions": "Humid; valley fog at dawn; thunderstorm chance Saturday after 3 p.m.",
+      "soilMoisture": "Elevated in ravines; ridge tops drying"
+    },
+    "fruitingOutlook": [
+      { "species": "Yellow morel", "status": "ending-low", "note": "River bottoms & old orchards below 1,200 ft" },
+      { "species": "Black morel", "status": "spotty", "note": "Burn edges & disturbed ground — verify ID carefully" },
+      { "species": "Golden chanterelle", "status": "watch", "note": "Too early — target late June on oak slopes" },
+      { "species": "Chicken of the woods", "status": "possible", "note": "On dead oak after warm rain — cut small sample only" }
+    ]
+  },
+  "thisWeekOutdoors": {
+    "title": "Read moisture before you read mushrooms",
+    "summary": "This week: learn how slope and recent rain shape fruiting. Weekend: walk two aspects of the same hill and write what you find — harvest nothing you cannot identify with confidence.",
+    "weekday": "Study the three lessons below. Sketch one tree species and note which side of the hill it grows on.",
+    "weekend": "Walk a north-facing and south-facing slope for 30 minutes each. Record smell of soil, leaf litter depth, and any fungal signs — photographs OK, collection not required."
+  },
+  "speciesSpotlight": {
+    "commonName": "Yellow morel",
+    "scientificName": "Morchella americana",
+    "title": "Yellow morel — last calls in the valleys",
+    "summary": "The honeycombed cap on a white stem tells you nothing by itself — habitat and season tell the story. In Pike County this week, check ash–elm edges, old apple ground, and river terraces before heat finishes the lowland flush.",
+    "fieldMarks": [
+      "Cap honeycombed; attached to stem at base",
+      "Hollow through cap and stem when sliced lengthwise",
+      "Often near dying elm, ash, apple, or tulip poplar",
+      "Appears when soil warms after rain — not every year the same week"
+    ],
+    "lookAlikes": "False morels (Gyromitra) — brain-like, not honeycombed; not hollow. Never eat uncertain fungi.",
+    "ethics": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly."
+  },
+  "predictionPreview": {
+    "title": "Season table · moisture & fruiting window",
+    "summary": "The prediction tool reads weather, slope, and forest type to suggest where to look — not what you will find. It is a field guide for your legs, not a guarantee.",
+    "toolFit": "Use the heat map to compare north vs. south slopes and recent rain — then go confirm with your eyes.",
+    "legend": [
+      { "level": "high", "label": "Favorable moisture window", "desc": "Recent rain + cool north slope" },
+      { "level": "moderate", "label": "Worth a patient walk", "desc": "Drying ridge; check shaded draws" },
+      { "level": "low", "label": "Unlikely this week", "desc": "Dry south aspect; wait for next rain" }
+    ],
+    "disclaimer": "Placeholder map — real model connects to county elevation, forest cover, and 7-day precipitation."
+  },
+  "lessons": [
+    {
+      "id": "morels-101",
+      "title": "Morels 101",
+      "subtitle": "Observe · Identify · Ethics",
+      "summary": "Before taste comes habitat. Learn ash–elm context, the hollow stem test, and why location privacy matters.",
+      "duration": "12 min",
+      "outdoor": "Find one dead elm or apple on public land — note aspect and ground cover. Do not pick."
+    },
+    {
+      "id": "chanterelles-101",
+      "title": "Chanterelles 101",
+      "subtitle": "Too early to harvest — not too early to learn",
+      "summary": "Golden chanterelles follow oak and moisture in summer. Study gill-like ridges, the peppery smell, and why June rain on Pike County ridges matters.",
+      "duration": "14 min",
+      "outdoor": "Locate a mature oak stand on a map. Visit this weekend and note litter depth and moss — no mushrooms required yet."
+    },
+    {
+      "id": "forest-moisture-101",
+      "title": "Forest Moisture 101",
+      "subtitle": "Why the prediction tool asks about slope",
+      "summary": "North slopes hold moisture; south slopes dry first. Rain history, canopy, and soil texture shape who fruits where.",
+      "duration": "10 min",
+      "outdoor": "Dig nothing — press a finger into leaf litter on two aspects. Record which holds moisture longer."
+    }
+  ],
+  "weekendInvestigation": {
+    "title": "Two slopes, one question",
+    "drivingQuestion": "Does the north-facing slope hold enough moisture to support different fungal signs than the south-facing slope?",
+    "when": "Saturday morning, 7–10 a.m. — before afternoon storms",
+    "duration": "75 minutes",
+    "place": "Any public hill with mixed oak and hemlock — DWGNRA ridges, State Game Lands, or your nearest wooded slope",
+    "materials": ["Notebook", "Pencil", "Compass or phone bearing", "Optional hand lens"],
+    "steps": [
+      "Pick one hill you can access legally. Mark north and south footpaths.",
+      "North slope (20 min): soil smell, litter depth, three plant species, any fungal sign.",
+      "South slope (20 min): same protocol. Do not collect mushrooms — photograph if unsure.",
+      "ASK: Which slope would you return after a two-day rain? Why?",
+      "CONNECT: How would chanterelle timing differ from morel timing here?",
+      "REFLECT: What did you assume before you knelt down?"
+    ],
+    "toolPrompt": "After your walk, open the season table and compare your notes to the moisture preview — did the map match the ground?"
+  },
+  "featuredVideo": {
+    "title": "How to read forest moisture before you hunt mushrooms",
+    "durationMinutes": 6,
+    "summary": "Slope, litter, and smell before species names. Ends with a weekend assignment on two aspects of one hill."
+  },
+  "fieldNotesPrompt": {
+    "title": "Your field notes — private by default",
+    "lines": [
+      "Date · place (general) · weather · aspect (N/S/E/W)",
+      "Three observations — species, sign, or substrate",
+      "One question the forest raised",
+      "Optional: sketch of tree bark or leaf — labels later"
+    ],
+    "reminder": "These notes are yours. They are not a feed. Share only if you choose."
+  },
+  "citizenScience": {
+    "title": "Optional contribution",
+    "body": "You may anonymously note phenology or fruiting phase at county level — never exact harvest locations. Identity not required. Opt out entirely anytime.",
+    "linkLabel": "Privacy Philosophy"
+  }
+}
