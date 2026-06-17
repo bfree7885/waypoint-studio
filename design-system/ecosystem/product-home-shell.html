@@ -8,20 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/wds.css">
+  <link rel="stylesheet" href="../../design-system/css/wds.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app">
+    <!-- Shared ecosystem home: registry + content library + FGDS sections -->
     <div id="wds-product-home" data-wds-product="PRODUCT_SLUG"></div>
-    <footer class="wds-footer">Waypoint Studio</footer>
+    <footer class="wds-footer">Waypoint Studio · Observe · Understand · Create · Share</footer>
   </div>
-  <script src="../js/wds.js" defer></script>
+  <script src="../../design-system/js/wds.js" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {
       function boot() {
         if (window.WDS && WDS.ecosystem) {
-          WDS.ecosystem.initProductHome({ product: "PRODUCT_SLUG", base: "../" });
+          WDS.ecosystem.initProductHome({ product: "PRODUCT_SLUG", base: "../../design-system/" });
         } else {
           requestAnimationFrame(boot);
         }

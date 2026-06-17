@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "challenge-001",
+      "title": "The thirty-minute repeat",
+      "summary": "Placeholder summary for the thirty-minute repeat \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-002",
+      "title": "One square meter biodiversity count",
+      "summary": "Placeholder summary for one square meter biodiversity count \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-003",
+      "title": "Same tree, four sides",
+      "summary": "Placeholder summary for same tree, four sides \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-004",
+      "title": "Cloud names for today's sky",
+      "summary": "Placeholder summary for cloud names for today's sky \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-005",
+      "title": "Morning sound map",
+      "summary": "Placeholder summary for morning sound map \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-006",
+      "title": "Shadow length at local solar noon",
+      "summary": "Placeholder summary for shadow length at local solar noon \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-007",
+      "title": "After-rain sensory walk",
+      "summary": "Placeholder summary for after-rain sensory walk \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-008",
+      "title": "Fixed bearing phenology photo",
+      "summary": "Placeholder summary for fixed bearing phenology photo \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-009",
+      "title": "Three-visit riparian comparison",
+      "summary": "Placeholder summary for three-visit riparian comparison \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-010",
+      "title": "Hand lens hour on one plant",
+      "summary": "Placeholder summary for hand lens hour on one plant \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-011",
+      "title": "Track and sign transect",
+      "summary": "Placeholder summary for track and sign transect \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-012",
+      "title": "No-phone observation sit",
+      "summary": "Placeholder summary for no-phone observation sit \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-013",
+      "title": "Sketch one leaf, label later",
+      "summary": "Placeholder summary for sketch one leaf, label later \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-014",
+      "title": "Compass walk without GPS",
+      "summary": "Placeholder summary for compass walk without gps \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-015",
+      "title": "Night sky from a safe dark site",
+      "summary": "Placeholder summary for night sky from a safe dark site \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-016",
+      "title": "Soil texture in three microhabitats",
+      "summary": "Placeholder summary for soil texture in three microhabitats \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-017",
+      "title": "Bird count on a 500 m loop",
+      "summary": "Placeholder summary for bird count on a 500 m loop \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-018",
+      "title": "Fog line elevation sketch",
+      "summary": "Placeholder summary for fog line elevation sketch \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-019",
+      "title": "Stream cross-section estimate",
+      "summary": "Placeholder summary for stream cross-section estimate \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-020",
+      "title": "Bark ID on five native trees",
+      "summary": "Placeholder summary for bark id on five native trees \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-021",
+      "title": "Invasive species single-report",
+      "summary": "Placeholder summary for invasive species single-report \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-022",
+      "title": "Leave-no-trace audit on a favorite trail",
+      "summary": "Placeholder summary for leave-no-trace audit on a favorite trail \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-023",
+      "title": "Journal an empty day honestly",
+      "summary": "Placeholder summary for journal an empty day honestly \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-024",
+      "title": "Repeat photograph after first frost",
+      "summary": "Placeholder summary for repeat photograph after first frost \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-025",
+      "title": "Repeat photograph at spring leaf-out",
+      "summary": "Placeholder summary for repeat photograph at spring leaf-out \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-026",
+      "title": "Listen for amphibians at dusk",
+      "summary": "Placeholder summary for listen for amphibians at dusk \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-027",
+      "title": "Measure canopy cover with a card",
+      "summary": "Placeholder summary for measure canopy cover with a card \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-028",
+      "title": "Document lichen on three substrates",
+      "summary": "Placeholder summary for document lichen on three substrates \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-029",
+      "title": "Compare south vs. north slope moisture",
+      "summary": "Placeholder summary for compare south vs. north slope moisture \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-030",
+      "title": "Weather journal for one week",
+      "summary": "Placeholder summary for weather journal for one week \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-031",
+      "title": "Moon phase observation series",
+      "summary": "Placeholder summary for moon phase observation series \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-032",
+      "title": "Star trail orientation sketch",
+      "summary": "Placeholder summary for star trail orientation sketch \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-033",
+      "title": "Estuary tide line change",
+      "summary": "Placeholder summary for estuary tide line change \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-034",
+      "title": "Beaver sign survey",
+      "summary": "Placeholder summary for beaver sign survey \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-035",
+      "title": "Dead wood habitat inventory",
+      "summary": "Placeholder summary for dead wood habitat inventory \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-036",
+      "title": "Pollinator visit count on one flower",
+      "summary": "Placeholder summary for pollinator visit count on one flower \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-037",
+      "title": "Seed dispersal evidence hunt",
+      "summary": "Placeholder summary for seed dispersal evidence hunt \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-038",
+      "title": "Fungal fruiting after rain (look, don't pick)",
+      "summary": "Placeholder summary for fungal fruiting after rain (look, don't pick) \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-039",
+      "title": "Antler shed ethics walk",
+      "summary": "Placeholder summary for antler shed ethics walk \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-040",
+      "title": "Geology pebble origin story",
+      "summary": "Placeholder summary for geology pebble origin story \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-041",
+      "title": "Waterfall spray zone plants",
+      "summary": "Placeholder summary for waterfall spray zone plants \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-042",
+      "title": "Alpine wildflower timing transect",
+      "summary": "Placeholder summary for alpine wildflower timing transect \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-043",
+      "title": "Snow line elevation weekly",
+      "summary": "Placeholder summary for snow line elevation weekly \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "weather",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-044",
+      "title": "Fire scar regrowth documentation",
+      "summary": "Placeholder summary for fire scar regrowth documentation \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "geology",
+      "season": "late spring",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-045",
+      "title": "Citizen science opt-in review",
+      "summary": "Placeholder summary for citizen science opt-in review \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "photography",
+      "season": "early summer",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-046",
+      "title": "Private journal week \u2014 no sharing",
+      "summary": "Placeholder summary for private journal week \u2014 no sharing \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "field-skills",
+      "season": "late summer",
+      "placeholder": true,
+      "cadence": "monthly"
+    },
+    {
+      "id": "challenge-047",
+      "title": "Teach one friend the learning cycle",
+      "summary": "Placeholder summary for teach one friend the learning cycle \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "conservation",
+      "season": "autumn",
+      "placeholder": true,
+      "cadence": "seasonal"
+    },
+    {
+      "id": "challenge-048",
+      "title": "Return to childhood outdoor place",
+      "summary": "Placeholder summary for return to childhood outdoor place \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "species",
+      "season": "early winter",
+      "placeholder": true,
+      "cadence": "daily"
+    },
+    {
+      "id": "challenge-049",
+      "title": "Turn back early \u2014 document why",
+      "summary": "Placeholder summary for turn back early \u2014 document why \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "habitat",
+      "season": "late winter",
+      "placeholder": true,
+      "cadence": "weekly"
+    },
+    {
+      "id": "challenge-050",
+      "title": "Design your own seasonal challenge",
+      "summary": "Placeholder summary for design your own seasonal challenge \u2014 observation first, investigation outdoors.",
+      "type": "Challenge",
+      "domain": "ecology",
+      "season": "early spring",
+      "placeholder": true,
+      "cadence": "monthly"
+    }
+  ]
+}

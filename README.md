@@ -47,6 +47,7 @@ Other experiences have placeholder pages under `apps/`.
 | Waypoint Method | [`docs/WAYPOINT-METHOD.md`](docs/WAYPOINT-METHOD.md) |
 | Experience blueprint | [`docs/ECOSYSTEM-BLUEPRINT.md`](docs/ECOSYSTEM-BLUEPRINT.md) |
 | Design system | [`design-system/README.md`](design-system/README.md) |
+| Field guide standard | [`docs/FIELD-GUIDE-STANDARDS.md`](docs/FIELD-GUIDE-STANDARDS.md) |
 | AI agents | [`docs/ai-agents/README.md`](docs/ai-agents/README.md) |
 
 ## Waypoint Scenes

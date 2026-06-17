@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "lesson-001",
+      "title": "101 \u00b7 Before you name anything",
+      "summary": "Placeholder summary for 101 \u00b7 before you name anything \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "early spring",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-002",
+      "title": "102 \u00b7 Weather writes the landscape",
+      "summary": "Placeholder summary for 102 \u00b7 weather writes the landscape \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "late spring",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-003",
+      "title": "103 \u00b7 The evidence in a photograph",
+      "summary": "Placeholder summary for 103 \u00b7 the evidence in a photograph \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "early summer",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-004",
+      "title": "104 \u00b7 Maps are stories about water",
+      "summary": "Placeholder summary for 104 \u00b7 maps are stories about water \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "late summer",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-005",
+      "title": "105 \u00b7 One square meter of attention",
+      "summary": "Placeholder summary for 105 \u00b7 one square meter of attention \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "autumn",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-006",
+      "title": "201 \u00b7 Fern fronds and diagnostic features",
+      "summary": "Placeholder summary for 201 \u00b7 fern fronds and diagnostic features \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "early winter",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-007",
+      "title": "202 \u00b7 Riparian edges as wildlife corridors",
+      "summary": "Placeholder summary for 202 \u00b7 riparian edges as wildlife corridors \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "late winter",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-008",
+      "title": "203 \u00b7 Reading valley fog from ridge lines",
+      "summary": "Placeholder summary for 203 \u00b7 reading valley fog from ridge lines \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "early spring",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-009",
+      "title": "204 \u00b7 Basalt columns and cooling geometry",
+      "summary": "Placeholder summary for 204 \u00b7 basalt columns and cooling geometry \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "late spring",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-010",
+      "title": "205 \u00b7 Forest light \u2014 expose for honesty",
+      "summary": "Placeholder summary for 205 \u00b7 forest light \u2014 expose for honesty \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "early summer",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-011",
+      "title": "301 \u00b7 Hand lens protocol in the field",
+      "summary": "Placeholder summary for 301 \u00b7 hand lens protocol in the field \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "late summer",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-012",
+      "title": "302 \u00b7 Field notebook metadata that matters",
+      "summary": "Placeholder summary for 302 \u00b7 field notebook metadata that matters \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "autumn",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-013",
+      "title": "303 \u00b7 Sketching without becoming an artist",
+      "summary": "Placeholder summary for 303 \u00b7 sketching without becoming an artist \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "early winter",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-014",
+      "title": "304 \u00b7 Compass bearings for repeat photos",
+      "summary": "Placeholder summary for 304 \u00b7 compass bearings for repeat photos \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "late winter",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-015",
+      "title": "305 \u00b7 Sound mapping at dawn",
+      "summary": "Placeholder summary for 305 \u00b7 sound mapping at dawn \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "early spring",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-016",
+      "title": "401 \u00b7 Cloud families and weather prediction",
+      "summary": "Placeholder summary for 401 \u00b7 cloud families and weather prediction \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "late spring",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-017",
+      "title": "402 \u00b7 Soil texture by feel \u2014 jar test optional",
+      "summary": "Placeholder summary for 402 \u00b7 soil texture by feel \u2014 jar test optional \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "early summer",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-018",
+      "title": "403 \u00b7 Stream order and watershed vocabulary",
+      "summary": "Placeholder summary for 403 \u00b7 stream order and watershed vocabulary \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "late summer",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-019",
+      "title": "404 \u00b7 Aspect and microclimate on a short hike",
+      "summary": "Placeholder summary for 404 \u00b7 aspect and microclimate on a short hike \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "autumn",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-020",
+      "title": "405 \u00b7 Geologic time on a trail cutbank",
+      "summary": "Placeholder summary for 405 \u00b7 geologic time on a trail cutbank \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "early winter",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-021",
+      "title": "501 \u00b7 Ethical distance for wildlife photography",
+      "summary": "Placeholder summary for 501 \u00b7 ethical distance for wildlife photography \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "late winter",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-022",
+      "title": "502 \u00b7 Leave No Trace for field instructors",
+      "summary": "Placeholder summary for 502 \u00b7 leave no trace for field instructors \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "early spring",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-023",
+      "title": "503 \u00b7 Private notes vs. shared observations",
+      "summary": "Placeholder summary for 503 \u00b7 private notes vs. shared observations \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "late spring",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-024",
+      "title": "504 \u00b7 Introduced species documentation",
+      "summary": "Placeholder summary for 504 \u00b7 introduced species documentation \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "early summer",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-025",
+      "title": "505 \u00b7 Conservation status and field behavior",
+      "summary": "Placeholder summary for 505 \u00b7 conservation status and field behavior \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "late summer",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-026",
+      "title": "601 \u00b7 Phenology scoring on a fixed tree",
+      "summary": "Placeholder summary for 601 \u00b7 phenology scoring on a fixed tree \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "autumn",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-027",
+      "title": "602 \u00b7 Repeat photography protocol",
+      "summary": "Placeholder summary for 602 \u00b7 repeat photography protocol \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "early winter",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-028",
+      "title": "603 \u00b7 Optional anonymous contribution",
+      "summary": "Placeholder summary for 603 \u00b7 optional anonymous contribution \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "late winter",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-029",
+      "title": "604 \u00b7 Reading a research brief critically",
+      "summary": "Placeholder summary for 604 \u00b7 reading a research brief critically \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "early spring",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-030",
+      "title": "605 \u00b7 Designing a seasonal investigation",
+      "summary": "Placeholder summary for 605 \u00b7 designing a seasonal investigation \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "late spring",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-031",
+      "title": "701 \u00b7 Mushroom identification humility",
+      "summary": "Placeholder summary for 701 \u00b7 mushroom identification humility \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "early summer",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-032",
+      "title": "702 \u00b7 Tree bark keys in winter",
+      "summary": "Placeholder summary for 702 \u00b7 tree bark keys in winter \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "late summer",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-033",
+      "title": "703 \u00b7 Bird silhouette identification",
+      "summary": "Placeholder summary for 703 \u00b7 bird silhouette identification \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "autumn",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-034",
+      "title": "704 \u00b7 Track identification in mud and snow",
+      "summary": "Placeholder summary for 704 \u00b7 track identification in mud and snow \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "early winter",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-035",
+      "title": "705 \u00b7 Aquatic macroinvertebrate sign",
+      "summary": "Placeholder summary for 705 \u00b7 aquatic macroinvertebrate sign \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "late winter",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-036",
+      "title": "801 \u00b7 Night sky orientation without apps",
+      "summary": "Placeholder summary for 801 \u00b7 night sky orientation without apps \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "early spring",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-037",
+      "title": "802 \u00b7 Tide table literacy for coastal walks",
+      "summary": "Placeholder summary for 802 \u00b7 tide table literacy for coastal walks \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "late spring",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-038",
+      "title": "803 \u00b7 Avalanche terrain recognition intro",
+      "summary": "Placeholder summary for 803 \u00b7 avalanche terrain recognition intro \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "early summer",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-039",
+      "title": "804 \u00b7 Hypothermia risk and turnaround ethics",
+      "summary": "Placeholder summary for 804 \u00b7 hypothermia risk and turnaround ethics \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "late summer",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-040",
+      "title": "805 \u00b7 Group management on field trips",
+      "summary": "Placeholder summary for 805 \u00b7 group management on field trips \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "autumn",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-041",
+      "title": "901 \u00b7 Connecting geology to plant communities",
+      "summary": "Placeholder summary for 901 \u00b7 connecting geology to plant communities \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "early winter",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-042",
+      "title": "902 \u00b7 Connecting weather to animal activity",
+      "summary": "Placeholder summary for 902 \u00b7 connecting weather to animal activity \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "late winter",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-043",
+      "title": "903 \u00b7 Connecting photography to phenology",
+      "summary": "Placeholder summary for 903 \u00b7 connecting photography to phenology \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "weather",
+      "season": "early spring",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-044",
+      "title": "904 \u00b7 Connecting journals to citizen science",
+      "summary": "Placeholder summary for 904 \u00b7 connecting journals to citizen science \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "geology",
+      "season": "late spring",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-045",
+      "title": "905 \u00b7 The learning cycle review \u2014 go back outside",
+      "summary": "Placeholder summary for 905 \u00b7 the learning cycle review \u2014 go back outside \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "photography",
+      "season": "early summer",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-046",
+      "title": "906 \u00b7 Advanced field synthesis 1",
+      "summary": "Placeholder summary for 906 \u00b7 advanced field synthesis 1 \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "field-skills",
+      "season": "late summer",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-047",
+      "title": "906 \u00b7 Advanced field synthesis 2",
+      "summary": "Placeholder summary for 906 \u00b7 advanced field synthesis 2 \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "conservation",
+      "season": "autumn",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-048",
+      "title": "906 \u00b7 Advanced field synthesis 3",
+      "summary": "Placeholder summary for 906 \u00b7 advanced field synthesis 3 \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "species",
+      "season": "early winter",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-049",
+      "title": "906 \u00b7 Advanced field synthesis 4",
+      "summary": "Placeholder summary for 906 \u00b7 advanced field synthesis 4 \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "habitat",
+      "season": "late winter",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "lesson-050",
+      "title": "906 \u00b7 Advanced field synthesis 5",
+      "summary": "Placeholder summary for 906 \u00b7 advanced field synthesis 5 \u2014 observation first, investigation outdoors.",
+      "type": "Lesson",
+      "domain": "ecology",
+      "season": "early spring",
+      "durationMinutes": 5,
+      "placeholder": true
+    }
+  ]
+}

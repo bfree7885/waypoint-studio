@@ -1,0 +1,471 @@
+/**
+ * Field Guide Design System (FGDS)
+ * Peterson-style educational page templates for Waypoint Studio.
+ * See docs/FIELD-GUIDE-STANDARDS.md
+ */
+
+/* ——— Page shell ——— */
+.fg-page {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) var(--wds-space-12);
+}
+
+.fg-page__type {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.fg-page__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: var(--wds-leading-snug);
+}
+
+.fg-page__subtitle {
+  margin: 0 0 var(--wds-space-6);
+  font-size: var(--wds-text-lg);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+  max-width: 48ch;
+}
+
+/* ——— Hero photography ——— */
+.fg-hero {
+  position: relative;
+  margin: 0 calc(-1 * clamp(1.25rem, 4vw, 2rem)) var(--wds-space-8);
+  border-bottom: 1px solid var(--wds-border-subtle);
+  overflow: hidden;
+}
+
+.fg-hero__frame {
+  position: relative;
+  min-height: clamp(280px, 45vh, 480px);
+  background: var(--wds-inset);
+}
+
+.fg-hero__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: clamp(280px, 45vh, 480px);
+  object-fit: cover;
+  object-position: center;
+}
+
+.fg-hero__caption {
+  padding: var(--wds-space-4) clamp(1.25rem, 4vw, 2rem);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+  background: var(--wds-surface);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+.fg-hero__caption strong {
+  color: var(--wds-text);
+  font-weight: 500;
+}
+
+/* ——— Media placeholders ——— */
+.fg-media-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  min-height: 12rem;
+  padding: var(--wds-space-6);
+  text-align: center;
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-media-slot--hero {
+  min-height: clamp(280px, 45vh, 480px);
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.fg-media-slot--plate {
+  min-height: 16rem;
+  background: linear-gradient(165deg, var(--wds-inset) 0%, var(--wds-surface) 100%);
+}
+
+.fg-media-slot--map {
+  min-height: 14rem;
+  aspect-ratio: 4 / 3;
+}
+
+.fg-media-slot--diagram {
+  min-height: 10rem;
+}
+
+.fg-media-slot--sketch {
+  min-height: 11rem;
+  background: linear-gradient(165deg, #f4efe6 0%, #ebe4d8 100%);
+  border-style: solid;
+  border-color: var(--wds-border-subtle);
+}
+
+.fg-media-slot__icon {
+  font-size: 1.25rem;
+  color: var(--wds-text-muted);
+  opacity: 0.45;
+}
+
+.fg-media-slot__label {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.fg-media-slot__hint {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+  max-width: 28ch;
+}
+
+/* ——— Quick facts (Peterson plate sidebar) ——— */
+.fg-quick-facts {
+  display: grid;
+  gap: var(--wds-space-3);
+  padding: var(--wds-space-5);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-quick-facts__title {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.fg-fact {
+  display: grid;
+  grid-template-columns: minmax(5rem, 7rem) 1fr;
+  gap: var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+}
+
+.fg-fact__label {
+  color: var(--wds-text-tertiary);
+  font-weight: 500;
+}
+
+.fg-fact__value {
+  color: var(--wds-text-secondary);
+}
+
+/* ——— Layout: intro + sidebar ——— */
+.fg-intro-grid {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: 1fr minmax(220px, 280px);
+  align-items: start;
+  margin-bottom: var(--wds-space-8);
+}
+
+@media (max-width: 768px) {
+  .fg-intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ——— Sections ——— */
+.fg-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-8);
+}
+
+.fg-section {
+  scroll-margin-top: calc(var(--wds-topbar-h) + var(--wds-space-4));
+}
+
+.fg-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--wds-space-3);
+  margin-bottom: var(--wds-space-4);
+  padding-bottom: var(--wds-space-3);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.fg-section__num {
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  color: var(--wds-warm);
+  opacity: 0.7;
+}
+
+.fg-section__title {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+}
+
+.fg-section__body {
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.fg-section__body p {
+  margin: 0 0 var(--wds-space-3);
+}
+
+.fg-section__body p:last-child {
+  margin-bottom: 0;
+}
+
+.fg-section--identify {
+  padding: var(--wds-space-5);
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-accent);
+  border-radius: var(--wds-radius-md);
+}
+
+.fg-section--why {
+  padding: var(--wds-space-5);
+  border-left: 2px solid var(--wds-warm);
+  border-radius: var(--wds-radius-md);
+}
+
+.fg-section--connect {
+  padding: var(--wds-space-5);
+  background: var(--wds-accent-dim);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-section--investigation {
+  padding: var(--wds-space-5);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-section--reflection {
+  padding: var(--wds-space-5);
+  font-family: var(--wds-font-display);
+  font-style: italic;
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-md);
+}
+
+.fg-section--citizen {
+  padding: var(--wds-space-5);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  background: var(--wds-surface);
+}
+
+/* ——— Lists & keys ——— */
+.fg-key-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+}
+
+.fg-key-list li {
+  position: relative;
+  padding-left: var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+}
+
+.fg-key-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--wds-warm);
+}
+
+.fg-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* ——— Two-column media row ——— */
+.fg-media-row {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: var(--wds-space-4) 0;
+}
+
+/* ——— Plate figure (Peterson illustration) ——— */
+.fg-plate {
+  margin: 0;
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  overflow: hidden;
+  background: var(--wds-surface);
+}
+
+.fg-plate__art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.fg-plate__caption {
+  padding: var(--wds-space-3) var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+.fg-plate__caption em {
+  display: block;
+  margin-top: var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-style: normal;
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Related content grids ——— */
+.fg-related-grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.fg-related-card {
+  display: block;
+  padding: var(--wds-space-4);
+  text-decoration: none;
+  color: inherit;
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.fg-related-card:hover {
+  border-color: var(--wds-border);
+}
+
+.fg-related-card__type {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.fg-related-card__title {
+  margin: var(--wds-space-1) 0 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-md);
+  font-weight: 400;
+}
+
+.fg-related-card--placeholder {
+  border-style: dashed;
+  background: var(--wds-inset);
+  pointer-events: none;
+}
+
+/* ——— Video embed placeholder ——— */
+.fg-video-slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  aspect-ratio: 16 / 9;
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-video-slot__play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.875rem;
+  color: var(--wds-text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: 50%;
+}
+
+/* ——— Table of contents ——— */
+.fg-toc {
+  margin-bottom: var(--wds-space-8);
+  padding: var(--wds-space-5);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fg-toc__title {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary);
+}
+
+.fg-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: var(--wds-space-6);
+}
+
+@media (max-width: 540px) {
+  .fgt-toc__list,
+  .fg-toc__list {
+    columns: 1;
+  }
+}
+
+.fg-toc__list a {
+  display: block;
+  padding: var(--wds-space-1) 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  text-decoration: none;
+}
+
+.fg-toc__list a:hover {
+  color: var(--wds-warm);
+}

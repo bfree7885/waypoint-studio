@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "field-guide-001",
+      "title": "Western Sword Fern \u00b7 species profile",
+      "summary": "Placeholder summary for western sword fern \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "habitat"
+    },
+    {
+      "id": "field-guide-002",
+      "title": "Riparian zone \u00b7 habitat guide",
+      "summary": "Placeholder summary for riparian zone \u00b7 habitat guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "ecosystem"
+    },
+    {
+      "id": "field-guide-003",
+      "title": "Temperate rainforest \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for temperate rainforest \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "weather"
+    },
+    {
+      "id": "field-guide-004",
+      "title": "Valley fog \u00b7 weather guide",
+      "summary": "Placeholder summary for valley fog \u00b7 weather guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "geology"
+    },
+    {
+      "id": "field-guide-005",
+      "title": "Columnar basalt \u00b7 geology guide",
+      "summary": "Placeholder summary for columnar basalt \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "photography"
+    },
+    {
+      "id": "field-guide-006",
+      "title": "Forest light \u00b7 photography guide",
+      "summary": "Placeholder summary for forest light \u00b7 photography guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "equipment"
+    },
+    {
+      "id": "field-guide-007",
+      "title": "Field notebook kit \u00b7 equipment guide",
+      "summary": "Placeholder summary for field notebook kit \u00b7 equipment guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "research-brief"
+    },
+    {
+      "id": "field-guide-008",
+      "title": "Lady fern \u00b7 species profile",
+      "summary": "Placeholder summary for lady fern \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "outdoor-challenge"
+    },
+    {
+      "id": "field-guide-009",
+      "title": "Deer fern \u00b7 species profile",
+      "summary": "Placeholder summary for deer fern \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "seasonal-journal"
+    },
+    {
+      "id": "field-guide-010",
+      "title": "Pacific wren \u00b7 species profile",
+      "summary": "Placeholder summary for pacific wren \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "field-investigation"
+    },
+    {
+      "id": "field-guide-011",
+      "title": "Varied thrush \u00b7 species profile",
+      "summary": "Placeholder summary for varied thrush \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "species"
+    },
+    {
+      "id": "field-guide-012",
+      "title": "Western red cedar \u00b7 species profile",
+      "summary": "Placeholder summary for western red cedar \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "habitat"
+    },
+    {
+      "id": "field-guide-013",
+      "title": "Douglas-fir \u00b7 species profile",
+      "summary": "Placeholder summary for douglas-fir \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "ecosystem"
+    },
+    {
+      "id": "field-guide-014",
+      "title": "Sitka spruce \u00b7 species profile",
+      "summary": "Placeholder summary for sitka spruce \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "weather"
+    },
+    {
+      "id": "field-guide-015",
+      "title": "Red alder \u00b7 species profile",
+      "summary": "Placeholder summary for red alder \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "geology"
+    },
+    {
+      "id": "field-guide-016",
+      "title": "Bigleaf maple \u00b7 species profile",
+      "summary": "Placeholder summary for bigleaf maple \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "photography"
+    },
+    {
+      "id": "field-guide-017",
+      "title": "Oregon grape \u00b7 species profile",
+      "summary": "Placeholder summary for oregon grape \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "equipment"
+    },
+    {
+      "id": "field-guide-018",
+      "title": "Salal \u00b7 species profile",
+      "summary": "Placeholder summary for salal \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "research-brief"
+    },
+    {
+      "id": "field-guide-019",
+      "title": "Trillium \u00b7 species profile",
+      "summary": "Placeholder summary for trillium \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "outdoor-challenge"
+    },
+    {
+      "id": "field-guide-020",
+      "title": "Chanterelle \u00b7 species profile (identification only)",
+      "summary": "Placeholder summary for chanterelle \u00b7 species profile (identification only) \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "seasonal-journal"
+    },
+    {
+      "id": "field-guide-021",
+      "title": "Alpine meadow \u00b7 habitat guide",
+      "summary": "Placeholder summary for alpine meadow \u00b7 habitat guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "field-investigation"
+    },
+    {
+      "id": "field-guide-022",
+      "title": "Coastal fog belt \u00b7 weather guide",
+      "summary": "Placeholder summary for coastal fog belt \u00b7 weather guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "species"
+    },
+    {
+      "id": "field-guide-023",
+      "title": "Glacial erratic \u00b7 geology guide",
+      "summary": "Placeholder summary for glacial erratic \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "habitat"
+    },
+    {
+      "id": "field-guide-024",
+      "title": "Talus slope \u00b7 habitat guide",
+      "summary": "Placeholder summary for talus slope \u00b7 habitat guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "ecosystem"
+    },
+    {
+      "id": "field-guide-025",
+      "title": "Estuary margin \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for estuary margin \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "weather"
+    },
+    {
+      "id": "field-guide-026",
+      "title": "Prairie oak savanna \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for prairie oak savanna \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "geology"
+    },
+    {
+      "id": "field-guide-027",
+      "title": "Winter squall line \u00b7 weather guide",
+      "summary": "Placeholder summary for winter squall line \u00b7 weather guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "photography"
+    },
+    {
+      "id": "field-guide-028",
+      "title": "Reading topographic maps \u00b7 skills guide",
+      "summary": "Placeholder summary for reading topographic maps \u00b7 skills guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "equipment"
+    },
+    {
+      "id": "field-guide-029",
+      "title": "Hand lens field protocol \u00b7 equipment guide",
+      "summary": "Placeholder summary for hand lens field protocol \u00b7 equipment guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "research-brief"
+    },
+    {
+      "id": "field-guide-030",
+      "title": "Macro photography ethics \u00b7 photography guide",
+      "summary": "Placeholder summary for macro photography ethics \u00b7 photography guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "outdoor-challenge"
+    },
+    {
+      "id": "field-guide-031",
+      "title": "Phenology shift brief \u00b7 research brief",
+      "summary": "Placeholder summary for phenology shift brief \u00b7 research brief \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "seasonal-journal"
+    },
+    {
+      "id": "field-guide-032",
+      "title": "Salmon nutrient cycle \u00b7 research brief",
+      "summary": "Placeholder summary for salmon nutrient cycle \u00b7 research brief \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "field-investigation"
+    },
+    {
+      "id": "field-guide-033",
+      "title": "Mycorrhizal networks \u00b7 research brief",
+      "summary": "Placeholder summary for mycorrhizal networks \u00b7 research brief \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "species"
+    },
+    {
+      "id": "field-guide-034",
+      "title": "Invasive ivy impact \u00b7 research brief",
+      "summary": "Placeholder summary for invasive ivy impact \u00b7 research brief \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "habitat"
+    },
+    {
+      "id": "field-guide-035",
+      "title": "Night sky at trailhead \u00b7 astronomy guide",
+      "summary": "Placeholder summary for night sky at trailhead \u00b7 astronomy guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "ecosystem"
+    },
+    {
+      "id": "field-guide-036",
+      "title": "Moon phase and tide intro \u00b7 astronomy guide",
+      "summary": "Placeholder summary for moon phase and tide intro \u00b7 astronomy guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "weather"
+    },
+    {
+      "id": "field-guide-037",
+      "title": "Snowpack water storage \u00b7 weather guide",
+      "summary": "Placeholder summary for snowpack water storage \u00b7 weather guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "geology"
+    },
+    {
+      "id": "field-guide-038",
+      "title": "Wildfire ecology recovery \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for wildfire ecology recovery \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "photography"
+    },
+    {
+      "id": "field-guide-039",
+      "title": "Beaver pond succession \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for beaver pond succession \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "equipment"
+    },
+    {
+      "id": "field-guide-040",
+      "title": "Wetland sedges \u00b7 habitat guide",
+      "summary": "Placeholder summary for wetland sedges \u00b7 habitat guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "research-brief"
+    },
+    {
+      "id": "field-guide-041",
+      "title": "Cliff nesting birds \u00b7 habitat guide",
+      "summary": "Placeholder summary for cliff nesting birds \u00b7 habitat guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "outdoor-challenge"
+    },
+    {
+      "id": "field-guide-042",
+      "title": "Migration corridor \u00b7 ecosystem guide",
+      "summary": "Placeholder summary for migration corridor \u00b7 ecosystem guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "seasonal-journal"
+    },
+    {
+      "id": "field-guide-043",
+      "title": "Geology of a waterfall \u00b7 geology guide",
+      "summary": "Placeholder summary for geology of a waterfall \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "weather",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "field-investigation"
+    },
+    {
+      "id": "field-guide-044",
+      "title": "Sandstone vs. basalt weathering \u00b7 geology guide",
+      "summary": "Placeholder summary for sandstone vs. basalt weathering \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "geology",
+      "season": "late spring",
+      "placeholder": true,
+      "guideType": "species"
+    },
+    {
+      "id": "field-guide-045",
+      "title": "Reading avalanche debris \u00b7 geology guide",
+      "summary": "Placeholder summary for reading avalanche debris \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "photography",
+      "season": "early summer",
+      "placeholder": true,
+      "guideType": "habitat"
+    },
+    {
+      "id": "field-guide-046",
+      "title": "Desert varnish \u00b7 geology guide",
+      "summary": "Placeholder summary for desert varnish \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "field-skills",
+      "season": "late summer",
+      "placeholder": true,
+      "guideType": "ecosystem"
+    },
+    {
+      "id": "field-guide-047",
+      "title": "Coastal stack formation \u00b7 geology guide",
+      "summary": "Placeholder summary for coastal stack formation \u00b7 geology guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "conservation",
+      "season": "autumn",
+      "placeholder": true,
+      "guideType": "weather"
+    },
+    {
+      "id": "field-guide-048",
+      "title": "Lichen communities on rock \u00b7 species profile",
+      "summary": "Placeholder summary for lichen communities on rock \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "species",
+      "season": "early winter",
+      "placeholder": true,
+      "guideType": "geology"
+    },
+    {
+      "id": "field-guide-049",
+      "title": "Moss on logs \u00b7 species profile",
+      "summary": "Placeholder summary for moss on logs \u00b7 species profile \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "habitat",
+      "season": "late winter",
+      "placeholder": true,
+      "guideType": "photography"
+    },
+    {
+      "id": "field-guide-050",
+      "title": "Field sketching kit \u00b7 equipment guide",
+      "summary": "Placeholder summary for field sketching kit \u00b7 equipment guide \u2014 observation first, investigation outdoors.",
+      "type": "Field Guide",
+      "domain": "ecology",
+      "season": "early spring",
+      "placeholder": true,
+      "guideType": "equipment"
+    }
+  ]
+}

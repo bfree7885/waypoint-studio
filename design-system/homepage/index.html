@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage Components — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../index.html">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Homepage Components</span>
+        </a>
+        <nav class="wds-nav">
+          <a class="wds-btn wds-btn--ghost wds-btn--sm" href="../field-guide/index.html">Field Guide DS</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <p class="wds-caption" style="text-align: center; padding: var(--wds-space-4);">Reusable sections for ecosystem and product home pages · <code>wds-home-sections.css</code></p>
+
+      <!-- Featured Photograph -->
+      <section class="ws-block" id="featured-photo" aria-labelledby="fp-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="fp-heading">Featured photograph</h2>
+          <p class="ws-block__lead">Photography-first evidence frame — wide hero with caption metadata.</p>
+        </div>
+        <figure class="ws-featured-photo">
+          <div class="ws-media-slot ws-featured-photo__slot" role="img" aria-label="Featured photograph placeholder">
+            <span class="ws-media-slot__label">Featured photograph · placeholder</span>
+            <p class="ws-media-slot__hint">21:9 hero · date · place · conditions in caption</p>
+          </div>
+          <figcaption class="ws-featured-photo__caption"><strong>Mist Valley at First Light</strong> — Olympic Peninsula, 6:12 a.m., overcast clearing. <em>Photography is evidence.</em></figcaption>
+        </figure>
+      </section>
+
+      <!-- Today's Lesson -->
+      <section class="ws-block" id="todays-lesson" aria-labelledby="tl-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="tl-heading">Today's lesson</h2>
+          <p class="ws-block__lead">One prompt from the learning cycle — observe before you read.</p>
+        </div>
+        <article class="ws-content-card">
+          <span class="ws-content-card__type">Lesson 101 · Observe</span>
+          <h3 class="ws-content-card__title">Before you name anything</h3>
+          <p class="ws-content-card__desc">Three minutes outside. List what you hear, what the light is doing, and one question you cannot answer yet.</p>
+          <span class="ws-content-card__meta">~12 min · ends with field investigation</span>
+        </article>
+      </section>
+
+      <!-- Seasonal Highlight -->
+      <section class="ws-block" id="seasonal" aria-labelledby="sh-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="sh-heading">Seasonal highlight</h2>
+          <p class="ws-block__lead">Phenology and weather — what the season is offering this week.</p>
+        </div>
+        <div class="ws-seasonal">
+          <div>
+            <span class="ws-seasonal__tag">Late spring</span>
+            <h3 class="wds-display-md" style="margin: 0 0 var(--wds-space-2);">Leaf-out nears completion below 800 m</h3>
+            <p class="wds-body">South slopes are two weeks ahead of last year's journal entries. A good week to repeat your fixed-bearing photograph.</p>
+          </div>
+          <div class="ws-media-slot" role="img" aria-label="Seasonal illustration placeholder">
+            <span class="ws-media-slot__label">Seasonal diagram · placeholder</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Field Guide Spotlight -->
+      <section class="ws-block" id="spotlight" aria-labelledby="fg-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="fg-heading">Field guide spotlight</h2>
+          <p class="ws-block__lead">Featured plate or species page — Peterson-style illustration + quick ID.</p>
+        </div>
+        <div class="ws-spotlight">
+          <figure class="ws-spotlight__plate">
+            <div class="ws-media-slot" style="aspect-ratio: 1; min-height: auto;" role="img" aria-label="Field guide plate placeholder">
+              <span class="ws-media-slot__label">Plate · placeholder</span>
+            </div>
+          </figure>
+          <div>
+            <p class="wds-eyebrow">Species Guide</p>
+            <h3 class="wds-display-md" style="margin: 0 0 var(--wds-space-2);">Western Sword Fern</h3>
+            <p class="wds-body">Look for the thumb-like lobe at each leaflet base. Evergreen understory of Pacific Northwest forests.</p>
+            <p style="margin-top: var(--wds-space-4);"><a class="wds-btn wds-btn--secondary wds-btn--sm" href="../field-guide/templates/species-guide.html">Open template →</a></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent News -->
+      <section class="ws-block" id="news" aria-labelledby="news-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="news-heading">Recent news</h2>
+          <p class="ws-block__lead">Seasonal dispatches — not algorithmic feeds.</p>
+        </div>
+        <div class="ws-card-grid">
+          <article class="ws-content-card">
+            <span class="ws-content-card__type">Late spring</span>
+            <h3 class="ws-content-card__title">Light lingers longer</h3>
+            <p class="ws-content-card__desc">Evening color holds thirty minutes later than at equinox — phenology running ahead on sheltered slopes.</p>
+          </article>
+          <article class="ws-content-card ws-content-card--placeholder">
+            <span class="ws-content-card__type">Field bulletin · placeholder</span>
+            <h3 class="ws-content-card__title">First trillium on north slopes</h3>
+            <p class="ws-content-card__desc">Seasonal news card from shared content library.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Featured Video -->
+      <section class="ws-block" id="video" aria-labelledby="video-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="video-heading">Featured video</h2>
+          <p class="ws-block__lead">Click to play — never autoplay. Curated field instruction.</p>
+        </div>
+        <div class="ws-video-feature">
+          <div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder">
+            <span class="ws-video-feature__play" aria-hidden="true">▶</span>
+            <span class="ws-media-slot__label">4 min · educational video · placeholder</span>
+          </div>
+          <div>
+            <h3 class="wds-display-md" style="margin: 0 0 var(--wds-space-2);">How to learn like a naturalist</h3>
+            <p class="wds-body">Observe first. Ask questions. Investigate. Return outside. Companion to Lesson 101.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Outdoor Challenge -->
+      <section class="ws-block" id="challenge" aria-labelledby="ch-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="ch-heading">Outdoor challenge</h2>
+          <p class="ws-block__lead">One investigation — no leaderboard, no posting required.</p>
+        </div>
+        <article class="ws-challenge-block">
+          <p class="wds-eyebrow">This week</p>
+          <h3 class="wds-display-md" style="margin: 0 0 var(--wds-space-2);">The thirty-minute repeat</h3>
+          <p class="wds-body">Same place, same compass bearing, two visits — notice what changed.</p>
+          <ol class="ws-challenge-block__steps">
+            <li>Visit 1: weather, three species, one photograph on fixed bearing.</li>
+            <li>Visit 2: same protocol. Four sentences. Schedule visit 3 before you leave.</li>
+          </ol>
+        </article>
+      </section>
+
+      <!-- Explore Nearby -->
+      <section class="ws-block" id="nearby" aria-labelledby="nb-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="nb-heading">Explore nearby</h2>
+          <p class="ws-block__lead">Places to practice — habitat walks, not popularity rankings.</p>
+        </div>
+        <ul class="ws-nearby-list">
+          <li>
+            <span class="ws-nearby-list__distance">0.8 mi</span>
+            <div class="ws-nearby-list__body"><strong>Riparian loop trail</strong>Listen for Pacific wren; compare bank vegetation zones.</div>
+          </li>
+          <li>
+            <span class="ws-nearby-list__distance">2.1 mi</span>
+            <div class="ws-nearby-list__body"><strong>North slope forest stand</strong>Repeat photography bearing from Lesson 102.</div>
+          </li>
+          <li>
+            <span class="ws-nearby-list__distance">placeholder</span>
+            <div class="ws-nearby-list__body"><strong>Map pin · placeholder</strong>Geographic suggestions respect location privacy by default.</div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Latest Research -->
+      <section class="ws-block" id="research" aria-labelledby="res-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="res-heading">Latest research</h2>
+          <p class="ws-block__lead">Plain-language briefs — why you should care outdoors.</p>
+        </div>
+        <article class="ws-research-card">
+          <p class="wds-eyebrow">Research brief</p>
+          <h3 class="wds-display-md" style="margin: var(--wds-space-2) 0;">Phenology shift on sheltered slopes</h3>
+          <p class="wds-body">South-facing plots leaf out 8–12 days earlier than a decade ago. Repeat photography helps track local change.</p>
+          <p class="ws-research-card__source">Source placeholder · peer-reviewed summary link</p>
+        </article>
+      </section>
+
+      <!-- Featured Tool -->
+      <section class="ws-block" id="tool" aria-labelledby="tool-heading">
+        <div class="ws-block__head">
+          <p class="ws-block__eyebrow">Component</p>
+          <h2 class="ws-block__title" id="tool-heading">Featured tool</h2>
+          <p class="ws-block__lead">The workshop — important, but not the whole product.</p>
+        </div>
+        <a class="ws-tool-card" href="../../apps/waypoint-scenes/">
+          <p class="wds-eyebrow">Waypoint Scenes · live</p>
+          <h3 class="ws-tool-card__name">Living Scene studio</h3>
+          <p class="ws-tool-card__desc">Give still photographs quiet atmosphere and gentle depth — evidence frames, not content for a feed.</p>
+          <span class="ws-tool-card__cta">Open studio →</span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="wds-footer">Waypoint Studio · Homepage Components</footer>
+  </div>
+</body>
+</html>

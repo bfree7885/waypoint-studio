@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "news-001",
+      "title": "Light lingers longer \u2014 late spring phenology note",
+      "summary": "Placeholder summary for light lingers longer \u2014 late spring phenology note \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-002",
+      "title": "First trillium fading on north slopes",
+      "summary": "Placeholder summary for first trillium fading on north slopes \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-003",
+      "title": "Valley fog frequency below average this week",
+      "summary": "Placeholder summary for valley fog frequency below average this week \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-004",
+      "title": "Dawn chorus starts ten minutes earlier",
+      "summary": "Placeholder summary for dawn chorus starts ten minutes earlier \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-005",
+      "title": "Snowpack at 78% of median \u2014 east slopes drier",
+      "summary": "Placeholder summary for snowpack at 78% of median \u2014 east slopes drier \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-006",
+      "title": "Coho fry visible in lower creek pools",
+      "summary": "Placeholder summary for coho fry visible in lower creek pools \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-007",
+      "title": "Morel season caution \u2014 identification over harvest",
+      "summary": "Placeholder summary for morel season caution \u2014 identification over harvest \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-008",
+      "title": "Wildfire smoke forecast \u2014 photography and health",
+      "summary": "Placeholder summary for wildfire smoke forecast \u2014 photography and health \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-009",
+      "title": "Elk calving areas \u2014 extra distance requested",
+      "summary": "Placeholder summary for elk calving areas \u2014 extra distance requested \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-010",
+      "title": "Tide minus series this weekend \u2014 estuary walks",
+      "summary": "Placeholder summary for tide minus series this weekend \u2014 estuary walks \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-011",
+      "title": "Aurora possible Friday \u2014 quiet viewing etiquette",
+      "summary": "Placeholder summary for aurora possible friday \u2014 quiet viewing etiquette \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-012",
+      "title": "Invasive ivy pull volunteer day (optional)",
+      "summary": "Placeholder summary for invasive ivy pull volunteer day (optional) \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-013",
+      "title": "New research: south slope leaf-out advancing",
+      "summary": "Placeholder summary for new research: south slope leaf-out advancing \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-014",
+      "title": "Owl nest closure on popular trail section",
+      "summary": "Placeholder summary for owl nest closure on popular trail section \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-015",
+      "title": "River turbidity high after upstream rain",
+      "summary": "Placeholder summary for river turbidity high after upstream rain \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-016",
+      "title": "Huckleberry flower timing early on south aspects",
+      "summary": "Placeholder summary for huckleberry flower timing early on south aspects \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-017",
+      "title": "Mushroom fruiting uptick after three wet days",
+      "summary": "Placeholder summary for mushroom fruiting uptick after three wet days \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-018",
+      "title": "Trail maintenance \u2014 reroute protects riparian zone",
+      "summary": "Placeholder summary for trail maintenance \u2014 reroute protects riparian zone \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-019",
+      "title": "Citizen science phenology network open enrollment",
+      "summary": "Placeholder summary for citizen science phenology network open enrollment \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-020",
+      "title": "Night sky event \u2014 planet alignment at dusk",
+      "summary": "Placeholder summary for night sky event \u2014 planet alignment at dusk \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-021",
+      "title": "Frost advisory for valley bottoms tonight",
+      "summary": "Placeholder summary for frost advisory for valley bottoms tonight \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-022",
+      "title": "Heat advisory \u2014 turnaround ethics reminder",
+      "summary": "Placeholder summary for heat advisory \u2014 turnaround ethics reminder \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-023",
+      "title": "Salmon run update \u2014 creek mouth observation",
+      "summary": "Placeholder summary for salmon run update \u2014 creek mouth observation \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-024",
+      "title": "Bear activity increase \u2014 storage and distance",
+      "summary": "Placeholder summary for bear activity increase \u2014 storage and distance \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-025",
+      "title": "Cougar sign reported \u2014 calm field behavior",
+      "summary": "Placeholder summary for cougar sign reported \u2014 calm field behavior \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-026",
+      "title": "Eagle nest successful fledging",
+      "summary": "Placeholder summary for eagle nest successful fledging \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-027",
+      "title": "Beaver dam raises trail flooding risk",
+      "summary": "Placeholder summary for beaver dam raises trail flooding risk \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-028",
+      "title": "Landslide scar fresh on forest road",
+      "summary": "Placeholder summary for landslide scar fresh on forest road \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-029",
+      "title": "Glacier retreat photo series seeks repeat contributors",
+      "summary": "Placeholder summary for glacier retreat photo series seeks repeat contributors \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-030",
+      "title": "School district adds field lab curriculum pilot",
+      "summary": "Placeholder summary for school district adds field lab curriculum pilot \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-031",
+      "title": "Conservation easement expands riparian buffer",
+      "summary": "Placeholder summary for conservation easement expands riparian buffer \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-032",
+      "title": "Invasive frog species \u2014 report with care",
+      "summary": "Placeholder summary for invasive frog species \u2014 report with care \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-033",
+      "title": "Bat emergence surveys \u2014 anonymous counts welcome",
+      "summary": "Placeholder summary for bat emergence surveys \u2014 anonymous counts welcome \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-034",
+      "title": "Pollen count high \u2014 journal allergy vs. ecology",
+      "summary": "Placeholder summary for pollen count high \u2014 journal allergy vs. ecology \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-035",
+      "title": "Dry lightning watch \u2014 fire awareness",
+      "summary": "Placeholder summary for dry lightning watch \u2014 fire awareness \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-036",
+      "title": "First snow on high ridges \u2014 pass timing",
+      "summary": "Placeholder summary for first snow on high ridges \u2014 pass timing \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-037",
+      "title": "Migration report \u2014 warblers arriving",
+      "summary": "Placeholder summary for migration report \u2014 warblers arriving \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-038",
+      "title": "Harbor seal pupping \u2014 coastal distance",
+      "summary": "Placeholder summary for harbor seal pupping \u2014 coastal distance \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-039",
+      "title": "Whale migration sighting line open",
+      "summary": "Placeholder summary for whale migration sighting line open \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-040",
+      "title": "Star party at dark-sky site Saturday",
+      "summary": "Placeholder summary for star party at dark-sky site saturday \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-041",
+      "title": "Research brief: mycorrhizal drought response",
+      "summary": "Placeholder summary for research brief: mycorrhizal drought response \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-042",
+      "title": "Local herbarium digitization needs volunteers",
+      "summary": "Placeholder summary for local herbarium digitization needs volunteers \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-043",
+      "title": "Trail counter data shows weekday quiet hours",
+      "summary": "Placeholder summary for trail counter data shows weekday quiet hours \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "weather",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    },
+    {
+      "id": "news-044",
+      "title": "Community science water quality snapshot day",
+      "summary": "Placeholder summary for community science water quality snapshot day \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "geology",
+      "season": "late spring",
+      "placeholder": true,
+      "dateline": "late spring"
+    },
+    {
+      "id": "news-045",
+      "title": "Fungal diversity walk \u2014 look, don't collect",
+      "summary": "Placeholder summary for fungal diversity walk \u2014 look, don't collect \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "photography",
+      "season": "early summer",
+      "placeholder": true,
+      "dateline": "early summer"
+    },
+    {
+      "id": "news-046",
+      "title": "Winter bird feeder ethics discussion",
+      "summary": "Placeholder summary for winter bird feeder ethics discussion \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "field-skills",
+      "season": "late summer",
+      "placeholder": true,
+      "dateline": "late summer"
+    },
+    {
+      "id": "news-047",
+      "title": "Spring amphibian road crossing watch",
+      "summary": "Placeholder summary for spring amphibian road crossing watch \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "conservation",
+      "season": "autumn",
+      "placeholder": true,
+      "dateline": "autumn"
+    },
+    {
+      "id": "news-048",
+      "title": "Summer solstice light note for photographers",
+      "summary": "Placeholder summary for summer solstice light note for photographers \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "species",
+      "season": "early winter",
+      "placeholder": true,
+      "dateline": "early winter"
+    },
+    {
+      "id": "news-049",
+      "title": "Autumn equinox repeat photo invitation",
+      "summary": "Placeholder summary for autumn equinox repeat photo invitation \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "habitat",
+      "season": "late winter",
+      "placeholder": true,
+      "dateline": "late winter"
+    },
+    {
+      "id": "news-050",
+      "title": "Year-end field journal reflection prompt",
+      "summary": "Placeholder summary for year-end field journal reflection prompt \u2014 observation first, investigation outdoors.",
+      "type": "News",
+      "domain": "ecology",
+      "season": "early spring",
+      "placeholder": true,
+      "dateline": "early spring"
+    }
+  ]
+}

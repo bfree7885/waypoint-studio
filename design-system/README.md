@@ -88,6 +88,12 @@ Key groups: color primitives, semantic surfaces, typography scale, 4px spacing g
 - [Motion philosophy](docs/MOTION.md)
 - [Reference gallery](patterns/reference.html)
 - [Education Framework](education/README.md) — shared Learn engine (WEF)
+- [Field Guide Design System](field-guide/README.md) — Peterson-style page templates (FGDS)
+- [Homepage components](homepage/README.md) — reusable ecosystem home sections
+- [Shared content library](content/README.md) — placeholder cards (50×6)
+- [Field Guide Standards](../docs/FIELD-GUIDE-STANDARDS.md) — official educational page standard
+- [Product FGDS Audit](../docs/PRODUCT-FGDS-AUDIT.md) — per-product inheritance
+- [Ecosystem layer](ecosystem/README.md) — `product-registry.json` + `WDS.ecosystem`
 - [Ecosystem Blueprint](../docs/ECOSYSTEM-BLUEPRINT.md) — master IA: Home, Learn, Gallery, Field Notes, News, Videos, Tools
 - [Unified Roadmap](../docs/ROADMAP.md)
 - [Constitution](../docs/WAYPOINT-STUDIO-CONSTITUTION.md) · [Waypoint Method](../docs/WAYPOINT-METHOD.md)

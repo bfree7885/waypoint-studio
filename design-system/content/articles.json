@@ -1,0 +1,456 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "article-001",
+      "title": "Why fog pools in valleys on clear autumn nights",
+      "summary": "Placeholder summary for why fog pools in valleys on clear autumn nights \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-002",
+      "title": "Reading bark texture on Douglas-fir vs. western red cedar",
+      "summary": "Placeholder summary for reading bark texture on douglas-fir vs. western red cedar \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-003",
+      "title": "What lichens tell you about air quality on a short walk",
+      "summary": "Placeholder summary for what lichens tell you about air quality on a short walk \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-004",
+      "title": "The ethics of photographing nesting birds from the trail",
+      "summary": "Placeholder summary for the ethics of photographing nesting birds from the trail \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-005",
+      "title": "How watershed shape controls where trails stay muddy",
+      "summary": "Placeholder summary for how watershed shape controls where trails stay muddy \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-006",
+      "title": "First trillium on north-facing slopes \u2014 timing notes",
+      "summary": "Placeholder summary for first trillium on north-facing slopes \u2014 timing notes \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-007",
+      "title": "When to trust a field guide range map and when to question it",
+      "summary": "Placeholder summary for when to trust a field guide range map and when to question it \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-008",
+      "title": "Soil color as evidence of drainage and parent material",
+      "summary": "Placeholder summary for soil color as evidence of drainage and parent material \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-009",
+      "title": "Why repeat photography beats a single perfect frame",
+      "summary": "Placeholder summary for why repeat photography beats a single perfect frame \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-010",
+      "title": "Listening for dawn chorus layers in suburban greenbelts",
+      "summary": "Placeholder summary for listening for dawn chorus layers in suburban greenbelts \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-011",
+      "title": "Cloud types you can name without an app",
+      "summary": "Placeholder summary for cloud types you can name without an app \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-012",
+      "title": "Leave-no-trace choices when teaching a field class",
+      "summary": "Placeholder summary for leave-no-trace choices when teaching a field class \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-013",
+      "title": "How fallen logs become nurseries for the next canopy",
+      "summary": "Placeholder summary for how fallen logs become nurseries for the next canopy \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-014",
+      "title": "Interpreting scat without turning wildlife into a trophy",
+      "summary": "Placeholder summary for interpreting scat without turning wildlife into a trophy \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-015",
+      "title": "The difference between habitat and ecosystem in plain language",
+      "summary": "Placeholder summary for the difference between habitat and ecosystem in plain language \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-016",
+      "title": "Why south slopes green before north slopes in spring",
+      "summary": "Placeholder summary for why south slopes green before north slopes in spring \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-017",
+      "title": "Photographing forest light without fighting the contrast",
+      "summary": "Placeholder summary for photographing forest light without fighting the contrast \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-018",
+      "title": "Introduced species vs. native \u2014 patience before judgment",
+      "summary": "Placeholder summary for introduced species vs. native \u2014 patience before judgment \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-019",
+      "title": "What a hand lens reveals on a single fern frond",
+      "summary": "Placeholder summary for what a hand lens reveals on a single fern frond \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-020",
+      "title": "Reading avalanche paths from summer trail geometry",
+      "summary": "Placeholder summary for reading avalanche paths from summer trail geometry \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-021",
+      "title": "Phenology notebooks that actually get used",
+      "summary": "Placeholder summary for phenology notebooks that actually get used \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-022",
+      "title": "How to write field notes your future self will understand",
+      "summary": "Placeholder summary for how to write field notes your future self will understand \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-023",
+      "title": "Citizen science without giving up location privacy",
+      "summary": "Placeholder summary for citizen science without giving up location privacy \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-024",
+      "title": "The quiet case for turning back before the summit",
+      "summary": "Placeholder summary for the quiet case for turning back before the summit \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-025",
+      "title": "Insect sign on leaves \u2014 chew, mine, gall, and roll",
+      "summary": "Placeholder summary for insect sign on leaves \u2014 chew, mine, gall, and roll \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-026",
+      "title": "Estimating stream flow from sound and color",
+      "summary": "Placeholder summary for estimating stream flow from sound and color \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-027",
+      "title": "Why moss on only one side of a tree is an oversimplification",
+      "summary": "Placeholder summary for why moss on only one side of a tree is an oversimplification \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-028",
+      "title": "Teaching geology with pebbles instead of slideshows",
+      "summary": "Placeholder summary for teaching geology with pebbles instead of slideshows \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-029",
+      "title": "Seasonal shifts in bird song territories on a fixed route",
+      "summary": "Placeholder summary for seasonal shifts in bird song territories on a fixed route \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-030",
+      "title": "What old-growth structure looks like without measuring trees",
+      "summary": "Placeholder summary for what old-growth structure looks like without measuring trees \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-031",
+      "title": "Rain shadows and why your valley dries first",
+      "summary": "Placeholder summary for rain shadows and why your valley dries first \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-032",
+      "title": "Sketching clouds for weather journals",
+      "summary": "Placeholder summary for sketching clouds for weather journals \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-033",
+      "title": "Ethical foraging starts with identification, not recipes",
+      "summary": "Placeholder summary for ethical foraging starts with identification, not recipes \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-034",
+      "title": "How to compare two map layers without a GIS degree",
+      "summary": "Placeholder summary for how to compare two map layers without a gis degree \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-035",
+      "title": "Wildfire smoke and what it does to evening light",
+      "summary": "Placeholder summary for wildfire smoke and what it does to evening light \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-036",
+      "title": "Frog chorus timing and water temperature",
+      "summary": "Placeholder summary for frog chorus timing and water temperature \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-037",
+      "title": "Reading talus slope stability for off-trail choices",
+      "summary": "Placeholder summary for reading talus slope stability for off-trail choices \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-038",
+      "title": "Why empty journal days still belong in the record",
+      "summary": "Placeholder summary for why empty journal days still belong in the record \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-039",
+      "title": "Connecting wine terroir to slope and soil \u2014 an ecology primer",
+      "summary": "Placeholder summary for connecting wine terroir to slope and soil \u2014 an ecology primer \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-040",
+      "title": "Shed antler timing and winter yard behavior",
+      "summary": "Placeholder summary for shed antler timing and winter yard behavior \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-041",
+      "title": "Star navigation when you forget the app",
+      "summary": "Placeholder summary for star navigation when you forget the app \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-042",
+      "title": "Macro photography as documentation, not collection",
+      "summary": "Placeholder summary for macro photography as documentation, not collection \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-043",
+      "title": "How conservation status labels should change behavior",
+      "summary": "Placeholder summary for how conservation status labels should change behavior \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "weather",
+      "season": "early spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-044",
+      "title": "The one-square-meter biodiversity lesson",
+      "summary": "Placeholder summary for the one-square-meter biodiversity lesson \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "geology",
+      "season": "late spring",
+      "placeholder": true
+    },
+    {
+      "id": "article-045",
+      "title": "Tracking seasonal leaf-out with a fixed compass bearing",
+      "summary": "Placeholder summary for tracking seasonal leaf-out with a fixed compass bearing \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "photography",
+      "season": "early summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-046",
+      "title": "What research briefs owe field teachers",
+      "summary": "Placeholder summary for what research briefs owe field teachers \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "field-skills",
+      "season": "late summer",
+      "placeholder": true
+    },
+    {
+      "id": "article-047",
+      "title": "Building a classroom herbarium without over-collecting",
+      "summary": "Placeholder summary for building a classroom herbarium without over-collecting \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "conservation",
+      "season": "autumn",
+      "placeholder": true
+    },
+    {
+      "id": "article-048",
+      "title": "Night sky preservation and trailhead lighting choices",
+      "summary": "Placeholder summary for night sky preservation and trailhead lighting choices \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "species",
+      "season": "early winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-049",
+      "title": "When citizen datasets help \u2014 and when they harm",
+      "summary": "Placeholder summary for when citizen datasets help \u2014 and when they harm \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "habitat",
+      "season": "late winter",
+      "placeholder": true
+    },
+    {
+      "id": "article-050",
+      "title": "Returning to the same place until it feels like kin",
+      "summary": "Placeholder summary for returning to the same place until it feels like kin \u2014 observation first, investigation outdoors.",
+      "type": "Article",
+      "domain": "ecology",
+      "season": "early spring",
+      "placeholder": true
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+/**
+ * Waypoint Studio — Shared Homepage Section Components
+ * Reusable blocks for ecosystem and product home pages.
+ * See design-system/homepage/README.md
+ */
+
+.ws-block {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: var(--wds-space-10) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.ws-block:last-child {
+  border-bottom: none;
+}
+
+.ws-block__head {
+  max-width: 42rem;
+  margin-bottom: var(--wds-space-6);
+}
+
+.ws-block__eyebrow {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.ws-block__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.ws-block__lead {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* ——— Featured photograph ——— */
+.ws-featured-photo {
+  margin: 0;
+  border-radius: var(--wds-radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+  background: var(--wds-surface);
+}
+
+.ws-featured-photo__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+}
+
+.ws-featured-photo__slot {
+  aspect-ratio: 21 / 9;
+}
+
+.ws-featured-photo__caption {
+  padding: var(--wds-space-4) var(--wds-space-5);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+/* ——— Card grids (lessons, news, guides) ——— */
+.ws-card-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.ws-content-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--wds-space-5);
+  text-decoration: none;
+  color: inherit;
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+a.ws-content-card:hover {
+  border-color: var(--wds-border);
+}
+
+.ws-content-card--placeholder {
+  border-style: dashed;
+  background: var(--wds-inset);
+}
+
+.ws-content-card__type {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.ws-content-card__title {
+  margin: var(--wds-space-2) 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.ws-content-card__desc {
+  margin: 0 0 var(--wds-space-3);
+  flex: 1;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-content-card__meta {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Spotlight (field guide feature) ——— */
+.ws-spotlight {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(200px, 280px) 1fr;
+  align-items: start;
+  padding: var(--wds-space-6);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+}
+
+@media (max-width: 640px) {
+  .ws-spotlight {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-spotlight__plate {
+  margin: 0;
+  border-radius: var(--wds-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+}
+
+.ws-spotlight__plate img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* ——— Video feature ——— */
+.ws-video-feature {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: 1fr minmax(240px, 320px);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .ws-video-feature {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-video-feature__thumb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  aspect-ratio: 16 / 9;
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-video-feature__play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1rem;
+  color: var(--wds-text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: 50%;
+}
+
+/* ——— Challenge card ——— */
+.ws-challenge-block {
+  max-width: 42rem;
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-challenge-block__steps {
+  margin: var(--wds-space-4) 0 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* ——— Explore nearby ——— */
+.ws-nearby-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.ws-nearby-list li {
+  display: flex;
+  gap: var(--wds-space-4);
+  padding: var(--wds-space-4);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+}
+
+.ws-nearby-list__distance {
+  flex-shrink: 0;
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  color: var(--wds-warm);
+  min-width: 3.5rem;
+}
+
+.ws-nearby-list__body {
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
+  color: var(--wds-text-secondary);
+}
+
+.ws-nearby-list__body strong {
+  display: block;
+  margin-bottom: var(--wds-space-1);
+  color: var(--wds-text);
+  font-weight: 500;
+}
+
+/* ——— Research brief ——— */
+.ws-research-card {
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-research-card__source {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Featured tool ——— */
+.ws-tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-4);
+  padding: var(--wds-space-6);
+  text-decoration: none;
+  color: inherit;
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+  max-width: 28rem;
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+a.ws-tool-card:hover {
+  border-color: var(--wds-accent);
+}
+
+.ws-tool-card__name {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+}
+
+.ws-tool-card__desc {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-tool-card__cta {
+  font-size: var(--wds-text-sm);
+  font-weight: 500;
+  color: var(--wds-warm);
+}
+
+/* ——— Seasonal highlight banner ——— */
+.ws-seasonal {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: 1fr minmax(200px, 280px);
+  padding: var(--wds-space-6);
+  background: var(--wds-accent-dim);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+}
+
+@media (max-width: 640px) {
+  .ws-seasonal {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-seasonal__tag {
+  display: inline-block;
+  margin-bottom: var(--wds-space-2);
+  padding: var(--wds-space-1) var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+  background: var(--wds-surface);
+  border-radius: var(--wds-radius-full);
+}
+
+/* ——— Shared media placeholder (homepage) ——— */
+.ws-media-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  min-height: 10rem;
+  padding: var(--wds-space-5);
+  text-align: center;
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-media-slot__label {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.ws-media-slot__hint {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+}

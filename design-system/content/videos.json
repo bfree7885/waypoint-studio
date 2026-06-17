@@ -1,0 +1,506 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "items": [
+    {
+      "id": "video-001",
+      "title": "How to learn like a naturalist",
+      "summary": "Placeholder summary for how to learn like a naturalist \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "early spring",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "video-002",
+      "title": "Reading slope and aspect on a map",
+      "summary": "Placeholder summary for reading slope and aspect on a map \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "late spring",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "video-003",
+      "title": "Keeping a field notebook that survives rain",
+      "summary": "Placeholder summary for keeping a field notebook that survives rain \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "early summer",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "video-004",
+      "title": "Using a hand lens without rushing",
+      "summary": "Placeholder summary for using a hand lens without rushing \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "late summer",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "video-005",
+      "title": "Photographing forest light \u2014 three conditions compared",
+      "summary": "Placeholder summary for photographing forest light \u2014 three conditions compared \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "autumn",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "video-006",
+      "title": "Sketching a leaf in four minutes",
+      "summary": "Placeholder summary for sketching a leaf in four minutes \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "early winter",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "video-007",
+      "title": "Cloud types from a trailhead bench",
+      "summary": "Placeholder summary for cloud types from a trailhead bench \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "late winter",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "video-008",
+      "title": "Riparian zone walk \u2014 what to notice first",
+      "summary": "Placeholder summary for riparian zone walk \u2014 what to notice first \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "early spring",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "video-009",
+      "title": "Basalt columns \u2014 reading joint patterns",
+      "summary": "Placeholder summary for basalt columns \u2014 reading joint patterns \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "late spring",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "video-010",
+      "title": "Repeat photography setup in one location",
+      "summary": "Placeholder summary for repeat photography setup in one location \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "early summer",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "video-011",
+      "title": "Dawn chorus sound mapping demo",
+      "summary": "Placeholder summary for dawn chorus sound mapping demo \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "late summer",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "video-012",
+      "title": "Soil color and drainage in the field",
+      "summary": "Placeholder summary for soil color and drainage in the field \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "autumn",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "video-013",
+      "title": "Ethical wildlife distance \u2014 practical demo",
+      "summary": "Placeholder summary for ethical wildlife distance \u2014 practical demo \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "early winter",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "video-014",
+      "title": "Fern identification \u2014 frond architecture",
+      "summary": "Placeholder summary for fern identification \u2014 frond architecture \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "late winter",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "video-015",
+      "title": "Stream flow cues without instruments",
+      "summary": "Placeholder summary for stream flow cues without instruments \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "early spring",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "video-016",
+      "title": "Fog formation in a valley demo",
+      "summary": "Placeholder summary for fog formation in a valley demo \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "late spring",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "video-017",
+      "title": "Compass walk for beginners",
+      "summary": "Placeholder summary for compass walk for beginners \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "early summer",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "video-018",
+      "title": "Metadata in field photography",
+      "summary": "Placeholder summary for metadata in field photography \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "late summer",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "video-019",
+      "title": "Optional citizen science \u2014 what you share",
+      "summary": "Placeholder summary for optional citizen science \u2014 what you share \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "autumn",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "video-020",
+      "title": "Turning back before the weather wins",
+      "summary": "Placeholder summary for turning back before the weather wins \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "early winter",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "video-021",
+      "title": "Old-growth structure without jargon",
+      "summary": "Placeholder summary for old-growth structure without jargon \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "late winter",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "video-022",
+      "title": "Introduced vs. native \u2014 field comparison",
+      "summary": "Placeholder summary for introduced vs. native \u2014 field comparison \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "early spring",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "video-023",
+      "title": "Phenology scoring on one tree",
+      "summary": "Placeholder summary for phenology scoring on one tree \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "late spring",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "video-024",
+      "title": "Night sky \u2014 finding north quietly",
+      "summary": "Placeholder summary for night sky \u2014 finding north quietly \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "early summer",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "video-025",
+      "title": "Macro photography as evidence",
+      "summary": "Placeholder summary for macro photography as evidence \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "late summer",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "video-026",
+      "title": "Track identification after rain",
+      "summary": "Placeholder summary for track identification after rain \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "autumn",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "video-027",
+      "title": "Winter bark ID walk",
+      "summary": "Placeholder summary for winter bark id walk \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "early winter",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "video-028",
+      "title": "Leave No Trace for photographers",
+      "summary": "Placeholder summary for leave no trace for photographers \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "late winter",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "video-029",
+      "title": "How research briefs connect to your walk",
+      "summary": "Placeholder summary for how research briefs connect to your walk \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "early spring",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "video-030",
+      "title": "Seasonal journal review \u2014 patterns emerge",
+      "summary": "Placeholder summary for seasonal journal review \u2014 patterns emerge \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "late spring",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "video-031",
+      "title": "Habitat walk series \u00b7 episode 1",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 1 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "early summer",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "video-032",
+      "title": "Habitat walk series \u00b7 episode 2",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 2 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "late summer",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "video-033",
+      "title": "Habitat walk series \u00b7 episode 3",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 3 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "autumn",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "video-034",
+      "title": "Habitat walk series \u00b7 episode 4",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 4 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "early winter",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "video-035",
+      "title": "Habitat walk series \u00b7 episode 5",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 5 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "late winter",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "video-036",
+      "title": "Habitat walk series \u00b7 episode 6",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 6 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "early spring",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "video-037",
+      "title": "Habitat walk series \u00b7 episode 7",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 7 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "late spring",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "video-038",
+      "title": "Habitat walk series \u00b7 episode 8",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 8 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "early summer",
+      "durationMinutes": 5,
+      "placeholder": true
+    },
+    {
+      "id": "video-039",
+      "title": "Habitat walk series \u00b7 episode 9",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 9 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "late summer",
+      "durationMinutes": 6,
+      "placeholder": true
+    },
+    {
+      "id": "video-040",
+      "title": "Habitat walk series \u00b7 episode 10",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 10 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "autumn",
+      "durationMinutes": 7,
+      "placeholder": true
+    },
+    {
+      "id": "video-041",
+      "title": "Habitat walk series \u00b7 episode 11",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 11 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "early winter",
+      "durationMinutes": 8,
+      "placeholder": true
+    },
+    {
+      "id": "video-042",
+      "title": "Habitat walk series \u00b7 episode 12",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 12 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "late winter",
+      "durationMinutes": 9,
+      "placeholder": true
+    },
+    {
+      "id": "video-043",
+      "title": "Habitat walk series \u00b7 episode 13",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 13 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "weather",
+      "season": "early spring",
+      "durationMinutes": 10,
+      "placeholder": true
+    },
+    {
+      "id": "video-044",
+      "title": "Habitat walk series \u00b7 episode 14",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 14 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "geology",
+      "season": "late spring",
+      "durationMinutes": 11,
+      "placeholder": true
+    },
+    {
+      "id": "video-045",
+      "title": "Habitat walk series \u00b7 episode 15",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 15 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "photography",
+      "season": "early summer",
+      "durationMinutes": 12,
+      "placeholder": true
+    },
+    {
+      "id": "video-046",
+      "title": "Habitat walk series \u00b7 episode 16",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 16 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "field-skills",
+      "season": "late summer",
+      "durationMinutes": 13,
+      "placeholder": true
+    },
+    {
+      "id": "video-047",
+      "title": "Habitat walk series \u00b7 episode 17",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 17 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "conservation",
+      "season": "autumn",
+      "durationMinutes": 14,
+      "placeholder": true
+    },
+    {
+      "id": "video-048",
+      "title": "Habitat walk series \u00b7 episode 18",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 18 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "species",
+      "season": "early winter",
+      "durationMinutes": 3,
+      "placeholder": true
+    },
+    {
+      "id": "video-049",
+      "title": "Habitat walk series \u00b7 episode 19",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 19 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "habitat",
+      "season": "late winter",
+      "durationMinutes": 4,
+      "placeholder": true
+    },
+    {
+      "id": "video-050",
+      "title": "Habitat walk series \u00b7 episode 20",
+      "summary": "Placeholder summary for habitat walk series \u00b7 episode 20 \u2014 observation first, investigation outdoors.",
+      "type": "Video",
+      "domain": "ecology",
+      "season": "early spring",
+      "durationMinutes": 5,
+      "placeholder": true
+    }
+  ]
+}

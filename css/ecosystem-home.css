@@ -53,6 +53,16 @@
   padding-block: var(--wds-space-8);
 }
 
+.ws-section-head {
+  max-width: 42rem;
+  margin-bottom: var(--wds-space-8);
+}
+
+.ws-section-foot {
+  margin-top: var(--wds-space-6);
+  max-width: 42rem;
+}
+
 .ws-mission {
   text-align: center;
   max-width: 36rem;
@@ -68,29 +78,307 @@
   color: var(--wds-warm);
 }
 
-.ws-featured-photo {
-  margin: 0;
-  border-radius: var(--wds-radius-xl);
-  overflow: hidden;
-  border: 1px solid var(--wds-border-subtle);
-  box-shadow: var(--wds-shadow-md);
+/* Shared placeholder label */
+.ws-placeholder-label {
+  display: block;
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
 }
 
-.ws-featured-photo img {
+/* Learn — field guide plate + articles */
+.ws-learn-layout {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .ws-learn-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-field-plate__frame {
+  position: relative;
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  text-align: center;
+}
+
+.ws-field-plate__art {
   display: block;
   width: 100%;
-  aspect-ratio: 21 / 9;
+  height: auto;
+  border-radius: var(--wds-radius-md);
+  opacity: 0.9;
+}
+
+.ws-field-plate__frame .ws-placeholder-label {
+  margin-top: var(--wds-space-3);
+}
+
+.ws-field-plate__caption {
+  margin: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-article-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.ws-article-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-article-card--muted {
+  background: var(--wds-inset);
+  border-style: dashed;
+}
+
+.ws-article-card__title {
+  margin: var(--wds-space-2) 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.ws-article-card__desc {
+  margin: 0 0 var(--wds-space-4);
+  flex: 1;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-article-card__tag {
+  align-self: flex-start;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-warm);
+  letter-spacing: 0.02em;
+}
+
+/* Gallery — photo grid */
+.ws-photo-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.ws-photo-card {
+  margin: 0;
+  border-radius: var(--wds-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--wds-border-subtle);
+  background: var(--wds-surface);
+}
+
+.ws-photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
-.ws-featured-caption {
-  padding: var(--wds-space-4) var(--wds-space-6);
+.ws-photo-card figcaption {
+  padding: var(--wds-space-3) var(--wds-space-4);
   font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-normal);
   color: var(--wds-text-secondary);
-  background: var(--wds-surface);
   border-top: 1px solid var(--wds-border-subtle);
 }
 
+.ws-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  aspect-ratio: 4 / 3;
+  background: var(--wds-inset);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.ws-photo-placeholder__icon {
+  font-size: 1.5rem;
+  color: var(--wds-text-muted);
+  opacity: 0.5;
+}
+
+.ws-photo-card--placeholder {
+  border-style: dashed;
+}
+
+/* Field notes — journal */
+.ws-notes-layout {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .ws-notes-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-journal-placeholder {
+  position: relative;
+  padding: var(--wds-space-5) var(--wds-space-5) var(--wds-space-8);
+  font-family: var(--wds-font-display);
+  background: linear-gradient(165deg, #f4efe6 0%, #ebe4d8 100%);
+  color: #3d3830;
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.ws-journal-placeholder__date {
+  margin: 0 0 var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.ws-journal-placeholder__line {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.ws-journal-placeholder__line--empty {
+  margin-top: var(--wds-space-4);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.ws-journal-placeholder .ws-placeholder-label {
+  position: absolute;
+  bottom: var(--wds-space-3);
+  left: var(--wds-space-5);
+  color: #6b6358;
+}
+
+/* Outdoor challenge */
+.ws-challenge-card {
+  max-width: 42rem;
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-challenge-card__title {
+  margin: var(--wds-space-2) 0 var(--wds-space-4);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.ws-challenge-card__intro {
+  margin: 0 0 var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-challenge-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-challenge-card__foot {
+  margin-top: var(--wds-space-5);
+  padding-top: var(--wds-space-4);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+/* Videos */
+.ws-video-grid {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.ws-video-card {
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  overflow: hidden;
+  background: var(--wds-surface);
+}
+
+.ws-video-card--muted {
+  border-style: dashed;
+  background: var(--wds-inset);
+}
+
+.ws-video-placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-2);
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, var(--wds-inset) 0%, var(--wds-surface) 100%);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.ws-video-placeholder__play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.875rem;
+  color: var(--wds-text-secondary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: 50%;
+}
+
+.ws-video-card__body {
+  padding: var(--wds-space-4) var(--wds-space-5);
+}
+
+.ws-video-card__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+}
+
+.ws-video-card__desc {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* Experience cards */
 .ws-card-grid {
   display: grid;
   gap: var(--wds-space-4);
@@ -140,9 +428,10 @@
 }
 
 .ws-experience-card.is-soon {
-  opacity: 0.85;
+  opacity: 0.92;
 }
 
+/* Field notes list */
 .ws-note-list {
   margin: 0;
   padding: 0;
@@ -162,6 +451,7 @@
   border-radius: var(--wds-radius-md);
 }
 
+/* Citizen science */
 .ws-citizen {
   max-width: 42rem;
   padding: var(--wds-space-6);
@@ -170,6 +460,7 @@
   border-radius: var(--wds-radius-xl);
 }
 
+/* Top nav */
 .ws-topnav {
   display: flex;
   flex-wrap: wrap;
