@@ -151,6 +151,7 @@
             '<p class="wds-eyebrow">Reading the map</p>' +
             '<ul class="fc-legend">' + legend + "</ul>" +
             '<p class="fc-tool-callout"><strong>Where the tool fits:</strong> ' + escapeHtml(pp.toolFit) + "</p>" +
+            '<p style="margin-top:var(--wds-space-4);"><a class="wds-body" href="season-table.html" style="font-weight:500;">Open the season table →</a></p>' +
             '<p class="wds-body" style="margin-top:var(--wds-space-3); font-size:var(--wds-text-sm); color:var(--wds-text-tertiary);">' + escapeHtml(pp.disclaimer) + "</p>" +
           "</div>" +
         "</div>" +

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "weekOf": "2026-05-30",
+  "region": {
+    "county": "Pike County",
+    "state": "Pennsylvania",
+    "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands"
+  },
+  "inputs": {
+    "seasonTiming": 0.72,
+    "recentRainfall": 0.68,
+    "temperature": 0.61,
+    "soilMoisture": 0.64
+  },
+  "labels": {
+    "recentRainfall": "1.4 in over 7 days",
+    "temperature": "Avg 63°F · warming trend",
+    "soilMoisture": "Elevated in ravines; ridge tops drying"
+  },
+  "whatChangedThisWeek": [
+    "Two warm days dried south-facing ridge litter faster than north slopes.",
+    "Valley fog and light rain kept river terraces moist — morel window closing but not gone below 1,200 ft.",
+    "Oak litter on mid-elevation north slopes holding moisture — early signal for summer chanterelles, not fruiting yet.",
+    "Blueberry flower clusters visible on sunny edges; fruit weeks away."
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "version": "1.0.0",
+  "factorLabels": {
+    "seasonTiming": "Season timing",
+    "recentRainfall": "Recent rainfall",
+    "temperature": "Temperature",
+    "soilMoisture": "Soil moisture",
+    "elevation": "Elevation",
+    "slopeAspect": "Slope & aspect",
+    "treeAssociation": "Tree association",
+    "landCover": "Land cover"
+  },
+  "species": [
+    {
+      "id": "morels",
+      "name": "Morels",
+      "scientificName": "Morchella spp.",
+      "seasonWindow": "Late April – late May",
+      "peakDayOfYear": 130,
+      "seasonSpread": 28,
+      "idealTemp": 0.55,
+      "factorWeights": {
+        "seasonTiming": 0.22,
+        "recentRainfall": 0.14,
+        "temperature": 0.12,
+        "soilMoisture": 0.14,
+        "elevation": 0.08,
+        "slopeAspect": 0.10,
+        "treeAssociation": 0.12,
+        "landCover": 0.08
+      },
+      "zoneAffinity": {
+        "river-terrace": { "elevation": 0.85, "slopeAspect": 0.7, "treeAssociation": 0.75, "landCover": 0.8 },
+        "north-oak-slope": { "elevation": 0.6, "slopeAspect": 0.85, "treeAssociation": 0.7, "landCover": 0.65 },
+        "south-ridge": { "elevation": 0.45, "slopeAspect": 0.35, "treeAssociation": 0.4, "landCover": 0.35 },
+        "hemlock-ravine": { "elevation": 0.55, "slopeAspect": 0.75, "treeAssociation": 0.5, "landCover": 0.55 },
+        "old-orchard": { "elevation": 0.9, "slopeAspect": 0.65, "treeAssociation": 0.95, "landCover": 0.9 },
+        "plateau-bog-edge": { "elevation": 0.3, "slopeAspect": 0.5, "treeAssociation": 0.25, "landCover": 0.3 }
+      },
+      "lookForOutside": [
+        "Honeycombed caps at ash, elm, or apple edges",
+        "Hollow stem when sliced — never brain-like false morels",
+        "Cool mornings after rain on north slopes below 1,200 ft"
+      ],
+      "lessonNext": { "id": "morels-101", "title": "Morels 101" },
+      "investigation": {
+        "where": "Old orchard edge or river terrace below 1,200 ft — public land only",
+        "observe": ["Ground cover under dying hardwoods", "Soil smell after rain", "Any honeycombed fungi — photograph, do not pick uncertain specimens"],
+        "photograph": ["Tree species and bark", "Aspect of slope", "Substrate (leaf litter, wood chip, soil)"],
+        "writeDown": ["Date, general area, weather", "Three tree species within 10 paces", "Moisture of litter when pressed"],
+        "doNotDisturb": ["Do not rake leaf litter or dig soil", "Do not share exact coordinates", "Leave small specimens for spore dispersal"]
+      },
+      "scoreNarratives": {
+        "high": "Season and moisture still align on low terraces and orchard edges — the window is narrow but real.",
+        "moderate": "Some zones remain worth a quiet walk; heat and drying slopes are ending the flush.",
+        "low": "Season has passed for most elevations — wait for next spring or shift species."
+      }
+    },
+    {
+      "id": "chanterelles",
+      "name": "Chanterelles",
+      "scientificName": "Cantharellus spp.",
+      "seasonWindow": "Late June – August",
+      "peakDayOfYear": 200,
+      "seasonSpread": 35,
+      "idealTemp": 0.72,
+      "factorWeights": {
+        "seasonTiming": 0.20,
+        "recentRainfall": 0.16,
+        "temperature": 0.14,
+        "soilMoisture": 0.16,
+        "elevation": 0.08,
+        "slopeAspect": 0.10,
+        "treeAssociation": 0.10,
+        "landCover": 0.06
+      },
+      "zoneAffinity": {
+        "river-terrace": { "elevation": 0.4, "slopeAspect": 0.5, "treeAssociation": 0.45, "landCover": 0.4 },
+        "north-oak-slope": { "elevation": 0.85, "slopeAspect": 0.9, "treeAssociation": 0.95, "landCover": 0.9 },
+        "south-ridge": { "elevation": 0.5, "slopeAspect": 0.4, "treeAssociation": 0.55, "landCover": 0.5 },
+        "hemlock-ravine": { "elevation": 0.6, "slopeAspect": 0.8, "treeAssociation": 0.5, "landCover": 0.55 },
+        "old-orchard": { "elevation": 0.35, "slopeAspect": 0.45, "treeAssociation": 0.3, "landCover": 0.35 },
+        "plateau-bog-edge": { "elevation": 0.45, "slopeAspect": 0.55, "treeAssociation": 0.4, "landCover": 0.5 }
+      },
+      "lookForOutside": [
+        "No fruiting yet — study oak litter depth and moss on north slopes",
+        "Gill-like ridges, not true gills; peppery apricot smell when mature",
+        "Sustained June rain on oak ridges is the signal to return"
+      ],
+      "lessonNext": { "id": "chanterelles-101", "title": "Chanterelles 101" },
+      "investigation": {
+        "where": "North-facing oak slope, 1,000–1,400 ft — map a stand before mushrooms appear",
+        "observe": ["Oak species (red vs white)", "Litter depth and moss cover", "Any orange fungi — likely too early; verify ID"],
+        "photograph": ["Canopy opening", "Oak bark and leaf litter", "Slope aspect with compass"],
+        "writeDown": ["Would this slope hold moisture after two dry days?", "Three ground-layer plants", "Prediction: when would you return?"],
+        "doNotDisturb": ["Do not harvest immature or uncertain fungi", "Stay on established trails", "Do not mark trees"]
+      },
+      "scoreNarratives": {
+        "high": "Moisture and oak habitat align — fruiting may be beginning on favored slopes.",
+        "moderate": "Too early for harvest, not too early to learn habitat — north oak slopes after rain are the classroom.",
+        "low": "Season has not opened — use this week to scout oak ridges for a return visit in late June."
+      }
+    },
+    {
+      "id": "black-trumpets",
+      "name": "Black Trumpets",
+      "scientificName": "Craterellus cornucopioides",
+      "seasonWindow": "August – October",
+      "peakDayOfYear": 250,
+      "seasonSpread": 40,
+      "idealTemp": 0.65,
+      "factorWeights": {
+        "seasonTiming": 0.24,
+        "recentRainfall": 0.14,
+        "temperature": 0.10,
+        "soilMoisture": 0.16,
+        "elevation": 0.08,
+        "slopeAspect": 0.10,
+        "treeAssociation": 0.10,
+        "landCover": 0.08
+      },
+      "zoneAffinity": {
+        "river-terrace": { "elevation": 0.5, "slopeAspect": 0.55, "treeAssociation": 0.5, "landCover": 0.45 },
+        "north-oak-slope": { "elevation": 0.7, "slopeAspect": 0.85, "treeAssociation": 0.8, "landCover": 0.75 },
+        "south-ridge": { "elevation": 0.35, "slopeAspect": 0.3, "treeAssociation": 0.35, "landCover": 0.3 },
+        "hemlock-ravine": { "elevation": 0.9, "slopeAspect": 0.9, "treeAssociation": 0.95, "landCover": 0.9 },
+        "old-orchard": { "elevation": 0.4, "slopeAspect": 0.4, "treeAssociation": 0.35, "landCover": 0.35 },
+        "plateau-bog-edge": { "elevation": 0.55, "slopeAspect": 0.6, "treeAssociation": 0.5, "landCover": 0.55 }
+      },
+      "lookForOutside": [
+        "Not in season — note hemlock ravines and mossy draws for a late-summer return",
+        "Black, vase-shaped fungi on forest floor near decaying wood",
+        "Often hidden in leaf litter — patience, not scraping"
+      ],
+      "lessonNext": { "id": "forest-moisture-101", "title": "Forest Moisture 101" },
+      "investigation": {
+        "where": "Hemlock ravine with moss and decaying logs — scout now, harvest months away",
+        "observe": ["Hemlock density and shade", "Moss cover on logs", "Drainage — water movement after rain"],
+        "photograph": ["Ravine profile", "Decaying wood types", "Forest floor without disturbing litter"],
+        "writeDown": ["Why might trumpets favor this draw?", "Aspect and elevation", "Return date estimate"],
+        "doNotDisturb": ["Do not peel bark or roll logs extensively", "Leave ravine floor intact", "No collection out of season"]
+      },
+      "scoreNarratives": {
+        "high": "Late-season moisture and hemlock habitat may support fruiting — verify on the ground.",
+        "moderate": "Season approaching — scout ravines now; return after sustained late-summer rain.",
+        "low": "Months until peak — use this time to map hemlock draws and study forest moisture."
+      }
+    },
+    {
+      "id": "ramps",
+      "name": "Ramps",
+      "scientificName": "Allium tricoccum",
+      "seasonWindow": "Mid-April – late May",
+      "peakDayOfYear": 115,
+      "seasonSpread": 25,
+      "idealTemp": 0.48,
+      "factorWeights": {
+        "seasonTiming": 0.26,
+        "recentRainfall": 0.12,
+        "temperature": 0.14,
+        "soilMoisture": 0.14,
+        "elevation": 0.08,
+        "slopeAspect": 0.10,
+        "treeAssociation": 0.08,
+        "landCover": 0.08
+      },
+      "zoneAffinity": {
+        "river-terrace": { "elevation": 0.7, "slopeAspect": 0.65, "treeAssociation": 0.7, "landCover": 0.65 },
+        "north-oak-slope": { "elevation": 0.75, "slopeAspect": 0.9, "treeAssociation": 0.8, "landCover": 0.75 },
+        "south-ridge": { "elevation": 0.4, "slopeAspect": 0.35, "treeAssociation": 0.4, "landCover": 0.35 },
+        "hemlock-ravine": { "elevation": 0.85, "slopeAspect": 0.85, "treeAssociation": 0.9, "landCover": 0.85 },
+        "old-orchard": { "elevation": 0.5, "slopeAspect": 0.5, "treeAssociation": 0.45, "landCover": 0.4 },
+        "plateau-bog-edge": { "elevation": 0.6, "slopeAspect": 0.7, "treeAssociation": 0.55, "landCover": 0.6 }
+      },
+      "lookForOutside": [
+        "Broad smooth leaves with onion smell when crushed — two leaves per bulb",
+        "Past peak in most Pike County sites — leaves may be yellowing",
+        "If harvesting: take one leaf per patch, never clear a colony"
+      ],
+      "lessonNext": { "id": "forest-moisture-101", "title": "Forest Moisture 101" },
+      "investigation": {
+        "where": "Cool north slope or hemlock draw where ramps were reported in April",
+        "observe": ["Leaf senescence — season ending", "Colony size and spacing", "Associated canopy (maple, hemlock)"],
+        "photograph": ["Leaf cluster from above — no digging", "Habitat context", "Signs of over-harvest (bare patches)"],
+        "writeDown": ["Is this colony recovering from prior harvest?", "Soil moisture vs open ridge", "Ethical take: one leaf only?"],
+        "doNotDisturb": ["Never dig entire patches", "Do not harvest on protected land without rules check", "Leave flowers for seed if present"]
+      },
+      "scoreNarratives": {
+        "high": "Late-season ramp greens may persist in cool draws — harvest ethically or observe only.",
+        "moderate": "Season fading — study colony health rather than quantity.",
+        "low": "Peak passed — note locations for next April, practice leave-no-trace ethics."
+      }
+    },
+    {
+      "id": "blueberries",
+      "name": "Blueberries",
+      "scientificName": "Vaccinium spp.",
+      "seasonWindow": "Late June – July",
+      "peakDayOfYear": 195,
+      "seasonSpread": 30,
+      "idealTemp": 0.68,
+      "factorWeights": {
+        "seasonTiming": 0.20,
+        "recentRainfall": 0.12,
+        "temperature": 0.16,
+        "soilMoisture": 0.12,
+        "elevation": 0.10,
+        "slopeAspect": 0.12,
+        "treeAssociation": 0.10,
+        "landCover": 0.08
+      },
+      "zoneAffinity": {
+        "river-terrace": { "elevation": 0.45, "slopeAspect": 0.5, "treeAssociation": 0.4, "landCover": 0.4 },
+        "north-oak-slope": { "elevation": 0.55, "slopeAspect": 0.6, "treeAssociation": 0.5, "landCover": 0.5 },
+        "south-ridge": { "elevation": 0.85, "slopeAspect": 0.9, "treeAssociation": 0.9, "landCover": 0.85 },
+        "hemlock-ravine": { "elevation": 0.4, "slopeAspect": 0.45, "treeAssociation": 0.35, "landCover": 0.4 },
+        "old-orchard": { "elevation": 0.5, "slopeAspect": 0.55, "treeAssociation": 0.45, "landCover": 0.45 },
+        "plateau-bog-edge": { "elevation": 0.9, "slopeAspect": 0.75, "treeAssociation": 0.85, "landCover": 0.9 }
+      },
+      "lookForOutside": [
+        "Green fruit clusters on sunny south ridges and bog margins",
+        "White urn-shaped flowers may still appear on late plants",
+        "Birds will compete — observe phenology, harvest only when fully blue"
+      ],
+      "lessonNext": { "id": "forest-moisture-101", "title": "Forest Moisture 101" },
+      "investigation": {
+        "where": "South ridge scrub or plateau bog edge with Vaccinium",
+        "observe": ["Flower vs green fruit vs ripe berry", "Sun exposure on shrubs", "Bird activity on shrubs"],
+        "photograph": ["Shrub structure and leaf shape", "Fruit stage close-up", "Habitat wide shot"],
+        "writeDown": ["Estimated weeks to ripeness", "Shrub density", "Compare sunny vs shaded plants on same slope"],
+        "doNotDisturb": ["Do not strip branches", "Leave fruit for wildlife on most shrubs", "Stay on trail in bog margins"]
+      },
+      "scoreNarratives": {
+        "high": "Fruit development on favored sunny edges — ripeness approaching on south aspects.",
+        "moderate": "Flowers and green fruit visible — scout now, harvest later in June.",
+        "low": "Early phenology only — map shrubs and return when berries turn blue."
+      }
+    }
+  ]
+}

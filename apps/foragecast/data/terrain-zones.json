@@ -1,0 +1,83 @@
+{
+  "version": "1.0.0",
+  "mapTitle": "Pike County · terrain zones",
+  "legend": [
+    { "level": "high", "label": "Higher readiness", "desc": "Moisture + habitat + season align" },
+    { "level": "moderate", "label": "Worth a patient walk", "desc": "One or two factors lagging" },
+    { "level": "low", "label": "Unlikely this week", "desc": "Season or moisture mismatch" }
+  ],
+  "zones": [
+    {
+      "id": "river-terrace",
+      "name": "River terrace",
+      "elevation": "600–900 ft",
+      "aspect": "Variable · floodplain",
+      "moisture": "High · retained after rain",
+      "habitat": "Sycamore, silver maple, old field edge",
+      "landCover": "Riparian mixed forest",
+      "svgPath": "M 20 180 L 120 200 L 140 250 L 30 260 Z",
+      "labelX": 70,
+      "labelY": 225
+    },
+    {
+      "id": "north-oak-slope",
+      "name": "North oak slope",
+      "elevation": "1,000–1,400 ft",
+      "aspect": "North · cool",
+      "moisture": "Moderate-high · slow drying",
+      "habitat": "Red & white oak, hemlock understory",
+      "landCover": "Mesic hardwood forest",
+      "svgPath": "M 140 80 L 260 60 L 280 160 L 160 180 Z",
+      "labelX": 200,
+      "labelY": 120
+    },
+    {
+      "id": "south-ridge",
+      "name": "South ridge",
+      "elevation": "1,200–1,600 ft",
+      "aspect": "South · warm",
+      "moisture": "Low · dries first",
+      "habitat": "Oak scrub, blueberry, bear oak",
+      "landCover": "Dry ridge forest",
+      "svgPath": "M 280 60 L 380 40 L 400 140 L 300 160 Z",
+      "labelX": 340,
+      "labelY": 95
+    },
+    {
+      "id": "hemlock-ravine",
+      "name": "Hemlock ravine",
+      "elevation": "800–1,200 ft",
+      "aspect": "Northeast draw",
+      "moisture": "High · shaded",
+      "habitat": "Eastern hemlock, moss, decaying wood",
+      "landCover": "Conifer-mixed ravine",
+      "svgPath": "M 100 140 L 180 120 L 200 200 L 120 220 Z",
+      "labelX": 145,
+      "labelY": 175
+    },
+    {
+      "id": "old-orchard",
+      "name": "Old orchard edge",
+      "elevation": "700–1,000 ft",
+      "aspect": "Southwest clearing",
+      "moisture": "Moderate",
+      "habitat": "Apple, ash, elm remnants",
+      "landCover": "Abandoned agriculture",
+      "svgPath": "M 30 120 L 100 100 L 110 160 L 40 170 Z",
+      "labelX": 65,
+      "labelY": 135
+    },
+    {
+      "id": "plateau-bog-edge",
+      "name": "Plateau bog edge",
+      "elevation": "1,400–1,800 ft",
+      "aspect": "Flat · poorly drained",
+      "moisture": "Very high · sphagnum",
+      "habitat": "Black spruce, tamarack, blueberry",
+      "landCover": "Bog margin",
+      "svgPath": "M 200 200 L 320 190 L 340 270 L 220 280 Z",
+      "labelX": 270,
+      "labelY": 235
+    }
+  ]
+}

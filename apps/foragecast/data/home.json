@@ -59,7 +59,7 @@
       { "level": "moderate", "label": "Worth a patient walk", "desc": "Drying ridge; check shaded draws" },
       { "level": "low", "label": "Unlikely this week", "desc": "Dry south aspect; wait for next rain" }
     ],
-    "disclaimer": "Placeholder map — real model connects to county elevation, forest cover, and 7-day precipitation."
+    "disclaimer": "Homepage preview — open the season table for species selector, factor breakdown, and terrain zones."
   },
   "lessons": [
     {
