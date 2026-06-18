@@ -4,11 +4,8 @@
 (function () {
   "use strict";
 
-  var HEAT_PATTERN = [
-    "moderate", "high", "high", "moderate",
-    "low", "moderate", "high", "moderate",
-    "low", "low", "moderate", "high"
-  ];
+  var PREVIEW_SPECIES_ID = "morels";
+  var homeHeatState = { selectedZoneId: null };
 
   function escapeHtml(str) {
     if (str == null) return "";
@@ -29,15 +26,46 @@
   }
 
   function renderHero(data) {
+    var loc = data._location;
+    var regionLabel = loc
+      ? loc.name + ", " + (loc.stateCode || loc.state)
+      : data.region.county + ", PA";
+    var defaultNote = loc && loc.isDefault
+      ? '<p class="fc-location-bar__status">Using default region: Pike County, PA</p>'
+      : "";
+
     return (
       '<section class="fc-hero" aria-labelledby="fc-hero-title">' +
-        '<p class="wds-eyebrow">ForageCast · Pike County, PA</p>' +
+        '<p class="wds-eyebrow">ForageCast · ' + escapeHtml(regionLabel) + "</p>" +
+        defaultNote +
         '<h1 class="fc-hero__question" id="fc-hero-title">' + escapeHtml(data.hero.question) + "</h1>" +
         '<p class="fc-hero__lead">' + escapeHtml(data.hero.lead) + "</p>" +
         '<div style="margin-top: var(--wds-space-6); max-width: 14rem; margin-inline: auto;">' +
           mediaSlot("Field guide illustration · placeholder", "Mushroom & leaf sketch") +
         "</div>" +
       "</section>"
+    );
+  }
+
+  function renderLocationBar(data) {
+    var loc = data._location;
+    if (!loc || !window.ForageCastLocation) return "";
+    return (
+      '<div class="fc-location-bar" id="fc-location-bar">' +
+        '<p class="fc-location-bar__status">' + escapeHtml(ForageCastLocation.locationNote(loc)) + "</p>" +
+        '<div class="fc-location-bar__actions">' +
+          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fc-loc-retry">Use my location</button>' +
+          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fc-loc-change">Change region</button>' +
+        "</div>" +
+        '<form class="fc-location-bar__search wds-location-search is-hidden" id="fc-loc-change-form">' +
+          '<label class="wds-location-search__label" for="fc-loc-input">Search county</label>' +
+          '<div class="wds-location-search__row">' +
+            '<input class="wds-location-search__input" id="fc-loc-input" list="fc-loc-list" placeholder="County, ST" autocomplete="off">' +
+            '<datalist id="fc-loc-list"></datalist>' +
+            '<button type="submit" class="wds-btn wds-btn--secondary wds-btn--sm">Set</button>' +
+          "</div>" +
+        "</form>" +
+      "</div>"
     );
   }
 
@@ -56,6 +84,7 @@
 
     return (
       '<section class="fc-section" id="regional-status" aria-labelledby="fc-status-title">' +
+        renderLocationBar(data) +
         '<p class="fc-section__eyebrow">Regional status · ' + escapeHtml(data.region.county) + " / " + escapeHtml(data.region.state) + "</p>" +
         '<h2 class="fc-section__title" id="fc-status-title">' + escapeHtml(rs.headline) + "</h2>" +
         '<p class="fc-section__lead">' + escapeHtml(rs.summary) + "</p>" +
@@ -96,49 +125,121 @@
 
   function renderSpotlight(data) {
     var sp = data.speciesSpotlight;
-    var marks = (sp.fieldMarks || []).map(function (m) {
-      return "<li>" + escapeHtml(m) + "</li>";
-    }).join("");
+    if (!sp) return "";
+
+    var card = window.WDS && WDS.speciesSpotlight
+      ? WDS.speciesSpotlight.renderCard(sp, {
+          weekOf: data.weekOf,
+          showWeekPreview: /weekly/i.test(sp.spotlightLabel || "")
+        })
+      : "";
 
     return (
-      '<section class="fc-section" id="species-spotlight" aria-labelledby="fc-spotlight-title">' +
-        '<p class="fc-section__eyebrow">Species spotlight</p>' +
-        '<h2 class="fc-section__title" id="fc-spotlight-title">' + escapeHtml(sp.title) + "</h2>" +
-        '<p class="fc-section__lead"><em>' + escapeHtml(sp.scientificName) + "</em> — " + escapeHtml(sp.summary) + "</p>" +
+      '<section class="fc-section" id="species-spotlight" aria-labelledby="wce-spotlight-name">' +
         '<div class="fc-spotlight">' +
           '<div class="fc-spotlight__visuals">' +
             mediaSlot("Species photo · placeholder", sp.commonName + " · field plate", "fc-plate-slot") +
-            mediaSlot("Habitat diagram · placeholder", "Ash–elm edge · river terrace", "fc-habitat-slot") +
+            mediaSlot("Habitat diagram · placeholder", sp.habitat || "Regional habitat", "fc-habitat-slot") +
           "</div>" +
-          "<div>" +
-            "<p class=\"wds-eyebrow\">Field marks</p>" +
-            "<ul class=\"wds-body\" style=\"padding-left:1.25rem;\">" + marks + "</ul>" +
-            '<p class="wds-body" style="margin-top:var(--wds-space-4);"><strong>Look-alikes:</strong> ' + escapeHtml(sp.lookAlikes) + "</p>" +
-            '<p class="wds-body" style="margin-top:var(--wds-space-3); font-style:italic; color:var(--wds-text-secondary);">' + escapeHtml(sp.ethics) + "</p>" +
-          "</div>" +
+          card +
         "</div>" +
       "</section>"
     );
   }
 
-  function renderHeatMap() {
-    var cells = HEAT_PATTERN.map(function (level) {
-      return '<div class="fc-heatmap__cell fc-heatmap__cell--' + level + '" aria-hidden="true"></div>';
+  function mapControlsHtml() {
+    if (window.WDS && WDS.mapView && WDS.mapView.controlsHtml) {
+      return WDS.mapView.controlsHtml();
+    }
+    return "";
+  }
+
+  function bindMapViews() {
+    if (window.WDS && WDS.mapView) {
+      WDS.mapView.bindAll(document.getElementById("foragecast-home"));
+    }
+  }
+
+  function renderHeatMap(data) {
+    var snapshot = data._heatSnapshot;
+    var loc = data._location;
+    if (!snapshot || !window.ForageCastHeat) {
+      return '<p class="wds-body">Heat map preview unavailable.</p>';
+    }
+
+    var topId = snapshot.topZoneId;
+    var selectedId = homeHeatState.selectedZoneId || topId;
+
+    var cells = snapshot.zoneResults.map(function (zr) {
+      var zone = zr.zone;
+      if (!zone) return "";
+      var classes = "fc-heatmap__cell fc-heatmap__cell--" + zr.level + " is-zone";
+      if (zr.zoneId === selectedId) classes += " is-selected";
+      if (zr.zoneId === topId) classes += " is-top";
+      return (
+        '<button type="button" class="' + classes + '" data-zone="' + escapeHtml(zr.zoneId) + '" aria-pressed="' + (zr.zoneId === selectedId ? "true" : "false") + '">' +
+          '<span class="fc-heatmap__zone-name">' + escapeHtml(zone.name) + "</span>" +
+          '<span class="fc-heatmap__zone-band">' + escapeHtml(ForageCastHeat.bandLabel(zr.level)) + "</span>" +
+        "</button>"
+      );
     }).join("");
 
-    return (
-      '<div class="fc-heatmap" role="img" aria-label="Season table heat map placeholder">' +
-        cells +
-        '<span class="fc-heatmap__label">Pike County · elevation bands · placeholder</span>' +
-      "</div>"
+    var selectedZr = snapshot.zoneResults.find(function (z) { return z.zoneId === selectedId; });
+    var why = ForageCastHeat.zoneWhyHere(
+      selectedZr && selectedZr.zone,
+      selectedZr,
+      snapshot.species,
+      snapshot.conditions,
+      data._factorLabels || {}
     );
+
+    return (
+      ForageCastHeat.renderMapHeader(snapshot, loc) +
+      '<div class="wds-map-viewport fc-heatmap" data-wds-map-view tabindex="0" role="region" aria-label="' + escapeHtml(ForageCastHeat.mapMetaTitle(snapshot, loc)) + '">' +
+        mapControlsHtml() +
+        '<div class="wds-map-stage fc-heatmap-stage">' +
+          cells +
+        "</div>" +
+      "</div>" +
+      ForageCastHeat.renderLegend(snapshot.legend) +
+      '<div id="fc-home-heat-why">' + ForageCastHeat.renderWhyHere(why) + "</div>" +
+      ForageCastHeat.renderDisclaimer()
+    );
+  }
+
+  function bindHeatZoneEvents(data) {
+    var snapshot = data._heatSnapshot;
+    if (!snapshot) return;
+
+    document.querySelectorAll(".fc-heatmap__cell.is-zone").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        homeHeatState.selectedZoneId = btn.getAttribute("data-zone");
+        var whyMount = document.getElementById("fc-home-heat-why");
+        var panel = document.getElementById("prediction-preview");
+        if (panel && window.ForageCastHeat) {
+          var selectedZr = snapshot.zoneResults.find(function (z) {
+            return z.zoneId === homeHeatState.selectedZoneId;
+          });
+          var why = ForageCastHeat.zoneWhyHere(
+            selectedZr && selectedZr.zone,
+            selectedZr,
+            snapshot.species,
+            snapshot.conditions,
+            data._factorLabels || {}
+          );
+          if (whyMount) whyMount.innerHTML = ForageCastHeat.renderWhyHere(why);
+          document.querySelectorAll(".fc-heatmap__cell.is-zone").forEach(function (cell) {
+            var active = cell.getAttribute("data-zone") === homeHeatState.selectedZoneId;
+            cell.classList.toggle("is-selected", active);
+            cell.setAttribute("aria-pressed", active ? "true" : "false");
+          });
+        }
+      });
+    });
   }
 
   function renderPrediction(data) {
     var pp = data.predictionPreview;
-    var legend = (pp.legend || []).map(function (item) {
-      return "<li><strong>" + escapeHtml(item.label) + "</strong> — " + escapeHtml(item.desc) + "</li>";
-    }).join("");
 
     return (
       '<section class="fc-section" id="prediction-preview" aria-labelledby="fc-prediction-title">' +
@@ -146,10 +247,8 @@
         '<h2 class="fc-section__title" id="fc-prediction-title">' + escapeHtml(pp.title) + "</h2>" +
         '<p class="fc-section__lead">' + escapeHtml(pp.summary) + "</p>" +
         '<div class="fc-prediction">' +
-          renderHeatMap() +
+          renderHeatMap(data) +
           "<div>" +
-            '<p class="wds-eyebrow">Reading the map</p>' +
-            '<ul class="fc-legend">' + legend + "</ul>" +
             '<p class="fc-tool-callout"><strong>Where the tool fits:</strong> ' + escapeHtml(pp.toolFit) + "</p>" +
             '<p style="margin-top:var(--wds-space-4);"><a class="wds-body" href="season-table.html" style="font-weight:500;">Open the season table →</a></p>' +
             '<p class="wds-body" style="margin-top:var(--wds-space-3); font-size:var(--wds-text-sm); color:var(--wds-text-tertiary);">' + escapeHtml(pp.disclaimer) + "</p>" +
@@ -178,31 +277,6 @@
         '<h2 class="fc-section__title" id="fc-learn-title">Three lessons before you walk</h2>' +
         '<p class="fc-section__lead">Conditions matter as much as species names. Study during the week; test your reading on the ground this weekend.</p>' +
         '<div class="fc-lesson-grid">' + cards + "</div>" +
-      "</section>"
-    );
-  }
-
-  function renderInvestigation(data) {
-    var inv = data.weekendInvestigation;
-    var steps = (inv.steps || []).map(function (s) {
-      return "<li>" + escapeHtml(s) + "</li>";
-    }).join("");
-
-    return (
-      '<section class="fc-section" id="weekend-field-investigation" aria-labelledby="fc-inv-title">' +
-        '<p class="fc-section__eyebrow">Weekend field investigation</p>' +
-        '<h2 class="fc-section__title" id="fc-inv-title">' + escapeHtml(inv.title) + "</h2>" +
-        '<div class="fc-investigation">' +
-          '<p class="fc-investigation__question">“' + escapeHtml(inv.drivingQuestion) + "”</p>" +
-          '<div class="fc-investigation__meta">' +
-            "<span><strong>When:</strong> " + escapeHtml(inv.when) + "</span>" +
-            "<span><strong>Duration:</strong> " + escapeHtml(inv.duration) + "</span>" +
-          "</div>" +
-          '<p class="wds-body"><strong>Where:</strong> ' + escapeHtml(inv.place) + "</p>" +
-          '<p class="wds-body" style="margin-top:var(--wds-space-2);"><strong>Bring:</strong> ' + escapeHtml((inv.materials || []).join(", ")) + "</p>" +
-          "<ol>" + steps + "</ol>" +
-          '<p class="fc-tool-callout" style="margin-top:var(--wds-space-5);">' + escapeHtml(inv.toolPrompt) + "</p>" +
-        "</div>" +
       "</section>"
     );
   }
@@ -242,6 +316,26 @@
     );
   }
 
+  function renderMethodology() {
+    return (
+      '<section class="fc-section fc-section--methodology" id="how-waypoint-works" aria-labelledby="fc-how-title">' +
+        '<details class="wce-methodology">' +
+          '<summary class="wce-methodology__summary" id="fc-how-title">How Waypoint works</summary>' +
+          '<div class="wce-methodology__body">' +
+            '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm lessons, and private-by-default observations. ' +
+            "The references below are for contributors and builders.</p>" +
+            '<ul class="wce-methodology__links">' +
+              '<li><a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md">Studio Constitution</a> — privacy, scope, and product principles</li>' +
+              '<li><a href="../../docs/WAYPOINT-METHOD.md">Waypoint Method</a> — teaching and learning cycle</li>' +
+              '<li><a href="../../docs/WAYPOINT-CONTENT-ENGINE.md">Content Engine</a> — regional publishing model</li>' +
+              '<li><a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy">Privacy philosophy</a> — private by default</li>' +
+            "</ul>" +
+          "</div>" +
+        "</details>" +
+      "</section>"
+    );
+  }
+
   function renderCitizenScience(data) {
     var cs = data.citizenScience;
     return (
@@ -249,8 +343,8 @@
         '<div class="fc-citizen">' +
           '<h2 class="fc-section__title" id="fc-cs-title" style="font-size:var(--wds-text-lg);">' + escapeHtml(cs.title) + "</h2>" +
           '<p class="wds-body" style="margin-top:var(--wds-space-2);">' + escapeHtml(cs.body) + "</p>" +
-          '<p class="wds-body" style="margin-top:var(--wds-space-3); font-size:var(--wds-text-sm);">' +
-            '<a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md">' + escapeHtml(cs.linkLabel) + "</a> — private by default, always." +
+          '<p class="wds-body" style="margin-top:var(--wds-space-3); font-size:var(--wds-text-sm); color:var(--wds-text-tertiary);">' +
+            '<a href="#how-waypoint-works">Privacy approach</a> — private by default, always.' +
           "</p>" +
         "</div>" +
       "</section>"
@@ -265,31 +359,93 @@
       renderSpotlight(data) +
       renderPrediction(data) +
       renderLessons(data) +
-      renderInvestigation(data) +
       renderVideo(data) +
       renderFieldNotes(data) +
-      renderCitizenScience(data)
+      renderCitizenScience(data) +
+      renderMethodology()
     );
+  }
+
+  function loadHome(loc) {
+    var mount = document.getElementById("foragecast-home");
+    if (!mount) return;
+
+    Promise.all([
+      fetch("data/home.json").then(function (res) {
+        if (!res.ok) throw new Error("Failed to load home.json");
+        return res.json();
+      }),
+      fetch("data/species-model.json").then(function (res) {
+        if (!res.ok) throw new Error("Failed to load species-model.json");
+        return res.json();
+      }),
+      fetch("data/conditions.json").then(function (res) {
+        if (!res.ok) throw new Error("Failed to load conditions.json");
+        return res.json();
+      }),
+      fetch("data/terrain-zones.json").then(function (res) {
+        if (!res.ok) throw new Error("Failed to load terrain-zones.json");
+        return res.json();
+      })
+    ])
+      .then(function (results) {
+        var data = results[0];
+        var speciesModel = results[1];
+        var conditions = results[2];
+        var terrain = results[3];
+
+        if (window.ForageCastLocation) {
+          ForageCastLocation.applyToHomeData(data, loc);
+          ForageCastLocation.applyToConditions(conditions, loc);
+        }
+
+        var previewId = (data.predictionPreview && data.predictionPreview.previewSpeciesId) || PREVIEW_SPECIES_ID;
+        var species = speciesModel.species.find(function (s) { return s.id === previewId; }) || speciesModel.species[0];
+
+        if (window.ForageCastHeat) {
+          data._heatSnapshot = ForageCastHeat.buildSnapshot(
+            species,
+            terrain.zones,
+            conditions,
+            terrain.legend
+          );
+          data._factorLabels = speciesModel.factorLabels;
+        }
+
+        homeHeatState.selectedZoneId = data._heatSnapshot && data._heatSnapshot.topZoneId;
+
+        mount.innerHTML = renderPage(data);
+        mount.removeAttribute("aria-busy");
+        document.title = "ForageCast — " + data.hero.question;
+        if (window.ForageCastBoot) {
+          ForageCastBoot.bindRegionChange(mount, function () {
+            loadHome(window.WDS && WDS.location ? WDS.location.getState() : null);
+          });
+        }
+        bindMapViews();
+        bindHeatZoneEvents(data);
+      })
+      .catch(function (err) {
+        mount.innerHTML =
+          '<section class="fc-section"><p class="wds-body">Could not load field guide content. ' +
+          escapeHtml(err.message) + "</p></section>";
+        mount.removeAttribute("aria-busy");
+      });
   }
 
   function init() {
     var mount = document.getElementById("foragecast-home");
     if (!mount) return;
 
-    fetch("data/home.json")
-      .then(function (res) {
-        if (!res.ok) throw new Error("Failed to load home.json");
-        return res.json();
-      })
-      .then(function (data) {
-        mount.innerHTML = renderPage(data);
-        document.title = "ForageCast — " + data.hero.question;
-      })
-      .catch(function (err) {
-        mount.innerHTML =
-          '<section class="fc-section"><p class="wds-body">Could not load field guide content. ' +
-          escapeHtml(err.message) + "</p></section>";
-      });
+    function start(loc) {
+      loadHome(loc);
+    }
+
+    if (window.ForageCastBoot) {
+      ForageCastBoot.bootstrapLocation().then(start);
+    } else {
+      start(window.ForageCastLocation ? ForageCastLocation.read() : null);
+    }
   }
 
   if (document.readyState === "loading") {

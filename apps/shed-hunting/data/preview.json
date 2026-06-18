@@ -1,0 +1,27 @@
+{
+  "name": "Sheds",
+  "eyebrow": "Wildlife sign laboratory",
+  "mission": "The porch journal — reading sign, slope, and patience. Miles walked with empty hands still count. Wildlife ethics without trophy culture.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "Why deer drop antlers in late winter — nutrition, testosterone, and terrain",
+    "Reading south-facing slopes and bedding cover for shed probability",
+    "Ethics: do not disturb wintering wildlife, respect private land, leave habitat intact",
+    "How empty-handed walks still produce evidence: tracks, browse, rubs, and bedding sign"
+  ],
+  "comingSoon": [
+    "Slope and aspect shed-probability map (schematic, not GIS)",
+    "Season timing guide for Northeast PA",
+    "Sign identification lessons: rubs, scrapes, beds, tracks",
+    "Private shed journal with photograph evidence",
+    "Optional anonymous phenology notes — county level only"
+  ],
+  "preview": {
+    "title": "The quiet search",
+    "placeholderLabel": "Trail sign · placeholder",
+    "placeholderHint": "Slope · bedding · browse line · track",
+    "description": "Shed Hunting teaches patience as a field skill. The tool will suggest where to walk based on slope, season, and habitat — not where someone else found antlers. Photograph sign, write what you learned, and honor the animals that left evidence behind."
+  },
+  "homeLink": "../../#experiences"
+}

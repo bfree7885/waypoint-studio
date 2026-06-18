@@ -1,0 +1,27 @@
+{
+  "name": "Terrainbound",
+  "eyebrow": "Endurance laboratory",
+  "mission": "The long trail shelter — routes, weather windows, turnaround ethics, and journals that honor turning back. Endurance with humility.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "Planning a weather window: when to start, when to turn around",
+    "The turnaround question: what conditions would make you descend?",
+    "Packing as field craft — what evidence do you need vs what weight you carry",
+    "Trail journal entries that record decisions, not just miles"
+  ],
+  "comingSoon": [
+    "Route planning with elevation gain and aspect exposure",
+    "Weather window checklist for long day hikes",
+    "Turnaround ethics card — written before you leave",
+    "Private trail journal with photograph evidence",
+    "Conservation notes: staying on trail, leave no trace on ridges"
+  ],
+  "preview": {
+    "title": "The long day",
+    "placeholderLabel": "Trail journal · placeholder",
+    "placeholderHint": "Route · weather window · turnaround time · notes",
+    "description": "Terrainbound is for hikers who measure success by what they learned, not how far they went. Plan the day, write your turnaround time before you start, and come home with a journal entry — even if the summit waited for another season."
+  },
+  "homeLink": "../../#experiences"
+}

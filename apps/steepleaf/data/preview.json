@@ -1,0 +1,27 @@
+{
+  "name": "Steepleaf",
+  "eyebrow": "Botany laboratory",
+  "mission": "The herbarium cabinet — botanical plates, habitat keys, and phenology through the year. Botany taught the way a good field guide teaches: illustration, range, and respect for rare plants.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "How to read a botanical plate: leaf arrangement, margin, venation, and habitat",
+    "Pike County spring phenology: what is leafing, flowering, and fruiting this week",
+    "Ethics of wild plant observation — photograph, don't poach rare species",
+    "Connecting understory plants to canopy trees on north vs south slopes"
+  ],
+  "comingSoon": [
+    "Species plates with illustrations and range maps",
+    "Phenology calendar for Northeast PA natives",
+    "Habitat keys: wetland margin, dry ridge, ravine, old field",
+    "Private observation journal",
+    "Conservation alerts for sensitive species — observe only"
+  ],
+  "preview": {
+    "title": "The herbarium page",
+    "placeholderLabel": "Botanical plate · placeholder",
+    "placeholderHint": "Leaf · flower · fruit · habitat sketch",
+    "description": "Steepleaf opens like a cabinet drawer — each species on a plate you can study before you walk. Learn the leaf, then find it with your eyes. Rare plants stay on the page; the field is for observation, not collection."
+  },
+  "homeLink": "../../#experiences"
+}

@@ -3,31 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Botany with illustrations, species pages, and respect for rare plants.">
+  <meta name="description" content="Steepleaf — botanical plates, habitat keys, and phenology through the year.">
   <title>Steepleaf — Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../design-system/css/wds-app-preview.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app">
-    <div id="wds-product-home" data-wds-product="steepleaf"></div>
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Waypoint Studio</span>
+        </a>
+        <nav class="ws-topnav" aria-label="Steepleaf">
+          <a href="../../#experiences">Experiences</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wap-page">
+      <div id="wds-app-preview" aria-busy="true" data-preview-src="data/preview.json">
+        <p class="wds-body" style="padding: 2rem;">Opening preview…</p>
+      </div>
+    </main>
     <footer class="wds-footer">Waypoint Studio · Observe · Understand · Create · Share</footer>
   </div>
-  <script src="../../design-system/js/wds.js" defer></script>
-  <script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-      function boot() {
-        if (window.WDS && WDS.ecosystem) {
-          WDS.ecosystem.initProductHome({ product: "steepleaf", base: "../../design-system/" });
-        } else {
-          requestAnimationFrame(boot);
-        }
-      }
-      boot();
-    });
-  </script>
+  <script src="../../design-system/js/wds-app-preview.js" defer></script>
 </body>
 </html>

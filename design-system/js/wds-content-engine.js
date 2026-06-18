@@ -12,15 +12,14 @@
 
   var SECTION_ORDER = [
     "this-week-outdoors",
-    "regional-field-notes",
     "seasonal-watch",
+    "regional-field-notes",
     "species-spotlight",
-    "teachers-notebook",
     "research-brief",
+    "conservation-update",
     "featured-video",
     "photo-essay",
-    "weekend-field-investigation",
-    "conservation-update"
+    "experiences"
   ];
 
   function escapeHtml(str) {
@@ -80,32 +79,166 @@
     );
   }
 
+  function renderLocationBar(loc) {
+    if (!loc) return "";
+    var statusLine = "";
+    if (loc.isDefault) {
+      statusLine = '<strong>Using default region:</strong> Pike County, PA';
+    } else if (loc.source === "geo") {
+      statusLine = "<strong>Near</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode);
+      if (loc.distanceKm > 0) {
+        statusLine += ' <span class="wce-location-bar__dist">(~' + escapeHtml(String(loc.distanceKm)) + " km)</span>";
+      }
+    } else {
+      statusLine = "<strong>Region:</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.state);
+    }
+
+    var bundleNote = "";
+    if (loc.usingNearestBundle) {
+      bundleNote = '<p class="wce-location-bar__note">Field guide content from nearest available bundle — more counties coming.</p>';
+    }
+
+    return (
+      '<div class="wce-location-bar" id="wds-location-bar" data-location-source="' + escapeHtml(loc.source) + '">' +
+        '<div class="wce-location-bar__main">' +
+          '<p class="wce-location-bar__status">' + statusLine + "</p>" +
+          '<div class="wce-location-bar__actions">' +
+            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-loc-retry">Use my location</button>' +
+            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-loc-change">Change region</button>' +
+          "</div>" +
+        "</div>" +
+        bundleNote +
+        '<form class="wce-location-bar__search wds-location-search is-hidden" id="wds-loc-change-form">' +
+          '<label class="wds-location-search__label" for="wds-loc-change-input">Search county</label>' +
+          '<div class="wds-location-search__row">' +
+            '<input class="wds-location-search__input" id="wds-loc-change-input" list="wds-loc-change-list" placeholder="County, ST" autocomplete="off">' +
+            '<datalist id="wds-loc-change-list"></datalist>' +
+            '<button type="submit" class="wds-btn wds-btn--secondary wds-btn--sm">Set</button>' +
+          "</div>" +
+        "</form>" +
+      "</div>"
+    );
+  }
+
+  function bindLocationBar(mount, options) {
+    if (!mount || !global.WDS || !global.WDS.location) return;
+    var bar = mount.querySelector("#wds-location-bar");
+    if (!bar) return;
+
+    var base = resolveEngineBase(options);
+    var changeBtn = bar.querySelector("#wds-loc-change");
+    var changeForm = bar.querySelector("#wds-loc-change-form");
+    var retryBtn = bar.querySelector("#wds-loc-retry");
+
+    if (changeBtn && changeForm) {
+      changeBtn.addEventListener("click", function () {
+        changeForm.classList.toggle("is-hidden");
+        global.WDS.location.loadIndex(base).then(function (index) {
+          var list = bar.querySelector("#wds-loc-change-list");
+          if (list) {
+            list.innerHTML = (index.regions || []).map(function (r) {
+              return '<option value="' + escapeHtml(r.name + ", " + r.stateCode) + '">';
+            }).join("");
+          }
+        });
+      });
+    }
+
+    if (changeForm) {
+      changeForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var q = (bar.querySelector("#wds-loc-change-input").value || "").toLowerCase().trim();
+        global.WDS.location.loadIndex(base).then(function (index) {
+          var found = (index.regions || []).find(function (r) {
+            var label = (r.name + ", " + r.stateCode).toLowerCase();
+            return label === q || r.name.toLowerCase() === q;
+          });
+          if (!found) {
+            found = (index.regions || []).find(function (r) {
+              return r.name.toLowerCase().indexOf(q) !== -1;
+            });
+          }
+          if (found) {
+            var state = global.WDS.location.resolveManual(found.id, index);
+            global.WDS.location.writeStored(state);
+            if (options.onLocationChange) options.onLocationChange(state);
+          }
+        });
+      });
+    }
+
+    if (retryBtn) {
+      retryBtn.addEventListener("click", function () {
+        global.WDS.location.requestGeolocationAndSave(base).then(function (state) {
+          if (options.onLocationChange) options.onLocationChange(state);
+        });
+      });
+    }
+  }
+
   function renderThisWeekOutdoors(data) {
     var w = data.thisWeekOutdoors;
     if (!w) return "";
-    var blocks = (w.blocks || []).map(function (b) {
-      return (
-        '<div class="wce-week-block">' +
-          '<p class="wce-week-block__label">' + escapeHtml(b.label) + "</p>" +
-          '<p class="wce-week-block__text">' + escapeHtml(b.text) + "</p>" +
-        "</div>"
-      );
+    var region = data.region;
+    var weather = w.weather || {};
+    var happening = (w.happeningNow || []).map(function (item) {
+      return "<li>" + escapeHtml(item) + "</li>";
     }).join("");
-    return (
-      '<section class="ws-block" id="this-week-outdoors" aria-labelledby="wce-two-title">' +
-        renderRegionTag(data.region, data.weekOf, data.season) +
-        blockHead("Start here", "This week outdoors", "Learn during the week. Test what you learned outside on the weekend.") +
-        '<article class="wce-week-banner">' +
-          '<h3 class="wce-week-banner__title" id="wce-two-title">' + escapeHtml(w.title) + "</h3>" +
-          '<p class="wce-week-banner__summary">' + escapeHtml(w.summary) + "</p>" +
-          mediaSlot("Hero photograph · placeholder", w.photography && w.photography.caption) +
-          '<div class="wce-week-grid">' + blocks + "</div>" +
-          '<div class="wce-week-split">' +
-            '<div><p class="wce-week-split__label">Weekdays · learn</p><p class="wce-week-split__text">' + escapeHtml(w.weekdayFocus) + "</p></div>" +
-            '<div><p class="wce-week-split__label">Weekend · go</p><p class="wce-week-split__text">' + escapeHtml(w.weekendPrompt) + "</p></div>" +
+    var heroImg = w.heroImage
+      ? '<img class="wce-dashboard__photo" src="' + escapeHtml(w.heroImage) + '" alt="' + escapeHtml(w.heroAlt || "Regional field photograph") + '">'
+      : mediaSlot("Regional photograph · placeholder", w.photography && w.photography.caption);
+    var featured = "";
+    if (data.featuredProject) {
+      var fp = data.featuredProject;
+      featured =
+        '<aside class="wce-featured-project" aria-label="Featured project">' +
+          '<p class="wce-featured-project__eyebrow">' + escapeHtml(fp.eyebrow) + "</p>" +
+          '<h3 class="wce-featured-project__title">' + escapeHtml(fp.name) + "</h3>" +
+          '<p class="wce-featured-project__headline">' + escapeHtml(fp.headline) + "</p>" +
+          '<p class="wce-featured-project__summary">' + escapeHtml(fp.summary) + "</p>" +
+          '<div class="wce-featured-project__actions">' +
+            '<a class="wds-btn wds-btn--primary wds-btn--sm" href="' + escapeHtml(fp.href) + '">Visit ForageCast</a>' +
+            (fp.toolHref ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="' + escapeHtml(fp.toolHref) + '">' + escapeHtml(fp.toolLabel || "Open tool") + "</a>" : "") +
           "</div>" +
-          renderMeta(w) +
-        "</article>" +
+        "</aside>";
+    }
+
+    var coordsLine = "";
+    if (data._location && data._location.source === "geo") {
+      var lat = data._location.lat;
+      var lng = data._location.lng;
+      var latStr = (lat >= 0 ? lat.toFixed(2) + "°N" : Math.abs(lat).toFixed(2) + "°S");
+      var lngStr = (lng >= 0 ? lng.toFixed(2) + "°E" : Math.abs(lng).toFixed(2) + "°W");
+      coordsLine = '<p class="wce-dashboard__coords">Map center · ' + escapeHtml(latStr + ", " + lngStr) + "</p>";
+    }
+
+    return (
+      '<section class="wce-dashboard" id="this-week-outdoors" aria-labelledby="wce-two-title">' +
+        '<div class="wce-dashboard__hero">' +
+          heroImg +
+          '<div class="wce-dashboard__scrim" aria-hidden="true"></div>' +
+          '<div class="wce-dashboard__hero-inner">' +
+            '<p class="wce-dashboard__region">' + escapeHtml(region.name) + ", " + escapeHtml(region.state) + "</p>" +
+            '<p class="wce-dashboard__meta">Week of ' + escapeHtml(data.weekOf) + " · " + escapeHtml(data.season) + "</p>" +
+            coordsLine +
+            '<h1 class="wce-dashboard__title" id="wce-two-title">' + escapeHtml(w.title) + "</h1>" +
+            '<p class="wce-dashboard__summary">' + escapeHtml(w.summary) + "</p>" +
+          "</div>" +
+        "</div>" +
+        '<div class="wce-dashboard__body">' +
+          '<div class="wce-dashboard__grid">' +
+            '<div class="wce-weather-card" aria-label="Weather snapshot">' +
+              '<p class="wce-weather-card__label">Weather</p>' +
+              '<p class="wce-weather-card__temp">' + escapeHtml(weather.high || "—") + " · " + escapeHtml(weather.low || "—") + "</p>" +
+              '<p class="wce-weather-card__conditions">' + escapeHtml(weather.conditions || (w.blocks && w.blocks[0] && w.blocks[0].text) || "") + "</p>" +
+            "</div>" +
+            '<div class="wce-happening">' +
+              '<p class="wce-happening__label">Happening now outdoors</p>' +
+              '<ul class="wce-happening__list">' + happening + "</ul>" +
+            "</div>" +
+            featured +
+          "</div>" +
+        "</div>" +
       "</section>"
     );
   }
@@ -128,7 +261,7 @@
     }).join("");
     return (
       '<section class="ws-block" id="regional-field-notes" aria-labelledby="wce-rfn-title">' +
-        blockHead("News", "Regional field notes", "Trail, weather, wildlife, and phenology — ranger bulletin style. Not a feed.") +
+        blockHead("Local", "Regional field notes", "Trail, weather, wildlife, and phenology — short dispatches from the field.") +
         '<div class="wce-field-notes">' + list + "</div>" +
       "</section>"
     );
@@ -137,42 +270,48 @@
   function renderSeasonalWatch(data) {
     var sw = data.seasonalWatch;
     if (!sw) return "";
-    var items = (sw.items || []).map(function (it) {
+
+    function renderGroup(label, items) {
+      if (!items || !items.length) return "";
+      var cards = items.map(function (it) {
+        return (
+          '<div class="wce-seasonal-item">' +
+            '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
+            '<span class="wce-seasonal-item__status">' + escapeHtml((it.status || "").replace(/-/g, " ")) + "</span>" +
+            '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" +
+          "</div>"
+        );
+      }).join("");
       return (
-        '<div class="wce-seasonal-item">' +
-          '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
-          '<span class="wce-seasonal-item__status">' + escapeHtml((it.status || "").replace(/-/g, " ")) + "</span>" +
-          '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" +
+        '<div class="wce-seasonal-group">' +
+          '<h3 class="wce-seasonal-group__label">' + escapeHtml(label) + "</h3>" +
+          '<div class="wce-seasonal-group__items">' + cards + "</div>" +
         "</div>"
       );
-    }).join("");
+    }
+
+    var groups =
+      renderGroup("Active now", sw.activeNow) +
+      renderGroup("Ending", sw.ending) +
+      renderGroup("Coming soon", sw.comingSoon);
+
+    if (!groups && sw.items) {
+      groups = '<div class="wce-seasonal-grid">' + (sw.items || []).map(function (it) {
+        return (
+          '<div class="wce-seasonal-item">' +
+            '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
+            '<span class="wce-seasonal-item__status">' + escapeHtml((it.status || "").replace(/-/g, " ")) + "</span>" +
+            '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" +
+          "</div>"
+        );
+      }).join("") + "</div>";
+    }
+
     return (
       '<section class="ws-block" id="seasonal-watch" aria-labelledby="wce-sw-title">' +
-        blockHead("Phenology", "Seasonal watch", escapeHtml(sw.title)) +
-        '<div class="wce-seasonal-grid">' + items + "</div>" +
-        renderMeta(sw) +
-      "</section>"
-    );
-  }
-
-  function renderWeekendInvestigation(data) {
-    var inv = data.weekendFieldInvestigation;
-    if (!inv) return "";
-    var steps = (inv.steps || []).map(function (s) { return "<li>" + escapeHtml(s) + "</li>"; }).join("");
-    return (
-      '<section class="ws-block" id="weekend-field-investigation" aria-labelledby="wce-wfi-title">' +
-        blockHead("Weekend", "Field investigation", "The capstone — take what you learned and test it outside.") +
-        '<article class="wce-investigation">' +
-          '<p class="wds-eyebrow">' + escapeHtml(inv.when) + " · " + escapeHtml(inv.duration) + "</p>" +
-          '<h3 class="wds-display-md" id="wce-wfi-title" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(inv.title) + "</h3>" +
-          '<p class="wce-investigation__question">' + escapeHtml(inv.drivingQuestion) + "</p>" +
-          '<div class="wce-investigation__meta">' +
-            "<span>Place: " + escapeHtml(inv.place) + "</span>" +
-            "<span>Materials: " + escapeHtml((inv.materials || []).join(", ")) + "</span>" +
-          "</div>" +
-          '<ol class="wce-investigation__steps">' + steps + "</ol>" +
-          renderMeta(inv) +
-        "</article>" +
+        blockHead("Phenology", "Seasonal watch", "What the forest is doing this week in " + escapeHtml(data.region.name) + ".") +
+        '<h3 class="wds-sr-only" id="wce-sw-title">' + escapeHtml(sw.title) + "</h3>" +
+        '<div class="wce-seasonal-groups">' + groups + "</div>" +
       "</section>"
     );
   }
@@ -189,7 +328,6 @@
           '<p class="wds-body">' + escapeHtml(rb.summary) + "</p>" +
           '<p class="wds-body" style="margin-top:var(--wds-space-3);"><strong>Local:</strong> ' + escapeHtml(rb.localApplication) + "</p>" +
           (rb.source ? '<p class="ws-research-card__source">' + escapeHtml(rb.source) + "</p>" : "") +
-          renderMeta(rb) +
         "</article>" +
       "</section>"
     );
@@ -200,7 +338,7 @@
     if (!v) return "";
     return (
       '<section class="ws-block" id="featured-video" aria-labelledby="wce-vid-title">' +
-        blockHead("Videos", "Featured video", "Click to play — never autoplay.") +
+        blockHead("Videos", "Featured videos", "Educational field lessons — click to play, never autoplay.") +
         '<div class="ws-video-feature">' +
           '<div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder">' +
             '<span class="ws-video-feature__play" aria-hidden="true">▶</span>' +
@@ -209,7 +347,6 @@
           "<div>" +
             '<h3 class="wds-display-md" id="wce-vid-title" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(v.title) + "</h3>" +
             '<p class="wds-body">' + escapeHtml(v.summary) + "</p>" +
-            renderMeta(v) +
           "</div>" +
         "</div>" +
       "</section>"
@@ -232,10 +369,9 @@
     }).join("");
     return (
       '<section class="ws-block" id="photo-essay" aria-labelledby="wce-pe-title">' +
-        blockHead("Gallery", "Photo essay", escapeHtml(pe.summary)) +
+        blockHead("Photos", "Regional photographs", escapeHtml(pe.summary)) +
         '<h3 class="wds-display-md" id="wce-pe-title" style="margin:0 0 var(--wds-space-4);">' + escapeHtml(pe.title) + "</h3>" +
         '<div class="wce-essay-frames">' + frames + "</div>" +
-        renderMeta(pe) +
       "</section>"
     );
   }
@@ -243,41 +379,88 @@
   function renderSpeciesSpotlight(data) {
     var sp = data.speciesSpotlight;
     if (!sp) return "";
-    var idList = (sp.identification || []).map(function (b) { return "<li>" + escapeHtml(b) + "</li>"; }).join("");
+    var card = global.WDS && global.WDS.speciesSpotlight
+      ? global.WDS.speciesSpotlight.renderCard(sp, {
+          weekOf: data.weekOf,
+          showWeekPreview: /weekly/i.test(sp.spotlightLabel || "")
+        })
+      : "";
     return (
-      '<section class="ws-block" id="species-spotlight" aria-labelledby="wce-ss-title">' +
-        blockHead("Species", "Species spotlight", "One organism — observe ethically, identify carefully.") +
+      '<section class="ws-block" id="species-spotlight" aria-labelledby="wce-spotlight-name">' +
         '<div class="ws-spotlight">' +
           '<figure class="ws-spotlight__plate">' + mediaSlot("Species plate · placeholder", sp.commonName) + "</figure>" +
-          "<div>" +
-            '<p class="wds-eyebrow"><em>' + escapeHtml(sp.scientificName) + "</em> · " + escapeHtml(sp.scope) + "</p>" +
-            '<h3 class="wds-display-md" id="wce-ss-title" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(sp.title) + "</h3>" +
-            '<p class="wds-body">' + escapeHtml(sp.summary) + "</p>" +
-            '<div class="wce-species-id"><strong>Field marks</strong><ul>' + idList + "</ul></div>" +
-            (sp.ethics ? '<p class="wds-caption" style="margin-top:var(--wds-space-3);">' + escapeHtml(sp.ethics) + "</p>" : "") +
-            renderMeta(sp) +
-          "</div>" +
+          card +
         "</div>" +
       "</section>"
     );
   }
 
-  function renderTeachersNotebook(data) {
-    var tn = data.teachersNotebook;
-    if (!tn) return "";
-    var objs = (tn.objectives || []).map(function (o) { return "<li>" + escapeHtml(o) + "</li>"; }).join("");
-    var proc = (tn.procedure || []).map(function (p) { return "<li>" + escapeHtml(p) + "</li>"; }).join("");
+  function renderExperiences(data) {
+    var items = data.experiences || [];
+    if (!items.length) return "";
+    var cards = items.map(function (exp) {
+      if (!exp.href || !exp.name) return "";
+      var statusClass = exp.status === "live" ? " is-live" : " is-preview";
+      if (exp.featured) statusClass += " is-featured";
+      var statusLabel = exp.status === "live" ? "Live" : "Preview";
+      var summary = exp.summary || exp.desc || "";
+      var learn = exp.learnNow || "";
+      var coming = exp.comingLater || "";
+
+      return (
+        '<a class="ws-experience-card' + statusClass + '" href="' + escapeHtml(exp.href) + '">' +
+          '<div class="ws-experience-card__head">' +
+            (exp.featured ? '<span class="ws-experience-card__badge">Featured</span>' : "") +
+            '<span class="ws-experience-card__status">' + escapeHtml(statusLabel) + "</span>" +
+            '<h3 class="ws-experience-card__title">' + escapeHtml(exp.name) + "</h3>" +
+            (summary ? '<p class="ws-experience-card__desc">' + escapeHtml(summary) + "</p>" : "") +
+          "</div>" +
+          '<div class="ws-experience-card__body">' +
+            (learn
+              ? '<div class="ws-experience-card__block">' +
+                  '<p class="ws-experience-card__label">Learn now</p>' +
+                  '<p class="ws-experience-card__text">' + escapeHtml(learn) + "</p>" +
+                "</div>"
+              : "") +
+            (coming
+              ? '<div class="ws-experience-card__block ws-experience-card__block--soon">' +
+                  '<p class="ws-experience-card__label">Coming later</p>' +
+                  '<p class="ws-experience-card__text">' + escapeHtml(coming) + "</p>" +
+                "</div>"
+              : "") +
+          "</div>" +
+          '<span class="ws-experience-card__cta">' + (exp.status === "live" ? "Open app" : "Read preview") + " →</span>" +
+        "</a>"
+      );
+    }).join("");
+
     return (
-      '<section class="ws-block" id="teachers-notebook" aria-labelledby="wce-tn-title">' +
-        blockHead("Learn", "Teacher's notebook", "Field-tested lab — most of the time outdoors.") +
-        '<article class="wce-teacher">' +
-          '<p class="wds-eyebrow">' + escapeHtml(tn.gradeBand) + " · " + escapeHtml(tn.scope) + "</p>" +
-          '<h3 class="wds-display-md" id="wce-tn-title" style="margin:0 0 var(--wds-space-3);">' + escapeHtml(tn.title) + "</h3>" +
-          "<strong>Objectives</strong><ul class=\"wce-teacher__objectives\">" + objs + "</ul>" +
-          "<strong>Procedure</strong><ol class=\"wce-investigation__steps\">" + proc + "</ol>" +
-          (tn.safety ? "<p class=\"wds-caption\">Safety: " + escapeHtml(tn.safety.join("; ")) + "</p>" : "") +
-          renderMeta(tn) +
-        "</article>" +
+      '<section class="ws-block" id="experiences" aria-labelledby="wce-exp-title">' +
+        blockHead("Field laboratories", "Experiences", "Five rooms in the same cabin — each app teaches a different outdoor skill. Start where your curiosity points.") +
+        '<h3 class="wds-sr-only" id="wce-exp-title">Experiences</h3>' +
+        '<div class="ws-card-grid ws-card-grid--experiences">' + cards + "</div>" +
+      "</section>"
+    );
+  }
+
+  function renderHowWaypointWorks(options) {
+    options = options || {};
+    var prefix = options.docsPrefix || "docs/";
+    return (
+      '<section class="ws-block ws-block--methodology" id="how-waypoint-works" aria-labelledby="wce-how-title">' +
+        '<details class="wce-methodology">' +
+          '<summary class="wce-methodology__summary" id="wce-how-title">How Waypoint works</summary>' +
+          '<div class="wce-methodology__body">' +
+            '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm lessons, and private-by-default observations. ' +
+            "The references below are for contributors and builders, not required reading for visitors.</p>" +
+            '<ul class="wce-methodology__links">' +
+              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-STUDIO-CONSTITUTION.md") + '">Studio Constitution</a> — privacy, scope, and product principles</li>' +
+              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-METHOD.md") + '">Waypoint Method</a> — teaching and learning cycle</li>' +
+              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-CONTENT-ENGINE.md") + '">Content Engine</a> — regional publishing model</li>' +
+              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy") + '">Privacy philosophy</a> — private by default</li>' +
+            "</ul>" +
+          "</div>" +
+        "</details>" +
       "</section>"
     );
   }
@@ -307,7 +490,7 @@
         '<div class="ws-citizen">' +
           "<p class=\"wds-body\"><strong>You own your observations.</strong> Citizen science is always optional. Identity never required. Location privacy respected.</p>" +
           "<p class=\"wds-body\" style=\"margin-top:var(--wds-space-3);\">No comments, likes, profiles, or feeds — a field guide, not social media.</p>" +
-          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(href) + '">Privacy Philosophy</a></p>' +
+          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="#how-waypoint-works">Privacy approach</a></p>' +
         "</div>" +
       "</section>"
     );
@@ -318,12 +501,11 @@
     "regional-field-notes": renderRegionalFieldNotes,
     "seasonal-watch": renderSeasonalWatch,
     "species-spotlight": renderSpeciesSpotlight,
-    "teachers-notebook": renderTeachersNotebook,
     "research-brief": renderResearchBrief,
     "featured-video": renderFeaturedVideo,
     "photo-essay": renderPhotoEssay,
-    "weekend-field-investigation": renderWeekendInvestigation,
-    "conservation-update": renderConservationUpdate
+    "conservation-update": renderConservationUpdate,
+    "experiences": renderExperiences
   };
 
   function loadRegion(regionId, base) {
@@ -345,13 +527,18 @@
     if (options.includeCitizenScience !== false) {
       html += renderCitizenScience(options.privacyHref);
     }
+    if (options.includeMethodology !== false) {
+      html += renderHowWaypointWorks(options.methodology);
+    }
     return html;
   }
 
   function init(options) {
     options = options || {};
     var base = resolveEngineBase(options);
+    var loc = options.location || (global.WDS && global.WDS.location ? global.WDS.location.getState() : null);
     var regionId = options.region ||
+      (loc && loc.contentBundle) ||
       (options.mount && options.mount.getAttribute("data-wds-region")) ||
       "pike-county-pa";
     var mount = options.mount || document.getElementById("wds-content-engine");
@@ -360,9 +547,17 @@
     mount.setAttribute("aria-busy", "true");
 
     return loadRegion(regionId, base).then(function (data) {
-      var inner = renderHome(data, options);
+      if (loc && global.WDS && global.WDS.location) {
+        data = global.WDS.location.applyToBundle(data, loc);
+      }
+      var bar = renderLocationBar(loc);
+      var inner = bar + renderHome(data, options);
       mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
       mount.removeAttribute("aria-busy");
+      bindLocationBar(mount, options);
+      if (loc && loc.name) {
+        document.title = "This Week Outdoors · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";
+      }
       return data;
     });
   }
@@ -372,6 +567,7 @@
     init: init,
     loadRegion: loadRegion,
     renderHome: renderHome,
+    renderHowWaypointWorks: renderHowWaypointWorks,
     SECTION_ORDER: SECTION_ORDER
   };
 })(window);

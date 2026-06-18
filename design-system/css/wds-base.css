@@ -44,9 +44,9 @@ body::before {
   z-index: 0;
   opacity: 0.65;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -8%, var(--wds-product-glow, rgba(47, 82, 68, 0.2)), transparent 58%),
-    radial-gradient(ellipse 55% 35% at 50% 108%, var(--wds-warm-dim), transparent 62%),
-    radial-gradient(ellipse 40% 30% at 100% 40%, rgba(196, 165, 116, 0.05), transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% -8%, var(--wds-product-glow), transparent 58%),
+    radial-gradient(ellipse 55% 35% at 50% 108%, var(--wds-purple-dim), transparent 62%),
+    radial-gradient(ellipse 40% 30% at 100% 40%, var(--wds-lime-dim), transparent 50%);
 }
 
 body::after {
@@ -108,7 +108,7 @@ body::after {
   font-weight: 500;
   letter-spacing: var(--wds-tracking-wider);
   text-transform: uppercase;
-  color: var(--wds-text-tertiary);
+  color: var(--wds-warm);
 }
 
 .wds-lead {
@@ -211,7 +211,7 @@ body::after {
   font-weight: 500;
   letter-spacing: var(--wds-tracking-wider);
   text-transform: uppercase;
-  color: var(--wds-text-tertiary);
+  color: var(--wds-warm);
 }
 
 .hero-title {
@@ -247,6 +247,7 @@ a {
 }
 
 a:hover {
+  color: var(--wds-accent);
   text-decoration: underline;
 }
 

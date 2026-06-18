@@ -1,0 +1,177 @@
+{
+  "version": "1.0.0",
+  "defaultRegionId": "pike-county-pa",
+  "defaultBundleId": "pike-county-pa",
+  "regions": [
+    {
+      "id": "pike-county-pa",
+      "name": "Pike County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Pocono Plateau · Delaware River Highlands",
+      "lat": 41.3312,
+      "lng": -75.038,
+      "elevationFt": 1200,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "74°F",
+        "low": "52°F",
+        "conditions": "Humid · valley fog at dawn · thunderstorm chance Saturday after 3 p.m."
+      },
+      "seasonNote": "late spring"
+    },
+    {
+      "id": "monroe-county-pa",
+      "name": "Monroe County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Pocono Plateau",
+      "lat": 41.056,
+      "lng": -75.328,
+      "elevationFt": 1400,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "72°F",
+        "low": "50°F",
+        "conditions": "Cooler plateau mornings · scattered showers Sunday"
+      },
+      "seasonNote": "late spring · plateau"
+    },
+    {
+      "id": "wayne-county-pa",
+      "name": "Wayne County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Northern Poconos · lake country",
+      "lat": 41.649,
+      "lng": -75.303,
+      "elevationFt": 1300,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "70°F",
+        "low": "48°F",
+        "conditions": "Cool nights · lake fog at dawn · drying ridges"
+      },
+      "seasonNote": "late spring · slower leaf-out"
+    },
+    {
+      "id": "lackawanna-county-pa",
+      "name": "Lackawanna County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Northern Anthracite foothills",
+      "lat": 41.444,
+      "lng": -75.662,
+      "elevationFt": 1100,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "73°F",
+        "low": "51°F",
+        "conditions": "Partly cloudy · valley haze · afternoon buildups possible"
+      },
+      "seasonNote": "late spring"
+    },
+    {
+      "id": "susquehanna-county-pa",
+      "name": "Susquehanna County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Endless Mountains fringe",
+      "lat": 41.813,
+      "lng": -75.655,
+      "elevationFt": 1000,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "71°F",
+        "low": "49°F",
+        "conditions": "Cool mornings · pasture fog · light rain Monday"
+      },
+      "seasonNote": "late spring · river valleys"
+    },
+    {
+      "id": "carbon-county-pa",
+      "name": "Carbon County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Lehigh Gorge · Pocono edge",
+      "lat": 40.918,
+      "lng": -75.708,
+      "elevationFt": 900,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "76°F",
+        "low": "54°F",
+        "conditions": "Warmer valley floors · gorge winds in afternoon"
+      },
+      "seasonNote": "late spring · warmer lows"
+    },
+    {
+      "id": "northampton-county-pa",
+      "name": "Northampton County",
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "bioregion": "Lehigh Valley edge",
+      "lat": 40.753,
+      "lng": -75.307,
+      "elevationFt": 500,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "78°F",
+        "low": "56°F",
+        "conditions": "Warmer · hazy sunshine · storm chance Saturday evening"
+      },
+      "seasonNote": "late spring · lowland"
+    },
+    {
+      "id": "warren-county-nj",
+      "name": "Warren County",
+      "state": "New Jersey",
+      "stateCode": "NJ",
+      "bioregion": "Kittatinny Ridge · Delaware Valley",
+      "lat": 40.857,
+      "lng": -75.006,
+      "elevationFt": 800,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "75°F",
+        "low": "53°F",
+        "conditions": "Ridge breezes · river fog at dawn"
+      },
+      "seasonNote": "late spring"
+    },
+    {
+      "id": "sullivan-county-ny",
+      "name": "Sullivan County",
+      "state": "New York",
+      "stateCode": "NY",
+      "bioregion": "Western Catskills",
+      "lat": 41.716,
+      "lng": -74.768,
+      "elevationFt": 1400,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "69°F",
+        "low": "47°F",
+        "conditions": "Cooler uplands · overcast spells · frost pockets in hollows"
+      },
+      "seasonNote": "late spring · Catskills timing"
+    },
+    {
+      "id": "orange-county-ny",
+      "name": "Orange County",
+      "state": "New York",
+      "stateCode": "NY",
+      "bioregion": "Hudson Highlands fringe",
+      "lat": 41.403,
+      "lng": -74.311,
+      "elevationFt": 600,
+      "contentBundle": "pike-county-pa",
+      "weather": {
+        "high": "76°F",
+        "low": "54°F",
+        "conditions": "Humid · Hudson haze · afternoon thunderstorms possible"
+      },
+      "seasonNote": "late spring"
+    }
+  ]
+}

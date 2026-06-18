@@ -71,9 +71,9 @@
               "Season window: " + escapeHtml(species.seasonWindow) +
             "</p>" +
           "</div>" +
-          '<div class="fc-readiness-score" aria-label="Readiness score ' + pred.readinessScore + ' out of 100">' +
-            '<span class="fc-readiness-score__value">' + pred.readinessScore + "</span>" +
-            '<span class="fc-readiness-score__label">readiness</span>' +
+          '<div class="fc-readiness-score" aria-label="Rough readiness index, about ' + pred.readinessScore + ' out of 100">' +
+            '<span class="fc-readiness-score__value">~' + pred.readinessScore + "</span>" +
+            '<span class="fc-readiness-score__label">rough index</span>' +
             '<span class="fc-readiness-badge fc-readiness-badge--' + pred.level + '">' + escapeHtml(pred.level) + "</span>" +
           "</div>" +
         "</div>" +
@@ -89,47 +89,61 @@
     );
   }
 
+  function mapControlsHtml() {
+    if (window.WDS && WDS.mapView && WDS.mapView.controlsHtml) {
+      return WDS.mapView.controlsHtml();
+    }
+    return "";
+  }
+
+  function bindMapViews() {
+    if (window.WDS && WDS.mapView) {
+      WDS.mapView.bindAll(document.getElementById("fc-season-table"));
+    }
+  }
+
   function renderMap(pred) {
     var zoneResults = pred.zoneResults;
+    var species = getSpecies();
+    var topZoneId = pred.topZones[0] ? pred.topZones[0].zoneId : null;
     var paths = state.zones.map(function (zone) {
       var zr = zoneResults.find(function (z) { return z.zoneId === zone.id; });
       var level = zr ? zr.level : "low";
       var selected = state.selectedZoneId === zone.id ? " is-selected" : "";
+      var top = zone.id === topZoneId ? " is-top" : "";
       return (
-        '<path class="fc-zone fc-zone--' + level + selected + '" data-zone="' + escapeHtml(zone.id) + '" ' +
+        '<path class="fc-zone fc-zone--' + level + selected + top + '" data-zone="' + escapeHtml(zone.id) + '" ' +
           'd="' + zone.svgPath + '" tabindex="0" role="button" ' +
-          'aria-label="' + escapeHtml(zone.name) + ', ' + level + ' readiness">' +
+          'aria-label="' + escapeHtml(zone.name) + ', ' + escapeHtml(window.ForageCastHeat ? ForageCastHeat.bandLabel(level) : level) + '">' +
         "</path>" +
         '<text class="fc-zone-label" x="' + zone.labelX + '" y="' + zone.labelY + '">' + escapeHtml(zone.name.split(" ")[0]) + "</text>"
       );
     }).join("");
 
-    var legend = state.legend.map(function (item) {
-      return "<span><i class=\"fc-zone--" + item.level + "\" style=\"background:" + legendColor(item.level) + "\"></i> " + escapeHtml(item.label) + "</span>";
-    }).join("");
-
     var detail = renderZoneDetail();
+    var snapshot = window.ForageCastHeat
+      ? ForageCastHeat.buildSnapshot(species, state.zones, state.conditions, state.legend)
+      : null;
+    var loc = state.conditions && state.conditions._location;
 
     return (
       '<section class="fc-map-panel" aria-labelledby="fc-map-title">' +
-        '<h3 class="fc-map-panel__title" id="fc-map-title">' + escapeHtml(state.mapTitle || "Terrain zones") + "</h3>" +
-        '<div class="fc-map-wrap">' +
-          '<svg class="fc-terrain-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-label="Terrain zone heat map">' +
-            '<rect width="420" height="300" fill="#e8e2d8" rx="4"/>' +
-            '<text x="210" y="24" text-anchor="middle" font-size="10" fill="rgba(61,56,48,0.5)">N ↑ · Pike County schematic</text>' +
-            paths +
-          "</svg>" +
+        (snapshot ? ForageCastHeat.renderMapHeader(snapshot, loc) : "") +
+        '<div class="wds-map-viewport fc-map-wrap" data-wds-map-view tabindex="0" role="region" aria-label="' + escapeHtml(snapshot ? ForageCastHeat.mapMetaTitle(snapshot, loc) : "Terrain zones") + '">' +
+          mapControlsHtml() +
+          '<div class="wds-map-stage">' +
+            '<svg class="fc-terrain-svg" viewBox="0 0 420 300" width="420" height="300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+              '<rect width="420" height="300" fill="#112038" rx="4"/>' +
+              '<text x="210" y="24" text-anchor="middle" font-size="10" fill="rgba(228,234,244,0.45)">N ↑ · ' + escapeHtml(ForageCastLocation.mapLabel()) + "</text>" +
+              paths +
+            "</svg>" +
+          "</div>" +
         "</div>" +
-        '<div class="fc-map-legend">' + legend + "</div>" +
+        (window.ForageCastHeat ? ForageCastHeat.renderLegend(state.legend) : "") +
         '<div class="fc-zone-detail" id="fc-zone-detail">' + detail + "</div>" +
+        (window.ForageCastHeat ? ForageCastHeat.renderDisclaimer() : "") +
       "</section>"
     );
-  }
-
-  function legendColor(level) {
-    if (level === "high") return "rgba(168, 191, 176, 0.7)";
-    if (level === "moderate") return "rgba(168, 191, 176, 0.35)";
-    return "rgba(80, 75, 68, 0.35)";
   }
 
   function renderZoneDetail() {
@@ -139,13 +153,21 @@
     }
     var zone = getZone(zoneId);
     if (!zone) {
-      return '<p class="fc-zone-detail__name">Click a zone on the map</p><p>See elevation, aspect, moisture, and habitat hints for each terrain band.</p>';
+      return (
+        '<p class="fc-zone-detail__name">Tap a terrain zone</p>' +
+        '<p>Each band combines elevation, aspect, moisture, and habitat — estimates only, not exact spots.</p>'
+      );
     }
     var zr = state.prediction.zoneResults.find(function (z) { return z.zoneId === zone.id; });
-    var score = zr ? Math.round(zr.score * 100) : "—";
+    var species = getSpecies();
+    var band = window.ForageCastHeat ? ForageCastHeat.bandLabel(zr.level) : zr.level;
+    var why = window.ForageCastHeat
+      ? ForageCastHeat.zoneWhyHere(zone, zr, species, state.conditions, state.factorLabels)
+      : null;
 
     return (
-      '<p class="fc-zone-detail__name">' + escapeHtml(zone.name) + " · " + score + " readiness</p>" +
+      '<p class="fc-zone-detail__name">' + escapeHtml(zone.name) + " · " + escapeHtml(band) + "</p>" +
+      (why ? ForageCastHeat.renderWhyHere(why) : "") +
       "<dl>" +
         "<dt>Elevation</dt><dd>" + escapeHtml(zone.elevation) + "</dd>" +
         "<dt>Aspect</dt><dd>" + escapeHtml(zone.aspect) + "</dd>" +
@@ -171,11 +193,12 @@
       );
     }).join("");
 
+    var regionName = state.conditions && state.conditions.region ? state.conditions.region.county : "this region";
     return (
       '<section class="fc-factors-panel" aria-labelledby="fc-factors-title">' +
         '<h3 id="fc-factors-title">Model factors</h3>' +
         '<p class="wds-body" style="margin:0 0 var(--wds-space-4); font-size:var(--wds-text-sm); color:var(--wds-text-secondary);">' +
-          "Weighted inputs for this species in Pike County. Placeholder values from local JSON — not live weather." +
+          "Weighted inputs for this species in " + escapeHtml(regionName) + ". Placeholder values from local JSON — not live weather." +
         "</p>" +
         '<div class="fc-factor-bars">' + rows + "</div>" +
       "</section>"
@@ -260,6 +283,7 @@
             '<p class="wds-eyebrow" style="margin:0;">Location</p>' +
             '<p class="fc-location-card__region">' + escapeHtml(region.county) + ", " + escapeHtml(region.state) + "</p>" +
             '<p class="fc-location-card__bio">' + escapeHtml(region.bioregion) + "</p>" +
+            '<p class="fc-location-card__note">' + escapeHtml(ForageCastLocation.locationNote(state.conditions._location)) + "</p>" +
           "</div>" +
           '<div class="fc-species-select">' +
             '<label id="fc-species-label">Species</label>' +
@@ -277,6 +301,7 @@
       "</div>";
 
     bindEvents();
+    bindMapViews();
   }
 
   function bindEvents() {
@@ -311,7 +336,7 @@
     }
   }
 
-  function init() {
+  function loadSeasonTable(loc) {
     Promise.all([
       fetchJson("data/species-model.json"),
       fetchJson("data/conditions.json"),
@@ -323,12 +348,31 @@
       state.zones = results[2].zones;
       state.legend = results[2].legend;
       state.mapTitle = results[2].mapTitle;
+      if (window.ForageCastLocation) {
+        ForageCastLocation.applyToConditions(state.conditions, loc);
+      }
       initFromQuery();
       render();
+      var mount = document.getElementById("fc-season-table");
+      if (mount) mount.removeAttribute("aria-busy");
     }).catch(function (err) {
       var mount = document.getElementById("fc-season-table");
-      if (mount) mount.innerHTML = "<p>Could not load season table: " + escapeHtml(err.message) + "</p>";
+      if (mount) {
+        mount.innerHTML = "<p>Could not load season table: " + escapeHtml(err.message) + "</p>";
+        mount.removeAttribute("aria-busy");
+      }
     });
+  }
+
+  function init() {
+    function start(loc) {
+      loadSeasonTable(loc);
+    }
+    if (window.ForageCastBoot) {
+      ForageCastBoot.bootstrapLocation().then(start);
+    } else {
+      start(window.ForageCastLocation ? ForageCastLocation.read() : null);
+    }
   }
 
   if (document.readyState === "loading") {

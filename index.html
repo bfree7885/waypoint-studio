@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Studio — digital field laboratories for naturalists. Observe. Understand. Create. Share.">
-  <title>Waypoint Studio — Digital Field Laboratories</title>
+  <meta name="description" content="This week outdoors — regional phenology, field notes, and outdoor intelligence adapted to your area.">
+  <title>Waypoint Studio — This Week Outdoors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,117 +20,26 @@
           <span class="wds-brand__mark" aria-hidden="true"></span>
           <span class="wds-brand__name">Waypoint Studio</span>
         </a>
-        <nav class="ws-topnav" aria-label="Sections">
+        <nav class="ws-topnav" aria-label="Dashboard sections">
           <a href="#this-week-outdoors">This week</a>
           <a href="#seasonal-watch">Season</a>
-          <a href="#weekend-field-investigation">Weekend</a>
+          <a href="#regional-field-notes">Notes</a>
+          <a href="#species-spotlight">Species</a>
+          <a href="#featured-video">Videos</a>
+          <a href="#photo-essay">Photos</a>
           <a href="#experiences">Experiences</a>
         </nav>
       </div>
     </header>
 
-    <section class="ws-home-hero" aria-labelledby="hero-title">
-      <img class="ws-home-hero__photo" src="assets/images/hero.jpg" alt="Mist lifting from a mountain valley at first light">
-      <div class="ws-home-hero__scrim" aria-hidden="true"></div>
-      <div class="ws-home-hero__inner">
-        <p class="wds-eyebrow">Digital field laboratories</p>
-        <h1 class="wds-display-xl" id="hero-title">Waypoint Studio</h1>
-        <p class="wds-lead" style="margin-inline: auto;">The quiet cabin after a long hike — warm light, open notebooks, photographs drying on the table, and a field guide waiting for tomorrow morning.</p>
-      </div>
-    </section>
-
-    <main id="main">
-      <section class="ws-home-section ws-home-section--tight" id="mission" aria-labelledby="mission-heading">
-        <div class="ws-mission">
-          <h2 class="wds-heading" id="mission-heading">Mission</h2>
-          <p class="ws-mission-words">Observe · Understand · Create · Share</p>
-          <p class="wds-body" style="margin-top: var(--wds-space-4);">Technology is not the destination. Nature is. We build field laboratories — not feeds, not dashboards — so you can learn like an Earth Science class that never stops at the classroom door.</p>
-        </div>
-      </section>
-
-      <section class="ws-home-section" aria-labelledby="place-heading">
-        <div class="wds-collection-header" style="max-width: 42rem;">
-          <div class="wds-collection-rule" aria-hidden="true"></div>
-          <h2 class="wds-display-lg" id="place-heading">What this place is</h2>
-          <p class="wds-lead">A family of destinations — each one a room in the same cabin. Learn during the week. Go outside on the weekend. Test what you learned.</p>
-          <p class="wds-body" style="margin-top: var(--wds-space-4);">Read the <a href="docs/WAYPOINT-STUDIO-CONSTITUTION.md">Constitution</a>, the <a href="docs/WAYPOINT-METHOD.md">Waypoint Method</a>, and the <a href="docs/WAYPOINT-CONTENT-ENGINE.md">Content Engine</a>.</p>
-        </div>
-      </section>
-
-      <div id="wds-content-engine" data-wds-region="pike-county-pa"></div>
-
-      <section class="ws-home-section" id="experiences" aria-labelledby="experiences-heading">
-        <div class="ws-section-head">
-          <h2 class="wds-heading" id="experiences-heading">Experiences</h2>
-          <p class="wds-lead">Eight field laboratories. One family. Each answers: what can I learn, what can I do outdoors, and how is this connected to everything else?</p>
-        </div>
-
-        <div class="ws-card-grid">
-          <a class="ws-experience-card is-live" href="apps/waypoint-scenes/">
-            <h3 class="ws-experience-card__title">Waypoint Scenes</h3>
-            <p class="ws-experience-card__desc">The studio by the fire — still photographs given quiet life. Atmosphere, gentle depth, and collections that treat your images as field evidence, not content for a feed.</p>
-            <span class="ws-experience-card__cta">Open studio →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/foragecast/">
-            <h3 class="ws-experience-card__title">ForageCast</h3>
-            <p class="ws-experience-card__desc">The season table by the window — when species appear, where habitats overlap, and the patience ethical foraging demands. Learn first; harvest only with understanding.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/fieldry/">
-            <h3 class="ws-experience-card__title">Fieldry</h3>
-            <p class="ws-experience-card__desc">The writing desk after rain — field notes, sketches, and the habit of recording what the day meant. Observation before interpretation. Yours alone until you say otherwise.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/shed-hunting/">
-            <h3 class="ws-experience-card__title">Shed Hunting</h3>
-            <p class="ws-experience-card__desc">The porch journal — reading sign, slope, and patience. Miles walked with empty hands still count. Wildlife ethics without trophy culture.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/steepleaf/">
-            <h3 class="ws-experience-card__title">Steepleaf</h3>
-            <p class="ws-experience-card__desc">The herbarium cabinet — botanical plates, habitat keys, and phenology through the year. Botany taught the way a good field guide teaches: illustration, range, and respect for rare plants.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/savant-sommelier/">
-            <h3 class="ws-experience-card__title">Savant Sommelier</h3>
-            <p class="ws-experience-card__desc">The tasting room overlooking the valley — terroir as ecology, geology, and weather in a glass. Landscape literacy without pretension.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/signalterrain/">
-            <h3 class="ws-experience-card__title">SignalTerrain</h3>
-            <p class="ws-experience-card__desc">The observatory deck — contours, horizon, sky, and the ground beneath your boots. Navigation and terrain reading for students of the outdoors.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-          <a class="ws-experience-card is-soon" href="apps/terrainbound/">
-            <h3 class="ws-experience-card__title">Terrainbound</h3>
-            <p class="ws-experience-card__desc">The long trail shelter — routes, weather windows, turnaround ethics, and journals that honor turning back. Endurance with humility.</p>
-            <span class="ws-experience-card__cta">Visit →</span>
-          </a>
-        </div>
-      </section>
-    </main>
+    <div id="wds-location-prompt"></div>
+    <div id="wds-content-engine" data-wds-region="pike-county-pa" aria-busy="true"></div>
 
     <footer class="wds-footer">
-      <p>Observe · Understand · Create · Share</p>
+      <p>Waypoint Studio · Observe · Understand · Create · Share · <a href="#how-waypoint-works">How Waypoint works</a></p>
     </footer>
   </div>
   <script src="design-system/js/wds.js" defer></script>
-  <script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-      function boot() {
-        if (window.WDS && WDS.contentEngine) {
-          WDS.contentEngine.init({
-            region: "pike-county-pa",
-            base: "design-system/content-engine/",
-            mount: document.getElementById("wds-content-engine"),
-            wrapMain: false
-          });
-        } else {
-          requestAnimationFrame(boot);
-        }
-      }
-      boot();
-    });
-  </script>
+  <script src="js/home-boot.js" defer></script>
 </body>
 </html>

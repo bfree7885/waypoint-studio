@@ -14,8 +14,22 @@
   "thisWeekOutdoors": {
     "id": "two-pike-2026-22",
     "scope": "L1-county",
-    "title": "Learn the valley fog; test it on Saturday's ridge walk",
+    "title": "Valley fog, laurel buds, and the last morels",
     "summary": "Morel season is closing below 1,200 feet. Mountain laurel is opening on north-facing ledges. Afternoon thunderstorms may build after 3 p.m. — plan morning field time.",
+    "heroImage": "assets/images/hero.jpg",
+    "heroAlt": "Mist lifting from the Delaware River valley at dawn, Pike County",
+    "weather": {
+      "high": "74°F",
+      "low": "52°F",
+      "conditions": "Humid · valley fog at dawn · thunderstorm chance Saturday after 3 p.m."
+    },
+    "happeningNow": [
+      "Mountain laurel buds swelling on cool north slopes — first blooms this weekend",
+      "Yellow morels fading below 1,200 ft; check ash–elm edges after rain",
+      "Black bear activity increasing near campgrounds — secure attractants",
+      "Late warblers still moving through Delaware Water Gap canopy",
+      "Trail mud in ravines; ridge tops drying fast after Thursday rain"
+    ],
     "weekdayFocus": "Read the species spotlight and teacher's lab. Note three spring ephemerals still in bloom on your commute walk.",
     "weekendPrompt": "Complete the Delaware River ravine investigation — fog line, birdsong, and one photograph from a fixed bearing.",
     "blocks": [
@@ -81,6 +95,19 @@
     "id": "sw-pike-2026-late-spring",
     "scope": "L1-county",
     "title": "Late spring phenology — Pike County",
+    "activeNow": [
+      { "name": "Mountain laurel", "status": "opening", "note": "North slopes and ravines 800–1,400 ft — peak next week" },
+      { "name": "Whitetail antler growth", "status": "active", "note": "Bucks in velvet — observe at field edges at dawn" },
+      { "name": "Yellow morel", "status": "peaking-low", "note": "River bottoms and old orchards below 1,200 ft — ending soon" }
+    ],
+    "ending": [
+      { "name": "Spring ephemerals", "status": "fading", "note": "Trillium, trout lily, spring beauty — last flowers on cool slopes" }
+    ],
+    "comingSoon": [
+      { "name": "Chanterelle", "status": "watch", "note": "Late June after sustained rain on oak ridges" },
+      { "name": "Highbush blueberry", "status": "watch", "note": "Green fruit set — harvest late July on sunny balds" },
+      { "name": "Brood X cicadas", "status": "not-local", "note": "Minimal in Pike — emergence south and east of Poconos" }
+    ],
     "items": [
       { "name": "Yellow morel", "status": "peaking-low", "note": "Low elevations and river bottoms — ending soon" },
       { "name": "Chanterelle", "status": "watch", "note": "Too early — watch late June after sustained rain on oak ridges" },
@@ -165,10 +192,13 @@
   "speciesSpotlight": {
     "id": "ss-pike-2026-22",
     "scope": "L1-county",
+    "spotlightLabel": "Seasonal species spotlight",
     "commonName": "Mountain laurel",
     "scientificName": "Kalmia latifolia",
-    "title": "Mountain laurel — buds opening on cool slopes",
-    "summary": "Pennsylvania's state flower. Look for pink-tinged buds in dense umbels; waxy leaves with yellow chevron. Blooms peak late May through June depending on elevation.",
+    "title": "Buds opening on cool slopes — peak bloom spreading uphill",
+    "timing": "Late May through June · earlier on south aspects, later above 1,200 ft",
+    "habitat": "Acidic rocky slopes and ravines · oak–hemlock forest · often north-facing ledges",
+    "whyThisWeek": "Pink-tinged buds are visible on north slopes and ravines now — a reliable phenology anchor before full bloom reaches plateau elevations next week.",
     "identification": [
       "Evergreen shrub, 3–15 ft; twisted stems",
       "Leaves alternate, oval, yellow vein arc on inner edge",
@@ -217,6 +247,67 @@
     "citizenScience": "Stream watch volunteers needed — optional, training provided.",
     "subscriptionValue": "Conservation project archive + maps."
   },
+  "featuredProject": {
+    "name": "ForageCast",
+    "eyebrow": "Featured project",
+    "headline": "What is the forest ready for this week?",
+    "summary": "Season table, species readiness, and terrain zones for Pike County — learn conditions first, then go confirm outdoors.",
+    "href": "apps/foragecast/",
+    "toolHref": "apps/foragecast/season-table.html",
+    "toolLabel": "Open season table"
+  },
+  "experiences": [
+    {
+      "slug": "foragecast",
+      "name": "ForageCast",
+      "summary": "A regional foraging field guide — when species appear, which terrain bands matter, and how to test predictions outdoors without treating the forest like a hunt board.",
+      "learnNow": "Field guide homepage, weekly species spotlight, and the season table with schematic terrain zones for morels and other species.",
+      "comingLater": "More county content bundles, species education profiles, and optional anonymous phenology notes.",
+      "href": "apps/foragecast/",
+      "status": "live",
+      "featured": true
+    },
+    {
+      "slug": "shed-hunting",
+      "name": "Sheds",
+      "summary": "A wildlife sign laboratory for shed antler season — slope, bedding, patience, and ethics without trophy culture.",
+      "learnNow": "Why deer drop antlers in late winter, how to read south slopes and bedding cover, and why empty-handed walks still teach.",
+      "comingLater": "Schematic shed-probability maps, Northeast PA timing guides, and a private shed journal.",
+      "href": "apps/shed-hunting/",
+      "status": "preview",
+      "featured": false
+    },
+    {
+      "slug": "fieldry",
+      "name": "Fieldry",
+      "summary": "A field notes desk — observation before interpretation, sketches, and journal entries that stay private by default.",
+      "learnNow": "How to structure a field journal entry, record sign vs. interpretation, and build the habit of closing the notebook after rain.",
+      "comingLater": "Local journal save, sketch attachments, PDF export, and optional county-level phenology tags.",
+      "href": "apps/fieldry/",
+      "status": "preview",
+      "featured": false
+    },
+    {
+      "slug": "savant-sommelier",
+      "name": "Savant Sommelier",
+      "summary": "A terroir laboratory — ecology, geology, and weather in a glass, without score-chasing or pretension.",
+      "learnNow": "What terroir actually means in Northeast PA, how slope and geology shape drainage, and reading landscape before labels.",
+      "comingLater": "Regional terroir profiles, landscape-to-glass lessons, and private tasting notes.",
+      "href": "apps/savant-sommelier/",
+      "status": "preview",
+      "featured": false
+    },
+    {
+      "slug": "waypoint-scenes",
+      "name": "Waypoint Scenes",
+      "summary": "A quiet studio for nature photographers — still frames given gentle motion, collections, and export on your machine.",
+      "learnNow": "Unpack a photograph, explore Living Scene and Parallax effects, and organize field frames into collections.",
+      "comingLater": "Deeper export options, field-note metadata on scenes, and education tie-ins to regional photo essays.",
+      "href": "apps/waypoint-scenes/",
+      "status": "live",
+      "featured": false
+    }
+  ],
   "catalog": {
     "topics": [
       "morel season", "chanterelle timing", "black bear activity", "mountain laurel bloom",

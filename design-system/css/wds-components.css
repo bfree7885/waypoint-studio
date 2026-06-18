@@ -36,13 +36,13 @@
 
 .wds-btn--primary {
   color: var(--wds-on-accent);
-  background: var(--wds-text);
+  background: var(--wds-accent);
   border-color: transparent;
 }
 
 .wds-btn--primary:hover:not(:disabled) {
-  background: #fff;
-  opacity: 0.92;
+  background: var(--wds-lime-bright);
+  opacity: 1;
 }
 
 .wds-btn--secondary {
@@ -94,8 +94,8 @@
   cursor: pointer;
   transition: background var(--wds-duration-calm) var(--wds-ease-out), opacity var(--wds-duration-calm) var(--wds-ease-out);
 }
-.btn-primary { color: var(--wds-on-accent); background: var(--wds-text); border: none; }
-.btn-primary:hover:not(:disabled) { background: #fff; opacity: 0.92; }
+.btn-primary { color: var(--wds-on-accent); background: var(--wds-accent); border: none; }
+.btn-primary:hover:not(:disabled) { background: var(--wds-lime-bright); opacity: 1; }
 .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
 .btn-secondary { background: var(--wds-elevated); border: 1px solid var(--wds-border); color: var(--wds-text); }
 .btn-secondary:hover:not(:disabled) { background: var(--wds-ink-700); }
@@ -230,7 +230,7 @@
   top: 0;
   z-index: var(--wds-z-sticky);
   height: var(--wds-topbar-h);
-  background: rgba(10, 9, 7, 0.78);
+  background: var(--wds-topbar-bg);
   border-bottom: 1px solid var(--wds-border-subtle);
   backdrop-filter: blur(24px) saturate(1.2);
   -webkit-backdrop-filter: blur(24px) saturate(1.2);
@@ -262,7 +262,7 @@
   width: 1.5rem;
   height: 1.5rem;
   border-radius: var(--wds-radius-sm);
-  background: linear-gradient(145deg, var(--wds-accent), var(--wds-moss));
+  background: linear-gradient(145deg, var(--wds-lime), var(--wds-purple));
 }
 
 .wds-brand__name,
@@ -476,7 +476,7 @@
 
 .wds-dropzone.is-dragover,
 .preview-shell.is-dragover {
-  border-color: rgba(168, 191, 176, 0.35);
+  border-color: var(--wds-accent-border);
 }
 
 .wds-upload-error,
@@ -549,6 +549,81 @@
   min-height: 280px;
 }
 
+/* Interactive pan/zoom viewport (schematic maps, heat layers) */
+.wds-map-viewport {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid var(--wds-border-subtle);
+  background: var(--wds-inset);
+  min-height: clamp(240px, 38vh, 400px);
+  width: 100%;
+}
+
+.wds-map-viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.wds-map-viewport:focus-visible {
+  outline: 2px solid var(--wds-accent);
+  outline-offset: 2px;
+}
+
+.wds-map-viewport:fullscreen {
+  border-radius: 0;
+  min-height: 100vh;
+  background: var(--wds-navy-950);
+}
+
+.wds-map-stage {
+  transform-origin: 0 0;
+  will-change: transform;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.wds-map-controls {
+  position: absolute;
+  top: var(--wds-space-2);
+  right: var(--wds-space-2);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: auto;
+}
+
+.wds-map-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-sm);
+  background: rgba(12, 22, 38, 0.88);
+  color: var(--wds-text);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.wds-map-btn:hover {
+  background: var(--wds-surface);
+  border-color: var(--wds-border);
+}
+
+.wds-map-btn:focus-visible {
+  outline: 2px solid var(--wds-accent);
+  outline-offset: 1px;
+}
+
 .wds-map__canvas {
   width: 100%;
   height: 100%;
@@ -566,7 +641,7 @@
   padding: var(--wds-space-3) var(--wds-space-4);
   font-size: var(--wds-text-xs);
   color: var(--wds-text-tertiary);
-  background: rgba(10, 9, 7, 0.88);
+  background: var(--wds-topbar-bg);
   border-top: 1px solid var(--wds-border-subtle);
 }
 
@@ -830,7 +905,7 @@
 .photo-filter-chip.is-active {
   color: var(--wds-text);
   background: var(--wds-accent-dim);
-  border-color: rgba(168, 191, 176, 0.3);
+  border-color: var(--wds-accent-border);
 }
 
 /* ═══════════════════════════════════════
@@ -865,7 +940,7 @@
 .wds-toggle input:checked + .wds-toggle__track,
 .effect-toggle-row input:checked + .effect-toggle-track {
   background: var(--wds-accent-dim);
-  border-color: rgba(168, 191, 176, 0.35);
+  border-color: var(--wds-accent-border);
 }
 
 .wds-toggle__thumb,

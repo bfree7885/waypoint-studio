@@ -114,7 +114,7 @@
 
 .fg-media-slot--sketch {
   min-height: 11rem;
-  background: linear-gradient(165deg, #f4efe6 0%, #ebe4d8 100%);
+  background: var(--wds-journal-bg);
   border-style: solid;
   border-color: var(--wds-border-subtle);
 }

@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="css/foragecast-home.css">
+  <link rel="stylesheet" href="css/foragecast-heat.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
@@ -21,14 +22,16 @@
           <span class="wds-brand__name">Waypoint Studio</span>
         </a>
         <nav class="ws-topnav" aria-label="ForageCast sections">
+          <a href="../../#experiences">Experiences</a>
           <a href="#regional-status">Region</a>
           <a href="#species-spotlight">Species</a>
           <a href="season-table.html">Season table</a>
           <a href="#learn">Learn</a>
-          <a href="#weekend-field-investigation">Weekend</a>
         </nav>
       </div>
     </header>
+
+    <div id="wds-location-prompt"></div>
 
     <main id="main" class="fc-page">
       <div id="foragecast-home" aria-busy="true">
@@ -40,12 +43,16 @@
     </main>
 
     <footer class="wds-footer">
-      ForageCast · Pike County, PA ·
-      <a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md">Constitution</a> ·
-      <a href="../../docs/WAYPOINT-METHOD.md">Method</a> ·
-      <a href="../../docs/WAYPOINT-CONTENT-ENGINE.md">Content Engine</a>
+      <p>ForageCast · <a href="#how-waypoint-works">How Waypoint works</a></p>
     </footer>
   </div>
+  <script src="../../design-system/js/wds-species-spotlight.js" defer></script>
+  <script src="../../design-system/js/wds-map-view.js" defer></script>
+  <script src="../../design-system/js/wds-location.js" defer></script>
+  <script src="js/foragecast-model.js" defer></script>
+  <script src="js/foragecast-heat.js" defer></script>
+  <script src="js/foragecast-location.js" defer></script>
+  <script src="js/foragecast-boot.js" defer></script>
   <script src="js/foragecast-home.js" defer></script>
 </body>
 </html>

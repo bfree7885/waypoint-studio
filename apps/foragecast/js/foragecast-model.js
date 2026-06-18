@@ -100,7 +100,8 @@
     var confidence = confidenceFromScore(countyScore, factorResult.spread);
 
     var narratives = species.scoreNarratives || {};
-    var explanation = narratives[level] || "Readiness reflects season, moisture, and habitat alignment for Pike County this week.";
+    var regionName = (conditions.region && conditions.region.county) || "your region";
+    var explanation = narratives[level] || ("Readiness reflects season, moisture, and habitat alignment for " + regionName + " this week.");
 
     var topFactorEntries = Object.keys(factors).map(function (key) {
       return { key: key, value: factors[key], weight: species.factorWeights[key] || 0 };

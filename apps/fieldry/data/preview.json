@@ -1,0 +1,27 @@
+{
+  "name": "Fieldry",
+  "eyebrow": "Field notes laboratory",
+  "mission": "The writing desk after rain — field notes, sketches, and the habit of recording what the day meant. Observation before interpretation. Yours alone until you say otherwise.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "How to structure a field journal entry: date, place (general), weather, three observations",
+    "The difference between recording sign and interpreting meaning",
+    "Why private-by-default notes build better naturalists than public posting",
+    "Sketching bark texture and leaf arrangement without labeling everything at once"
+  ],
+  "comingSoon": [
+    "Private field journal with local save",
+    "Sketch and photo attachment per entry",
+    "Export to PDF for your own archive",
+    "Phenology tags linked to regional species",
+    "Optional anonymous county-level contribution — never exact locations"
+  ],
+  "preview": {
+    "title": "Your trail notebook",
+    "placeholderLabel": "Journal spread · placeholder",
+    "placeholderHint": "Date · weather · three observations · one question",
+    "description": "Fieldry will feel like a linen-bound notebook on the desk — not a social feed. Write what you noticed, attach a photograph as evidence, sketch what puzzled you, and close the book. No metrics, no followers, no algorithm."
+  },
+  "homeLink": "../../#experiences"
+}

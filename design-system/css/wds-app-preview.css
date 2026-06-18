@@ -1,0 +1,174 @@
+/**
+ * Waypoint Studio — app preview landing pages
+ * Educational previews; not functional apps (except linked live tools).
+ */
+
+.wap-page {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+}
+
+.wap-hero {
+  padding: var(--wds-space-12) clamp(1.25rem, 4vw, 2rem);
+  text-align: center;
+  border-bottom: 1px solid var(--wds-border-subtle);
+  background: linear-gradient(180deg, var(--wds-accent-dim) 0%, transparent 100%);
+}
+
+.wap-hero__title {
+  margin: 0 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+}
+
+.wap-hero__mission {
+  margin: 0 auto;
+  max-width: 40rem;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wap-status {
+  display: inline-block;
+  margin-top: var(--wds-space-4);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--wds-radius-sm);
+  background: var(--wds-inset);
+  color: var(--wds-text-tertiary);
+  border: 1px solid var(--wds-border-subtle);
+}
+
+.wap-status--live {
+  background: var(--wds-lime-dim);
+  color: var(--wds-lime);
+  border-color: var(--wds-accent-border);
+}
+
+.wap-status--preview {
+  background: var(--wds-purple-dim);
+  color: var(--wds-purple-bright);
+  border-color: rgba(155, 143, 217, 0.35);
+}
+
+.wap-section {
+  padding: var(--wds-space-10) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.wap-section__eyebrow {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider);
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.wap-section__title {
+  margin: 0 0 var(--wds-space-4);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.wap-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+  max-width: 42rem;
+}
+
+.wap-list li {
+  padding-left: var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+  position: relative;
+}
+
+.wap-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--wds-warm);
+  font-weight: bold;
+}
+
+.wap-list--coming li::before {
+  content: "○";
+  font-size: 0.65rem;
+  top: 0.15em;
+}
+
+.wap-preview {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(200px, 1fr) minmax(260px, 1.2fr);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .wap-preview { grid-template-columns: 1fr; }
+}
+
+.wap-preview__frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-3);
+  min-height: 14rem;
+  padding: var(--wds-space-6);
+  text-align: center;
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wap-preview__label {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wap-preview__hint {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+  max-width: 28ch;
+}
+
+.wap-preview__body {
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wap-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--wds-space-2);
+  margin: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.wap-back:hover { color: var(--wds-warm); }
+
+.wap-live-link {
+  display: inline-block;
+  margin-top: var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  font-weight: 500;
+}

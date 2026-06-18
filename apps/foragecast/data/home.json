@@ -37,10 +37,13 @@
     "weekend": "Walk a north-facing and south-facing slope for 30 minutes each. Record smell of soil, leaf litter depth, and any fungal signs — photographs OK, collection not required."
   },
   "speciesSpotlight": {
+    "spotlightLabel": "Weekly spotlight preview",
     "commonName": "Yellow morel",
     "scientificName": "Morchella americana",
-    "title": "Yellow morel — last calls in the valleys",
-    "summary": "The honeycombed cap on a white stem tells you nothing by itself — habitat and season tell the story. In Pike County this week, check ash–elm edges, old apple ground, and river terraces before heat finishes the lowland flush.",
+    "title": "Last calls in the valleys",
+    "timing": "Late April – late May · fading below 1,200 ft this week",
+    "habitat": "River terraces, old apple ground, ash–elm edges, and tulip-poplar slopes after rain",
+    "whyThisWeek": "Warm days dried south-facing ridges while valley fog and recent rain kept low terraces moist — one of the last reasonable weeks to check low-elevation edges before heat closes the window.",
     "fieldMarks": [
       "Cap honeycombed; attached to stem at base",
       "Hollow through cap and stem when sliced lengthwise",
@@ -48,9 +51,12 @@
       "Appears when soil warms after rain — not every year the same week"
     ],
     "lookAlikes": "False morels (Gyromitra) — brain-like, not honeycombed; not hollow. Never eat uncertain fungi.",
-    "ethics": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly."
+    "ethics": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
+    "profileHref": "season-table.html?species=morels",
+    "profileLabel": "Morels in the season table"
   },
   "predictionPreview": {
+    "previewSpeciesId": "morels",
     "title": "Season table · moisture & fruiting window",
     "summary": "The prediction tool reads weather, slope, and forest type to suggest where to look — not what you will find. It is a field guide for your legs, not a guarantee.",
     "toolFit": "Use the heat map to compare north vs. south slopes and recent rain — then go confirm with your eyes.",

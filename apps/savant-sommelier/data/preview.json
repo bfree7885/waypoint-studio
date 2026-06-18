@@ -1,0 +1,27 @@
+{
+  "name": "Savant Sommelier",
+  "eyebrow": "Terroir laboratory",
+  "mission": "The tasting room overlooking the valley — terroir as ecology, geology, and weather in a glass. Landscape literacy without pretension. Learn the land; taste with attention.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "Terroir is not mystique — it is soil, slope, climate, and human craft in conversation",
+    "How Northeast PA geology (sandstone, shale, glacial till) shapes drainage and vine stress",
+    "Reading a landscape before reading a label: aspect, elevation, and season",
+    "Ethical tasting: moderation, place-based producers, and supporting local agriculture"
+  ],
+  "comingSoon": [
+    "Regional terroir profiles tied to Pike County and adjacent valleys",
+    "Landscape-to-glass lesson series (geology, ecology, weather)",
+    "Seasonal pairing with local foraging ethics — learn, don't exploit",
+    "Private tasting notes — no public reviews or rankings",
+    "Winemaker field stories and research briefs"
+  ],
+  "preview": {
+    "title": "Landscape in a glass",
+    "placeholderLabel": "Terroir diagram · placeholder",
+    "placeholderHint": "Slope · soil · climate · craft",
+    "description": "Savant Sommelier connects what you see on the ridge to what you taste at the table. Lessons open with a photograph of place — not a score. The goal is literacy: understand why a valley wine tastes different from a plateau wine, then go walk the slope."
+  },
+  "homeLink": "../../#experiences"
+}

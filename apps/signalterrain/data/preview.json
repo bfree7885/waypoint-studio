@@ -1,0 +1,27 @@
+{
+  "name": "SignalTerrain",
+  "eyebrow": "Navigation laboratory",
+  "mission": "The observatory deck — contours, horizon, sky, and the ground beneath your boots. Navigation and terrain reading for students of the outdoors.",
+  "status": "preview",
+  "statusLabel": "Educational preview",
+  "learnToday": [
+    "Reading contour lines: ridge, draw, saddle, and spur on a topographic map",
+    "How aspect affects temperature and moisture on the same hill",
+    "Using the horizon and sun position for rough bearing — backup to compass",
+    "Why turning back is a navigation skill, not a failure"
+  ],
+  "comingSoon": [
+    "Interactive contour map lessons for Pike County terrain",
+    "Aspect and sun-angle reference for field planning",
+    "Weather window reading for safe ridge walks",
+    "Private route journal with turnaround notes",
+    "Night sky orientation basics for Northeast latitudes"
+  ],
+  "preview": {
+    "title": "Read the ground",
+    "placeholderLabel": "Contour map · placeholder",
+    "placeholderHint": "Ridge · draw · aspect · elevation bands",
+    "description": "SignalTerrain is a map on the trailhead wall — not a GPS replacement. Study contours during the week, then walk a hill this weekend and name the features under your boots. The tool teaches terrain literacy so you need the screen less, not more."
+  },
+  "homeLink": "../../#experiences"
+}

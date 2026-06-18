@@ -1,47 +1,72 @@
 /**
  * Waypoint Studio Design System — Tokens
- * Canonical variables for every product in the ecosystem.
+ * Brand: deep navy base · purple secondary · lime highlight
  * Override accents per product via [data-product] on <html>.
  */
 
 :root {
-  /* ——— Color primitives ——— */
-  --wds-ink-950: #0a0907;
-  --wds-ink-900: #0f0e0c;
-  --wds-ink-800: #161412;
-  --wds-ink-700: #1e1c19;
-  --wds-ink-600: #2a2724;
-  --wds-parchment: #f5f0e8;
-  --wds-parchment-muted: rgba(245, 240, 232, 0.64);
-  --wds-parchment-dim: rgba(245, 240, 232, 0.38);
-  --wds-sage: #a8bfb0;
-  --wds-sage-dim: rgba(168, 191, 176, 0.14);
-  --wds-hearth: #c9a96e;
-  --wds-hearth-dim: rgba(201, 169, 110, 0.14);
-  --wds-clay: #b8896a;
-  --wds-moss: #3d5c4e;
-  --wds-fog: rgba(255, 248, 235, 0.07);
-  --wds-fog-subtle: rgba(255, 248, 235, 0.04);
-  --wds-danger: #e8c4bc;
-  --wds-danger-bg: rgba(80, 36, 32, 0.35);
-  --wds-danger-border: rgba(180, 90, 78, 0.25);
+  /* ——— Brand primitives ——— */
+  --wds-navy-950: #080f1c;
+  --wds-navy-900: #0c1628;
+  --wds-navy-800: #112038;
+  --wds-navy-700: #172a45;
+  --wds-navy-600: #1f3554;
+  --wds-navy-inset: #0a1220;
 
-  /* ——— Semantic (default = scenes) ——— */
-  --wds-bg: var(--wds-ink-950);
-  --wds-surface: var(--wds-ink-900);
-  --wds-elevated: var(--wds-ink-800);
-  --wds-inset: #0c0b09;
+  --wds-purple: #9b8fd9;
+  --wds-purple-bright: #b0a6eb;
+  --wds-purple-dim: rgba(155, 143, 217, 0.14);
+  --wds-purple-muted: rgba(155, 143, 217, 0.55);
+
+  --wds-lime: #c8f055;
+  --wds-lime-bright: #d8f878;
+  --wds-lime-dim: rgba(200, 240, 85, 0.12);
+  --wds-lime-muted: rgba(200, 240, 85, 0.45);
+  --wds-lime-deep: #8fb832;
+
+  /* Legacy aliases (mapped to brand) */
+  --wds-ink-950: var(--wds-navy-950);
+  --wds-ink-900: var(--wds-navy-900);
+  --wds-ink-800: var(--wds-navy-800);
+  --wds-ink-700: var(--wds-navy-700);
+  --wds-ink-600: var(--wds-navy-600);
+  --wds-parchment: #e4eaf4;
+  --wds-parchment-muted: rgba(228, 234, 244, 0.72);
+  --wds-parchment-dim: rgba(228, 234, 244, 0.45);
+  --wds-sage: var(--wds-lime);
+  --wds-sage-dim: var(--wds-lime-dim);
+  --wds-hearth: var(--wds-purple);
+  --wds-hearth-dim: var(--wds-purple-dim);
+  --wds-clay: var(--wds-purple-bright);
+  --wds-moss: var(--wds-lime-deep);
+  --wds-fog: rgba(155, 143, 217, 0.12);
+  --wds-fog-subtle: rgba(155, 143, 217, 0.06);
+  --wds-danger: #f0b8b0;
+  --wds-danger-bg: rgba(80, 36, 48, 0.35);
+  --wds-danger-border: rgba(200, 100, 110, 0.28);
+
+  /* ——— Semantic (studio default) ——— */
+  --wds-bg: var(--wds-navy-950);
+  --wds-surface: var(--wds-navy-900);
+  --wds-elevated: var(--wds-navy-800);
+  --wds-inset: var(--wds-navy-inset);
   --wds-border: var(--wds-fog);
   --wds-border-subtle: var(--wds-fog-subtle);
   --wds-text: var(--wds-parchment);
   --wds-text-secondary: var(--wds-parchment-muted);
   --wds-text-tertiary: var(--wds-parchment-dim);
-  --wds-accent: var(--wds-sage);
-  --wds-accent-dim: var(--wds-sage-dim);
-  --wds-warm: var(--wds-hearth);
-  --wds-warm-dim: var(--wds-hearth-dim);
-  --wds-focus: var(--wds-accent);
-  --wds-on-accent: var(--wds-ink-950);
+  --wds-text-muted: rgba(228, 234, 244, 0.38);
+  --wds-accent: var(--wds-lime);
+  --wds-accent-dim: var(--wds-lime-dim);
+  --wds-accent-border: rgba(200, 240, 85, 0.35);
+  --wds-warm: var(--wds-purple);
+  --wds-warm-dim: var(--wds-purple-dim);
+  --wds-focus: var(--wds-lime);
+  --wds-on-accent: var(--wds-navy-950);
+  --wds-topbar-bg: rgba(8, 15, 28, 0.82);
+  --wds-product-glow: rgba(155, 143, 217, 0.22);
+  --wds-journal-bg: linear-gradient(165deg, var(--wds-navy-800) 0%, var(--wds-navy-700) 100%);
+  --wds-journal-text: var(--wds-text-secondary);
 
   /* ——— Typography ——— */
   --wds-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
@@ -60,6 +85,7 @@
   --wds-leading-tight: 1.12;
   --wds-leading-normal: 1.55;
   --wds-leading-relaxed: 1.65;
+  --wds-leading-snug: 1.35;
   --wds-tracking-tight: -0.03em;
   --wds-tracking-normal: 0.01em;
   --wds-tracking-wide: 0.08em;
@@ -86,10 +112,10 @@
   --wds-radius-pill: 999px;
 
   /* ——— Elevation ——— */
-  --wds-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --wds-shadow-md: 0 12px 32px rgba(0, 0, 0, 0.35);
-  --wds-shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.55);
-  --wds-shadow-stage: var(--wds-shadow-lg), 0 0 0 1px rgba(255, 248, 235, 0.04);
+  --wds-shadow-sm: 0 4px 16px rgba(4, 8, 18, 0.45);
+  --wds-shadow-md: 0 12px 32px rgba(4, 8, 18, 0.55);
+  --wds-shadow-lg: 0 32px 80px rgba(4, 8, 18, 0.65);
+  --wds-shadow-stage: var(--wds-shadow-lg), 0 0 0 1px var(--wds-border-subtle);
 
   /* ——— Layout ——— */
   --wds-max-content: 1320px;
@@ -113,61 +139,61 @@
   --wds-z-toast: 400;
 }
 
-/* ——— Product accents ——— */
+/* ——— Product accents (lime highlight + purple secondary) ——— */
 [data-product="scenes"] {
-  --wds-accent: #a8bfb0;
-  --wds-accent-dim: rgba(168, 191, 176, 0.14);
-  --wds-warm: #c9a96e;
-  --wds-product-glow: rgba(47, 82, 68, 0.22);
+  --wds-accent: #c8f055;
+  --wds-accent-dim: rgba(200, 240, 85, 0.14);
+  --wds-warm: #9b8fd9;
+  --wds-product-glow: rgba(155, 143, 217, 0.28);
 }
 
 [data-product="foragecast"] {
-  --wds-accent: #c4a574;
-  --wds-accent-dim: rgba(196, 165, 116, 0.14);
-  --wds-warm: #d4a574;
-  --wds-product-glow: rgba(120, 88, 48, 0.2);
+  --wds-accent: #c5e84a;
+  --wds-accent-dim: rgba(197, 232, 74, 0.14);
+  --wds-warm: #a894e0;
+  --wds-product-glow: rgba(168, 148, 224, 0.22);
 }
 
 [data-product="shed-hunting"] {
-  --wds-accent: #a89078;
-  --wds-accent-dim: rgba(168, 144, 120, 0.14);
-  --wds-warm: #c9a882;
-  --wds-product-glow: rgba(92, 72, 52, 0.22);
+  --wds-accent: #bfe84f;
+  --wds-accent-dim: rgba(191, 232, 79, 0.12);
+  --wds-warm: #9a8cc8;
+  --wds-product-glow: rgba(154, 140, 200, 0.2);
 }
 
 [data-product="fieldry"] {
-  --wds-accent: #b8956f;
-  --wds-accent-dim: rgba(184, 149, 111, 0.14);
-  --wds-warm: #d4b896;
-  --wds-product-glow: rgba(100, 72, 48, 0.18);
+  --wds-accent: #d0f060;
+  --wds-accent-dim: rgba(208, 240, 96, 0.12);
+  --wds-warm: #b0a2e4;
+  --wds-product-glow: rgba(176, 162, 228, 0.18);
 }
 
 [data-product="steepleaf"] {
-  --wds-accent: #8faf8a;
-  --wds-accent-dim: rgba(143, 175, 138, 0.14);
-  --wds-warm: #a8c49a;
-  --wds-product-glow: rgba(56, 92, 64, 0.2);
+  --wds-accent: #b8f04a;
+  --wds-accent-dim: rgba(184, 240, 74, 0.14);
+  --wds-warm: #8fa8d4;
+  --wds-product-glow: rgba(100, 140, 200, 0.2);
 }
 
 [data-product="savant-sommelier"] {
-  --wds-accent: #b8889a;
-  --wds-accent-dim: rgba(184, 136, 154, 0.14);
-  --wds-warm: #c9a574;
-  --wds-product-glow: rgba(72, 40, 56, 0.22);
+  --wds-accent: #cce85a;
+  --wds-accent-dim: rgba(204, 232, 90, 0.12);
+  --wds-warm: #c4a8e8;
+  --wds-product-glow: rgba(196, 168, 232, 0.24);
 }
 
 [data-product="signalterrain"] {
-  --wds-accent: #8aa4b8;
-  --wds-accent-dim: rgba(138, 164, 184, 0.14);
-  --wds-warm: #9ab0c4;
-  --wds-product-glow: rgba(48, 72, 96, 0.22);
+  --wds-accent: #a8e8f0;
+  --wds-accent-dim: rgba(168, 232, 240, 0.12);
+  --wds-warm: #88a0d8;
+  --wds-product-glow: rgba(100, 140, 210, 0.22);
 }
 
 [data-product="terrainbound"] {
-  --wds-accent: #9a9a94;
-  --wds-accent-dim: rgba(154, 154, 148, 0.14);
-  --wds-warm: #b8a888;
-  --wds-product-glow: rgba(64, 64, 60, 0.22);
+  --wds-accent: #c0e050;
+  --wds-accent-dim: rgba(192, 224, 80, 0.12);
+  --wds-warm: #9898c0;
+  --wds-product-glow: rgba(120, 120, 180, 0.18);
 }
 
 /* Legacy alias map (Waypoint Scenes) */

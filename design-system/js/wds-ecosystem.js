@@ -290,7 +290,7 @@
       : "../../docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy";
     return (
       '<section class="ws-block" id="citizen-science" aria-labelledby="wds-cs-title">' +
-        blockHead("Privacy", "Citizen science · private by default", "Optional contribution only — Constitution-compliant.") +
+        blockHead("Privacy", "Citizen science · private by default", "Optional contribution only — private by default.") +
         '<div class="ws-citizen">' +
           "<p class=\"wds-body\"><strong>You own your observations.</strong> Photographs, field notes, and journals belong to you. The default experience is private.</p>" +
           "<p class=\"wds-body\" style=\"margin-top:var(--wds-space-3);\">When you choose to contribute: identity is never required, location privacy is respected, and you may opt out entirely. No likes, followers, or feeds.</p>" +

@@ -1,0 +1,222 @@
+/**
+ * ForageCast — shared heat zone styles (navy / purple / lime)
+ */
+
+.fc-heat-meta {
+  margin-bottom: var(--wds-space-4);
+}
+
+.fc-heat-meta__label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.fc-heat-meta__title {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.fc-heat-meta__sub {
+  margin: var(--wds-space-1) 0 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+.fc-heat-meta__explain {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.fc-heat-legend {
+  margin: var(--wds-space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.fc-heat-legend__item {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: var(--wds-space-3);
+  align-items: start;
+}
+
+.fc-heat-legend__swatch {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--wds-radius-sm);
+  border: 1px solid rgba(228, 234, 244, 0.12);
+  margin-top: 0.1rem;
+}
+
+.fc-heat-legend__item--high .fc-heat-legend__swatch {
+  background: var(--wds-lime-muted);
+  box-shadow: inset 0 0 0 1px rgba(200, 240, 85, 0.35);
+}
+
+.fc-heat-legend__item--moderate .fc-heat-legend__swatch {
+  background: var(--wds-purple-muted);
+  box-shadow: inset 0 0 0 1px rgba(155, 143, 217, 0.35);
+}
+
+.fc-heat-legend__item--low .fc-heat-legend__swatch {
+  background: rgba(31, 53, 84, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(79, 120, 168, 0.25);
+}
+
+.fc-heat-legend__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.fc-heat-legend__text strong {
+  color: var(--wds-text);
+  font-weight: 500;
+}
+
+.fc-heat-legend__text span {
+  color: var(--wds-text-secondary);
+  font-size: var(--wds-text-xs);
+}
+
+.fc-heat-disclaimer {
+  margin: var(--wds-space-4) 0 0;
+  padding: var(--wds-space-3) var(--wds-space-4);
+  font-size: var(--wds-text-xs);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-tertiary);
+  background: var(--wds-inset);
+  border-left: 2px solid var(--wds-purple-muted);
+  border-radius: 0 var(--wds-radius-md) var(--wds-radius-md) 0;
+}
+
+.fc-heat-why {
+  margin-top: var(--wds-space-4);
+  padding: var(--wds-space-4);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.fc-heat-why__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-md);
+  font-weight: 400;
+  color: var(--wds-text);
+}
+
+.fc-heat-why__intro {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.fc-heat-why__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.fc-heat-why__list li + li {
+  margin-top: var(--wds-space-2);
+}
+
+/* Zone fills — schematic map */
+.fc-zone--high,
+.fc-heatmap__cell--high {
+  background: var(--wds-lime-muted);
+}
+
+.fc-zone--moderate,
+.fc-heatmap__cell--moderate {
+  background: var(--wds-purple-muted);
+}
+
+.fc-zone--low,
+.fc-heatmap__cell--low {
+  background: rgba(31, 53, 84, 0.82);
+}
+
+.fc-terrain-svg .fc-zone--high { fill: rgba(200, 240, 85, 0.42); }
+.fc-terrain-svg .fc-zone--moderate { fill: rgba(155, 143, 217, 0.38); }
+.fc-terrain-svg .fc-zone--low { fill: rgba(31, 53, 84, 0.72); }
+
+.fc-terrain-svg .fc-zone.is-top {
+  stroke: var(--wds-lime);
+  stroke-width: 2;
+}
+
+.fc-terrain-svg .fc-zone.is-selected {
+  stroke: var(--wds-lime-bright);
+  stroke-width: 2.5;
+}
+
+.fc-terrain-svg .fc-zone-label {
+  fill: rgba(228, 234, 244, 0.72);
+}
+
+.fc-terrain-svg .fc-zone-label {
+  font-family: var(--wds-font-ui, Inter, sans-serif);
+  font-size: 9px;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.fc-heatmap__cell.is-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  padding: var(--wds-space-2);
+  border: 1px solid rgba(228, 234, 244, 0.08);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--wds-text);
+  transition: outline 0.15s;
+  pointer-events: auto;
+}
+
+.fc-heatmap__cell.is-zone:hover,
+.fc-heatmap__cell.is-zone.is-selected {
+  outline: 2px solid var(--wds-lime);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+.fc-heatmap__cell.is-zone.is-top {
+  outline: 1px solid var(--wds-purple-bright);
+  outline-offset: -1px;
+}
+
+.fc-heatmap__zone-name {
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.fc-heatmap__zone-band {
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(228, 234, 244, 0.75);
+}
