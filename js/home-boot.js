@@ -25,6 +25,9 @@
       requestAnimationFrame(boot);
       return;
     }
+    if (WDS.regionalIntelligence && WDS.regionalIntelligence.configure) {
+      WDS.regionalIntelligence.configure({ contentEngineBase: ENGINE_BASE });
+    }
     WDS.location.bootstrap({
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")

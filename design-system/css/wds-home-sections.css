@@ -7,8 +7,8 @@
 .ws-block {
   max-width: var(--wds-max-content);
   margin: 0 auto;
-  padding: var(--wds-space-10) clamp(1.25rem, 4vw, 2rem);
-  border-bottom: 1px solid var(--wds-border-subtle);
+  padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: none;
 }
 
 .ws-block:last-child {
@@ -16,8 +16,8 @@
 }
 
 .ws-block__head {
-  max-width: 42rem;
-  margin-bottom: var(--wds-space-6);
+  max-width: 38rem;
+  margin-bottom: var(--wds-space-8);
 }
 
 .ws-block__eyebrow {

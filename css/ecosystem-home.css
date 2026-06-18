@@ -42,8 +42,8 @@
 .ws-home-section {
   max-width: var(--wds-max-content);
   margin: 0 auto;
-  padding: var(--wds-space-12) clamp(1.25rem, 4vw, 2rem);
-  border-bottom: 1px solid var(--wds-border-subtle);
+  padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: none;
 }
 
 .ws-home-section:last-of-type {
@@ -387,19 +387,22 @@
 }
 
 .ws-card-grid--experiences {
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--wds-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 .ws-experience-card {
+  --ws-exp-accent: var(--wds-warm);
+  --ws-exp-glow: transparent;
   display: flex;
   flex-direction: column;
   gap: var(--wds-space-4);
   padding: var(--wds-space-6);
-  text-decoration: none;
-  color: inherit;
   background: var(--wds-surface);
   border: 1px solid var(--wds-border-subtle);
   border-radius: var(--wds-radius-xl);
+  border-top: 3px solid var(--ws-exp-accent);
+  box-shadow: 0 0 0 0 var(--ws-exp-glow);
   transition: border-color var(--wds-duration-calm) var(--wds-ease-out), box-shadow var(--wds-duration-calm) var(--wds-ease-out);
 }
 
@@ -411,6 +414,7 @@
 .ws-experience-card__head {
   display: flex;
   flex-direction: column;
+  gap: var(--wds-space-2);
 }
 
 .ws-experience-card__body {
@@ -420,78 +424,68 @@
   flex: 1;
 }
 
-.ws-experience-card__block {
-  padding: var(--wds-space-3);
-  background: var(--wds-inset);
-  border-radius: var(--wds-radius-md);
-}
-
-.ws-experience-card__block--soon {
-  border-left: 2px solid var(--wds-purple-muted);
-}
-
-.ws-experience-card__label {
-  margin: 0 0 var(--wds-space-1);
-  font-size: var(--wds-text-xs);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--wds-warm);
-}
-
-.ws-experience-card__block--soon .ws-experience-card__label {
-  color: var(--wds-text-muted);
-}
-
-.ws-experience-card__text {
+.ws-experience-card__mission {
   margin: 0;
   font-size: var(--wds-text-sm);
   line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text);
+}
+
+.ws-experience-card__value {
+  margin: 0;
+  padding-left: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
   color: var(--wds-text-secondary);
+  border-left: 2px solid var(--ws-exp-accent);
 }
 
 .ws-experience-card__title {
-  margin: 0 0 var(--wds-space-2);
+  margin: 0;
   font-family: var(--wds-font-display);
   font-size: var(--wds-text-xl);
   font-weight: 400;
+  line-height: var(--wds-leading-snug);
 }
 
-.ws-experience-card__desc {
-  margin: 0;
-  font-size: var(--wds-text-sm);
-  line-height: var(--wds-leading-relaxed);
-  color: var(--wds-text-secondary);
+.ws-experience-card__foot {
+  margin-top: auto;
+  padding-top: var(--wds-space-2);
 }
 
 .ws-experience-card__cta {
-  font-size: var(--wds-text-sm);
-  font-weight: 500;
-  color: var(--wds-accent);
+  align-self: flex-start;
 }
 
-.ws-experience-card.is-live {
-  border-color: var(--wds-accent-border);
+.ws-experience-card.is-live .ws-experience-card__status {
+  color: var(--wds-on-accent);
+  background: var(--wds-lime);
+}
+
+.ws-experience-card.is-preview .ws-experience-card__status {
+  color: var(--wds-text-secondary);
+  background: var(--wds-inset);
+  border: 1px dashed var(--wds-border-subtle);
 }
 
 .ws-experience-card.is-preview {
   border-style: dashed;
-  opacity: 0.95;
+  border-top-style: solid;
 }
 
 .ws-experience-card.is-featured {
   grid-column: 1 / -1;
-  border-color: var(--wds-accent-border);
-  background: linear-gradient(165deg, var(--wds-navy-800) 0%, var(--wds-surface) 55%);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  background: linear-gradient(155deg, var(--wds-navy-800) 0%, var(--wds-surface) 62%);
   box-shadow: var(--wds-shadow-sm);
 }
 
 @media (min-width: 768px) {
   .ws-experience-card.is-featured {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    gap: var(--wds-space-4) var(--wds-space-6);
+    grid-template-columns: minmax(0, 1.15fr) auto;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--wds-space-3) var(--wds-space-8);
     align-items: start;
   }
 
@@ -501,46 +495,73 @@
   }
 
   .ws-experience-card.is-featured .ws-experience-card__body {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-  }
-
-  .ws-experience-card.is-featured .ws-experience-card__cta {
     grid-column: 1;
     grid-row: 2;
-    align-self: end;
+  }
+
+  .ws-experience-card.is-featured .ws-experience-card__foot {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    padding-top: 0;
+  }
+
+  .ws-experience-card.is-featured .ws-experience-card__mission {
+    font-size: var(--wds-text-md);
   }
 }
 
-.ws-experience-card__badge {
+.ws-experience-card__status {
+  align-self: flex-start;
   display: inline-block;
-  margin-bottom: var(--wds-space-2);
-  padding: 0.15rem 0.5rem;
+  padding: 0.2rem 0.55rem;
   font-size: var(--wds-text-xs);
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--wds-on-accent);
-  background: var(--wds-accent);
   border-radius: var(--wds-radius-sm);
 }
 
-.ws-experience-card__status {
-  display: block;
-  margin-bottom: var(--wds-space-2);
-  font-size: var(--wds-text-xs);
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--wds-text-tertiary);
+/* Per-app accents */
+.ws-experience-card--foragecast {
+  --ws-exp-accent: var(--wds-lime);
 }
 
-.ws-experience-card.is-featured .ws-experience-card__status {
-  color: var(--wds-warm);
+.ws-experience-card--shed-hunting {
+  --ws-exp-accent: #c4a574;
 }
 
-.ws-experience-card.is-soon {
-  opacity: 0.92;
+.ws-experience-card--fieldry {
+  --ws-exp-accent: #8b9da8;
+}
+
+.ws-experience-card--savant-sommelier {
+  --ws-exp-accent: #9a7b8f;
+}
+
+.ws-experience-card--waypoint-scenes {
+  --ws-exp-accent: #6b8fad;
+}
+
+.ws-experience-card--foragecast.is-featured {
+  --ws-exp-glow: rgba(200, 240, 85, 0.06);
+}
+
+.ws-experience-card--shed-hunting .ws-experience-card__value {
+  font-style: italic;
+}
+
+.ws-experience-card--fieldry {
+  background: linear-gradient(180deg, rgba(139, 157, 168, 0.1) 0%, var(--wds-surface) 42%);
+}
+
+.ws-experience-card--savant-sommelier .ws-experience-card__value {
+  border-left-style: dotted;
+}
+
+.ws-experience-card--waypoint-scenes .ws-experience-card__mission {
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-md);
 }
 
 /* Field notes list */

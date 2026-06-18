@@ -1,0 +1,305 @@
+/**
+ * Waypoint Studio homepage — story rhythm and visual hierarchy
+ */
+
+#main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ——— Story tiers ——— */
+.ws-story-section {
+  margin: 0;
+}
+
+.ws-story-section--hero {
+  margin-bottom: 0;
+}
+
+.ws-story-section--primary {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.ws-story-section--feature {
+  margin-block: clamp(3rem, 7vw, 5rem);
+}
+
+.ws-story-section--story {
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.ws-story-section--catalog {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.ws-story-section--quiet {
+  padding-block: clamp(2rem, 5vw, 3rem);
+}
+
+.ws-block.ws-story-section {
+  border-bottom: none;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+.ws-story-section--story + .ws-story-section--story,
+.ws-story-section--quiet + .ws-story-section--quiet {
+  padding-top: 0;
+  margin-top: calc(-1 * clamp(0.75rem, 2vw, 1.5rem));
+}
+
+/* ——— Section heads by tier ——— */
+.ws-block__head--minimal {
+  max-width: 36rem;
+  margin-bottom: var(--wds-space-5);
+}
+
+.ws-block__head--minimal .ws-block__title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+.ws-block__head--quiet,
+.ws-block__head--catalog {
+  max-width: 34rem;
+  margin-bottom: var(--wds-space-5);
+}
+
+.ws-block__head--quiet .ws-block__eyebrow,
+.ws-block__head--catalog .ws-block__eyebrow {
+  color: var(--wds-text-tertiary);
+}
+
+.ws-block__head--quiet .ws-block__title,
+.ws-block__head--catalog .ws-block__title {
+  font-size: var(--wds-text-xl);
+}
+
+.ws-block__head--quiet .ws-block__lead,
+.ws-block__head--catalog .ws-block__lead {
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Hero ——— */
+.ws-home-hero {
+  min-height: clamp(460px, 78vh, 760px);
+  margin-bottom: 0;
+}
+
+.ws-home-hero__placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, var(--wds-navy-900) 0%, var(--wds-navy-800) 40%, #1a2a1e 100%),
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(200, 240, 85, 0.08), transparent);
+}
+
+.ws-home-hero__inner {
+  max-width: 44rem;
+  text-align: center;
+}
+
+.ws-home-hero .wce-region-tag {
+  margin-bottom: var(--wds-space-4);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--wds-warm);
+}
+
+.ws-home-hero__title {
+  margin: 0 0 var(--wds-space-4);
+  font-family: var(--wds-font-display);
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.ws-home-hero__deck {
+  margin: 0 auto var(--wds-space-4);
+  max-width: 38rem;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-home-hero__meta {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— Location bar ——— */
+.wce-location-bar--story {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: var(--wds-space-3) clamp(1.25rem, 4vw, 2rem);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.wce-location-bar--story .wce-location-bar__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wds-space-2) var(--wds-space-4);
+}
+
+.wce-location-bar--story .wce-location-bar__status {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+/* ——— ForageCast feature ——— */
+.wce-foragecast {
+  max-width: none;
+  padding-inline: 0;
+  border-bottom: none;
+}
+
+.wce-foragecast__inner {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  background: linear-gradient(135deg, var(--wds-navy-800) 0%, var(--wds-navy-900) 55%, var(--wds-bg) 100%);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+  box-shadow: var(--wds-shadow-sm);
+}
+
+@media (max-width: 640px) {
+  .wce-foragecast__inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+.wce-foragecast__eyebrow {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wds-lime);
+}
+
+.wce-foragecast__title {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  line-height: var(--wds-leading-snug);
+}
+
+.wce-foragecast__headline {
+  margin: var(--wds-space-3) 0 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  font-style: italic;
+  color: var(--wds-text-secondary);
+}
+
+.wce-foragecast__summary {
+  margin: var(--wds-space-2) 0 0;
+  max-width: 36rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-foragecast__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-3);
+}
+
+/* ——— Species spotlight ——— */
+.ws-block--spotlight {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.ws-spotlight--story {
+  background: transparent;
+  border: none;
+  padding: 0;
+  gap: var(--wds-space-8);
+}
+
+/* ——— Field notes — quieter cards ——— */
+.wce-field-notes {
+  gap: var(--wds-space-4);
+}
+
+.wce-field-note {
+  padding: var(--wds-space-5);
+  border-left-width: 2px;
+  background: transparent;
+}
+
+/* ——— Seasonal watch ——— */
+.wce-seasonal-groups {
+  gap: var(--wds-space-8);
+}
+
+.wce-seasonal-item {
+  padding: var(--wds-space-3) 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--wds-border-subtle);
+  border-radius: 0;
+}
+
+.wce-seasonal-item:last-child {
+  border-bottom: none;
+}
+
+/* ——— Conservation ——— */
+.wce-conservation {
+  padding: var(--wds-space-6);
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--wds-accent);
+  border-radius: 0;
+}
+
+/* ——— Experiences catalog ——— */
+.ws-story-section--catalog .ws-card-grid--experiences {
+  gap: var(--wds-space-5);
+}
+
+.ws-story-section--catalog .ws-experience-card:not(.is-featured) {
+  padding: var(--wds-space-5) var(--wds-space-6);
+  background: var(--wds-surface);
+  border-color: var(--wds-border-subtle);
+  box-shadow: none;
+}
+
+/* ——— Quiet media sections ——— */
+.ws-story-section--quiet .wce-essay-frames {
+  gap: var(--wds-space-5);
+}
+
+.ws-story-section--quiet .wce-essay-frame {
+  border-style: dashed;
+  opacity: 0.92;
+}
+
+.ws-story-section--quiet .ws-video-feature__thumb {
+  border-style: dashed;
+}
+
+.ws-story-section--quiet .ws-research-card {
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--wds-border-subtle);
+  border-radius: 0;
+  padding-inline: var(--wds-space-5);
+}

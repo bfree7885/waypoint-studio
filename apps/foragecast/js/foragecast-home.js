@@ -124,25 +124,19 @@
   }
 
   function renderSpotlight(data) {
-    var sp = data.speciesSpotlight;
-    if (!sp) return "";
+    if (!data.speciesSpotlight) return "";
 
-    var card = window.WDS && WDS.speciesSpotlight
-      ? WDS.speciesSpotlight.renderCard(sp, {
-          weekOf: data.weekOf,
-          showWeekPreview: /weekly/i.test(sp.spotlightLabel || "")
-        })
-      : "";
+    var SS = window.WDS && WDS.speciesSpotlight;
+    if (!SS) return "";
+
+    var resolved = SS.resolveFeatured(data, { weekOf: data.weekOf });
+    if (!resolved.species) return "";
+
+    var moduleHtml = SS.renderModule(resolved, { showDisclosure: true });
 
     return (
-      '<section class="fc-section" id="species-spotlight" aria-labelledby="wce-spotlight-name">' +
-        '<div class="fc-spotlight">' +
-          '<div class="fc-spotlight__visuals">' +
-            mediaSlot("Species photo · placeholder", sp.commonName + " · field plate", "fc-plate-slot") +
-            mediaSlot("Habitat diagram · placeholder", sp.habitat || "Regional habitat", "fc-habitat-slot") +
-          "</div>" +
-          card +
-        "</div>" +
+      '<section class="fc-section" id="species-spotlight" aria-labelledby="wss-species-name">' +
+        moduleHtml +
       "</section>"
     );
   }

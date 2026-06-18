@@ -9,6 +9,27 @@
     "watersheds": ["Delaware River", "Lackawaxen River", "Wallenpaupack Creek"],
     "defaultScope": "L1-county"
   },
+  "regionalIntelligenceProfile": {
+    "ecoregion": "Northeastern Mixed Forest · Appalachian Plateau",
+    "dominantForest": "Northern hardwoods with oak-hickory on dry ridges; hemlock–northern hardwood ravines along Delaware tributaries",
+    "elevationFt": 1200,
+    "elevationNote": "County mean ~1,200 ft; Delaware River valley ~400 ft to plateau balds ~1,800 ft",
+    "phenologyStage": "Late spring transition — ephemerals fading, mountain laurel opening, morels ending below 1,200 ft",
+    "recentRainfall": {
+      "periodDays": 7,
+      "amountIn": 0.85,
+      "unit": "in",
+      "summary": "Thursday rain elevated creek levels; ravines muddy, rocky ridges drying fast",
+      "source": "editorial"
+    },
+    "daylight": {
+      "sunrise": "05:42",
+      "sunset": "20:18",
+      "dayLengthHours": 14.6,
+      "timezone": "America/New_York",
+      "source": "editorial"
+    }
+  },
   "weekOf": "2026-05-30",
   "season": "late spring",
   "thisWeekOutdoors": {
@@ -43,7 +64,105 @@
     "relatedTools": ["signalterrain", "terrainbound"],
     "outdoorChallenge": "Saturday: be on trail by 8 a.m. before convection builds.",
     "citizenScience": "Optional: submit fog duration observation (anonymous, county-level only).",
-    "subscriptionValue": "Free this week. Subscribers: full May archive + Monroe & Wayne counties."
+    "subscriptionValue": "Free this week. Subscribers: full May archive + Monroe & Wayne counties.",
+    "outdoorDashboard": {
+      "cards": [
+        {
+          "id": "weather",
+          "title": "Current Weather",
+          "source": "placeholder"
+        },
+        {
+          "id": "outdoor-conditions",
+          "title": "Outdoor Conditions",
+          "source": "editorial",
+          "sourceLabel": "Regional field snapshot",
+          "body": "Humid late-spring pattern. Valley fog at dawn along the Delaware; afternoon convection possible after 3 p.m.",
+          "items": [
+            "Air: muggy, highs in low 70s °F in editorial preview",
+            "Soil moisture elevated in ravines; ridge tops drying",
+            "Plan morning field time before storms build"
+          ]
+        },
+        {
+          "id": "seasonal-watch",
+          "title": "Seasonal Watch",
+          "source": "editorial",
+          "sourceLabel": "Regional field snapshot",
+          "groups": [
+            {
+              "label": "Active now",
+              "items": [
+                { "name": "Mountain laurel", "status": "opening", "note": "North slopes 800–1,400 ft" },
+                { "name": "Whitetail antler growth", "status": "active", "note": "Bucks in velvet at field edges" },
+                { "name": "Yellow morel", "status": "peaking-low", "note": "Below 1,200 ft — ending soon" }
+              ]
+            },
+            {
+              "label": "Ending",
+              "items": [
+                { "name": "Spring ephemerals", "status": "fading", "note": "Last flowers on cool slopes" }
+              ]
+            },
+            {
+              "label": "Coming soon",
+              "items": [
+                { "name": "Chanterelle", "status": "watch", "note": "Late June on oak ridges after rain" },
+                { "name": "Highbush blueberry", "status": "watch", "note": "Green fruit set; harvest late July" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "species-active",
+          "title": "Species Active Now",
+          "source": "editorial",
+          "sourceLabel": "Regional field snapshot",
+          "items": [
+            { "name": "Yellow morel", "note": "River terraces and old orchards below 1,200 ft" },
+            { "name": "Mountain laurel", "note": "Buds opening — photograph, do not pick in parks" },
+            { "name": "Late warblers", "note": "Canopy movement along the Delaware Water Gap" }
+          ]
+        },
+        {
+          "id": "wildlife",
+          "title": "Wildlife Activity",
+          "source": "editorial",
+          "sourceLabel": "Regional field snapshot",
+          "body": "Black bear activity increasing near campgrounds and feeders. Whitetail bucks in velvet.",
+          "items": [
+            "Secure attractants at dawn and dusk",
+            "Sows with cubs possible near riparian corridors",
+            "Ovenbird and wood thrush establishing territories"
+          ]
+        },
+        {
+          "id": "trails",
+          "title": "Trail Conditions",
+          "source": "editorial",
+          "sourceLabel": "Regional field snapshot",
+          "body": "Muddy in ravines after Thursday rain; rocky ridges drying fast.",
+          "items": [
+            "Hornbecks Creek — standing water in low sections",
+            "Milford Knob / Cliff Park ridges — drying",
+            "Check DWGNRA alerts before Pawling climbs"
+          ]
+        },
+        {
+          "id": "water",
+          "title": "Water Conditions",
+          "source": "placeholder",
+          "placeholder": "Live stream and river gauge integration coming next.",
+          "body": "Editorial note: creek crossings running higher than last week after rain; Delaware fog at dawn."
+        },
+        {
+          "id": "sun-moon",
+          "title": "Sun / Moon",
+          "source": "placeholder",
+          "placeholder": "Live sun and moon data coming next."
+        }
+      ]
+    }
   },
   "regionalFieldNotes": [
     {
@@ -190,27 +309,69 @@
     "subscriptionValue": "Full-resolution gallery download."
   },
   "speciesSpotlight": {
-    "id": "ss-pike-2026-22",
-    "scope": "L1-county",
-    "spotlightLabel": "Seasonal species spotlight",
-    "commonName": "Mountain laurel",
-    "scientificName": "Kalmia latifolia",
-    "title": "Buds opening on cool slopes — peak bloom spreading uphill",
-    "timing": "Late May through June · earlier on south aspects, later above 1,200 ft",
-    "habitat": "Acidic rocky slopes and ravines · oak–hemlock forest · often north-facing ledges",
-    "whyThisWeek": "Pink-tinged buds are visible on north slopes and ravines now — a reliable phenology anchor before full bloom reaches plateau elevations next week.",
-    "identification": [
-      "Evergreen shrub, 3–15 ft; twisted stems",
-      "Leaves alternate, oval, yellow vein arc on inner edge",
-      "Flowers in terminal clusters — pink buds open to white cups",
-      "Often on acidic, rocky slopes with oak and hemlock"
-    ],
-    "ethics": "Do not pick blooms in state forests or park boundaries. Photograph from trail.",
-    "relatedLessons": ["lesson-201", "lesson-505"],
-    "relatedTools": ["steepleaf"],
-    "outdoorChallenge": "Find laurel on a north-facing slope vs. south-facing — note bud stage difference.",
-    "citizenScience": "Optional bloom stage photo — plot anonymous.",
-    "subscriptionValue": "Full FGDS species page + look-alike guide."
+    "rotation": {
+      "mode": "editorial",
+      "featuredId": "ss-pike-2026-22",
+      "disclosure": "Species chosen for this week's Pike County field guide. Timing reflects seasonal education — not live detection, harvest reports, or automated rotation."
+    },
+    "entries": [
+      {
+        "id": "ss-pike-2026-22",
+        "scope": "L1-county",
+        "spotlightLabel": "Seasonal species spotlight",
+        "commonName": "Mountain laurel",
+        "scientificName": "Kalmia latifolia",
+        "title": "Buds opening on cool slopes — peak bloom spreading uphill",
+        "timing": "Late May through June · earlier on south aspects, later above 1,200 ft",
+        "habitat": "Acidic rocky slopes and ravines · oak–hemlock forest · often north-facing ledges",
+        "whereToLook": "North-facing ledges and ravines at 800–1,400 ft; Delaware Water Gap north slopes; Cliff Park trail margins",
+        "whyThisWeek": "Pink-tinged buds are visible on north slopes and ravines now — a reliable phenology anchor before full bloom reaches plateau elevations next week.",
+        "identification": [
+          "Evergreen shrub, 3–15 ft; twisted stems",
+          "Leaves alternate, oval, yellow vein arc on inner edge",
+          "Flowers in terminal clusters — pink buds open to white cups",
+          "Often on acidic, rocky slopes with oak and hemlock"
+        ],
+        "lookAlikes": "Sheep laurel (Kalmia angustifolia) — narrower leaves, smaller flowers, often in wetlands",
+        "conservationNote": "Native throughout Pennsylvania. Do not pick blooms on public land — photograph from trail. Protected in some park boundaries.",
+        "image": {
+          "alt": "Mountain laurel buds on a north-facing ledge, Pike County",
+          "caption": "Buds opening on cool slopes — field photograph placeholder",
+          "placeholder": true
+        },
+        "learnMore": {
+          "href": "apps/steepleaf/",
+          "label": "Learn more"
+        },
+        "relatedLessons": ["lesson-201", "lesson-505"],
+        "relatedTools": ["steepleaf"],
+        "outdoorChallenge": "Find laurel on a north-facing slope vs. south-facing — note bud stage difference.",
+        "citizenScience": "Optional bloom stage photo — plot anonymous.",
+        "subscriptionValue": "Full FGDS species page + look-alike guide."
+      },
+      {
+        "id": "ss-pike-2026-21",
+        "scope": "L1-county",
+        "spotlightLabel": "Seasonal species spotlight",
+        "commonName": "Yellow morel",
+        "scientificName": "Morchella americana",
+        "title": "Last calls in the valleys",
+        "timing": "Late April – late May · ending below 1,200 ft",
+        "habitat": "River terraces, old apple ground, ash–elm edges after rain",
+        "whereToLook": "Low terraces along the Delaware and Lackawaxen below 1,200 ft; old orchard edges near Matamoras",
+        "whyThisWeek": "Queued for rotation — morel season is closing on warm south slopes; check shaded edges after rain while learning identification.",
+        "identification": [
+          "Cap honeycombed; attached to stem at base",
+          "Hollow through cap and stem when sliced lengthwise",
+          "Often near dying elm, ash, apple, or tulip poplar"
+        ],
+        "conservationNote": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
+        "learnMore": {
+          "href": "apps/foragecast/",
+          "label": "Learn more"
+        }
+      }
+    ]
   },
   "teachersNotebook": {
     "id": "tn-pike-2026-22",
@@ -260,51 +421,51 @@
     {
       "slug": "foragecast",
       "name": "ForageCast",
-      "summary": "A regional foraging field guide — when species appear, which terrain bands matter, and how to test predictions outdoors without treating the forest like a hunt board.",
-      "learnNow": "Field guide homepage, weekly species spotlight, and the season table with schematic terrain zones for morels and other species.",
-      "comingLater": "More county content bundles, species education profiles, and optional anonymous phenology notes.",
+      "mission": "Learn when forest foods appear, which terrain bands to walk, and how to test weekly predictions on your own routes.",
+      "educationalValue": "You'll read timing and habitat like a field guide — honest uncertainty instead of a harvest scoreboard.",
       "href": "apps/foragecast/",
       "status": "live",
+      "statusLabel": "Live",
       "featured": true
     },
     {
       "slug": "shed-hunting",
       "name": "Sheds",
-      "summary": "A wildlife sign laboratory for shed antler season — slope, bedding, patience, and ethics without trophy culture.",
-      "learnNow": "Why deer drop antlers in late winter, how to read south slopes and bedding cover, and why empty-handed walks still teach.",
-      "comingLater": "Schematic shed-probability maps, Northeast PA timing guides, and a private shed journal.",
+      "mission": "Learn to read deer sign, south slopes, and bedding cover for late-winter shed walks — with ethics that put wildlife first.",
+      "educationalValue": "You'll practice patience as a field skill and understand why empty-handed miles still teach.",
       "href": "apps/shed-hunting/",
       "status": "preview",
+      "statusLabel": "In development",
       "featured": false
     },
     {
       "slug": "fieldry",
       "name": "Fieldry",
-      "summary": "A field notes desk — observation before interpretation, sketches, and journal entries that stay private by default.",
-      "learnNow": "How to structure a field journal entry, record sign vs. interpretation, and build the habit of closing the notebook after rain.",
-      "comingLater": "Local journal save, sketch attachments, PDF export, and optional county-level phenology tags.",
+      "mission": "Learn to structure field notes that separate what you saw from what you think it means.",
+      "educationalValue": "You'll build a private journaling habit that sharpens observation without posting anything.",
       "href": "apps/fieldry/",
       "status": "preview",
+      "statusLabel": "In development",
       "featured": false
     },
     {
       "slug": "savant-sommelier",
       "name": "Savant Sommelier",
-      "summary": "A terroir laboratory — ecology, geology, and weather in a glass, without score-chasing or pretension.",
-      "learnNow": "What terroir actually means in Northeast PA, how slope and geology shape drainage, and reading landscape before labels.",
-      "comingLater": "Regional terroir profiles, landscape-to-glass lessons, and private tasting notes.",
+      "mission": "Learn how Northeast PA slope, geology, and weather show up in what you taste.",
+      "educationalValue": "You'll connect landscape literacy to the glass — terroir as ecology, not marketing.",
       "href": "apps/savant-sommelier/",
       "status": "preview",
+      "statusLabel": "In development",
       "featured": false
     },
     {
       "slug": "waypoint-scenes",
       "name": "Waypoint Scenes",
-      "summary": "A quiet studio for nature photographers — still frames given gentle motion, collections, and export on your machine.",
-      "learnNow": "Unpack a photograph, explore Living Scene and Parallax effects, and organize field frames into collections.",
-      "comingLater": "Deeper export options, field-note metadata on scenes, and education tie-ins to regional photo essays.",
+      "mission": "Learn gentle motion for still nature photographs and how to organize field frames into collections.",
+      "educationalValue": "You'll slow down with your images and treat each frame as evidence from a place.",
       "href": "apps/waypoint-scenes/",
       "status": "live",
+      "statusLabel": "Live",
       "featured": false
     }
   ],

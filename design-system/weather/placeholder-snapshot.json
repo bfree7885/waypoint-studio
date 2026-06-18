@@ -1,0 +1,56 @@
+{
+  "description": "Reference placeholder weather package — same shape live providers return via WDS.weather.normalizePackage()",
+  "meta": {
+    "provider": "placeholder",
+    "fetchedAt": "2026-05-30T12:00:00.000Z",
+    "lat": 41.3312,
+    "lng": -75.0385,
+    "timezone": "America/New_York",
+    "units": "us",
+    "attribution": "Sample data for UI preview",
+    "isPlaceholder": true
+  },
+  "current": {
+    "observedAt": "2026-05-30T12:00:00.000Z",
+    "temperature": { "value": 63, "unit": "F" },
+    "feelsLike": { "value": 61, "unit": "F" },
+    "humidity": { "value": 72, "unit": "%" },
+    "wind": {
+      "speed": { "value": 8, "unit": "mph" },
+      "direction": { "value": 220, "unit": "deg", "label": "SW" },
+      "gust": { "value": 14, "unit": "mph" }
+    },
+    "precipitation": {
+      "probability": 20,
+      "intensity": "none",
+      "amount": { "value": 0, "unit": "in" }
+    },
+    "cloudCover": { "value": 45, "unit": "%" },
+    "pressure": { "value": 30.12, "unit": "inHg" },
+    "uvIndex": { "value": 5, "unit": "index" },
+    "conditions": {
+      "summary": "Partly cloudy",
+      "icon": "partly-cloudy-day"
+    },
+    "sunrise": "2026-05-30T09:42:00.000Z",
+    "sunset": "2026-05-31T00:18:00.000Z"
+  },
+  "hourly": [
+    {
+      "time": "2026-05-30T12:00:00.000Z",
+      "temperature": { "value": 63, "unit": "F" },
+      "precipitation": { "probability": 10, "intensity": "none" },
+      "conditions": { "summary": "Partly cloudy", "icon": "partly-cloudy-day" }
+    }
+  ],
+  "daily": [
+    {
+      "date": "2026-05-30",
+      "temperatureHigh": { "value": 74, "unit": "F" },
+      "temperatureLow": { "value": 52, "unit": "F" },
+      "conditions": { "summary": "Partly cloudy", "icon": "partly-cloudy-day" },
+      "sunrise": "2026-05-30T09:42:00.000Z",
+      "sunset": "2026-05-31T00:18:00.000Z"
+    }
+  ]
+}

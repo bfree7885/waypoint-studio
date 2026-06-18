@@ -1,0 +1,92 @@
+{
+  "description": "Reference regional intelligence snapshot — Pike County, PA (default). Same shape WDS.regionalIntelligence.get() returns.",
+  "meta": {
+    "version": "1.0.0",
+    "assembledAt": "2026-05-30T12:00:00.000Z",
+    "regionId": "pike-county-pa",
+    "contentBundleId": "pike-county-pa",
+    "scope": "L1-county",
+    "isPlaceholder": true,
+    "sources": {
+      "bundle": "pike-county-pa",
+      "location": "default",
+      "weather": "placeholder"
+    }
+  },
+  "region": {
+    "id": "pike-county-pa",
+    "label": "Pike County, PA"
+  },
+  "county": {
+    "name": "Pike County",
+    "stateCode": "PA"
+  },
+  "state": {
+    "name": "Pennsylvania",
+    "code": "PA"
+  },
+  "coordinates": {
+    "latitude": 41.3312,
+    "longitude": -75.038
+  },
+  "geography": {
+    "elevationFt": 1200,
+    "elevationNote": "County mean ~1,200 ft; Delaware River valley ~400 ft to plateau balds ~1,800 ft",
+    "ecoregion": "Northeastern Mixed Forest · Appalachian Plateau",
+    "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands",
+    "dominantForest": "Northern hardwoods with oak-hickory on dry ridges; hemlock–northern hardwood ravines along Delaware tributaries",
+    "watersheds": ["Delaware River", "Lackawaxen River", "Wallenpaupack Creek"]
+  },
+  "season": {
+    "label": "late spring",
+    "weekOf": "2026-05-30"
+  },
+  "phenology": {
+    "stage": "Late spring transition — ephemerals fading, mountain laurel opening, morels ending below 1,200 ft",
+    "summary": "Late spring phenology — Pike County"
+  },
+  "weather": {
+    "summary": "74°F / 52°F · Humid · valley fog at dawn · thunderstorm chance Saturday after 3 p.m.",
+    "high": "74°F",
+    "low": "52°F",
+    "conditions": "Humid · valley fog at dawn · thunderstorm chance Saturday after 3 p.m.",
+    "source": "content-bundle",
+    "isLive": false
+  },
+  "rainfall": {
+    "recent": {
+      "periodDays": 7,
+      "amount": 0.85,
+      "unit": "in",
+      "summary": "Thursday rain elevated creek levels; ravines muddy, rocky ridges drying fast",
+      "source": "editorial"
+    }
+  },
+  "daylight": {
+    "sunrise": "05:42",
+    "sunset": "20:18",
+    "dayLengthHours": 14.6,
+    "timezone": "America/New_York",
+    "source": "editorial"
+  },
+  "species": {
+    "active": [
+      {
+        "name": "Mountain laurel",
+        "status": "opening",
+        "note": "North slopes and ravines 800–1,400 ft — peak next week"
+      },
+      {
+        "name": "Whitetail antler growth",
+        "status": "active",
+        "note": "Bucks in velvet — observe at field edges at dawn"
+      },
+      {
+        "name": "Yellow morel",
+        "status": "peaking-low",
+        "note": "River bottoms and old orchards below 1,200 ft — ending soon"
+      }
+    ]
+  },
+  "weatherRef": null
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/regional-intelligence/v1",
+  "title": "Waypoint Regional Intelligence",
+  "description": "Normalized regional context for Waypoint Studio apps. Assembled from location, content bundles, weather, and future live feeds — never prediction output.",
+  "type": "object",
+  "required": ["meta", "region", "county", "state", "coordinates", "geography", "season", "phenology", "weather", "rainfall", "daylight", "species"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "assembledAt": { "type": "string", "format": "date-time" },
+        "regionId": { "type": "string" },
+        "contentBundleId": { "type": "string" },
+        "scope": { "type": "string" },
+        "isPlaceholder": { "type": "boolean" },
+        "sources": { "type": "object" }
+      }
+    },
+    "region": {
+      "type": "object",
+      "description": "Canonical region identifier and display label",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" }
+      }
+    },
+    "county": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "stateCode": { "type": "string" }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string" }
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" }
+      }
+    },
+    "geography": {
+      "type": "object",
+      "properties": {
+        "elevationFt": { "type": ["number", "null"] },
+        "elevationNote": { "type": ["string", "null"] },
+        "ecoregion": { "type": ["string", "null"] },
+        "bioregion": { "type": ["string", "null"] },
+        "dominantForest": { "type": ["string", "null"] },
+        "watersheds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "season": {
+      "type": "object",
+      "properties": {
+        "label": { "type": ["string", "null"] },
+        "weekOf": { "type": ["string", "null"] }
+      }
+    },
+    "phenology": {
+      "type": "object",
+      "properties": {
+        "stage": { "type": ["string", "null"] },
+        "summary": { "type": ["string", "null"] }
+      }
+    },
+    "weather": {
+      "type": "object",
+      "description": "Current conditions summary; full package available via weatherRef when assembled with WDS.weather"
+    },
+    "rainfall": {
+      "type": "object",
+      "properties": {
+        "recent": {
+          "type": ["object", "null"],
+          "properties": {
+            "periodDays": { "type": "number" },
+            "amount": { "type": ["number", "null"] },
+            "unit": { "type": "string" },
+            "summary": { "type": "string" },
+            "source": { "type": "string" }
+          }
+        }
+      }
+    },
+    "daylight": {
+      "type": "object",
+      "properties": {
+        "sunrise": { "type": ["string", "null"] },
+        "sunset": { "type": ["string", "null"] },
+        "dayLengthHours": { "type": ["number", "null"] },
+        "timezone": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] }
+      }
+    },
+    "species": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "status": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "weatherRef": {
+      "type": ["object", "null"],
+      "description": "Optional embedded WDS.weather package when includeWeather is true"
+    }
+  }
+}

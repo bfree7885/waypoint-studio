@@ -37,23 +37,41 @@
     "weekend": "Walk a north-facing and south-facing slope for 30 minutes each. Record smell of soil, leaf litter depth, and any fungal signs — photographs OK, collection not required."
   },
   "speciesSpotlight": {
-    "spotlightLabel": "Weekly spotlight preview",
-    "commonName": "Yellow morel",
-    "scientificName": "Morchella americana",
-    "title": "Last calls in the valleys",
-    "timing": "Late April – late May · fading below 1,200 ft this week",
-    "habitat": "River terraces, old apple ground, ash–elm edges, and tulip-poplar slopes after rain",
-    "whyThisWeek": "Warm days dried south-facing ridges while valley fog and recent rain kept low terraces moist — one of the last reasonable weeks to check low-elevation edges before heat closes the window.",
-    "fieldMarks": [
-      "Cap honeycombed; attached to stem at base",
-      "Hollow through cap and stem when sliced lengthwise",
-      "Often near dying elm, ash, apple, or tulip poplar",
-      "Appears when soil warms after rain — not every year the same week"
-    ],
-    "lookAlikes": "False morels (Gyromitra) — brain-like, not honeycombed; not hollow. Never eat uncertain fungi.",
-    "ethics": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
-    "profileHref": "season-table.html?species=morels",
-    "profileLabel": "Morels in the season table"
+    "rotation": {
+      "mode": "editorial",
+      "featuredId": "fc-home-morel",
+      "disclosure": "Weekly species preview for ForageCast — educational timing for Pike County, not a live fruiting report."
+    },
+    "entries": [
+      {
+        "id": "fc-home-morel",
+        "spotlightLabel": "Weekly species spotlight",
+        "commonName": "Yellow morel",
+        "scientificName": "Morchella americana",
+        "title": "Last calls in the valleys",
+        "timing": "Late April – late May · fading below 1,200 ft this week",
+        "habitat": "River terraces, old apple ground, ash–elm edges, and tulip-poplar slopes after rain",
+        "whereToLook": "Low river terraces and old orchard edges below 1,200 ft; ash–elm margins after Thursday rain",
+        "whyThisWeek": "Warm days dried south-facing ridges while valley fog and recent rain kept low terraces moist — one of the last reasonable weeks to check low-elevation edges before heat closes the window.",
+        "identification": [
+          "Cap honeycombed; attached to stem at base",
+          "Hollow through cap and stem when sliced lengthwise",
+          "Often near dying elm, ash, apple, or tulip poplar",
+          "Appears when soil warms after rain — not every year the same week"
+        ],
+        "lookAlikes": "False morels (Gyromitra) — brain-like, not honeycombed; not hollow. Never eat uncertain fungi.",
+        "conservationNote": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
+        "image": {
+          "alt": "Yellow morel in leaf litter — educational placeholder",
+          "caption": "Low terrace habitat after rain — photograph placeholder",
+          "placeholder": true
+        },
+        "learnMore": {
+          "href": "season-table.html?species=morels",
+          "label": "Learn more"
+        }
+      }
+    ]
   },
   "predictionPreview": {
     "previewSpeciesId": "morels",
