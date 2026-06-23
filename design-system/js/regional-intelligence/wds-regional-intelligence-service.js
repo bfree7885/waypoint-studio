@@ -70,20 +70,32 @@
     return bundle;
   }
 
-  function resolveWeather(request, bundle, loc) {
+  function resolveWeather(request, intel) {
     if (!request.includeWeather) return Promise.resolve(null);
     var W = global.WDS && global.WDS.weather;
     if (!W || !W.getForecast) return Promise.resolve(null);
+    if (!intel || !intel.coordinates) return Promise.resolve(null);
 
-    var lat = loc && loc.lat;
-    var lng = loc && loc.lng;
+    var lat = Number(intel.coordinates.latitude);
+    var lng = Number(intel.coordinates.longitude);
     if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
 
-    var hints = request.weatherHints ||
-      (bundle && bundle.thisWeekOutdoors && bundle.thisWeekOutdoors.weather) ||
-      (loc && loc.weather);
+    var hints = request.weatherHints;
+    if (!hints && intel.weather && !intel.weather.isLive) {
+      hints = {
+        high: intel.weather.high,
+        low: intel.weather.low,
+        conditions: intel.weather.conditions
+      };
+    }
 
-    return W.getForecast({ lat: lat, lng: lng, hints: hints }).catch(function () {
+    return W.getForecast({
+      intelligence: intel,
+      location: request.location,
+      hints: hints,
+      timezone: intel.daylight && intel.daylight.timezone,
+      fallback: false
+    }).catch(function () {
       return null;
     });
   }
@@ -107,8 +119,10 @@
     var req = normalizeRequest(request);
     return resolveBundle(req).then(function (bundle) {
       bundle = applyLocationToBundle(bundle, req.location);
-      return resolveWeather(req, bundle, req.location).then(function (weatherPkg) {
+      var partialIntel = assemble(bundle, req.location, null);
+      return resolveWeather(req, partialIntel).then(function (weatherPkg) {
         var intel = assemble(bundle, req.location, weatherPkg);
+        if (weatherPkg) intel.weatherRef = weatherPkg;
         lastSnapshot = intel;
         return intel;
       });

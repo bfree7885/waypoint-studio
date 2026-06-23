@@ -20,6 +20,14 @@
     });
   }
 
+  function showBootError() {
+    var mount = document.getElementById("wds-content-engine");
+    if (mount) {
+      mount.innerHTML = "<main id=\"main\"><p class=\"wds-body\" style=\"padding:2rem;\">Could not load dashboard. Refresh to try again.</p></main>";
+      mount.removeAttribute("aria-busy");
+    }
+  }
+
   function boot() {
     if (!window.WDS || !WDS.location || !WDS.contentEngine) {
       requestAnimationFrame(boot);
@@ -28,15 +36,20 @@
     if (WDS.regionalIntelligence && WDS.regionalIntelligence.configure) {
       WDS.regionalIntelligence.configure({ contentEngineBase: ENGINE_BASE });
     }
+    if (WDS.weather && WDS.weather.configure) {
+      WDS.weather.configure({ provider: "open-meteo", fallback: false });
+    }
     WDS.location.bootstrap({
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")
     }).then(startDashboard).catch(function () {
-      var mount = document.getElementById("wds-content-engine");
-      if (mount) {
-        mount.innerHTML = "<main id=\"main\"><p class=\"wds-body\" style=\"padding:2rem;\">Could not load dashboard. Refresh to try again.</p></main>";
-        mount.removeAttribute("aria-busy");
+      if (window.WDS && WDS.location) {
+        WDS.location.loadIndex(ENGINE_BASE).then(function (index) {
+          startDashboard(WDS.location.defaultState(index));
+        }).catch(showBootError);
+        return;
       }
+      showBootError();
     });
   }
 

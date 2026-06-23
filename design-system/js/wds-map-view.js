@@ -245,9 +245,94 @@
     return mv;
   }
 
-  function bindAll(root) {
+  MapView.prototype.centerOnStagePoint = function (x, y, zoom) {
+    if (!this.viewport) return;
+    var vw = this.viewport.clientWidth;
+    var vh = this.viewport.clientHeight;
+    if (zoom != null) {
+      this.scale = clamp(zoom, MIN_SCALE, MAX_SCALE);
+    }
+    this.tx = vw / 2 - x * this.scale;
+    this.ty = vh / 2 - y * this.scale;
+    this.apply();
+  };
+
+  MapView.prototype.setUserMarker = function (point) {
+    if (!this.stage) return;
+    var existing = this.stage.querySelector(".wds-map-user-marker");
+    if (existing) existing.remove();
+    var svg = this.stage.querySelector("svg.fc-terrain-svg");
+    if (svg) {
+      var old = svg.querySelector(".wds-map-user-marker-svg");
+      if (old) old.remove();
+      if (!point) return;
+      var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circle.setAttribute("class", "wds-map-user-marker-svg");
+      circle.setAttribute("cx", String(point.x));
+      circle.setAttribute("cy", String(point.y));
+      circle.setAttribute("r", "6");
+      circle.setAttribute("aria-label", "Your location");
+      svg.appendChild(circle);
+      return;
+    }
+    if (!point) return;
+    var marker = document.createElement("div");
+    marker.className = "wds-map-user-marker";
+    marker.setAttribute("aria-label", "Your location");
+    marker.style.left = point.x + "px";
+    marker.style.top = point.y + "px";
+    this.stage.appendChild(marker);
+  };
+
+  function applyLocationToViewport(viewport, loc, region) {
+    if (!viewport || !loc || !global.WDS || !global.WDS.location) return;
+    var mv = viewport._wdsMapView;
+    if (!mv) return;
+
+    region = region || global.WDS.location.getRegionForProjection(loc, null);
+    if (!region || loc.lat == null || loc.lng == null) return;
+
+    var svg = viewport.querySelector("svg.fc-terrain-svg");
+    var viewBox = svg
+      ? { width: 420, height: 300 }
+      : { width: mv.stage.offsetWidth || 400, height: mv.stage.offsetHeight || 300 };
+
+    var point = global.WDS.location.projectToSchematic(loc.lat, loc.lng, region, viewBox);
+    if (!point) return;
+
+    mv.fit();
+    mv.setUserMarker(point);
+    mv.centerOnStagePoint(point.x, point.y, Math.max(mv.scale, 1.15));
+  }
+
+  function applyLocation(root, loc, options) {
+    if (!loc || !global.WDS || !global.WDS.location) return Promise.resolve();
+    options = options || {};
+    var base = options.base || "design-system/content-engine/";
+    var scope = root || document;
+    var viewports = scope.querySelectorAll("[data-wds-map-view]");
+    if (!viewports.length) return Promise.resolve();
+
+    return global.WDS.location.loadIndex(base).then(function (index) {
+      var region = global.WDS.location.getRegionForProjection(loc, index);
+      viewports.forEach(function (viewport) {
+        applyLocationToViewport(viewport, loc, region);
+      });
+    }).catch(function () {
+      viewports.forEach(function (viewport) {
+        applyLocationToViewport(viewport, loc, global.WDS.location.getRegionForProjection(loc, null));
+      });
+    });
+  }
+
+  function bindAll(root, loc, options) {
     var scope = root || document;
     scope.querySelectorAll("[data-wds-map-view]").forEach(bind);
+    if (loc) {
+      requestAnimationFrame(function () {
+        applyLocation(scope, loc, options);
+      });
+    }
   }
 
   function reset(viewport) {
@@ -261,6 +346,7 @@
     controlsHtml: controlsHtml,
     bind: bind,
     bindAll: bindAll,
-    reset: reset
+    reset: reset,
+    applyLocation: applyLocation
   };
 })(window);

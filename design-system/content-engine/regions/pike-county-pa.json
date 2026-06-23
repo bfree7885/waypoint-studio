@@ -70,7 +70,7 @@
         {
           "id": "weather",
           "title": "Current Weather",
-          "source": "placeholder"
+          "source": "live"
         },
         {
           "id": "outdoor-conditions",
@@ -158,8 +158,7 @@
         {
           "id": "sun-moon",
           "title": "Sun / Moon",
-          "source": "placeholder",
-          "placeholder": "Live sun and moon data coming next."
+          "source": "live"
         }
       ]
     }

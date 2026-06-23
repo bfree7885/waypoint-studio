@@ -25,11 +25,68 @@
     return d.toISOString();
   }
 
+  function openMeteoWmoCode(code) {
+    var n = Number(code);
+    if (!isFinite(n)) return { summary: "", icon: "unknown" };
+    var table = {
+      0: ["Clear sky", "clear-day"],
+      1: ["Mainly clear", "partly-cloudy-day"],
+      2: ["Partly cloudy", "partly-cloudy-day"],
+      3: ["Overcast", "cloudy"],
+      45: ["Fog", "fog"],
+      48: ["Depositing rime fog", "fog"],
+      51: ["Light drizzle", "rain"],
+      53: ["Moderate drizzle", "rain"],
+      55: ["Dense drizzle", "rain"],
+      56: ["Light freezing drizzle", "rain"],
+      57: ["Dense freezing drizzle", "rain"],
+      61: ["Slight rain", "rain"],
+      63: ["Moderate rain", "rain"],
+      65: ["Heavy rain", "rain"],
+      66: ["Light freezing rain", "rain"],
+      67: ["Heavy freezing rain", "rain"],
+      71: ["Slight snow", "snow"],
+      73: ["Moderate snow", "snow"],
+      75: ["Heavy snow", "snow"],
+      77: ["Snow grains", "snow"],
+      80: ["Slight rain showers", "rain"],
+      81: ["Moderate rain showers", "rain"],
+      82: ["Violent rain showers", "rain"],
+      85: ["Slight snow showers", "snow"],
+      86: ["Heavy snow showers", "snow"],
+      95: ["Thunderstorm", "thunderstorm"],
+      96: ["Thunderstorm with slight hail", "thunderstorm"],
+      99: ["Thunderstorm with heavy hail", "thunderstorm"]
+    };
+    var row = table[n] || ["Unknown", "unknown"];
+    return { summary: row[0], icon: row[1] };
+  }
+
+  function hourlyIndexForTime(times, targetTime) {
+    if (!times || !times.length) return 0;
+    if (!targetTime) return 0;
+    var idx = times.indexOf(targetTime);
+    if (idx >= 0) return idx;
+    var prefix = String(targetTime).slice(0, 13);
+    for (var i = 0; i < times.length; i += 1) {
+      if (String(times[i]).slice(0, 13) === prefix) return i;
+    }
+    return 0;
+  }
+
+  function precipIntensityFromCode(code) {
+    var n = Number(code);
+    if (!isFinite(n) || n < 51) return "none";
+    if (n <= 55 || n === 61 || n === 80) return "light";
+    if (n <= 65 || n === 81 || n === 63) return "moderate";
+    return "heavy";
+  }
+
   function buildPlaceholderPackage(ctx) {
     var units = W.UNITS[ctx.units] || W.UNITS.us;
     var hints = ctx.hints || {};
-    var high = W.parseTemperatureString(hints.high) || 72;
-    var low = W.parseTemperatureString(hints.low) || 52;
+    var high = W.parseTemperatureString(hints.high) || 68;
+    var low = W.parseTemperatureString(hints.low) || 50;
     var now = new Date();
     var today = now.toISOString().slice(0, 10);
     var currentTemp = Math.round((high + low) / 2);
@@ -109,45 +166,78 @@
   function mapOpenMeteoResponse(data, ctx) {
     var units = W.UNITS[ctx.units] || W.UNITS.us;
     var cur = data.current || {};
-    var hourly = (data.hourly && data.hourly.time || []).map(function (time, i) {
+    var curCond = openMeteoWmoCode(cur.weather_code);
+    var hourlyTimes = (data.hourly && data.hourly.time) || [];
+    var hourlyIdx = hourlyIndexForTime(hourlyTimes, cur.time);
+    var currentPop = data.hourly && data.hourly.precipitation_probability
+      ? data.hourly.precipitation_probability[hourlyIdx]
+      : null;
+    var todayDaily = data.daily || {};
+    var dailyPopMax = todayDaily.precipitation_probability_max && todayDaily.precipitation_probability_max[0];
+
+    var hourly = hourlyTimes.map(function (time, i) {
+      var code = data.hourly.weather_code && data.hourly.weather_code[i];
+      var rowCond = openMeteoWmoCode(code);
       return {
         time: time,
         temperature: m(data.hourly.temperature_2m[i], units.temperature),
+        feelsLike: m(data.hourly.apparent_temperature && data.hourly.apparent_temperature[i], units.temperature),
         humidity: m(data.hourly.relative_humidity_2m[i], "%"),
         wind: w(data.hourly.wind_speed_10m[i], data.hourly.wind_direction_10m[i], data.hourly.wind_gusts_10m && data.hourly.wind_gusts_10m[i], units),
-        precipitation: p(data.hourly.precipitation_probability && data.hourly.precipitation_probability[i], "none", data.hourly.precipitation[i], units),
-        cloudCover: m(data.hourly.cloud_cover[i], "%"),
+        precipitation: p(
+          data.hourly.precipitation_probability && data.hourly.precipitation_probability[i],
+          precipIntensityFromCode(code),
+          data.hourly.precipitation[i],
+          units
+        ),
+        cloudCover: m(data.hourly.cloud_cover && data.hourly.cloud_cover[i], "%"),
         pressure: m(data.hourly.surface_pressure && data.hourly.surface_pressure[i] / (units.pressure === "inHg" ? 33.8639 : 1), units.pressure),
         uvIndex: m(data.hourly.uv_index && data.hourly.uv_index[i], "index"),
-        conditions: c("", "unknown")
+        conditions: c(rowCond.summary, rowCond.icon)
       };
     });
-    var daily = (data.daily && data.daily.time || []).map(function (date, i) {
+    var daily = (todayDaily.time || []).map(function (date, i) {
+      var code = todayDaily.weather_code && todayDaily.weather_code[i];
+      var rowCond = openMeteoWmoCode(code);
       return {
         date: date,
-        temperatureHigh: m(data.daily.temperature_2m_max[i], units.temperature),
-        temperatureLow: m(data.daily.temperature_2m_min[i], units.temperature),
-        precipitation: p(null, "none", data.daily.precipitation_sum[i], units),
-        uvIndex: m(data.daily.uv_index_max && data.daily.uv_index_max[i], "index"),
-        sunrise: data.daily.sunrise && data.daily.sunrise[i],
-        sunset: data.daily.sunset && data.daily.sunset[i],
-        conditions: c("", "unknown")
+        temperatureHigh: m(todayDaily.temperature_2m_max[i], units.temperature),
+        temperatureLow: m(todayDaily.temperature_2m_min[i], units.temperature),
+        precipitation: p(
+          todayDaily.precipitation_probability_max && todayDaily.precipitation_probability_max[i],
+          precipIntensityFromCode(code),
+          todayDaily.precipitation_sum && todayDaily.precipitation_sum[i],
+          units
+        ),
+        uvIndex: m(todayDaily.uv_index_max && todayDaily.uv_index_max[i], "index"),
+        sunrise: todayDaily.sunrise && todayDaily.sunrise[i],
+        sunset: todayDaily.sunset && todayDaily.sunset[i],
+        conditions: c(rowCond.summary, rowCond.icon)
       };
     });
     return W.normalizePackage({
-      meta: { provider: "open-meteo", lat: ctx.lat, lng: ctx.lng, units: ctx.units, isPlaceholder: false, attribution: "Open-Meteo" },
+      meta: {
+        provider: "open-meteo",
+        lat: ctx.lat,
+        lng: ctx.lng,
+        timezone: data.timezone || ctx.timezone,
+        units: ctx.units,
+        isPlaceholder: false,
+        attribution: "Open-Meteo"
+      },
       current: {
         observedAt: cur.time,
         temperature: m(cur.temperature_2m, units.temperature),
+        feelsLike: m(cur.apparent_temperature, units.temperature),
         humidity: m(cur.relative_humidity_2m, "%"),
         wind: w(cur.wind_speed_10m, cur.wind_direction_10m, cur.wind_gusts_10m, units),
         cloudCover: m(cur.cloud_cover, "%"),
         pressure: m(cur.surface_pressure && cur.surface_pressure / (units.pressure === "inHg" ? 33.8639 : 1), units.pressure),
         uvIndex: m(cur.uv_index, "index"),
-        precipitation: p(null, "none", cur.precipitation, units),
-        conditions: c("", "unknown"),
-        sunrise: data.daily && data.daily.sunrise && data.daily.sunrise[0],
-        sunset: data.daily && data.daily.sunset && data.daily.sunset[0]
+        precipitation: p(currentPop != null ? currentPop : dailyPopMax, precipIntensityFromCode(cur.weather_code), cur.precipitation, units),
+        conditions: c(curCond.summary, curCond.icon),
+        sunrise: todayDaily.sunrise && todayDaily.sunrise[0],
+        sunset: todayDaily.sunset && todayDaily.sunset[0]
       },
       hourly: hourly,
       daily: daily
@@ -327,9 +417,9 @@
         var params = new URLSearchParams({
           latitude: ctx.lat,
           longitude: ctx.lng,
-          current: "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
-          hourly: "temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,precipitation,cloud_cover,surface_pressure,uv_index",
-          daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,uv_index_max,sunrise,sunset",
+          current: "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
+          hourly: "temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,precipitation,cloud_cover,surface_pressure,uv_index",
+          daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset",
           timezone: ctx.timezone || "auto",
           temperature_unit: ctx.units === "metric" ? "celsius" : "fahrenheit",
           wind_speed_unit: ctx.units === "metric" ? "kmh" : "mph",

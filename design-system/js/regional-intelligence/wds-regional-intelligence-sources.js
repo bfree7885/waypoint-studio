@@ -149,14 +149,25 @@
     if (!weatherPkg) return {};
     var cur = weatherPkg.current || {};
     var cond = cur.conditions || {};
+    var today = weatherPkg.daily && weatherPkg.daily[0];
+    var high = today && today.temperatureHigh;
+    var low = today && today.temperatureLow;
+    var precipProb = cur.precipitation && cur.precipitation.probability;
     var summaryParts = [];
-    if (cur.temperature) summaryParts.push(formatMeasurement(cur.temperature));
+    if (high && low) {
+      summaryParts.push(formatMeasurement(high) + " / " + formatMeasurement(low));
+    } else if (cur.temperature) {
+      summaryParts.push(formatMeasurement(cur.temperature));
+    }
     if (cond.summary) summaryParts.push(cond.summary);
 
     return {
       weather: {
+        high: formatMeasurement(high),
+        low: formatMeasurement(low),
         summary: summaryParts.join(" · ") || null,
         conditions: cond.summary || null,
+        precipitationProbability: precipProb != null ? precipProb : null,
         source: weatherPkg.meta && weatherPkg.meta.provider,
         isLive: !(weatherPkg.meta && weatherPkg.meta.isPlaceholder)
       },

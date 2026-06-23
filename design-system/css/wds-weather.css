@@ -25,6 +25,64 @@
   font-size: var(--wds-text-sm);
   color: var(--wds-color-text-muted);
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--wds-space-2);
+}
+
+.wds-weather-loading__spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--wds-color-border-subtle);
+  border-top-color: var(--wds-color-accent);
+  border-radius: 50%;
+  animation: wds-weather-spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes wds-weather-spin {
+  to { transform: rotate(360deg); }
+}
+
+.wds-weather--error {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-1);
+}
+
+.wds-weather-error__title {
+  font-size: var(--wds-text-sm);
+  font-weight: 600;
+  margin: 0;
+  color: var(--wds-color-text);
+}
+
+.wds-weather-error__detail {
+  font-size: var(--wds-text-sm);
+  margin: 0;
+  color: var(--wds-color-text-muted);
+  line-height: var(--wds-leading-normal);
+}
+
+.wds-weather-dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--wds-space-2) var(--wds-space-3);
+  margin: 0;
+  padding: var(--wds-space-2) 0 0;
+  border-top: 1px solid var(--wds-color-border-subtle);
+}
+
+.wds-weather--sun-moon .wds-weather-sun {
+  border-top: none;
+  padding-top: 0;
+}
+
+.wds-weather-sun-moon__note {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-color-text-muted);
+  margin: var(--wds-space-1) 0 0;
 }
 
 .wds-weather__attribution {
@@ -49,6 +107,7 @@
 }
 
 .wds-weather-current__feels,
+.wds-weather-current__range,
 .wds-weather-current__summary {
   font-size: var(--wds-text-sm);
   color: var(--wds-color-text-muted);
@@ -223,12 +282,14 @@
   min-height: 6rem;
 }
 
-.wds-weather--dashboard .wds-weather-metrics {
+.wds-weather--dashboard .wds-weather-metrics,
+.wds-weather--dashboard .wds-weather-dashboard__stats {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 @media (max-width: 40rem) {
-  .wds-weather--dashboard .wds-weather-metrics {
+  .wds-weather--dashboard .wds-weather-metrics,
+  .wds-weather--dashboard .wds-weather-dashboard__stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

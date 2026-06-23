@@ -77,6 +77,83 @@
     return parts.length ? parts.join(" · ") : "None";
   }
 
+  function highLowLine(today) {
+    if (!today || !today.temperatureHigh || !today.temperatureLow) return "—";
+    return formatMeasurement(today.temperatureHigh, 0) + " / " + formatMeasurement(today.temperatureLow, 0);
+  }
+
+  function rainChanceLine(cur, today) {
+    var precip = cur && cur.precipitation;
+    if (precip && precip.probability != null) return precip.probability + "%";
+    if (today && today.precipitation && today.precipitation.probability != null) {
+      return today.precipitation.probability + "%";
+    }
+    return "—";
+  }
+
+  function renderLoading(kind) {
+    var label = kind === "sun-moon"
+      ? "Loading sun and moon…"
+      : "Loading current conditions…";
+    return (
+      '<div class="wds-weather wds-weather--loading" aria-busy="true">' +
+        '<p class="wds-weather-loading">' +
+          '<span class="wds-weather-loading__spinner" aria-hidden="true"></span>' +
+          escapeHtml(label) +
+        "</p>" +
+      "</div>"
+    );
+  }
+
+  function renderError(detail) {
+    return (
+      '<div class="wds-weather wds-weather--error" role="alert">' +
+        '<p class="wds-weather-error__title">Weather unavailable</p>' +
+        '<p class="wds-weather-error__detail">' +
+          escapeHtml(detail || "We could not load live conditions right now. Other dashboard cards still reflect regional field notes.") +
+        "</p>" +
+      "</div>"
+    );
+  }
+
+  function cardIdFromMount(el) {
+    var article = el && el.closest(".wce-dash-card");
+    if (!article || !article.id) return null;
+    return article.id.replace(/^dashboard-/, "");
+  }
+
+  function updateDashCardTag(root, cardId, state) {
+    if (!root || !cardId) return;
+    var card = root.querySelector("#dashboard-" + cardId);
+    if (!card) return;
+    var tag = card.querySelector(".wce-dash-card__tag");
+    if (!tag) return;
+    if (state === "live") {
+      tag.textContent = "Live";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--live";
+      return;
+    }
+    if (state === "loading") {
+      tag.textContent = "Loading";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--soon";
+      return;
+    }
+    if (state === "unavailable") {
+      tag.textContent = "Unavailable";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--unavailable";
+    }
+  }
+
+  function isLivePackage(pkg) {
+    return !!(pkg && pkg.meta && !pkg.meta.isPlaceholder);
+  }
+
+  function resolvePackage(options) {
+    var pkg = options.package ||
+      (options.intelligence && options.intelligence.weatherRef);
+    return isLivePackage(pkg) ? pkg : null;
+  }
+
   function iconClass(icon) {
     var key = (icon || "unknown").toLowerCase().replace(/\s+/g, "-");
     return "wds-weather-icon wds-weather-icon--" + escapeHtml(key);
@@ -101,11 +178,22 @@
           '<span class="' + iconClass(cond.icon) + '" aria-hidden="true"></span>' +
           '<div class="wds-weather-current__readout">' +
             '<p class="wds-weather-current__temp">' + escapeHtml(formatMeasurement(cur.temperature, 0)) + "</p>" +
-            (cur.feelsLike ? '<p class="wds-weather-current__feels">Feels like ' + escapeHtml(formatMeasurement(cur.feelsLike, 0)) + "</p>" : "") +
             '<p class="wds-weather-current__summary">' + escapeHtml(cond.summary || "—") + "</p>" +
           "</div>" +
         "</div>" +
       "</section>"
+    );
+  }
+
+  function renderDashboardStats(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    var today = (pkg && pkg.daily && pkg.daily[0]) || {};
+    return (
+      '<dl class="wds-weather-dashboard__stats" aria-label="Today at a glance">' +
+        renderMetric("Today", highLowLine(today), "High / low") +
+        renderMetric("Rain chance", rainChanceLine(cur, today)) +
+        renderMetric("Wind", windLine(cur.wind)) +
+      "</dl>"
     );
   }
 
@@ -209,8 +297,18 @@
     return (
       '<div class="wds-weather wds-weather--dashboard">' +
         renderCurrent(pkg) +
-        renderMetrics(pkg) +
+        renderDashboardStats(pkg) +
         renderSun(pkg) +
+        renderAttribution(pkg) +
+      "</div>"
+    );
+  }
+
+  function renderSunMoon(pkg) {
+    return (
+      '<div class="wds-weather wds-weather--sun-moon">' +
+        renderSun(pkg) +
+        '<p class="wds-weather-sun-moon__note">Moon phase data coming soon.</p>' +
         renderAttribution(pkg) +
       "</div>"
     );
@@ -231,30 +329,62 @@
 
   function buildRequest(options) {
     options = options || {};
-    var loc = options.location || {};
-    return {
-      lat: options.lat != null ? options.lat : loc.lat,
-      lng: options.lng != null ? options.lng : loc.lng,
-      units: options.units,
-      timezone: options.timezone || loc.timezone,
-      hints: options.hints || null
-    };
+    var req = W.resolveRequest
+      ? W.resolveRequest(options)
+      : {
+          lat: options.lat,
+          lng: options.lng,
+          units: options.units,
+          timezone: options.timezone,
+          hints: options.hints,
+          intelligence: options.intelligence || options.regionalIntelligence || null,
+          location: options.location || null,
+          fallback: false
+        };
+    if (options.fallback != null) req.fallback = options.fallback;
+    else if (req.fallback == null) req.fallback = false;
+    return req;
   }
 
   function mount(el, renderer, options) {
-    if (!el || !W) return Promise.resolve();
-    var request = buildRequest(options);
-    el.setAttribute("aria-busy", "true");
-    el.innerHTML = '<p class="wds-weather-loading">Loading weather…</p>';
-    return W.getForecast(request).then(function (pkg) {
+    if (!el || !W) return Promise.resolve(null);
+    options = options || {};
+    var root = options.root || el.closest("#main") || document;
+    var cardId = cardIdFromMount(el);
+    var kind = el.getAttribute("data-wds-weather-mount") || "dashboard";
+    var existing = resolvePackage(options);
+
+    function finish(pkg) {
+      if (!isLivePackage(pkg)) {
+        el.innerHTML = renderError();
+        el.removeAttribute("aria-busy");
+        if (cardId) updateDashCardTag(root, cardId, "unavailable");
+        return null;
+      }
       el.innerHTML = renderer(pkg);
       el.removeAttribute("aria-busy");
+      if (cardId) updateDashCardTag(root, cardId, "live");
       return pkg;
-    }).catch(function (err) {
-      el.innerHTML = '<p class="wds-weather-error">Weather unavailable.</p>';
+    }
+
+    if (existing) {
+      return Promise.resolve(finish(existing));
+    }
+
+    el.setAttribute("aria-busy", "true");
+    el.innerHTML = renderLoading(kind);
+    if (cardId) updateDashCardTag(root, cardId, "loading");
+
+    return W.getForecast(buildRequest(options)).then(finish).catch(function () {
+      el.innerHTML = renderError();
       el.removeAttribute("aria-busy");
-      throw err;
+      if (cardId) updateDashCardTag(root, cardId, "unavailable");
+      return null;
     });
+  }
+
+  function mountSunMoon(el, options) {
+    return mount(el, renderSunMoon, options);
   }
 
   function mountDashboard(el, options) {
@@ -273,6 +403,7 @@
     mounts.forEach(function (el) {
       var kind = el.getAttribute("data-wds-weather-mount") || "dashboard";
       if (kind === "panel") jobs.push(mountPanel(el, options));
+      else if (kind === "sun-moon") jobs.push(mountSunMoon(el, options));
       else jobs.push(mountDashboard(el, options));
     });
     return Promise.all(jobs);
@@ -282,15 +413,21 @@
   global.WDS.weatherUI = {
     escapeHtml: escapeHtml,
     formatMeasurement: formatMeasurement,
+    renderLoading: renderLoading,
+    renderError: renderError,
     renderCurrent: renderCurrent,
     renderSun: renderSun,
     renderMetrics: renderMetrics,
+    renderDashboardStats: renderDashboardStats,
     renderHourly: renderHourly,
     renderDaily: renderDaily,
     renderDashboard: renderDashboard,
+    renderSunMoon: renderSunMoon,
     renderPanel: renderPanel,
+    updateDashCardTag: updateDashCardTag,
     mount: mount,
     mountDashboard: mountDashboard,
+    mountSunMoon: mountSunMoon,
     mountPanel: mountPanel,
     mountAll: mountAll
   };

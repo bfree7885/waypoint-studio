@@ -99,100 +99,16 @@
   }
 
   function renderLocationBar(loc) {
-    if (!loc) return "";
-    var statusLine = "";
-    if (loc.isDefault) {
-      statusLine = '<strong>Using default region:</strong> Pike County, PA';
-    } else if (loc.source === "geo") {
-      statusLine = "<strong>Near</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode);
-      if (loc.distanceKm > 0) {
-        statusLine += ' <span class="wce-location-bar__dist">(~' + escapeHtml(String(loc.distanceKm)) + " km)</span>";
-      }
-    } else {
-      statusLine = "<strong>Region:</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.state);
-    }
-
-    var bundleNote = "";
-    if (loc.usingNearestBundle) {
-      bundleNote = '<p class="wce-location-bar__note">Field guide content from nearest available bundle — more counties coming.</p>';
-    }
-
-    return (
-      '<div class="wce-location-bar wce-location-bar--story" id="wds-location-bar" data-location-source="' + escapeHtml(loc.source) + '">' +
-        '<div class="wce-location-bar__main">' +
-          '<p class="wce-location-bar__status">' + statusLine + "</p>" +
-          '<div class="wce-location-bar__actions">' +
-            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-loc-retry">Use my location</button>' +
-            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-loc-change">Change region</button>' +
-          "</div>" +
-        "</div>" +
-        bundleNote +
-        '<form class="wce-location-bar__search wds-location-search is-hidden" id="wds-loc-change-form">' +
-          '<label class="wds-location-search__label" for="wds-loc-change-input">Search county</label>' +
-          '<div class="wds-location-search__row">' +
-            '<input class="wds-location-search__input" id="wds-loc-change-input" list="wds-loc-change-list" placeholder="County, ST" autocomplete="off">' +
-            '<datalist id="wds-loc-change-list"></datalist>' +
-            '<button type="submit" class="wds-btn wds-btn--secondary wds-btn--sm">Set</button>' +
-          "</div>" +
-        "</form>" +
-      "</div>"
-    );
+    if (!loc || !global.WDS || !global.WDS.location) return "";
+    return global.WDS.location.renderBar(loc);
   }
 
   function bindLocationBar(mount, options) {
-    if (!mount || !global.WDS || !global.WDS.location) return;
-    var bar = mount.querySelector("#wds-location-bar");
-    if (!bar) return;
-
-    var base = resolveEngineBase(options);
-    var changeBtn = bar.querySelector("#wds-loc-change");
-    var changeForm = bar.querySelector("#wds-loc-change-form");
-    var retryBtn = bar.querySelector("#wds-loc-retry");
-
-    if (changeBtn && changeForm) {
-      changeBtn.addEventListener("click", function () {
-        changeForm.classList.toggle("is-hidden");
-        global.WDS.location.loadIndex(base).then(function (index) {
-          var list = bar.querySelector("#wds-loc-change-list");
-          if (list) {
-            list.innerHTML = (index.regions || []).map(function (r) {
-              return '<option value="' + escapeHtml(r.name + ", " + r.stateCode) + '">';
-            }).join("");
-          }
-        });
-      });
-    }
-
-    if (changeForm) {
-      changeForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        var q = (bar.querySelector("#wds-loc-change-input").value || "").toLowerCase().trim();
-        global.WDS.location.loadIndex(base).then(function (index) {
-          var found = (index.regions || []).find(function (r) {
-            var label = (r.name + ", " + r.stateCode).toLowerCase();
-            return label === q || r.name.toLowerCase() === q;
-          });
-          if (!found) {
-            found = (index.regions || []).find(function (r) {
-              return r.name.toLowerCase().indexOf(q) !== -1;
-            });
-          }
-          if (found) {
-            var state = global.WDS.location.resolveManual(found.id, index);
-            global.WDS.location.writeStored(state);
-            if (options.onLocationChange) options.onLocationChange(state);
-          }
-        });
-      });
-    }
-
-    if (retryBtn) {
-      retryBtn.addEventListener("click", function () {
-        global.WDS.location.requestGeolocationAndSave(base).then(function (state) {
-          if (options.onLocationChange) options.onLocationChange(state);
-        });
-      });
-    }
+    if (!global.WDS || !global.WDS.location) return;
+    global.WDS.location.bindBar(mount, {
+      base: resolveEngineBase(options),
+      onLocationChange: options && options.onLocationChange
+    });
   }
 
   function renderDashCardItems(items) {
@@ -228,15 +144,36 @@
 
   function renderDashCard(card) {
     if (!card || !card.title) return "";
-    var isPlaceholder = card.source === "placeholder";
-    var tag = isPlaceholder
-      ? "Preview"
-      : (card.source === "live" ? "Live" : (card.sourceLabel || "Regional field snapshot"));
-    var tagClass = isPlaceholder ? " wce-dash-card__tag--soon" : (card.source === "live" ? " wce-dash-card__tag--live" : "");
+    var isLiveWeatherCard = card.id === "weather" || card.id === "sun-moon";
+    var isPlaceholder = !isLiveWeatherCard && card.source === "placeholder";
+    var tag = isLiveWeatherCard
+      ? "Loading"
+      : (isPlaceholder
+        ? "Preview"
+        : (card.source === "live" ? "Live" : (card.sourceLabel || "Regional field snapshot")));
+    var tagClass = isLiveWeatherCard || isPlaceholder
+      ? " wce-dash-card__tag--soon"
+      : (card.source === "live" ? " wce-dash-card__tag--live" : "");
 
     var content = "";
     if (card.id === "weather") {
-      content += '<div class="wds-weather-mount" data-wds-weather-mount="dashboard" aria-live="polite"></div>';
+      var weatherLoading = global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.renderLoading
+        ? global.WDS.weatherUI.renderLoading("dashboard")
+        : '<p class="wds-weather-loading">Loading current conditions…</p>';
+      content += (
+        '<div class="wds-weather-mount" data-wds-weather-mount="dashboard" aria-live="polite" aria-busy="true">' +
+        weatherLoading +
+        "</div>"
+      );
+    } else if (card.id === "sun-moon") {
+      var sunLoading = global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.renderLoading
+        ? global.WDS.weatherUI.renderLoading("sun-moon")
+        : '<p class="wds-weather-loading">Loading sun and moon…</p>';
+      content += (
+        '<div class="wds-weather-mount" data-wds-weather-mount="sun-moon" aria-live="polite" aria-busy="true">' +
+        sunLoading +
+        "</div>"
+      );
     } else if (isPlaceholder && card.placeholder) {
       content += '<p class="wce-dash-card__placeholder">' + escapeHtml(card.placeholder) + "</p>";
     }
@@ -280,6 +217,10 @@
     var visual = heroSrc
       ? '<img class="ws-home-hero__photo" src="' + escapeHtml(heroSrc) + '" alt="' + escapeHtml(w.heroAlt || w.title) + '">'
       : '<div class="ws-home-hero__placeholder" role="img" aria-label="' + escapeHtml(w.heroAlt || "Regional landscape placeholder") + '"></div>';
+    var loc = data._location;
+    var metaLine = global.WDS && global.WDS.location
+      ? global.WDS.location.formatHeroMeta(loc, region, data.weekOf)
+      : escapeHtml(region.name) + ", " + escapeHtml(region.state) + " · Week of " + escapeHtml(data.weekOf);
 
     return (
       '<section class="ws-home-hero ws-story-section ws-story-section--hero" id="home-hero" aria-labelledby="wce-hero-title">' +
@@ -289,7 +230,7 @@
           renderRegionTag(region, data.weekOf, data.season) +
           '<h1 class="ws-home-hero__title" id="wce-hero-title">' + escapeHtml(w.title) + "</h1>" +
           '<p class="ws-home-hero__deck">' + escapeHtml(w.summary) + "</p>" +
-          '<p class="ws-home-hero__meta">' + escapeHtml(region.name) + ", " + escapeHtml(region.state) + " · Week of " + escapeHtml(data.weekOf) + "</p>" +
+          '<p class="ws-home-hero__meta">' + escapeHtml(metaLine) + "</p>" +
         "</div>" +
       "</section>"
     );
@@ -324,6 +265,13 @@
     var w = data.thisWeekOutdoors;
     if (!w) return "";
     var cardsHtml = getOutdoorDashboardCards(data).map(renderDashCard).join("");
+    var happeningMount = (
+      '<div class="wce-happening-mount" data-wds-happening-now-mount aria-live="polite">' +
+        (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.renderLoading
+          ? global.WDS.happeningNow.renderLoading()
+          : '<aside class="wce-happening wce-happening--loading"><h3 class="wce-happening__label">Happening now</h3><p class="wce-happening__loading">Building regional field notes…</p></aside>') +
+      "</div>"
+    );
 
     return (
       '<section class="wce-dashboard wce-dashboard--slim ws-story-section ws-story-section--primary" id="this-week-outdoors" aria-labelledby="wce-two-title">' +
@@ -332,6 +280,7 @@
             '<h2 class="wce-dashboard__section-title" id="wce-two-title">This week outdoors</h2>' +
             '<p class="wce-dashboard__section-lead">Conditions, trails, and wildlife at a glance — confirm in the field.</p>' +
           "</header>" +
+          happeningMount +
           '<div class="wce-dash-board" aria-label="Outdoor conditions dashboard">' + cardsHtml + "</div>" +
         "</div>" +
       "</section>"
@@ -624,6 +573,17 @@
     return html;
   }
 
+  function mountHappeningNow(mount, options) {
+    function tryMount() {
+      if (global.WDS.happeningNow && global.WDS.happeningNow.mountAll) {
+        global.WDS.happeningNow.mountAll(mount, options);
+        return;
+      }
+      global.requestAnimationFrame(tryMount);
+    }
+    tryMount();
+  }
+
   function mountWeatherWidgets(mount, options) {
     function tryMount() {
       if (global.WDS.weatherUI && global.WDS.weatherUI.mountAll && global.WDS.weather) {
@@ -659,13 +619,26 @@
       mount.removeAttribute("aria-busy");
       bindLocationBar(mount, options);
       if (loc && loc.name) {
-        document.title = "This Week Outdoors · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";
+        var titleRegion = loc.isDefault
+          ? "Pike County, PA"
+          : loc.name + ", " + (loc.stateCode || loc.state);
+        document.title = "This Week Outdoors · " + titleRegion + " — Waypoint Studio";
       }
       var weatherHints = data.thisWeekOutdoors && data.thisWeekOutdoors.weather;
-      mountWeatherWidgets(mount, {
+      var weatherMountOptions = {
         location: loc,
-        hints: weatherHints
-      });
+        hints: weatherHints,
+        root: mount,
+        fallback: false
+      };
+      if (global.WDS.mapView && global.WDS.mapView.applyLocation) {
+        global.WDS.mapView.applyLocation(mount, loc, { base: base });
+      }
+      var happeningNowOptions = {
+        bundle: data,
+        location: loc,
+        intelligence: null
+      };
       if (global.WDS.regionalIntelligence && global.WDS.regionalIntelligence.get) {
         return global.WDS.regionalIntelligence.get({
           location: loc,
@@ -674,11 +647,19 @@
           weatherHints: weatherHints
         }).then(function (intel) {
           data.regionalIntelligence = intel;
+          weatherMountOptions.intelligence = intel;
+          happeningNowOptions.intelligence = intel;
+          mountWeatherWidgets(mount, weatherMountOptions);
+          mountHappeningNow(mount, happeningNowOptions);
           return data;
         }).catch(function () {
+          mountWeatherWidgets(mount, weatherMountOptions);
+          mountHappeningNow(mount, happeningNowOptions);
           return data;
         });
       }
+      mountWeatherWidgets(mount, weatherMountOptions);
+      mountHappeningNow(mount, happeningNowOptions);
       return data;
     });
   }

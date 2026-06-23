@@ -97,9 +97,11 @@
   }
 
   function bindMapViews() {
-    if (window.WDS && WDS.mapView) {
-      WDS.mapView.bindAll(document.getElementById("fc-season-table"));
-    }
+    var root = document.getElementById("fc-season-table");
+    if (!root || !window.WDS || !WDS.mapView) return;
+    var loc = state.conditions && state.conditions._location;
+    var mapOpts = window.ForageCastBoot ? { base: ForageCastBoot.ENGINE_BASE } : {};
+    WDS.mapView.bindAll(root, loc, mapOpts);
   }
 
   function renderMap(pred) {

@@ -49,24 +49,8 @@
 
   function renderLocationBar(data) {
     var loc = data._location;
-    if (!loc || !window.ForageCastLocation) return "";
-    return (
-      '<div class="fc-location-bar" id="fc-location-bar">' +
-        '<p class="fc-location-bar__status">' + escapeHtml(ForageCastLocation.locationNote(loc)) + "</p>" +
-        '<div class="fc-location-bar__actions">' +
-          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fc-loc-retry">Use my location</button>' +
-          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fc-loc-change">Change region</button>' +
-        "</div>" +
-        '<form class="fc-location-bar__search wds-location-search is-hidden" id="fc-loc-change-form">' +
-          '<label class="wds-location-search__label" for="fc-loc-input">Search county</label>' +
-          '<div class="wds-location-search__row">' +
-            '<input class="wds-location-search__input" id="fc-loc-input" list="fc-loc-list" placeholder="County, ST" autocomplete="off">' +
-            '<datalist id="fc-loc-list"></datalist>' +
-            '<button type="submit" class="wds-btn wds-btn--secondary wds-btn--sm">Set</button>' +
-          "</div>" +
-        "</form>" +
-      "</div>"
-    );
+    if (!loc || !window.WDS || !WDS.location) return "";
+    return WDS.location.renderBar(loc, { wrapperClass: "fc-location-bar" });
   }
 
   function renderRegionalStatus(data) {
@@ -148,10 +132,11 @@
     return "";
   }
 
-  function bindMapViews() {
-    if (window.WDS && WDS.mapView) {
-      WDS.mapView.bindAll(document.getElementById("foragecast-home"));
-    }
+  function bindMapViews(loc) {
+    var root = document.getElementById("foragecast-home");
+    if (!root || !window.WDS || !WDS.mapView) return;
+    var mapOpts = window.ForageCastBoot ? { base: ForageCastBoot.ENGINE_BASE } : {};
+    WDS.mapView.bindAll(root, loc, mapOpts);
   }
 
   function renderHeatMap(data) {
@@ -416,7 +401,7 @@
             loadHome(window.WDS && WDS.location ? WDS.location.getState() : null);
           });
         }
-        bindMapViews();
+        bindMapViews(loc);
         bindHeatZoneEvents(data);
       })
       .catch(function (err) {

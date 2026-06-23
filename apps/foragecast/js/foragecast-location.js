@@ -1,11 +1,10 @@
 /**
- * ForageCast — read shared Waypoint location (localStorage, no APIs)
+ * ForageCast — location helpers (delegates to WDS.location)
  */
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "wds-location-v1";
-  var DEFAULT = {
+  var FALLBACK = {
     source: "default",
     regionId: "pike-county-pa",
     name: "Pike County",
@@ -18,31 +17,37 @@
   };
 
   function read() {
+    if (global.WDS && global.WDS.location) {
+      return global.WDS.location.getState() || global.WDS.location.readStored();
+    }
     try {
-      var raw = localStorage.getItem(STORAGE_KEY);
+      var raw = localStorage.getItem("wds-location-v1");
       if (raw) return JSON.parse(raw);
     } catch (e) { /* ignore */ }
     return null;
   }
 
   function formatCoords(lat, lng) {
-    var latStr = (lat >= 0 ? lat.toFixed(2) + "°N" : Math.abs(lat).toFixed(2) + "°S");
-    var lngStr = (lng >= 0 ? lng.toFixed(2) + "°E" : Math.abs(lng).toFixed(2) + "°W");
-    return latStr + ", " + lngStr;
+    if (global.WDS && global.WDS.location) {
+      return global.WDS.location.formatCoords(lat, lng);
+    }
+    return "";
   }
 
   function locationNote(loc) {
-    if (!loc || loc.isDefault) {
-      return "Using default region: Pike County, PA";
+    if (global.WDS && global.WDS.location) {
+      return global.WDS.location.formatStatusLine(loc || read() || FALLBACK);
     }
-    if (loc.source === "geo") {
-      return "Near " + loc.name + ", " + loc.stateCode;
-    }
-    return loc.name + ", " + loc.state;
+    loc = loc || read() || FALLBACK;
+    if (loc.isDefault) return "Using default region: Pike County, PA";
+    return loc.name + ", " + (loc.stateCode || loc.state);
   }
 
   function applyToHomeData(data, loc) {
-    loc = loc || read() || DEFAULT;
+    loc = loc || read() || FALLBACK;
+    if (global.WDS && global.WDS.location) {
+      return global.WDS.location.applyToBundle(data, loc);
+    }
     if (data.region) {
       data.region.county = loc.name;
       data.region.state = loc.state;
@@ -53,19 +58,17 @@
       data.regionalStatus.weather.low = loc.weather.low;
       data.regionalStatus.weather.conditions = loc.weather.conditions;
     }
-    if (loc.seasonNote) {
-      data.season = loc.seasonNote;
-    }
+    if (loc.seasonNote) data.season = loc.seasonNote;
     data._location = loc;
     return data;
   }
 
   function applyToConditions(conditions, loc) {
-    loc = loc || read() || DEFAULT;
+    loc = loc || read() || FALLBACK;
     conditions.region = {
       county: loc.name,
       state: loc.state,
-      bioregion: loc.bioregion || conditions.region.bioregion
+      bioregion: loc.bioregion || (conditions.region && conditions.region.bioregion)
     };
     if (loc.weather) {
       conditions.labels = conditions.labels || {};
@@ -82,24 +85,22 @@
       conditions.inputs.temperature = Math.max(0.2, Math.min(0.95, conditions.inputs.temperature - delta * 0.08));
       conditions.inputs.soilMoisture = Math.max(0.2, Math.min(0.95, conditions.inputs.soilMoisture + delta * 0.05));
     }
-    if (loc.seasonNote) {
-      conditions.seasonNote = loc.seasonNote;
-    }
+    if (loc.seasonNote) conditions.seasonNote = loc.seasonNote;
     conditions._location = loc;
     return conditions;
   }
 
   function mapLabel(loc) {
-    loc = loc || read() || DEFAULT;
-    if (loc.source === "geo") {
-      return formatCoords(loc.lat, loc.lng) + " · schematic zones";
+    loc = loc || read() || FALLBACK;
+    if (loc.source === "geo" && global.WDS && global.WDS.location) {
+      return global.WDS.location.formatCoords(loc.lat, loc.lng) + " · schematic zones";
     }
     return loc.name + ", " + loc.stateCode + " · schematic zones";
   }
 
   global.ForageCastLocation = {
     read: read,
-    DEFAULT: DEFAULT,
+    DEFAULT: FALLBACK,
     formatCoords: formatCoords,
     locationNote: locationNote,
     applyToHomeData: applyToHomeData,
