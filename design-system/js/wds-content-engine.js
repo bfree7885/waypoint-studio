@@ -363,18 +363,22 @@
   function renderSeasonalWatch(data) {
     var sw = data.seasonalWatch;
     if (!sw) return "";
+    var RI = ri();
+    var region = data.region || {};
+    var regionName = region.name || "this region";
 
     function renderGroup(label, items) {
       if (!items || !items.length) return "";
-      var cards = items.map(function (it) {
+      var cards = items.filter(function (it) { return it && it.name; }).map(function (it) {
         return (
           '<div class="wce-seasonal-item">' +
             '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
             '<span class="wce-seasonal-item__status">' + escapeHtml(humanizeStatus(it.status)) + "</span>" +
-            '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" +
+            (it.note ? '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" : "") +
           "</div>"
         );
       }).join("");
+      if (!cards) return "";
       return (
         '<div class="wce-seasonal-group">' +
           '<h3 class="wce-seasonal-group__label">' + escapeHtml(label) + "</h3>" +
@@ -396,20 +400,22 @@
       renderGroup(groupLabelFor("Coming soon"), sw.comingSoon);
 
     if (!groups && sw.items) {
-      groups = '<div class="wce-seasonal-grid">' + (sw.items || []).map(function (it) {
+      groups = '<div class="wce-seasonal-grid">' + (sw.items || []).filter(function (it) { return it && it.name; }).map(function (it) {
         return (
           '<div class="wce-seasonal-item">' +
             '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
             '<span class="wce-seasonal-item__status">' + escapeHtml(humanizeStatus(it.status)) + "</span>" +
-            '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" +
+            (it.note ? '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" : "") +
           "</div>"
         );
       }).join("") + "</div>";
     }
 
+    if (!groups) return "";
+
     return (
       '<section class="' + storySection("story") + '" id="seasonal-watch" aria-labelledby="wce-sw-title">' +
-        blockHead("Phenology", "Seasonal watch", "What editors are watching this week in " + escapeHtml(data.region.name) + " — confirm outdoors.") +
+        blockHead("Phenology", "Seasonal watch", "What editors are watching this week in " + escapeHtml(regionName) + " — confirm outdoors.") +
         (RI && RI.renderFootnote
           ? RI.renderFootnote({ provenance: "educational", disclaimer: "Phenology watch · not survey data" })
           : "") +
@@ -422,6 +428,7 @@
   function renderResearchBrief(data) {
     var rb = data.researchBrief;
     if (!rb) return "";
+    var RI = ri();
     return (
       '<section class="' + storySection("quiet") + '" id="research-brief" aria-labelledby="wce-rb-title">' +
         blockHead("Research", "Research brief", "Plain-language science with local application — check source and citations.", "quiet") +
@@ -601,6 +608,7 @@
   function renderConservationUpdate(data) {
     var cu = data.conservationUpdate;
     if (!cu) return "";
+    var RI = ri();
     return (
       '<section class="' + storySection("story") + '" id="conservation-update" aria-labelledby="wce-cu-title">' +
         blockHead("Stewardship", "Conservation update", "Local stewardship note — verify project details with official sources.") +
