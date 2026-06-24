@@ -1185,3 +1185,442 @@
   border: 1px solid var(--wds-border-subtle);
   border-radius: var(--wds-radius-md);
 }
+
+/* ——— Dashboard V3: living outdoor intelligence ——— */
+.wce-platform-mission--compact {
+  padding-block: var(--wds-space-5);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.wce-platform-mission--compact .wce-platform-mission__lead {
+  font-size: var(--wds-text-md);
+}
+
+.wce-dashboard--living {
+  margin-top: 0;
+  padding-top: clamp(2rem, 5vw, 3rem);
+}
+
+.wce-dashboard__shell {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background:
+    linear-gradient(165deg, rgba(26, 38, 56, 0.55) 0%, rgba(12, 18, 28, 0.35) 40%, transparent 100%);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-xl);
+  box-shadow: var(--wds-shadow-sm);
+}
+
+.wce-dashboard__masthead--inline {
+  margin-bottom: var(--wds-space-6);
+}
+
+.wce-dashboard__kicker {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wds-lime);
+}
+
+.wce-dashboard__season {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.wce-dashboard__outdoor-q {
+  margin: var(--wds-space-4) 0 0;
+  max-width: 42rem;
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  line-height: var(--wds-leading-snug);
+  color: var(--wds-text);
+}
+
+.wce-dashboard__layout {
+  display: grid;
+  gap: var(--wds-space-5);
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .wce-dashboard__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wce-dashboard__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-4);
+}
+
+.wce-dashboard__weekend {
+  padding: var(--wds-space-4) var(--wds-space-5);
+  background: var(--wds-accent-dim);
+  border-left: 2px solid var(--wds-lime);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-dashboard__weekend-label {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-lime);
+}
+
+.wce-dashboard__weekend-text,
+.wce-dashboard__weekend-challenge {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-dashboard__weekend-challenge {
+  margin-top: var(--wds-space-3);
+}
+
+.wce-happening {
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wce-investigation--premium {
+  max-width: 48rem;
+}
+
+.wce-investigation-section .wce-investigation {
+  margin-top: var(--wds-space-2);
+}
+
+/* Seasonal watch educational cards */
+.wce-watch-grid {
+  display: grid;
+  gap: var(--wds-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.wce-watch-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-top: 2px solid var(--wds-purple-bright);
+  border-radius: var(--wds-radius-lg);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.wce-watch-card:hover {
+  border-color: var(--wds-border);
+}
+
+.wce-watch-card__head {
+  margin-bottom: var(--wds-space-4);
+  padding-bottom: var(--wds-space-3);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.wce-watch-card__name {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+}
+
+.wce-watch-card__status {
+  display: inline-block;
+  margin-top: var(--wds-space-2);
+  padding: 0.15rem 0.5rem;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-sm);
+}
+
+.wce-watch-card__row + .wce-watch-card__row {
+  margin-top: var(--wds-space-3);
+}
+
+.wce-watch-card__row-label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wce-watch-card__row-text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-seasonal-challenge {
+  margin-top: var(--wds-space-6);
+  max-width: 42rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+/* Field notes journal */
+.wce-field-notes--journal {
+  display: grid;
+  gap: var(--wds-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.wce-field-note--journal {
+  padding: var(--wds-space-6);
+  background: var(--wds-journal-bg, var(--wds-inset));
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-warm);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wce-field-note__facts {
+  margin: var(--wds-space-4) 0 0;
+  padding: var(--wds-space-3) var(--wds-space-4);
+  list-style: none;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: var(--wds-radius-md);
+  font-size: var(--wds-text-xs);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-tertiary);
+}
+
+.wce-field-note__facts li + li {
+  margin-top: var(--wds-space-2);
+}
+
+.wce-field-note__try-label {
+  display: block;
+  margin-bottom: var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-lime);
+}
+
+/* Conservation V3 */
+.wce-conservation--v3 {
+  max-width: 44rem;
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-left: 3px solid var(--wds-accent);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wce-conservation__title {
+  margin: var(--wds-space-2) 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.wce-conservation__habitat,
+.wce-conservation__stewardship,
+.wce-conservation__lands,
+.wce-conservation__summary {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-conservation__action {
+  margin-top: var(--wds-space-4);
+  padding: var(--wds-space-4);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-md);
+}
+
+.wce-conservation__action-label {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+/* Research brief V3 */
+.ws-research-card--v3 {
+  max-width: 44rem;
+  padding: var(--wds-space-6);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.ws-research-card__labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-bottom: var(--wds-space-3);
+}
+
+.ws-research-card__confidence {
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.ws-research-card__local {
+  margin-top: var(--wds-space-4);
+  padding: var(--wds-space-4);
+  border-left: 2px solid var(--wds-lime);
+  background: var(--wds-inset);
+  border-radius: 0 var(--wds-radius-md) var(--wds-radius-md) 0;
+}
+
+.ws-research-card__local-label {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wds-text-muted);
+}
+
+.ws-research-card__source-block {
+  margin-top: var(--wds-space-5);
+  padding-top: var(--wds-space-4);
+  border-top: 1px dashed var(--wds-border-subtle);
+}
+
+.ws-research-card__source-label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  color: var(--wds-text-muted);
+}
+
+/* Photo gallery V3 */
+.wce-photo-section__title {
+  margin: 0 0 var(--wds-space-5);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.wce-essay-frames--gallery {
+  display: grid;
+  gap: var(--wds-space-4);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.wce-essay-frame--lead {
+  grid-column: span 7;
+}
+
+.wce-essay-frame:not(.wce-essay-frame--lead) {
+  grid-column: span 5;
+}
+
+@media (max-width: 768px) {
+  .wce-essay-frame--lead,
+  .wce-essay-frame:not(.wce-essay-frame--lead) {
+    grid-column: span 12;
+  }
+}
+
+.wce-essay-frame__slot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 14rem;
+  padding: var(--wds-space-4);
+  background:
+    linear-gradient(165deg, rgba(20, 32, 28, 0.85) 0%, rgba(12, 18, 28, 0.95) 100%);
+  border: 1px dashed var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  aspect-ratio: auto;
+}
+
+.wce-essay-frame--lead .wce-essay-frame__slot {
+  min-height: 20rem;
+}
+
+.wce-essay-frame__index {
+  position: absolute;
+  top: var(--wds-space-3);
+  left: var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--wds-text-muted);
+}
+
+.wce-essay-frame__caption {
+  padding: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wce-photo-section__challenge {
+  margin-top: var(--wds-space-5);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+/* Video learning */
+.ws-video-feature--learning {
+  display: grid;
+  gap: var(--wds-space-5);
+  grid-template-columns: minmax(200px, 1.2fr) 1fr;
+  align-items: start;
+  max-width: 44rem;
+}
+
+@media (max-width: 640px) {
+  .ws-video-feature--learning {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ws-video-feature__category {
+  position: absolute;
+  top: var(--wds-space-3);
+  left: var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.ws-video-feature__duration {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.ws-video-feature__assignment {
+  margin-top: var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}

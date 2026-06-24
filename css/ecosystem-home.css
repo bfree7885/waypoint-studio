@@ -543,6 +543,39 @@
   --ws-exp-accent: #6b8fad;
 }
 
+.ws-experience-card--studio-dashboard {
+  --ws-exp-accent: var(--wds-warm);
+}
+
+.ws-experience-card--instrument .ws-experience-card__spec {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+}
+
+.ws-experience-card--instrument .ws-experience-card__spec dt {
+  margin: var(--wds-space-3) 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.ws-experience-card--instrument .ws-experience-card__spec dd {
+  margin: 0;
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.ws-experience-card__future {
+  margin: var(--wds-space-3) 0 0;
+  padding-top: var(--wds-space-3);
+  border-top: 1px dashed var(--wds-border-subtle);
+  font-size: var(--wds-text-xs);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-tertiary);
+}
+
 .ws-experience-card--foragecast.is-featured {
   --ws-exp-glow: rgba(200, 240, 85, 0.06);
 }

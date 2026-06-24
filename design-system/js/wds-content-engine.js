@@ -14,10 +14,11 @@
     "home-hero",
     "platform-mission",
     "this-week-outdoors",
+    "weekend-investigation",
     "foragecast",
     "seasonal-watch",
-    "regional-field-notes",
     "species-spotlight",
+    "regional-field-notes",
     "conservation-update",
     "research-brief",
     "experiences",
@@ -235,15 +236,19 @@
     );
   }
 
+  function riFootnote(ctx) {
+    var RI = ri();
+    return RI && RI.renderFootnote ? RI.renderFootnote(ctx) : "";
+  }
+
   function renderPlatformMission(data) {
     var mission = data.platformMission;
     if (!mission || !mission.lead) return "";
     return (
-      '<section class="ws-block ws-block--mission wce-platform-mission" id="platform-mission" aria-labelledby="wce-mission-title">' +
+      '<section class="ws-block ws-block--mission wce-platform-mission wce-platform-mission--compact" id="platform-mission" aria-labelledby="wce-mission-title">' +
         '<h2 class="wds-sr-only" id="wce-mission-title">Waypoint Studio mission</h2>' +
         '<p class="wce-platform-mission__lead">' + escapeHtml(mission.lead) + "</p>" +
         (mission.pillars ? '<p class="wce-platform-mission__pillars">' + escapeHtml(mission.pillars) + "</p>" : "") +
-        (mission.honest ? '<p class="wce-platform-mission__honest">' + escapeHtml(mission.honest) + "</p>" : "") +
       "</section>"
     );
   }
@@ -316,17 +321,60 @@
           : '<aside class="wce-happening wce-happening--loading"><h3 class="wce-happening__label">Field cues this week</h3><p class="wce-happening__loading">Building regional field notes…</p></aside>') +
       "</div>"
     );
+    var outdoorQ = w.outdoorQuestion || "What is changing outside this week — and where can you investigate with your own eyes?";
+    var season = data.season ? escapeHtml(data.season) : "";
+    var weekend = w.weekendPrompt
+      ? '<div class="wce-dashboard__weekend">' +
+          '<p class="wce-dashboard__weekend-label">This weekend</p>' +
+          '<p class="wce-dashboard__weekend-text">' + escapeHtml(w.weekendPrompt) + "</p>" +
+          (w.outdoorChallenge ? '<p class="wce-dashboard__weekend-challenge"><strong>Challenge:</strong> ' + escapeHtml(w.outdoorChallenge) + "</p>" : "") +
+        "</div>"
+      : "";
 
     return (
-      '<section class="wce-dashboard wce-dashboard--slim ws-story-section ws-story-section--primary" id="this-week-outdoors" aria-labelledby="wce-two-title">' +
-        '<div class="wce-dashboard__body">' +
-          '<header class="wce-dashboard__intro">' +
+      '<section class="wce-dashboard wce-dashboard--living ws-story-section ws-story-section--primary" id="this-week-outdoors" aria-labelledby="wce-two-title">' +
+        '<div class="wce-dashboard__shell">' +
+          '<header class="wce-dashboard__masthead wce-dashboard__masthead--inline">' +
+            '<p class="wce-dashboard__kicker">Living outdoor dashboard</p>' +
             '<h2 class="wce-dashboard__section-title" id="wce-two-title">This week outdoors</h2>' +
-            '<p class="wce-dashboard__section-lead">Editorial conditions, trails, and wildlife notes — confirm in the field.</p>' +
+            (season ? '<p class="wce-dashboard__season">' + season + " · Pike County Preview</p>" : "") +
+            '<p class="wce-dashboard__outdoor-q">' + escapeHtml(outdoorQ) + "</p>" +
+            (w.summary ? '<p class="wce-dashboard__summary">' + escapeHtml(w.summary) + "</p>" : "") +
           "</header>" +
-          happeningMount +
-          '<div class="wce-dash-board" aria-label="Outdoor conditions dashboard">' + cardsHtml + "</div>" +
+          '<div class="wce-dashboard__layout">' +
+            '<div class="wce-dashboard__aside">' + happeningMount + weekend + "</div>" +
+            '<div class="wce-dash-board" aria-label="Outdoor conditions dashboard">' + cardsHtml + "</div>" +
+          "</div>" +
+          riFootnote({ provenance: "educational", disclaimer: "Editorial field snapshot — confirm weather, trails, and species outdoors" }) +
         "</div>" +
+      "</section>"
+    );
+  }
+
+  function renderWeekendInvestigation(data) {
+    var inv = data.weekendFieldInvestigation;
+    if (!inv || !inv.title) return "";
+    var steps = (inv.steps || []).map(function (step) {
+      return "<li>" + escapeHtml(step) + "</li>";
+    }).join("");
+    var materials = (inv.materials || []).length
+      ? "<p class=\"wce-investigation__materials\"><strong>Bring:</strong> " + escapeHtml(inv.materials.join(", ")) + "</p>"
+      : "";
+
+    return (
+      '<section class="' + storySection("feature", "wce-investigation-section") + '" id="weekend-investigation" aria-labelledby="wce-inv-title">' +
+        blockHead("Field lab", "Weekend investigation", "A structured reason to go outside — observe carefully, record evidence, reflect.", "minimal") +
+        '<article class="wce-investigation wce-investigation--premium">' +
+          '<p class="wce-investigation__question" id="wce-inv-title">' + escapeHtml(inv.drivingQuestion || inv.title) + "</p>" +
+          '<div class="wce-investigation__meta">' +
+            (inv.when ? "<span><strong>When:</strong> " + escapeHtml(inv.when) + "</span>" : "") +
+            (inv.duration ? "<span><strong>Duration:</strong> " + escapeHtml(inv.duration) + "</span>" : "") +
+            (inv.place ? "<span><strong>Where:</strong> " + escapeHtml(inv.place) + "</span>" : "") +
+          "</div>" +
+          materials +
+          (steps ? '<ol class="wce-investigation__steps">' + steps + "</ol>" : "") +
+          renderMeta(inv) +
+        "</article>" +
       "</section>"
     );
   }
@@ -339,88 +387,106 @@
       ? RI.renderBadge("educational", { tag: "span", className: "wce-field-note__prov" })
       : "";
     var list = notes.map(function (n) {
+      var facts = (n.supportingFacts || []).map(function (f) {
+        return "<li>" + escapeHtml(f) + "</li>";
+      }).join("");
       return (
-        '<article class="wce-field-note">' +
+        '<article class="wce-field-note wce-field-note--journal">' +
           '<div class="wce-field-note__meta">' +
             provBadge +
-            "<time>" + escapeHtml(n.date) + "</time>" +
-            '<span class="wce-scope">' + escapeHtml(n.scope) + "</span>" +
+            "<time datetime=\"" + escapeHtml(n.date) + "\">" + escapeHtml(n.date) + "</time>" +
+            '<span class="wce-scope">' + escapeHtml(n.scope || "") + "</span>" +
           "</div>" +
           '<h3 class="wce-field-note__title">' + escapeHtml(n.title) + "</h3>" +
           '<p class="wce-field-note__body">' + escapeHtml(n.body) + "</p>" +
-          (n.tryThis ? '<p class="wce-field-note__try">Try this: ' + escapeHtml(n.tryThis) + "</p>" : "") +
+          (facts ? '<ul class="wce-field-note__facts">' + facts + "</ul>" : "") +
+          (n.tryThis ? '<p class="wce-field-note__try"><span class="wce-field-note__try-label">Try this</span>' + escapeHtml(n.tryThis) + "</p>" : "") +
         "</article>"
       );
     }).join("");
     return (
       '<section class="' + storySection("story") + '" id="regional-field-notes" aria-labelledby="wce-rfn-title">' +
-        blockHead("Local", "Regional field notes", "Editorial dispatches — not verified survey data or live detection.") +
-        '<div class="wce-field-notes">' + list + "</div>" +
+        blockHead("Journal", "Regional field notes", "Dispatches from the field — editorial observations to test outdoors, not verified survey data.", "minimal") +
+        '<div class="wce-field-notes wce-field-notes--journal">' + list + "</div>" +
       "</section>"
+    );
+  }
+
+  function renderSeasonalWatchCard(card) {
+    if (!card || !card.name) return "";
+    var status = card.status ? '<span class="wce-watch-card__status">' + escapeHtml(humanizeStatus(card.status)) + "</span>" : "";
+    function eduRow(label, text) {
+      if (!text) return "";
+      return (
+        '<div class="wce-watch-card__row">' +
+          '<p class="wce-watch-card__row-label">' + escapeHtml(label) + "</p>" +
+          '<p class="wce-watch-card__row-text">' + escapeHtml(text) + "</p>" +
+        "</div>"
+      );
+    }
+    return (
+      '<article class="wce-watch-card">' +
+        '<header class="wce-watch-card__head">' +
+          '<h3 class="wce-watch-card__name">' + escapeHtml(card.name) + "</h3>" +
+          status +
+        "</header>" +
+        '<div class="wce-watch-card__body">' +
+          eduRow("Why this matters", card.whyMatters || card.note) +
+          eduRow("What to watch for", card.watchFor) +
+          eduRow("Ecological change", card.ecology || card.ecologicalChange) +
+          eduRow("Weather connection", card.weatherLink || card.weatherInfluence) +
+          eduRow("Observe ethically", card.observeEthically) +
+        "</div>" +
+      "</article>"
     );
   }
 
   function renderSeasonalWatch(data) {
     var sw = data.seasonalWatch;
     if (!sw) return "";
-    var RI = ri();
     var region = data.region || {};
     var regionName = region.name || "this region";
+    var html = "";
 
-    function renderGroup(label, items) {
-      if (!items || !items.length) return "";
-      var cards = items.filter(function (it) { return it && it.name; }).map(function (it) {
+    if (sw.watchCards && sw.watchCards.length) {
+      html = '<div class="wce-watch-grid">' +
+        sw.watchCards.filter(function (c) { return c && c.name; }).map(renderSeasonalWatchCard).join("") +
+        "</div>";
+    } else {
+      var RI = ri();
+      function renderGroup(label, items) {
+        if (!items || !items.length) return "";
+        var cards = items.filter(function (it) { return it && it.name; }).map(function (it) {
+          return renderSeasonalWatchCard({
+            name: it.name,
+            status: it.status,
+            note: it.note,
+            whyMatters: it.note
+          });
+        }).join("");
+        if (!cards) return "";
         return (
-          '<div class="wce-seasonal-item">' +
-            '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
-            '<span class="wce-seasonal-item__status">' + escapeHtml(humanizeStatus(it.status)) + "</span>" +
-            (it.note ? '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" : "") +
+          '<div class="wce-seasonal-group">' +
+            '<h3 class="wce-seasonal-group__label">' + escapeHtml(label) + "</h3>" +
+            '<div class="wce-watch-grid">' + cards + "</div>" +
           "</div>"
         );
-      }).join("");
-      if (!cards) return "";
-      return (
-        '<div class="wce-seasonal-group">' +
-          '<h3 class="wce-seasonal-group__label">' + escapeHtml(label) + "</h3>" +
-          '<div class="wce-seasonal-group__items">' + cards + "</div>" +
-        "</div>"
-      );
+      }
+      html =
+        renderGroup("Likely this week", sw.activeNow) +
+        renderGroup("May be ending", sw.ending) +
+        renderGroup("On watch", sw.comingSoon);
     }
 
-    function groupLabelFor(text) {
-      if (text === "Active now") return "Likely this week";
-      if (text === "Ending") return "May be ending";
-      if (text === "Coming soon") return "On watch";
-      return text;
-    }
-
-    var groups =
-      renderGroup(groupLabelFor("Active now"), sw.activeNow) +
-      renderGroup(groupLabelFor("Ending"), sw.ending) +
-      renderGroup(groupLabelFor("Coming soon"), sw.comingSoon);
-
-    if (!groups && sw.items) {
-      groups = '<div class="wce-seasonal-grid">' + (sw.items || []).filter(function (it) { return it && it.name; }).map(function (it) {
-        return (
-          '<div class="wce-seasonal-item">' +
-            '<p class="wce-seasonal-item__name">' + escapeHtml(it.name) + "</p>" +
-            '<span class="wce-seasonal-item__status">' + escapeHtml(humanizeStatus(it.status)) + "</span>" +
-            (it.note ? '<p class="wce-seasonal-item__note">' + escapeHtml(it.note) + "</p>" : "") +
-          "</div>"
-        );
-      }).join("") + "</div>";
-    }
-
-    if (!groups) return "";
+    if (!html) return "";
 
     return (
-      '<section class="' + storySection("story") + '" id="seasonal-watch" aria-labelledby="wce-sw-title">' +
-        blockHead("Phenology", "Seasonal watch", "What editors are watching this week in " + escapeHtml(regionName) + " — confirm outdoors.") +
-        (RI && RI.renderFootnote
-          ? RI.renderFootnote({ provenance: "educational", disclaimer: "Phenology watch · not survey data" })
-          : "") +
-        '<h3 class="wds-sr-only" id="wce-sw-title">' + escapeHtml(sw.title) + "</h3>" +
-        '<div class="wce-seasonal-groups">' + groups + "</div>" +
+      '<section class="' + storySection("story", "wce-seasonal-section") + '" id="seasonal-watch" aria-labelledby="wce-sw-title">' +
+        blockHead("Phenology", "Seasonal watch", "What is changing in " + escapeHtml(regionName) + " — and why it matters for your next walk.", "minimal") +
+        riFootnote({ provenance: "educational", disclaimer: "Phenology watch · editorial estimates, not survey data" }) +
+        '<h3 class="wds-sr-only" id="wce-sw-title">' + escapeHtml(sw.title || "Seasonal watch") + "</h3>" +
+        html +
+        (sw.outdoorChallenge ? '<p class="wce-seasonal-challenge"><strong>Go outside:</strong> ' + escapeHtml(sw.outdoorChallenge) + "</p>" : "") +
       "</section>"
     );
   }
@@ -428,22 +494,34 @@
   function renderResearchBrief(data) {
     var rb = data.researchBrief;
     if (!rb) return "";
-    var RI = ri();
+    var isPlaceholder = rb.source && /placeholder/i.test(String(rb.source));
+    var confidence = rb.confidence || (isPlaceholder ? "Editorial summary · source pending" : "Educational summary");
     return (
       '<section class="' + storySection("quiet") + '" id="research-brief" aria-labelledby="wce-rb-title">' +
-        blockHead("Research", "Research brief", "Plain-language science with local application — check source and citations.", "quiet") +
-        (RI && RI.renderFootnote
-          ? RI.renderFootnote({
-              provenance: rb.source && /placeholder/i.test(rb.source) ? "placeholder" : "educational",
-              disclaimer: rb.source || "Editorial summary"
-            }) + (rb.source && RI.renderCitation ? RI.renderCitation({ label: rb.source }, { prefix: "" }) : "")
-          : "") +
-        '<article class="ws-research-card">' +
-          '<span class="wce-scope">' + escapeHtml(rb.scope) + "</span>" +
-          '<h3 class="wds-display-md" id="wce-rb-title" style="margin:var(--wds-space-2) 0;">' + escapeHtml(rb.title) + "</h3>" +
-          '<p class="wds-body">' + escapeHtml(rb.summary) + "</p>" +
-          '<p class="wds-body" style="margin-top:var(--wds-space-3);"><strong>Local:</strong> ' + escapeHtml(rb.localApplication) + "</p>" +
-          (rb.source ? '<p class="ws-research-card__source">' + escapeHtml(rb.source) + "</p>" : "") +
+        blockHead("Research", "Research brief", "Plain-language science with local application — uncertainty stated honestly.", "quiet") +
+        '<article class="ws-research-card ws-research-card--v3">' +
+          '<div class="ws-research-card__labels">' +
+            '<span class="ws-research-card__confidence">' + escapeHtml(confidence) + "</span>" +
+            '<span class="wce-scope">' + escapeHtml(rb.scope || "") + "</span>" +
+          "</div>" +
+          riFootnote({
+            provenance: isPlaceholder ? "placeholder" : "educational",
+            disclaimer: rb.uncertainty || "Editorial interpretation — verify with primary sources when available"
+          }) +
+          '<h3 class="wds-display-md ws-research-card__title" id="wce-rb-title">' + escapeHtml(rb.title) + "</h3>" +
+          '<p class="wds-body ws-research-card__summary">' + escapeHtml(rb.summary) + "</p>" +
+          (rb.localApplication
+            ? '<div class="ws-research-card__local">' +
+                '<p class="ws-research-card__local-label">Apply locally</p>' +
+                '<p class="wds-body">' + escapeHtml(rb.localApplication) + "</p>" +
+              "</div>"
+            : "") +
+          (rb.source
+            ? '<footer class="ws-research-card__source-block">' +
+                '<p class="ws-research-card__source-label">Source (future citation slot)</p>' +
+                '<p class="ws-research-card__source">' + escapeHtml(rb.source) + "</p>" +
+              "</footer>"
+            : "") +
         "</article>" +
       "</section>"
     );
@@ -452,19 +530,22 @@
   function renderFeaturedVideo(data) {
     var v = data.featuredVideo;
     if (!v) return "";
+    var category = v.category || "Field learning";
     return (
       '<section class="' + storySection("quiet") + '" id="featured-video" aria-labelledby="wce-vid-title">' +
-        blockHead("Videos", "Featured videos", "Educational field lessons — click to play, never autoplay.", "quiet") +
-        '<div class="ws-video-feature">' +
-          '<div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder">' +
+        blockHead("Learn", "Field video", "Educational lessons — click to play when available, never autoplay.", "quiet") +
+        '<article class="ws-video-feature ws-video-feature--learning">' +
+          '<div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder — ' + escapeHtml(v.title) + '">' +
+            '<span class="ws-video-feature__category">' + escapeHtml(category) + "</span>" +
             '<span class="ws-video-feature__play" aria-hidden="true">▶</span>' +
-            '<span class="ws-media-slot__label">' + escapeHtml(v.durationMinutes) + " min · " + escapeHtml(v.scope) + " · placeholder</span>" +
+            '<span class="ws-video-feature__duration">' + escapeHtml(String(v.durationMinutes)) + " min · placeholder</span>" +
           "</div>" +
-          "<div>" +
-            '<h3 class="wds-display-md" id="wce-vid-title" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(v.title) + "</h3>" +
+          '<div class="ws-video-feature__body">' +
+            '<h3 class="wds-display-md ws-video-feature__title" id="wce-vid-title">' + escapeHtml(v.title) + "</h3>" +
             '<p class="wds-body">' + escapeHtml(v.summary) + "</p>" +
+            (v.outdoorChallenge ? '<p class="ws-video-feature__assignment"><strong>After watching:</strong> ' + escapeHtml(v.outdoorChallenge) + "</p>" : "") +
           "</div>" +
-        "</div>" +
+        "</article>" +
       "</section>"
     );
   }
@@ -472,22 +553,24 @@
   function renderPhotoEssay(data) {
     var pe = data.photoEssay;
     if (!pe) return "";
-    var frames = (pe.frames || []).map(function (f) {
+    var frames = (pe.frames || []).map(function (f, i) {
+      var featured = i === 0 ? " wce-essay-frame--lead" : "";
       return (
-        '<figure class="wce-essay-frame">' +
-          '<div class="ws-media-slot wce-essay-frame__slot" role="img" aria-label="Photo placeholder">' +
-            '<span class="ws-media-slot__label">Photo essay frame · placeholder</span>' +
-            '<p class="ws-media-slot__hint">' + escapeHtml(f.caption) + "</p>" +
+        '<figure class="wce-essay-frame' + featured + '">' +
+          '<div class="wce-essay-frame__slot" role="img" aria-label="' + escapeHtml(f.caption || "Regional photograph placeholder") + '">' +
+            '<span class="wce-essay-frame__index">' + String(i + 1).padStart(2, "0") + "</span>" +
+            '<span class="ws-media-slot__label">Regional photograph · placeholder</span>' +
           "</div>" +
-          "<figcaption>" + escapeHtml(f.caption) + "</figcaption>" +
+          "<figcaption class=\"wce-essay-frame__caption\">" + escapeHtml(f.caption) + "</figcaption>" +
         "</figure>"
       );
     }).join("");
     return (
-      '<section class="' + storySection("quiet") + '" id="photo-essay" aria-labelledby="wce-pe-title">' +
-        blockHead("Photos", "Regional photographs", pe.summary, "quiet") +
-        '<h3 class="wds-display-md" id="wce-pe-title" style="margin:0 0 var(--wds-space-4);">' + escapeHtml(pe.title) + "</h3>" +
-        '<div class="wce-essay-frames">' + frames + "</div>" +
+      '<section class="' + storySection("quiet", "wce-photo-section") + '" id="photo-essay" aria-labelledby="wce-pe-title">' +
+        blockHead("Evidence", "Regional photographs", pe.summary || "Frames from the field — observation, memory, and place.", "quiet") +
+        '<h3 class="wce-photo-section__title" id="wce-pe-title">' + escapeHtml(pe.title) + "</h3>" +
+        '<div class="wce-essay-frames wce-essay-frames--gallery">' + frames + "</div>" +
+        (pe.outdoorChallenge ? '<p class="wce-photo-section__challenge"><strong>Your turn:</strong> ' + escapeHtml(pe.outdoorChallenge) + "</p>" : "") +
       "</section>"
     );
   }
@@ -507,7 +590,7 @@
 
     return (
       '<section class="' + storySection("feature", "ws-block--spotlight") + '" id="species-spotlight" aria-labelledby="wss-species-name">' +
-        blockHead("Species", "Species spotlight", "Field-guide depth for one species — seasonal education, not live detection.", "minimal") +
+        blockHead("Species", "Species spotlight", "One species, deeply — identification, ecology, timing, and ethical observation.", "minimal") +
         moduleHtml +
       "</section>"
     );
@@ -529,17 +612,23 @@
       }
       var mission = exp.mission || exp.learnNow || exp.summary || "";
       var educationalValue = exp.educationalValue || exp.desc || "";
+      var whatItDoes = exp.whatItDoes || "";
+      var whoItHelps = exp.whoItHelps || "";
+      var futurePlanned = exp.futurePlanned || "";
 
       var ctaLabel = exp.role === "dashboard" ? "Open dashboard" : ("Open " + exp.name);
       return (
-        '<article class="ws-experience-card ws-experience-card--' + escapeHtml(slug) + statusClass + '">' +
+        '<article class="ws-experience-card ws-experience-card--instrument ws-experience-card--' + escapeHtml(slug) + statusClass + '">' +
           '<header class="ws-experience-card__head">' +
             '<span class="ws-experience-card__status">' + escapeHtml(statusLabel) + "</span>" +
             '<h3 class="ws-experience-card__title">' + escapeHtml(exp.name) + "</h3>" +
           "</header>" +
           '<div class="ws-experience-card__body">' +
             (mission ? '<p class="ws-experience-card__mission">' + escapeHtml(mission) + "</p>" : "") +
+            (whatItDoes ? '<dl class="ws-experience-card__spec"><dt>What it does</dt><dd>' + escapeHtml(whatItDoes) + "</dd></dl>" : "") +
+            (whoItHelps ? '<dl class="ws-experience-card__spec"><dt>Who it helps</dt><dd>' + escapeHtml(whoItHelps) + "</dd></dl>" : "") +
             (educationalValue ? '<p class="ws-experience-card__value">' + escapeHtml(educationalValue) + "</p>" : "") +
+            (futurePlanned ? '<p class="ws-experience-card__future"><strong>Building toward:</strong> ' + escapeHtml(futurePlanned) + "</p>" : "") +
           "</div>" +
           '<footer class="ws-experience-card__foot">' +
             '<a class="wds-btn wds-btn--secondary wds-btn--sm ws-experience-card__cta" href="' + escapeHtml(exp.href) + '" aria-label="' + escapeHtml(ctaLabel) + '">' + escapeHtml(ctaLabel) + "</a>" +
@@ -608,18 +697,23 @@
   function renderConservationUpdate(data) {
     var cu = data.conservationUpdate;
     if (!cu) return "";
-    var RI = ri();
     return (
-      '<section class="' + storySection("story") + '" id="conservation-update" aria-labelledby="wce-cu-title">' +
-        blockHead("Stewardship", "Conservation update", "Local stewardship note — verify project details with official sources.") +
-        (RI && RI.renderFootnote
-          ? RI.renderFootnote({ provenance: "educational", disclaimer: "Editorial conservation note" })
-          : "") +
-        '<article class="wce-conservation">' +
-          '<span class="wce-scope">' + escapeHtml(cu.scope) + "</span>" +
-          '<h3 class="wds-display-md" id="wce-cu-title" style="margin:var(--wds-space-2) 0;">' + escapeHtml(cu.title) + "</h3>" +
-          '<p class="wds-body">' + escapeHtml(cu.summary) + "</p>" +
-          (cu.whatYouCanDo ? '<p class="wds-body" style="margin-top:var(--wds-space-3);"><strong>What you can do:</strong> ' + escapeHtml(cu.whatYouCanDo) + "</p>" : "") +
+      '<section class="' + storySection("story", "wce-conservation-section") + '" id="conservation-update" aria-labelledby="wce-cu-title">' +
+        blockHead("Stewardship", "Conservation update", "Habitat, public lands, and what you can do on the ground.", "minimal") +
+        '<article class="wce-conservation wce-conservation--v3">' +
+          riFootnote({ provenance: "educational", disclaimer: "Editorial conservation note — verify with official land managers" }) +
+          '<span class="wce-scope">' + escapeHtml(cu.scope || "") + "</span>" +
+          '<h3 class="wce-conservation__title" id="wce-cu-title">' + escapeHtml(cu.title) + "</h3>" +
+          (cu.habitat ? '<p class="wce-conservation__habitat"><strong>Habitat:</strong> ' + escapeHtml(cu.habitat) + "</p>" : "") +
+          '<p class="wce-conservation__summary">' + escapeHtml(cu.summary) + "</p>" +
+          (cu.stewardship ? '<p class="wce-conservation__stewardship"><strong>Stewardship:</strong> ' + escapeHtml(cu.stewardship) + "</p>" : "") +
+          (cu.lands ? '<p class="wce-conservation__lands"><strong>Public lands:</strong> ' + escapeHtml(cu.lands) + "</p>" : "") +
+          (cu.whatYouCanDo
+            ? '<div class="wce-conservation__action">' +
+                '<p class="wce-conservation__action-label">What you can do</p>' +
+                '<p>' + escapeHtml(cu.whatYouCanDo) + "</p>" +
+              "</div>"
+            : "") +
           renderMeta(cu) +
         "</article>" +
       "</section>"
@@ -654,6 +748,7 @@
       return renderPlatformMission(data);
     },
     "this-week-outdoors": renderThisWeekOutdoors,
+    "weekend-investigation": renderWeekendInvestigation,
     "foragecast": renderForagecast,
     "regional-field-notes": renderRegionalFieldNotes,
     "seasonal-watch": renderSeasonalWatch,

@@ -178,6 +178,8 @@
     var marks = sp.identification || sp.fieldMarks || [];
     var whereToLook = sp.whereToLook || sp.where || "";
     var conservation = sp.conservationNote || sp.conservation || sp.ethics || "";
+    var ecology = sp.ecologicalRole || sp.ecology || "";
+    var observeTips = sp.observationTips || sp.observeTips || [];
     var why = sp.whyThisWeek || sp.summary || "";
     var label = sp.spotlightLabel || "Species spotlight";
     var learn = learnMoreHref(sp);
@@ -214,6 +216,20 @@
               ? '<section class="wss-module__why" aria-labelledby="wss-why-heading">' +
                   '<h4 class="wss-module__section-title" id="wss-why-heading">Why it matters this week</h4>' +
                   "<p>" + escapeHtml(why) + "</p>" +
+                "</section>"
+              : "") +
+            (ecology
+              ? '<section class="wss-module__ecology" aria-labelledby="wss-eco-heading">' +
+                  '<h4 class="wss-module__section-title" id="wss-eco-heading">Ecological role</h4>' +
+                  "<p>" + escapeHtml(ecology) + "</p>" +
+                "</section>"
+              : "") +
+            (observeTips && observeTips.length
+              ? '<section class="wss-module__observe" aria-labelledby="wss-obs-heading">' +
+                  '<h4 class="wss-module__section-title" id="wss-obs-heading">Observation tips</h4>' +
+                  "<ul class=\"wss-module__observe-list\">" +
+                    observeTips.map(function (tip) { return "<li>" + escapeHtml(tip) + "</li>"; }).join("") +
+                  "</ul>" +
                 "</section>"
               : "") +
             (conservation

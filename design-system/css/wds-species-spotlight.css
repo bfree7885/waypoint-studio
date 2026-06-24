@@ -213,6 +213,29 @@
   color: var(--wds-text-secondary);
 }
 
+.wss-module__ecology,
+.wss-module__observe {
+  padding: var(--wds-space-4) var(--wds-space-5);
+  background: var(--wds-inset);
+  border-radius: var(--wds-radius-md);
+  border: 1px solid var(--wds-border-subtle);
+}
+
+.wss-module__ecology p {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wss-module__observe-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
 .wss-module__foot {
   padding-top: var(--wds-space-2);
 }
