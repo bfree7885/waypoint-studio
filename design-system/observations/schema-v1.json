@@ -1,0 +1,368 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/observation/v1",
+  "title": "Waypoint Observation Standard (WOS)",
+  "description": "Canonical environmental observation record for all Waypoint Studio products — designed to support research-grade observations. Submission and sync are out of scope for v1 — this schema defines the data standard only.",
+  "type": "object",
+  "required": ["meta", "id", "observer", "taxon", "observedAt", "location", "record", "verification", "research", "license", "privacy", "revisions"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": { "$ref": "#/$defs/meta" },
+    "id": { "$ref": "#/$defs/observationId" },
+    "observer": { "$ref": "#/$defs/observer" },
+    "taxon": { "$ref": "#/$defs/taxon" },
+    "observedAt": { "$ref": "#/$defs/observedAt" },
+    "location": { "$ref": "#/$defs/location" },
+    "habitat": { "$ref": "#/$defs/habitat" },
+    "context": { "$ref": "#/$defs/context" },
+    "record": { "$ref": "#/$defs/record" },
+    "media": { "$ref": "#/$defs/media" },
+    "verification": { "$ref": "#/$defs/verification" },
+    "research": { "$ref": "#/$defs/research" },
+    "license": { "$ref": "#/$defs/license" },
+    "privacy": { "$ref": "#/$defs/privacy" },
+    "revisions": { "$ref": "#/$defs/revisions" }
+  },
+  "$defs": {
+    "observationId": {
+      "type": "string",
+      "pattern": "^obs_[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Stable observation identifier. Format: obs_ + UUID v4."
+    },
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "createdAt", "updatedAt", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "1.0.0" },
+        "schema": { "type": "string", "const": "https://waypoint.studio/schemas/observation/v1" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "source": {
+          "type": "string",
+          "description": "Originating Waypoint product or import pipeline.",
+          "enum": ["waypoint-studio", "foragecast", "fieldry", "waypoint-scenes", "shed-hunting", "steepleaf", "savant-sommelier", "signalterrain", "terrainbound", "import", "unknown"]
+        },
+        "productId": { "type": ["string", "null"] },
+        "appVersion": { "type": ["string", "null"] },
+        "revision": { "type": "integer", "minimum": 1, "default": 1 },
+        "contentBundleId": { "type": ["string", "null"], "description": "Regional content bundle active when recorded." },
+        "regionalIntelligenceVersion": { "type": ["string", "null"], "description": "OIP package meta.version at time of observation." }
+      }
+    },
+    "observer": {
+      "type": "object",
+      "required": ["anonymous"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": ["string", "null"],
+          "pattern": "^usr_[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "description": "Future Waypoint account ID. Null when anonymous or not yet registered."
+        },
+        "anonymous": { "type": "boolean", "description": "True when observer identity must not be stored or exported." },
+        "displayName": { "type": ["string", "null"], "maxLength": 120, "description": "Optional pseudonym for community verification. Never required." },
+        "localDeviceId": { "type": ["string", "null"], "description": "Opaque per-device identifier for deduplication on device only. Never exported by default." }
+      }
+    },
+    "taxon": {
+      "type": "object",
+      "required": ["label"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "maxLength": 256, "description": "Primary display name as entered or selected by observer." },
+        "commonName": { "type": ["string", "null"], "maxLength": 256 },
+        "scientificName": { "type": ["string", "null"], "maxLength": 256 },
+        "rank": {
+          "type": ["string", "null"],
+          "enum": ["kingdom", "phylum", "class", "order", "family", "genus", "species", "subspecies", "variety", "informal", null]
+        },
+        "hierarchy": { "$ref": "#/$defs/taxonomicHierarchy" },
+        "taxonId": { "type": ["string", "null"], "description": "External taxonomy identifier (e.g. ITIS, GBIF, iNaturalist taxon_id)." },
+        "taxonIdSource": { "type": ["string", "null"], "enum": ["itis", "gbif", "inaturalist", "col", "manual", null] },
+        "lifeStage": { "type": ["string", "null"], "description": "e.g. adult, larva, fruiting body, bud" },
+        "organismRemarks": { "type": ["string", "null"], "maxLength": 500 }
+      }
+    },
+    "taxonomicHierarchy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kingdom": { "type": ["string", "null"] },
+        "phylum": { "type": ["string", "null"] },
+        "class": { "type": ["string", "null"] },
+        "order": { "type": ["string", "null"] },
+        "family": { "type": ["string", "null"] },
+        "genus": { "type": ["string", "null"] },
+        "species": { "type": ["string", "null"] },
+        "subspecies": { "type": ["string", "null"] }
+      }
+    },
+    "observedAt": {
+      "type": "object",
+      "required": ["date"],
+      "additionalProperties": false,
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "time": { "type": ["string", "null"], "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$" },
+        "timezone": { "type": ["string", "null"], "description": "IANA timezone, e.g. America/New_York" },
+        "uncertaintyMinutes": { "type": ["number", "null"], "minimum": 0, "description": "Observer-estimated time uncertainty." },
+        "recordedAt": { "type": ["string", "null"], "format": "date-time", "description": "When the record was saved to device (may differ from field time)." }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["privacy"],
+      "additionalProperties": false,
+      "properties": {
+        "latitude": { "type": ["number", "null"], "minimum": -90, "maximum": 90 },
+        "longitude": { "type": ["number", "null"], "minimum": -180, "maximum": 180 },
+        "accuracyM": { "type": ["number", "null"], "minimum": 0 },
+        "elevationFt": { "type": ["number", "null"] },
+        "elevationM": { "type": ["number", "null"] },
+        "elevationSource": { "type": ["string", "null"], "enum": ["device", "gps", "barometer", "dem", "map", "manual", "unknown", null] },
+        "county": { "type": ["string", "null"] },
+        "state": { "type": ["string", "null"] },
+        "stateCode": { "type": ["string", "null"], "maxLength": 3 },
+        "country": { "type": ["string", "null"], "default": "United States" },
+        "countryCode": { "type": ["string", "null"], "maxLength": 2, "default": "US" },
+        "localityDescription": { "type": ["string", "null"], "maxLength": 500, "description": "Human place description without precise coordinates (e.g. north-facing ravine)." },
+        "privacy": { "$ref": "#/$defs/locationPrivacy" }
+      }
+    },
+    "locationPrivacy": {
+      "type": "object",
+      "required": ["precision"],
+      "additionalProperties": false,
+      "properties": {
+        "precision": {
+          "type": "string",
+          "enum": ["exact", "obfuscated", "county", "hidden"],
+          "description": "How location is stored and may be exported."
+        },
+        "publicLatitude": { "type": ["number", "null"] },
+        "publicLongitude": { "type": ["number", "null"] },
+        "obfuscationRadiusM": { "type": ["number", "null"], "minimum": 0 },
+        "coordinateUncertaintyM": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "habitat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": ["string", "null"], "maxLength": 256 },
+        "habitatType": { "type": ["string", "null"], "description": "e.g. northern hardwood forest, riparian edge" },
+        "substrate": { "type": ["string", "null"], "description": "e.g. decaying log, sandy soil, basalt" },
+        "aspect": { "type": ["string", "null"], "enum": ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "flat", "variable", null] },
+        "landCover": { "type": ["string", "null"] },
+        "waterProximity": { "type": ["string", "null"], "enum": ["in_water", "stream_edge", "wetland", "floodplain", "upland", "unknown", null] },
+        "canopyCoverPercent": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "codes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional standardized habitat codes (future: LANDFIRE, NLCD)."
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "season": { "type": ["string", "null"], "description": "Regional season label, e.g. late spring" },
+        "phenologyStage": { "type": ["string", "null"] },
+        "month": { "type": ["integer", "null"], "minimum": 1, "maximum": 12 },
+        "weekOf": { "type": ["string", "null"], "format": "date" },
+        "weatherSnapshot": { "$ref": "#/$defs/weatherSnapshot" },
+        "regionalIntelligenceRef": {
+          "type": ["object", "null"],
+          "properties": {
+            "regionId": { "type": ["string", "null"] },
+            "assembledAt": { "type": ["string", "null"], "format": "date-time" }
+          }
+        }
+      }
+    },
+    "weatherSnapshot": {
+      "type": "object",
+      "description": "Point-in-time weather at observation — not a live forecast link.",
+      "additionalProperties": false,
+      "properties": {
+        "capturedAt": { "type": ["string", "null"], "format": "date-time" },
+        "source": { "type": ["string", "null"], "enum": ["open-meteo", "manual", "editorial", "device", "unknown", null] },
+        "conditions": { "type": ["string", "null"] },
+        "temperatureF": { "type": ["number", "null"] },
+        "temperatureC": { "type": ["number", "null"] },
+        "humidityPercent": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "precipitationActive": { "type": ["boolean", "null"] },
+        "windSpeed": { "type": ["number", "null"] },
+        "windUnit": { "type": ["string", "null"] },
+        "cloudCoverPercent": { "type": ["number", "null"] },
+        "raw": { "type": ["object", "null"], "description": "Optional full WDS.weather current object for research export." }
+      }
+    },
+    "record": {
+      "type": "object",
+      "required": ["confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "quantity": { "type": ["number", "null"], "minimum": 0 },
+        "quantityMin": { "type": ["number", "null"], "minimum": 0 },
+        "quantityMax": { "type": ["number", "null"], "minimum": 0 },
+        "quantityUnit": {
+          "type": ["string", "null"],
+          "enum": ["individuals", "pairs", "clusters", "colonies", "percent_cover", "presence", "tracks", "sign", "unknown", null]
+        },
+        "organismQuantityType": { "type": ["string", "null"], "description": "Darwin Core organismQuantityType analogue." },
+        "confidence": {
+          "type": "string",
+          "enum": ["certain", "likely", "possible", "uncertain", "not_recorded"]
+        },
+        "notes": { "type": ["string", "null"], "maxLength": 10000 },
+        "evidenceQuality": {
+          "type": "string",
+          "enum": ["excellent", "good", "fair", "poor", "none", "not_assessed"],
+          "default": "not_assessed"
+        },
+        "sensitiveSpecies": { "type": "boolean", "default": false, "description": "Flag for T&E or poaching-sensitive taxa — triggers export restrictions." },
+        "behavior": { "type": ["string", "null"], "maxLength": 500 },
+        "measurements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "value", "unit"],
+            "properties": {
+              "type": { "type": "string" },
+              "value": { "type": "number" },
+              "unit": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "photos": { "type": "array", "items": { "$ref": "#/$defs/mediaAsset" }, "default": [] },
+        "audio": { "type": "array", "items": { "$ref": "#/$defs/mediaAsset" }, "default": [] },
+        "video": { "type": "array", "items": { "$ref": "#/$defs/mediaAsset" }, "default": [] }
+      }
+    },
+    "mediaAsset": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^med_[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+        "kind": { "type": "string", "enum": ["photo", "audio", "video"] },
+        "uri": { "type": ["string", "null"], "description": "Local file URI or relative path. Never a remote URL without consent." },
+        "mimeType": { "type": ["string", "null"] },
+        "caption": { "type": ["string", "null"], "maxLength": 1000 },
+        "takenAt": { "type": ["string", "null"], "format": "date-time" },
+        "widthPx": { "type": ["integer", "null"] },
+        "heightPx": { "type": ["integer", "null"] },
+        "durationSec": { "type": ["number", "null"] },
+        "hash": { "type": ["string", "null"], "description": "SHA-256 hex digest for integrity verification." },
+        "evidenceRole": { "type": ["string", "null"], "enum": ["habitat", "organism", "sign", "scale", "context", null] }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["unverified", "self_verified", "community", "expert", "research_confirmed", "disputed", "rejected"]
+        },
+        "reviewer": { "$ref": "#/$defs/reviewer" },
+        "verifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "verificationNotes": { "type": ["string", "null"], "maxLength": 2000 },
+        "flags": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["needs_id", "needs_location_review", "sensitive", "ethical_concern", "duplicate_suspected"] }
+        }
+      }
+    },
+    "reviewer": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "role": { "type": ["string", "null"], "enum": ["observer", "community", "expert", "researcher", "automated", null] },
+        "organization": { "type": ["string", "null"] }
+      }
+    },
+    "research": {
+      "type": "object",
+      "required": ["exportStatus"],
+      "additionalProperties": false,
+      "properties": {
+        "exportStatus": {
+          "type": "string",
+          "enum": ["private", "eligible", "pending", "exported", "withheld", "retracted"]
+        },
+        "exportedAt": { "type": ["string", "null"], "format": "date-time" },
+        "exportFormats": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["darwin-core", "dwc-a", "csv", "geojson", "gbif", "custom"] }
+        },
+        "datasetId": { "type": ["string", "null"] },
+        "recordId": { "type": ["string", "null"], "description": "ID assigned by receiving repository." },
+        "withholdReason": { "type": ["string", "null"] },
+        "darwinCore": { "type": ["object", "null"], "description": "Cached Darwin Core row for export (populated at export time)." }
+      }
+    },
+    "license": {
+      "type": "object",
+      "required": ["code"],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": ["CC0-1.0", "CC-BY-4.0", "CC-BY-NC-4.0", "all-rights-reserved", "waypoint-private"]
+        },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "attribution": { "type": ["string", "null"], "maxLength": 500 },
+        "rightsHolder": { "type": ["string", "null"] }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": ["retention"],
+      "additionalProperties": false,
+      "properties": {
+        "retention": {
+          "type": "string",
+          "enum": ["local-only", "device-encrypted", "account-sync", "research-archive"]
+        },
+        "shareWithResearchers": { "type": "boolean", "default": false },
+        "shareLocationPublicly": { "type": "boolean", "default": false },
+        "shareMediaPublicly": { "type": "boolean", "default": false },
+        "shareObserverIdentity": { "type": "boolean", "default": false },
+        "consentRecordedAt": { "type": ["string", "null"], "format": "date-time" },
+        "consentVersion": { "type": ["string", "null"] }
+      }
+    },
+    "revisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/revision" },
+      "description": "Append-only edit history. Current state is always the top-level object."
+    },
+    "revision": {
+      "type": "object",
+      "required": ["revisionId", "revisedAt", "revisionNumber"],
+      "additionalProperties": false,
+      "properties": {
+        "revisionId": { "type": "string", "pattern": "^rev_[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+        "revisionNumber": { "type": "integer", "minimum": 1 },
+        "revisedAt": { "type": "string", "format": "date-time" },
+        "revisedBy": { "type": ["string", "null"], "description": "observer.id or reviewer.id" },
+        "changeSummary": { "type": ["string", "null"], "maxLength": 500 },
+        "fieldsChanged": { "type": "array", "items": { "type": "string" } },
+        "snapshotHash": { "type": ["string", "null"], "description": "SHA-256 of canonical JSON prior to revision." }
+      }
+    }
+  }
+}

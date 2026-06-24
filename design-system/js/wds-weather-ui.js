@@ -105,6 +105,69 @@
     );
   }
 
+  function hasEditorialWeather(platform) {
+    if (!platform || !platform.weather) return false;
+    var w = platform.weather;
+    return w.status === "editorial" && (w.conditions || w.high || w.low || w.summary);
+  }
+
+  function hasEditorialDaylight(platform) {
+    if (!platform || !platform.daylight) return false;
+    var d = platform.daylight;
+    return (d.status === "editorial" || d.status === "live") && (d.sunrise || d.sunset);
+  }
+
+  function renderEditorialWeather(platform) {
+    var w = platform.weather || {};
+    var highLow = [w.high, w.low].filter(Boolean).join(" / ");
+    return (
+      '<div class="wds-weather wds-weather--editorial">' +
+        '<section class="wds-weather-current" aria-label="Regional weather snapshot">' +
+          '<div class="wds-weather-current__main">' +
+            '<div class="wds-weather-current__readout">' +
+              (highLow ? '<p class="wds-weather-current__temp">' + escapeHtml(highLow) + "</p>" : "") +
+              '<p class="wds-weather-current__summary">' +
+                escapeHtml(w.conditions || w.summary || "Regional field snapshot — confirm conditions locally.") +
+              "</p>" +
+            "</div>" +
+          "</div>" +
+        "</section>" +
+        '<p class="wds-weather__attribution">Regional field snapshot · live forecast unavailable</p>' +
+      "</div>"
+    );
+  }
+
+  function renderEditorialSunMoon(platform) {
+    var d = platform.daylight || {};
+    var dayLength = d.dayLengthHours != null ? d.dayLengthHours + " h daylight" : null;
+    return (
+      '<div class="wds-weather wds-weather--editorial wds-weather--sun-moon">' +
+        '<section class="wds-weather-sun" aria-label="Sunrise and sunset">' +
+          '<div class="wds-weather-sun__item">' +
+            '<span class="wds-weather-sun__label">Sunrise</span>' +
+            '<span class="wds-weather-sun__time">' + escapeHtml(d.sunrise || "—") + "</span>" +
+          "</div>" +
+          '<div class="wds-weather-sun__item">' +
+            '<span class="wds-weather-sun__label">Sunset</span>' +
+            '<span class="wds-weather-sun__time">' + escapeHtml(d.sunset || "—") + "</span>" +
+          "</div>" +
+        "</section>" +
+        (dayLength ? '<p class="wds-weather-sun-moon__note">' + escapeHtml(dayLength) + "</p>" : "") +
+        '<p class="wds-weather__attribution">Regional field snapshot · moon phase data coming soon</p>' +
+      "</div>"
+    );
+  }
+
+  function renderEducationalSunMoon() {
+    return (
+      '<div class="wds-weather wds-weather--editorial wds-weather--sun-moon">' +
+        '<p class="wds-weather-error__detail">' +
+          escapeHtml("Day length shifts through the season — sunrise and sunset load from regional intelligence when available.") +
+        "</p>" +
+      "</div>"
+    );
+  }
+
   function renderError(detail) {
     return (
       '<div class="wds-weather wds-weather--error" role="alert">' +
@@ -141,6 +204,11 @@
     if (state === "unavailable") {
       tag.textContent = "Unavailable";
       tag.className = "wce-dash-card__tag wce-dash-card__tag--unavailable";
+      return;
+    }
+    if (state === "editorial") {
+      tag.textContent = "Regional";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--regional";
     }
   }
 
@@ -150,8 +218,16 @@
 
   function resolvePackage(options) {
     var pkg = options.package ||
+      (options.platform && options.platform.weatherRef) ||
       (options.intelligence && options.intelligence.weatherRef);
     return isLivePackage(pkg) ? pkg : null;
+  }
+
+  function resolvePlatform(options) {
+    return options.platform ||
+      (options.intelligence && options.intelligence.outdoorIntelligence) ||
+      (options.intelligence && options.intelligence.v2) ||
+      null;
   }
 
   function iconClass(icon) {
@@ -246,7 +322,7 @@
       );
     }).join("");
     return (
-      '<section class="wds-weather-hourly" aria-label="Hourly forecast">' +
+      '<section class="wds-weather-hourly" aria-label="Hourly forecast when live data is available">' +
         '<h4 class="wds-weather-section-title">Hourly</h4>' +
         '<ul class="wds-weather-hourly__strip">' + items + "</ul>" +
       "</section>"
@@ -276,7 +352,7 @@
       );
     }).join("");
     return (
-      '<section class="wds-weather-daily" aria-label="Daily forecast">' +
+      '<section class="wds-weather-daily" aria-label="Daily forecast when live data is available">' +
         '<h4 class="wds-weather-section-title">7-day</h4>' +
         '<ol class="wds-weather-daily__list">' + items + "</ol>" +
       "</section>"
@@ -285,6 +361,27 @@
 
   function renderAttribution(pkg) {
     var meta = (pkg && pkg.meta) || {};
+    var RI = global.WDS && global.WDS.researchIntegrity;
+    if (RI && RI.renderFootnote) {
+      if (meta.isPlaceholder) {
+        return (
+          '<div class="wds-weather__integrity">' +
+          RI.renderFootnote({ provenance: "placeholder", disclaimer: "Live forecast unavailable" }) +
+          "</div>"
+        );
+      }
+      if (meta.provider && meta.provider !== "placeholder") {
+        return (
+          '<div class="wds-weather__integrity">' +
+          RI.renderFootnote({
+            provenance: "live",
+            source: { label: meta.provider },
+            uncertainty: "Forecasts change — note time of reading"
+          }, { showBadge: true, showSource: true }) +
+          "</div>"
+        );
+      }
+    }
     var parts = [];
     if (meta.isPlaceholder) parts.push("Preview data");
     else if (meta.attribution) parts.push(meta.attribution);
@@ -338,6 +435,7 @@
           timezone: options.timezone,
           hints: options.hints,
           intelligence: options.intelligence || options.regionalIntelligence || null,
+          platform: options.platform || null,
           location: options.location || null,
           fallback: false
         };
@@ -355,16 +453,37 @@
     var existing = resolvePackage(options);
 
     function finish(pkg) {
-      if (!isLivePackage(pkg)) {
-        el.innerHTML = renderError();
+      if (isLivePackage(pkg)) {
+        el.innerHTML = renderer(pkg);
         el.removeAttribute("aria-busy");
-        if (cardId) updateDashCardTag(root, cardId, "unavailable");
+        if (cardId) updateDashCardTag(root, cardId, "live");
+        return pkg;
+      }
+
+      var platform = resolvePlatform(options);
+      if (kind === "dashboard" && platform && hasEditorialWeather(platform)) {
+        el.innerHTML = renderEditorialWeather(platform);
+        el.removeAttribute("aria-busy");
+        if (cardId) updateDashCardTag(root, cardId, "editorial");
         return null;
       }
-      el.innerHTML = renderer(pkg);
+      if (kind === "sun-moon" && platform && hasEditorialDaylight(platform)) {
+        el.innerHTML = renderEditorialSunMoon(platform);
+        el.removeAttribute("aria-busy");
+        if (cardId) updateDashCardTag(root, cardId, "editorial");
+        return null;
+      }
+      if (kind === "sun-moon") {
+        el.innerHTML = renderEducationalSunMoon();
+        el.removeAttribute("aria-busy");
+        if (cardId) updateDashCardTag(root, cardId, "editorial");
+        return null;
+      }
+
+      el.innerHTML = renderError();
       el.removeAttribute("aria-busy");
-      if (cardId) updateDashCardTag(root, cardId, "live");
-      return pkg;
+      if (cardId) updateDashCardTag(root, cardId, "unavailable");
+      return null;
     }
 
     if (existing) {
@@ -422,6 +541,8 @@
     renderHourly: renderHourly,
     renderDaily: renderDaily,
     renderDashboard: renderDashboard,
+    renderEditorialWeather: renderEditorialWeather,
+    renderEditorialSunMoon: renderEditorialSunMoon,
     renderSunMoon: renderSunMoon,
     renderPanel: renderPanel,
     updateDashCardTag: updateDashCardTag,

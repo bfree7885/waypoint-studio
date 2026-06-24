@@ -1,6 +1,12 @@
 {
-  "version": "1.0.0",
-  "description": "Waypoint Studio product registry — shared FGDS, homepage, and content inheritance.",
+  "version": "1.1.0",
+  "description": "Waypoint Studio product registry — core instruments, content tracks, and shared modules.",
+  "portfolio": {
+    "core": ["studio", "foragecast", "fieldry", "scenes"],
+    "contentTracks": ["shed-hunting", "steepleaf", "savant-sommelier"],
+    "modules": ["signalterrain"],
+    "retired": ["terrainbound"]
+  },
   "contentFiles": {
     "articles": "content/articles.json",
     "lessons": "content/lessons.json",
@@ -25,6 +31,8 @@
   "products": {
     "studio": {
       "slug": "studio",
+      "portfolioTier": "core",
+      "portfolioRole": "Regional outdoor intelligence dashboard",
       "dataProduct": "scenes",
       "name": "Waypoint Studio",
       "hero": "Waypoint Studio",
@@ -60,6 +68,8 @@
     },
     "scenes": {
       "slug": "scenes",
+      "portfolioTier": "core",
+      "portfolioRole": "Creative reflection from field evidence",
       "dataProduct": "scenes",
       "name": "Waypoint Scenes",
       "hero": "The studio by the fire",
@@ -86,6 +96,8 @@
     },
     "foragecast": {
       "slug": "foragecast",
+      "portfolioTier": "core",
+      "portfolioRole": "Flagship habitat and season laboratory",
       "dataProduct": "foragecast",
       "name": "ForageCast",
       "hero": "Read the land's calendar",
@@ -111,6 +123,8 @@
     },
     "fieldry": {
       "slug": "fieldry",
+      "portfolioTier": "core",
+      "portfolioRole": "Observation ledger — future WOS capture",
       "dataProduct": "fieldry",
       "name": "Fieldry",
       "hero": "The writing desk",
@@ -136,6 +150,8 @@
     },
     "shed-hunting": {
       "slug": "shed-hunting",
+      "portfolioTier": "content-track",
+      "portfolioRole": "Winter wildlife and deer ecology track",
       "dataProduct": "shed-hunting",
       "name": "Shed Hunting",
       "hero": "The porch journal",
@@ -161,6 +177,8 @@
     },
     "steepleaf": {
       "slug": "steepleaf",
+      "portfolioTier": "content-track",
+      "portfolioRole": "Botany and phenology — merging into ForageCast",
       "dataProduct": "steepleaf",
       "name": "Steepleaf",
       "hero": "The herbarium cabinet",
@@ -187,6 +205,8 @@
     },
     "savant-sommelier": {
       "slug": "savant-sommelier",
+      "portfolioTier": "content-track",
+      "portfolioRole": "Occasional terroir and landscape editorial",
       "dataProduct": "savant-sommelier",
       "name": "Savant Sommelier",
       "hero": "The tasting room",
@@ -212,6 +232,8 @@
     },
     "signalterrain": {
       "slug": "signalterrain",
+      "portfolioTier": "module",
+      "portfolioRole": "Shared map, navigation, and earth science modules",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
       "hero": "The observatory deck",
@@ -238,6 +260,8 @@
     },
     "terrainbound": {
       "slug": "terrainbound",
+      "portfolioTier": "retired",
+      "portfolioRole": "Retired — skills absorbed into Fieldry and Dashboard",
       "dataProduct": "terrainbound",
       "name": "Terrainbound",
       "hero": "The long trail shelter",

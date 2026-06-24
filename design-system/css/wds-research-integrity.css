@@ -1,0 +1,112 @@
+/**
+ * Research Integrity — minimal trust UI (footnotes, citations, disclaimers)
+ * Provenance badge colors live in wds-provenance.css
+ */
+
+.wds-ri-footnote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wds-space-2, 0.5rem);
+  margin: 0 0 var(--wds-space-3, 0.75rem);
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-xs, 0.8125rem);
+  line-height: 1.45;
+  color: var(--wds-text-tertiary);
+}
+
+.wds-ri-footnote__text {
+  font-weight: 400;
+}
+
+.wds-ri-footnote__text--uncertain {
+  font-style: italic;
+}
+
+.wds-ri-footnote__meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-1, 0.25rem);
+}
+
+.wds-ri-meta {
+  font-size: var(--wds-text-2xs, 0.6875rem);
+  font-weight: 500;
+  color: var(--wds-text-muted);
+  padding: 0.1em 0.4em;
+  border-radius: var(--wds-radius-sm, 4px);
+  background: rgba(31, 53, 84, 0.35);
+  white-space: nowrap;
+}
+
+.wds-ri-meta--confidence { color: var(--wds-sage, #7a9e7e); }
+.wds-ri-meta--evidence { color: var(--wds-amber, #c9a227); }
+.wds-ri-meta--verification { color: var(--wds-lime, #b8d96a); }
+
+.wds-ri-citation {
+  display: block;
+  margin: var(--wds-space-2, 0.5rem) 0 0;
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-xs, 0.8125rem);
+  font-style: normal;
+  color: var(--wds-text-tertiary);
+}
+
+.wds-ri-citation a {
+  color: var(--wds-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wds-ri-citation__date {
+  color: var(--wds-text-muted);
+}
+
+.wds-ri-uncertainty {
+  font-size: var(--wds-text-xs, 0.8125rem);
+  font-style: italic;
+  color: var(--wds-text-tertiary);
+}
+
+.wds-ri-disclaimer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--wds-space-2, 0.5rem);
+  margin: 0 0 var(--wds-space-3, 0.75rem);
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-xs, 0.8125rem);
+  line-height: 1.5;
+  color: var(--wds-text-tertiary);
+}
+
+.wds-ri-disclaimer__text {
+  flex: 1;
+  min-width: 12rem;
+}
+
+/* Species spotlight — align with existing disclosure layout */
+.wss-module__disclosure .wds-ri-disclaimer {
+  margin: 0;
+  width: 100%;
+}
+
+.wss-module__disclosure .wds-ri-disclaimer__badge {
+  flex-shrink: 0;
+}
+
+/* Happening now — single quiet line */
+.wce-happening .wds-ri-disclaimer {
+  margin: var(--wds-space-2, 0.5rem) 0 0;
+  padding-top: var(--wds-space-2, 0.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Weather attribution row */
+.wds-weather__integrity {
+  margin-top: var(--wds-space-2, 0.5rem);
+}
+
+.wds-weather__integrity .wds-ri-footnote {
+  margin: 0;
+}

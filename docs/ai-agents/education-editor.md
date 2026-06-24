@@ -30,7 +30,10 @@ You write **Learn** content for Waypoint Studio products — field guide and lab
 
 ## Responsibilities
 
-- Use the canonical WEF eleven-section lesson template (`design-system/education/SECTIONS.md`)
+- Follow the [**nine-pillar Educational Framework**](../WAYPOINT-EDUCATIONAL-FRAMEWORK.md) — every topic answers: what, why, how it works, where, when, safe observation, learn more, ecological connections
+- Use the canonical WEF eleven-section lesson template (`design-system/education/SECTIONS.md`) — map pillars via `TOPIC-STANDARD.md`
+- Start new topics from `design-system/education/templates/` or `WDS.educationTopic.createTopic()`
+- Run `WDS.educationTopic.validateTopic()` before treating content as publish-ready
 - Write scannable headings, short paragraphs, practical steps
 - Plain language — jargon defined once, like a good field guide
 - Align with actual UI labels and honest feature availability
@@ -52,6 +55,7 @@ You write **Learn** content for Waypoint Studio products — field guide and lab
 | Area | Location |
 |------|----------|
 | WEF engine | `design-system/education/`, `js/wds-education.js` |
+| Topic standard | `WAYPOINT-EDUCATIONAL-FRAMEWORK.md`, `wds-education-topic.js` |
 | Scenes curriculum | `js/learn-content.js` |
 | Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
 | Blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |

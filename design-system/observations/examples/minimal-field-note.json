@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/observation/v1",
+    "createdAt": "2026-05-30T14:22:00.000Z",
+    "updatedAt": "2026-05-30T14:22:00.000Z",
+    "source": "foragecast",
+    "productId": null,
+    "appVersion": "0.1.0-preview",
+    "revision": 1,
+    "contentBundleId": "pike-county-v1",
+    "regionalIntelligenceVersion": null
+  },
+  "id": "obs_a1b2c3d4-e5f6-4789-a012-3456789abcde",
+  "observer": {
+    "id": null,
+    "anonymous": true,
+    "displayName": null,
+    "localDeviceId": "dev_local_7f3a"
+  },
+  "taxon": {
+    "label": "turkey tail",
+    "commonName": "turkey tail",
+    "scientificName": null,
+    "rank": "informal",
+    "hierarchy": {
+      "kingdom": null,
+      "phylum": null,
+      "class": null,
+      "order": null,
+      "family": null,
+      "genus": null,
+      "species": null,
+      "subspecies": null
+    },
+    "taxonId": null,
+    "taxonIdSource": null,
+    "lifeStage": "fruiting body",
+    "organismRemarks": null
+  },
+  "observedAt": {
+    "date": "2026-05-30",
+    "time": null,
+    "timezone": "America/New_York",
+    "uncertaintyMinutes": null,
+    "recordedAt": "2026-05-30T14:22:00.000Z"
+  },
+  "location": {
+    "latitude": null,
+    "longitude": null,
+    "accuracyM": null,
+    "elevationFt": null,
+    "elevationM": null,
+    "elevationSource": null,
+    "county": "Pike",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "country": "United States",
+    "countryCode": "US",
+    "localityDescription": "along the trail near the creek",
+    "privacy": {
+      "precision": "county",
+      "publicLatitude": null,
+      "publicLongitude": null,
+      "obfuscationRadiusM": null,
+      "coordinateUncertaintyM": null
+    }
+  },
+  "habitat": {
+    "label": null,
+    "habitatType": null,
+    "substrate": null,
+    "aspect": null,
+    "landCover": null,
+    "waterProximity": null,
+    "canopyCoverPercent": null,
+    "codes": []
+  },
+  "context": {
+    "season": "late spring",
+    "phenologyStage": null,
+    "month": 5,
+    "weekOf": null,
+    "weatherSnapshot": null,
+    "regionalIntelligenceRef": null
+  },
+  "record": {
+    "quantity": 1,
+    "quantityMin": null,
+    "quantityMax": null,
+    "quantityUnit": "clusters",
+    "organismQuantityType": null,
+    "confidence": "likely",
+    "notes": "Bracket fungi on a fallen oak. Did not collect.",
+    "evidenceQuality": "not_assessed",
+    "sensitiveSpecies": false,
+    "behavior": null,
+    "measurements": []
+  },
+  "media": {
+    "photos": [],
+    "audio": [],
+    "video": []
+  },
+  "verification": {
+    "status": "unverified",
+    "reviewer": null,
+    "verifiedAt": null,
+    "verificationNotes": null,
+    "flags": []
+  },
+  "research": {
+    "exportStatus": "private",
+    "exportedAt": null,
+    "exportFormats": [],
+    "datasetId": null,
+    "recordId": null,
+    "withholdReason": null,
+    "darwinCore": null
+  },
+  "license": {
+    "code": "waypoint-private",
+    "url": null,
+    "attribution": null,
+    "rightsHolder": null
+  },
+  "privacy": {
+    "retention": "local-only",
+    "shareWithResearchers": false,
+    "shareLocationPublicly": false,
+    "shareMediaPublicly": false,
+    "shareObserverIdentity": false,
+    "consentRecordedAt": null,
+    "consentVersion": null
+  },
+  "revisions": []
+}

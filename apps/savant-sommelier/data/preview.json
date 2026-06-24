@@ -1,27 +1,28 @@
 {
   "name": "Savant Sommelier",
-  "eyebrow": "Terroir laboratory",
-  "mission": "The tasting room overlooking the valley — terroir as ecology, geology, and weather in a glass. Landscape literacy without pretension. Learn the land; taste with attention.",
+  "eyebrow": "Occasional editorial",
+  "mission": "Landscape, geology, agriculture, and terroir as ecology writing — occasional essays, not a product door.",
   "status": "preview",
-  "statusLabel": "Educational preview",
+  "statusLabel": "Editorial track — not a product",
+  "portfolioStatus": "content-track",
+  "portfolioNote": "Savant Sommelier becomes occasional editorial on the regional dashboard — terroir as ecology, not a standalone tasting-room app.",
   "learnToday": [
-    "Terroir is not mystique — it is soil, slope, climate, and human craft in conversation",
-    "How Northeast PA geology (sandstone, shale, glacial till) shapes drainage and vine stress",
-    "Reading a landscape before reading a label: aspect, elevation, and season",
-    "Ethical tasting: moderation, place-based producers, and supporting local agriculture"
+    "How slope, soil, and climate shape both forest communities and cultivated landscapes",
+    "Reading a landscape before reading a label — attention without pretension",
+    "Water, stewardship, and native habitat at the edge of working land",
+    "Why this content supports learning but does not warrant a separate product"
   ],
   "comingSoon": [
-    "Regional terroir profiles tied to Pike County and adjacent valleys",
-    "Landscape-to-glass lesson series (geology, ecology, weather)",
-    "Seasonal pairing with local foraging ethics — learn, don't exploit",
-    "Private tasting notes — no public reviews or rankings",
-    "Winemaker field stories and research briefs"
+    "Occasional research briefs and photo essays on the dashboard",
+    "Cross-links to geology and ecology lessons in ForageCast",
+    "Fieldry sensory field notes template (optional)",
+    "No cellar management, pairing AI, or commerce features"
   ],
   "preview": {
-    "title": "Landscape in a glass",
-    "placeholderLabel": "Terroir diagram · placeholder",
-    "placeholderHint": "Slope · soil · climate · craft",
-    "description": "Savant Sommelier connects what you see on the ridge to what you taste at the table. Lessons open with a photograph of place — not a score. The goal is literacy: understand why a valley wine tastes different from a plateau wine, then go walk the slope."
+    "title": "The tasting room overlook",
+    "placeholderLabel": "Landscape · placeholder",
+    "placeholderHint": "Slope · watershed · season · stewardship",
+    "description": "The glass can hold the landscape — as an essay, not an app. Useful ideas are preserved; public investment stays on the core platform."
   },
   "homeLink": "../../#experiences"
 }

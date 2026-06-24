@@ -20,7 +20,7 @@
     },
     low: {
       band: "Weaker signal",
-      legend: "Unlikely this week",
+      legend: "Weaker signal this week",
       desc: "Timing or moisture may be limiting"
     }
   };
@@ -64,11 +64,11 @@
   }
 
   function mapMetaTitle(snapshot, location) {
-    if (!snapshot || !snapshot.species) return "Terrain readiness";
+    if (!snapshot || !snapshot.species) return "Terrain field index";
     var region = location && location.name
       ? location.name + ", " + (location.stateCode || location.state)
       : (snapshot.conditions.region && snapshot.conditions.region.county) || "your region";
-    return snapshot.species.name + " readiness · " + region;
+    return snapshot.species.name + " · educational index · " + region;
   }
 
   function mapMetaSubtitle(snapshot) {
@@ -179,10 +179,15 @@
   }
 
   function renderDisclaimer(extra) {
+    var ethics = "";
+    if (global.WDS && global.WDS.outdoorEthics && global.WDS.outdoorEthics.renderReminder) {
+      ethics = global.WDS.outdoorEthics.renderReminder("foraging");
+    }
     return (
       '<p class="fc-heat-disclaimer">' + escapeHtml(HEAT_DISCLAIMER) +
       (extra ? " " + escapeHtml(extra) : "") +
-      "</p>"
+      "</p>" +
+      ethics
     );
   }
 
@@ -194,7 +199,7 @@
         (mapMetaSubtitle(snapshot)
           ? '<p class="fc-heat-meta__sub">' + escapeHtml(mapMetaSubtitle(snapshot)) + "</p>"
           : "") +
-        '<p class="fc-heat-meta__explain">Schematic terrain bands — where conditions may favor looking this week, not exact harvest spots.</p>' +
+        '<p class="fc-heat-meta__explain">Schematic terrain bands — educational estimates of where conditions may favor investigation this week, not exact find spots or harvest guarantees.</p>' +
       "</div>"
     );
   }

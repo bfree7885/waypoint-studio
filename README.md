@@ -1,8 +1,8 @@
 # Waypoint Studio
 
-**Observe. Understand. Create. Share.**
+**Learn · Go outside · Observe.**
 
-Digital field laboratories for people who love nature — not social media, not dashboards, not technology for its own sake.
+Digital field laboratories for people who love nature — an outdoor intelligence and environmental education platform, not a collection of utility apps.
 
 ## Run locally
 
@@ -14,49 +14,53 @@ python3 -m http.server 8080
 
 | URL | What you see |
 |-----|----------------|
-| [http://localhost:8080/](http://localhost:8080/) | **Waypoint Studio** homepage — trailhead |
-| [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Waypoint Scenes** — living photographs studio |
+| [http://localhost:8080/](http://localhost:8080/) | **Regional dashboard** — Pike County Preview trailhead |
+| [http://localhost:8080/apps/foragecast/](http://localhost:8080/apps/foragecast/) | **ForageCast** — flagship habitat & season laboratory |
+| [http://localhost:8080/apps/fieldry/](http://localhost:8080/apps/fieldry/) | **Fieldry** — observation ledger (building toward WOS capture) |
+| [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Waypoint Scenes** — creative reflection from field photographs |
 
-Other experiences have placeholder pages under `apps/`.
+Other directories under `apps/` hold **content track concepts** and shared-module previews — not equal standalone products. See [Strategic Direction](docs/STRATEGIC-DIRECTION.md).
+
+## Core platform
+
+One regional laboratory with specialized instruments:
+
+1. **Dashboard** — what is happening outdoors this week  
+2. **ForageCast** — why species appear where and when they do  
+3. **Fieldry** — structured observations building toward research-grade records  
+4. **Scenes** — honest photography and visual storytelling  
+
+Beginning with **Pike County Preview** until county-specific bundles and observation capture ship.
 
 ## Repository structure
 
 ```
 /
-├── index.html              # Waypoint Studio homepage
-├── assets/                 # Shared ecosystem imagery
-├── css/                    # Root homepage styles
-├── design-system/          # WDS + WEF (shared)
-├── docs/                   # Constitution, Method, blueprint, agents
+├── index.html              # Regional outdoor dashboard
+├── design-system/          # WDS, OIP, WOS, WEF, ethics, integrity
+├── docs/                   # Constitution, strategic direction, architecture
 └── apps/
-    ├── waypoint-scenes/    # Runnable app (Living Scene, Parallax, …)
-    ├── foragecast/
-    ├── fieldry/
-    ├── shed-hunting/
-    ├── steepleaf/
-    ├── savant-sommelier/
-    ├── signalterrain/
-    └── terrainbound/
+    ├── foragecast/         # Flagship application
+    ├── fieldry/            # Observation ledger (preview)
+    ├── waypoint-scenes/    # Creative studio (live)
+    └── …                   # Content track & module previews (not equal products)
 ```
 
 ## Governance
 
 | Document | Path |
 |----------|------|
-| Constitution (supreme law) | [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](docs/WAYPOINT-STUDIO-CONSTITUTION.md) |
-| Waypoint Method | [`docs/WAYPOINT-METHOD.md`](docs/WAYPOINT-METHOD.md) |
-| Experience blueprint | [`docs/ECOSYSTEM-BLUEPRINT.md`](docs/ECOSYSTEM-BLUEPRINT.md) |
-| Design system | [`design-system/README.md`](design-system/README.md) |
-| Content engine | [`docs/WAYPOINT-CONTENT-ENGINE.md`](docs/WAYPOINT-CONTENT-ENGINE.md) |
-| Field guide standard | [`docs/FIELD-GUIDE-STANDARDS.md`](docs/FIELD-GUIDE-STANDARDS.md) |
-| AI agents | [`docs/ai-agents/README.md`](docs/ai-agents/README.md) |
-
-## Waypoint Scenes
-
-The first shipping experience — see [`apps/waypoint-scenes/README.md`](apps/waypoint-scenes/README.md).
+| Strategic direction | [`docs/STRATEGIC-DIRECTION.md`](docs/STRATEGIC-DIRECTION.md) |
+| Theory of change | [`docs/WAYPOINT-THEORY-OF-CHANGE.md`](docs/WAYPOINT-THEORY-OF-CHANGE.md) |
+| Platform architecture | [`docs/PLATFORM-ARCHITECTURE.md`](docs/PLATFORM-ARCHITECTURE.md) |
+| Product portfolio audit | [`docs/PRODUCT-PORTFOLIO-AUDIT.md`](docs/PRODUCT-PORTFOLIO-AUDIT.md) |
+| Constitution | [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](docs/WAYPOINT-STUDIO-CONSTITUTION.md) |
+| Observation standard (WOS) | [`docs/WAYPOINT-OBSERVATION-STANDARD.md`](docs/WAYPOINT-OBSERVATION-STANDARD.md) |
+| Outdoor ethics (WOES) | [`docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md`](docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md) |
+| Research integrity | [`docs/RESEARCH-INTEGRITY.md`](docs/RESEARCH-INTEGRITY.md) |
 
 ## Requirements
 
-- Modern browser
-- No build step
+- Modern browser  
+- No build step  
 - `python3 -m http.server` or any static file server from repo root

@@ -51,6 +51,18 @@
   gap: var(--wds-space-1);
 }
 
+.wds-weather--editorial .wds-weather-current__temp {
+  font-size: var(--wds-text-lg);
+  font-weight: 600;
+  margin: 0;
+}
+
+.wds-weather--editorial .wds-weather__attribution {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-color-text-muted);
+  margin: 0;
+}
+
 .wds-weather-error__title {
   font-size: var(--wds-text-sm);
   font-weight: 600;

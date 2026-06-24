@@ -24,6 +24,10 @@
 
   function fromLocation(loc) {
     if (!loc) return {};
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.sources && OIP.adapters && OIP.sources.fromLocationState) {
+      return OIP.adapters.v1LayerFromOipLocation(OIP.sources.fromLocationState(loc));
+    }
     return {
       meta: {
         regionId: loc.regionId,
@@ -69,6 +73,10 @@
 
   function fromContentBundle(bundle) {
     if (!bundle) return {};
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.sources && OIP.adapters && OIP.sources.fromContentBundle) {
+      return OIP.adapters.v1LayerFromOipBundle(OIP.sources.fromContentBundle(bundle));
+    }
     var region = bundle.region || {};
     var profile = bundle.regionalIntelligenceProfile || {};
     var two = bundle.thisWeekOutdoors || {};

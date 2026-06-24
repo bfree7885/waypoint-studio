@@ -1,10 +1,14 @@
 # Waypoint Scenes
 
-Bring quiet, cinematic motion to landscape and nature photographs — entirely in your browser.
+Creative reflection from field evidence — honest landscape photography, quiet motion, and collections that treat your frames as evidence from a place.
 
-Part of **[Waypoint Studio](../../)**. Shared design system: [`design-system/`](../../design-system/README.md). Learn engine: [WEF](../../design-system/education/README.md).
+Part of **[Waypoint Studio](../../)** — the fourth core instrument (after Dashboard, ForageCast, and Fieldry). Supports photography and memory; does not replace structured observation capture in Fieldry.
 
-**Governance:** [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../../docs/WAYPOINT-STUDIO-CONSTITUTION.md) · [`docs/WAYPOINT-METHOD.md`](../../docs/WAYPOINT-METHOD.md)
+**Role:** Visual storytelling after time outside — not a harvest tool, not a social feed.
+
+Shared design system: [`design-system/`](../../design-system/README.md). Learn engine: [WEF](../../design-system/education/README.md).
+
+**Governance:** [`docs/STRATEGIC-DIRECTION.md`](../../docs/STRATEGIC-DIRECTION.md) · [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../../docs/WAYPOINT-STUDIO-CONSTITUTION.md)
 
 ## Run locally
 

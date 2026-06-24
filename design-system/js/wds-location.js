@@ -7,8 +7,6 @@
 
   var STORAGE_KEY = "wds-location-v1";
   var PROMPT_KEY = "wds-location-prompted";
-  var DEFAULT_REGION_ID = "pike-county-pa";
-  var DEFAULT_LABEL = "Pike County, PA";
 
   var indexCache = null;
   var currentState = null;
@@ -93,6 +91,31 @@
     return (index.regions || []).find(function (r) { return r.id === id; }) || null;
   }
 
+  function getDefaultRegionId(index) {
+    index = index || indexCache;
+    if (!index) return null;
+    return index.defaultRegionId || index.defaultBundleId ||
+      (index.regions && index.regions[0] && index.regions[0].id) || null;
+  }
+
+  function getDefaultRegion(index) {
+    index = index || indexCache;
+    if (!index) return null;
+    var id = getDefaultRegionId(index);
+    return findRegionById(index, id) || (index.regions && index.regions[0]) || null;
+  }
+
+  function getDefaultLabel(index) {
+    var region = getDefaultRegion(index);
+    if (!region) return "Default region";
+    return region.name + (region.stateCode ? ", " + region.stateCode : "");
+  }
+
+  function formatRegionLabel(loc) {
+    if (!loc) return getDefaultLabel();
+    return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
+  }
+
   function nearestRegion(index, lat, lng) {
     var best = null;
     var bestDist = Infinity;
@@ -108,7 +131,7 @@
 
   function buildState(source, region, extra) {
     extra = extra || {};
-    var bundleId = region.contentBundle || region.id || DEFAULT_REGION_ID;
+    var bundleId = region.contentBundle || region.id;
     return {
       source: source,
       regionId: region.id,
@@ -133,8 +156,8 @@
   }
 
   function defaultState(index) {
-    var region = findRegionById(index, index.defaultRegionId || DEFAULT_REGION_ID);
-    if (!region) region = index.regions[0];
+    var region = getDefaultRegion(index);
+    if (!region) throw new Error("WDS.location: regions-index has no regions");
     return buildState("default", region, { lat: region.lat, lng: region.lng, distanceKm: 0 });
   }
 
@@ -144,10 +167,11 @@
     return buildState("manual", region, { lat: region.lat, lng: region.lng, distanceKm: 0 });
   }
 
-  function geolocationErrorMessage(err) {
+  function geolocationErrorMessage(err, index) {
     if (!err) return "Could not get location.";
+    var label = getDefaultLabel(index);
     if (err.code === 1) {
-      return "Location permission denied — use Pike County, PA or search a county below.";
+      return "Location permission denied — use " + label + " or search a county below.";
     }
     if (err.code === 2) return "Location unavailable — try again or pick a county.";
     if (err.code === 3) return "Location timed out — try again or pick a county.";
@@ -208,7 +232,7 @@
 
   function formatStatusLine(loc) {
     if (!loc || loc.isDefault || loc.source === "default") {
-      return "Using default region: " + DEFAULT_LABEL;
+      return "Using default region: " + formatRegionLabel(loc);
     }
     if (loc.source === "geo") {
       var line = "Near " + loc.name + ", " + (loc.stateCode || loc.state);
@@ -227,7 +251,7 @@
     region = region || {};
     var weekPart = weekOf ? " · Week of " + weekOf : "";
     if (!loc || loc.isDefault || loc.source === "default") {
-      return "Using default region: " + DEFAULT_LABEL + weekPart;
+      return "Using default region: " + formatRegionLabel(loc) + weekPart + " · editorial content may not match your county until more bundles ship";
     }
     if (loc.source === "geo") {
       return "Near " + (loc.name || region.name) + ", " + (loc.stateCode || region.stateCode) + weekPart;
@@ -287,7 +311,7 @@
     var wrapperClass = options.wrapperClass || "wce-location-bar wce-location-bar--story";
     var statusHtml = "";
     if (loc.isDefault || loc.source === "default") {
-      statusHtml = "<strong>Using default region:</strong> " + DEFAULT_LABEL;
+      statusHtml = "<strong>Using default region:</strong> " + escapeHtml(formatRegionLabel(loc));
     } else if (loc.source === "geo") {
       statusHtml = "<strong>Near</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode);
       if (loc.distanceKm > 0) {
@@ -302,7 +326,7 @@
 
     var bundleNote = "";
     if (loc.usingNearestBundle) {
-      bundleNote = '<p class="wce-location-bar__note">Field guide content from nearest available bundle — more counties coming.</p>';
+      bundleNote = '<p class="wce-location-bar__note">Field guide content from nearest available bundle — editorial preview; more counties coming.</p>';
     }
 
     return (
@@ -384,6 +408,7 @@
       onComplete(defaultState(index));
       return;
     }
+    var defaultLabel = getDefaultLabel(index);
     mount.innerHTML =
       '<div class="wds-location-prompt" role="dialog" aria-labelledby="wds-loc-title" aria-modal="true">' +
         '<div class="wds-location-prompt__card">' +
@@ -392,7 +417,7 @@
           '<p class="wds-body">Waypoint uses your browser location to adapt weather, maps, and regional context. Coordinates stay on your device unless you choose to share observations later.</p>' +
           '<div class="wds-location-prompt__actions">' +
             '<button type="button" class="wds-btn wds-btn--primary" id="wds-loc-allow">Use my location</button>' +
-            '<button type="button" class="wds-btn wds-btn--secondary" id="wds-loc-default">Use Pike County, PA</button>' +
+            '<button type="button" class="wds-btn wds-btn--secondary" id="wds-loc-default">Use ' + escapeHtml(defaultLabel) + '</button>' +
           "</div>" +
           '<form class="wds-location-search" id="wds-loc-search-form">' +
             '<label class="wds-location-search__label" for="wds-loc-search">Or search a county</label>' +
@@ -429,7 +454,7 @@
           finish(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
         })
         .catch(function (err) {
-          fail(geolocationErrorMessage(err));
+          fail(geolocationErrorMessage(err, index));
         });
     });
 
@@ -516,17 +541,18 @@
         .catch(function (err) {
           var state = defaultState(index);
           state.geoDenied = true;
-          state.geoError = geolocationErrorMessage(err);
+          state.geoError = geolocationErrorMessage(err, index);
           return writeStored(state);
         });
     });
   }
 
   global.WDS = global.WDS || {};
-  global.WDS.location = {
+  var locationApi = {
     STORAGE_KEY: STORAGE_KEY,
-    DEFAULT_REGION_ID: DEFAULT_REGION_ID,
-    DEFAULT_LABEL: DEFAULT_LABEL,
+    getDefaultRegionId: getDefaultRegionId,
+    getDefaultRegion: getDefaultRegion,
+    getDefaultLabel: getDefaultLabel,
     loadIndex: loadIndex,
     bootstrap: bootstrap,
     getState: getState,
@@ -552,4 +578,15 @@
     renderBar: renderBar,
     bindBar: bindBar
   };
+  Object.defineProperty(locationApi, "DEFAULT_REGION_ID", {
+    configurable: true,
+    enumerable: true,
+    get: function () { return getDefaultRegionId(); }
+  });
+  Object.defineProperty(locationApi, "DEFAULT_LABEL", {
+    configurable: true,
+    enumerable: true,
+    get: function () { return getDefaultLabel(); }
+  });
+  global.WDS.location = locationApi;
 })(window);

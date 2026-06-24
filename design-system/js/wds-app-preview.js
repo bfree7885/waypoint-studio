@@ -21,13 +21,49 @@
       "</ul>" : "";
   }
 
+  function portfolioBanner(data) {
+    var status = data.portfolioStatus;
+    if (!status || status === "core") return "";
+    var labelMap = {
+      "content-track": "Future learning track — not a standalone product",
+      "module": "Shared platform module — not a standalone product",
+      "retired": "Retired product concept"
+    };
+    var label = labelMap[status] || "Concept preview";
+    return (
+      '<div class="wap-portfolio-banner wap-portfolio-banner--' + escapeHtml(status) + '" role="note">' +
+        '<p class="wap-portfolio-banner__label">' + escapeHtml(label) + "</p>" +
+        (data.portfolioNote ? '<p class="wap-portfolio-banner__note">' + escapeHtml(data.portfolioNote) + "</p>" : "") +
+        '<p class="wap-portfolio-banner__back"><a href="' + escapeHtml(data.homeLink || "../../#experiences") + '">← Core platform instruments</a></p>' +
+      "</div>"
+    );
+  }
+
   function render(data) {
     var statusClass = data.status === "live" ? "wap-status--live" : "wap-status--preview";
     var liveLink = data.liveToolHref
       ? '<p class="wap-live-link"><a href="' + escapeHtml(data.liveToolHref) + '">' + escapeHtml(data.liveToolLabel || "Open tool") + " →</a></p>"
       : "";
+    var strategic = data.strategicRole
+      ? '<section class="wap-section" aria-labelledby="wap-role-title">' +
+          '<p class="wap-section__eyebrow">Platform role</p>' +
+          '<h2 class="wap-section__title" id="wap-role-title">Why this instrument exists</h2>' +
+          '<p class="wap-section__prose">' + escapeHtml(data.strategicRole) + "</p>" +
+        "</section>"
+      : "";
+    var wosBlock = "";
+    if (data.wosFields && data.wosFields.length) {
+      wosBlock =
+        '<section class="wap-section" aria-labelledby="wap-wos-title">' +
+          '<p class="wap-section__eyebrow">Observation standard</p>' +
+          '<h2 class="wap-section__title" id="wap-wos-title">Building toward research-grade records</h2>' +
+          '<p class="wap-section__prose">Designed to support the Waypoint Observation Standard. Capture is not live yet — these fields describe the direction.</p>' +
+          listItems(data.wosFields) +
+        "</section>";
+    }
 
   return (
+      portfolioBanner(data) +
       '<section class="wap-hero" aria-labelledby="wap-title">' +
         '<p class="wds-eyebrow">' + escapeHtml(data.eyebrow) + "</p>" +
         '<h1 class="wap-hero__title" id="wap-title">' + escapeHtml(data.name) + "</h1>" +
@@ -40,6 +76,8 @@
         '<h2 class="wap-section__title" id="wap-learn-title">What you can study this week</h2>' +
         listItems(data.learnToday) +
       "</section>" +
+      strategic +
+      wosBlock +
       '<section class="wap-section" aria-labelledby="wap-coming-title">' +
         '<p class="wap-section__eyebrow">Coming</p>' +
         '<h2 class="wap-section__title" id="wap-coming-title">Features in development</h2>' +
@@ -56,7 +94,7 @@
           '<div class="wap-preview__body"><p>' + escapeHtml(data.preview.description) + "</p></div>" +
         "</div>" +
       "</section>" +
-      '<a class="wap-back" href="' + escapeHtml(data.homeLink || "../../#experiences") + '">← All experiences</a>'
+      '<a class="wap-back" href="' + escapeHtml(data.homeLink || "../../#experiences") + '">← Core platform instruments</a>'
     );
   }
 

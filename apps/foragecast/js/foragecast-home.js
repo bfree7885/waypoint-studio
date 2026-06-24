@@ -30,8 +30,8 @@
     var regionLabel = loc
       ? loc.name + ", " + (loc.stateCode || loc.state)
       : data.region.county + ", PA";
-    var defaultNote = loc && loc.isDefault
-      ? '<p class="fc-location-bar__status">Using default region: Pike County, PA</p>'
+    var defaultNote = loc && loc.isDefault && window.WDS && WDS.location
+      ? '<p class="fc-location-bar__status">' + escapeHtml(WDS.location.formatStatusLine(loc)) + "</p>"
       : "";
 
     return (
@@ -69,11 +69,11 @@
     return (
       '<section class="fc-section" id="regional-status" aria-labelledby="fc-status-title">' +
         renderLocationBar(data) +
-        '<p class="fc-section__eyebrow">Regional status · ' + escapeHtml(data.region.county) + " / " + escapeHtml(data.region.state) + "</p>" +
+        '<p class="fc-section__eyebrow">Regional status · editorial · ' + escapeHtml(data.region.county) + " / " + escapeHtml(data.region.state) + "</p>" +
         '<h2 class="fc-section__title" id="fc-status-title">' + escapeHtml(rs.headline) + "</h2>" +
         '<p class="fc-section__lead">' + escapeHtml(rs.summary) + "</p>" +
         '<div class="fc-status-grid">' +
-          '<aside class="fc-weather-card" aria-label="Weather this week">' +
+          '<aside class="fc-weather-card" aria-label="Regional weather snapshot this week">' +
             "<p class=\"fc-section__eyebrow\" style=\"margin:0;\">" + escapeHtml(w.label) + "</p>" +
             '<p class="fc-weather-card__temp">' + escapeHtml(w.high) + " · " + escapeHtml(w.low) + "</p>" +
             "<dl>" +
@@ -82,7 +82,7 @@
             "</dl>" +
           "</aside>" +
           '<div>' +
-            '<p class="wds-eyebrow" style="margin-bottom: var(--wds-space-3);">What might be fruiting</p>' +
+            '<p class="wds-eyebrow" style="margin-bottom: var(--wds-space-3);">Educational outlook · not detection data</p>' +
             '<ul class="fc-outlook-list">' + outlook + "</ul>" +
           "</div>" +
         "</div>" +
@@ -349,6 +349,10 @@
     var mount = document.getElementById("foragecast-home");
     if (!mount) return;
 
+    var platformPromise = window.ForageCastBoot && ForageCastBoot.fetchPlatform
+      ? ForageCastBoot.fetchPlatform(loc)
+      : Promise.resolve(null);
+
     Promise.all([
       fetch("data/home.json").then(function (res) {
         if (!res.ok) throw new Error("Failed to load home.json");
@@ -365,17 +369,54 @@
       fetch("data/terrain-zones.json").then(function (res) {
         if (!res.ok) throw new Error("Failed to load terrain-zones.json");
         return res.json();
-      })
+      }),
+      platformPromise
     ])
       .then(function (results) {
         var data = results[0];
         var speciesModel = results[1];
         var conditions = results[2];
         var terrain = results[3];
+        var platform = results[4];
+
+        if (platform && loc) {
+          var regionId = loc.contentBundle || loc.regionId;
+          var bundleUrl = (ForageCastBoot.ENGINE_BASE || "../../design-system/content-engine/") +
+            "regions/" + regionId + ".json";
+          return fetch(bundleUrl).then(function (res) {
+            if (!res.ok) throw new Error("bundle");
+            return res.json();
+          }).then(function (bundle) {
+            if (bundle.thisWeekOutdoors && !data.thisWeekOutdoors) {
+              data.thisWeekOutdoors = bundle.thisWeekOutdoors;
+            }
+            if (bundle.seasonalWatch && !data.seasonalWatch) {
+              data.seasonalWatch = bundle.seasonalWatch;
+            }
+            if (bundle.regionalFieldNotes && !data.regionalFieldNotes) {
+              data.regionalFieldNotes = bundle.regionalFieldNotes;
+            }
+            return { data: data, speciesModel: speciesModel, conditions: conditions, terrain: terrain, platform: platform };
+          }).catch(function () {
+            return { data: data, speciesModel: speciesModel, conditions: conditions, terrain: terrain, platform: platform };
+          });
+        }
+        return { data: data, speciesModel: speciesModel, conditions: conditions, terrain: terrain, platform: platform };
+      })
+      .then(function (payload) {
+        var data = payload.data;
+        var speciesModel = payload.speciesModel;
+        var conditions = payload.conditions;
+        var terrain = payload.terrain;
+        var platform = payload.platform;
 
         if (window.ForageCastLocation) {
-          ForageCastLocation.applyToHomeData(data, loc);
-          ForageCastLocation.applyToConditions(conditions, loc);
+          ForageCastLocation.applyToHomeData(data, loc, platform);
+          ForageCastLocation.applyToConditions(conditions, loc, platform);
+        }
+
+        if (platform && window.ForageCastModel && ForageCastModel.setCalendarContext) {
+          ForageCastModel.setCalendarContext(platform.calendar);
         }
 
         var previewId = (data.predictionPreview && data.predictionPreview.previewSpeciesId) || PREVIEW_SPECIES_ID;
@@ -423,7 +464,7 @@
     if (window.ForageCastBoot) {
       ForageCastBoot.bootstrapLocation().then(start);
     } else {
-      start(window.ForageCastLocation ? ForageCastLocation.read() : null);
+      start(null);
     }
   }
 

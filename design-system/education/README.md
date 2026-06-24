@@ -2,6 +2,8 @@
 
 The shared **education engine** for every Waypoint Studio product. Every app includes a **Learn** section powered by the same lesson template, renderer, and domain taxonomy.
 
+**Company-wide standard:** Every educational topic should answer the [nine pillars](../../docs/WAYPOINT-EDUCATIONAL-FRAMEWORK.md) — see [TOPIC-STANDARD.md](./TOPIC-STANDARD.md) for authoring rules and WEF/FGDS mapping.
+
 **North star:** Teach like a patient field guide — clear structure, ethical practice, safety first, challenge in the real world.
 
 ## Requirements
@@ -116,6 +118,7 @@ Full empty scaffold: [curriculum.example.json](./curriculum.example.json)
 | `findLesson(id, curriculum)` | Lookup by lesson id |
 | `filterByDomain(curriculum, domain)` | Filter lessons |
 | `factory.createLesson(...)` | Blank lesson scaffold |
+| `WDS.educationTopic.*` | Nine-pillar topic validate, audit, outline — see [TOPIC-STANDARD.md](./TOPIC-STANDARD.md) |
 
 Options for `renderCurriculum`:
 
@@ -136,8 +139,12 @@ See [DOMAINS.md](./DOMAINS.md) for product mapping.
 |------|------|
 | `js/wds-education.js` | Engine: normalize, validate, render |
 | `js/wds-education-factory.js` | Authoring helpers |
+| `js/wds-education-topic.js` | Nine-pillar topic model, WEF audit bridge |
 | `css/wds-education.css` | Section visual language |
 | `schema.json` | JSON Schema for curriculum files |
+| `topic-schema.json` | JSON Schema for universal topics |
+| `TOPIC-STANDARD.md` | Pillar authoring standard |
+| `templates/` | Writer scaffolds |
 | `curriculum.example.json` | Structural example only |
 
 ## Product integration
@@ -182,6 +189,8 @@ if (!result.ok) console.warn(result.errors);
 
 ## Related
 
+- [Educational Framework (nine pillars)](../../docs/WAYPOINT-EDUCATIONAL-FRAMEWORK.md)
+- [Topic standard](./TOPIC-STANDARD.md)
 - [Design system](../README.md)
 - [WDS patterns](../docs/PATTERNS.md)
 - [Lesson sections reference](./SECTIONS.md)

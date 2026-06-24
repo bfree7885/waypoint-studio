@@ -9,13 +9,13 @@
     "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands"
   },
   "hero": {
-    "question": "What is the forest ready for this week?",
-    "lead": "Not a guess from a photo — a reading of moisture, trees, slope, and season. Learn what the Poconos are offering; go outside to see if the forest agrees."
+    "question": "Why do species appear where and when they do?",
+    "lead": "Habitat literacy, seasonal timing, and ethical investigation — not a harvest guarantee. Learn how moisture, trees, slope, and season shape what you might find; go outside to observe carefully."
   },
   "regionalStatus": {
     "scope": "L1-county",
     "headline": "Pike County · late spring",
-    "summary": "Morels fading below 1,200 feet. Chanterelles still weeks away — watch oak ridges after sustained June rain. Morning field windows best before afternoon storms.",
+    "summary": "Editorial preview: morels may be fading below 1,200 feet. Chanterelles are likely still weeks away — watch oak ridges after sustained June rain. Morning field windows may be best before afternoon storms.",
     "weather": {
       "label": "This week",
       "high": "74°F",
@@ -79,11 +79,11 @@
     "summary": "The prediction tool reads weather, slope, and forest type to suggest where to look — not what you will find. It is a field guide for your legs, not a guarantee.",
     "toolFit": "Use the heat map to compare north vs. south slopes and recent rain — then go confirm with your eyes.",
     "legend": [
-      { "level": "high", "label": "Favorable moisture window", "desc": "Recent rain + cool north slope" },
+      { "level": "high", "label": "Stronger moisture signal", "desc": "Recent rain + cool north slope (model estimate)" },
       { "level": "moderate", "label": "Worth a patient walk", "desc": "Drying ridge; check shaded draws" },
       { "level": "low", "label": "Unlikely this week", "desc": "Dry south aspect; wait for next rain" }
     ],
-    "disclaimer": "Homepage preview — open the season table for species selector, factor breakdown, and terrain zones."
+    "disclaimer": "Prediction zones are educational estimates based on season, habitat, terrain, and weather signals. Open the season table for species selector and factor breakdown."
   },
   "lessons": [
     {

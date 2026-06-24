@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/outdoor-intelligence/v2",
+  "title": "Waypoint Outdoor Intelligence Package",
+  "description": "Canonical regional outdoor context assembled by WDS.outdoorIntelligence.get(). Single source of truth for all Waypoint apps.",
+  "type": "object",
+  "required": [
+    "meta", "location", "region", "county", "state", "country",
+    "timezone", "elevation", "geography", "calendar", "daylight",
+    "weather", "phenology", "species", "observations", "conservation", "research"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "version": { "type": "string" },
+        "assembledAt": { "type": ["string", "null"], "format": "date-time" },
+        "regionId": { "type": ["string", "null"] },
+        "contentBundleId": { "type": ["string", "null"] },
+        "isFallbackLocation": { "type": "boolean" },
+        "sources": { "type": "object" }
+      }
+    },
+    "location": {
+      "type": "object",
+      "description": "User location resolution",
+      "properties": {
+        "source": { "enum": ["browser", "manual", "fallback"] },
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "accuracyM": { "type": ["number", "null"] },
+        "distanceKm": { "type": ["number", "null"] }
+      }
+    },
+    "region": {
+      "type": "object",
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "label": { "type": ["string", "null"] }
+      }
+    },
+    "county": {
+      "type": "object",
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "stateCode": { "type": ["string", "null"] }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "name": { "type": ["string", "null"] },
+        "code": { "type": ["string", "null"] }
+      }
+    },
+    "country": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string" }
+      }
+    },
+    "timezone": { "type": ["string", "null"] },
+    "elevation": {
+      "type": "object",
+      "properties": {
+        "feet": { "type": ["number", "null"] },
+        "note": { "type": ["string", "null"] },
+        "available": { "type": "boolean" }
+      }
+    },
+    "geography": {
+      "type": "object",
+      "properties": {
+        "ecoregion": { "type": ["string", "null"] },
+        "bioregion": { "type": ["string", "null"] },
+        "dominantForest": { "type": ["string", "null"] },
+        "watersheds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "calendar": {
+      "type": "object",
+      "properties": {
+        "season": { "type": ["string", "null"] },
+        "month": { "type": ["integer", "null"], "minimum": 1, "maximum": 12 },
+        "weekOf": { "type": ["string", "null"] }
+      }
+    },
+    "daylight": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial", "live"] },
+        "sunrise": { "type": ["string", "null"] },
+        "sunset": { "type": ["string", "null"] },
+        "dayLengthHours": { "type": ["number", "null"] },
+        "timezone": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] }
+      }
+    },
+    "weather": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial", "live"] },
+        "summary": { "type": ["string", "null"] },
+        "conditions": { "type": ["string", "null"] },
+        "high": { "type": ["string", "null"] },
+        "low": { "type": ["string", "null"] },
+        "precipitationProbability": { "type": ["number", "null"] },
+        "source": { "type": ["string", "null"] },
+        "isLive": { "type": "boolean" }
+      }
+    },
+    "rainfall": {
+      "type": "object",
+      "properties": {
+        "recent": { "type": ["object", "null"] }
+      }
+    },
+    "phenology": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial", "live"] },
+        "stage": { "type": ["string", "null"] },
+        "summary": { "type": ["string", "null"] },
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "watch": {
+          "type": "object",
+          "properties": {
+            "activeNow": { "type": "array" },
+            "ending": { "type": "array" },
+            "comingSoon": { "type": "array" }
+          }
+        }
+      }
+    },
+    "species": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial", "live"] },
+        "active": { "type": "array" },
+        "ending": { "type": "array" },
+        "comingSoon": { "type": "array" }
+      }
+    },
+    "observations": {
+      "type": "object",
+      "description": "Regional editorial field notes from content bundles. User-submitted observations use the Waypoint Observation Standard (WOS): ../observations/schema-v1.json",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial"] },
+        "items": { "type": "array" }
+      }
+    },
+    "conservation": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial"] },
+        "current": { "type": ["object", "null"] }
+      }
+    },
+    "research": {
+      "type": "object",
+      "properties": {
+        "status": { "enum": ["placeholder", "editorial"] },
+        "current": { "type": ["object", "null"] }
+      }
+    },
+    "ethics": {
+      "type": "object",
+      "description": "Outdoor Ethics Standard context — see design-system/ethics/schema-v1.json",
+      "properties": {
+        "version": { "type": "string" },
+        "schema": { "type": "string" },
+        "domains": { "type": "object" },
+        "regional": { "type": ["object", "null"] },
+        "citizenScience": { "type": "object" },
+        "featureEvaluation": { "type": "object" }
+      }
+    },
+    "weatherRef": {
+      "type": ["object", "null"],
+      "description": "Full WDS.weather package when live fetch succeeds"
+    },
+    "legacy": {
+      "type": ["object", "null"],
+      "description": "V1 regionalIntelligence package for backward compatibility"
+    }
+  }
+}

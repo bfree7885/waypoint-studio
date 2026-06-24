@@ -211,6 +211,8 @@ If not, do not publish yet.
 
 The **Waypoint Education Framework** (`design-system/education/`) defines lesson *schema* (what / why / identify / field observations / challenge).  
 
+The [**nine-pillar Educational Framework**](WAYPOINT-EDUCATIONAL-FRAMEWORK.md) is the company-wide standard every topic should answer — WEF lessons map to it via `WDS.educationTopic.auditWefLesson()`.
+
 **Field Guide Standards** define *page layout* for all educational content types — including species pages, briefs, and challenges that are not WEF lessons.
 
 Both obey the Constitution and Waypoint Method. When content is both a lesson and a field guide page, use WEF section content inside FGDS layout.

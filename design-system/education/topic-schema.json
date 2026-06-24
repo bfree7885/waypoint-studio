@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/education/topic/v1",
+  "title": "Waypoint Educational Topic",
+  "description": "Universal nine-pillar educational topic. Used for new articles, species pages, and cross-product content. WEF lessons map to this shape via educationTopic.topicFromWefLesson().",
+  "type": "object",
+  "required": ["id", "title", "type", "pillars"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "subtitle": { "type": ["string", "null"], "maxLength": 300 },
+    "type": {
+      "type": "string",
+      "enum": ["species", "habitat", "ecosystem", "phenomenon", "skill", "research", "challenge", "investigation", "equipment", "conservation"]
+    },
+    "product": { "type": ["string", "null"], "description": "Originating app slug or waypoint-studio" },
+    "domains": { "type": "array", "items": { "type": "string" } },
+    "level": { "enum": ["intro", "beginner", "intermediate", "advanced", null] },
+    "durationMinutes": { "type": ["number", "null"], "minimum": 1 },
+    "summary": { "type": ["string", "null"], "maxLength": 500 },
+    "drivingQuestion": { "type": ["string", "null"], "maxLength": 300 },
+    "pillars": { "$ref": "#/$defs/pillars" },
+    "integrity": {
+      "type": ["object", "null"],
+      "description": "Optional Research Integrity context — provenance, citations",
+      "properties": {
+        "provenance": { "type": "string" },
+        "source": { "type": ["string", "null"] },
+        "citation": { "type": ["string", "null"] }
+      }
+    },
+    "meta": {
+      "type": ["object", "null"],
+      "properties": {
+        "version": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "author": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "$defs": {
+    "sectionContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "steps": { "type": "array", "items": { "type": "string" } },
+        "bullets": { "type": "array", "items": { "type": "string" } },
+        "prompts": { "type": "array", "items": { "type": "string" } },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "wherePillar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "bullets": { "type": "array", "items": { "type": "string" } },
+        "habitats": { "type": "array", "items": { "type": "string" } },
+        "mapRef": { "type": ["string", "null"], "description": "Asset path or map layer id" },
+        "localityHints": { "type": "array", "items": { "type": "string" } },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "whenPillar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "season": { "type": ["string", "null"] },
+        "phenology": { "type": ["string", "null"] },
+        "timeOfDay": { "type": ["string", "null"] },
+        "calendar": { "type": ["string", "null"], "description": "Week, month, or phenology window" },
+        "bullets": { "type": "array", "items": { "type": "string" } },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "observeSafelyPillar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "safety": { "$ref": "#/$defs/sectionContent" },
+        "ethics": { "$ref": "#/$defs/sectionContent" },
+        "prompts": { "type": "array", "items": { "type": "string" } },
+        "mistakes": { "$ref": "#/$defs/sectionContent" },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "learnMorePillar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "lessons": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "href": { "type": "string" }
+            }
+          }
+        },
+        "articles": { "type": "array", "items": { "type": "object" } },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label"],
+            "properties": {
+              "label": { "type": "string" },
+              "href": { "type": "string" },
+              "product": { "type": "string" }
+            }
+          }
+        },
+        "videos": { "type": "array", "items": { "type": "object" } },
+        "challenge": { "$ref": "#/$defs/sectionContent" },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "connectionsPillar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "bullets": { "type": "array", "items": { "type": "string" } },
+        "spheres": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "geology", "weather", "climate", "plants", "fungi", "animals",
+              "insects", "water", "soils", "humans", "astronomy"
+            ]
+          }
+        },
+        "skipped": { "type": "boolean" },
+        "skipReason": { "type": "string" }
+      }
+    },
+    "pillars": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "what": { "$ref": "#/$defs/sectionContent" },
+        "why": { "$ref": "#/$defs/sectionContent" },
+        "howItWorks": { "$ref": "#/$defs/sectionContent" },
+        "where": { "$ref": "#/$defs/wherePillar" },
+        "when": { "$ref": "#/$defs/whenPillar" },
+        "observeSafely": { "$ref": "#/$defs/observeSafelyPillar" },
+        "learnMore": { "$ref": "#/$defs/learnMorePillar" },
+        "connections": { "$ref": "#/$defs/connectionsPillar" }
+      }
+    }
+  }
+}

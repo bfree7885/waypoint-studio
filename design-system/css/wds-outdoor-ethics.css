@@ -1,0 +1,80 @@
+/**
+ * Outdoor ethics UI — quiet reminders, no alarm banners
+ */
+
+.wds-ethics-reminder,
+.wds-ethics-footnote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--wds-space-2, 0.5rem);
+  margin: var(--wds-space-3, 0.75rem) 0 0;
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-xs, 0.8125rem);
+  line-height: 1.45;
+  color: var(--wds-text-tertiary);
+}
+
+.wds-ethics-reminder__label,
+.wds-ethics-footnote__tag {
+  font-size: var(--wds-text-2xs, 0.6875rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-sage, #7a9e7e);
+  flex-shrink: 0;
+}
+
+.wds-ethics-footnote__regional {
+  display: block;
+  width: 100%;
+  margin-top: var(--wds-space-1, 0.25rem);
+  font-style: italic;
+}
+
+.wds-ethics-cs {
+  margin-top: var(--wds-space-4, 1rem);
+  padding: var(--wds-space-4, 1rem);
+  border-radius: var(--wds-radius-md, 8px);
+  border: 1px solid rgba(122, 158, 126, 0.2);
+  background: rgba(122, 158, 126, 0.06);
+  font-size: var(--wds-text-sm, 0.875rem);
+  color: var(--wds-text-secondary);
+}
+
+.wds-ethics-cs__soon {
+  margin: 0 0 var(--wds-space-2, 0.5rem);
+  font-size: var(--wds-text-xs, 0.8125rem);
+}
+
+.wds-ethics-cs__lead {
+  margin: 0 0 var(--wds-space-2, 0.5rem);
+  font-weight: 500;
+}
+
+.wds-ethics-cs__list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.wds-ethics-cs__list li {
+  margin-bottom: var(--wds-space-1, 0.25rem);
+}
+
+.wds-ethics-report {
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-sm, 0.875rem);
+  padding: var(--wds-space-4, 1rem);
+  border: 1px dashed var(--wds-border);
+  border-radius: var(--wds-radius-md, 8px);
+  margin: var(--wds-space-4, 0) 0;
+}
+
+.wds-ethics-report__title {
+  margin: 0 0 var(--wds-space-2, 0.5rem);
+  font-weight: 600;
+}
+
+.wds-ethics-report__fail { color: var(--wds-coral, #e07a6a); }
+.wds-ethics-report__warn { color: var(--wds-amber, #c9a227); }
+.wds-ethics-report__pass { color: var(--wds-sage, #7a9e7e); }

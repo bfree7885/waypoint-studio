@@ -12,7 +12,6 @@
       base: ENGINE_BASE,
       mount: document.getElementById("wds-content-engine"),
       wrapMain: true,
-      includeCitizenScience: false,
       location: loc,
       onLocationChange: function (newLoc) {
         startDashboard(newLoc);
@@ -33,7 +32,12 @@
       requestAnimationFrame(boot);
       return;
     }
-    if (WDS.regionalIntelligence && WDS.regionalIntelligence.configure) {
+    if (WDS.outdoorIntelligence && WDS.outdoorIntelligence.configure) {
+      WDS.outdoorIntelligence.configure({
+        contentEngineBase: ENGINE_BASE,
+        includeWeather: true
+      });
+    } else if (WDS.regionalIntelligence && WDS.regionalIntelligence.configure) {
       WDS.regionalIntelligence.configure({ contentEngineBase: ENGINE_BASE });
     }
     if (WDS.weather && WDS.weather.configure) {

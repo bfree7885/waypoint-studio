@@ -1,5 +1,7 @@
 # Waypoint Studio — Master Experience Blueprint
 
+> **Strategic note (2026):** The seven-room pattern remains the **content architecture** for lessons and editorial pages. The **public product portfolio** is four instruments — Dashboard, ForageCast, Fieldry, Scenes. Former app concepts (Shed Hunting, Steepleaf, etc.) become content tracks or shared modules. See [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).
+
 **Mission:** Observe · Understand · Create · Share
 
 **What we are:** A place people visit because they love nature — not a collection of utilities.

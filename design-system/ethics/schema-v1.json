@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/outdoor-ethics/v1",
+  "title": "Waypoint Outdoor Ethics Package",
+  "description": "Ethics context attached to Outdoor Intelligence Platform packages and used for feature evaluation.",
+  "type": "object",
+  "required": ["version", "domains"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "const": "1.0.0" },
+    "schema": { "type": "string", "const": "https://waypoint.studio/schemas/outdoor-ethics/v1" },
+    "domains": { "$ref": "#/$defs/domains" },
+    "regional": { "$ref": "#/$defs/regionalEthics" },
+    "citizenScience": { "$ref": "#/$defs/citizenScienceEthics" },
+    "featureEvaluation": { "$ref": "#/$defs/featureEvaluation" }
+  },
+  "$defs": {
+    "domainKey": {
+      "enum": [
+        "leaveNoTrace", "wildlife", "foraging", "conservation",
+        "habitat", "privateProperty", "research", "citizenScience"
+      ]
+    },
+    "domainBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string" },
+        "reminders": { "type": "array", "items": { "type": "string" } },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "href": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "domains": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "leaveNoTrace": { "$ref": "#/$defs/domainBlock" },
+        "wildlife": { "$ref": "#/$defs/domainBlock" },
+        "foraging": { "$ref": "#/$defs/domainBlock" },
+        "conservation": { "$ref": "#/$defs/domainBlock" },
+        "habitat": { "$ref": "#/$defs/domainBlock" },
+        "privateProperty": { "$ref": "#/$defs/domainBlock" },
+        "research": { "$ref": "#/$defs/domainBlock" },
+        "citizenScience": { "$ref": "#/$defs/domainBlock" }
+      }
+    },
+    "regionalEthics": {
+      "type": ["object", "null"],
+      "properties": {
+        "title": { "type": ["string", "null"] },
+        "summary": { "type": ["string", "null"] },
+        "whatYouCanDo": { "type": ["string", "null"] },
+        "source": { "type": ["string", "null"] }
+      }
+    },
+    "citizenScienceEthics": {
+      "type": "object",
+      "properties": {
+        "optInRequired": { "type": "boolean", "default": true },
+        "defaultPrivate": { "type": "boolean", "default": true },
+        "disclosures": { "type": "array", "items": { "type": "string" } },
+        "submissionAvailable": { "type": "boolean", "default": false }
+      }
+    },
+    "featureEvaluation": {
+      "type": "object",
+      "properties": {
+        "documentation": { "type": "string" },
+        "constitutionalQuestions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "featureSpec": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "domains": { "type": "array", "items": { "$ref": "#/$defs/domainKey" } },
+        "collectsPersonalData": { "type": "boolean" },
+        "sharesLocationPublicly": { "type": "boolean" },
+        "sharesLocationPrecisely": { "type": "boolean" },
+        "gamification": { "type": "boolean" },
+        "requiresAccount": { "type": "boolean" },
+        "targetsSensitiveSpecies": { "type": "boolean" },
+        "facilitatesTrespass": { "type": "boolean" },
+        "presentsPredictionsAsFacts": { "type": "boolean" },
+        "darkPatterns": { "type": "boolean" },
+        "sellsUserData": { "type": "boolean" },
+        "autoplayMedia": { "type": "boolean" },
+        "socialFeed": { "type": "boolean" }
+      }
+    }
+  }
+}

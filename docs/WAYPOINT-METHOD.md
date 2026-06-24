@@ -169,7 +169,7 @@ Every Waypoint lesson is a **digital field lab**. Whether it appears in Learn, a
 | **Reflection** | What you thought before vs. after |
 | **Related lessons** | Reading order across tracks and products |
 
-**Alignment with WEF:** The Waypoint Education Framework (`design-system/education/`) implements this lab structure in software. The Waypoint Method is the philosophy; WEF is the canonical lesson schema.
+**Alignment with WEF:** The Waypoint Education Framework (`design-system/education/`) implements this lab structure in software. The Waypoint Method is the philosophy; WEF is the canonical lesson schema. The [**nine-pillar Educational Framework**](WAYPOINT-EDUCATIONAL-FRAMEWORK.md) is the company-wide topic standard that WEF lessons, field guides, and content types map onto.
 
 ---
 
@@ -728,6 +728,7 @@ Every product is a **field laboratory** for a different facet of nature. Same Me
 |-------|----------|
 | Supreme law | `WAYPOINT-STUDIO-CONSTITUTION.md` |
 | Educational philosophy | `WAYPOINT-METHOD.md` (this document) |
+| Universal topic standard | `WAYPOINT-EDUCATIONAL-FRAMEWORK.md` — nine pillars |
 | Experience architecture | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | Lesson schema | `design-system/education/` (WEF) |
 | AI agents | `.ai-agents/` — all roles obey Constitution and Method |

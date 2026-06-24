@@ -1,27 +1,28 @@
 {
   "name": "SignalTerrain",
-  "eyebrow": "Navigation laboratory",
-  "mission": "The observatory deck — contours, horizon, sky, and the ground beneath your boots. Navigation and terrain reading for students of the outdoors.",
+  "eyebrow": "Shared platform module",
+  "mission": "Map, navigation, geology, and earth science capabilities — shared modules across the platform, not a standalone product.",
   "status": "preview",
-  "statusLabel": "Educational preview",
+  "statusLabel": "Platform module — not a product",
+  "portfolioStatus": "module",
+  "portfolioNote": "SignalTerrain concepts become shared map, coordinate, and earth-science modules (already used in ForageCast heat maps) plus navigation lessons in Fieldry and the dashboard.",
   "learnToday": [
-    "Reading contour lines: ridge, draw, saddle, and spur on a topographic map",
-    "How aspect affects temperature and moisture on the same hill",
-    "Using the horizon and sun position for rough bearing — backup to compass",
-    "Why turning back is a navigation skill, not a failure"
+    "How contour lines describe drainage and aspect — poetry you can walk",
+    "Reading a schematic terrain map as an educational estimate, not a GIS guarantee",
+    "Bearing, humility, and turnaround planning before summit fever",
+    "Why maps belong beside lessons, not as a separate app door"
   ],
   "comingSoon": [
-    "Interactive contour map lessons for Pike County terrain",
-    "Aspect and sun-angle reference for field planning",
-    "Weather window reading for safe ridge walks",
-    "Private route journal with turnaround notes",
-    "Night sky orientation basics for Northeast latitudes"
+    "Shared WDS map module improvements",
+    "Navigation lessons in Fieldry Learn",
+    "Geology and weather cross-links on the regional dashboard",
+    "Honest offline-stub documentation — no fake live telemetry"
   ],
   "preview": {
-    "title": "Read the ground",
-    "placeholderLabel": "Contour map · placeholder",
-    "placeholderHint": "Ridge · draw · aspect · elevation bands",
-    "description": "SignalTerrain is a map on the trailhead wall — not a GPS replacement. Study contours during the week, then walk a hill this weekend and name the features under your boots. The tool teaches terrain literacy so you need the screen less, not more."
+    "title": "The observatory deck",
+    "placeholderLabel": "Terrain schematic · placeholder",
+    "placeholderHint": "Aspect · drainage · horizon · sky",
+    "description": "Horizon, contour, and signal reading are platform capabilities — woven into ForageCast terrain bands and future Fieldry route notes — not a separate destination."
   },
   "homeLink": "../../#experiences"
 }

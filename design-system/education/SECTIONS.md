@@ -2,6 +2,8 @@
 
 Fixed template order. The renderer outputs only sections with content unless `showSkipped: true`.
 
+**Company standard:** Every lesson should also satisfy the [nine educational pillars](../../docs/WAYPOINT-EDUCATIONAL-FRAMEWORK.md). See [TOPIC-STANDARD.md](./TOPIC-STANDARD.md) for pillar ↔ WEF mapping. Audit with `WDS.educationTopic.auditWefLesson(lesson)`.
+
 ## Section content shape
 
 Each section (except `related` and `quiz`) accepts a **SectionContent** object:

@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "mapTitle": "Pike County · terrain zones",
   "legend": [
-    { "level": "high", "label": "Higher readiness", "desc": "Moisture + habitat + season align" },
+    { "level": "high", "label": "Stronger signal", "desc": "Moisture, habitat, and season may loosely align in the model" },
     { "level": "moderate", "label": "Worth a patient walk", "desc": "One or two factors lagging" },
     { "level": "low", "label": "Unlikely this week", "desc": "Season or moisture mismatch" }
   ],

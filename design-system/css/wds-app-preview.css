@@ -172,3 +172,43 @@
   font-size: var(--wds-text-sm);
   font-weight: 500;
 }
+
+.wap-portfolio-banner {
+  margin: 0;
+  padding: var(--wds-space-4) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+  background: var(--wds-surface-raised);
+}
+
+.wap-portfolio-banner--retired {
+  background: rgba(120, 80, 60, 0.08);
+}
+
+.wap-portfolio-banner__label {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--wds-text-secondary);
+}
+
+.wap-portfolio-banner__note {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wap-portfolio-banner__back {
+  margin: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-sm);
+}
+
+.wap-section__prose {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}

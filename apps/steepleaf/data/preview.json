@@ -1,27 +1,28 @@
 {
   "name": "Steepleaf",
-  "eyebrow": "Botany laboratory",
-  "mission": "The herbarium cabinet — botanical plates, habitat keys, and phenology through the year. Botany taught the way a good field guide teaches: illustration, range, and respect for rare plants.",
+  "eyebrow": "Future learning track",
+  "mission": "Botany and phenology taught through plates, keys, and habitat — merging into ForageCast Learn, not a standalone app.",
   "status": "preview",
-  "statusLabel": "Educational preview",
+  "statusLabel": "Content track — not a product",
+  "portfolioStatus": "content-track",
+  "portfolioNote": "Steepleaf becomes the botany and phenology track inside ForageCast and the shared species knowledge base — botanical plates without duplicating a second species browser.",
   "learnToday": [
     "How to read a botanical plate: leaf arrangement, margin, venation, and habitat",
-    "Pike County spring phenology: what is leafing, flowering, and fruiting this week",
-    "Ethics of wild plant observation — photograph, don't poach rare species",
-    "Connecting understory plants to canopy trees on north vs south slopes"
+    "Phenology observation without collecting rare plants — photograph, don't poach",
+    "Connecting understory plants to canopy trees on north vs south slopes",
+    "Why Latin names are precision tools, not trivia"
   ],
   "comingSoon": [
-    "Species plates with illustrations and range maps",
-    "Phenology calendar for Northeast PA natives",
-    "Habitat keys: wetland margin, dry ridge, ravine, old field",
-    "Private observation journal",
-    "Conservation alerts for sensitive species — observe only"
+    "Botany track in ForageCast Learn",
+    "Species plates in the shared knowledge base",
+    "Phenology prompts on the regional dashboard",
+    "Fieldry WOS records for plant phenology phases"
   ],
   "preview": {
     "title": "The herbarium page",
     "placeholderLabel": "Botanical plate · placeholder",
     "placeholderHint": "Leaf · flower · fruit · habitat sketch",
-    "description": "Steepleaf opens like a cabinet drawer — each species on a plate you can study before you walk. Learn the leaf, then find it with your eyes. Rare plants stay on the page; the field is for observation, not collection."
+    "description": "Every leaf has a story — but botany belongs in the flagship learning path, not a parallel app. This preview documents the direction; active development focuses on ForageCast and Fieldry."
   },
   "homeLink": "../../#experiences"
 }

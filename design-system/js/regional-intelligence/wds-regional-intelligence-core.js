@@ -6,7 +6,15 @@
   "use strict";
 
   var VERSION = "1.0.0";
-  var DEFAULT_REGION_ID = "pike-county-pa";
+
+  function resolveDefaultRegionId() {
+    var RI = global.WDS && global.WDS.regionalIntelligence;
+    if (RI && RI.engine && RI.engine.getDefaults) {
+      var d = RI.engine.getDefaults();
+      if (d && d.regionId) return d.regionId;
+    }
+    return null;
+  }
 
   function emptyPackage() {
     return {
@@ -131,12 +139,18 @@
 
   global.WDS = global.WDS || {};
   global.WDS.regionalIntelligence = global.WDS.regionalIntelligence || {};
-  Object.assign(global.WDS.regionalIntelligence, {
+  var RI = global.WDS.regionalIntelligence;
+  Object.assign(RI, {
     VERSION: VERSION,
-    DEFAULT_REGION_ID: DEFAULT_REGION_ID,
+    resolveDefaultRegionId: resolveDefaultRegionId,
     emptyPackage: emptyPackage,
     normalizePackage: normalizePackage,
     normalizeSpeciesEntry: normalizeSpeciesEntry,
     toFlatView: toFlatView
+  });
+  Object.defineProperty(RI, "DEFAULT_REGION_ID", {
+    configurable: true,
+    enumerable: true,
+    get: resolveDefaultRegionId
   });
 })(window);

@@ -1,20 +1,31 @@
 /**
  * Waypoint Studio — Regional intelligence service
- * Public API for all Waypoint apps. Call get() — never assemble sources directly in UI.
+ * Backward-compatible facade over WDS.outdoorIntelligence.
+ * Legacy apps call regionalIntelligence.get() — returns V1 package shape.
  */
 (function (global) {
   "use strict";
 
   var RI = global.WDS && global.WDS.regionalIntelligence;
-  if (!RI || !RI.sources) return;
+  if (!RI) return;
 
   var serviceConfig = {
     contentEngineBase: "design-system/content-engine/",
     includeWeather: true,
-    defaultRegionId: RI.DEFAULT_REGION_ID
+    defaultRegionId: null
   };
 
   var lastSnapshot = null;
+
+  function resolveDefaultRegionId() {
+    if (serviceConfig.defaultRegionId) return serviceConfig.defaultRegionId;
+    if (RI.resolveDefaultRegionId) return RI.resolveDefaultRegionId();
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.adapters && OIP.adapters.resolveRegionId) {
+      return OIP.adapters.resolveRegionId();
+    }
+    return null;
+  }
 
   function configure(options) {
     options = options || {};
@@ -23,6 +34,8 @@
     }
     if (options.includeWeather != null) serviceConfig.includeWeather = !!options.includeWeather;
     if (options.defaultRegionId) serviceConfig.defaultRegionId = options.defaultRegionId;
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.configure) OIP.configure(options);
     return Object.assign({}, serviceConfig);
   }
 
@@ -32,12 +45,16 @@
     if (!loc && global.WDS && global.WDS.location) {
       loc = global.WDS.location.getState();
     }
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    var regionId = request.regionId || (loc && loc.contentBundle);
+    if (!regionId && OIP && OIP.adapters && OIP.adapters.resolveRegionId) {
+      regionId = OIP.adapters.resolveRegionId({ location: loc, regionId: request.regionId });
+    }
+    if (!regionId) regionId = resolveDefaultRegionId();
     return {
       location: loc,
       bundle: request.bundle || null,
-      regionId: request.regionId ||
-        (loc && loc.contentBundle) ||
-        serviceConfig.defaultRegionId,
+      regionId: regionId,
       contentEngineBase: request.contentEngineBase || serviceConfig.contentEngineBase,
       includeWeather: request.includeWeather != null
         ? request.includeWeather
@@ -46,104 +63,53 @@
     };
   }
 
-  function loadBundle(regionId, base) {
-    if (global.WDS && global.WDS.contentEngine && global.WDS.contentEngine.loadRegion) {
-      return global.WDS.contentEngine.loadRegion(regionId, base);
+  function attachPlatformRefs(legacy, platformPkg) {
+    if (!legacy || !platformPkg) return legacy;
+    legacy.v2 = platformPkg;
+    legacy.outdoorIntelligence = platformPkg;
+    if (platformPkg.weatherRef) legacy.weatherRef = platformPkg.weatherRef;
+    if (RI.engine && RI.engine.getLast) {
+      legacy.regionalIntelligence = RI.engine.getLast();
     }
-    return fetch(base.replace(/\/?$/, "/") + "regions/" + regionId + ".json").then(function (res) {
-      if (!res.ok) throw new Error("Regional intelligence: failed to load bundle " + regionId);
-      return res.json();
-    });
-  }
-
-  function resolveBundle(request) {
-    if (request.bundle) {
-      return Promise.resolve(request.bundle);
-    }
-    return loadBundle(request.regionId, request.contentEngineBase);
-  }
-
-  function applyLocationToBundle(bundle, loc) {
-    if (loc && global.WDS && global.WDS.location && global.WDS.location.applyToBundle) {
-      return global.WDS.location.applyToBundle(bundle, loc);
-    }
-    return bundle;
-  }
-
-  function resolveWeather(request, intel) {
-    if (!request.includeWeather) return Promise.resolve(null);
-    var W = global.WDS && global.WDS.weather;
-    if (!W || !W.getForecast) return Promise.resolve(null);
-    if (!intel || !intel.coordinates) return Promise.resolve(null);
-
-    var lat = Number(intel.coordinates.latitude);
-    var lng = Number(intel.coordinates.longitude);
-    if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
-
-    var hints = request.weatherHints;
-    if (!hints && intel.weather && !intel.weather.isLive) {
-      hints = {
-        high: intel.weather.high,
-        low: intel.weather.low,
-        conditions: intel.weather.conditions
-      };
-    }
-
-    return W.getForecast({
-      intelligence: intel,
-      location: request.location,
-      hints: hints,
-      timezone: intel.daylight && intel.daylight.timezone,
-      fallback: false
-    }).catch(function () {
-      return null;
-    });
-  }
-
-  function assemble(bundle, loc, weatherPkg) {
-    var layers = [
-      RI.sources.fromContentBundle(bundle),
-      RI.sources.fromLocation(loc),
-      weatherPkg ? RI.sources.fromWeatherPackage(weatherPkg) : null
-    ];
-    var pkg = RI.sources.mergeLayers.apply(null, layers);
-    pkg.meta.assembledAt = new Date().toISOString();
-    pkg.meta.isPlaceholder = !(weatherPkg && weatherPkg.meta && !weatherPkg.meta.isPlaceholder);
-    pkg.meta.sources = Object.assign({}, pkg.meta.sources || {}, {
-      weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider : "none"
-    });
-    return RI.normalizePackage(pkg);
+    return legacy;
   }
 
   function get(request) {
-    var req = normalizeRequest(request);
-    return resolveBundle(req).then(function (bundle) {
-      bundle = applyLocationToBundle(bundle, req.location);
-      var partialIntel = assemble(bundle, req.location, null);
-      return resolveWeather(req, partialIntel).then(function (weatherPkg) {
-        var intel = assemble(bundle, req.location, weatherPkg);
-        if (weatherPkg) intel.weatherRef = weatherPkg;
-        lastSnapshot = intel;
-        return intel;
-      });
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (!OIP || !OIP.get) {
+      return Promise.reject(new Error("WDS.outdoorIntelligence is not available"));
+    }
+    return OIP.get(normalizeRequest(request)).then(function (platformPkg) {
+      var legacy = platformPkg.legacy || (RI.normalizePackage ? RI.normalizePackage(platformPkg) : platformPkg);
+      lastSnapshot = attachPlatformRefs(legacy, platformPkg);
+      return lastSnapshot;
     });
   }
 
   function getFromSnapshot(snapshot) {
-    lastSnapshot = RI.normalizePackage(snapshot);
+    lastSnapshot = RI.normalizePackage ? RI.normalizePackage(snapshot) : snapshot;
     return Promise.resolve(lastSnapshot);
   }
 
   function getLastSnapshot() {
-    return lastSnapshot ? RI.normalizePackage(lastSnapshot) : null;
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.getLast) {
+      var platformPkg = OIP.getLast();
+      if (platformPkg && platformPkg.legacy) {
+        return attachPlatformRefs(RI.normalizePackage(platformPkg.legacy), platformPkg);
+      }
+    }
+    return lastSnapshot ? (RI.normalizePackage ? RI.normalizePackage(lastSnapshot) : lastSnapshot) : null;
   }
 
   function clearCache() {
     lastSnapshot = null;
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.clearCache) OIP.clearCache();
   }
 
   function loadSnapshot(regionId, base) {
-    regionId = regionId || serviceConfig.defaultRegionId;
+    regionId = regionId || resolveDefaultRegionId();
     base = (base || "design-system/regional-intelligence/snapshots/").replace(/\/?$/, "/");
     return fetch(base + regionId + ".json").then(function (res) {
       if (!res.ok) throw new Error("Regional intelligence: snapshot not found " + regionId);
@@ -157,7 +123,6 @@
     getFromSnapshot: getFromSnapshot,
     getLastSnapshot: getLastSnapshot,
     loadSnapshot: loadSnapshot,
-    clearCache: clearCache,
-    assemble: assemble
+    clearCache: clearCache
   });
 })(window);

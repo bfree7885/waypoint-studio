@@ -5,6 +5,21 @@
   "use strict";
 
   var DAY_OF_YEAR = dayOfYearFromDate(new Date());
+  var calendarContext = null;
+
+  function setCalendarContext(calendar) {
+    calendarContext = calendar || null;
+    if (calendar && calendar.weekOf) {
+      var parts = String(calendar.weekOf).split("-");
+      if (parts.length >= 3) {
+        DAY_OF_YEAR = dayOfYearFromDate(new Date(
+          parseInt(parts[0], 10),
+          parseInt(parts[1], 10) - 1,
+          parseInt(parts[2], 10)
+        ));
+      }
+    }
+  }
 
   function dayOfYearFromDate(d) {
     var start = new Date(d.getFullYear(), 0, 0);
@@ -37,7 +52,7 @@
     var spread = factorSpread || 0;
     if (spread > 0.35) return { level: "low", label: "Low confidence", reason: "Factors disagree — ground truth matters more than the model this week." };
     if (score >= 0.55 && spread < 0.2) return { level: "high", label: "Moderate confidence", reason: "Season and moisture mostly agree — still verify outdoors." };
-    if (score < 0.35) return { level: "moderate", label: "Moderate confidence", reason: "Low readiness is clear, but local microclimates can surprise." };
+    if (score < 0.35) return { level: "moderate", label: "Moderate confidence", reason: "Weaker index suggests limited alignment — local microclimates can still surprise." };
     return { level: "moderate", label: "Moderate confidence", reason: "Placeholder model — treat as a reading guide, not a forecast." };
   }
 
@@ -101,7 +116,7 @@
 
     var narratives = species.scoreNarratives || {};
     var regionName = (conditions.region && conditions.region.county) || "your region";
-    var explanation = narratives[level] || ("Readiness reflects season, moisture, and habitat alignment for " + regionName + " this week.");
+    var explanation = narratives[level] || ("Index reflects how season, moisture, and habitat may align for " + regionName + " this week — confirm outdoors.");
 
     var topFactorEntries = Object.keys(factors).map(function (key) {
       return { key: key, value: factors[key], weight: species.factorWeights[key] || 0 };
@@ -131,9 +146,9 @@
   function factorReason(key, value, conditions) {
     var labels = {
       seasonTiming: value >= 0.6 ? "Within the seasonal window for this species." : "Outside peak season — timing is the limiting factor.",
-      recentRainfall: value >= 0.6 ? "Recent rain (" + (conditions.labels.recentRainfall || "adequate") + ") supports fruiting." : "Dry spell — moisture may be limiting.",
-      temperature: value >= 0.6 ? "Temperatures align with species preference." : "Warmth or cool snap may be slowing activity.",
-      soilMoisture: value >= 0.6 ? "Soil moisture favorable in many draws." : "Ridge tops and south slopes drying faster.",
+      recentRainfall: value >= 0.6 ? "Recent rain (" + (conditions.labels.recentRainfall || "adequate") + ") may support fruiting — verify on the ground." : "Dry spell — moisture may be limiting.",
+      temperature: value >= 0.6 ? "Temperatures may align with species preference." : "Warmth or cool snap may be slowing activity.",
+      soilMoisture: value >= 0.6 ? "Soil moisture may be favorable in some draws." : "Ridge tops and south slopes may be drying faster.",
       elevation: value >= 0.6 ? "Elevation bands in county match habitat." : "Wrong elevation band for this week.",
       slopeAspect: value >= 0.6 ? "North slopes and shaded draws holding moisture." : "South aspects drying — check north slopes instead.",
       treeAssociation: value >= 0.6 ? "Associated trees present in mapped zones." : "Host trees sparse in highest-scoring areas.",
@@ -144,6 +159,8 @@
 
   global.ForageCastModel = {
     dayOfYear: DAY_OF_YEAR,
+    setCalendarContext: setCalendarContext,
+    getCalendarContext: function () { return calendarContext; },
     computeCountyPrediction: computeCountyPrediction,
     computeZonePrediction: computeZonePrediction,
     levelFromScore: levelFromScore

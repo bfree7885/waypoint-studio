@@ -1,0 +1,62 @@
+{
+  "id": "topic-example-slug",
+  "title": "Topic title",
+  "subtitle": null,
+  "type": "species",
+  "product": "foragecast",
+  "domains": ["species"],
+  "level": "beginner",
+  "durationMinutes": 15,
+  "summary": "One-sentence deck for cards and search.",
+  "drivingQuestion": "The question that sends the learner outdoors.",
+  "pillars": {
+    "what": {
+      "body": ""
+    },
+    "why": {
+      "body": ""
+    },
+    "howItWorks": {
+      "steps": []
+    },
+    "where": {
+      "body": "",
+      "habitats": [],
+      "mapRef": null,
+      "localityHints": []
+    },
+    "when": {
+      "season": "",
+      "phenology": null,
+      "timeOfDay": null,
+      "calendar": null,
+      "body": ""
+    },
+    "observeSafely": {
+      "safety": { "bullets": [] },
+      "ethics": { "body": "" },
+      "prompts": [],
+      "mistakes": { "bullets": [] }
+    },
+    "learnMore": {
+      "lessons": [],
+      "articles": [],
+      "tools": [],
+      "videos": [],
+      "challenge": { "body": "" }
+    },
+    "connections": {
+      "body": "",
+      "spheres": []
+    }
+  },
+  "integrity": {
+    "provenance": "educational",
+    "source": null,
+    "citation": null
+  },
+  "meta": {
+    "version": "1.0.0",
+    "author": null
+  }
+}

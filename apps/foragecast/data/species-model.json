@@ -51,7 +51,7 @@
         "doNotDisturb": ["Do not rake leaf litter or dig soil", "Do not share exact coordinates", "Leave small specimens for spore dispersal"]
       },
       "scoreNarratives": {
-        "high": "Season and moisture still align on low terraces and orchard edges — the window is narrow but real.",
+        "high": "Season and moisture may still align on low terraces and orchard edges — the window may be narrow; worth a careful check if you know the habitat.",
         "moderate": "Some zones remain worth a quiet walk; heat and drying slopes are ending the flush.",
         "low": "Season has passed for most elevations — wait for next spring or shift species."
       }
@@ -96,7 +96,7 @@
         "doNotDisturb": ["Do not harvest immature or uncertain fungi", "Stay on established trails", "Do not mark trees"]
       },
       "scoreNarratives": {
-        "high": "Moisture and oak habitat align — fruiting may be beginning on favored slopes.",
+        "high": "Moisture and oak habitat may align — conditions may favor early scouting; fruiting not confirmed.",
         "moderate": "Too early for harvest, not too early to learn habitat — north oak slopes after rain are the classroom.",
         "low": "Season has not opened — use this week to scout oak ridges for a return visit in late June."
       }

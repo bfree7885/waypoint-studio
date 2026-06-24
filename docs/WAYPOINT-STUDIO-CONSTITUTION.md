@@ -166,6 +166,8 @@ Does this help someone:
 
 If not, do not build it yet.
 
+Also evaluate against the [Waypoint Outdoor Ethics Standard](WAYPOINT-OUTDOOR-ETHICS-STANDARD.md) (`WDS.outdoorEthics.evaluateFeature`) when the feature touches field action, data sharing, maps, foraging, or wildlife.
+
 ## Final Rule
 
 This Constitution is the highest authority for Waypoint Studio.

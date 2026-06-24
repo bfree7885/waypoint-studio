@@ -65,8 +65,8 @@
       '<section class="fc-prediction-panel" aria-labelledby="fc-pred-title">' +
         '<div class="fc-prediction-panel__header">' +
           '<div>' +
-            '<p class="wds-eyebrow">Prediction · week of ' + escapeHtml(state.conditions.weekOf) + "</p>" +
-            '<h2 class="fc-section__title" id="fc-pred-title" style="margin:0;">' + escapeHtml(species.name) + " readiness</h2>" +
+            '<p class="wds-eyebrow">Educational index · week of ' + escapeHtml(state.conditions.weekOf) + "</p>" +
+            '<h2 class="fc-section__title" id="fc-pred-title" style="margin:0;">' + escapeHtml(species.name) + " · field index</h2>" +
             '<p class="wds-body" style="margin-top:var(--wds-space-1); font-size:var(--wds-text-xs); color:var(--wds-text-tertiary);">' +
               "Season window: " + escapeHtml(species.seasonWindow) +
             "</p>" +
@@ -74,7 +74,11 @@
           '<div class="fc-readiness-score" aria-label="Rough readiness index, about ' + pred.readinessScore + ' out of 100">' +
             '<span class="fc-readiness-score__value">~' + pred.readinessScore + "</span>" +
             '<span class="fc-readiness-score__label">rough index</span>' +
-            '<span class="fc-readiness-badge fc-readiness-badge--' + pred.level + '">' + escapeHtml(pred.level) + "</span>" +
+            '<span class="fc-readiness-badge fc-readiness-badge--' + pred.level + '">' + escapeHtml(
+              window.WDS && (WDS.researchIntegrity || WDS.provenance)
+                ? (WDS.researchIntegrity || WDS.provenance).readinessBandLabel(pred.level)
+                : pred.level
+            ) + "</span>" +
           "</div>" +
         "</div>" +
         '<p class="fc-confidence"><strong>' + escapeHtml(pred.confidence.label) + ":</strong> " + escapeHtml(pred.confidence.reason) + "</p>" +
@@ -116,7 +120,7 @@
       return (
         '<path class="fc-zone fc-zone--' + level + selected + top + '" data-zone="' + escapeHtml(zone.id) + '" ' +
           'd="' + zone.svgPath + '" tabindex="0" role="button" ' +
-          'aria-label="' + escapeHtml(zone.name) + ', ' + escapeHtml(window.ForageCastHeat ? ForageCastHeat.bandLabel(level) : level) + '">' +
+          'aria-label="' + escapeHtml(zone.name) + ', ' + escapeHtml(window.ForageCastHeat ? ForageCastHeat.bandLabel(level) : level) + ' (model estimate)">' +
         "</path>" +
         '<text class="fc-zone-label" x="' + zone.labelX + '" y="' + zone.labelY + '">' + escapeHtml(zone.name.split(" ")[0]) + "</text>"
       );
@@ -198,7 +202,7 @@
     var regionName = state.conditions && state.conditions.region ? state.conditions.region.county : "this region";
     return (
       '<section class="fc-factors-panel" aria-labelledby="fc-factors-title">' +
-        '<h3 id="fc-factors-title">Model factors</h3>' +
+        '<h3 id="fc-factors-title">Model factors · educational index</h3>' +
         '<p class="wds-body" style="margin:0 0 var(--wds-space-4); font-size:var(--wds-text-sm); color:var(--wds-text-secondary);">' +
           "Weighted inputs for this species in " + escapeHtml(regionName) + ". Placeholder values from local JSON — not live weather." +
         "</p>" +
@@ -217,7 +221,7 @@
 
     return (
       '<section class="fc-explain-panel" aria-labelledby="fc-explain-title">' +
-        '<h3 id="fc-explain-title">Why this score?</h3>' +
+        '<h3 id="fc-explain-title">Why this index?</h3>' +
         '<p class="wds-body" style="margin:0 0 var(--wds-space-3); font-size:var(--wds-text-sm); color:var(--wds-text-secondary);">' +
           "The model is a reading guide — season, rain, temperature, moisture, elevation, aspect, trees, and land cover. " +
           "It suggests where to walk, not what you will find." +
@@ -339,10 +343,15 @@
   }
 
   function loadSeasonTable(loc) {
+    var platformPromise = window.ForageCastBoot && ForageCastBoot.fetchPlatform
+      ? ForageCastBoot.fetchPlatform(loc)
+      : Promise.resolve(null);
+
     Promise.all([
       fetchJson("data/species-model.json"),
       fetchJson("data/conditions.json"),
-      fetchJson("data/terrain-zones.json")
+      fetchJson("data/terrain-zones.json"),
+      platformPromise
     ]).then(function (results) {
       state.speciesList = results[0].species;
       state.factorLabels = results[0].factorLabels;
@@ -350,8 +359,12 @@
       state.zones = results[2].zones;
       state.legend = results[2].legend;
       state.mapTitle = results[2].mapTitle;
+      var platform = results[3];
       if (window.ForageCastLocation) {
-        ForageCastLocation.applyToConditions(state.conditions, loc);
+        ForageCastLocation.applyToConditions(state.conditions, loc, platform);
+      }
+      if (platform && window.ForageCastModel && ForageCastModel.setCalendarContext) {
+        ForageCastModel.setCalendarContext(platform.calendar);
       }
       initFromQuery();
       render();
@@ -373,7 +386,7 @@
     if (window.ForageCastBoot) {
       ForageCastBoot.bootstrapLocation().then(start);
     } else {
-      start(window.ForageCastLocation ? ForageCastLocation.read() : null);
+      start(null);
     }
   }
 

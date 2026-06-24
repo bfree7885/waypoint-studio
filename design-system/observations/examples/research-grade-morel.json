@@ -1,0 +1,197 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/observation/v1",
+    "createdAt": "2026-05-15T11:04:32.000Z",
+    "updatedAt": "2026-05-15T11:08:10.000Z",
+    "source": "foragecast",
+    "productId": "foragecast-field-log",
+    "appVersion": "0.1.0-preview",
+    "revision": 2,
+    "contentBundleId": "pike-county-v1",
+    "regionalIntelligenceVersion": "2.0.0"
+  },
+  "id": "obs_f8e7d6c5-b4a3-4291-9f87-6543210fedcb",
+  "observer": {
+    "id": "usr_12345678-1234-4123-8123-123456789abc",
+    "anonymous": false,
+    "displayName": "Field Observer",
+    "localDeviceId": null
+  },
+  "taxon": {
+    "label": "yellow morel",
+    "commonName": "yellow morel",
+    "scientificName": "Morchella americana",
+    "rank": "species",
+    "hierarchy": {
+      "kingdom": "Fungi",
+      "phylum": "Ascomycota",
+      "class": "Pezizomycetes",
+      "order": "Pezizales",
+      "family": "Morchellaceae",
+      "genus": "Morchella",
+      "species": "americana",
+      "subspecies": null
+    },
+    "taxonId": "5557052",
+    "taxonIdSource": "gbif",
+    "lifeStage": "fruiting body",
+    "organismRemarks": "Honeycombed cap, hollow stipe, associated with tulip poplar."
+  },
+  "observedAt": {
+    "date": "2026-05-15",
+    "time": "10:42",
+    "timezone": "America/New_York",
+    "uncertaintyMinutes": 15,
+    "recordedAt": "2026-05-15T11:04:32.000Z"
+  },
+  "location": {
+    "latitude": 41.3245,
+    "longitude": -75.0182,
+    "accuracyM": 8,
+    "elevationFt": 1240,
+    "elevationM": 378,
+    "elevationSource": "gps",
+    "county": "Pike",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "country": "United States",
+    "countryCode": "US",
+    "localityDescription": "south-facing slope above unnamed tributary",
+    "privacy": {
+      "precision": "obfuscated",
+      "publicLatitude": 41.3251,
+      "publicLongitude": -75.0175,
+      "obfuscationRadiusM": 200,
+      "coordinateUncertaintyM": 200
+    }
+  },
+  "habitat": {
+    "label": "mesic hardwood slope",
+    "habitatType": "northern hardwood forest",
+    "substrate": "leaf litter over loam",
+    "aspect": "S",
+    "landCover": "deciduous forest",
+    "waterProximity": "stream_edge",
+    "canopyCoverPercent": 75,
+    "codes": []
+  },
+  "context": {
+    "season": "late spring",
+    "phenologyStage": "morel peak",
+    "month": 5,
+    "weekOf": "2026-05-12",
+    "weatherSnapshot": {
+      "capturedAt": "2026-05-15T10:42:00.000Z",
+      "source": "open-meteo",
+      "conditions": "partly cloudy",
+      "temperatureF": 62,
+      "temperatureC": 16.7,
+      "humidityPercent": 68,
+      "precipitationActive": false,
+      "windSpeed": 4,
+      "windUnit": "mph",
+      "cloudCoverPercent": 45,
+      "raw": null
+    },
+    "regionalIntelligenceRef": {
+      "regionId": "pike-pa",
+      "assembledAt": "2026-05-15T10:40:00.000Z"
+    }
+  },
+  "record": {
+    "quantity": 3,
+    "quantityMin": null,
+    "quantityMax": null,
+    "quantityUnit": "individuals",
+    "organismQuantityType": "individuals",
+    "confidence": "certain",
+    "notes": "Three fruiting bodies within 2 m. Left in place. Soil moist after rain two days prior.",
+    "evidenceQuality": "good",
+    "sensitiveSpecies": false,
+    "behavior": null,
+    "measurements": [
+      { "type": "cap_height", "value": 9.5, "unit": "cm" },
+      { "type": "stipe_height", "value": 11, "unit": "cm" }
+    ]
+  },
+  "media": {
+    "photos": [
+      {
+        "id": "med_abcdef12-3456-4789-a012-abcdef123456",
+        "kind": "photo",
+        "uri": "media/2026-05-15-morel-habitat.jpg",
+        "mimeType": "image/jpeg",
+        "caption": "Habitat context — tulip poplar litter",
+        "takenAt": "2026-05-15T10:41:00.000Z",
+        "widthPx": 3024,
+        "heightPx": 4032,
+        "durationSec": null,
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "evidenceRole": "habitat"
+      },
+      {
+        "id": "med_bcdef123-4567-4890-b123-bcdef1234567",
+        "kind": "photo",
+        "uri": "media/2026-05-15-morel-cap.jpg",
+        "mimeType": "image/jpeg",
+        "caption": "Cap detail showing honeycomb pits",
+        "takenAt": "2026-05-15T10:42:00.000Z",
+        "widthPx": 3024,
+        "heightPx": 4032,
+        "durationSec": null,
+        "hash": null,
+        "evidenceRole": "organism"
+      }
+    ],
+    "audio": [],
+    "video": []
+  },
+  "verification": {
+    "status": "community",
+    "reviewer": {
+      "id": "usr_87654321-4321-4321-8213-cba987654321",
+      "name": "Regional Mycology Reviewer",
+      "role": "expert",
+      "organization": "Pike County Naturalists"
+    },
+    "verifiedAt": "2026-05-16T09:00:00.000Z",
+    "verificationNotes": "Cap morphology consistent with M. americana. Location appropriate for late-May phenology.",
+    "flags": []
+  },
+  "research": {
+    "exportStatus": "eligible",
+    "exportedAt": null,
+    "exportFormats": ["darwin-core"],
+    "datasetId": null,
+    "recordId": null,
+    "withholdReason": null,
+    "darwinCore": null
+  },
+  "license": {
+    "code": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Field Observer via Waypoint Studio",
+    "rightsHolder": "Field Observer"
+  },
+  "privacy": {
+    "retention": "account-sync",
+    "shareWithResearchers": true,
+    "shareLocationPublicly": false,
+    "shareMediaPublicly": false,
+    "shareObserverIdentity": true,
+    "consentRecordedAt": "2026-05-15T11:04:32.000Z",
+    "consentVersion": "citizen-science-2026-05"
+  },
+  "revisions": [
+    {
+      "revisionId": "rev_11111111-2222-4333-8444-555555555555",
+      "revisionNumber": 1,
+      "revisedAt": "2026-05-15T11:08:10.000Z",
+      "revisedBy": "usr_12345678-1234-4123-8123-123456789abc",
+      "changeSummary": "Added scientific name and GBIF taxon ID after lookup",
+      "fieldsChanged": ["taxon.scientificName", "taxon.taxonId", "taxon.taxonIdSource", "taxon.hierarchy"],
+      "snapshotHash": null
+    }
+  ]
+}

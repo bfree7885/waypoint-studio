@@ -6,16 +6,23 @@ The official shared design language for every Waypoint Studio product.
 
 ## Products
 
-| Product | `data-product` | Accent character |
-|---------|----------------|------------------|
-| Waypoint Scenes | `scenes` | Sage — stillness, light through trees |
-| ForageCast | `foragecast` | Amber — harvest, season, warmth |
-| Shed Hunting | `shed-hunting` | Antler tan — earth, patience |
-| Fieldry | `fieldry` | Field gold — craft, leather, journal |
-| Steepleaf | `steepleaf` | Leaf green — botany, growth |
-| Savant Sommelier | `savant-sommelier` | Wine rose — refinement, terroir |
-| SignalTerrain | `signalterrain` | Slate blue — signal, horizon |
-| Terrainbound | `terrainbound` | Stone gray — terrain, endurance |
+**Core instruments** (public portfolio): Dashboard (`studio`), ForageCast, Fieldry, Scenes.
+
+**Themes** below include content tracks and retired concepts — accent tokens remain for editorial pages.
+
+| Product | `data-product` | Tier | Accent character |
+|---------|----------------|------|------------------|
+| Waypoint Studio Dashboard | `scenes` (home) | core | Regional trailhead |
+| ForageCast | `foragecast` | core | Amber — season, habitat |
+| Fieldry | `fieldry` | core | Field gold — journal, evidence |
+| Waypoint Scenes | `scenes` | core | Sage — stillness, light |
+| Shed Hunting | `shed-hunting` | content track | Antler tan |
+| Steepleaf | `steepleaf` | content track | Leaf green |
+| Savant Sommelier | `savant-sommelier` | editorial | Wine rose |
+| SignalTerrain | `signalterrain` | module | Slate blue |
+| Terrainbound | `terrainbound` | retired | Stone gray |
+
+See [STRATEGIC-DIRECTION.md](../docs/STRATEGIC-DIRECTION.md).
 
 ## Quick start
 
@@ -87,7 +94,7 @@ Key groups: color primitives, semantic surfaces, typography scale, 4px spacing g
 - [Product theming](docs/PRODUCTS.md)
 - [Motion philosophy](docs/MOTION.md)
 - [Reference gallery](patterns/reference.html)
-- [Education Framework](education/README.md) — shared Learn engine (WEF)
+- [Education Framework](education/README.md) — shared Learn engine (WEF) · [nine pillars](../docs/WAYPOINT-EDUCATIONAL-FRAMEWORK.md)
 - [Field Guide Design System](field-guide/README.md) — Peterson-style page templates (FGDS)
 - [Homepage components](homepage/README.md) — reusable ecosystem home sections
 - [Shared content library](content/README.md) — placeholder cards (50×6)
@@ -97,6 +104,9 @@ Key groups: color primitives, semantic surfaces, typography scale, 4px spacing g
 - [Ecosystem Blueprint](../docs/ECOSYSTEM-BLUEPRINT.md) — master IA: Home, Learn, Gallery, Field Notes, News, Videos, Tools
 - [Unified Roadmap](../docs/ROADMAP.md)
 - [Constitution](../docs/WAYPOINT-STUDIO-CONSTITUTION.md) · [Waypoint Method](../docs/WAYPOINT-METHOD.md)
+- [Waypoint Observation Standard (WOS)](../docs/WAYPOINT-OBSERVATION-STANDARD.md) · [schema](observations/schema-v1.json)
+- [Research Integrity](../docs/RESEARCH-INTEGRITY.md) · `WDS.researchIntegrity`
+- [Outdoor Ethics (WOES)](../docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md) · `WDS.outdoorEthics`
 - [Product shell template](patterns/product-shell.html)
 
 ## Adoption checklist

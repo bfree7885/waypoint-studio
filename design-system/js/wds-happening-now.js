@@ -25,7 +25,17 @@
     return isFinite(n) ? n : null;
   }
 
-  function monthFromContext(bundle, intel) {
+  function monthFromContext(bundle, intel, platform) {
+    if (platform && platform.calendar && platform.calendar.month) {
+      return platform.calendar.month;
+    }
+    if (intel && intel.v2 && intel.v2.calendar && intel.v2.calendar.month) {
+      return intel.v2.calendar.month;
+    }
+    var OIP = global.WDS && global.WDS.outdoorIntelligence;
+    if (OIP && OIP.model && OIP.model.monthFromDate) {
+      return OIP.model.monthFromDate(new Date(), bundle && bundle.weekOf);
+    }
     var weekOf = (bundle && bundle.weekOf) || (intel && intel.season && intel.season.weekOf);
     if (weekOf) {
       var parts = String(weekOf).split("-");
@@ -37,8 +47,9 @@
     return new Date().getMonth() + 1;
   }
 
-  function seasonKey(bundle, intel, month) {
-    var label = (intel && intel.phenology && intel.phenology.stage) ||
+  function seasonKey(bundle, intel, month, platform) {
+    var label = (platform && platform.calendar && platform.calendar.season) ||
+      (intel && intel.phenology && intel.phenology.stage) ||
       (intel && intel.season && intel.season.label) ||
       (bundle && bundle.season) ||
       "";
@@ -83,11 +94,17 @@
 
   function buildContext(input) {
     input = input || {};
+    var platform = input.platform ||
+      (input.intelligence && input.intelligence.outdoorIntelligence) ||
+      null;
     var intel = input.intelligence || input.regionalIntelligence || null;
+    if (!intel && platform) {
+      intel = platform.legacy || platform;
+    }
     var bundle = input.bundle || null;
-    var month = monthFromContext(bundle, intel);
-    var season = seasonKey(bundle, intel, month);
-    var weatherRef = intel && intel.weatherRef;
+    var month = monthFromContext(bundle, intel, platform);
+    var season = seasonKey(bundle, intel, month, platform);
+    var weatherRef = (platform && platform.weatherRef) || (intel && intel.weatherRef);
     var cur = weatherRef && weatherRef.current;
     var today = weatherRef && weatherRef.daily && weatherRef.daily[0];
     var tempF = parseNumber(cur && cur.temperature);
@@ -100,30 +117,40 @@
       tempF = parseNumber(intel.weather.high) || parseNumber(intel.weather.low);
     }
     var conditions = (cur && cur.conditions && cur.conditions.summary) ||
+      (platform && platform.weather && platform.weather.conditions) ||
       (intel && intel.weather && intel.weather.conditions) ||
-      (bundle && bundle.thisWeekOutdoors && bundle.thisWeekOutdoors.weather && bundle.thisWeekOutdoors.weather.conditions) ||
       "";
-    var recentRain = !!(intel && intel.rainfall && intel.rainfall.recent &&
-      parseNumber(intel.rainfall.recent.amount) > 0.25);
-    var speciesActive = (intel && intel.species && intel.species.active) || [];
-    if (!speciesActive.length && bundle && bundle.seasonalWatch) {
-      speciesActive = (bundle.seasonalWatch.activeNow || []).concat(bundle.seasonalWatch.comingSoon || []);
+    var recentRain = !!(
+      (platform && platform.rainfall && platform.rainfall.recent &&
+        parseNumber(platform.rainfall.recent.amount) > 0.25) ||
+      (intel && intel.rainfall && intel.rainfall.recent &&
+        parseNumber(intel.rainfall.recent.amount) > 0.25)
+    );
+    var speciesActive = (platform && platform.species && platform.species.active) ||
+      (intel && intel.species && intel.species.active) || [];
+    if (!speciesActive.length && platform && platform.phenology && platform.phenology.watch) {
+      speciesActive = (platform.phenology.watch.activeNow || []).concat(platform.phenology.watch.comingSoon || []);
     }
 
     return {
       month: month,
       season: season,
-      seasonLabel: (intel && intel.season && intel.season.label) || (bundle && bundle.season) || season,
-      region: intel && intel.region,
-      bioregion: intel && intel.geography && intel.geography.bioregion,
+      seasonLabel: (platform && platform.calendar && platform.calendar.season) ||
+        (intel && intel.season && intel.season.label) ||
+        (bundle && bundle.season) || season,
+      region: (platform && platform.region) || (intel && intel.region),
+      bioregion: (platform && platform.geography && platform.geography.bioregion) ||
+        (intel && intel.geography && intel.geography.bioregion),
       tempF: tempF,
       humidity: humidity,
       precipProb: precipProb,
       conditions: conditions,
       recentRain: recentRain,
       speciesActive: speciesActive,
-      phenologyStage: (intel && intel.phenology && intel.phenology.stage) || null,
-      hasLiveWeather: !!(weatherRef && weatherRef.meta && !weatherRef.meta.isPlaceholder)
+      phenologyStage: (platform && platform.phenology && platform.phenology.stage) ||
+        (intel && intel.phenology && intel.phenology.stage) || null,
+      hasLiveWeather: !!(weatherRef && weatherRef.meta && !weatherRef.meta.isPlaceholder) ||
+        !!(platform && platform.weather && platform.weather.status === "live")
     };
   }
 
@@ -197,7 +224,7 @@
       note: function () {
         return {
           prefix: "Likely",
-          text: "songbird activity near dawn as territories are established — try a five-minute sound map from one spot"
+          text: "songbird activity may increase near dawn as territories establish — try a five-minute sound map from one spot"
         };
       }
     },
@@ -509,19 +536,28 @@
     if (!notes.length) {
       return (
         '<div class="wce-happening wce-happening--empty">' +
-          '<h3 class="wce-happening__label">Happening now</h3>' +
+          '<h3 class="wce-happening__label">Field cues this week</h3>' +
           '<p class="wce-happening__empty">Regional cues are unavailable right now. Check back after location and weather load.</p>' +
         "</div>"
       );
     }
     return (
       '<aside class="wce-happening" id="happening-now" aria-labelledby="wce-happening-title">' +
-        '<h3 class="wce-happening__label" id="wce-happening-title">Happening now</h3>' +
+        '<h3 class="wce-happening__label" id="wce-happening-title">Field cues this week</h3>' +
         '<p class="wce-happening__lead">Tentative outdoor cues for your region this week — confirm in the field.</p>' +
         '<ul class="wce-happening__list">' +
           notes.map(renderNote).join("") +
         "</ul>" +
-        '<p class="wce-happening__disclaimer">Rule-based regional notes, not forecasts. Conditions vary by elevation, aspect, and microclimate.</p>' +
+        (function () {
+          var RI = global.WDS && global.WDS.researchIntegrity;
+          if (RI && RI.renderDisclaimer) {
+            return RI.renderDisclaimer({
+              provenance: "prediction",
+              text: "Rule-based editorial cues, not forecasts or verified species reports. Conditions vary by elevation, aspect, and microclimate."
+            });
+          }
+          return '<p class="wce-happening__disclaimer">Rule-based editorial cues, not forecasts or verified species reports. Conditions vary by elevation, aspect, and microclimate.</p>';
+        })() +
       "</aside>"
     );
   }

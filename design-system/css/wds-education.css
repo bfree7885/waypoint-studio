@@ -367,3 +367,50 @@
 .wef-section--field {
   /* shared field observation styling */
 }
+
+/* ——— Educational topic outline (authoring / QA) ——— */
+.wef-topic-outline {
+  font-family: var(--wds-font-sans);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  margin: var(--wds-space-4) 0;
+  padding: var(--wds-space-4);
+  border: 1px dashed var(--wds-border);
+  border-radius: var(--wds-radius-md);
+  background: rgba(31, 53, 84, 0.2);
+}
+
+.wef-topic-outline__question {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+}
+
+.wef-topic-outline__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wef-topic-outline__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--wds-space-2);
+  padding: var(--wds-space-1) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.wef-topic-outline__item--gap .wef-topic-outline__label {
+  color: var(--wds-amber, #c9a227);
+}
+
+.wef-topic-outline__status {
+  color: var(--wds-sage, #7a9e7e);
+  font-size: var(--wds-text-xs);
+}
+
+.wef-topic-outline__gaps {
+  margin: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}

@@ -1,27 +1,28 @@
 {
-  "name": "Sheds",
-  "eyebrow": "Wildlife sign laboratory",
-  "mission": "The porch journal — reading sign, slope, and patience. Miles walked with empty hands still count. Wildlife ethics without trophy culture.",
+  "name": "Shed Hunting",
+  "eyebrow": "Future learning track",
+  "mission": "Winter wildlife sign, deer ecology, and the ethics of patient searching — not a standalone product.",
   "status": "preview",
-  "statusLabel": "Educational preview",
+  "statusLabel": "Content track — not a product",
+  "portfolioStatus": "content-track",
+  "portfolioNote": "Shed Hunting becomes a seasonal winter wildlife and deer ecology learning track on the regional dashboard and ForageCast — not a separate seven-room app.",
   "learnToday": [
     "Why deer drop antlers in late winter — nutrition, testosterone, and terrain",
-    "Reading south-facing slopes and bedding cover for shed probability",
-    "Ethics: do not disturb wintering wildlife, respect private land, leave habitat intact",
-    "How empty-handed walks still produce evidence: tracks, browse, rubs, and bedding sign"
+    "Reading south-facing slopes and bedding cover without disturbing wintering wildlife",
+    "Ethics: empty-handed miles still produce evidence — tracks, browse, rubs, and bedding sign",
+    "Why Waypoint will not build leaderboards, exact find maps, or trophy gamification"
   ],
   "comingSoon": [
-    "Slope and aspect shed-probability map (schematic, not GIS)",
-    "Season timing guide for Northeast PA",
-    "Sign identification lessons: rubs, scrapes, beds, tracks",
-    "Private shed journal with photograph evidence",
-    "Optional anonymous phenology notes — county level only"
+    "Winter track lessons on the regional dashboard",
+    "Sign identification field investigations",
+    "Fieldry template for sign encounters and empty-day walks",
+    "Optional anonymous county-level phenology — never den or shed coordinates"
   ],
   "preview": {
     "title": "The quiet search",
     "placeholderLabel": "Trail sign · placeholder",
     "placeholderHint": "Slope · bedding · browse line · track",
-    "description": "Shed Hunting teaches patience as a field skill. The tool will suggest where to walk based on slope, season, and habitat — not where someone else found antlers. Photograph sign, write what you learned, and honor the animals that left evidence behind."
+    "description": "Patience as a field skill. This concept is preserved as a learning track — teaching sign reading and wildlife ethics without implying a finished app exists today."
   },
   "homeLink": "../../#experiences"
 }

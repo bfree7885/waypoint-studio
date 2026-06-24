@@ -133,6 +133,18 @@
       line += " — not a live species report or harvest alert.";
     }
 
+    var RI = global.WDS && global.WDS.researchIntegrity;
+    if (RI && RI.renderDisclaimer) {
+      return (
+        '<div class="wss-module__disclosure" role="note">' +
+          RI.renderDisclaimer({ provenance: mode === "editorial" ? "educational" : mode, text: line, showBadge: true }) +
+          (resolved.queueSize > 1
+            ? '<p class="wss-module__disclosure-queue">' + escapeHtml(String(resolved.queueSize)) + " species in rotation queue · automatic cycling not enabled</p>"
+            : "") +
+        "</div>"
+      );
+    }
+
     var modeLabel = mode === "editorial" ? "Editorial spotlight" : escapeHtml(mode);
 
     return (
