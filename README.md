@@ -16,7 +16,7 @@ python3 -m http.server 8080
 |-----|----------------|
 | [http://localhost:8080/](http://localhost:8080/) | **Regional dashboard** — Pike County Preview trailhead |
 | [http://localhost:8080/apps/foragecast/](http://localhost:8080/apps/foragecast/) | **ForageCast** — flagship habitat & season laboratory |
-| [http://localhost:8080/apps/fieldry/](http://localhost:8080/apps/fieldry/) | **Fieldry** — observation ledger (building toward WOS capture) |
+| [http://localhost:8080/apps/fieldry/](http://localhost:8080/apps/fieldry/) | **Fieldry** — private WOS field notebook (local MVP) |
 | [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Waypoint Scenes** — creative reflection from field photographs |
 
 Other directories under `apps/` hold **content track concepts** and shared-module previews — not equal standalone products. See [Strategic Direction](docs/STRATEGIC-DIRECTION.md).
@@ -41,7 +41,7 @@ Beginning with **Pike County Preview** until county-specific bundles and observa
 ├── docs/                   # Constitution, strategic direction, architecture
 └── apps/
     ├── foragecast/         # Flagship application
-    ├── fieldry/            # Observation ledger (preview)
+    ├── fieldry/            # WOS field notebook (local MVP)
     ├── waypoint-scenes/    # Creative studio (live)
     └── …                   # Content track & module previews (not equal products)
 ```

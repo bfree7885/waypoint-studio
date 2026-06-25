@@ -124,7 +124,7 @@
     "fieldry": {
       "slug": "fieldry",
       "portfolioTier": "core",
-      "portfolioRole": "Observation ledger — future WOS capture",
+      "portfolioRole": "Observation ledger — WOS local capture",
       "dataProduct": "fieldry",
       "name": "Fieldry",
       "hero": "The writing desk",
@@ -132,7 +132,7 @@
       "lead": "Observation before interpretation. Field notes, sketches, and the habit of recording what the day meant — private by default.",
       "description": "Your journal on the trail — meant to send you back outside.",
       "studioHref": "../../",
-      "toolHref": null,
+      "toolHref": "apps/fieldry/",
       "contentDomains": ["field-skills", "photography", "weather", "conservation"],
       "homepageSections": [
         "featured-photograph",

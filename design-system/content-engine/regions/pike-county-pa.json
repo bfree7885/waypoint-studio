@@ -503,14 +503,14 @@
     {
       "slug": "fieldry",
       "name": "Fieldry",
-      "mission": "The structured observation ledger — field notebook building toward research-grade environmental records.",
-      "whatItDoes": "Will capture WOS-aligned field observations — date, place, habitat, weather, media, confidence, and privacy.",
-      "whoItHelps": "Anyone building careful observation habits for personal learning and optional citizen science.",
-      "futurePlanned": "Local WOS capture, export, and opt-in anonymous county-level contribution.",
-      "educationalValue": "Date, place, habitat, weather, photos, notes, confidence, and privacy — designed to support WOS-aligned evidence over time.",
+      "mission": "The structured observation ledger — a private field notebook building toward research-grade environmental records.",
+      "whatItDoes": "Captures WOS-aligned field observations locally — date, place, habitat, weather context, confidence, and ethical notes.",
+      "whoItHelps": "Anyone building careful observation habits for personal learning and optional future citizen science.",
+      "futurePlanned": "Photo attachment, Darwin Core export UI, and opt-in anonymous county-level contribution.",
+      "educationalValue": "Date, place, habitat, weather, notes, confidence, and privacy — designed to support WOS-aligned evidence over time.",
       "href": "apps/fieldry/",
-      "status": "preview",
-      "statusLabel": "Building toward capture",
+      "status": "live",
+      "statusLabel": "Local MVP",
       "featured": false
     },
     {
