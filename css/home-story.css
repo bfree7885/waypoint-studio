@@ -20,18 +20,12 @@
   margin-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.wce-dashboard--living .wce-dash-board {
-  gap: var(--wds-space-3);
+.wce-dashboard--living .wdb-grid {
+  gap: var(--wds-space-4);
 }
 
-.wce-dashboard--living .wce-dash-card {
+.wce-dashboard--living .wdb-widget {
   background: rgba(12, 18, 28, 0.35);
-  transition: background var(--wds-duration-calm) var(--wds-ease-out), border-color var(--wds-duration-calm) var(--wds-ease-out);
-}
-
-.wce-dashboard--living .wce-dash-card:hover {
-  background: rgba(12, 18, 28, 0.5);
-  border-color: var(--wds-border);
 }
 
 .ws-story-section--feature {

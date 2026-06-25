@@ -313,7 +313,10 @@
   function renderThisWeekOutdoors(data) {
     var w = data.thisWeekOutdoors;
     if (!w) return "";
-    var cardsHtml = getOutdoorDashboardCards(data).map(renderDashCard).join("");
+    var DE = global.WDS && global.WDS.dashboardEngine;
+    var gridHtml = DE
+      ? DE.renderGrid({ platform: data.outdoorIntelligence, bundle: data })
+      : getOutdoorDashboardCards(data).map(renderDashCard).join("");
     var happeningMount = (
       '<div class="wce-happening-mount" data-wds-happening-now-mount aria-live="polite">' +
         (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.renderLoading
@@ -340,10 +343,13 @@
             (season ? '<p class="wce-dashboard__season">' + season + " · Pike County Preview</p>" : "") +
             '<p class="wce-dashboard__outdoor-q">' + escapeHtml(outdoorQ) + "</p>" +
             (w.summary ? '<p class="wce-dashboard__summary">' + escapeHtml(w.summary) + "</p>" : "") +
+            '<div class="wce-dashboard__toolbar">' +
+              '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-dashboard-settings-open">Customize dashboard</button>' +
+            "</div>" +
           "</header>" +
           '<div class="wce-dashboard__layout">' +
             '<div class="wce-dashboard__aside">' + happeningMount + weekend + "</div>" +
-            '<div class="wce-dash-board" aria-label="Outdoor conditions dashboard">' + cardsHtml + "</div>" +
+            '<div class="wdb-grid wce-dash-board" data-wds-dashboard-grid aria-label="Outdoor intelligence widgets">' + gridHtml + "</div>" +
           "</div>" +
           riFootnote({ provenance: "educational", disclaimer: "Editorial field snapshot — confirm weather, trails, and species outdoors" }) +
         "</div>" +
@@ -826,23 +832,35 @@
   function mountDashboardWidgets(mount, loc, base, data, platform) {
     var weatherHints = data.thisWeekOutdoors && data.thisWeekOutdoors.weather;
     var intel = (platform && platform.legacy) || data.regionalIntelligence || null;
-    var weatherMountOptions = {
+    var mountOpts = {
       location: loc,
       hints: weatherHints,
-      root: mount,
-      fallback: false,
+      bundle: data,
       intelligence: intel,
       platform: platform,
       package: platform && platform.weatherRef
     };
-    var happeningNowOptions = {
+    var DE = global.WDS && global.WDS.dashboardEngine;
+    if (DE) {
+      DE.bindInteractions(mount);
+      DE.bindSettings(mount, function () {
+        DE.refreshGrid(mount, Object.assign({}, mountOpts, {
+          platform: platform,
+          bundle: data,
+          settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
+        }));
+      });
+      DE.mountWidgets(mount, mountOpts);
+      return;
+    }
+    var weatherMountOptions = Object.assign({}, mountOpts, { root: mount, fallback: false });
+    mountWeatherWidgets(mount, weatherMountOptions);
+    mountHappeningNow(mount, {
       bundle: data,
       location: loc,
       intelligence: intel,
       platform: platform
-    };
-    mountWeatherWidgets(mount, weatherMountOptions);
-    mountHappeningNow(mount, happeningNowOptions);
+    });
   }
 
   function renderIntoMount(mount, data, loc, base, options, platform) {

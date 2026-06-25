@@ -502,6 +502,26 @@
     });
   }
 
+  function renderForecast(pkg) {
+    return renderDaily(pkg) + renderHourly(pkg);
+  }
+
+  function renderCurrentOnly(pkg) {
+    return renderCurrent(pkg) + renderDashboardStats(pkg);
+  }
+
+  function mountForecast(el, options) {
+    return mount(el, renderForecast, options);
+  }
+
+  function mountSunOnly(el, options) {
+    return mount(el, renderSun, options);
+  }
+
+  function mountCurrent(el, options) {
+    return mount(el, renderCurrentOnly, options);
+  }
+
   function mountSunMoon(el, options) {
     return mount(el, renderSunMoon, options);
   }
@@ -523,6 +543,9 @@
       var kind = el.getAttribute("data-wds-weather-mount") || "dashboard";
       if (kind === "panel") jobs.push(mountPanel(el, options));
       else if (kind === "sun-moon") jobs.push(mountSunMoon(el, options));
+      else if (kind === "forecast") jobs.push(mountForecast(el, options));
+      else if (kind === "sun") jobs.push(mountSunOnly(el, options));
+      else if (kind === "current") jobs.push(mountCurrent(el, options));
       else jobs.push(mountDashboard(el, options));
     });
     return Promise.all(jobs);
@@ -546,6 +569,11 @@
     renderSunMoon: renderSunMoon,
     renderPanel: renderPanel,
     updateDashCardTag: updateDashCardTag,
+    renderForecast: renderForecast,
+    renderCurrentOnly: renderCurrentOnly,
+    mountForecast: mountForecast,
+    mountSunOnly: mountSunOnly,
+    mountCurrent: mountCurrent,
     mount: mount,
     mountDashboard: mountDashboard,
     mountSunMoon: mountSunMoon,
