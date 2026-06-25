@@ -1,0 +1,279 @@
+/* Waypoint Species Knowledge Base — profile pages */
+
+.wskb-page {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) clamp(4rem, 10vw, 6rem);
+}
+
+.wskb-hero {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(200px, 1.2fr) 1fr;
+  align-items: end;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: var(--wds-space-6);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+@media (max-width: 768px) {
+  .wskb-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wskb-hero__media {
+  width: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+  border-radius: var(--wds-radius-lg);
+}
+
+.wskb-hero__media--placeholder {
+  display: flex;
+  align-items: flex-end;
+  padding: var(--wds-space-4);
+  background: linear-gradient(165deg, rgba(20, 32, 28, 0.9), rgba(12, 18, 28, 0.95));
+  border: 1px dashed var(--wds-border-subtle);
+}
+
+.wskb-hero__media-badge {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wskb-hero__common {
+  margin: var(--wds-space-2) 0;
+  font-family: var(--wds-font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: var(--wds-leading-tight);
+}
+
+.wskb-hero__sci {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-lg);
+  color: var(--wds-text-secondary);
+}
+
+.wskb-hero__hook {
+  margin: 0;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wskb-profile__layout {
+  display: grid;
+  gap: var(--wds-space-6);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .wskb-profile__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wskb-section {
+  margin-bottom: var(--wds-space-6);
+  padding-bottom: var(--wds-space-5);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.wskb-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-bottom: var(--wds-space-4);
+}
+
+.wskb-section__title {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  font-weight: 400;
+}
+
+.wskb-prov {
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--wds-radius-sm);
+  background: var(--wds-inset);
+  color: var(--wds-text-muted);
+}
+
+.wskb-prov--verified { color: var(--wds-lime); }
+.wskb-prov--educational { color: var(--wds-warm); }
+.wskb-prov--regional { color: var(--wds-accent); }
+
+.wskb-section__body {
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wskb-section__body p {
+  margin: 0 0 var(--wds-space-3);
+}
+
+.wskb-list {
+  margin: var(--wds-space-3) 0 0;
+  padding-left: 1.2rem;
+}
+
+.wskb-list li + li {
+  margin-top: var(--wds-space-2);
+}
+
+.wskb-subhead {
+  margin: var(--wds-space-4) 0 var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--wds-text-muted);
+}
+
+.wskb-regional {
+  padding: var(--wds-space-3) var(--wds-space-4);
+  background: var(--wds-accent-dim);
+  border-left: 2px solid var(--wds-accent);
+  border-radius: 0 var(--wds-radius-md) var(--wds-radius-md) 0;
+}
+
+.wskb-facts {
+  position: sticky;
+  top: calc(var(--wds-topbar-h) + var(--wds-space-4));
+  padding: var(--wds-space-5);
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wskb-facts__title {
+  margin: 0 0 var(--wds-space-4);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wskb-facts__dl {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+}
+
+.wskb-facts__dl div + div {
+  margin-top: var(--wds-space-3);
+  padding-top: var(--wds-space-3);
+  border-top: 1px solid var(--wds-border-subtle);
+}
+
+.wskb-facts__dl dt {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--wds-text-muted);
+}
+
+.wskb-facts__dl dd {
+  margin: 0;
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wskb-taxonomy div {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--wds-space-2);
+  margin-bottom: var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+}
+
+.wskb-related {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.wskb-related__card {
+  display: block;
+  padding: var(--wds-space-4);
+  text-decoration: none;
+  color: inherit;
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  transition: border-color var(--wds-duration-calm) var(--wds-ease-out);
+}
+
+.wskb-related__card:hover {
+  border-color: var(--wds-border);
+}
+
+.wskb-related__name {
+  display: block;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+}
+
+.wskb-related__rel {
+  display: block;
+  margin-top: var(--wds-space-1);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wskb-lookalikes {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.wskb-hint {
+  font-size: var(--wds-text-xs);
+  font-style: italic;
+  color: var(--wds-text-tertiary);
+}
+
+.wskb-foot {
+  margin-top: var(--wds-space-6);
+  padding-top: var(--wds-space-5);
+}
+
+.wskb-missing {
+  padding: var(--wds-space-8);
+  text-align: center;
+  color: var(--wds-text-secondary);
+}
+
+.wskb-ethics-summary {
+  margin-top: var(--wds-space-3);
+  font-style: italic;
+}
+
+/* Fieldry species lookup */
+.fld-wskb-suggest {
+  margin-top: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+}
+
+.fld-wskb-suggest a {
+  color: var(--wds-accent);
+}
+
+.fld-wskb-match {
+  margin-top: var(--wds-space-2);
+  padding: var(--wds-space-2) var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  background: var(--wds-accent-dim);
+  border-radius: var(--wds-radius-sm);
+}

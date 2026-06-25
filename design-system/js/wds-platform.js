@@ -28,6 +28,8 @@
     "outdoor-intelligence/wds-oip-service.js",
     "regional-intelligence/wds-regional-intelligence-v2-core.js",
     "regional-intelligence/wds-regional-intelligence-service.js",
+    "species/wds-wskb-core.js",
+    "species/wds-wskb-render.js",
     "observations/wds-wos-core.js"
   ].forEach(function (file) {
     var s = document.createElement("script");

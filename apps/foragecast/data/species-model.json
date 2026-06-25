@@ -13,8 +13,9 @@
   "species": [
     {
       "id": "morels",
+      "wskbId": "morchella-americana",
       "name": "Morels",
-      "scientificName": "Morchella spp.",
+      "scientificName": "Morchella americana",
       "seasonWindow": "Late April – late May",
       "peakDayOfYear": 130,
       "seasonSpread": 28,

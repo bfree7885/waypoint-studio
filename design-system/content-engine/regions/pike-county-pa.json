@@ -404,25 +404,18 @@
       },
       {
         "id": "ss-pike-2026-21",
+        "speciesId": "morchella-americana",
         "scope": "L1-county",
         "spotlightLabel": "Seasonal species spotlight",
-        "commonName": "Yellow morel",
-        "scientificName": "Morchella americana",
         "title": "Last calls in the valleys",
         "timing": "Late April – late May · ending below 1,200 ft",
-        "habitat": "River terraces, old apple ground, ash–elm edges after rain",
         "whereToLook": "Low terraces along the Delaware and Lackawaxen below 1,200 ft; old orchard edges near Matamoras",
         "whyThisWeek": "Queued for rotation — morel season is closing on warm south slopes; check shaded edges after rain while learning identification.",
-        "identification": [
-          "Cap honeycombed; attached to stem at base",
-          "Hollow through cap and stem when sliced lengthwise",
-          "Often near dying elm, ash, apple, or tulip poplar"
-        ],
-        "conservationNote": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
         "learnMore": {
-          "href": "apps/foragecast/",
-          "label": "Learn more"
-        }
+          "href": "design-system/species/profile.html?id=morchella-americana&region=pike-county-pa",
+          "label": "Full species profile"
+        },
+        "relatedTools": ["foragecast", "fieldry"]
       }
     ]
   },

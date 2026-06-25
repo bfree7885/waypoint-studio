@@ -113,7 +113,10 @@
     var SS = window.WDS && WDS.speciesSpotlight;
     if (!SS) return "";
 
-    var resolved = SS.resolveFeatured(data, { weekOf: data.weekOf });
+    var resolved = SS.resolveFeatured(data, {
+      weekOf: data.weekOf,
+      wskbBase: "../../design-system/species/"
+    });
     if (!resolved.species) return "";
 
     var moduleHtml = SS.renderModule(resolved, { showDisclosure: true });
@@ -238,7 +241,13 @@
   }
 
   function renderLessons(data) {
+    var wskbBase = "../../design-system/species/";
     var cards = (data.lessons || []).map(function (lesson) {
+      var profileLink = "";
+      if (lesson.wskbId && window.WDS && WDS.wskb) {
+        profileLink =
+          '<p class="fc-lesson__profile"><a href="' + escapeHtml(WDS.wskb.profileHref(lesson.wskbId, { base: wskbBase })) + '">Species profile (WSKB)</a></p>';
+      }
       return (
         '<article class="fc-lesson">' +
           '<p class="fc-lesson__subtitle">' + escapeHtml(lesson.subtitle) + "</p>" +
@@ -246,6 +255,7 @@
           '<p class="fc-lesson__summary">' + escapeHtml(lesson.summary) + "</p>" +
           '<p class="fc-lesson__meta">' + escapeHtml(lesson.duration) + " read</p>" +
           '<p class="fc-lesson__outdoor"><strong>Outdoors:</strong> ' + escapeHtml(lesson.outdoor) + "</p>" +
+          profileLink +
         "</article>"
       );
     }).join("");
@@ -410,6 +420,16 @@
         var terrain = payload.terrain;
         var platform = payload.platform;
 
+        var wskbReady = Promise.resolve();
+        if (window.WDS && WDS.wskb) {
+          WDS.wskb.configure({ base: "../../design-system/species/" });
+          wskbReady = WDS.wskb.preloadFromBundle(data).then(function () {
+            var ids = (speciesModel.species || []).map(function (s) { return s.wskbId; }).filter(Boolean);
+            return WDS.wskb.preload(ids);
+          });
+        }
+
+        return wskbReady.then(function () {
         if (window.ForageCastLocation) {
           ForageCastLocation.applyToHomeData(data, loc, platform);
           ForageCastLocation.applyToConditions(conditions, loc, platform);
@@ -444,6 +464,7 @@
         }
         bindMapViews(loc);
         bindHeatZoneEvents(data);
+        });
       })
       .catch(function (err) {
         mount.innerHTML =

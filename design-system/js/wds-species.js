@@ -59,6 +59,12 @@
    */
   function renderPage(species, options) {
     options = options || {};
+    if (species && (species.wskbId || species.speciesId) && global.WDS && global.WDS.wskbRender) {
+      var id = species.wskbId || species.speciesId;
+      var rec = global.WDS.wskb && global.WDS.wskb.getSync(id);
+      if (rec) return global.WDS.wskbRender.renderProfile(rec, options);
+    }
+
     var html = renderHero(species);
 
     if (species.summary) {
@@ -97,6 +103,13 @@
   global.WDS.species = {
     renderHero: renderHero,
     renderPage: renderPage,
-    renderTags: renderTags
+    renderTags: renderTags,
+    /** @deprecated Use WDS.wskbRender.renderProfile for WSKB records */
+    fromWskb: function (id, options) {
+      var rec = global.WDS.wskb && global.WDS.wskb.getSync(id);
+      return rec && global.WDS.wskbRender
+        ? global.WDS.wskbRender.renderProfile(rec, options)
+        : "";
+    }
   };
 })(window);

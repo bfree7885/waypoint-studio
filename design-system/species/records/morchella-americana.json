@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "educational",
+      "taxonomy": "verified",
+      "phenology": "regional",
+      "safety": "educational"
+    }
+  },
+  "id": "morchella-americana",
+  "names": {
+    "common": "Yellow morel",
+    "scientific": "Morchella americana",
+    "aliases": ["morel", "yellow morel", "common morel"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Fungi",
+    "phylum": "Ascomycota",
+    "class": "Pezizomycetes",
+    "order": "Pezizales",
+    "family": "Morchellaceae",
+    "genus": "Morchella",
+    "species": "americana",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Not ranked; widely distributed — local populations vary",
+    "geographicRange": "Eastern North America; common in northeastern deciduous forests",
+    "elevationRange": {
+      "minFt": 200,
+      "maxFt": 3500,
+      "note": "In Pike County, most reports below ~1,200 ft in late spring; timing shifts with elevation"
+    }
+  },
+  "ecology": {
+    "role": "Saprotrophic and possibly facultatively mycorrhizal — decomposes organic matter and may associate with living hardwood roots. Fruiting bodies release spores that colonize disturbed soils and dying tree roots.",
+    "associatedSpecies": [
+      { "name": "American elm", "relationship": "Often fruits near dying or dead elm roots" },
+      { "name": "Green ash", "relationship": "Common association on terrace soils" },
+      { "name": "Apple", "relationship": "Old orchard edges — historical land use signal" },
+      { "name": "Tulip poplar", "relationship": "Reported on slopes with tulip poplar in Appalachians" }
+    ]
+  },
+  "habitat": {
+    "summary": "Moist, calcareous or rich soils at forest edges, river terraces, and old orchard margins — especially after soil warms following spring rain.",
+    "preferred": [
+      "River terraces and floodplain margins",
+      "Old apple orchard edges",
+      "Ash–elm transition zones",
+      "North-facing slopes below 1,200 ft in late spring"
+    ],
+    "substrate": "Leaf litter over mineral soil; often near dead or dying hardwood roots"
+  },
+  "phenology": {
+    "seasonality": "Spring ephemeral — fruiting body appears for days to weeks, not year-round",
+    "activePeriod": "Late April through late May in northeastern Pennsylvania; earlier on warm south aspects, later above 1,200 ft",
+    "regionalNotes": {
+      "pike-county-pa": "May fade below 1,200 ft by late May during warm, dry spells; shaded terraces after rain remain the best teaching sites."
+    }
+  },
+  "identification": {
+    "summary": "A honeycombed, hollow-stemmed spring mushroom — one of the most sought-after fungi in eastern forests, and one of the most dangerous if confused with toxic look-alikes.",
+    "fieldMarks": [
+      "Cap honeycombed with pits and ridges — not brain-like folds",
+      "Cap attached to stem at base (not free-hanging skirt)",
+      "Entirely hollow from cap tip through stem when sliced lengthwise",
+      "Cream to yellow-brown color; size variable (2–12 cm cap typical)"
+    ],
+    "lookAlikes": [
+      {
+        "name": "False morels (Gyromitra spp.)",
+        "distinction": "Brain-like wrinkled cap, not honeycombed; NOT reliably hollow — potentially deadly if eaten"
+      },
+      {
+        "name": "Verpa bohemica (early morel relative)",
+        "distinction": "Cap attached only at apex — cap hangs like a thimble; stem may be cottony inside"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Never eat any wild mushroom without expert confirmation — false morels can be fatal",
+      "Cook all morels thoroughly; raw consumption may cause illness even in true morels",
+      "Individual sensitivity varies — start with small portions if consuming"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Photograph in habitat before considering harvest",
+      "Cut at soil line if harvesting legally — do not rake leaf litter",
+      "Leave small specimens for spore dispersal and teaching",
+      "Never share exact GPS coordinates of fruiting patches publicly"
+    ],
+    "leaveNoTrace": [
+      "Stay on durable surfaces when trails are muddy",
+      "Do not dig soil or disturb roots searching for buried sclerotia",
+      "Pack out all trash from orchard and terrace walks"
+    ],
+    "conservation": "Sustainable harvest means taking only what you can identify with certainty, on land where you have permission, without exhausting local patches. Education value exceeds harvest value for most learners."
+  },
+  "photography": {
+    "tips": [
+      "Include substrate, nearby tree bark, and aspect of slope in frame",
+      "Photograph cap surface and stem base — key ID features",
+      "Use diffused light; avoid flash that washes out honeycomb texture",
+      "A single in-situ photo teaches more than a basket glamour shot"
+    ]
+  },
+  "education": {
+    "overview": "The yellow morel is a spring icon of eastern forests — a teacher of soil moisture, dying hardwood ecology, and the patience required for fungal identification.",
+    "summary": "Learn the honeycomb, the hollow stem, and the habitat story before you ever consider taste.",
+    "interestingFacts": [
+      "Morel fruiting often follows dying elm and ash — a visible signal of forest change",
+      "The same hillside may fruit in different weeks each year depending on rain and warmth",
+      "Morels are ascomycetes — their spores develop inside microscopic sacs, not on gills"
+    ],
+    "fieldNotes": [
+      "Ask: What hardwoods stand within ten paces?",
+      "Press leaf litter — is moisture still present two days after rain?",
+      "Compare north vs. south aspect on the same hill before concluding the season is over"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "craterellus-fallax", "relationship": "Summer forest mushroom — different season and habitat" }
+  ],
+  "futureObservations": [
+    "Document fruiting date vs. last rain event and elevation",
+    "Note associated tree species at each observation",
+    "Track whether patch returns in same general area next spring"
+  ],
+  "unknowns": [
+    "Precise mycorrhizal partners remain under study — tree associations are ecological patterns, not guaranteed rules",
+    "Species complex taxonomy continues to be refined in eastern North America"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "Yellow morel emerging from leaf litter near a hardwood edge",
+      "caption": "Honeycombed cap and hollow stem — field photograph placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "fungi",
+    "prompts": [
+      "Substrate and nearby tree species",
+      "Cap attachment to stem",
+      "Hollow when sliced?",
+      "General elevation and aspect — not exact coordinates publicly"
+    ]
+  },
+  "research": {
+    "notes": "ForageCast prediction model links via externalIds.foragecastModel",
+    "aiEnrichment": { "enabled": false, "hooks": ["look-alike expansion", "regional phenology sync"] }
+  },
+  "externalIds": {
+    "foragecastModel": "morels",
+    "wosTaxonLabel": "Morchella americana"
+  }
+}

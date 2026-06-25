@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/wskb/v1",
+  "title": "Waypoint Species Knowledge Base (WSKB)",
+  "description": "Canonical species education records for Waypoint Studio products.",
+  "type": "object",
+  "required": ["meta", "id", "names", "taxonomy", "education"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "updatedAt"],
+      "properties": {
+        "version": { "type": "string" },
+        "schema": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "status": { "enum": ["draft", "published", "archived"] },
+        "provenance": {
+          "type": "object",
+          "description": "Per-section provenance: verified | educational | regional | unknown | future",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Stable canonical slug (typically binomial)"
+    },
+    "names": {
+      "type": "object",
+      "required": ["common", "scientific"],
+      "properties": {
+        "common": { "type": "string" },
+        "scientific": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "synonyms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "properties": {
+        "kingdom": { "type": "string" },
+        "phylum": { "type": "string" },
+        "class": { "type": "string" },
+        "order": { "type": "string" },
+        "family": { "type": "string" },
+        "genus": { "type": "string" },
+        "species": { "type": "string" },
+        "rank": { "type": "string" }
+      }
+    },
+    "range": {
+      "type": "object",
+      "properties": {
+        "nativeStatus": { "enum": ["native", "introduced", "invasive", "unknown"] },
+        "conservationStatus": { "type": "string" },
+        "geographicRange": { "type": "string" },
+        "elevationRange": {
+          "type": "object",
+          "properties": {
+            "minFt": { "type": "number" },
+            "maxFt": { "type": "number" },
+            "note": { "type": "string" }
+          }
+        }
+      }
+    },
+    "ecology": {
+      "type": "object",
+      "properties": {
+        "role": { "type": "string" },
+        "associatedSpecies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "speciesId": { "type": "string" },
+              "name": { "type": "string" },
+              "relationship": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "habitat": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "preferred": { "type": "array", "items": { "type": "string" } },
+        "substrate": { "type": "string" }
+      }
+    },
+    "phenology": {
+      "type": "object",
+      "properties": {
+        "seasonality": { "type": "string" },
+        "activePeriod": { "type": "string" },
+        "regionalNotes": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+    "identification": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "fieldMarks": { "type": "array", "items": { "type": "string" } },
+        "lookAlikes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "speciesId": { "type": "string" },
+              "distinction": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "considerations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ethics": {
+      "type": "object",
+      "properties": {
+        "observation": { "type": "array", "items": { "type": "string" } },
+        "leaveNoTrace": { "type": "array", "items": { "type": "string" } },
+        "conservation": { "type": "string" }
+      }
+    },
+    "photography": {
+      "type": "object",
+      "properties": {
+        "tips": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "education": {
+      "type": "object",
+      "required": ["overview"],
+      "properties": {
+        "overview": { "type": "string" },
+        "summary": { "type": "string" },
+        "interestingFacts": { "type": "array", "items": { "type": "string" } },
+        "fieldNotes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "relatedSpecies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "speciesId": { "type": "string" },
+          "relationship": { "type": "string" }
+        }
+      }
+    },
+    "futureObservations": { "type": "array", "items": { "type": "string" } },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array", "items": { "type": "object" } },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": { "type": "string" },
+          "alt": { "type": "string" },
+          "caption": { "type": "string" },
+          "placeholder": { "type": "boolean" }
+        }
+      }
+    },
+    "observationTemplate": {
+      "type": "object",
+      "properties": {
+        "suggestedType": { "type": "string" },
+        "prompts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "research": {
+      "type": "object",
+      "properties": {
+        "notes": { "type": "string" },
+        "aiEnrichment": { "type": "object" }
+      }
+    },
+    "externalIds": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

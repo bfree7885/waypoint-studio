@@ -1,0 +1,13 @@
+{
+  "version": "1.0.0",
+  "schema": "https://waypoint.studio/schemas/wskb/v1",
+  "updatedAt": "2026-05-30T00:00:00.000Z",
+  "species": [
+    { "id": "morchella-americana", "common": "Yellow morel", "scientific": "Morchella americana", "group": "fungi" },
+    { "id": "craterellus-fallax", "common": "Black trumpet", "scientific": "Craterellus fallax", "group": "fungi" },
+    { "id": "odocoileus-virginianus", "common": "White-tailed deer", "scientific": "Odocoileus virginianus", "group": "mammal" },
+    { "id": "turdus-migratorius", "common": "American robin", "scientific": "Turdus migratorius", "group": "bird" },
+    { "id": "acer-saccharum", "common": "Sugar maple", "scientific": "Acer saccharum", "group": "plant" },
+    { "id": "tsuga-canadensis", "common": "Eastern hemlock", "scientific": "Tsuga canadensis", "group": "plant" }
+  ]
+}

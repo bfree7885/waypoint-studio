@@ -580,7 +580,10 @@
     var SS = global.WDS && global.WDS.speciesSpotlight;
     if (!SS || !data.speciesSpotlight) return "";
 
-    var resolved = SS.resolveFeatured(data, { weekOf: data.weekOf });
+    var resolved = SS.resolveFeatured(data, {
+      weekOf: data.weekOf,
+      wskbBase: (options.base || "").replace(/content-engine\/?$/, "species/")
+    });
     if (!resolved.species) return "";
 
     var moduleHtml = SS.renderModule(resolved, {
@@ -871,6 +874,17 @@
     return data;
   }
 
+  function wskbBaseFromEngine(base) {
+    return String(base || "content-engine/").replace(/content-engine\/?$/, "species/");
+  }
+
+  function ensureWskbPreload(data, base) {
+    var KB = global.WDS && global.WDS.wskb;
+    if (!KB || !KB.preloadFromBundle) return Promise.resolve();
+    KB.configure({ base: wskbBaseFromEngine(base) });
+    return KB.preloadFromBundle(data);
+  }
+
   function init(options) {
     options = options || {};
     var base = resolveEngineBase(options);
@@ -898,12 +912,14 @@
       if (loc && global.WDS && global.WDS.location) {
         data = global.WDS.location.applyToBundle(data, loc);
       }
-      return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
-        data = applyPlatformToData(data, platform);
-        return renderIntoMount(mount, data, loc, base, options, platform);
-      }).catch(function () {
-        data = applyPlatformToData(data, null);
-        return renderIntoMount(mount, data, loc, base, options, null);
+      return ensureWskbPreload(data, base).then(function () {
+        return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
+          data = applyPlatformToData(data, platform);
+          return renderIntoMount(mount, data, loc, base, options, platform);
+        }).catch(function () {
+          data = applyPlatformToData(data, null);
+          return renderIntoMount(mount, data, loc, base, options, null);
+        });
       });
     });
   }

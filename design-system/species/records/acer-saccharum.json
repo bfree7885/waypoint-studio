@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "verified",
+      "taxonomy": "verified",
+      "phenology": "regional"
+    }
+  },
+  "id": "acer-saccharum",
+  "names": {
+    "common": "Sugar maple",
+    "scientific": "Acer saccharum",
+    "aliases": ["hard maple", "rock maple"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Plantae",
+    "phylum": "Tracheophyta",
+    "class": "Magnoliopsida",
+    "order": "Sapindales",
+    "family": "Sapindaceae",
+    "genus": "Acer",
+    "species": "saccharum",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Secure — economically and ecologically important; sensitive to climate and deer browse",
+    "geographicRange": "Eastern North America — dominant canopy tree in northern hardwood forests",
+    "elevationRange": {
+      "minFt": 500,
+      "maxFt": 4500,
+      "note": "Common on cool slopes and ravines in Pike County; sugar bush operations occur on accessible north slopes"
+    }
+  },
+  "ecology": {
+    "role": "Foundation canopy species — structures northern hardwood forests, supports diverse understory when deer pressure is moderate, and provides sap, timber, and autumn foliage that drives regional phenology education.",
+    "associatedSpecies": [
+      { "speciesId": "tsuga-canadensis", "relationship": "Often co-dominant in hemlock–maple ravines" },
+      { "speciesId": "craterellus-fallax", "relationship": "Mycorrhizal mushrooms on maple forest floors" },
+      { "speciesId": "odocoileus-virginianus", "relationship": "Deer browse seedlings — affects regeneration" },
+      { "speciesId": "turdus-migratorius", "relationship": "Nesting and foraging in maple edges" }
+    ]
+  },
+  "habitat": {
+    "summary": "Cool, moist, well-drained soils on north and east slopes — mature northern hardwood forest and sugar bush stands.",
+    "preferred": [
+      "North-facing hardwood slopes",
+      "Deep, well-drained loam",
+      "Mixed stands with beech and basswood",
+      "Ravines sheltered from drying winds"
+    ],
+    "substrate": "Mineral soil with rich humus layer; seedlings need forest gap or edge light"
+  },
+  "phenology": {
+    "seasonality": "Deciduous — annual leaf, flower, and seed cycle drives forest calendar",
+    "activePeriod": "Sap flow: late February–March (freeze-thaw). Leaves: May. Fall color: October. Samaras drop: autumn.",
+    "regionalNotes": {
+      "pike-county-pa": "Compare bud break on south vs. north slope maples — a standard phenology transect for schools."
+    }
+  },
+  "identification": {
+    "summary": "Large hardwood with opposite, palmately lobed leaves — five lobes with U-shaped sinuses between lobes (vs. sharp V in red maple).",
+    "fieldMarks": [
+      "Opposite branching — every twig has a partner across the stem",
+      "Leaves: 5 lobes, smooth margin, U-shaped notches between lobes",
+      "Bark on mature trees: dark gray, vertically furrowed plates",
+      "Winged seeds (samaras) in pairs, angle less than 90°",
+      "Bud scales brownish, pointed — compare to red maple's red buds"
+    ],
+    "lookAlikes": [
+      {
+        "name": "Red maple (Acer rubrum)",
+        "distinction": "V-shaped sinuses, serrated leaf margins, red buds and flower stems"
+      },
+      {
+        "name": "Norway maple (introduced)",
+        "distinction": "Milky sap from broken leaf petiole; wider leaf, invasive in some areas"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Sap collection requires landowner permission and proper boiling equipment",
+      "Dead branches (widow makers) — look up before standing under canopy in wind"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Tag or photograph the same tree weekly for phenology — no need to collect leaves",
+      "Do not tap trees on public land without authorization",
+      "Collect one leaf for press book at home — not entire branches from park trees"
+    ],
+    "leaveNoTrace": [
+      "Stay on trails in sugar bush operations during sap season",
+      "Do not carve bark or hammer nails into living trees"
+    ],
+    "conservation": "Sugar maple regeneration is threatened by deer browse and climate stress in some regions — observation supports stewardship, not extraction."
+  },
+  "photography": {
+    "tips": [
+      "Backlight autumn leaves for translucency",
+      "Bark close-ups teach aging — young smooth vs. mature plate bark",
+      "Wide shots show canopy role in forest structure"
+    ]
+  },
+  "education": {
+    "overview": "Sugar maple is the tree that teaches opposite branching, freeze-thaw sap flow, and why northern hardwood forests feel different from oak ridges.",
+    "summary": "Learn U-shaped leaf sinuses and opposite twigs — then you can name the forest type.",
+    "interestingFacts": [
+      "Sap is only 2–3% sugar — forty gallons boil to one gallon of syrup",
+      "Fall color varies by tree genetics and summer drought — not uniform across a stand",
+      "Maple is among the most valuable timber species in the Northeast"
+    ],
+    "fieldNotes": [
+      "Count lobes and measure sinus shape on five leaves",
+      "Date bud break, full leaf, and first fall color on a marked tree",
+      "Note deer browse on seedlings below parent canopy"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "tsuga-canadensis", "relationship": "Ravine forest partner" },
+    { "speciesId": "morchella-americana", "relationship": "Different kingdom — but shares terrace and slope ecology stories" }
+  ],
+  "futureObservations": [
+    "Weekly phenology photos of the same individual tree",
+    "Seedling survival under varying browse pressure",
+    "Sap run start date vs. freeze-thaw cycle"
+  ],
+  "unknowns": [
+    "Climate-driven range shifts are projected — local long-term data needed",
+    "Individual trees vary in sap sugar content — anecdotal sweetness is not universal"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "Sugar maple canopy in autumn northern hardwood forest",
+      "caption": "Opposite branching and five-lobed leaves — placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "plant",
+    "prompts": [
+      "Phenology stage: bud, leaf, flower, fruit, fall color",
+      "Opposite vs. alternate branching confirmed?",
+      "Slope aspect and associated canopy species",
+      "Evidence of browse on seedlings?"
+    ]
+  },
+  "research": {
+    "notes": "Anchor species for phenology education and forest moisture lessons in ForageCast",
+    "aiEnrichment": { "enabled": false }
+  },
+  "externalIds": {}
+}

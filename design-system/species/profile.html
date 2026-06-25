@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Species Knowledge Base — authoritative species education for Waypoint Studio.">
+  <title>Species profile · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Waypoint Studio</span>
+        </a>
+        <nav class="ws-topnav" aria-label="Species">
+          <a href="../../">Dashboard</a>
+          <a href="../../apps/fieldry/">Fieldry</a>
+          <a href="../../apps/foragecast/">ForageCast</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wskb-page">
+      <div id="wskb-profile" aria-busy="true">
+        <p class="wds-body">Loading species profile…</p>
+      </div>
+    </main>
+    <footer class="wds-footer">
+      <p>Waypoint Species Knowledge Base · <a href="../../docs/WAYPOINT-OBSERVATION-STANDARD.md">WOS</a></p>
+    </footer>
+  </div>
+  <script src="../js/ethics/wds-outdoor-ethics.js" defer></script>
+  <script src="../js/wds-research-integrity.js" defer></script>
+  <script src="../js/species/wds-wskb-core.js" defer></script>
+  <script src="../js/species/wds-wskb-render.js" defer></script>
+  <script src="profile-boot.js" defer></script>
+</body>
+</html>

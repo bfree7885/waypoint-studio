@@ -33,6 +33,7 @@
       (opts.required ? " required" : "") +
       (opts.readonly ? " readonly" : "") +
       (opts.step ? ' step="' + opts.step + '"' : "") +
+      (opts.list ? ' list="' + opts.list + '"' : "") +
       ">";
   }
 
@@ -79,6 +80,7 @@
     return (
       '<form class="fld-form" id="fld-observation-form" novalidate>' +
         '<input type="hidden" name="id" value="' + U().escapeHtml(obs.id) + '">' +
+        '<input type="hidden" name="wskbSpeciesId" value="' + U().escapeHtml(fieldry.wskbSpeciesId || (obs.taxon && obs.taxon.taxonId) || "") + '">' +
         '<header class="fld-form__head">' +
           '<a class="fld-form__back" href="#/">← Ledger</a>' +
           '<h1 class="fld-form__title">' + (isEdit ? "Edit observation" : "New observation") + "</h1>" +
@@ -94,9 +96,15 @@
                 required: true
               }), "Short label for this record — what you noticed.") +
               field("fld-type", "Observation type", selectOptions("observationType", typeOpts, fieldry.observationType || "")) +
-              field("fld-species", "Species <span class='fld-optional'>(optional)</span>", textInput("fld-species", "species", val(obs, "taxon.commonName"), {
-                placeholder: "Common name if applicable"
-              })) +
+              field("fld-species", "Species <span class='fld-optional'>(optional)</span>",
+                textInput("fld-species", "species", val(obs, "taxon.commonName"), {
+                  placeholder: "Common name — links to WSKB when matched",
+                  list: "fld-species-list"
+                }) +
+                '<datalist id="fld-species-list"></datalist>' +
+                '<p class="fld-wskb-suggest" id="fld-wskb-hint">Links to <a href="../../design-system/species/profile.html">Species Knowledge Base</a> when matched.</p>' +
+                '<div class="fld-wskb-match" id="fld-wskb-match" hidden></div>'
+              ) +
               field("fld-date", "Date", textInput("fld-date", "date", val(obs, "observedAt.date"), { type: "date", required: true })) +
               field("fld-time", "Time <span class='fld-optional'>(optional)</span>", textInput("fld-time", "time", val(obs, "observedAt.time"), { type: "time" })) +
               field("fld-confidence", "Confidence", selectOptions("confidence", confidenceOptions(val(obs, "record.confidence", "likely")), val(obs, "record.confidence", "likely")),
@@ -198,12 +206,74 @@
     obs.meta.fieldry = obs.meta.fieldry || {};
     obs.meta.fieldry.observationType = fd.get("observationType") || null;
     obs.meta.fieldry.ethicalNotes = String(fd.get("ethicalNotes") || "").trim() || null;
+    var wskbId = String(fd.get("wskbSpeciesId") || "").trim();
+    if (wskbId) {
+      obs.meta.fieldry.wskbSpeciesId = wskbId;
+      obs.taxon.taxonId = wskbId;
+      obs.taxon.taxonIdSource = "wskb";
+      var rec = global.WDS && global.WDS.wskb && global.WDS.wskb.getSync(wskbId);
+      if (rec && rec.names) {
+        if (!obs.taxon.scientificName) obs.taxon.scientificName = rec.names.scientific;
+        if (rec.observationTemplate && rec.observationTemplate.suggestedType && !obs.meta.fieldry.observationType) {
+          obs.meta.fieldry.observationType = rec.observationTemplate.suggestedType;
+        }
+      }
+    }
 
     if (!obs.taxon.label) {
       obs.taxon.label = obs.taxon.commonName || "Field observation";
     }
 
     return obs;
+  }
+
+  function bindWskbLookup(form) {
+    var KB = global.WDS && global.WDS.wskb;
+    if (!KB) return;
+    KB.configure({ base: "../../design-system/species/" });
+    KB.loadIndex().then(function (index) {
+      var datalist = form.querySelector("#fld-species-list");
+      if (datalist && index && index.species) {
+        datalist.innerHTML = index.species.map(function (s) {
+          return '<option value="' + U().escapeHtml(s.common) + '"></option>';
+        }).join("");
+      }
+    });
+    var speciesInput = form.querySelector('[name="species"]');
+    var sciInput = form.querySelector('[name="scientificName"]');
+    var hidden = form.querySelector('[name="wskbSpeciesId"]');
+    var matchEl = form.querySelector("#fld-wskb-match");
+    if (!speciesInput) return;
+    function tryMatch() {
+      if (!KB.loadIndex) return;
+      var q = speciesInput.value.trim().toLowerCase();
+      if (!q) {
+        if (hidden) hidden.value = "";
+        if (matchEl) matchEl.hidden = true;
+        return;
+      }
+      var hits = KB.search(q);
+      var exact = (hits || []).filter(function (s) {
+        return s.common && s.common.toLowerCase() === q;
+      })[0];
+      if (!exact && hits && hits.length === 1) exact = hits[0];
+      if (exact) {
+        KB.loadRecord(exact.id).then(function (rec) {
+          if (!rec) return;
+          if (hidden) hidden.value = rec.id;
+          if (sciInput && !sciInput.value) sciInput.value = rec.names.scientific || "";
+          if (matchEl) {
+            matchEl.hidden = false;
+            matchEl.innerHTML = "Matched WSKB: <a href=\"" + KB.profileHref(rec.id, { base: "../../design-system/species/" }) + "\">" + U().escapeHtml(rec.names.common) + "</a>";
+          }
+        });
+      } else if (matchEl) {
+        matchEl.hidden = true;
+        if (hidden) hidden.value = "";
+      }
+    }
+    speciesInput.addEventListener("blur", tryMatch);
+    speciesInput.addEventListener("change", tryMatch);
   }
 
   function bind(form, options) {
@@ -242,6 +312,7 @@
     } else if (gpsBtn) {
       gpsBtn.disabled = true;
     }
+    bindWskbLookup(form);
   }
 
   global.FieldryForm = {

@@ -125,6 +125,13 @@
 
     global.FieldryBoot.bootstrapLocation().then(function (loc) {
       state.loc = loc;
+      if (global.WDS && global.WDS.wskb) {
+        global.WDS.wskb.configure({ base: "../../design-system/species/" });
+        return global.WDS.wskb.loadIndex().then(function () { return loc; });
+      }
+      return loc;
+    }).then(function (loc) {
+      state.loc = loc;
       return global.FieldryBoot.fetchPlatform(loc).catch(function () { return null; });
     }).then(function (platform) {
       state.platform = platform;

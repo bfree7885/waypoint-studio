@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "verified",
+      "taxonomy": "verified",
+      "phenology": "verified"
+    }
+  },
+  "id": "turdus-migratorius",
+  "names": {
+    "common": "American robin",
+    "scientific": "Turdus migratorius",
+    "aliases": ["robin"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Aves",
+    "order": "Passeriformes",
+    "family": "Turdidae",
+    "genus": "Turdus",
+    "species": "migratorius",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Least concern — widespread and abundant",
+    "geographicRange": "North America — breeds across Canada and United States; winter range extends through Mexico",
+    "elevationRange": {
+      "minFt": 0,
+      "maxFt": 10000,
+      "note": "Ubiquitous in lawns, parks, and forest edges at all elevations in Pike County"
+    }
+  },
+  "ecology": {
+    "role": "Omnivorous ground forager — controls insect populations and disperses fruit seeds; a visible indicator of lawn-to-forest edge ecology and spring phenology.",
+    "associatedSpecies": [
+      { "speciesId": "acer-saccharum", "relationship": "Nests in maple branches; feeds on soil invertebrates beneath maples" },
+      { "name": "Earthworms", "relationship": "Primary prey on lawns — arrival timing linked to spring soil thaw" }
+    ]
+  },
+  "habitat": {
+    "summary": "Open ground near trees — lawns, parks, pastures, forest edges, and suburban gardens with nesting trees nearby.",
+    "preferred": [
+      "Mowed lawns adjacent to deciduous trees",
+      "Forest edges and orchard margins",
+      "Parks with scattered canopy",
+      "Riparian corridors with open understory"
+    ],
+    "substrate": "Short grass and bare soil for foraging; forked branches for mud-lined cup nests"
+  },
+  "phenology": {
+    "seasonality": "Among the first widespread spring migrants and breeders in the Northeast",
+    "activePeriod": "Year-round in much of Pennsylvania; spring arrival often March–April; nesting April–July; fall flocks form August–October",
+    "regionalNotes": {
+      "pike-county-pa": "First robins on thawing lawns are a reliable late-winter phenology signal — earlier than leaf-out on maples."
+    }
+  },
+  "identification": {
+    "summary": "Familiar orange-breasted thrush — larger than sparrows, runs and pauses on lawns, melodious caroling song at dawn.",
+    "fieldMarks": [
+      "Orange-red breast, gray-brown upperparts",
+      "Dark head with white eye ring and broken white throat",
+      "Yellow bill (breeding) — can look darker in winter",
+      "White undertail coverts visible in flight",
+      "Runs upright on ground, stops abruptly to listen for prey"
+    ],
+    "lookAlikes": [
+      {
+        "name": "Varied thrush (west only)",
+        "distinction": "Orange breast band and black necklace — not in eastern PA"
+      },
+      {
+        "name": "Eastern towhee",
+        "distinction": "White belly, rufous sides, black upperparts — different shape and behavior"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Low risk — do not handle injured birds without wildlife rehabilitator guidance",
+      "Keep cats indoors during nesting season — major nest predator"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Never approach nests closely — photograph from distance with telephoto lens",
+      "Do not play recorded calls excessively during breeding season",
+      "Record song and behavior, not just checklist ticks"
+    ],
+    "leaveNoTrace": [
+      "Stay on trails near known nest trees",
+      "Do not remove eggs or feathers from nests — illegal and harmful"
+    ],
+    "conservation": "Robins are common but nest failure is high — observation should minimize stress during breeding."
+  },
+  "photography": {
+    "tips": [
+      "Low angle on lawn captures hunting pause behavior",
+      "Dawn chorus audio recording complements still images",
+      "Include nest tree context without revealing exact nest location publicly"
+    ]
+  },
+  "education": {
+    "overview": "The American robin is many people's first bird — a gateway to phenology, migration timing, and the difference between a lawn and an ecosystem.",
+    "summary": "Watch the pause-and-listen hunt on grass — that behavior is the lesson.",
+    "interestingFacts": [
+      "Robins can produce three broods per season in favorable years",
+      "They detect prey by sight and by listening for soil movements",
+      "Spring flocks are not the same individuals that nested in your yard — migration mixes populations"
+    ],
+    "fieldNotes": [
+      "Date first robin on your street vs. first maple flower",
+      "Note whether birds are in flocks (fall/winter) or pairs (spring)",
+      "Listen at dawn — song perch is often the tallest tree on territory"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "acer-saccharum", "relationship": "Nesting and foraging context" }
+  ],
+  "futureObservations": [
+    "First arrival date each spring at a fixed location",
+    "Nest attempt outcomes if monitored ethically from distance",
+    "Correlation between earthworm activity and robin foraging success"
+  ],
+  "unknowns": [
+    "Migration timing shifts with climate — long-term local records needed",
+    "Some winter robins may be residents vs. migrants — banding data required to confirm"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "American robin pausing on a spring lawn",
+      "caption": "Orange breast and upright foraging posture — placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "wildlife",
+    "prompts": [
+      "Song, call, or visual only?",
+      "Foraging or nesting behavior?",
+      "Habitat: lawn, edge, or interior forest?",
+      "Flock size if applicable"
+    ]
+  },
+  "research": {
+    "notes": "Cornell Lab eBird integration future — not connected in MVP",
+    "aiEnrichment": { "enabled": false }
+  },
+  "externalIds": {}
+}

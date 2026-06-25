@@ -1,0 +1,159 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "educational",
+      "taxonomy": "verified",
+      "phenology": "regional"
+    }
+  },
+  "id": "craterellus-fallax",
+  "names": {
+    "common": "Black trumpet",
+    "scientific": "Craterellus fallax",
+    "aliases": ["black chanterelle", "horn of plenty", "trumpet of the dead"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Fungi",
+    "phylum": "Basidiomycota",
+    "class": "Agaricomycetes",
+    "order": "Cantharellales",
+    "family": "Hydnaceae",
+    "genus": "Craterellus",
+    "species": "fallax",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Common in suitable habitat; not globally threatened",
+    "geographicRange": "Eastern North America — associated with moist deciduous and mixed forests",
+    "elevationRange": {
+      "minFt": 300,
+      "maxFt": 4000,
+      "note": "Often in ravines and low moist woods in summer and early fall"
+    }
+  },
+  "ecology": {
+    "role": "Mycorrhizal partner with hardwood trees — exchanges nutrients with oak, beech, and birch roots while producing distinctive funnel-shaped fruiting bodies that release spores from the outer hymenium.",
+    "associatedSpecies": [
+      { "speciesId": "acer-saccharum", "relationship": "Often found in sugar maple–beech forest floors" },
+      { "speciesId": "tsuga-canadensis", "relationship": "May appear in hemlock–hardwood ravines" }
+    ]
+  },
+  "habitat": {
+    "summary": "Moist, shaded forest floors — especially ravines, stream margins, and mature hardwood stands with deep leaf litter.",
+    "preferred": [
+      "Hemlock–hardwood ravines",
+      "Sugar maple and beech forest floors",
+      "Mossy banks along streams",
+      "North-facing slopes in summer"
+    ],
+    "substrate": "Damp leaf litter and humus over well-drained soil"
+  },
+  "phenology": {
+    "seasonality": "Summer through early fall fruiting — later than spring morels",
+    "activePeriod": "July through September in northeastern Pennsylvania; peaks after sustained summer rain",
+    "regionalNotes": {
+      "pike-county-pa": "Check shaded ravines after two days of July rain — often grows in groups that are easy to walk past if you look at the trail instead of the forest floor."
+    }
+  },
+  "identification": {
+    "summary": "A thin, vase- or trumpet-shaped black to gray-brown mushroom with a smooth outer surface and no true gills — the spore-bearing surface is on the outside of the funnel.",
+    "fieldMarks": [
+      "Funnel or trumpet shape — hollow center",
+      "Dark gray to black (sometimes brownish when dry)",
+      "No true gills — underside smooth or slightly wrinkled",
+      "Fragile, thin flesh; often grows in clusters or arcs"
+    ],
+    "lookAlikes": [
+      {
+        "name": "Golden chanterelle (Cantharellus spp.)",
+        "distinction": "Yellow-orange, thicker flesh, false gills (ridges), not funnel-shaped"
+      },
+      {
+        "name": "Ash-tree bolete (dark capped boletes)",
+        "distinction": "Has cap and stem with pores underneath — not a hollow trumpet"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Generally considered edible when cooked — still require positive ID",
+      "Dry specimens may be harder to distinguish from dark cup fungi — verify fresh material"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Look down and sideways in ravines — trumpets are easy to miss",
+      "Photograph clusters in situ to learn growth patterns",
+      "Harvest sparingly if at all — cut or twist gently, leave young trumpets"
+    ],
+    "leaveNoTrace": [
+      "Ravine slopes erode easily — stay on established paths",
+      "Do not trample moss mats searching for fungi"
+    ],
+    "conservation": "Black trumpets are a reward for patient, ground-level observation — not a species to strip from a ravine patch."
+  },
+  "photography": {
+    "tips": [
+      "Low angle against moss or leaf litter shows trumpet shape",
+      "Include a hand or lens cap for scale — they are smaller than they appear in memory",
+      "Diffuse forest shade works better than direct sun on black caps"
+    ]
+  },
+  "education": {
+    "overview": "The black trumpet rewards forest walkers who slow down in moist ravines — a lesson in looking at the forest floor as carefully as the canopy.",
+    "summary": "Not a chanterelle, not a morel — a summer mycorrhizal trumpet that teaches ravine ecology.",
+    "interestingFacts": [
+      "Spores develop on the outer surface — the opposite of gilled mushrooms",
+      "Often fruits in the same ravine zones year after year if habitat remains intact",
+      "Dries well for culinary use — but Waypoint teaches observation before harvest"
+    ],
+    "fieldNotes": [
+      "Walk ravines after rain with eyes on the ground 3–5 meters ahead",
+      "Note dominant trees — maple and beech presence is a useful context clue",
+      "Compare fruiting here to golden chanterelle timing later in summer"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "morchella-americana", "relationship": "Spring predecessor on different substrate signal" },
+    { "speciesId": "tsuga-canadensis", "relationship": "Shared ravine habitat" }
+  ],
+  "futureObservations": [
+    "Record date after rain event and dominant canopy species",
+    "Note whether trumpets grow in arcs — possible fairy ring pattern",
+    "Compare abundance in hemlock vs. pure hardwood ravines"
+  ],
+  "unknowns": [
+    "Exact host tree preferences vary by site — associations are patterns, not rules",
+    "Craterellus species boundaries are actively studied in North America"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "Cluster of black trumpets in mossy ravine leaf litter",
+      "caption": "Funnel-shaped fruiting bodies on a shaded forest floor — placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "fungi",
+    "prompts": [
+      "Funnel shape and color",
+      "Ravine or terrace?",
+      "Dominant canopy trees within 15 m",
+      "Recent rainfall?"
+    ]
+  },
+  "research": {
+    "notes": "Candidate for future ForageCast summer model overlay",
+    "aiEnrichment": { "enabled": false }
+  },
+  "externalIds": {}
+}

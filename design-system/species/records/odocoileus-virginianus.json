@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "verified",
+      "taxonomy": "verified",
+      "phenology": "regional"
+    }
+  },
+  "id": "odocoileus-virginianus",
+  "names": {
+    "common": "White-tailed deer",
+    "scientific": "Odocoileus virginianus",
+    "aliases": ["whitetail", "white-tailed deer"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Animalia",
+    "phylum": "Chordata",
+    "class": "Mammalia",
+    "order": "Artiodactyla",
+    "family": "Cervidae",
+    "genus": "Odocoileus",
+    "species": "virginianus",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Least concern globally; locally abundant in Pennsylvania — management varies by township and season",
+    "geographicRange": "North, Central, and northern South America — most widespread deer in the Americas",
+    "elevationRange": {
+      "minFt": 0,
+      "maxFt": 10000,
+      "note": "Common at all elevations in Pike County woodlands and edge habitats"
+    }
+  },
+  "ecology": {
+    "role": "Major herbivore shaping forest understory composition — browse pressure affects tree regeneration, wildflower abundance, and habitat structure for birds and small mammals.",
+    "associatedSpecies": [
+      { "speciesId": "acer-saccharum", "relationship": "Browses maple seedlings — affects forest regeneration" },
+      { "speciesId": "tsuga-canadensis", "relationship": "Uses hemlock stands for thermal cover in winter" },
+      { "speciesId": "turdus-migratorius", "relationship": "Shares edge habitats — different foraging niches" }
+    ]
+  },
+  "habitat": {
+    "summary": "Forest edges, agricultural margins, riparian corridors, and suburban woodlots — thrives where cover meets forage.",
+    "preferred": [
+      "Oak–hardwood forest edges",
+      "Old fields reverting to brush",
+      "Riparian zones along streams",
+      "Regenerating clearcuts with browse and cover nearby"
+    ],
+    "substrate": "Not applicable — terrestrial; look for trails, beds, scat, and rubs on forest floor"
+  },
+  "phenology": {
+    "seasonality": "Year-round resident — behavior shifts sharply by season",
+    "activePeriod": "Crepuscular year-round; dawn and dusk peaks. Rut: October–November. Fawns: May–June.",
+    "regionalNotes": {
+      "pike-county-pa": "Winter yards may concentrate deer in hemlock ravines; spring fawns hidden in tall grass and brush — do not approach spotted fawns."
+    }
+  },
+  "identification": {
+    "summary": "Medium-sized deer with reddish-brown summer coat, gray-brown winter coat, and distinctive white tail flash when alarmed.",
+    "fieldMarks": [
+      "White throat patch and eye ring",
+      "Tail brown above, white below — raised when fleeing",
+      "Antlers on males (bucks) — shed late winter, regrow spring through summer",
+      "Slender build compared to elk; white rump patch on tail underside"
+    ],
+    "lookAlikes": [
+      {
+        "name": "Elk (where present)",
+        "distinction": "Much larger; not established in Pike County — unlikely confusion locally"
+      },
+      {
+        "name": "Domestic dog tracks",
+        "distinction": "Deer hooves are cloven with pointed toes; dew claws show in soft mud"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Never approach rut-active bucks closely — unpredictable during breeding season",
+      "Does with fawns may behave defensively if fawn is nearby — give space",
+      "Deer ticks may carry disease — check clothing after field work in deer habitat"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Observe from distance with binoculars — never bait for photos",
+      "Do not approach fawns — mother is usually nearby",
+      "Record sign (tracks, scat, rubs) without disturbing bedding areas",
+      "Respect hunting seasons and private land — permission first"
+    ],
+    "leaveNoTrace": [
+      "Do not follow deer off-trail through sensitive riparian zones",
+      "Avoid spotlighting or harassing wildlife at night"
+    ],
+    "conservation": "Deer are abundant but not unlimited — ethical observation supports understanding population ecology without treating animals as photo props."
+  },
+  "photography": {
+    "tips": [
+      "Shoot from blind or vehicle at distance — long lens, not close approach",
+      "Sign photography (tracks, rubs) tells ecological stories without disturbing animals",
+      "Dawn mist at field edges — work with available light, no flash on animals"
+    ]
+  },
+  "education": {
+    "overview": "The white-tailed deer is the most familiar large mammal in eastern forests — a lens for understanding herbivory, hunting ethics, and how edge habitat shapes biodiversity.",
+    "summary": "Learn to read sign before you seek the animal — tracks and browse teach more than a fleeting glimpse.",
+    "interestingFacts": [
+      "A buck's antlers are among the fastest-growing bone in the animal kingdom",
+      "Deer stomach has four chambers — adapted for processing varied browse",
+      "Population density strongly affects forest understory — fewer wildflowers where browse pressure is high"
+    ],
+    "fieldNotes": [
+      "Measure track width — buck vs. doe vs. fawn",
+      "Note browse line on shrubs — height tells you pressure intensity",
+      "Ask: Is this forest regenerating or stalled by deer browse?"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "tsuga-canadensis", "relationship": "Winter thermal cover" },
+    { "speciesId": "acer-saccharum", "relationship": "Browse pressure on seedlings" }
+  ],
+  "futureObservations": [
+    "Document browse height on sugar maple seedlings",
+    "Record rut sign dates (rubs, scrapes) annually",
+    "Note flock associations with turkeys or birds at field edges"
+  ],
+  "unknowns": [
+    "Local population density estimates require formal survey — casual observations are anecdotal",
+    "Chronic wasting disease distribution evolves — check PA Game Commission advisories"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "White-tailed doe at forest edge in early morning light",
+      "caption": "Edge habitat at dawn — field photograph placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "wildlife",
+    "prompts": [
+      "Animal or sign only?",
+      "Sex and age class if animal seen",
+      "Habitat type and edge vs. interior",
+      "Behavior — feeding, alarm, resting"
+    ]
+  },
+  "research": {
+    "notes": "Links to shed-hunting content track as educational module — not harvest guarantee",
+    "aiEnrichment": { "enabled": false }
+  },
+  "externalIds": {}
+}

@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/wskb/v1",
+    "updatedAt": "2026-05-30T12:00:00.000Z",
+    "status": "published",
+    "provenance": {
+      "overview": "educational",
+      "identification": "verified",
+      "taxonomy": "verified",
+      "phenology": "regional",
+      "conservation": "verified"
+    }
+  },
+  "id": "tsuga-canadensis",
+  "names": {
+    "common": "Eastern hemlock",
+    "scientific": "Tsuga canadensis",
+    "aliases": ["Canada hemlock", "hemlock"],
+    "synonyms": []
+  },
+  "taxonomy": {
+    "kingdom": "Plantae",
+    "phylum": "Tracheophyta",
+    "class": "Pinopsida",
+    "order": "Pinales",
+    "family": "Pinaceae",
+    "genus": "Tsuga",
+    "species": "canadensis",
+    "rank": "species"
+  },
+  "range": {
+    "nativeStatus": "native",
+    "conservationStatus": "Near threatened range-wide due to hemlock woolly adelgid — locally common but declining in many stands",
+    "geographicRange": "Eastern North America — Appalachian and northern hardwood transition zones",
+    "elevationRange": {
+      "minFt": 600,
+      "maxFt": 5000,
+      "note": "Dominates cool ravines and north slopes in Pike County; thermal cover for deer in winter"
+    }
+  },
+  "ecology": {
+    "role": "Foundation conifer of cool ravines — creates deep shade, acidifies soil, moderates stream temperature, and provides winter cover for deer and habitat for interior forest birds.",
+    "associatedSpecies": [
+      { "speciesId": "acer-saccharum", "relationship": "Hemlock–maple ravine community" },
+      { "speciesId": "craterellus-fallax", "relationship": "Shared moist ravine floors" },
+      { "speciesId": "odocoileus-virginianus", "relationship": "Winter yard thermal cover" }
+    ]
+  },
+  "habitat": {
+    "summary": "Cool, moist ravines, north-facing slopes, and stream corridors — shade-tolerant, slow-growing, long-lived.",
+    "preferred": [
+      "Ravines with perennial streams",
+      "North and east aspects",
+      "Acidic, rocky slopes with hemlock–hardwood mix",
+      "Old-growth pockets with deep organic soil"
+    ],
+    "substrate": "Thin mineral soil over rock — tolerates shade; seedlings need undisturbed forest floor"
+  },
+  "phenology": {
+    "seasonality": "Evergreen — phenology focuses on cone development and new shoot growth, not leaf drop",
+    "activePeriod": "New shoot growth: May–June. Cones mature: autumn. Pollen release: spring.",
+    "regionalNotes": {
+      "pike-county-pa": "Check undersides of twigs for woolly adelgid ovisacs in winter — a critical stewardship observation."
+    }
+  },
+  "identification": {
+    "summary": "Graceful evergreen conifer with flat, short needles and drooping leader — defines ravine microclimate in the Appalachians.",
+    "fieldMarks": [
+      "Flat needles, dark green above, two pale stomatal bands beneath",
+      "Needles arranged in flat sprays — not whorled like spruce",
+      "Small cones hang from branch tips",
+      "Bark: scaly, reddish-brown, deeply furrowed on old trees",
+      "Drooping top shoot — hemlock 'bows'"
+    ],
+    "lookAlikes": [
+      {
+        "name": "Eastern white pine (Pinus strobus)",
+        "distinction": "Needles in bundles of five, much longer, not flat sprays"
+      },
+      {
+        "name": "Norway spruce (planted)",
+        "distinction": "Sharp square needles rolled in fingers; cones much larger"
+      }
+    ]
+  },
+  "safety": {
+    "considerations": [
+      "Dead hemlock limbs brittle — hazard in declining stands",
+      "Ravine terrain slippery — footing before canopy gaze"
+    ]
+  },
+  "ethics": {
+    "observation": [
+      "Report adelgid signs to state forestry programs when trained — do not transport branch material between watersheds",
+      "Photograph crown health from trail — avoid climbing unstable trees",
+      "Observe ravine streams without trampling riparian vegetation"
+    ],
+    "leaveNoTrace": [
+      "Ravine soils erode quickly — single-file on established paths",
+      "Do not collect cones from rare old-growth pockets on public land"
+    ],
+    "conservation": "Hemlock is a conservation priority species — curiosity should support detection and stewardship, not collection."
+  },
+  "photography": {
+    "tips": [
+      "Backlight flat needle sprays to show stomatal bands",
+      "Wide ravine shots communicate ecosystem role",
+      "Macro of adelgid ovisacs — document for science, wash hands after"
+    ]
+  },
+  "education": {
+    "overview": "Eastern hemlock is the tree that cools the forest — a lesson in ravine ecology, invasive species, and why evergreens matter in a deciduous landscape.",
+    "summary": "Flat sprays, pale undersides, drooping leader — then look down at the stream hemlock shades.",
+    "interestingFacts": [
+      "Can live 500+ years — among the oldest trees in eastern forests",
+      "Hemlock woolly adelgid kills trees over years by draining sap",
+      "Shade from hemlock can keep ravine streams cold enough for native brook trout"
+    ],
+    "fieldNotes": [
+      "Compare soil moisture under hemlock vs. open oak ridge",
+      "Note crown thinning — yellow-gray foliage may signal adelgid stress",
+      "Listen for winter birds in hemlock cover — different soundscape than bare deciduous woods"
+    ]
+  },
+  "relatedSpecies": [
+    { "speciesId": "acer-saccharum", "relationship": "Ravine community partner" },
+    { "speciesId": "craterellus-fallax", "relationship": "Summer fungi on ravine floors" }
+  ],
+  "futureObservations": [
+    "Adelgid presence/absence on marked transect trees",
+    "Canopy openness change over years at fixed photo point",
+    "Stream temperature comparison: hemlock ravine vs. open reach"
+  ],
+  "unknowns": [
+    "Biological control effectiveness varies by watershed — local outcomes uncertain",
+    "Climate warming may shift competitive balance with hardwoods — long-term study needed"
+  ],
+  "references": [],
+  "media": [
+    {
+      "role": "hero",
+      "alt": "Eastern hemlock branches over a ravine stream",
+      "caption": "Flat needle sprays shading cool ravine — placeholder",
+      "placeholder": true
+    }
+  ],
+  "observationTemplate": {
+    "suggestedType": "plant",
+    "prompts": [
+      "Crown health: full, thinning, dead?",
+      "Adelgid ovisacs present on twigs?",
+      "Ravine or ridge context",
+      "Associated canopy species"
+    ]
+  },
+  "research": {
+    "notes": "Conservation status should be cited from official sources when references slot is populated",
+    "aiEnrichment": { "enabled": false }
+  },
+  "externalIds": {}
+}

@@ -45,30 +45,15 @@
     "entries": [
       {
         "id": "fc-home-morel",
+        "speciesId": "morchella-americana",
         "spotlightLabel": "Weekly species spotlight",
-        "commonName": "Yellow morel",
-        "scientificName": "Morchella americana",
         "title": "Last calls in the valleys",
         "timing": "Late April – late May · fading below 1,200 ft this week",
-        "habitat": "River terraces, old apple ground, ash–elm edges, and tulip-poplar slopes after rain",
         "whereToLook": "Low river terraces and old orchard edges below 1,200 ft; ash–elm margins after Thursday rain",
         "whyThisWeek": "Warm days dried south-facing ridges while valley fog and recent rain kept low terraces moist — one of the last reasonable weeks to check low-elevation edges before heat closes the window.",
-        "identification": [
-          "Cap honeycombed; attached to stem at base",
-          "Hollow through cap and stem when sliced lengthwise",
-          "Often near dying elm, ash, apple, or tulip poplar",
-          "Appears when soil warms after rain — not every year the same week"
-        ],
-        "lookAlikes": "False morels (Gyromitra) — brain-like, not honeycombed; not hollow. Never eat uncertain fungi.",
-        "conservationNote": "Cut at soil line; leave small specimens; never trespass; never share exact harvest spots publicly.",
-        "image": {
-          "alt": "Yellow morel in leaf litter — educational placeholder",
-          "caption": "Low terrace habitat after rain — photograph placeholder",
-          "placeholder": true
-        },
         "learnMore": {
-          "href": "season-table.html?species=morels",
-          "label": "Learn more"
+          "href": "../../design-system/species/profile.html?id=morchella-americana&region=pike-county-pa",
+          "label": "Full species profile"
         }
       }
     ]
@@ -88,6 +73,7 @@
   "lessons": [
     {
       "id": "morels-101",
+      "wskbId": "morchella-americana",
       "title": "Morels 101",
       "subtitle": "Observe · Identify · Ethics",
       "summary": "Before taste comes habitat. Learn ash–elm context, the hollow stem test, and why location privacy matters.",

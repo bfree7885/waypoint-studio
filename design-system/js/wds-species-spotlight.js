@@ -65,6 +65,15 @@
       species = block;
     }
 
+    if (species) {
+      var KB = global.WDS && global.WDS.wskb;
+      if (KB && KB.enrichSpotlightEntry) {
+        species = KB.enrichSpotlightEntry(species, {
+          profileBase: options.wskbBase || options.profileBase
+        });
+      }
+    }
+
     return {
       species: species,
       rotation: rotation,
