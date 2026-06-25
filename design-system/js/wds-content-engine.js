@@ -11,19 +11,17 @@
   var bundleCache = {};
 
   var SECTION_ORDER = [
-    "home-hero",
-    "platform-mission",
-    "this-week-outdoors",
+    "outdoor-dashboard"
+  ];
+
+  var FIELD_GUIDE_SECTIONS = [
     "weekend-investigation",
-    "foragecast",
     "seasonal-watch",
     "species-spotlight",
     "regional-field-notes",
     "conservation-update",
     "research-brief",
-    "experiences",
-    "photo-essay",
-    "featured-video"
+    "photo-essay"
   ];
 
   var DECK_CARD_SKIP = {
@@ -306,6 +304,55 @@
               : "") +
           "</div>" +
         "</div>" +
+      "</section>"
+    );
+  }
+
+  function renderOutdoorDashboard(data) {
+    var w = data.thisWeekOutdoors;
+    if (!w) return "";
+    var DE = global.WDS && global.WDS.dashboardEngine;
+    var dashboardHtml = DE
+      ? DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data })
+      : "";
+    var happeningMount = (
+      '<div class="wod__happening" data-wds-happening-now-mount aria-live="polite">' +
+        (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.renderLoading
+          ? global.WDS.happeningNow.renderLoading()
+          : "") +
+      "</div>"
+    );
+    var season = data.season ? escapeHtml(data.season) : "";
+    var weekOf = data.weekOf ? escapeHtml(data.weekOf) : "";
+    var pulse = w.summary || "What you need to know before heading outside today.";
+    var todayQ = w.outdoorQuestion || "Should you change your plans?";
+    var loc = data._location;
+    var regionLabel = loc && loc.name
+      ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
+      : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region");
+
+    return (
+      '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
+        '<header class="wod__header">' +
+          '<div class="wod__status">' +
+            '<p class="wod__meta">' + regionLabel + (weekOf ? " · Week of " + weekOf : "") + "</p>" +
+            (season ? '<p class="wod__season">' + season + "</p>" : "") +
+            '<h1 class="wod__title" id="wod-title">Outdoor dashboard</h1>' +
+            '<p class="wod__pulse">' + escapeHtml(pulse) + "</p>" +
+            '<p class="wod__question">' + escapeHtml(todayQ) + "</p>" +
+          "</div>" +
+          happeningMount +
+          '<div class="wod__toolbar">' +
+            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-dashboard-settings-open">Customize dashboard</button>' +
+          "</div>" +
+        "</header>" +
+        '<div class="wod__body" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
+        '<nav class="wod__links" aria-label="Go deeper">' +
+          '<span class="wod__links-label">Field tools</span>' +
+          '<a class="wod__link" href="apps/foragecast/">ForageCast</a>' +
+          '<a class="wod__link" href="apps/fieldry/">Fieldry</a>' +
+          '<a class="wod__link" href="design-system/species/">Species</a>' +
+        "</nav>" +
       "</section>"
     );
   }
@@ -750,6 +797,7 @@
   }
 
   var RENDERERS = {
+    "outdoor-dashboard": renderOutdoorDashboard,
     "home-hero": function (data, options) {
       return renderHomeHero(data, options && options.base);
     },
@@ -842,9 +890,10 @@
     };
     var DE = global.WDS && global.WDS.dashboardEngine;
     if (DE) {
+      mount._wdbMountOpts = mountOpts;
       DE.bindInteractions(mount);
       DE.bindSettings(mount, function () {
-        DE.refreshGrid(mount, Object.assign({}, mountOpts, {
+        DE.refreshDashboard(mount, Object.assign({}, mountOpts, {
           platform: platform,
           bundle: data,
           settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
@@ -872,7 +921,7 @@
     bindLocationBar(mount, options);
     if (loc && loc.name) {
       var titleRegion = loc.name + ", " + (loc.stateCode || loc.state);
-      document.title = "This Week Outdoors · " + titleRegion + " — Waypoint Studio";
+      document.title = "Outdoor Dashboard · " + titleRegion + " — Waypoint Studio";
     }
     if (global.WDS.mapView && global.WDS.mapView.applyLocation) {
       global.WDS.mapView.applyLocation(mount, loc, { base: base });
@@ -948,6 +997,7 @@
     loadRegion: loadRegion,
     renderHome: renderHome,
     renderHowWaypointWorks: renderHowWaypointWorks,
-    SECTION_ORDER: SECTION_ORDER
+    SECTION_ORDER: SECTION_ORDER,
+    FIELD_GUIDE_SECTIONS: FIELD_GUIDE_SECTIONS
   };
 })(window);

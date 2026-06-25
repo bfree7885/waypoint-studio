@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Studio — regional outdoor intelligence dashboard for Pike County Preview. Learn, get outdoors, and build toward research-grade observations.">
-  <title>Waypoint Studio — Regional Outdoor Dashboard</title>
+  <meta name="description" content="Waypoint Studio — your outdoor dashboard. Weather, wildlife, trails, and field conditions before you head outside.">
+  <title>Outdoor Dashboard — Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,24 +15,19 @@
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app">
-    <header class="wds-topbar">
+    <header class="wds-topbar wds-topbar--dashboard">
       <div class="wds-topbar__inner">
         <a class="wds-brand" href="/">
           <span class="wds-brand__mark" aria-hidden="true"></span>
           <span class="wds-brand__name">Waypoint Studio</span>
         </a>
         <nav class="ws-topnav" aria-label="Dashboard sections">
-          <a href="#home-hero">Home</a>
-          <a href="#this-week-outdoors">This week</a>
-          <a href="#weekend-investigation">Investigate</a>
-          <a href="#foragecast">ForageCast</a>
-          <a href="#seasonal-watch">Season</a>
-          <a href="#regional-field-notes">Notes</a>
-          <a href="#species-spotlight">Species</a>
-          <a href="#conservation-update">Stewardship</a>
-          <a href="#experiences">Instruments</a>
-          <a href="#photo-essay">Photos</a>
-          <a href="#featured-video">Videos</a>
+          <a href="#outdoor-dashboard">Dashboard</a>
+          <a href="#wdb-section-conditions">Conditions</a>
+          <a href="#wdb-section-wildlife">Wildlife</a>
+          <a href="#wdb-section-foraging">Foraging</a>
+          <a href="#wdb-section-trails">Trails</a>
+          <a href="apps/fieldry/">Fieldry</a>
         </nav>
       </div>
     </header>
@@ -40,8 +35,8 @@
     <div id="wds-location-prompt"></div>
     <div id="wds-content-engine" data-wds-region="pike-county-pa" aria-busy="true"></div>
 
-    <footer class="wds-footer">
-      <p>Waypoint Studio · Learn · Go outside · Observe · <a href="#how-waypoint-works">How Waypoint works</a> · <a href="docs/STRATEGIC-DIRECTION.md">Strategic direction</a></p>
+    <footer class="wds-footer wds-footer--minimal">
+      <p>Waypoint Studio · Outdoor intelligence · <a href="docs/STRATEGIC-DIRECTION.md">About</a></p>
     </footer>
   </div>
   <script src="design-system/js/wds.js" defer></script>

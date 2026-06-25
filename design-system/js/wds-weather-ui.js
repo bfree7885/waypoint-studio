@@ -502,6 +502,59 @@
     });
   }
 
+  function renderWindOnly(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    return (
+      '<dl class="wds-weather-metrics wds-weather-metrics--compact" aria-label="Wind">' +
+        renderMetric("Wind", windLine(cur.wind)) +
+        renderMetric("Gusts", cur.wind && cur.wind.gust ? formatMeasurement(cur.wind.gust) : "—") +
+      "</dl>"
+    );
+  }
+
+  function renderUvOnly(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    var uv = cur.uvIndex ? formatMeasurement(cur.uvIndex, 0) : "—";
+    return (
+      '<dl class="wds-weather-metrics wds-weather-metrics--compact" aria-label="UV index">' +
+        renderMetric("UV index", uv) +
+        renderMetric("Exposure", uv !== "—" && Number(cur.uvIndex.value) >= 6 ? "High — cover up" : "Moderate") +
+      "</dl>"
+    );
+  }
+
+  function renderSunriseOnly(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    return (
+      '<p class="wdb-widget__value">' + escapeHtml(formatTime(cur.sunrise)) + "</p>" +
+      '<p class="wdb-widget__value-note">Today\'s sunrise</p>'
+    );
+  }
+
+  function renderSunsetOnly(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    return (
+      '<p class="wdb-widget__value">' + escapeHtml(formatTime(cur.sunset)) + "</p>" +
+      '<p class="wdb-widget__value-note">Today\'s sunset</p>'
+    );
+  }
+
+  function renderCloudCoverOnly(pkg) {
+    var cur = (pkg && pkg.current) || {};
+    return (
+      '<p class="wdb-widget__value">' + escapeHtml(formatMeasurement(cur.cloudCover, 0)) + "</p>" +
+      '<p class="wdb-widget__value-note">Cloud cover now</p>'
+    );
+  }
+
+  function renderHourlyOnly(pkg) {
+    return renderHourly(pkg);
+  }
+
+  function renderDailyOnly(pkg) {
+    return renderDaily(pkg);
+  }
+
   function renderForecast(pkg) {
     return renderDaily(pkg) + renderHourly(pkg);
   }
@@ -534,6 +587,34 @@
     return mount(el, renderPanel, options);
   }
 
+  function mountHourly(el, options) {
+    return mount(el, renderHourlyOnly, options);
+  }
+
+  function mountDaily(el, options) {
+    return mount(el, renderDailyOnly, options);
+  }
+
+  function mountWind(el, options) {
+    return mount(el, renderWindOnly, options);
+  }
+
+  function mountUv(el, options) {
+    return mount(el, renderUvOnly, options);
+  }
+
+  function mountSunrise(el, options) {
+    return mount(el, renderSunriseOnly, options);
+  }
+
+  function mountSunset(el, options) {
+    return mount(el, renderSunsetOnly, options);
+  }
+
+  function mountCloudCover(el, options) {
+    return mount(el, renderCloudCoverOnly, options);
+  }
+
   function mountAll(root, options) {
     if (!root || !W) return Promise.resolve([]);
     options = options || {};
@@ -544,6 +625,13 @@
       if (kind === "panel") jobs.push(mountPanel(el, options));
       else if (kind === "sun-moon") jobs.push(mountSunMoon(el, options));
       else if (kind === "forecast") jobs.push(mountForecast(el, options));
+      else if (kind === "hourly") jobs.push(mountHourly(el, options));
+      else if (kind === "daily") jobs.push(mountDaily(el, options));
+      else if (kind === "wind") jobs.push(mountWind(el, options));
+      else if (kind === "uv") jobs.push(mountUv(el, options));
+      else if (kind === "sunrise") jobs.push(mountSunrise(el, options));
+      else if (kind === "sunset") jobs.push(mountSunset(el, options));
+      else if (kind === "cloud-cover") jobs.push(mountCloudCover(el, options));
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));
       else jobs.push(mountDashboard(el, options));

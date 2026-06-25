@@ -13,6 +13,8 @@
       mount: document.getElementById("wds-content-engine"),
       wrapMain: true,
       location: loc,
+      includeCitizenScience: false,
+      includeMethodology: false,
       onLocationChange: function (newLoc) {
         startDashboard(newLoc);
       }

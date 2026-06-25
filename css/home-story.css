@@ -2,30 +2,15 @@
  * Waypoint Studio homepage — story rhythm and visual hierarchy
  */
 
+/* Homepage — outdoor dashboard first */
+
 #main {
   display: flex;
   flex-direction: column;
 }
 
-/* ——— Story tiers ——— */
-.ws-story-section {
-  margin: 0;
-}
-
-.ws-story-section--hero {
-  margin-bottom: 0;
-}
-
-.ws-story-section--primary {
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
-}
-
-.wce-dashboard--living .wdb-grid {
-  gap: var(--wds-space-4);
-}
-
-.wce-dashboard--living .wdb-widget {
-  background: rgba(12, 18, 28, 0.35);
+.wod {
+  margin-top: 0;
 }
 
 .ws-story-section--feature {

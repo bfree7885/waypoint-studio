@@ -1,5 +1,5 @@
 /**
- * Waypoint Dashboard Engine — customizable widget grid
+ * Waypoint Dashboard Engine — customizable outdoor mission control
  */
 (function (global) {
   "use strict";
@@ -85,14 +85,20 @@
     var tag = data.tag || { label: "—", className: "" };
     var link = data.link || (def.detailHref ? { href: def.detailHref, label: "Learn more" } : null);
     var size = def.size || "md";
+    var summary = data.summary || def.defaultSummary || "";
 
     return (
       '<article class="wdb-widget wdb-widget--' + escapeHtml(def.id) + " wdb-widget--" + escapeHtml(size) +
+        (def.tier === "vital" ? " wdb-widget--vital" : "") +
         (collapsed ? " wdb-widget--collapsed" : "") + '" id="widget-' + escapeHtml(def.id) + '" data-widget-id="' + escapeHtml(def.id) + '">' +
         '<header class="wdb-widget__head">' +
           '<span class="wdb-widget__icon" aria-hidden="true">' + escapeHtml(def.icon) + "</span>" +
-          '<h3 class="wdb-widget__title">' + escapeHtml(def.title) + "</h3>" +
+          '<div class="wdb-widget__titles">' +
+            '<h3 class="wdb-widget__title">' + escapeHtml(def.title) + "</h3>" +
+            (summary ? '<p class="wdb-widget__summary">' + escapeHtml(summary) + "</p>" : "") +
+          "</div>" +
           '<span class="wdb-widget__tag ' + escapeHtml(tag.className) + '">' + escapeHtml(tag.label) + "</span>" +
+          '<button type="button" class="wdb-widget__refresh" data-widget-refresh="' + escapeHtml(def.id) + '" aria-label="Refresh ' + escapeHtml(def.title) + '" title="Refresh">↻</button>' +
           '<button type="button" class="wdb-widget__toggle" aria-expanded="' + (!collapsed) + '" aria-label="Toggle ' + escapeHtml(def.title) + '"></button>' +
         "</header>" +
         '<div class="wdb-widget__body">' + renderWidgetBody(def, data) + "</div>" +
@@ -112,18 +118,51 @@
     };
   }
 
+  function renderWidgetsHtml(defs, ctx, settings) {
+    return defs.map(function (def) {
+      var data = def.getData ? def.getData(ctx) : { status: "empty" };
+      var cfg = (settings.widgets && settings.widgets[def.id]) || {};
+      return renderWidget(def, data, cfg);
+    }).join("");
+  }
+
   function renderGrid(options) {
+    return renderDashboard(options);
+  }
+
+  function renderDashboard(options) {
     var W = global.WDS && global.WDS.dashboardWidgets;
     var S = global.WDS && global.WDS.dashboardSettings;
     if (!W || !S) return "";
     var settings = options.settings || S.load();
     var ctx = buildContext(options);
-    var defs = S.enabledWidgets(settings);
-    return defs.map(function (def) {
-      var data = def.getData ? def.getData(ctx) : { status: "empty" };
-      var cfg = settings.widgets[def.id] || {};
-      return renderWidget(def, data, cfg);
-    }).join("");
+    var enabled = S.enabledWidgets(settings);
+    var vital = enabled.filter(function (d) { return d.tier === "vital"; });
+    var standard = enabled.filter(function (d) { return d.tier !== "vital"; });
+    var sections = S.enabledWidgetsBySection(settings, standard);
+    var html = "";
+
+    if (vital.length) {
+      html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Today at a glance">';
+      html += renderWidgetsHtml(vital, ctx, settings);
+      html += "</div>";
+    }
+
+    sections.forEach(function (section) {
+      if (!section.widgets.length) return;
+      html += (
+        '<section class="wdb-section" id="wdb-section-' + escapeHtml(section.id) + '" data-section-id="' + escapeHtml(section.id) + '">' +
+          '<header class="wdb-section__head">' +
+            '<h2 class="wdb-section__title">' + escapeHtml(section.label) + "</h2>" +
+          "</header>" +
+          '<div class="wdb-grid wce-dash-board" data-wds-dashboard-grid>' +
+            renderWidgetsHtml(section.widgets, ctx, settings) +
+          "</div>" +
+        "</section>"
+      );
+    });
+
+    return html;
   }
 
   function mountWidgets(root, options) {
@@ -153,9 +192,31 @@
     return Promise.all(jobs);
   }
 
+  function refreshWidget(root, widgetId, options) {
+    if (!root || !widgetId) return Promise.resolve();
+    var article = root.querySelector('[data-widget-id="' + widgetId + '"]');
+    if (!article) return Promise.resolve();
+    var mount = article.querySelector("[data-wds-weather-mount]");
+    if (mount && global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
+      var weatherOpts = Object.assign({}, options, { root: article });
+      return global.WDS.weatherUI.mountAll(article, weatherOpts);
+    }
+    return refreshDashboard(root, options);
+  }
+
   function bindInteractions(root) {
     if (!root) return;
     root.addEventListener("click", function (e) {
+      var refreshBtn = e.target.closest("[data-widget-refresh]");
+      if (refreshBtn) {
+        var rid = refreshBtn.getAttribute("data-widget-refresh");
+        refreshBtn.classList.add("wdb-widget__refresh--spin");
+        var opts = root._wdbMountOpts || {};
+        refreshWidget(root, rid, opts).finally(function () {
+          refreshBtn.classList.remove("wdb-widget__refresh--spin");
+        });
+        return;
+      }
       var btn = e.target.closest(".wdb-widget__toggle");
       if (!btn) return;
       var article = btn.closest(".wdb-widget");
@@ -191,21 +252,28 @@
     return panel;
   }
 
-  function refreshGrid(root, options) {
-    var grid = root.querySelector("[data-wds-dashboard-grid]");
-    if (!grid) return Promise.resolve();
-    grid.innerHTML = renderGrid(options);
+  function refreshDashboard(root, options) {
+    var host = root.querySelector("[data-wds-dashboard-root]");
+    if (!host) return Promise.resolve();
+    host.innerHTML = renderDashboard(options);
     bindInteractions(root);
     return mountWidgets(root, options);
+  }
+
+  function refreshGrid(root, options) {
+    return refreshDashboard(root, options);
   }
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardEngine = {
     renderGrid: renderGrid,
+    renderDashboard: renderDashboard,
     mountWidgets: mountWidgets,
     bindInteractions: bindInteractions,
     bindSettings: bindSettings,
     refreshGrid: refreshGrid,
+    refreshDashboard: refreshDashboard,
+    refreshWidget: refreshWidget,
     buildContext: buildContext
   };
 })(window);

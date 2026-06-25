@@ -22,6 +22,18 @@
     return (ctx && ctx.bundle) || {};
   }
 
+  function weather(ctx) {
+    return platform(ctx).weather;
+  }
+
+  function daylight(ctx) {
+    return platform(ctx).daylight;
+  }
+
+  function rainfall(ctx) {
+    return platform(ctx).rainfall;
+  }
+
   function observationsMatching(p, pattern) {
     var obs = p.observations;
     if (!sliceReady(obs) || !hasItems(obs.items)) return [];
@@ -74,6 +86,9 @@
       if (!Array.isArray(list)) return null;
       var species = {};
       var counties = {};
+      var recent = list.slice().sort(function (a, b) {
+        return String(b.recordedAt || "").localeCompare(String(a.recordedAt || ""));
+      }).slice(0, 3);
       list.forEach(function (obs) {
         var sp = obs.taxon && (obs.taxon.commonName || obs.taxon.scientificName);
         if (sp) species[sp.toLowerCase()] = true;
@@ -83,17 +98,88 @@
       return {
         total: list.length,
         speciesCount: Object.keys(species).length,
-        countyCount: Object.keys(counties).length
+        countyCount: Object.keys(counties).length,
+        recent: recent
       };
     } catch (e) {
       return null;
     }
   }
 
+  function favoriteLocations() {
+    try {
+      var raw = localStorage.getItem("waypoint-dashboard-favorites-v1");
+      if (!raw) return [];
+      var list = JSON.parse(raw);
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function recentSpeciesViews() {
+    try {
+      var raw = localStorage.getItem("waypoint-wskb-recent-v1");
+      if (!raw) return [];
+      var list = JSON.parse(raw);
+      return Array.isArray(list) ? list.slice(0, 5) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
   function tagFromSource(source) {
     if (source === "live") return { label: "Live", className: "wdb-widget__tag--live" };
     if (source === "placeholder") return { label: "Preview", className: "wdb-widget__tag--preview" };
+    if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
     return { label: "Editorial", className: "wdb-widget__tag--editorial" };
+  }
+
+  function liveMount(kind, summary) {
+    return {
+      status: "loading",
+      mountKind: kind,
+      tag: tagFromSource("live"),
+      summary: summary || "Loading live data…"
+    };
+  }
+
+  function editorialReady(summary, body, items, link) {
+    var data = {
+      status: "ready",
+      tag: tagFromSource("editorial"),
+      summary: summary || body
+    };
+    if (body) data.body = body;
+    if (items) data.items = items;
+    if (link) data.link = link;
+    return data;
+  }
+
+  function previewData(summary, placeholder, items) {
+    return {
+      status: "placeholder",
+      tag: tagFromSource("placeholder"),
+      summary: summary,
+      placeholder: placeholder,
+      items: items
+    };
+  }
+
+  function wxConditions(ctx) {
+    var w = weather(ctx);
+    if (sliceReady(w) && w.conditions) return w.conditions;
+    return null;
+  }
+
+  function speciesActiveItems(p, limit, filter) {
+    var sp = p.species;
+    if (!sliceReady(sp) || !hasItems(sp.active)) return [];
+    var list = sp.active;
+    if (filter) list = list.filter(filter);
+    return list.slice(0, limit || 5).map(function (s) {
+      return s.name + (s.note ? " — " + s.note : "");
+    });
   }
 
   global.WDS = global.WDS || {};
@@ -102,10 +188,20 @@
     hasItems: hasItems,
     platform: platform,
     bundle: bundle,
+    weather: weather,
+    daylight: daylight,
+    rainfall: rainfall,
     observationsMatching: observationsMatching,
     speciesGroups: speciesGroups,
+    speciesActiveItems: speciesActiveItems,
     formatRainfall: formatRainfall,
     fieldryLocalStats: fieldryLocalStats,
-    tagFromSource: tagFromSource
+    favoriteLocations: favoriteLocations,
+    recentSpeciesViews: recentSpeciesViews,
+    tagFromSource: tagFromSource,
+    liveMount: liveMount,
+    editorialReady: editorialReady,
+    previewData: previewData,
+    wxConditions: wxConditions
   };
 })(window);
