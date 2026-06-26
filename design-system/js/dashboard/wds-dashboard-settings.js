@@ -1,12 +1,14 @@
 /**
- * Dashboard widget settings — local persistence, no accounts
+ * Dashboard settings v3 — local persistence (no login, no cloud).
+ * Favorites, custom groups, widget order, section order, collapse state.
  */
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "waypoint-dashboard-widgets-v2";
-  var LEGACY_KEY = "waypoint-dashboard-widgets-v1";
-  var VERSION = 2;
+  var STORAGE_KEY = "waypoint-dashboard-widgets-v3";
+  var LEGACY_V2 = "waypoint-dashboard-widgets-v2";
+  var LEGACY_V1 = "waypoint-dashboard-widgets-v1";
+  var VERSION = 3;
 
   function getRegistry() {
     return global.WDS && global.WDS.dashboardWidgets;
@@ -16,175 +18,105 @@
     return global.WDS && global.WDS.dashboardCategories;
   }
 
+  function slugId(label) {
+    return "group-" + String(label || "group").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 24) +
+      "-" + Date.now().toString(36).slice(-4);
+  }
+
   function defaultSettings() {
     var R = getRegistry();
-    if (!R) return { version: VERSION, widgets: {}, sectionOrder: [] };
+    if (!R) {
+      return { version: VERSION, widgets: {}, sectionOrder: [], favorites: [], customGroups: [], sectionCollapsed: {} };
+    }
     var widgets = {};
     R.defaultDefs().forEach(function (def) {
       widgets[def.id] = {
         visible: def.defaultVisible !== false,
         order: def.defaultOrder || 0,
-        collapsed: !!def.defaultCollapsed
+        collapsed: !!def.defaultCollapsed,
+        group: null
       };
     });
     var C = getCategories();
     return {
       version: VERSION,
       widgets: widgets,
-      sectionOrder: C ? C.defaultSectionOrder() : []
+      sectionOrder: C ? C.defaultSectionOrder() : [],
+      favorites: [],
+      customGroups: [],
+      sectionCollapsed: {}
     };
   }
 
-  function migrateLegacy(parsed) {
-    if (!parsed || !parsed.widgets) return null;
-    var map = {
-      "current-weather": true,
-      forecast: { hourly: true, weekly: true },
-      sun: { sunrise: true, sunset: true },
-      "seasonal-watch": { "seasonal-edibles": true },
-      "foraging-conditions": { "mushroom-outlook": true },
-      "wildlife-activity": true,
-      "trail-conditions": true,
-      "photography-conditions": { "sunrise-quality": true, "cloud-cover": true },
-      "fieldry-summary": { "recent-fieldry-observations": true },
-      "research-notes": false,
-      "regional-news": false
-    };
-    var widgets = defaultSettings().widgets;
-    Object.keys(parsed.widgets).forEach(function (oldId) {
-      var entry = parsed.widgets[oldId];
-      if (oldId === "forecast") {
-        ["hourly-forecast", "weekly-forecast"].forEach(function (id) {
-          if (widgets[id]) widgets[id].visible = entry.visible !== false;
-        });
-        return;
-      }
-      if (widgets[oldId]) {
-        widgets[oldId] = Object.assign({}, widgets[oldId], entry);
+  function mergeWidgetDefaults(base, parsed) {
+    Object.keys(base.widgets).forEach(function (id) {
+      if (parsed.widgets && parsed.widgets[id]) {
+        base.widgets[id] = Object.assign({}, base.widgets[id], parsed.widgets[id]);
+        if (base.widgets[id].group === undefined) base.widgets[id].group = null;
       }
     });
-    return { version: VERSION, widgets: widgets, sectionOrder: defaultSettings().sectionOrder };
+    return base;
+  }
+
+  function applyDashboardMigrations(base, parsed) {
+    if (!parsed.widgets) return base;
+    var hideIfNew = function (newId, legacyIds, order) {
+      if (!parsed.widgets[newId]) {
+        base.widgets[newId] = { visible: true, order: order, collapsed: false, group: null };
+        legacyIds.forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
+    };
+    hideIfNew("outdoor-weather", ["current-weather", "hourly-forecast", "weekly-forecast", "wind", "uv-index"], 1);
+    hideIfNew("sun-moon-dashboard", ["sunrise", "sunset", "golden-hour", "blue-hour", "moon-phase", "moonrise", "moonset"], 100);
+    hideIfNew("photography-conditions-dashboard", ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"], 700);
+    hideIfNew("wildlife-dashboard", ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"], 200);
+    hideIfNew("trail-dashboard", ["trail-conditions", "trail-closures", "park-alerts", "parking-updates"], 600);
+    hideIfNew("water-dashboard", ["river-levels", "stream-flow", "water-temperature", "flood-status"], 500);
+    hideIfNew("foraging-dashboard", ["mushroom-outlook", "berry-conditions", "seasonal-edibles", "recent-rainfall"], 300);
+    hideIfNew("flora-dashboard", ["bloom-calendar", "tree-phenology", "wildflower-activity", "fall-color"], 400);
+    hideIfNew("safety-dashboard", ["tick-activity", "mosquito-activity", "fire-danger", "heat-risk", "storm-risk", "uv-index", "air-quality"], 900);
+    return base;
+  }
+
+  function loadRaw(key) {
+    try {
+      var raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
   }
 
   function load() {
     try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) {
-        var legacy = localStorage.getItem(LEGACY_KEY);
-        if (legacy) {
-          var migrated = migrateLegacy(JSON.parse(legacy));
-          if (migrated) {
-            save(migrated);
-            return migrated;
-          }
+      var parsed = loadRaw(STORAGE_KEY);
+      if (!parsed) {
+        parsed = loadRaw(LEGACY_V2) || loadRaw(LEGACY_V1);
+        if (parsed && !parsed.favorites) {
+          parsed.favorites = [];
+          parsed.customGroups = [];
+          parsed.sectionCollapsed = parsed.sectionCollapsed || {};
+          Object.keys(parsed.widgets || {}).forEach(function (id) {
+            if (parsed.widgets[id].group === undefined) parsed.widgets[id].group = null;
+          });
         }
-        return defaultSettings();
       }
-      var parsed = JSON.parse(raw);
       if (!parsed || !parsed.widgets) return defaultSettings();
       var base = defaultSettings();
-      Object.keys(base.widgets).forEach(function (id) {
-        if (parsed.widgets[id]) {
-          base.widgets[id] = Object.assign({}, base.widgets[id], parsed.widgets[id]);
-        }
-      });
-      if (!parsed.widgets["outdoor-weather"]) {
-        base.widgets["outdoor-weather"] = { visible: true, order: 1, collapsed: false };
-        ["current-weather", "hourly-forecast", "weekly-forecast", "wind", "uv-index"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["sun-moon-dashboard"]) {
-        base.widgets["sun-moon-dashboard"] = { visible: true, order: 100, collapsed: false };
-        ["sunrise", "sunset", "golden-hour", "blue-hour", "moon-phase", "moonrise", "moonset"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["photography-conditions-dashboard"]) {
-        base.widgets["photography-conditions-dashboard"] = { visible: true, order: 700, collapsed: false };
-        ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["wildlife-dashboard"]) {
-        base.widgets["wildlife-dashboard"] = { visible: true, order: 200, collapsed: false };
-        ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["trail-dashboard"]) {
-        base.widgets["trail-dashboard"] = { visible: true, order: 600, collapsed: false };
-        ["trail-conditions", "trail-closures", "park-alerts", "parking-updates"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["water-dashboard"]) {
-        base.widgets["water-dashboard"] = { visible: true, order: 500, collapsed: false };
-        ["river-levels", "stream-flow", "water-temperature", "flood-status"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-        if (parsed.sectionOrder && parsed.sectionOrder.length) {
-          var so = parsed.sectionOrder.filter(function (id) { return id !== "water"; });
-          var wi = so.indexOf("wildlife");
-          if (wi >= 0) {
-            so.splice(wi + 1, 0, "water");
-          } else {
-            var cond = so.indexOf("conditions");
-            so.splice(cond >= 0 ? cond + 1 : 0, 0, "water");
-          }
-          base.sectionOrder = so;
-        }
-      }
-      if (!parsed.widgets["foraging-dashboard"]) {
-        base.widgets["foraging-dashboard"] = { visible: true, order: 300, collapsed: false };
-        ["mushroom-outlook", "berry-conditions", "seasonal-edibles", "recent-rainfall"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["flora-dashboard"]) {
-        base.widgets["flora-dashboard"] = { visible: true, order: 400, collapsed: false };
-        ["bloom-calendar", "tree-phenology", "wildflower-activity", "fall-color"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-      }
-      if (!parsed.widgets["safety-dashboard"]) {
-        base.widgets["safety-dashboard"] = { visible: true, order: 900, collapsed: false };
-        ["tick-activity", "mosquito-activity", "fire-danger", "heat-risk", "storm-risk", "uv-index", "air-quality"].forEach(function (wid) {
-          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
-            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
-          }
-        });
-        if (parsed.sectionOrder && parsed.sectionOrder.length) {
-          var so2 = parsed.sectionOrder.filter(function (id) { return id !== "safety"; });
-          var wa = so2.indexOf("water");
-          if (wa >= 0) {
-            so2.splice(wa + 1, 0, "safety");
-          } else {
-            var fo = so2.indexOf("foraging");
-            so2.splice(fo >= 0 ? fo : 0, 0, "safety");
-          }
-          base.sectionOrder = so2;
-        }
-      }
+      mergeWidgetDefaults(base, parsed);
+      base.favorites = Array.isArray(parsed.favorites) ? parsed.favorites.slice() : [];
+      base.customGroups = Array.isArray(parsed.customGroups) ? parsed.customGroups.slice() : [];
+      base.sectionCollapsed = parsed.sectionCollapsed && typeof parsed.sectionCollapsed === "object"
+        ? Object.assign({}, parsed.sectionCollapsed) : {};
+      applyDashboardMigrations(base, parsed);
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
-        base.sectionOrder = parsed.sectionOrder;
+        base.sectionOrder = parsed.sectionOrder.slice();
       }
+      base.version = VERSION;
       return base;
     } catch (e) {
       return defaultSettings();
@@ -203,22 +135,86 @@
     return s;
   }
 
+  function widgetOrder(settings, def) {
+    var w = settings.widgets[def.id];
+    return w && w.order != null ? w.order : def.defaultOrder;
+  }
+
+  function isVisible(settings, def) {
+    var w = settings.widgets[def.id];
+    return !w || w.visible !== false;
+  }
+
+  function sortDefs(defs, settings) {
+    return defs.slice().sort(function (a, b) {
+      return widgetOrder(settings, a) - widgetOrder(settings, b);
+    });
+  }
+
   function enabledWidgets(settings) {
     settings = settings || load();
     var R = getRegistry();
     if (!R) return [];
-    return R.defaultDefs()
-      .filter(function (def) {
-        var w = settings.widgets[def.id];
-        return !w || w.visible !== false;
-      })
-      .sort(function (a, b) {
-        var oa = (settings.widgets[a.id] && settings.widgets[a.id].order != null)
-          ? settings.widgets[a.id].order : a.defaultOrder;
-        var ob = (settings.widgets[b.id] && settings.widgets[b.id].order != null)
-          ? settings.widgets[b.id].order : b.defaultOrder;
-        return oa - ob;
-      });
+    return sortDefs(
+      R.defaultDefs().filter(function (def) { return isVisible(settings, def); }),
+      settings
+    );
+  }
+
+  function widgetIdsInGroups(settings) {
+    var ids = {};
+    (settings.customGroups || []).forEach(function (g) {
+      (g.widgetIds || []).forEach(function (id) { ids[id] = g.id; });
+    });
+    return ids;
+  }
+
+  function isFavorite(settings, id) {
+    return (settings.favorites || []).indexOf(id) >= 0;
+  }
+
+  function favoriteWidgets(settings) {
+    settings = settings || load();
+    var R = getRegistry();
+    if (!R) return [];
+    var favSet = {};
+    (settings.favorites || []).forEach(function (id) { favSet[id] = true; });
+    return sortDefs(
+      R.defaultDefs().filter(function (def) {
+        return favSet[def.id] && isVisible(settings, def) &&
+          def.tier !== "vital" && def.tier !== "anchor";
+      }),
+      settings
+    );
+  }
+
+  function customGroupSections(settings) {
+    settings = settings || load();
+    var R = getRegistry();
+    if (!R) return [];
+    return (settings.customGroups || []).map(function (g) {
+      var widgets = (g.widgetIds || [])
+        .map(function (id) { return R.get(id); })
+        .filter(function (def) {
+          return def && isVisible(settings, def) && !isFavorite(settings, def.id) &&
+            def.tier !== "vital" && def.tier !== "anchor";
+        });
+      return {
+        id: g.id,
+        label: g.label,
+        isCustomGroup: true,
+        widgets: sortDefs(widgets, settings)
+      };
+    }).filter(function (g) { return g.widgets.length; });
+  }
+
+  function excludedFromCategory(settings, def) {
+    if (def.tier === "vital" || def.tier === "anchor") return false;
+    if (isFavorite(settings, def.id)) return true;
+    var grouped = widgetIdsInGroups(settings);
+    if (grouped[def.id]) return true;
+    if (settings.widgets[def.id] && settings.widgets[def.id].group) return true;
+    return false;
   }
 
   function enabledWidgetsBySection(settings, subset) {
@@ -233,118 +229,114 @@
       return {
         id: cat.id,
         label: cat.label,
-        widgets: enabled.filter(function (def) { return def.category === cat.id; })
+        widgets: sortDefs(
+          enabled.filter(function (def) {
+            return def.category === cat.id && !excludedFromCategory(settings, def);
+          }),
+          settings
+        )
       };
     });
   }
 
-  function escapeHtml(str) {
-    if (str == null) return "";
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
+  function setWidgetVisible(settings, id, visible) {
+    if (!settings.widgets[id]) settings.widgets[id] = {};
+    settings.widgets[id].visible = visible;
+    return settings;
   }
 
-  function renderPanel(settings) {
-    settings = settings || load();
-    var R = getRegistry();
-    var C = getCategories();
-    if (!R || !C) return "";
-    var sections = enabledWidgetsBySection(settings, R.defaultDefs());
-    var blocks = sections.map(function (section) {
-      var rows = section.widgets.map(function (def) {
-        var w = settings.widgets[def.id] || {};
-        var checked = w.visible !== false ? " checked" : "";
-        return (
-          '<li class="wdb-settings__row" data-widget-id="' + escapeHtml(def.id) + '">' +
-            '<label class="wdb-settings__label">' +
-              '<input type="checkbox" class="wdb-settings__check" data-widget-id="' + escapeHtml(def.id) + '"' + checked + ">" +
-              '<span class="wdb-settings__icon" aria-hidden="true">' + escapeHtml(def.icon) + "</span>" +
-              '<span class="wdb-settings__name">' + escapeHtml(def.title) + "</span>" +
-            "</label>" +
-          "</li>"
-        );
-      }).join("");
-      if (!rows) return "";
-      return (
-        '<div class="wdb-settings__section" data-section-id="' + escapeHtml(section.id) + '">' +
-          '<h3 class="wdb-settings__section-title">' + escapeHtml(section.label) + "</h3>" +
-          '<ul class="wdb-settings__list">' + rows + "</ul>" +
-        "</div>"
-      );
-    }).join("");
-
-    return (
-      '<dialog class="wdb-settings" id="wds-dashboard-settings" aria-labelledby="wdb-settings-title">' +
-        '<form method="dialog" class="wdb-settings__form">' +
-          '<header class="wdb-settings__head">' +
-            '<h2 id="wdb-settings-title">Customize dashboard</h2>' +
-            '<p class="wdb-settings__lead">Enable the widgets you need before heading outside. Saved on this device only.</p>' +
-          "</header>" +
-          '<div class="wdb-settings__sections">' + blocks + "</div>" +
-          '<footer class="wdb-settings__foot">' +
-            '<button type="button" class="wds-btn wds-btn--ghost" id="wdb-settings-reset">Reset defaults</button>' +
-            '<button type="submit" class="wds-btn wds-btn--primary" value="done">Done</button>' +
-          "</footer>" +
-        "</form>" +
-      "</dialog>"
-    );
+  function toggleFavorite(settings, id) {
+    settings.favorites = settings.favorites || [];
+    var i = settings.favorites.indexOf(id);
+    if (i >= 0) settings.favorites.splice(i, 1);
+    else settings.favorites.push(id);
+    return settings;
   }
 
-  function bindPanel(root, onChange) {
-    if (!root) return;
-    var dialog = root.querySelector("#wds-dashboard-settings");
-    if (!dialog) {
-      root.insertAdjacentHTML("beforeend", renderPanel());
-      dialog = root.querySelector("#wds-dashboard-settings");
-    }
-    var settings = load();
+  function createGroup(settings, label) {
+    settings.customGroups = settings.customGroups || [];
+    var g = { id: slugId(label), label: label || "My group", widgetIds: [] };
+    settings.customGroups.push(g);
+    return g;
+  }
 
-    function emit() {
-      save(settings);
-      if (onChange) onChange(settings);
-    }
-
-    dialog.addEventListener("click", function (e) {
-      if (e.target.id === "wdb-settings-reset") {
-        e.preventDefault();
-        settings = reset();
-        dialog.outerHTML = renderPanel(settings);
-        bindPanel(root, onChange);
-      }
+  function deleteGroup(settings, groupId) {
+    settings.customGroups = (settings.customGroups || []).filter(function (g) { return g.id !== groupId; });
+    Object.keys(settings.widgets).forEach(function (id) {
+      if (settings.widgets[id].group === groupId) settings.widgets[id].group = null;
     });
+    return settings;
+  }
 
-    dialog.addEventListener("change", function (e) {
-      var cb = e.target.closest(".wdb-settings__check");
-      if (!cb) return;
-      var id = cb.getAttribute("data-widget-id");
+  function assignWidgetGroup(settings, widgetId, groupId) {
+    if (!settings.widgets[widgetId]) settings.widgets[widgetId] = {};
+    settings.widgets[widgetId].group = groupId || null;
+    settings.customGroups = settings.customGroups || [];
+    settings.customGroups.forEach(function (g) {
+      g.widgetIds = (g.widgetIds || []).filter(function (id) { return id !== widgetId; });
+    });
+    if (groupId) {
+      var g = settings.customGroups.filter(function (x) { return x.id === groupId; })[0];
+      if (g) {
+        if (!g.widgetIds) g.widgetIds = [];
+        if (g.widgetIds.indexOf(widgetId) < 0) g.widgetIds.push(widgetId);
+      }
+    }
+    return settings;
+  }
+
+  function reorderIds(settings, ids, fromIndex, toIndex) {
+    if (fromIndex === toIndex || fromIndex < 0 || toIndex < 0) return settings;
+    var list = ids.slice();
+    var item = list.splice(fromIndex, 1)[0];
+    list.splice(toIndex, 0, item);
+    list.forEach(function (id, i) {
       if (!settings.widgets[id]) settings.widgets[id] = {};
-      settings.widgets[id].visible = cb.checked;
-      emit();
+      settings.widgets[id].order = (i + 1) * 10;
     });
+    return settings;
+  }
 
-    dialog.addEventListener("close", function () {
-      emit();
-    });
+  function reorderSectionOrder(settings, fromIndex, toIndex) {
+    var order = (settings.sectionOrder || []).slice();
+    if (fromIndex < 0 || toIndex < 0 || fromIndex >= order.length) return settings;
+    var item = order.splice(fromIndex, 1)[0];
+    order.splice(toIndex, 0, item);
+    settings.sectionOrder = order;
+    return settings;
+  }
 
-    return {
-      open: function () {
-        if (dialog.showModal) dialog.showModal();
-      }
-    };
+  function toggleSectionCollapsed(settings, sectionId) {
+    settings.sectionCollapsed = settings.sectionCollapsed || {};
+    settings.sectionCollapsed[sectionId] = !settings.sectionCollapsed[sectionId];
+    return settings;
+  }
+
+  function visibleCount(settings) {
+    return enabledWidgets(settings).length;
   }
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardSettings = {
     STORAGE_KEY: STORAGE_KEY,
+    VERSION: VERSION,
     load: load,
     save: save,
     reset: reset,
     enabledWidgets: enabledWidgets,
     enabledWidgetsBySection: enabledWidgetsBySection,
-    renderPanel: renderPanel,
-    bindPanel: bindPanel
+    favoriteWidgets: favoriteWidgets,
+    customGroupSections: customGroupSections,
+    setWidgetVisible: setWidgetVisible,
+    toggleFavorite: toggleFavorite,
+    createGroup: createGroup,
+    deleteGroup: deleteGroup,
+    assignWidgetGroup: assignWidgetGroup,
+    reorderIds: reorderIds,
+    reorderSectionOrder: reorderSectionOrder,
+    toggleSectionCollapsed: toggleSectionCollapsed,
+    isFavorite: isFavorite,
+    visibleCount: visibleCount,
+    widgetOrder: widgetOrder
   };
 })(window);

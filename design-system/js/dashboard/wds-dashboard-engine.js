@@ -155,6 +155,28 @@
     return renderDashboard(options);
   }
 
+  function renderSectionBlock(section, ctx, settings, opts) {
+    opts = opts || {};
+    if (!section.widgets || !section.widgets.length) return "";
+    var collapsed = !!(settings.sectionCollapsed && settings.sectionCollapsed[section.id]);
+    var icon = opts.icon ? '<span class="wdb-section__icon" aria-hidden="true">' + escapeHtml(opts.icon) + "</span>" : "";
+    return (
+      '<section class="wdb-section' + (opts.modifier ? " wdb-section--" + escapeHtml(opts.modifier) : "") +
+        (collapsed ? " wdb-section--collapsed" : "") + '" id="wdb-section-' + escapeHtml(section.id) +
+        '" data-section-id="' + escapeHtml(section.id) + '">' +
+        '<header class="wdb-section__head">' +
+          icon +
+          '<h2 class="wdb-section__title">' + escapeHtml(section.label) + "</h2>" +
+          '<button type="button" class="wdb-section__toggle" aria-expanded="' + (!collapsed) +
+            '" aria-label="Toggle ' + escapeHtml(section.label) + ' section"></button>' +
+        "</header>" +
+        '<div class="wdb-grid wce-dash-board" data-wds-dashboard-grid>' +
+          renderWidgetsHtml(section.widgets, ctx, settings) +
+        "</div>" +
+      "</section>"
+    );
+  }
+
   function renderDashboard(options) {
     var W = global.WDS && global.WDS.dashboardWidgets;
     var S = global.WDS && global.WDS.dashboardSettings;
@@ -167,6 +189,8 @@
     var standard = enabled.filter(function (d) {
       return d.tier !== "vital" && d.tier !== "anchor";
     });
+    var favorites = S.favoriteWidgets(settings);
+    var customGroups = S.customGroupSections(settings);
     var sections = S.enabledWidgetsBySection(settings, standard);
     var html = "";
 
@@ -182,18 +206,21 @@
       html += "</div>";
     }
 
-    sections.forEach(function (section) {
-      if (!section.widgets.length) return;
-      html += (
-        '<section class="wdb-section" id="wdb-section-' + escapeHtml(section.id) + '" data-section-id="' + escapeHtml(section.id) + '">' +
-          '<header class="wdb-section__head">' +
-            '<h2 class="wdb-section__title">' + escapeHtml(section.label) + "</h2>" +
-          "</header>" +
-          '<div class="wdb-grid wce-dash-board" data-wds-dashboard-grid>' +
-            renderWidgetsHtml(section.widgets, ctx, settings) +
-          "</div>" +
-        "</section>"
+    if (favorites.length) {
+      html += renderSectionBlock(
+        { id: "favorites", label: "Favorites", widgets: favorites },
+        ctx,
+        settings,
+        { modifier: "favorites", icon: "★" }
       );
+    }
+
+    customGroups.forEach(function (group) {
+      html += renderSectionBlock(group, ctx, settings, { modifier: "custom-group" });
+    });
+
+    sections.forEach(function (section) {
+      html += renderSectionBlock(section, ctx, settings);
     });
 
     return html;
@@ -282,6 +309,21 @@
         });
         return;
       }
+      var sectionBtn = e.target.closest(".wdb-section__toggle");
+      if (sectionBtn) {
+        var section = sectionBtn.closest(".wdb-section");
+        if (!section) return;
+        var sectionId = section.getAttribute("data-section-id");
+        var sectionCollapsed = section.classList.toggle("wdb-section--collapsed");
+        sectionBtn.setAttribute("aria-expanded", sectionCollapsed ? "false" : "true");
+        var Ssec = global.WDS && global.WDS.dashboardSettings;
+        if (Ssec && sectionId) {
+          var secSettings = Ssec.load();
+          Ssec.toggleSectionCollapsed(secSettings, sectionId);
+          Ssec.save(secSettings);
+        }
+        return;
+      }
       var btn = e.target.closest(".wdb-widget__toggle");
       if (!btn) return;
       var article = btn.closest(".wdb-widget");
@@ -300,18 +342,19 @@
   }
 
   function bindSettings(root, onChange) {
-    var S = global.WDS && global.WDS.dashboardSettings;
-    if (!S) return null;
-    S.bindPanel(root, onChange);
+    var C = global.WDS && global.WDS.dashboardCustomize;
+    if (!C) return null;
     var openBtn = root.querySelector("#wds-dashboard-settings-open");
     var panel = root.querySelector("#wds-dashboard-settings");
     if (!panel) {
-      root.insertAdjacentHTML("beforeend", S.renderPanel());
+      root.insertAdjacentHTML("beforeend", C.renderPanel());
       panel = root.querySelector("#wds-dashboard-settings");
     }
-    if (openBtn) {
+    C.bindPanel(root, onChange);
+    if (openBtn && panel) {
       openBtn.addEventListener("click", function () {
-        if (panel && panel.showModal) panel.showModal();
+        if (C.refreshPanel) C.refreshPanel(panel);
+        if (panel.showModal) panel.showModal();
       });
     }
     return panel;
