@@ -109,6 +109,7 @@
             def.category === "water" ? " wdb-widget--water" :
             def.category === "flora" ? " wdb-widget--flora" :
             def.category === "foraging" ? " wdb-widget--foraging" :
+            def.category === "safety" ? " wdb-widget--safety" :
             " wdb-widget--sky"
           )
           : "") +
@@ -256,6 +257,9 @@
       }
       if (kind === "foraging-dashboard" && global.WDS.foragingDashboardUI && global.WDS.foragingDashboardUI.mount) {
         return global.WDS.foragingDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "safety-dashboard" && global.WDS.safetyDashboardUI && global.WDS.safetyDashboardUI.mount) {
+        return global.WDS.safetyDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });

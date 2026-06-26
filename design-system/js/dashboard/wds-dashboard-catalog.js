@@ -841,13 +841,28 @@
     placeholder: "Bortle-scale dark sky rating and astronomical twilight timing."
   });
 
-  /* ——— Safety ——— */
+  /* ——— Safety dashboard ——— */
+  reg({
+    id: "safety-dashboard",
+    title: "Outdoor Safety",
+    icon: "Sf",
+    category: "safety",
+    defaultOrder: 900,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("safety-dashboard", "Calm safety snapshot for today");
+    }
+  });
+
+  /* ——— Safety (legacy singles) ——— */
   preview({
     id: "tick-activity",
     title: "Tick Activity",
     icon: "Tk",
     category: "safety",
     defaultOrder: 910,
+    defaultVisible: false,
     summary: "Tick season risk",
     placeholder: "Tick activity index from temperature and humidity models."
   });
@@ -896,7 +911,7 @@
     icon: "St",
     category: "safety",
     defaultOrder: 950,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "Thunderstorm potential",
     resolve: function (ctx) {
       var w = D().weather(ctx);

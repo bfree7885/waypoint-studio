@@ -1,0 +1,209 @@
+/* Outdoor Safety dashboard — calm, low-clutter */
+
+.wdb-widget--safety {
+  background:
+    linear-gradient(165deg, rgba(18, 20, 26, 0.96) 0%, rgba(14, 16, 22, 0.94) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--wds-radius-xl);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.2);
+}
+
+.wdb-widget--safety .wdb-widget__body {
+  padding: 0 var(--wds-space-5) var(--wds-space-5);
+}
+
+.wsafe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-4);
+}
+
+.wsafe__banner {
+  display: flex;
+  align-items: center;
+  gap: var(--wds-space-3);
+  padding: var(--wds-space-3) var(--wds-space-4);
+  border-radius: var(--wds-radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wsafe__banner--low { border-left: 3px solid rgba(140, 180, 140, 0.5); }
+.wsafe__banner--moderate { border-left: 3px solid rgba(200, 170, 100, 0.55); }
+.wsafe__banner--elevated { border-left: 3px solid rgba(200, 150, 100, 0.6); }
+
+.wsafe__banner-icon {
+  font-size: var(--wds-text-lg);
+  color: var(--wds-text-muted);
+  line-height: 1;
+}
+
+.wsafe__banner-text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.wsafe__grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 540px) {
+  .wsafe__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .wsafe__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.wsafe-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+  padding: var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  min-height: 8.5rem;
+}
+
+.wsafe-card--low { opacity: 0.95; }
+.wsafe-card--quiet { opacity: 0.88; }
+
+.wsafe-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wds-space-3);
+}
+
+.wsafe-card__icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.wsafe-card__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.wsafe-card__label {
+  margin: 0;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wsafe-card__level {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-secondary);
+}
+
+.wsafe-card__value {
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  color: var(--wds-text);
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.wsafe-card__headline {
+  margin: 0;
+  font-size: var(--wds-text-md);
+  font-weight: 500;
+  color: var(--wds-text);
+  line-height: var(--wds-leading-snug);
+}
+
+.wsafe-card__rec {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.wsafe-card__rec-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+  margin-right: var(--wds-space-1);
+}
+
+.wsafe-card__detail {
+  margin: 0;
+  margin-top: auto;
+  padding-top: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.wsafe__foot {
+  padding-top: var(--wds-space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.wsafe__attribution {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wsafe--loading .wsafe__loading-text {
+  margin: var(--wds-space-3) 0 0;
+  text-align: center;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-muted);
+}
+
+.wsafe__skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--wds-space-3);
+}
+
+@media (max-width: 539px) {
+  .wsafe__skeleton-row { grid-template-columns: 1fr; }
+}
+
+.wsafe__skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.02) 100%);
+  background-size: 200% 100%;
+  animation: wsafe-shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--wds-radius-md);
+}
+
+.wsafe__skeleton--banner { height: 2.75rem; }
+.wsafe__skeleton--card { height: 7rem; }
+
+@keyframes wsafe-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.wsafe--unavailable {
+  padding: var(--wds-space-5);
+  text-align: center;
+}
+
+.wsafe__unavail-title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  color: var(--wds-text);
+}
+
+.wsafe__unavail-detail {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}

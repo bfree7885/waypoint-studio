@@ -163,6 +163,25 @@
           }
         });
       }
+      if (!parsed.widgets["safety-dashboard"]) {
+        base.widgets["safety-dashboard"] = { visible: true, order: 900, collapsed: false };
+        ["tick-activity", "mosquito-activity", "fire-danger", "heat-risk", "storm-risk", "uv-index", "air-quality"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+        if (parsed.sectionOrder && parsed.sectionOrder.length) {
+          var so2 = parsed.sectionOrder.filter(function (id) { return id !== "safety"; });
+          var wa = so2.indexOf("water");
+          if (wa >= 0) {
+            so2.splice(wa + 1, 0, "safety");
+          } else {
+            var fo = so2.indexOf("foraging");
+            so2.splice(fo >= 0 ? fo : 0, 0, "safety");
+          }
+          base.sectionOrder = so2;
+        }
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }

@@ -120,6 +120,10 @@
       var FG = global.WDS && global.WDS.foragingDashboardUI;
       if (FG && FG.renderLoading) return FG.renderLoading();
     }
+    if (kind === "safety-dashboard") {
+      var SF = global.WDS && global.WDS.safetyDashboardUI;
+      if (SF && SF.renderLoading) return SF.renderLoading();
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -768,6 +772,10 @@
       else if (kind === "foraging-dashboard") {
         var FG = global.WDS && global.WDS.foragingDashboardUI;
         jobs.push(FG ? FG.mount(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "safety-dashboard") {
+        var SF = global.WDS && global.WDS.safetyDashboardUI;
+        jobs.push(SF ? SF.mount(el, options) : mount(el, renderError, options));
       }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));
