@@ -326,7 +326,9 @@
 
     var bundleNote = "";
     if (loc.usingNearestBundle) {
-      bundleNote = '<p class="wce-location-bar__note">Field guide content from nearest available bundle — editorial preview; more counties coming.</p>';
+      bundleNote = '<p class="wce-location-bar__note"><strong>Using the nearest available regional model.</strong> Field guide content is from the closest supported ecological bundle — not a county-specific model yet. More regions are in development.</p>';
+    } else if (loc.isDefault || loc.source === "default") {
+      bundleNote = '<p class="wce-location-bar__note">Select your county or use my location for forecasts at your coordinates.</p>';
     }
 
     return (

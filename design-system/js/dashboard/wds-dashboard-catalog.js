@@ -47,6 +47,22 @@
     return D().platform(ctx);
   }
 
+  /* ——— Today's highlights (vital) ——— */
+  reg({
+    id: "todays-outdoor-highlights",
+    title: "Today's Outdoor Highlights",
+    icon: "★",
+    category: "conditions",
+    defaultOrder: 5,
+    defaultVisible: true,
+    tier: "vital",
+    size: "wide",
+    getData: function (ctx) {
+      var H = global.WDS && global.WDS.dashboardHighlights;
+      return H && H.generate ? H.generate(ctx) : { status: "loading", summary: "Building highlights…" };
+    }
+  });
+
   /* ——— Conditions ——— */
   live("current", {
     id: "current-weather",
@@ -155,9 +171,9 @@
     size: "sm",
     summary: "Warm directional light",
     resolve: function (ctx) {
-      var dl = D().daylight(ctx);
-      if (D().sliceReady(dl) && dl.goldenHour) {
-        return D().editorialReady(dl.goldenHour, "Best for landscapes and wildlife rim light.");
+      var dl = D().daylightData(ctx);
+      if (dl && dl.goldenHour) {
+        return D().editorialReady(dl.goldenHour, "Best for landscapes and wildlife rim light.", null, null, D().tagFromSlice(dl));
       }
       return null;
     },
@@ -172,13 +188,13 @@
     defaultOrder: 140,
     summary: "Twilight photography",
     resolve: function (ctx) {
-      var dl = D().daylight(ctx);
-      if (D().sliceReady(dl) && dl.blueHour) {
-        return D().editorialReady(dl.blueHour, "Cool ambient light before sunrise and after sunset.");
+      var dl = D().daylightData(ctx);
+      if (dl && dl.blueHour) {
+        return D().editorialReady(dl.blueHour, "Cool ambient light before sunrise and after sunset.", null, null, D().tagFromSlice(dl));
       }
       return null;
     },
-    placeholder: "Blue hour timing will appear when daylight data is connected."
+    placeholder: "Blue hour timing appears when daylight data is connected."
   });
 
   preview({
@@ -187,13 +203,17 @@
     icon: "☽",
     category: "sun-moon",
     defaultOrder: 150,
-    futureProvider: "moon-phase",
+    futureProvider: "open-meteo-astronomy",
     summary: "Lunar cycle",
     resolve: function (ctx) {
-      var dl = D().daylight(ctx);
-      if (D().sliceReady(dl) && dl.moonPhase) {
-        return D().editorialReady(dl.moonPhase, null, dl.moonIllumination != null
-          ? ["Illumination: " + dl.moonIllumination + "%"] : null);
+      var dl = D().daylightData(ctx);
+      if (dl && dl.moonPhase) {
+        return {
+          status: "ready",
+          tag: D().tagFromSlice(dl),
+          summary: dl.moonPhase,
+          items: dl.moonIllumination != null ? ["Illumination: " + dl.moonIllumination + "%"] : []
+        };
       }
       return null;
     },
@@ -206,9 +226,16 @@
     icon: "☾↑",
     category: "sun-moon",
     defaultOrder: 160,
-    futureProvider: "moon-phase",
+    futureProvider: "open-meteo-astronomy",
     summary: "Moonrise time",
-    placeholder: "Moonrise times will appear when lunar ephemeris is connected."
+    resolve: function (ctx) {
+      var dl = D().daylightData(ctx);
+      if (dl && dl.moonrise) {
+        return D().editorialReady(dl.moonrise, "Tonight's moonrise", null, null, D().tagFromSlice(dl));
+      }
+      return null;
+    },
+    placeholder: "Moonrise times from Open-Meteo when available."
   });
 
   preview({
@@ -217,9 +244,16 @@
     icon: "☾↓",
     category: "sun-moon",
     defaultOrder: 170,
-    futureProvider: "moon-phase",
+    futureProvider: "open-meteo-astronomy",
     summary: "Moonset time",
-    placeholder: "Moonset times will appear when lunar ephemeris is connected."
+    resolve: function (ctx) {
+      var dl = D().daylightData(ctx);
+      if (dl && dl.moonset) {
+        return D().editorialReady(dl.moonset, "Tonight's moonset", null, null, D().tagFromSlice(dl));
+      }
+      return null;
+    },
+    placeholder: "Moonset times from Open-Meteo when available."
   });
 
   /* ——— Wildlife ——— */

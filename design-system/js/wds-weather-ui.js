@@ -181,11 +181,72 @@
 
   function cardIdFromMount(el) {
     var article = el && el.closest(".wce-dash-card");
-    if (!article || !article.id) return null;
-    return article.id.replace(/^dashboard-/, "");
+    if (article && article.id) return article.id.replace(/^dashboard-/, "");
+    var widget = el && el.closest(".wdb-widget[data-widget-id]");
+    if (widget) return widget.getAttribute("data-widget-id");
+    return null;
+  }
+
+  function updateWidgetTag(root, widgetId, state) {
+    if (!root || !widgetId) return;
+    var card = root.querySelector('[data-widget-id="' + widgetId + '"]');
+    if (!card) return;
+    var tag = card.querySelector(".wdb-widget__tag");
+    if (!tag) return;
+    if (state === "live") {
+      tag.textContent = "Live";
+      tag.className = "wdb-widget__tag wdb-widget__tag--live";
+      return;
+    }
+    if (state === "loading") {
+      tag.textContent = "Loading";
+      tag.className = "wdb-widget__tag wdb-widget__tag--preview";
+      return;
+    }
+    if (state === "unavailable") {
+      tag.textContent = "Unavailable";
+      tag.className = "wdb-widget__tag wdb-widget__tag--unavailable";
+      return;
+    }
+    if (state === "editorial") {
+      tag.textContent = "Educational";
+      tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
+    }
+  }
+
+  function updateWidgetSummary(root, widgetId, summary) {
+    if (!root || !widgetId || summary == null) return;
+    var card = root.querySelector('[data-widget-id="' + widgetId + '"]');
+    if (!card) return;
+    var el = card.querySelector(".wdb-widget__summary");
+    if (el) el.textContent = summary;
+  }
+
+  function summaryForMount(kind, pkg) {
+    if (!pkg || !isLivePackage(pkg)) return null;
+    var cur = pkg.current || {};
+    var today = pkg.daily && pkg.daily[0];
+    var cond = cur.conditions && cur.conditions.summary;
+    if (kind === "current") {
+      var temp = formatMeasurement(cur.temperature, 0);
+      var feels = formatMeasurement(cur.feelsLike, 0);
+      var line = temp;
+      if (feels && feels !== "—" && feels !== temp) line += ", feels " + feels;
+      if (cond) line += " — " + cond;
+      return line;
+    }
+    if (kind === "hourly") return "Next 24 hours · " + (cond || "live");
+    if (kind === "daily") return "7-day · today " + highLowLine(today);
+    if (kind === "wind") return windLine(cur.wind);
+    if (kind === "uv") return cur.uvIndex ? "UV " + formatMeasurement(cur.uvIndex, 0) : "UV index";
+    if (kind === "sunrise" && cur.sunrise) return formatTime(cur.sunrise);
+    if (kind === "sunset" && cur.sunset) return formatTime(cur.sunset);
+    if (kind === "cloud-cover") return formatMeasurement(cur.cloudCover, 0) + " cloud cover";
+    return cond || null;
   }
 
   function updateDashCardTag(root, cardId, state) {
+    updateWidgetTag(root, cardId, state);
     if (!root || !cardId) return;
     var card = root.querySelector("#dashboard-" + cardId);
     if (!card) return;
@@ -248,6 +309,7 @@
   function renderCurrent(pkg) {
     var cur = (pkg && pkg.current) || {};
     var cond = cur.conditions || {};
+    var today = (pkg && pkg.daily && pkg.daily[0]) || {};
     return (
       '<section class="wds-weather-current" aria-label="Current conditions">' +
         '<div class="wds-weather-current__main">' +
@@ -255,8 +317,15 @@
           '<div class="wds-weather-current__readout">' +
             '<p class="wds-weather-current__temp">' + escapeHtml(formatMeasurement(cur.temperature, 0)) + "</p>" +
             '<p class="wds-weather-current__summary">' + escapeHtml(cond.summary || "—") + "</p>" +
+            (cur.feelsLike ? '<p class="wds-weather-current__feels">Feels like ' + escapeHtml(formatMeasurement(cur.feelsLike, 0)) + "</p>" : "") +
           "</div>" +
         "</div>" +
+        '<dl class="wds-weather-metrics wds-weather-metrics--compact wds-weather-current__details" aria-label="Current details">' +
+          renderMetric("Humidity", formatMeasurement(cur.humidity, 0)) +
+          renderMetric("Wind", windLine(cur.wind)) +
+          renderMetric("Rain chance", rainChanceLine(cur, today)) +
+          renderMetric("Today", highLowLine(today), "High / low") +
+        "</dl>" +
       "</section>"
     );
   }
@@ -456,7 +525,11 @@
       if (isLivePackage(pkg)) {
         el.innerHTML = renderer(pkg);
         el.removeAttribute("aria-busy");
-        if (cardId) updateDashCardTag(root, cardId, "live");
+        if (cardId) {
+          updateDashCardTag(root, cardId, "live");
+          var sum = summaryForMount(kind, pkg);
+          if (sum) updateWidgetSummary(root, cardId, sum);
+        }
         return pkg;
       }
 

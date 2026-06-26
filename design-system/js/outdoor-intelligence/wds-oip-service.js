@@ -125,6 +125,8 @@
     }
 
     return W.getForecast({
+      lat: lat,
+      lng: lng,
       intelligence: pkg.legacy || pkg,
       location: request.location,
       hints: hints,

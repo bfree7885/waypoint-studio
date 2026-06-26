@@ -581,6 +581,7 @@
       intelligence: options.intelligence || options.regionalIntelligence,
       bundle: options.bundle,
       location: options.location,
+      platform: options.platform,
       options: options.noteOptions
     });
 

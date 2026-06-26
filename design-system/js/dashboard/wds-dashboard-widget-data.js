@@ -130,9 +130,24 @@
 
   function tagFromSource(source) {
     if (source === "live") return { label: "Live", className: "wdb-widget__tag--live" };
+    if (source === "unavailable") return { label: "Unavailable", className: "wdb-widget__tag--unavailable" };
     if (source === "placeholder") return { label: "Preview", className: "wdb-widget__tag--preview" };
     if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
-    return { label: "Editorial", className: "wdb-widget__tag--editorial" };
+    return { label: "Educational", className: "wdb-widget__tag--editorial" };
+  }
+
+  function tagFromSlice(slice) {
+    if (!slice) return tagFromSource("placeholder");
+    if (slice.status === "live") return tagFromSource("live");
+    if (slice.status === "editorial") return tagFromSource("editorial");
+    return tagFromSource("placeholder");
+  }
+
+  function daylightData(ctx) {
+    var dl = platform(ctx).daylight;
+    if (!dl) return null;
+    if (dl.status === "live" || dl.status === "editorial") return dl;
+    return null;
   }
 
   function liveMount(kind, summary) {
@@ -144,10 +159,10 @@
     };
   }
 
-  function editorialReady(summary, body, items, link) {
+  function editorialReady(summary, body, items, link, tag) {
     var data = {
       status: "ready",
-      tag: tagFromSource("editorial"),
+      tag: tag || tagFromSource("editorial"),
       summary: summary || body
     };
     if (body) data.body = body;
@@ -199,6 +214,8 @@
     favoriteLocations: favoriteLocations,
     recentSpeciesViews: recentSpeciesViews,
     tagFromSource: tagFromSource,
+    tagFromSlice: tagFromSlice,
+    daylightData: daylightData,
     liveMount: liveMount,
     editorialReady: editorialReady,
     previewData: previewData,

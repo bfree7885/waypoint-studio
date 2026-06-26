@@ -25,6 +25,16 @@
       "<ul class=\"wdb-widget__list\">" +
         items.map(function (item) {
           if (typeof item === "string") return "<li>" + escapeHtml(item) + "</li>";
+          if (item.text && item.kind) {
+            var kindLabel = item.kind === "forecast" ? "Forecast" :
+              item.kind === "observation" ? "Observation" : "Interpretation";
+            return (
+              "<li class=\"wdb-widget__highlight-row\">" +
+                '<span class="wdb-widget__highlight-kind">' + escapeHtml(kindLabel) + "</span>" +
+                "<span>" + escapeHtml(item.text) + "</span>" +
+              "</li>"
+            );
+          }
           var line = "<strong>" + escapeHtml(item.name) + "</strong>";
           if (item.status) line += ' <span class="wdb-widget__status">' + escapeHtml(humanizeStatus(item.status)) + "</span>";
           if (item.note) line += " — " + escapeHtml(item.note);
@@ -72,6 +82,7 @@
     if (data.highlight) html += '<p class="wdb-widget__highlight">' + escapeHtml(data.highlight) + "</p>";
     if (data.body) html += '<p class="wdb-widget__body-text">' + escapeHtml(data.body) + "</p>";
     if (data.groups) html += renderGroups(data.groups);
+    else if (data.highlightItems) html += renderList(data.highlightItems);
     else if (data.items) html += renderList(data.items);
     if (!html && data.status === "empty") {
       html = '<p class="wdb-widget__empty">Nothing to show yet.</p>';

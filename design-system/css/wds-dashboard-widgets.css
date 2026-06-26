@@ -280,6 +280,33 @@
 .wdb-widget__tag--editorial { color: var(--wds-warm); }
 .wdb-widget__tag--preview { color: var(--wds-text-tertiary); }
 .wdb-widget__tag--local { color: var(--wds-accent); }
+.wdb-widget__tag--unavailable { color: #e07070; }
+
+.wdb-widget__highlight-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-1);
+}
+
+.wdb-widget__highlight-kind {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wds-weather-current__feels {
+  margin: var(--wds-space-1) 0 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.wds-weather-current__details {
+  margin-top: var(--wds-space-3);
+  padding-top: var(--wds-space-3);
+  border-top: 1px solid var(--wds-border-subtle);
+}
 
 .wdb-widget__refresh {
   width: 1.5rem;

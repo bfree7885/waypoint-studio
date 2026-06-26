@@ -212,6 +212,9 @@
         uvIndex: m(todayDaily.uv_index_max && todayDaily.uv_index_max[i], "index"),
         sunrise: todayDaily.sunrise && todayDaily.sunrise[i],
         sunset: todayDaily.sunset && todayDaily.sunset[i],
+        moonrise: todayDaily.moonrise && todayDaily.moonrise[i],
+        moonset: todayDaily.moonset && todayDaily.moonset[i],
+        moonPhase: todayDaily.moon_phase && todayDaily.moon_phase[i],
         conditions: c(rowCond.summary, rowCond.icon)
       };
     });
@@ -419,7 +422,7 @@
           longitude: ctx.lng,
           current: "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
           hourly: "temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,precipitation,cloud_cover,surface_pressure,uv_index",
-          daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset",
+          daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset,moonrise,moonset,moon_phase",
           timezone: ctx.timezone || "auto",
           temperature_unit: ctx.units === "metric" ? "celsius" : "fahrenheit",
           wind_speed_unit: ctx.units === "metric" ? "kmh" : "mph",

@@ -202,14 +202,21 @@
           source: v1Layer.weather && v1Layer.weather.source,
           isLive: isLive
         },
-        daylight: {
-          status: isLive ? "live" : (v1Layer.daylight && v1Layer.daylight.source ? "editorial" : "placeholder"),
-          sunrise: cur.sunrise || (v1Layer.daylight && v1Layer.daylight.sunrise),
-          sunset: cur.sunset || (v1Layer.daylight && v1Layer.daylight.sunset),
-          dayLengthHours: v1Layer.daylight && v1Layer.daylight.dayLengthHours,
-          timezone: (weatherPkg.meta && weatherPkg.meta.timezone) || (v1Layer.daylight && v1Layer.daylight.timezone),
-          source: (weatherPkg.meta && weatherPkg.meta.provider) || (v1Layer.daylight && v1Layer.daylight.source)
-        },
+        daylight: (function () {
+          var editorial = v1Layer.daylight || {};
+          var DU = global.WDS && global.WDS.daylightUtils;
+          if (DU && DU.enrichFromWeather) {
+            return DU.enrichFromWeather(weatherPkg, editorial);
+          }
+          return {
+            status: isLive ? "live" : (editorial.source ? "editorial" : "placeholder"),
+            sunrise: cur.sunrise || editorial.sunrise,
+            sunset: cur.sunset || editorial.sunset,
+            dayLengthHours: editorial.dayLengthHours,
+            timezone: (weatherPkg.meta && weatherPkg.meta.timezone) || editorial.timezone,
+            source: (weatherPkg.meta && weatherPkg.meta.provider) || editorial.source
+          };
+        })(),
         timezone: weatherPkg.meta && weatherPkg.meta.timezone,
         weatherRef: weatherPkg
       };
