@@ -108,6 +108,10 @@
       var TR = global.WDS && global.WDS.trailDashboardUI;
       if (TR && TR.renderLoading) return TR.renderLoading();
     }
+    if (kind === "water-dashboard") {
+      var WA = global.WDS && global.WDS.waterDashboardUI;
+      if (WA && WA.renderLoading) return WA.renderLoading();
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -744,6 +748,10 @@
       else if (kind === "trail-dashboard") {
         var TR = global.WDS && global.WDS.trailDashboardUI;
         jobs.push(TR ? TR.mount(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "water-dashboard") {
+        var WA = global.WDS && global.WDS.waterDashboardUI;
+        jobs.push(WA ? WA.mount(el, options) : mount(el, renderError, options));
       }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));

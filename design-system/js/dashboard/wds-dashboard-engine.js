@@ -106,6 +106,7 @@
           ? " wdb-widget--full" + (
             def.category === "wildlife" ? " wdb-widget--wildlife" :
             def.category === "trails" ? " wdb-widget--trail" :
+            def.category === "water" ? " wdb-widget--water" :
             " wdb-widget--sky"
           )
           : "") +
@@ -243,6 +244,9 @@
       }
       if (kind === "trail-dashboard" && global.WDS.trailDashboardUI && global.WDS.trailDashboardUI.mount) {
         return global.WDS.trailDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "water-dashboard" && global.WDS.waterDashboardUI && global.WDS.waterDashboardUI.mount) {
+        return global.WDS.waterDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });

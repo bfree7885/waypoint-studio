@@ -128,6 +128,25 @@
           }
         });
       }
+      if (!parsed.widgets["water-dashboard"]) {
+        base.widgets["water-dashboard"] = { visible: true, order: 500, collapsed: false };
+        ["river-levels", "stream-flow", "water-temperature", "flood-status"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+        if (parsed.sectionOrder && parsed.sectionOrder.length) {
+          var so = parsed.sectionOrder.filter(function (id) { return id !== "water"; });
+          var wi = so.indexOf("wildlife");
+          if (wi >= 0) {
+            so.splice(wi + 1, 0, "water");
+          } else {
+            var cond = so.indexOf("conditions");
+            so.splice(cond >= 0 ? cond + 1 : 0, 0, "water");
+          }
+          base.sectionOrder = so;
+        }
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }

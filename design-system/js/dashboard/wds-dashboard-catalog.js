@@ -519,13 +519,28 @@
     placeholder: "Peak foliage timing and elevation bands — coming when foliage provider connects."
   });
 
-  /* ——— Water ——— */
+  /* ——— Water dashboard ——— */
+  reg({
+    id: "water-dashboard",
+    title: "Water Intelligence",
+    icon: "H₂O",
+    category: "water",
+    defaultOrder: 500,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("water-dashboard", "Rivers, rain, and hydrology at a glance");
+    }
+  });
+
+  /* ——— Water (legacy singles) ——— */
   preview({
     id: "river-levels",
     title: "River Levels",
     icon: "Rv",
     category: "water",
     defaultOrder: 510,
+    defaultVisible: false,
     futureProvider: "usgs-gauges",
     summary: "Main stem rivers",
     placeholder: "USGS river gauge levels will appear when gauges are connected."
