@@ -1,0 +1,292 @@
+/* Sun & Moon + Photography — sky dashboard widgets */
+
+.wdb-widget--full {
+  grid-column: 1 / -1;
+}
+
+.wdb-widget--sky {
+  background:
+    linear-gradient(160deg, rgba(14, 20, 36, 0.95) 0%, rgba(8, 12, 22, 0.92) 55%, rgba(18, 14, 28, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--wds-radius-xl);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.22);
+}
+
+.wdb-widget--sky .wdb-widget__body {
+  padding: 0 var(--wds-space-5) var(--wds-space-5);
+}
+
+.wsky {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* Sun hero */
+.wsky__sun-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--wds-space-4) var(--wds-space-6);
+  padding: var(--wds-space-4) 0;
+}
+
+.wsky__hero-icon {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  line-height: 1;
+  filter: drop-shadow(0 0 24px rgba(255, 200, 80, 0.25));
+}
+
+.wsky__hero-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-5) var(--wds-space-8);
+  flex: 1;
+}
+
+.wsky-time--hero .wsky-time__value {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+}
+
+.wsky__daylength {
+  margin: 0;
+  width: 100%;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-muted);
+}
+
+/* Time cells */
+.wsky-time {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-1);
+  padding: var(--wds-space-3) var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--wds-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  min-width: 0;
+}
+
+.wsky-time__icon {
+  font-size: var(--wds-text-lg);
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.wsky-time__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wsky-time__value {
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+  color: var(--wds-text);
+  line-height: 1.1;
+}
+
+.wsky-time__sub {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-secondary);
+}
+
+.wsky__section-title {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wsky__grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 640px) {
+  .wsky__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.wsky__grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 28rem;
+}
+
+/* Moon block */
+.wsky__moon-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--wds-space-4);
+  margin-bottom: var(--wds-space-3);
+}
+
+.wsky__moon-icon {
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  line-height: 1;
+}
+
+.wsky__moon-phase {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-2xl);
+  color: var(--wds-text);
+}
+
+.wsky__moon-illum {
+  margin: var(--wds-space-1) 0 0;
+  font-size: var(--wds-text-md);
+  color: var(--wds-text-secondary);
+}
+
+/* Photography grid */
+.wsky-photo__grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 540px) {
+  .wsky-photo__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .wsky-photo__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wsky-photo__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+  padding: var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 7rem;
+}
+
+.wsky-photo__card--excellent,
+.wsky-photo__card--high,
+.wsky-photo__card--clear { border-left: 3px solid var(--wds-lime); }
+
+.wsky-photo__card--good,
+.wsky-photo__card--moderate,
+.wsky-photo__card--mixed { border-left: 3px solid #8eb87a; }
+
+.wsky-photo__card--fair,
+.wsky-photo__card--low,
+.wsky-photo__card--unknown { border-left: 3px solid var(--wds-warm); }
+
+.wsky-photo__card--poor,
+.wsky-photo__card--overcast { border-left: 3px solid #c97070; }
+
+.wsky-photo__card--preview {
+  border-left: 3px solid var(--wds-text-tertiary);
+  opacity: 0.85;
+}
+
+.wsky-photo__icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.wsky-photo__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wsky-photo__headline {
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  color: var(--wds-text);
+  line-height: var(--wds-leading-snug);
+}
+
+.wsky-photo__detail {
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wsky-photo__badge {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-sm);
+}
+
+.wsky__foot {
+  padding-top: var(--wds-space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wsky__attribution {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+/* Loading & error */
+.wsky--loading .wsky__loading-text {
+  margin: var(--wds-space-3) 0 0;
+  text-align: center;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-muted);
+}
+
+.wsky__skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.03) 100%);
+  background-size: 200% 100%;
+  animation: wsky-shimmer 1.2s ease-in-out infinite;
+  border-radius: var(--wds-radius-md);
+}
+
+.wsky__skeleton--hero { height: 5rem; }
+.wsky__skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--wds-space-3);
+}
+.wsky__skeleton--cell { height: 4rem; }
+
+@keyframes wsky-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.wsky--error {
+  padding: var(--wds-space-5);
+  text-align: center;
+}
+
+.wsky__error-title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+}
+
+.wsky__error-detail {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}

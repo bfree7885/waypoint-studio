@@ -103,6 +103,56 @@
     return phase;
   }
 
+  function formatTime(iso) {
+    if (!iso) return null;
+    var d = parseIso(iso);
+    if (!d) return iso;
+    try {
+      return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function twilightOffsets(lat) {
+    var absLat = Math.abs(Number(lat) || 41);
+    var civil = Math.round(28 + Math.max(0, absLat - 35) * 0.4);
+    var nauticalExtra = Math.round(28 + Math.max(0, absLat - 35) * 0.5);
+    return { civil: civil, nauticalExtra: nauticalExtra };
+  }
+
+  function twilightWindows(sunriseIso, sunsetIso, lat) {
+    var rise = parseIso(sunriseIso);
+    var set = parseIso(sunsetIso);
+    if (!rise || !set) return null;
+    var off = twilightOffsets(lat);
+    var civilAm = formatTimeRange(addMinutes(rise, -off.civil), rise);
+    var civilPm = formatTimeRange(set, addMinutes(set, off.civil));
+    var nauticalAm = formatTimeRange(addMinutes(rise, -(off.civil + off.nauticalExtra)), addMinutes(rise, -off.civil));
+    var nauticalPm = formatTimeRange(addMinutes(set, off.civil), addMinutes(set, off.civil + off.nauticalExtra));
+    return {
+      civilMorning: civilAm,
+      civilEvening: civilPm,
+      nauticalMorning: nauticalAm,
+      nauticalEvening: nauticalPm,
+      civilSummary: [civilAm ? "AM " + civilAm : null, civilPm ? "PM " + civilPm : null].filter(Boolean).join(" · "),
+      nauticalSummary: [nauticalAm ? "AM " + nauticalAm : null, nauticalPm ? "PM " + nauticalPm : null].filter(Boolean).join(" · ")
+    };
+  }
+
+  function moonPhaseEmoji(phase) {
+    var p = Number(phase);
+    if (!isFinite(p)) return "☽";
+    if (p < 0.03 || p > 0.97) return "🌑";
+    if (p < 0.22) return "🌒";
+    if (p < 0.28) return "🌓";
+    if (p < 0.47) return "🌔";
+    if (p < 0.53) return "🌕";
+    if (p < 0.72) return "🌖";
+    if (p < 0.78) return "🌗";
+    return "🌘";
+  }
+
   function formatMoonTime(iso) {
     if (!iso) return null;
     try {
@@ -127,13 +177,22 @@
 
     var golden = goldenHourWindows(sunrise, sunset);
     var blue = blueHourWindows(sunrise, sunset);
+    var twilight = twilightWindows(sunrise, sunset, weatherPkg && weatherPkg.meta && weatherPkg.meta.lat);
     var lengthHrs = dayLengthHours(sunrise, sunset);
 
     return {
       status: isLive ? "live" : (editorialDaylight.status || "editorial"),
       sunrise: sunrise,
       sunset: sunset,
+      sunriseFormatted: formatTime(sunrise),
+      sunsetFormatted: formatTime(sunset),
       dayLengthHours: lengthHrs != null ? lengthHrs : editorialDaylight.dayLengthHours,
+      civilTwilight: twilight ? twilight.civilSummary : null,
+      civilTwilightMorning: twilight ? twilight.civilMorning : null,
+      civilTwilightEvening: twilight ? twilight.civilEvening : null,
+      nauticalTwilight: twilight ? twilight.nauticalSummary : null,
+      nauticalTwilightMorning: twilight ? twilight.nauticalMorning : null,
+      nauticalTwilightEvening: twilight ? twilight.nauticalEvening : null,
       goldenHour: golden ? golden.summary : editorialDaylight.goldenHour || null,
       goldenHourMorning: golden ? golden.morning : null,
       goldenHourEvening: golden ? golden.evening : null,
@@ -141,10 +200,11 @@
       blueHourMorning: blue ? blue.morning : null,
       blueHourEvening: blue ? blue.evening : null,
       moonPhase: phaseLabel,
+      moonPhaseEmoji: moonPhaseEmoji(moonPhase),
       moonPhaseValue: moonPhase,
       moonIllumination: illumination,
-      moonrise: daily && daily.moonrise ? formatMoonTime(daily.moonrise) : editorialDaylight.moonrise || null,
-      moonset: daily && daily.moonset ? formatMoonTime(daily.moonset) : editorialDaylight.moonset || null,
+      moonrise: daily && daily.moonrise ? formatTime(daily.moonrise) : editorialDaylight.moonrise || null,
+      moonset: daily && daily.moonset ? formatTime(daily.moonset) : editorialDaylight.moonset || null,
       moonriseIso: daily && daily.moonrise,
       moonsetIso: daily && daily.moonset,
       timezone: (weatherPkg && weatherPkg.meta && weatherPkg.meta.timezone) || editorialDaylight.timezone,
@@ -157,7 +217,10 @@
     enrichFromWeather: enrichFromWeather,
     goldenHourWindows: goldenHourWindows,
     blueHourWindows: blueHourWindows,
+    twilightWindows: twilightWindows,
+    formatTime: formatTime,
     moonPhaseLabel: moonPhaseLabel,
+    moonPhaseEmoji: moonPhaseEmoji,
     moonPhaseFromDate: moonPhaseFromDate,
     moonIlluminationPercent: moonIlluminationPercent,
     dayLengthHours: dayLengthHours

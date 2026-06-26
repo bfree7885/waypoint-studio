@@ -96,6 +96,22 @@
           }
         });
       }
+      if (!parsed.widgets["sun-moon-dashboard"]) {
+        base.widgets["sun-moon-dashboard"] = { visible: true, order: 100, collapsed: false };
+        ["sunrise", "sunset", "golden-hour", "blue-hour", "moon-phase", "moonrise", "moonset"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
+      if (!parsed.widgets["photography-conditions-dashboard"]) {
+        base.widgets["photography-conditions-dashboard"] = { visible: true, order: 700, collapsed: false };
+        ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }

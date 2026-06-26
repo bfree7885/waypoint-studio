@@ -152,14 +152,29 @@
     liveSummary: "UV exposure today"
   });
 
-  /* ——— Sun & Moon ——— */
+  /* ——— Sun & Moon dashboard ——— */
+  reg({
+    id: "sun-moon-dashboard",
+    title: "Sun & Moon",
+    icon: "☀",
+    category: "sun-moon",
+    defaultOrder: 100,
+    defaultVisible: true,
+    size: "full",
+    futureProvider: "open-meteo",
+    getData: function () {
+      return D().liveMount("sun-moon-dashboard", "Loading sun and moon…");
+    }
+  });
+
+  /* ——— Sun & Moon (legacy singles) ——— */
   live("sunrise", {
     id: "sunrise",
     title: "Sunrise",
     icon: "↑",
     category: "sun-moon",
     defaultOrder: 110,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "sm",
     liveSummary: "Sunrise time"
   });
@@ -170,7 +185,7 @@
     icon: "↓",
     category: "sun-moon",
     defaultOrder: 120,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "sm",
     liveSummary: "Sunset time"
   });
@@ -181,7 +196,7 @@
     icon: "Au",
     category: "sun-moon",
     defaultOrder: 130,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "sm",
     summary: "Warm directional light",
     resolve: function (ctx) {
@@ -588,14 +603,29 @@
     placeholder: "Popular trailhead parking status when crowd data connects."
   });
 
-  /* ——— Photography ——— */
+  /* ——— Photography dashboard ——— */
+  reg({
+    id: "photography-conditions-dashboard",
+    title: "Photography Conditions",
+    icon: "Px",
+    category: "photography",
+    defaultOrder: 700,
+    defaultVisible: true,
+    size: "full",
+    futureProvider: "open-meteo",
+    getData: function () {
+      return D().liveMount("photography-dashboard", "Loading photography conditions…");
+    }
+  });
+
+  /* ——— Photography (legacy singles) ——— */
   preview({
     id: "sunrise-quality",
     title: "Sunrise Quality",
     icon: "Sq",
     category: "photography",
     defaultOrder: 710,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "Morning light potential",
     resolve: function (ctx) {
       var w = D().weather(ctx);
@@ -682,7 +712,7 @@
     icon: "Cc",
     category: "photography",
     defaultOrder: 760,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "sm",
     futureProvider: "open-meteo",
     liveSummary: "Cloud cover %"

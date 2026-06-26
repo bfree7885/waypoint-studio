@@ -96,6 +96,10 @@
       var OW = global.WDS && global.WDS.outdoorWeatherUI;
       if (OW && OW.renderLoading) return OW.renderLoading();
     }
+    if (kind === "sun-moon-dashboard" || kind === "photography-dashboard") {
+      var SK = global.WDS && global.WDS.skyDashboardUI;
+      if (SK && SK.renderLoading) return SK.renderLoading(kind);
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -716,6 +720,14 @@
       else if (kind === "outdoor-weather") {
         var OW = global.WDS && global.WDS.outdoorWeatherUI;
         jobs.push(OW ? OW.mount(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "sun-moon-dashboard") {
+        var SK = global.WDS && global.WDS.skyDashboardUI;
+        jobs.push(SK ? SK.mountSunMoon(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "photography-dashboard") {
+        var SKp = global.WDS && global.WDS.skyDashboardUI;
+        jobs.push(SKp ? SKp.mountPhotography(el, options) : mount(el, renderError, options));
       }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));

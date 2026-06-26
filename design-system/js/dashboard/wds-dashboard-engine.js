@@ -102,6 +102,7 @@
       '<article class="wdb-widget wdb-widget--' + escapeHtml(def.id) + " wdb-widget--" + escapeHtml(size) +
         (def.tier === "vital" ? " wdb-widget--vital" : "") +
         (def.tier === "anchor" ? " wdb-widget--anchor" : "") +
+        (size === "full" || def.size === "full" ? " wdb-widget--full wdb-widget--sky" : "") +
         (collapsed ? " wdb-widget--collapsed" : "") + '" id="widget-' + escapeHtml(def.id) + '" data-widget-id="' + escapeHtml(def.id) + '">' +
         '<header class="wdb-widget__head">' +
           '<span class="wdb-widget__icon" aria-hidden="true">' + escapeHtml(def.icon) + "</span>" +
@@ -224,6 +225,12 @@
       var kind = mount.getAttribute("data-wds-weather-mount");
       if (kind === "outdoor-weather" && global.WDS.outdoorWeatherUI && global.WDS.outdoorWeatherUI.mount) {
         return global.WDS.outdoorWeatherUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "sun-moon-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountSunMoon) {
+        return global.WDS.skyDashboardUI.mountSunMoon(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "photography-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountPhotography) {
+        return global.WDS.skyDashboardUI.mountPhotography(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });
