@@ -379,14 +379,28 @@
     placeholder: "Hatch and bloom-linked insect activity for field observation."
   });
 
-  /* ——— Foraging ——— */
+  /* ——— Foraging dashboard ——— */
+  reg({
+    id: "foraging-dashboard",
+    title: "Foraging Conditions",
+    icon: "Fg",
+    category: "foraging",
+    defaultOrder: 300,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("foraging-dashboard", "Seasonal context · observe first");
+    }
+  });
+
+  /* ——— Foraging (legacy singles) ——— */
   preview({
     id: "mushroom-outlook",
     title: "Mushroom Outlook",
     icon: "Mg",
     category: "foraging",
     defaultOrder: 310,
-    defaultVisible: true,
+    defaultVisible: false,
     detailHref: "apps/foragecast/",
     summary: "Fruiting conditions",
     resolve: function (ctx) {
@@ -427,7 +441,7 @@
     icon: "Ed",
     category: "foraging",
     defaultOrder: 330,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "What's in season",
     resolve: function (ctx) {
       var groups = D().speciesGroups(p(ctx));
@@ -445,7 +459,7 @@
     icon: "Rn",
     category: "foraging",
     defaultOrder: 340,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "Moisture context",
     resolve: function (ctx) {
       var rain = D().rainfall(ctx);
@@ -456,13 +470,28 @@
     placeholder: "Recent rainfall shapes fruiting and stream conditions."
   });
 
-  /* ——— Flora ——— */
+  /* ——— Flora dashboard ——— */
+  reg({
+    id: "flora-dashboard",
+    title: "Flora & Phenology",
+    icon: "Fl",
+    category: "flora",
+    defaultOrder: 400,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("flora-dashboard", "Bloom, leaf-out, and seasonal flora");
+    }
+  });
+
+  /* ——— Flora (legacy singles) ——— */
   preview({
     id: "bloom-calendar",
     title: "Bloom Calendar",
     icon: "Bc",
     category: "flora",
     defaultOrder: 410,
+    defaultVisible: false,
     summary: "What's blooming",
     resolve: function (ctx) {
       var items = D().speciesActiveItems(p(ctx), 5, function (s) {

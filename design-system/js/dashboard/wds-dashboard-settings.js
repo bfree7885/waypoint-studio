@@ -147,6 +147,22 @@
           base.sectionOrder = so;
         }
       }
+      if (!parsed.widgets["foraging-dashboard"]) {
+        base.widgets["foraging-dashboard"] = { visible: true, order: 300, collapsed: false };
+        ["mushroom-outlook", "berry-conditions", "seasonal-edibles", "recent-rainfall"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
+      if (!parsed.widgets["flora-dashboard"]) {
+        base.widgets["flora-dashboard"] = { visible: true, order: 400, collapsed: false };
+        ["bloom-calendar", "tree-phenology", "wildflower-activity", "fall-color"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }

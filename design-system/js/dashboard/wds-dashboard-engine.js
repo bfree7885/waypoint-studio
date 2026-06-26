@@ -107,6 +107,8 @@
             def.category === "wildlife" ? " wdb-widget--wildlife" :
             def.category === "trails" ? " wdb-widget--trail" :
             def.category === "water" ? " wdb-widget--water" :
+            def.category === "flora" ? " wdb-widget--flora" :
+            def.category === "foraging" ? " wdb-widget--foraging" :
             " wdb-widget--sky"
           )
           : "") +
@@ -206,6 +208,7 @@
       fallback: false,
       intelligence: options.intelligence,
       platform: options.platform,
+      bundle: options.bundle,
       package: options.platform && options.platform.weatherRef
     };
     var jobs = [];
@@ -247,6 +250,12 @@
       }
       if (kind === "water-dashboard" && global.WDS.waterDashboardUI && global.WDS.waterDashboardUI.mount) {
         return global.WDS.waterDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "flora-dashboard" && global.WDS.floraDashboardUI && global.WDS.floraDashboardUI.mount) {
+        return global.WDS.floraDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "foraging-dashboard" && global.WDS.foragingDashboardUI && global.WDS.foragingDashboardUI.mount) {
+        return global.WDS.foragingDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });

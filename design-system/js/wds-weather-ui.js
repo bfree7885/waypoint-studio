@@ -112,6 +112,14 @@
       var WA = global.WDS && global.WDS.waterDashboardUI;
       if (WA && WA.renderLoading) return WA.renderLoading();
     }
+    if (kind === "flora-dashboard") {
+      var FL = global.WDS && global.WDS.floraDashboardUI;
+      if (FL && FL.renderLoading) return FL.renderLoading();
+    }
+    if (kind === "foraging-dashboard") {
+      var FG = global.WDS && global.WDS.foragingDashboardUI;
+      if (FG && FG.renderLoading) return FG.renderLoading();
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -752,6 +760,14 @@
       else if (kind === "water-dashboard") {
         var WA = global.WDS && global.WDS.waterDashboardUI;
         jobs.push(WA ? WA.mount(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "flora-dashboard") {
+        var FL = global.WDS && global.WDS.floraDashboardUI;
+        jobs.push(FL ? FL.mount(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "foraging-dashboard") {
+        var FG = global.WDS && global.WDS.foragingDashboardUI;
+        jobs.push(FG ? FG.mount(el, options) : mount(el, renderError, options));
       }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));
