@@ -285,14 +285,28 @@
     placeholder: "Moonset times from Open-Meteo when available."
   });
 
-  /* ——— Wildlife ——— */
+  /* ——— Wildlife dashboard ——— */
+  reg({
+    id: "wildlife-dashboard",
+    title: "Wildlife Activity",
+    icon: "W",
+    category: "wildlife",
+    defaultOrder: 200,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("wildlife-dashboard", "What's moving outside this week");
+    }
+  });
+
+  /* ——— Wildlife (legacy singles) ——— */
   preview({
     id: "wildlife-activity",
     title: "Wildlife Activity",
     icon: "W",
     category: "wildlife",
     defaultOrder: 210,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "What's moving outside",
     resolve: function (ctx) {
       var matches = D().observationsMatching(p(ctx), /bear|wildlife|bird|deer|warbler|migrat/i);
@@ -311,7 +325,7 @@
     icon: "Bm",
     category: "wildlife",
     defaultOrder: 220,
-    defaultVisible: true,
+    defaultVisible: false,
     futureProvider: "ebird-migration",
     summary: "Migration windows",
     resolve: function (ctx) {

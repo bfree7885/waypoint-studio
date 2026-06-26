@@ -159,6 +159,15 @@
     };
   }
 
+  function intelMount(kind, summary) {
+    return {
+      status: "loading",
+      mountKind: kind,
+      tag: { label: "Regional", className: "wdb-widget__tag--editorial" },
+      summary: summary || "Loading regional intelligence…"
+    };
+  }
+
   function editorialReady(summary, body, items, link, tag) {
     var data = {
       status: "ready",
@@ -217,6 +226,7 @@
     tagFromSlice: tagFromSlice,
     daylightData: daylightData,
     liveMount: liveMount,
+    intelMount: intelMount,
     editorialReady: editorialReady,
     previewData: previewData,
     wxConditions: wxConditions

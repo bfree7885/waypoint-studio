@@ -102,7 +102,9 @@
       '<article class="wdb-widget wdb-widget--' + escapeHtml(def.id) + " wdb-widget--" + escapeHtml(size) +
         (def.tier === "vital" ? " wdb-widget--vital" : "") +
         (def.tier === "anchor" ? " wdb-widget--anchor" : "") +
-        (size === "full" || def.size === "full" ? " wdb-widget--full wdb-widget--sky" : "") +
+        (size === "full" || def.size === "full"
+          ? " wdb-widget--full" + (def.category === "wildlife" ? " wdb-widget--wildlife" : " wdb-widget--sky")
+          : "") +
         (collapsed ? " wdb-widget--collapsed" : "") + '" id="widget-' + escapeHtml(def.id) + '" data-widget-id="' + escapeHtml(def.id) + '">' +
         '<header class="wdb-widget__head">' +
           '<span class="wdb-widget__icon" aria-hidden="true">' + escapeHtml(def.icon) + "</span>" +
@@ -231,6 +233,9 @@
       }
       if (kind === "photography-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountPhotography) {
         return global.WDS.skyDashboardUI.mountPhotography(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "wildlife-dashboard" && global.WDS.wildlifeDashboardUI && global.WDS.wildlifeDashboardUI.mount) {
+        return global.WDS.wildlifeDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });

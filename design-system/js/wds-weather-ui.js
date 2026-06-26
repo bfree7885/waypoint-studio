@@ -100,6 +100,10 @@
       var SK = global.WDS && global.WDS.skyDashboardUI;
       if (SK && SK.renderLoading) return SK.renderLoading(kind);
     }
+    if (kind === "wildlife-dashboard") {
+      var WL = global.WDS && global.WDS.wildlifeDashboardUI;
+      if (WL && WL.renderLoading) return WL.renderLoading();
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -728,6 +732,10 @@
       else if (kind === "photography-dashboard") {
         var SKp = global.WDS && global.WDS.skyDashboardUI;
         jobs.push(SKp ? SKp.mountPhotography(el, options) : mount(el, renderError, options));
+      }
+      else if (kind === "wildlife-dashboard") {
+        var WL = global.WDS && global.WDS.wildlifeDashboardUI;
+        jobs.push(WL ? WL.mount(el, options) : mount(el, renderError, options));
       }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));

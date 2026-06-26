@@ -112,6 +112,14 @@
           }
         });
       }
+      if (!parsed.widgets["wildlife-dashboard"]) {
+        base.widgets["wildlife-dashboard"] = { visible: true, order: 200, collapsed: false };
+        ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }
