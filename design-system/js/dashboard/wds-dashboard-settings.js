@@ -88,6 +88,14 @@
           base.widgets[id] = Object.assign({}, base.widgets[id], parsed.widgets[id]);
         }
       });
+      if (!parsed.widgets["outdoor-weather"]) {
+        base.widgets["outdoor-weather"] = { visible: true, order: 1, collapsed: false };
+        ["current-weather", "hourly-forecast", "weekly-forecast", "wind", "uv-index"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }

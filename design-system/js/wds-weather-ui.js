@@ -92,6 +92,10 @@
   }
 
   function renderLoading(kind) {
+    if (kind === "outdoor-weather") {
+      var OW = global.WDS && global.WDS.outdoorWeatherUI;
+      if (OW && OW.renderLoading) return OW.renderLoading();
+    }
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -241,6 +245,10 @@
     if (kind === "uv") return cur.uvIndex ? "UV " + formatMeasurement(cur.uvIndex, 0) : "UV index";
     if (kind === "sunrise" && cur.sunrise) return formatTime(cur.sunrise);
     if (kind === "sunset" && cur.sunset) return formatTime(cur.sunset);
+    if (kind === "outdoor-weather") {
+      var OW = global.WDS && global.WDS.outdoorWeatherUI;
+      return OW && OW.summaryFromPackage ? OW.summaryFromPackage(pkg) : cond;
+    }
     if (kind === "cloud-cover") return formatMeasurement(cur.cloudCover, 0) + " cloud cover";
     return cond || null;
   }
@@ -705,6 +713,10 @@
       else if (kind === "sunrise") jobs.push(mountSunrise(el, options));
       else if (kind === "sunset") jobs.push(mountSunset(el, options));
       else if (kind === "cloud-cover") jobs.push(mountCloudCover(el, options));
+      else if (kind === "outdoor-weather") {
+        var OW = global.WDS && global.WDS.outdoorWeatherUI;
+        jobs.push(OW ? OW.mount(el, options) : mount(el, renderError, options));
+      }
       else if (kind === "sun") jobs.push(mountSunOnly(el, options));
       else if (kind === "current") jobs.push(mountCurrent(el, options));
       else jobs.push(mountDashboard(el, options));
@@ -730,6 +742,9 @@
     renderSunMoon: renderSunMoon,
     renderPanel: renderPanel,
     updateDashCardTag: updateDashCardTag,
+    updateWidgetTag: updateWidgetTag,
+    updateWidgetSummary: updateWidgetSummary,
+    buildRequest: buildRequest,
     renderForecast: renderForecast,
     renderCurrentOnly: renderCurrentOnly,
     mountForecast: mountForecast,

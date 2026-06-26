@@ -101,6 +101,7 @@
     return (
       '<article class="wdb-widget wdb-widget--' + escapeHtml(def.id) + " wdb-widget--" + escapeHtml(size) +
         (def.tier === "vital" ? " wdb-widget--vital" : "") +
+        (def.tier === "anchor" ? " wdb-widget--anchor" : "") +
         (collapsed ? " wdb-widget--collapsed" : "") + '" id="widget-' + escapeHtml(def.id) + '" data-widget-id="' + escapeHtml(def.id) + '">' +
         '<header class="wdb-widget__head">' +
           '<span class="wdb-widget__icon" aria-hidden="true">' + escapeHtml(def.icon) + "</span>" +
@@ -110,7 +111,9 @@
           "</div>" +
           '<span class="wdb-widget__tag ' + escapeHtml(tag.className) + '">' + escapeHtml(tag.label) + "</span>" +
           '<button type="button" class="wdb-widget__refresh" data-widget-refresh="' + escapeHtml(def.id) + '" aria-label="Refresh ' + escapeHtml(def.title) + '" title="Refresh">↻</button>' +
-          '<button type="button" class="wdb-widget__toggle" aria-expanded="' + (!collapsed) + '" aria-label="Toggle ' + escapeHtml(def.title) + '"></button>' +
+          (def.tier !== "anchor"
+            ? '<button type="button" class="wdb-widget__toggle" aria-expanded="' + (!collapsed) + '" aria-label="Toggle ' + escapeHtml(def.title) + '"></button>'
+            : "") +
         "</header>" +
         '<div class="wdb-widget__body">' + renderWidgetBody(def, data) + "</div>" +
         (link
@@ -148,10 +151,19 @@
     var settings = options.settings || S.load();
     var ctx = buildContext(options);
     var enabled = S.enabledWidgets(settings);
+    var anchor = enabled.filter(function (d) { return d.tier === "anchor"; });
     var vital = enabled.filter(function (d) { return d.tier === "vital"; });
-    var standard = enabled.filter(function (d) { return d.tier !== "vital"; });
+    var standard = enabled.filter(function (d) {
+      return d.tier !== "vital" && d.tier !== "anchor";
+    });
     var sections = S.enabledWidgetsBySection(settings, standard);
     var html = "";
+
+    if (anchor.length) {
+      html += '<div class="wdb-anchor" data-wds-dashboard-anchor aria-label="Outdoor weather">';
+      html += renderWidgetsHtml(anchor, ctx, settings);
+      html += "</div>";
+    }
 
     if (vital.length) {
       html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Today at a glance">';
@@ -208,9 +220,15 @@
     var article = root.querySelector('[data-widget-id="' + widgetId + '"]');
     if (!article) return Promise.resolve();
     var mount = article.querySelector("[data-wds-weather-mount]");
-    if (mount && global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
-      var weatherOpts = Object.assign({}, options, { root: article });
-      return global.WDS.weatherUI.mountAll(article, weatherOpts);
+    if (mount) {
+      var kind = mount.getAttribute("data-wds-weather-mount");
+      if (kind === "outdoor-weather" && global.WDS.outdoorWeatherUI && global.WDS.outdoorWeatherUI.mount) {
+        return global.WDS.outdoorWeatherUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
+        var weatherOpts = Object.assign({}, options, { root: article });
+        return global.WDS.weatherUI.mountAll(article, weatherOpts);
+      }
     }
     return refreshDashboard(root, options);
   }

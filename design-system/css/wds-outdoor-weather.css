@@ -1,0 +1,440 @@
+/* Outdoor Weather — premium dashboard anchor widget */
+
+.wdb-anchor {
+  margin-bottom: clamp(1rem, 3vw, 1.75rem);
+}
+
+.wdb-widget--anchor {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(155deg, rgba(18, 28, 42, 0.92) 0%, rgba(10, 16, 26, 0.88) 50%, rgba(14, 22, 18, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--wds-radius-xl);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.wdb-widget--anchor:hover {
+  border-color: rgba(200, 240, 85, 0.15);
+}
+
+.wdb-widget--anchor .wdb-widget__head {
+  padding: var(--wds-space-4) var(--wds-space-5) var(--wds-space-3);
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.wdb-widget--anchor .wdb-widget__title {
+  font-size: var(--wds-text-lg);
+}
+
+.wdb-widget--anchor .wdb-widget__body {
+  padding: 0 var(--wds-space-5) var(--wds-space-5);
+}
+
+.wdb-widget--anchor .wdb-widget__foot {
+  display: none;
+}
+
+/* ——— Outdoor Weather (wow) ——— */
+.wow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.wow__hero {
+  display: grid;
+  gap: var(--wds-space-5);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .wow__hero {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+}
+
+.wow__hero-main {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--wds-space-4);
+}
+
+.wow__icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  border-radius: var(--wds-radius-md);
+  opacity: 0.95;
+}
+
+.wow__temp {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--wds-text);
+}
+
+.wow__condition {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-lg);
+  color: var(--wds-text-secondary);
+}
+
+.wow__feels {
+  margin: var(--wds-space-1) 0 0;
+  font-size: var(--wds-text-md);
+  color: var(--wds-text-muted);
+}
+
+.wow__now-metrics {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  padding: var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 480px) {
+  .wow__now-metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.wow__metric {
+  margin: 0;
+}
+
+.wow__metric dt {
+  margin: 0 0 var(--wds-space-1);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wow__metric dd {
+  margin: 0;
+  font-size: var(--wds-text-md);
+  font-weight: 500;
+  color: var(--wds-text);
+}
+
+.wow__section-title {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+/* Hourly strip */
+.wow-hourly__strip {
+  display: flex;
+  gap: var(--wds-space-2);
+  margin: 0;
+  padding: var(--wds-space-2) 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wow-hourly__item {
+  flex: 0 0 4.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wds-space-1);
+  padding: var(--wds-space-3) var(--wds-space-2);
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--wds-radius-md);
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.wow-hourly__time {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wow-hourly__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.wow-hourly__temp {
+  font-size: var(--wds-text-sm);
+  font-weight: 600;
+  color: var(--wds-text);
+}
+
+.wow-hourly__pop {
+  font-size: 0.65rem;
+  color: var(--wds-accent);
+}
+
+/* 5-day forecast */
+.wow-daily__list {
+  display: grid;
+  gap: var(--wds-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .wow-daily__list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.wow-daily__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--wds-space-3);
+  padding: var(--wds-space-3) var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: var(--wds-radius-md);
+  font-size: var(--wds-text-sm);
+}
+
+@media (min-width: 640px) {
+  .wow-daily__item {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: var(--wds-space-4) var(--wds-space-3);
+  }
+}
+
+.wow-daily__item--today {
+  border: 1px solid rgba(200, 240, 85, 0.2);
+  background: rgba(200, 240, 85, 0.06);
+}
+
+.wow-daily__date {
+  font-weight: 500;
+  color: var(--wds-text-secondary);
+  min-width: 4.5rem;
+}
+
+.wow-daily__icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.wow-daily__temps {
+  font-weight: 600;
+  color: var(--wds-text);
+}
+
+.wow-daily__sep {
+  margin: 0 0.15em;
+  font-weight: 400;
+  color: var(--wds-text-muted);
+}
+
+.wow-daily__pop {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-accent);
+  min-width: 2rem;
+  text-align: right;
+}
+
+@media (min-width: 640px) {
+  .wow-daily__pop {
+    text-align: center;
+  }
+}
+
+/* Outdoor guidance panels */
+.wow-outdoor__grid {
+  display: grid;
+  gap: var(--wds-space-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .wow-outdoor__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wow-outdoor__card {
+  padding: var(--wds-space-4);
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: var(--wds-radius-md);
+  border-left: 3px solid var(--wds-border);
+}
+
+.wow-outdoor__level--good { border-left-color: var(--wds-lime); }
+.wow-outdoor__level--ok { border-left-color: #8eb87a; }
+.wow-outdoor__level--fair { border-left-color: var(--wds-warm); }
+.wow-outdoor__level--poor { border-left-color: #c97070; }
+
+.wow-outdoor__label {
+  margin: 0 0 var(--wds-space-2);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wow-outdoor__summary {
+  margin: 0;
+  font-size: var(--wds-text-md);
+  font-weight: 500;
+  color: var(--wds-text);
+  line-height: var(--wds-leading-snug);
+}
+
+.wow-outdoor__detail {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wow-rec {
+  margin-top: var(--wds-space-2);
+  padding: var(--wds-space-4) var(--wds-space-5);
+  border-radius: var(--wds-radius-lg);
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wow-rec--go {
+  border-color: rgba(200, 240, 85, 0.25);
+  background: rgba(200, 240, 85, 0.08);
+}
+
+.wow-rec--caution {
+  border-color: rgba(240, 180, 80, 0.25);
+}
+
+.wow-rec--wait {
+  border-color: rgba(200, 100, 100, 0.3);
+  background: rgba(80, 20, 20, 0.15);
+}
+
+.wow-rec__label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wow-rec__headline {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  font-weight: 400;
+  color: var(--wds-text);
+}
+
+.wow-rec__detail {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wow__foot {
+  padding-top: var(--wds-space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wow__attribution {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+/* Loading skeleton */
+.wow--loading .wow__loading-text {
+  margin: var(--wds-space-3) 0 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-muted);
+  text-align: center;
+}
+
+.wow__skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+  background-size: 200% 100%;
+  animation: wow-shimmer 1.2s ease-in-out infinite;
+  border-radius: var(--wds-radius-md);
+}
+
+.wow__skeleton--hero {
+  height: 7rem;
+}
+
+.wow__skeleton-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--wds-space-3);
+}
+
+.wow__skeleton--metric {
+  height: 3.5rem;
+}
+
+.wow__skeleton--strip {
+  height: 5rem;
+}
+
+@keyframes wow-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Error & editorial */
+.wow--error,
+.wow--editorial {
+  padding: var(--wds-space-5);
+  text-align: center;
+}
+
+.wow__error-title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-xl);
+  color: var(--wds-text);
+}
+
+.wow__error-detail,
+.wow__editorial-note {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wow__editorial-badge {
+  margin: 0 0 var(--wds-space-3);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-warm);
+}
+
+.wow__hero--editorial .wow__temp {
+  font-size: var(--wds-text-3xl);
+}
+
+.wdb-widget--anchor { grid-column: span 12; }

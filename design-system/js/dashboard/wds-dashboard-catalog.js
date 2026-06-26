@@ -47,6 +47,23 @@
     return D().platform(ctx);
   }
 
+  /* ——— Outdoor Weather anchor ——— */
+  reg({
+    id: "outdoor-weather",
+    title: "Outdoor Weather",
+    icon: "◎",
+    category: "conditions",
+    defaultOrder: 1,
+    defaultVisible: true,
+    tier: "anchor",
+    size: "anchor",
+    defaultCollapsed: false,
+    futureProvider: "open-meteo",
+    getData: function () {
+      return D().liveMount("outdoor-weather", "Loading outdoor conditions…");
+    }
+  });
+
   /* ——— Today's highlights (vital) ——— */
   reg({
     id: "todays-outdoor-highlights",
@@ -70,8 +87,7 @@
     icon: "Wx",
     category: "conditions",
     defaultOrder: 10,
-    defaultVisible: true,
-    tier: "vital",
+    defaultVisible: false,
     size: "lg",
     futureProvider: "open-meteo",
     liveSummary: "Loading conditions…"
@@ -83,8 +99,7 @@
     icon: "Hr",
     category: "conditions",
     defaultOrder: 20,
-    defaultVisible: true,
-    tier: "vital",
+    defaultVisible: false,
     size: "wide",
     futureProvider: "open-meteo",
     liveSummary: "Next 24 hours"
@@ -96,7 +111,7 @@
     icon: "7d",
     category: "conditions",
     defaultOrder: 30,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "wide",
     futureProvider: "open-meteo",
     liveSummary: "Seven-day outlook"
@@ -119,8 +134,7 @@
     icon: "Wd",
     category: "conditions",
     defaultOrder: 50,
-    defaultVisible: true,
-    tier: "vital",
+    defaultVisible: false,
     size: "sm",
     futureProvider: "open-meteo",
     liveSummary: "Wind and gusts"
@@ -132,7 +146,7 @@
     icon: "UV",
     category: "conditions",
     defaultOrder: 60,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "sm",
     futureProvider: "open-meteo",
     liveSummary: "UV exposure today"
