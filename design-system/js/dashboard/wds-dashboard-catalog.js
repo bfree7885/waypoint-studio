@@ -564,14 +564,28 @@
     placeholder: "Flood stage and advisory status from NWS when connected."
   });
 
-  /* ——— Trails ——— */
+  /* ——— Trail dashboard ——— */
+  reg({
+    id: "trail-dashboard",
+    title: "Trail Conditions",
+    icon: "Tk",
+    category: "trails",
+    defaultOrder: 600,
+    defaultVisible: true,
+    size: "full",
+    getData: function () {
+      return D().intelMount("trail-dashboard", "Trail ops at a glance");
+    }
+  });
+
+  /* ——— Trails (legacy singles) ——— */
   preview({
     id: "trail-conditions",
     title: "Trail Conditions",
     icon: "Tk",
     category: "trails",
     defaultOrder: 610,
-    defaultVisible: true,
+    defaultVisible: false,
     summary: "Mud, ice, and tread",
     resolve: function (ctx) {
       var matches = D().observationsMatching(p(ctx), /trail|mud|ridge|hike|path/i);

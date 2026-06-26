@@ -103,7 +103,11 @@
         (def.tier === "vital" ? " wdb-widget--vital" : "") +
         (def.tier === "anchor" ? " wdb-widget--anchor" : "") +
         (size === "full" || def.size === "full"
-          ? " wdb-widget--full" + (def.category === "wildlife" ? " wdb-widget--wildlife" : " wdb-widget--sky")
+          ? " wdb-widget--full" + (
+            def.category === "wildlife" ? " wdb-widget--wildlife" :
+            def.category === "trails" ? " wdb-widget--trail" :
+            " wdb-widget--sky"
+          )
           : "") +
         (collapsed ? " wdb-widget--collapsed" : "") + '" id="widget-' + escapeHtml(def.id) + '" data-widget-id="' + escapeHtml(def.id) + '">' +
         '<header class="wdb-widget__head">' +
@@ -236,6 +240,9 @@
       }
       if (kind === "wildlife-dashboard" && global.WDS.wildlifeDashboardUI && global.WDS.wildlifeDashboardUI.mount) {
         return global.WDS.wildlifeDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      }
+      if (kind === "trail-dashboard" && global.WDS.trailDashboardUI && global.WDS.trailDashboardUI.mount) {
+        return global.WDS.trailDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
       }
       if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });

@@ -120,6 +120,14 @@
           }
         });
       }
+      if (!parsed.widgets["trail-dashboard"]) {
+        base.widgets["trail-dashboard"] = { visible: true, order: 600, collapsed: false };
+        ["trail-conditions", "trail-closures", "park-alerts", "parking-updates"].forEach(function (wid) {
+          if (base.widgets[wid] && parsed.widgets[wid] && parsed.widgets[wid].visible !== false) {
+            base.widgets[wid] = Object.assign({}, base.widgets[wid], { visible: false });
+          }
+        });
+      }
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder;
       }
