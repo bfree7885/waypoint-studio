@@ -256,7 +256,7 @@
   }
 
   function bindPanel(root, onChange) {
-    var panel = root.querySelector("#wds-dashboard-settings");
+    var panel = document.getElementById("wds-dashboard-settings");
     if (!panel) return null;
     panel._wdbOnChange = onChange;
     if (panel._wdbCustomizeBound) return panel;

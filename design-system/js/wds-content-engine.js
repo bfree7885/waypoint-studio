@@ -325,33 +325,28 @@
     var season = data.season ? escapeHtml(data.season) : "";
     var weekOf = data.weekOf ? escapeHtml(data.weekOf) : "";
     var pulse = w.summary || "What you need to know before heading outside today.";
-    var todayQ = w.outdoorQuestion || "Should you change your plans?";
     var loc = data._location;
     var regionLabel = loc && loc.name
       ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
       : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region");
+    var seasonLine = season + (weekOf ? " · Week of " + weekOf : "");
 
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
         '<header class="wod__header">' +
-          '<div class="wod__status">' +
-            '<p class="wod__meta">' + regionLabel + (weekOf ? " · Week of " + weekOf : "") + "</p>" +
-            (season ? '<p class="wod__season">' + season + "</p>" : "") +
-            '<h1 class="wod__title" id="wod-title">Outdoor dashboard</h1>' +
+          '<div class="wod__intro">' +
+            (seasonLine ? '<p class="wod__season">' + seasonLine + "</p>" : "") +
+            '<h1 class="wod__title" id="wod-title">' + regionLabel + "</h1>" +
             '<p class="wod__pulse">' + escapeHtml(pulse) + "</p>" +
-            '<p class="wod__question">' + escapeHtml(todayQ) + "</p>" +
+            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm wod__customize" id="wds-dashboard-settings-open">Customize dashboard</button>' +
           "</div>" +
           happeningMount +
-          '<div class="wod__toolbar">' +
-            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-dashboard-settings-open">Customize dashboard</button>' +
-          "</div>" +
         "</header>" +
-        '<div class="wod__body" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
-        '<nav class="wod__links" aria-label="Go deeper">' +
-          '<span class="wod__links-label">Field tools</span>' +
+        '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
+        '<nav class="wod__links" aria-label="Field tools">' +
           '<a class="wod__link" href="apps/foragecast/">ForageCast</a>' +
           '<a class="wod__link" href="apps/fieldry/">Fieldry</a>' +
-          '<a class="wod__link" href="design-system/species/">Species</a>' +
+          '<a class="wod__link" href="design-system/species/profile.html?id=morchella-americana">Species</a>' +
         "</nav>" +
       "</section>"
     );

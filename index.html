@@ -9,34 +9,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="design-system/css/wds.css">
-  <link rel="stylesheet" href="css/ecosystem-home.css">
-  <link rel="stylesheet" href="css/home-story.css">
+  <link rel="stylesheet" href="css/home-dashboard.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app">
     <header class="wds-topbar wds-topbar--dashboard">
       <div class="wds-topbar__inner">
-        <a class="wds-brand" href="/">
+        <a class="wds-brand" href="./">
           <span class="wds-brand__mark" aria-hidden="true"></span>
           <span class="wds-brand__name">Waypoint Studio</span>
         </a>
         <nav class="ws-topnav" aria-label="Dashboard sections">
-          <a href="#outdoor-dashboard">Dashboard</a>
+          <a href="#outdoor-dashboard">Overview</a>
           <a href="#wdb-section-conditions">Conditions</a>
           <a href="#wdb-section-wildlife">Wildlife</a>
           <a href="#wdb-section-foraging">Foraging</a>
           <a href="#wdb-section-trails">Trails</a>
+          <a href="#wdb-section-safety">Safety</a>
+          <a href="apps/foragecast/">ForageCast</a>
           <a href="apps/fieldry/">Fieldry</a>
         </nav>
       </div>
     </header>
 
     <div id="wds-location-prompt"></div>
-    <div id="wds-content-engine" data-wds-region="pike-county-pa" aria-busy="true"></div>
+
+    <main id="main">
+      <div id="wds-content-engine" data-wds-region="pike-county-pa" aria-busy="true" aria-live="polite">
+        <div class="wdb-page-loading" role="status">
+          <div class="wdb-page-loading__pulse" aria-hidden="true"></div>
+          <p class="wdb-page-loading__text">Loading your outdoor dashboard…</p>
+        </div>
+      </div>
+    </main>
 
     <footer class="wds-footer wds-footer--minimal">
-      <p>Waypoint Studio · Outdoor intelligence · <a href="docs/STRATEGIC-DIRECTION.md">About</a></p>
+      <p>Waypoint Studio · Learn · Go outside · Observe</p>
     </footer>
   </div>
   <script src="design-system/js/wds.js" defer></script>

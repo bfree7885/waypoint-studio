@@ -344,18 +344,21 @@
   function bindSettings(root, onChange) {
     var C = global.WDS && global.WDS.dashboardCustomize;
     if (!C) return null;
-    var openBtn = root.querySelector("#wds-dashboard-settings-open");
-    var panel = root.querySelector("#wds-dashboard-settings");
+    var panel = document.getElementById("wds-dashboard-settings");
     if (!panel) {
-      root.insertAdjacentHTML("beforeend", C.renderPanel());
-      panel = root.querySelector("#wds-dashboard-settings");
+      document.body.insertAdjacentHTML("beforeend", C.renderPanel());
+      panel = document.getElementById("wds-dashboard-settings");
     }
     C.bindPanel(root, onChange);
+    var openBtn = root.querySelector("#wds-dashboard-settings-open");
     if (openBtn && panel) {
-      openBtn.addEventListener("click", function () {
-        if (C.refreshPanel) C.refreshPanel(panel);
-        if (panel.showModal) panel.showModal();
-      });
+      if (!openBtn._wdbSettingsBound) {
+        openBtn._wdbSettingsBound = true;
+        openBtn.addEventListener("click", function () {
+          if (C.refreshPanel) C.refreshPanel(panel);
+          if (panel.showModal) panel.showModal();
+        });
+      }
     }
     return panel;
   }

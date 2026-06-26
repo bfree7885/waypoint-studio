@@ -11,7 +11,7 @@
     WDS.contentEngine.init({
       base: ENGINE_BASE,
       mount: document.getElementById("wds-content-engine"),
-      wrapMain: true,
+      wrapMain: false,
       location: loc,
       includeCitizenScience: false,
       includeMethodology: false,
@@ -24,7 +24,11 @@
   function showBootError() {
     var mount = document.getElementById("wds-content-engine");
     if (mount) {
-      mount.innerHTML = "<main id=\"main\"><p class=\"wds-body\" style=\"padding:2rem;\">Could not load dashboard. Refresh to try again.</p></main>";
+      mount.innerHTML =
+        '<div class="wdb-boot-error" role="alert">' +
+          "<p>We couldn't load your dashboard. Check your connection and try again.</p>" +
+          '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button>' +
+        "</div>";
       mount.removeAttribute("aria-busy");
     }
   }

@@ -1,0 +1,128 @@
+/**
+ * Waypoint Studio homepage — dashboard-only styles (v1)
+ */
+
+#main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.wod {
+  margin-top: 0;
+}
+
+/* Top nav — horizontal scroll on small screens */
+.wds-topbar__inner {
+  gap: var(--wds-space-3);
+}
+
+.ws-topnav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--wds-space-1);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  max-width: min(100%, 42rem);
+  padding-block: var(--wds-space-1);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ws-topnav::-webkit-scrollbar {
+  display: none;
+}
+
+.ws-topnav a {
+  flex-shrink: 0;
+  padding: var(--wds-space-1) var(--wds-space-3);
+  font-size: var(--wds-text-sm);
+  font-weight: 500;
+  color: var(--wds-text-secondary);
+  text-decoration: none;
+  border-radius: var(--wds-radius-full);
+  transition: color 0.15s, background 0.15s;
+}
+
+.ws-topnav a:hover {
+  color: var(--wds-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.ws-topnav a:focus-visible {
+  outline: 2px solid var(--wds-accent);
+  outline-offset: 2px;
+}
+
+/* Location bar — light touch on dashboard */
+.wce-location-bar--story {
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: var(--wds-space-3) clamp(1rem, 4vw, 2rem) var(--wds-space-2);
+  background: transparent;
+  border: none;
+}
+
+.wce-location-bar--story .wce-location-bar__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wds-space-2) var(--wds-space-4);
+}
+
+.wce-location-bar--story .wce-location-bar__status {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-tertiary);
+}
+
+/* Page boot loading */
+.wdb-page-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wds-space-4);
+  min-height: 50vh;
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+}
+
+.wdb-page-loading__pulse {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--wds-border-subtle);
+  border-top-color: var(--wds-accent);
+  border-radius: 50%;
+  animation: wdb-spin 0.9s linear infinite;
+}
+
+.wdb-page-loading__text {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.wdb-boot-error {
+  max-width: 28rem;
+  margin: clamp(2rem, 8vw, 4rem) auto;
+  padding: var(--wds-space-6);
+  text-align: center;
+  background: var(--wds-danger-bg);
+  border: 1px solid var(--wds-danger-border);
+  border-radius: var(--wds-radius-lg);
+}
+
+.wdb-boot-error p {
+  margin: 0 0 var(--wds-space-4);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-page-loading__pulse {
+    animation: none;
+    border-top-color: var(--wds-border-subtle);
+  }
+}
