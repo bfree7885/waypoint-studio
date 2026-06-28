@@ -5,11 +5,11 @@
   "use strict";
 
   var CATEGORIES = [
-    { id: "conditions", label: "Conditions", order: 10 },
+    { id: "conditions", label: "Current Conditions", order: 10 },
     { id: "sun-moon", label: "Sun & Moon", order: 20 },
+    { id: "safety", label: "Safety", order: 25 },
     { id: "wildlife", label: "Wildlife", order: 30 },
     { id: "water", label: "Water", order: 35 },
-    { id: "safety", label: "Safety", order: 38 },
     { id: "foraging", label: "Foraging", order: 45 },
     { id: "flora", label: "Flora", order: 55 },
     { id: "trails", label: "Trails", order: 70 },

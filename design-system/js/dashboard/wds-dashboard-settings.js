@@ -5,10 +5,11 @@
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "waypoint-dashboard-widgets-v3";
+  var STORAGE_KEY = "waypoint-dashboard-widgets-v4";
+  var LEGACY_V3 = "waypoint-dashboard-widgets-v3";
   var LEGACY_V2 = "waypoint-dashboard-widgets-v2";
   var LEGACY_V1 = "waypoint-dashboard-widgets-v1";
-  var VERSION = 3;
+  var VERSION = 4;
 
   function getRegistry() {
     return global.WDS && global.WDS.dashboardWidgets;
@@ -38,7 +39,7 @@
       };
     });
     var C = getCategories();
-    return {
+    var base = {
       version: VERSION,
       widgets: widgets,
       sectionOrder: C ? C.defaultSectionOrder() : [],
@@ -46,6 +47,7 @@
       customGroups: [],
       sectionCollapsed: {}
     };
+    return applyV1MorningDefaults(base);
   }
 
   function mergeWidgetDefaults(base, parsed) {
@@ -82,6 +84,67 @@
     return base;
   }
 
+  var V1_MORNING_VISIBLE = [
+    "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv",
+    "todays-outdoor-highlights", "sun-moon-dashboard", "safety-dashboard",
+    "conservation-news"
+  ];
+
+  var PRESETS = {
+    morning: {
+      label: "Morning brief",
+      visible: V1_MORNING_VISIBLE,
+      collapsed: { wildlife: true, foraging: true, flora: true, water: true, trails: true, photography: true, astronomy: true, conservation: true, "my-dashboard": true }
+    },
+    explorer: {
+      label: "Full explorer",
+      visible: V1_MORNING_VISIBLE.concat([
+        "wildlife-dashboard", "foraging-dashboard", "flora-dashboard",
+        "water-dashboard", "trail-dashboard", "photography-conditions-dashboard",
+        "recent-fieldry-observations"
+      ]),
+      collapsed: { astronomy: true, conservation: true }
+    },
+    photographer: {
+      label: "Photographer",
+      visible: V1_MORNING_VISIBLE.concat(["photography-conditions-dashboard", "wildlife-dashboard"]),
+      collapsed: { foraging: true, flora: true, water: true, trails: true, astronomy: true }
+    },
+    forager: {
+      label: "Forager",
+      visible: V1_MORNING_VISIBLE.concat(["foraging-dashboard", "flora-dashboard", "wildlife-dashboard"]),
+      collapsed: { water: true, trails: true, photography: true, astronomy: true }
+    }
+  };
+
+  function applyV1MorningDefaults(base) {
+    Object.keys(base.widgets).forEach(function (id) {
+      base.widgets[id].visible = V1_MORNING_VISIBLE.indexOf(id) >= 0;
+    });
+    base.sectionCollapsed = Object.assign({}, PRESETS.morning.collapsed);
+    return base;
+  }
+
+  function applyPreset(settings, presetId) {
+    var preset = PRESETS[presetId];
+    if (!preset) return settings;
+    var R = getRegistry();
+    if (R) {
+      R.defaultDefs().forEach(function (def) {
+        if (!settings.widgets[def.id]) settings.widgets[def.id] = {};
+        settings.widgets[def.id].visible = preset.visible.indexOf(def.id) >= 0;
+      });
+    }
+    settings.sectionCollapsed = Object.assign({}, preset.collapsed);
+    settings.preset = presetId;
+    return settings;
+  }
+
+  function applyV4Migration(base, parsed) {
+    if (parsed && parsed.version >= 4) return base;
+    return applyV1MorningDefaults(base);
+  }
+
   function loadRaw(key) {
     try {
       var raw = localStorage.getItem(key);
@@ -95,7 +158,7 @@
     try {
       var parsed = loadRaw(STORAGE_KEY);
       if (!parsed) {
-        parsed = loadRaw(LEGACY_V2) || loadRaw(LEGACY_V1);
+        parsed = loadRaw(LEGACY_V3) || loadRaw(LEGACY_V2) || loadRaw(LEGACY_V1);
         if (parsed && !parsed.favorites) {
           parsed.favorites = [];
           parsed.customGroups = [];
@@ -113,6 +176,7 @@
       base.sectionCollapsed = parsed.sectionCollapsed && typeof parsed.sectionCollapsed === "object"
         ? Object.assign({}, parsed.sectionCollapsed) : {};
       applyDashboardMigrations(base, parsed);
+      applyV4Migration(base, parsed);
       if (parsed.sectionOrder && parsed.sectionOrder.length) {
         base.sectionOrder = parsed.sectionOrder.slice();
       }
@@ -320,9 +384,11 @@
   global.WDS.dashboardSettings = {
     STORAGE_KEY: STORAGE_KEY,
     VERSION: VERSION,
+    PRESETS: PRESETS,
     load: load,
     save: save,
     reset: reset,
+    applyPreset: applyPreset,
     enabledWidgets: enabledWidgets,
     enabledWidgetsBySection: enabledWidgetsBySection,
     favoriteWidgets: favoriteWidgets,

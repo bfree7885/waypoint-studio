@@ -92,7 +92,7 @@
         intelligence: ctx.intelligence,
         location: ctx.location
       });
-      (hn.notes || []).slice(0, 2).forEach(function (note) {
+      (hn.notes || []).slice(0, 1).forEach(function (note) {
         items.push(item((note.prefix ? note.prefix + " " : "") + note.text, "interpretation"));
       });
     }

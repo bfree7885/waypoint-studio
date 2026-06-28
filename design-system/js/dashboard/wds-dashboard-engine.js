@@ -97,10 +97,12 @@
     var link = data.link || (def.detailHref ? { href: def.detailHref, label: "Learn more" } : null);
     var size = def.size || "md";
     var summary = data.summary || def.defaultSummary || "";
+    var isGlance = def.id && def.id.indexOf("glance-") === 0;
 
     return (
       '<article class="wdb-widget wdb-widget--' + escapeHtml(def.id) + " wdb-widget--" + escapeHtml(size) +
         (def.tier === "vital" ? " wdb-widget--vital" : "") +
+        (isGlance ? " wdb-widget--glance" : "") +
         (def.tier === "anchor" ? " wdb-widget--anchor" : "") +
         (size === "full" || def.size === "full"
           ? " wdb-widget--full" + (
@@ -200,6 +202,11 @@
       html += "</div>";
     }
 
+    var Brief = global.WDS && global.WDS.dashboardBrief;
+    if (Brief && Brief.render) {
+      html += Brief.render(ctx);
+    }
+
     if (vital.length) {
       html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Today at a glance">';
       html += renderWidgetsHtml(vital, ctx, settings);
@@ -243,7 +250,8 @@
     if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
       jobs.push(global.WDS.weatherUI.mountAll(root, weatherOpts));
     }
-    if (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.mountAll) {
+    if (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.mountAll &&
+        root.querySelector("[data-wds-happening-now-mount]")) {
       jobs.push(Promise.resolve(global.WDS.happeningNow.mountAll(root, {
         bundle: options.bundle,
         location: options.location,

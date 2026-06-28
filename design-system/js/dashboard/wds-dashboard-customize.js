@@ -143,6 +143,24 @@
     return renderWidgetsTab(settings) + renderSectionsTab(settings) + renderGroupsTab(settings);
   }
 
+  function renderPresetsBar() {
+    var S = getSettings();
+    var presets = S && S.PRESETS ? S.PRESETS : {};
+    var keys = Object.keys(presets);
+    if (!keys.length) return "";
+    return (
+      '<div class="wdb-settings__presets">' +
+        '<p class="wdb-settings__presets-label">Quick layouts</p>' +
+        '<div class="wdb-settings__presets-row">' +
+          keys.map(function (key) {
+            return '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-preset="' +
+              escapeHtml(key) + '">' + escapeHtml(presets[key].label) + "</button>";
+          }).join("") +
+        "</div>" +
+      "</div>"
+    );
+  }
+
   function renderPanel() {
     var S = getSettings();
     var settings = S ? S.load() : { widgets: {}, favorites: [], customGroups: [] };
@@ -154,6 +172,7 @@
             '<h2 id="wdb-settings-title">Customize dashboard</h2>' +
             '<p class="wdb-settings__lead">' + count + ' widgets visible · saved on this device</p>' +
           "</header>" +
+          renderPresetsBar() +
           '<nav class="wdb-settings__tabs" role="tablist" aria-label="Customization">' +
             '<button type="button" class="wdb-settings__tab wdb-settings__tab--active" role="tab" aria-selected="true" data-tab="widgets">Widgets</button>' +
             '<button type="button" class="wdb-settings__tab" role="tab" aria-selected="false" data-tab="sections">Sections</button>' +
@@ -273,6 +292,16 @@
       var tabBtn = e.target.closest(".wdb-settings__tab");
       if (tabBtn) {
         switchTab(panel, tabBtn.getAttribute("data-tab"));
+        return;
+      }
+      var presetBtn = e.target.closest("[data-preset]");
+      if (presetBtn && S.applyPreset) {
+        var pid = presetBtn.getAttribute("data-preset");
+        var pSettings = S.load();
+        S.applyPreset(pSettings, pid);
+        S.save(pSettings);
+        refreshPanel(panel);
+        if (onChange) onChange(pSettings);
         return;
       }
       var favBtn = e.target.closest("[data-widget-favorite]");

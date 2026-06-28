@@ -70,13 +70,89 @@
     title: "Today's Outdoor Highlights",
     icon: "★",
     category: "conditions",
-    defaultOrder: 5,
+    defaultOrder: 15,
     defaultVisible: true,
     tier: "vital",
     size: "wide",
     getData: function (ctx) {
       var H = global.WDS && global.WDS.dashboardHighlights;
       return H && H.generate ? H.generate(ctx) : { status: "loading", summary: "Building highlights…" };
+    }
+  });
+
+  /* ——— Glance vitals (compact, no mount) ——— */
+  reg({
+    id: "glance-temp",
+    title: "Temperature",
+    icon: "°",
+    category: "conditions",
+    defaultOrder: 2,
+    defaultVisible: true,
+    tier: "vital",
+    size: "sm",
+    getData: function (ctx) {
+      var wx = p(ctx).weatherRef;
+      var cur = wx && wx.current;
+      var temp = cur && cur.temperature;
+      var val = temp != null ? (typeof temp === "object" ? temp.value : temp) : null;
+      if (val == null) return D().previewData("Temperature", "Loads with live weather");
+      var feels = cur.feelsLike;
+      var fv = feels != null ? (typeof feels === "object" ? feels.value : feels) : null;
+      var body = fv != null && Math.abs(fv - val) >= 3 ? "Feels like " + Math.round(fv) + "°" : (cur.conditions && cur.conditions.summary) || "";
+      return {
+        status: "ready",
+        tag: D().tagFromSlice(wx),
+        highlight: Math.round(val) + "°",
+        body: body
+      };
+    }
+  });
+
+  reg({
+    id: "glance-sunrise",
+    title: "Sunrise",
+    icon: "↑",
+    category: "conditions",
+    defaultOrder: 3,
+    defaultVisible: true,
+    tier: "vital",
+    size: "sm",
+    getData: function (ctx) {
+      var dl = D().daylight(ctx);
+      if (dl && dl.sunriseFormatted) {
+        return {
+          status: "ready",
+          tag: { label: "Today", className: "wdb-widget__tag--live" },
+          highlight: dl.sunriseFormatted,
+          body: dl.goldenHour || dl.sunsetFormatted ? "Sunset " + (dl.sunsetFormatted || "—") : ""
+        };
+      }
+      return D().previewData("Sunrise", "Sun times load with location");
+    }
+  });
+
+  reg({
+    id: "glance-uv",
+    title: "UV Index",
+    icon: "UV",
+    category: "conditions",
+    defaultOrder: 4,
+    defaultVisible: true,
+    tier: "vital",
+    size: "sm",
+    getData: function (ctx) {
+      var wx = p(ctx).weatherRef;
+      var cur = wx && wx.current;
+      var uv = cur && cur.uvIndex;
+      var val = uv != null ? (typeof uv === "object" ? uv.value : uv) : null;
+      if (val == null) return D().previewData("UV", "UV loads with live weather");
+      var level = val >= 8 ? "Very high — cover up" : val >= 6 ? "High — use sunscreen" : val >= 3 ? "Moderate" : "Low";
+      return {
+        status: "ready",
+        tag: val >= 6 ? { label: "Alert", className: "wdb-widget__tag--unavailable" } : D().tagFromSlice(wx),
+        highlight: String(Math.round(val)),
+        body: level
+      };
     }
   });
 
@@ -292,7 +368,7 @@
     icon: "W",
     category: "wildlife",
     defaultOrder: 200,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     getData: function () {
       return D().intelMount("wildlife-dashboard", "What's moving outside this week");
@@ -386,7 +462,7 @@
     icon: "Fg",
     category: "foraging",
     defaultOrder: 300,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     getData: function () {
       return D().intelMount("foraging-dashboard", "Seasonal context · observe first");
@@ -477,7 +553,7 @@
     icon: "Fl",
     category: "flora",
     defaultOrder: 400,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     getData: function () {
       return D().intelMount("flora-dashboard", "Bloom, leaf-out, and seasonal flora");
@@ -555,7 +631,7 @@
     icon: "H₂O",
     category: "water",
     defaultOrder: 500,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     getData: function () {
       return D().intelMount("water-dashboard", "Rivers, rain, and hydrology at a glance");
@@ -615,7 +691,7 @@
     icon: "Tk",
     category: "trails",
     defaultOrder: 600,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     getData: function () {
       return D().intelMount("trail-dashboard", "Trail ops at a glance");
@@ -682,7 +758,7 @@
     icon: "Px",
     category: "photography",
     defaultOrder: 700,
-    defaultVisible: true,
+    defaultVisible: false,
     size: "full",
     futureProvider: "open-meteo",
     getData: function () {
@@ -926,10 +1002,11 @@
   /* ——— Conservation ——— */
   preview({
     id: "conservation-news",
-    title: "Local Conservation News",
+    title: "Regional News",
     icon: "Cv",
-    category: "conservation",
-    defaultOrder: 1010,
+    category: "conditions",
+    defaultOrder: 20,
+    defaultVisible: true,
     summary: "Stewardship updates",
     resolve: function (ctx) {
       var plat = p(ctx);
@@ -985,7 +1062,7 @@
     icon: "Fn",
     category: "my-dashboard",
     defaultOrder: 1110,
-    defaultVisible: true,
+    defaultVisible: false,
     detailHref: "apps/fieldry/",
     summary: "Your field notes",
     resolve: function () {

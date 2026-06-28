@@ -313,34 +313,28 @@
     if (!w) return "";
     var DE = global.WDS && global.WDS.dashboardEngine;
     var dashboardHtml = DE
-      ? DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data })
+      ? DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data, settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load() })
       : "";
-    var happeningMount = (
-      '<div class="wod__happening" data-wds-happening-now-mount aria-live="polite">' +
-        (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.renderLoading
-          ? global.WDS.happeningNow.renderLoading()
-          : "") +
-      "</div>"
-    );
     var season = data.season ? escapeHtml(data.season) : "";
     var weekOf = data.weekOf ? escapeHtml(data.weekOf) : "";
-    var pulse = w.summary || "What you need to know before heading outside today.";
     var loc = data._location;
     var regionLabel = loc && loc.name
       ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
       : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region");
     var seasonLine = season + (weekOf ? " · Week of " + weekOf : "");
+    var today = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
 
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
-        '<header class="wod__header">' +
+        '<header class="wod__header wod__header--command">' +
           '<div class="wod__intro">' +
             (seasonLine ? '<p class="wod__season">' + seasonLine + "</p>" : "") +
             '<h1 class="wod__title" id="wod-title">' + regionLabel + "</h1>" +
-            '<p class="wod__pulse">' + escapeHtml(pulse) + "</p>" +
-            '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm wod__customize" id="wds-dashboard-settings-open">Customize dashboard</button>' +
+            '<p class="wod__date">' + escapeHtml(today) + "</p>" +
           "</div>" +
-          happeningMount +
+          '<div class="wod__actions">' +
+            '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm wod__customize" id="wds-dashboard-settings-open">Customize</button>' +
+          "</div>" +
         "</header>" +
         '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
         '<nav class="wod__links" aria-label="Field tools">' +
