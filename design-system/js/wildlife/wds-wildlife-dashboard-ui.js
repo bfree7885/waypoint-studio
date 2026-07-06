@@ -20,21 +20,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("wildlife") : EF.render("wildlife")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wwild wwild--loading" aria-busy="true">' +
-        '<div class="wwild__skeleton-row">' +
-          '<div class="wwild__skeleton wwild__skeleton--card"></div>' +
-          '<div class="wwild__skeleton wwild__skeleton--card"></div>' +
-          '<div class="wwild__skeleton wwild__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wwild__loading-text">Loading wildlife intelligence…</p>' +
       "</div>"
     );
   }
 
   function renderError(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wwild wwild--error" role="alert">' +
         '<p class="wwild__error-title">' + escapeHtml(title) + "</p>" +
         '<p class="wwild__error-detail">' + escapeHtml(detail || "Regional outdoor intelligence unavailable.") + "</p>" +
@@ -116,7 +116,7 @@
       if (!intel) {
         el.innerHTML = renderError("Wildlife intelligence unavailable");
         el.removeAttribute("aria-busy");
-        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       el.innerHTML = render(intel);
@@ -142,7 +142,7 @@
 
     el.innerHTML = renderError("Location required", "Set your county to load regional wildlife intelligence.");
     el.removeAttribute("aria-busy");
-    if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+    if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
     return Promise.resolve(null);
   }
 

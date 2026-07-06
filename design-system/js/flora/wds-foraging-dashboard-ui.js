@@ -20,21 +20,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("foraging") : EF.render("foraging")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wforage wforage--loading" aria-busy="true">' +
-        '<div class="wforage__ethics-bar wforage__skeleton wforage__skeleton--bar"></div>' +
-        '<div class="wforage__skeleton-row">' +
-          '<div class="wforage__skeleton wforage__skeleton--card"></div>' +
-          '<div class="wforage__skeleton wforage__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wforage__loading-text">Loading foraging context…</p>' +
       "</div>"
     );
   }
 
   function renderUnavailable(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wforage wforage--unavailable" role="alert">' +
         '<p class="wforage__unavail-title">' + escapeHtml(title) + "</p>" +
         '<p class="wforage__unavail-detail">' + escapeHtml(detail || "Set your county to load foraging context.") + "</p>" +
@@ -124,12 +124,18 @@
     if (!platform) {
       el.innerHTML = renderUnavailable("Foraging dashboard unavailable");
       el.removeAttribute("aria-busy");
-      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
       return Promise.resolve(null);
     }
 
     var intel = Intel && Intel.analyze ? Intel.analyze(platform, bundle) : null;
-    el.innerHTML = intel ? render(intel) : renderUnavailable("Foraging dashboard unavailable");
+    if (!intel) {
+      el.innerHTML = renderUnavailable("Foraging dashboard unavailable");
+      el.removeAttribute("aria-busy");
+      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
+      return Promise.resolve(null);
+    }
+    el.innerHTML = render(intel);
     el.removeAttribute("aria-busy");
     if (WUI && widgetId) {
       WUI.updateDashCardTag(root, widgetId, intel.hasLiveWeather ? "live" : "editorial");

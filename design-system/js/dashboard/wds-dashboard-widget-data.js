@@ -180,7 +180,11 @@
     return data;
   }
 
-  function previewData(summary, placeholder, items) {
+  function previewData(summary, placeholder, items, category) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    if (EF && EF.widgetData) {
+      return EF.widgetData(EF.topicFromCategory(category), { summary: summary });
+    }
     return {
       status: "placeholder",
       tag: tagFromSource("placeholder"),
@@ -188,6 +192,12 @@
       placeholder: placeholder,
       items: items
     };
+  }
+
+  function educationalData(topicKey, options) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    if (EF && EF.widgetData) return EF.widgetData(topicKey, options);
+    return { status: "empty", summary: options && options.summary };
   }
 
   function wxConditions(ctx) {
@@ -229,6 +239,7 @@
     intelMount: intelMount,
     editorialReady: editorialReady,
     previewData: previewData,
+    educationalData: educationalData,
     wxConditions: wxConditions
   };
 })(window);

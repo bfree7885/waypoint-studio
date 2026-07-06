@@ -38,7 +38,11 @@
           var r = o.resolve(ctx);
           if (r) return r;
         }
-        return D().previewData(o.summary, o.placeholder, o.items);
+        var EF = global.WDS && global.WDS.educationalFallback;
+        if (EF && EF.widgetData) {
+          return EF.widgetData(EF.topicFromCategory(o.category), { summary: o.summary, widgetId: o.id });
+        }
+        return D().previewData(o.summary, o.placeholder, o.items, o.category);
       }
     }, o));
   }
@@ -145,7 +149,11 @@
       var cur = wx && wx.current;
       var uv = cur && cur.uvIndex;
       var val = uv != null ? (typeof uv === "object" ? uv.value : uv) : null;
-      if (val == null) return D().previewData("UV", "UV loads with live weather");
+      if (val == null) {
+        var EF = global.WDS && global.WDS.educationalFallback;
+        if (EF && EF.widgetData) return EF.widgetData("weather", { summary: "UV index", widgetId: "glance-uv" });
+        return D().previewData("UV", "UV loads with live weather", null, "conditions");
+      }
       var level = val >= 8 ? "Very high — cover up" : val >= 6 ? "High — use sunscreen" : val >= 3 ? "Moderate" : "Low";
       return {
         status: "ready",

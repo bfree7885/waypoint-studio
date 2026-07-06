@@ -36,26 +36,23 @@
     return null;
   }
 
+  function eduPanel(topic, pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    if (!EF) return "";
+    return pending ? EF.renderPending(topic) : EF.render(topic);
+  }
+
   function renderLoading(kind) {
-    var label = kind === "photography-dashboard"
-      ? "Loading photography conditions…"
-      : "Loading sun and moon…";
-    return (
+    var topic = kind === "photography-dashboard" ? "photography" : "astronomy";
+    return eduPanel(topic, true) || (
       '<div class="wsky wsky--loading" aria-busy="true">' +
-        '<div class="wsky__skeleton wsky__skeleton--hero"></div>' +
-        '<div class="wsky__skeleton-row">' +
-          '<div class="wsky__skeleton wsky__skeleton--cell"></div>' +
-          '<div class="wsky__skeleton wsky__skeleton--cell"></div>' +
-          '<div class="wsky__skeleton wsky__skeleton--cell"></div>' +
-          '<div class="wsky__skeleton wsky__skeleton--cell"></div>' +
-        "</div>" +
-        '<p class="wsky__loading-text">' + escapeHtml(label) + "</p>" +
+        '<p class="wsky__loading-text">Loading sky data…</p>' +
       "</div>"
     );
   }
 
-  function renderError(title, detail) {
-    return (
+  function renderError(title, detail, topic) {
+    return eduPanel(topic || "astronomy", false) || (
       '<div class="wsky wsky--error" role="alert">' +
         '<p class="wsky__error-title">' + escapeHtml(title) + "</p>" +
         '<p class="wsky__error-detail">' + escapeHtml(detail || "Live sky data unavailable. We never show invented times.") + "</p>" +
@@ -78,7 +75,7 @@
   function renderSunMoon(pkg, platform) {
     var dl = daylightFrom(platform, pkg);
     if (!dl || (!dl.sunrise && !dl.sunriseFormatted)) {
-      return renderError("Sun & moon unavailable", "Daylight data could not be loaded for your location.");
+      return renderError("Sun & moon unavailable", "Daylight data could not be loaded for your location.", "astronomy");
     }
 
     var rise = dl.sunriseFormatted || (DU() && DU().formatTime ? DU().formatTime(dl.sunrise) : dl.sunrise);
@@ -164,7 +161,7 @@
     var Intel = global.WDS && global.WDS.skyDashboardIntel;
     var intel = Intel && Intel.analyze ? Intel.analyze(pkg, platform) : null;
     if (!intel) {
-      return renderError("Photography conditions unavailable", "Live weather is required for photography guidance.");
+      return renderError("Photography conditions unavailable", "Live weather is required for photography guidance.", "photography");
     }
 
     return (
@@ -214,9 +211,9 @@
     function finish(pkg) {
       var platform = options.platform;
       if (kind === "photography-dashboard" && !isLive(pkg)) {
-        el.innerHTML = renderError("Photography conditions unavailable", "Live weather is required for photography guidance.");
+        el.innerHTML = renderError("Photography conditions unavailable", "Live weather is required for photography guidance.", "photography");
         el.removeAttribute("aria-busy");
-        if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       if (isLive(pkg) || (platform && platform.daylight && platform.daylight.sunrise)) {
@@ -235,9 +232,9 @@
         if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "editorial");
         return null;
       }
-      el.innerHTML = renderError("Sky data unavailable");
+      el.innerHTML = renderError("Sky data unavailable", null, kind === "photography-dashboard" ? "photography" : "astronomy");
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
       return null;
     }
 
@@ -255,9 +252,9 @@
 
     var req = WUISvc && WUISvc.buildRequest ? WUISvc.buildRequest(options) : options;
     return W().getForecast(req).then(finish).catch(function () {
-      el.innerHTML = renderError("Could not load live sky data");
+      el.innerHTML = renderError("Could not load live sky data", null, kind === "photography-dashboard" ? "photography" : "astronomy");
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
       return null;
     });
   }

@@ -19,22 +19,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("flora") : EF.render("flora")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wflora wflora--loading" aria-busy="true">' +
-        '<div class="wflora__hero wflora__skeleton wflora__skeleton--hero"></div>' +
-        '<div class="wflora__skeleton-row">' +
-          '<div class="wflora__skeleton wflora__skeleton--card"></div>' +
-          '<div class="wflora__skeleton wflora__skeleton--card"></div>' +
-          '<div class="wflora__skeleton wflora__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wflora__loading-text">Loading flora phenology…</p>' +
       "</div>"
     );
   }
 
   function renderUnavailable(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wflora wflora--unavailable" role="alert">' +
         '<p class="wflora__unavail-title">' + escapeHtml(title) + "</p>" +
         '<p class="wflora__unavail-detail">' + escapeHtml(detail || "Set your county to load regional flora context.") + "</p>" +
@@ -123,12 +122,18 @@
     if (!platform) {
       el.innerHTML = renderUnavailable("Flora dashboard unavailable");
       el.removeAttribute("aria-busy");
-      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
       return Promise.resolve(null);
     }
 
     var intel = Intel && Intel.analyze ? Intel.analyze(platform) : null;
-    el.innerHTML = intel ? render(intel) : renderUnavailable("Flora dashboard unavailable");
+    if (!intel) {
+      el.innerHTML = renderUnavailable("Flora dashboard unavailable");
+      el.removeAttribute("aria-busy");
+      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
+      return Promise.resolve(null);
+    }
+    el.innerHTML = render(intel);
     el.removeAttribute("aria-busy");
     if (WUI && widgetId) {
       WUI.updateDashCardTag(root, widgetId, "editorial");

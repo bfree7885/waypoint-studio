@@ -84,24 +84,21 @@
     return "";
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("weather") : EF.render("weather")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wow wow--loading" aria-busy="true" aria-label="Loading outdoor weather">' +
-        '<div class="wow__skeleton wow__skeleton--hero"></div>' +
-        '<div class="wow__skeleton-row">' +
-          '<div class="wow__skeleton wow__skeleton--metric"></div>' +
-          '<div class="wow__skeleton wow__skeleton--metric"></div>' +
-          '<div class="wow__skeleton wow__skeleton--metric"></div>' +
-          '<div class="wow__skeleton wow__skeleton--metric"></div>' +
-        "</div>" +
-        '<div class="wow__skeleton wow__skeleton--strip"></div>' +
         '<p class="wow__loading-text">Loading live outdoor conditions…</p>' +
       "</div>"
     );
   }
 
   function renderError(detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wow wow--error" role="alert">' +
         '<p class="wow__error-title">Outdoor weather unavailable</p>' +
         '<p class="wow__error-detail">' +
@@ -297,7 +294,7 @@
       }
       el.innerHTML = renderError();
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
       return null;
     }
 
@@ -321,7 +318,7 @@
       }
       el.innerHTML = renderError();
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
       return null;
     });
   }

@@ -28,25 +28,22 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("water") : EF.render("water")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wwater wwater--loading" aria-busy="true">' +
-        '<div class="wwater__hero wwater__skeleton wwater__skeleton--hero"></div>' +
-        '<div class="wwater__skeleton-row">' +
-          '<div class="wwater__skeleton wwater__skeleton--card"></div>' +
-          '<div class="wwater__skeleton wwater__skeleton--card"></div>' +
-          '<div class="wwater__skeleton wwater__skeleton--card"></div>' +
-          '<div class="wwater__skeleton wwater__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wwater__loading-text">Loading water intelligence…</p>' +
       "</div>"
     );
   }
 
   function renderUnavailable(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wwater wwater--unavailable" role="alert">' +
-        '<div class="wwater__unavail-icon" aria-hidden="true">💧</div>' +
         '<p class="wwater__unavail-title">' + escapeHtml(title) + "</p>" +
         '<p class="wwater__unavail-detail">' + escapeHtml(detail || "Set your county to load regional water context.") + "</p>" +
       "</div>"
@@ -54,17 +51,7 @@
   }
 
   function renderEmptyBanner(intel) {
-    if (intel.readyCount > 0) return "";
-    return (
-      '<div class="wwater__empty-banner" role="status">' +
-        '<span class="wwater__empty-label">Empty state</span>' +
-        '<p class="wwater__empty-text">' +
-          escapeHtml(
-            "No live USGS gauges connected yet — watershed context and rainfall will still display when available."
-          ) +
-        "</p>" +
-      "</div>"
-    );
+    return "";
   }
 
   function waterHero(intel) {
@@ -166,14 +153,14 @@
       if (!platform) {
         el.innerHTML = renderUnavailable("Water intelligence unavailable");
         el.removeAttribute("aria-busy");
-        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       var intel = Intel && Intel.analyze ? Intel.analyze(platform) : null;
       if (!intel) {
         el.innerHTML = renderUnavailable("Water intelligence unavailable");
         el.removeAttribute("aria-busy");
-        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       el.innerHTML = render(intel);

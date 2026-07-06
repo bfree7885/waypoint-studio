@@ -28,22 +28,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("trails") : EF.render("trails")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wtrail wtrail--loading" aria-busy="true">' +
-        '<div class="wtrail__ops-bar wtrail__skeleton wtrail__skeleton--bar"></div>' +
-        '<div class="wtrail__skeleton-row">' +
-          '<div class="wtrail__skeleton wtrail__skeleton--card"></div>' +
-          '<div class="wtrail__skeleton wtrail__skeleton--card"></div>' +
-          '<div class="wtrail__skeleton wtrail__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wtrail__loading-text">Loading trail operations…</p>' +
       "</div>"
     );
   }
 
   function renderError(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wtrail wtrail--error" role="alert">' +
         '<p class="wtrail__error-title">' + escapeHtml(title) + "</p>" +
         '<p class="wtrail__error-detail">' + escapeHtml(detail || "Regional trail intelligence unavailable.") + "</p>" +
@@ -142,7 +141,7 @@
       if (!intel) {
         el.innerHTML = renderError("Trail operations unavailable");
         el.removeAttribute("aria-busy");
-        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       el.innerHTML = render(intel);
@@ -166,7 +165,7 @@
 
     el.innerHTML = renderError("Location required", "Set your county to load trail operations.");
     el.removeAttribute("aria-busy");
-    if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+    if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
     return Promise.resolve(null);
   }
 

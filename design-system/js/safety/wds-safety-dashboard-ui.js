@@ -20,22 +20,21 @@
       .replace(/"/g, "&quot;");
   }
 
+  function eduPanel(pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    return EF ? (pending ? EF.renderPending("safety") : EF.render("safety")) : "";
+  }
+
   function renderLoading() {
-    return (
+    return eduPanel(true) || (
       '<div class="wsafe wsafe--loading" aria-busy="true">' +
-        '<div class="wsafe__banner wsafe__skeleton wsafe__skeleton--banner"></div>' +
-        '<div class="wsafe__skeleton-row">' +
-          '<div class="wsafe__skeleton wsafe__skeleton--card"></div>' +
-          '<div class="wsafe__skeleton wsafe__skeleton--card"></div>' +
-          '<div class="wsafe__skeleton wsafe__skeleton--card"></div>' +
-        "</div>" +
         '<p class="wsafe__loading-text">Loading outdoor safety…</p>' +
       "</div>"
     );
   }
 
   function renderUnavailable(title, detail) {
-    return (
+    return eduPanel(false) || (
       '<div class="wsafe wsafe--unavailable" role="alert">' +
         '<p class="wsafe__unavail-title">' + escapeHtml(title) + "</p>" +
         '<p class="wsafe__unavail-detail">' + escapeHtml(detail || "Set your county to load safety context.") + "</p>" +
@@ -115,7 +114,7 @@
       if (!intel) {
         el.innerHTML = renderUnavailable("Safety dashboard unavailable");
         el.removeAttribute("aria-busy");
-        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "unavailable");
+        if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
         return null;
       }
       el.innerHTML = render(intel);

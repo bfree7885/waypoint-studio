@@ -109,9 +109,11 @@
       : { label: "Educational", className: "wdb-widget__tag--editorial" };
 
     if (!items.length) {
+      var EF = global.WDS && global.WDS.educationalFallback;
+      if (EF && EF.widgetData) return EF.widgetData("weather", { summary: "Today's outdoor highlights" });
       return {
         status: "empty",
-        tag: { label: "Preview", className: "wdb-widget__tag--preview" },
+        tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
         summary: "Highlights loading",
         body: "Regional highlights appear when location and weather data load."
       };

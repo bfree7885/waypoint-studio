@@ -91,6 +91,13 @@
     return "—";
   }
 
+  function eduForMount(kind, pending) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    if (!EF) return null;
+    var topic = EF.topicForMount(kind || "weather");
+    return pending ? EF.renderPending(topic) : EF.render(topic);
+  }
+
   function renderLoading(kind) {
     if (kind === "outdoor-weather") {
       var OW = global.WDS && global.WDS.outdoorWeatherUI;
@@ -124,6 +131,8 @@
       var SF = global.WDS && global.WDS.safetyDashboardUI;
       if (SF && SF.renderLoading) return SF.renderLoading();
     }
+    var pending = eduForMount(kind, true);
+    if (pending) return pending;
     var label = kind === "sun-moon"
       ? "Loading sun and moon…"
       : "Loading current conditions…";
@@ -191,6 +200,8 @@
   }
 
   function renderEducationalSunMoon() {
+    var fallback = eduForMount("sun-moon", false);
+    if (fallback) return fallback;
     return (
       '<div class="wds-weather wds-weather--editorial wds-weather--sun-moon">' +
         '<p class="wds-weather-error__detail">' +
@@ -200,7 +211,9 @@
     );
   }
 
-  function renderError(detail) {
+  function renderError(detail, kind) {
+    var fallback = eduForMount(kind || "weather", false);
+    if (fallback) return fallback;
     return (
       '<div class="wds-weather wds-weather--error" role="alert">' +
         '<p class="wds-weather-error__title">Weather unavailable</p>' +
@@ -238,6 +251,11 @@
     if (state === "unavailable") {
       tag.textContent = "Unavailable";
       tag.className = "wdb-widget__tag wdb-widget__tag--unavailable";
+      return;
+    }
+    if (state === "educational") {
+      tag.textContent = "Educational";
+      tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
       return;
     }
     if (state === "editorial") {
@@ -301,6 +319,11 @@
     if (state === "unavailable") {
       tag.textContent = "Unavailable";
       tag.className = "wce-dash-card__tag wce-dash-card__tag--unavailable";
+      return;
+    }
+    if (state === "educational") {
+      tag.textContent = "Educational";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--regional";
       return;
     }
     if (state === "editorial") {
@@ -411,7 +434,7 @@
   function renderHourly(pkg) {
     var rows = (pkg && pkg.hourly) || [];
     if (!rows.length) {
-      return '<p class="wds-weather-empty">Hourly forecast unavailable.</p>';
+      return eduForMount("hourly", false) || '<p class="wds-weather-empty">Hourly forecast unavailable.</p>';
     }
     var items = rows.slice(0, 24).map(function (row) {
       var cond = row.conditions || {};
@@ -437,7 +460,7 @@
   function renderDaily(pkg) {
     var rows = (pkg && pkg.daily) || [];
     if (!rows.length) {
-      return '<p class="wds-weather-empty">Daily forecast unavailable.</p>';
+      return eduForMount("daily", false) || '<p class="wds-weather-empty">Daily forecast unavailable.</p>';
     }
     var items = rows.map(function (row) {
       var cond = row.conditions || {};
@@ -589,9 +612,9 @@
         return null;
       }
 
-      el.innerHTML = renderError();
+      el.innerHTML = renderError(null, kind);
       el.removeAttribute("aria-busy");
-      if (cardId) updateDashCardTag(root, cardId, "unavailable");
+      if (cardId) updateDashCardTag(root, cardId, "educational");
       return null;
     }
 
@@ -604,9 +627,9 @@
     if (cardId) updateDashCardTag(root, cardId, "loading");
 
     return W.getForecast(buildRequest(options)).then(finish).catch(function () {
-      el.innerHTML = renderError();
+      el.innerHTML = renderError(null, kind);
       el.removeAttribute("aria-busy");
-      if (cardId) updateDashCardTag(root, cardId, "unavailable");
+      if (cardId) updateDashCardTag(root, cardId, "educational");
       return null;
     });
   }

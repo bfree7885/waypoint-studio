@@ -56,13 +56,28 @@
     }).join("");
   }
 
+  function educationalFallback(def, data, options) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    if (!EF) return '<p class="wdb-widget__empty">Regional field guide.</p>';
+    if (data && data.educationalHtml) return data.educationalHtml;
+    var topic = (data && data.educationalTopic) ||
+      EF.topicForWidget(def && def.id, def && def.category);
+    return EF.render(topic, options || {});
+  }
+
   function renderWidgetBody(def, data) {
+    data = data || {};
     var html = "";
+
+    if (data.status === "educational") {
+      return data.educationalHtml || educationalFallback(def, data);
+    }
+
     if (data.mountKind) {
-      var WUI = global.WDS && global.WDS.weatherUI;
-      var loading = WUI && WUI.renderLoading
-        ? WUI.renderLoading(data.mountKind)
-        : '<p class="wdb-widget__loading">Loading…</p>';
+      var EF = global.WDS && global.WDS.educationalFallback;
+      var loading = EF && EF.mountHtml
+        ? EF.mountHtml(data.mountKind)
+        : educationalFallback(def, data, { pendingLive: true });
       html += (
         '<div class="wdb-widget__mount wds-weather-mount" data-wds-weather-mount="' + escapeHtml(data.mountKind) + '" aria-live="polite" aria-busy="true">' +
         loading +
@@ -71,10 +86,10 @@
       return html;
     }
     if (data.status === "loading") {
-      return '<p class="wdb-widget__loading">Loading regional data…</p>';
+      return educationalFallback(def, data, { pendingLive: true });
     }
-    if (data.status === "error") {
-      return '<p class="wdb-widget__error">' + escapeHtml(data.error || "Could not load this widget.") + "</p>";
+    if (data.status === "error" || data.status === "placeholder") {
+      return educationalFallback(def, data);
     }
     if (data.placeholder) {
       html += '<p class="wdb-widget__placeholder">' + escapeHtml(data.placeholder) + "</p>";
@@ -85,7 +100,10 @@
     else if (data.highlightItems) html += renderList(data.highlightItems);
     else if (data.items) html += renderList(data.items);
     if (!html && data.status === "empty") {
-      html = '<p class="wdb-widget__empty">Nothing to show yet.</p>';
+      return educationalFallback(def, data);
+    }
+    if (data.placeholder && !data.highlight && !data.body && !data.groups && !data.highlightItems && !data.items) {
+      return educationalFallback(def, data);
     }
     return html;
   }
