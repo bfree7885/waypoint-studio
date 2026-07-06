@@ -42,6 +42,9 @@
 
 .ws-topnav a {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   padding: var(--wds-space-1) var(--wds-space-3);
   font-size: var(--wds-text-sm);
   font-weight: 500;
