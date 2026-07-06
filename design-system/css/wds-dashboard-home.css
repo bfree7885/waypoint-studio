@@ -1,0 +1,24 @@
+/**
+ * Waypoint Studio — Homepage dashboard CSS (trimmed)
+ *
+ * Used only by index.html. Omits field-guide, education, patterns,
+ * species-spotlight, WSKB, and full homepage marketing sections.
+ * Domain dashboard styles are kept so Customize presets still render correctly.
+ */
+
+@import url("wds-tokens.css");
+@import url("wds-base.css");
+@import url("wds-components.css");
+@import url("wds-outdoor-ethics.css");
+@import url("wds-provenance.css");
+@import url("wds-research-integrity.css");
+@import url("wds-content-engine.css");
+@import url("wds-weather.css");
+@import url("wds-outdoor-weather.css");
+@import url("wds-sky-dashboard.css");
+@import url("wds-wildlife-dashboard.css");
+@import url("wds-trail-dashboard.css");
+@import url("wds-water-dashboard.css");
+@import url("wds-flora-dashboard.css");
+@import url("wds-safety-dashboard.css");
+@import url("wds-dashboard-widgets.css");

@@ -2,6 +2,13 @@
  * Waypoint Studio homepage — dashboard-only styles (v1)
  */
 
+/* Minimal ws-block — methodology section only (subset of wds-home-sections.css) */
+.ws-block {
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 2rem);
+}
+
 #main {
   display: flex;
   flex-direction: column;
