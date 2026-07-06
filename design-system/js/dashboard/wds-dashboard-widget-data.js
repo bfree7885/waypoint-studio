@@ -131,7 +131,7 @@
   function tagFromSource(source) {
     if (source === "live") return { label: "Live", className: "wdb-widget__tag--live" };
     if (source === "unavailable") return { label: "Unavailable", className: "wdb-widget__tag--unavailable" };
-    if (source === "placeholder") return { label: "Preview", className: "wdb-widget__tag--preview" };
+    if (source === "placeholder") return { label: "Educational", className: "wdb-widget__tag--editorial" };
     if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
     return { label: "Educational", className: "wdb-widget__tag--editorial" };
   }
