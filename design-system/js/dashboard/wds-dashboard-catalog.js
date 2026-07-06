@@ -1013,10 +1013,10 @@
       var c = plat.conservation;
       var cu = D().bundle(ctx).conservationUpdate;
       if (D().sliceReady(c) && c.summary) {
-        return D().editorialReady(c.summary, null, null, { href: "#conservation-update", label: "Stewardship" });
+        return D().editorialReady(c.summary, null, null, { href: "#wdb-section-conservation", label: "Stewardship" });
       }
       if (cu && cu.title) {
-        return D().editorialReady(cu.summary || cu.title, null, null, { href: "#conservation-update", label: "Read more" });
+        return D().editorialReady(cu.summary || cu.title, null, null, { href: "#wdb-section-conservation", label: "Read more" });
       }
       return null;
     },

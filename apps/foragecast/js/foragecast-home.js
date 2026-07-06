@@ -313,12 +313,8 @@
           '<div class="wce-methodology__body">' +
             '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm lessons, and private-by-default observations. ' +
             "The references below are for contributors and builders.</p>" +
-            '<ul class="wce-methodology__links">' +
-              '<li><a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md">Studio Constitution</a> — privacy, scope, and product principles</li>' +
-              '<li><a href="../../docs/WAYPOINT-METHOD.md">Waypoint Method</a> — teaching and learning cycle</li>' +
-              '<li><a href="../../docs/WAYPOINT-CONTENT-ENGINE.md">Content Engine</a> — regional publishing model</li>' +
-              '<li><a href="../../docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy">Privacy philosophy</a> — private by default</li>' +
-            "</ul>" +
+            '<p class="wds-caption">Private by default — no accounts, no feeds, no gamification. ' +
+            "Contributor documentation lives in the repository <code>docs/</code> folder.</p>" +
           "</div>" +
         "</details>" +
       "</section>"

@@ -14,7 +14,7 @@
       wrapMain: false,
       location: loc,
       includeCitizenScience: false,
-      includeMethodology: false,
+      includeMethodology: true,
       onLocationChange: function (newLoc) {
         startDashboard(newLoc);
       }

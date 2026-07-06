@@ -337,7 +337,7 @@
           "</div>" +
         "</header>" +
         '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
-        '<nav class="wod__links" aria-label="Field tools">' +
+        '<nav class="wod__links" id="experiences" aria-label="Field tools">' +
           '<a class="wod__link" href="apps/foragecast/">ForageCast</a>' +
           '<a class="wod__link" href="apps/fieldry/">Fieldry</a>' +
           '<a class="wod__link" href="design-system/species/profile.html?id=morchella-americana">Species</a>' +
@@ -724,15 +724,8 @@
           '<div class="wce-methodology__body">' +
             '<p class="wds-body">Waypoint Studio is a regional outdoor intelligence platform and field laboratory — beginning with Pike County Preview. ' +
             "Learn, go outside, and build toward research-grade observations. Private by default.</p>" +
-            '<ul class="wce-methodology__links">' +
-              '<li><a href="' + escapeHtml(prefix + "STRATEGIC-DIRECTION.md") + '">Strategic direction</a> — core platform and portfolio focus</li>' +
-              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-THEORY-OF-CHANGE.md") + '">Theory of change</a> — learn → observe → contribute cycle</li>' +
-              '<li><a href="' + escapeHtml(prefix + "PLATFORM-ARCHITECTURE.md") + '">Platform architecture</a> — OIP, WOS, and shared foundations</li>' +
-              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-STUDIO-CONSTITUTION.md") + '">Studio Constitution</a> — privacy, scope, and product principles</li>' +
-              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-METHOD.md") + '">Waypoint Method</a> — teaching and learning cycle</li>' +
-              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-CONTENT-ENGINE.md") + '">Content Engine</a> — regional publishing model</li>' +
-              '<li><a href="' + escapeHtml(prefix + "WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy") + '">Privacy philosophy</a> — private by default</li>' +
-            "</ul>" +
+            '<p class="wds-caption">Private by default — no accounts, no feeds, no gamification. ' +
+            "Contributor documentation (Constitution, Method, Platform Architecture) lives in the repository <code>docs/</code> folder.</p>" +
           "</div>" +
         "</details>" +
       "</section>"
@@ -766,7 +759,7 @@
   }
 
   function renderCitizenScience(privacyHref) {
-    var href = privacyHref || "docs/WAYPOINT-STUDIO-CONSTITUTION.md#privacy-philosophy";
+    var href = privacyHref || "#how-waypoint-works";
     var ethicsBlock = "";
     var OE = global.WDS && global.WDS.outdoorEthics;
     if (OE && OE.citizenScienceDisclosure) {
@@ -779,7 +772,7 @@
           "<p class=\"wds-body\"><strong>You own your observations.</strong> Waypoint is designed to support research-grade observations when you choose to record them. Submission is not available yet — citizen science participation will always be optional.</p>" +
           "<p class=\"wds-body\" style=\"margin-top:var(--wds-space-3);\">Identity never required. Location privacy respected. No comments, likes, profiles, or feeds — a field guide, not social media.</p>" +
           ethicsBlock +
-          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(href) + '">Privacy approach</a> · <a href="docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md">Outdoor ethics</a></p>' +
+          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(href) + '">Privacy approach</a></p>' +
         "</div>" +
       "</section>"
     );
