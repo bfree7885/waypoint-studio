@@ -150,8 +150,8 @@ Three commits on `main` (including this verification commit) are ready for the o
 | Item | Value |
 |------|-------|
 | **Committed** | Yes |
-| **Pushed** | See below — push attempted after verification commit |
-| **Latest commit** | `bf9af4d` |
+| **Pushed** | Yes — `origin/main` updated |
+| **Latest commit** | `a147bea` |
 | **Commit message** | Fix briefing live refresh and add production smoke verification |
 
 ### Prior commits in this release train
