@@ -152,7 +152,7 @@
       "quiet",
       "Quiet period for mosquitoes",
       "Cool or dry stretches reduce bite pressure.",
-      "Preview feed pending for your area.",
+      "Live feed not yet connected for your area.",
       "future", "mosquitoActivity", null
     );
   }

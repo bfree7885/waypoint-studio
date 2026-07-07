@@ -7,7 +7,7 @@
   var STATE_LABELS = {
     ready: "Active",
     empty: "Quiet",
-    pending: "Preview"
+    pending: "Not yet available"
   };
 
   function escapeHtml(str) {
@@ -77,7 +77,7 @@
           ? '<p class="wflora-card__observe">' + escapeHtml(data.observeNote) + "</p>"
           : "") +
         (data.feedStatus === "pending"
-          ? '<span class="wflora-card__feed">Preview feed</span>'
+          ? '<span class="wflora-card__feed">Pending provider</span>'
           : "") +
       "</article>"
     );

@@ -43,9 +43,9 @@
       css: "wds-prov--verified"
     },
     placeholder: {
-      label: "Preview",
-      short: "Preview",
-      title: "Placeholder — live data not yet connected",
+      label: "Not yet available",
+      short: "Pending",
+      title: "Live data not yet connected for this layer",
       css: "wds-prov--placeholder"
     },
     live: {
@@ -187,7 +187,7 @@
     var ctx = buildContext({
       provenance: provenance,
       source: source,
-      uncertainty: status === "placeholder" ? "Preview content — live data not connected" : defaults.uncertainty,
+      uncertainty: status === "placeholder" ? "Live feed not yet connected" : defaults.uncertainty,
       disclaimer: defaults.disclaimer || null
     });
 
@@ -415,7 +415,7 @@
       return { label: "Loading", className: "wce-dash-card__tag--soon", kind: "placeholder" };
     }
     if (card.source === "placeholder") {
-      return { label: "Preview", className: "wce-dash-card__tag--soon", kind: "placeholder" };
+      return { label: "Not yet available", className: "wce-dash-card__tag--soon", kind: "placeholder" };
     }
     if (card.source === "live") {
       return { label: "Live forecast", className: "wce-dash-card__tag--live", kind: "live" };

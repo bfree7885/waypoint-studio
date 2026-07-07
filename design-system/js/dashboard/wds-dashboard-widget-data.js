@@ -134,6 +134,7 @@
     if (source === "unavailable") return { label: "Not yet available", className: "wdb-widget__tag--unavailable" };
     if (source === "placeholder") return { label: "Educational", className: "wdb-widget__tag--editorial" };
     if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
+    if (source === "editorial") return { label: "Editorial", className: "wdb-widget__tag--editorial" };
     return { label: "Educational", className: "wdb-widget__tag--editorial" };
   }
 
@@ -165,8 +166,8 @@
     return {
       status: "loading",
       mountKind: kind,
-      tag: { label: "Regional", className: "wdb-widget__tag--editorial" },
-      summary: summary || "Loading regional intelligence…"
+      tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+      summary: summary || "Loading outdoor intelligence…"
     };
   }
 
@@ -179,6 +180,23 @@
     if (body) data.body = body;
     if (items) data.items = items;
     if (link) data.link = link;
+    return data;
+  }
+
+  function notYetAvailable(summary, detail, category) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    var topic = EF && EF.topicFromCategory ? EF.topicFromCategory(category) : "weather";
+    var data = {
+      status: "ready",
+      tag: tagFromSource("unavailable"),
+      summary: summary || "Not yet available",
+      body: detail || "A live provider for this layer is not connected yet."
+    };
+    if (EF && EF.widgetData) {
+      var edu = EF.widgetData(topic, { summary: summary, widgetId: category });
+      data.educationalHtml = edu.educationalHtml;
+      data.educationalTopic = edu.educationalTopic;
+    }
     return data;
   }
 
@@ -241,6 +259,7 @@
     intelMount: intelMount,
     editorialReady: editorialReady,
     previewData: previewData,
+    notYetAvailable: notYetAvailable,
     educationalData: educationalData,
     wxConditions: wxConditions
   };

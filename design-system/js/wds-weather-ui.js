@@ -511,7 +511,7 @@
       }
     }
     var parts = [];
-    if (meta.isPlaceholder) parts.push("Preview data");
+    if (meta.isPlaceholder) parts.push("Sample data — not live");
     else if (meta.attribution) parts.push(meta.attribution);
     if (meta.provider && meta.provider !== "placeholder") parts.push(meta.provider);
     if (!parts.length) return "";

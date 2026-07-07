@@ -8,7 +8,7 @@
     ready: "Active",
     empty: "Quiet",
     unavailable: "Unavailable",
-    pending: "Preview"
+    pending: "Not yet available"
   };
 
   function escapeHtml(str) {

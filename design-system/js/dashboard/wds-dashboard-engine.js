@@ -96,6 +96,7 @@
     }
     if (data.highlight) html += '<p class="wdb-widget__highlight">' + escapeHtml(data.highlight) + "</p>";
     if (data.body) html += '<p class="wdb-widget__body-text">' + escapeHtml(data.body) + "</p>";
+    if (data.educationalHtml) html += data.educationalHtml;
     if (data.groups) html += renderGroups(data.groups);
     else if (data.highlightItems) html += renderList(data.highlightItems);
     else if (data.items) html += renderList(data.items);

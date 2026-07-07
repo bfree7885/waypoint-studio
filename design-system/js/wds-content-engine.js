@@ -163,7 +163,7 @@
     var tagInfo = ri() && ri().dashboardTag
       ? ri().dashboardTag(card)
       : null;
-    var tag = tagInfo ? tagInfo.label : (isLiveWeatherCard ? "Loading" : (isPlaceholder ? "Preview" : "Editorial"));
+    var tag = tagInfo ? tagInfo.label : (isLiveWeatherCard ? "Loading" : (isPlaceholder ? "Educational" : "Editorial"));
     var tagClass = tagInfo
       ? " " + tagInfo.className
       : (isLiveWeatherCard || isPlaceholder

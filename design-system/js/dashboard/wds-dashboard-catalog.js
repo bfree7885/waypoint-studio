@@ -31,7 +31,7 @@
     }, o));
   }
 
-  function preview(o) {
+  function educational(o) {
     reg(Object.assign({
       getData: function (ctx) {
         if (o.resolve) {
@@ -42,7 +42,15 @@
         if (EF && EF.widgetData) {
           return EF.widgetData(EF.topicFromCategory(o.category), { summary: o.summary, widgetId: o.id });
         }
-        return D().previewData(o.summary, o.placeholder, o.items, o.category);
+        return D().previewData(o.summary, o.detail || o.placeholder, o.items, o.category);
+      }
+    }, o));
+  }
+
+  function pending(o) {
+    reg(Object.assign({
+      getData: function () {
+        return D().notYetAvailable(o.summary || o.title, o.detail || o.placeholder, o.category);
       }
     }, o));
   }
@@ -201,14 +209,15 @@
     liveSummary: "Seven-day outlook"
   });
 
-  preview({
+  pending({
     id: "air-quality",
     title: "Air Quality",
     icon: "AQ",
     category: "conditions",
     defaultOrder: 40,
     futureProvider: "air-quality-api",
-    summary: "AQI not connected",
+    summary: "Air quality (AQI)",
+    detail: "AirNow AQI and smoke alerts will appear when the provider is connected.",
     placeholder: "Air quality index and smoke alerts will appear when a provider is connected."
   });
 
@@ -274,7 +283,7 @@
     liveSummary: "Sunset time"
   });
 
-  preview({
+  reg({
     id: "golden-hour",
     title: "Golden Hour",
     icon: "Au",
@@ -282,91 +291,86 @@
     defaultOrder: 130,
     defaultVisible: false,
     size: "sm",
-    summary: "Warm directional light",
-    resolve: function (ctx) {
+    getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.goldenHour) {
         return D().editorialReady(dl.goldenHour, "Best for landscapes and wildlife rim light.", null, null, D().tagFromSlice(dl));
       }
-      return null;
-    },
-    placeholder: "Golden hour windows appear when daylight data is available."
+      return D().educationalData("astronomy", { summary: "Golden hour", widgetId: "golden-hour" });
+    }
   });
 
-  preview({
+  reg({
     id: "blue-hour",
     title: "Blue Hour",
     icon: "Bl",
     category: "sun-moon",
     defaultOrder: 140,
-    summary: "Twilight photography",
-    resolve: function (ctx) {
+    defaultVisible: false,
+    size: "sm",
+    getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.blueHour) {
         return D().editorialReady(dl.blueHour, "Cool ambient light before sunrise and after sunset.", null, null, D().tagFromSlice(dl));
       }
-      return null;
-    },
-    placeholder: "Blue hour timing appears when daylight data is connected."
+      return D().educationalData("astronomy", { summary: "Blue hour", widgetId: "blue-hour" });
+    }
   });
 
-  preview({
+  reg({
     id: "moon-phase",
     title: "Moon Phase",
     icon: "☽",
     category: "sun-moon",
     defaultOrder: 150,
-    futureProvider: "open-meteo-astronomy",
-    summary: "Lunar cycle",
-    resolve: function (ctx) {
+    defaultVisible: false,
+    size: "sm",
+    getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.moonPhase) {
         return {
           status: "ready",
-          tag: D().tagFromSlice(dl),
+          tag: dl.status === "live" ? D().tagFromSource("live") : D().tagFromSlice(dl),
           summary: dl.moonPhase,
           items: dl.moonIllumination != null ? ["Illumination: " + dl.moonIllumination + "%"] : []
         };
       }
-      return null;
-    },
-    placeholder: "Moon phase and illumination when daylight data loads."
+      return D().educationalData("astronomy", { summary: "Moon phase", widgetId: "moon-phase" });
+    }
   });
 
-  preview({
+  reg({
     id: "moonrise",
     title: "Moonrise",
     icon: "☾↑",
     category: "sun-moon",
     defaultOrder: 160,
-    futureProvider: "open-meteo-astronomy",
-    summary: "Moonrise time",
-    resolve: function (ctx) {
+    defaultVisible: false,
+    size: "sm",
+    getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.moonrise) {
         return D().editorialReady(dl.moonrise, "Tonight's moonrise", null, null, D().tagFromSlice(dl));
       }
-      return null;
-    },
-    placeholder: "Moonrise times from Open-Meteo when available."
+      return D().educationalData("astronomy", { summary: "Moonrise", widgetId: "moonrise" });
+    }
   });
 
-  preview({
+  reg({
     id: "moonset",
     title: "Moonset",
     icon: "☾↓",
     category: "sun-moon",
     defaultOrder: 170,
-    futureProvider: "open-meteo-astronomy",
-    summary: "Moonset time",
-    resolve: function (ctx) {
+    defaultVisible: false,
+    size: "sm",
+    getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.moonset) {
         return D().editorialReady(dl.moonset, "Tonight's moonset", null, null, D().tagFromSlice(dl));
       }
-      return null;
-    },
-    placeholder: "Moonset times from Open-Meteo when available."
+      return D().educationalData("astronomy", { summary: "Moonset", widgetId: "moonset" });
+    }
   });
 
   /* ——— Wildlife dashboard ——— */
@@ -384,7 +388,7 @@
   });
 
   /* ——— Wildlife (legacy singles) ——— */
-  preview({
+  educational({
     id: "wildlife-activity",
     title: "Wildlife Activity",
     icon: "W",
@@ -403,7 +407,7 @@
     placeholder: "Editorial wildlife notes interpret what may be active near trails and waterways."
   });
 
-  preview({
+  educational({
     id: "bird-migration",
     title: "Bird Migration",
     icon: "Bm",
@@ -427,7 +431,7 @@
     placeholder: "Migration timing and peak species when bird data providers connect."
   });
 
-  preview({
+  educational({
     id: "amphibian-activity",
     title: "Amphibian Activity",
     icon: "Am",
@@ -445,7 +449,7 @@
     placeholder: "Amphibian breeding and calling activity after warm rains."
   });
 
-  preview({
+  educational({
     id: "insect-activity",
     title: "Insect Activity",
     icon: "In",
@@ -478,7 +482,7 @@
   });
 
   /* ——— Foraging (legacy singles) ——— */
-  preview({
+  educational({
     id: "mushroom-outlook",
     title: "Mushroom Outlook",
     icon: "Mg",
@@ -502,7 +506,7 @@
     items: null
   });
 
-  preview({
+  educational({
     id: "berry-conditions",
     title: "Berry Conditions",
     icon: "Br",
@@ -519,7 +523,7 @@
     placeholder: "Berry ripening follows elevation and recent rainfall."
   });
 
-  preview({
+  educational({
     id: "seasonal-edibles",
     title: "Seasonal Edibles",
     icon: "Ed",
@@ -537,7 +541,7 @@
     placeholder: "Seasonal edible plants and fungi — identification first, harvest ethics always."
   });
 
-  preview({
+  educational({
     id: "recent-rainfall",
     title: "Recent Rainfall",
     icon: "Rn",
@@ -569,7 +573,7 @@
   });
 
   /* ——— Flora (legacy singles) ——— */
-  preview({
+  educational({
     id: "bloom-calendar",
     title: "Bloom Calendar",
     icon: "Bc",
@@ -587,7 +591,7 @@
     placeholder: "Wildflower bloom windows from regional phenology."
   });
 
-  preview({
+  educational({
     id: "tree-phenology",
     title: "Tree Phenology",
     icon: "Tr",
@@ -604,7 +608,7 @@
     placeholder: "Bud break, leaf-out, and mast timing for the region."
   });
 
-  preview({
+  educational({
     id: "wildflower-activity",
     title: "Wildflower Activity",
     icon: "Wf",
@@ -621,7 +625,7 @@
     placeholder: "Spring ephemerals and summer meadow flowers."
   });
 
-  preview({
+  educational({
     id: "fall-color",
     title: "Fall Color",
     icon: "Fc",
@@ -647,7 +651,7 @@
   });
 
   /* ——— Water (legacy singles) ——— */
-  preview({
+  educational({
     id: "river-levels",
     title: "River Levels",
     icon: "Rv",
@@ -659,7 +663,7 @@
     placeholder: "USGS river gauge levels will appear when gauges are connected."
   });
 
-  preview({
+  educational({
     id: "stream-flow",
     title: "Stream Flow",
     icon: "St",
@@ -670,7 +674,7 @@
     placeholder: "Stream flow (cfs) for paddling and crossing decisions."
   });
 
-  preview({
+  educational({
     id: "water-temperature",
     title: "Water Temperature",
     icon: "Wt",
@@ -681,7 +685,7 @@
     placeholder: "Water temperature at gauge sites when available."
   });
 
-  preview({
+  educational({
     id: "flood-status",
     title: "Flood Status",
     icon: "Fl",
@@ -707,7 +711,7 @@
   });
 
   /* ——— Trails (legacy singles) ——— */
-  preview({
+  educational({
     id: "trail-conditions",
     title: "Trail Conditions",
     icon: "Tk",
@@ -726,7 +730,7 @@
     placeholder: "Ridge tops dry first; ravines hold mud after rain — verify locally."
   });
 
-  preview({
+  educational({
     id: "trail-closures",
     title: "Trail Closures",
     icon: "X",
@@ -737,7 +741,7 @@
     placeholder: "Agency trail closures when trail report provider connects."
   });
 
-  preview({
+  educational({
     id: "park-alerts",
     title: "Park Alerts",
     icon: "Pa",
@@ -748,7 +752,7 @@
     placeholder: "National and state park alerts when provider connects."
   });
 
-  preview({
+  educational({
     id: "parking-updates",
     title: "Parking Updates",
     icon: "Pk",
@@ -775,7 +779,7 @@
   });
 
   /* ——— Photography (legacy singles) ——— */
-  preview({
+  educational({
     id: "sunrise-quality",
     title: "Sunrise Quality",
     icon: "Sq",
@@ -796,7 +800,7 @@
     placeholder: "Cloud cover and fog shape sunrise photography potential."
   });
 
-  preview({
+  educational({
     id: "sunset-quality",
     title: "Sunset Quality",
     icon: "Sq",
@@ -816,7 +820,7 @@
     placeholder: "Evening cloud decks and clearing trends for landscape light."
   });
 
-  preview({
+  educational({
     id: "fog-potential",
     title: "Fog Potential",
     icon: "Fg",
@@ -833,7 +837,7 @@
     placeholder: "Radiation fog potential from humidity, wind, and overnight cooling."
   });
 
-  preview({
+  educational({
     id: "milky-way",
     title: "Milky Way",
     icon: "Mw",
@@ -851,7 +855,7 @@
     placeholder: "Milky Way visibility from moon phase and cloud forecast."
   });
 
-  preview({
+  educational({
     id: "aurora",
     title: "Aurora",
     icon: "Au",
@@ -875,7 +879,7 @@
   });
 
   /* ——— Astronomy ——— */
-  preview({
+  educational({
     id: "visible-planets",
     title: "Visible Planets",
     icon: "Pl",
@@ -886,7 +890,7 @@
     placeholder: "Planet rise/set and visibility when astronomy API connects."
   });
 
-  preview({
+  educational({
     id: "iss-passes",
     title: "ISS Passes",
     icon: "Is",
@@ -897,7 +901,7 @@
     placeholder: "ISS overhead pass times for your coordinates."
   });
 
-  preview({
+  educational({
     id: "meteor-showers",
     title: "Meteor Showers",
     icon: "Ms",
@@ -908,7 +912,7 @@
     placeholder: "Annual meteor shower peaks and moon interference."
   });
 
-  preview({
+  educational({
     id: "dark-sky-rating",
     title: "Dark Sky Rating",
     icon: "Ds",
@@ -940,7 +944,7 @@
   });
 
   /* ——— Safety (legacy singles) ——— */
-  preview({
+  educational({
     id: "tick-activity",
     title: "Tick Activity",
     icon: "Tk",
@@ -951,7 +955,7 @@
     placeholder: "Tick activity index from temperature and humidity models."
   });
 
-  preview({
+  educational({
     id: "mosquito-activity",
     title: "Mosquito Activity",
     icon: "Mz",
@@ -961,7 +965,7 @@
     placeholder: "Mosquito activity forecast when entomology provider connects."
   });
 
-  preview({
+  educational({
     id: "fire-danger",
     title: "Fire Danger",
     icon: "Fi",
@@ -972,7 +976,7 @@
     placeholder: "Fire weather index and burn ban status."
   });
 
-  preview({
+  educational({
     id: "heat-risk",
     title: "Heat Risk",
     icon: "Ht",
@@ -989,7 +993,7 @@
     placeholder: "Heat index and exertion risk from live weather when extreme."
   });
 
-  preview({
+  educational({
     id: "storm-risk",
     title: "Storm Risk",
     icon: "St",
@@ -1008,7 +1012,7 @@
   });
 
   /* ——— Conservation ——— */
-  preview({
+  educational({
     id: "conservation-news",
     title: "Regional News",
     icon: "Cv",
@@ -1031,7 +1035,7 @@
     placeholder: "Habitat projects and public lands context for your region."
   });
 
-  preview({
+  educational({
     id: "volunteer-opportunities",
     title: "Volunteer Opportunities",
     icon: "Vo",
@@ -1042,7 +1046,7 @@
     placeholder: "Stewardship volunteer events when calendar provider connects."
   });
 
-  preview({
+  educational({
     id: "invasive-species-alerts",
     title: "Invasive Species Alerts",
     icon: "Iv",
@@ -1053,7 +1057,7 @@
     placeholder: "Invasive plant and pest alerts for the region."
   });
 
-  preview({
+  educational({
     id: "habitat-projects",
     title: "Habitat Projects",
     icon: "Hb",
@@ -1064,7 +1068,7 @@
   });
 
   /* ——— My Dashboard ——— */
-  preview({
+  educational({
     id: "recent-fieldry-observations",
     title: "Recent Fieldry Observations",
     icon: "Fn",
@@ -1105,7 +1109,7 @@
     placeholder: ""
   });
 
-  preview({
+  educational({
     id: "favorite-locations",
     title: "Favorite Locations",
     icon: "★",
@@ -1127,7 +1131,7 @@
     placeholder: "Save favorite trailheads and overlooks — coming soon."
   });
 
-  preview({
+  educational({
     id: "observation-goals",
     title: "Observation Goals",
     icon: "Go",
@@ -1137,7 +1141,7 @@
     placeholder: "Set species or habitat goals to guide weekend field time."
   });
 
-  preview({
+  educational({
     id: "recently-viewed-species",
     title: "Recently Viewed Species",
     icon: "Sp",

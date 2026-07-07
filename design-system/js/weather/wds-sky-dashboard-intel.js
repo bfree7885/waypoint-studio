@@ -76,17 +76,17 @@
     }
 
     var milkyWay = verdict(
-      "preview",
-      "Preview",
+      "unavailable",
+      "Not yet available",
       dl && dl.moonIllumination != null && dl.moonIllumination <= 20
-        ? "Dark moon phase favors Milky Way — aurora API not connected yet."
-        : "Milky Way forecast requires astronomy provider — coming soon."
+        ? "Dark moon phase favors Milky Way — dedicated astronomy feed not connected yet."
+        : "Milky Way visibility forecast requires a connected astronomy provider."
     );
 
     var aurora = verdict(
-      "preview",
-      "Preview",
-      "Geomagnetic aurora forecast not connected for your latitude yet."
+      "unavailable",
+      "Not yet available",
+      "Geomagnetic aurora forecast is not connected for your latitude yet."
     );
 
     return {

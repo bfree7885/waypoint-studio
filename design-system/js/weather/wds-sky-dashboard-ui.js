@@ -142,17 +142,17 @@
     );
   }
 
-  function photoCard(icon, label, data, isPreview) {
+  function photoCard(icon, label, data, isUnavailable) {
     if (!data) return "";
     var levelClass = "wsky-photo__card--" + (data.level || "unknown");
-    if (isPreview) levelClass = "wsky-photo__card--preview";
+    if (isUnavailable) levelClass = "wsky-photo__card--preview";
     return (
       '<div class="wsky-photo__card ' + levelClass + '">' +
         '<span class="wsky-photo__icon" aria-hidden="true">' + escapeHtml(icon) + "</span>" +
         '<span class="wsky-photo__label">' + escapeHtml(label) + "</span>" +
         '<span class="wsky-photo__headline">' + escapeHtml(data.headline) + "</span>" +
         (data.detail ? '<span class="wsky-photo__detail">' + escapeHtml(data.detail) + "</span>" : "") +
-        (isPreview ? '<span class="wsky-photo__badge">Preview</span>' : "") +
+        (isUnavailable ? '<span class="wsky-photo__badge">Not yet available</span>' : "") +
       "</div>"
     );
   }
@@ -176,7 +176,7 @@
           photoCard("✨", "Aurora", intel.aurora, true) +
         "</div>" +
         '<footer class="wsky__foot">' +
-          '<p class="wsky__attribution">Live weather · placeholders marked Preview</p>' +
+          '<p class="wsky__attribution">Live weather · Milky Way and aurora feeds not yet connected</p>' +
         "</footer>" +
       "</div>"
     );
