@@ -284,7 +284,16 @@
         platform: options.platform
       })));
     }
-    return Promise.all(jobs);
+    return Promise.all(jobs).then(function () {
+      var BP = global.WDS && global.WDS.briefingPackage;
+      if (BP && BP.refresh) {
+        BP.refresh(root, {
+          platform: options.platform,
+          location: options.location,
+          bundle: options.bundle
+        });
+      }
+    });
   }
 
   function refreshWidget(root, widgetId, options) {

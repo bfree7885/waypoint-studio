@@ -450,10 +450,57 @@
     };
   }
 
+  function replaceInRoot(root, ctx) {
+    var scope = root && root.querySelector ? root : document;
+    var el = scope.querySelector(".wdb-doc");
+    if (!el) return false;
+    var html = render(ctx);
+    var wrap = document.createElement("div");
+    wrap.innerHTML = html;
+    var next = wrap.firstElementChild;
+    if (next) el.replaceWith(next);
+    return !!next;
+  }
+
+  function resolveContext(ctx) {
+    ctx = ctx || {};
+    if (!ctx.platform) {
+      var OIP = global.WDS && global.WDS.outdoorIntelligence;
+      ctx.platform = OIP && OIP.getLast ? OIP.getLast() : null;
+    }
+    if (!ctx.location && global.WDS && global.WDS.location && global.WDS.location.getState) {
+      ctx.location = global.WDS.location.getState();
+    }
+    return ctx;
+  }
+
+  function refresh(root, ctx) {
+    return replaceInRoot(root, resolveContext(ctx));
+  }
+
+  function bind(root, ctx) {
+    if (!bind._wired && global.document) {
+      bind._wired = true;
+      global.document.addEventListener("wds:outdoor-intelligence-change", function (e) {
+        var loc = global.WDS && global.WDS.location && global.WDS.location.getState
+          ? global.WDS.location.getState()
+          : null;
+        var mount = document.querySelector("[data-wds-dashboard-root]");
+        replaceInRoot(mount && mount.closest("#main") || document, {
+          platform: e.detail,
+          location: loc
+        });
+      });
+    }
+    refresh(root, ctx);
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.briefingPackage = {
     compose: compose,
     render: render,
+    refresh: refresh,
+    bind: bind,
     widgetStory: widgetStory,
     widgetHighlights: widgetHighlights
   };

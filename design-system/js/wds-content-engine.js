@@ -877,7 +877,10 @@
           settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
         }));
       });
-      DE.mountWidgets(mount, mountOpts);
+      DE.mountWidgets(mount, mountOpts).then(function () {
+        var BP = global.WDS && global.WDS.briefingPackage;
+        if (BP && BP.bind) BP.bind(mount, mountOpts);
+      });
       return;
     }
     var weatherMountOptions = Object.assign({}, mountOpts, { root: mount, fallback: false });
