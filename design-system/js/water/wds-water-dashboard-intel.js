@@ -34,9 +34,9 @@
     },
     floodStatus: {
       slot: "flood-status",
-      provider: "nws-flood",
-      label: "NWS flood watches and stages",
-      status: "pending"
+      provider: "nws",
+      label: "NWS flood watches and warnings",
+      status: "partial"
     },
     reservoirConditions: {
       slot: "reservoir-conditions",
@@ -190,12 +190,24 @@
     );
   }
 
+  function nwsFloodAlerts(platform) {
+    var pkg = platform && platform.alerts;
+    if (!pkg || pkg.status !== "live" || !pkg.items || !pkg.items.length) return [];
+    var NWS = global.WDS && global.WDS.nwsAlerts;
+    if (NWS && NWS.filterByPattern) {
+      return NWS.filterByPattern(pkg, /flood|flash flood|coastal flood|areal flood/i);
+    }
+    return pkg.items.filter(function (a) {
+      return /flood/i.test((a.event || "") + (a.headline || ""));
+    });
+  }
+
   function buildFishingConditions(platform, wx) {
     var ws = watershedLabel(platform);
     return card(
       "fishing-conditions", "🎣", "Fishing Conditions",
       "empty",
-      "Fishing intel preview",
+      "Fishing intel not connected",
       ws
         ? "Future composite will combine flow, temperature, and season for " + ws.split(" · ")[0] + " tributaries."
         : "Flow, temperature, and season composite — provider not connected.",
@@ -205,6 +217,18 @@
   }
 
   function buildFloodStatus(platform, wx) {
+    var nws = nwsFloodAlerts(platform);
+    if (nws.length) {
+      var top = nws[0];
+      return card(
+        "flood-status", "⚠", "Flood Status",
+        "ready",
+        top.headline || top.event,
+        top.instruction || top.description.split("\n")[0],
+        "Official NWS product — confirm at weather.gov.",
+        "live", "floodStatus", top.severity
+      );
+    }
     var notes = observationsMatching(platform, /flood|high water|standing water|crossing/i);
     if (notes.length && /flood|high|standing|cross/i.test(notes[0].title + notes[0].body)) {
       return card(
@@ -222,15 +246,15 @@
         "ready",
         "Heavy recent rainfall — monitor low areas",
         wx.rainSummary || (wx.rainAmt.toFixed(2) + " " + wx.rainUnit + " in " + wx.rainDays + " days"),
-        "NWS flood products not connected — check weather.gov for official watches.",
+        "No NWS flood alert active — monitor low areas after heavy rain.",
         wx.live ? "live" : "editorial", "floodStatus", null
       );
     }
     return card(
       "flood-status", "⚠", "Flood Status",
       "empty",
-      "No active flood feed",
-      "NWS flood watches, warnings, and river forecast points will populate this card.",
+      "No active NWS flood alert",
+      "NWS flood watches and warnings appear when issued for your coordinates.",
       "After heavy rain, assume low crossings unsafe until verified.",
       "future", "floodStatus", "None"
     );

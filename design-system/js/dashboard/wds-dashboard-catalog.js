@@ -294,7 +294,8 @@
     getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.goldenHour) {
-        return D().editorialReady(dl.goldenHour, "Best for landscapes and wildlife rim light.", null, null, D().tagFromSlice(dl));
+        return D().editorialReady(dl.goldenHour, "Best for landscapes and wildlife rim light.", null, null,
+          dl.goldenHourStatus === "estimated" ? D().tagFromSource("estimated") : D().tagFromSlice(dl));
       }
       return D().educationalData("astronomy", { summary: "Golden hour", widgetId: "golden-hour" });
     }
@@ -311,7 +312,8 @@
     getData: function (ctx) {
       var dl = D().daylightData(ctx);
       if (dl && dl.blueHour) {
-        return D().editorialReady(dl.blueHour, "Cool ambient light before sunrise and after sunset.", null, null, D().tagFromSlice(dl));
+        return D().editorialReady(dl.blueHour, "Cool ambient light before sunrise and after sunset.", null, null,
+          dl.blueHourStatus === "estimated" ? D().tagFromSource("estimated") : D().tagFromSlice(dl));
       }
       return D().educationalData("astronomy", { summary: "Blue hour", widgetId: "blue-hour" });
     }
@@ -691,9 +693,18 @@
     icon: "Fl",
     category: "water",
     defaultOrder: 540,
-    futureProvider: "nws-flood",
+    futureProvider: "nws",
     summary: "Flood watches and stages",
-    placeholder: "Flood stage and advisory status from NWS when connected."
+    resolve: function (ctx) {
+      var matches = D().nwsAlertsMatching(p(ctx), /flood|flash flood|coastal flood|areal flood/i);
+      if (matches.length) {
+        var top = matches[0];
+        return D().editorialReady(top.headline || top.event, top.instruction || top.description.split("\n")[0],
+          matches.slice(0, 3).map(function (a) { return a.event; }), null, D().tagFromSource("live"));
+      }
+      return null;
+    },
+    placeholder: "NWS flood watches and warnings appear when active for your coordinates."
   });
 
   /* ——— Trail dashboard ——— */
@@ -1002,13 +1013,19 @@
     defaultVisible: false,
     summary: "Thunderstorm potential",
     resolve: function (ctx) {
+      var nws = D().nwsAlertsMatching(p(ctx), /thunder|lightning|severe|tornado|hail|damaging wind|storm/i);
+      if (nws.length) {
+        var top = nws[0];
+        return D().editorialReady(top.headline || top.event, top.instruction || "Have a below-treeline exit plan before ridges.",
+          nws.slice(0, 3).map(function (a) { return a.event; }), null, D().tagFromSource("live"));
+      }
       var w = D().weather(ctx);
       if (D().sliceReady(w) && /storm|thunder|lightning/i.test((w.conditions || "") + (w.summary || ""))) {
         return D().editorialReady("Storm potential today", "Have a below-treeline exit plan before ridges.");
       }
       return null;
     },
-    placeholder: "Thunderstorm and lightning risk from forecast when elevated."
+    placeholder: "Thunderstorm and lightning risk from NWS alerts and forecast when elevated."
   });
 
   /* ——— Conservation ——— */

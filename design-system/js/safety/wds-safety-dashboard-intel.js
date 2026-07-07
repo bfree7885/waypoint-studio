@@ -14,7 +14,7 @@
     fireDanger: { slot: "fire-danger", provider: "fire-weather", status: "pending" },
     uvIndex: { slot: "uv-index", provider: "open-meteo", status: "partial" },
     waterSafety: { slot: "water-safety", provider: "composite", status: "partial" },
-    generalAdvisories: { slot: "outdoor-advisories", provider: "editorial", status: "partial" }
+    generalAdvisories: { slot: "outdoor-advisories", provider: "nws", status: "partial" }
   };
 
   function card(id, icon, label, level, headline, recommendation, detail, source, feedKey, value) {
@@ -198,7 +198,35 @@
     );
   }
 
-  function buildStormRisk(wx) {
+  function alertsPkg(platform) {
+    return platform && platform.alerts;
+  }
+
+  function nwsAlerts(platform, pattern) {
+    var pkg = alertsPkg(platform);
+    if (!pkg || !pkg.items || !pkg.items.length || pkg.status !== "live") return [];
+    var NWS = global.WDS && global.WDS.nwsAlerts;
+    if (NWS && NWS.filterByPattern) return NWS.filterByPattern(pkg, pattern);
+    return pkg.items.filter(function (a) {
+      var hay = ((a.event || "") + " " + (a.headline || "")).toLowerCase();
+      return pattern.test(hay);
+    });
+  }
+
+  function buildStormRisk(wx, platform) {
+    var nws = nwsAlerts(platform, /thunder|lightning|severe thunder|tornado|hail|damaging wind|storm/i);
+    if (nws.length) {
+      var top = nws[0];
+      var level = /warning|emergency/i.test(top.event) ? "elevated" : "moderate";
+      return card(
+        "storm-risk", "⛈", "Storm Risk",
+        level,
+        top.headline || top.event,
+        top.instruction || "Have a below-treeline exit plan; avoid exposed summits if storms develop.",
+        top.areaDesc || top.description.split("\n")[0],
+        "live", "stormRisk", top.severity
+      );
+    }
     if (!wx.live) {
       return card(
         "storm-risk", "⛈", "Storm Risk",
@@ -346,6 +374,18 @@
   }
 
   function buildGeneralAdvisories(platform) {
+    var nws = nwsAlerts(platform, /.+/);
+    if (nws.length) {
+      var top = nws[0];
+      return card(
+        "general-advisories", "📋", "Outdoor Advisories",
+        /warning|emergency|severe/i.test(top.event + top.severity) ? "elevated" : "moderate",
+        top.headline || top.event,
+        top.instruction || "Confirm details at weather.gov before travel.",
+        top.description ? top.description.split("\n")[0] : top.areaDesc,
+        "live", "generalAdvisories", null
+      );
+    }
     var notes = observationsMatching(platform, /bear|advisory|secure|alert|game commission|park|trail|mud|tick/i);
     var cons = platform && platform.conservation && platform.conservation.current;
     var items = [];
@@ -386,7 +426,7 @@
       tickActivity: buildTickActivity(platform, wx, month),
       mosquitoActivity: buildMosquitoActivity(platform, wx, month),
       heatRisk: buildHeatRisk(wx),
-      stormRisk: buildStormRisk(wx),
+      stormRisk: buildStormRisk(wx, platform),
       airQuality: buildAirQuality(),
       fireDanger: buildFireDanger(platform, wx),
       uvIndex: buildUvIndex(wx),

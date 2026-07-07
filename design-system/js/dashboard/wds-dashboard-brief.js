@@ -41,6 +41,20 @@
     var verdictDetail = "Conditions look reasonable for most outdoor plans.";
     var cautions = [];
 
+    var alertPkg = platform.alerts;
+    if (alertPkg && alertPkg.status === "live" && alertPkg.items && alertPkg.items.length) {
+      var NWS = global.WDS && global.WDS.nwsAlerts;
+      var severe = NWS && NWS.filterByPattern
+        ? NWS.filterByPattern(alertPkg, /warning|emergency|severe|flood|thunder|tornado|blizzard|heat/i)
+        : alertPkg.items;
+      if (severe.length) {
+        verdict = "wait";
+        verdictLabel = "NWS alert — " + (severe[0].event || "active warning");
+        verdictDetail = severe[0].headline || "Check weather.gov for official instructions.";
+        cautions.push("NWS alert");
+      }
+    }
+
     if (/thunder|lightning|storm/.test(cond) || (pop != null && pop >= 70)) {
       verdict = "wait";
       verdictLabel = "Use caution — storms likely";

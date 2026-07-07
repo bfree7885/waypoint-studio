@@ -105,15 +105,32 @@
     });
   }
 
+  function coordsFromPkg(pkg) {
+    if (!pkg) return null;
+    var lat = pkg.location ? pkg.location.latitude : (pkg.coordinates && pkg.coordinates.latitude);
+    var lng = pkg.location ? pkg.location.longitude : (pkg.coordinates && pkg.coordinates.longitude);
+    if (!M.isFiniteCoord(lat) || !M.isFiniteCoord(lng)) return null;
+    return { lat: Number(lat), lng: Number(lng) };
+  }
+
+  function resolveAlerts(request, pkg) {
+    var NWS = global.WDS && global.WDS.nwsAlerts;
+    if (!NWS || !NWS.fetchActive) return Promise.resolve(null);
+    var coords = coordsFromPkg(pkg);
+    if (!coords) return Promise.resolve(null);
+    return NWS.fetchActive({ lat: coords.lat, lng: coords.lng });
+  }
+
   function resolveWeather(request, pkg) {
     if (!request.includeWeather) return Promise.resolve(null);
     var W = global.WDS && global.WDS.weather;
     if (!W || !W.getForecast) return Promise.resolve(null);
     if (!pkg) return Promise.resolve(null);
 
-    var lat = pkg.location ? pkg.location.latitude : (pkg.coordinates && pkg.coordinates.latitude);
-    var lng = pkg.location ? pkg.location.longitude : (pkg.coordinates && pkg.coordinates.longitude);
-    if (!M.isFiniteCoord(lat) || !M.isFiniteCoord(lng)) return Promise.resolve(null);
+    var coords = coordsFromPkg(pkg);
+    if (!coords) return Promise.resolve(null);
+    var lat = coords.lat;
+    var lng = coords.lng;
 
     var national = request.location && (request.location.useNationalFallback || request.location.contentMode === "national-educational");
     var hints = null;
@@ -154,14 +171,18 @@
     };
   }
 
-  function finalizePlatformPackage(pkg, weatherPkg) {
+  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg) {
     if (weatherPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromWeatherPackage(weatherPkg)));
       pkg.weatherRef = weatherPkg;
     }
+    if (alertsPkg) {
+      pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromAlertsPackage(alertsPkg)));
+    }
     pkg.legacy = S.toLegacyV1(pkg);
     pkg.meta.sources = Object.assign({}, pkg.meta.sources || {}, {
       weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider : "none",
+      alerts: alertsPkg && alertsPkg.meta ? alertsPkg.meta.provider : "none",
       regionalIntelligence: "engine"
     });
     lastPackage = pkg;
@@ -180,29 +201,37 @@
       (core.meta && core.meta.regionId) ||
       req.regionId;
 
-    return resolveWeather(req, intelForWeather(core)).then(function (weatherPkg) {
+    return Promise.all([
+      resolveWeather(req, intelForWeather(core)),
+      resolveAlerts(req, core)
+    ]).then(function (parts) {
+      var weatherPkg = parts[0];
+      var alertsPkg = parts[1];
       if (national) {
         var UN = global.WDS && global.WDS.usNational;
         var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, layer)),
-          weatherPkg
+          weatherPkg,
+          alertsPkg
         );
       }
       if (req.bundle) {
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(req.bundle))),
-          weatherPkg
+          weatherPkg,
+          alertsPkg
         );
       }
       return loadBundle(regionId, req.contentEngineBase).then(function (bundle) {
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(bundle))),
-          weatherPkg
+          weatherPkg,
+          alertsPkg
         );
       }).catch(function (err) {
         M.devLog("platform extensions failed — engine core only", err && err.message);
-        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg);
+        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg);
       });
     });
   }

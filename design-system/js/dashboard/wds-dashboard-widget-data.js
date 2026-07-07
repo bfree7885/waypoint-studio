@@ -34,6 +34,22 @@
     return platform(ctx).rainfall;
   }
 
+  function alerts(ctx) {
+    return platform(ctx).alerts || null;
+  }
+
+  function nwsAlertsMatching(ctx, pattern) {
+    var pkg = alerts(ctx);
+    if (!pkg || !hasItems(pkg.items)) return [];
+    if (pkg.status !== "live" && pkg.status !== "empty") return [];
+    var NWS = global.WDS && global.WDS.nwsAlerts;
+    if (NWS && NWS.filterByPattern) return NWS.filterByPattern(pkg, pattern);
+    return pkg.items.filter(function (item) {
+      var hay = ((item.event || "") + " " + (item.headline || "")).toLowerCase();
+      return pattern.test(hay);
+    });
+  }
+
   function observationsMatching(p, pattern) {
     var obs = p.observations;
     if (!sliceReady(obs) || !hasItems(obs.items)) return [];
@@ -245,6 +261,8 @@
     weather: weather,
     daylight: daylight,
     rainfall: rainfall,
+    alerts: alerts,
+    nwsAlertsMatching: nwsAlertsMatching,
     observationsMatching: observationsMatching,
     speciesGroups: speciesGroups,
     speciesActiveItems: speciesActiveItems,

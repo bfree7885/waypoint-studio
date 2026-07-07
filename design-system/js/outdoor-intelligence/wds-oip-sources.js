@@ -178,6 +178,11 @@
     };
   }
 
+  function fromAlertsPackage(alertsPkg) {
+    if (!alertsPkg) return {};
+    return { alerts: alertsPkg };
+  }
+
   function fromWeatherPackage(weatherPkg) {
     if (!weatherPkg) return {};
     if (RI && RI.sources && RI.sources.fromWeatherPackage) {
@@ -297,6 +302,7 @@
     fromContentBundle: fromContentBundle,
     fromPlatformExtensions: fromPlatformExtensions,
     fromWeatherPackage: fromWeatherPackage,
+    fromAlertsPackage: fromAlertsPackage,
     mergeLayers: mergeLayers,
     toLegacyV1: toLegacyV1
   };
