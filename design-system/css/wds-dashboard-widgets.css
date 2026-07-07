@@ -118,6 +118,34 @@
   opacity: 0.7;
 }
 
+.wdb-doc__notice-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.wdb-doc__what,
+.wdb-doc__why,
+.wdb-doc__matters,
+.wdb-doc__do,
+.wdb-doc__watch {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.wdb-doc__do {
+  font-weight: 500;
+}
+
+.wdb-doc__notice-meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
 .wdb-briefing {
   display: grid;
   gap: var(--wds-space-4, 1rem);

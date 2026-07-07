@@ -25,6 +25,21 @@
     return !!(platform && platform.meta && platform.meta.contentMode === "national-educational");
   }
 
+  function notice(domain, opts) {
+    opts = opts || {};
+    return {
+      domain: domain,
+      what: opts.what || "",
+      why: opts.why || "",
+      matters: opts.matters || "",
+      doAction: opts.doAction || "",
+      watch: opts.watch || "",
+      trust: opts.trust || "Educational",
+      source: opts.source || "",
+      text: opts.what || ""
+    };
+  }
+
   function domainIntel(platform) {
     var out = { trails: null, water: null, wildlife: null, safety: null };
     var T = global.WDS && global.WDS.trailDashboardIntel;
@@ -104,39 +119,70 @@
 
     if (platform.airQuality && platform.airQuality.usAqi != null) {
       evidence.push("US AQI " + platform.airQuality.usAqi);
-      notices.push({
-        domain: "Air quality",
-        text: "US AQI " + platform.airQuality.usAqi + " — " + (platform.airQuality.category || "check sensitive groups"),
+      notices.push(notice("Air quality", {
+        what: "US AQI " + platform.airQuality.usAqi + (platform.airQuality.category ? " (" + platform.airQuality.category + ")" : ""),
+        why: "Fine particulate and ozone affect breathing and exertion outdoors.",
+        matters: "Sensitive groups should reduce prolonged exertion above 100; above 150 is unhealthy for everyone.",
+        doAction: platform.airQuality.usAqi >= 100 ? "Shorten intense hikes; consider indoor backup plan." : "Good air for outdoor activity at moderate pace.",
+        watch: "Check hourly if wildfire smoke is regional — AQI can shift fast.",
         trust: "Live",
         source: "Open-Meteo Air Quality"
-      });
+      }));
+    }
+
+    if (dl && dl.sunriseFormatted) {
+      notices.push(notice("Sun & moon", {
+        what: "Sunrise " + dl.sunriseFormatted + " · Sunset " + (dl.sunsetFormatted || "—") +
+          (dl.goldenHour ? " · Golden hour: " + dl.goldenHour : "") +
+          (dl.moonPhase ? " · Moon: " + dl.moonPhase : ""),
+        why: "Solar angle controls light quality, temperature swing, and wildlife activity windows.",
+        matters: "Golden hour is the highest-value window for landscape and wildlife photography.",
+        doAction: intel && intel.photography && intel.photography.level === "excellent"
+          ? "Prioritize a shoot during golden hour today."
+          : "Plan key outdoor time around sunrise or golden hour.",
+        watch: dl.blueHour ? "Blue hour: " + dl.blueHour : "Watch western horizon breaks before sunset.",
+        trust: "Live",
+        source: "Open-Meteo astronomy"
+      }));
     }
 
     if (platform.alerts && platform.alerts.items && platform.alerts.items.length) {
-      notices.push({
-        domain: "Safety",
-        text: platform.alerts.items.length + " NWS alert(s) active — verify at weather.gov",
+      var a0 = platform.alerts.items[0];
+      notices.push(notice("Safety", {
+        what: platform.alerts.items.length + " NWS alert(s) — " + (a0.event || a0.headline || "active warning"),
+        why: "National Weather Service issues alerts for hazards that override normal outdoor plans.",
+        matters: "Official warnings can require shelter, route changes, or cancellation.",
+        doAction: "Read the full alert at weather.gov before exposed travel.",
+        watch: "Conditions can change hourly — re-check before leaving cell service.",
         trust: "Live",
         source: "NWS"
-      });
+      }));
     }
 
     if (intel && intel.photography) {
-      notices.push({
-        domain: "Photography",
-        text: intel.photography.summary + (intel.photography.detail ? " — " + intel.photography.detail : ""),
+      notices.push(notice("Photography", {
+        what: intel.photography.summary + (intel.photography.detail ? " — " + intel.photography.detail : ""),
+        why: "Cloud cover, humidity, and sun angle shape contrast, color, and subject visibility.",
+        matters: "Light quality is the primary lever for outdoor image impact.",
+        doAction: intel.photography.level === "excellent" || intel.photography.level === "good"
+          ? "Carry a camera on today's outing — conditions favor strong frames."
+          : "Shoot early/late or embrace atmosphere (fog, rain) if midday is harsh.",
+        watch: "Check hourly cloud trends — breaks in overcast create brief peak light.",
         trust: "Estimated",
         source: "Open-Meteo + derived light"
-      });
+      }));
     }
 
     if (intel && intel.hiking) {
-      notices.push({
-        domain: "Hiking",
-        text: intel.hiking.summary + (intel.hiking.detail ? " — " + intel.hiking.detail : ""),
+      notices.push(notice("Hiking", {
+        what: intel.hiking.summary + (intel.hiking.detail ? " — " + intel.hiking.detail : ""),
+        why: "Temperature, precipitation, and wind drive comfort and risk on exposed trails.",
+        matters: "Heat, storms, and mud change route safety more than trail difficulty ratings.",
+        doAction: intel.hiking.level === "poor" ? "Choose low, sheltered routes or postpone." : "Pack layers matched to feels-like temperature.",
+        watch: "Ridge lines and water crossings worsen first in changing weather.",
         trust: "Estimated",
         source: "Open-Meteo"
-      });
+      }));
     }
 
     var usgs = platform.usgsWater;
@@ -144,76 +190,117 @@
       var US = global.WDS && global.WDS.usgsWater;
       var fg = US && US.formatGauge ? US.formatGauge(usgs) : null;
       if (fg) {
-        notices.push({
-          domain: "Water",
-          text: fg.headline + " — " + fg.detail,
+        notices.push(notice("Water", {
+          what: fg.headline + " — " + fg.detail,
+          why: "Stream stage and discharge indicate crossing difficulty and flood trend.",
+          matters: "Rising water can make ford crossings dangerous within hours.",
+          doAction: "Compare gauge reading to local flood stage before water crossings.",
+          watch: "Recent rain upstream may not appear at gauge yet — allow lag time.",
           trust: "Live",
           source: "USGS IV (provisional)"
-        });
+        }));
       }
     } else if (domains.water && domains.water.summary) {
-      notices.push({
-        domain: "Water",
-        text: domains.water.summary,
+      notices.push(notice("Water", {
+        what: domains.water.summary,
+        why: "Hydrology shapes fishing, paddling, and trail creek crossings.",
+        matters: "No live gauge is linked — local conditions may differ from forecast rain.",
+        doAction: "Check USGS WaterWatch or local gauge before committing to water routes.",
+        watch: "Muddy tributaries after rain — even when main stem looks clear.",
         trust: national ? "Educational" : "Editorial",
         source: national ? "U.S. educational hydrology" : "Regional bundle"
-      });
+      }));
     }
 
     if (domains.trails && domains.trails.summary) {
-      notices.push({
-        domain: "Trails",
-        text: domains.trails.summary,
+      notices.push(notice("Trails", {
+        what: domains.trails.summary,
+        why: "Recent rain and temperature drive mud, erosion, and closure risk.",
+        matters: "Trail surface can differ from valley weather within miles.",
+        doAction: "Verify trail status at park or forest service sites before driving out.",
+        watch: "North-facing slopes and drainages stay muddy longer after rain.",
         trust: "Estimated",
         source: "Open-Meteo + regional notes"
-      });
+      }));
     } else {
-      notices.push({
-        domain: "Trails",
-        text: national
-          ? "Trail agency feeds not connected — check official park and forest service sites before you go."
-          : "Trail conditions use weather inference — verify mud and closures locally.",
+      notices.push(notice("Trails", {
+        what: national
+          ? "Trail agency live feeds not connected for this coordinates view."
+          : "Trail conditions inferred from weather — not a trail report.",
+        why: "Official closures and surface reports come from land managers, not weather alone.",
+        matters: "A dry forecast does not guarantee passable mud or open gates.",
+        doAction: "Check Recreation.gov, NPS, or state park sites before you go.",
+        watch: "Parking lot mud and gate signage at trailheads.",
         trust: "Not yet available",
         source: "Recreation.gov / NPS (pending)"
-      });
+      }));
     }
 
+    notices.push(notice("Public lands", {
+      what: national
+        ? "Federal and state land boundaries are not resolved to this coordinate yet."
+        : "Verify land jurisdiction and regulations for your planned route.",
+      why: "Rules, fees, and seasonal closures vary by agency (NPS, USFS, BLM, state).",
+      matters: "Photography, drones, and camping rules differ across jurisdictions.",
+      doAction: "Confirm access and permits on the managing agency website.",
+      watch: "Seasonal road closures and fire restrictions — often unposted until you arrive.",
+      trust: "Educational",
+      source: "Land manager sites (not yet connected)"
+    }));
+
     if (domains.wildlife && domains.wildlife.summary) {
-      notices.push({
-        domain: "Wildlife",
-        text: domains.wildlife.summary,
+      notices.push(notice("Wildlife", {
+        what: domains.wildlife.summary,
+        why: "Temperature and season drive diurnal activity, migration, and visibility.",
+        matters: "Dawn and dusk remain peak windows even when midday is quiet.",
+        doAction: "Move slowly at edges — forest margins and water sources first.",
+        watch: "Storm fronts can suppress movement; after rain, amphibians and birds often rebound.",
         trust: national ? "Educational" : "Editorial",
         source: national ? "Climate-season guidance" : "Regional species bundle"
-      });
+      }));
     } else {
-      notices.push({
-        domain: "Wildlife",
-        text: "Wildlife activity follows season and weather — eBird live feed not connected for this location.",
+      notices.push(notice("Wildlife", {
+        what: "Species activity follows season and weather at your latitude.",
+        why: "Live occurrence data (eBird) is not connected for this briefing.",
+        matters: "Educational guidance cannot replace local knowledge or rare species alerts.",
+        doAction: "Listen at dawn; scan edges and water sources.",
+        watch: "Never approach young animals — parent may be nearby.",
         trust: "Educational",
         source: "Waypoint environmental education"
-      });
+      }));
     }
 
     if (!national) {
       var species = (platform.species && platform.species.active) || [];
       if (species[0] && species[0].name) {
-        notices.push({
-          domain: "Ecology",
-          text: "Watch for " + species[0].name + (species[0].note ? " — " + species[0].note : ""),
+        notices.push(notice("Ecology", {
+          what: "Watch for " + species[0].name + (species[0].note ? " — " + species[0].note : ""),
+          why: "Local phenology and species calendars reflect field conditions in this bundle.",
+          matters: "Editorial species notes are not live occurrence data.",
+          doAction: "Confirm identification in the field — use multiple cues, not one photo.",
+          watch: "Habitat type and microclimate can shift timing by weeks.",
           trust: "Editorial",
           source: "Local field bundle"
-        });
+        }));
       }
     } else {
       var UN = global.WDS && global.WDS.usNational;
       if (UN && UN.weatherInterpretation && wx) {
-        notices.push({
-          domain: "Ecology",
-          text: UN.weatherInterpretation(wx),
+        notices.push(notice("Ecology", {
+          what: UN.weatherInterpretation(wx),
+          why: "Broad climate zone and current weather shape what is plausible outdoors.",
+          matters: "This is educational — not a species list for your exact coordinates.",
+          doAction: "Use a field guide for your state; observe before identifying.",
+          watch: "Edges, water, and south-facing slopes first.",
           trust: "Educational",
           source: "Waypoint U.S. educational"
-        });
+        }));
       }
+    }
+
+    var EB = global.WDS && global.WDS.ecosystemBridge;
+    if (EB && EB.save) {
+      try { EB.save(platform, ctx.location); } catch (e) { /* noop */ }
     }
 
     var Challenge = global.WDS && global.WDS.dashboardChallenge;
@@ -249,15 +336,21 @@
   }
 
   function renderNotice(n) {
+    var fields = [];
+    if (n.what) fields.push('<p class="wdb-doc__what"><strong>What:</strong> ' + escapeHtml(n.what) + "</p>");
+    if (n.why) fields.push('<p class="wdb-doc__why"><strong>Why:</strong> ' + escapeHtml(n.why) + "</p>");
+    if (n.matters) fields.push('<p class="wdb-doc__matters"><strong>Why it matters:</strong> ' + escapeHtml(n.matters) + "</p>");
+    if (n.doAction) fields.push('<p class="wdb-doc__do"><strong>What to do:</strong> ' + escapeHtml(n.doAction) + "</p>");
+    if (n.watch) fields.push('<p class="wdb-doc__watch"><strong>What to notice:</strong> ' + escapeHtml(n.watch) + "</p>");
     return (
-      '<div class="wdb-doc__notice wdb-doc__notice--' + escapeHtml((n.trust || "educational").toLowerCase().replace(/\s+/g, "-")) + '">' +
-        '<span class="wdb-doc__domain">' + escapeHtml(n.domain) + "</span>" +
-        '<p class="wdb-doc__notice-text">' + escapeHtml(n.text) + "</p>" +
-        '<p class="wdb-doc__notice-meta">' +
+      '<article class="wdb-doc__notice wdb-doc__notice--' + escapeHtml((n.trust || "educational").toLowerCase().replace(/\s+/g, "-")) + '">' +
+        '<header class="wdb-doc__notice-head">' +
+          '<span class="wdb-doc__domain">' + escapeHtml(n.domain) + "</span>" +
           '<span class="wdb-doc__trust">' + escapeHtml(n.trust || "Educational") + "</span>" +
-          (n.source ? " · " + escapeHtml(n.source) : "") +
-        "</p>" +
-      "</div>"
+        "</header>" +
+        fields.join("") +
+        (n.source ? '<p class="wdb-doc__notice-meta">Source: ' + escapeHtml(n.source) + "</p>" : "") +
+      "</article>"
     );
   }
 

@@ -49,6 +49,9 @@
     if (WDS.weather && WDS.weather.configure) {
       WDS.weather.configure({ provider: "open-meteo", fallback: false });
     }
+    if (WDS.ecosystemBridge && WDS.ecosystemBridge.bindOip) {
+      WDS.ecosystemBridge.bindOip();
+    }
     WDS.location.bootstrap({
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")

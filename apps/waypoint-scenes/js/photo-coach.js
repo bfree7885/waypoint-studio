@@ -112,6 +112,14 @@
           '<p class="coach-score-label">Overall score</p>' +
           '<p class="coach-score-value">' + (critique.overallScore != null ? escapeHtml(String(critique.overallScore)) : "—") + '<span class="coach-score-max">/100</span></p>' +
         "</div>" +
+        (critique.overallAssessment
+          ? '<section class="coach-section coach-section--assessment"><h3 class="coach-section__title">Overall assessment</h3>' +
+              '<p class="coach-section__summary">' + escapeHtml(critique.overallAssessment.summary || "") + "</p>" +
+              (critique.overallAssessment.why
+                ? '<p class="coach-section__why"><strong>Why:</strong> ' + escapeHtml(critique.overallAssessment.why) + "</p>"
+                : "") +
+            "</section>"
+          : "") +
         '<div class="coach-recs">' +
           '<div class="coach-rec-card"><h3>Portfolio</h3><p>' + escapeHtml(critique.portfolioRecommendation || "—") + "</p></div>" +
           '<div class="coach-rec-card"><h3>Print</h3><p>' + escapeHtml(critique.printRecommendation || "—") + "</p></div>" +
@@ -137,6 +145,9 @@
               '<p class="coach-muted">' + escapeHtml(critique.suggestedCrop.reason) + "</p></section>"
           : "") +
         recipeHtml +
+        (critique.editIntelligence && global.WaypointPhotoCoachEditIntel && global.WaypointPhotoCoachEditIntel.renderHtml
+          ? global.WaypointPhotoCoachEditIntel.renderHtml(critique.editIntelligence)
+          : "") +
         '<section class="coach-section coach-section--accent"><h3 class="coach-section__title">Learning lesson</h3>' +
           '<p>' + escapeHtml(critique.learningNote || "—") + "</p></section>" +
         (critique.fieldAssignment
@@ -195,9 +206,16 @@
           imageName: currentFile ? currentFile.name : null,
           exif: currentExif,
           critique: currentCritique,
-          imageUrl: imageUrl
+          imageUrl: imageUrl,
+          outdoorContext: (global.WaypointPhotoCoachOutdoorContext &&
+            global.WaypointPhotoCoachOutdoorContext.load)
+            ? global.WaypointPhotoCoachOutdoorContext.load()
+            : null
         });
         renderPortfolioSummary();
+        if (els.historyMount && global.WaypointPhotoCoachHistory) {
+          global.WaypointPhotoCoachHistory.refresh(els.historyMount, historyCallbacks());
+        }
         var Skills = global.WaypointPhotoCoachSkills;
         if (Skills && Skills.buildProfile) Skills.buildProfile();
         saveBtn.textContent = "Saved";
@@ -264,7 +282,11 @@
       currentExif = exif;
       setPreview(file, imageUrl);
       var S = Schema();
-      currentCritique = S ? S.sampleCritique(file.name, exif) : null;
+      var outdoorCtx = global.WaypointPhotoCoachOutdoorContext &&
+        global.WaypointPhotoCoachOutdoorContext.load
+        ? global.WaypointPhotoCoachOutdoorContext.load()
+        : null;
+      currentCritique = S ? S.sampleCritique(file.name, exif, outdoorCtx) : null;
       if (els.resultsMount) {
         els.resultsMount.innerHTML = renderCritique(currentCritique);
         els.resultsMount.hidden = false;
@@ -305,6 +327,24 @@
     }
   }
 
+  function historyCallbacks() {
+    return {
+      onSelect: function (session) {
+        if (!session || !session.critique) return;
+        currentCritique = session.critique;
+        if (els.resultsMount) {
+          els.resultsMount.innerHTML = renderCritique(currentCritique);
+          els.resultsMount.hidden = false;
+          bindResultActions();
+        }
+        if (els.resultsPanel) els.resultsPanel.hidden = false;
+      },
+      onDelete: function () {
+        renderPortfolioSummary();
+      }
+    };
+  }
+
   function init() {
     els.fileInput = $("coach-file-input");
     els.uploadBtn = $("btn-coach-upload");
@@ -319,7 +359,15 @@
     els.fileName = $("coach-file-name");
     els.exifMount = $("coach-exif-mount");
     els.portfolioMount = $("coach-portfolio-mount");
+    els.outdoorMount = $("coach-outdoor-context-mount");
+    els.historyMount = $("coach-history-mount");
     bindUpload();
+    if (els.outdoorMount && global.WaypointPhotoCoachOutdoorContext) {
+      els.outdoorMount.innerHTML = global.WaypointPhotoCoachOutdoorContext.render();
+    }
+    if (els.historyMount && global.WaypointPhotoCoachHistory) {
+      global.WaypointPhotoCoachHistory.mount(els.historyMount, historyCallbacks());
+    }
     renderPortfolioSummary();
   }
 

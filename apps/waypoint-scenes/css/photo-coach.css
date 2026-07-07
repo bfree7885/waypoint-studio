@@ -33,6 +33,117 @@
   outline-offset: 2px;
 }
 
+.coach-outdoor-context-mount {
+  margin-bottom: 1rem;
+}
+
+.coach-outdoor-context {
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ws-border, rgba(255, 255, 255, 0.12));
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.coach-outdoor-context__title {
+  font-size: 0.9rem;
+  margin: 0 0 0.35rem;
+}
+
+.coach-outdoor-context__loc {
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.coach-outdoor-context__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.coach-outdoor-context__meta,
+.coach-outdoor-context__challenge {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  margin: 0.5rem 0 0;
+}
+
+.coach-history-mount {
+  margin-top: 0.75rem;
+}
+
+.coach-history__title {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.coach-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.coach-history-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.coach-history-open {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.coach-history-name {
+  display: block;
+  font-size: 0.85rem;
+}
+
+.coach-history-meta {
+  display: block;
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.coach-history-delete {
+  background: none;
+  border: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.coach-edit-plan {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.coach-edit-plan__reason,
+.coach-edit-plan__improve {
+  display: block;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  margin-top: 0.15rem;
+}
+
+.coach-edit-plan__trust {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 0.1rem;
+}
+
 .mode-coach {
   max-width: 88rem;
   margin: 0 auto;

@@ -5,7 +5,7 @@
 (function (global) {
   "use strict";
 
-  var SCHEMA_VERSION = "2.0.0";
+  var SCHEMA_VERSION = "2.1.0";
 
   var ENGINE_STATUS = {
     disconnected: "disconnected",
@@ -32,6 +32,7 @@
       imageName: null,
       captureMetadata: null,
       overallScore: null,
+      overallAssessment: null,
       portfolioRecommendation: null,
       printRecommendation: null,
       composition: null,
@@ -48,19 +49,24 @@
       distractions: [],
       suggestedCrop: null,
       editRecipe: [],
+      editIntelligence: null,
+      outdoorContext: null,
       learningNote: null,
       fieldAssignment: null,
       nextShootChallenge: null
     };
   }
 
-  function sampleCritique(imageName, exif) {
+  function sampleCritique(imageName, exif, outdoorContext) {
+    var EditIntel = global.WaypointPhotoCoachEditIntel;
+    var editPlan = EditIntel && EditIntel.sampleEditPlan ? EditIntel.sampleEditPlan() : null;
     return {
       version: SCHEMA_VERSION,
       engineStatus: ENGINE_STATUS.disconnected,
       isSample: true,
       analyzedAt: new Date().toISOString(),
       imageName: imageName || "your-photo.jpg",
+      outdoorContext: outdoorContext || null,
       captureMetadata: exif && exif.hasExif ? {
         source: "EXIF",
         trust: "Live",
@@ -74,6 +80,12 @@
         gps: exif.gps
       } : { source: "None", trust: "Not yet available" },
       overallScore: 72,
+      overallAssessment: {
+        summary: "A thoughtful outdoor frame with clear subject intent and recoverable shadow detail — ready for portfolio consideration after crop and gentle processing.",
+        strengths: ["Cohesive natural mood", "Honest light", "Clear subject anchor"],
+        improvements: ["Remove competing edge brightness", "Recover shadow texture", "Tighten crop for print"],
+        why: "The image succeeds on atmosphere and subject placement; technical polish and crop will unlock print and series potential."
+      },
       portfolioRecommendation: "Strong keeper for a personal portfolio series — pair with two tighter compositions from the same outing before publishing a gallery.",
       printRecommendation: "Worthy of a test print at 8×12 after a gentle crop; avoid large-format until shadow detail is recovered in post.",
       subject: feedbackBlock(
@@ -158,6 +170,7 @@
         { step: "Clarity", action: "+8 on subject mask only", why: "Adds presence without crunchy global texture." },
         { step: "Vignette", action: "Subtle −10 post-crop", why: "Keeps the eye on the anchor after crop." }
       ],
+      editIntelligence: editPlan,
       learningNote: "Side light rewards patience — wait for the subject to turn into the light rather than chasing front-lit snapshots.",
       fieldAssignment: "Return to this location at the opposite golden hour and shoot the same composition with the sun behind you — compare how shadow direction changes the story.",
       nextShootChallenge: "Shoot the same scene 20 minutes earlier and 20 minutes later; compare how shadow length changes composition."
