@@ -69,6 +69,9 @@
     if (uv != null && uv >= 8) {
       verdict = verdict === "go" ? "caution" : verdict;
       cautions.push("High UV");
+      if (verdict === "caution" && verdictDetail.indexOf("UV") < 0) {
+        verdictDetail = verdictDetail + " High UV increases heat stress and harsh shadows — shoot early/late and hydrate on long hikes.";
+      }
     }
     if (temp != null && temp >= 90) cautions.push("Heat");
     if (temp != null && temp <= 25) cautions.push("Cold");
@@ -165,28 +168,6 @@
       );
     }).join("");
 
-    var outdoorHtml = b.intel
-      ? '<div class="wdb-brief__outdoor" aria-label="Outdoor conditions for ' + escapeHtml(b.dateLine) + '">' +
-          '<p class="wdb-brief__outdoor-title">Outdoor conditions · <span class="wdb-brief__trust">Estimated</span></p>' +
-          (b.intel.scores
-            ? '<div class="wdb-brief__scores" aria-label="Outdoor intelligence scores">' +
-                renderScoreCard(b.intel.scores.outdoor) +
-                renderScoreCard(b.intel.scores.photography) +
-                renderScoreCard(b.intel.scores.hiking) +
-                renderScoreCard(b.intel.scores.comfort) +
-                renderScoreCard(b.intel.scores.safety) +
-                renderScoreCard(b.intel.scores.nightSky) +
-              "</div>"
-            : "") +
-          '<div class="wdb-brief__outdoor-grid">' +
-            renderOutdoorPanel("Walking", b.intel.walking) +
-            renderOutdoorPanel("Hiking", b.intel.hiking) +
-            renderOutdoorPanel("Photography", b.intel.photography) +
-            renderOutdoorPanel("Wildlife", b.intel.wildlife) +
-          "</div>" +
-        "</div>"
-      : "";
-
     return (
       '<aside class="wdb-brief wdb-brief--' + escapeHtml(b.verdict) + '" aria-label="Outdoor summary for ' + escapeHtml(b.dateLine) + '">' +
         '<div class="wdb-brief__verdict">' +
@@ -194,7 +175,6 @@
           '<p class="wdb-brief__detail">' + escapeHtml(b.verdictDetail) + "</p>" +
         "</div>" +
         (statsHtml ? '<div class="wdb-brief__stats">' + statsHtml + "</div>" : "") +
-        outdoorHtml +
         (b.lookFor ? '<p class="wdb-brief__look">' + escapeHtml(b.lookFor) + "</p>" : "") +
       "</aside>"
     );

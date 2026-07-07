@@ -138,6 +138,12 @@ async function testPage(client, page) {
       hasMain: !!document.querySelector('#main, main, .ws-app'),
       hasDashboard: !!document.querySelector('#outdoor-dashboard'),
       hasBriefingDoc: !!document.querySelector('.wdb-doc'),
+      hasMorning: !!document.querySelector('.wdb-morning'),
+      hasPulse: !!document.querySelector('.wdb-morning__pulse'),
+      morningAnswers: document.querySelectorAll('.wdb-morning__answer').length,
+      natureCards: document.querySelectorAll('.wdb-nature__card').length,
+      missionCards: document.querySelectorAll('.wdb-missions__card').length,
+      photoCards: document.querySelectorAll('.wdb-photo-field__card').length,
       noticeCount: document.querySelectorAll('.wdb-doc__notice').length,
       hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
       hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
@@ -190,6 +196,14 @@ async function main() {
     if (r.name === "homepage" && !r.checks.hasDashboard) {
       failed = true;
       console.log("FAIL: outdoor-dashboard not rendered after location bootstrap");
+    }
+    if (r.name === "homepage" && !r.checks.hasMorning) {
+      failed = true;
+      console.log("FAIL: morning briefing hero not rendered");
+    }
+    if (r.name === "homepage" && r.checks.morningAnswers < 7) {
+      failed = true;
+      console.log("FAIL: expected 7 morning answers, got " + r.checks.morningAnswers);
     }
     if (r.name === "homepage" && r.checks.noticeCount < 5) {
       console.log("INFO: briefing in educational/pending mode (notices=" + r.checks.noticeCount + ") — live mode shows ≥5");

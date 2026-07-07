@@ -146,6 +146,393 @@
   opacity: 0.65;
 }
 
+.wdb-doc__synthesis {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wdb-doc__details {
+  margin-top: 1rem;
+}
+
+.wdb-doc__details-summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0;
+  opacity: 0.85;
+  list-style: none;
+}
+
+.wdb-doc__details-summary::-webkit-details-marker {
+  display: none;
+}
+
+.wdb-doc__details[open] .wdb-doc__details-summary {
+  margin-bottom: 0.5rem;
+}
+
+/* Morning hero — Today / Now / Next */
+.wdb-morning {
+  margin-bottom: 1.25rem;
+}
+
+.wdb-morning__head {
+  margin-bottom: 0.75rem;
+}
+
+.wdb-morning__title {
+  margin: 0;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.wdb-morning__date {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.wdb-morning__pulse {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-morning__pulse-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.wdb-morning__pulse-item--now {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 0.5rem;
+}
+
+.wdb-morning__pulse-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.wdb-morning__pulse-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.wdb-morning__answers {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.wdb-morning__answer {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wdb-morning__answer-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.wdb-morning__answer-num {
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.55;
+}
+
+.wdb-morning__answer-q {
+  margin: 0;
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.wdb-morning__trust {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.wdb-morning__answer-a {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* Today in nature */
+.wdb-nature {
+  margin: 1.25rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-nature__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.wdb-nature__intro {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.82rem;
+  opacity: 0.75;
+  line-height: 1.45;
+}
+
+.wdb-nature__grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.wdb-nature__card {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wdb-nature__card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.wdb-nature__category {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  font-weight: 600;
+}
+
+.wdb-nature__trust {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.wdb-nature__text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.wdb-nature__why {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.wdb-nature__source {
+  margin: 0.35rem 0 0;
+  font-size: 0.68rem;
+  opacity: 0.6;
+}
+
+/* Outdoor missions */
+.wdb-missions {
+  margin: 1.25rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-missions__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.wdb-missions__intro {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.wdb-missions__grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.wdb-missions__card {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wdb-missions__type {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.wdb-missions__title {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.wdb-missions__body {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.wdb-missions__why {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Photography field guidance */
+.wdb-photo-field {
+  margin: 1.25rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-photo-field__title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.wdb-photo-field__grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.wdb-photo-field__card {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wdb-photo-field__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.wdb-photo-field__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
+
+.wdb-photo-field__trust {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.wdb-photo-field__text {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.wdb-photo-field__why {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Learn today */
+.wdb-learn-today {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-learn-today__title {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.wdb-learn-today__card {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-learn-today__trust {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.wdb-learn-today__summary {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.wdb-learn-today__body {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.wdb-learn-today__meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.65;
+}
+
+@media (max-width: 640px) {
+  .wdb-morning__pulse {
+    grid-template-columns: 1fr;
+  }
+  .wdb-morning__pulse-item--now {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.35rem 0;
+  }
+}
+
 .wdb-briefing {
   display: grid;
   gap: var(--wds-space-4, 1rem);

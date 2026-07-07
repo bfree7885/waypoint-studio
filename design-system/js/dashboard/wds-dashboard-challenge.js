@@ -49,6 +49,76 @@
     return build(ctx);
   }
 
+  var MISSIONS = [
+    { type: "Walking", title: "Walk 20 minutes", body: "Take a twenty-minute walk without headphones. Note one smell, one sound, and one texture.", why: "Short walks build daily outdoor rhythm without gear or planning.", tags: ["any", "walking"] },
+    { type: "Photography", title: "Photograph reflections", body: "Find still water — a puddle, pond, or creek bend. Frame sky and foreground in the reflection.", why: "Reflections teach symmetry and exposure — water acts as a natural polarizer.", tags: ["photo", "water"] },
+    { type: "Ecology", title: "Listen for frogs", body: "Stand near wetland, pond, or creek at dusk for five minutes. Count distinct calls.", why: "Amphibian calls indicate wetland health — timing follows temperature and rain.", tags: ["dusk", "water"] },
+    { type: "Botany", title: "Find one native flower", body: "Identify one flower to genus if you can — photograph leaf, stem, and bloom together.", why: "Native blooms support specialist pollinators — three-part photos aid identification.", tags: ["spring", "summer"] },
+    { type: "Weather", title: "Observe cloud types", body: "Sketch or name three cloud forms you see. Note whether they grow or flatten over 15 minutes.", why: "Cloud evolution forecasts weather faster than apps when you learn the patterns.", tags: ["any"] },
+    { type: "Tracking", title: "Look for deer tracks", body: "Search soft ground along trail edges for hoof prints. Note direction and freshness (sharp vs washed).", why: "Track freshness reveals recent movement corridors — edges and water are reliable.", tags: ["mud", "any"] },
+    { type: "Photography", title: "Watch sunset", body: "Arrive 20 minutes before sunset. Watch the western horizon until the last color fades.", why: "Sunset trains you to read atmospheric dust, cloud height, and color temperature.", tags: ["clear", "photo"] },
+    { type: "Botany", title: "Notice milkweed", body: "Find milkweed or another host plant. Check undersides of leaves for eggs or caterpillars.", why: "Host plants connect insects to the broader food web — one leaf can tell a season's story.", tags: ["summer"] },
+    { type: "Birding", title: "Five-minute sound map", body: "Stand still five minutes. List every bird call and its compass direction.", why: "Sound maps build situational awareness faster than scanning alone.", tags: ["dawn", "any"] },
+    { type: "Nature journaling", title: "One square meter study", body: "Choose one square meter. Draw it and label every living thing you can in ten minutes.", why: "Small plots reveal complexity wide views hide.", tags: ["any"] },
+    { type: "Hiking", title: "Pace check on a climb", body: "On the next uphill, count breaths per 20 steps. Slow until you can speak in full sentences.", why: "Pacing prevents overheating and keeps observation quality high.", tags: ["hiking"] },
+    { type: "Conservation", title: "Leave No Trace audit", body: "Pick up three pieces of litter and note one trail impact you could avoid next time.", why: "Small stewardship actions compound across millions of visits.", tags: ["any"] }
+  ];
+
+  function missionDayIndex(date, offset) {
+    date = date || new Date();
+    var start = new Date(date.getFullYear(), 0, 0);
+    var day = Math.floor((date - start) / 86400000);
+    return (day + (offset || 0)) % MISSIONS.length;
+  }
+
+  function missionFromEntry(entry) {
+    return {
+      type: entry.type,
+      title: entry.title,
+      summary: entry.type + " · " + entry.title,
+      body: entry.body,
+      why: entry.why
+    };
+  }
+
+  function generateMissions(ctx, intel, count) {
+    count = count || 4;
+    var picked = [];
+    var used = {};
+    var primary = pickForConditions(ctx, intel);
+    if (primary) {
+      picked.push({
+        type: (primary.summary && primary.summary.split(" · ")[0]) || "Mission",
+        title: (primary.summary && primary.summary.split(" · ").slice(1).join(" · ")) || primary.summary,
+        summary: primary.summary,
+        body: primary.body,
+        why: primary.items && primary.items[0] ? primary.items[0].replace(/^Why:\s*/i, "") : ""
+      });
+      used[primary.summary] = true;
+    }
+    var cond = ((intel && intel.recommendation && intel.recommendation.verdict) || "").toLowerCase();
+    var photoLevel = intel && intel.photography && intel.photography.level;
+    var hikeLevel = intel && intel.hiking && intel.hiking.level;
+    for (var i = 0; picked.length < count && i < MISSIONS.length * 2; i += 1) {
+      var entry = MISSIONS[missionDayIndex(new Date(), i)];
+      if (used[entry.title]) continue;
+      if (cond === "wait" && /hiking|climb/i.test(entry.title)) continue;
+      if (photoLevel === "excellent" && entry.tags && entry.tags.indexOf("photo") >= 0) {
+        picked.unshift(missionFromEntry(entry));
+        used[entry.title] = true;
+        continue;
+      }
+      if ((hikeLevel === "excellent" || hikeLevel === "good") && entry.tags && entry.tags.indexOf("hiking") >= 0 && picked.length < count) {
+        picked.push(missionFromEntry(entry));
+        used[entry.title] = true;
+        continue;
+      }
+      picked.push(missionFromEntry(entry));
+      used[entry.title] = true;
+    }
+    return picked.slice(0, count);
+  }
+
   function pickForConditions(ctx, intel) {
     var base = build(ctx);
     if (!intel) return base;
@@ -86,5 +156,12 @@
   }
 
   global.WDS = global.WDS || {};
-  global.WDS.dashboardChallenge = { build: build, generate: generate, pickForConditions: pickForConditions, all: CHALLENGES };
+  global.WDS.dashboardChallenge = {
+    build: build,
+    generate: generate,
+    pickForConditions: pickForConditions,
+    generateMissions: generateMissions,
+    all: CHALLENGES,
+    missions: MISSIONS
+  };
 })(window);

@@ -84,6 +84,8 @@
     var evidence = [];
 
     if (!hasLive) {
+      var LearnEmpty = global.WDS && global.WDS.dashboardLearn;
+      var learnEmpty = LearnEmpty && LearnEmpty.generate ? LearnEmpty.generate(ctx) : null;
       return {
         hasLive: false,
         headline: "Outdoor briefing",
@@ -91,13 +93,62 @@
         notices: [{
           domain: "Location",
           text: "City, weather, sun/moon, and safety data require coordinates or a county selection.",
-          trust: "Educational"
+          trust: "Educational",
+          what: "City, weather, sun/moon, and safety data require coordinates or a county selection.",
+          why: "Waypoint synthesizes outdoor guidance from your coordinates — without them, live weather and safety feeds cannot load.",
+          matters: "A precise location makes sunrise, stream gauges, and alerts meaningful.",
+          doAction: "Tap Use my location or search for your county.",
+          watch: "Elevation and microclimate can shift conditions within a few miles."
         }],
         evidence: [],
         brief: brief,
         intel: intel,
         scores: scores,
         domains: domains,
+        learn: learnEmpty,
+        morningAnswers: {
+          where: "Set your location",
+          now: "Live weather, air quality, and safety alerts load after you choose a place.",
+          sinceYesterday: "Return tomorrow after setting location to see how conditions shifted.",
+          sinceYesterdayTrust: "Educational",
+          notice: "Every widget teaches when live data is unavailable — nothing is faked.",
+          photograph: "Once live, you'll get golden-hour windows and field photography cues.",
+          goOutside: "Pick a location first, then read the outdoor verdict for your coordinates.",
+          learn: learnEmpty ? learnEmpty.summary + " — " + learnEmpty.body : "Start with one cloud type or tree bark pattern today.",
+          pulse: { today: "Set location", now: "Awaiting coordinates", next: "Live briefing loads next" }
+        },
+        todayInNature: [{
+          category: "Getting started",
+          text: "Choose your county or allow browser location — Waypoint will never invent local species data.",
+          why: "Honest labels (Live, Estimated, Educational) keep trust while you explore.",
+          trust: "Educational",
+          source: "Waypoint"
+        },
+        {
+          category: "Seasonal change",
+          text: "Notice what is plausible outdoors this week at your latitude — bud swell, bird song, or frost on grass.",
+          why: "Seasonal cues build curiosity before live feeds connect.",
+          trust: "Educational",
+          source: "Waypoint environmental education"
+        },
+        {
+          category: "River conditions",
+          text: "Learn to read water color, debris lines, and bank wetness — stream flow shapes crossings and wildlife corridors.",
+          why: "Hydrology literacy matters even when a live gauge is not linked yet.",
+          trust: "Educational",
+          source: "Waypoint hydrology education"
+        }],
+        missions: [
+          { type: "Walking", title: "Walk 20 minutes", body: "Take a short walk and note one smell, one sound, and one texture.", why: "Builds daily outdoor rhythm before live data arrives." },
+          { type: "Weather", title: "Observe cloud types", body: "Name three cloud forms and whether they grow or flatten over 15 minutes.", why: "Cloud literacy helps you read the sky without an app." },
+          { type: "Nature journaling", title: "One square meter study", body: "Choose one square meter and sketch every living thing you see in ten minutes.", why: "Small plots reveal complexity that wide views hide." }
+        ],
+        photoFieldGuide: [{
+          label: "While you wait",
+          text: "Practice reading light on a windowsill — note shadow hardness at different times.",
+          why: "Light literacy transfers directly to field photography once live data arrives.",
+          trust: "Educational"
+        }],
         provenance: { sources: ["Waypoint"], updatedAt: null }
       };
     }
@@ -308,7 +359,31 @@
     var challenge = Challenge && Challenge.pickForConditions
       ? Challenge.pickForConditions(ctx, intel)
       : (Challenge && Challenge.generate ? Challenge.generate(ctx) : null);
+    var missions = Challenge && Challenge.generateMissions
+      ? Challenge.generateMissions(ctx, intel, 4)
+      : (challenge ? [challenge] : []);
     var learn = Learn && Learn.generate ? Learn.generate(ctx) : null;
+
+    var MB = global.WDS && global.WDS.morningBriefing;
+    var photoFieldGuide = MB && MB.buildPhotoFieldGuide ? MB.buildPhotoFieldGuide(wx, platform, intel) : [];
+
+    if (MB && MB.synthesizeNow) {
+      narrative = [MB.synthesizeNow(wx, intel)];
+      if (brief && brief.verdictDetail && brief.verdict !== "wait") {
+        narrative.push(brief.verdictDetail);
+      }
+    }
+
+    var partialDoc = {
+      hasLive: true,
+      brief: brief,
+      intel: intel,
+      learn: learn,
+      photoFieldGuide: photoFieldGuide,
+      domains: domains
+    };
+    var morningAnswers = MB && MB.buildMorningAnswers ? MB.buildMorningAnswers(ctx, partialDoc) : null;
+    var todayInNature = MB && MB.buildTodayInNature ? MB.buildTodayInNature(ctx, partialDoc) : [];
 
     var sources = ["Open-Meteo"];
     if (platform.alerts && platform.alerts.items && platform.alerts.items.length) sources.push("NWS");
@@ -327,7 +402,11 @@
       scores: scores,
       domains: domains,
       challenge: challenge,
+      missions: missions,
       learn: learn,
+      morningAnswers: morningAnswers,
+      todayInNature: todayInNature,
+      photoFieldGuide: photoFieldGuide,
       provenance: {
         sources: sources,
         updatedAt: wx.meta && wx.meta.fetchedAt ? wx.meta.fetchedAt : new Date().toISOString()
@@ -360,31 +439,34 @@
       ? doc.brief.dateLine
       : new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
+    var MB = global.WDS && global.WDS.morningBriefing;
+    var morningHtml = "";
+    if (doc.morningAnswers && MB && MB.renderMorningHero) {
+      morningHtml = MB.renderMorningHero(doc.morningAnswers, doc.headline, dateLine);
+    }
+
+    var natureHtml = MB && MB.renderTodayInNature ? MB.renderTodayInNature(doc.todayInNature) : "";
+    var missionsHtml = MB && MB.renderMissions ? MB.renderMissions(doc.missions) : "";
+    var photoHtml = MB && MB.renderPhotoGuide ? MB.renderPhotoGuide(doc.photoFieldGuide) : "";
+
     var narrativeHtml = doc.narrative.map(function (p) {
       return "<p class=\"wdb-doc__para\">" + escapeHtml(p) + "</p>";
     }).join("");
 
     var noticesHtml = doc.notices.map(renderNotice).join("");
 
-    var actionHtml = "";
-    if (doc.challenge || doc.learn) {
-      actionHtml = '<div class="wdb-doc__actions">' +
-        (doc.challenge
-          ? '<div class="wdb-doc__action"><h3 class="wdb-doc__action-title">Today\'s challenge</h3>' +
-              '<p class="wdb-doc__action-type">' + escapeHtml(doc.challenge.summary || "") + "</p>" +
-              '<p class="wdb-doc__action-body">' + escapeHtml(doc.challenge.body || "") + "</p>" +
-              (doc.challenge.items && doc.challenge.items[0]
-                ? '<p class="wdb-doc__action-why">' + escapeHtml(doc.challenge.items[0]) + "</p>"
-                : "") +
-            "</div>"
-          : "") +
-        (doc.learn
-          ? '<div class="wdb-doc__action"><h3 class="wdb-doc__action-title">Learn today</h3>' +
-              '<p class="wdb-doc__action-type">' + escapeHtml(doc.learn.summary || "") + "</p>" +
-              '<p class="wdb-doc__action-body">' + escapeHtml(doc.learn.body || "") + "</p>" +
-            "</div>"
-          : "") +
-      "</div>";
+    var learnHtml = "";
+    if (doc.learn) {
+      learnHtml =
+        '<section class="wdb-learn-today" aria-label="Learn today">' +
+          '<h2 class="wdb-learn-today__title">What to learn today</h2>' +
+          '<article class="wdb-learn-today__card">' +
+            '<span class="wdb-learn-today__trust">Educational</span>' +
+            '<p class="wdb-learn-today__summary">' + escapeHtml(doc.learn.summary || "") + "</p>" +
+            '<p class="wdb-learn-today__body">' + escapeHtml(doc.learn.body || "") + "</p>" +
+            (doc.learn.metaFooter ? '<p class="wdb-learn-today__meta">' + escapeHtml(doc.learn.metaFooter) + "</p>" : "") +
+          "</article>" +
+        "</section>";
     }
 
     var evidenceHtml = doc.evidence.length
@@ -397,16 +479,24 @@
       ? new Date(doc.provenance.updatedAt).toLocaleString()
       : "—";
 
+    var detailsHtml = noticesHtml
+      ? '<details class="wdb-doc__details">' +
+          '<summary class="wdb-doc__details-summary">Full domain briefing (' + doc.notices.length + " topics)</summary>" +
+          '<div class="wdb-doc__notices" aria-label="Domain guidance">' + noticesHtml + "</div>" +
+        "</details>"
+      : "";
+
     return (
       '<section class="wdb-doc wdb-doc--' + escapeHtml(doc.verdict || "caution") + '" aria-label="Outdoor briefing for ' + escapeHtml(dateLine) + '">' +
-        '<header class="wdb-doc__head">' +
-          '<h2 class="wdb-doc__title">' + escapeHtml(doc.headline) + "</h2>" +
-          '<p class="wdb-doc__date">' + escapeHtml(dateLine) + "</p>" +
-        "</header>" +
-        '<div class="wdb-doc__narrative">' + narrativeHtml + "</div>" +
-        evidenceHtml +
-        '<div class="wdb-doc__notices" aria-label="Domain guidance">' + noticesHtml + "</div>" +
-        actionHtml +
+        morningHtml +
+        natureHtml +
+        missionsHtml +
+        photoHtml +
+        (narrativeHtml || evidenceHtml
+          ? '<div class="wdb-doc__synthesis">' + narrativeHtml + evidenceHtml + "</div>"
+          : "") +
+        detailsHtml +
+        learnHtml +
         '<footer class="wdb-doc__foot">' +
           '<p>Sources: ' + escapeHtml(doc.provenance.sources.join(" · ")) + " · Updated " + escapeHtml(updated) + "</p>" +
         "</footer>" +
