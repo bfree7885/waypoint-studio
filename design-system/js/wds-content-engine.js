@@ -312,15 +312,24 @@
     var w = data.thisWeekOutdoors;
     if (!w) return "";
     var DE = global.WDS && global.WDS.dashboardEngine;
+    var loc = data._location;
+    var UN = global.WDS && global.WDS.usNational;
+    var trustBanner = UN && UN.renderTrustBanner
+      ? UN.renderTrustBanner(loc, data.outdoorIntelligence)
+      : renderPlatformScope(data);
     var dashboardHtml = DE
-      ? DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data, settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load() })
-      : "";
+      ? trustBanner + DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data, settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load() })
+      : trustBanner;
     var season = data.season ? escapeHtml(data.season) : "";
     var weekOf = data.weekOf ? escapeHtml(data.weekOf) : "";
-    var loc = data._location;
-    var regionLabel = loc && loc.name
-      ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
-      : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region");
+    var regionLabel = loc && UN && UN.displayTitle
+      ? escapeHtml(UN.displayTitle(loc))
+      : (loc && loc.name
+        ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
+        : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region"));
+    var subtitle = loc && loc.displaySubtitle
+      ? '<p class="wod__pulse">' + escapeHtml(loc.displaySubtitle) + "</p>"
+      : "";
     var seasonLine = season + (weekOf ? " · Week of " + weekOf : "");
     var today = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
 
@@ -331,6 +340,7 @@
             (seasonLine ? '<p class="wod__season">' + seasonLine + "</p>" : "") +
             '<h1 class="wod__title" id="wod-title">' + regionLabel + "</h1>" +
             '<p class="wod__date">' + escapeHtml(today) + "</p>" +
+            subtitle +
           "</div>" +
           '<div class="wod__actions">' +
             '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm wod__customize" id="wds-dashboard-settings-open">Customize</button>' +
@@ -901,9 +911,10 @@
     mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
     mount.removeAttribute("aria-busy");
     bindLocationBar(mount, options);
-    if (loc && loc.name) {
-      var titleRegion = loc.name + ", " + (loc.stateCode || loc.state);
-      document.title = "Outdoor Dashboard · " + titleRegion + " — Waypoint Studio";
+    if (loc && loc.displayTitle) {
+      document.title = "Outdoor Dashboard · " + loc.displayTitle + " — Waypoint Studio";
+    } else if (loc && loc.name) {
+      document.title = "Outdoor Dashboard · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";
     }
     if (global.WDS.mapView && global.WDS.mapView.applyLocation) {
       global.WDS.mapView.applyLocation(mount, loc, { base: base });
@@ -927,7 +938,8 @@
     return String(base || "content-engine/").replace(/content-engine\/?$/, "species/");
   }
 
-  function ensureWskbPreload(data, base) {
+  function ensureWskbPreload(data, base, loc) {
+    if (loc && loc.useNationalFallback) return Promise.resolve();
     var KB = global.WDS && global.WDS.wskb;
     if (!KB || !KB.preloadFromBundle) return Promise.resolve();
     KB.configure({ base: wskbBaseFromEngine(base) });
@@ -938,8 +950,8 @@
     options = options || {};
     var base = resolveEngineBase(options);
     var loc = options.location || (global.WDS && global.WDS.location ? global.WDS.location.getState() : null);
-    var regionId = options.region ||
-      (loc && loc.contentBundle) ||
+    var regionId = (loc && loc.contentBundle) ||
+      options.region ||
       (options.mount && options.mount.getAttribute("data-wds-region")) ||
       null;
     var OIP = global.WDS && global.WDS.outdoorIntelligence;
@@ -961,7 +973,7 @@
       if (loc && global.WDS && global.WDS.location) {
         data = global.WDS.location.applyToBundle(data, loc);
       }
-      return ensureWskbPreload(data, base).then(function () {
+      return ensureWskbPreload(data, base, loc).then(function () {
         return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
           data = applyPlatformToData(data, platform);
           return renderIntoMount(mount, data, loc, base, options, platform);

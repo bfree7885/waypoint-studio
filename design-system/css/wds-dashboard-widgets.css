@@ -1166,3 +1166,63 @@
   min-height: 2.75rem;
   padding-block: 0.5rem;
 }
+
+/* Trust banner — live vs educational scope */
+.wdb-trust {
+  margin: 0 0 var(--wds-space-4);
+  padding: var(--wds-space-4) var(--wds-space-5);
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid var(--wds-border-subtle);
+  background: var(--wds-surface);
+}
+
+.wdb-trust--national {
+  border-left: 3px solid var(--wds-warm);
+}
+
+.wdb-trust--local {
+  border-left: 3px solid var(--wds-lime);
+}
+
+.wdb-trust__badge {
+  display: inline-block;
+  margin-bottom: var(--wds-space-2);
+  padding: 0.15rem 0.5rem;
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--wds-radius-full);
+}
+
+.wdb-trust__badge--educational {
+  color: var(--wds-warm);
+  background: rgba(220, 160, 80, 0.12);
+}
+
+.wdb-trust__badge--editorial {
+  color: var(--wds-lime);
+  background: rgba(120, 200, 80, 0.1);
+}
+
+.wdb-trust__text {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-sm);
+  line-height: var(--wds-leading-relaxed);
+  color: var(--wds-text-secondary);
+}
+
+.wdb-trust__labels {
+  margin: 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wdb-trust__label--live { color: var(--wds-lime); font-weight: 600; }
+.wdb-trust__label--estimated { color: var(--wds-accent); font-weight: 600; }
+.wdb-trust__label--educational { color: var(--wds-warm); font-weight: 600; }
+
+.wdb-widget__tag--estimated {
+  color: var(--wds-accent);
+  background: rgba(100, 160, 220, 0.12);
+}

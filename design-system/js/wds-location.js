@@ -113,6 +113,7 @@
 
   function formatRegionLabel(loc) {
     if (!loc) return getDefaultLabel();
+    if (loc.displayTitle) return loc.displayTitle;
     return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
   }
 
@@ -129,10 +130,10 @@
     return { region: best, distanceKm: bestDist };
   }
 
-  function buildState(source, region, extra) {
+  function buildState(source, region, extra, index) {
     extra = extra || {};
     var bundleId = region.contentBundle || region.id;
-    return {
+    var state = {
       source: source,
       regionId: region.id,
       contentBundle: bundleId,
@@ -153,18 +154,45 @@
       geoDenied: !!extra.geoDenied,
       timestamp: Date.now()
     };
+    if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
+      return global.WDS.usNational.finalizeLocation(state, index || indexCache);
+    }
+    return state;
   }
 
   function defaultState(index) {
     var region = getDefaultRegion(index);
     if (!region) throw new Error("WDS.location: regions-index has no regions");
-    return buildState("default", region, { lat: region.lat, lng: region.lng, distanceKm: 0 });
+    return buildState("default", region, { lat: region.lat, lng: region.lng, distanceKm: 0 }, index);
   }
 
   function resolveManual(regionId, index) {
     var region = findRegionById(index, regionId);
     if (!region) return defaultState(index);
-    return buildState("manual", region, { lat: region.lat, lng: region.lng, distanceKm: 0 });
+    return buildState("manual", region, { lat: region.lat, lng: region.lng, distanceKm: 0 }, index);
+  }
+
+  function resolveFromState(st, index) {
+    if (global.WDS && global.WDS.usNational && global.WDS.usNational.buildStateFromUSState) {
+      var state = global.WDS.usNational.buildStateFromUSState(st);
+      if (state && global.WDS.usNational.finalizeLocation) {
+        return global.WDS.usNational.finalizeLocation(state, index || indexCache);
+      }
+      return state;
+    }
+    return {
+      source: "manual",
+      regionId: "us-state-" + String(st.code).toLowerCase(),
+      contentBundle: "us-national",
+      name: st.name,
+      state: st.name,
+      stateCode: st.code,
+      lat: st.lat,
+      lng: st.lng,
+      useNationalFallback: true,
+      contentMode: "national-educational",
+      timestamp: Date.now()
+    };
   }
 
   function geolocationErrorMessage(err, index) {
@@ -214,7 +242,7 @@
       lng: lng,
       distanceKm: match.distanceKm,
       accuracy: extra.accuracy
-    });
+    }, index);
   }
 
   function getState() {
@@ -231,18 +259,21 @@
   }
 
   function formatStatusLine(loc) {
-    if (!loc || loc.isDefault || loc.source === "default") {
+    if (!loc) return getDefaultLabel();
+    if (loc.displayTitle) {
+      var line = loc.displayTitle;
+      if (loc.displaySubtitle) line += " — " + loc.displaySubtitle;
+      return line;
+    }
+    if (loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc);
     }
     if (loc.source === "geo") {
-      var line = "Near " + loc.name + ", " + (loc.stateCode || loc.state);
-      if (loc.distanceKm > 0) {
-        line += " (~" + loc.distanceKm + " km)";
+      var geoLine = formatCoords(loc.lat, loc.lng);
+      if (loc.state || loc.stateCode) {
+        geoLine += " · " + (loc.state || loc.stateCode);
       }
-      if (loc.lat != null && loc.lng != null) {
-        line += " · " + formatCoords(loc.lat, loc.lng);
-      }
-      return line;
+      return geoLine;
     }
     return loc.name + ", " + (loc.state || loc.stateCode);
   }
@@ -250,6 +281,9 @@
   function formatHeroMeta(loc, region, weekOf) {
     region = region || {};
     var weekPart = weekOf ? " · Week of " + weekOf : "";
+    if (loc && loc.displayTitle) {
+      return loc.displayTitle + weekPart + " · " + (loc.useNationalFallback ? "U.S. educational dashboard" : "local bundle");
+    }
     if (!loc || loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc) + weekPart + " · editorial content may not match your county until more bundles ship";
     }
@@ -273,6 +307,17 @@
       });
     }
     return found || null;
+  }
+
+  function searchManualLocation(query, index) {
+    var county = searchRegions(query, index);
+    if (county) return { type: "county", region: county };
+    var US = global.WDS && global.WDS.usStates;
+    if (US && US.findState) {
+      var st = US.findState(query);
+      if (st) return { type: "state", state: st };
+    }
+    return null;
   }
 
   function projectToSchematic(lat, lng, region, viewBox) {
@@ -313,22 +358,18 @@
     if (loc.isDefault || loc.source === "default") {
       statusHtml = "<strong>Using default region:</strong> " + escapeHtml(formatRegionLabel(loc));
     } else if (loc.source === "geo") {
-      statusHtml = "<strong>Near</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode);
-      if (loc.distanceKm > 0) {
-        statusHtml += ' <span class="wce-location-bar__dist">(~' + escapeHtml(String(loc.distanceKm)) + " km)</span>";
-      }
-      if (loc.lat != null && loc.lng != null) {
-        statusHtml += ' <span class="wce-location-bar__coords">' + escapeHtml(formatCoords(loc.lat, loc.lng)) + "</span>";
-      }
+      statusHtml = "<strong>Your location:</strong> " + escapeHtml(loc.displayTitle || formatCoords(loc.lat, loc.lng));
     } else {
-      statusHtml = "<strong>Region:</strong> " + escapeHtml(loc.name) + ", " + escapeHtml(loc.state);
+      statusHtml = "<strong>Region:</strong> " + escapeHtml(loc.displayTitle || (loc.name + ", " + loc.state));
     }
 
     var bundleNote = "";
-    if (loc.usingNearestBundle) {
-      bundleNote = '<p class="wce-location-bar__note"><strong>Using the nearest available regional model.</strong> Field guide content is from the closest supported ecological bundle — not a county-specific model yet. More regions are in development.</p>';
+    if (loc.useNationalFallback) {
+      bundleNote = '<p class="wce-location-bar__note"><strong>U.S. educational mode.</strong> Live weather and sun/moon use your coordinates. Nature, wildlife, trails, and water guidance are educational — not local species lists or agency feeds.</p>';
     } else if (loc.isDefault || loc.source === "default") {
-      bundleNote = '<p class="wce-location-bar__note">Select your county or use my location for forecasts at your coordinates.</p>';
+      bundleNote = '<p class="wce-location-bar__note">Select your county, state, or use my location for forecasts at your coordinates.</p>';
+    } else if (loc.contentMode === "local-bundle") {
+      bundleNote = '<p class="wce-location-bar__note"><strong>Local bundle active.</strong> Pike County editorial intelligence is available for this area. Live weather uses your coordinates.</p>';
     }
 
     return (
@@ -342,7 +383,7 @@
         "</div>" +
         bundleNote +
         '<form class="wce-location-bar__search wds-location-search is-hidden" id="wds-loc-change-form">' +
-          '<label class="wds-location-search__label" for="wds-loc-change-input">Search county</label>' +
+          '<label class="wds-location-search__label" for="wds-loc-change-input">Search county or state</label>' +
           '<div class="wds-location-search__row">' +
             '<input class="wds-location-search__input" id="wds-loc-change-input" list="wds-loc-change-list" placeholder="County, ST" autocomplete="off">' +
             '<datalist id="wds-loc-change-list"></datalist>' +
@@ -390,9 +431,11 @@
         var q = (bar.querySelector("#wds-loc-change-input").value || "").trim();
         if (!q) return;
         loadIndex(base).then(function (index) {
-          var found = searchRegions(q, index);
-          if (found) {
-            handleChange(writeStored(resolveManual(found.id, index)));
+          var found = searchManualLocation(q, index);
+          if (found && found.type === "county") {
+            handleChange(writeStored(resolveManual(found.region.id, index)));
+          } else if (found && found.type === "state") {
+            handleChange(writeStored(resolveFromState(found.state, index)));
           }
         });
       });
@@ -422,13 +465,18 @@
             '<button type="button" class="wds-btn wds-btn--secondary" id="wds-loc-default">Use ' + escapeHtml(defaultLabel) + '</button>' +
           "</div>" +
           '<form class="wds-location-search" id="wds-loc-search-form">' +
-            '<label class="wds-location-search__label" for="wds-loc-search">Or search a county</label>' +
+            '<label class="wds-location-search__label" for="wds-loc-search">Or search a county or state</label>' +
             '<div class="wds-location-search__row">' +
-              '<input class="wds-location-search__input" id="wds-loc-search" list="wds-loc-list" placeholder="e.g. Monroe County, PA" autocomplete="off">' +
+              '<input class="wds-location-search__input" id="wds-loc-search" list="wds-loc-list" placeholder="e.g. Maine, Miami FL, or Pike County, PA" autocomplete="off">' +
               '<datalist id="wds-loc-list">' +
                 (index.regions || []).map(function (r) {
                   return '<option value="' + escapeHtml(r.name + ", " + r.stateCode) + '">';
                 }).join("") +
+                ((global.WDS && global.WDS.usStates && global.WDS.usStates.STATES)
+                  ? global.WDS.usStates.STATES.map(function (st) {
+                      return '<option value="' + escapeHtml(st.name) + '">';
+                    }).join("")
+                  : "") +
               "</datalist>" +
               '<button type="submit" class="wds-btn wds-btn--ghost wds-btn--sm">Set</button>' +
             "</div>" +
@@ -468,11 +516,13 @@
       e.preventDefault();
       var q = (mount.querySelector("#wds-loc-search").value || "").trim();
       if (!q) return;
-      var found = searchRegions(q, index);
-      if (found) {
-        finish(resolveManual(found.id, index));
+      var found = searchManualLocation(q, index);
+      if (found && found.type === "county") {
+        finish(resolveManual(found.region.id, index));
+      } else if (found && found.type === "state") {
+        finish(resolveFromState(found.state, index));
       } else {
-        fail("County not found — try Monroe County, PA or use your location.");
+        fail("Location not found — try Maine, Colorado, Orange County NY, or Pike County PA.");
       }
     });
   }
@@ -485,6 +535,9 @@
     return loadIndex(base).then(function (index) {
       var stored = readStored();
       if (stored && stored.regionId) {
+        if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
+          stored = global.WDS.usNational.finalizeLocation(stored, index);
+        }
         currentState = stored;
         return stored;
       }
@@ -509,6 +562,12 @@
 
   function applyToBundle(bundle, loc) {
     if (!bundle || !loc) return bundle;
+    if (loc.useNationalFallback || loc.contentMode === "national-educational") {
+      if (global.WDS && global.WDS.usNational && global.WDS.usNational.applyShell) {
+        return global.WDS.usNational.applyShell(bundle, loc);
+      }
+      return bundle;
+    }
     var data = JSON.parse(JSON.stringify(bundle));
     data.region = Object.assign({}, data.region, {
       id: loc.regionId,
@@ -541,9 +600,15 @@
           return writeStored(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
         })
         .catch(function (err) {
-          var state = defaultState(index);
+          var state = getState();
+          if (!state) {
+            state = defaultState(index);
+          }
           state.geoDenied = true;
           state.geoError = geolocationErrorMessage(err, index);
+          if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
+            state = global.WDS.usNational.finalizeLocation(state, index);
+          }
           return writeStored(state);
         });
     });
@@ -571,6 +636,8 @@
     nearestRegion: nearestRegion,
     findRegionById: findRegionById,
     searchRegions: searchRegions,
+    searchManualLocation: searchManualLocation,
+    resolveFromState: resolveFromState,
     formatCoords: formatCoords,
     formatStatusLine: formatStatusLine,
     formatHeroMeta: formatHeroMeta,

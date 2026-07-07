@@ -115,13 +115,17 @@
     var lng = pkg.location ? pkg.location.longitude : (pkg.coordinates && pkg.coordinates.longitude);
     if (!M.isFiniteCoord(lat) || !M.isFiniteCoord(lng)) return Promise.resolve(null);
 
-    var hints = request.weatherHints;
-    if (!hints && pkg.weather && pkg.weather.status === "editorial") {
-      hints = {
-        high: pkg.weather.high,
-        low: pkg.weather.low,
-        conditions: pkg.weather.conditions
-      };
+    var national = request.location && (request.location.useNationalFallback || request.location.contentMode === "national-educational");
+    var hints = null;
+    if (!national) {
+      hints = request.weatherHints;
+      if (!hints && pkg.weather && pkg.weather.status === "editorial") {
+        hints = {
+          high: pkg.weather.high,
+          low: pkg.weather.low,
+          conditions: pkg.weather.conditions
+        };
+      }
     }
 
     return W.getForecast({
@@ -171,11 +175,20 @@
   }
 
   function enrichFromEngine(core, req) {
+    var national = req.location && (req.location.useNationalFallback || req.location.contentMode === "national-educational");
     var regionId = (core.meta && core.meta.contentBundleId) ||
       (core.meta && core.meta.regionId) ||
       req.regionId;
 
     return resolveWeather(req, intelForWeather(core)).then(function (weatherPkg) {
+      if (national) {
+        var UN = global.WDS && global.WDS.usNational;
+        var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
+        return finalizePlatformPackage(
+          M.normalizePackage(S.mergeLayers(core, layer)),
+          weatherPkg
+        );
+      }
       if (req.bundle) {
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(req.bundle))),

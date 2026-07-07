@@ -60,13 +60,21 @@
     if (temp != null && temp <= 25) cautions.push("Cold");
 
     var lookFor = "";
-    var species = (platform.species && platform.species.active) ||
-      (platform.phenology && platform.phenology.watch && platform.phenology.watch.activeNow) || [];
-    if (species[0] && species[0].name) {
-      lookFor = "Watch for " + species[0].name;
-      if (species[0].note) lookFor += " — " + species[0].note;
-    } else if (platform.rainfall && platform.rainfall.recent && parseNum(platform.rainfall.recent.amount) > 0.3) {
-      lookFor = "Recent rain — check mushrooms and creek crossings";
+    var isNational = platform.meta && platform.meta.contentMode === "national-educational";
+    var UN = global.WDS && global.WDS.usNational;
+    if (!isNational) {
+      var species = (platform.species && platform.species.active) ||
+        (platform.phenology && platform.phenology.watch && platform.phenology.watch.activeNow) || [];
+      if (species[0] && species[0].name) {
+        lookFor = "Watch for " + species[0].name;
+        if (species[0].note) lookFor += " — " + species[0].note;
+      } else if (platform.rainfall && platform.rainfall.recent && parseNum(platform.rainfall.recent.amount) > 0.3) {
+        lookFor = "Recent rain — check mushrooms and creek crossings";
+      }
+    } else if (hasLive && UN && UN.weatherInterpretation) {
+      lookFor = UN.weatherInterpretation(wxRef);
+    } else if (hasLive) {
+      lookFor = "Check hourly weather before exposed hikes or water crossings.";
     }
 
     var stats = [];

@@ -233,7 +233,7 @@
           '<span class="wdb-edu-fallback__label">Did you know</span>' +
           '<p class="wdb-edu-fallback__text">' + escapeHtml(topic.fact) + "</p>" +
         "</div>" +
-        '<p class="wdb-edu-fallback__live-note">Live data will appear here automatically when available for your location.</p>' +
+        '<p class="wdb-edu-fallback__live-note">Live weather and sun/moon use your coordinates when connected. This panel is educational — not local species or agency data.</p>' +
         pending +
       "</div>"
     );

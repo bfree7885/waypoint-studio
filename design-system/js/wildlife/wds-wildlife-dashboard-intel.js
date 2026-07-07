@@ -392,9 +392,16 @@
   }
 
   function buildRutCalendar(ctx) {
-    var happening = "Whitetail rut timing varies by latitude and year";
-    var why = "Peak breeding is typically late October–November in the Northeast — exact peak shifts annually.";
-    var attention = "Photographers and hikers: rut-active bucks may be unpredictable — keep distance.";
+    var national = ctx.national;
+    var happening = national
+      ? "Deer activity varies by latitude, season, and hunting pressure"
+      : "Whitetail rut timing varies by latitude and year";
+    var why = national
+      ? "Breeding seasons differ across the U.S. — observe sign locally rather than assuming a single calendar."
+      : "Peak breeding is typically late October–November in the Northeast — exact peak shifts annually.";
+    var attention = national
+      ? "Give wildlife space at dawn and dusk; follow local regulations and land-manager guidance."
+      : "Photographers and hikers: rut-active bucks may be unpredictable — keep distance.";
     if (ctx.month >= 10 && ctx.month <= 11) {
       happening = "Rut window may be opening in the Northeast";
       why = "Historical timing suggests increased deer movement — not a day-specific forecast.";
@@ -442,20 +449,22 @@
     }
     return card(
       "migration", "🕊", "Migration",
-      "Preview — live migration feed not connected",
-      "eBird migration timing and density maps will appear when provider connects.",
-      "Use regional phenology watch and field notes until live data arrives.",
-      "future", "low"
+      "Live migration feed not yet available",
+      "eBird migration timing and density maps will appear when the provider connects.",
+      "Use dawn listening and local checklists until live data arrives — educational guidance only.",
+      "educational", "low"
     );
   }
 
   function analyze(platform) {
     if (!platform) return null;
     var month = monthFromPlatform(platform);
+    var national = !!(platform.meta && platform.meta.contentMode === "national-educational");
     var ctx = {
       month: month,
       season: seasonFromPlatform(platform, month),
-      phenology: platform.phenology && platform.phenology.summary
+      phenology: platform.phenology && platform.phenology.summary,
+      national: national
     };
     var wx = weatherCtx(platform);
     return {

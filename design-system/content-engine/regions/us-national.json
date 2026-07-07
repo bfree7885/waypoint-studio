@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "region": {
+    "id": "us-national",
+    "name": "United States",
+    "state": "",
+    "stateCode": "US",
+    "bioregion": "Continental United States",
+    "defaultScope": "coordinates"
+  },
+  "platformScope": {
+    "label": "U.S. outdoor dashboard",
+    "detail": "Live weather, sun, and moon use your coordinates. Nature, wildlife, trails, and water sections show educational U.S. field guidance — not county-specific ecology until a local bundle is available."
+  },
+  "platformMission": {
+    "lead": "Your outdoor dashboard — observe, understand, and plan field time anywhere in the United States.",
+    "pillars": "Live conditions at your coordinates · Educational field guidance · Honest labels for every layer",
+    "honest": "Regional species timing and trail alerts require a local content bundle. Until then, educational panels help you investigate safely and ethically."
+  },
+  "season": "",
+  "thisWeekOutdoors": {
+    "id": "us-national-dashboard",
+    "scope": "coordinates",
+    "title": "Outdoor conditions at your location",
+    "summary": "Weather, daylight, and safety use live data for your latitude and longitude. Wildlife, plants, trails, and water guidance below are educational — useful nationwide, not local species lists.",
+    "weather": null,
+    "happeningNow": [],
+    "outdoorDashboard": {
+      "cards": []
+    }
+  },
+  "seasonalWatch": {
+    "activeNow": [],
+    "ending": [],
+    "comingSoon": []
+  },
+  "regionalFieldNotes": [],
+  "conservationUpdate": null,
+  "researchBrief": null,
+  "regionalIntelligenceProfile": {
+    "phenologyStage": null,
+    "recentRainfall": null,
+    "daylight": null
+  }
+}
