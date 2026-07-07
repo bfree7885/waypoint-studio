@@ -82,7 +82,7 @@
         '<span class="coach-grade-num">' + escapeHtml(String(g.score != null ? g.score : c.overallScore || "—")) +
           '<span class="coach-grade-max">/100</span></span>' +
       "</div>" +
-      '<p class="coach-grade-summary">' + escapeHtml(g.summary || "") + "</p>" +
+      '<p class="coach-grade-summary">' + escapeHtml(c.narrativeSummary || g.summary || "") + "</p>" +
       '<dl class="coach-grade-meta">' +
         "<div><dt>Portfolio</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
         "<div><dt>Print</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
@@ -92,6 +92,50 @@
         ? '<p class="coach-engine-note" role="status">Vision API not connected — analysis uses local pixel sampling and field context. Always labeled Demo Analysis.</p>'
         : "") +
     "</section>";
+  }
+
+  function renderSignalsPanel(signals) {
+    if (!signals) return "";
+    var hist = signals.histogram || [];
+    var bars = hist.map(function (v, i) {
+      var h = clamp(Math.round(v * 400), 2, 100);
+      return '<div class="coach-hist-bar" style="height:' + h + '%" title="Tone bin ' + i + '"></div>';
+    }).join("");
+    return '<div class="coach-card coach-card--signals"><h3 class="coach-card__title">Image signals <span class="coach-trust coach-trust--demo">Demo</span></h3>' +
+      '<div class="coach-histogram" aria-label="Luminance histogram">' + bars + "</div>" +
+      '<ul class="coach-signal-list">' +
+        "<li>Brightness: " + escapeHtml(String(Math.round(signals.brightness))) + "</li>" +
+        "<li>Contrast: " + escapeHtml(String(Math.round(signals.contrast))) + "</li>" +
+        "<li>Sharpness est.: " + escapeHtml(String(Math.round(signals.blurEstimate))) + "/100</li>" +
+        "<li>Highlight clip est.: " + escapeHtml(String(Math.round(signals.highlightClip * 100))) + "%</li>" +
+        "<li>Shadow clip est.: " + escapeHtml(String(Math.round(signals.shadowClip * 100))) + "%</li>" +
+        "<li>Colors: " + escapeHtml((signals.dominantColors || []).join(", ")) + "</li>" +
+      "</ul></div>";
+  }
+
+  function renderPhotoBreakdown(c) {
+    var rows = c.photoBreakdown || [];
+    if (!rows.length) return "";
+    return '<section class="coach-card" aria-labelledby="coach-photo-breakdown-title">' +
+      '<h3 class="coach-card__title" id="coach-photo-breakdown-title">Photo breakdown</h3>' +
+      '<ul class="coach-photo-breakdown">' + rows.map(function (r) {
+        return '<li class="coach-photo-breakdown__item">' +
+          '<details class="coach-photo-breakdown__details">' +
+            '<summary><span class="coach-photo-breakdown__cat">' + escapeHtml(r.category) + "</span>" +
+            '<span class="coach-photo-breakdown__score">' + escapeHtml(String(r.score)) + "</span></summary>" +
+            '<p class="coach-photo-breakdown__reason">' + escapeHtml(r.reason) + "</p>" +
+            '<p class="coach-photo-breakdown__teach"><strong>Teaching note:</strong> ' + escapeHtml(r.teachingNote) + "</p>" +
+          "</details></li>";
+      }).join("") + "</ul></section>";
+  }
+
+  function renderLearning(c) {
+    var lc = c.learningConcept;
+    if (!lc) return "";
+    return '<section class="coach-card coach-card--learn" aria-labelledby="coach-learn-title">' +
+      '<h3 class="coach-card__title" id="coach-learn-title">Learn today: ' + escapeHtml(lc.title) + "</h3>" +
+      '<p>' + escapeHtml(lc.lesson) + "</p>" +
+      '<p class="coach-muted"><strong>Practice:</strong> ' + escapeHtml(lc.practice) + "</p></section>";
   }
 
   function renderBreakdown(c) {
@@ -160,6 +204,10 @@
         '<span class="coach-crop-ratio">' + escapeHtml(crop.aspectRatio) + "</span>" +
       "</div>" +
       '<p>' + escapeHtml(crop.reasoning) + "</p>" +
+      (crop.alternativeAspectRatios && crop.alternativeAspectRatios.length
+        ? '<p class="coach-muted"><strong>Also consider:</strong> ' + escapeHtml(crop.alternativeAspectRatios.join(", ")) + "</p>"
+        : "") +
+      '<p class="coach-muted"><strong>Leading lines:</strong> ' + escapeHtml(crop.leadingLineSuggestion || "") + "</p>" +
       '<p class="coach-muted"><strong>Horizon:</strong> ' + escapeHtml(crop.horizonNote) + "</p>" +
       '<p class="coach-muted"><strong>Subject:</strong> ' + escapeHtml(crop.subjectPlacement) + "</p>" +
     "</section>";
@@ -172,29 +220,35 @@
         escapeHtml(typeof p === "string" ? p : "—") + "</p></section>";
     }
     return '<section class="coach-card" aria-labelledby="coach-print-title">' +
-      '<h3 class="coach-card__title" id="coach-print-title">Print recommendation</h3>' +
+      '<h3 class="coach-card__title" id="coach-print-title">Print lab</h3>' +
       '<p class="coach-print-worthy">' + escapeHtml(p.worthyLabel) + "</p>" +
       '<dl class="coach-print-meta">' +
-        "<div><dt>Size</dt><dd>" + escapeHtml(p.recommendedSize) + "</dd></div>" +
-        "<div><dt>Medium</dt><dd>" + escapeHtml(p.medium) + "</dd></div>" +
-        "<div><dt>Mat</dt><dd>" + escapeHtml(p.matSuggestion) + "</dd></div>" +
+        "<div><dt>Max size</dt><dd>" + escapeHtml(p.recommendedSize) + "</dd></div>" +
+        "<div><dt>Paper</dt><dd>" + escapeHtml(p.paper || p.medium) + "</dd></div>" +
+        "<div><dt>Matte</dt><dd>" + escapeHtml(p.matte || "—") + "</dd></div>" +
+        "<div><dt>Gloss</dt><dd>" + escapeHtml(p.gloss || "—") + "</dd></div>" +
+        "<div><dt>Fine art</dt><dd>" + escapeHtml(p.fineArt || "—") + "</dd></div>" +
+        "<div><dt>Canvas</dt><dd>" + escapeHtml(p.canvas || "—") + "</dd></div>" +
+        "<div><dt>Metal</dt><dd>" + escapeHtml(p.metal || "—") + "</dd></div>" +
+        "<div><dt>Border</dt><dd>" + escapeHtml(p.border || "—") + "</dd></div>" +
+        "<div><dt>Frame</dt><dd>" + escapeHtml(p.frameColor || "—") + "</dd></div>" +
       "</dl>" +
       '<p class="coach-muted">' + escapeHtml(p.why) + "</p></section>";
   }
 
   function renderChallenge(c) {
     return '<section class="coach-card coach-card--accent" aria-labelledby="coach-challenge-title">' +
-      '<h3 class="coach-card__title" id="coach-challenge-title">Next time challenge</h3>' +
-      '<p>' + escapeHtml(c.nextShootChallenge || c.fieldAssignment || "—") + "</p>" +
-      (c.learningNote ? '<p class="coach-muted">' + escapeHtml(c.learningNote) + "</p>" : "") +
-    "</section>";
+      '<h3 class="coach-card__title" id="coach-challenge-title">Next field challenge</h3>' +
+      '<p>' + escapeHtml(c.nextShootChallenge || c.fieldAssignment || "—") + "</p></section>";
   }
 
   function renderCenter(critique) {
     return renderGradeCard(critique) +
+      renderPhotoBreakdown(critique) +
       renderBreakdown(critique) +
       renderStrengths(critique) +
       renderImprovements(critique) +
+      renderLearning(critique) +
       '<div class="coach-actions coach-actions--center">' +
         '<button type="button" class="btn btn-secondary" id="btn-coach-save-session">Save session</button>' +
       "</div>";
@@ -233,6 +287,10 @@
       els.rightMount.hidden = false;
     }
     if (els.dashboard) els.dashboard.classList.add("has-results");
+    if (els.signalsMount && critique.signals) {
+      els.signalsMount.innerHTML = renderSignalsPanel(critique.signals);
+      els.signalsMount.hidden = false;
+    }
     bindResultActions();
   }
 
@@ -299,10 +357,19 @@
     }
   }
 
+  var compareSessionA = null;
+
   function historyCallbacks() {
     return {
       onSelect: function (session) {
         if (!session || !session.critique) return;
+        if (compareSessionA && compareSessionA.id !== session.id) {
+          var Cmp = global.WaypointPhotoCoachCompare;
+          if (Cmp && els.compareMount) Cmp.mount(els.compareMount, compareSessionA, session);
+          compareSessionA = null;
+          return;
+        }
+        compareSessionA = session;
         currentCritique = session.critique;
         currentSessionId = session.id;
         currentExif = session.exif;
@@ -427,6 +494,21 @@
         els.fileInput.value = "";
       });
     }
+    document.addEventListener("paste", function (e) {
+      if (!els.dashboard || els.dashboard.closest("[hidden]")) return;
+      var items = e.clipboardData && e.clipboardData.items;
+      if (!items) return;
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type && items[i].type.indexOf("image") === 0) {
+          var file = items[i].getAsFile();
+          if (file) {
+            e.preventDefault();
+            handleFile(file);
+            break;
+          }
+        }
+      }
+    });
   }
 
   function init() {
@@ -444,6 +526,8 @@
     els.exifMount = $("coach-exif-mount");
     els.fieldMount = $("coach-field-mount");
     els.historyMount = $("coach-history-mount");
+    els.compareMount = $("coach-compare-mount");
+    els.signalsMount = $("coach-signals-mount");
     els.dashboard = $("coach-dashboard");
 
     bindUpload();

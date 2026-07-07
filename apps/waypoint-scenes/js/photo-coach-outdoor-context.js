@@ -39,11 +39,23 @@
     if (ctx.weather && ctx.weather.temp != null) {
       lines.push(Math.round(ctx.weather.temp) + "° · " + (ctx.weather.conditions || "live weather"));
     }
+    if (ctx.airQuality && ctx.airQuality.usAqi != null) {
+      lines.push("AQI " + ctx.airQuality.usAqi + (ctx.airQuality.category ? " (" + ctx.airQuality.category + ")" : ""));
+    }
+    if (ctx.daylight && ctx.daylight.blueHour) {
+      lines.push("Blue hour: " + ctx.daylight.blueHour);
+    }
     if (ctx.daylight && ctx.daylight.goldenHour) {
       lines.push("Golden hour: " + ctx.daylight.goldenHour);
     }
+    if (ctx.daylight && ctx.daylight.moonPhase) {
+      lines.push("Moon: " + ctx.daylight.moonPhase);
+    }
     if (ctx.photography && ctx.photography.summary) {
       lines.push("Photo: " + ctx.photography.summary);
+    }
+    if (ctx.safety && ctx.safety.summary) {
+      lines.push("Safety: " + ctx.safety.summary);
     }
     if (ctx.water && ctx.water.siteName) {
       lines.push("Water: " + ctx.water.siteName +

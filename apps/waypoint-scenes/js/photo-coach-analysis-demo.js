@@ -105,6 +105,56 @@
     var variance = sumL2 / n - meanL * meanL;
     var contrast = Math.sqrt(Math.max(0, variance));
 
+    var histogram = new Array(16).fill(0);
+    var colorBins = {};
+    var laplacianSum = 0;
+    var laplacianN = 0;
+
+    for (var yi = 1; yi < SAMPLE_H - 1; yi++) {
+      for (var xi = 1; xi < SAMPLE_W - 1; xi++) {
+        var id = (yi * SAMPLE_W + xi) * 4;
+        var lumC = 0.2126 * data[id] + 0.7152 * data[id + 1] + 0.0722 * data[id + 2];
+        var idL = ((yi * SAMPLE_W + (xi - 1)) * 4);
+        var idR = ((yi * SAMPLE_W + (xi + 1)) * 4);
+        var idU = (((yi - 1) * SAMPLE_W + xi) * 4);
+        var idD = (((yi + 1) * SAMPLE_W + xi) * 4);
+        var lumL = 0.2126 * data[idL] + 0.7152 * data[idL + 1] + 0.0722 * data[idL + 2];
+        var lumR = 0.2126 * data[idR] + 0.7152 * data[idR + 1] + 0.0722 * data[idR + 2];
+        var lumU = 0.2126 * data[idU] + 0.7152 * data[idU + 1] + 0.0722 * data[idU + 2];
+        var lumD = 0.2126 * data[idD] + 0.7152 * data[idD + 1] + 0.0722 * data[idD + 2];
+        var lap = Math.abs(4 * lumC - lumL - lumR - lumU - lumD);
+        laplacianSum += lap;
+        laplacianN++;
+      }
+    }
+
+    for (var hi = 0; hi < data.length; hi += 4) {
+      var lr = data[hi];
+      var lg = data[hi + 1];
+      var lb = data[hi + 2];
+      var hl = 0.2126 * lr + 0.7152 * lg + 0.0722 * lb;
+      histogram[clamp(Math.floor(hl / 16), 0, 15)]++;
+      var bin = Math.floor(lr / 64) + "-" + Math.floor(lg / 64) + "-" + Math.floor(lb / 64);
+      colorBins[bin] = (colorBins[bin] || 0) + 1;
+    }
+
+    var dominant = Object.keys(colorBins).sort(function (a, b) {
+      return colorBins[b] - colorBins[a];
+    }).slice(0, 3).map(function (k) {
+      var p = k.split("-").map(Number);
+      var names = ["deep", "mid", "bright"];
+      var r = names[p[0]] || "mid";
+      var g = names[p[1]] || "mid";
+      var b = names[p[2]] || "mid";
+      if (p[1] > p[0] && p[1] > p[2]) return "natural green";
+      if (p[2] > p[0] && p[2] > p[1]) return "sky blue";
+      if (p[0] > p[2]) return "warm earth";
+      return r + "/" + g + "/" + b + " tones";
+    });
+
+    var lapVar = laplacianN ? laplacianSum / laplacianN : 0;
+    var blurScore = clamp(100 - lapVar * 1.8, 0, 100);
+
     return {
       width: iw,
       height: ih,
@@ -121,7 +171,13 @@
       vignetteLeft: leftDark / n,
       vignetteRight: rightDark / n,
       skyBrightness: topBright / (SAMPLE_W * SAMPLE_H * 0.2),
-      dominantWarm: sumR > sumB * 1.08
+      dominantWarm: sumR > sumB * 1.08,
+      histogram: histogram.map(function (v) { return v / n; }),
+      dominantColors: dominant,
+      blurEstimate: blurScore,
+      highlightClip: bright / n,
+      shadowClip: dark / n,
+      megapixels: round((iw * ih) / 1000000 * 10) / 10
     };
   }
 
@@ -319,13 +375,16 @@
   }
 
   function buildCrop(signals) {
-    var ratio = "3:2";
-    if (signals.orientation === "portrait") ratio = "4:5";
-    else if (signals.isPanoramic) ratio = "16:9";
-    else if (signals.orientation === "square") ratio = "1:1";
-
+    var primary = "3:2";
+    if (signals.orientation === "portrait") primary = "4:5";
+    else if (signals.isPanoramic) primary = "16:9";
+    else if (signals.orientation === "square") primary = "1:1";
+    var alts = ["3:2", "4:5", "1:1", "16:9", "5:4"];
+    if (signals.orientation === "portrait") alts = ["4:5", "2:3", "1:1", "9:16"];
+    else if (signals.isPanoramic) alts = ["16:9", "21:9", "3:2"];
     return {
-      aspectRatio: ratio,
+      aspectRatio: primary,
+      alternativeAspectRatios: alts.filter(function (r) { return r !== primary; }).slice(0, 3),
       reasoning: signals.orientation === "portrait"
         ? "Vertical frame suits subject-forward storytelling and mobile viewing."
         : signals.isPanoramic
@@ -337,23 +396,34 @@
       subjectPlacement: signals.darkFraction > 0.2
         ? "Place the anchor on a lower-third intersection for depth."
         : "Center-weighted light — consider offsetting the subject for tension.",
+      leadingLineSuggestion: signals.edgeDensity > 0.1
+        ? "Strong edges detected — align crop so lines lead into the frame, not out."
+        : "Look for natural diagonals (shoreline, ridge) and crop to strengthen them.",
       showOverlay: true
     };
   }
 
   function buildPrint(signals, overall) {
-    var worthy = overall >= 75 && signals.brightFraction < 0.08 && signals.edgeDensity > 0.07;
+    var worthy = overall >= 75 && signals.brightFraction < 0.08 && signals.blurEstimate > 45;
+    var maxSize = signals.width >= 5000 ? "24×36 max (test 16×24 first)" :
+      signals.width >= 4000 ? "16×24" : signals.width >= 3000 ? "12×18" : "8×12 proof";
     return {
       worthy: worthy,
-      worthyLabel: worthy ? "Yes — test print recommended" : "Not yet — refine exposure and crop first",
-      recommendedSize: worthy
-        ? (signals.width >= 4000 ? "16×24 or 12×18" : "8×12 or 11×14")
-        : "8×10 proof only after edits",
-      medium: worthy ? "Matte or lustre fine-art paper" : "Screen-first until shadows recover",
+      worthyLabel: worthy ? "Yes — worthy of a test print" : "Not yet — refine exposure, crop, and sharpness",
+      recommendedSize: worthy ? maxSize : "8×10 proof after edits",
+      medium: worthy ? "Fine art matte or lustre photo paper" : "Screen-first",
+      paper: worthy ? "Matte or lustre — matte for foliage, lustre for water/sky" : "—",
+      canvas: worthy && overall >= 80 ? "Optional 16×24 gallery wrap after proof" : "Not recommended yet",
+      metal: overall >= 85 && signals.contrast > 40 ? "8×12 metal accent print possible" : "—",
+      gloss: "Gloss only if glare-controlled; otherwise matte/lustre",
+      matte: "Preferred for natural scenes — reduces reflections",
+      fineArt: worthy ? "Cotton rag fine art for exhibition series" : "—",
+      border: worthy ? "1–2 inch white border or full-bleed for modern look" : "—",
+      frameColor: worthy ? "Black, walnut, or float mount — match room, not image" : "—",
       matSuggestion: worthy ? "2-inch white mat or float mount for landscapes" : "—",
       why: worthy
-        ? "Recoverable dynamic range and acceptable edge detail support a modest print."
-        : "Highlights, shadows, or softness limit enlargement — edit first, then proof."
+        ? "Recoverable dynamic range, sharpness " + round(signals.blurEstimate) + "/100, and " + signals.megapixels + " MP support modest enlargement."
+        : "Highlights (" + round(signals.highlightClip * 100) + "% clip est.) or softness limit print size — edit first."
     };
   }
 
@@ -391,12 +461,21 @@
       lines.push((outdoor.weather.temp != null ? Math.round(outdoor.weather.temp) + "° · " : "") +
         (outdoor.weather.conditions || "weather snapshot"));
     }
+    if (outdoor.airQuality && outdoor.airQuality.usAqi != null) {
+      lines.push("AQI " + outdoor.airQuality.usAqi + (outdoor.airQuality.category ? " (" + outdoor.airQuality.category + ")" : ""));
+    }
+    if (outdoor.daylight && outdoor.daylight.blueHour) {
+      lines.push("Blue hour: " + outdoor.daylight.blueHour);
+    }
     if (outdoor.daylight) {
       if (outdoor.daylight.goldenHour) lines.push("Golden hour: " + outdoor.daylight.goldenHour);
       if (outdoor.daylight.moonPhase) lines.push("Moon: " + outdoor.daylight.moonPhase);
     }
-    if (outdoor.water && outdoor.water.siteName) {
-      lines.push("Water: " + outdoor.water.siteName);
+    if (outdoor.alerts && outdoor.alerts.count) {
+      lines.push("Safety: " + outdoor.alerts.count + " NWS alert(s) — " + (outdoor.alerts.headline || "check conditions"));
+    }
+    if (outdoor.challenge) {
+      lines.push("Today's challenge: " + outdoor.challenge);
     }
     return {
       available: true,
@@ -408,6 +487,122 @@
           ? "Warm field light aligns with golden-hour coaching — preserve warmth in edits."
           : "Field context helps explain light direction and timing choices."
     };
+  }
+
+  function breakdownItem(category, score, reason, teachingNote) {
+    return { category: category, score: score, reason: reason, teachingNote: teachingNote };
+  }
+
+  function buildPhotoBreakdown(signals, exif, outdoor, scores) {
+    var byCat = {};
+    scores.forEach(function (s) { byCat[s.category] = s.score; });
+    var comp = byCat["Composition"] || 72;
+    var light = byCat["Light"] || 72;
+    var exp = byCat["Exposure"] || 70;
+    var color = byCat["Color"] || 73;
+    var sharp = byCat["Sharpness"] || 76;
+    var subject = byCat["Subject impact"] || 71;
+    var story = byCat["Story / emotion"] || 70;
+    var tech = clamp(round((sharp + exp) / 2), 40, 98);
+    var depth = clamp(round(70 + (signals.darkFraction > 0.15 ? 8 : -4) + (signals.contrast > 35 ? 6 : 0)), 40, 98);
+    var balance = clamp(round(72 - (signals.vignetteLeft + signals.vignetteRight > 0.12 ? 10 : 0)), 40, 98);
+    var fg = clamp(round(68 + (signals.darkFraction > 0.18 && signals.darkFraction < 0.35 ? 10 : 0)), 40, 98);
+    var bg = clamp(round(74 + (signals.skyBrightness > 0.3 ? 4 : 0) - (signals.brightFraction > 0.06 ? 8 : 0)), 40, 98);
+    var distract = clamp(round(78 - signals.brightFraction * 120 - (signals.vignetteLeft + signals.vignetteRight) * 40), 40, 98);
+
+    return [
+      breakdownItem("Composition", comp, "Frame orientation is " + signals.orientation + " at " + signals.width + "×" + signals.height + ".",
+        "Composition is where you place the world inside the rectangle — ask what you included and what you excluded."),
+      breakdownItem("Lighting", light, signals.warmth > 0.18 ? "Warm dominant light detected." : "Cool or neutral light character.",
+        "Light reveals form. Side light shows texture; front light flattens; back light creates silhouette."),
+      breakdownItem("Exposure", exp, "Highlight clip ~" + round(signals.highlightClip * 100) + "% · shadow clip ~" + round(signals.shadowClip * 100) + "%.",
+        "Expose for what you cannot recover — usually sky highlights or critical shadow texture."),
+      breakdownItem("Color", color, "Dominant palette: " + (signals.dominantColors || []).join(", ") + ".",
+        "Color harmony comes from relationship, not saturation — balance white point before pushing vibrance."),
+      breakdownItem("Technical quality", tech, exif && exif.iso ? "ISO " + exif.iso + " · " + signals.megapixels + " MP." : signals.megapixels + " MP capture.",
+        "Technical quality gates how large you can print and how much you can crop."),
+      breakdownItem("Sharpness", sharp, "Blur estimate " + round(signals.blurEstimate) + "/100 (higher = sharper).",
+        "Sharpness is about the subject, not the whole frame — check eyes, anchor, or horizon at 100%."),
+      breakdownItem("Storytelling", story, outdoor && outdoor.photography ? outdoor.photography.summary : "Mood inferred from tone and contrast.",
+        "Story is what the viewer feels after three seconds — not the caption you would write."),
+      breakdownItem("Subject", subject, signals.edgeDensity > 0.09 ? "Tonal anchor with readable edges." : "Subject separation is moderate.",
+        "The subject is what you intend the eye to find first — everything else supports it."),
+      breakdownItem("Foreground", fg, signals.darkFraction > 0.2 ? "Dark foreground mass — depth opportunity." : "Foreground is lighter — watch for competing brightness.",
+        "Foreground interest invites the viewer into the frame like a path into the scene."),
+      breakdownItem("Background", bg, signals.skyBrightness > 0.3 ? "Bright upper field — likely sky or open light." : "Background stays subdued.",
+        "Backgrounds should explain context without stealing the subject."),
+      breakdownItem("Distractions", distract, signals.brightFraction > 0.05 ? "Bright hotspots may pull the eye." : "Few obvious tonal distractions.",
+        "Distractions are anything brighter or sharper than your subject outside the subject."),
+      breakdownItem("Depth", depth, signals.contrast > 32 ? "Tonal layers suggest near-to-far separation." : "Flat tonal range — depth may read shallow.",
+        "Depth is built with foreground, subject, and background layers — and with atmospheric fade."),
+      breakdownItem("Visual balance", balance, signals.vignetteLeft + signals.vignetteRight > 0.1 ? "Edge weight may pull the frame." : "Weight is relatively centered.",
+        "Balance is not symmetry — it is whether the frame feels stable or intentionally tense.")
+    ];
+  }
+
+  function buildNarrative(signals, exif, outdoor, overall) {
+    var parts = [];
+    parts.push("This " + signals.orientation + " outdoor frame");
+    if (signals.megapixels) parts.push("(" + signals.megapixels + " MP)");
+    parts.push("reads as a " + (overall >= 78 ? "confident keeper" : overall >= 68 ? "solid field capture" : "learning exposure"));
+    parts.push("with " + (signals.contrast > 38 ? "strong tonal separation" : "softer global contrast"));
+    parts.push("and " + (signals.dominantWarm ? "warm natural light" : signals.coolness > 0.12 ? "cool atmospheric light" : "neutral daylight character") + ".");
+    if (signals.brightFraction > 0.05) parts.push("Highlight areas are pushing — recover before print.");
+    else if (signals.darkFraction > 0.25) parts.push("Shadows carry weight — lift locally to reveal texture.");
+    if (outdoor && outdoor.daylight && outdoor.daylight.goldenHour) {
+      parts.push("Field context places this near golden hour — lean into warmth and direction.");
+    }
+    if (exif && exif.focalLengthMm) {
+      parts.push("At " + exif.focalLengthMm + "mm, consider how lens choice shaped compression and background separation.");
+    }
+    return parts.join(" ");
+  }
+
+  function buildLearningConcept(signals, outdoor) {
+    var concepts = [];
+    if (signals.contrast < 32) {
+      concepts.push({
+        title: "Atmospheric perspective",
+        lesson: "Low contrast often means haze or flat light — distant objects fade in tone and saturation. Use that fade to push the subject forward, or return when air is clearer.",
+        practice: "Shoot the same scene on a crisp morning and a hazy afternoon; compare depth."
+      });
+    }
+    if (signals.orientation === "portrait") {
+      concepts.push({
+        title: "Foreground interest",
+        lesson: "Vertical frames succeed when the near ground invites the eye upward. Rocks, ferns, or water at the bottom act as a doorstep into the scene.",
+        practice: "Lower the camera 12 inches and include one foreground anchor."
+      });
+    }
+    if (signals.edgeDensity > 0.1) {
+      concepts.push({
+        title: "Leading lines",
+        lesson: "Strong edges in the frame can guide the eye — trails, shorelines, ridges. Ask where lines enter and where they exit.",
+        practice: "Re-compose so the strongest line leads to your subject, not out of frame."
+      });
+    }
+    if (signals.warmth > 0.2) {
+      concepts.push({
+        title: "Light direction",
+        lesson: "Warm dominance suggests low sun angle or reflected warmth. Directional light models form — notice which side of objects is lit.",
+        practice: "Note sun position; return when light crosses the subject at 90°."
+      });
+    }
+    if (outdoor && outdoor.daylight && outdoor.daylight.blueHour) {
+      concepts.push({
+        title: "Blue hour color harmony",
+        lesson: "Cool ambient sky mixed with warm artificial or horizon glow creates natural complementary tension.",
+        practice: "Bracket blue hour and compare white balance choices."
+      });
+    }
+    if (!concepts.length) {
+      concepts.push({
+        title: "Visual weight",
+        lesson: "Every frame balances bright vs dark, sharp vs soft, warm vs cool. Your eye finds the heaviest element first — make sure it is your subject.",
+        practice: "Squint at the image — what shape remains? That is your true composition."
+      });
+    }
+    return concepts[0];
   }
 
   function buildChallenge(signals, outdoor) {
@@ -434,9 +629,12 @@
     var printRec = buildPrint(signals, overall);
     var sceneSuggestion = buildSceneSuggestion(signals, outdoorContext, overall);
     var fieldInsights = buildFieldInsights(outdoorContext, signals);
+    var photoBreakdown = buildPhotoBreakdown(signals, exif, outdoorContext, breakdown);
+    var narrativeSummary = buildNarrative(signals, exif, outdoorContext, overall);
+    var learningConcept = buildLearningConcept(signals, outdoorContext);
 
     return {
-      version: "3.0.0",
+      version: "3.1.0",
       engineStatus: "disconnected",
       isDemo: true,
       isSample: true,
@@ -454,21 +652,18 @@
       overallGrade: {
         letter: letter,
         score: overall,
-        summary: overall >= 85
-          ? "Strong outdoor frame with clear intent — polish edits and consider print."
-          : overall >= 75
-            ? "Solid keeper — targeted edits will unlock portfolio and print potential."
-            : overall >= 65
-              ? "Workable field capture — composition or light timing will yield the biggest gain."
-              : "Learning frame — focus on light, subject isolation, and exposure before heavy editing.",
+        summary: narrativeSummary,
         portfolioPotential: overall >= 78 ? "High" : overall >= 68 ? "Medium" : "Developing",
         printPotential: printRec.worthy ? "Good after edits" : "Screen-first for now",
         confidence: "Moderate — demo signals only, not full AI vision"
       },
       overallScore: overall,
+      narrativeSummary: narrativeSummary,
       scoreBreakdown: breakdown,
+      photoBreakdown: photoBreakdown,
       strengths: strengths,
       improvements: improvements,
+      learningConcept: learningConcept,
       suggestedCrop: suggestedCrop,
       printRecommendation: printRec,
       editIntelligence: editIntelligence,
@@ -476,7 +671,7 @@
       nextShootChallenge: buildChallenge(signals, outdoorContext),
       fieldAssignment: buildChallenge(signals, outdoorContext),
       sceneSuggestion: sceneSuggestion,
-      learningNote: "Demo Analysis uses orientation, brightness, contrast, and field context — connect a vision API for pixel-level coaching."
+      learningNote: learningConcept.lesson
     };
   }
 

@@ -74,6 +74,7 @@
         if (P && P.deleteSession) P.deleteSession(id);
         if (callbacks.onDelete) callbacks.onDelete(id);
         mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
+          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare</p>' +
           renderList() + "</div>";
         bind(mount, callbacks);
       });
@@ -82,8 +83,10 @@
 
   function mount(el, callbacks) {
     if (!el) return;
-    el.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-      renderList() + "</div>";
+    el.innerHTML =
+      '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
+        '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare</p>' +
+        renderList() + "</div>";
     bind(el, callbacks);
   }
 
