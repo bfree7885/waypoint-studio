@@ -136,7 +136,22 @@
 }
 
 .coach-preview-frame {
+  position: relative;
   text-align: left;
+}
+
+.coach-preview-thirds {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: calc(var(--coach-radius) - 2px);
+  overflow: hidden;
+}
+
+.coach-preview-thirds .coach-crop-thirds-h,
+.coach-preview-thirds .coach-crop-thirds-v {
+  position: absolute;
+  inset: 0;
 }
 
 .coach-preview-img {
@@ -584,6 +599,69 @@
   border-bottom: 1px solid var(--coach-border);
 }
 
+.coach-history-item--fav {
+  background: rgba(255, 200, 80, 0.06);
+}
+
+.coach-history-fav {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  color: var(--coach-muted);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.coach-history-fav.is-fav {
+  color: #ffc850;
+}
+
+.coach-session-notes {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--coach-border);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--coach-text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.coach-outdoor-context__impact {
+  font-size: 0.85rem;
+  margin: 0.65rem 0 0;
+  line-height: 1.45;
+}
+
+.coach-scene-roadmap-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.35rem;
+  opacity: 0.85;
+}
+
+.coach-scene-roadmap {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  font-size: 0.78rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.coach-scene-roadmap li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .coach-history-thumb {
   width: 40px;
   height: 40px;
@@ -715,12 +793,14 @@
   overflow: hidden;
 }
 
-.coach-histogram__bar {
+.coach-histogram__bar,
+.coach-hist-bar {
   flex: 1;
   min-width: 2px;
   background: linear-gradient(to top, #3ecf8e 0%, #8fd4ff 100%);
   border-radius: 1px 1px 0 0;
   opacity: 0.85;
+  align-self: flex-end;
 }
 
 .coach-signals__row {

@@ -68,6 +68,46 @@
       '<p class="coach-muted">Open the <a href="../../">Waypoint Dashboard</a> to attach weather, light, and challenge context.</p></div>';
   }
 
+  function updatePreviewOverlay(critique) {
+    if (!els.previewFrame) return;
+    var existing = els.previewFrame.querySelector(".coach-preview-thirds");
+    if (existing) existing.remove();
+    var crop = critique && critique.suggestedCrop;
+    if (!crop || !crop.showOverlay) return;
+    var overlay = document.createElement("div");
+    overlay.className = "coach-preview-thirds";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.innerHTML = '<div class="coach-crop-thirds-h"></div><div class="coach-crop-thirds-v"></div>';
+    els.previewFrame.appendChild(overlay);
+  }
+
+  function renderSessionNotes() {
+    return '<div class="coach-card coach-card--notes" id="coach-session-notes-card">' +
+      '<label class="coach-card__title" for="coach-session-notes">Session notes</label>' +
+      '<textarea id="coach-session-notes" class="coach-session-notes" rows="3" placeholder="What you learned, what to try next…"></textarea>' +
+      '<p class="coach-muted">Saved with this session in your portfolio.</p></div>';
+  }
+
+  function showSessionNotes(notes) {
+    if (!els.notesMount) return;
+    els.notesMount.innerHTML = renderSessionNotes();
+    els.notesMount.hidden = false;
+    var ta = $("coach-session-notes");
+    if (ta) ta.value = notes || "";
+    bindSessionNotes();
+  }
+
+  function bindSessionNotes() {
+    var ta = $("coach-session-notes");
+    if (!ta) return;
+    ta.oninput = function () {
+      if (currentSessionId) {
+        var P = global.WaypointPhotoCoachPortfolio;
+        if (P && P.updateSession) P.updateSession(currentSessionId, { sessionNotes: ta.value });
+      }
+    };
+  }
+
   function renderGradeCard(c) {
     var g = c.overallGrade || {};
     var badge = c.isDemo || c.isSample
@@ -99,7 +139,7 @@
     var hist = signals.histogram || [];
     var bars = hist.map(function (v, i) {
       var h = clamp(Math.round(v * 400), 2, 100);
-      return '<div class="coach-hist-bar" style="height:' + h + '%" title="Tone bin ' + i + '"></div>';
+      return '<div class="coach-hist-bar coach-histogram__bar" style="height:' + h + '%" title="Tone bin ' + i + '"></div>';
     }).join("");
     return '<div class="coach-card coach-card--signals"><h3 class="coach-card__title">Image signals <span class="coach-trust coach-trust--demo">Demo</span></h3>' +
       '<div class="coach-histogram" aria-label="Luminance histogram">' + bars + "</div>" +
@@ -291,6 +331,16 @@
       els.signalsMount.innerHTML = renderSignalsPanel(critique.signals);
       els.signalsMount.hidden = false;
     }
+    if (els.notesMount) {
+      var notes = "";
+      if (currentSessionId) {
+        var Pn = global.WaypointPhotoCoachPortfolio;
+        var sess = Pn && Pn.getSession ? Pn.getSession(currentSessionId) : null;
+        if (sess) notes = sess.sessionNotes || "";
+      }
+      showSessionNotes(notes);
+    }
+    updatePreviewOverlay(critique);
     bindResultActions();
   }
 
@@ -334,6 +384,7 @@
       exif: currentExif,
       critique: currentCritique,
       imageUrl: imageUrl,
+      sessionNotes: ($("coach-session-notes") && $("coach-session-notes").value) || "",
       outdoorContext: currentCritique.outdoorContext ||
         (global.WaypointPhotoCoachOutdoorContext && global.WaypointPhotoCoachOutdoorContext.load
           ? global.WaypointPhotoCoachOutdoorContext.load()
@@ -381,6 +432,7 @@
         if (els.empty) els.empty.hidden = true;
         if (els.fileName) els.fileName.textContent = session.imageName || "";
         if (els.exifMount) els.exifMount.innerHTML = renderExifPanel(session.exif);
+        if (els.notesMount) showSessionNotes(session.sessionNotes || "");
         renderCritique(session.critique);
       },
       onDelete: refreshHistory
@@ -525,6 +577,7 @@
     els.fileName = $("coach-file-name");
     els.exifMount = $("coach-exif-mount");
     els.fieldMount = $("coach-field-mount");
+    els.notesMount = $("coach-notes-mount");
     els.historyMount = $("coach-history-mount");
     els.compareMount = $("coach-compare-mount");
     els.signalsMount = $("coach-signals-mount");

@@ -51,6 +51,13 @@
       html += "</li>";
     });
     html += "</ul>" +
+      '<p class="coach-scene-roadmap-title">Effect roadmap (honest status)</p>' +
+      '<ul class="coach-scene-roadmap">' +
+        '<li><span class="coach-trust coach-trust--live">Live</span> Fog, rain, snow, cloud drift, parallax</li>' +
+        '<li><span class="coach-trust coach-trust--live">Live</span> Leaf drift (wind), light rays, fireflies</li>' +
+        '<li><span class="coach-trust coach-trust--pending">Not yet</span> Animated water, stars, aurora</li>' +
+        '<li><span class="coach-trust coach-trust--pending">Not yet</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
+      "</ul>" +
       '<button type="button" class="btn btn-primary coach-scene-primary" id="btn-coach-send-builder">' +
         "Create Living Scene</button>" +
       "</section>";

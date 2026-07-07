@@ -28,6 +28,14 @@
     return "—";
   }
 
+  function sessionMeta(s) {
+    var parts = [gradeLabel(s)];
+    if (s.camera) parts.push(s.camera);
+    if (s.location) parts.push(s.location);
+    parts.push(formatDate(s.savedAt));
+    return parts.join(" · ");
+  }
+
   function renderList() {
     var P = global.WaypointPhotoCoachPortfolio;
     if (!P) return '<p class="coach-muted">Portfolio unavailable.</p>';
@@ -42,11 +50,12 @@
             ? '<img class="coach-history-thumb" src="' + escapeHtml(s.thumbnail) + '" alt="">'
             : "";
           return (
-            '<li class="coach-history-item" data-session-id="' + escapeHtml(s.id) + '">' +
+            '<li class="coach-history-item' + (s.favorite ? " coach-history-item--fav" : "") + '" data-session-id="' + escapeHtml(s.id) + '">' +
               thumb +
+              '<button type="button" class="coach-history-fav' + (s.favorite ? " is-fav" : "") + '" data-session-id="' + escapeHtml(s.id) + '" aria-label="' + (s.favorite ? "Remove favorite" : "Favorite session") + '">★</button>' +
               '<button type="button" class="coach-history-open" data-session-id="' + escapeHtml(s.id) + '">' +
                 '<span class="coach-history-name">' + escapeHtml(s.imageName || "Photo") + "</span>" +
-                '<span class="coach-history-meta">' + escapeHtml(gradeLabel(s)) + " · " + escapeHtml(formatDate(s.savedAt)) + "</span>" +
+                '<span class="coach-history-meta">' + escapeHtml(sessionMeta(s)) + "</span>" +
               "</button>" +
               '<button type="button" class="coach-history-delete" data-session-id="' + escapeHtml(s.id) + '" aria-label="Delete session">×</button>' +
             "</li>"
@@ -67,6 +76,18 @@
         if (session && callbacks.onSelect) callbacks.onSelect(session);
       });
     });
+    mount.querySelectorAll(".coach-history-fav").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var id = btn.getAttribute("data-session-id");
+        var P = global.WaypointPhotoCoachPortfolio;
+        if (P && P.toggleFavorite) P.toggleFavorite(id);
+        mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
+          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
+          renderList() + "</div>";
+        bind(mount, callbacks);
+      });
+    });
     mount.querySelectorAll(".coach-history-delete").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var id = btn.getAttribute("data-session-id");
@@ -74,7 +95,7 @@
         if (P && P.deleteSession) P.deleteSession(id);
         if (callbacks.onDelete) callbacks.onDelete(id);
         mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare</p>' +
+          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
           renderList() + "</div>";
         bind(mount, callbacks);
       });
@@ -85,7 +106,7 @@
     if (!el) return;
     el.innerHTML =
       '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-        '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare</p>' +
+        '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
         renderList() + "</div>";
     bind(el, callbacks);
   }

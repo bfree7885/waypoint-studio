@@ -48,6 +48,28 @@
     });
   }
 
+  function cameraFromExif(exif) {
+    if (!exif) return null;
+    if (exif.camera) return exif.camera;
+    var parts = [exif.make, exif.model].filter(Boolean);
+    return parts.length ? parts.join(" ") : null;
+  }
+
+  function locationFromSession(session) {
+    var oc = session.outdoorContext;
+    if (oc && oc.location) {
+      var l = oc.location;
+      var line = [l.city, l.county, l.state].filter(Boolean).join(", ");
+      if (line) return line;
+      if (l.lat != null && l.lng != null) return l.lat.toFixed(2) + ", " + l.lng.toFixed(2);
+    }
+    if (session.exif && session.exif.gpsLabel) return session.exif.gpsLabel;
+    if (session.exif && session.exif.latitude != null) {
+      return session.exif.latitude.toFixed(4) + ", " + session.exif.longitude.toFixed(4);
+    }
+    return null;
+  }
+
   function saveSession(session) {
     session = session || {};
     var persist = function (thumb) {
@@ -62,6 +84,10 @@
       session.score = session.critique && session.critique.overallGrade
         ? session.critique.overallGrade.score
         : (session.critique ? session.critique.overallScore : null);
+      session.camera = session.camera || cameraFromExif(session.exif);
+      session.location = session.location || locationFromSession(session);
+      session.sessionNotes = session.sessionNotes || "";
+      session.favorite = !!session.favorite;
       session.sceneBuilderStatus = session.sceneBuilderStatus || "not-sent";
       var all = loadAll();
       all.unshift(session);
@@ -112,13 +138,22 @@
     };
   }
 
+  function toggleFavorite(id) {
+    var session = getSession(id);
+    if (!session) return null;
+    return updateSession(id, { favorite: !session.favorite });
+  }
+
   global.WaypointPhotoCoachPortfolio = {
     saveSession: saveSession,
     listSessions: listSessions,
     getSession: getSession,
     deleteSession: deleteSession,
     updateSession: updateSession,
+    toggleFavorite: toggleFavorite,
     skillSummary: skillSummary,
-    makeThumbnail: makeThumbnail
+    makeThumbnail: makeThumbnail,
+    cameraFromExif: cameraFromExif,
+    locationFromSession: locationFromSession
   };
 })(window);

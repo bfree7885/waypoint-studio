@@ -477,15 +477,23 @@
     if (outdoor.challenge) {
       lines.push("Today's challenge: " + outdoor.challenge);
     }
+    var Outdoor = global.WaypointPhotoCoachOutdoorContext;
+    var season = Outdoor && Outdoor.seasonFromDate
+      ? Outdoor.seasonFromDate(outdoor.savedAt ? new Date(outdoor.savedAt) : new Date())
+      : null;
+    if (season) lines.push("Season: " + season);
+    var impact = Outdoor && Outdoor.environmentImpact
+      ? Outdoor.environmentImpact(outdoor)
+      : (outdoor.photography && outdoor.photography.detail
+        ? outdoor.photography.detail
+        : signals.warmth > 0.18
+          ? "Warm field light aligns with golden-hour coaching — preserve warmth in edits."
+          : "Field context helps explain light direction and timing choices.");
     return {
       available: true,
       location: lines[0] || "Dashboard snapshot",
       lines: lines,
-      photoImpact: outdoor.photography && outdoor.photography.detail
-        ? outdoor.photography.detail
-        : signals.warmth > 0.18
-          ? "Warm field light aligns with golden-hour coaching — preserve warmth in edits."
-          : "Field context helps explain light direction and timing choices."
+      photoImpact: impact
     };
   }
 

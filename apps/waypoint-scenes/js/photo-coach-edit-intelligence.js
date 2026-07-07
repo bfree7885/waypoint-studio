@@ -7,7 +7,7 @@
   var EDIT_FIELDS = [
     "exposure", "highlights", "shadows", "whites", "blacks", "contrast",
     "whiteBalance", "vibrance", "saturation", "texture", "clarity", "dehaze",
-    "sharpening", "noiseReduction", "lensCorrection"
+    "sharpening", "noiseReduction", "lensCorrection", "perspective", "crop"
   ];
 
   function adj(type, label, value, min, max, reason, effect, trust) {
@@ -89,7 +89,13 @@
           "Cleaner skies and bokeh.", "Estimated"),
         adj("lensCorrection", "Lens correction", lens, 0, 100,
           signals.vignetteLeft + signals.vignetteRight > 0.1 ? "Edge darkening detected." : "Standard profile correction.",
-          "Straighter geometry and cleaner edges.", "Estimated")
+          "Straighter geometry and cleaner edges.", "Estimated"),
+        adj("perspective", "Perspective", signals.vignetteLeft + signals.vignetteRight > 0.12 ? "Vertical −6" : "0", -20, 20,
+          "Correct converging verticals when shooting upward at trees or cliffs.",
+          "Architecture and trunks feel upright instead of leaning.", "Estimated"),
+        adj("crop", "Crop", "See Crop Coach", 0, 100,
+          signals.orientation === "portrait" ? "Vertical frame — tighten for mobile storytelling." : "Reframe for stronger thirds and fewer distractions.",
+          "Clearer subject hierarchy before color grading.", "Estimated")
       ],
       pipelineNote: "Demo Analysis — values derived from brightness, contrast, and color sampling. Not pixel-level AI."
     };

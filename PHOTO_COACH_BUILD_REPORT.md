@@ -1,9 +1,9 @@
 # Photo Coach Build Report
 
 **Product:** Waypoint Scenes — Outdoor Photography Coach + Living Scene Studio  
-**Build:** Photo Coach MVP (v3.1 expansion)  
+**Build:** Photo Coach MVP (v3.2 polish)  
 **Date:** July 6, 2026  
-**Production confidence:** **88 / 100** (demo analysis stable; vision AI not yet integrated)
+**Production confidence:** **90 / 100** (demo analysis stable; vision AI not yet integrated)
 
 ---
 
@@ -24,15 +24,15 @@ Waypoint Scenes now leads with **Upload → Grade → Improve → Bring it to Li
 - **Improvements** (≥4) with problem, why it matters, what to do, expected visual result
 - **Photo breakdown** (13 categories): Composition, Lighting, Exposure, Color, Technical Quality, Sharpness, Storytelling, Subject, Foreground, Background, Distractions, Depth, Visual Balance — each with score, reason, teaching note
 - **Score breakdown** (7 categories) with progress bars
-- **Edit intelligence:** exposure through crop with why + expected improvement (teaching-first, not slider dumps)
-- **Crop coach:** suggested crop, rule-of-thirds overlay hints, alternative aspect ratios, leading-line and subject-placement notes
+- **Edit intelligence:** exposure through **perspective** and **crop** with why + expected improvement (teaching-first, not slider dumps)
+- **Crop coach:** suggested crop, **rule-of-thirds overlay on live preview**, alternative aspect ratios, leading-line and subject-placement notes
 - **Print lab:** print yes/no, max size, paper/canvas/metal, gloss/matte/fine art, border, frame color + rationale
 - **Learning:** one photography concept tied to this image (title, lesson, practice)
 - **Next field challenge:** actionable assignment for the next shoot
-- **Portfolio / sessions:** localStorage thumbnails, grade, date, camera, outdoor context, reopen, delete
+- **Portfolio / sessions:** localStorage thumbnails, grade, date, **camera**, **location**, **session notes**, outdoor context, reopen, delete, **favorite (★)**
 - **Compare:** select two sessions from history for side-by-side grade + narrative
-- **Outdoor context:** reads Waypoint Dashboard snapshot (weather, AQI, golden/blue hour, moon, water, alerts, safety, challenge)
-- **Scene Builder bridge:** Bring It To Life passes image, metadata, critique mood, preset; honest “coming soon” for 3D/cinematic/wallpaper tiers
+- **Outdoor context:** weather, AQI, golden/blue hour, moon, **season**, water, alerts, safety, challenge, **environment impact paragraph**
+- **Scene Builder bridge:** Bring It To Life passes image, metadata, critique mood, preset; **honest effect roadmap** (live vs not yet); pending for 3D/cinematic/wallpaper/water/stars/aurora
 
 ### Design
 - Dark premium three-column desktop workspace; responsive single-column mobile
@@ -109,10 +109,10 @@ Upload → EXIF reader → Demo Engine (canvas signals)
 | **Vision AI** | No semantic subject/story understanding; demo uses pixels + EXIF + context only |
 | **Portfolio storage** | Thumbnails + JSON in localStorage; full-res images not persisted across reload |
 | **Compare** | Grade + summary only; not full breakdown diff |
-| **Crop coach** | Suggestions text + ratios; no interactive crop overlay on canvas yet |
-| **Scene effects** | Animated water, wind, aurora, 3D, wallpapers marked unavailable where not built |
+| **Crop coach** | Overlay on preview + text guidance; no interactive crop handles yet |
+| **Scene effects** | Animated water, stars, aurora, 3D, wallpapers marked unavailable where not built |
 | **Outdoor context** | Requires visiting Dashboard in same browser session |
-| **Favorites** | Not implemented (architecture ready via portfolio IDs) |
+| **Favorites** | Toggle works locally; no filtered favorites view yet |
 
 ---
 
@@ -143,7 +143,7 @@ Upload → EXIF reader → Demo Engine (canvas signals)
 
 ---
 
-## Production Confidence: 88 / 100
+## Production Confidence: 90 / 100
 
 **Ready for:** guided beta, demo deployments, coach-first onboarding, Living Scene handoff  
 **Not ready for:** claiming AI vision analysis, cloud portfolio sync, or print-shop integration
