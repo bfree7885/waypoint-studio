@@ -207,7 +207,7 @@
       '<section class="ws-block" id="outdoor-challenge" aria-labelledby="wds-ch-title">' +
         blockHead("Investigate", "Outdoor challenge", "No leaderboard. No posting required.") +
         '<article class="ws-challenge-block">' +
-          '<p class="wds-eyebrow">' + escapeHtml(challenge.cadence || "This week") + "</p>" +
+          '<p class="wds-eyebrow">' + escapeHtml(challenge.cadence === "weekly" ? "Weekly field challenge" : (challenge.cadence || "Weekly field challenge")) + "</p>" +
           '<h3 class="wds-display-md" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(challenge.title) + "</h3>" +
           '<p class="wds-body">' + escapeHtml(challenge.summary) + "</p>" +
           '<ol class="ws-challenge-block__steps">' +

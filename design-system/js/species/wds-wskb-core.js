@@ -83,6 +83,8 @@
   function preloadFromBundle(data) {
     return loadIndex().then(function () {
       return preload(collectSpeciesIdsFromBundle(data));
+    }).catch(function () {
+      return [];
     });
   }
 

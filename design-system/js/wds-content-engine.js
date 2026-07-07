@@ -334,6 +334,22 @@
     );
   }
 
+  function formatWeekOfLabel(date) {
+    date = date || new Date();
+    return "Week of " + date.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+  }
+
+  function formatWeekendLabel(date) {
+    date = date || new Date();
+    var sat = new Date(date);
+    var toSat = (6 - date.getDay() + 7) % 7;
+    sat.setDate(date.getDate() + toSat);
+    var sun = new Date(sat);
+    sun.setDate(sat.getDate() + 1);
+    var fmt = { month: "short", day: "numeric" };
+    return "Weekend · " + sat.toLocaleDateString(undefined, fmt) + "–" + sun.toLocaleDateString(undefined, fmt);
+  }
+
   function renderThisWeekOutdoors(data) {
     var w = data.thisWeekOutdoors;
     if (!w) return "";
@@ -345,13 +361,13 @@
       '<div class="wce-happening-mount" data-wds-happening-now-mount aria-live="polite">' +
         (global.WDS && global.WDS.happeningNow && global.WDS.happeningNow.renderLoading
           ? global.WDS.happeningNow.renderLoading()
-          : '<aside class="wce-happening wce-happening--loading"><h3 class="wce-happening__label">Field cues this week</h3><p class="wce-happening__loading">Building regional field notes…</p></aside>') +
+          : '<aside class="wce-happening wce-happening--loading"><h3 class="wce-happening__label">Field cues · ' + escapeHtml(formatWeekOfLabel()) + '</h3><p class="wce-happening__loading">Building regional field notes…</p></aside>') +
       "</div>"
     );
     var outdoorQ = w.outdoorQuestion || "What is changing outside this week — and where can you investigate with your own eyes?";
     var season = data.season ? escapeHtml(data.season) : "";
     var loc = data._location;
-    var Nat = global.WDS && global.WDS.usNationalContext;
+    var Nat = global.WDS && global.WDS.usNational;
     var seasonSuffix = "";
     if (season && Nat && Nat.isLocalBundleEligible && Nat.isLocalBundleEligible(loc)) {
       seasonSuffix = " · Pike County field bundle";
@@ -360,7 +376,7 @@
     }
     var weekend = w.weekendPrompt
       ? '<div class="wce-dashboard__weekend">' +
-          '<p class="wce-dashboard__weekend-label">This weekend</p>' +
+          '<p class="wce-dashboard__weekend-label">' + escapeHtml(formatWeekendLabel()) + "</p>" +
           '<p class="wce-dashboard__weekend-text">' + escapeHtml(w.weekendPrompt) + "</p>" +
           (w.outdoorChallenge ? '<p class="wce-dashboard__weekend-challenge"><strong>Challenge:</strong> ' + escapeHtml(w.outdoorChallenge) + "</p>" : "") +
         "</div>"
@@ -371,7 +387,7 @@
         '<div class="wce-dashboard__shell">' +
           '<header class="wce-dashboard__masthead wce-dashboard__masthead--inline">' +
             '<p class="wce-dashboard__kicker">Living outdoor dashboard</p>' +
-            '<h2 class="wce-dashboard__section-title" id="wce-two-title">This week outdoors</h2>' +
+            '<h2 class="wce-dashboard__section-title" id="wce-two-title">Outdoors · ' + escapeHtml(formatWeekOfLabel()) + "</h2>" +
             (season ? '<p class="wce-dashboard__season">' + season + seasonSuffix + "</p>" : "") +
             '<p class="wce-dashboard__outdoor-q">' + escapeHtml(outdoorQ) + "</p>" +
             (w.summary ? '<p class="wce-dashboard__summary">' + escapeHtml(w.summary) + "</p>" : "") +
@@ -880,6 +896,9 @@
       DE.mountWidgets(mount, mountOpts).then(function () {
         var BP = global.WDS && global.WDS.briefingPackage;
         if (BP && BP.bind) BP.bind(mount, mountOpts);
+      }).catch(function () {
+        var BP = global.WDS && global.WDS.briefingPackage;
+        if (BP && BP.bind) BP.bind(mount, mountOpts);
       });
       return;
     }
@@ -977,6 +996,14 @@
         data = global.WDS.location.applyToBundle(data, loc);
       }
       return ensureWskbPreload(data, base, loc).then(function () {
+        return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
+          data = applyPlatformToData(data, platform);
+          return renderIntoMount(mount, data, loc, base, options, platform);
+        }).catch(function () {
+          data = applyPlatformToData(data, null);
+          return renderIntoMount(mount, data, loc, base, options, null);
+        });
+      }).catch(function () {
         return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
           data = applyPlatformToData(data, platform);
           return renderIntoMount(mount, data, loc, base, options, platform);
