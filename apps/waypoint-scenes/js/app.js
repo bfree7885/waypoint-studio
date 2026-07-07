@@ -71,6 +71,8 @@
     els.workspaceUploadError = $("workspace-upload-error");
     els.livingSidebar = $("living-sidebar");
     els.exportDownloadBtn = $("btn-export-download");
+    els.coachImportBanner = $("coach-import-banner");
+    els.coachImportSummary = $("coach-import-summary");
 
     loadPresets();
     buildCameraSliders();
@@ -91,6 +93,7 @@
     if (window.WaypointLearn) window.WaypointLearn.init();
     if (window.WaypointPhotoCoach) window.WaypointPhotoCoach.init();
     bindProductModes();
+    setProductMode("coach");
     updateSidebarAwaitingImage();
     updateExportActions();
   }
@@ -265,17 +268,34 @@
     }
   }
 
+  function showCoachImportBanner(critique) {
+    if (!els.coachImportBanner) return;
+    var summary = "";
+    if (critique && critique.overallGrade) {
+      summary = critique.overallGrade.letter + " · " + critique.overallGrade.score + "/100";
+      if (critique.sceneSuggestion && critique.sceneSuggestion.style) {
+        summary += " · Suggested mood: " + critique.sceneSuggestion.style;
+      }
+    }
+    if (els.coachImportSummary) els.coachImportSummary.textContent = summary;
+    els.coachImportBanner.hidden = false;
+  }
+
   function applyCoachContextHints() {
     if (!activeSceneContext || !activeSceneContext.critique) return;
     var c = activeSceneContext.critique;
     var note = "";
-    if (c.lighting && c.lighting.summary) {
+    if (c.sceneSuggestion && c.sceneSuggestion.summary) {
+      note = c.sceneSuggestion.summary;
+    } else if (c.lighting && c.lighting.summary) {
       var ls = c.lighting.summary.toLowerCase();
       if (/fog|mist/.test(ls) && els.analysisSummary) {
         note = "Photo Coach noted fog/mist light — consider Atmosphere presets that match your capture.";
       } else if (/golden|afternoon|side light/.test(ls)) {
         note = "Photo Coach noted directional light — gentle drift and light rays may suit this frame.";
       }
+    } else if (c.overallGrade && c.overallGrade.summary) {
+      note = "Photo Coach: " + c.overallGrade.summary;
     }
     if (note && els.analysisSummary) {
       els.analysisSummary.textContent = note;
@@ -1066,6 +1086,8 @@
     loadPhotoForParallax: loadPhotoForParallax,
     setProductMode: setProductMode,
     setSceneContext: setSceneContext,
-    getSceneContext: function () { return activeSceneContext; }
+    getSceneContext: function () { return activeSceneContext; },
+    showCoachImportBanner: showCoachImportBanner,
+    applyPreset: applyPreset
   };
 })();

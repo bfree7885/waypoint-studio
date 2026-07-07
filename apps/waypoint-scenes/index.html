@@ -36,8 +36,8 @@
       <div class="hero-hearth" aria-hidden="true"></div>
       <div class="hero-inner">
         <p class="hero-eyebrow">Outdoor Photography Coach · Living Scene Studio</p>
-        <h1 class="hero-title">Coach your craft.<br><em>Bring scenes to life.</em></h1>
-        <p class="hero-lead">Upload a frame for structured critique, or build a living scene with atmosphere, parallax, and export — on your machine, with honest labels.</p>
+        <h1 class="hero-title">Upload. Grade. Improve.<br><em>Bring it to life.</em></h1>
+        <p class="hero-lead">Structured outdoor photography coaching on your machine — honest Demo Analysis today, vision API ready tomorrow.</p>
         <div class="hero-actions">
           <button type="button" class="btn btn-primary btn-lg" id="btn-mode-coach-hero">Photo Coach</button>
           <button type="button" class="btn btn-secondary btn-lg" id="btn-mode-builder-hero">Scene Builder</button>
@@ -49,44 +49,56 @@
     </section>
 
     <nav class="product-mode-nav" id="product-mode-nav" aria-label="Product mode">
-      <button type="button" class="product-mode-btn" data-product-mode="coach" id="product-mode-coach">Photo Coach</button>
-      <button type="button" class="product-mode-btn is-active" data-product-mode="builder" id="product-mode-builder">Scene Builder</button>
+      <button type="button" class="product-mode-btn is-active" data-product-mode="coach" id="product-mode-coach">Photo Coach</button>
+      <button type="button" class="product-mode-btn" data-product-mode="builder" id="product-mode-builder">Scene Builder</button>
     </nav>
 
-    <section class="mode-coach" id="mode-coach" hidden>
-      <div class="coach-intro">
-        <h2 class="coach-intro__title">Photo Coach</h2>
-        <p class="muted">Structured outdoor photography feedback — composition, light, color, technical quality, edit intelligence, and field assignments.</p>
-      </div>
-      <div id="coach-outdoor-context-mount" class="coach-outdoor-context-mount" aria-live="polite"></div>
-      <div class="coach-layout">
-        <div class="coach-upload-col">
-          <div class="coach-drop-zone" id="coach-drop-zone">
+    <section class="mode-coach" id="mode-coach">
+      <header class="coach-hero">
+        <p class="coach-hero__eyebrow">Photo Coach</p>
+        <h2 class="coach-hero__title">Upload. Grade. Improve. Bring it to Life.</h2>
+        <p class="coach-hero__lead">Demo Analysis uses your image pixels and field context — clearly labeled, production-ready coaching structure.</p>
+      </header>
+
+      <div class="coach-dashboard" id="coach-dashboard">
+        <aside class="coach-col coach-col--left" aria-label="Photo and context">
+          <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload or drop a photo">
             <div class="coach-empty" id="coach-empty">
-              <p class="preview-empty-title">Upload a photograph</p>
-              <p class="preview-empty-text muted">Receive a structured critique when the analysis engine connects. Until then, a labeled demo shows the format.</p>
-              <button type="button" class="btn btn-secondary" id="btn-coach-upload-empty">Choose photo</button>
+              <p class="coach-empty__title">Drop a photo here</p>
+              <p class="coach-empty__text">JPG, PNG, WebP · analyzed locally in your browser</p>
+              <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photo</button>
             </div>
             <div class="coach-preview-frame" id="coach-preview-frame" hidden>
               <img id="coach-preview-img" class="coach-preview-img" alt="" hidden>
-              <p class="coach-file-name muted" id="coach-file-name"></p>
+              <p class="coach-file-name" id="coach-file-name"></p>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" id="btn-coach-upload" style="margin-top:0.75rem">Upload another</button>
+          <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload another</button>
           <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
-          <div id="coach-portfolio-mount" class="coach-portfolio-mount"></div>
-          <div id="coach-history-mount" class="coach-history-mount"></div>
+          <div id="coach-field-mount" class="coach-field-mount" aria-live="polite"></div>
+          <div id="coach-history-mount" class="coach-history-mount" aria-live="polite"></div>
           <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
           <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" hidden>
-        </div>
-        <div class="coach-results-panel" id="coach-results-panel" hidden>
-          <div id="coach-results" aria-live="polite"></div>
-        </div>
+        </aside>
+
+        <main class="coach-col coach-col--center" id="coach-center-mount" aria-label="Grade and coaching">
+          <div class="coach-welcome">
+            <p class="coach-welcome__title">Your grade appears here</p>
+            <p class="coach-muted">Upload a photo to receive letter grade, score breakdown, strengths, and improvement coaching.</p>
+          </div>
+        </main>
+
+        <aside class="coach-col coach-col--right" id="coach-right-mount" aria-label="Edits and scene tools" hidden>
+        </aside>
       </div>
     </section>
 
-    <div id="mode-builder">
+    <div id="mode-builder" hidden>
     <main class="workspace studio" id="workspace">
+      <div class="coach-import-banner" id="coach-import-banner" role="status" hidden>
+        <strong>Imported from Photo Coach</strong>
+        <span id="coach-import-summary"></span>
+      </div>
       <p class="builder-roadmap" role="note">
         <strong>Scene Builder</strong>
         Living scenes from your photographs — atmosphere, parallax depth, animated weather layers, and still exports today.
@@ -391,6 +403,8 @@
   <script src="js/exif-reader.js"></script>
   <script src="js/photo-coach-edit-intelligence.js"></script>
   <script src="js/photo-coach-outdoor-context.js"></script>
+  <script src="js/photo-coach-analysis-demo.js"></script>
+  <script src="js/photo-coach-scene-bridge.js"></script>
   <script src="js/photo-coach-session-history.js"></script>
   <script src="js/photo-coach-schema.js"></script>
   <script src="js/photo-coach-portfolio.js"></script>

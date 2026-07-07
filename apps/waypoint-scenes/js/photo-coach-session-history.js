@@ -21,24 +21,32 @@
     }
   }
 
-  function renderList(onSelect, onDelete) {
+  function gradeLabel(session) {
+    if (session.grade) return session.grade;
+    if (session.critique && session.critique.overallGrade) return session.critique.overallGrade.letter;
+    if (session.critique && session.critique.overallScore != null) return session.critique.overallScore + "/100";
+    return "—";
+  }
+
+  function renderList() {
     var P = global.WaypointPhotoCoachPortfolio;
-    if (!P) return '<p class="muted">Portfolio unavailable.</p>';
+    if (!P) return '<p class="coach-muted">Portfolio unavailable.</p>';
     var sessions = P.listSessions();
     if (!sessions.length) {
-      return '<p class="coach-history-empty muted">No session history yet. Save a critique to build your coached portfolio.</p>';
+      return '<p class="coach-history-empty coach-muted">No sessions yet — upload a photo to start.</p>';
     }
     return (
       '<ul class="coach-history-list">' +
         sessions.map(function (s) {
-          var score = s.critique && s.critique.overallScore != null
-            ? s.critique.overallScore + "/100"
-            : "—";
+          var thumb = s.thumbnail
+            ? '<img class="coach-history-thumb" src="' + escapeHtml(s.thumbnail) + '" alt="">'
+            : "";
           return (
             '<li class="coach-history-item" data-session-id="' + escapeHtml(s.id) + '">' +
+              thumb +
               '<button type="button" class="coach-history-open" data-session-id="' + escapeHtml(s.id) + '">' +
                 '<span class="coach-history-name">' + escapeHtml(s.imageName || "Photo") + "</span>" +
-                '<span class="coach-history-meta">' + escapeHtml(score) + " · " + escapeHtml(formatDate(s.savedAt)) + "</span>" +
+                '<span class="coach-history-meta">' + escapeHtml(gradeLabel(s)) + " · " + escapeHtml(formatDate(s.savedAt)) + "</span>" +
               "</button>" +
               '<button type="button" class="coach-history-delete" data-session-id="' + escapeHtml(s.id) + '" aria-label="Delete session">×</button>' +
             "</li>"
@@ -65,8 +73,8 @@
         var P = global.WaypointPhotoCoachPortfolio;
         if (P && P.deleteSession) P.deleteSession(id);
         if (callbacks.onDelete) callbacks.onDelete(id);
-        mount.innerHTML = '<div class="coach-history"><h3 class="coach-history__title">Session history</h3>' +
-          renderList(callbacks.onSelect, callbacks.onDelete) + "</div>";
+        mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
+          renderList() + "</div>";
         bind(mount, callbacks);
       });
     });
@@ -74,7 +82,7 @@
 
   function mount(el, callbacks) {
     if (!el) return;
-    el.innerHTML = '<div class="coach-history"><h3 class="coach-history__title">Session history</h3>' +
+    el.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
       renderList() + "</div>";
     bind(el, callbacks);
   }
