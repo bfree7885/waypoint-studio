@@ -350,6 +350,14 @@
     );
     var outdoorQ = w.outdoorQuestion || "What is changing outside this week — and where can you investigate with your own eyes?";
     var season = data.season ? escapeHtml(data.season) : "";
+    var loc = data._location;
+    var Nat = global.WDS && global.WDS.usNationalContext;
+    var seasonSuffix = "";
+    if (season && Nat && Nat.isLocalBundleEligible && Nat.isLocalBundleEligible(loc)) {
+      seasonSuffix = " · Pike County field bundle";
+    } else if (season && loc && loc.state) {
+      seasonSuffix = " · " + escapeHtml(loc.state || loc.stateCode || "");
+    }
     var weekend = w.weekendPrompt
       ? '<div class="wce-dashboard__weekend">' +
           '<p class="wce-dashboard__weekend-label">This weekend</p>' +
@@ -364,7 +372,7 @@
           '<header class="wce-dashboard__masthead wce-dashboard__masthead--inline">' +
             '<p class="wce-dashboard__kicker">Living outdoor dashboard</p>' +
             '<h2 class="wce-dashboard__section-title" id="wce-two-title">This week outdoors</h2>' +
-            (season ? '<p class="wce-dashboard__season">' + season + " · Pike County Preview</p>" : "") +
+            (season ? '<p class="wce-dashboard__season">' + season + seasonSuffix + "</p>" : "") +
             '<p class="wce-dashboard__outdoor-q">' + escapeHtml(outdoorQ) + "</p>" +
             (w.summary ? '<p class="wce-dashboard__summary">' + escapeHtml(w.summary) + "</p>" : "") +
             '<div class="wce-dashboard__toolbar">' +

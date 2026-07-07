@@ -972,7 +972,13 @@
     defaultVisible: true,
     size: "full",
     getData: function () {
-      return D().intelMount("safety-dashboard", "Calm safety snapshot for today");
+      var today = new Date().toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+      return D().intelMount("safety-dashboard", "Calm safety snapshot for " + today);
     }
   });
 

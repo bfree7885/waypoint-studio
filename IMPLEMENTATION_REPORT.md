@@ -1,7 +1,35 @@
 # Implementation Report — Production Outdoor Dashboard
 
 **Date:** July 6, 2026  
-**Status:** Ready for review (not committed)
+**Status:** Ready for review — dashboard committed (`58fc121`); Scenes Photo Coach + label polish uncommitted
+
+---
+
+## Waypoint Scenes (uncommitted)
+
+### New
+| File | Purpose |
+|------|---------|
+| `apps/waypoint-scenes/js/photo-coach-schema.js` | Critique v1 schema + labeled `sampleCritique()` |
+| `apps/waypoint-scenes/js/photo-coach.js` | Upload UI, drag-drop, honest demo critique when engine disconnected |
+| `apps/waypoint-scenes/css/photo-coach.css` | Photo Coach + two-mode navigation styles |
+
+### Modified
+| File | Change |
+|------|--------|
+| `apps/waypoint-scenes/index.html` | Two-mode nav (Photo Coach / Scene Builder), coach section, builder roadmap note |
+| `apps/waypoint-scenes/js/app.js` | `bindProductModes()`, mode switching, Photo Coach init |
+
+### Label polish (uncommitted)
+| File | Change |
+|------|--------|
+| `design-system/js/wds-weather-ui.js` | Full dates on high/low, sunrise/sunset notes |
+| `design-system/js/dashboard/wds-dashboard-highlights.js` | Dated highlight summary |
+| `design-system/js/dashboard/wds-dashboard-engine.js` | Optional `metaFooter` on widgets |
+| `design-system/js/dashboard/wds-dashboard-catalog.js` | Dated safety snapshot label |
+| `design-system/js/safety/wds-safety-dashboard-ui.js` | Dated safety banner copy |
+| `design-system/js/wds-content-engine.js` | Pike County label only inside Pike bundle |
+| `design-system/css/wds-dashboard-widgets.css` | Widget meta footer styles |
 
 ---
 

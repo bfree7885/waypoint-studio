@@ -69,13 +69,23 @@
     );
   }
 
+  function todayLabel() {
+    return new Date().toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+  }
+
   function calmBanner(intel) {
     var level = intel.overallLevel || "low";
+    var dateRef = todayLabel();
     var msg = level === "elevated"
-      ? "A few factors worth planning for today — nothing urgent, just good to know."
+      ? "A few factors worth planning for " + dateRef + " — nothing urgent, just good to know."
       : level === "moderate"
-        ? "Some moderate signals — small adjustments to your plan may help."
-        : "Conditions look manageable for outdoor time.";
+        ? "Some moderate signals for " + dateRef + " — small adjustments to your plan may help."
+        : "Conditions look manageable for outdoor time on " + dateRef + ".";
     return (
       '<div class="wsafe__banner wsafe__banner--' + escapeHtml(level) + '" role="status">' +
         '<span class="wsafe__banner-icon" aria-hidden="true">◎</span>' +

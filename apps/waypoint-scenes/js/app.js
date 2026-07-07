@@ -88,6 +88,8 @@
     initParallaxEngine();
     initPhotography();
     if (window.WaypointLearn) window.WaypointLearn.init();
+    if (window.WaypointPhotoCoach) window.WaypointPhotoCoach.init();
+    bindProductModes();
     updateSidebarAwaitingImage();
     updateExportActions();
   }
@@ -688,6 +690,35 @@
     }
   }
 
+  function setProductMode(mode) {
+    var coach = $("mode-coach");
+    var builder = $("mode-builder");
+    document.querySelectorAll("[data-product-mode]").forEach(function (btn) {
+      btn.classList.toggle("is-active", btn.getAttribute("data-product-mode") === mode);
+    });
+    if (coach) coach.hidden = mode !== "coach";
+    if (builder) builder.hidden = mode !== "builder";
+    if (els.hero) els.hero.hidden = mode === "builder" && (imageLoaded || parallaxImageLoaded);
+  }
+
+  function bindProductModes() {
+    document.querySelectorAll("[data-product-mode]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setProductMode(btn.getAttribute("data-product-mode"));
+        if (btn.getAttribute("data-product-mode") === "builder") scrollToWorkspace();
+      });
+    });
+    [$("btn-mode-coach-hero"), $("btn-coach-nav")].forEach(function (btn) {
+      if (btn) btn.addEventListener("click", function () { setProductMode("coach"); });
+    });
+    [$("btn-mode-builder-hero"), $("btn-upload-nav")].forEach(function (btn) {
+      if (btn) btn.addEventListener("click", function () {
+        setProductMode("builder");
+        scrollToWorkspace();
+      });
+    });
+  }
+
   function bindTabs() {
     if (!window.WaypointTabs) return;
 
@@ -778,7 +809,7 @@
   function bindUpload() {
     if (!els.fileInput) return;
 
-    [$("btn-upload-hero"), $("btn-upload-empty")].forEach(function (btn) {
+    [$("btn-mode-builder-hero"), $("btn-upload-empty")].forEach(function (btn) {
       if (btn) btn.addEventListener("click", function () { els.fileInput.click(); });
     });
 

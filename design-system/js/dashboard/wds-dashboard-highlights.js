@@ -110,7 +110,7 @@
 
     if (!items.length) {
       var EF = global.WDS && global.WDS.educationalFallback;
-      if (EF && EF.widgetData) return EF.widgetData("weather", { summary: "Today's outdoor highlights" });
+      if (EF && EF.widgetData) return EF.widgetData("weather", { summary: "Outdoor highlights" });
       return {
         status: "empty",
         tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
@@ -119,10 +119,17 @@
       };
     }
 
+    var dateLabel = new Date().toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
     return {
       status: "ready",
       tag: tag,
-      summary: items.length + " cues for today",
+      summary: items.length + " cues for " + dateLabel,
       highlightItems: items.slice(0, 6)
     };
   }

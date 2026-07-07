@@ -151,6 +151,7 @@
         (link
           ? '<footer class="wdb-widget__foot"><a class="wdb-widget__link" href="' + escapeHtml(link.href) + '">' + escapeHtml(link.label) + "</a></footer>"
           : "") +
+        (data.metaFooter ? '<footer class="wdb-widget__meta">' + escapeHtml(data.metaFooter) + "</footer>" : "") +
       "</article>"
     );
   }

@@ -365,6 +365,24 @@
     );
   }
 
+  function formatFullDate(iso) {
+    if (!iso) return "High / low";
+    try {
+      return new Date(iso + (String(iso).length === 10 ? "T12:00:00" : "")).toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    } catch (e) {
+      return "High / low";
+    }
+  }
+
+  function highLowLabel(today) {
+    return today && today.date ? formatFullDate(today.date) : "High / low";
+  }
+
   function renderCurrent(pkg) {
     var cur = (pkg && pkg.current) || {};
     var cond = cur.conditions || {};
@@ -383,7 +401,7 @@
           renderMetric("Humidity", formatMeasurement(cur.humidity, 0)) +
           renderMetric("Wind", windLine(cur.wind)) +
           renderMetric("Rain chance", rainChanceLine(cur, today)) +
-          renderMetric("Today", highLowLine(today), "High / low") +
+          renderMetric(highLowLabel(today), highLowLine(today), "Daily range") +
         "</dl>" +
       "</section>"
     );
@@ -393,8 +411,8 @@
     var cur = (pkg && pkg.current) || {};
     var today = (pkg && pkg.daily && pkg.daily[0]) || {};
     return (
-      '<dl class="wds-weather-dashboard__stats" aria-label="Today at a glance">' +
-        renderMetric("Today", highLowLine(today), "High / low") +
+      '<dl class="wds-weather-dashboard__stats" aria-label="Current conditions at a glance">' +
+        renderMetric(highLowLabel(today), highLowLine(today), "Daily range") +
         renderMetric("Rain chance", rainChanceLine(cur, today)) +
         renderMetric("Wind", windLine(cur.wind)) +
       "</dl>"
@@ -655,11 +673,25 @@
     );
   }
 
+  function sunEventLabel(iso) {
+    if (!iso) return "Sun event";
+    try {
+      return new Date(iso).toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    } catch (e) {
+      return "Sun event";
+    }
+  }
+
   function renderSunriseOnly(pkg) {
     var cur = (pkg && pkg.current) || {};
     return (
       '<p class="wdb-widget__value">' + escapeHtml(formatTime(cur.sunrise)) + "</p>" +
-      '<p class="wdb-widget__value-note">Today\'s sunrise</p>'
+      '<p class="wdb-widget__value-note">' + escapeHtml(sunEventLabel(cur.sunrise)) + " · sunrise</p>"
     );
   }
 
@@ -667,7 +699,7 @@
     var cur = (pkg && pkg.current) || {};
     return (
       '<p class="wdb-widget__value">' + escapeHtml(formatTime(cur.sunset)) + "</p>" +
-      '<p class="wdb-widget__value-note">Today\'s sunset</p>'
+      '<p class="wdb-widget__value-note">' + escapeHtml(sunEventLabel(cur.sunset)) + " · sunset</p>"
     );
   }
 
