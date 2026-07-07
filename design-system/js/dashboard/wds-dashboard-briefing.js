@@ -65,6 +65,12 @@
       state: state ? (stateCode ? state + " (" + stateCode + ")" : state) : "—",
       latitude: formatCoord(loc.lat, "N", "S"),
       longitude: formatCoord(loc.lng, "E", "W"),
+      elevation: loc.elevationMeters != null
+        ? Math.round(loc.elevationMeters) + " m (" + Math.round(loc.elevationMeters * 3.28084) + " ft)"
+        : (loc.elevation && loc.elevation.meters != null
+          ? loc.elevation.meters + " m (" + loc.elevation.feet + " ft)"
+          : "—"),
+      elevationTrust: loc.elevation && loc.elevation.trust ? loc.elevation.trust : (loc.elevationMeters != null ? "Live" : "Not yet available"),
       source: loc.source || "unknown",
       geocodeTag: loc.geocodeAt ? "Live" : (loc.source === "geo" ? "Estimated" : "Editorial")
     };
@@ -103,6 +109,10 @@
           '<div><dt>State</dt><dd>' + escapeHtml(f.state) + "</dd></div>" +
           '<div><dt>Latitude</dt><dd>' + escapeHtml(f.latitude) + "</dd></div>" +
           '<div><dt>Longitude</dt><dd>' + escapeHtml(f.longitude) + "</dd></div>" +
+          '<div><dt>Elevation</dt><dd>' + escapeHtml(f.elevation) +
+            (f.elevation !== "—" ? ' <span class="wdb-briefing__tag wdb-briefing__tag--' +
+              (f.elevationTrust === "Live" ? "live" : "editorial") + '">' + escapeHtml(f.elevationTrust) + "</span>" : "") +
+          "</dd></div>" +
         "</dl>" +
         '<p class="wdb-briefing__meta">' +
           '<span class="wdb-briefing__tag wdb-briefing__tag--' + (f.geocodeTag === "Live" ? "live" : "editorial") + '">' +

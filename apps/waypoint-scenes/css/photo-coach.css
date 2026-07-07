@@ -39,6 +39,76 @@
   padding: clamp(1rem, 3vw, 2rem);
 }
 
+.coach-exif-mount {
+  margin-top: 0.75rem;
+}
+
+.coach-exif {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ws-border, rgba(255, 255, 255, 0.1));
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.coach-exif__title {
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem;
+}
+
+.coach-exif__source {
+  font-size: 0.72rem;
+  opacity: 0.7;
+  margin: 0 0 0.5rem;
+}
+
+.coach-exif__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.coach-portfolio-mount {
+  margin-top: 0.75rem;
+}
+
+.coach-portfolio {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--ws-border, rgba(255, 255, 255, 0.1));
+}
+
+.coach-portfolio__title {
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem;
+}
+
+.coach-portfolio__stats {
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem;
+}
+
+.coach-portfolio__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.coach-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ws-border, rgba(255, 255, 255, 0.1));
+}
+
+.coach-section__why {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+
 .coach-layout {
   display: grid;
   gap: 1.25rem;

@@ -1034,6 +1034,7 @@
 
   window.WaypointSceneApp = {
     loadPhotoForLivingScene: loadPhotoForLivingScene,
-    loadPhotoForParallax: loadPhotoForParallax
+    loadPhotoForParallax: loadPhotoForParallax,
+    setProductMode: setProductMode
   };
 })();

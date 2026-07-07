@@ -78,6 +78,51 @@
 
   /* ——— Today's highlights (vital) ——— */
   reg({
+    id: "outdoor-story",
+    title: "Outdoor Story",
+    icon: "◈",
+    category: "conditions",
+    defaultOrder: 12,
+    defaultVisible: true,
+    tier: "vital",
+    size: "wide",
+    getData: function (ctx) {
+      var S = global.WDS && global.WDS.dashboardStory;
+      return S && S.generate ? S.generate(ctx) : { status: "loading", summary: "Building outdoor story…" };
+    }
+  });
+
+  reg({
+    id: "todays-challenge",
+    title: "Today's Challenge",
+    icon: "✦",
+    category: "conservation",
+    defaultOrder: 13,
+    defaultVisible: true,
+    tier: "vital",
+    size: "md",
+    getData: function (ctx) {
+      var C = global.WDS && global.WDS.dashboardChallenge;
+      return C && C.generate ? C.generate(ctx) : { status: "loading", summary: "Loading challenge…" };
+    }
+  });
+
+  reg({
+    id: "daily-learn",
+    title: "Learn Today",
+    icon: "◇",
+    category: "conservation",
+    defaultOrder: 14,
+    defaultVisible: true,
+    tier: "vital",
+    size: "md",
+    getData: function (ctx) {
+      var L = global.WDS && global.WDS.dashboardLearn;
+      return L && L.generate ? L.generate(ctx) : { status: "loading", summary: "Loading lesson…" };
+    }
+  });
+
+  reg({
     id: "todays-outdoor-highlights",
     title: "Outdoor Highlights",
     icon: "★",

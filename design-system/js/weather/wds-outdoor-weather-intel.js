@@ -178,6 +178,114 @@
     return rating("fair", "General field awareness", "Use eyes and ears — live species feeds not connected for this location.");
   }
 
+  function levelToScore(level) {
+    var map = { excellent: 92, good: 78, fair: 58, poor: 32, unknown: 0, moist: 65, dry: 45 };
+    return map[level] != null ? map[level] : 50;
+  }
+
+  function scoreBlock(label, value, why, trust) {
+    return {
+      label: label,
+      value: value,
+      why: why || [],
+      trust: trust || "Estimated"
+    };
+  }
+
+  function comfortScore(pkg, hiking, walking) {
+    var base = hiking && hiking.level ? levelToScore(hiking.level) : 0;
+    var why = [];
+    if (hiking && hiking.detail) why.push(hiking.detail);
+    if (walking && walking.summary) why.push("Walking: " + walking.summary);
+    return scoreBlock("Comfort", base, why, "Estimated");
+  }
+
+  function safetyScore(pkg, platform) {
+    var score = 85;
+    var why = [];
+    var cur = (pkg && pkg.current) || {};
+    var temp = num(cur.temperature);
+    var feels = num(cur.feelsLike);
+    var pop = num(cur.precipitation && cur.precipitation.probability);
+    var cond = ((cur.conditions && cur.conditions.summary) || "").toLowerCase();
+
+    var alerts = platform && platform.alerts;
+    if (alerts && alerts.items && alerts.items.length) {
+      score = 25;
+      why.push(alerts.length + " NWS alert(s) active — check official instructions");
+    }
+    if (/thunder|lightning|storm/.test(cond) || (pop != null && pop >= 70)) {
+      score = Math.min(score, 30);
+      why.push("Storm or heavy rain risk from live forecast");
+    }
+    if (feels != null && feels >= 90) {
+      score = Math.min(score, 45);
+      why.push("Heat stress risk at " + Math.round(feels) + "° feels-like");
+    }
+    if (feels != null && feels <= 20) {
+      score = Math.min(score, 40);
+      why.push("Cold exposure risk at " + Math.round(feels) + "° feels-like");
+    }
+    var aqi = platform && platform.airQuality;
+    if (aqi && aqi.usAqi != null) {
+      if (aqi.usAqi >= 150) {
+        score = Math.min(score, 35);
+        why.push("Unhealthy air quality (US AQI " + aqi.usAqi + ")");
+      } else if (aqi.usAqi >= 100) {
+        score = Math.min(score, 55);
+        why.push("Moderate air quality (US AQI " + aqi.usAqi + ")");
+      }
+    }
+    if (!why.length) why.push("No major hazards in current live weather and alert feeds");
+    return scoreBlock("Safety", score, why, alerts && alerts.items && alerts.items.length ? "Live" : "Estimated");
+  }
+
+  function nightSkyScore(pkg, platform) {
+    var Sky = global.WDS && global.WDS.skyDashboardIntel;
+    if (Sky && Sky.analyze) {
+      var sky = Sky.analyze(pkg, platform);
+      if (sky && sky.nightPhoto) {
+        var s = levelToScore(sky.nightPhoto.level === "high" ? "excellent" : sky.nightPhoto.level);
+        return scoreBlock("Night sky", s, [sky.nightPhoto.headline + " — " + sky.nightPhoto.detail], "Estimated");
+      }
+    }
+    var dl = platform && platform.daylight;
+    var moonIllum = dl && dl.moonIllumination;
+    if (moonIllum != null && moonIllum <= 20) {
+      return scoreBlock("Night sky", 80, ["Low moon illumination favors star visibility"], "Estimated");
+    }
+    return scoreBlock("Night sky", 50, ["Moon brightness may limit faint stars — check moon phase"], "Estimated");
+  }
+
+  function outdoorScore(hiking, photo, safety, comfort) {
+    var vals = [levelToScore(hiking.level), levelToScore(photo.level), safety.value, comfort.value];
+    var avg = Math.round(vals.reduce(function (a, b) { return a + b; }, 0) / vals.length);
+    var why = [];
+    if (hiking.detail) why.push("Hiking: " + hiking.summary);
+    if (photo.detail) why.push("Photography: " + photo.summary);
+    if (safety.why[0]) why.push(safety.why[0]);
+    return scoreBlock("Outdoor", avg, why, "Estimated");
+  }
+
+  function scorecard(pkg, platform) {
+    if (!pkg || !pkg.meta || pkg.meta.isPlaceholder) return null;
+    var hiking = hikingComfort(pkg);
+    var walking = walkingComfort(pkg);
+    var photo = photographyConditions(pkg, platform);
+    var safety = safetyScore(pkg, platform);
+    var comfort = comfortScore(pkg, hiking, walking);
+    var night = nightSkyScore(pkg, platform);
+    var outdoor = outdoorScore(hiking, photo, safety, comfort);
+    return {
+      outdoor: outdoor,
+      photography: scoreBlock("Photography", levelToScore(photo.level), [photo.detail || photo.summary], "Estimated"),
+      hiking: scoreBlock("Hiking", levelToScore(hiking.level), [hiking.detail || hiking.summary], "Estimated"),
+      comfort: comfort,
+      safety: safety,
+      nightSky: night
+    };
+  }
+
   function analyze(pkg, platform) {
     if (!pkg || !pkg.meta || pkg.meta.isPlaceholder) return null;
     var hiking = hikingComfort(pkg);
@@ -186,24 +294,28 @@
     var wildlife = wildlifeActivity(pkg, platform);
     var mushroom = mushroomWeather(pkg);
     var recommendation = outdoorRecommendation(pkg, hiking, photo, mushroom);
+    var scores = scorecard(pkg, platform);
     return {
       hiking: hiking,
       walking: walking,
       photography: photo,
       wildlife: wildlife,
       mushroom: mushroom,
-      recommendation: recommendation
+      recommendation: recommendation,
+      scores: scores
     };
   }
 
   global.WDS = global.WDS || {};
   global.WDS.outdoorWeatherIntel = {
     analyze: analyze,
+    scorecard: scorecard,
     hikingComfort: hikingComfort,
     walkingComfort: walkingComfort,
     photographyConditions: photographyConditions,
     wildlifeActivity: wildlifeActivity,
     mushroomWeather: mushroomWeather,
-    outdoorRecommendation: outdoorRecommendation
+    outdoorRecommendation: outdoorRecommendation,
+    levelToScore: levelToScore
   };
 })(window);

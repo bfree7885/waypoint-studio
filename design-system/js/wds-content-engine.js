@@ -891,6 +891,10 @@
   }
 
   function renderIntoMount(mount, data, loc, base, options, platform) {
+    if (platform && platform.location && platform.location.elevationMeters != null && loc) {
+      loc.elevationMeters = platform.location.elevationMeters;
+      loc.elevation = platform.location.elevation || loc.elevation;
+    }
     var renderOpts = Object.assign({}, options, { base: base });
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
     var briefingHtml = Briefing && Briefing.render ? Briefing.render(loc, platform) : renderLocationBar(loc);

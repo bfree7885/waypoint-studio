@@ -131,6 +131,18 @@
     };
   }
 
+  function renderScoreCard(sc) {
+    if (!sc) return "";
+    return (
+      '<div class="wdb-brief__score-card">' +
+        '<span class="wdb-brief__score-label">' + escapeHtml(sc.label) + "</span>" +
+        '<span class="wdb-brief__score-value">' + escapeHtml(String(sc.value)) + "</span>" +
+        '<span class="wdb-brief__score-trust">' + escapeHtml(sc.trust || "Estimated") + "</span>" +
+        (sc.why && sc.why[0] ? '<span class="wdb-brief__score-why">' + escapeHtml(sc.why[0]) + "</span>" : "") +
+      "</div>"
+    );
+  }
+
   function renderOutdoorPanel(label, data) {
     if (!data) return "";
     return (
@@ -156,6 +168,16 @@
     var outdoorHtml = b.intel
       ? '<div class="wdb-brief__outdoor" aria-label="Outdoor conditions for ' + escapeHtml(b.dateLine) + '">' +
           '<p class="wdb-brief__outdoor-title">Outdoor conditions · <span class="wdb-brief__trust">Estimated</span></p>' +
+          (b.intel.scores
+            ? '<div class="wdb-brief__scores" aria-label="Outdoor intelligence scores">' +
+                renderScoreCard(b.intel.scores.outdoor) +
+                renderScoreCard(b.intel.scores.photography) +
+                renderScoreCard(b.intel.scores.hiking) +
+                renderScoreCard(b.intel.scores.comfort) +
+                renderScoreCard(b.intel.scores.safety) +
+                renderScoreCard(b.intel.scores.nightSky) +
+              "</div>"
+            : "") +
           '<div class="wdb-brief__outdoor-grid">' +
             renderOutdoorPanel("Walking", b.intel.walking) +
             renderOutdoorPanel("Hiking", b.intel.hiking) +

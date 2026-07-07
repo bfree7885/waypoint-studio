@@ -73,6 +73,9 @@
       }
     };
     hideIfNew("outdoor-weather", ["current-weather", "hourly-forecast", "weekly-forecast", "wind", "uv-index"], 1);
+    hideIfNew("outdoor-story", [], 12);
+    hideIfNew("todays-challenge", [], 13);
+    hideIfNew("daily-learn", [], 14);
     hideIfNew("sun-moon-dashboard", ["sunrise", "sunset", "golden-hour", "blue-hour", "moon-phase", "moonrise", "moonset"], 100);
     hideIfNew("photography-conditions-dashboard", ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"], 700);
     hideIfNew("wildlife-dashboard", ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"], 200);
@@ -86,6 +89,7 @@
 
   var V1_MORNING_VISIBLE = [
     "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv", "air-quality",
+    "outdoor-story", "todays-challenge", "daily-learn",
     "todays-outdoor-highlights", "sun-moon-dashboard", "safety-dashboard"
   ];
 

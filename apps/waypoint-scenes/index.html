@@ -72,6 +72,8 @@
             </div>
           </div>
           <button type="button" class="btn btn-primary" id="btn-coach-upload" style="margin-top:0.75rem">Upload another</button>
+          <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
+          <div id="coach-portfolio-mount" class="coach-portfolio-mount"></div>
           <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
           <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" hidden>
         </div>
@@ -384,7 +386,10 @@
   <script src="js/photography.js"></script>
   <script src="js/learn-content.js"></script>
   <script src="js/learn.js"></script>
+  <script src="js/exif-reader.js"></script>
   <script src="js/photo-coach-schema.js"></script>
+  <script src="js/photo-coach-portfolio.js"></script>
+  <script src="js/scene-context.js"></script>
   <script src="js/photo-coach.js"></script>
   <script src="js/tabs.js"></script>
   <script src="js/app.js"></script>
