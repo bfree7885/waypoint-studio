@@ -10,14 +10,14 @@
       provider: "usgs-iv",
       gaugeType: "stage",
       label: "USGS river stage (IV)",
-      status: "pending"
+      status: "live"
     },
     streamFlow: {
       slot: "stream-flow",
       provider: "usgs-iv",
       gaugeType: "discharge",
       label: "USGS streamflow (cfs)",
-      status: "pending"
+      status: "live"
     },
     waterTemperature: {
       slot: "water-temperature",
@@ -123,6 +123,21 @@
   }
 
   function buildRiverLevels(platform) {
+    var usgs = platform && platform.usgsWater;
+    if (usgs && usgs.nearest && usgs.nearest.stageFt != null) {
+      var n = usgs.nearest;
+      return card(
+        "river-levels", "〰", "River Levels",
+        "ready",
+        n.siteName,
+        "Gage height " + n.stageFt + " ft" +
+          (n.dischargeCfs != null ? " · " + n.dischargeCfs + " cfs" : "") +
+          (n.distanceKm != null ? " · " + n.distanceKm.toFixed(1) + " km from you" : "") +
+          ". Provisional USGS reading.",
+        "Compare to local flood stage before water crossings.",
+        "live", "riverLevels", n.stageFt + " ft"
+      );
+    }
     var ws = watershedLabel(platform);
     var notes = observationsMatching(platform, /river|delaware|lackawaxen|creek crossing|water level/i);
     if (notes.length && /high|cross|flood|elevated|mud|water/i.test(notes[0].title + notes[0].body)) {
@@ -148,6 +163,19 @@
   }
 
   function buildStreamFlow(platform) {
+    var usgs = platform && platform.usgsWater;
+    if (usgs && usgs.nearest && usgs.nearest.dischargeCfs != null) {
+      var n = usgs.nearest;
+      return card(
+        "stream-flow", "≋", "Stream Flow",
+        "ready",
+        n.dischargeCfs + " cfs at " + n.siteName,
+        "Nearest USGS instantaneous discharge" +
+          (n.stageFt != null ? " · stage " + n.stageFt + " ft" : "") + ".",
+        "High or muddy flow can make crossings dangerous — verify locally.",
+        "live", "streamFlow", n.dischargeCfs + " cfs"
+      );
+    }
     var notes = observationsMatching(platform, /creek|stream|flow|crossing|cfs|tributary/i);
     if (notes.length) {
       return card(

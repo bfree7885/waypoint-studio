@@ -11,7 +11,7 @@
     nwsAlerts: { provider: "NWS", endpoint: "api.weather.gov/alerts/active", status: "live", trust: "Live" },
     elevation: { provider: "Open-Meteo DEM", endpoint: "api.open-meteo.com/v1/elevation", status: "live", trust: "Live" },
     geocode: { provider: "Nominatim", endpoint: "nominatim.openstreetmap.org/reverse", status: "live", trust: "Live" },
-    usgsStreamflow: { provider: "USGS Water Services", endpoint: "waterservices.usgs.gov/nwis/iv", status: "pending", trust: "Not yet available" },
+    usgsStreamflow: { provider: "USGS Water Services", endpoint: "waterservices.usgs.gov/nwis/iv", status: "live", trust: "Live", note: "Provisional IV data" },
     usgsLakes: { provider: "USGS Lake Levels", endpoint: "waterservices.usgs.gov", status: "pending", trust: "Not yet available" },
     recreationGov: { provider: "Recreation.gov", endpoint: "ridb.recreation.gov/api/v1", status: "pending", trust: "Not yet available" },
     npsAlerts: { provider: "NPS API", endpoint: "developer.nps.gov/api/v1", status: "pending", trust: "Not yet available", note: "API key required" },

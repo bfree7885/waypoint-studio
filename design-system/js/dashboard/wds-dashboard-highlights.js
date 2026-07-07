@@ -26,6 +26,11 @@
   }
 
   function generate(ctx) {
+    var BP = global.WDS && global.WDS.briefingPackage;
+    if (BP && BP.widgetHighlights) {
+      var w = BP.widgetHighlights(ctx);
+      if (w && w.status === "ready") return w;
+    }
     ctx = ctx || {};
     var platform = ctx.platform || {};
     var bundle = ctx.bundle || {};

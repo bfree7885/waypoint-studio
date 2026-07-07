@@ -157,8 +157,17 @@
     var P = Portfolio();
     if (!P || !els.portfolioMount) return;
     var summary = P.skillSummary();
+    var Prof = global.WaypointPhotoCoachProfile;
+    var prof = Prof && Prof.renderSummary ? Prof.renderSummary() : null;
+    var skillsHtml = global.WaypointPhotoCoachSkills && global.WaypointPhotoCoachSkills.renderHtml
+      ? global.WaypointPhotoCoachSkills.renderHtml()
+      : "";
     var sessions = P.listSessions().slice(0, 5);
     var html = '<div class="coach-portfolio"><h3 class="coach-portfolio__title">Coached sessions</h3>';
+    if (prof) {
+      html += '<p class="coach-portfolio__stats">Level: ' + escapeHtml(prof.level) +
+        " · Goals: " + escapeHtml(prof.goals) + "</p>";
+    }
     if (summary) {
       html += '<p class="coach-portfolio__stats">' + summary.sessionsCoached + " sessions · avg " + summary.averageScore + "/100</p>";
     } else {
@@ -171,7 +180,7 @@
           "</li>";
       }).join("") + "</ul>";
     }
-    html += "</div>";
+    html += skillsHtml + "</div>";
     els.portfolioMount.innerHTML = html;
   }
 
@@ -189,6 +198,8 @@
           imageUrl: imageUrl
         });
         renderPortfolioSummary();
+        var Skills = global.WaypointPhotoCoachSkills;
+        if (Skills && Skills.buildProfile) Skills.buildProfile();
         saveBtn.textContent = "Saved";
         setTimeout(function () { saveBtn.textContent = "Save to portfolio"; }, 2000);
       };
@@ -204,13 +215,17 @@
           });
         }
         window.WaypointSceneApp.loadPhotoForLivingScene(imageUrl, currentFile ? currentFile.name : "photo");
-        if (global.WaypointSceneContext && global.WaypointSceneContext.createContext) {
-          global.WaypointSceneContext.createContext({
-            imageUrl: imageUrl,
-            imageName: currentFile ? currentFile.name : null,
-            exif: currentExif,
-            critique: currentCritique
-          });
+        if (window.WaypointSceneApp.setSceneContext) {
+          window.WaypointSceneApp.setSceneContext(
+            window.WaypointSceneContext && window.WaypointSceneContext.createContext
+              ? window.WaypointSceneContext.createContext({
+                  imageUrl: imageUrl,
+                  imageName: currentFile ? currentFile.name : null,
+                  exif: currentExif,
+                  critique: currentCritique
+                })
+              : { critique: currentCritique, exif: currentExif }
+          );
         }
       };
     }

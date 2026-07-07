@@ -7,6 +7,7 @@
   var parallaxImageLoaded = false;
   var parallaxActivePresetId = "gentle-drift";
   var exportPreviewTimer = null;
+  var activeSceneContext = null;
 
   var PARALLAX_SLIDER_KEYS = ["sensitivity", "strength", "depthStrength", "smoothing", "zoom"];
 
@@ -257,6 +258,33 @@
     });
   }
 
+  function setSceneContext(ctx) {
+    activeSceneContext = ctx || null;
+    if (window.WaypointSceneContext && window.WaypointSceneContext.setActive) {
+      window.WaypointSceneContext.setActive(ctx);
+    }
+  }
+
+  function applyCoachContextHints() {
+    if (!activeSceneContext || !activeSceneContext.critique) return;
+    var c = activeSceneContext.critique;
+    var note = "";
+    if (c.lighting && c.lighting.summary) {
+      var ls = c.lighting.summary.toLowerCase();
+      if (/fog|mist/.test(ls) && els.analysisSummary) {
+        note = "Photo Coach noted fog/mist light — consider Atmosphere presets that match your capture.";
+      } else if (/golden|afternoon|side light/.test(ls)) {
+        note = "Photo Coach noted directional light — gentle drift and light rays may suit this frame.";
+      }
+    }
+    if (note && els.analysisSummary) {
+      els.analysisSummary.textContent = note;
+    }
+    if (els.presetRecommendations) {
+      els.presetRecommendations.setAttribute("data-coach-linked", "true");
+    }
+  }
+
   function analyzePhoto(img) {
     if (!window.WaypointSceneAnalyzer || !window.WaypointPresetRecommendations) {
       hideRecommendations();
@@ -266,6 +294,7 @@
     var analysis = window.WaypointSceneAnalyzer.analyze(img);
     var recs = window.WaypointPresetRecommendations.recommend(analysis);
     renderRecommendations(analysis, recs);
+    applyCoachContextHints();
   }
 
   function hideRecommendations() {
@@ -1035,6 +1064,8 @@
   window.WaypointSceneApp = {
     loadPhotoForLivingScene: loadPhotoForLivingScene,
     loadPhotoForParallax: loadPhotoForParallax,
-    setProductMode: setProductMode
+    setProductMode: setProductMode,
+    setSceneContext: setSceneContext,
+    getSceneContext: function () { return activeSceneContext; }
   };
 })();

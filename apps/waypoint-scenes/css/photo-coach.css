@@ -109,6 +109,29 @@
   font-style: italic;
 }
 
+.coach-skills {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ws-border, rgba(255, 255, 255, 0.1));
+}
+
+.coach-skills__title {
+  font-size: 0.85rem;
+  margin: 0 0 0.35rem;
+}
+
+.coach-skills__meta,
+.coach-skills__label {
+  font-size: 0.8rem;
+  margin: 0.25rem 0;
+}
+
+.coach-skills__list {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+}
+
 .coach-layout {
   display: grid;
   gap: 1.25rem;

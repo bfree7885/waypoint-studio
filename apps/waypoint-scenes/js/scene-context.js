@@ -47,9 +47,22 @@
     });
   }
 
+  var activeContext = null;
+
+  function setActive(ctx) {
+    activeContext = ctx || null;
+    return activeContext;
+  }
+
+  function getActive() {
+    return activeContext;
+  }
+
   global.WaypointSceneContext = {
     CAPABILITIES: CAPABILITIES,
     createContext: createContext,
-    listCapabilities: listCapabilities
+    listCapabilities: listCapabilities,
+    setActive: setActive,
+    getActive: getActive
   };
 })(window);

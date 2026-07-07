@@ -49,6 +49,42 @@
     return build(ctx);
   }
 
+  function pickForConditions(ctx, intel) {
+    var base = build(ctx);
+    if (!intel) return base;
+    if (intel.recommendation && intel.recommendation.verdict === "wait") {
+      return {
+        status: "ready",
+        tag: { label: "Editorial", className: "wdb-widget__tag--editorial" },
+        summary: "Safety · Storm-day protocol",
+        body: "Postpone exposed hikes. Practice reading radar and identifying safe retreat routes from a window or porch.",
+        items: ["Why: Building storm literacy now makes future field days safer."],
+        metaFooter: base.metaFooter
+      };
+    }
+    if (intel.photography && intel.photography.level === "excellent") {
+      return {
+        status: "ready",
+        tag: { label: "Editorial", className: "wdb-widget__tag--editorial" },
+        summary: "Photography · Light study",
+        body: "Today's diffuse or dramatic light favors forest and creek work. Shoot three frames of the same subject at −1, 0, +1 EV.",
+        items: ["Why: Excellent light days are rare — bracketing teaches exposure judgment fast."],
+        metaFooter: base.metaFooter
+      };
+    }
+    if (intel.hiking && (intel.hiking.level === "excellent" || intel.hiking.level === "good")) {
+      return {
+        status: "ready",
+        tag: { label: "Editorial", className: "wdb-widget__tag--editorial" },
+        summary: "Hiking · Trail journal",
+        body: "On your hike, note trail surface, mud depth, and one plant in bloom. Record time and weather at each stop.",
+        items: ["Why: Conditions are favorable — pairing movement with observation builds field literacy."],
+        metaFooter: base.metaFooter
+      };
+    }
+    return base;
+  }
+
   global.WDS = global.WDS || {};
-  global.WDS.dashboardChallenge = { build: build, generate: generate, all: CHALLENGES };
+  global.WDS.dashboardChallenge = { build: build, generate: generate, pickForConditions: pickForConditions, all: CHALLENGES };
 })(window);

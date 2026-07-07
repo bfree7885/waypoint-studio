@@ -94,6 +94,8 @@
   }
 
   function generate(ctx) {
+    var BP = global.WDS && global.WDS.briefingPackage;
+    if (BP && BP.widgetStory) return BP.widgetStory(ctx);
     return build(ctx);
   }
 

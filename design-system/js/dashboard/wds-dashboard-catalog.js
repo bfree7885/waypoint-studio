@@ -103,6 +103,11 @@
     size: "md",
     getData: function (ctx) {
       var C = global.WDS && global.WDS.dashboardChallenge;
+      var BP = global.WDS && global.WDS.briefingPackage;
+      if (BP && BP.compose) {
+        var doc = BP.compose(ctx);
+        if (doc.challenge) return doc.challenge;
+      }
       return C && C.generate ? C.generate(ctx) : { status: "loading", summary: "Loading challenge…" };
     }
   });
@@ -119,6 +124,64 @@
     getData: function (ctx) {
       var L = global.WDS && global.WDS.dashboardLearn;
       return L && L.generate ? L.generate(ctx) : { status: "loading", summary: "Loading lesson…" };
+    }
+  });
+
+  reg({
+    id: "ecological-activity",
+    title: "Ecological Activity",
+    icon: "🌿",
+    category: "wildlife",
+    defaultOrder: 16,
+    defaultVisible: true,
+    tier: "vital",
+    size: "wide",
+    getData: function (ctx) {
+      var platform = p(ctx);
+      var national = platform.meta && platform.meta.contentMode === "national-educational";
+      var Wi = global.WDS && global.WDS.wildlifeDashboardIntel;
+      var Fi = global.WDS && global.WDS.floraDashboardIntel;
+      var items = [];
+      var sources = [];
+
+      if (Wi && Wi.analyze) {
+        var wintel = Wi.analyze(platform);
+        if (wintel && wintel.cardList) {
+          wintel.cardList.slice(0, 3).forEach(function (c) {
+            items.push((c.label || "Wildlife") + ": " + (c.happening || c.headline || "—"));
+          });
+          sources.push(national ? "Educational" : "Regional");
+        }
+      }
+      if (Fi && Fi.analyze) {
+        var fintel = Fi.analyze(platform);
+        if (fintel && fintel.cardList) {
+          fintel.cardList.slice(0, 2).forEach(function (c) {
+            items.push((c.label || "Plants") + ": " + (c.headline || c.happening || "—"));
+          });
+        }
+      }
+      if (!items.length) {
+        var month = new Date().toLocaleDateString(undefined, { month: "long" });
+        items.push("Seasonal activity varies by latitude — connect eBird or regional phenology for live species feeds.");
+        items.push("Observe habitat edges, water sources, and south-facing slopes for emerging plants and active wildlife.");
+      }
+      var dateLabel = new Date().toLocaleDateString(undefined, {
+        weekday: "long", month: "long", day: "numeric", year: "numeric"
+      });
+      return {
+        status: "ready",
+        tag: {
+          label: national ? "Educational" : "Editorial",
+          className: "wdb-widget__tag--editorial"
+        },
+        summary: "What may be active on " + dateLabel,
+        body: national
+          ? "U.S. educational ecology — not a local species list. Live eBird and phenology feeds not connected."
+          : "Regional editorial species and phenology where a local bundle is active.",
+        items: items,
+        metaFooter: (sources.length ? sources.join(" · ") : "Waypoint") + " · " + dateLabel
+      };
     }
   });
 

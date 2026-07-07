@@ -187,7 +187,15 @@
     return EL.fetchElevation(coords);
   }
 
-  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg) {
+  function resolveUsgsWater(request, pkg) {
+    var US = global.WDS && global.WDS.usgsWater;
+    if (!US || !US.fetchNearestGauge) return Promise.resolve(null);
+    var coords = coordsFromPkg(pkg);
+    if (!coords) return Promise.resolve(null);
+    return US.fetchNearestGauge(coords);
+  }
+
+  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg) {
     if (weatherPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromWeatherPackage(weatherPkg)));
       pkg.weatherRef = weatherPkg;
@@ -203,12 +211,16 @@
       pkg.location.elevationMeters = elevationPkg.meters;
       pkg.location.elevation = elevationPkg;
     }
+    if (usgsWaterPkg && usgsWaterPkg.nearest) {
+      pkg.usgsWater = usgsWaterPkg;
+    }
     pkg.legacy = S.toLegacyV1(pkg);
     pkg.meta.sources = Object.assign({}, pkg.meta.sources || {}, {
       weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider : "none",
       alerts: alertsPkg && alertsPkg.meta ? alertsPkg.meta.provider : "none",
       airQuality: airQualityPkg && airQualityPkg.meta ? airQualityPkg.meta.provider : "none",
       elevation: elevationPkg ? elevationPkg.provider : "none",
+      usgsWater: usgsWaterPkg ? usgsWaterPkg.provider : "none",
       regionalIntelligence: "engine"
     });
     lastPackage = pkg;
@@ -231,12 +243,14 @@
       resolveWeather(req, intelForWeather(core)),
       resolveAlerts(req, core),
       resolveAirQuality(req, core),
-      resolveElevation(req, core)
+      resolveElevation(req, core),
+      resolveUsgsWater(req, core)
     ]).then(function (parts) {
       var weatherPkg = parts[0];
       var alertsPkg = parts[1];
       var airQualityPkg = parts[2];
       var elevationPkg = parts[3];
+      var usgsWaterPkg = parts[4];
       if (national) {
         var UN = global.WDS && global.WDS.usNational;
         var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
@@ -245,7 +259,8 @@
           weatherPkg,
           alertsPkg,
           airQualityPkg,
-          elevationPkg
+          elevationPkg,
+          usgsWaterPkg
         );
       }
       if (req.bundle) {
@@ -254,7 +269,8 @@
           weatherPkg,
           alertsPkg,
           airQualityPkg,
-          elevationPkg
+          elevationPkg,
+          usgsWaterPkg
         );
       }
       return loadBundle(regionId, req.contentEngineBase).then(function (bundle) {
@@ -263,11 +279,12 @@
           weatherPkg,
           alertsPkg,
           airQualityPkg,
-          elevationPkg
+          elevationPkg,
+          usgsWaterPkg
         );
       }).catch(function (err) {
         M.devLog("platform extensions failed — engine core only", err && err.message);
-        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg, airQualityPkg, elevationPkg);
+        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg);
       });
     });
   }

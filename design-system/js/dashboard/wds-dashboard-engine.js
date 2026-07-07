@@ -227,6 +227,11 @@
       html += Brief.render(ctx);
     }
 
+    var BP = global.WDS && global.WDS.briefingPackage;
+    if (BP && BP.render) {
+      html += BP.render(ctx);
+    }
+
     if (vital.length) {
       html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Current conditions at a glance">';
       html += renderWidgetsHtml(vital, ctx, settings);

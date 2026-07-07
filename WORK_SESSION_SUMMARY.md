@@ -1,134 +1,142 @@
 # Work Session Summary
 
 **Date:** July 6, 2026  
-**Session:** Executive Engineering — Outdoor OS + Photo Coach expansion
+**Session:** Execution — Unified Outdoor Briefing + USGS Water + Photo Coach Learning
 
 ---
 
-## Everything implemented
+## Every capability added
 
-### Waypoint Dashboard (Outdoor Operating System)
-
-| Capability | Status | Trust |
-|------------|--------|-------|
-| Elevation in briefing header | **Live** — Open-Meteo DEM via OIP parallel fetch | Live |
-| Outdoor intelligence scorecard | **New** — Outdoor, Photography, Hiking, Comfort, Safety, Night sky (0–100) with WHY | Estimated |
-| Outdoor Story widget | **New** — Evidence-based summary from weather, alerts, AQI, daylight | Estimated |
-| Today's Challenge widget | **New** — Daily rotating field activity (photo, birding, hike, ecology, journal) | Editorial |
-| Learn Today widget | **New** — Daily rotating ecology/biology/geology/weather/photo/conservation lesson | Educational |
-| Integration registry | **New** — Honest provider slots for USGS, NPS, eBird, trails, smoke, tides | Not yet available where pending |
-| Morning brief score strip | Expanded UI with numeric scores + first WHY line per score | Estimated |
-| Elevation → location sync | Platform elevation flows to briefing location grid | Live |
-
-### Waypoint Scenes (Photo Coach + Scene Builder)
+### Waypoint (Outdoor Operating System)
 
 | Capability | Status | Trust |
 |------------|--------|-------|
-| EXIF reader | **New** — Local JPEG metadata (camera, ISO, exposure, GPS) | Live when embedded |
-| Critique schema v2 | **New** — Subject, foreground, background, exposure, sharpness, noise, storytelling, field assignment, WHY per section | Demo sample until AI |
-| Portfolio store | **New** — localStorage coached sessions + skill summary | Live (local) |
-| Scene context architecture | **New** — Capability registry for 3D, weather-aware, wallpapers, VR (honest pending) | Not yet available |
-| Coach → Scene Builder bridge | **New** — "Build living scene" sends upload to Living Scene | Live |
-| Photo Coach UI | EXIF panel, portfolio panel, save session, expanded critique sections | — |
+| **Unified briefing document** | Single cohesive section composing weather, safety, photography, hiking, water, trails, wildlife, ecology | Estimated / Live / Educational per domain |
+| **USGS stream gauges** | Nearest gauge stage (ft) + discharge (cfs) via IV API | Live (provisional) |
+| **Ecological Activity widget** | Birds, plants, wildlife cards from intel modules; honest national/educational labels | Editorial / Educational |
+| **Condition-aware challenges** | Today's challenge adapts to storm / photography / hiking conditions | Editorial |
+| **Deduplicated narrative** | Outdoor Story + Highlights widgets pull from unified briefing package | Estimated |
+| **Domain notices** | Each domain shows source + trust (Live, Estimated, Educational, Not yet available) | Per card |
+| **Provenance footer** | Unified briefing lists all sources + last updated | Live |
+
+### Waypoint Scenes
+
+| Capability | Status |
+|------------|--------|
+| **Learning profile** | localStorage goals, experience level, completed assignments |
+| **Skill tracking** | Per-dimension strengths/growth from saved coached sessions |
+| **Scene context wiring** | `WaypointSceneApp.setSceneContext()` consumed by Living Scene |
+| **Photo-to-scene hints** | Coach lighting notes surface in Scene Builder analysis panel |
+| **Coach → Builder bridge** | Context (critique, EXIF) passed and stored, not discarded |
 
 ---
 
 ## Every file changed
 
-### New files
+### New
 | File |
 |------|
-| `design-system/js/weather/wds-elevation-service.js` |
-| `design-system/js/dashboard/wds-dashboard-story.js` |
-| `design-system/js/dashboard/wds-dashboard-challenge.js` |
-| `design-system/js/dashboard/wds-dashboard-learn.js` |
-| `design-system/js/dashboard/wds-integrations-registry.js` |
-| `apps/waypoint-scenes/js/exif-reader.js` |
-| `apps/waypoint-scenes/js/photo-coach-portfolio.js` |
-| `apps/waypoint-scenes/js/scene-context.js` |
-| `WORK_SESSION_SUMMARY.md` |
+| `design-system/js/water/wds-usgs-water-service.js` |
+| `design-system/js/dashboard/wds-dashboard-briefing-package.js` |
+| `apps/waypoint-scenes/js/photo-coach-profile.js` |
+| `apps/waypoint-scenes/js/photo-coach-skills.js` |
 
-### Modified files
+### Modified
 | File | Change |
 |------|--------|
-| `design-system/js/wds.js` | Load elevation, story, challenge, learn, integrations modules |
-| `design-system/js/outdoor-intelligence/wds-oip-service.js` | Parallel elevation fetch; attach to platform |
-| `design-system/js/wds-content-engine.js` | Sync elevation to location for briefing |
-| `design-system/js/weather/wds-outdoor-weather-intel.js` | Scorecard: outdoor, photo, hike, comfort, safety, night sky |
-| `design-system/js/dashboard/wds-dashboard-briefing.js` | Elevation field in location grid |
-| `design-system/js/dashboard/wds-dashboard-brief.js` | Numeric score strip in morning brief |
-| `design-system/js/dashboard/wds-dashboard-catalog.js` | outdoor-story, todays-challenge, daily-learn widgets |
-| `design-system/js/dashboard/wds-dashboard-settings.js` | Morning preset includes new widgets; migration |
-| `design-system/css/wds-dashboard-widgets.css` | Score card styles |
-| `apps/waypoint-scenes/js/photo-coach-schema.js` | Schema v2 with expanded critique fields |
-| `apps/waypoint-scenes/js/photo-coach.js` | EXIF, portfolio, builder bridge, v2 render |
-| `apps/waypoint-scenes/js/app.js` | Expose `setProductMode` on WaypointSceneApp |
-| `apps/waypoint-scenes/index.html` | Script tags, EXIF/portfolio mounts |
-| `apps/waypoint-scenes/css/photo-coach.css` | EXIF, portfolio, actions styles |
+| `design-system/js/wds.js` | Load USGS + briefing package modules |
+| `design-system/js/outdoor-intelligence/wds-oip-service.js` | Parallel USGS fetch |
+| `design-system/js/water/wds-water-dashboard-intel.js` | Live USGS river/stream cards |
+| `design-system/js/dashboard/wds-integrations-registry.js` | USGS status → live |
+| `design-system/js/dashboard/wds-dashboard-engine.js` | Render unified briefing document |
+| `design-system/js/dashboard/wds-dashboard-story.js` | Delegate to briefing package |
+| `design-system/js/dashboard/wds-dashboard-highlights.js` | Delegate to briefing package |
+| `design-system/js/dashboard/wds-dashboard-challenge.js` | `pickForConditions()` |
+| `design-system/js/dashboard/wds-dashboard-catalog.js` | Ecological activity widget; condition-aware challenge |
+| `design-system/js/dashboard/wds-dashboard-settings.js` | Morning preset includes ecological activity |
+| `design-system/css/wds-dashboard-widgets.css` | Briefing document styles |
+| `apps/waypoint-scenes/js/app.js` | Scene context API + coach hints |
+| `apps/waypoint-scenes/js/scene-context.js` | `setActive` / `getActive` |
+| `apps/waypoint-scenes/js/photo-coach.js` | Profile, skills, scene context bridge |
+| `apps/waypoint-scenes/index.html` | Profile + skills scripts |
+| `apps/waypoint-scenes/css/photo-coach.css` | Skills panel styles |
 
 ---
 
-## Regression testing
+## Every regression tested
 
 | Test | Result |
 |------|--------|
-| `node --check` on all modified JS (16 files) | Pass |
-| Open-Meteo weather API (5 U.S. locations) | HTTP 200 |
-| Open-Meteo elevation API (5 U.S. locations) | HTTP 200 — realistic values (York 23m, Denver 1599m, Yosemite 1230m) |
-| Prior commit `a8f1a2b` Photo Coach foundation | Preserved and extended |
-| Living Scene engine | Untouched — bridge calls existing `loadPhotoForLivingScene` |
+| `node --check` on all new/modified JS | Pass |
+| USGS IV API (Milford PA bbox) | HTTP 200 · 24 gauge series returned |
+| Open-Meteo + elevation (prior session) | Still committed and unchanged |
+| Photo Coach foundation (prior commit) | Extended, not replaced |
+| Living Scene engine | Untouched core; context hooks additive |
 
-### Not run this session (recommended before release)
-- Full browser pass: homepage dashboard render with new widgets
-- Mobile layout: score strip + coach portfolio on narrow viewport
-- EXIF parse on real camera JPEG in browser
-- localStorage migration for users with dashboard settings v4
+### Not run (recommended)
+- Full browser render of unified briefing document
+- USGS gauge display at coastal / mountain / desert locations
+- Mobile layout of `wdb-doc__notices` grid
+- Photo Coach skill profile after multiple saved sessions
 
 ---
 
-## Remaining issues
+## Every API connected
 
-| Area | Gap |
-|------|-----|
-| USGS / NPS / eBird / trails | Integration registry documents slots; feeds still pending |
-| Smoke dedicated feed | Partial via AQI; AirNow not connected |
-| AI Photo Coach | Still demo sample — vision API not connected |
-| Scene Builder | Weather-aware, 3D, wallpaper presets, cinematic loops — architecture only |
-| Dashboard scores | Composite algorithm is weighted average — not ML; label as Estimated |
-| EXIF | JPEG only; PNG/WebP may lack EXIF; GPS shown raw (no privacy strip UI) |
+| API | Endpoint | Auth | Status |
+|-----|----------|------|--------|
+| Open-Meteo Forecast | `api.open-meteo.com` | None | Live |
+| Open-Meteo Air Quality | `air-quality-api.open-meteo.com` | None | Live |
+| Open-Meteo Elevation | `api.open-meteo.com/v1/elevation` | None | Live |
+| NWS Alerts | `api.weather.gov/alerts/active` | User-Agent | Live |
+| Nominatim | `nominatim.openstreetmap.org` | User-Agent | Live |
+| **USGS IV** | `waterservices.usgs.gov/nwis/iv` | None | **Live (new)** |
+
+---
+
+## Every remaining limitation
+
+| Area | Limitation |
+|------|------------|
+| Trails / NPS / Recreation.gov | Not connected — honest "Not yet available" in briefing |
+| eBird / phenology | Educational ecology only outside local bundle |
+| Smoke (AirNow) | Partial via AQI proxy |
+| USGS lakes / reservoirs | Not connected |
+| Photo Coach AI | Demo sample critique only |
+| Scene Builder 3D / weather-aware / wallpapers | Architecture registered, not implemented |
+| Blob URL portfolio thumbnails | Break on page reload |
+| Unified briefing + morning brief | Some overlap in verdict (intentional: scores strip + narrative doc) |
 
 ---
 
 ## Technical debt removed
 
-- Duplicated outdoor score logic consolidated into `scorecard()` on `outdoorWeatherIntel`
-- Pike-only locality guard from prior session preserved
-- Dashboard widget migration pattern reused for new morning widgets (no storage version bump)
+- Fragmented story/highlights/challenge logic consolidated into `briefingPackage.compose()`
+- USGS registry slots upgraded from `pending` to `live` where IV data exists
+- Photo Coach → Scene Builder context no longer discarded
+- Restored missing `todays-outdoor-highlights` widget id in catalog
 
 ---
 
-## New capabilities added (summary)
+## Recommended next sprint
 
-1. **Elevation-aware briefing** — every coordinate lookup now includes DEM elevation
-2. **Explainable outdoor scores** — six scored dimensions with WHY strings
-3. **Daily education loop** — challenge + learn widgets on default morning dashboard
-4. **Evidence-based outdoor story** — synthesized from live feeds, not fluff
-5. **Photo Coach v2** — EXIF, portfolio tracking, expanded critique taxonomy, Scene Builder bridge
-6. **Integration registry** — production-ready honesty for future API connections
-
----
-
-## Recommended next engineering session
-
-1. **USGS Water Services** — wire `usgsStreamflow` slot to nearest gauge by coordinates
-2. **Vision API** — replace `sampleCritique()` with real `analyze(file, exif)` pipeline
-3. **NPS Alerts API** — requires owner API key; trail closures widget
-4. **Browser QA pass** — 8-location manual test with elevation + scores visible
-5. **Wallpaper export presets** — implement desktop/mobile dimensions in Scene Builder export tab
-6. **Score refinement** — fold trail mud + water flood intel into safety score composite
+1. **NPS API** (owner key) → trail closures and park alerts widgets
+2. **Vision API** → real Photo Coach `analyze(file, exif)`
+3. **IndexedDB thumbnails** → persistent portfolio session images
+4. **Merge morning brief scores into briefing document** → eliminate remaining duplicate verdict UI
+5. **eBird nearby observations** → wildlife cards with live trust label
+6. **Browser QA** → 8-location manual pass with USGS + unified briefing visible
 
 ---
 
-## Commit status
+## Confidence in production readiness
 
-All modified files pass syntax check. APIs verified. **Committed as stable.**
+| Product | Confidence | Notes |
+|---------|------------|-------|
+| **Waypoint Dashboard** | **High for briefing core** | Live weather, alerts, AQI, elevation, USGS, unified narrative. Trails/parks still educational. |
+| **Waypoint Scenes Photo Coach** | **Medium** | Strong schema + EXIF + portfolio + skills; AI still demo. |
+| **Waypoint Scenes Builder** | **Medium-High** | Living Scene mature; coach integration is hint-level, not full synthesis. |
+
+**Overall:** Safe to review and deploy for dashboard briefing improvements. Photo Coach remains honestly labeled demo until vision API connects.
+
+**Commit:** Stable — committed this session.

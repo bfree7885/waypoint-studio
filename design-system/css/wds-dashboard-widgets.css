@@ -7,6 +7,117 @@
 }
 
 /* Production briefing header */
+.wdb-doc {
+  margin: 1rem 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.wdb-doc__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+
+.wdb-doc__date {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.wdb-doc__para {
+  margin: 0.75rem 0 0;
+  line-height: 1.5;
+}
+
+.wdb-doc__evidence {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.wdb-doc__notices {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.wdb-doc__notice {
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wdb-doc__domain {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.wdb-doc__notice-text {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.wdb-doc__notice-meta {
+  margin: 0.35rem 0 0;
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.wdb-doc__trust {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wdb-doc__actions {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.wdb-doc__action {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-doc__action-title {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wdb-doc__action-type {
+  margin: 0.35rem 0 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.wdb-doc__action-body,
+.wdb-doc__action-why {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.wdb-doc__foot {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
 .wdb-briefing {
   display: grid;
   gap: var(--wds-space-4, 1rem);
