@@ -118,7 +118,8 @@
     var absLat = Math.abs(Number(lat) || 41);
     var civil = Math.round(28 + Math.max(0, absLat - 35) * 0.4);
     var nauticalExtra = Math.round(28 + Math.max(0, absLat - 35) * 0.5);
-    return { civil: civil, nauticalExtra: nauticalExtra };
+    var astroExtra = Math.round(22 + Math.max(0, absLat - 35) * 0.35);
+    return { civil: civil, nauticalExtra: nauticalExtra, astroExtra: astroExtra };
   }
 
   function twilightWindows(sunriseIso, sunsetIso, lat) {
@@ -130,13 +131,18 @@
     var civilPm = formatTimeRange(set, addMinutes(set, off.civil));
     var nauticalAm = formatTimeRange(addMinutes(rise, -(off.civil + off.nauticalExtra)), addMinutes(rise, -off.civil));
     var nauticalPm = formatTimeRange(addMinutes(set, off.civil), addMinutes(set, off.civil + off.nauticalExtra));
+    var astroAm = formatTimeRange(addMinutes(rise, -(off.civil + off.nauticalExtra + off.astroExtra)), addMinutes(rise, -(off.civil + off.nauticalExtra)));
+    var astroPm = formatTimeRange(addMinutes(set, off.civil + off.nauticalExtra), addMinutes(set, off.civil + off.nauticalExtra + off.astroExtra));
     return {
       civilMorning: civilAm,
       civilEvening: civilPm,
       nauticalMorning: nauticalAm,
       nauticalEvening: nauticalPm,
+      astronomicalMorning: astroAm,
+      astronomicalEvening: astroPm,
       civilSummary: [civilAm ? "AM " + civilAm : null, civilPm ? "PM " + civilPm : null].filter(Boolean).join(" · "),
-      nauticalSummary: [nauticalAm ? "AM " + nauticalAm : null, nauticalPm ? "PM " + nauticalPm : null].filter(Boolean).join(" · ")
+      nauticalSummary: [nauticalAm ? "AM " + nauticalAm : null, nauticalPm ? "PM " + nauticalPm : null].filter(Boolean).join(" · "),
+      astronomicalSummary: [astroAm ? "AM " + astroAm : null, astroPm ? "PM " + astroPm : null].filter(Boolean).join(" · ")
     };
   }
 
@@ -193,6 +199,9 @@
       nauticalTwilight: twilight ? twilight.nauticalSummary : null,
       nauticalTwilightMorning: twilight ? twilight.nauticalMorning : null,
       nauticalTwilightEvening: twilight ? twilight.nauticalEvening : null,
+      astronomicalTwilight: twilight ? twilight.astronomicalSummary : null,
+      astronomicalTwilightMorning: twilight ? twilight.astronomicalMorning : null,
+      astronomicalTwilightEvening: twilight ? twilight.astronomicalEvening : null,
       goldenHour: golden ? golden.summary : editorialDaylight.goldenHour || null,
       goldenHourMorning: golden ? golden.morning : null,
       goldenHourEvening: golden ? golden.evening : null,

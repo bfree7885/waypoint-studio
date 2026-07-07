@@ -6,8 +6,150 @@
   padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 2rem) clamp(3rem, 6vw, 4rem);
 }
 
-.wod__header {
+/* Production briefing header */
+.wdb-briefing {
   display: grid;
+  gap: var(--wds-space-4, 1rem);
+  padding: var(--wds-space-4, 1rem) 0 var(--wds-space-3, 0.75rem);
+  border-bottom: 1px solid var(--wds-border, rgba(255, 255, 255, 0.08));
+  margin-bottom: var(--wds-space-3, 0.75rem);
+}
+
+.wdb-briefing__datetime {
+  order: 1;
+}
+
+.wdb-briefing__date {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 650;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.wdb-briefing__time {
+  margin: 0.25rem 0 0;
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+.wdb-briefing__location-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+  opacity: 0.75;
+}
+
+.wdb-briefing__location-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.wdb-briefing__location-grid dt {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.65;
+}
+
+.wdb-briefing__location-grid dd {
+  margin: 0.1rem 0 0;
+  font-weight: 600;
+}
+
+.wdb-briefing__meta {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin: 0.5rem 0 0;
+}
+
+.wdb-briefing__tag {
+  display: inline-block;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wdb-briefing__tag--live {
+  background: rgba(120, 200, 120, 0.2);
+  color: #9fd89f;
+}
+
+.wdb-briefing__tag--editorial {
+  background: rgba(180, 180, 180, 0.15);
+}
+
+.wdb-briefing__location-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.wdb-briefing__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wdb-brief__outdoor {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wdb-brief__outdoor-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  opacity: 0.8;
+}
+
+.wdb-brief__outdoor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.5rem;
+}
+
+.wdb-brief__outdoor-card {
+  padding: 0.5rem 0.65rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.wdb-brief__outdoor-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.wdb-brief__outdoor-summary {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.wdb-brief__outdoor-detail {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.wow__trust,
+.wsky__trust {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.wod__header {
+  display: none;
   gap: var(--wds-space-4) var(--wds-space-6);
   grid-template-columns: 1fr auto;
   align-items: center;

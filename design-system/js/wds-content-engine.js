@@ -312,40 +312,18 @@
     var w = data.thisWeekOutdoors;
     if (!w) return "";
     var DE = global.WDS && global.WDS.dashboardEngine;
-    var loc = data._location;
-    var UN = global.WDS && global.WDS.usNational;
-    var trustBanner = UN && UN.renderTrustBanner
-      ? UN.renderTrustBanner(loc, data.outdoorIntelligence)
-      : renderPlatformScope(data);
     var dashboardHtml = DE
-      ? trustBanner + DE.renderDashboard({ platform: data.outdoorIntelligence, bundle: data, settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load() })
-      : trustBanner;
-    var season = data.season ? escapeHtml(data.season) : "";
-    var weekOf = data.weekOf ? escapeHtml(data.weekOf) : "";
-    var regionLabel = loc && UN && UN.displayTitle
-      ? escapeHtml(UN.displayTitle(loc))
-      : (loc && loc.name
-        ? escapeHtml(loc.name) + ", " + escapeHtml(loc.stateCode || loc.state || "")
-        : (data.region ? escapeHtml(data.region.name) + ", " + escapeHtml(data.region.state) : "Your region"));
-    var subtitle = loc && loc.displaySubtitle
-      ? '<p class="wod__pulse">' + escapeHtml(loc.displaySubtitle) + "</p>"
+      ? DE.renderDashboard({
+          platform: data.outdoorIntelligence,
+          bundle: data,
+          location: data._location,
+          settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
+        })
       : "";
-    var seasonLine = season + (weekOf ? " · Week of " + weekOf : "");
-    var today = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
 
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
-        '<header class="wod__header wod__header--command">' +
-          '<div class="wod__intro">' +
-            (seasonLine ? '<p class="wod__season">' + seasonLine + "</p>" : "") +
-            '<h1 class="wod__title" id="wod-title">' + regionLabel + "</h1>" +
-            '<p class="wod__date">' + escapeHtml(today) + "</p>" +
-            subtitle +
-          "</div>" +
-          '<div class="wod__actions">' +
-            '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm wod__customize" id="wds-dashboard-settings-open">Customize</button>' +
-          "</div>" +
-        "</header>" +
+        '<h1 class="wds-sr-only" id="wod-title">Outdoor dashboard</h1>' +
         '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
         '<nav class="wod__links" id="experiences" aria-label="Field tools">' +
           '<a class="wod__link" href="apps/foragecast/">ForageCast</a>' +
@@ -905,12 +883,22 @@
   }
 
   function renderIntoMount(mount, data, loc, base, options, platform) {
-    var bar = renderLocationBar(loc);
     var renderOpts = Object.assign({}, options, { base: base });
-    var inner = bar + renderHome(data, renderOpts);
+    var Briefing = global.WDS && global.WDS.dashboardBriefing;
+    var briefingHtml = Briefing && Briefing.render ? Briefing.render(loc, platform) : renderLocationBar(loc);
+    var inner = briefingHtml + renderHome(data, renderOpts);
     mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
     mount.removeAttribute("aria-busy");
-    bindLocationBar(mount, options);
+    if (!(Briefing && Briefing.bind)) {
+      bindLocationBar(mount, options);
+    }
+    if (Briefing && Briefing.bind) {
+      Briefing.bind(mount, loc, {
+        base: base,
+        platform: platform,
+        onLocationChange: options && options.onLocationChange
+      });
+    }
     if (loc && loc.displayTitle) {
       document.title = "Outdoor Dashboard · " + loc.displayTitle + " — Waypoint Studio";
     } else if (loc && loc.name) {

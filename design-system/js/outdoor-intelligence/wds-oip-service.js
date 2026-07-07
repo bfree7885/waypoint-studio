@@ -113,6 +113,14 @@
     return { lat: Number(lat), lng: Number(lng) };
   }
 
+  function resolveAirQuality(request, pkg) {
+    var AQ = global.WDS && global.WDS.airQuality;
+    if (!AQ || !AQ.fetchCurrent) return Promise.resolve(null);
+    var coords = coordsFromPkg(pkg);
+    if (!coords) return Promise.resolve(null);
+    return AQ.fetchCurrent({ lat: coords.lat, lng: coords.lng });
+  }
+
   function resolveAlerts(request, pkg) {
     var NWS = global.WDS && global.WDS.nwsAlerts;
     if (!NWS || !NWS.fetchActive) return Promise.resolve(null);
@@ -171,7 +179,7 @@
     };
   }
 
-  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg) {
+  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg) {
     if (weatherPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromWeatherPackage(weatherPkg)));
       pkg.weatherRef = weatherPkg;
@@ -179,10 +187,14 @@
     if (alertsPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromAlertsPackage(alertsPkg)));
     }
+    if (airQualityPkg) {
+      pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromAirQualityPackage(airQualityPkg)));
+    }
     pkg.legacy = S.toLegacyV1(pkg);
     pkg.meta.sources = Object.assign({}, pkg.meta.sources || {}, {
       weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider : "none",
       alerts: alertsPkg && alertsPkg.meta ? alertsPkg.meta.provider : "none",
+      airQuality: airQualityPkg && airQualityPkg.meta ? airQualityPkg.meta.provider : "none",
       regionalIntelligence: "engine"
     });
     lastPackage = pkg;
@@ -203,35 +215,40 @@
 
     return Promise.all([
       resolveWeather(req, intelForWeather(core)),
-      resolveAlerts(req, core)
+      resolveAlerts(req, core),
+      resolveAirQuality(req, core)
     ]).then(function (parts) {
       var weatherPkg = parts[0];
       var alertsPkg = parts[1];
+      var airQualityPkg = parts[2];
       if (national) {
         var UN = global.WDS && global.WDS.usNational;
         var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, layer)),
           weatherPkg,
-          alertsPkg
+          alertsPkg,
+          airQualityPkg
         );
       }
       if (req.bundle) {
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(req.bundle))),
           weatherPkg,
-          alertsPkg
+          alertsPkg,
+          airQualityPkg
         );
       }
       return loadBundle(regionId, req.contentEngineBase).then(function (bundle) {
         return finalizePlatformPackage(
           M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(bundle))),
           weatherPkg,
-          alertsPkg
+          alertsPkg,
+          airQualityPkg
         );
       }).catch(function (err) {
         M.devLog("platform extensions failed — engine core only", err && err.message);
-        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg);
+        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg, airQualityPkg);
       });
     });
   }

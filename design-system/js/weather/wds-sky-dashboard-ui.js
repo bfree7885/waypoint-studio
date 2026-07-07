@@ -111,6 +111,8 @@
             timeCell("◐", "Civil · evening", dl.civilTwilightEvening) +
             timeCell("◑", "Nautical · morning", dl.nauticalTwilightMorning) +
             timeCell("◑", "Nautical · evening", dl.nauticalTwilightEvening) +
+            timeCell("✧", "Astronomical · AM", dl.astronomicalTwilightMorning) +
+            timeCell("✧", "Astronomical · PM", dl.astronomicalTwilightEvening) +
             timeCell("✦", "Golden hour · AM", dl.goldenHourMorning) +
             timeCell("✦", "Golden hour · PM", dl.goldenHourEvening) +
             timeCell("◉", "Blue hour · AM", dl.blueHourMorning) +
@@ -136,7 +138,12 @@
         "</div>" +
 
         '<footer class="wsky__foot">' +
-          '<p class="wsky__attribution">' + (live ? "Live · Open-Meteo" : "Educational · verify locally") + "</p>" +
+          '<p class="wsky__attribution">' +
+            (live ? '<span class="wsky__trust">Live</span> · Open-Meteo' : "Educational · verify locally") +
+            (pkg && pkg.meta && pkg.meta.fetchedAt
+              ? " · Last updated " + escapeHtml(new Date(pkg.meta.fetchedAt).toLocaleString())
+              : "") +
+          "</p>" +
         "</footer>" +
       "</div>"
     );

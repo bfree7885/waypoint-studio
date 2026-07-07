@@ -178,6 +178,11 @@
     };
   }
 
+  function fromAirQualityPackage(aqPkg) {
+    if (!aqPkg) return {};
+    return { airQuality: aqPkg };
+  }
+
   function fromAlertsPackage(alertsPkg) {
     if (!alertsPkg) return {};
     return { alerts: alertsPkg };
@@ -303,6 +308,7 @@
     fromPlatformExtensions: fromPlatformExtensions,
     fromWeatherPackage: fromWeatherPackage,
     fromAlertsPackage: fromAlertsPackage,
+    fromAirQualityPackage: fromAirQualityPackage,
     mergeLayers: mergeLayers,
     toLegacyV1: toLegacyV1
   };

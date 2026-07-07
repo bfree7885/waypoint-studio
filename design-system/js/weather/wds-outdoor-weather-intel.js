@@ -145,15 +145,52 @@
     };
   }
 
+  function walkingComfort(pkg) {
+    var hike = hikingComfort(pkg);
+    if (hike.level === "excellent") return rating("excellent", "Ideal for walking", "Comfortable air and low storm risk for neighborhood walks and parks.");
+    if (hike.level === "good") return rating("good", "Good for walking", hike.detail || "Pleasant for errands on foot and short paths.");
+    if (hike.level === "fair") return rating("fair", "Walkable with layers", hike.detail || "Dress for conditions and watch the hourly forecast.");
+    if (hike.level === "poor") return rating("poor", "Limit outdoor walking", hike.detail || "Storms, heat, or cold may make long walks uncomfortable.");
+    return rating("unknown", "Awaiting live data", "Walking comfort needs current weather.");
+  }
+
+  function wildlifeActivity(pkg, platform) {
+    var cur = (pkg && pkg.current) || {};
+    var temp = num(cur.temperature);
+    var cond = ((cur.conditions && cur.conditions.summary) || "").toLowerCase();
+    var month = new Date().getMonth() + 1;
+    if (temp == null) {
+      return rating("unknown", "Wildlife cues pending", "Temperature data needed for activity guidance.");
+    }
+    if (/thunder|storm/.test(cond)) {
+      return rating("fair", "Wildlife may shelter", "Many animals reduce movement during storms — dawn windows may be quieter.");
+    }
+    if (temp >= 45 && temp <= 75 && month >= 3 && month <= 10) {
+      return rating("good", "Active season for many species", "Mild temperatures favor diurnal wildlife — listen and scan edges at dawn and dusk.");
+    }
+    if (temp < 35) {
+      return rating("fair", "Cold-season movement", "Look for tracks in snow or mud; activity concentrates near food and water.");
+    }
+    var sp = platform && platform.species && platform.species.active;
+    if (sp && sp.length && sp[0].name) {
+      return rating("good", "Watch for " + sp[0].name, sp[0].note || "Regional editorial species note — confirm locally.");
+    }
+    return rating("fair", "General field awareness", "Use eyes and ears — live species feeds not connected for this location.");
+  }
+
   function analyze(pkg, platform) {
     if (!pkg || !pkg.meta || pkg.meta.isPlaceholder) return null;
     var hiking = hikingComfort(pkg);
+    var walking = walkingComfort(pkg);
     var photo = photographyConditions(pkg, platform);
+    var wildlife = wildlifeActivity(pkg, platform);
     var mushroom = mushroomWeather(pkg);
     var recommendation = outdoorRecommendation(pkg, hiking, photo, mushroom);
     return {
       hiking: hiking,
+      walking: walking,
       photography: photo,
+      wildlife: wildlife,
       mushroom: mushroom,
       recommendation: recommendation
     };
@@ -163,7 +200,9 @@
   global.WDS.outdoorWeatherIntel = {
     analyze: analyze,
     hikingComfort: hikingComfort,
+    walkingComfort: walkingComfort,
     photographyConditions: photographyConditions,
+    wildlifeActivity: wildlifeActivity,
     mushroomWeather: mushroomWeather,
     outdoorRecommendation: outdoorRecommendation
   };

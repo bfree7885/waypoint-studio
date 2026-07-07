@@ -227,7 +227,7 @@
     }
 
     if (vital.length) {
-      html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Today at a glance">';
+      html += '<div class="wdb-vitals" data-wds-dashboard-vitals aria-label="Current conditions at a glance">';
       html += renderWidgetsHtml(vital, ctx, settings);
       html += "</div>";
     }

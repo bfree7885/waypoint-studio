@@ -79,7 +79,7 @@
   /* ——— Today's highlights (vital) ——— */
   reg({
     id: "todays-outdoor-highlights",
-    title: "Today's Outdoor Highlights",
+    title: "Outdoor Highlights",
     icon: "★",
     category: "conditions",
     defaultOrder: 15,
@@ -134,7 +134,7 @@
       if (dl && dl.sunriseFormatted) {
         return {
           status: "ready",
-          tag: { label: "Today", className: "wdb-widget__tag--live" },
+          tag: { label: "Live", className: "wdb-widget__tag--live" },
           highlight: dl.sunriseFormatted,
           body: dl.goldenHour || dl.sunsetFormatted ? "Sunset " + (dl.sunsetFormatted || "—") : ""
         };
@@ -209,16 +209,38 @@
     liveSummary: "Seven-day outlook"
   });
 
-  pending({
+  reg({
     id: "air-quality",
     title: "Air Quality",
     icon: "AQ",
     category: "conditions",
     defaultOrder: 40,
-    futureProvider: "air-quality-api",
-    summary: "Air quality (AQI)",
-    detail: "AirNow AQI and smoke alerts will appear when the provider is connected.",
-    placeholder: "Air quality index and smoke alerts will appear when a provider is connected."
+    defaultVisible: true,
+    size: "sm",
+    getData: function (ctx) {
+      var aq = D().airQuality(ctx);
+      if (aq && aq.status === "live" && aq.aqi != null) {
+        var updated = aq.meta && aq.meta.fetchedAt
+          ? new Date(aq.meta.fetchedAt).toLocaleString(undefined, { hour: "numeric", minute: "2-digit" })
+          : null;
+        return {
+          status: "ready",
+          tag: D().tagFromSource("live"),
+          highlight: "AQI " + aq.aqi,
+          body: aq.category + (aq.pm25 != null ? " · PM2.5 " + aq.pm25 : "") +
+            (updated ? " · Updated " + updated : ""),
+          summary: aq.summary || ("AQI " + aq.aqi)
+        };
+      }
+      if (aq && aq.status === "unavailable") {
+        return D().notYetAvailable("Air quality unavailable", "Open-Meteo air quality could not be loaded.", "conditions");
+      }
+      return {
+        status: "loading",
+        tag: D().tagFromSource("live"),
+        summary: "Loading air quality…"
+      };
+    }
   });
 
   live("wind", {

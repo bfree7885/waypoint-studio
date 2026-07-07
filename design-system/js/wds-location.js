@@ -68,6 +68,34 @@
     return state;
   }
 
+  function enrichWithGeocode(state) {
+    var GC = global.WDS && global.WDS.geocode;
+    if (!GC || !GC.reverse || !state || !isFinite(Number(state.lat)) || !isFinite(Number(state.lng))) {
+      return Promise.resolve(state);
+    }
+    if (state.city && state.county && state.geocodeAt) return Promise.resolve(state);
+    return GC.reverse({ lat: Number(state.lat), lng: Number(state.lng) }).then(function (geo) {
+      if (geo && geo.status === "live") {
+        if (geo.city) state.city = geo.city;
+        if (geo.county) state.county = geo.county;
+        if (geo.state) state.state = geo.state;
+        if (geo.stateCode) state.stateCode = geo.stateCode;
+        state.geocodeSource = geo.meta && geo.meta.provider;
+        state.geocodeAt = geo.meta && geo.meta.fetchedAt;
+      }
+      return state;
+    }).catch(function () {
+      return state;
+    });
+  }
+
+  function saveState(state, options) {
+    options = options || {};
+    return enrichWithGeocode(state).then(function (enriched) {
+      return writeStored(enriched, options);
+    });
+  }
+
   function onChange(fn) {
     if (typeof fn === "function") changeListeners.push(fn);
   }
@@ -488,9 +516,10 @@
     var status = mount.querySelector("#wds-loc-status");
 
     function finish(state) {
-      writeStored(state);
-      mount.innerHTML = "";
-      onComplete(state);
+      saveState(state).then(function (saved) {
+        mount.innerHTML = "";
+        onComplete(saved);
+      });
     }
 
     function fail(msg) {
@@ -539,7 +568,10 @@
           stored = global.WDS.usNational.finalizeLocation(stored, index);
         }
         currentState = stored;
-        return stored;
+        return enrichWithGeocode(stored).then(function (enriched) {
+          if (enriched !== stored) writeStored(enriched, { silent: true });
+          return enriched;
+        });
       }
 
       if (options.skipPrompt) {
@@ -597,7 +629,7 @@
     return loadIndex(base).then(function (index) {
       return getGeolocation()
         .then(function (coords) {
-          return writeStored(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
+          return saveState(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
         })
         .catch(function (err) {
           var state = getState();

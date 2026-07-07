@@ -10,7 +10,7 @@
     mosquitoActivity: { slot: "mosquito-activity", provider: "entomology-forecast", status: "pending" },
     heatRisk: { slot: "heat-risk", provider: "open-meteo", status: "partial" },
     stormRisk: { slot: "storm-risk", provider: "open-meteo", status: "partial" },
-    airQuality: { slot: "air-quality", provider: "air-quality-api", status: "pending" },
+    airQuality: { slot: "air-quality", provider: "open-meteo-air-quality", status: "live" },
     fireDanger: { slot: "fire-danger", provider: "fire-weather", status: "pending" },
     uvIndex: { slot: "uv-index", provider: "open-meteo", status: "partial" },
     waterSafety: { slot: "water-safety", provider: "composite", status: "partial" },
@@ -267,7 +267,21 @@
     );
   }
 
-  function buildAirQuality() {
+  function buildAirQuality(platform) {
+    var aq = platform && platform.airQuality;
+    if (aq && aq.status === "live" && aq.aqi != null) {
+      var level = aq.categoryLevel === "good" ? "low"
+        : aq.categoryLevel === "moderate" ? "moderate"
+        : "elevated";
+      return card(
+        "air-quality", "💨", "Air Quality",
+        level,
+        "AQI " + aq.aqi + " — " + aq.category,
+        aq.pm25 != null ? "PM2.5: " + aq.pm25 : "Check local smoke if skies look hazy.",
+        "Open-Meteo Air Quality · " + (aq.meta && aq.meta.fetchedAt ? new Date(aq.meta.fetchedAt).toLocaleTimeString() : "live"),
+        "live", "airQuality", String(aq.aqi)
+      );
+    }
     return card(
       "air-quality", "💨", "Air Quality",
       "quiet",
@@ -427,7 +441,7 @@
       mosquitoActivity: buildMosquitoActivity(platform, wx, month),
       heatRisk: buildHeatRisk(wx),
       stormRisk: buildStormRisk(wx, platform),
-      airQuality: buildAirQuality(),
+      airQuality: buildAirQuality(platform),
       fireDanger: buildFireDanger(platform, wx),
       uvIndex: buildUvIndex(wx),
       waterSafety: buildWaterSafety(platform, wx),

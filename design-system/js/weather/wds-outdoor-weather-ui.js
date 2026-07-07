@@ -31,6 +31,45 @@
     }
   }
 
+  function fmtFullDate(iso) {
+    if (!iso) return "—";
+    try {
+      return new Date(iso + (String(iso).length === 10 ? "T12:00:00" : "")).toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function visibilityNote(cur) {
+    var cloud = cur && cur.cloudCover && cur.cloudCover.value;
+    var cond = ((cur && cur.conditions && cur.conditions.summary) || "").toLowerCase();
+    if (/fog|mist|haze/.test(cond)) return "Reduced — fog or haze";
+    if (cloud != null && cloud >= 90) return "Reduced — overcast";
+    if (cloud != null && cloud >= 70) return "Moderate — heavy cloud";
+    if (cloud != null) return "Good — " + Math.round(cloud) + "% cloud cover";
+    return "Not reported by provider";
+  }
+
+  function formatUpdated(meta) {
+    if (!meta || !meta.fetchedAt) return null;
+    try {
+      return new Date(meta.fetchedAt).toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short"
+      });
+    } catch (e) {
+      return meta.fetchedAt;
+    }
+  }
+
   function fmtDate(iso) {
     if (!iso) return "—";
     try {
@@ -170,9 +209,10 @@
     var daily = (pkg.daily || []).slice(0, 5);
     var dailyHtml = daily.map(function (row, i) {
       var c = row.conditions || {};
+      var dateLabel = fmtFullDate(row.date);
       return (
         '<li class="wow-daily__item' + (i === 0 ? " wow-daily__item--today" : "") + '">' +
-          '<span class="wow-daily__date">' + escapeHtml(i === 0 ? "Today" : fmtDate(row.date)) + "</span>" +
+          '<span class="wow-daily__date">' + escapeHtml(dateLabel) + "</span>" +
           '<span class="' + iconClass(c.icon) + ' wow-daily__icon" aria-hidden="true"></span>' +
           '<span class="wow-daily__temps">' +
             escapeHtml(fmt(row.temperatureHigh, 0)) + '<span class="wow-daily__sep">/</span>' + escapeHtml(fmt(row.temperatureLow, 0)) +
@@ -185,9 +225,8 @@
     }).join("");
 
     var meta = pkg.meta || {};
-    var updated = meta.fetchedAt
-      ? new Date(meta.fetchedAt).toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" })
-      : null;
+    var updated = formatUpdated(meta);
+    var highLowDate = today && today.date ? fmtFullDate(today.date) : fmtFullDate(new Date().toISOString().slice(0, 10));
 
     return (
       '<div class="wow" data-outdoor-weather-live="true">' +
@@ -203,8 +242,12 @@
           '<dl class="wow__now-metrics">' +
             '<div class="wow__metric"><dt>Humidity</dt><dd>' + escapeHtml(fmt(cur.humidity, 0)) + "</dd></div>" +
             '<div class="wow__metric"><dt>Wind</dt><dd>' + escapeHtml(windLine(cur.wind)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>Pressure</dt><dd>' + escapeHtml(fmt(cur.pressure, 1)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>UV index</dt><dd>' + escapeHtml(fmt(cur.uvIndex, 0)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>Cloud cover</dt><dd>' + escapeHtml(fmt(cur.cloudCover, 0)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>Visibility</dt><dd>' + escapeHtml(visibilityNote(cur)) + "</dd></div>" +
             '<div class="wow__metric"><dt>Rain chance</dt><dd>' + escapeHtml(rainChance(cur, today)) + "</dd></div>" +
-            '<div class="wow__metric"><dt>Today</dt><dd>' +
+            '<div class="wow__metric"><dt>High / low</dt><dd title="' + escapeHtml(highLowDate) + '">' +
               escapeHtml(fmt(today && today.temperatureHigh, 0)) + " / " + escapeHtml(fmt(today && today.temperatureLow, 0)) +
             "</dd></div>" +
           "</dl>" +
@@ -226,19 +269,21 @@
 
         (intel
           ? '<section class="wow__outdoor" aria-label="Outdoor guidance">' +
-              '<h4 class="wow__section-title">For your day outside</h4>' +
+              '<h4 class="wow__section-title">Outdoor conditions</h4>' +
               '<div class="wow-outdoor__grid">' +
-                renderOutdoorPanel("Hiking comfort", intel.hiking) +
+                renderOutdoorPanel("Walking", intel.walking) +
+                renderOutdoorPanel("Hiking", intel.hiking) +
                 renderOutdoorPanel("Photography", intel.photography) +
-                renderOutdoorPanel("Mushroom weather", intel.mushroom) +
+                renderOutdoorPanel("Wildlife", intel.wildlife) +
               "</div>" +
               renderRecommendation(intel.recommendation) +
             "</section>"
           : "") +
 
         '<footer class="wow__foot">' +
-          '<p class="wow__attribution">Live · ' + escapeHtml(meta.attribution || meta.provider || "Open-Meteo") +
-            (updated ? " · Updated " + escapeHtml(updated) : "") + "</p>" +
+          '<p class="wow__attribution"><span class="wow__trust">Live</span> · ' +
+            escapeHtml(meta.attribution || meta.provider || "Open-Meteo") +
+            (updated ? " · Last updated " + escapeHtml(updated) : "") + "</p>" +
         "</footer>" +
       "</div>"
     );

@@ -99,12 +99,24 @@
     if (pop != null && pop >= 15) stats.push({ label: "Rain", value: pop + "%" });
 
     var OW = global.WDS && global.WDS.outdoorWeatherIntel;
-    if (OW && OW.hikingComfort && hasLive) {
+    var intel = OW && OW.analyze && hasLive ? OW.analyze(wxRef, platform) : null;
+    if (OW && OW.hikingComfort && hasLive && !intel) {
       var hike = OW.hikingComfort(wxRef);
       if (hike && hike.summary && verdict === "go") {
         verdictDetail = hike.summary + (hike.detail ? " — " + hike.detail : "");
       }
     }
+    if (intel && intel.recommendation && verdict === "go") {
+      verdictLabel = intel.recommendation.headline;
+      verdictDetail = intel.recommendation.detail;
+      verdict = intel.recommendation.verdict || verdict;
+    }
+
+    var Briefing = global.WDS && global.WDS.dashboardBriefing;
+    var tz = Briefing && Briefing.timezoneFrom ? Briefing.timezoneFrom(platform, ctx.location) : null;
+    var dateLine = Briefing && Briefing.formatDateTime
+      ? Briefing.formatDateTime(new Date(), tz).dateLine
+      : new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
 
     return {
       verdict: verdict,
@@ -113,8 +125,21 @@
       cautions: cautions,
       lookFor: lookFor,
       stats: stats,
-      hasLive: hasLive
+      hasLive: hasLive,
+      intel: intel,
+      dateLine: dateLine
     };
+  }
+
+  function renderOutdoorPanel(label, data) {
+    if (!data) return "";
+    return (
+      '<div class="wdb-brief__outdoor-card wdb-brief__outdoor-card--' + escapeHtml(data.level || "unknown") + '">' +
+        '<span class="wdb-brief__outdoor-label">' + escapeHtml(label) + "</span>" +
+        '<span class="wdb-brief__outdoor-summary">' + escapeHtml(data.summary || "—") + "</span>" +
+        (data.detail ? '<span class="wdb-brief__outdoor-detail">' + escapeHtml(data.detail) + "</span>" : "") +
+      "</div>"
+    );
   }
 
   function render(ctx) {
@@ -128,13 +153,26 @@
       );
     }).join("");
 
+    var outdoorHtml = b.intel
+      ? '<div class="wdb-brief__outdoor" aria-label="Outdoor conditions for ' + escapeHtml(b.dateLine) + '">' +
+          '<p class="wdb-brief__outdoor-title">Outdoor conditions · <span class="wdb-brief__trust">Estimated</span></p>' +
+          '<div class="wdb-brief__outdoor-grid">' +
+            renderOutdoorPanel("Walking", b.intel.walking) +
+            renderOutdoorPanel("Hiking", b.intel.hiking) +
+            renderOutdoorPanel("Photography", b.intel.photography) +
+            renderOutdoorPanel("Wildlife", b.intel.wildlife) +
+          "</div>" +
+        "</div>"
+      : "";
+
     return (
-      '<aside class="wdb-brief wdb-brief--' + escapeHtml(b.verdict) + '" aria-label="Today outdoors at a glance">' +
+      '<aside class="wdb-brief wdb-brief--' + escapeHtml(b.verdict) + '" aria-label="Outdoor summary for ' + escapeHtml(b.dateLine) + '">' +
         '<div class="wdb-brief__verdict">' +
           '<span class="wdb-brief__badge">' + escapeHtml(b.verdictLabel) + "</span>" +
           '<p class="wdb-brief__detail">' + escapeHtml(b.verdictDetail) + "</p>" +
         "</div>" +
         (statsHtml ? '<div class="wdb-brief__stats">' + statsHtml + "</div>" : "") +
+        outdoorHtml +
         (b.lookFor ? '<p class="wdb-brief__look">' + escapeHtml(b.lookFor) + "</p>" : "") +
       "</aside>"
     );

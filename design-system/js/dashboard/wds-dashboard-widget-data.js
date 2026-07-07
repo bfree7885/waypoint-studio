@@ -34,6 +34,10 @@
     return platform(ctx).rainfall;
   }
 
+  function airQuality(ctx) {
+    return platform(ctx).airQuality || null;
+  }
+
   function alerts(ctx) {
     return platform(ctx).alerts || null;
   }
@@ -262,6 +266,7 @@
     daylight: daylight,
     rainfall: rainfall,
     alerts: alerts,
+    airQuality: airQuality,
     nwsAlertsMatching: nwsAlertsMatching,
     observationsMatching: observationsMatching,
     speciesGroups: speciesGroups,

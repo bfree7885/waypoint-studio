@@ -85,9 +85,8 @@
   }
 
   var V1_MORNING_VISIBLE = [
-    "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv",
-    "todays-outdoor-highlights", "sun-moon-dashboard", "safety-dashboard",
-    "conservation-news"
+    "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv", "air-quality",
+    "todays-outdoor-highlights", "sun-moon-dashboard", "safety-dashboard"
   ];
 
   var PRESETS = {
