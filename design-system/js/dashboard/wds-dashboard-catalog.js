@@ -1276,7 +1276,7 @@
       }
       return D().previewData("No favorites yet", "Save trailheads and overlooks from the location bar.");
     },
-    placeholder: "Save favorite trailheads and overlooks — coming soon."
+    placeholder: "Save favorite trailheads and overlooks — unavailable for now."
   });
 
   educational({

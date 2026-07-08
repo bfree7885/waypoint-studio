@@ -6,7 +6,7 @@
 
   var CATEGORIES = [
     { id: "conditions", label: "Current Conditions", order: 10 },
-    { id: "sun-moon", label: "Sun & Moon", order: 20 },
+    { id: "sun-moon", label: "Sun and Moon Overview", order: 20 },
     { id: "safety", label: "Safety", order: 25 },
     { id: "wildlife", label: "Wildlife", order: 30 },
     { id: "water", label: "Water", order: 35 },

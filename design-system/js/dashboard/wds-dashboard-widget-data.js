@@ -152,10 +152,10 @@
     if (source === "live") return { label: "Live", className: "wdb-widget__tag--live" };
     if (source === "estimated") return { label: "Estimated", className: "wdb-widget__tag--estimated" };
     if (source === "unavailable") return { label: "Not yet available", className: "wdb-widget__tag--unavailable" };
-    if (source === "placeholder") return { label: "Educational", className: "wdb-widget__tag--editorial" };
+    if (source === "placeholder") return { label: "Estimated", className: "wdb-widget__tag--estimated" };
     if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
     if (source === "editorial") return { label: "Editorial", className: "wdb-widget__tag--editorial" };
-    return { label: "Educational", className: "wdb-widget__tag--editorial" };
+    return { label: "Estimated", className: "wdb-widget__tag--estimated" };
   }
 
   function tagFromSlice(slice) {

@@ -587,7 +587,7 @@
     var category = v.category || "Field learning";
     return (
       '<section class="' + storySection("quiet") + '" id="featured-video" aria-labelledby="wce-vid-title">' +
-        blockHead("Learn", "Field video", "Educational lessons — click to play when available, never autoplay.", "quiet") +
+        blockHead("Learn", "Field video", "Field guidance — click to play when available, never autoplay.", "quiet") +
         '<article class="ws-video-feature ws-video-feature--learning">' +
           '<div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder — ' + escapeHtml(v.title) + '">' +
             '<span class="ws-video-feature__category">' + escapeHtml(category) + "</span>" +

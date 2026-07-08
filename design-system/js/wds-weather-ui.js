@@ -194,7 +194,7 @@
           "</div>" +
         "</section>" +
         (dayLength ? '<p class="wds-weather-sun-moon__note">' + escapeHtml(dayLength) + "</p>" : "") +
-        '<p class="wds-weather__attribution">Regional field snapshot · moon phase data coming soon</p>' +
+        '<p class="wds-weather__attribution">Regional field snapshot · moon phase data unavailable</p>' +
       "</div>"
     );
   }
@@ -254,12 +254,12 @@
       return;
     }
     if (state === "educational") {
-      tag.textContent = "Educational";
+      tag.textContent = "Estimated";
       tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
       return;
     }
     if (state === "editorial") {
-      tag.textContent = "Educational";
+      tag.textContent = "Regional";
       tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
     }
   }
@@ -322,7 +322,7 @@
       return;
     }
     if (state === "educational") {
-      tag.textContent = "Educational";
+      tag.textContent = "Estimated";
       tag.className = "wce-dash-card__tag wce-dash-card__tag--regional";
       return;
     }
@@ -551,7 +551,7 @@
     return (
       '<div class="wds-weather wds-weather--sun-moon">' +
         renderSun(pkg) +
-        '<p class="wds-weather-sun-moon__note">Moon phase data coming soon.</p>' +
+        '<p class="wds-weather-sun-moon__note">Moon phase data unavailable.</p>' +
         renderAttribution(pkg) +
       "</div>"
     );
