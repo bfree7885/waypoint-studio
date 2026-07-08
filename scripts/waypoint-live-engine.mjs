@@ -1,23 +1,31 @@
 #!/usr/bin/env node
 /**
- * Waypoint Live Engine v1 — server-side outdoor snapshot → data/live.json
+ * Waypoint Live Engine v2 — reliability-focused modular pipeline.
  *
- * Usage:
- *   node scripts/waypoint-live-engine.mjs
- *   ./scripts/waypoint-live-engine
+ * - Plugin/module architecture per data source
+ * - Per-module health tracking and stale detection
+ * - health.json output with runtime stats
+ * - Previous-good-data fallback on source failure
+ * - status/debug pre-render for crawler-readable diagnostics
  */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { execSync } from "child_process";
 
+const ENGINE_VERSION = "2.0.0";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const OUT_PATH = process.env.WAYPOINT_LIVE_OUT || path.join(ROOT, "data", "live.json");
+const DATA_DIR = path.join(ROOT, "data");
+const LIVE_PATH = process.env.WAYPOINT_LIVE_OUT || path.join(DATA_DIR, "live.json");
+const HEALTH_PATH = path.join(DATA_DIR, "health.json");
 const INDEX_PATH = path.join(ROOT, "design-system", "content-engine", "regions-index.json");
 const STATUS_PATH = path.join(ROOT, "status.html");
 const DEBUG_PATH = path.join(ROOT, "debug.html");
-const TIMEOUT_MS = 12000;
+
+const DEFAULT_TIMEOUT_MS = 12000;
+const ENGINE_STALE_MS = 3 * 60 * 60 * 1000;
+const MODULE_DEFAULT_STALE_MS = 2 * 60 * 60 * 1000;
 const BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
 
 const DEFAULT_LOCATION = {
@@ -52,6 +60,45 @@ const WMO = {
   96: "Thunderstorm with slight hail",
   99: "Thunderstorm with heavy hail"
 };
+
+function esc(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function shortTime(iso) {
+  if (!iso) return "—";
+  try {
+    return new Date(iso).toLocaleString();
+  } catch {
+    return iso;
+  }
+}
+
+function formatLocalTime(iso, timeZone) {
+  if (!iso) return null;
+  try {
+    const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
+    return d.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: timeZone || undefined
+    });
+  } catch {
+    return iso;
+  }
+}
+
+function nextHalfHourIso(now) {
+  const d = new Date(now);
+  const m = d.getUTCMinutes();
+  d.setUTCSeconds(0, 0);
+  d.setUTCMinutes(m < 30 ? 30 : 60);
+  return d.toISOString();
+}
 
 function moonPhaseFromDate(date) {
   const jd = date / 86400000 + 2440587.5;
@@ -92,37 +139,6 @@ function aqiCategory(aqi) {
   return "Hazardous";
 }
 
-function formatLocalTime(iso, timeZone) {
-  if (!iso) return null;
-  try {
-    const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
-    return d.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: timeZone || undefined
-    });
-  } catch {
-    return iso;
-  }
-}
-
-function esc(value) {
-  return String(value == null ? "" : value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function shortTime(iso) {
-  if (!iso) return "—";
-  try {
-    return new Date(iso).toLocaleString();
-  } catch {
-    return iso;
-  }
-}
-
 function gitCommit() {
   try {
     return execSync("git rev-parse --short HEAD", { cwd: ROOT, encoding: "utf8" }).trim();
@@ -131,19 +147,515 @@ function gitCommit() {
   }
 }
 
-function makeStatusHtml(payload) {
+function readJson(file) {
+  try {
+    return JSON.parse(fs.readFileSync(file, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function writeJsonAtomic(file, data) {
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  const tmp = file + ".tmp";
+  fs.writeFileSync(tmp, JSON.stringify(data, null, 2) + "\n", "utf8");
+  fs.renameSync(tmp, file);
+}
+
+function resolveLocation() {
+  try {
+    const index = readJson(INDEX_PATH);
+    const id = index && index.defaultRegionId ? index.defaultRegionId : DEFAULT_LOCATION.id;
+    const region = index && index.regions ? index.regions.find((r) => r.id === id) : null;
+    if (region) {
+      return {
+        id: region.id,
+        name: region.name || DEFAULT_LOCATION.name,
+        state: region.state || DEFAULT_LOCATION.state,
+        stateCode: region.stateCode || DEFAULT_LOCATION.stateCode,
+        lat: Number(region.lat),
+        lng: Number(region.lng),
+        contentBundle: region.contentBundle || region.id
+      };
+    }
+  } catch {
+    /* use default */
+  }
+  return { ...DEFAULT_LOCATION, contentBundle: DEFAULT_LOCATION.id };
+}
+
+async function fetchJson(url, timeoutMs) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs || DEFAULT_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal, headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function previousModuleData(previousLive, moduleName) {
+  return previousLive && previousLive.modules && previousLive.modules[moduleName]
+    ? previousLive.modules[moduleName].data
+    : null;
+}
+
+function moduleWasHealthy(previousHealth, moduleName) {
+  return previousHealth &&
+    previousHealth.modules &&
+    previousHealth.modules[moduleName] &&
+    previousHealth.modules[moduleName].lastSuccessfulUpdate
+    ? previousHealth.modules[moduleName].lastSuccessfulUpdate
+    : null;
+}
+
+function buildPlugins() {
+  return [
+    {
+      name: "weather",
+      staleMs: 90 * 60 * 1000,
+      async fetch(ctx) {
+        const weatherUrl =
+          "https://api.open-meteo.com/v1/forecast?" +
+          new URLSearchParams({
+            latitude: String(ctx.location.lat),
+            longitude: String(ctx.location.lng),
+            current:
+              "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
+            hourly:
+              "temperature_2m,weather_code,precipitation_probability,precipitation",
+            daily:
+              "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset",
+            timezone: "auto",
+            temperature_unit: "fahrenheit",
+            wind_speed_unit: "mph",
+            precipitation_unit: "inch",
+            forecast_days: "2"
+          }).toString();
+        const data = await fetchJson(weatherUrl, DEFAULT_TIMEOUT_MS);
+        if (!data || !data.current) throw new Error("No current weather in response");
+        return { source: "Open-Meteo", data };
+      }
+    },
+    {
+      name: "sunrise_sunset",
+      staleMs: 24 * 60 * 60 * 1000,
+      async fetch(ctx) {
+        const wx = ctx.moduleResults.weather && ctx.moduleResults.weather.data;
+        if (!wx || !wx.daily || !wx.daily.sunrise || !wx.daily.sunset) {
+          throw new Error("Weather module unavailable for sunrise/sunset");
+        }
+        const sunrise = wx.daily.sunrise[0] || null;
+        const sunset = wx.daily.sunset[0] || null;
+        return {
+          source: "Open-Meteo astronomy",
+          data: {
+            sunrise,
+            sunset,
+            sunriseFormatted: formatLocalTime(sunrise, wx.timezone),
+            sunsetFormatted: formatLocalTime(sunset, wx.timezone),
+            timezone: wx.timezone || "America/New_York"
+          }
+        };
+      }
+    },
+    {
+      name: "moon",
+      staleMs: 24 * 60 * 60 * 1000,
+      async fetch() {
+        const phase = moonPhaseFromDate(new Date());
+        return {
+          source: "Calculated",
+          data: {
+            phase: moonPhaseLabel(phase),
+            illumination: moonIlluminationPercent(phase),
+            phaseValue: Math.round(phase * 1000) / 1000,
+            trust: "Estimated"
+          }
+        };
+      }
+    },
+    {
+      name: "air_quality",
+      staleMs: 90 * 60 * 1000,
+      async fetch(ctx) {
+        const url =
+          "https://air-quality-api.open-meteo.com/v1/air-quality?" +
+          new URLSearchParams({
+            latitude: String(ctx.location.lat),
+            longitude: String(ctx.location.lng),
+            current: "us_aqi,pm2_5",
+            timezone: "auto"
+          }).toString();
+        const data = await fetchJson(url, DEFAULT_TIMEOUT_MS);
+        if (!data || !data.current) throw new Error("No AQ payload");
+        const usAqi = data.current.us_aqi != null ? Math.round(data.current.us_aqi) : null;
+        return {
+          source: "Open-Meteo Air Quality",
+          data: {
+            usAqi,
+            pm25: data.current.pm2_5 != null ? Math.round(data.current.pm2_5 * 10) / 10 : null,
+            category: usAqi != null ? aqiCategory(usAqi) : null,
+            status: usAqi != null ? "live" : "unavailable"
+          }
+        };
+      }
+    },
+    {
+      name: "uv",
+      staleMs: 90 * 60 * 1000,
+      async fetch(ctx) {
+        const wx = ctx.moduleResults.weather && ctx.moduleResults.weather.data;
+        if (!wx || !wx.current) throw new Error("Weather module unavailable for UV");
+        return {
+          source: "Open-Meteo",
+          data: {
+            uvIndex: wx.current.uv_index != null ? Math.round(wx.current.uv_index * 10) / 10 : null,
+            status: wx.current.uv_index != null ? "live" : "unavailable"
+          }
+        };
+      }
+    },
+    {
+      name: "pollen",
+      staleMs: 6 * 60 * 60 * 1000,
+      async fetch() {
+        return {
+          source: "Unavailable",
+          data: { status: "unavailable", summary: "Data currently unavailable" }
+        };
+      }
+    },
+    {
+      name: "river_gauges",
+      staleMs: 2 * 60 * 60 * 1000,
+      async fetch() {
+        return {
+          source: "Unavailable",
+          data: { status: "unavailable", summary: "Data currently unavailable" }
+        };
+      }
+    },
+    {
+      name: "alerts",
+      staleMs: 60 * 60 * 1000,
+      async fetch(ctx) {
+        const url = "https://api.weather.gov/alerts/active?point=" + encodeURIComponent(ctx.location.lat + "," + ctx.location.lng);
+        const data = await fetchJson(url, DEFAULT_TIMEOUT_MS);
+        const feats = data && data.features ? data.features : [];
+        return {
+          source: "NWS",
+          data: {
+            status: "live",
+            count: feats.length,
+            items: feats.slice(0, 6).map((f) => {
+              const p = f && f.properties ? f.properties : {};
+              return { event: p.event || "Alert", severity: p.severity || null, headline: p.headline || null };
+            })
+          }
+        };
+      }
+    },
+    {
+      name: "photography_conditions",
+      staleMs: 90 * 60 * 1000,
+      async fetch(ctx) {
+        const wx = ctx.moduleResults.weather && ctx.moduleResults.weather.data;
+        const sun = ctx.moduleResults.sunrise_sunset && ctx.moduleResults.sunrise_sunset.data;
+        if (!wx || !wx.current) throw new Error("Weather module unavailable for photography");
+        const cloud = wx.current.cloud_cover != null ? Math.round(wx.current.cloud_cover) : null;
+        let score = 50;
+        if (cloud != null) {
+          if (cloud <= 15) score = 80;
+          else if (cloud <= 55) score = 92;
+          else if (cloud <= 85) score = 68;
+          else score = 48;
+        }
+        return {
+          source: "Derived from weather/sun",
+          data: {
+            status: "estimated",
+            cloudCover: cloud,
+            score,
+            summary: cloud == null
+              ? "Data currently unavailable"
+              : (score >= 80 ? "Strong outdoor light conditions" : "Moderate outdoor light conditions"),
+            sunrise: sun ? sun.sunriseFormatted : null,
+            sunset: sun ? sun.sunsetFormatted : null
+          }
+        };
+      }
+    }
+  ];
+}
+
+async function runPlugin(plugin, ctx) {
+  const started = Date.now();
+  const nowIso = new Date().toISOString();
+  const previousData = previousModuleData(ctx.previousLive, plugin.name);
+  const previousSuccess = moduleWasHealthy(ctx.previousHealth, plugin.name);
+  let status = "unavailable";
+  let data = previousData;
+  let source = "previous";
+  let error = null;
+  let lastSuccessfulUpdate = previousSuccess || (previousData ? (ctx.previousLive && ctx.previousLive.updatedAt) : null);
+
+  try {
+    const result = await plugin.fetch(ctx);
+    data = result && result.data != null ? result.data : null;
+    source = result && result.source ? result.source : plugin.name;
+    status = "live";
+    lastSuccessfulUpdate = nowIso;
+    ctx.moduleResults[plugin.name] = { data, source, status };
+    return {
+      name: plugin.name,
+      status,
+      data,
+      source,
+      error,
+      responseMs: Date.now() - started,
+      lastAttempt: nowIso,
+      lastSuccessfulUpdate,
+      stale: false
+    };
+  } catch (err) {
+    error = err && err.message ? err.message : String(err);
+    if (previousData != null) {
+      status = "fallback";
+      source = "previous-success";
+      data = previousData;
+    } else {
+      status = "unavailable";
+      source = "none";
+      data = null;
+    }
+    ctx.failures.push({ module: plugin.name, source: source, error });
+    ctx.moduleResults[plugin.name] = { data, source, status };
+    return {
+      name: plugin.name,
+      status,
+      data,
+      source,
+      error,
+      responseMs: Date.now() - started,
+      lastAttempt: nowIso,
+      lastSuccessfulUpdate,
+      stale: false
+    };
+  }
+}
+
+function applyStale(result, staleMs) {
+  const limit = staleMs || MODULE_DEFAULT_STALE_MS;
+  if (!result.lastSuccessfulUpdate) {
+    result.stale = true;
+    if (result.status === "live") result.status = "degraded";
+    return result;
+  }
+  const age = Date.now() - Date.parse(result.lastSuccessfulUpdate);
+  result.stale = !isFinite(age) || age > limit;
+  if (result.stale && result.status === "live") result.status = "degraded";
+  return result;
+}
+
+function buildLivePayload(ctx, moduleList) {
+  const weather = ctx.moduleResults.weather && ctx.moduleResults.weather.data;
+  const sun = ctx.moduleResults.sunrise_sunset && ctx.moduleResults.sunrise_sunset.data;
+  const moon = ctx.moduleResults.moon && ctx.moduleResults.moon.data;
+  const air = ctx.moduleResults.air_quality && ctx.moduleResults.air_quality.data;
+  const uv = ctx.moduleResults.uv && ctx.moduleResults.uv.data;
+  const alerts = ctx.moduleResults.alerts && ctx.moduleResults.alerts.data;
+  const photography = ctx.moduleResults.photography_conditions && ctx.moduleResults.photography_conditions.data;
+  const river = ctx.moduleResults.river_gauges && ctx.moduleResults.river_gauges.data;
+  const pollen = ctx.moduleResults.pollen && ctx.moduleResults.pollen.data;
+
+  const cur = weather && weather.current ? weather.current : null;
+  const daily = weather && weather.daily ? weather.daily : null;
+  const hourly = weather && weather.hourly ? weather.hourly : null;
+  const weatherCode = cur && cur.weather_code;
+  const timezone = weather && weather.timezone ? weather.timezone : "America/New_York";
+
+  let hourlySummary = null;
+  if (hourly && Array.isArray(hourly.time) && hourly.time.length) {
+    const now = Date.now();
+    const slots = [];
+    for (let i = 0; i < hourly.time.length && slots.length < 6; i++) {
+      const t = new Date(hourly.time[i]).getTime();
+      if (t < now - 30 * 60 * 1000) continue;
+      const code = hourly.weather_code && hourly.weather_code[i];
+      slots.push({
+        time: hourly.time[i],
+        temperatureF: hourly.temperature_2m && hourly.temperature_2m[i] != null ? Math.round(hourly.temperature_2m[i]) : null,
+        precipProbability: hourly.precipitation_probability && hourly.precipitation_probability[i] != null ? Math.round(hourly.precipitation_probability[i]) : null,
+        conditions: WMO[code] || null
+      });
+    }
+    if (slots.length) {
+      const nextRain = slots.find((s) => s.precipProbability != null && s.precipProbability >= 40);
+      hourlySummary = {
+        nextHours: slots,
+        note: nextRain
+          ? "Rain chance " + nextRain.precipProbability + "% around " + formatLocalTime(nextRain.time, timezone)
+          : "Low rain chance in the next several hours"
+      };
+    }
+  }
+
+  const high = daily && daily.temperature_2m_max && daily.temperature_2m_max[0] != null ? Math.round(daily.temperature_2m_max[0]) : null;
+  const low = daily && daily.temperature_2m_min && daily.temperature_2m_min[0] != null ? Math.round(daily.temperature_2m_min[0]) : null;
+  const popMax = daily && daily.precipitation_probability_max && daily.precipitation_probability_max[0] != null
+    ? Math.round(daily.precipitation_probability_max[0])
+    : null;
+
+  const sources = moduleList
+    .map((m) => ctx.moduleHealth[m.name])
+    .filter((h) => h && (h.status === "live" || h.status === "fallback" || h.status === "degraded"))
+    .map((h) => h.source)
+    .filter(Boolean);
+
+  const payload = {
+    version: 2,
+    engine: "waypoint-live-engine",
+    engineVersion: ENGINE_VERSION,
+    updatedAt: ctx.runAt,
+    nextScheduledUpdate: nextHalfHourIso(ctx.runStarted),
+    location: {
+      id: ctx.location.id,
+      name: ctx.location.name,
+      state: ctx.location.state,
+      stateCode: ctx.location.stateCode,
+      lat: ctx.location.lat,
+      lng: ctx.location.lng,
+      contentBundle: ctx.location.contentBundle,
+      label: ctx.location.name + (ctx.location.stateCode ? ", " + ctx.location.stateCode : "")
+    },
+    timezone,
+    current: cur ? {
+      temperatureF: cur.temperature_2m != null ? Math.round(cur.temperature_2m) : null,
+      feelsLikeF: cur.apparent_temperature != null ? Math.round(cur.apparent_temperature) : null,
+      humidity: cur.relative_humidity_2m != null ? Math.round(cur.relative_humidity_2m) : null,
+      windMph: cur.wind_speed_10m != null ? Math.round(cur.wind_speed_10m) : null,
+      windGustMph: cur.wind_gusts_10m != null ? Math.round(cur.wind_gusts_10m) : null,
+      cloudCover: cur.cloud_cover != null ? Math.round(cur.cloud_cover) : null,
+      uvIndex: uv && uv.uvIndex != null ? uv.uvIndex : (cur.uv_index != null ? Math.round(cur.uv_index * 10) / 10 : null),
+      precipIn: cur.precipitation != null ? cur.precipitation : null,
+      conditions: WMO[weatherCode] || (weatherCode != null ? "Code " + weatherCode : null),
+      weatherCode: weatherCode != null ? weatherCode : null,
+      observedAt: cur.time || null
+    } : null,
+    forecast: {
+      highF: high,
+      lowF: low,
+      precipProbability: popMax,
+      summary: cur && (WMO[weatherCode] || "Current conditions available")
+        ? (WMO[weatherCode] || "Current conditions available") + (high != null && low != null ? " · High " + high + "° / Low " + low + "°" : "")
+        : null
+    },
+    hourly: hourlySummary,
+    sun: sun || {
+      sunrise: null,
+      sunset: null,
+      sunriseFormatted: null,
+      sunsetFormatted: null
+    },
+    moon: moon || {
+      phase: null,
+      illumination: null,
+      phaseValue: null,
+      trust: "Estimated",
+      source: "Calculated"
+    },
+    airQuality: air || { status: "unavailable", usAqi: null, pm25: null, category: null },
+    modules: {
+      weather: { data: weather || null },
+      sunrise_sunset: { data: sun || null },
+      moon: { data: moon || null },
+      air_quality: { data: air || null },
+      uv: { data: uv || null },
+      pollen: { data: pollen || null },
+      river_gauges: { data: river || null },
+      alerts: { data: alerts || null },
+      photography_conditions: { data: photography || null }
+    },
+    meta: {
+      sources: sources,
+      failures: ctx.failures.slice(),
+      generatedBy: "waypoint-live-engine",
+      generatedAt: ctx.runAt,
+      healthFile: "data/health.json",
+      blockStatus: {
+        weather: weather ? "live" : "unavailable",
+        alerts: alerts && alerts.status === "live" ? "live" : "unavailable",
+        airQuality: air && air.status === "live" ? "live" : "unavailable",
+        elevation: "unavailable",
+        usgsWater: river && river.status !== "unavailable" ? "live" : "unavailable"
+      }
+    }
+  };
+  return payload;
+}
+
+function buildHealth(ctx, moduleList, payload) {
+  const modules = {};
+  moduleList.forEach((m) => {
+    modules[m.name] = ctx.moduleHealth[m.name];
+  });
+
+  const anyHardFailure = Object.values(modules).some((m) => m.status === "unavailable");
+  const anyStale = Object.values(modules).some((m) => m.stale);
+  const overallStatus = anyHardFailure ? "degraded" : (anyStale ? "warning" : "healthy");
+
+  const successful = Object.values(modules)
+    .map((m) => m.lastSuccessfulUpdate)
+    .filter(Boolean)
+    .sort();
+  const lastSuccessfulRefresh = successful.length ? successful[successful.length - 1] : null;
+
+  const health = {
+    version: 1,
+    engine: "waypoint-live-engine",
+    engineVersion: ENGINE_VERSION,
+    generatedAt: ctx.runAt,
+    nextScheduledUpdate: payload.nextScheduledUpdate,
+    overall: {
+      status: overallStatus,
+      message: anyHardFailure
+        ? "One or more modules failed; serving previous successful module data where available."
+        : (anyStale ? "Modules available but stale data detected." : "All modules healthy."),
+      lastSuccessfulRefresh: lastSuccessfulRefresh
+    },
+    modules,
+    runtime: {
+      uptimeSeconds: Math.round(process.uptime()),
+      runDurationMs: Date.now() - ctx.runStarted,
+      memory: process.memoryUsage(),
+      nodeVersion: process.version,
+      platform: process.platform
+    },
+    failures: ctx.failures.slice()
+  };
+  return health;
+}
+
+function makeStatusHtml(payload, health) {
   const updated = shortTime(payload.updatedAt);
-  const fresh = Date.now() - Date.parse(payload.updatedAt) <= 3 * 60 * 60 * 1000;
-  const failures = payload.meta && payload.meta.failures ? payload.meta.failures : [];
+  const fresh = Date.now() - Date.parse(payload.updatedAt) <= ENGINE_STALE_MS;
+  const failures = health && health.failures ? health.failures : [];
   const sources = payload.meta && payload.meta.sources ? payload.meta.sources : [];
   const hits = BANNED.filter((term) => JSON.stringify(payload).toLowerCase().includes(term));
   const raw = JSON.stringify(payload, null, 2);
+  const moduleRows = Object.keys(health.modules || {}).map((name) => {
+    const m = health.modules[name];
+    return `<tr><td>${esc(name)}</td><td>${esc(m.status)}</td><td>${esc(m.lastSuccessfulUpdate || "—")}</td><td>${esc(String(m.responseMs) + " ms")}</td><td>${esc(m.stale ? "yes" : "no")}</td></tr>`;
+  }).join("");
 
   const sourceLis = sources.length
     ? sources.map((s) => `<li>${esc(s)}</li>`).join("")
     : '<li class="wle-muted">No sources recorded</li>';
   const failureLis = failures.length
-    ? failures.map((f) => `<li>${esc(f.source || "source")}: ${esc(f.error || "failed")}</li>`).join("")
+    ? failures.map((f) => `<li>${esc(f.module || f.source || "source")}: ${esc(f.error || "failed")}</li>`).join("")
     : '<li class="wle-muted">No failed sources</li>';
 
   return `<!DOCTYPE html>
@@ -155,7 +667,7 @@ function makeStatusHtml(payload) {
   <link rel="stylesheet" href="design-system/css/wds-dashboard-home.css">
   <link rel="stylesheet" href="css/home-dashboard.css">
   <style>
-    .wle-status { max-width: 42rem; margin: 2rem auto; padding: 0 1.25rem 3rem; font-family: Inter, system-ui, sans-serif; color: #1c1917; }
+    .wle-status { max-width: 56rem; margin: 2rem auto; padding: 0 1.25rem 3rem; font-family: Inter, system-ui, sans-serif; color: #1c1917; }
     .wle-status h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 2rem; margin: 0 0 0.35rem; }
     .wle-status .lead { color: #57534e; margin: 0 0 1.5rem; }
     .wle-card { border: 1px solid #e7e5e4; border-radius: 8px; padding: 1rem 1.1rem; margin: 0 0 1rem; background: #fafaf9; }
@@ -168,102 +680,76 @@ function makeStatusHtml(payload) {
     .wle-list { margin: 0; padding-left: 1.1rem; }
     .wle-nav a { color: #1d4ed8; }
     pre { white-space: pre-wrap; word-break: break-word; font-size: 0.8rem; background: #f5f5f4; padding: 0.75rem; border-radius: 6px; overflow: auto; max-height: 18rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #ece8e4; vertical-align: top; }
+    th { color: #57534e; font-weight: 600; }
   </style>
 </head>
 <body>
   <div class="wle-status">
     <p class="wle-nav"><a href="./">← Outdoor dashboard</a></p>
     <h1>Live Engine status</h1>
-    <p class="lead">Operational check for <code>data/live.json</code> — no redesign, product-focused.</p>
+    <p class="lead">Operational check for <code>data/live.json</code> and <code>data/health.json</code>.</p>
+
+    <section class="wle-card" aria-label="Engine health">
+      <h2>Engine Health</h2>
+      <div class="wle-row"><span>Status</span><span class="${health.overall.status === "healthy" ? "wle-ok" : "wle-bad"}">${esc(health.overall.status)}</span></div>
+      <div class="wle-row"><span>Last updated</span><span class="wle-ok">${esc(updated)}</span></div>
+      <div class="wle-row"><span>Last successful refresh</span><span>${esc(shortTime(health.overall.lastSuccessfulRefresh))}</span></div>
+      <div class="wle-row"><span>Next scheduled update</span><span>${esc(shortTime(health.nextScheduledUpdate))}</span></div>
+      <div class="wle-row"><span>Engine version</span><span>${esc(health.engineVersion)}</span></div>
+      <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="${fresh ? "wle-ok" : "wle-bad"}">${fresh ? "Yes" : "No / stale"}</span></div>
+      <p class="wle-muted">${esc(health.overall.message)}</p>
+    </section>
+
+    <section class="wle-card" aria-label="Module health">
+      <h2>Module Health</h2>
+      <table>
+        <thead><tr><th>Module</th><th>Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
+        <tbody>${moduleRows}</tbody>
+      </table>
+    </section>
 
     <section class="wle-card" aria-label="Live file">
-      <h2>live.json</h2>
-      <div class="wle-row"><span>Loaded</span><span id="st-loaded" class="wle-ok">Yes</span></div>
-      <div class="wle-row"><span>Last updated</span><span id="st-updated" class="wle-ok">${esc(updated)}</span></div>
-      <div class="wle-row"><span>Location</span><span id="st-location" class="wle-ok">${esc(payload.location && payload.location.label || "—")}</span></div>
-      <div class="wle-row"><span>Fresh (&lt; 3h)</span><span id="st-fresh" class="${fresh ? "wle-ok" : "wle-bad"}">${fresh ? "Yes" : "No / stale"}</span></div>
+      <h2>Live file</h2>
+      <div class="wle-row"><span>Location</span><span class="wle-ok">${esc(payload.location && payload.location.label || "—")}</span></div>
+      <div class="wle-row"><span>Loaded</span><span class="wle-ok">Yes</span></div>
     </section>
 
     <section class="wle-card" aria-label="Sources">
       <h2>Data sources used</h2>
-      <ul class="wle-list" id="st-sources">${sourceLis}</ul>
+      <ul class="wle-list">${sourceLis}</ul>
     </section>
 
     <section class="wle-card" aria-label="Failures">
-      <h2>Failed sources</h2>
-      <ul class="wle-list" id="st-failures">${failureLis}</ul>
+      <h2>Failures</h2>
+      <ul class="wle-list">${failureLis}</ul>
+    </section>
+
+    <section class="wle-card" aria-label="Runtime">
+      <h2>Runtime Stats</h2>
+      <div class="wle-row"><span>Run duration</span><span>${esc(String(health.runtime.runDurationMs) + " ms")}</span></div>
+      <div class="wle-row"><span>Process uptime</span><span>${esc(String(health.runtime.uptimeSeconds) + " s")}</span></div>
+      <div class="wle-row"><span>Memory RSS</span><span>${esc(String(health.runtime.memory.rss))}</span></div>
+      <div class="wle-row"><span>Node</span><span>${esc(health.runtime.nodeVersion)}</span></div>
     </section>
 
     <section class="wle-card" aria-label="Integrity">
       <h2>Integrity checks</h2>
-      <div class="wle-row"><span>Duplicate headings</span><span id="st-dupes" class="wle-muted">Server check requires browser snapshot</span></div>
-      <div class="wle-row"><span>Banned text</span><span id="st-banned" class="${hits.length ? "wle-bad" : "wle-ok"}">${hits.length ? "FOUND: " + esc(hits.join(", ")) : "Clear"}</span></div>
-      <p class="wle-muted" id="st-banned-detail">Checked for: ${esc(BANNED.join(", "))}</p>
+      <div class="wle-row"><span>Banned text</span><span class="${hits.length ? "wle-bad" : "wle-ok"}">${hits.length ? "FOUND: " + esc(hits.join(", ")) : "Clear"}</span></div>
+      <p class="wle-muted">Checked for: ${esc(BANNED.join(", "))}</p>
     </section>
 
-    <section class="wle-card" aria-label="Raw">
-      <h2>Raw payload</h2>
-      <pre id="st-raw">${esc(raw)}</pre>
+    <section class="wle-card" aria-label="Raw live payload">
+      <h2>Raw live payload</h2>
+      <pre>${esc(raw)}</pre>
     </section>
   </div>
-  <script>
-    (function () {
-      var BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
-      function set(id, html, ok) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.innerHTML = html;
-        el.className = ok === true ? "wle-ok" : ok === false ? "wle-bad" : "wle-muted";
-      }
-      function list(id, items, empty) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        if (!items || !items.length) {
-          el.innerHTML = "<li class=\\"wle-muted\\">" + (empty || "None") + "</li>";
-          return;
-        }
-        el.innerHTML = items.map(function (x) {
-          return "<li>" + String(x).replace(/</g, "&lt;") + "</li>";
-        }).join("");
-      }
-      function bannedHits(text) {
-        var lower = String(text || "").toLowerCase();
-        return BANNED.filter(function (w) { return lower.indexOf(w) >= 0; });
-      }
-      fetch("data/live.json?_=" + Date.now(), { cache: "no-store" })
-        .then(function (r) {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.json();
-        })
-        .then(function (data) {
-          set("st-loaded", "Yes", true);
-          var updated = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : "—";
-          set("st-updated", updated, !!data.updatedAt);
-          set("st-location", (data.location && data.location.label) || "—", true);
-          var age = data.updatedAt ? Date.now() - Date.parse(data.updatedAt) : Infinity;
-          var fresh = age <= 3 * 60 * 60 * 1000;
-          set("st-fresh", fresh ? "Yes" : "No / stale", fresh);
-          list("st-sources", (data.meta && data.meta.sources) || [], "No sources recorded");
-          var fails = ((data.meta && data.meta.failures) || []).map(function (f) {
-            return (f.source || "source") + ": " + (f.error || "failed");
-          });
-          list("st-failures", fails, "No failed sources");
-          var hits = bannedHits(JSON.stringify(data));
-          set("st-banned", hits.length ? "FOUND: " + hits.join(", ") : "Clear", hits.length === 0);
-          document.getElementById("st-banned-detail").textContent = "Checked for: " + BANNED.join(", ");
-          document.getElementById("st-raw").textContent = JSON.stringify(data, null, 2);
-        })
-        .catch(function (err) {
-          set("st-loaded", "No — " + (err && err.message ? err.message : "unavailable"), false);
-        });
-    })();
-  </script>
 </body>
-</html>
-`;
+</html>`;
 }
 
-function makeDebugSeed(payload, commitHash, buildTime) {
+function makeDebugSeed(payload, health, commitHash, buildTime) {
   return {
     commitHash,
     buildTime,
@@ -275,6 +761,8 @@ function makeDebugSeed(payload, commitHash, buildTime) {
     locationLoaded: !!(payload.location && isFinite(Number(payload.location.lat)) && isFinite(Number(payload.location.lng))),
     bannedTextPresent: BANNED.some((term) => JSON.stringify(payload).toLowerCase().includes(term)),
     bannedTextHits: BANNED.filter((term) => JSON.stringify(payload).toLowerCase().includes(term)),
+    engineHealth: health.overall.status,
+    moduleHealth: Object.fromEntries(Object.entries(health.modules).map(([k, v]) => [k, { status: v.status, stale: v.stale }])),
     serverGenerated: true
   };
 }
@@ -299,6 +787,7 @@ function makeDebugHtml(seed) {
     "8) Dashboard sections currently rendered:",
     "(none captured server-side; browser snapshot will fill this when available)",
     "",
+    "Engine health: " + (seed.engineHealth || "unknown"),
     "Snapshot source: server pre-render",
     "Snapshot captured at: " + (seed.capturedAt || "unavailable"),
     "",
@@ -319,39 +808,25 @@ function makeDebugHtml(seed) {
 <script>
 (function () {
   "use strict";
-
   var DEBUG_KEY = "waypointDebugSnapshot";
   var FALLBACK_COMMIT = ${JSON.stringify(seed.commitHash || "unknown")};
   var FALLBACK_BUILD = ${JSON.stringify(seed.buildTime || "unknown")};
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
-
-  function lines(list) {
-    if (!list || !list.length) return ["(none)"];
-    return list.map(function (item) { return "- " + item; });
-  }
-
+  function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
     if (window.opener && window.opener.__WAYPOINT_DEBUG__) return window.opener.__WAYPOINT_DEBUG__;
     if (window.__WAYPOINT_DEBUG__) return window.__WAYPOINT_DEBUG__;
-    try {
-      var raw = localStorage.getItem(DEBUG_KEY);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+    try { var raw = localStorage.getItem(DEBUG_KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
   }
-
   function containsTerms(snapshotText) {
     var text = String(snapshotText || "").toLowerCase();
     return TERMS.filter(function (term) { return text.indexOf(term) >= 0; });
   }
-
   function buildReport(snapshot) {
     var headingList = snapshot && snapshot.headings ? snapshot.headings : [];
     var sectionList = snapshot && snapshot.sectionsRendered ? snapshot.sectionsRendered : [];
     var hits = containsTerms(JSON.stringify(snapshot || {}));
     var fallbackLang = !!(snapshot && snapshot.bannedTextPresent) || hits.length > 0;
-
     var out = [];
     out.push("Waypoint Studio Debug");
     out.push("====================");
@@ -366,9 +841,7 @@ function makeDebugHtml(seed) {
     out.push("5) Live weather loaded: " + (snapshot && snapshot.liveWeatherLoaded ? "yes" : "no"));
     out.push("6) Location loaded: " + (snapshot && snapshot.locationLoaded ? "yes" : "no"));
     out.push("7) Fallback/coming-soon/educational/assignment text present: " + (fallbackLang ? "yes" : "no"));
-    if (snapshot && snapshot.bannedTextHits && snapshot.bannedTextHits.length) {
-      out.push("   - matched banned terms: " + snapshot.bannedTextHits.join(", "));
-    }
+    if (snapshot && snapshot.bannedTextHits && snapshot.bannedTextHits.length) out.push("   - matched banned terms: " + snapshot.bannedTextHits.join(", "));
     if (hits.length) out.push("   - matched debug terms: " + hits.join(", "));
     out.push("");
     out.push("8) Dashboard sections currently rendered:");
@@ -381,7 +854,6 @@ function makeDebugHtml(seed) {
     out.push(JSON.stringify(snapshot || {}, null, 2));
     return out.join("\\n");
   }
-
   function copyReport() {
     var pre = document.getElementById("debug-output");
     var status = document.getElementById("copy-status");
@@ -390,284 +862,79 @@ function makeDebugHtml(seed) {
     function markCopied() {
       if (!status) return;
       status.textContent = "Copied.";
-      setTimeout(function () {
-        if (status.textContent === "Copied.") status.textContent = "";
-      }, 1200);
+      setTimeout(function () { if (status.textContent === "Copied.") status.textContent = ""; }, 1200);
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(markCopied).catch(function () {
         var ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "readonly");
-        ta.style.position = "fixed";
-        ta.style.left = "-9999px";
-        document.body.appendChild(ta);
-        ta.select();
+        ta.value = text; ta.setAttribute("readonly", "readonly"); ta.style.position = "fixed"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
         try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
         document.body.removeChild(ta);
       });
       return;
     }
     var ta = document.createElement("textarea");
-    ta.value = text;
-    ta.setAttribute("readonly", "readonly");
-    ta.style.position = "fixed";
-    ta.style.left = "-9999px";
-    document.body.appendChild(ta);
-    ta.select();
+    ta.value = text; ta.setAttribute("readonly", "readonly"); ta.style.position = "fixed"; ta.style.left = "-9999px";
+    document.body.appendChild(ta); ta.select();
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-
   document.getElementById("debug-output").textContent = buildReport(readSnapshot() || ${JSON.stringify(seed)});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
 </script>
 </body>
-</html>
-`;
+</html>`;
 }
 
-function writeRenderedPages(payload) {
+function writeRenderedPages(payload, health) {
   const commitHash = gitCommit();
   const buildTime = new Date().toISOString();
-  fs.writeFileSync(STATUS_PATH, makeStatusHtml(payload), "utf8");
-  fs.writeFileSync(DEBUG_PATH, makeDebugHtml(makeDebugSeed(payload, commitHash, buildTime)), "utf8");
-}
-
-async function fetchJson(url, label, failures, sources) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
-  try {
-    const res = await fetch(url, { signal: ctrl.signal, headers: { Accept: "application/json" } });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
-    sources.push(label);
-    return data;
-  } catch (err) {
-    failures.push({ source: label, error: err && err.message ? err.message : String(err) });
-    return null;
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-function resolveLocation() {
-  try {
-    const index = JSON.parse(fs.readFileSync(INDEX_PATH, "utf8"));
-    const id = index.defaultRegionId || DEFAULT_LOCATION.id;
-    const region = (index.regions || []).find((r) => r.id === id);
-    if (region) {
-      return {
-        id: region.id,
-        name: region.name || DEFAULT_LOCATION.name,
-        state: region.state || DEFAULT_LOCATION.state,
-        stateCode: region.stateCode || DEFAULT_LOCATION.stateCode,
-        lat: Number(region.lat),
-        lng: Number(region.lng),
-        contentBundle: region.contentBundle || region.id
-      };
-    }
-  } catch {
-    /* use default */
-  }
-  return { ...DEFAULT_LOCATION, contentBundle: DEFAULT_LOCATION.id };
-}
-
-function buildPayload(loc, weather, aqi, sources, failures) {
-  const updatedAt = new Date().toISOString();
-  const tz = (weather && weather.timezone) || "America/New_York";
-  const cur = weather && weather.current;
-  const daily = weather && weather.daily;
-  const hourly = weather && weather.hourly;
-
-  const weatherCode = cur && cur.weather_code;
-  const current = cur
-    ? {
-        temperatureF: cur.temperature_2m != null ? Math.round(cur.temperature_2m) : null,
-        feelsLikeF: cur.apparent_temperature != null ? Math.round(cur.apparent_temperature) : null,
-        humidity: cur.relative_humidity_2m != null ? Math.round(cur.relative_humidity_2m) : null,
-        windMph: cur.wind_speed_10m != null ? Math.round(cur.wind_speed_10m) : null,
-        windGustMph: cur.wind_gusts_10m != null ? Math.round(cur.wind_gusts_10m) : null,
-        cloudCover: cur.cloud_cover != null ? Math.round(cur.cloud_cover) : null,
-        uvIndex: cur.uv_index != null ? Math.round(cur.uv_index * 10) / 10 : null,
-        precipIn: cur.precipitation != null ? cur.precipitation : null,
-        conditions: WMO[weatherCode] || (weatherCode != null ? "Code " + weatherCode : null),
-        weatherCode: weatherCode != null ? weatherCode : null,
-        observedAt: cur.time || null
-      }
-    : null;
-
-  let hourlySummary = null;
-  if (hourly && Array.isArray(hourly.time) && hourly.time.length) {
-    const now = Date.now();
-    const slots = [];
-    for (let i = 0; i < hourly.time.length && slots.length < 6; i++) {
-      const t = new Date(hourly.time[i]).getTime();
-      if (t < now - 30 * 60 * 1000) continue;
-      const code = hourly.weather_code && hourly.weather_code[i];
-      slots.push({
-        time: hourly.time[i],
-        temperatureF: hourly.temperature_2m && hourly.temperature_2m[i] != null
-          ? Math.round(hourly.temperature_2m[i])
-          : null,
-        precipProbability: hourly.precipitation_probability && hourly.precipitation_probability[i] != null
-          ? Math.round(hourly.precipitation_probability[i])
-          : null,
-        conditions: WMO[code] || null
-      });
-    }
-    if (slots.length) {
-      const nextRain = slots.find((s) => s.precipProbability != null && s.precipProbability >= 40);
-      hourlySummary = {
-        nextHours: slots,
-        note: nextRain
-          ? "Rain chance " + nextRain.precipProbability + "% around " + formatLocalTime(nextRain.time, tz)
-          : "Low rain chance in the next several hours"
-      };
-    }
-  }
-
-  const sunriseIso = daily && daily.sunrise && daily.sunrise[0] ? daily.sunrise[0] : null;
-  const sunsetIso = daily && daily.sunset && daily.sunset[0] ? daily.sunset[0] : null;
-  const phase = moonPhaseFromDate(new Date());
-
-  const airQuality = aqi && aqi.current
-    ? {
-        usAqi: aqi.current.us_aqi != null ? Math.round(aqi.current.us_aqi) : null,
-        pm25: aqi.current.pm2_5 != null ? Math.round(aqi.current.pm2_5 * 10) / 10 : null,
-        category: aqi.current.us_aqi != null ? aqiCategory(aqi.current.us_aqi) : null,
-        status: aqi.current.us_aqi != null ? "live" : "unavailable"
-      }
-    : { status: "unavailable", usAqi: null, pm25: null, category: null };
-
-  const high = daily && daily.temperature_2m_max && daily.temperature_2m_max[0] != null
-    ? Math.round(daily.temperature_2m_max[0])
-    : null;
-  const low = daily && daily.temperature_2m_min && daily.temperature_2m_min[0] != null
-    ? Math.round(daily.temperature_2m_min[0])
-    : null;
-  const popMax = daily && daily.precipitation_probability_max && daily.precipitation_probability_max[0] != null
-    ? Math.round(daily.precipitation_probability_max[0])
-    : null;
-
-  return {
-    version: 1,
-    engine: "waypoint-live-engine",
-    updatedAt,
-    location: {
-      id: loc.id,
-      name: loc.name,
-      state: loc.state,
-      stateCode: loc.stateCode,
-      lat: loc.lat,
-      lng: loc.lng,
-      contentBundle: loc.contentBundle,
-      label: loc.name + (loc.stateCode ? ", " + loc.stateCode : "")
-    },
-    timezone: tz,
-    current,
-    forecast: {
-      highF: high,
-      lowF: low,
-      precipProbability: popMax,
-      summary: current && current.conditions
-        ? current.conditions + (high != null && low != null ? " · High " + high + "° / Low " + low + "°" : "")
-        : null
-    },
-    hourly: hourlySummary,
-    sun: {
-      sunrise: sunriseIso,
-      sunset: sunsetIso,
-      sunriseFormatted: formatLocalTime(sunriseIso, tz),
-      sunsetFormatted: formatLocalTime(sunsetIso, tz)
-    },
-    moon: {
-      phase: moonPhaseLabel(phase),
-      illumination: moonIlluminationPercent(phase),
-      phaseValue: Math.round(phase * 1000) / 1000,
-      trust: "Estimated",
-      source: "Calculated"
-    },
-    airQuality,
-    meta: {
-      sources: sources.slice(),
-      failures: failures.slice(),
-      provider: {
-        weather: sources.includes("Open-Meteo") ? "open-meteo" : "none",
-        airQuality: sources.includes("Open-Meteo Air Quality") ? "open-meteo-air-quality" : "none",
-        moon: "calculated"
-      },
-      generatedBy: "waypoint-live-engine",
-      generatedAt: updatedAt
-    }
-  };
+  fs.writeFileSync(STATUS_PATH, makeStatusHtml(payload, health), "utf8");
+  fs.writeFileSync(DEBUG_PATH, makeDebugHtml(makeDebugSeed(payload, health, commitHash, buildTime)), "utf8");
 }
 
 async function main() {
-  const loc = resolveLocation();
-  const sources = [];
-  const failures = [];
+  const runStarted = Date.now();
+  const runAt = new Date().toISOString();
+  const location = resolveLocation();
+  const previousLive = readJson(LIVE_PATH);
+  const previousHealth = readJson(HEALTH_PATH);
+  const ctx = {
+    runStarted,
+    runAt,
+    location,
+    previousLive,
+    previousHealth,
+    moduleResults: {},
+    moduleHealth: {},
+    failures: []
+  };
 
-  const weatherUrl =
-    "https://api.open-meteo.com/v1/forecast?" +
-    new URLSearchParams({
-      latitude: String(loc.lat),
-      longitude: String(loc.lng),
-      current:
-        "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
-      hourly:
-        "temperature_2m,weather_code,precipitation_probability,precipitation",
-      daily:
-        "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset",
-      timezone: "auto",
-      temperature_unit: "fahrenheit",
-      wind_speed_unit: "mph",
-      precipitation_unit: "inch",
-      forecast_days: "2"
-    }).toString();
-
-  const aqiUrl =
-    "https://air-quality-api.open-meteo.com/v1/air-quality?" +
-    new URLSearchParams({
-      latitude: String(loc.lat),
-      longitude: String(loc.lng),
-      current: "us_aqi,pm2_5",
-      timezone: "auto"
-    }).toString();
-
-  const [weather, aqi] = await Promise.all([
-    fetchJson(weatherUrl, "Open-Meteo", failures, sources),
-    fetchJson(aqiUrl, "Open-Meteo Air Quality", failures, sources)
-  ]);
-
-  if (!weather || !weather.current) {
-    failures.push({ source: "Open-Meteo", error: failures.some((f) => f.source === "Open-Meteo") ? "already logged" : "No current weather in response" });
-  } else if (!sources.includes("Open-Meteo")) {
-    sources.push("Open-Meteo");
+  const modules = buildPlugins();
+  for (const module of modules) {
+    const result = await runPlugin(module, ctx);
+    ctx.moduleHealth[module.name] = applyStale(result, module.staleMs || MODULE_DEFAULT_STALE_MS);
   }
 
-  sources.push("Calculated moon phase");
+  const payload = buildLivePayload(ctx, modules);
+  const health = buildHealth(ctx, modules, payload);
 
-  const payload = buildPayload(loc, weather, aqi, sources, failures.filter((f, i, arr) =>
-    arr.findIndex((x) => x.source === f.source && x.error === f.error) === i
-  ));
+  writeJsonAtomic(LIVE_PATH, payload);
+  writeJsonAtomic(HEALTH_PATH, health);
+  writeRenderedPages(payload, health);
 
-  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
-  const tmp = OUT_PATH + ".tmp";
-  fs.writeFileSync(tmp, JSON.stringify(payload, null, 2) + "\n", "utf8");
-  fs.renameSync(tmp, OUT_PATH);
-  writeRenderedPages(payload);
-
-  console.log("Waypoint Live Engine wrote", OUT_PATH);
+  console.log("Waypoint Live Engine wrote", LIVE_PATH, "and", HEALTH_PATH);
   console.log("updatedAt:", payload.updatedAt);
   console.log("location:", payload.location.label);
-  console.log("sources:", payload.meta.sources.join(", ") || "none");
-  if (payload.meta.failures.length) {
-    console.log("failures:", payload.meta.failures.map((f) => f.source + ": " + f.error).join("; "));
+  console.log("engineVersion:", ENGINE_VERSION);
+  console.log("overallHealth:", health.overall.status);
+  if (ctx.failures.length) {
+    console.log("failures:", ctx.failures.map((f) => (f.module || "module") + ": " + f.error).join("; "));
   }
-  if (!payload.current) {
+  if (!payload.current && !previousLive) {
     process.exitCode = 2;
   }
 }

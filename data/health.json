@@ -1,101 +1,18 @@
 {
-  "version": 2,
+  "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-08T19:18:46.043Z",
+  "generatedAt": "2026-07-08T19:18:46.043Z",
   "nextScheduledUpdate": "2026-07-08T19:30:00.000Z",
-  "location": {
-    "id": "pike-county-pa",
-    "name": "Pike County",
-    "state": "Pennsylvania",
-    "stateCode": "PA",
-    "lat": 41.3312,
-    "lng": -75.038,
-    "contentBundle": "pike-county-pa",
-    "label": "Pike County, PA"
-  },
-  "timezone": "America/New_York",
-  "current": {
-    "temperatureF": 80,
-    "feelsLikeF": 85,
-    "humidity": 49,
-    "windMph": 2,
-    "windGustMph": 5,
-    "cloudCover": 16,
-    "uvIndex": 6.4,
-    "precipIn": 0,
-    "conditions": "Clear sky",
-    "weatherCode": 0,
-    "observedAt": "2026-07-08T15:15"
-  },
-  "forecast": {
-    "highF": 81,
-    "lowF": 59,
-    "precipProbability": 2,
-    "summary": "Clear sky · High 81° / Low 59°"
-  },
-  "hourly": {
-    "nextHours": [
-      {
-        "time": "2026-07-08T15:00",
-        "temperatureF": 80,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
-        "time": "2026-07-08T16:00",
-        "temperatureF": 80,
-        "precipProbability": 0,
-        "conditions": "Mainly clear"
-      },
-      {
-        "time": "2026-07-08T17:00",
-        "temperatureF": 80,
-        "precipProbability": 0,
-        "conditions": "Partly cloudy"
-      },
-      {
-        "time": "2026-07-08T18:00",
-        "temperatureF": 79,
-        "precipProbability": 2,
-        "conditions": "Mainly clear"
-      },
-      {
-        "time": "2026-07-08T19:00",
-        "temperatureF": 77,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
-        "time": "2026-07-08T20:00",
-        "temperatureF": 74,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      }
-    ],
-    "note": "Low rain chance in the next several hours"
-  },
-  "sun": {
-    "sunrise": "2026-07-08T05:35",
-    "sunset": "2026-07-08T20:35",
-    "sunriseFormatted": "5:35 AM",
-    "sunsetFormatted": "8:35 PM",
-    "timezone": "America/New_York"
-  },
-  "moon": {
-    "phase": "Waning crescent",
-    "illumination": 35,
-    "phaseValue": 0.823,
-    "trust": "Estimated"
-  },
-  "airQuality": {
-    "usAqi": 37,
-    "pm25": 4.8,
-    "category": "Good",
-    "status": "live"
+  "overall": {
+    "status": "healthy",
+    "message": "All modules healthy.",
+    "lastSuccessfulRefresh": "2026-07-08T19:18:47.157Z"
   },
   "modules": {
     "weather": {
+      "name": "weather",
+      "status": "live",
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
@@ -442,59 +359,123 @@
             "2026-07-09T20:35"
           ]
         }
-      }
+      },
+      "source": "Open-Meteo",
+      "error": null,
+      "responseMs": 524,
+      "lastAttempt": "2026-07-08T19:18:46.044Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.044Z",
+      "stale": false
     },
     "sunrise_sunset": {
+      "name": "sunrise_sunset",
+      "status": "live",
       "data": {
         "sunrise": "2026-07-08T05:35",
         "sunset": "2026-07-08T20:35",
         "sunriseFormatted": "5:35 AM",
         "sunsetFormatted": "8:35 PM",
         "timezone": "America/New_York"
-      }
+      },
+      "source": "Open-Meteo astronomy",
+      "error": null,
+      "responseMs": 12,
+      "lastAttempt": "2026-07-08T19:18:46.568Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.568Z",
+      "stale": false
     },
     "moon": {
+      "name": "moon",
+      "status": "live",
       "data": {
         "phase": "Waning crescent",
         "illumination": 35,
         "phaseValue": 0.823,
         "trust": "Estimated"
-      }
+      },
+      "source": "Calculated",
+      "error": null,
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T19:18:46.580Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.580Z",
+      "stale": false
     },
     "air_quality": {
+      "name": "air_quality",
+      "status": "live",
       "data": {
         "usAqi": 37,
         "pm25": 4.8,
         "category": "Good",
         "status": "live"
-      }
+      },
+      "source": "Open-Meteo Air Quality",
+      "error": null,
+      "responseMs": 416,
+      "lastAttempt": "2026-07-08T19:18:46.580Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.580Z",
+      "stale": false
     },
     "uv": {
+      "name": "uv",
+      "status": "live",
       "data": {
         "uvIndex": 6.4,
         "status": "live"
-      }
+      },
+      "source": "Open-Meteo",
+      "error": null,
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T19:18:46.996Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.996Z",
+      "stale": false
     },
     "pollen": {
+      "name": "pollen",
+      "status": "live",
       "data": {
         "status": "unavailable",
         "summary": "Data currently unavailable"
-      }
+      },
+      "source": "Unavailable",
+      "error": null,
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T19:18:46.996Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.996Z",
+      "stale": false
     },
     "river_gauges": {
+      "name": "river_gauges",
+      "status": "live",
       "data": {
         "status": "unavailable",
         "summary": "Data currently unavailable"
-      }
+      },
+      "source": "Unavailable",
+      "error": null,
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T19:18:46.996Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.996Z",
+      "stale": false
     },
     "alerts": {
+      "name": "alerts",
+      "status": "live",
       "data": {
         "status": "live",
         "count": 0,
         "items": []
-      }
+      },
+      "source": "NWS",
+      "error": null,
+      "responseMs": 161,
+      "lastAttempt": "2026-07-08T19:18:46.996Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:46.996Z",
+      "stale": false
     },
     "photography_conditions": {
+      "name": "photography_conditions",
+      "status": "live",
       "data": {
         "status": "estimated",
         "cloudCover": 16,
@@ -502,31 +483,27 @@
         "summary": "Strong outdoor light conditions",
         "sunrise": "5:35 AM",
         "sunset": "8:35 PM"
-      }
+      },
+      "source": "Derived from weather/sun",
+      "error": null,
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T19:18:47.157Z",
+      "lastSuccessfulUpdate": "2026-07-08T19:18:47.157Z",
+      "stale": false
     }
   },
-  "meta": {
-    "sources": [
-      "Open-Meteo",
-      "Open-Meteo astronomy",
-      "Calculated",
-      "Open-Meteo Air Quality",
-      "Open-Meteo",
-      "Unavailable",
-      "Unavailable",
-      "NWS",
-      "Derived from weather/sun"
-    ],
-    "failures": [],
-    "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-08T19:18:46.043Z",
-    "healthFile": "data/health.json",
-    "blockStatus": {
-      "weather": "live",
-      "alerts": "live",
-      "airQuality": "live",
-      "elevation": "unavailable",
-      "usgsWater": "unavailable"
-    }
-  }
+  "runtime": {
+    "uptimeSeconds": 1,
+    "runDurationMs": 1115,
+    "memory": {
+      "rss": 67149824,
+      "heapTotal": 11403264,
+      "heapUsed": 8153728,
+      "external": 3554112,
+      "arrayBuffers": 150817
+    },
+    "nodeVersion": "v20.20.0",
+    "platform": "linux"
+  },
+  "failures": []
 }

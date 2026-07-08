@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="design-system/css/wds-dashboard-home.css">
   <link rel="stylesheet" href="css/home-dashboard.css">
   <style>
-    .wle-status { max-width: 42rem; margin: 2rem auto; padding: 0 1.25rem 3rem; font-family: Inter, system-ui, sans-serif; color: #1c1917; }
+    .wle-status { max-width: 56rem; margin: 2rem auto; padding: 0 1.25rem 3rem; font-family: Inter, system-ui, sans-serif; color: #1c1917; }
     .wle-status h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 2rem; margin: 0 0 0.35rem; }
     .wle-status .lead { color: #57534e; margin: 0 0 1.5rem; }
     .wle-card { border: 1px solid #e7e5e4; border-radius: 8px; padding: 1rem 1.1rem; margin: 0 0 1rem; background: #fafaf9; }
@@ -20,45 +20,74 @@
     .wle-list { margin: 0; padding-left: 1.1rem; }
     .wle-nav a { color: #1d4ed8; }
     pre { white-space: pre-wrap; word-break: break-word; font-size: 0.8rem; background: #f5f5f4; padding: 0.75rem; border-radius: 6px; overflow: auto; max-height: 18rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #ece8e4; vertical-align: top; }
+    th { color: #57534e; font-weight: 600; }
   </style>
 </head>
 <body>
   <div class="wle-status">
     <p class="wle-nav"><a href="./">← Outdoor dashboard</a></p>
     <h1>Live Engine status</h1>
-    <p class="lead">Operational check for <code>data/live.json</code> — no redesign, product-focused.</p>
+    <p class="lead">Operational check for <code>data/live.json</code> and <code>data/health.json</code>.</p>
+
+    <section class="wle-card" aria-label="Engine health">
+      <h2>Engine Health</h2>
+      <div class="wle-row"><span>Status</span><span class="wle-ok">healthy</span></div>
+      <div class="wle-row"><span>Last updated</span><span class="wle-ok">7/8/2026, 3:18:46 PM</span></div>
+      <div class="wle-row"><span>Last successful refresh</span><span>7/8/2026, 3:18:47 PM</span></div>
+      <div class="wle-row"><span>Next scheduled update</span><span>7/8/2026, 3:30:00 PM</span></div>
+      <div class="wle-row"><span>Engine version</span><span>2.0.0</span></div>
+      <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="wle-ok">Yes</span></div>
+      <p class="wle-muted">All modules healthy.</p>
+    </section>
+
+    <section class="wle-card" aria-label="Module health">
+      <h2>Module Health</h2>
+      <table>
+        <thead><tr><th>Module</th><th>Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
+        <tbody><tr><td>weather</td><td>live</td><td>2026-07-08T19:18:46.044Z</td><td>524 ms</td><td>no</td></tr><tr><td>sunrise_sunset</td><td>live</td><td>2026-07-08T19:18:46.568Z</td><td>12 ms</td><td>no</td></tr><tr><td>moon</td><td>live</td><td>2026-07-08T19:18:46.580Z</td><td>0 ms</td><td>no</td></tr><tr><td>air_quality</td><td>live</td><td>2026-07-08T19:18:46.580Z</td><td>416 ms</td><td>no</td></tr><tr><td>uv</td><td>live</td><td>2026-07-08T19:18:46.996Z</td><td>0 ms</td><td>no</td></tr><tr><td>pollen</td><td>live</td><td>2026-07-08T19:18:46.996Z</td><td>0 ms</td><td>no</td></tr><tr><td>river_gauges</td><td>live</td><td>2026-07-08T19:18:46.996Z</td><td>0 ms</td><td>no</td></tr><tr><td>alerts</td><td>live</td><td>2026-07-08T19:18:46.996Z</td><td>161 ms</td><td>no</td></tr><tr><td>photography_conditions</td><td>live</td><td>2026-07-08T19:18:47.157Z</td><td>0 ms</td><td>no</td></tr></tbody>
+      </table>
+    </section>
 
     <section class="wle-card" aria-label="Live file">
-      <h2>live.json</h2>
-      <div class="wle-row"><span>Loaded</span><span id="st-loaded" class="wle-ok">Yes</span></div>
-      <div class="wle-row"><span>Last updated</span><span id="st-updated" class="wle-ok">7/8/2026, 1:39:02 PM</span></div>
-      <div class="wle-row"><span>Location</span><span id="st-location" class="wle-ok">Pike County, PA</span></div>
-      <div class="wle-row"><span>Fresh (&lt; 3h)</span><span id="st-fresh" class="wle-ok">Yes</span></div>
+      <h2>Live file</h2>
+      <div class="wle-row"><span>Location</span><span class="wle-ok">Pike County, PA</span></div>
+      <div class="wle-row"><span>Loaded</span><span class="wle-ok">Yes</span></div>
     </section>
 
     <section class="wle-card" aria-label="Sources">
       <h2>Data sources used</h2>
-      <ul class="wle-list" id="st-sources"><li>Open-Meteo Air Quality</li><li>Open-Meteo</li><li>Calculated moon phase</li></ul>
+      <ul class="wle-list"><li>Open-Meteo</li><li>Open-Meteo astronomy</li><li>Calculated</li><li>Open-Meteo Air Quality</li><li>Open-Meteo</li><li>Unavailable</li><li>Unavailable</li><li>NWS</li><li>Derived from weather/sun</li></ul>
     </section>
 
     <section class="wle-card" aria-label="Failures">
-      <h2>Failed sources</h2>
-      <ul class="wle-list" id="st-failures"><li class="wle-muted">No failed sources</li></ul>
+      <h2>Failures</h2>
+      <ul class="wle-list"><li class="wle-muted">No failed sources</li></ul>
+    </section>
+
+    <section class="wle-card" aria-label="Runtime">
+      <h2>Runtime Stats</h2>
+      <div class="wle-row"><span>Run duration</span><span>1115 ms</span></div>
+      <div class="wle-row"><span>Process uptime</span><span>1 s</span></div>
+      <div class="wle-row"><span>Memory RSS</span><span>67149824</span></div>
+      <div class="wle-row"><span>Node</span><span>v20.20.0</span></div>
     </section>
 
     <section class="wle-card" aria-label="Integrity">
       <h2>Integrity checks</h2>
-      <div class="wle-row"><span>Duplicate headings</span><span id="st-dupes" class="wle-muted">Server check requires browser snapshot</span></div>
-      <div class="wle-row"><span>Banned text</span><span id="st-banned" class="wle-ok">Clear</span></div>
-      <p class="wle-muted" id="st-banned-detail">Checked for: coming soon, assignment, homework, lesson, educational</p>
+      <div class="wle-row"><span>Banned text</span><span class="wle-ok">Clear</span></div>
+      <p class="wle-muted">Checked for: coming soon, assignment, homework, lesson, educational</p>
     </section>
 
-    <section class="wle-card" aria-label="Raw">
-      <h2>Raw payload</h2>
-      <pre id="st-raw">{
-  &quot;version&quot;: 1,
+    <section class="wle-card" aria-label="Raw live payload">
+      <h2>Raw live payload</h2>
+      <pre>{
+  &quot;version&quot;: 2,
   &quot;engine&quot;: &quot;waypoint-live-engine&quot;,
-  &quot;updatedAt&quot;: &quot;2026-07-08T17:39:02.850Z&quot;,
+  &quot;engineVersion&quot;: &quot;2.0.0&quot;,
+  &quot;updatedAt&quot;: &quot;2026-07-08T19:18:46.043Z&quot;,
+  &quot;nextScheduledUpdate&quot;: &quot;2026-07-08T19:30:00.000Z&quot;,
   &quot;location&quot;: {
     &quot;id&quot;: &quot;pike-county-pa&quot;,
     &quot;name&quot;: &quot;Pike County&quot;,
@@ -71,32 +100,26 @@
   },
   &quot;timezone&quot;: &quot;America/New_York&quot;,
   &quot;current&quot;: {
-    &quot;temperatureF&quot;: 79,
-    &quot;feelsLikeF&quot;: 87,
-    &quot;humidity&quot;: 55,
+    &quot;temperatureF&quot;: 80,
+    &quot;feelsLikeF&quot;: 85,
+    &quot;humidity&quot;: 49,
     &quot;windMph&quot;: 2,
     &quot;windGustMph&quot;: 5,
-    &quot;cloudCover&quot;: 10,
-    &quot;uvIndex&quot;: 7.6,
+    &quot;cloudCover&quot;: 16,
+    &quot;uvIndex&quot;: 6.4,
     &quot;precipIn&quot;: 0,
     &quot;conditions&quot;: &quot;Clear sky&quot;,
     &quot;weatherCode&quot;: 0,
-    &quot;observedAt&quot;: &quot;2026-07-08T13:30&quot;
+    &quot;observedAt&quot;: &quot;2026-07-08T15:15&quot;
   },
   &quot;forecast&quot;: {
-    &quot;highF&quot;: 80,
+    &quot;highF&quot;: 81,
     &quot;lowF&quot;: 59,
-    &quot;precipProbability&quot;: 1,
-    &quot;summary&quot;: &quot;Clear sky · High 80° / Low 59°&quot;
+    &quot;precipProbability&quot;: 2,
+    &quot;summary&quot;: &quot;Clear sky · High 81° / Low 59°&quot;
   },
   &quot;hourly&quot;: {
     &quot;nextHours&quot;: [
-      {
-        &quot;time&quot;: &quot;2026-07-08T14:00&quot;,
-        &quot;temperatureF&quot;: 79,
-        &quot;precipProbability&quot;: 0,
-        &quot;conditions&quot;: &quot;Clear sky&quot;
-      },
       {
         &quot;time&quot;: &quot;2026-07-08T15:00&quot;,
         &quot;temperatureF&quot;: 80,
@@ -107,23 +130,29 @@
         &quot;time&quot;: &quot;2026-07-08T16:00&quot;,
         &quot;temperatureF&quot;: 80,
         &quot;precipProbability&quot;: 0,
-        &quot;conditions&quot;: &quot;Clear sky&quot;
+        &quot;conditions&quot;: &quot;Mainly clear&quot;
       },
       {
         &quot;time&quot;: &quot;2026-07-08T17:00&quot;,
         &quot;temperatureF&quot;: 80,
         &quot;precipProbability&quot;: 0,
-        &quot;conditions&quot;: &quot;Clear sky&quot;
+        &quot;conditions&quot;: &quot;Partly cloudy&quot;
       },
       {
         &quot;time&quot;: &quot;2026-07-08T18:00&quot;,
         &quot;temperatureF&quot;: 79,
-        &quot;precipProbability&quot;: 1,
-        &quot;conditions&quot;: &quot;Clear sky&quot;
+        &quot;precipProbability&quot;: 2,
+        &quot;conditions&quot;: &quot;Mainly clear&quot;
       },
       {
         &quot;time&quot;: &quot;2026-07-08T19:00&quot;,
-        &quot;temperatureF&quot;: 78,
+        &quot;temperatureF&quot;: 77,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T20:00&quot;,
+        &quot;temperatureF&quot;: 74,
         &quot;precipProbability&quot;: 0,
         &quot;conditions&quot;: &quot;Clear sky&quot;
       }
@@ -134,90 +163,458 @@
     &quot;sunrise&quot;: &quot;2026-07-08T05:35&quot;,
     &quot;sunset&quot;: &quot;2026-07-08T20:35&quot;,
     &quot;sunriseFormatted&quot;: &quot;5:35 AM&quot;,
-    &quot;sunsetFormatted&quot;: &quot;8:35 PM&quot;
+    &quot;sunsetFormatted&quot;: &quot;8:35 PM&quot;,
+    &quot;timezone&quot;: &quot;America/New_York&quot;
   },
   &quot;moon&quot;: {
     &quot;phase&quot;: &quot;Waning crescent&quot;,
-    &quot;illumination&quot;: 36,
-    &quot;phaseValue&quot;: 0.821,
-    &quot;trust&quot;: &quot;Estimated&quot;,
-    &quot;source&quot;: &quot;Calculated&quot;
+    &quot;illumination&quot;: 35,
+    &quot;phaseValue&quot;: 0.823,
+    &quot;trust&quot;: &quot;Estimated&quot;
   },
   &quot;airQuality&quot;: {
-    &quot;usAqi&quot;: 31,
-    &quot;pm25&quot;: 4.7,
+    &quot;usAqi&quot;: 37,
+    &quot;pm25&quot;: 4.8,
     &quot;category&quot;: &quot;Good&quot;,
     &quot;status&quot;: &quot;live&quot;
   },
+  &quot;modules&quot;: {
+    &quot;weather&quot;: {
+      &quot;data&quot;: {
+        &quot;latitude&quot;: 41.32856,
+        &quot;longitude&quot;: -75.03756,
+        &quot;generationtime_ms&quot;: 1.362442970275879,
+        &quot;utc_offset_seconds&quot;: -14400,
+        &quot;timezone&quot;: &quot;America/New_York&quot;,
+        &quot;timezone_abbreviation&quot;: &quot;GMT-4&quot;,
+        &quot;elevation&quot;: 390,
+        &quot;current_units&quot;: {
+          &quot;time&quot;: &quot;iso8601&quot;,
+          &quot;interval&quot;: &quot;seconds&quot;,
+          &quot;temperature_2m&quot;: &quot;°F&quot;,
+          &quot;relative_humidity_2m&quot;: &quot;%&quot;,
+          &quot;apparent_temperature&quot;: &quot;°F&quot;,
+          &quot;weather_code&quot;: &quot;wmo code&quot;,
+          &quot;wind_speed_10m&quot;: &quot;mp/h&quot;,
+          &quot;wind_direction_10m&quot;: &quot;°&quot;,
+          &quot;wind_gusts_10m&quot;: &quot;mp/h&quot;,
+          &quot;cloud_cover&quot;: &quot;%&quot;,
+          &quot;surface_pressure&quot;: &quot;hPa&quot;,
+          &quot;uv_index&quot;: &quot;&quot;,
+          &quot;precipitation&quot;: &quot;inch&quot;
+        },
+        &quot;current&quot;: {
+          &quot;time&quot;: &quot;2026-07-08T15:15&quot;,
+          &quot;interval&quot;: 900,
+          &quot;temperature_2m&quot;: 80.2,
+          &quot;relative_humidity_2m&quot;: 49,
+          &quot;apparent_temperature&quot;: 85.4,
+          &quot;weather_code&quot;: 0,
+          &quot;wind_speed_10m&quot;: 2,
+          &quot;wind_direction_10m&quot;: 174,
+          &quot;wind_gusts_10m&quot;: 4.5,
+          &quot;cloud_cover&quot;: 16,
+          &quot;surface_pressure&quot;: 971,
+          &quot;uv_index&quot;: 6.4,
+          &quot;precipitation&quot;: 0
+        },
+        &quot;hourly_units&quot;: {
+          &quot;time&quot;: &quot;iso8601&quot;,
+          &quot;temperature_2m&quot;: &quot;°F&quot;,
+          &quot;weather_code&quot;: &quot;wmo code&quot;,
+          &quot;precipitation_probability&quot;: &quot;%&quot;,
+          &quot;precipitation&quot;: &quot;inch&quot;
+        },
+        &quot;hourly&quot;: {
+          &quot;time&quot;: [
+            &quot;2026-07-08T00:00&quot;,
+            &quot;2026-07-08T01:00&quot;,
+            &quot;2026-07-08T02:00&quot;,
+            &quot;2026-07-08T03:00&quot;,
+            &quot;2026-07-08T04:00&quot;,
+            &quot;2026-07-08T05:00&quot;,
+            &quot;2026-07-08T06:00&quot;,
+            &quot;2026-07-08T07:00&quot;,
+            &quot;2026-07-08T08:00&quot;,
+            &quot;2026-07-08T09:00&quot;,
+            &quot;2026-07-08T10:00&quot;,
+            &quot;2026-07-08T11:00&quot;,
+            &quot;2026-07-08T12:00&quot;,
+            &quot;2026-07-08T13:00&quot;,
+            &quot;2026-07-08T14:00&quot;,
+            &quot;2026-07-08T15:00&quot;,
+            &quot;2026-07-08T16:00&quot;,
+            &quot;2026-07-08T17:00&quot;,
+            &quot;2026-07-08T18:00&quot;,
+            &quot;2026-07-08T19:00&quot;,
+            &quot;2026-07-08T20:00&quot;,
+            &quot;2026-07-08T21:00&quot;,
+            &quot;2026-07-08T22:00&quot;,
+            &quot;2026-07-08T23:00&quot;,
+            &quot;2026-07-09T00:00&quot;,
+            &quot;2026-07-09T01:00&quot;,
+            &quot;2026-07-09T02:00&quot;,
+            &quot;2026-07-09T03:00&quot;,
+            &quot;2026-07-09T04:00&quot;,
+            &quot;2026-07-09T05:00&quot;,
+            &quot;2026-07-09T06:00&quot;,
+            &quot;2026-07-09T07:00&quot;,
+            &quot;2026-07-09T08:00&quot;,
+            &quot;2026-07-09T09:00&quot;,
+            &quot;2026-07-09T10:00&quot;,
+            &quot;2026-07-09T11:00&quot;,
+            &quot;2026-07-09T12:00&quot;,
+            &quot;2026-07-09T13:00&quot;,
+            &quot;2026-07-09T14:00&quot;,
+            &quot;2026-07-09T15:00&quot;,
+            &quot;2026-07-09T16:00&quot;,
+            &quot;2026-07-09T17:00&quot;,
+            &quot;2026-07-09T18:00&quot;,
+            &quot;2026-07-09T19:00&quot;,
+            &quot;2026-07-09T20:00&quot;,
+            &quot;2026-07-09T21:00&quot;,
+            &quot;2026-07-09T22:00&quot;,
+            &quot;2026-07-09T23:00&quot;
+          ],
+          &quot;temperature_2m&quot;: [
+            64.2,
+            63.9,
+            63.6,
+            63.2,
+            61.3,
+            59.6,
+            59.1,
+            60.7,
+            63.1,
+            67,
+            71.3,
+            75.2,
+            77.4,
+            79.3,
+            80.7,
+            80,
+            80.4,
+            80.2,
+            78.7,
+            76.6,
+            74,
+            71.8,
+            70.7,
+            69.7,
+            69,
+            68.5,
+            67.9,
+            67.7,
+            67.4,
+            67,
+            66.7,
+            69.2,
+            72.5,
+            74.2,
+            77.3,
+            78.5,
+            80.6,
+            81.5,
+            83,
+            81.9,
+            79.7,
+            78.3,
+            76.7,
+            75.3,
+            74.3,
+            72.5,
+            71.6,
+            71.7
+          ],
+          &quot;weather_code&quot;: [
+            3,
+            45,
+            3,
+            45,
+            1,
+            2,
+            45,
+            3,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            3,
+            2,
+            1,
+            3,
+            3,
+            3,
+            3,
+            1,
+            0,
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ],
+          &quot;precipitation_probability&quot;: [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10,
+            15,
+            16,
+            13,
+            17,
+            12,
+            6,
+            4,
+            4,
+            4,
+            6
+          ],
+          &quot;precipitation&quot;: [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        &quot;daily_units&quot;: {
+          &quot;time&quot;: &quot;iso8601&quot;,
+          &quot;weather_code&quot;: &quot;wmo code&quot;,
+          &quot;temperature_2m_max&quot;: &quot;°F&quot;,
+          &quot;temperature_2m_min&quot;: &quot;°F&quot;,
+          &quot;precipitation_probability_max&quot;: &quot;%&quot;,
+          &quot;precipitation_sum&quot;: &quot;inch&quot;,
+          &quot;uv_index_max&quot;: &quot;&quot;,
+          &quot;sunrise&quot;: &quot;iso8601&quot;,
+          &quot;sunset&quot;: &quot;iso8601&quot;
+        },
+        &quot;daily&quot;: {
+          &quot;time&quot;: [
+            &quot;2026-07-08&quot;,
+            &quot;2026-07-09&quot;
+          ],
+          &quot;weather_code&quot;: [
+            45,
+            3
+          ],
+          &quot;temperature_2m_max&quot;: [
+            80.7,
+            83
+          ],
+          &quot;temperature_2m_min&quot;: [
+            59.1,
+            66.7
+          ],
+          &quot;precipitation_probability_max&quot;: [
+            2,
+            17
+          ],
+          &quot;precipitation_sum&quot;: [
+            0,
+            0
+          ],
+          &quot;uv_index_max&quot;: [
+            7.5,
+            6.45
+          ],
+          &quot;sunrise&quot;: [
+            &quot;2026-07-08T05:35&quot;,
+            &quot;2026-07-09T05:35&quot;
+          ],
+          &quot;sunset&quot;: [
+            &quot;2026-07-08T20:35&quot;,
+            &quot;2026-07-09T20:35&quot;
+          ]
+        }
+      }
+    },
+    &quot;sunrise_sunset&quot;: {
+      &quot;data&quot;: {
+        &quot;sunrise&quot;: &quot;2026-07-08T05:35&quot;,
+        &quot;sunset&quot;: &quot;2026-07-08T20:35&quot;,
+        &quot;sunriseFormatted&quot;: &quot;5:35 AM&quot;,
+        &quot;sunsetFormatted&quot;: &quot;8:35 PM&quot;,
+        &quot;timezone&quot;: &quot;America/New_York&quot;
+      }
+    },
+    &quot;moon&quot;: {
+      &quot;data&quot;: {
+        &quot;phase&quot;: &quot;Waning crescent&quot;,
+        &quot;illumination&quot;: 35,
+        &quot;phaseValue&quot;: 0.823,
+        &quot;trust&quot;: &quot;Estimated&quot;
+      }
+    },
+    &quot;air_quality&quot;: {
+      &quot;data&quot;: {
+        &quot;usAqi&quot;: 37,
+        &quot;pm25&quot;: 4.8,
+        &quot;category&quot;: &quot;Good&quot;,
+        &quot;status&quot;: &quot;live&quot;
+      }
+    },
+    &quot;uv&quot;: {
+      &quot;data&quot;: {
+        &quot;uvIndex&quot;: 6.4,
+        &quot;status&quot;: &quot;live&quot;
+      }
+    },
+    &quot;pollen&quot;: {
+      &quot;data&quot;: {
+        &quot;status&quot;: &quot;unavailable&quot;,
+        &quot;summary&quot;: &quot;Data currently unavailable&quot;
+      }
+    },
+    &quot;river_gauges&quot;: {
+      &quot;data&quot;: {
+        &quot;status&quot;: &quot;unavailable&quot;,
+        &quot;summary&quot;: &quot;Data currently unavailable&quot;
+      }
+    },
+    &quot;alerts&quot;: {
+      &quot;data&quot;: {
+        &quot;status&quot;: &quot;live&quot;,
+        &quot;count&quot;: 0,
+        &quot;items&quot;: []
+      }
+    },
+    &quot;photography_conditions&quot;: {
+      &quot;data&quot;: {
+        &quot;status&quot;: &quot;estimated&quot;,
+        &quot;cloudCover&quot;: 16,
+        &quot;score&quot;: 92,
+        &quot;summary&quot;: &quot;Strong outdoor light conditions&quot;,
+        &quot;sunrise&quot;: &quot;5:35 AM&quot;,
+        &quot;sunset&quot;: &quot;8:35 PM&quot;
+      }
+    }
+  },
   &quot;meta&quot;: {
     &quot;sources&quot;: [
+      &quot;Open-Meteo&quot;,
+      &quot;Open-Meteo astronomy&quot;,
+      &quot;Calculated&quot;,
       &quot;Open-Meteo Air Quality&quot;,
       &quot;Open-Meteo&quot;,
-      &quot;Calculated moon phase&quot;
+      &quot;Unavailable&quot;,
+      &quot;Unavailable&quot;,
+      &quot;NWS&quot;,
+      &quot;Derived from weather/sun&quot;
     ],
     &quot;failures&quot;: [],
-    &quot;provider&quot;: {
-      &quot;weather&quot;: &quot;open-meteo&quot;,
-      &quot;airQuality&quot;: &quot;open-meteo-air-quality&quot;,
-      &quot;moon&quot;: &quot;calculated&quot;
-    },
     &quot;generatedBy&quot;: &quot;waypoint-live-engine&quot;,
-    &quot;generatedAt&quot;: &quot;2026-07-08T17:39:02.850Z&quot;
+    &quot;generatedAt&quot;: &quot;2026-07-08T19:18:46.043Z&quot;,
+    &quot;healthFile&quot;: &quot;data/health.json&quot;,
+    &quot;blockStatus&quot;: {
+      &quot;weather&quot;: &quot;live&quot;,
+      &quot;alerts&quot;: &quot;live&quot;,
+      &quot;airQuality&quot;: &quot;live&quot;,
+      &quot;elevation&quot;: &quot;unavailable&quot;,
+      &quot;usgsWater&quot;: &quot;unavailable&quot;
+    }
   }
 }</pre>
     </section>
   </div>
-  <script>
-    (function () {
-      var BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
-      function set(id, html, ok) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.innerHTML = html;
-        el.className = ok === true ? "wle-ok" : ok === false ? "wle-bad" : "wle-muted";
-      }
-      function list(id, items, empty) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        if (!items || !items.length) {
-          el.innerHTML = "<li class=\"wle-muted\">" + (empty || "None") + "</li>";
-          return;
-        }
-        el.innerHTML = items.map(function (x) {
-          return "<li>" + String(x).replace(/</g, "&lt;") + "</li>";
-        }).join("");
-      }
-      function bannedHits(text) {
-        var lower = String(text || "").toLowerCase();
-        return BANNED.filter(function (w) { return lower.indexOf(w) >= 0; });
-      }
-      fetch("data/live.json?_=" + Date.now(), { cache: "no-store" })
-        .then(function (r) {
-          if (!r.ok) throw new Error("HTTP " + r.status);
-          return r.json();
-        })
-        .then(function (data) {
-          set("st-loaded", "Yes", true);
-          var updated = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : "—";
-          set("st-updated", updated, !!data.updatedAt);
-          set("st-location", (data.location && data.location.label) || "—", true);
-          var age = data.updatedAt ? Date.now() - Date.parse(data.updatedAt) : Infinity;
-          var fresh = age <= 3 * 60 * 60 * 1000;
-          set("st-fresh", fresh ? "Yes" : "No / stale", fresh);
-          list("st-sources", (data.meta && data.meta.sources) || [], "No sources recorded");
-          var fails = ((data.meta && data.meta.failures) || []).map(function (f) {
-            return (f.source || "source") + ": " + (f.error || "failed");
-          });
-          list("st-failures", fails, "No failed sources");
-          var hits = bannedHits(JSON.stringify(data));
-          set("st-banned", hits.length ? "FOUND: " + hits.join(", ") : "Clear", hits.length === 0);
-          document.getElementById("st-banned-detail").textContent = "Checked for: " + BANNED.join(", ");
-          document.getElementById("st-raw").textContent = JSON.stringify(data, null, 2);
-        })
-        .catch(function (err) {
-          set("st-loaded", "No — " + (err && err.message ? err.message : "unavailable"), false);
-        });
-    })();
-  </script>
 </body>
 </html>
