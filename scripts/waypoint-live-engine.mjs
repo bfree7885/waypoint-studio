@@ -402,11 +402,20 @@ async function runPlugin(plugin, ctx) {
   let error = null;
   let lastSuccessfulUpdate = previousSuccess || (previousData ? (ctx.previousLive && ctx.previousLive.updatedAt) : null);
 
+  function normalizeStatusFromData(value) {
+    if (!value || typeof value.status !== "string") return "live";
+    const s = value.status.toLowerCase();
+    if (s === "live" || s === "estimated" || s === "unavailable" || s === "editorial" || s === "degraded") {
+      return s;
+    }
+    return "live";
+  }
+
   try {
     const result = await plugin.fetch(ctx);
     data = result && result.data != null ? result.data : null;
     source = result && result.source ? result.source : plugin.name;
-    status = "live";
+    status = normalizeStatusFromData(data);
     lastSuccessfulUpdate = nowIso;
     ctx.moduleResults[plugin.name] = { data, source, status };
     return {
