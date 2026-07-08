@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Waypoint Live Engine — generate data/live.json
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec node "$ROOT/scripts/waypoint-live-engine.mjs" "$@"

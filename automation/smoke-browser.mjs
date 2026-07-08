@@ -167,6 +167,12 @@ async function testPage(client, page) {
         eduBadgeEdu: Array.from(document.querySelectorAll('.wdb-edu-fallback__badge')).filter(el => /Educational/i.test(el.textContent || '')).length,
         hydrated: !!(pkg && pkg.meta && pkg.meta.hydratedAt),
         blockStatus: pkg && pkg.meta && pkg.meta.blockStatus || null,
+        hasLiveUpdated: !!document.querySelector('[data-wds-live-updated], .wdb-doc__last-updated, .wdb-live-updated'),
+        liveUpdatedText: (document.querySelector('.wdb-live-updated') || document.querySelector('.wdb-doc__last-updated') || {}).textContent || '',
+        liveFeedSource: (function () {
+          var el = document.querySelector('[data-wds-live-updated]');
+          return el ? el.getAttribute('data-source') : null;
+        })(),
         hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
         hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
         bodyLen: document.body ? document.body.innerText.length : 0
@@ -258,6 +264,10 @@ async function main() {
         failed = true;
         console.log("FAIL: missing operational domains: " + missing.join(", "));
       }
+    }
+    if (r.name === "homepage" && !r.checks.hasLiveUpdated) {
+      failed = true;
+      console.log("FAIL: Last updated timestamp missing on dashboard");
     }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;

@@ -85,9 +85,15 @@
         }).join("") + "</ul>"
       : "";
 
-    var updated = doc.provenance && doc.provenance.updatedAt
-      ? new Date(doc.provenance.updatedAt).toLocaleString()
+    var updatedIso = doc.provenance && doc.provenance.updatedAt;
+    var updated = updatedIso
+      ? new Date(updatedIso).toLocaleString()
       : "—";
+    var liveMeta = ctx && ctx.platform && ctx.platform.meta;
+    if (liveMeta && (liveMeta.liveUpdatedAt || (liveMeta.liveFeed && liveMeta.hydratedAt))) {
+      updatedIso = liveMeta.liveUpdatedAt || liveMeta.hydratedAt;
+      try { updated = new Date(updatedIso).toLocaleString(); } catch (e) { /* keep */ }
+    }
 
     var detailsHtml = noticesHtml
       ? '<div class="wdb-doc__notices" aria-label="Operational outdoor blocks">' + noticesHtml + "</div>"
@@ -105,7 +111,8 @@
           : "") +
         detailsHtml +
         '<footer class="wdb-doc__foot">' +
-          '<p>Sources: ' + escapeHtml((doc.provenance && doc.provenance.sources || []).join(" · ")) + " · Updated " + escapeHtml(updated) + "</p>" +
+          '<p>Sources: ' + escapeHtml((doc.provenance && doc.provenance.sources || []).join(" · ")) +
+            ' · <span class="wdb-doc__last-updated">Last updated <time datetime="' + escapeHtml(updatedIso || "") + '">' + escapeHtml(updated) + "</time></span></p>" +
         "</footer>" +
       "</section>"
     );

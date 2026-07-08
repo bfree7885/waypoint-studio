@@ -878,18 +878,70 @@
     });
   }
 
+  function fetchLiveEnginePlatform(loc) {
+    var LE = global.WDS && global.WDS.liveEngine;
+    if (!LE || !LE.fetchLive) return Promise.resolve(null);
+    return LE.fetchLive().then(function (feed) {
+      if (!feed || !LE.usable(feed) || !LE.isFresh(feed)) return null;
+      var platform = LE.toPlatform(feed, loc);
+      var OIP = global.WDS && global.WDS.outdoorIntelligence;
+      if (platform && OIP && typeof OIP.adoptPackage === "function") {
+        try { OIP.adoptPackage(platform); } catch (e) { /* noop */ }
+      }
+      return platform;
+    }).catch(function () {
+      return null;
+    });
+  }
+
   function fetchOutdoorIntelligence(loc, base, bundle) {
     var hints = bundle && bundle.thisWeekOutdoors && bundle.thisWeekOutdoors.weather;
-    return waitForOipGet(4000).then(function (OIP) {
-      if (!OIP || !OIP.get) return null;
-      return OIP.get({
-        location: loc,
-        bundle: bundle,
-        contentEngineBase: base,
-        includeWeather: true,
-        weatherHints: hints
+    return fetchLiveEnginePlatform(loc).then(function (livePlatform) {
+      if (livePlatform) return livePlatform;
+      return waitForOipGet(4000).then(function (OIP) {
+        if (!OIP || !OIP.get) return null;
+        return OIP.get({
+          location: loc,
+          bundle: bundle,
+          contentEngineBase: base,
+          includeWeather: true,
+          weatherHints: hints
+        });
       });
     });
+  }
+
+  function formatLiveUpdated(platform) {
+    var iso = platform && platform.meta && (platform.meta.liveUpdatedAt || platform.meta.hydratedAt);
+    if (!iso) return null;
+    try {
+      return new Date(iso).toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short"
+      });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderLiveUpdatedBanner(platform) {
+    var stamped = formatLiveUpdated(platform);
+    if (!stamped) return "";
+    var fromLive = !!(platform && platform.meta && platform.meta.liveFeed);
+    return (
+      '<p class="wdb-live-updated" data-wds-live-updated' +
+        (fromLive ? ' data-source="live-engine"' : ' data-source="browser"') +
+        '>' +
+        '<span class="wdb-live-updated__label">Last updated</span> ' +
+        '<time class="wdb-live-updated__time" datetime="' + escapeHtml((platform.meta && (platform.meta.liveUpdatedAt || platform.meta.hydratedAt)) || "") + '">' +
+          escapeHtml(stamped) +
+        "</time>" +
+        (fromLive ? ' <span class="wdb-live-updated__src">· Live Engine</span>' : "") +
+      "</p>"
+    );
   }
 
   function mountDashboardWidgets(mount, loc, base, data, platform) {
@@ -941,7 +993,8 @@
     var renderOpts = Object.assign({}, options, { base: base });
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
     var briefingHtml = Briefing && Briefing.render ? Briefing.render(loc, platform) : renderLocationBar(loc);
-    var inner = briefingHtml + renderHome(data, renderOpts);
+    var liveUpdatedHtml = renderLiveUpdatedBanner(platform);
+    var inner = briefingHtml + liveUpdatedHtml + renderHome(data, renderOpts);
     mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
     mount.removeAttribute("aria-busy");
     if (!(Briefing && Briefing.bind)) {

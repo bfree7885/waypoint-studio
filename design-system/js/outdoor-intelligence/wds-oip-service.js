@@ -420,6 +420,13 @@
     clearCache: clearCache,
     onChange: onChange,
     refresh: refresh,
-    getProviderTelemetry: function () { return providerTelemetry.slice(); }
+    getProviderTelemetry: function () { return providerTelemetry.slice(); },
+    adoptPackage: function (pkg) {
+      if (!pkg) return null;
+      pkg = M.normalizePackage(pkg);
+      lastPackage = pkg;
+      notifyChange(pkg);
+      return pkg;
+    }
   });
 })(window);

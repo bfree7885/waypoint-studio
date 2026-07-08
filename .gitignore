@@ -4,3 +4,4 @@ automation/week-away/logs/
 
 # Local test dependencies (smoke-browser.mjs)
 node_modules/
+scripts/logs/

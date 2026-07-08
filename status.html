@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waypoint Live Engine — Status</title>
+  <link rel="stylesheet" href="design-system/css/wds-dashboard-home.css">
+  <link rel="stylesheet" href="css/home-dashboard.css">
+  <style>
+    .wle-status { max-width: 42rem; margin: 2rem auto; padding: 0 1.25rem 3rem; font-family: Inter, system-ui, sans-serif; color: #1c1917; }
+    .wle-status h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 2rem; margin: 0 0 0.35rem; }
+    .wle-status .lead { color: #57534e; margin: 0 0 1.5rem; }
+    .wle-card { border: 1px solid #e7e5e4; border-radius: 8px; padding: 1rem 1.1rem; margin: 0 0 1rem; background: #fafaf9; }
+    .wle-card h2 { font-size: 0.95rem; margin: 0 0 0.65rem; letter-spacing: 0.02em; text-transform: uppercase; color: #78716c; }
+    .wle-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.35rem 0; border-bottom: 1px solid #f5f5f4; font-size: 0.95rem; }
+    .wle-row:last-child { border-bottom: 0; }
+    .wle-ok { color: #166534; font-weight: 600; }
+    .wle-bad { color: #9f1239; font-weight: 600; }
+    .wle-muted { color: #78716c; }
+    .wle-list { margin: 0; padding-left: 1.1rem; }
+    .wle-nav a { color: #1d4ed8; }
+    pre { white-space: pre-wrap; word-break: break-word; font-size: 0.8rem; background: #f5f5f4; padding: 0.75rem; border-radius: 6px; overflow: auto; max-height: 18rem; }
+  </style>
+</head>
+<body>
+  <div class="wle-status">
+    <p class="wle-nav"><a href="./">← Outdoor dashboard</a></p>
+    <h1>Live Engine status</h1>
+    <p class="lead">Operational check for <code>data/live.json</code> — no redesign, product-focused.</p>
+
+    <section class="wle-card" aria-label="Live file">
+      <h2>live.json</h2>
+      <div class="wle-row"><span>Loaded</span><span id="st-loaded">…</span></div>
+      <div class="wle-row"><span>Last updated</span><span id="st-updated">…</span></div>
+      <div class="wle-row"><span>Location</span><span id="st-location">…</span></div>
+      <div class="wle-row"><span>Fresh (&lt; 3h)</span><span id="st-fresh">…</span></div>
+    </section>
+
+    <section class="wle-card" aria-label="Sources">
+      <h2>Data sources used</h2>
+      <ul class="wle-list" id="st-sources"></ul>
+    </section>
+
+    <section class="wle-card" aria-label="Failures">
+      <h2>Failed sources</h2>
+      <ul class="wle-list" id="st-failures"></ul>
+    </section>
+
+    <section class="wle-card" aria-label="Integrity">
+      <h2>Integrity checks</h2>
+      <div class="wle-row"><span>Duplicate headings</span><span id="st-dupes">…</span></div>
+      <div class="wle-row"><span>Banned text</span><span id="st-banned">…</span></div>
+      <p class="wle-muted" id="st-banned-detail"></p>
+    </section>
+
+    <section class="wle-card" aria-label="Raw">
+      <h2>Raw payload</h2>
+      <pre id="st-raw">Loading…</pre>
+    </section>
+  </div>
+  <script>
+    (function () {
+      var BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
+      function set(id, html, ok) {
+        var el = document.getElementById(id);
+        el.innerHTML = html;
+        el.className = ok === true ? "wle-ok" : ok === false ? "wle-bad" : "wle-muted";
+      }
+      function list(id, items, empty) {
+        var el = document.getElementById(id);
+        if (!items || !items.length) {
+          el.innerHTML = "<li class=\"wle-muted\">" + (empty || "None") + "</li>";
+          return;
+        }
+        el.innerHTML = items.map(function (x) {
+          return "<li>" + String(x).replace(/</g, "&lt;") + "</li>";
+        }).join("");
+      }
+      function findDuplicates(obj, path, seen, dups) {
+        if (!obj || typeof obj !== "object") return;
+        if (Array.isArray(obj)) {
+          obj.forEach(function (v, i) { findDuplicates(v, path + "[" + i + "]", seen, dups); });
+          return;
+        }
+        Object.keys(obj).forEach(function (k) {
+          var p = path ? path + "." + k : k;
+          if (seen[k] && /title|heading|label|name/i.test(k)) {
+            dups.push(k + " at " + p + " (also " + seen[k] + ")");
+          }
+          if (/title|heading|label/i.test(k) && typeof obj[k] === "string") {
+            var key = String(obj[k]).toLowerCase().trim();
+            if (key && seen["__val:" + key]) dups.push('value "' + obj[k] + '" repeated');
+            else if (key) seen["__val:" + key] = p;
+          }
+          seen[k] = p;
+          findDuplicates(obj[k], p, seen, dups);
+        });
+      }
+      function bannedHits(text) {
+        var lower = String(text || "").toLowerCase();
+        return BANNED.filter(function (w) { return lower.indexOf(w) >= 0; });
+      }
+      fetch("data/live.json?_=" + Date.now(), { cache: "no-store" })
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then(function (data) {
+          set("st-loaded", "Yes", true);
+          var updated = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : "—";
+          set("st-updated", updated, !!data.updatedAt);
+          set("st-location", (data.location && data.location.label) || "—", true);
+          var age = data.updatedAt ? Date.now() - Date.parse(data.updatedAt) : Infinity;
+          var fresh = age <= 3 * 60 * 60 * 1000;
+          set("st-fresh", fresh ? "Yes" : "No / stale", fresh);
+          list("st-sources", (data.meta && data.meta.sources) || [], "No sources recorded");
+          var fails = ((data.meta && data.meta.failures) || []).map(function (f) {
+            return (f.source || "source") + ": " + (f.error || "failed");
+          });
+          list("st-failures", fails, "No failed sources");
+          var dups = [];
+          findDuplicates(data, "", Object.create(null), dups);
+          set("st-dupes", dups.length ? dups.length + " possible" : "None", dups.length === 0);
+          var hits = bannedHits(JSON.stringify(data));
+          set("st-banned", hits.length ? "FOUND: " + hits.join(", ") : "Clear", hits.length === 0);
+          document.getElementById("st-banned-detail").textContent = hits.length
+            ? "Banned phrases must not appear in live outdoor payloads."
+            : "Checked for: " + BANNED.join(", ");
+          document.getElementById("st-raw").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(function (err) {
+          set("st-loaded", "No — " + (err && err.message ? err.message : "unavailable"), false);
+          set("st-updated", "—", false);
+          set("st-location", "—", false);
+          set("st-fresh", "—", false);
+          list("st-sources", [], "Unavailable");
+          list("st-failures", ["live.json did not load"], "—");
+          set("st-dupes", "Skipped", false);
+          set("st-banned", "Skipped", false);
+          document.getElementById("st-raw").textContent = String(err && err.message || err);
+        });
+    })();
+  </script>
+</body>
+</html>
