@@ -2,12 +2,12 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-08T22:22:31.266Z",
+  "generatedAt": "2026-07-08T22:23:07.702Z",
   "nextScheduledUpdate": "2026-07-08T22:30:00.000Z",
   "overall": {
     "status": "degraded",
     "message": "One or more modules failed; serving previous successful module data where available.",
-    "lastSuccessfulRefresh": "2026-07-08T22:22:32.624Z"
+    "lastSuccessfulRefresh": "2026-07-08T22:23:08.981Z"
   },
   "modules": {
     "weather": {
@@ -16,7 +16,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 1.0470151901245117,
+        "generationtime_ms": 0.6430149078369141,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -362,9 +362,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 651,
-      "lastAttempt": "2026-07-08T22:22:31.267Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:31.267Z",
+      "responseMs": 672,
+      "lastAttempt": "2026-07-08T22:23:07.703Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:07.703Z",
       "stale": false
     },
     "sunrise_sunset": {
@@ -380,8 +380,8 @@
       "source": "Open-Meteo astronomy",
       "error": null,
       "responseMs": 12,
-      "lastAttempt": "2026-07-08T22:22:31.918Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:31.918Z",
+      "lastAttempt": "2026-07-08T22:23:08.375Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.375Z",
       "stale": false
     },
     "moon": {
@@ -395,9 +395,9 @@
       },
       "source": "Calculated",
       "error": null,
-      "responseMs": 0,
-      "lastAttempt": "2026-07-08T22:22:31.930Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:31.930Z",
+      "responseMs": 1,
+      "lastAttempt": "2026-07-08T22:23:08.387Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.387Z",
       "stale": false
     },
     "air_quality": {
@@ -411,9 +411,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 424,
-      "lastAttempt": "2026-07-08T22:22:31.930Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:31.930Z",
+      "responseMs": 407,
+      "lastAttempt": "2026-07-08T22:23:08.388Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.388Z",
       "stale": false
     },
     "uv": {
@@ -425,9 +425,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 1,
-      "lastAttempt": "2026-07-08T22:22:32.354Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:32.354Z",
+      "responseMs": 0,
+      "lastAttempt": "2026-07-08T22:23:08.795Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.795Z",
       "stale": false
     },
     "pollen": {
@@ -440,8 +440,8 @@
       "source": "Unavailable",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-08T22:22:32.355Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:32.355Z",
+      "lastAttempt": "2026-07-08T22:23:08.795Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.795Z",
       "stale": false
     },
     "river_gauges": {
@@ -454,8 +454,8 @@
       "source": "Unavailable",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-08T22:22:32.355Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:32.355Z",
+      "lastAttempt": "2026-07-08T22:23:08.795Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.795Z",
       "stale": false
     },
     "alerts": {
@@ -468,9 +468,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 269,
-      "lastAttempt": "2026-07-08T22:22:32.355Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:32.355Z",
+      "responseMs": 186,
+      "lastAttempt": "2026-07-08T22:23:08.795Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.795Z",
       "stale": false
     },
     "photography_conditions": {
@@ -487,20 +487,20 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-08T22:22:32.624Z",
-      "lastSuccessfulUpdate": "2026-07-08T22:22:32.624Z",
+      "lastAttempt": "2026-07-08T22:23:08.981Z",
+      "lastSuccessfulUpdate": "2026-07-08T22:23:08.981Z",
       "stale": false
     }
   },
   "runtime": {
     "uptimeSeconds": 1,
-    "runDurationMs": 1359,
+    "runDurationMs": 1280,
     "memory": {
-      "rss": 76054528,
+      "rss": 67227648,
       "heapTotal": 11403264,
-      "heapUsed": 8134984,
-      "external": 3554108,
-      "arrayBuffers": 150813
+      "heapUsed": 8112896,
+      "external": 3554117,
+      "arrayBuffers": 150822
     },
     "nodeVersion": "v20.20.0",
     "platform": "linux"

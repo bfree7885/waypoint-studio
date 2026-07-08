@@ -2,7 +2,7 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-08T22:22:31.266Z",
+  "updatedAt": "2026-07-08T22:23:07.702Z",
   "nextScheduledUpdate": "2026-07-08T22:30:00.000Z",
   "location": {
     "id": "pike-county-pa",
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 1.0470151901245117,
+        "generationtime_ms": 0.6430149078369141,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -516,7 +516,7 @@
     ],
     "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-08T22:22:31.266Z",
+    "generatedAt": "2026-07-08T22:23:07.702Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
