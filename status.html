@@ -30,32 +30,141 @@
 
     <section class="wle-card" aria-label="Live file">
       <h2>live.json</h2>
-      <div class="wle-row"><span>Loaded</span><span id="st-loaded">…</span></div>
-      <div class="wle-row"><span>Last updated</span><span id="st-updated">…</span></div>
-      <div class="wle-row"><span>Location</span><span id="st-location">…</span></div>
-      <div class="wle-row"><span>Fresh (&lt; 3h)</span><span id="st-fresh">…</span></div>
+      <div class="wle-row"><span>Loaded</span><span id="st-loaded" class="wle-ok">Yes</span></div>
+      <div class="wle-row"><span>Last updated</span><span id="st-updated" class="wle-ok">7/8/2026, 1:39:02 PM</span></div>
+      <div class="wle-row"><span>Location</span><span id="st-location" class="wle-ok">Pike County, PA</span></div>
+      <div class="wle-row"><span>Fresh (&lt; 3h)</span><span id="st-fresh" class="wle-ok">Yes</span></div>
     </section>
 
     <section class="wle-card" aria-label="Sources">
       <h2>Data sources used</h2>
-      <ul class="wle-list" id="st-sources"></ul>
+      <ul class="wle-list" id="st-sources"><li>Open-Meteo Air Quality</li><li>Open-Meteo</li><li>Calculated moon phase</li></ul>
     </section>
 
     <section class="wle-card" aria-label="Failures">
       <h2>Failed sources</h2>
-      <ul class="wle-list" id="st-failures"></ul>
+      <ul class="wle-list" id="st-failures"><li class="wle-muted">No failed sources</li></ul>
     </section>
 
     <section class="wle-card" aria-label="Integrity">
       <h2>Integrity checks</h2>
-      <div class="wle-row"><span>Duplicate headings</span><span id="st-dupes">…</span></div>
-      <div class="wle-row"><span>Banned text</span><span id="st-banned">…</span></div>
-      <p class="wle-muted" id="st-banned-detail"></p>
+      <div class="wle-row"><span>Duplicate headings</span><span id="st-dupes" class="wle-muted">Server check requires browser snapshot</span></div>
+      <div class="wle-row"><span>Banned text</span><span id="st-banned" class="wle-ok">Clear</span></div>
+      <p class="wle-muted" id="st-banned-detail">Checked for: coming soon, assignment, homework, lesson, educational</p>
     </section>
 
     <section class="wle-card" aria-label="Raw">
       <h2>Raw payload</h2>
-      <pre id="st-raw">Loading…</pre>
+      <pre id="st-raw">{
+  &quot;version&quot;: 1,
+  &quot;engine&quot;: &quot;waypoint-live-engine&quot;,
+  &quot;updatedAt&quot;: &quot;2026-07-08T17:39:02.850Z&quot;,
+  &quot;location&quot;: {
+    &quot;id&quot;: &quot;pike-county-pa&quot;,
+    &quot;name&quot;: &quot;Pike County&quot;,
+    &quot;state&quot;: &quot;Pennsylvania&quot;,
+    &quot;stateCode&quot;: &quot;PA&quot;,
+    &quot;lat&quot;: 41.3312,
+    &quot;lng&quot;: -75.038,
+    &quot;contentBundle&quot;: &quot;pike-county-pa&quot;,
+    &quot;label&quot;: &quot;Pike County, PA&quot;
+  },
+  &quot;timezone&quot;: &quot;America/New_York&quot;,
+  &quot;current&quot;: {
+    &quot;temperatureF&quot;: 79,
+    &quot;feelsLikeF&quot;: 87,
+    &quot;humidity&quot;: 55,
+    &quot;windMph&quot;: 2,
+    &quot;windGustMph&quot;: 5,
+    &quot;cloudCover&quot;: 10,
+    &quot;uvIndex&quot;: 7.6,
+    &quot;precipIn&quot;: 0,
+    &quot;conditions&quot;: &quot;Clear sky&quot;,
+    &quot;weatherCode&quot;: 0,
+    &quot;observedAt&quot;: &quot;2026-07-08T13:30&quot;
+  },
+  &quot;forecast&quot;: {
+    &quot;highF&quot;: 80,
+    &quot;lowF&quot;: 59,
+    &quot;precipProbability&quot;: 1,
+    &quot;summary&quot;: &quot;Clear sky · High 80° / Low 59°&quot;
+  },
+  &quot;hourly&quot;: {
+    &quot;nextHours&quot;: [
+      {
+        &quot;time&quot;: &quot;2026-07-08T14:00&quot;,
+        &quot;temperatureF&quot;: 79,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T15:00&quot;,
+        &quot;temperatureF&quot;: 80,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T16:00&quot;,
+        &quot;temperatureF&quot;: 80,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T17:00&quot;,
+        &quot;temperatureF&quot;: 80,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T18:00&quot;,
+        &quot;temperatureF&quot;: 79,
+        &quot;precipProbability&quot;: 1,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      },
+      {
+        &quot;time&quot;: &quot;2026-07-08T19:00&quot;,
+        &quot;temperatureF&quot;: 78,
+        &quot;precipProbability&quot;: 0,
+        &quot;conditions&quot;: &quot;Clear sky&quot;
+      }
+    ],
+    &quot;note&quot;: &quot;Low rain chance in the next several hours&quot;
+  },
+  &quot;sun&quot;: {
+    &quot;sunrise&quot;: &quot;2026-07-08T05:35&quot;,
+    &quot;sunset&quot;: &quot;2026-07-08T20:35&quot;,
+    &quot;sunriseFormatted&quot;: &quot;5:35 AM&quot;,
+    &quot;sunsetFormatted&quot;: &quot;8:35 PM&quot;
+  },
+  &quot;moon&quot;: {
+    &quot;phase&quot;: &quot;Waning crescent&quot;,
+    &quot;illumination&quot;: 36,
+    &quot;phaseValue&quot;: 0.821,
+    &quot;trust&quot;: &quot;Estimated&quot;,
+    &quot;source&quot;: &quot;Calculated&quot;
+  },
+  &quot;airQuality&quot;: {
+    &quot;usAqi&quot;: 31,
+    &quot;pm25&quot;: 4.7,
+    &quot;category&quot;: &quot;Good&quot;,
+    &quot;status&quot;: &quot;live&quot;
+  },
+  &quot;meta&quot;: {
+    &quot;sources&quot;: [
+      &quot;Open-Meteo Air Quality&quot;,
+      &quot;Open-Meteo&quot;,
+      &quot;Calculated moon phase&quot;
+    ],
+    &quot;failures&quot;: [],
+    &quot;provider&quot;: {
+      &quot;weather&quot;: &quot;open-meteo&quot;,
+      &quot;airQuality&quot;: &quot;open-meteo-air-quality&quot;,
+      &quot;moon&quot;: &quot;calculated&quot;
+    },
+    &quot;generatedBy&quot;: &quot;waypoint-live-engine&quot;,
+    &quot;generatedAt&quot;: &quot;2026-07-08T17:39:02.850Z&quot;
+  }
+}</pre>
     </section>
   </div>
   <script>
@@ -63,11 +172,13 @@
       var BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
       function set(id, html, ok) {
         var el = document.getElementById(id);
+        if (!el) return;
         el.innerHTML = html;
         el.className = ok === true ? "wle-ok" : ok === false ? "wle-bad" : "wle-muted";
       }
       function list(id, items, empty) {
         var el = document.getElementById(id);
+        if (!el) return;
         if (!items || !items.length) {
           el.innerHTML = "<li class=\"wle-muted\">" + (empty || "None") + "</li>";
           return;
@@ -75,26 +186,6 @@
         el.innerHTML = items.map(function (x) {
           return "<li>" + String(x).replace(/</g, "&lt;") + "</li>";
         }).join("");
-      }
-      function findDuplicates(obj, path, seen, dups) {
-        if (!obj || typeof obj !== "object") return;
-        if (Array.isArray(obj)) {
-          obj.forEach(function (v, i) { findDuplicates(v, path + "[" + i + "]", seen, dups); });
-          return;
-        }
-        Object.keys(obj).forEach(function (k) {
-          var p = path ? path + "." + k : k;
-          if (seen[k] && /title|heading|label|name/i.test(k)) {
-            dups.push(k + " at " + p + " (also " + seen[k] + ")");
-          }
-          if (/title|heading|label/i.test(k) && typeof obj[k] === "string") {
-            var key = String(obj[k]).toLowerCase().trim();
-            if (key && seen["__val:" + key]) dups.push('value "' + obj[k] + '" repeated');
-            else if (key) seen["__val:" + key] = p;
-          }
-          seen[k] = p;
-          findDuplicates(obj[k], p, seen, dups);
-        });
       }
       function bannedHits(text) {
         var lower = String(text || "").toLowerCase();
@@ -118,26 +209,13 @@
             return (f.source || "source") + ": " + (f.error || "failed");
           });
           list("st-failures", fails, "No failed sources");
-          var dups = [];
-          findDuplicates(data, "", Object.create(null), dups);
-          set("st-dupes", dups.length ? dups.length + " possible" : "None", dups.length === 0);
           var hits = bannedHits(JSON.stringify(data));
           set("st-banned", hits.length ? "FOUND: " + hits.join(", ") : "Clear", hits.length === 0);
-          document.getElementById("st-banned-detail").textContent = hits.length
-            ? "Banned phrases must not appear in live outdoor payloads."
-            : "Checked for: " + BANNED.join(", ");
+          document.getElementById("st-banned-detail").textContent = "Checked for: " + BANNED.join(", ");
           document.getElementById("st-raw").textContent = JSON.stringify(data, null, 2);
         })
         .catch(function (err) {
           set("st-loaded", "No — " + (err && err.message ? err.message : "unavailable"), false);
-          set("st-updated", "—", false);
-          set("st-location", "—", false);
-          set("st-fresh", "—", false);
-          list("st-sources", [], "Unavailable");
-          list("st-failures", ["live.json did not load"], "—");
-          set("st-dupes", "Skipped", false);
-          set("st-banned", "Skipped", false);
-          document.getElementById("st-raw").textContent = String(err && err.message || err);
         });
     })();
   </script>

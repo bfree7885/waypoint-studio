@@ -1,7 +1,7 @@
 {
   "version": 1,
   "engine": "waypoint-live-engine",
-  "updatedAt": "2026-07-08T15:00:01.978Z",
+  "updatedAt": "2026-07-08T17:39:02.850Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -13,54 +13,98 @@
     "label": "Pike County, PA"
   },
   "timezone": "America/New_York",
-  "current": null,
-  "forecast": {
-    "highF": null,
-    "lowF": null,
-    "precipProbability": null,
-    "summary": null
+  "current": {
+    "temperatureF": 79,
+    "feelsLikeF": 87,
+    "humidity": 55,
+    "windMph": 2,
+    "windGustMph": 5,
+    "cloudCover": 10,
+    "uvIndex": 7.6,
+    "precipIn": 0,
+    "conditions": "Clear sky",
+    "weatherCode": 0,
+    "observedAt": "2026-07-08T13:30"
   },
-  "hourly": null,
+  "forecast": {
+    "highF": 80,
+    "lowF": 59,
+    "precipProbability": 1,
+    "summary": "Clear sky · High 80° / Low 59°"
+  },
+  "hourly": {
+    "nextHours": [
+      {
+        "time": "2026-07-08T14:00",
+        "temperatureF": 79,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-08T15:00",
+        "temperatureF": 80,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-08T16:00",
+        "temperatureF": 80,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-08T17:00",
+        "temperatureF": 80,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-08T18:00",
+        "temperatureF": 79,
+        "precipProbability": 1,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-08T19:00",
+        "temperatureF": 78,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      }
+    ],
+    "note": "Low rain chance in the next several hours"
+  },
   "sun": {
-    "sunrise": null,
-    "sunset": null,
-    "sunriseFormatted": null,
-    "sunsetFormatted": null
+    "sunrise": "2026-07-08T05:35",
+    "sunset": "2026-07-08T20:35",
+    "sunriseFormatted": "5:35 AM",
+    "sunsetFormatted": "8:35 PM"
   },
   "moon": {
     "phase": "Waning crescent",
-    "illumination": 37,
-    "phaseValue": 0.817,
+    "illumination": 36,
+    "phaseValue": 0.821,
     "trust": "Estimated",
     "source": "Calculated"
   },
   "airQuality": {
-    "usAqi": 26,
-    "pm25": 3.9,
+    "usAqi": 31,
+    "pm25": 4.7,
     "category": "Good",
     "status": "live"
   },
   "meta": {
     "sources": [
       "Open-Meteo Air Quality",
+      "Open-Meteo",
       "Calculated moon phase"
     ],
-    "failures": [
-      {
-        "source": "Open-Meteo",
-        "error": "HTTP 503"
-      },
-      {
-        "source": "Open-Meteo",
-        "error": "already logged"
-      }
-    ],
+    "failures": [],
     "provider": {
-      "weather": "none",
+      "weather": "open-meteo",
       "airQuality": "open-meteo-air-quality",
       "moon": "calculated"
     },
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-08T15:00:01.978Z"
+    "generatedAt": "2026-07-08T17:39:02.850Z"
   }
 }
