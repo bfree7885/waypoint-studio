@@ -105,7 +105,9 @@ async function testPage(client, page) {
       else if (type === "warning") warnings.push(text);
     }
     if (msg.method === "Runtime.exceptionThrown") {
-      errors.push(msg.params.exceptionDetails.text || "Uncaught exception");
+      const det = msg.params.exceptionDetails || {};
+      const desc = det.exception && det.exception.description ? det.exception.description : "";
+      errors.push((det.text || "Uncaught exception") + (desc ? " :: " + desc : ""));
     }
   });
 

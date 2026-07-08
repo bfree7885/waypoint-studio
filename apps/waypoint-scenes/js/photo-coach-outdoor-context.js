@@ -23,6 +23,12 @@
 
   function environmentImpact(ctx) {
     if (!ctx) return "";
+    if (ctx.synthesis && ctx.synthesis.why) {
+      return ctx.synthesis.happening + " " + ctx.synthesis.why;
+    }
+    if (ctx.version >= 2 && ctx.photography && ctx.photography.what) {
+      return ctx.photography.what + (ctx.photography.why ? " " + ctx.photography.why : "");
+    }
     var parts = [];
     if (ctx.weather && ctx.weather.conditions) {
       parts.push(ctx.weather.conditions + " conditions affect contrast and how much dehaze or clarity you need in post");
@@ -86,10 +92,16 @@
     if (ctx.daylight && ctx.daylight.moonPhase) {
       lines.push("Moon: " + ctx.daylight.moonPhase);
     }
-    if (ctx.photography && ctx.photography.summary) {
+    if (ctx.synthesis && ctx.synthesis.whatToPhotograph) {
+      lines.push("Shoot: " + ctx.synthesis.whatToPhotograph);
+    } else if (ctx.photography && ctx.photography.what) {
+      lines.push("Photo: " + ctx.photography.what);
+    } else if (ctx.photography && ctx.photography.summary) {
       lines.push("Photo: " + ctx.photography.summary);
     }
-    if (ctx.safety && ctx.safety.summary) {
+    if (ctx.safety && ctx.safety.what) {
+      lines.push("Safety: " + ctx.safety.what);
+    } else if (ctx.safety && ctx.safety.summary) {
       lines.push("Safety: " + ctx.safety.summary);
     }
     if (ctx.water && ctx.water.siteName) {
@@ -113,7 +125,17 @@
           lines.map(function (l) { return "<li>" + escapeHtml(l) + "</li>"; }).join("") +
         "</ul>" +
         (ctx.challenge
-          ? '<p class="coach-outdoor-context__challenge"><strong>Today\'s challenge:</strong> ' + escapeHtml(ctx.challenge) + "</p>"
+          ? '<p class="coach-outdoor-context__challenge"><strong>Today\'s mission:</strong> ' + escapeHtml(ctx.challenge) + "</p>"
+          : "") +
+        (ctx.critiquePrep
+          ? '<p class="coach-outdoor-context__prep muted">Critique context: ' +
+              escapeHtml([
+                ctx.critiquePrep.weatherAware ? "weather-aware" : null,
+                ctx.critiquePrep.seasonAware ? "season-aware" : null,
+                ctx.critiquePrep.goldenHourAware ? "golden-hour" : null,
+                ctx.critiquePrep.moonAware ? "moon-aware" : null,
+                ctx.critiquePrep.waterAware ? "water-aware" : null
+              ].filter(Boolean).join(" · ")) + "</p>"
           : "") +
         '<p class="coach-outdoor-context__impact"><strong>How the environment affects this photo:</strong> ' +
           escapeHtml(environmentImpact(ctx)) + "</p>" +

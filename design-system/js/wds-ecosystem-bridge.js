@@ -1,6 +1,5 @@
 /**
- * Waypoint ecosystem bridge — shares outdoor context between Dashboard and Scenes.
- * Lightweight sessionStorage snapshot; no PII beyond coordinates user already chose.
+ * Waypoint ecosystem bridge — shares Outdoor Intelligence Engine briefing with Scenes.
  */
 (function (global) {
   "use strict";
@@ -14,16 +13,23 @@
     return null;
   }
 
+  function snapshotFromBriefing(briefing, loc) {
+    var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
+    if (OIE && OIE.toPhotoCoachSnapshot) {
+      return OIE.toPhotoCoachSnapshot(briefing);
+    }
+    return snapshotFromPackage(briefing && briefing.platform, loc);
+  }
+
   function snapshotFromPackage(pkg, loc) {
     if (!pkg) return null;
+    var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
+    if (OIE && OIE.build && OIE.toPhotoCoachSnapshot) {
+      return OIE.toPhotoCoachSnapshot(OIE.build({ platform: pkg, location: loc }));
+    }
     var wx = pkg.weatherRef;
     var cur = wx && wx.current;
     var dl = pkg.daylight;
-    var OW = global.WDS && global.WDS.outdoorWeatherIntel;
-    var intel = wx && OW && OW.analyze ? OW.analyze(wx, pkg) : null;
-    var BP = global.WDS && global.WDS.briefingPackage;
-    var doc = BP && BP.compose ? BP.compose({ platform: pkg, location: loc }) : null;
-
     return {
       version: 1,
       savedAt: new Date().toISOString(),
@@ -32,9 +38,7 @@
         county: loc && (loc.county || loc.name),
         state: loc && (loc.state || loc.stateCode),
         lat: loc && loc.lat,
-        lng: loc && loc.lng,
-        elevationMeters: (pkg.location && pkg.location.elevationMeters) ||
-          (loc && loc.elevationMeters)
+        lng: loc && loc.lng
       },
       weather: cur ? {
         temp: num(cur.temperature),
@@ -51,50 +55,25 @@
         goldenHour: dl.goldenHour,
         blueHour: dl.blueHour,
         moonPhase: dl.moonPhase,
-        moonIllumination: dl.moonIllumination,
-        trust: "Live",
-        source: "Open-Meteo"
-      } : null,
-      airQuality: pkg.airQuality && pkg.airQuality.usAqi != null ? {
-        usAqi: pkg.airQuality.usAqi,
-        category: pkg.airQuality.category,
-        trust: "Live",
-        source: "Open-Meteo Air Quality"
-      } : null,
-      photography: intel && intel.photography ? {
-        summary: intel.photography.summary,
-        detail: intel.photography.detail,
-        level: intel.photography.level,
-        trust: "Estimated"
-      } : null,
-      hiking: intel && intel.hiking ? {
-        summary: intel.hiking.summary,
-        detail: intel.hiking.detail,
-        level: intel.hiking.level,
-        trust: "Estimated"
-      } : null,
-      water: pkg.usgsWater && pkg.usgsWater.nearest ? {
-        siteName: pkg.usgsWater.nearest.siteName,
-        stageFt: pkg.usgsWater.nearest.stageFt,
-        dischargeCfs: pkg.usgsWater.nearest.dischargeCfs,
-        trust: "Live",
-        source: "USGS IV (provisional)"
-      } : null,
-      alerts: pkg.alerts && pkg.alerts.items && pkg.alerts.items.length ? {
-        count: pkg.alerts.items.length,
-        headline: pkg.alerts.items[0].event || pkg.alerts.items[0].headline,
-        trust: "Live",
-        source: "NWS"
-      } : null,
-      outdoorScore: intel && intel.scores && intel.scores.outdoor
-        ? intel.scores.outdoor.value
-        : null,
-      briefingHeadline: doc ? doc.headline : null,
-      challenge: doc && doc.challenge ? doc.challenge.summary : null
+        trust: "Live"
+      } : null
     };
   }
 
+  function saveFromBriefing(briefing, loc) {
+    var snap = snapshotFromBriefing(briefing, loc);
+    if (!snap) return null;
+    try {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(snap));
+    } catch (e) { /* quota */ }
+    return snap;
+  }
+
   function save(pkg, loc) {
+    var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
+    if (OIE && OIE.build && OIE.toPhotoCoachSnapshot) {
+      return saveFromBriefing(OIE.build({ platform: pkg, location: loc }), loc);
+    }
     var snap = snapshotFromPackage(pkg, loc);
     if (!snap) return null;
     try {
@@ -136,6 +115,8 @@
   global.WDS.ecosystemBridge = {
     STORAGE_KEY: STORAGE_KEY,
     snapshotFromPackage: snapshotFromPackage,
+    snapshotFromBriefing: snapshotFromBriefing,
+    saveFromBriefing: saveFromBriefing,
     save: save,
     load: load,
     bindOip: bindOip

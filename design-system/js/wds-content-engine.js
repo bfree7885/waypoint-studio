@@ -952,6 +952,10 @@
     if (platform) {
       data.outdoorIntelligence = platform;
       data.regionalIntelligence = platform.legacy || data.regionalIntelligence || null;
+      var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
+      if (OIE && OIE.build) {
+        data.outdoorBriefing = OIE.build({ platform: platform, location: data.location || null });
+      }
     }
     return data;
   }
