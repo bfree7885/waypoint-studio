@@ -121,7 +121,7 @@
     if (!prior || prior.date === new Date().toISOString().slice(0, 10)) {
       return {
         text: "First visit today — tomorrow you'll see how temperature, sky, and rain shifted overnight.",
-        trust: "Educational"
+        trust: "Estimated"
       };
     }
     var cur = (wx && wx.current) || {};
@@ -226,7 +226,7 @@
         label: "Macro conditions",
         text: "Hard midday light — use your body or a hat to shade small subjects, or shoot early/late.",
         why: "Specular highlights on wet leaves and insect carapaces blow out quickly in direct sun.",
-        trust: "Educational"
+        trust: "Estimated"
       });
     }
 
@@ -262,7 +262,7 @@
   }
 
   function natureItem(category, text, why, trust, source) {
-    return { category: category, text: text, why: why || "", trust: trust || "Educational", source: source || "" };
+    return { category: category, text: text, why: why || "", trust: trust || "Estimated", source: source || "" };
   }
 
   function buildTodayInNature(ctx, doc) {
@@ -296,8 +296,8 @@
           ? "Fall migration may concentrate birds along ridges and water — dawn is the busiest window."
           : "Diurnal birds feed most actively in the first and last light hours — scan edges and feeders.",
       "Birds respond to light level and insect availability — weather fronts can trigger fallout days.",
-      national ? "Educational" : "Estimated",
-      national ? "Waypoint U.S. educational" : "Season + weather"
+      "Estimated",
+      national ? "Waypoint U.S. field guidance" : "Season + weather"
     ));
 
     var species = (platform.species && platform.species.active) || [];
@@ -320,7 +320,7 @@
               ? "Late-season asters and goldenrods feed migrating insects — edges and old fields first."
               : "Winter botany shifts to buds, bark, and evergreen structure — conifers hold color against snow.",
         "Flowering phenology marks seasonal progression and signals pollinator and bird activity.",
-        "Educational",
+        "Estimated",
         "Latitude-season guidance"
       ));
     }
@@ -331,7 +331,7 @@
         : season === "fall" ? "Senescence follows photoperiod and first frosts — ridges often color before valleys."
           : "Bark, bud scale, and crown shape tell the story between bloom seasons.",
       "Tree phenology links climate timing to wildlife food webs — mast crops and caterpillar hatch follow leaves.",
-      "Educational",
+      "Estimated",
       "Season at your latitude"
     ));
 
@@ -342,7 +342,7 @@
         ? "Warmer air brings out pollinators and aerial insects — spider webs appear on trail margins after calm nights."
         : "Cool air suppresses flying insects — look under logs and stones for slow-moving invertebrates.",
       "Insect activity tracks temperature and humidity — they are the base of many food webs you can observe directly.",
-      "Educational",
+      "Estimated",
       "Season + temperature"
     ));
 
@@ -353,7 +353,7 @@
           ? "Northbound migration peaks vary by latitude — cold fronts can ground songbirds in surprising numbers."
           : "Southbound migration follows food and cold fronts — ridges and coastlines act as funnels.",
         "Migration connects hemispheres — a single cold front can concentrate thousands of birds in one morning.",
-        "Educational",
+        "Estimated",
         "General migration ecology"
       ));
     }
@@ -363,7 +363,7 @@
         "Fungi",
         intel.mushroom.summary + (intel.mushroom.detail ? " — " + intel.mushroom.detail : ""),
         "Fungi respond to soil moisture and temperature — weather cues describe conditions, not species fruiting.",
-        intel.mushroom.level === "unknown" ? "Educational" : "Estimated",
+        "Estimated",
         "Open-Meteo humidity & rain"
       ));
     }
@@ -386,16 +386,16 @@
         "River conditions",
         domains.water.summary,
         "No live gauge is linked — stream flow still shapes crossings, fishing, and riverside wildlife corridors.",
-        national ? "Educational" : "Editorial",
-        national ? "U.S. hydrology education" : "Regional bundle"
+        national ? "Estimated" : "Editorial",
+        national ? "U.S. hydrology guidance" : "Regional bundle"
       ));
     } else {
       items.push(natureItem(
         "River conditions",
         "Live stream gauge not connected — learn to read water color, debris lines, and bank wetness after rain.",
         "Stream stage and temperature affect dissolved oxygen, fish activity, and crossing safety.",
-        "Educational",
-        "Waypoint hydrology education"
+        "Estimated",
+        "Waypoint hydrology guidance"
       ));
     }
 
@@ -426,7 +426,7 @@
         "Ecology",
         domains.wildlife.summary,
         "Habitat edges and water sources concentrate interactions — ecology is the story of who meets where.",
-        national ? "Educational" : "Editorial",
+        national ? "Estimated" : "Editorial",
         national ? "Climate-season guidance" : "Regional bundle"
       ));
     }
@@ -435,7 +435,7 @@
       "Seasonal change",
       season.charAt(0).toUpperCase() + season.slice(1) + " at " + (lat != null ? Math.abs(Math.round(lat)) + "°" + (lat >= 0 ? "N" : "S") : "your latitude"),
       "Day length and average temperature drive what is plausible outdoors this week — compare south-facing slopes to shaded drainages.",
-      "Educational",
+      "Estimated",
       "Latitude + calendar"
     ));
 
@@ -537,7 +537,7 @@
           renderAnswerRow("4", "What should I notice today?", answers.notice, "Estimated") +
           renderAnswerRow("5", "What should I photograph?", answers.photograph, "Estimated") +
           renderAnswerRow("6", "Should I go outside?", answers.goOutside, "Estimated") +
-          renderAnswerRow("7", "What should I learn today?", answers.learn, "Educational") +
+          renderAnswerRow("7", "What should I learn today?", answers.learn, "Estimated") +
         "</div>" +
       "</section>"
     );
@@ -545,7 +545,7 @@
 
   function renderNatureCard(item) {
     return (
-      '<article class="wdb-nature__card wdb-nature__card--' + escapeHtml((item.trust || "educational").toLowerCase().replace(/\s+/g, "-")) + '">' +
+      '<article class="wdb-nature__card wdb-nature__card--' + escapeHtml((item.trust || "estimated").toLowerCase().replace(/\s+/g, "-")) + '">' +
         '<header class="wdb-nature__card-head">' +
           '<span class="wdb-nature__category">' + escapeHtml(item.category) + "</span>" +
           '<span class="wdb-nature__trust">' + escapeHtml(item.trust) + "</span>" +
@@ -562,7 +562,7 @@
     return (
       '<section class="wdb-nature" aria-label="Today in nature">' +
         '<h2 class="wdb-nature__title">Today in nature</h2>' +
-        '<p class="wdb-nature__intro">Live, estimated, and educational cues for your latitude and season — never invented county biology.</p>' +
+        '<p class="wdb-nature__intro">Live and estimated cues for your latitude and season — never invented county biology.</p>' +
         '<div class="wdb-nature__grid">' + items.map(renderNatureCard).join("") + "</div>" +
       "</section>"
     );
