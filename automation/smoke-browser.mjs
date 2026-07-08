@@ -38,6 +38,7 @@ async function startChrome() {
       "--headless=new",
       "--disable-gpu",
       "--no-sandbox",
+      "--disable-extensions",
       "--disable-dev-shm-usage",
       `--remote-debugging-port=${PORT}`,
       "about:blank"
@@ -113,7 +114,8 @@ async function testPage(client, page) {
 
   await client.send("Page.navigate", { url: BASE + page.path });
   if (page.name === "homepage") {
-    await delay(3000);
+    await delay(2500);
+    // Production: location should already bootstrap without prompt.
     await client.send("Runtime.evaluate", {
       expression: `(() => {
         const btn = document.getElementById('wds-loc-default');
@@ -122,35 +124,54 @@ async function testPage(client, page) {
       })()`,
       returnByValue: true
     });
-    for (let i = 0; i < 12; i++) {
-      await delay(2500);
+    for (let i = 0; i < 16; i++) {
+      await delay(1500);
       const { result } = await client.send("Runtime.evaluate", {
-        expression: `document.querySelectorAll('.wdb-doc__notice').length`,
+        expression: `({
+          notices: document.querySelectorAll('.wdb-doc__notice').length,
+          busy: document.querySelectorAll('[aria-busy="true"]').length,
+          hydrated: !!(window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast && WDS.outdoorIntelligence.getLast() && WDS.outdoorIntelligence.getLast().meta && WDS.outdoorIntelligence.getLast().meta.hydratedAt)
+        })`,
         returnByValue: true
       });
-      if ((result.value || 0) >= 5) break;
+      const v = result.value || {};
+      if ((v.notices || 0) >= 8 && v.hydrated && (v.busy || 0) === 0) break;
     }
   } else {
     await delay(page.waitMs);
   }
 
   const { result } = await client.send("Runtime.evaluate", {
-    expression: `({
-      title: document.title,
-      hasMain: !!document.querySelector('#main, main, .ws-app'),
-      hasDashboard: !!document.querySelector('#outdoor-dashboard'),
-      hasBriefingDoc: !!document.querySelector('.wdb-doc'),
-      hasMorning: !!document.querySelector('.wdb-morning'),
-      hasPulse: !!document.querySelector('.wdb-morning__pulse'),
-      morningAnswers: document.querySelectorAll('.wdb-morning__answer').length,
-      natureCards: document.querySelectorAll('.wdb-nature__card').length,
-      missionCards: document.querySelectorAll('.wdb-missions__card').length,
-      photoCards: document.querySelectorAll('.wdb-photo-field__card').length,
-      noticeCount: document.querySelectorAll('.wdb-doc__notice').length,
-      hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
-      hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
-      bodyLen: document.body ? document.body.innerText.length : 0
-    })`,
+    expression: `(() => {
+      const trusts = Array.from(document.querySelectorAll('.wdb-doc__trust')).map(el => (el.textContent || '').trim());
+      const domains = Array.from(document.querySelectorAll('.wdb-doc__domain')).map(el => (el.textContent || '').trim().toLowerCase());
+      const pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast ? WDS.outdoorIntelligence.getLast() : null;
+      const tags = Array.from(document.querySelectorAll('.wdb-widget__tag')).map(el => (el.textContent || '').trim());
+      return {
+        title: document.title,
+        hasMain: !!document.querySelector('#main, main, .ws-app'),
+        hasDashboard: !!document.querySelector('#outdoor-dashboard'),
+        hasBriefingDoc: !!document.querySelector('.wdb-doc'),
+        hasMorning: !!document.querySelector('.wdb-morning'),
+        hasPulse: !!document.querySelector('.wdb-morning__pulse'),
+        morningAnswers: document.querySelectorAll('.wdb-morning__answer').length,
+        natureCards: document.querySelectorAll('.wdb-nature__card').length,
+        missionCards: document.querySelectorAll('.wdb-missions__card').length,
+        photoCards: document.querySelectorAll('.wdb-photo-field__card').length,
+        noticeCount: document.querySelectorAll('.wdb-doc__notice').length,
+        noticeDomains: domains,
+        noticeTrusts: trusts,
+        widgetTags: tags,
+        busyCount: document.querySelectorAll('[aria-busy="true"]').length,
+        pendingEdu: document.querySelectorAll('.wdb-edu-fallback__pending').length,
+        eduBadgeEdu: Array.from(document.querySelectorAll('.wdb-edu-fallback__badge')).filter(el => /Educational/i.test(el.textContent || '')).length,
+        hydrated: !!(pkg && pkg.meta && pkg.meta.hydratedAt),
+        blockStatus: pkg && pkg.meta && pkg.meta.blockStatus || null,
+        hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
+        hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
+        bodyLen: document.body ? document.body.innerText.length : 0
+      };
+    })()`,
     returnByValue: true
   });
 
@@ -199,16 +220,44 @@ async function main() {
       failed = true;
       console.log("FAIL: outdoor-dashboard not rendered after location bootstrap");
     }
-    if (r.name === "homepage" && !r.checks.hasMorning) {
+    if (r.name === "homepage" && !r.checks.hasBriefingDoc) {
       failed = true;
-      console.log("FAIL: morning briefing hero not rendered");
+      console.log("FAIL: operational briefing document missing");
     }
-    if (r.name === "homepage" && r.checks.morningAnswers < 7) {
+    if (r.name === "homepage" && r.checks.noticeCount < 8) {
       failed = true;
-      console.log("FAIL: expected 7 morning answers, got " + r.checks.morningAnswers);
+      console.log("FAIL: expected ≥8 operational blocks, got " + r.checks.noticeCount);
     }
-    if (r.name === "homepage" && r.checks.noticeCount < 5) {
-      console.log("INFO: briefing in educational/pending mode (notices=" + r.checks.noticeCount + ") — live mode shows ≥5");
+    if (r.name === "homepage" && !r.checks.hydrated) {
+      failed = true;
+      console.log("FAIL: OIP did not hydrate in first load cycle");
+    }
+    if (r.name === "homepage" && (r.checks.busyCount || 0) > 0) {
+      failed = true;
+      console.log("FAIL: dashboard still has aria-busy mounts (" + r.checks.busyCount + ")");
+    }
+    if (r.name === "homepage" && (r.checks.missionCards || 0) > 0) {
+      failed = true;
+      console.log("FAIL: mission cards must not appear on production dashboard");
+    }
+    if (r.name === "homepage" && (r.checks.eduBadgeEdu || 0) > 0) {
+      failed = true;
+      console.log("FAIL: educational fallback badges still present");
+    }
+    if (r.name === "homepage" && Array.isArray(r.checks.noticeTrusts)) {
+      const bad = r.checks.noticeTrusts.filter((t) => !/^(Live|Estimated|Unavailable)$/i.test(t));
+      if (bad.length) {
+        failed = true;
+        console.log("FAIL: notices must be Live/Estimated/Unavailable, found: " + bad.join(", "));
+      }
+    }
+    const required = ["current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "readiness"];
+    if (r.name === "homepage" && Array.isArray(r.checks.noticeDomains)) {
+      const missing = required.filter((d) => !(r.checks.noticeDomains || []).includes(d));
+      if (missing.length) {
+        failed = true;
+        console.log("FAIL: missing operational domains: " + missing.join(", "));
+      }
     }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;

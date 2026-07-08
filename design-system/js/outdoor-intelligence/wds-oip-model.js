@@ -239,6 +239,9 @@
 
     pkg.weatherRef = raw.weatherRef !== undefined ? raw.weatherRef : null;
     pkg.legacy = raw.legacy !== undefined ? raw.legacy : null;
+    if (raw.airQuality) pkg.airQuality = raw.airQuality;
+    if (raw.alerts) pkg.alerts = raw.alerts;
+    if (raw.usgsWater) pkg.usgsWater = raw.usgsWater;
     return pkg;
   }
 

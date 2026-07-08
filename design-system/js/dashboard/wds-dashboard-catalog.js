@@ -76,19 +76,19 @@
     }
   });
 
-  /* ——— Today's highlights (vital) ——— */
+  /* ——— Educational widgets (hidden in production morning defaults) ——— */
   reg({
     id: "outdoor-story",
     title: "Outdoor Story",
     icon: "◈",
     category: "conditions",
     defaultOrder: 12,
-    defaultVisible: true,
+    defaultVisible: false,
     tier: "vital",
     size: "wide",
     getData: function (ctx) {
       var S = global.WDS && global.WDS.dashboardStory;
-      return S && S.generate ? S.generate(ctx) : { status: "loading", summary: "Building outdoor story…" };
+      return S && S.generate ? S.generate(ctx) : { status: "unavailable", summary: "Data currently unavailable" };
     }
   });
 
@@ -98,17 +98,11 @@
     icon: "✦",
     category: "conservation",
     defaultOrder: 13,
-    defaultVisible: true,
+    defaultVisible: false,
     tier: "vital",
     size: "md",
     getData: function (ctx) {
-      var C = global.WDS && global.WDS.dashboardChallenge;
-      var BP = global.WDS && global.WDS.briefingPackage;
-      if (BP && BP.compose) {
-        var doc = BP.compose(ctx);
-        if (doc.challenge) return doc.challenge;
-      }
-      return C && C.generate ? C.generate(ctx) : { status: "loading", summary: "Loading challenge…" };
+      return { status: "unavailable", summary: "Data currently unavailable", body: "Not part of the production outdoor dashboard." };
     }
   });
 
@@ -118,12 +112,11 @@
     icon: "◇",
     category: "conservation",
     defaultOrder: 14,
-    defaultVisible: true,
+    defaultVisible: false,
     tier: "vital",
     size: "md",
     getData: function (ctx) {
-      var L = global.WDS && global.WDS.dashboardLearn;
-      return L && L.generate ? L.generate(ctx) : { status: "loading", summary: "Loading lesson…" };
+      return { status: "unavailable", summary: "Data currently unavailable", body: "Not part of the production outdoor dashboard." };
     }
   });
 
@@ -133,7 +126,7 @@
     icon: "🌿",
     category: "wildlife",
     defaultOrder: 16,
-    defaultVisible: true,
+    defaultVisible: false,
     tier: "vital",
     size: "wide",
     getData: function (ctx) {
@@ -340,8 +333,10 @@
           summary: aq.summary || ("AQI " + aq.aqi)
         };
       }
-      if (aq && aq.status === "unavailable") {
-        return D().notYetAvailable("Air quality unavailable", "Open-Meteo air quality could not be loaded.", "conditions");
+      var platform = ctx && ctx.platform;
+      var hydrated = !!(platform && platform.meta && (platform.meta.hydratedAt || platform.meta.blockStatus));
+      if ((aq && aq.status === "unavailable") || hydrated || (platform && !aq)) {
+        return D().notYetAvailable("Data currently unavailable", "Open-Meteo air quality could not be loaded.", "conditions");
       }
       return {
         status: "loading",

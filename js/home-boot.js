@@ -34,7 +34,9 @@
   }
 
   function boot() {
-    if (!window.WDS || !WDS.location || !WDS.contentEngine) {
+    if (!window.WDS || !WDS.location || !WDS.contentEngine ||
+        !WDS.outdoorIntelligence || typeof WDS.outdoorIntelligence.get !== "function" ||
+        !WDS.weather || typeof WDS.weather.getForecast !== "function") {
       requestAnimationFrame(boot);
       return;
     }

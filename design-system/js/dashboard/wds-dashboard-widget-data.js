@@ -186,7 +186,7 @@
     return {
       status: "loading",
       mountKind: kind,
-      tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+      tag: { label: "Loading", className: "wdb-widget__tag--editorial" },
       summary: summary || "Loading outdoor intelligence…"
     };
   }
@@ -207,13 +207,13 @@
     var EF = global.WDS && global.WDS.educationalFallback;
     var topic = EF && EF.topicFromCategory ? EF.topicFromCategory(category) : "weather";
     var data = {
-      status: "ready",
+      status: "unavailable",
       tag: tagFromSource("unavailable"),
-      summary: summary || "Not yet available",
-      body: detail || "A live provider for this layer is not connected yet."
+      summary: summary || "Data currently unavailable",
+      body: detail || "Data currently unavailable"
     };
     if (EF && EF.widgetData) {
-      var edu = EF.widgetData(topic, { summary: summary, widgetId: category });
+      var edu = EF.widgetData(topic, { summary: summary, widgetId: category, pendingLive: false });
       data.educationalHtml = edu.educationalHtml;
       data.educationalTopic = edu.educationalTopic;
     }
@@ -221,17 +221,7 @@
   }
 
   function previewData(summary, placeholder, items, category) {
-    var EF = global.WDS && global.WDS.educationalFallback;
-    if (EF && EF.widgetData) {
-      return EF.widgetData(EF.topicFromCategory(category), { summary: summary });
-    }
-    return {
-      status: "placeholder",
-      tag: tagFromSource("placeholder"),
-      summary: summary,
-      placeholder: placeholder,
-      items: items
-    };
+    return notYetAvailable(summary || "Data currently unavailable", placeholder || "Data currently unavailable", category);
   }
 
   function educationalData(topicKey, options) {

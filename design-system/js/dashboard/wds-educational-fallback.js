@@ -1,6 +1,6 @@
 /**
- * Educational Fallback — calm field-guide panels when live data is absent.
- * Never invent observations; clearly labeled as educational, not live.
+ * Operational block fallback — Loading / Unavailable panels when live data is absent.
+ * Never invent observations; never leave blank or endless pending states.
  */
 (function (global) {
   "use strict";
@@ -217,24 +217,21 @@
   function render(topicKey, options) {
     options = options || {};
     var topic = resolveTopic(topicKey);
-    var pending = options.pendingLive
-      ? '<p class="wdb-edu-fallback__pending" aria-live="polite">Checking for live data for your location…</p>'
-      : "";
-
+    var title = topic && topic.title ? topic.title : "Outdoor data";
+    var loading = !!options.pendingLive;
     return (
-      '<div class="wdb-edu-fallback" role="region" aria-label="' + escapeHtml(topic.title) + ' — educational field guide">' +
-        '<span class="wdb-edu-fallback__badge">Educational · not live data</span>' +
-        '<p class="wdb-edu-fallback__why">' + escapeHtml(topic.why) + "</p>" +
-        '<div class="wdb-edu-fallback__block">' +
-          '<span class="wdb-edu-fallback__label">Field tip</span>' +
-          '<p class="wdb-edu-fallback__text">' + escapeHtml(topic.fieldTip) + "</p>" +
-        "</div>" +
-        '<div class="wdb-edu-fallback__block">' +
-          '<span class="wdb-edu-fallback__label">Did you know</span>' +
-          '<p class="wdb-edu-fallback__text">' + escapeHtml(topic.fact) + "</p>" +
-        "</div>" +
-        '<p class="wdb-edu-fallback__live-note">Live weather and sun/moon use your coordinates when connected. This panel is educational — not local species or agency data.</p>' +
-        pending +
+      '<div class="wdb-edu-fallback wdb-edu-fallback--ops" role="region" aria-label="' + escapeHtml(title) + ' — operational status" aria-busy="' + (loading ? "true" : "false") + '">' +
+        '<span class="wdb-edu-fallback__badge">' + (loading ? "Loading" : "Unavailable") + "</span>" +
+        '<p class="wdb-edu-fallback__why"><strong>' + escapeHtml(title) + ':</strong> ' +
+          (loading
+            ? "Resolving live provider for this block…"
+            : "Data currently unavailable") +
+        "</p>" +
+        '<p class="wdb-edu-fallback__live-note">' +
+          (loading
+            ? "This block hydrates independently and will settle to Live, Estimated, or Unavailable."
+            : "Upstream provider did not return usable data in this load cycle. Other dashboard blocks continue to render.") +
+        "</p>" +
       "</div>"
     );
   }
@@ -245,16 +242,25 @@
     return render(topicKey, options);
   }
 
+  function renderUnavailable(topicKey, options) {
+    options = options || {};
+    options.pendingLive = false;
+    return render(topicKey, options);
+  }
+
   function widgetData(topicKey, options) {
     options = options || {};
     var topic = topicForWidget(options.widgetId, topicKey);
     topic = topicKey && TOPICS[topicKey] ? topicKey : topic;
     return {
-      status: "educational",
-      tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+      status: options.pendingLive ? "loading" : "unavailable",
+      tag: options.pendingLive
+        ? { label: "Loading", className: "wdb-widget__tag--editorial" }
+        : { label: "Unavailable", className: "wdb-widget__tag--unavailable" },
       summary: options.summary || resolveTopic(topic).title,
       educationalTopic: topic,
-      educationalHtml: render(topic, options)
+      educationalHtml: render(topic, options),
+      body: options.pendingLive ? "Resolving live provider…" : "Data currently unavailable"
     };
   }
 
@@ -263,7 +269,7 @@
   }
 
   function tagEducational() {
-    return { label: "Educational", className: "wdb-widget__tag--editorial" };
+    return { label: "Unavailable", className: "wdb-widget__tag--unavailable" };
   }
 
   global.WDS = global.WDS || {};
@@ -271,6 +277,7 @@
     TOPICS: TOPICS,
     render: render,
     renderPending: renderPending,
+    renderUnavailable: renderUnavailable,
     widgetData: widgetData,
     mountHtml: mountHtml,
     topicForWidget: topicForWidget,

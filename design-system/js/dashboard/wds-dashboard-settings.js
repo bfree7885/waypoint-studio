@@ -77,11 +77,9 @@
     hideIfNew("ecological-activity", [], 16);
     hideIfNew("todays-challenge", [], 13);
     hideIfNew("daily-learn", [], 14);
-    if (parsed.widgets) {
-      ["outdoor-story", "todays-outdoor-highlights", "todays-challenge", "daily-learn"].forEach(function (wid) {
-        if (base.widgets[wid]) base.widgets[wid].visible = false;
-      });
-    }
+    ["outdoor-story", "todays-outdoor-highlights", "todays-challenge", "daily-learn", "ecological-activity"].forEach(function (wid) {
+      if (base.widgets[wid]) base.widgets[wid].visible = false;
+    });
     hideIfNew("sun-moon-dashboard", ["sunrise", "sunset", "golden-hour", "blue-hour", "moon-phase", "moonrise", "moonset"], 100);
     hideIfNew("photography-conditions-dashboard", ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"], 700);
     hideIfNew("wildlife-dashboard", ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"], 200);
@@ -95,7 +93,7 @@
 
   var V1_MORNING_VISIBLE = [
     "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv", "air-quality",
-    "ecological-activity", "sun-moon-dashboard", "safety-dashboard"
+    "sun-moon-dashboard", "water-dashboard", "safety-dashboard", "photography-conditions-dashboard"
   ];
 
   var PRESETS = {
@@ -128,6 +126,9 @@
   function applyV1MorningDefaults(base) {
     Object.keys(base.widgets).forEach(function (id) {
       base.widgets[id].visible = V1_MORNING_VISIBLE.indexOf(id) >= 0;
+      if (id === "todays-challenge" || id === "daily-learn" || id === "outdoor-story" || id === "ecological-activity") {
+        base.widgets[id].visible = false;
+      }
     });
     base.sectionCollapsed = Object.assign({}, PRESETS.morning.collapsed);
     return base;

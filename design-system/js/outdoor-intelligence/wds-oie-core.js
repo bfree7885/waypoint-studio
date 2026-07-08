@@ -114,7 +114,9 @@
     var pop = num(cur.precipitation && cur.precipitation.probability);
     if (pop == null && today.precipitation) pop = num(today.precipitation.probability);
     var precipAmt = today.precipitation && num(today.precipitation.amount && today.precipitation.amount);
-    var aqi = platform.airQuality && platform.airQuality.usAqi != null ? platform.airQuality.usAqi : null;
+    var aqi = platform.airQuality
+      ? (platform.airQuality.usAqi != null ? platform.airQuality.usAqi : platform.airQuality.aqi)
+      : null;
 
     var season;
     if (UN && UN.seasonLabel && lat != null) season = UN.seasonLabel(lat, month);
@@ -124,7 +126,17 @@
     else season = "winter";
 
     var national = !!(platform.meta && platform.meta.contentMode === "national-educational");
-    var hasLive = !!(wx && wx.meta && !wx.meta.isPlaceholder);
+    var hasLiveWeather = !!(wx && wx.meta && !wx.meta.isPlaceholder);
+    var hasLiveFeeds = !!(
+      hasLiveWeather ||
+      (platform.airQuality && platform.airQuality.status === "live") ||
+      (platform.alerts && (platform.alerts.status === "live" || platform.alerts.status === "empty")) ||
+      (platform.usgsWater && platform.usgsWater.nearest) ||
+      (platform.daylight && (platform.daylight.status === "live" || platform.daylight.sunrise || platform.daylight.sunset)) ||
+      (platform.meta && platform.meta.hydratedAt)
+    );
+    // Operational dashboards proceed with partial feeds — weather alone must not gate the load.
+    var hasLive = hasLiveFeeds;
     var alerts = (platform.alerts && platform.alerts.items) || [];
     var species = (platform.species && platform.species.active) || [];
     var moonIllum = dl && dl.moonIllumination;
@@ -134,6 +146,7 @@
       location: loc,
       wx: wx,
       hasLive: hasLive,
+      hasLiveWeather: hasLiveWeather,
       national: national,
       month: month,
       season: season,

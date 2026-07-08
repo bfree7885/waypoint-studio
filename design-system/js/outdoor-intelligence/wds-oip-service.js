@@ -33,6 +33,46 @@
   var lastPackage = null;
   var lastRequest = null;
   var changeListeners = [];
+  var DEFAULT_PROVIDER_TIMEOUT_MS = 8000;
+  var providerTelemetry = [];
+
+  function withTimeout(promise, ms, label) {
+    ms = ms || DEFAULT_PROVIDER_TIMEOUT_MS;
+    return new Promise(function (resolve) {
+      var settled = false;
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        providerTelemetry.push({ provider: label || "provider", status: "timeout", at: new Date().toISOString() });
+        resolve({ ok: false, reason: "timeout", label: label || "provider" });
+      }, ms);
+      Promise.resolve(promise).then(function (value) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve({ ok: true, value: value, label: label || "provider" });
+      }).catch(function (err) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        providerTelemetry.push({
+          provider: label || "provider",
+          status: "error",
+          message: err && err.message ? err.message : "failed",
+          at: new Date().toISOString()
+        });
+        resolve({ ok: false, reason: "error", error: err, label: label || "provider" });
+      });
+    });
+  }
+
+  function settleProvider(promise, label) {
+    return withTimeout(promise || Promise.resolve(null), DEFAULT_PROVIDER_TIMEOUT_MS, label).then(function (result) {
+      if (!result.ok) return null;
+      return result.value == null ? null : result.value;
+    });
+  }
+
 
   function resolveDefaultRegionId() {
     if (serviceConfig.defaultRegionId) return serviceConfig.defaultRegionId;
@@ -223,6 +263,15 @@
       usgsWater: usgsWaterPkg ? usgsWaterPkg.provider : "none",
       regionalIntelligence: "engine"
     });
+    pkg.meta.providerTelemetry = providerTelemetry.slice();
+    pkg.meta.hydratedAt = new Date().toISOString();
+    pkg.meta.blockStatus = {
+      weather: weatherPkg && weatherPkg.meta && !weatherPkg.meta.isPlaceholder ? "live" : "unavailable",
+      alerts: alertsPkg ? (alertsPkg.status === "unavailable" ? "unavailable" : "live") : "unavailable",
+      airQuality: airQualityPkg && airQualityPkg.status === "live" ? "live" : "unavailable",
+      elevation: elevationPkg && elevationPkg.meters != null ? "live" : "unavailable",
+      usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "live" : "unavailable"
+    };
     lastPackage = pkg;
     M.devLog("get complete", pkg.region.label, pkg.location.source, pkg.weather.status);
     var RI = global.WDS && global.WDS.researchIntegrity;
@@ -239,12 +288,13 @@
       (core.meta && core.meta.regionId) ||
       req.regionId;
 
+    providerTelemetry = [];
     return Promise.all([
-      resolveWeather(req, intelForWeather(core)),
-      resolveAlerts(req, core),
-      resolveAirQuality(req, core),
-      resolveElevation(req, core),
-      resolveUsgsWater(req, core)
+      settleProvider(resolveWeather(req, intelForWeather(core)), "weather"),
+      settleProvider(resolveAlerts(req, core), "alerts"),
+      settleProvider(resolveAirQuality(req, core), "airQuality"),
+      settleProvider(resolveElevation(req, core), "elevation"),
+      settleProvider(resolveUsgsWater(req, core), "usgsWater")
     ]).then(function (parts) {
       var weatherPkg = parts[0];
       var alertsPkg = parts[1];
@@ -300,10 +350,26 @@
       return enrichFromEngine(core, req);
     }).catch(function (err) {
       M.devLog("get failed — minimal fallback", err && err.message);
+      providerTelemetry.push({
+        provider: "oip",
+        status: "error",
+        message: err && err.message ? err.message : "get failed",
+        at: new Date().toISOString()
+      });
       var fallback = M.buildFallbackLocationState();
       if (!fallback) return Promise.reject(err);
       var pkg = M.normalizePackage(S.mergeLayers(S.fromLocationState(fallback)));
       pkg.legacy = S.toLegacyV1(pkg);
+      pkg.meta = pkg.meta || {};
+      pkg.meta.providerTelemetry = providerTelemetry.slice();
+      pkg.meta.hydratedAt = new Date().toISOString();
+      pkg.meta.blockStatus = {
+        weather: "unavailable",
+        alerts: "unavailable",
+        airQuality: "unavailable",
+        elevation: "unavailable",
+        usgsWater: "unavailable"
+      };
       lastPackage = pkg;
       notifyChange(pkg);
       return pkg;
@@ -353,6 +419,7 @@
     getLast: getLast,
     clearCache: clearCache,
     onChange: onChange,
-    refresh: refresh
+    refresh: refresh,
+    getProviderTelemetry: function () { return providerTelemetry.slice(); }
   });
 })(window);

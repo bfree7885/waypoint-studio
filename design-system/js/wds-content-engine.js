@@ -858,16 +858,37 @@
     tryMount();
   }
 
+  function waitForOipGet(maxMs) {
+    maxMs = maxMs == null ? 4000 : maxMs;
+    return new Promise(function (resolve) {
+      var started = Date.now();
+      function tick() {
+        var OIP = global.WDS && global.WDS.outdoorIntelligence;
+        if (OIP && typeof OIP.get === "function") {
+          resolve(OIP);
+          return;
+        }
+        if (Date.now() - started >= maxMs) {
+          resolve(null);
+          return;
+        }
+        setTimeout(tick, 50);
+      }
+      tick();
+    });
+  }
+
   function fetchOutdoorIntelligence(loc, base, bundle) {
-    var OIP = global.WDS && global.WDS.outdoorIntelligence;
-    if (!OIP || !OIP.get) return Promise.resolve(null);
     var hints = bundle && bundle.thisWeekOutdoors && bundle.thisWeekOutdoors.weather;
-    return OIP.get({
-      location: loc,
-      bundle: bundle,
-      contentEngineBase: base,
-      includeWeather: true,
-      weatherHints: hints
+    return waitForOipGet(4000).then(function (OIP) {
+      if (!OIP || !OIP.get) return null;
+      return OIP.get({
+        location: loc,
+        bundle: bundle,
+        contentEngineBase: base,
+        includeWeather: true,
+        weatherHints: hints
+      });
     });
   }
 

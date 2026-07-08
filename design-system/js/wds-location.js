@@ -580,9 +580,17 @@
         return skipped;
       }
 
-      return new Promise(function (resolve) {
-        renderPrompt(promptMount, index, resolve);
-      });
+      // Production: never block first paint on a location prompt.
+      // Use default immediately; prompt remains available for change.
+      var bootState = defaultState(index);
+      writeStored(bootState, { silent: true });
+      if (promptMount) {
+        try {
+          promptMount.innerHTML = "";
+          promptMount.setAttribute("hidden", "hidden");
+        } catch (e) { /* noop */ }
+      }
+      return bootState;
     }).catch(function () {
       return loadIndex(base).then(function (index) {
         var fallback = defaultState(index);

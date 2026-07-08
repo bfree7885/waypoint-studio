@@ -632,24 +632,50 @@
 
       el.innerHTML = renderError(null, kind);
       el.removeAttribute("aria-busy");
-      if (cardId) updateDashCardTag(root, cardId, "educational");
+      if (cardId) updateDashCardTag(root, cardId, "unavailable");
       return null;
     }
 
     if (existing) {
       return Promise.resolve(finish(existing));
     }
+    if (options.platform && options.platform.meta && options.platform.meta.hydratedAt) {
+      return Promise.resolve(finish(null));
+    }
+    if (!W || typeof W.getForecast !== "function") {
+      return Promise.resolve(finish(null));
+    }
 
     el.setAttribute("aria-busy", "true");
     el.innerHTML = renderLoading(kind);
     if (cardId) updateDashCardTag(root, cardId, "loading");
 
-    return W.getForecast(buildRequest(options)).then(finish).catch(function () {
-      el.innerHTML = renderError(null, kind);
-      el.removeAttribute("aria-busy");
-      if (cardId) updateDashCardTag(root, cardId, "educational");
-      return null;
+    var forecastPromise;
+    try {
+      forecastPromise = W.getForecast(buildRequest(options));
+    } catch (err) {
+      return Promise.resolve(finish(null));
+    }
+    var timed = new Promise(function (resolve) {
+      var settled = false;
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        resolve(null);
+      }, 8000);
+      Promise.resolve(forecastPromise).then(function (pkg) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(pkg);
+      }).catch(function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(null);
+      });
     });
+    return timed.then(finish);
   }
 
   function renderWindOnly(pkg) {

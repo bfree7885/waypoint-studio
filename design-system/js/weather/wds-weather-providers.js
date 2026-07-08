@@ -422,7 +422,8 @@
           longitude: ctx.lng,
           current: "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,surface_pressure,uv_index,precipitation",
           hourly: "temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability,precipitation,cloud_cover,surface_pressure,uv_index",
-          daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset,moonrise,moonset,moon_phase",
+          // Open-Meteo forecast daily no longer accepts moonrise/moonset/moon_phase.
+          daily: "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,uv_index_max,sunrise,sunset",
           timezone: ctx.timezone || "auto",
           temperature_unit: ctx.units === "metric" ? "celsius" : "fahrenheit",
           wind_speed_unit: ctx.units === "metric" ? "kmh" : "mph",

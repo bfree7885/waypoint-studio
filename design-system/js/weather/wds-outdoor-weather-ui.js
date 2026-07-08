@@ -153,12 +153,12 @@
     var highLow = [w.high, w.low].filter(Boolean).join(" / ");
     return (
       '<div class="wow wow--editorial">' +
-        '<p class="wow__editorial-badge">Educational · not live</p>' +
+        '<p class="wow__editorial-badge">Estimated · regional snapshot</p>' +
         '<div class="wow__hero wow__hero--editorial">' +
           (highLow ? '<p class="wow__temp">' + escapeHtml(highLow) + "</p>" : "") +
           '<p class="wow__condition">' + escapeHtml(w.conditions || w.summary || "Regional snapshot") + "</p>" +
         "</div>" +
-        '<p class="wow__editorial-note">Live Open-Meteo forecast could not be loaded. This regional editorial snapshot is not current conditions — verify outdoors.</p>' +
+        '<p class="wow__editorial-note">Live Open-Meteo forecast could not be loaded. This regional snapshot is estimated — not current verified conditions.</p>' +
       "</div>"
     );
   }
@@ -301,12 +301,12 @@
   }
 
   function mount(el, options) {
-    if (!el || !W()) return Promise.resolve(null);
+    if (!el) return Promise.resolve(null);
     options = options || {};
     var WUISvc = WUI();
     var root = options.root || el.closest("#main") || document;
     var widgetId = el.closest("[data-widget-id]") && el.closest("[data-widget-id]").getAttribute("data-widget-id");
-    var kind = "outdoor-weather";
+    var weatherApi = W();
 
     function isLive(pkg) {
       return !!(pkg && pkg.meta && !pkg.meta.isPlaceholder);
@@ -339,13 +339,19 @@
       }
       el.innerHTML = renderError();
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
       return null;
     }
 
     var existing = resolvePkg();
-    if (existing && isLive(existing)) {
+    if (existing) {
       return Promise.resolve(finish(existing));
+    }
+    if (options.platform && options.platform.meta && options.platform.meta.hydratedAt) {
+      return Promise.resolve(finish(null));
+    }
+    if (!weatherApi || typeof weatherApi.getForecast !== "function") {
+      return Promise.resolve(finish(null));
     }
 
     el.setAttribute("aria-busy", "true");
@@ -353,19 +359,32 @@
     if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "loading");
 
     var req = WUISvc && WUISvc.buildRequest ? WUISvc.buildRequest(options) : options;
-    return W().getForecast(req).then(finish).catch(function () {
-      var platform = options.platform;
-      if (platform && platform.weather && platform.weather.status === "editorial") {
-        el.innerHTML = renderEditorial(platform);
-        el.removeAttribute("aria-busy");
-        if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "editorial");
-        return null;
-      }
-      el.innerHTML = renderError();
-      el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
-      return null;
+    var forecastPromise;
+    try {
+      forecastPromise = weatherApi.getForecast(req);
+    } catch (err) {
+      return Promise.resolve(finish(null));
+    }
+    var timed = new Promise(function (resolve) {
+      var settled = false;
+      var timer = setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        resolve(null);
+      }, 8000);
+      Promise.resolve(forecastPromise).then(function (pkg) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(pkg);
+      }).catch(function () {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        resolve(null);
+      });
     });
+    return timed.then(finish);
   }
 
   global.WDS = global.WDS || {};

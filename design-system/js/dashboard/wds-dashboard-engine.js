@@ -58,10 +58,13 @@
 
   function educationalFallback(def, data, options) {
     var EF = global.WDS && global.WDS.educationalFallback;
-    if (!EF) return '<p class="wdb-widget__empty">Regional field guide.</p>';
-    if (data && data.educationalHtml) return data.educationalHtml;
+    if (!EF) return '<p class="wdb-widget__empty">Data currently unavailable</p>';
+    if (data && data.educationalHtml && !(options && options.forceUnavailable)) return data.educationalHtml;
     var topic = (data && data.educationalTopic) ||
       EF.topicForWidget(def && def.id, def && def.category);
+    if (EF.renderUnavailable && !(options && options.pendingLive)) {
+      return EF.renderUnavailable(topic, options || {});
+    }
     return EF.render(topic, options || {});
   }
 
@@ -69,7 +72,7 @@
     data = data || {};
     var html = "";
 
-    if (data.status === "educational") {
+    if (data.status === "educational" || data.status === "unavailable") {
       return data.educationalHtml || educationalFallback(def, data);
     }
 
@@ -96,7 +99,7 @@
     }
     if (data.highlight) html += '<p class="wdb-widget__highlight">' + escapeHtml(data.highlight) + "</p>";
     if (data.body) html += '<p class="wdb-widget__body-text">' + escapeHtml(data.body) + "</p>";
-    if (data.educationalHtml) html += data.educationalHtml;
+    if (data.educationalHtml && data.status !== "ready") html += data.educationalHtml;
     if (data.groups) html += renderGroups(data.groups);
     else if (data.highlightItems) html += renderList(data.highlightItems);
     else if (data.items) html += renderList(data.items);
@@ -104,6 +107,9 @@
       return educationalFallback(def, data);
     }
     if (data.placeholder && !data.highlight && !data.body && !data.groups && !data.highlightItems && !data.items) {
+      return educationalFallback(def, data);
+    }
+    if (!html) {
       return educationalFallback(def, data);
     }
     return html;

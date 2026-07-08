@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+/**
+ * Production outdoor dashboard first-load check.
+ * Asserts operational blocks settle to Live / Estimated / Unavailable.
+ */
 import { spawn } from "child_process";
 import http from "http";
 import { setTimeout as delay } from "timers/promises";
@@ -20,13 +24,15 @@ function fetchJson(url) {
 }
 
 const proc = spawn(CHROME, [
-  "--headless=new", "--disable-gpu", "--no-sandbox",
+  "--headless=new", "--disable-gpu", "--no-sandbox", "--disable-extensions",
   `--remote-debugging-port=${PORT}`, "about:blank"
 ], { stdio: "ignore" });
 await delay(2000);
 const targets = await fetchJson(`http://127.0.0.1:${PORT}/json/list`);
+const page = targets.find((t) => t.type === "page" && !/extension/i.test(t.url || "")) || targets.find((t) => t.type === "page");
+if (!page) throw new Error("No page CDP target");
 const { default: WebSocket } = await import("ws");
-const ws = new WebSocket(targets[0].webSocketDebuggerUrl);
+const ws = new WebSocket(page.webSocketDebuggerUrl);
 await new Promise((r) => ws.on("open", r));
 let id = 0;
 const pending = new Map();
@@ -57,36 +63,57 @@ ws.on("message", (raw) => {
   }
 });
 await send("Page.navigate", { url: BASE + "/" });
-await delay(3000);
-await send("Runtime.evaluate", {
-  expression: "(() => { const b = document.getElementById('wds-loc-default'); if (b) b.click(); return !!b; })()",
-  returnByValue: true
-});
 for (let i = 0; i < 20; i++) {
-  await delay(2500);
-  const { result: r1 } = await send("Runtime.evaluate", {
-    expression: "document.querySelectorAll('.wdb-nature__card').length",
+  await delay(1500);
+  const { result } = await send("Runtime.evaluate", {
+    expression: `(() => {
+      const pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast && WDS.outdoorIntelligence.getLast();
+      return {
+        notices: document.querySelectorAll('.wdb-doc__notice').length,
+        busy: document.querySelectorAll('[aria-busy="true"]').length,
+        hydrated: !!(pkg && pkg.meta && pkg.meta.hydratedAt)
+      };
+    })()`,
     returnByValue: true
   });
-  const { result: r2 } = await send("Runtime.evaluate", {
-    expression: "document.querySelectorAll('.wdb-missions__card').length",
-    returnByValue: true
-  });
-  if ((r1.value || 0) >= 8 && (r2.value || 0) >= 3) break;
+  const v = result.value || {};
+  if ((v.notices || 0) >= 8 && v.hydrated && (v.busy || 0) === 0) break;
 }
 const { result } = await send("Runtime.evaluate", {
-  expression: `({
-    morning: !!document.querySelector('.wdb-morning'),
-    pulse: !!document.querySelector('.wdb-morning__pulse'),
-    nature: document.querySelectorAll('.wdb-nature__card').length,
-    missions: document.querySelectorAll('.wdb-missions__card').length,
-    photo: document.querySelectorAll('.wdb-photo-field__card').length,
-    answers: document.querySelectorAll('.wdb-morning__answer').length,
-    notices: document.querySelectorAll('.wdb-doc__notice').length,
-    title: document.title
-  })`,
+  expression: `(() => {
+    const trusts = Array.from(document.querySelectorAll('.wdb-doc__trust')).map(el => (el.textContent || '').trim());
+    const domains = Array.from(document.querySelectorAll('.wdb-doc__domain')).map(el => (el.textContent || '').trim().toLowerCase());
+    const pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast ? WDS.outdoorIntelligence.getLast() : null;
+    return {
+      dashboard: !!document.querySelector('#outdoor-dashboard'),
+      briefing: !!document.querySelector('.wdb-doc'),
+      notices: document.querySelectorAll('.wdb-doc__notice').length,
+      domains,
+      trusts,
+      missions: document.querySelectorAll('.wdb-missions__card').length,
+      nature: document.querySelectorAll('.wdb-nature__card').length,
+      busy: document.querySelectorAll('[aria-busy="true"]').length,
+      hydrated: !!(pkg && pkg.meta && pkg.meta.hydratedAt),
+      blockStatus: pkg && pkg.meta && pkg.meta.blockStatus || null,
+      title: document.title
+    };
+  })()`,
   returnByValue: true
 });
-console.log(JSON.stringify({ checks: result.value, errors }, null, 2));
+const checks = result.value || {};
+const required = ["current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "readiness"];
+const missing = required.filter((d) => !(checks.domains || []).includes(d));
+const badTrust = (checks.trusts || []).filter((t) => !/^(Live|Estimated|Unavailable)$/i.test(t));
+let failed = false;
+if (!checks.dashboard || !checks.briefing) failed = true;
+if ((checks.notices || 0) < 8) failed = true;
+if (!checks.hydrated) failed = true;
+if ((checks.busy || 0) > 0) failed = true;
+if ((checks.missions || 0) > 0) failed = true;
+if (missing.length) failed = true;
+if (badTrust.length) failed = true;
+if (errors.length) failed = true;
+console.log(JSON.stringify({ checks, missing, badTrust, errors, failed }, null, 2));
 proc.kill();
 ws.close();
+process.exit(failed ? 1 : 0);

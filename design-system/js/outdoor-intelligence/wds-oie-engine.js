@@ -32,7 +32,21 @@
     return out;
   }
 
+  function unavailableBlock(category, source) {
+    return block({
+      category: category,
+      what: "Data currently unavailable",
+      why: "Upstream provider did not return usable data in this load cycle.",
+      whyItMatters: "Operational dashboards must never stay blank or pending.",
+      whatToDo: "Refresh once network or provider recovers.",
+      whatToLookFor: "Provider status in footer telemetry.",
+      trust: "Unavailable",
+      source: source || "Waypoint"
+    });
+  }
+
   function domainBlock(domain, summary, intel, trust, source) {
+
     if (!summary && !(intel && intel.headline)) return null;
     return block({
       category: domain,
@@ -115,13 +129,16 @@
       source: "Open-Meteo astronomy"
     }) : null;
 
-    var aqi = platform.airQuality && platform.airQuality.usAqi != null
+    var aqiValue = platform.airQuality
+      ? (platform.airQuality.usAqi != null ? platform.airQuality.usAqi : platform.airQuality.aqi)
+      : null;
+    var aqi = aqiValue != null
       ? block({
           category: "aqi",
-          what: "US AQI " + platform.airQuality.usAqi + (platform.airQuality.category ? " (" + platform.airQuality.category + ")" : ""),
+          what: "US AQI " + aqiValue + (platform.airQuality.category ? " (" + platform.airQuality.category + ")" : ""),
           why: "Fine particulate and ozone affect breathing and distant clarity.",
-          whyItMatters: platform.airQuality.usAqi >= 100 ? "Sensitive groups should reduce prolonged exertion." : "Air quality supports outdoor activity at moderate pace.",
-          whatToDo: platform.airQuality.usAqi >= 150 ? "Shorten intense hikes; consider indoor backup." : "Good air for outdoor activity.",
+          whyItMatters: aqiValue >= 100 ? "Sensitive groups should reduce prolonged exertion." : "Air quality supports outdoor activity at moderate pace.",
+          whatToDo: aqiValue >= 150 ? "Shorten intense hikes; consider indoor backup." : "Good air for outdoor activity.",
           whatToLookFor: "Haze on horizons when AQI is elevated.",
           trust: "Live",
           source: "Open-Meteo Air Quality"
@@ -166,13 +183,13 @@
     } else {
       water = block({
         category: "water",
-        what: "Live stream gauge not connected — learn to read water color, debris lines, and bank wetness.",
-        why: "Stream stage and temperature affect dissolved oxygen, fish activity, and crossing safety.",
-        whyItMatters: "Hydrology literacy matters even without a live gauge.",
-        whatToDo: "Check USGS WaterWatch before water routes.",
-        whatToLookFor: "Muddy tributaries after rain.",
-        trust: "Estimated",
-        source: "USGS + regional hydrology"
+        what: "Data currently unavailable",
+        why: "No live USGS gauge resolved for these coordinates.",
+        whyItMatters: "Water stage informs crossing and flood risk.",
+        whatToDo: "Retry after location refresh.",
+        whatToLookFor: "Gauge proximity and recent rainfall upstream.",
+        trust: "Unavailable",
+        source: "USGS"
       });
     }
 
@@ -262,6 +279,31 @@
 
     var conservation = null;
 
+    if (!current || !current.what) current = unavailableBlock("current", "Open-Meteo");
+    if (!forecast || !forecast.what) forecast = unavailableBlock("forecast", "Open-Meteo");
+    if (!sun || !sun.what) sun = unavailableBlock("sun", "Open-Meteo astronomy");
+    if (!moon || !moon.what) moon = unavailableBlock("moon", "Open-Meteo astronomy");
+    if (!aqi || !aqi.what) aqi = unavailableBlock("aqi", "Open-Meteo Air Quality");
+    if (!alerts || !alerts.what) alerts = unavailableBlock("alerts", "NWS");
+    if (!water || !water.what) water = unavailableBlock("water", "USGS");
+    if (!photography || !photography.what) photography = unavailableBlock("photography", "Derived light");
+    if (!safety || !safety.what) safety = unavailableBlock("safety", "Open-Meteo + NWS");
+
+    var radar = block({
+      category: "radar",
+      what: oieCtx.hasLive
+        ? ((oieCtx.isStorm || (oieCtx.pop != null && oieCtx.pop >= 45))
+          ? "Precipitation likely — monitor radar before exposed travel."
+          : "No active storm signature in current conditions.")
+        : "Data currently unavailable",
+      why: "Radar status is inferred from live precipitation probability and storm flags when a dedicated radar feed is not connected.",
+      whyItMatters: "Storm timing changes outdoor safety and photography windows.",
+      whatToDo: oieCtx.hasLive ? "Cross-check weather.gov radar before ridge or water travel." : "Retry after live weather hydrates.",
+      whatToLookFor: "Sudden wind shift, darkening west horizon, thunder.",
+      trust: oieCtx.hasLive ? "Estimated" : "Unavailable",
+      source: "Open-Meteo precip/storm cues"
+    });
+
     return {
       current: current,
       forecast: forecast,
@@ -273,6 +315,7 @@
       alerts: alerts,
       water: water,
       river: river,
+      radar: radar,
       photography: photography,
       hiking: hiking,
       wildlife: wildlife,
@@ -296,7 +339,7 @@
     if (!happening && oieCtx.hasLive) {
       happening = C.synthesizeProse(oieCtx._weatherBlocks || [], "what", 2);
     }
-    if (!happening) happening = "Set your location to load live outdoor intelligence for your coordinates.";
+    if (!happening) happening = "Live outdoor data is not yet available for these coordinates.";
 
     return {
       happening: happening,
@@ -305,7 +348,7 @@
       whatToDo: brief ? brief.verdictDetail : C.synthesizeProse([sections.hiking, sections.safety].filter(Boolean), "whatToDo", 2),
       whatToLookFor: brief && brief.lookFor ? brief.lookFor : C.synthesizeProse([sections.wildlife, sections.phenology].filter(Boolean), "whatToLookFor", 2),
       whatToPhotograph: sections.photography ? sections.photography.what : C.synthesizeProse(sections.photoFieldGuide || [], "what", 1),
-      whatToLearn: "Review hazard, light, and weather windows before heading out."
+      whatToLearn: "Data currently unavailable"
     };
   }
 
@@ -353,57 +396,6 @@
     oieCtx.platform = platform;
     oieCtx.location = ctx.location || {};
 
-    if (!oieCtx.hasLive) {
-      var missionsEmpty = [];
-      var emptyLesson = null;
-      var emptyBriefing = {
-        meta: {
-          version: VERSION,
-          assembledAt: new Date().toISOString(),
-          hasLive: false,
-          national: oieCtx.national,
-          confidence: 0.45,
-          trustLabels: ["Live", "Estimated"],
-          sources: ["Waypoint"],
-          updatedAt: null,
-          ruleCount: 0
-        },
-        location: oieCtx.location,
-        platform: platform,
-        synthesis: {
-          happening: "Set your location to load live outdoor intelligence for your coordinates.",
-          why: "Waypoint synthesizes weather, safety, and seasonal context from your coordinates.",
-          whyItMatters: "Without location, live feeds cannot load.",
-          whatToDo: "Tap Use my location or search for your county.",
-          whatToLookFor: "Live modules appear after location resolves.",
-          whatToPhotograph: "Once live, you'll get golden-hour and field photography cues.",
-          whatToLearn: "Review current weather, alerts, and light windows once live data loads."
-        },
-        missions: [],
-        lesson: null,
-        conservation: null,
-        morning: {
-          answers: {
-            where: "Set your location",
-            now: "Live weather, air quality, and safety alerts load after you choose a place.",
-            sinceYesterday: "Return tomorrow after setting location to see how conditions shifted.",
-            sinceYesterdayTrust: "Estimated",
-            notice: "Live modules populate once coordinates resolve.",
-            photograph: "Golden-hour windows arrive with live sun/moon data.",
-            goOutside: "Pick a location first, then read the outdoor verdict.",
-            learn: "Use live hazards and weather windows to plan your outing.",
-            pulse: { today: "Set location", now: "Awaiting coordinates", next: "Live briefing loads next" }
-          },
-          todayInNature: []
-        },
-        todayInNature: [],
-        photoFieldGuide: [],
-        provenance: { sources: ["Waypoint"], updatedAt: null }
-      };
-      lastBriefing = emptyBriefing;
-      return emptyBriefing;
-    }
-
     var weatherRules = (global.WDS.oieWeatherRules && global.WDS.oieWeatherRules.all()) || [];
     var photoRules = (global.WDS.oiePhotographyRules && global.WDS.oiePhotographyRules.all()) || [];
     var natureRules = [];
@@ -438,7 +430,7 @@
         hasLive: oieCtx.hasLive,
         national: oieCtx.national,
         confidence: confidence,
-        trustLabels: ["Live", "Estimated"],
+        trustLabels: ["Live", "Estimated", "Unavailable"],
         sources: collectSources(platform, sections),
         updatedAt: updatedAt,
         ruleCount: weatherBlocks.length + photoBlocks.length + natureBlocks.length
@@ -455,6 +447,19 @@
       alerts: sections.alerts,
       water: sections.water,
       river: sections.river,
+      radar: sections.radar,
+      readiness: (function () {
+        return block({
+          category: "readiness",
+          what: brief && brief.verdictLabel ? brief.verdictLabel : (oieCtx.hasLive ? "Outdoor conditions available" : "Data currently unavailable"),
+          why: brief && brief.verdictDetail ? brief.verdictDetail : "Readiness combines weather, alerts, UV, and AQI.",
+          whyItMatters: "A single readiness line answers whether to go outside now.",
+          whatToDo: brief && brief.verdict === "wait" ? "Postpone exposed routes and monitor alerts." : (oieCtx.hasLive ? "Proceed with layers matched to conditions." : "Refresh location."),
+          whatToLookFor: "Alerts, UV, wind, and hourly precip trend.",
+          trust: oieCtx.hasLive ? "Estimated" : "Unavailable",
+          source: "OIE readiness"
+        });
+      })(),
       photography: sections.photography,
       hiking: sections.hiking,
       wildlife: sections.wildlife,
@@ -489,11 +494,11 @@
   function toLegacyCompose(briefing) {
     if (!briefing) return null;
     var notices = [];
-    ["current", "aqi", "sun", "alerts", "photography", "hiking", "water", "wildlife", "phenology", "safety"].forEach(function (key) {
+    ["readiness", "current", "forecast", "alerts", "aqi", "sun", "moon", "water", "river", "radar", "photography", "safety"].forEach(function (key) {
       var s = briefing[key];
       if (s && s.what) {
         notices.push({
-          domain: s.category || key,
+          domain: key === "river" ? "water" : (s.category === "river" ? "water" : (s.category || key)),
           what: s.what,
           why: s.why,
           matters: s.whyItMatters,

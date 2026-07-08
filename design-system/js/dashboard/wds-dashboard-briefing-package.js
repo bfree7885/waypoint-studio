@@ -50,10 +50,10 @@
     if (n.doAction) fields.push('<p class="wdb-doc__do"><strong>What to do:</strong> ' + escapeHtml(n.doAction) + "</p>");
     if (n.watch) fields.push('<p class="wdb-doc__watch"><strong>What to notice:</strong> ' + escapeHtml(n.watch) + "</p>");
     return (
-      '<article class="wdb-doc__notice wdb-doc__notice--' + escapeHtml((n.trust || "educational").toLowerCase().replace(/\s+/g, "-")) + '">' +
+      '<article class="wdb-doc__notice wdb-doc__notice--' + escapeHtml((n.trust || "Unavailable").toLowerCase().replace(/\s+/g, "-")) + '">' +
         '<header class="wdb-doc__notice-head">' +
           '<span class="wdb-doc__domain">' + escapeHtml(n.domain) + "</span>" +
-          '<span class="wdb-doc__trust">' + escapeHtml(n.trust || "Educational") + "</span>" +
+          '<span class="wdb-doc__trust">' + escapeHtml(n.trust || "Unavailable") + "</span>" +
         "</header>" +
         fields.join("") +
         (n.source ? '<p class="wdb-doc__notice-meta">Source: ' + escapeHtml(n.source) + "</p>" : "") +
@@ -73,29 +73,11 @@
       morningHtml = MB.renderMorningHero(doc.morningAnswers, doc.headline, dateLine);
     }
 
-    var natureHtml = MB && MB.renderTodayInNature ? MB.renderTodayInNature(doc.todayInNature) : "";
-    var missionsHtml = MB && MB.renderMissions ? MB.renderMissions(doc.missions) : "";
-    var photoHtml = MB && MB.renderPhotoGuide ? MB.renderPhotoGuide(doc.photoFieldGuide) : "";
-
     var narrativeHtml = (doc.narrative || []).map(function (p) {
       return "<p class=\"wdb-doc__para\">" + escapeHtml(p) + "</p>";
     }).join("");
 
     var noticesHtml = (doc.notices || []).map(renderNotice).join("");
-
-    var learnHtml = "";
-    if (doc.learn) {
-      learnHtml =
-        '<section class="wdb-learn-today" aria-label="Learn today">' +
-          '<h2 class="wdb-learn-today__title">What to learn today</h2>' +
-          '<article class="wdb-learn-today__card">' +
-            '<span class="wdb-learn-today__trust">Educational</span>' +
-            '<p class="wdb-learn-today__summary">' + escapeHtml(doc.learn.summary || "") + "</p>" +
-            '<p class="wdb-learn-today__body">' + escapeHtml(doc.learn.body || "") + "</p>" +
-            (doc.learn.metaFooter ? '<p class="wdb-learn-today__meta">' + escapeHtml(doc.learn.metaFooter) + "</p>" : "") +
-          "</article>" +
-        "</section>";
-    }
 
     var evidenceHtml = doc.evidence && doc.evidence.length
       ? '<ul class="wdb-doc__evidence">' + doc.evidence.map(function (e) {
@@ -108,23 +90,20 @@
       : "—";
 
     var detailsHtml = noticesHtml
-      ? '<details class="wdb-doc__details">' +
-          '<summary class="wdb-doc__details-summary">Full domain briefing (' + doc.notices.length + " topics)</summary>" +
-          '<div class="wdb-doc__notices" aria-label="Domain guidance">' + noticesHtml + "</div>" +
-        "</details>"
-      : "";
+      ? '<div class="wdb-doc__notices" aria-label="Operational outdoor blocks">' + noticesHtml + "</div>"
+      : '<div class="wdb-doc__notices" aria-label="Operational outdoor blocks">' +
+          '<article class="wdb-doc__notice wdb-doc__notice--unavailable">' +
+            '<header class="wdb-doc__notice-head"><span class="wdb-doc__domain">readiness</span><span class="wdb-doc__trust">Unavailable</span></header>' +
+            '<p class="wdb-doc__what"><strong>What:</strong> Data currently unavailable</p>' +
+          "</article></div>";
 
     return (
       '<section class="wdb-doc wdb-doc--' + escapeHtml(doc.verdict || "caution") + '" aria-label="Outdoor briefing for ' + escapeHtml(dateLine) + '">' +
         morningHtml +
-        natureHtml +
-        missionsHtml +
-        photoHtml +
         (narrativeHtml || evidenceHtml
           ? '<div class="wdb-doc__synthesis">' + narrativeHtml + evidenceHtml + "</div>"
           : "") +
         detailsHtml +
-        learnHtml +
         '<footer class="wdb-doc__foot">' +
           '<p>Sources: ' + escapeHtml((doc.provenance && doc.provenance.sources || []).join(" · ")) + " · Updated " + escapeHtml(updated) + "</p>" +
         "</footer>" +
@@ -134,18 +113,15 @@
 
   function widgetStory(ctx) {
     var doc = compose(ctx);
-    if (!doc.hasLive) {
-      return global.WDS.dashboardStory && global.WDS.dashboardStory.generate
-        ? global.WDS.dashboardStory.generate(ctx)
-        : { status: "empty", summary: "Briefing pending" };
-    }
+    var notices = doc.notices || [];
+    var trust = doc.hasLive ? "Estimated" : "Unavailable";
     return {
-      status: "ready",
-      tag: { label: "Estimated", className: "wdb-widget__tag--estimated" },
-      summary: doc.headline,
-      body: (doc.narrative || []).join(" "),
-      items: (doc.notices || []).slice(0, 4).map(function (n) { return n.domain + ": " + n.text; }),
-      metaFooter: "OIE v1 · " + (doc.provenance && doc.provenance.sources || []).join(" · ")
+      status: notices.length ? "ready" : "unavailable",
+      tag: { label: trust, className: "wdb-widget__tag--" + trust.toLowerCase() },
+      summary: doc.headline || (doc.hasLive ? "Outdoor readiness" : "Data currently unavailable"),
+      body: (doc.narrative || []).join(" ") || "Data currently unavailable",
+      items: notices.slice(0, 6).map(function (n) { return n.domain + ": " + (n.text || n.what); }),
+      metaFooter: "OIE · " + (doc.provenance && doc.provenance.sources || []).join(" · ")
     };
   }
 
