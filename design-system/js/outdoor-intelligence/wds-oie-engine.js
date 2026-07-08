@@ -67,7 +67,7 @@
       whyItMatters: "Forecast shapes trail mud, stream crossings, and fungi-friendly moisture.",
       whatToDo: "Check hourly trend before exposed travel.",
       whatToLookFor: "Building cumulus after noon on fair days.",
-      trust: oieCtx.hasLive ? "Estimated" : "Educational",
+      trust: "Estimated",
       source: "Open-Meteo"
     });
 
@@ -137,7 +137,7 @@
       whyItMatters: "Conditions change faster than daily summaries.",
       whatToDo: "Monitor radar if storms are possible.",
       whatToLookFor: "Building cumulus and wind shifts.",
-      trust: oieCtx.hasLive ? "Live" : "Educational",
+      trust: "Live",
       source: "NWS"
     });
 
@@ -162,7 +162,7 @@
       }
     } else if (domains.water && domains.water.summary) {
       water = domainBlock("water", domains.water.summary, domains.water.intel,
-        oieCtx.national ? "Educational" : "Editorial", oieCtx.national ? "U.S. hydrology education" : "Regional bundle");
+        "Estimated", "USGS + regional hydrology");
     } else {
       water = block({
         category: "water",
@@ -171,8 +171,8 @@
         whyItMatters: "Hydrology literacy matters even without a live gauge.",
         whatToDo: "Check USGS WaterWatch before water routes.",
         whatToLookFor: "Muddy tributaries after rain.",
-        trust: "Educational",
-        source: "Waypoint hydrology education"
+        trust: "Estimated",
+        source: "USGS + regional hydrology"
       });
     }
 
@@ -211,9 +211,9 @@
       trust: "Estimated",
       source: "Open-Meteo + season"
     }) : domainBlock("wildlife", domains.wildlife && domains.wildlife.summary, domains.wildlife && domains.wildlife.intel,
-      oieCtx.national ? "Educational" : "Editorial");
+      "Estimated", "Regional wildlife + weather");
 
-    var plants = domainBlock("plants", domains.flora && domains.flora.summary, domains.flora && domains.flora.intel, "Editorial");
+    var plants = domainBlock("plants", domains.flora && domains.flora.summary, domains.flora && domains.flora.intel, "Estimated", "Regional flora + weather");
     var phenology = natureBlocks.length ? C.section("phenology", natureBlocks.filter(function (bl) {
       return bl.tags && (bl.tags.indexOf("bloom") >= 0 || bl.tags.indexOf("leaves") >= 0 || bl.tags.indexOf("season") >= 0);
     })) : block({
@@ -223,8 +223,8 @@
       whyItMatters: "South-facing slopes often lead timing by a week or more.",
       whatToDo: "Photograph one stage with date for personal phenology record.",
       whatToLookFor: "Edges, wetlands, and south aspects first.",
-      trust: "Educational",
-      source: "Latitude-season guidance"
+      trust: "Estimated",
+      source: "Seasonal signal model"
     });
 
     var nightSky = sky && sky.nightPhotography ? block({
@@ -258,29 +258,9 @@
       source: "Open-Meteo + NWS"
     }) : null;
 
-    var Learn = global.WDS && global.WDS.dashboardLearn;
-    var lesson = Learn && Learn.generate ? Learn.generate(ctx) : null;
-    var lessonBlock = lesson ? block({
-      category: "lesson",
-      what: lesson.summary + " — " + lesson.body,
-      why: "Daily concepts build field literacy over months.",
-      whyItMatters: "Naming patterns in nature increases retention and curiosity.",
-      whatToDo: "Apply today's concept on a ten-minute walk.",
-      whatToLookFor: "One example of the concept in the field.",
-      trust: "Educational",
-      source: lesson.metaFooter || "Waypoint education"
-    }) : null;
+    var lessonBlock = null;
 
-    var conservation = block({
-      category: "conservation",
-      what: "Stay on durable surfaces; give wildlife space; leave what you find unless removing litter.",
-      why: "Millions of outdoor visits compound into measurable habitat impact.",
-      whyItMatters: "Conservation ethics preserve what you came to observe.",
-      whatToDo: "Pick up three litter items if safe; note one trail impact to avoid next time.",
-      whatToLookFor: "Cryptobiotic soil, meadow trampling, stressed wildlife behavior.",
-      trust: "Educational",
-      source: "Leave No Trace principles"
-    });
+    var conservation = null;
 
     return {
       current: current,
@@ -300,14 +280,14 @@
       phenology: phenology,
       nightSky: nightSky,
       safety: safety,
-      lesson: lessonBlock,
-      conservation: conservation,
+      lesson: null,
+      conservation: null,
       intel: intel,
       scores: scores,
       sky: sky,
       domains: domains,
       photoFieldGuide: photoBlocks,
-      todayInNature: natureBlocks
+      todayInNature: []
     };
   }
 
@@ -325,16 +305,16 @@
       whatToDo: brief ? brief.verdictDetail : C.synthesizeProse([sections.hiking, sections.safety].filter(Boolean), "whatToDo", 2),
       whatToLookFor: brief && brief.lookFor ? brief.lookFor : C.synthesizeProse([sections.wildlife, sections.phenology].filter(Boolean), "whatToLookFor", 2),
       whatToPhotograph: sections.photography ? sections.photography.what : C.synthesizeProse(sections.photoFieldGuide || [], "what", 1),
-      whatToLearn: sections.lesson ? sections.lesson.what : "Pick one species or cloud type to identify today."
+      whatToLearn: "Review hazard, light, and weather windows before heading out."
     };
   }
 
-  function buildMorning(oieCtx, sections, synthesis, brief, missions, lesson) {
+  function buildMorning(oieCtx, sections, synthesis, brief) {
     var MB = global.WDS && global.WDS.morningBriefing;
     var partial = {
       brief: brief,
       intel: sections.intel,
-      learn: lesson,
+      learn: null,
       photoFieldGuide: (sections.photoFieldGuide || []).map(function (bl) {
         return { label: bl.category, text: bl.what, why: bl.why, trust: bl.trust };
       }),
@@ -353,15 +333,7 @@
     return {
       answers: answers,
       pulse: answers && answers.pulse ? answers.pulse : null,
-      todayInNature: MB && MB.buildTodayInNature
-        ? MB.buildTodayInNature({ platform: oieCtx.platform, location: oieCtx.location }, {
-            intel: sections.intel,
-            domains: sections.domains,
-            photoFieldGuide: partial.photoFieldGuide
-          })
-        : (sections.todayInNature || []).map(function (bl) {
-            return { category: bl.category, text: bl.what, why: bl.whyItMatters, trust: bl.trust, source: bl.source };
-          })
+      todayInNature: []
     };
   }
 
@@ -382,20 +354,8 @@
     oieCtx.location = ctx.location || {};
 
     if (!oieCtx.hasLive) {
-      var LearnEmpty = global.WDS && global.WDS.dashboardLearn;
-      var learnEmpty = LearnEmpty && LearnEmpty.generate ? LearnEmpty.generate(ctx) : null;
-      var M0 = global.WDS && global.WDS.oieMissions;
-      var missionsEmpty = M0 && M0.educationalFallback ? M0.educationalFallback(3) : [];
-      var emptyLesson = learnEmpty ? block({
-        category: "lesson",
-        what: learnEmpty.summary + " — " + learnEmpty.body,
-        why: "Daily concepts build field literacy.",
-        whyItMatters: "Naming patterns increases curiosity before live data connects.",
-        whatToDo: "Apply on a ten-minute walk after setting location.",
-        whatToLookFor: "One example of today's concept.",
-        trust: "Educational",
-        source: learnEmpty.metaFooter
-      }) : null;
+      var missionsEmpty = [];
+      var emptyLesson = null;
       var emptyBriefing = {
         meta: {
           version: VERSION,
@@ -403,7 +363,7 @@
           hasLive: false,
           national: oieCtx.national,
           confidence: 0.45,
-          trustLabels: ["Live", "Estimated", "Educational", "Editorial"],
+          trustLabels: ["Live", "Estimated"],
           sources: ["Waypoint"],
           updatedAt: null,
           ruleCount: 0
@@ -413,49 +373,31 @@
         synthesis: {
           happening: "Set your location to load live outdoor intelligence for your coordinates.",
           why: "Waypoint synthesizes weather, safety, and seasonal context from your coordinates.",
-          whyItMatters: "Without location, live feeds cannot load — educational mode teaches instead.",
+          whyItMatters: "Without location, live feeds cannot load.",
           whatToDo: "Tap Use my location or search for your county.",
-          whatToLookFor: "Every section teaches when live data is unavailable.",
+          whatToLookFor: "Live modules appear after location resolves.",
           whatToPhotograph: "Once live, you'll get golden-hour and field photography cues.",
-          whatToLearn: learnEmpty ? learnEmpty.summary + " — " + learnEmpty.body : "Start with one cloud type today."
+          whatToLearn: "Review current weather, alerts, and light windows once live data loads."
         },
-        missions: missionsEmpty,
-        lesson: emptyLesson,
-        conservation: block({
-          category: "conservation",
-          what: "Stay on durable surfaces; give wildlife space.",
-          why: "Conservation ethics preserve what you came to observe.",
-          whyItMatters: "Trust begins with honest labels when data is pending.",
-          whatToDo: "Set location to unlock live briefing.",
-          whatToLookFor: "Educational cues until coordinates resolve.",
-          trust: "Educational",
-          source: "Waypoint"
-        }),
+        missions: [],
+        lesson: null,
+        conservation: null,
         morning: {
           answers: {
             where: "Set your location",
             now: "Live weather, air quality, and safety alerts load after you choose a place.",
             sinceYesterday: "Return tomorrow after setting location to see how conditions shifted.",
-            sinceYesterdayTrust: "Educational",
-            notice: "Nothing is faked — labels show Live, Estimated, or Educational.",
+            sinceYesterdayTrust: "Estimated",
+            notice: "Live modules populate once coordinates resolve.",
             photograph: "Golden-hour windows arrive with live sun/moon data.",
             goOutside: "Pick a location first, then read the outdoor verdict.",
-            learn: learnEmpty ? learnEmpty.summary + " — " + learnEmpty.body : "Learn one cloud type today.",
+            learn: "Use live hazards and weather windows to plan your outing.",
             pulse: { today: "Set location", now: "Awaiting coordinates", next: "Live briefing loads next" }
           },
-          todayInNature: [
-            { category: "Getting started", text: "Choose your county — Waypoint never invents local species data.", why: "Honest trust labels keep confidence.", trust: "Educational", source: "Waypoint" }
-          ]
+          todayInNature: []
         },
-        todayInNature: [
-          { category: "Getting started", text: "Choose your county — Waypoint never invents local species data.", why: "Honest trust labels keep confidence.", trust: "Educational", source: "Waypoint" }
-        ],
-        photoFieldGuide: [{
-          label: "While you wait",
-          text: "Practice reading light on a windowsill — note shadow hardness at different times.",
-          why: "Light literacy transfers to field photography.",
-          trust: "Educational"
-        }],
+        todayInNature: [],
+        photoFieldGuide: [],
         provenance: { sources: ["Waypoint"], updatedAt: null }
       };
       lastBriefing = emptyBriefing;
@@ -464,7 +406,7 @@
 
     var weatherRules = (global.WDS.oieWeatherRules && global.WDS.oieWeatherRules.all()) || [];
     var photoRules = (global.WDS.oiePhotographyRules && global.WDS.oiePhotographyRules.all()) || [];
-    var natureRules = (global.WDS.oieNatureRules && global.WDS.oieNatureRules.all()) || [];
+    var natureRules = [];
 
     var weatherBlocks = C.applyRules(oieCtx, weatherRules);
     var photoBlocks = C.applyRules(oieCtx, photoRules);
@@ -477,15 +419,9 @@
     var sections = buildSections(ctx, oieCtx, weatherBlocks, photoBlocks, natureBlocks);
     var synthesis = buildSynthesis(sections, oieCtx, brief);
 
-    var Missions = global.WDS && global.WDS.oieMissions;
-    var missions = oieCtx.hasLive && Missions && Missions.generate
-      ? Missions.generate(oieCtx, 4)
-      : (Missions && Missions.educationalFallback ? Missions.educationalFallback(3) : []);
+    var missions = [];
 
-    var Learn = global.WDS && global.WDS.dashboardLearn;
-    var lesson = Learn && Learn.generate ? Learn.generate(ctx) : null;
-
-    var morning = buildMorning(oieCtx, sections, synthesis, brief, missions, lesson);
+    var morning = buildMorning(oieCtx, sections, synthesis, brief);
 
     var outdoorScore = sections.scores && sections.scores.outdoor ? sections.scores.outdoor.value : null;
     var photoScore = sections.scores && sections.scores.photography ? sections.scores.photography.value : null;
@@ -502,7 +438,7 @@
         hasLive: oieCtx.hasLive,
         national: oieCtx.national,
         confidence: confidence,
-        trustLabels: ["Live", "Estimated", "Educational", "Editorial"],
+        trustLabels: ["Live", "Estimated"],
         sources: collectSources(platform, sections),
         updatedAt: updatedAt,
         ruleCount: weatherBlocks.length + photoBlocks.length + natureBlocks.length
@@ -526,9 +462,9 @@
       phenology: sections.phenology,
       nightSky: sections.nightSky,
       safety: sections.safety,
-      missions: missions,
-      lesson: sections.lesson,
-      conservation: sections.conservation,
+      missions: [],
+      lesson: null,
+      conservation: null,
       outdoorScore: outdoorScore,
       photographyScore: photoScore,
       confidence: confidence,
@@ -539,7 +475,7 @@
       scores: sections.scores,
       domains: sections.domains,
       photoFieldGuide: sections.photoFieldGuide,
-      todayInNature: morning.todayInNature,
+      todayInNature: [],
       provenance: {
         sources: collectSources(platform, sections),
         updatedAt: updatedAt
@@ -582,15 +518,11 @@
       intel: briefing.intel,
       scores: briefing.scores,
       domains: briefing.domains,
-      challenge: briefing.missions[0] || null,
-      missions: briefing.missions,
-      learn: briefing.lesson ? {
-        summary: briefing.lesson.what.split(" — ")[0],
-        body: briefing.lesson.what.split(" — ").slice(1).join(" — "),
-        metaFooter: briefing.lesson.source
-      } : null,
+      challenge: null,
+      missions: [],
+      learn: null,
       morningAnswers: briefing.morning.answers,
-      todayInNature: briefing.todayInNature,
+      todayInNature: [],
       photoFieldGuide: (briefing.photoFieldGuide || []).map(function (bl) {
         return { label: bl.category, text: bl.what, why: bl.why, trust: bl.trust };
       }),
@@ -636,8 +568,8 @@
       hiking: b.hiking,
       safety: b.safety,
       water: b.water,
-      missions: b.missions,
-      lesson: b.lesson,
+      missions: [],
+      lesson: null,
       outdoorScore: b.outdoorScore,
       photographyScore: b.photographyScore,
       confidence: b.confidence,
@@ -649,7 +581,7 @@
         waterAware: !!(b.water && b.water.what)
       },
       briefingHeadline: b.brief ? b.brief.verdictLabel : null,
-      challenge: b.missions[0] ? b.missions[0].summary : null
+      challenge: null
     };
   }
 
@@ -659,10 +591,10 @@
       version: VERSION,
       now_outside: briefing.synthesis.happening,
       ecology_note: {
-        text: briefing.phenology ? briefing.phenology.what : "Notice seasonal change at your latitude.",
-        type: "educational",
-        season: briefing.meta && briefing.meta.hasLive ? (briefing.platform && briefing.platform.daylight ? "live" : "season") : "educational",
-        trust: "educational"
+        text: briefing.phenology ? briefing.phenology.what : "Seasonal signal not available.",
+        type: "estimated",
+        season: briefing.meta && briefing.meta.hasLive ? (briefing.platform && briefing.platform.daylight ? "live" : "season") : "unavailable",
+        trust: "estimated"
       },
       water: briefing.river ? {
         available: briefing.river.trust === "Live",
@@ -671,7 +603,7 @@
         source: briefing.river.source
       } : { available: false, message: briefing.water ? briefing.water.what : "No gauge data" },
       photography: briefing.photography ? briefing.photography.what : null,
-      missions: (briefing.missions || []).map(function (m) { return m.title; }),
+      missions: [],
       synthesis: briefing.synthesis,
       confidence: briefing.confidence,
       updated_at: briefing.meta.updatedAt,
