@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waypoint Studio Debug</title>
+</head>
+<body>
+<p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
+<pre id="debug-output">Loading Waypoint debug snapshot...</pre>
+<script>
+(function () {
+  "use strict";
+
+  var DEBUG_KEY = "waypointDebugSnapshot";
+  var FALLBACK_COMMIT = "9299f24";
+  var FALLBACK_BUILD = "2026-07-08T13:09:00-04:00";
+  var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
+
+  function lines(list) {
+    if (!list || !list.length) return ["(none)"];
+    return list.map(function (item) { return "- " + item; });
+  }
+
+  function readSnapshot() {
+    if (window.opener && window.opener.__WAYPOINT_DEBUG__) return window.opener.__WAYPOINT_DEBUG__;
+    if (window.__WAYPOINT_DEBUG__) return window.__WAYPOINT_DEBUG__;
+    try {
+      var raw = localStorage.getItem(DEBUG_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function containsTerms(snapshotText) {
+    var text = String(snapshotText || "").toLowerCase();
+    return TERMS.filter(function (term) { return text.indexOf(term) >= 0; });
+  }
+
+  function buildReport(snapshot) {
+    var headingList = snapshot && snapshot.headings ? snapshot.headings : [];
+    var sectionList = snapshot && snapshot.sectionsRendered ? snapshot.sectionsRendered : [];
+    var hits = containsTerms(JSON.stringify(snapshot || {}));
+    var fallbackLang = !!(snapshot && snapshot.bannedTextPresent) || hits.length > 0;
+
+    var out = [];
+    out.push("Waypoint Studio Debug");
+    out.push("====================");
+    out.push("");
+    out.push("1) Current deployed commit hash: " + ((snapshot && snapshot.commitHash) || FALLBACK_COMMIT || "unavailable"));
+    out.push("2) Build date/time: " + ((snapshot && snapshot.buildTime) || FALLBACK_BUILD || "unavailable"));
+    out.push("3) Active page title: " + ((snapshot && snapshot.activePageTitle) || document.title));
+    out.push("");
+    out.push("4) Visible H1/H2/H3 headings from live dashboard:");
+    out = out.concat(lines(headingList));
+    out.push("");
+    out.push("5) Live weather loaded: " + (snapshot && snapshot.liveWeatherLoaded ? "yes" : "no"));
+    out.push("6) Location loaded: " + (snapshot && snapshot.locationLoaded ? "yes" : "no"));
+    out.push("7) Fallback/coming-soon/educational/assignment text present: " + (fallbackLang ? "yes" : "no"));
+    if (snapshot && snapshot.bannedTextHits && snapshot.bannedTextHits.length) {
+      out.push("   - matched banned terms: " + snapshot.bannedTextHits.join(", "));
+    }
+    if (hits.length) out.push("   - matched debug terms: " + hits.join(", "));
+    out.push("");
+    out.push("8) Dashboard sections currently rendered:");
+    out = out.concat(lines(sectionList));
+    out.push("");
+    out.push("Snapshot source: " + (snapshot ? "window/localStorage" : "none found"));
+    out.push("Snapshot captured at: " + ((snapshot && snapshot.capturedAt) || "unavailable"));
+    out.push("");
+    out.push("Raw snapshot:");
+    out.push(JSON.stringify(snapshot || {}, null, 2));
+    return out.join("\n");
+  }
+
+  function copyReport() {
+    var pre = document.getElementById("debug-output");
+    var status = document.getElementById("copy-status");
+    if (!pre) return;
+    var text = pre.textContent || "";
+
+    function markCopied() {
+      if (!status) return;
+      status.textContent = "Copied.";
+      setTimeout(function () {
+        if (status.textContent === "Copied.") status.textContent = "";
+      }, 1200);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(markCopied).catch(function () {
+        /* fallback below */
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "readonly");
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
+        document.body.removeChild(ta);
+      });
+      return;
+    }
+
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "readonly");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
+    document.body.removeChild(ta);
+  }
+
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot());
+  var copyBtn = document.getElementById("copy-report");
+  if (copyBtn) copyBtn.addEventListener("click", copyReport);
+})();
+</script>
+</body>
+</html>
