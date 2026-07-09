@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: 7dc9210
-2) Build date/time: 2026-07-09T11:30:19.548Z
+1) Current deployed commit hash: 7eb7b4d
+2) Build date/time: 2026-07-09T12:00:28.760Z
 3) Active page title: Waypoint Studio — Outdoor Dashboard
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -21,13 +21,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: warning
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-09T11:30:01.220Z
+Snapshot captured at: 2026-07-09T12:00:01.729Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;7dc9210&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-09T11:30:19.548Z&quot;,
+  &quot;commitHash&quot;: &quot;7eb7b4d&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-09T12:00:28.760Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio — Outdoor Dashboard&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-09T11:30:01.220Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-09T12:00:01.729Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -61,7 +61,7 @@ Raw snapshot:
       &quot;stale&quot;: false
     },
     &quot;river_gauges&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
+      &quot;status&quot;: &quot;fallback&quot;,
       &quot;stale&quot;: false
     },
     &quot;alerts&quot;: {
@@ -79,8 +79,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "7dc9210";
-  var FALLBACK_BUILD = "2026-07-09T11:30:19.548Z";
+  var FALLBACK_COMMIT = "7eb7b4d";
+  var FALLBACK_BUILD = "2026-07-09T12:00:28.760Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -150,7 +150,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"7dc9210","buildTime":"2026-07-09T11:30:19.548Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T11:30:01.220Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"warning","moduleHealth":{"weather":{"status":"fallback","stale":true},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"live","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"7eb7b4d","buildTime":"2026-07-09T12:00:28.760Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T12:00:01.729Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"warning","moduleHealth":{"weather":{"status":"fallback","stale":true},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
