@@ -1355,8 +1355,18 @@ function makeStatusHtml(payload, health) {
     .wle-nav a { color: #1d4ed8; }
     pre { white-space: pre-wrap; word-break: break-word; font-size: 0.8rem; background: #f5f5f4; padding: 0.75rem; border-radius: 6px; overflow: auto; max-height: 18rem; }
     table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #ece8e4; vertical-align: top; }
+    th, td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #ece8e4; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; min-width: 0; }
     th { color: #57534e; font-weight: 600; }
+    .wle-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -0.25rem; padding: 0 0.25rem; }
+    @media (max-width: 700px) {
+      .wle-status { margin: 1rem auto; padding: 0 0.85rem 2rem; }
+      .wle-status h1 { font-size: 1.5rem; }
+      .wle-row { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+      .wle-row > span:last-child { text-align: left; max-width: 100%; overflow-wrap: anywhere; }
+      .wle-card { padding: 0.85rem 0.9rem; margin-bottom: 0.85rem; }
+      table { font-size: 0.78rem; }
+      pre { font-size: 0.72rem; max-height: 14rem; }
+    }
   </style>
 </head>
 <body>
@@ -1397,6 +1407,7 @@ function makeStatusHtml(payload, health) {
     <section class="wle-card" aria-label="Module health">
       <h2>Module Health</h2>
       <p class="wle-muted">Each module reports LIVE, ESTIMATED (recent cache/derived), or TEMPORARILY UNAVAILABLE. Brief provider errors with valid cached data stay ESTIMATED and do not downgrade engine health to WARNING.</p>
+      <div class="wle-table-wrap">
       <table>
         <thead><tr>
           <th>Module</th><th>Health</th><th>Raw</th><th>Provider</th><th>Latency</th>
@@ -1405,6 +1416,7 @@ function makeStatusHtml(payload, health) {
         </tr></thead>
         <tbody>${moduleRows}</tbody>
       </table>
+      </div>
     </section>
 
     <section class="wle-card" aria-label="Pipeline trace">
