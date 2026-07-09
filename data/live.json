@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-09T11:00:02.036Z",
-  "nextScheduledUpdate": "2026-07-09T11:30:00.000Z",
+  "updatedAt": "2026-07-09T11:30:01.220Z",
+  "nextScheduledUpdate": "2026-07-09T12:00:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -37,12 +37,6 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-07-09T07:00",
-        "temperatureF": 69,
-        "precipProbability": 0,
-        "conditions": "Overcast"
-      },
-      {
         "time": "2026-07-09T08:00",
         "temperatureF": 73,
         "precipProbability": 1,
@@ -71,6 +65,12 @@
         "temperatureF": 80,
         "precipProbability": 7,
         "conditions": "Overcast"
+      },
+      {
+        "time": "2026-07-09T13:00",
+        "temperatureF": 81,
+        "precipProbability": 7,
+        "conditions": "Overcast"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 31,
-    "phaseValue": 0.845,
+    "phaseValue": 0.846,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 31,
-        "phaseValue": 0.845,
+        "phaseValue": 0.846,
         "trust": "Estimated"
       }
     },
@@ -537,7 +537,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T11:00:02.036Z",
+    "generatedAt": "2026-07-09T11:30:01.220Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
