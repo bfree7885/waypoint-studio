@@ -2,18 +2,18 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T12:42:14.331Z",
-  "nextScheduledUpdate": "2026-07-09T13:00:00.000Z",
+  "generatedAt": "2026-07-09T13:00:01.249Z",
+  "nextScheduledUpdate": "2026-07-09T13:30:00.000Z",
   "overall": {
     "status": "healthy",
     "message": "Core modules healthy.",
-    "lastSuccessfulRefresh": "2026-07-09T12:42:23.801Z"
+    "lastSuccessfulRefresh": "2026-07-09T13:00:18.674Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T12:42:14.331Z",
-    "dataUpdatedAt": "2026-07-09T12:42:14.331Z",
-    "nextScheduledRun": "2026-07-09T13:00:00.000Z",
+    "lastEngineRun": "2026-07-09T13:00:01.249Z",
+    "dataUpdatedAt": "2026-07-09T13:00:01.249Z",
+    "nextScheduledRun": "2026-07-09T13:30:00.000Z",
     "lastPublishAt": "2026-07-09T12:00:29.899Z",
     "lastPublishedDataAt": "2026-07-09T12:00:01.729Z",
     "lastPublishCommit": "d1dddab",
@@ -23,7 +23,7 @@
   "modules": {
     "weather": {
       "name": "weather",
-      "status": "live",
+      "status": "fallback",
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
@@ -371,10 +371,10 @@
           ]
         }
       },
-      "source": "Open-Meteo",
-      "error": null,
-      "responseMs": 552,
-      "lastAttempt": "2026-07-09T12:42:14.333Z",
+      "source": "previous-success",
+      "error": "HTTP 503",
+      "responseMs": 661,
+      "lastAttempt": "2026-07-09T13:00:01.250Z",
       "lastSuccessfulUpdate": "2026-07-09T12:42:14.333Z",
       "stale": false
     },
@@ -391,8 +391,8 @@
       "source": "Open-Meteo astronomy",
       "error": null,
       "responseMs": 1,
-      "lastAttempt": "2026-07-09T12:42:14.885Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:14.885Z",
+      "lastAttempt": "2026-07-09T13:00:01.911Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:01.911Z",
       "stale": false
     },
     "moon": {
@@ -400,31 +400,31 @@
       "status": "live",
       "data": {
         "phase": "Waning crescent",
-        "illumination": 31,
-        "phaseValue": 0.847,
+        "illumination": 30,
+        "phaseValue": 0.848,
         "trust": "Estimated"
       },
       "source": "Calculated",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T12:42:14.886Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:14.886Z",
+      "lastAttempt": "2026-07-09T13:00:01.912Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:01.912Z",
       "stale": false
     },
     "air_quality": {
       "name": "air_quality",
       "status": "live",
       "data": {
-        "usAqi": 35,
-        "pm25": 6.7,
+        "usAqi": 36,
+        "pm25": 5.6,
         "category": "Good",
         "status": "live"
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 418,
-      "lastAttempt": "2026-07-09T12:42:14.886Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:14.886Z",
+      "responseMs": 433,
+      "lastAttempt": "2026-07-09T13:00:01.912Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:01.912Z",
       "stale": false
     },
     "uv": {
@@ -436,9 +436,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 0,
-      "lastAttempt": "2026-07-09T12:42:15.304Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:15.304Z",
+      "responseMs": 1,
+      "lastAttempt": "2026-07-09T13:00:02.345Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:02.345Z",
       "stale": false
     },
     "pollen": {
@@ -451,8 +451,8 @@
       "source": "Open-Meteo Air Quality",
       "error": null,
       "responseMs": 105,
-      "lastAttempt": "2026-07-09T12:42:15.304Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:15.304Z",
+      "lastAttempt": "2026-07-09T13:00:02.346Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:02.346Z",
       "stale": false
     },
     "river_gauges": {
@@ -466,7 +466,7 @@
           "siteName": "Little Bush Kill at Edgemere, PA",
           "lat": 41.25860935,
           "lng": -74.9954313,
-          "observedAt": "2026-07-09T07:45:00.000-04:00",
+          "observedAt": "2026-07-09T08:45:00.000-04:00",
           "dischargeCfs": 10.6,
           "dischargeUnit": "ft3/s",
           "stageFt": 4.42,
@@ -478,9 +478,9 @@
       },
       "source": "USGS Water Services",
       "error": null,
-      "responseMs": 8256,
-      "lastAttempt": "2026-07-09T12:42:15.409Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:15.409Z",
+      "responseMs": 15100,
+      "lastAttempt": "2026-07-09T13:00:02.451Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:02.451Z",
       "stale": false
     },
     "ebird": {
@@ -495,9 +495,9 @@
       },
       "source": "eBird",
       "error": null,
-      "responseMs": 1,
-      "lastAttempt": "2026-07-09T12:42:23.665Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:23.665Z",
+      "responseMs": 0,
+      "lastAttempt": "2026-07-09T13:00:17.551Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:17.551Z",
       "stale": false
     },
     "alerts": {
@@ -510,9 +510,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 135,
-      "lastAttempt": "2026-07-09T12:42:23.666Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:23.666Z",
+      "responseMs": 1123,
+      "lastAttempt": "2026-07-09T13:00:17.551Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:17.551Z",
       "stale": false
     },
     "photography_conditions": {
@@ -529,27 +529,27 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T12:42:23.801Z",
-      "lastSuccessfulUpdate": "2026-07-09T12:42:23.801Z",
+      "lastAttempt": "2026-07-09T13:00:18.674Z",
+      "lastSuccessfulUpdate": "2026-07-09T13:00:18.674Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 10,
-    "runDurationMs": 9472,
+    "uptimeSeconds": 17,
+    "runDurationMs": 17426,
     "memory": {
-      "rss": 58740736,
-      "heapTotal": 8257536,
-      "heapUsed": 7478568,
-      "external": 3734529,
-      "arrayBuffers": 334849
+      "rss": 76861440,
+      "heapTotal": 7639040,
+      "heapUsed": 6793456,
+      "external": 3843163,
+      "arrayBuffers": 286089
     },
-    "nodeVersion": "v20.20.0",
+    "nodeVersion": "v18.19.1",
     "platform": "linux"
   },
   "pipeline": {
     "stage": {
-      "apiFetch": "ok",
+      "apiFetch": "partial",
       "payloadBuild": "ok",
       "healthBuild": "ok",
       "writeLiveJson": "ok",
@@ -560,5 +560,11 @@
     "criticalModulesHealthy": 5,
     "criticalModulesTotal": 5
   },
-  "failures": []
+  "failures": [
+    {
+      "module": "weather",
+      "source": "previous-success",
+      "error": "HTTP 503"
+    }
+  ]
 }
