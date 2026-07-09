@@ -22,6 +22,7 @@ const HEALTH_PATH = path.join(DATA_DIR, "health.json");
 const INDEX_PATH = path.join(ROOT, "design-system", "content-engine", "regions-index.json");
 const STATUS_PATH = path.join(ROOT, "status.html");
 const DEBUG_PATH = path.join(ROOT, "debug.html");
+const PUBLISH_STATE_PATH = path.join(DATA_DIR, "publish-state.json");
 
 const DEFAULT_TIMEOUT_MS = 12000;
 const ENGINE_STALE_MS = 3 * 60 * 60 * 1000;
@@ -76,6 +77,41 @@ function shortTime(iso) {
   } catch {
     return iso;
   }
+}
+
+function ageLabel(iso) {
+  if (!iso) return "—";
+  const ms = Date.now() - Date.parse(iso);
+  if (!Number.isFinite(ms) || ms < 0) return "—";
+  const mins = Math.round(ms / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return mins + " min ago";
+  const hours = Math.round(mins / 60);
+  if (hours < 48) return hours + " h ago";
+  const days = Math.round(hours / 24);
+  return days + " d ago";
+}
+
+function defaultPublishState() {
+  return {
+    version: 1,
+    lastEngineRun: null,
+    dataUpdatedAt: null,
+    nextScheduledRun: null,
+    lastPublishAt: null,
+    lastPublishedDataAt: null,
+    lastPublishCommit: null,
+    lastPublishStatus: "never",
+    lastPublishMessage: "No publish attempted yet"
+  };
+}
+
+function readPublishState() {
+  return { ...defaultPublishState(), ...(readJson(PUBLISH_STATE_PATH) || {}) };
+}
+
+function writePublishState(state) {
+  writeJsonAtomic(PUBLISH_STATE_PATH, state);
 }
 
 function formatLocalTime(iso, timeZone) {
@@ -635,6 +671,7 @@ function buildHealth(ctx, moduleList, payload) {
         : (anyStale ? "Modules available but stale data detected." : "All modules healthy."),
       lastSuccessfulRefresh: lastSuccessfulRefresh
     },
+    publish: ctx.publishState || defaultPublishState(),
     modules,
     runtime: {
       uptimeSeconds: Math.round(process.uptime()),
@@ -655,6 +692,10 @@ function makeStatusHtml(payload, health) {
   const sources = payload.meta && payload.meta.sources ? payload.meta.sources : [];
   const hits = BANNED.filter((term) => JSON.stringify(payload).toLowerCase().includes(term));
   const raw = JSON.stringify(payload, null, 2);
+  const publish = (health && health.publish) || defaultPublishState();
+  const publishOk = publish.lastPublishStatus === "succeeded";
+  const publishRecent = publish.lastPublishAt &&
+    Date.now() - Date.parse(publish.lastPublishAt) <= ENGINE_STALE_MS;
   const moduleRows = Object.keys(health.modules || {}).map((name) => {
     const m = health.modules[name];
     return `<tr><td>${esc(name)}</td><td>${esc(m.status)}</td><td>${esc(m.lastSuccessfulUpdate || "—")}</td><td>${esc(String(m.responseMs) + " ms")}</td><td>${esc(m.stale ? "yes" : "no")}</td></tr>`;
@@ -703,12 +744,22 @@ function makeStatusHtml(payload, health) {
     <section class="wle-card" aria-label="Engine health">
       <h2>Engine Health</h2>
       <div class="wle-row"><span>Status</span><span class="${health.overall.status === "healthy" ? "wle-ok" : "wle-bad"}">${esc(health.overall.status)}</span></div>
-      <div class="wle-row"><span>Last updated</span><span class="wle-ok">${esc(updated)}</span></div>
+      <div class="wle-row"><span>Last engine run</span><span class="wle-ok">${esc(shortTime(publish.lastEngineRun || health.generatedAt))}</span></div>
       <div class="wle-row"><span>Last successful refresh</span><span>${esc(shortTime(health.overall.lastSuccessfulRefresh))}</span></div>
-      <div class="wle-row"><span>Next scheduled update</span><span>${esc(shortTime(health.nextScheduledUpdate))}</span></div>
+      <div class="wle-row"><span>Next scheduled run</span><span>${esc(shortTime(health.nextScheduledUpdate))}</span></div>
       <div class="wle-row"><span>Engine version</span><span>${esc(health.engineVersion)}</span></div>
+      <div class="wle-row"><span>Data age</span><span class="${fresh ? "wle-ok" : "wle-bad"}">${esc(ageLabel(payload.updatedAt))} · ${esc(updated)}</span></div>
       <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="${fresh ? "wle-ok" : "wle-bad"}">${fresh ? "Yes" : "No / stale"}</span></div>
       <p class="wle-muted">${esc(health.overall.message)}</p>
+    </section>
+
+    <section class="wle-card" aria-label="Public publish">
+      <h2>Public Publish</h2>
+      <div class="wle-row"><span>Last public publish</span><span class="${publishOk && publishRecent ? "wle-ok" : "wle-bad"}">${esc(shortTime(publish.lastPublishAt))}</span></div>
+      <div class="wle-row"><span>Published data age</span><span>${esc(ageLabel(publish.lastPublishedDataAt))}</span></div>
+      <div class="wle-row"><span>Publish commit</span><span>${esc(publish.lastPublishCommit || "—")}</span></div>
+      <div class="wle-row"><span>Publish status</span><span class="${publishOk ? "wle-ok" : "wle-bad"}">${esc(publish.lastPublishStatus || "unknown")}</span></div>
+      <p class="wle-muted">${esc(publish.lastPublishMessage || "No publish log message")}</p>
     </section>
 
     <section class="wle-card" aria-label="Module health">
@@ -911,12 +962,15 @@ async function main() {
   const location = resolveLocation();
   const previousLive = readJson(LIVE_PATH);
   const previousHealth = readJson(HEALTH_PATH);
+  const publishState = readPublishState();
+  publishState.lastEngineRun = runAt;
   const ctx = {
     runStarted,
     runAt,
     location,
     previousLive,
     previousHealth,
+    publishState,
     moduleResults: {},
     moduleHealth: {},
     failures: []
@@ -931,11 +985,19 @@ async function main() {
   const payload = buildLivePayload(ctx, modules);
   const health = buildHealth(ctx, modules, payload);
 
+  publishState.dataUpdatedAt = payload.updatedAt;
+  publishState.nextScheduledRun = payload.nextScheduledUpdate;
+  ctx.publishState = publishState;
+  health.publish = publishState;
+
   writeJsonAtomic(LIVE_PATH, payload);
   writeJsonAtomic(HEALTH_PATH, health);
+  writePublishState(publishState);
   writeRenderedPages(payload, health);
 
   console.log("Waypoint Live Engine wrote", LIVE_PATH, "and", HEALTH_PATH);
+  console.log("engine ran:", runAt);
+  console.log("files changed: data/live.json, data/health.json, data/publish-state.json, status.html, debug.html");
   console.log("updatedAt:", payload.updatedAt);
   console.log("location:", payload.location.label);
   console.log("engineVersion:", ENGINE_VERSION);

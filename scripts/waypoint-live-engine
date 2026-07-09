@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
-# Waypoint Live Engine — generate data/live.json
+# Waypoint Live Engine — generate artifacts and publish to GitHub Pages when data changes.
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-exec node "$ROOT/scripts/waypoint-live-engine.mjs" "$@"
+ENGINE="$ROOT/scripts/waypoint-live-engine.mjs"
+PUBLISH="$ROOT/scripts/publish-live-engine-artifacts.mjs"
+
+node "$ENGINE" "$@"
+ENGINE_STATUS=$?
+
+if [ "$ENGINE_STATUS" -eq 0 ]; then
+  node "$PUBLISH" "$@" || true
+fi
+
+exit "$ENGINE_STATUS"
