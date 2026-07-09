@@ -98,7 +98,7 @@
         '<div class="wforage__grid">' + intel.cardList.map(forageCard).join("") + "</div>" +
         '<footer class="wforage__foot">' +
           '<p class="wforage__attribution">' +
-            escapeHtml("Educational foraging context only · not harvest advice · " + (intel.regionLabel || "regional")) +
+            escapeHtml("Regional foraging context only · not harvest advice · " + (intel.regionLabel || "regional")) +
             ' · <a class="wforage__link" href="apps/foragecast/">Open ForageCast</a>' +
           "</p>" +
         "</footer>" +

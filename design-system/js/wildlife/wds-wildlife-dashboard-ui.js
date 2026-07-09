@@ -7,7 +7,7 @@
   var SOURCE_LABELS = {
     observed: "Observed",
     expected: "Expected",
-    educational: "Educational",
+    educational: "Regional",
     future: "Future live source"
   };
 
@@ -45,7 +45,7 @@
   function activityCard(data) {
     if (!data) return "";
     var sourceClass = "wwild-card--" + (data.source || "educational");
-    var sourceLabel = SOURCE_LABELS[data.source] || "Educational";
+    var sourceLabel = SOURCE_LABELS[data.source] || "Regional";
     var confLabel = data.confidence === "moderate" ? "Moderate confidence" : "Low confidence";
     return (
       '<article class="wwild-card ' + sourceClass + '" data-wildlife-card="' + escapeHtml(data.id) + '">' +

@@ -25,7 +25,7 @@
       css: "wds-prov--observation"
     },
     prediction: {
-      label: "Educational index",
+      label: "Field index",
       short: "Index",
       title: "Model estimate — confirm outdoors",
       css: "wds-prov--prediction"

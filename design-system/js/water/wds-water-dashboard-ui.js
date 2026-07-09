@@ -15,7 +15,7 @@
     live: "Live",
     editorial: "Regional",
     expected: "Inferred",
-    educational: "Educational",
+    educational: "Regional",
     future: "USGS / NWS pending"
   };
 

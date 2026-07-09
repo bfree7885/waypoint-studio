@@ -15,7 +15,7 @@
     if (!prov) return "";
     var labels = {
       verified: "Verified",
-      educational: "Educational",
+      educational: "Regional",
       regional: "Regional note",
       unknown: "Unknown",
       future: "Future"

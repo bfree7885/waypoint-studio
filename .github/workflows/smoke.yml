@@ -1,0 +1,35 @@
+name: Smoke tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install smoke test dependency
+        run: npm install ws@8.21.0 --no-save
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Start static server
+        run: python3 -m http.server 8080 &
+      
+      - name: Wait for server
+        run: sleep 2
+
+      - name: Run headless smoke tests
+        run: node automation/smoke-browser.mjs http://127.0.0.1:8080
+
+      - name: Syntax-check live engine
+        run: node --check scripts/waypoint-live-engine.mjs

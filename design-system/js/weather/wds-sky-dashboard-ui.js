@@ -139,7 +139,7 @@
 
         '<footer class="wsky__foot">' +
           '<p class="wsky__attribution">' +
-            (live ? '<span class="wsky__trust">Live</span> · Open-Meteo' : "Educational · verify locally") +
+            (live ? '<span class="wsky__trust">Live</span> · Open-Meteo' : "Regional · verify locally") +
             (pkg && pkg.meta && pkg.meta.fetchedAt
               ? " · Last updated " + escapeHtml(new Date(pkg.meta.fetchedAt).toLocaleString())
               : "") +

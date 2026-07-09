@@ -163,7 +163,7 @@
     var tagInfo = ri() && ri().dashboardTag
       ? ri().dashboardTag(card)
       : null;
-    var tag = tagInfo ? tagInfo.label : (isLiveWeatherCard ? "Loading" : (isPlaceholder ? "Educational" : "Editorial"));
+    var tag = tagInfo ? tagInfo.label : (isLiveWeatherCard ? "Loading" : (isPlaceholder ? "Regional" : "Editorial"));
     var tagClass = tagInfo
       ? " " + tagInfo.className
       : (isLiveWeatherCard || isPlaceholder
@@ -549,7 +549,7 @@
     var rb = data.researchBrief;
     if (!rb) return "";
     var isPlaceholder = rb.source && /placeholder/i.test(String(rb.source));
-    var confidence = rb.confidence || (isPlaceholder ? "Editorial summary · source pending" : "Educational summary");
+    var confidence = rb.confidence || (isPlaceholder ? "Editorial summary · source pending" : "Regional summary");
     return (
       '<section class="' + storySection("quiet") + '" id="research-brief" aria-labelledby="wce-rb-title">' +
         blockHead("Research", "Research brief", "Plain-language science with local application — uncertainty stated honestly.", "quiet") +

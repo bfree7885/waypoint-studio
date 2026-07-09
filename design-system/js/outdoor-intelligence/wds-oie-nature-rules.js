@@ -40,7 +40,7 @@
               whyItMatters: "Seasonal timing connects weather to what you can realistically observe this week.",
               whatToDo: "Use a field guide for your state; confirm IDs with multiple cues.",
               whatToLookFor: "South-facing slopes and wetland edges often lead regional timing.",
-              trust: "Educational",
+              trust: "Regional",
               source: "Latitude-season guidance",
               confidence: 0.6
             });
@@ -103,7 +103,7 @@
           whyItMatters: "Road crossings spike mortality — drive carefully near vernal pools.",
           whatToDo: "Stand still five minutes with a red light; do not handle without need.",
           whatToLookFor: "Spring peepers, wood frogs, salamanders on wet pavement.",
-          trust: "Educational",
+          trust: "Regional",
           source: "Temperature + precipitation ecology"
         });
       }
@@ -121,7 +121,7 @@
           whyItMatters: "A single morning can deliver dozens of species in treetops.",
           whatToDo: "Learn five songs this week; binoculars at forest edge facing sun at your back.",
           whatToLookFor: "Mixed flocks with warblers, vireos, and kinglets.",
-          trust: "Educational",
+          trust: "Regional",
           source: "General migration ecology"
         });
       }
@@ -139,7 +139,7 @@
           whyItMatters: "Weather windows concentrate migrants — timing beats random walks.",
           whatToDo: "Bird the day after a north wind overnight.",
           whatToLookFor: "Kettles of broad-winged hawks on thermals in September.",
-          trust: "Educational",
+          trust: "Regional",
           source: "General migration ecology"
         });
       }
@@ -157,7 +157,7 @@
           whyItMatters: "Most casual observers miss edge specialists by staying on main trail centerline.",
           whatToDo: "Walk the margin slowly once per outing.",
           whatToLookFor: "Browse lines, nests, and scat where cover meets open food.",
-          trust: "Educational",
+          trust: "Regional",
           source: "Waypoint environmental education"
         });
       }

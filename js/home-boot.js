@@ -5,6 +5,108 @@
   "use strict";
 
   var ENGINE_BASE = "design-system/content-engine/";
+  var DEBUG_COMMIT = (function () {
+    var feed = window.WDS && WDS.liveEngine && WDS.liveEngine.getLast && WDS.liveEngine.getLast();
+    if (feed && feed.engineVersion) return "engine-" + feed.engineVersion;
+    return "local";
+  });
+  var DEBUG_BUILD_TIME = new Date().toISOString();
+  var DEBUG_KEY = "waypointDebugSnapshot";
+  var BANNED_TERMS = ["coming soon", "assignment", "homework", "lesson", "educational"];
+
+  function txt(el) {
+    return (el && el.textContent ? el.textContent : "").replace(/\s+/g, " ").trim();
+  }
+
+  function unique(items) {
+    var out = [];
+    var seen = Object.create(null);
+    (items || []).forEach(function (item) {
+      var key = String(item || "").trim();
+      if (!key) return;
+      var lc = key.toLowerCase();
+      if (seen[lc]) return;
+      seen[lc] = true;
+      out.push(key);
+    });
+    return out;
+  }
+
+  function isVisible(el) {
+    if (!el) return false;
+    if (el.hidden) return false;
+    var style = window.getComputedStyle ? window.getComputedStyle(el) : null;
+    if (style && (style.display === "none" || style.visibility === "hidden" || style.opacity === "0")) return false;
+    return !!(el.offsetParent || (style && style.position === "fixed"));
+  }
+
+  function sectionLabel(el) {
+    if (!el) return "";
+    var header = el.querySelector("h1, h2, h3");
+    var label = txt(header);
+    if (label) return label;
+    label = txt(el);
+    if (label.length > 90) label = label.slice(0, 90) + "...";
+    return label;
+  }
+
+  function collectDebugSnapshot() {
+    var headings = unique(Array.prototype.slice.call(document.querySelectorAll("h1, h2, h3"))
+      .filter(isVisible)
+      .map(txt));
+    var sections = unique(Array.prototype.slice.call(document.querySelectorAll("section[id], section[data-section-id], [data-section-id], [data-widget-id]"))
+      .filter(isVisible)
+      .map(function (el) {
+        var id = el.getAttribute("id") || el.getAttribute("data-section-id") || el.getAttribute("data-widget-id") || "";
+        var label = sectionLabel(el);
+        return label ? id + " :: " + label : id;
+      }));
+    var bodyText = txt(document.body).toLowerCase();
+    var bannedHits = BANNED_TERMS.filter(function (term) { return bodyText.indexOf(term) >= 0; });
+    var hasWeather = !!(window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast &&
+      (function () {
+        var pkg = WDS.outdoorIntelligence.getLast();
+        return pkg && pkg.meta && pkg.meta.blockStatus && pkg.meta.blockStatus.weather === "live";
+      })());
+    var hasLocation = !!(window.WDS && WDS.location && WDS.location.getState && (function () {
+      var loc = WDS.location.getState();
+      return loc && isFinite(Number(loc.lat)) && isFinite(Number(loc.lng));
+    })());
+
+    return {
+      commitHash: typeof DEBUG_COMMIT === "function" ? DEBUG_COMMIT() : DEBUG_COMMIT,
+      buildTime: DEBUG_BUILD_TIME,
+      activePageTitle: document.title || "",
+      capturedAt: new Date().toISOString(),
+      headings: headings,
+      sectionsRendered: sections,
+      liveWeatherLoaded: hasWeather,
+      locationLoaded: hasLocation,
+      bannedTextPresent: bannedHits.length > 0,
+      bannedTextHits: bannedHits
+    };
+  }
+
+  function publishDebugSnapshot() {
+    var snap = collectDebugSnapshot();
+    window.__WAYPOINT_DEBUG__ = snap;
+    try {
+      localStorage.setItem(DEBUG_KEY, JSON.stringify(snap));
+    } catch (e) { /* noop */ }
+  }
+
+  function wireDebugSnapshot() {
+    publishDebugSnapshot();
+    var mount = document.getElementById("wds-content-engine") || document.body;
+    if (!mount) return;
+    var debounced = null;
+    var obs = new MutationObserver(function () {
+      if (debounced) clearTimeout(debounced);
+      debounced = setTimeout(publishDebugSnapshot, 300);
+    });
+    obs.observe(mount, { childList: true, subtree: true, characterData: true });
+    setInterval(publishDebugSnapshot, 5000);
+  }
 
   function startDashboard(loc) {
     if (!window.WDS || !WDS.contentEngine) return;
@@ -69,8 +171,12 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
+    document.addEventListener("DOMContentLoaded", function () {
+      wireDebugSnapshot();
+      boot();
+    });
   } else {
+    wireDebugSnapshot();
     boot();
   }
 })();

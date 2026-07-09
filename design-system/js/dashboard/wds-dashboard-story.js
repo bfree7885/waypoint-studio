@@ -28,7 +28,7 @@
     if (!hasLive) {
       return {
         status: "empty",
-        tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+        tag: { label: "Regional", className: "wdb-widget__tag--editorial" },
         summary: "Outdoor story pending",
         body: "Set your location to generate an evidence-based outdoor summary from live weather and alerts.",
         evidence: []

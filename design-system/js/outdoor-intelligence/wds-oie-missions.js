@@ -109,7 +109,7 @@
         summary: m.type + " · " + m.title,
         body: m.body,
         why: m.why,
-        trust: "Educational"
+        trust: "Regional"
       };
     });
   }

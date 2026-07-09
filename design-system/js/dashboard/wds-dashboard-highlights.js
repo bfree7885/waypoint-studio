@@ -111,14 +111,14 @@
 
     var tag = hasLive
       ? { label: "Live", className: "wdb-widget__tag--live" }
-      : { label: "Educational", className: "wdb-widget__tag--editorial" };
+      : { label: "Regional", className: "wdb-widget__tag--editorial" };
 
     if (!items.length) {
       var EF = global.WDS && global.WDS.educationalFallback;
       if (EF && EF.widgetData) return EF.widgetData("weather", { summary: "Outdoor highlights" });
       return {
         status: "empty",
-        tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+        tag: { label: "Regional", className: "wdb-widget__tag--editorial" },
         summary: "Highlights loading",
         body: "Regional highlights appear when location and weather data load."
       };

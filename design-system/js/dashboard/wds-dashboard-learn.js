@@ -35,7 +35,7 @@
     });
     return {
       status: "ready",
-      tag: { label: "Educational", className: "wdb-widget__tag--editorial" },
+      tag: { label: "Regional", className: "wdb-widget__tag--editorial" },
       summary: lesson.topic + " · " + lesson.title,
       body: lesson.body,
       metaFooter: lesson.source + " · " + dateLabel

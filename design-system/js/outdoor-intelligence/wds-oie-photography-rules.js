@@ -104,7 +104,7 @@
             whyItMatters: "A single blown highlight destroys macro impact.",
             whatToDo: "Shoot early morning on clear days; look for open shade on north sides of logs.",
             whatToLookFor: "Insects basking in dappled light at trail edges.",
-            trust: "Educational",
+            trust: "Regional",
             source: "Photography field guidance"
           });
         }
@@ -240,7 +240,7 @@
             whyItMatters: "Peak color can shift a week by elevation — microclimate matters.",
             whatToDo: "Shoot backlit leaves for translucence; overcast reduces glare on red maples.",
             whatToLookFor: "Sugar maples on wet soils; oaks holding bronze into November.",
-            trust: "Educational",
+            trust: "Regional",
             source: "Latitude-season phenology"
           });
         }

@@ -77,7 +77,7 @@
         return {
           name: row.species || row.name || "Species",
           status: row.status || "watch",
-          note: row.note || "Educational outlook — not a harvest guarantee",
+          note: row.note || "Regional outlook — not a harvest guarantee",
           bucket: "outlook"
         };
       });
@@ -237,7 +237,7 @@
     notes.push("When in doubt, photograph and do not collect.");
 
     return card(
-      "educational-notes", "📖", "Educational Notes",
+      "educational-notes", "📖", "Field Notes",
       notes.length > 2 ? "ready" : "ready",
       "Observation over collection",
       "Foraging intelligence teaches timing and habitat literacy — not guaranteed yields.",

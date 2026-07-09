@@ -15,7 +15,7 @@
     live: "Live",
     editorial: "Regional",
     expected: "Inferred",
-    educational: "Educational",
+    educational: "Regional",
     future: "Future feed"
   };
 
@@ -54,7 +54,7 @@
     if (!data) return "";
     var statusClass = "wtrail-card--" + (data.status || "unknown");
     var statusLabel = STATUS_LABELS[data.status] || "No feed";
-    var sourceLabel = SOURCE_LABELS[data.source] || "Educational";
+    var sourceLabel = SOURCE_LABELS[data.source] || "Regional";
     return (
       '<article class="wtrail-card ' + statusClass + '" data-trail-card="' + escapeHtml(data.id) + '"' +
         (data.feedSlot ? ' data-feed-slot="' + escapeHtml(data.feedSlot) + '"' : "") +

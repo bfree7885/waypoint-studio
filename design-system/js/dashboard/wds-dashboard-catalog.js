@@ -143,7 +143,7 @@
           wintel.cardList.slice(0, 3).forEach(function (c) {
             items.push((c.label || "Wildlife") + ": " + (c.happening || c.headline || "—"));
           });
-          sources.push(national ? "Educational" : "Regional");
+          sources.push(national ? "Regional" : "Regional");
         }
       }
       if (Fi && Fi.analyze) {
@@ -165,7 +165,7 @@
       return {
         status: "ready",
         tag: {
-          label: national ? "Educational" : "Editorial",
+          label: national ? "Regional" : "Editorial",
           className: "wdb-widget__tag--editorial"
         },
         summary: "What may be active on " + dateLabel,
@@ -622,7 +622,7 @@
       var b = D().bundle(ctx);
       var fp = b.foragecastPreview;
       if (fp && fp.fruitingOutlook) {
-        return D().editorialReady("Educational outlook — not a harvest guarantee", null,
+        return D().editorialReady("Regional outlook — not a harvest guarantee", null,
           fp.fruitingOutlook.slice(0, 4).map(function (row) {
             return row.species + " — " + (row.note || row.status);
           }), { href: "apps/foragecast/", label: "Open ForageCast" });
