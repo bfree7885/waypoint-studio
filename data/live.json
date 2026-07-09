@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-09T08:30:01.236Z",
-  "nextScheduledUpdate": "2026-07-09T09:00:00.000Z",
+  "updatedAt": "2026-07-09T09:00:02.051Z",
+  "nextScheduledUpdate": "2026-07-09T09:30:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -90,7 +90,7 @@
   },
   "airQuality": {
     "usAqi": 34,
-    "pm25": 7.6,
+    "pm25": 8.7,
     "category": "Good",
     "status": "live"
   },
@@ -464,7 +464,7 @@
     "air_quality": {
       "data": {
         "usAqi": 34,
-        "pm25": 7.6,
+        "pm25": 8.7,
         "category": "Good",
         "status": "live"
       }
@@ -542,7 +542,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T08:30:01.236Z",
+    "generatedAt": "2026-07-09T09:00:02.051Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
