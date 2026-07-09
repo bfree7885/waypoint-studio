@@ -1,0 +1,10 @@
+[Unit]
+Description=Waypoint Photo Importer — watch for SD card mounts
+Documentation=docs/photo-importer.md
+
+[Path]
+PathExists=/media/%u
+PathChanged=/media/%u
+
+[Install]
+WantedBy=default.target

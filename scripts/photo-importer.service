@@ -1,0 +1,10 @@
+[Unit]
+Description=Waypoint Photo Importer — copy camera media to Google Drive
+Documentation=docs/photo-importer.md
+After=default.target
+
+[Service]
+Type=oneshot
+Environment=WAYPOINT_PHOTO_IMPORTER_AUTO=1
+ExecStartPre=/bin/sleep 8
+ExecStart=__REPO_ROOT__/scripts/photo-importer-run.sh
