@@ -802,13 +802,18 @@ function buildLivePayload(ctx, moduleList) {
   return payload;
 }
 
+const OPTIONAL_UNAVAILABLE_OK = new Set(["pollen", "river_gauges"]);
+
 function buildHealth(ctx, moduleList, payload) {
   const modules = {};
   moduleList.forEach((m) => {
     modules[m.name] = ctx.moduleHealth[m.name];
   });
 
-  const anyHardFailure = Object.values(modules).some((m) => m.status === "unavailable");
+  const anyHardFailure = Object.entries(modules).some(([name, m]) => {
+    if (OPTIONAL_UNAVAILABLE_OK.has(name) && m.status === "unavailable") return false;
+    return m.status === "unavailable";
+  });
   const anyStale = Object.values(modules).some((m) => m.stale);
   const overallStatus = anyHardFailure ? "degraded" : (anyStale ? "warning" : "healthy");
 

@@ -2,17 +2,17 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T02:36:01.099Z",
+  "generatedAt": "2026-07-09T02:41:57.430Z",
   "nextScheduledUpdate": "2026-07-09T03:00:00.000Z",
   "overall": {
-    "status": "degraded",
-    "message": "One or more modules failed; serving previous successful module data where available.",
-    "lastSuccessfulRefresh": "2026-07-09T02:36:14.266Z"
+    "status": "healthy",
+    "message": "All modules healthy.",
+    "lastSuccessfulRefresh": "2026-07-09T02:42:03.899Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T02:36:01.099Z",
-    "dataUpdatedAt": "2026-07-09T02:36:01.099Z",
+    "lastEngineRun": "2026-07-09T02:41:57.430Z",
+    "dataUpdatedAt": "2026-07-09T02:41:57.430Z",
     "nextScheduledRun": "2026-07-09T03:00:00.000Z",
     "lastPublishAt": null,
     "lastPublishedDataAt": null,
@@ -27,7 +27,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 3.3665895462036133,
+        "generationtime_ms": 0.33295154571533203,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -51,14 +51,14 @@
           "time": "2026-07-08T22:30",
           "interval": 900,
           "temperature_2m": 71.3,
-          "relative_humidity_2m": 70,
-          "apparent_temperature": 72.5,
+          "relative_humidity_2m": 73,
+          "apparent_temperature": 73,
           "weather_code": 0,
           "wind_speed_10m": 6.1,
           "wind_direction_10m": 204,
           "wind_gusts_10m": 12.1,
           "cloud_cover": 0,
-          "surface_pressure": 968.2,
+          "surface_pressure": 967.8,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -159,8 +159,8 @@
             79.9,
             81.5,
             82.4,
-            82.7,
-            82.5,
+            82.1,
+            83.3,
             74.1,
             76.8,
             76.1,
@@ -202,13 +202,13 @@
             0,
             0,
             0,
-            1,
             0,
-            3,
+            0,
+            0,
             1,
             1,
             3,
-            3,
+            2,
             3,
             3,
             55,
@@ -343,7 +343,7 @@
           ],
           "temperature_2m_max": [
             81.2,
-            82.7
+            83.3
           ],
           "temperature_2m_min": [
             59.1,
@@ -373,9 +373,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 594,
-      "lastAttempt": "2026-07-09T02:36:01.101Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:01.101Z",
+      "responseMs": 501,
+      "lastAttempt": "2026-07-09T02:41:57.431Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:57.431Z",
       "stale": false
     },
     "sunrise_sunset": {
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 16,
-      "lastAttempt": "2026-07-09T02:36:01.695Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:01.695Z",
+      "responseMs": 14,
+      "lastAttempt": "2026-07-09T02:41:57.932Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:57.932Z",
       "stale": false
     },
     "moon": {
@@ -407,8 +407,8 @@
       "source": "Calculated",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:36:01.711Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:01.711Z",
+      "lastAttempt": "2026-07-09T02:41:57.946Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:57.946Z",
       "stale": false
     },
     "air_quality": {
@@ -422,9 +422,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 403,
-      "lastAttempt": "2026-07-09T02:36:01.711Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:01.711Z",
+      "responseMs": 401,
+      "lastAttempt": "2026-07-09T02:41:57.946Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:57.946Z",
       "stale": false
     },
     "uv": {
@@ -437,8 +437,8 @@
       "source": "Open-Meteo",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:36:02.114Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:02.114Z",
+      "lastAttempt": "2026-07-09T02:41:58.347Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:58.347Z",
       "stale": false
     },
     "pollen": {
@@ -450,9 +450,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 109,
-      "lastAttempt": "2026-07-09T02:36:02.114Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:02.114Z",
+      "responseMs": 104,
+      "lastAttempt": "2026-07-09T02:41:58.347Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:58.347Z",
       "stale": false
     },
     "river_gauges": {
@@ -478,9 +478,9 @@
       },
       "source": "USGS Water Services",
       "error": null,
-      "responseMs": 11887,
-      "lastAttempt": "2026-07-09T02:36:02.223Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:02.223Z",
+      "responseMs": 5333,
+      "lastAttempt": "2026-07-09T02:41:58.451Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:41:58.451Z",
       "stale": false
     },
     "alerts": {
@@ -493,9 +493,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 156,
-      "lastAttempt": "2026-07-09T02:36:14.110Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:14.110Z",
+      "responseMs": 115,
+      "lastAttempt": "2026-07-09T02:42:03.784Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:42:03.784Z",
       "stale": false
     },
     "photography_conditions": {
@@ -512,20 +512,20 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:36:14.266Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:36:14.266Z",
+      "lastAttempt": "2026-07-09T02:42:03.899Z",
+      "lastSuccessfulUpdate": "2026-07-09T02:42:03.899Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 13,
-    "runDurationMs": 13169,
+    "uptimeSeconds": 6,
+    "runDurationMs": 6471,
     "memory": {
-      "rss": 73990144,
-      "heapTotal": 8257536,
-      "heapUsed": 7600992,
-      "external": 3734518,
-      "arrayBuffers": 334838
+      "rss": 75456512,
+      "heapTotal": 9306112,
+      "heapUsed": 8273568,
+      "external": 3522367,
+      "arrayBuffers": 119072
     },
     "nodeVersion": "v20.20.0",
     "platform": "linux"
