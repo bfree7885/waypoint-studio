@@ -478,7 +478,7 @@
 
     var learnText = learn
       ? learn.summary + " — " + learn.body
-      : "Pick one species or cloud type to identify today — naming builds memory.";
+      : "Pick one species or cloud type to identify today — naming builds field memory.";
 
     return {
       where: locationLabel(ctx) + (loc.elevationMeters != null ? " · " + Math.round(loc.elevationMeters * 3.28084) + " ft" : ""),
@@ -537,7 +537,7 @@
           renderAnswerRow("4", "What should I notice today?", answers.notice, "Estimated") +
           renderAnswerRow("5", "What should I photograph?", answers.photograph, "Estimated") +
           renderAnswerRow("6", "Should I go outside?", answers.goOutside, "Estimated") +
-          renderAnswerRow("7", "What should I learn today?", answers.learn, "Estimated") +
+          renderAnswerRow("7", "What should I focus on today?", answers.learn, "Estimated") +
         "</div>" +
       "</section>"
     );

@@ -219,7 +219,13 @@
     if (!river || status === "unavailable" || river.status === "unavailable") {
       return renderUnavailable("River gauge");
     }
-    return "<p class=\"swk-detail\">" + esc(river.summary || "River data unavailable") + "</p>";
+    var nearest = river.nearest || {};
+    var parts = [];
+    if (nearest.stageFt != null) parts.push(nearest.stageFt + " ft stage");
+    if (nearest.dischargeCfs != null) parts.push(nearest.dischargeCfs + " cfs");
+    var detail = parts.length ? parts.join(" · ") : (river.summary || "River data unavailable");
+    var site = nearest.siteName ? "<p class=\"swk-line\">" + esc(nearest.siteName) + "</p>" : "";
+    return site + "<p class=\"swk-detail\">" + esc(detail) + "</p>";
   }
 
   function renderWildlife() {

@@ -494,11 +494,11 @@
   function toLegacyCompose(briefing) {
     if (!briefing) return null;
     var notices = [];
-    ["readiness", "current", "forecast", "alerts", "aqi", "sun", "moon", "water", "river", "radar", "photography", "safety"].forEach(function (key) {
+    ["readiness", "current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "photography", "safety"].forEach(function (key) {
       var s = briefing[key];
       if (s && s.what) {
         notices.push({
-          domain: key === "river" ? "water" : (s.category === "river" ? "water" : (s.category || key)),
+          domain: s.category === "river" ? "water" : (s.category || key),
           what: s.what,
           why: s.why,
           matters: s.whyItMatters,
