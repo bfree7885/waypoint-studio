@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-09T01:54:57.092Z",
-  "nextScheduledUpdate": "2026-07-09T02:00:00.000Z",
+  "updatedAt": "2026-07-09T02:36:01.099Z",
+  "nextScheduledUpdate": "2026-07-09T03:00:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -16,9 +16,9 @@
   },
   "timezone": "America/New_York",
   "current": {
-    "temperatureF": 72,
-    "feelsLikeF": 74,
-    "humidity": 69,
+    "temperatureF": 71,
+    "feelsLikeF": 73,
+    "humidity": 70,
     "windMph": 6,
     "windGustMph": 12,
     "cloudCover": 0,
@@ -26,7 +26,7 @@
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-08T21:45"
+    "observedAt": "2026-07-08T22:30"
   },
   "forecast": {
     "highF": 81,
@@ -37,12 +37,6 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-07-08T22:00",
-        "temperatureF": 72,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
         "time": "2026-07-08T23:00",
         "temperatureF": 71,
         "precipProbability": 0,
@@ -52,11 +46,11 @@
         "time": "2026-07-09T00:00",
         "temperatureF": 70,
         "precipProbability": 0,
-        "conditions": "Partly cloudy"
+        "conditions": "Clear sky"
       },
       {
         "time": "2026-07-09T01:00",
-        "temperatureF": 70,
+        "temperatureF": 69,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
@@ -68,7 +62,13 @@
       },
       {
         "time": "2026-07-09T03:00",
-        "temperatureF": 69,
+        "temperatureF": 68,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-09T04:00",
+        "temperatureF": 67,
         "precipProbability": 0,
         "conditions": "Clear sky"
       }
@@ -84,13 +84,13 @@
   },
   "moon": {
     "phase": "Waning crescent",
-    "illumination": 34,
-    "phaseValue": 0.832,
+    "illumination": 33,
+    "phaseValue": 0.833,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 44,
-    "pm25": 3.8,
+    "usAqi": 43,
+    "pm25": 4.2,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 20.218372344970703,
+        "generationtime_ms": 3.3665895462036133,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-08T21:45",
+          "time": "2026-07-08T22:30",
           "interval": 900,
-          "temperature_2m": 72.3,
-          "relative_humidity_2m": 69,
-          "apparent_temperature": 73.7,
+          "temperature_2m": 71.3,
+          "relative_humidity_2m": 70,
+          "apparent_temperature": 72.5,
           "weather_code": 0,
           "wind_speed_10m": 6.1,
-          "wind_direction_10m": 190,
+          "wind_direction_10m": 204,
           "wind_gusts_10m": 12.1,
           "cloud_cover": 0,
-          "surface_pressure": 968.8,
+          "surface_pressure": 968.2,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -214,33 +214,33 @@
             81,
             79,
             76.5,
-            73.6,
-            71.9,
-            70.8,
-            70.1,
-            69.6,
-            69.2,
-            68.6,
-            68,
-            67.4,
-            67.3,
-            70.1,
-            74.1,
-            76.5,
-            78.2,
-            80,
-            81.2,
-            81.2,
-            83.7,
-            84.3,
-            84.7,
-            84.7,
-            83.9,
+            73.3,
+            71.7,
+            70.7,
+            69.8,
+            69,
+            68.5,
+            67.8,
+            67.1,
+            66.6,
+            66.5,
+            68.9,
+            72.8,
+            75.8,
+            78,
+            79.9,
             81.5,
-            77,
-            75,
-            73.1,
-            72.8
+            82.4,
+            82.7,
+            82.5,
+            74.1,
+            76.8,
+            76.1,
+            72.4,
+            72.1,
+            70.8,
+            71,
+            70.2
           ],
           "weather_code": [
             3,
@@ -263,32 +263,32 @@
             0,
             0,
             0,
+            1,
             0,
             0,
             0,
             0,
-            2,
             0,
             0,
             0,
             0,
-            3,
             0,
-            2,
             0,
             1,
-            1,
-            1,
-            2,
+            0,
             3,
+            1,
+            1,
+            3,
+            3,
+            3,
+            3,
+            55,
+            2,
             3,
             3,
             2,
             0,
-            0,
-            3,
-            3,
-            3,
             3,
             3
           ],
@@ -383,7 +383,7 @@
             0,
             0,
             0,
-            0,
+            0.043,
             0,
             0,
             0,
@@ -411,15 +411,15 @@
           ],
           "weather_code": [
             45,
-            3
+            55
           ],
           "temperature_2m_max": [
             81.2,
-            84.7
+            82.7
           ],
           "temperature_2m_min": [
             59.1,
-            67.3
+            66.5
           ],
           "precipitation_probability_max": [
             2,
@@ -427,7 +427,7 @@
           ],
           "precipitation_sum": [
             0,
-            0
+            0.043
           ],
           "uv_index_max": [
             7.5,
@@ -456,15 +456,15 @@
     "moon": {
       "data": {
         "phase": "Waning crescent",
-        "illumination": 34,
-        "phaseValue": 0.832,
+        "illumination": 33,
+        "phaseValue": 0.833,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 44,
-        "pm25": 3.8,
+        "usAqi": 43,
+        "pm25": 4.2,
         "category": "Good",
         "status": "live"
       }
@@ -483,8 +483,22 @@
     },
     "river_gauges": {
       "data": {
-        "status": "unavailable",
-        "summary": "Data currently unavailable"
+        "status": "live",
+        "summary": "Little Bush Kill at Edgemere, PA — 4.51 ft stage · 14.1 cfs · 8.8 km away",
+        "nearest": {
+          "siteId": "01439590",
+          "siteName": "Little Bush Kill at Edgemere, PA",
+          "lat": 41.25860935,
+          "lng": -74.9954313,
+          "observedAt": "2026-07-08T21:45:00.000-04:00",
+          "dischargeCfs": 14.1,
+          "dischargeUnit": "ft3/s",
+          "stageFt": 4.51,
+          "stageUnit": "ft",
+          "distanceKm": 8.82043113502746
+        },
+        "siteCount": 26,
+        "disclaimer": "Provisional USGS data — subject to revision"
       }
     },
     "alerts": {
@@ -512,18 +526,19 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
+      "USGS Water Services",
       "NWS"
     ],
     "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T01:54:57.092Z",
+    "generatedAt": "2026-07-09T02:36:01.099Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "unavailable"
+      "usgsWater": "live"
     }
   }
 }

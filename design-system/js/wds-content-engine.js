@@ -92,7 +92,7 @@
     if (item.outdoorChallenge) parts.push("<p><strong>Outdoor:</strong> " + escapeHtml(item.outdoorChallenge) + "</p>");
     if (item.citizenScience) {
       var csText = csNote ? csNote(item.citizenScience) : item.citizenScience;
-      parts.push("<p><strong>Citizen science (optional, coming soon):</strong> " + escapeHtml(csText) + "</p>");
+      parts.push("<p><strong>Citizen science (optional):</strong> " + escapeHtml(csText) + "</p>");
     }
     if (item.subscriptionValue) parts.push("<p><strong>Subscribers:</strong> " + escapeHtml(item.subscriptionValue) + "</p>");
     if (!parts.length) return "";

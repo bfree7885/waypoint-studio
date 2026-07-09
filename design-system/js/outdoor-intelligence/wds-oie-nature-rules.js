@@ -170,13 +170,13 @@
       when: function (c) { return c.national; },
       block: function () {
         return b({
-          what: "U.S. educational mode — guidance reflects climate zone, not county-specific species lists.",
+          what: "U.S. regional overview — guidance reflects climate zone, not county-specific species lists.",
           why: "Live occurrence feeds (eBird, iNaturalist) are not connected for this coordinate view.",
           whyItMatters: "Honest labeling prevents false confidence about local rarities.",
           whatToDo: "Connect regional apps for live species data; use Waypoint for weather-linked context.",
           whatToLookFor: "Edges, water, and south-facing slopes first.",
-          trust: "Educational",
-          source: "Waypoint U.S. educational"
+          trust: "Regional",
+          source: "Waypoint U.S. regional"
         });
       }
     });

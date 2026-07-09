@@ -121,15 +121,15 @@
   }
 
   function displaySubtitle(loc) {
-    if (!loc) return "Educational U.S. dashboard";
+    if (!loc) return "U.S. regional overview";
     if (loc.contentMode === CONTENT_MODE_LOCAL || isLocalBundleEligible(loc)) {
       return "Local editorial bundle available";
     }
-    if (loc.source === "geo") return "Live data for your coordinates · educational nature guidance";
+    if (loc.source === "geo") return "Live data for your coordinates · regional nature guidance";
     if (loc.source === "manual" && loc.regionId && loc.regionId.indexOf("us-state-") === 0) {
-      return "State-level view · educational guidance for " + (loc.state || "your state");
+      return "State-level view · regional guidance for " + (loc.state || "your state");
     }
-    return "U.S. outdoor dashboard · educational guidance at your coordinates";
+    return "U.S. outdoor dashboard · regional guidance at your coordinates";
   }
 
   function finalizeLocation(loc, index) {
@@ -209,7 +209,7 @@
       },
       geography: {
         status: "educational",
-        bioregion: "Educational · U.S. field guidance (not local ecology)",
+        bioregion: "Regional · U.S. field guidance (not local ecology)",
         ecoregion: null,
         dominantForest: null,
         watersheds: []
@@ -262,7 +262,7 @@
     bundle.season = seasonNote(loc && loc.lat);
     bundle.platformScope = bundle.platformScope || {
       label: "U.S. outdoor dashboard",
-      detail: "Educational guidance for your coordinates — not county-specific ecology."
+      detail: "Regional guidance for your coordinates — not county-specific ecology."
     };
     return bundle;
   }
@@ -280,9 +280,9 @@
     var title = loc && loc.displaySubtitle ? loc.displaySubtitle : displaySubtitle(loc);
     return (
       '<div class="wdb-trust wdb-trust--national" role="note" aria-label="Data scope">' +
-        '<span class="wdb-trust__badge wdb-trust__badge--educational">U.S. educational mode</span>' +
-        '<p class="wdb-trust__text">' + escapeHtml(title) + ". Wildlife, plants, trails, and water panels teach field skills — they are not local species or agency feeds.</p>" +
-        '<p class="wdb-trust__labels"><span class="wdb-trust__label wdb-trust__label--live">Live</span> weather &amp; sun/moon · <span class="wdb-trust__label wdb-trust__label--estimated">Estimated</span> golden/blue hour · <span class="wdb-trust__label wdb-trust__label--educational">Educational</span> nature guidance</p>' +
+        '<span class="wdb-trust__badge wdb-trust__badge--educational">U.S. regional overview</span>' +
+        '<p class="wdb-trust__text">' + escapeHtml(title) + ". Wildlife, plants, trails, and water panels use regional estimates — they are not local species or agency feeds.</p>" +
+        '<p class="wdb-trust__labels"><span class="wdb-trust__label wdb-trust__label--live">Live</span> weather &amp; sun/moon · <span class="wdb-trust__label wdb-trust__label--estimated">Estimated</span> golden/blue hour · <span class="wdb-trust__label wdb-trust__label--educational">Regional</span> nature guidance</p>' +
       "</div>"
     );
   }

@@ -175,6 +175,134 @@ function aqiCategory(aqi) {
   return "Hazardous";
 }
 
+function distanceKm(lat1, lng1, lat2, lng2) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function usgsBbox(lat, lng, delta = 0.35) {
+  return [
+    (lng - delta).toFixed(4),
+    (lat - delta).toFixed(4),
+    (lng + delta).toFixed(4),
+    (lat + delta).toFixed(4)
+  ].join(",");
+}
+
+function parseUsgsSeries(data) {
+  const ts = data && data.value && data.value.timeSeries;
+  if (!Array.isArray(ts)) return [];
+  return ts.map((series) => {
+    const src = series.sourceInfo || {};
+    const geo = src.geoLocation && src.geoLocation.geogLocation;
+    const siteCode = src.siteCode && src.siteCode[0] ? src.siteCode[0].value : null;
+    const varCode = series.variable && series.variable.variableCode &&
+      series.variable.variableCode[0] ? series.variable.variableCode[0].value : null;
+    const val = series.values && series.values[0] && series.values[0].value &&
+      series.values[0].value[0] ? series.values[0].value[0] : null;
+    return {
+      siteId: siteCode,
+      siteName: src.siteName || "USGS gauge",
+      lat: geo ? Number(geo.latitude) : null,
+      lng: geo ? Number(geo.longitude) : null,
+      parameter: varCode,
+      value: val ? Number(val.value) : null,
+      unit: series.variable && series.variable.unit ? series.variable.unit.unitCode : null,
+      observedAt: val ? val.dateTime : null
+    };
+  }).filter((s) => s.siteId && s.value != null && Number.isFinite(s.value));
+}
+
+function mergeUsgsBySite(rows) {
+  const map = {};
+  rows.forEach((r) => {
+    if (!map[r.siteId]) {
+      map[r.siteId] = {
+        siteId: r.siteId,
+        siteName: r.siteName,
+        lat: r.lat,
+        lng: r.lng,
+        observedAt: r.observedAt
+      };
+    }
+    if (r.parameter === "00060") {
+      map[r.siteId].dischargeCfs = r.value;
+      map[r.siteId].dischargeUnit = r.unit;
+    }
+    if (r.parameter === "00065") {
+      map[r.siteId].stageFt = r.value;
+      map[r.siteId].stageUnit = r.unit;
+    }
+    if (r.observedAt && (!map[r.siteId].observedAt || r.observedAt > map[r.siteId].observedAt)) {
+      map[r.siteId].observedAt = r.observedAt;
+    }
+  });
+  return Object.values(map);
+}
+
+async function fetchUsgsNearestGauge(lat, lng, timeoutMs) {
+  const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&bBox=" +
+    encodeURIComponent(usgsBbox(lat, lng)) +
+    "&parameterCd=00060,00065&siteStatus=active";
+  const data = await fetchJson(url, timeoutMs || 25000);
+  const sites = mergeUsgsBySite(parseUsgsSeries(data));
+  if (!sites.length) return null;
+  sites.forEach((s) => {
+    if (s.lat != null && s.lng != null) {
+      s.distanceKm = distanceKm(lat, lng, s.lat, s.lng);
+    } else {
+      s.distanceKm = 9999;
+    }
+  });
+  sites.sort((a, b) => a.distanceKm - b.distanceKm);
+  return { nearest: sites[0], siteCount: sites.length };
+}
+
+function formatRiverSummary(gauge) {
+  if (!gauge || !gauge.nearest) return "Data currently unavailable";
+  const n = gauge.nearest;
+  const parts = [];
+  if (n.stageFt != null) parts.push(n.stageFt + " ft stage");
+  if (n.dischargeCfs != null) parts.push(n.dischargeCfs + " cfs");
+  const detail = parts.length ? parts.join(" · ") : "Gauge reading available";
+  const dist = n.distanceKm != null && n.distanceKm < 9000 ? " · " + n.distanceKm.toFixed(1) + " km away" : "";
+  return n.siteName + " — " + detail + dist;
+}
+
+function pollenLevelLabel(value) {
+  const v = Number(value);
+  if (!Number.isFinite(v)) return null;
+  if (v < 10) return "Low";
+  if (v < 50) return "Moderate";
+  if (v < 100) return "High";
+  return "Very high";
+}
+
+function summarizePollen(current) {
+  if (!current) return null;
+  const types = [
+    ["Tree", current.birch_pollen],
+    ["Grass", current.grass_pollen],
+    ["Ragweed", current.ragweed_pollen],
+    ["Olive", current.olive_pollen]
+  ].filter(([, v]) => v != null && Number.isFinite(Number(v)));
+  if (!types.length) return null;
+  types.sort((a, b) => Number(b[1]) - Number(a[1]));
+  const top = types[0];
+  const level = pollenLevelLabel(top[1]);
+  const extra = types.length > 1
+    ? " · also " + types.slice(1, 3).map(([name, val]) => name + " " + pollenLevelLabel(val).toLowerCase()).join(", ")
+    : "";
+  return top[0] + " pollen " + (level ? level.toLowerCase() : "active") + extra;
+}
+
 function gitCommit() {
   try {
     return execSync("git rev-parse --short HEAD", { cwd: ROOT, encoding: "utf8" }).trim();
@@ -357,20 +485,52 @@ function buildPlugins() {
     {
       name: "pollen",
       staleMs: 6 * 60 * 60 * 1000,
-      async fetch() {
+      async fetch(ctx) {
+        const url = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" +
+          encodeURIComponent(ctx.location.lat) + "&longitude=" + encodeURIComponent(ctx.location.lng) +
+          "&current=birch_pollen,grass_pollen,olive_pollen,ragweed_pollen";
+        const data = await fetchJson(url, DEFAULT_TIMEOUT_MS);
+        const current = data && data.current ? data.current : null;
+        const summary = summarizePollen(current);
+        if (!summary) {
+          return {
+            source: "Open-Meteo Air Quality",
+            data: { status: "unavailable", summary: "Data currently unavailable" }
+          };
+        }
         return {
-          source: "Unavailable",
-          data: { status: "unavailable", summary: "Data currently unavailable" }
+          source: "Open-Meteo Air Quality",
+          data: {
+            status: "estimated",
+            summary,
+            birch: current.birch_pollen != null ? Math.round(current.birch_pollen) : null,
+            grass: current.grass_pollen != null ? Math.round(current.grass_pollen) : null,
+            ragweed: current.ragweed_pollen != null ? Math.round(current.ragweed_pollen) : null,
+            olive: current.olive_pollen != null ? Math.round(current.olive_pollen) : null
+          }
         };
       }
     },
     {
       name: "river_gauges",
       staleMs: 2 * 60 * 60 * 1000,
-      async fetch() {
+      async fetch(ctx) {
+        const gauge = await fetchUsgsNearestGauge(ctx.location.lat, ctx.location.lng, 25000);
+        if (!gauge || !gauge.nearest) {
+          return {
+            source: "USGS Water Services",
+            data: { status: "unavailable", summary: "No active gauge found nearby" }
+          };
+        }
         return {
-          source: "Unavailable",
-          data: { status: "unavailable", summary: "Data currently unavailable" }
+          source: "USGS Water Services",
+          data: {
+            status: "live",
+            summary: formatRiverSummary(gauge),
+            nearest: gauge.nearest,
+            siteCount: gauge.siteCount,
+            disclaimer: "Provisional USGS data — subject to revision"
+          }
         };
       }
     },

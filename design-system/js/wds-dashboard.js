@@ -29,7 +29,7 @@
     trails:
       "Trail conditions depend on recent rain, frost, and use. Mud often lingers in ravines while ridge tops dry first — always verify locally before long climbs.",
     water:
-      "Creek and river levels shift with recent rain. Look for mud lines on banks and floating debris before crossing — live gauge integration is coming soon."
+      "Creek and river levels shift with recent rain. Look for mud lines on banks and floating debris before crossing — check the nearest USGS gauge when available."
   };
 
   function sliceReady(slice) {

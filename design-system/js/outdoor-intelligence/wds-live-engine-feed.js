@@ -156,11 +156,40 @@
     };
   }
 
+  function toUsgsWater(feed) {
+    var river = feed.modules && feed.modules.river_gauges && feed.modules.river_gauges.data;
+    if (!river || river.status === "unavailable" || !river.nearest) return null;
+    return {
+      nearest: river.nearest,
+      siteCount: river.siteCount,
+      source: "USGS Water Services",
+      provider: "usgs-iv",
+      trust: "Live",
+      disclaimer: river.disclaimer || "Provisional USGS data — subject to revision",
+      fetchedAt: feed.updatedAt
+    };
+  }
+
+  function toAlerts(feed) {
+    var alerts = feed.modules && feed.modules.alerts && feed.modules.alerts.data;
+    if (!alerts || alerts.status === "unavailable") {
+      return { status: "unavailable", items: [], count: 0 };
+    }
+    return {
+      status: "live",
+      count: alerts.count != null ? alerts.count : (alerts.items || []).length,
+      items: alerts.items || [],
+      meta: { provider: "nws", attribution: "National Weather Service via Live Engine", fetchedAt: feed.updatedAt }
+    };
+  }
+
   function toPlatform(feed, loc) {
     if (!usable(feed)) return null;
     var weatherRef = toWeatherPackage(feed);
     var aq = toAirQuality(feed);
     var daylight = toDaylight(feed);
+    var usgs = toUsgsWater(feed);
+    var alertsPkg = toAlerts(feed);
     var locInfo = feed.location || {};
     var platform = {
       meta: {
@@ -171,17 +200,18 @@
         sources: {
           weather: weatherRef ? "waypoint-live-engine" : "none",
           airQuality: aq.status === "live" ? "open-meteo-air-quality" : "none",
-          liveEngine: "waypoint-live-engine"
+          liveEngine: "waypoint-live-engine",
+          usgsWater: usgs ? "usgs-iv" : "none"
         },
         providerTelemetry: (feed.meta && feed.meta.failures || []).map(function (f) {
           return { provider: f.source, status: "error", message: f.error, at: feed.updatedAt };
         }),
         blockStatus: {
           weather: weatherRef ? "live" : "unavailable",
-          alerts: "unavailable",
+          alerts: alertsPkg.status === "live" ? "live" : "unavailable",
           airQuality: aq.status === "live" ? "live" : "unavailable",
           elevation: "unavailable",
-          usgsWater: "unavailable"
+          usgsWater: usgs ? "live" : "unavailable"
         },
         liveSources: feed.meta && feed.meta.sources || [],
         liveFailures: feed.meta && feed.meta.failures || []
@@ -210,7 +240,8 @@
         : { status: "unavailable" },
       daylight: daylight,
       airQuality: aq,
-      alerts: { status: "unavailable", items: [] },
+      alerts: alertsPkg,
+      usgsWater: usgs,
       weatherRef: weatherRef,
       liveFeed: feed
     };

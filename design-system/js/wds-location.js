@@ -310,7 +310,7 @@
     region = region || {};
     var weekPart = weekOf ? " · Week of " + weekOf : "";
     if (loc && loc.displayTitle) {
-      return loc.displayTitle + weekPart + " · " + (loc.useNationalFallback ? "U.S. educational dashboard" : "local bundle");
+      return loc.displayTitle + weekPart + " · " + (loc.useNationalFallback ? "U.S. regional overview" : "local bundle");
     }
     if (!loc || loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc) + weekPart + " · editorial content may not match your county until more bundles ship";
@@ -393,7 +393,7 @@
 
     var bundleNote = "";
     if (loc.useNationalFallback) {
-      bundleNote = '<p class="wce-location-bar__note"><strong>U.S. educational mode.</strong> Live weather and sun/moon use your coordinates. Nature, wildlife, trails, and water guidance are educational — not local species lists or agency feeds.</p>';
+      bundleNote = '<p class="wce-location-bar__note"><strong>U.S. regional overview.</strong> Live weather and sun/moon use your coordinates. Nature, wildlife, trails, and water guidance are regional estimates — not local species lists or agency feeds.</p>';
     } else if (loc.isDefault || loc.source === "default") {
       bundleNote = '<p class="wce-location-bar__note">Select your county, state, or use my location for forecasts at your coordinates.</p>';
     } else if (loc.contentMode === "local-bundle") {

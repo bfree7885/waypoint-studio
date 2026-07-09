@@ -447,7 +447,7 @@
   }
 
   function citizenScienceNote(text) {
-    var prefix = "Coming soon — observation submission not yet available. ";
+    var prefix = "Observation submission is not yet available. ";
     if (!text) return prefix.trim();
     return prefix + text;
   }
