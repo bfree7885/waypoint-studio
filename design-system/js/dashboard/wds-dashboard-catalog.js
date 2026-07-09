@@ -515,6 +515,54 @@
   });
 
   /* ——— Wildlife (legacy singles) ——— */
+  reg({
+    id: "recent-birds-nearby",
+    title: "Recent Birds Nearby",
+    icon: "🐦",
+    category: "wildlife",
+    defaultOrder: 205,
+    defaultVisible: true,
+    tier: "vital",
+    size: "sm",
+    getData: function (ctx) {
+      var platform = p(ctx);
+      var eb = platform && platform.ebird;
+      if (!eb || eb.status === "unavailable") {
+        return D().notYetAvailable(
+          "Regional estimate only",
+          (eb && eb.summary) || "Recent nearby bird observations are unavailable for this location.",
+          "wildlife"
+        );
+      }
+      var observations = Array.isArray(eb.observations) ? eb.observations : [];
+      if (!observations.length) {
+        return D().notYetAvailable(
+          "No recent bird observations",
+          "No nearby eBird reports were found in the recent window.",
+          "wildlife"
+        );
+      }
+      var items = observations.slice(0, 4).map(function (row) {
+        var line = row.commonName || "Bird";
+        if (row.count != null) line += " · " + row.count;
+        var meta = [];
+        if (row.observedLabel) meta.push(row.observedLabel);
+        if (row.locationName) meta.push(row.locationName);
+        if (row.distanceKm != null) meta.push(row.distanceKm + " km");
+        if (meta.length) line += " — " + meta.join(" · ");
+        return line;
+      });
+      return {
+        status: "ready",
+        tag: D().tagFromSource("live"),
+        summary: "Recent bird observations within 25 km",
+        body: eb.summary || "Live nearby bird observations",
+        items: items,
+        metaFooter: (eb.provider || "eBird") + " · Updated from live engine"
+      };
+    }
+  });
+
   educational({
     id: "wildlife-activity",
     title: "Wildlife Activity",

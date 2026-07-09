@@ -72,6 +72,12 @@
       var loc = WDS.location.getState();
       return loc && isFinite(Number(loc.lat)) && isFinite(Number(loc.lng));
     })());
+    var ebirdSlice = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast
+      ? (function () {
+          var pkg = WDS.outdoorIntelligence.getLast();
+          return pkg && pkg.ebird ? pkg.ebird : null;
+        })()
+      : null;
 
     return {
       commitHash: typeof DEBUG_COMMIT === "function" ? DEBUG_COMMIT() : DEBUG_COMMIT,
@@ -82,6 +88,8 @@
       sectionsRendered: sections,
       liveWeatherLoaded: hasWeather,
       locationLoaded: hasLocation,
+      ebirdStatus: ebirdSlice && ebirdSlice.status ? ebirdSlice.status : "unavailable",
+      ebirdObservations: ebirdSlice && Array.isArray(ebirdSlice.observations) ? ebirdSlice.observations.length : 0,
       bannedTextPresent: bannedHits.length > 0,
       bannedTextHits: bannedHits
     };

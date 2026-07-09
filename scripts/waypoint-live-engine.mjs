@@ -28,6 +28,7 @@ const DEFAULT_TIMEOUT_MS = 12000;
 const ENGINE_STALE_MS = 3 * 60 * 60 * 1000;
 const MODULE_DEFAULT_STALE_MS = 2 * 60 * 60 * 1000;
 const BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"];
+const EBIRD_API_KEY = (process.env.WAYPOINT_EBIRD_API_KEY || process.env.EBIRD_API_KEY || "").trim();
 
 const DEFAULT_LOCATION = {
   id: "pike-county-pa",
@@ -303,6 +304,110 @@ function summarizePollen(current) {
   return top[0] + " pollen " + (level ? level.toLowerCase() : "active") + extra;
 }
 
+function formatBirdObservationTime(iso, timeZone) {
+  if (!iso) return null;
+  try {
+    return new Date(iso).toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZone: timeZone || undefined
+    });
+  } catch {
+    return iso;
+  }
+}
+
+function normalizeEbirdObservations(rows, lat, lng, timeZone) {
+  const list = Array.isArray(rows) ? rows : [];
+  return list.map((row) => {
+    const obsLat = row && row.lat != null ? Number(row.lat) : null;
+    const obsLng = row && row.lng != null ? Number(row.lng) : null;
+    const observedAt = row && row.obsDt ? row.obsDt : null;
+    const distance = Number.isFinite(obsLat) && Number.isFinite(obsLng)
+      ? Math.round(distanceKm(lat, lng, obsLat, obsLng) * 10) / 10
+      : null;
+    const count = row && row.howMany != null && Number.isFinite(Number(row.howMany))
+      ? Number(row.howMany)
+      : null;
+    return {
+      speciesCode: row && row.speciesCode ? row.speciesCode : null,
+      commonName: row && row.comName ? row.comName : "Unknown species",
+      scientificName: row && row.sciName ? row.sciName : null,
+      count,
+      observedAt,
+      observedLabel: formatBirdObservationTime(observedAt, timeZone),
+      locationName: row && row.locName ? row.locName : null,
+      lat: Number.isFinite(obsLat) ? obsLat : null,
+      lng: Number.isFinite(obsLng) ? obsLng : null,
+      distanceKm: distance
+    };
+  });
+}
+
+async function fetchEbirdRecent(lat, lng, timeZone) {
+  if (!EBIRD_API_KEY) {
+    return {
+      source: "eBird",
+      data: {
+        status: "unavailable",
+        summary: "Regional estimate only — eBird key not configured",
+        provider: "eBird",
+        observations: [],
+        count: 0
+      }
+    };
+  }
+
+  const url = "https://api.ebird.org/v2/data/obs/geo/recent?" + new URLSearchParams({
+    lat: String(lat),
+    lng: String(lng),
+    dist: "25",
+    back: "3",
+    maxResults: "12"
+  }).toString();
+
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      headers: {
+        Accept: "application/json",
+        "X-eBirdApiToken": EBIRD_API_KEY
+      }
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const rows = await res.json();
+    const observations = normalizeEbirdObservations(rows, lat, lng, timeZone).slice(0, 8);
+    if (!observations.length) {
+      return {
+        source: "eBird",
+        data: {
+          status: "unavailable",
+          summary: "No recent bird observations nearby",
+          provider: "eBird",
+          observations: [],
+          count: 0
+        }
+      };
+    }
+    return {
+      source: "eBird",
+      data: {
+        status: "live",
+        summary: "Recent birds nearby: " + observations.length + " observation" + (observations.length === 1 ? "" : "s"),
+        provider: "eBird",
+        observations,
+        count: observations.length
+      }
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 function gitCommit() {
   try {
     return execSync("git rev-parse --short HEAD", { cwd: ROOT, encoding: "utf8" }).trim();
@@ -535,6 +640,15 @@ function buildPlugins() {
       }
     },
     {
+      name: "ebird",
+      staleMs: 3 * 60 * 60 * 1000,
+      async fetch(ctx) {
+        const wx = ctx.moduleResults.weather && ctx.moduleResults.weather.data;
+        const tz = wx && wx.timezone ? wx.timezone : "America/New_York";
+        return fetchEbirdRecent(ctx.location.lat, ctx.location.lng, tz);
+      }
+    },
+    {
       name: "alerts",
       staleMs: 60 * 60 * 1000,
       async fetch(ctx) {
@@ -675,6 +789,7 @@ function buildLivePayload(ctx, moduleList) {
   const photography = ctx.moduleResults.photography_conditions && ctx.moduleResults.photography_conditions.data;
   const river = ctx.moduleResults.river_gauges && ctx.moduleResults.river_gauges.data;
   const pollen = ctx.moduleResults.pollen && ctx.moduleResults.pollen.data;
+  const ebird = ctx.moduleResults.ebird && ctx.moduleResults.ebird.data;
 
   const cur = weather && weather.current ? weather.current : null;
   const daily = weather && weather.daily ? weather.daily : null;
@@ -781,6 +896,7 @@ function buildLivePayload(ctx, moduleList) {
       uv: { data: uv || null },
       pollen: { data: pollen || null },
       river_gauges: { data: river || null },
+      ebird: { data: ebird || null },
       alerts: { data: alerts || null },
       photography_conditions: { data: photography || null }
     },
@@ -795,14 +911,15 @@ function buildLivePayload(ctx, moduleList) {
         alerts: alerts && alerts.status === "live" ? "live" : "unavailable",
         airQuality: air && air.status === "live" ? "live" : "unavailable",
         elevation: "unavailable",
-        usgsWater: river && river.status !== "unavailable" ? "live" : "unavailable"
+        usgsWater: river && river.status !== "unavailable" ? "live" : "unavailable",
+        ebird: ebird && ebird.status === "live" ? "live" : "unavailable"
       }
     }
   };
   return payload;
 }
 
-const OPTIONAL_UNAVAILABLE_OK = new Set(["pollen", "river_gauges"]);
+const OPTIONAL_UNAVAILABLE_OK = new Set(["pollen", "river_gauges", "ebird"]);
 
 function buildHealth(ctx, moduleList, payload) {
   const modules = {};
@@ -988,6 +1105,10 @@ function makeDebugSeed(payload, health, commitHash, buildTime) {
     bannedTextHits: BANNED.filter((term) => JSON.stringify(payload).toLowerCase().includes(term)),
     engineHealth: health.overall.status,
     moduleHealth: Object.fromEntries(Object.entries(health.modules).map(([k, v]) => [k, { status: v.status, stale: v.stale }])),
+    ebirdStatus: health.modules && health.modules.ebird ? health.modules.ebird.status : "unavailable",
+    ebirdObservations: payload.modules && payload.modules.ebird && payload.modules.ebird.data && Array.isArray(payload.modules.ebird.data.observations)
+      ? payload.modules.ebird.data.observations.length
+      : 0,
     serverGenerated: true
   };
 }

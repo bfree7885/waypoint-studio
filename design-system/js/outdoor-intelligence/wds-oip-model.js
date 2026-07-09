@@ -242,6 +242,7 @@
     if (raw.airQuality) pkg.airQuality = raw.airQuality;
     if (raw.alerts) pkg.alerts = raw.alerts;
     if (raw.usgsWater) pkg.usgsWater = raw.usgsWater;
+    if (raw.ebird) pkg.ebird = raw.ebird;
     return pkg;
   }
 

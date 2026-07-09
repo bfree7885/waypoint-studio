@@ -13,6 +13,8 @@ const PORT = 9223;
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 20000 },
   { name: "kiosk", path: "/kiosk.html", waitMs: 4000 },
+  { name: "status", path: "/status.html", waitMs: 3000 },
+  { name: "debug", path: "/debug.html", waitMs: 3000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 }
 ];
 
@@ -186,6 +188,9 @@ async function testPage(client, page) {
         eduBadgeEdu: Array.from(document.querySelectorAll('.wdb-edu-fallback__badge')).filter(el => /Educational/i.test(el.textContent || '')).length,
         hydrated: !!(pkg && pkg.meta && pkg.meta.hydratedAt),
         blockStatus: pkg && pkg.meta && pkg.meta.blockStatus || null,
+        ebirdStatus: pkg && pkg.ebird && pkg.ebird.status || null,
+        ebirdCount: pkg && pkg.ebird && pkg.ebird.observations ? pkg.ebird.observations.length : 0,
+        hasRecentBirdsCard: !!document.querySelector('#widget-recent-birds-nearby'),
         hasLiveUpdated: !!document.querySelector('[data-wds-live-updated], .wdb-doc__last-updated, .wdb-live-updated'),
         liveUpdatedText: (document.querySelector('.wdb-live-updated') || document.querySelector('.wdb-doc__last-updated') || {}).textContent || '',
         liveFeedSource: (function () {
@@ -288,9 +293,21 @@ async function main() {
       failed = true;
       console.log("FAIL: Last updated timestamp missing on dashboard");
     }
+    if (r.name === "homepage" && !r.checks.hasRecentBirdsCard) {
+      failed = true;
+      console.log("FAIL: Recent Birds Nearby card missing");
+    }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
       console.log("FAIL: scenes appears blank");
+    }
+    if (r.name === "status" && !/live engine/i.test(r.checks.title || "")) {
+      failed = true;
+      console.log("FAIL: status page title missing");
+    }
+    if (r.name === "debug" && !/debug/i.test(r.checks.title || "")) {
+      failed = true;
+      console.log("FAIL: debug page title missing");
     }
     if (r.name === "kiosk" && !r.checks.hasTemp) {
       failed = true;

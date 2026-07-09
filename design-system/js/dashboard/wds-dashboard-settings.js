@@ -93,7 +93,8 @@
 
   var V1_MORNING_VISIBLE = [
     "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv", "air-quality",
-    "sun-moon-dashboard", "water-dashboard", "safety-dashboard", "photography-conditions-dashboard"
+    "sun-moon-dashboard", "water-dashboard", "safety-dashboard", "photography-conditions-dashboard",
+    "recent-birds-nearby"
   ];
 
   var PRESETS = {

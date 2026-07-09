@@ -183,6 +183,20 @@
     };
   }
 
+  function toEbird(feed) {
+    var birds = feed.modules && feed.modules.ebird && feed.modules.ebird.data;
+    if (!birds) {
+      return { status: "unavailable", summary: "Regional estimate only — bird feed unavailable", observations: [], count: 0 };
+    }
+    return {
+      status: birds.status || "unavailable",
+      summary: birds.summary || "Regional estimate only — bird feed unavailable",
+      observations: Array.isArray(birds.observations) ? birds.observations : [],
+      count: birds.count != null ? birds.count : (Array.isArray(birds.observations) ? birds.observations.length : 0),
+      provider: birds.provider || "eBird"
+    };
+  }
+
   function toPlatform(feed, loc) {
     if (!usable(feed)) return null;
     var weatherRef = toWeatherPackage(feed);
@@ -190,6 +204,7 @@
     var daylight = toDaylight(feed);
     var usgs = toUsgsWater(feed);
     var alertsPkg = toAlerts(feed);
+    var ebirdPkg = toEbird(feed);
     var locInfo = feed.location || {};
     var platform = {
       meta: {
@@ -201,7 +216,8 @@
           weather: weatherRef ? "waypoint-live-engine" : "none",
           airQuality: aq.status === "live" ? "open-meteo-air-quality" : "none",
           liveEngine: "waypoint-live-engine",
-          usgsWater: usgs ? "usgs-iv" : "none"
+          usgsWater: usgs ? "usgs-iv" : "none",
+          ebird: ebirdPkg.status === "live" ? "ebird" : "none"
         },
         providerTelemetry: (feed.meta && feed.meta.failures || []).map(function (f) {
           return { provider: f.source, status: "error", message: f.error, at: feed.updatedAt };
@@ -211,7 +227,8 @@
           alerts: alertsPkg.status === "live" ? "live" : "unavailable",
           airQuality: aq.status === "live" ? "live" : "unavailable",
           elevation: "unavailable",
-          usgsWater: usgs ? "live" : "unavailable"
+          usgsWater: usgs ? "live" : "unavailable",
+          ebird: ebirdPkg.status === "live" ? "live" : "unavailable"
         },
         liveSources: feed.meta && feed.meta.sources || [],
         liveFailures: feed.meta && feed.meta.failures || []
@@ -242,6 +259,7 @@
       airQuality: aq,
       alerts: alertsPkg,
       usgsWater: usgs,
+      ebird: ebirdPkg,
       weatherRef: weatherRef,
       liveFeed: feed
     };

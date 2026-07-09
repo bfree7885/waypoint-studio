@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: 7eb7b4d
-2) Build date/time: 2026-07-09T12:00:28.760Z
+1) Current deployed commit hash: d1dddab
+2) Build date/time: 2026-07-09T12:31:52.053Z
 3) Active page title: Waypoint Studio — Outdoor Dashboard
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -19,26 +19,26 @@
 7) Fallback/coming-soon/educational/assignment text present: no
 8) Dashboard sections currently rendered:
 (none captured server-side; browser snapshot will fill this when available)
-Engine health: warning
+Engine health: healthy
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-09T12:00:01.729Z
+Snapshot captured at: 2026-07-09T12:31:44.529Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;7eb7b4d&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-09T12:00:28.760Z&quot;,
+  &quot;commitHash&quot;: &quot;d1dddab&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-09T12:31:52.053Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio — Outdoor Dashboard&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-09T12:00:01.729Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-09T12:31:44.529Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
   &quot;locationLoaded&quot;: true,
   &quot;bannedTextPresent&quot;: false,
   &quot;bannedTextHits&quot;: [],
-  &quot;engineHealth&quot;: &quot;warning&quot;,
+  &quot;engineHealth&quot;: &quot;healthy&quot;,
   &quot;moduleHealth&quot;: {
     &quot;weather&quot;: {
-      &quot;status&quot;: &quot;fallback&quot;,
-      &quot;stale&quot;: true
+      &quot;status&quot;: &quot;live&quot;,
+      &quot;stale&quot;: false
     },
     &quot;sunrise_sunset&quot;: {
       &quot;status&quot;: &quot;live&quot;,
@@ -61,7 +61,11 @@ Raw snapshot:
       &quot;stale&quot;: false
     },
     &quot;river_gauges&quot;: {
-      &quot;status&quot;: &quot;fallback&quot;,
+      &quot;status&quot;: &quot;live&quot;,
+      &quot;stale&quot;: false
+    },
+    &quot;ebird&quot;: {
+      &quot;status&quot;: &quot;unavailable&quot;,
       &quot;stale&quot;: false
     },
     &quot;alerts&quot;: {
@@ -73,14 +77,16 @@ Raw snapshot:
       &quot;stale&quot;: false
     }
   },
+  &quot;ebirdStatus&quot;: &quot;unavailable&quot;,
+  &quot;ebirdObservations&quot;: 0,
   &quot;serverGenerated&quot;: true
 }</pre>
 <script>
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "7eb7b4d";
-  var FALLBACK_BUILD = "2026-07-09T12:00:28.760Z";
+  var FALLBACK_COMMIT = "d1dddab";
+  var FALLBACK_BUILD = "2026-07-09T12:31:52.053Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -150,7 +156,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"7eb7b4d","buildTime":"2026-07-09T12:00:28.760Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T12:00:01.729Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"warning","moduleHealth":{"weather":{"status":"fallback","stale":true},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"d1dddab","buildTime":"2026-07-09T12:31:52.053Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T12:31:44.529Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"healthy","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"live","stale":false},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
