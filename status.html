@@ -33,30 +33,30 @@
 
     <section class="wle-card" aria-label="Engine health">
       <h2>Engine Health</h2>
-      <div class="wle-row"><span>Status</span><span class="wle-ok">healthy</span></div>
-      <div class="wle-row"><span>Last engine run</span><span class="wle-ok">7/9/2026, 2:30:01 AM</span></div>
-      <div class="wle-row"><span>Last successful refresh</span><span>7/9/2026, 2:30:15 AM</span></div>
-      <div class="wle-row"><span>Next scheduled run</span><span>7/9/2026, 3:00:00 AM</span></div>
+      <div class="wle-row"><span>Status</span><span class="wle-bad">warning</span></div>
+      <div class="wle-row"><span>Last engine run</span><span class="wle-ok">7/9/2026, 3:00:01 AM</span></div>
+      <div class="wle-row"><span>Last successful refresh</span><span>7/9/2026, 3:00:17 AM</span></div>
+      <div class="wle-row"><span>Next scheduled run</span><span>7/9/2026, 3:30:00 AM</span></div>
       <div class="wle-row"><span>Engine version</span><span>2.0.0</span></div>
-      <div class="wle-row"><span>Data age</span><span class="wle-ok">just now · 7/9/2026, 2:30:01 AM</span></div>
+      <div class="wle-row"><span>Data age</span><span class="wle-ok">just now · 7/9/2026, 3:00:01 AM</span></div>
       <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="wle-ok">Yes</span></div>
-      <p class="wle-muted">All modules healthy.</p>
+      <p class="wle-muted">Modules available but stale data detected.</p>
     </section>
 
     <section class="wle-card" aria-label="Public publish">
       <h2>Public Publish</h2>
-      <div class="wle-row"><span>Last public publish</span><span class="wle-ok">7/9/2026, 2:00:13 AM</span></div>
+      <div class="wle-row"><span>Last public publish</span><span class="wle-ok">7/9/2026, 2:30:16 AM</span></div>
       <div class="wle-row"><span>Published data age</span><span>30 min ago</span></div>
-      <div class="wle-row"><span>Publish commit</span><span>6b02206</span></div>
+      <div class="wle-row"><span>Publish commit</span><span>e28d50e</span></div>
       <div class="wle-row"><span>Publish status</span><span class="wle-ok">succeeded</span></div>
-      <p class="wle-muted">Pushed 6b02206 to origin/main</p>
+      <p class="wle-muted">Pushed e28d50e to origin/main</p>
     </section>
 
     <section class="wle-card" aria-label="Module health">
       <h2>Module Health</h2>
       <table>
         <thead><tr><th>Module</th><th>Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
-        <tbody><tr><td>weather</td><td>fallback</td><td>2026-07-09T05:30:01.853Z</td><td>778 ms</td><td>no</td></tr><tr><td>sunrise_sunset</td><td>live</td><td>2026-07-09T06:30:02.525Z</td><td>11 ms</td><td>no</td></tr><tr><td>moon</td><td>live</td><td>2026-07-09T06:30:02.536Z</td><td>0 ms</td><td>no</td></tr><tr><td>air_quality</td><td>live</td><td>2026-07-09T06:30:02.536Z</td><td>508 ms</td><td>no</td></tr><tr><td>uv</td><td>live</td><td>2026-07-09T06:30:03.044Z</td><td>1 ms</td><td>no</td></tr><tr><td>pollen</td><td>unavailable</td><td>2026-07-09T06:30:03.045Z</td><td>107 ms</td><td>no</td></tr><tr><td>river_gauges</td><td>live</td><td>2026-07-09T06:30:03.152Z</td><td>11870 ms</td><td>no</td></tr><tr><td>alerts</td><td>live</td><td>2026-07-09T06:30:15.022Z</td><td>161 ms</td><td>no</td></tr><tr><td>photography_conditions</td><td>estimated</td><td>2026-07-09T06:30:15.183Z</td><td>0 ms</td><td>no</td></tr></tbody>
+        <tbody><tr><td>weather</td><td>fallback</td><td>2026-07-09T05:30:01.853Z</td><td>873 ms</td><td>yes</td></tr><tr><td>sunrise_sunset</td><td>live</td><td>2026-07-09T07:00:02.241Z</td><td>12 ms</td><td>no</td></tr><tr><td>moon</td><td>live</td><td>2026-07-09T07:00:02.253Z</td><td>0 ms</td><td>no</td></tr><tr><td>air_quality</td><td>live</td><td>2026-07-09T07:00:02.253Z</td><td>506 ms</td><td>no</td></tr><tr><td>uv</td><td>live</td><td>2026-07-09T07:00:02.759Z</td><td>0 ms</td><td>no</td></tr><tr><td>pollen</td><td>unavailable</td><td>2026-07-09T07:00:02.759Z</td><td>107 ms</td><td>no</td></tr><tr><td>river_gauges</td><td>live</td><td>2026-07-09T07:00:02.866Z</td><td>14014 ms</td><td>no</td></tr><tr><td>alerts</td><td>live</td><td>2026-07-09T07:00:16.880Z</td><td>511 ms</td><td>no</td></tr><tr><td>photography_conditions</td><td>estimated</td><td>2026-07-09T07:00:17.391Z</td><td>0 ms</td><td>no</td></tr></tbody>
       </table>
     </section>
 
@@ -78,9 +78,9 @@
 
     <section class="wle-card" aria-label="Runtime">
       <h2>Runtime Stats</h2>
-      <div class="wle-row"><span>Run duration</span><span>13439 ms</span></div>
-      <div class="wle-row"><span>Process uptime</span><span>14 s</span></div>
-      <div class="wle-row"><span>Memory RSS</span><span>84201472</span></div>
+      <div class="wle-row"><span>Run duration</span><span>16027 ms</span></div>
+      <div class="wle-row"><span>Process uptime</span><span>16 s</span></div>
+      <div class="wle-row"><span>Memory RSS</span><span>83881984</span></div>
       <div class="wle-row"><span>Node</span><span>v18.19.1</span></div>
     </section>
 
@@ -96,8 +96,8 @@
   &quot;version&quot;: 2,
   &quot;engine&quot;: &quot;waypoint-live-engine&quot;,
   &quot;engineVersion&quot;: &quot;2.0.0&quot;,
-  &quot;updatedAt&quot;: &quot;2026-07-09T06:30:01.746Z&quot;,
-  &quot;nextScheduledUpdate&quot;: &quot;2026-07-09T07:00:00.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2026-07-09T07:00:01.366Z&quot;,
+  &quot;nextScheduledUpdate&quot;: &quot;2026-07-09T07:30:00.000Z&quot;,
   &quot;location&quot;: {
     &quot;id&quot;: &quot;pike-county-pa&quot;,
     &quot;name&quot;: &quot;Pike County&quot;,
@@ -183,8 +183,8 @@
     &quot;trust&quot;: &quot;Estimated&quot;
   },
   &quot;airQuality&quot;: {
-    &quot;usAqi&quot;: 37,
-    &quot;pm25&quot;: 5.8,
+    &quot;usAqi&quot;: 35,
+    &quot;pm25&quot;: 6.7,
     &quot;category&quot;: &quot;Good&quot;,
     &quot;status&quot;: &quot;live&quot;
   },
@@ -557,8 +557,8 @@
     },
     &quot;air_quality&quot;: {
       &quot;data&quot;: {
-        &quot;usAqi&quot;: 37,
-        &quot;pm25&quot;: 5.8,
+        &quot;usAqi&quot;: 35,
+        &quot;pm25&quot;: 6.7,
         &quot;category&quot;: &quot;Good&quot;,
         &quot;status&quot;: &quot;live&quot;
       }
@@ -578,16 +578,16 @@
     &quot;river_gauges&quot;: {
       &quot;data&quot;: {
         &quot;status&quot;: &quot;live&quot;,
-        &quot;summary&quot;: &quot;Little Bush Kill at Edgemere, PA — 4.47 ft stage · 12.4 cfs · 8.8 km away&quot;,
+        &quot;summary&quot;: &quot;Little Bush Kill at Edgemere, PA — 4.46 ft stage · 12.1 cfs · 8.8 km away&quot;,
         &quot;nearest&quot;: {
           &quot;siteId&quot;: &quot;01439590&quot;,
           &quot;siteName&quot;: &quot;Little Bush Kill at Edgemere, PA&quot;,
           &quot;lat&quot;: 41.25860935,
           &quot;lng&quot;: -74.9954313,
-          &quot;observedAt&quot;: &quot;2026-07-09T01:45:00.000-04:00&quot;,
-          &quot;dischargeCfs&quot;: 12.4,
+          &quot;observedAt&quot;: &quot;2026-07-09T02:45:00.000-04:00&quot;,
+          &quot;dischargeCfs&quot;: 12.1,
           &quot;dischargeUnit&quot;: &quot;ft3/s&quot;,
-          &quot;stageFt&quot;: 4.47,
+          &quot;stageFt&quot;: 4.46,
           &quot;stageUnit&quot;: &quot;ft&quot;,
           &quot;distanceKm&quot;: 8.82043113502746
         },
@@ -631,7 +631,7 @@
       }
     ],
     &quot;generatedBy&quot;: &quot;waypoint-live-engine&quot;,
-    &quot;generatedAt&quot;: &quot;2026-07-09T06:30:01.746Z&quot;,
+    &quot;generatedAt&quot;: &quot;2026-07-09T07:00:01.366Z&quot;,
     &quot;healthFile&quot;: &quot;data/health.json&quot;,
     &quot;blockStatus&quot;: {
       &quot;weather&quot;: &quot;live&quot;,

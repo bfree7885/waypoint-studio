@@ -2,23 +2,23 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T06:30:01.746Z",
-  "nextScheduledUpdate": "2026-07-09T07:00:00.000Z",
+  "generatedAt": "2026-07-09T07:00:01.366Z",
+  "nextScheduledUpdate": "2026-07-09T07:30:00.000Z",
   "overall": {
-    "status": "healthy",
-    "message": "All modules healthy.",
-    "lastSuccessfulRefresh": "2026-07-09T06:30:15.183Z"
+    "status": "warning",
+    "message": "Modules available but stale data detected.",
+    "lastSuccessfulRefresh": "2026-07-09T07:00:17.391Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T06:30:01.746Z",
-    "dataUpdatedAt": "2026-07-09T06:30:01.746Z",
-    "nextScheduledRun": "2026-07-09T07:00:00.000Z",
-    "lastPublishAt": "2026-07-09T06:00:13.606Z",
-    "lastPublishedDataAt": "2026-07-09T06:00:01.968Z",
-    "lastPublishCommit": "6b02206",
+    "lastEngineRun": "2026-07-09T07:00:01.366Z",
+    "dataUpdatedAt": "2026-07-09T07:00:01.366Z",
+    "nextScheduledRun": "2026-07-09T07:30:00.000Z",
+    "lastPublishAt": "2026-07-09T06:30:16.244Z",
+    "lastPublishedDataAt": "2026-07-09T06:30:01.746Z",
+    "lastPublishCommit": "e28d50e",
     "lastPublishStatus": "succeeded",
-    "lastPublishMessage": "Pushed 6b02206 to origin/main"
+    "lastPublishMessage": "Pushed e28d50e to origin/main"
   },
   "modules": {
     "weather": {
@@ -373,10 +373,10 @@
       },
       "source": "previous-success",
       "error": "HTTP 503",
-      "responseMs": 778,
-      "lastAttempt": "2026-07-09T06:30:01.747Z",
+      "responseMs": 873,
+      "lastAttempt": "2026-07-09T07:00:01.368Z",
       "lastSuccessfulUpdate": "2026-07-09T05:30:01.853Z",
-      "stale": false
+      "stale": true
     },
     "sunrise_sunset": {
       "name": "sunrise_sunset",
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 11,
-      "lastAttempt": "2026-07-09T06:30:02.525Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:02.525Z",
+      "responseMs": 12,
+      "lastAttempt": "2026-07-09T07:00:02.241Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.241Z",
       "stale": false
     },
     "moon": {
@@ -407,24 +407,24 @@
       "source": "Calculated",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T06:30:02.536Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:02.536Z",
+      "lastAttempt": "2026-07-09T07:00:02.253Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.253Z",
       "stale": false
     },
     "air_quality": {
       "name": "air_quality",
       "status": "live",
       "data": {
-        "usAqi": 37,
-        "pm25": 5.8,
+        "usAqi": 35,
+        "pm25": 6.7,
         "category": "Good",
         "status": "live"
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 508,
-      "lastAttempt": "2026-07-09T06:30:02.536Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:02.536Z",
+      "responseMs": 506,
+      "lastAttempt": "2026-07-09T07:00:02.253Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.253Z",
       "stale": false
     },
     "uv": {
@@ -436,9 +436,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 1,
-      "lastAttempt": "2026-07-09T06:30:03.044Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:03.044Z",
+      "responseMs": 0,
+      "lastAttempt": "2026-07-09T07:00:02.759Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.759Z",
       "stale": false
     },
     "pollen": {
@@ -451,8 +451,8 @@
       "source": "Open-Meteo Air Quality",
       "error": null,
       "responseMs": 107,
-      "lastAttempt": "2026-07-09T06:30:03.045Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:03.045Z",
+      "lastAttempt": "2026-07-09T07:00:02.759Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.759Z",
       "stale": false
     },
     "river_gauges": {
@@ -460,16 +460,16 @@
       "status": "live",
       "data": {
         "status": "live",
-        "summary": "Little Bush Kill at Edgemere, PA — 4.47 ft stage · 12.4 cfs · 8.8 km away",
+        "summary": "Little Bush Kill at Edgemere, PA — 4.46 ft stage · 12.1 cfs · 8.8 km away",
         "nearest": {
           "siteId": "01439590",
           "siteName": "Little Bush Kill at Edgemere, PA",
           "lat": 41.25860935,
           "lng": -74.9954313,
-          "observedAt": "2026-07-09T01:45:00.000-04:00",
-          "dischargeCfs": 12.4,
+          "observedAt": "2026-07-09T02:45:00.000-04:00",
+          "dischargeCfs": 12.1,
           "dischargeUnit": "ft3/s",
-          "stageFt": 4.47,
+          "stageFt": 4.46,
           "stageUnit": "ft",
           "distanceKm": 8.82043113502746
         },
@@ -478,9 +478,9 @@
       },
       "source": "USGS Water Services",
       "error": null,
-      "responseMs": 11870,
-      "lastAttempt": "2026-07-09T06:30:03.152Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:03.152Z",
+      "responseMs": 14014,
+      "lastAttempt": "2026-07-09T07:00:02.866Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:02.866Z",
       "stale": false
     },
     "alerts": {
@@ -493,9 +493,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 161,
-      "lastAttempt": "2026-07-09T06:30:15.022Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:15.022Z",
+      "responseMs": 511,
+      "lastAttempt": "2026-07-09T07:00:16.880Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:16.880Z",
       "stale": false
     },
     "photography_conditions": {
@@ -512,20 +512,20 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T06:30:15.183Z",
-      "lastSuccessfulUpdate": "2026-07-09T06:30:15.183Z",
+      "lastAttempt": "2026-07-09T07:00:17.391Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:00:17.391Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 14,
-    "runDurationMs": 13439,
+    "uptimeSeconds": 16,
+    "runDurationMs": 16027,
     "memory": {
-      "rss": 84201472,
+      "rss": 83881984,
       "heapTotal": 7901184,
-      "heapUsed": 6677336,
-      "external": 3843160,
-      "arrayBuffers": 286086
+      "heapUsed": 6775256,
+      "external": 3843162,
+      "arrayBuffers": 286088
     },
     "nodeVersion": "v18.19.1",
     "platform": "linux"
