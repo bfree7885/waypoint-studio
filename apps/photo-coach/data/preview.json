@@ -1,0 +1,17 @@
+{
+  "name": "Photo Coach",
+  "eyebrow": "Photography journey",
+  "mission": "Learn to see — a quiet field guide beside you on the trail. Conditions, opportunities, composition, editing philosophy, and gear knowledge for your Sony a6700.",
+  "status": "live",
+  "statusLabel": "Phase 1 foundation",
+  "portfolioStatus": "core",
+  "portfolioNote": "Long-horizon photography growth instrument — not a dashboard, not social performance.",
+  "strategicRole": "Photo Coach builds a 10+ year path toward gallery-quality outdoor photography: understanding why images work, reading light, and integrating photography into hiking and conservation.",
+  "learnToday": [
+    "Today's photography conditions from live weather — golden hour, fog, clouds, wind",
+    "Field opportunities matched to current light and season",
+    "One composition concept at a time with simple diagrams",
+    "A pre-shutter checklist that slows you down before pressing the button"
+  ],
+  "homeLink": "../../#experiences"
+}

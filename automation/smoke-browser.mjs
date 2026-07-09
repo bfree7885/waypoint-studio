@@ -15,7 +15,8 @@ const PAGES = [
   { name: "kiosk", path: "/kiosk.html", waitMs: 4000 },
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
-  { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 }
+  { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 },
+  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 12000 }
 ];
 
 function fetchJson(url) {

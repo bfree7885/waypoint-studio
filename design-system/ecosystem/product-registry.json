@@ -2,7 +2,7 @@
   "version": "1.1.0",
   "description": "Waypoint Studio product registry — core instruments, content tracks, and shared modules.",
   "portfolio": {
-    "core": ["studio", "foragecast", "fieldry", "scenes"],
+    "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
     "contentTracks": ["shed-hunting", "steepleaf", "savant-sommelier"],
     "modules": ["signalterrain"],
     "retired": ["terrainbound"]
@@ -146,6 +146,32 @@
       "fieldGuideTemplates": ["seasonal-journal", "field-investigation", "equipment", "photography", "research-brief"],
       "photographyLayout": "journal-evidence",
       "citizenScience": { "enabled": true, "optIn": true },
+      "contentEngineRegion": "pike-county-pa"
+    },
+    "photo-coach": {
+      "slug": "photo-coach",
+      "portfolioTier": "core",
+      "portfolioRole": "Long-horizon outdoor photography journey",
+      "dataProduct": "photo-coach",
+      "name": "Photo Coach",
+      "hero": "Learn to see",
+      "eyebrow": "Photography journey",
+      "lead": "A quiet guide beside you in the field — conditions, opportunities, composition, editing, and gear for your Sony a6700.",
+      "description": "Become an exceptional outdoor photographer over decades — not overnight.",
+      "studioHref": "../../",
+      "toolHref": "apps/photo-coach/",
+      "toolLabel": "Open Photo Coach",
+      "contentDomains": ["photography", "weather", "habitat", "field-skills", "conservation"],
+      "homepageSections": [
+        "featured-photograph",
+        "seasonal-highlight",
+        "field-guide-spotlight",
+        "outdoor-challenge",
+        "citizen-science"
+      ],
+      "fieldGuideTemplates": ["photography", "equipment", "weather", "habitat", "seasonal-journal"],
+      "photographyLayout": "gallery-grid",
+      "citizenScience": { "enabled": false, "optIn": false },
       "contentEngineRegion": "pike-county-pa"
     },
     "shed-hunting": {

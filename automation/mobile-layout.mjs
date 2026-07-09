@@ -18,7 +18,8 @@ const VIEWPORTS = [
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 18000 },
   { name: "kiosk", path: "/kiosk.html", waitMs: 5000 },
-  { name: "status", path: "/status.html", waitMs: 4000 }
+  { name: "status", path: "/status.html", waitMs: 4000 },
+  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 12000 }
 ];
 
 function fetchJson(url) {
@@ -87,7 +88,7 @@ async function testPage(client, page, viewport) {
     expression: `(() => {
       const doc = document.documentElement;
       const panels = Array.from(document.querySelectorAll(
-        '.swk-panel, .wdb-widget, .wdb-section, .wle-card, .swk-topbar, .swk-statusbar, .wdb-brief, .wdb-doc'
+        '.swk-panel, .wdb-widget, .wdb-section, .wle-card, .swk-topbar, .swk-statusbar, .wdb-brief, .wdb-doc, .pc-section, .pc-card, .pc-nav'
       ));
       const overlaps = [];
       for (let i = 0; i < panels.length; i++) {

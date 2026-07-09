@@ -507,6 +507,19 @@
       "featured": false
     },
     {
+      "slug": "photo-coach",
+      "name": "Photo Coach",
+      "mission": "Learn to see — a quiet field guide for outdoor photography over the long term.",
+      "whatItDoes": "Surfaces live photography conditions, field opportunities, composition concepts, editing philosophy, and gear guidance for your Sony a6700.",
+      "whoItHelps": "Beginners who want to understand why photographs work — forests, mountains, wildlife, and conservation-minded outdoor life.",
+      "futurePlanned": "Image upload, EXIF analysis, AI critique with outdoor context, and Fieldry-linked progress.",
+      "educationalValue": "One concept at a time, real field guidance, no gamification — photography integrated into hiking and observation.",
+      "href": "apps/photo-coach/",
+      "status": "live",
+      "statusLabel": "Phase 1 foundation",
+      "featured": true
+    },
+    {
       "slug": "waypoint-scenes",
       "name": "Waypoint Scenes",
       "mission": "Creative reflection from field evidence — honest photography, memory, and visual storytelling after time outside.",
