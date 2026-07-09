@@ -2,23 +2,23 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T07:00:01.366Z",
-  "nextScheduledUpdate": "2026-07-09T07:30:00.000Z",
+  "generatedAt": "2026-07-09T07:30:01.767Z",
+  "nextScheduledUpdate": "2026-07-09T08:00:00.000Z",
   "overall": {
     "status": "warning",
     "message": "Modules available but stale data detected.",
-    "lastSuccessfulRefresh": "2026-07-09T07:00:17.391Z"
+    "lastSuccessfulRefresh": "2026-07-09T07:30:23.193Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T07:00:01.366Z",
-    "dataUpdatedAt": "2026-07-09T07:00:01.366Z",
-    "nextScheduledRun": "2026-07-09T07:30:00.000Z",
-    "lastPublishAt": "2026-07-09T06:30:16.244Z",
-    "lastPublishedDataAt": "2026-07-09T06:30:01.746Z",
-    "lastPublishCommit": "e28d50e",
+    "lastEngineRun": "2026-07-09T07:30:01.767Z",
+    "dataUpdatedAt": "2026-07-09T07:30:01.767Z",
+    "nextScheduledRun": "2026-07-09T08:00:00.000Z",
+    "lastPublishAt": "2026-07-09T07:00:18.620Z",
+    "lastPublishedDataAt": "2026-07-09T07:00:01.366Z",
+    "lastPublishCommit": "318bbd0",
     "lastPublishStatus": "succeeded",
-    "lastPublishMessage": "Pushed e28d50e to origin/main"
+    "lastPublishMessage": "Pushed 318bbd0 to origin/main"
   },
   "modules": {
     "weather": {
@@ -373,8 +373,8 @@
       },
       "source": "previous-success",
       "error": "HTTP 503",
-      "responseMs": 873,
-      "lastAttempt": "2026-07-09T07:00:01.368Z",
+      "responseMs": 724,
+      "lastAttempt": "2026-07-09T07:30:01.769Z",
       "lastSuccessfulUpdate": "2026-07-09T05:30:01.853Z",
       "stale": true
     },
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 12,
-      "lastAttempt": "2026-07-09T07:00:02.241Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.241Z",
+      "responseMs": 11,
+      "lastAttempt": "2026-07-09T07:30:02.493Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:02.493Z",
       "stale": false
     },
     "moon": {
@@ -401,14 +401,14 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 32,
-        "phaseValue": 0.839,
+        "phaseValue": 0.84,
         "trust": "Estimated"
       },
       "source": "Calculated",
       "error": null,
-      "responseMs": 0,
-      "lastAttempt": "2026-07-09T07:00:02.253Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.253Z",
+      "responseMs": 1,
+      "lastAttempt": "2026-07-09T07:30:02.504Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:02.504Z",
       "stale": false
     },
     "air_quality": {
@@ -422,9 +422,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 506,
-      "lastAttempt": "2026-07-09T07:00:02.253Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.253Z",
+      "responseMs": 437,
+      "lastAttempt": "2026-07-09T07:30:02.505Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:02.505Z",
       "stale": false
     },
     "uv": {
@@ -437,8 +437,8 @@
       "source": "Open-Meteo",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T07:00:02.759Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.759Z",
+      "lastAttempt": "2026-07-09T07:30:02.942Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:02.942Z",
       "stale": false
     },
     "pollen": {
@@ -450,9 +450,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 107,
-      "lastAttempt": "2026-07-09T07:00:02.759Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.759Z",
+      "responseMs": 108,
+      "lastAttempt": "2026-07-09T07:30:02.942Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:02.942Z",
       "stale": false
     },
     "river_gauges": {
@@ -478,9 +478,9 @@
       },
       "source": "USGS Water Services",
       "error": null,
-      "responseMs": 14014,
-      "lastAttempt": "2026-07-09T07:00:02.866Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:02.866Z",
+      "responseMs": 20002,
+      "lastAttempt": "2026-07-09T07:30:03.050Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:03.050Z",
       "stale": false
     },
     "alerts": {
@@ -493,9 +493,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 511,
-      "lastAttempt": "2026-07-09T07:00:16.880Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:16.880Z",
+      "responseMs": 141,
+      "lastAttempt": "2026-07-09T07:30:23.052Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:23.052Z",
       "stale": false
     },
     "photography_conditions": {
@@ -512,20 +512,20 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T07:00:17.391Z",
-      "lastSuccessfulUpdate": "2026-07-09T07:00:17.391Z",
+      "lastAttempt": "2026-07-09T07:30:23.193Z",
+      "lastSuccessfulUpdate": "2026-07-09T07:30:23.193Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 16,
-    "runDurationMs": 16027,
+    "uptimeSeconds": 22,
+    "runDurationMs": 21427,
     "memory": {
-      "rss": 83881984,
-      "heapTotal": 7901184,
-      "heapUsed": 6775256,
-      "external": 3843162,
-      "arrayBuffers": 286088
+      "rss": 84279296,
+      "heapTotal": 8163328,
+      "heapUsed": 6827776,
+      "external": 3843165,
+      "arrayBuffers": 286091
     },
     "nodeVersion": "v18.19.1",
     "platform": "linux"
