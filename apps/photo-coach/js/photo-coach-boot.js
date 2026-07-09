@@ -46,8 +46,8 @@
           .then(resolve)
           .catch(function () {
             global.WDS.location.loadIndex(ENGINE_BASE).then(function (index) {
-              resolve(global.WDS.location.defaultState(index));
-            }).catch(reject);
+              return global.WDS.location.detectLocation({ index: index });
+            }).then(resolve).catch(reject);
           });
       });
     });

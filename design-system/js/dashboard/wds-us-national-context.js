@@ -101,6 +101,13 @@
   function displayTitle(loc) {
     if (!loc) return "United States";
     if (loc.displayTitle) return loc.displayTitle;
+    if (loc.placeLabel) return loc.placeLabel;
+    if (loc.city && (loc.stateCode || loc.state)) {
+      return loc.city + ", " + (loc.stateCode || loc.state);
+    }
+    if (loc.county && (loc.stateCode || loc.state) && !loc.useNationalFallback) {
+      return loc.county + ", " + (loc.stateCode || loc.state);
+    }
     if (isLocalBundleEligible(loc) || loc.contentMode === CONTENT_MODE_LOCAL) {
       return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
     }

@@ -254,6 +254,17 @@
   }
 
   function render(live, health) {
+    var userLoc = window.__WAYPOINT_KIOSK_LOC__;
+    var userWx = window.__WAYPOINT_KIOSK_WEATHER__;
+    if (userWx && userWx.userLocation) {
+      live = Object.assign({}, live, {
+        timezone: userWx.timezone || live.timezone,
+        current: Object.assign({}, live.current, userWx.current),
+        forecast: Object.assign({}, live.forecast, userWx.forecast),
+        hourly: userWx.hourly || live.hourly,
+        sun: userWx.sun || live.sun
+      });
+    }
     timezone = live.timezone || timezone;
     var cur = live.current || {};
     var forecast = live.forecast || {};
@@ -268,7 +279,8 @@
 
     $("swk-clock").textContent = formatClock(new Date(), timezone);
     $("swk-date").textContent = formatDate(new Date(), timezone);
-    setText("swk-location", (live.location && live.location.label) || "Outdoor location");
+    setText("swk-location", (userLoc && (userLoc.displayTitle || userLoc.placeLabel)) ||
+      (live.location && live.location.label) || "Outdoor location");
 
     var updatedEl = $("swk-updated");
     updatedEl.textContent = formatStamp(live.updatedAt, timezone) + " · " + ageLabel(live.updatedAt);
@@ -364,6 +376,9 @@
   }
 
   refresh();
+  document.addEventListener("waypoint:kiosk-location-ready", function () {
+    refresh();
+  });
   refreshTimer = window.setInterval(refresh, REFRESH_MS);
   window.setInterval(tick, 1000);
 })();

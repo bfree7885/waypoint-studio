@@ -14,7 +14,10 @@
   function fromLocationState(loc) {
     if (!loc) return {};
     var source = M.normalizeLocationSource(loc.source, loc.isDefault);
-    var label = loc.name ? loc.name + (loc.stateCode ? ", " + loc.stateCode : "") : null;
+    var label = loc.displayTitle || loc.placeLabel ||
+      (loc.city && (loc.stateCode || loc.state) ? loc.city + ", " + (loc.stateCode || loc.state) : null) ||
+      (loc.name ? loc.name + (loc.stateCode ? ", " + loc.stateCode : "") : null);
+    var countyName = loc.county || (loc.useNationalFallback ? null : loc.name);
     return {
       meta: {
         regionId: loc.regionId,
@@ -33,7 +36,7 @@
         id: loc.regionId || loc.contentBundle,
         label: label
       },
-      county: { name: loc.name, stateCode: loc.stateCode },
+      county: { name: countyName, stateCode: loc.stateCode },
       state: { name: loc.state, code: loc.stateCode },
       elevation: {
         feet: loc.elevationFt != null ? Number(loc.elevationFt) : null,

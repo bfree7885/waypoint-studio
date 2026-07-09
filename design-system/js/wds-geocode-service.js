@@ -70,6 +70,11 @@
           stateCode: picked.stateCode,
           country: picked.country,
           displayName: data.display_name || null,
+          placeLabel: picked.city && picked.state
+            ? picked.city + ", " + (picked.stateCode || picked.state)
+            : (picked.county && picked.state
+              ? picked.county + ", " + (picked.stateCode || picked.state)
+              : (picked.city ? "Near " + picked.city + (picked.state ? ", " + picked.state : "") : null)),
           meta: {
             provider: "nominatim",
             attribution: "OpenStreetMap / Nominatim",

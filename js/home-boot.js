@@ -130,6 +130,15 @@
       onLocationChange: function (newLoc) {
         startDashboard(newLoc);
       }
+    }).then(function () {
+      if (WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast) {
+        var pkg = WDS.outdoorIntelligence.getLast();
+        if (WDS.locationDebug && WDS.locationDebug.mount) {
+          WDS.locationDebug.mount(loc, pkg, document.getElementById("main"));
+        }
+      } else if (WDS.locationDebug && WDS.locationDebug.mount) {
+        WDS.locationDebug.mount(loc, null, document.getElementById("main"));
+      }
     });
   }
 
@@ -139,6 +148,9 @@
       if (!window.WDS || !WDS.location || !WDS.location.getState) return;
       var state = WDS.location.getState();
       if (!state) return;
+      if (WDS.location.refreshLocationInBackground) {
+        WDS.location.refreshLocationInBackground(null, ENGINE_BASE);
+      }
       startDashboard(state);
     }, DASHBOARD_REFRESH_MS);
   }
@@ -180,12 +192,6 @@
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")
     }).then(startDashboard).catch(function () {
-      if (window.WDS && WDS.location) {
-        WDS.location.loadIndex(ENGINE_BASE).then(function (index) {
-          startDashboard(WDS.location.defaultState(index));
-        }).catch(showBootError);
-        return;
-      }
       showBootError();
     });
   }

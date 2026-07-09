@@ -53,7 +53,11 @@
   function locationFields(loc) {
     loc = loc || {};
     var city = loc.city || null;
-    var county = loc.county || loc.name || null;
+    var county = loc.county || null;
+    if (!county && loc.source === "manual" && loc.name) county = loc.name;
+    if (!county && loc.nearestIndexedCounty && loc.useNationalFallback) {
+      county = loc.nearestIndexedCounty + " (nearest index, " + loc.distanceKm + " km)";
+    }
     var state = loc.state || null;
     var stateCode = loc.stateCode || null;
     if (loc.inferredState && !state) state = loc.inferredState.name;

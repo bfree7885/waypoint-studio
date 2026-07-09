@@ -55,6 +55,7 @@
   function normalizeLocationSource(source, isDefault) {
     if (isDefault || source === "default") return "fallback";
     if (source === "geo") return "browser";
+    if (source === "ip") return "ip";
     if (source === "manual") return "manual";
     if (source === "browser" || source === "fallback") return source;
     return "fallback";

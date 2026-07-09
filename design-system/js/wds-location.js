@@ -1,12 +1,15 @@
 /**
- * Waypoint Studio — regional location (browser geolocation, no external APIs)
- * Shared by Studio, ForageCast, and future apps via WDS.location.
+ * Waypoint Studio — regional location (browser geolocation + IP fallback)
+ * Shared by Studio, ForageCast, kiosk, and apps via WDS.location.
  */
 (function (global) {
   "use strict";
 
   var STORAGE_KEY = "wds-location-v1";
   var PROMPT_KEY = "wds-location-prompted";
+  var MOVE_THRESHOLD_KM = 5;
+  var CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
+  var GEO_SOFT_REFRESH_MS = 30 * 60 * 1000;
 
   var indexCache = null;
   var currentState = null;
@@ -71,22 +74,77 @@
   function enrichWithGeocode(state) {
     var GC = global.WDS && global.WDS.geocode;
     if (!GC || !GC.reverse || !state || !isFinite(Number(state.lat)) || !isFinite(Number(state.lng))) {
-      return Promise.resolve(state);
+      return Promise.resolve(applyPlaceDisplay(state));
     }
-    if (state.city && state.county && state.geocodeAt) return Promise.resolve(state);
+    if (state.city && state.county && state.geocodeAt) {
+      return Promise.resolve(applyPlaceDisplay(state));
+    }
     return GC.reverse({ lat: Number(state.lat), lng: Number(state.lng) }).then(function (geo) {
       if (geo && geo.status === "live") {
         if (geo.city) state.city = geo.city;
         if (geo.county) state.county = geo.county;
         if (geo.state) state.state = geo.state;
         if (geo.stateCode) state.stateCode = geo.stateCode;
+        if (geo.placeLabel) state.placeLabel = geo.placeLabel;
         state.geocodeSource = geo.meta && geo.meta.provider;
         state.geocodeAt = geo.meta && geo.meta.fetchedAt;
       }
-      return state;
+      return applyPlaceDisplay(state);
     }).catch(function () {
-      return state;
+      return applyPlaceDisplay(state);
     });
+  }
+
+  function isValidCoords(state) {
+    return !!(state && isFinite(Number(state.lat)) && isFinite(Number(state.lng)));
+  }
+
+  function isLegacyDefault(state) {
+    return !!(state && (state.source === "default" || state.isDefault === true));
+  }
+
+  function shouldRefreshStored(state) {
+    if (!isValidCoords(state)) return true;
+    if (isLegacyDefault(state)) return true;
+    var age = Date.now() - (state.timestamp || 0);
+    return age > CACHE_MAX_AGE_MS;
+  }
+
+  function hasMovedSignificantly(state, lat, lng) {
+    if (!isValidCoords(state)) return true;
+    return distanceKm(Number(state.lat), Number(state.lng), lat, lng) >= MOVE_THRESHOLD_KM;
+  }
+
+  function applyPlaceDisplay(state) {
+    if (!state) return state;
+    var US = global.WDS && global.WDS.usNational;
+    if (state.placeLabel) {
+      state.displayTitle = state.placeLabel;
+    } else if (state.city && (state.stateCode || state.state)) {
+      state.placeLabel = state.city + ", " + (state.stateCode || state.state);
+      state.displayTitle = state.placeLabel;
+    } else if (state.county && (state.stateCode || state.state)) {
+      state.placeLabel = state.county + ", " + (state.stateCode || state.state);
+      state.displayTitle = state.placeLabel;
+    } else if (state.city) {
+      state.placeLabel = "Near " + state.city + (state.state ? ", " + state.state : "");
+      state.displayTitle = state.placeLabel;
+    } else if (isValidCoords(state)) {
+      state.displayTitle = formatCoords(state.lat, state.lng) +
+        (state.stateCode ? " · " + state.stateCode : state.state ? " · " + state.state : "");
+    }
+    if (US && US.finalizeLocation) {
+      state = US.finalizeLocation(state, indexCache);
+    }
+    return state;
+  }
+
+  function finalizeStored(state, index) {
+    if (!state) return state;
+    if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
+      state = global.WDS.usNational.finalizeLocation(state, index || indexCache);
+    }
+    return applyPlaceDisplay(state);
   }
 
   function saveState(state, options) {
@@ -223,15 +281,14 @@
     };
   }
 
-  function geolocationErrorMessage(err, index) {
-    if (!err) return "Could not get location.";
-    var label = getDefaultLabel(index);
+  function geolocationErrorMessage(err) {
+    if (!err) return "Could not get browser location.";
     if (err.code === 1) {
-      return "Location permission denied — use " + label + " or search a county below.";
+      return "Browser location permission denied — using IP geolocation when available.";
     }
-    if (err.code === 2) return "Location unavailable — try again or pick a county.";
-    if (err.code === 3) return "Location timed out — try again or pick a county.";
-    return "Could not get location — try again or pick a county.";
+    if (err.code === 2) return "Browser location unavailable — using IP geolocation when available.";
+    if (err.code === 3) return "Browser location timed out — using IP geolocation when available.";
+    return "Browser location failed — using IP geolocation when available.";
   }
 
   function getGeolocation(options) {
@@ -253,24 +310,170 @@
           reject(err);
         },
         {
-          enableHighAccuracy: false,
-          timeout: options.timeout || 12000,
-          maximumAge: options.maximumAge || 300000
+          enableHighAccuracy: options.enableHighAccuracy !== false,
+          timeout: options.timeout || 15000,
+          maximumAge: options.maximumAge != null ? options.maximumAge : 60000
         }
       );
     });
   }
 
-  function resolveFromCoords(lat, lng, index, extra) {
+  function buildStateFromCoords(lat, lng, index, extra) {
     extra = extra || {};
+    var US = global.WDS && global.WDS.usNational;
+    var bundleKm = US && US.BUNDLE_MATCH_KM ? US.BUNDLE_MATCH_KM : 50;
     var match = nearestRegion(index, lat, lng);
-    if (!match.region) return defaultState(index);
-    return buildState("geo", match.region, {
+    var region = match.region;
+    var eligible = false;
+
+    if (region && US && US.isLocalBundleEligible) {
+      eligible = US.isLocalBundleEligible({
+        source: extra.source || "geo",
+        lat: lat,
+        lng: lng,
+        regionId: region.id
+      }, index);
+    } else if (region) {
+      eligible = match.distanceKm <= bundleKm;
+    }
+
+    var state = {
+      source: extra.source || "geo",
       lat: lat,
       lng: lng,
-      distanceKm: match.distanceKm,
-      accuracy: extra.accuracy
-    }, index);
+      accuracy: extra.accuracy != null ? extra.accuracy : null,
+      timestamp: Date.now(),
+      detectedAt: extra.detectedAt || new Date().toISOString(),
+      detectionMethod: extra.detectionMethod ||
+        (extra.source === "ip" ? "ip-geolocation" : "browser-geolocation"),
+      refreshReason: extra.refreshReason || null,
+      fallbackReason: extra.fallbackReason || null,
+      distanceKm: region ? Math.round(match.distanceKm) : null,
+      nearestIndexedCounty: region ? region.name : null,
+      nearestIndexedState: region ? region.stateCode : null,
+      isDefault: false,
+      geoDenied: !!extra.geoDenied,
+      usingNearestBundle: false
+    };
+
+    if (extra.city) state.city = extra.city;
+    if (extra.regionName) state.state = extra.regionName;
+    if (extra.stateCode) state.stateCode = extra.stateCode;
+
+    if (eligible && region) {
+      state.regionId = region.id;
+      state.contentBundle = region.contentBundle || region.id;
+      state.name = region.name;
+      state.state = region.state;
+      state.stateCode = region.stateCode;
+      state.bioregion = region.bioregion || "";
+      state.elevationFt = region.elevationFt;
+      state.mapExtent = region.mapExtent || null;
+      state.weather = region.weather || null;
+      state.seasonNote = region.seasonNote || null;
+      state.usingNearestBundle = (region.contentBundle || region.id) !== region.id;
+    } else {
+      state.regionId = "us-coords";
+      state.contentBundle = "us-national";
+      state.name = null;
+      var inferred = global.WDS && global.WDS.usStates && global.WDS.usStates.inferState(lat, lng);
+      if (inferred) {
+        state.state = inferred.name;
+        state.stateCode = inferred.code;
+        state.inferredState = { code: inferred.code, name: inferred.name };
+      }
+    }
+
+    if (US && US.finalizeLocation) {
+      state = US.finalizeLocation(state, index);
+    }
+    return state;
+  }
+
+  function resolveFromCoords(lat, lng, index, extra) {
+    return buildStateFromCoords(lat, lng, index, extra);
+  }
+
+  function detectFromBrowser(index, extra) {
+    extra = extra || {};
+    return getGeolocation({ enableHighAccuracy: true, maximumAge: 60000 }).then(function (coords) {
+      return buildStateFromCoords(coords.lat, coords.lng, index, Object.assign({}, extra, {
+        source: "geo",
+        accuracy: coords.accuracy,
+        detectionMethod: "browser-geolocation",
+        refreshReason: extra.refreshReason || "browser-geolocation"
+      }));
+    });
+  }
+
+  function detectFromIp(index, extra) {
+    extra = extra || {};
+    var IP = global.WDS && global.WDS.ipGeolocation;
+    if (!IP || !IP.lookup) {
+      return Promise.reject(new Error("IP geolocation unavailable"));
+    }
+    return IP.lookup().then(function (ip) {
+      return buildStateFromCoords(ip.lat, ip.lng, index, Object.assign({}, extra, {
+        source: "ip",
+        city: ip.city,
+        regionName: ip.region,
+        stateCode: ip.stateCode,
+        detectionMethod: "ip-geolocation",
+        refreshReason: extra.refreshReason || "ip-geolocation",
+        fallbackReason: extra.fallbackReason || "browser-geolocation-denied"
+      }));
+    });
+  }
+
+  function detectLocation(options) {
+    options = options || {};
+    var index = options.index || indexCache;
+    var force = !!options.forceRefresh;
+    var stored = readStored();
+    if (stored && isLegacyDefault(stored)) stored = null;
+
+    if (!force && stored && isValidCoords(stored) && !shouldRefreshStored(stored)) {
+      stored.refreshReason = "cache-hit";
+      return Promise.resolve(finalizeStored(stored, index));
+    }
+
+    return detectFromBrowser(index, { refreshReason: force ? "forced-refresh" : "bootstrap" })
+      .catch(function (browserErr) {
+        return detectFromIp(index, {
+          fallbackReason: geolocationErrorMessage(browserErr)
+        });
+      })
+      .then(function (state) {
+        return saveState(state, { silent: options.silent });
+      })
+      .catch(function () {
+        if (stored && isValidCoords(stored)) {
+          stored.fallbackReason = "all-detection-failed-using-cache";
+          stored.refreshReason = "stale-cache";
+          return finalizeStored(stored, index);
+        }
+        return Promise.reject(new Error("Could not detect location — enable browser location or try again."));
+      });
+  }
+
+  function refreshLocationInBackground(index, base) {
+    index = index || indexCache;
+    if (!index) return;
+    var prev = getState();
+    detectFromBrowser(index, { refreshReason: "background-refresh", silent: true })
+      .catch(function () { return detectFromIp(index, { refreshReason: "background-ip-fallback" }); })
+      .then(function (state) {
+        if (!state || !isValidCoords(state)) return null;
+        if (prev && isValidCoords(prev) && !hasMovedSignificantly(prev, state.lat, state.lng) &&
+            Date.now() - (prev.timestamp || 0) < GEO_SOFT_REFRESH_MS) {
+          return null;
+        }
+        return saveState(state, { silent: true });
+      })
+      .then(function (updated) {
+        if (updated) notifyChange(updated);
+      })
+      .catch(function () { /* background only */ });
   }
 
   function getState() {
@@ -296,12 +499,8 @@
     if (loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc);
     }
-    if (loc.source === "geo") {
-      var geoLine = formatCoords(loc.lat, loc.lng);
-      if (loc.state || loc.stateCode) {
-        geoLine += " · " + (loc.state || loc.stateCode);
-      }
-      return geoLine;
+    if (loc.source === "geo" || loc.source === "ip") {
+      return loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng);
     }
     return loc.name + ", " + (loc.state || loc.stateCode);
   }
@@ -315,8 +514,9 @@
     if (!loc || loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc) + weekPart + " · editorial content may not match your county until more bundles ship";
     }
-    if (loc.source === "geo") {
-      return "Near " + (loc.name || region.name) + ", " + (loc.stateCode || region.stateCode) + weekPart;
+    if (loc.source === "geo" || loc.source === "ip") {
+      return (loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng)) + weekPart +
+        " · " + (loc.useNationalFallback ? "U.S. regional overview" : "local bundle");
     }
     return (loc.name || region.name) + ", " + (loc.state || region.state) + weekPart;
   }
@@ -385,8 +585,8 @@
     var statusHtml = "";
     if (loc.isDefault || loc.source === "default") {
       statusHtml = "<strong>Using default region:</strong> " + escapeHtml(formatRegionLabel(loc));
-    } else if (loc.source === "geo") {
-      statusHtml = "<strong>Your location:</strong> " + escapeHtml(loc.displayTitle || formatCoords(loc.lat, loc.lng));
+    } else if (loc.source === "geo" || loc.source === "ip") {
+      statusHtml = "<strong>Your location:</strong> " + escapeHtml(loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng));
     } else {
       statusHtml = "<strong>Region:</strong> " + escapeHtml(loc.displayTitle || (loc.name + ", " + loc.state));
     }
@@ -533,7 +733,7 @@
           finish(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
         })
         .catch(function (err) {
-          fail(geolocationErrorMessage(err, index));
+          fail(geolocationErrorMessage(err));
         });
     });
 
@@ -562,40 +762,48 @@
     var promptMount = options.promptMount || document.getElementById("wds-location-prompt");
 
     return loadIndex(base).then(function (index) {
+      indexCache = index;
       var stored = readStored();
-      if (stored && stored.regionId) {
-        if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
-          stored = global.WDS.usNational.finalizeLocation(stored, index);
+
+      if (stored && isLegacyDefault(stored)) {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
+        stored = null;
+      }
+
+      if (stored && isValidCoords(stored) && !options.forceRefresh && !shouldRefreshStored(stored)) {
+        currentState = finalizeStored(stored, index);
+        if (Date.now() - (stored.timestamp || 0) > GEO_SOFT_REFRESH_MS) {
+          refreshLocationInBackground(index, base);
         }
-        currentState = stored;
-        return enrichWithGeocode(stored).then(function (enriched) {
-          if (enriched !== stored) writeStored(enriched, { silent: true });
+        return enrichWithGeocode(currentState).then(function (enriched) {
+          if (enriched !== currentState) writeStored(enriched, { silent: true });
+          currentState = enriched;
           return enriched;
         });
       }
 
-      if (options.skipPrompt) {
-        var skipped = defaultState(index);
-        writeStored(skipped, { silent: true });
-        return skipped;
-      }
-
-      // Production: never block first paint on a location prompt.
-      // Use default immediately; prompt remains available for change.
-      var bootState = defaultState(index);
-      writeStored(bootState, { silent: true });
-      if (promptMount) {
-        try {
-          promptMount.innerHTML = "";
-          promptMount.setAttribute("hidden", "hidden");
-        } catch (e) { /* noop */ }
-      }
-      return bootState;
-    }).catch(function () {
+      return detectLocation({ index: index, base: base, silent: true }).then(function (state) {
+        currentState = state;
+        if (promptMount) {
+          try {
+            promptMount.innerHTML = "";
+            promptMount.setAttribute("hidden", "hidden");
+          } catch (e) { /* noop */ }
+        }
+        return state;
+      }).catch(function (err) {
+        if (options.skipPrompt) {
+          throw err;
+        }
+        return new Promise(function (resolve) {
+          renderPrompt(promptMount, index, resolve);
+        });
+      });
+    }).catch(function (err) {
       return loadIndex(base).then(function (index) {
-        var fallback = defaultState(index);
-        writeStored(fallback, { silent: true });
-        return fallback;
+        return detectLocation({ index: index, forceRefresh: true }).catch(function () {
+          throw err;
+        });
       });
     });
   }
@@ -635,21 +843,25 @@
 
   function requestGeolocationAndSave(base) {
     return loadIndex(base).then(function (index) {
-      return getGeolocation()
-        .then(function (coords) {
-          return saveState(resolveFromCoords(coords.lat, coords.lng, index, { accuracy: coords.accuracy }));
+      return detectFromBrowser(index, { refreshReason: "user-requested" })
+        .then(function (state) {
+          return saveState(state);
         })
         .catch(function (err) {
-          var state = getState();
-          if (!state) {
-            state = defaultState(index);
-          }
-          state.geoDenied = true;
-          state.geoError = geolocationErrorMessage(err, index);
-          if (global.WDS && global.WDS.usNational && global.WDS.usNational.finalizeLocation) {
-            state = global.WDS.usNational.finalizeLocation(state, index);
-          }
-          return writeStored(state);
+          return detectFromIp(index, {
+            fallbackReason: geolocationErrorMessage(err),
+            refreshReason: "user-requested-ip-fallback"
+          }).then(function (state) {
+            return saveState(state);
+          }).catch(function () {
+            var state = getState();
+            if (state && isValidCoords(state) && !isLegacyDefault(state)) {
+              state.geoDenied = true;
+              state.geoError = geolocationErrorMessage(err);
+              return writeStored(finalizeStored(state, index));
+            }
+            throw err;
+          });
         });
     });
   }
@@ -662,6 +874,11 @@
     getDefaultLabel: getDefaultLabel,
     loadIndex: loadIndex,
     bootstrap: bootstrap,
+    detectLocation: detectLocation,
+    refreshLocationInBackground: refreshLocationInBackground,
+    buildStateFromCoords: buildStateFromCoords,
+    applyPlaceDisplay: applyPlaceDisplay,
+    isLegacyDefault: isLegacyDefault,
     getState: getState,
     readStored: readStored,
     writeStored: writeStored,

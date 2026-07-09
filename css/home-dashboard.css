@@ -241,3 +241,32 @@
     background: rgba(255, 255, 255, 0.06);
   }
 }
+
+.wds-loc-debug {
+  margin: 1.5rem auto 2rem;
+  max-width: var(--wds-max-content);
+  padding: 0 1rem;
+  font-size: var(--wds-text-xs);
+}
+.wds-loc-debug summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--wds-text-muted);
+}
+.wds-loc-debug__table {
+  width: 100%;
+  margin-top: 0.75rem;
+  border-collapse: collapse;
+}
+.wds-loc-debug__table th {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  color: var(--wds-text-muted);
+  font-weight: 500;
+  width: 40%;
+}
+.wds-loc-debug__table td {
+  padding: 0.35rem 0.5rem;
+  border-top: 1px solid var(--wds-border-subtle);
+  word-break: break-word;
+}

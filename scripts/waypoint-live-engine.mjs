@@ -35,12 +35,12 @@ const BANNED = ["coming soon", "assignment", "homework", "lesson", "educational"
 const EBIRD_API_KEY = (process.env.WAYPOINT_EBIRD_API_KEY || process.env.EBIRD_API_KEY || "").trim();
 
 const DEFAULT_LOCATION = {
-  id: "pike-county-pa",
-  name: "Pike County",
-  state: "Pennsylvania",
-  stateCode: "PA",
-  lat: 41.3312,
-  lng: -75.038
+  id: "engine-publish",
+  name: "Engine publish point",
+  state: "United States",
+  stateCode: "US",
+  lat: 39.8283,
+  lng: -98.5795
 };
 
 const WMO = {
@@ -492,25 +492,30 @@ function writeJsonAtomic(file, data) {
 }
 
 function resolveLocation() {
-  try {
-    const index = readJson(INDEX_PATH);
-    const id = index && index.defaultRegionId ? index.defaultRegionId : DEFAULT_LOCATION.id;
-    const region = index && index.regions ? index.regions.find((r) => r.id === id) : null;
-    if (region) {
+  const envLat = process.env.WAYPOINT_ENGINE_LAT;
+  const envLng = process.env.WAYPOINT_ENGINE_LNG;
+  if (envLat != null && envLng != null) {
+    const lat = Number(envLat);
+    const lng = Number(envLng);
+    if (Number.isFinite(lat) && Number.isFinite(lng)) {
       return {
-        id: region.id,
-        name: region.name || DEFAULT_LOCATION.name,
-        state: region.state || DEFAULT_LOCATION.state,
-        stateCode: region.stateCode || DEFAULT_LOCATION.stateCode,
-        lat: Number(region.lat),
-        lng: Number(region.lng),
-        contentBundle: region.contentBundle || region.id
+        id: "engine-configured",
+        name: process.env.WAYPOINT_ENGINE_NAME || "Configured engine location",
+        state: process.env.WAYPOINT_ENGINE_STATE || "United States",
+        stateCode: process.env.WAYPOINT_ENGINE_STATE_CODE || "US",
+        lat,
+        lng,
+        contentBundle: process.env.WAYPOINT_ENGINE_BUNDLE || "us-national",
+        enginePublish: true
       };
     }
-  } catch {
-    /* use default */
   }
-  return { ...DEFAULT_LOCATION, contentBundle: DEFAULT_LOCATION.id };
+  return {
+    ...DEFAULT_LOCATION,
+    contentBundle: "us-national",
+    enginePublish: true,
+    label: "Engine publish point (set WAYPOINT_ENGINE_LAT/LNG for your kiosk)"
+  };
 }
 
 async function fetchJson(url, timeoutMs) {
@@ -1095,7 +1100,9 @@ function buildLivePayload(ctx, moduleList) {
       lat: ctx.location.lat,
       lng: ctx.location.lng,
       contentBundle: ctx.location.contentBundle,
-      label: ctx.location.name + (ctx.location.stateCode ? ", " + ctx.location.stateCode : "")
+      label: ctx.location.label || (ctx.location.enginePublish
+        ? "Engine publish · " + ctx.location.name + (ctx.location.stateCode ? ", " + ctx.location.stateCode : "")
+        : ctx.location.name + (ctx.location.stateCode ? ", " + ctx.location.stateCode : ""))
     },
     timezone,
     current: cur ? {
@@ -1432,7 +1439,8 @@ function makeStatusHtml(payload, health) {
 
     <section class="wle-card" aria-label="Live file">
       <h2>Live file</h2>
-      <div class="wle-row"><span>Location</span><span class="wle-ok">${esc(payload.location && payload.location.label || "—")}</span></div>
+      <div class="wle-row"><span>Engine publish location</span><span class="wle-muted">${esc(payload.location && payload.location.label || "—")}</span></div>
+      <div class="wle-row"><span>Your location</span><span class="wle-ok" id="wle-user-location">Detecting…</span></div>
       <div class="wle-row"><span>Loaded</span><span class="wle-ok">Yes</span></div>
     </section>
 
@@ -1464,7 +1472,15 @@ function makeStatusHtml(payload, health) {
       <h2>Raw live payload</h2>
       <pre>${esc(raw)}</pre>
     </section>
+    <div id="wds-location-debug-mount"></div>
   </div>
+  <script src="design-system/js/wds-us-states.js" defer></script>
+  <script src="design-system/js/wds-geocode-service.js" defer></script>
+  <script src="design-system/js/wds-ip-geolocation.js" defer></script>
+  <script src="design-system/js/dashboard/wds-us-national-context.js" defer></script>
+  <script src="design-system/js/wds-location.js" defer></script>
+  <script src="design-system/js/wds-location-debug.js" defer></script>
+  <script src="js/status-location.js" defer></script>
 </body>
 </html>`;
 }
