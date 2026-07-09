@@ -12,6 +12,7 @@ const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const PORT = 9223;
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 20000 },
+  { name: "kiosk", path: "/kiosk.html", waitMs: 4000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 }
 ];
 
@@ -137,12 +138,28 @@ async function testPage(client, page) {
       const v = result.value || {};
       if ((v.notices || 0) >= 8 && v.hydrated && (v.busy || 0) === 0) break;
     }
+  } else if (page.name === "kiosk") {
+    await delay(page.waitMs);
   } else {
     await delay(page.waitMs);
   }
 
+  const kioskExpr = `(() => {
+    const text = (document.body && document.body.innerText || '').toLowerCase();
+  return {
+    title: document.title,
+    hasTemp: (document.getElementById('kiosk-temp') || {}).textContent !== '—',
+    hasConditions: !/loading/i.test((document.getElementById('kiosk-conditions') || {}).textContent || ''),
+    hasUpdated: /last updated/i.test((document.getElementById('kiosk-updated') || {}).textContent || ''),
+    hasHourly: document.querySelectorAll('.kiosk__hour').length >= 1,
+    hasEngineBadge: /engine/i.test((document.getElementById('kiosk-engine-badge') || {}).textContent || ''),
+    banned: ['coming soon','assignment','homework','lesson','educational'].filter((w) => text.includes(w)),
+    bodyLen: text.length
+  };
+})()`;
+
   const { result } = await client.send("Runtime.evaluate", {
-    expression: `(() => {
+    expression: page.name === "kiosk" ? kioskExpr : `(() => {
       const trusts = Array.from(document.querySelectorAll('.wdb-doc__trust')).map(el => (el.textContent || '').trim());
       const domains = Array.from(document.querySelectorAll('.wdb-doc__domain')).map(el => (el.textContent || '').trim().toLowerCase());
       const pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast ? WDS.outdoorIntelligence.getLast() : null;
@@ -272,6 +289,26 @@ async function main() {
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
       console.log("FAIL: scenes appears blank");
+    }
+    if (r.name === "kiosk" && !r.checks.hasTemp) {
+      failed = true;
+      console.log("FAIL: kiosk temperature missing");
+    }
+    if (r.name === "kiosk" && !r.checks.hasConditions) {
+      failed = true;
+      console.log("FAIL: kiosk conditions missing");
+    }
+    if (r.name === "kiosk" && !r.checks.hasUpdated) {
+      failed = true;
+      console.log("FAIL: kiosk last updated label missing");
+    }
+    if (r.name === "kiosk" && !r.checks.hasHourly) {
+      failed = true;
+      console.log("FAIL: kiosk hourly strip missing");
+    }
+    if (r.name === "kiosk" && (r.checks.banned || []).length) {
+      failed = true;
+      console.log("FAIL: kiosk banned text present: " + r.checks.banned.join(", "));
     }
   }
 

@@ -1,0 +1,311 @@
+/**
+ * Waypoint Live Dashboard — kiosk display
+ * Full-screen, large-type layout for an always-on laptop screen.
+ */
+:root {
+  --kiosk-bg: #080f1c;
+  --kiosk-panel: #112038;
+  --kiosk-border: rgba(155, 143, 217, 0.22);
+  --kiosk-text: #e4eaf4;
+  --kiosk-muted: rgba(228, 234, 244, 0.72);
+  --kiosk-accent: #c8f055;
+  --kiosk-accent-2: #b0a6eb;
+  --kiosk-warn: #f5b942;
+  --kiosk-bad: #f08c8c;
+  --kiosk-ok: #8fd48a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--kiosk-bg);
+  color: var(--kiosk-text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(155, 143, 217, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(200, 240, 85, 0.08), transparent 55%),
+    var(--kiosk-bg);
+}
+
+.kiosk {
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 1rem;
+  min-height: 100vh;
+  padding: 1.25rem 1.5rem 1rem;
+}
+
+.kiosk__header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.kiosk__brand {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.kiosk__mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(135deg, var(--kiosk-accent-2), var(--kiosk-accent));
+  box-shadow: 0 0 24px rgba(200, 240, 85, 0.2);
+}
+
+.kiosk__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.kiosk__location {
+  margin: 0.2rem 0 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.kiosk__clock {
+  text-align: right;
+}
+
+.kiosk__clock-time {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.kiosk__clock-date {
+  margin: 0.15rem 0 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+}
+
+.kiosk__status {
+  justify-self: end;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--kiosk-border);
+  background: rgba(17, 32, 56, 0.85);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.kiosk__status--healthy { color: var(--kiosk-ok); border-color: rgba(143, 212, 138, 0.35); }
+.kiosk__status--warning { color: var(--kiosk-warn); border-color: rgba(245, 185, 66, 0.35); }
+.kiosk__status--degraded,
+.kiosk__status--stale { color: var(--kiosk-bad); border-color: rgba(240, 140, 140, 0.35); }
+
+.kiosk__hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1rem;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid var(--kiosk-border);
+  border-radius: 1rem;
+  background: rgba(17, 32, 56, 0.82);
+}
+
+.kiosk__temp {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(4.5rem, 10vw, 7.5rem);
+  line-height: 0.95;
+  font-weight: 500;
+  color: var(--kiosk-accent);
+}
+
+.kiosk__conditions {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+  font-weight: 500;
+}
+
+.kiosk__updated {
+  margin: 0.8rem 0 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+}
+
+.kiosk__updated--stale {
+  color: var(--kiosk-bad);
+  font-weight: 600;
+}
+
+.kiosk__section-label {
+  margin: 0 0 0.65rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kiosk-accent-2);
+  font-weight: 600;
+}
+
+.kiosk__facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem 1rem;
+  margin: 0;
+}
+
+.kiosk__facts div {
+  margin: 0;
+}
+
+.kiosk__facts dt {
+  margin: 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+}
+
+.kiosk__facts dd {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 600;
+}
+
+.kiosk__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.kiosk__panel {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--kiosk-border);
+  border-radius: 0.9rem;
+  background: rgba(17, 32, 56, 0.78);
+  min-height: 8.5rem;
+}
+
+.kiosk__panel--wide {
+  grid-column: span 2;
+}
+
+.kiosk__panel-value {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+}
+
+.kiosk__panel-detail {
+  margin: 0.45rem 0 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.45;
+}
+
+.kiosk__metric {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.kiosk__metric-sub {
+  margin: 0.35rem 0 0;
+  color: var(--kiosk-muted);
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+}
+
+.kiosk__line {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+}
+
+.kiosk__hourly {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.kiosk__hour {
+  padding: 0.55rem 0.45rem;
+  border-radius: 0.55rem;
+  background: rgba(8, 15, 28, 0.55);
+  text-align: center;
+}
+
+.kiosk__hour-time {
+  margin: 0;
+  color: var(--kiosk-muted);
+  font-size: 0.9rem;
+}
+
+.kiosk__hour-temp {
+  margin: 0.2rem 0 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.kiosk__hour-cond {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--kiosk-muted);
+  line-height: 1.25;
+}
+
+.kiosk__footer {
+  margin-top: auto;
+  padding: 0.8rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--kiosk-border);
+  background: rgba(8, 15, 28, 0.72);
+  color: var(--kiosk-muted);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+
+.kiosk__footer--stale {
+  color: var(--kiosk-bad);
+  border-color: rgba(240, 140, 140, 0.35);
+}
+
+@media (max-width: 1100px) {
+  .kiosk__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kiosk__panel--wide {
+    grid-column: span 2;
+  }
+
+  .kiosk__hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .kiosk__header {
+    grid-template-columns: 1fr;
+  }
+
+  .kiosk__clock,
+  .kiosk__status {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .kiosk__hourly {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

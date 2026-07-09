@@ -1,0 +1,16 @@
+[Unit]
+Description=Waypoint Live Dashboard Kiosk
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/projects/waypoint-scenes
+Environment=DISPLAY=:0
+Environment=WAYPOINT_KIOSK_PORT=8080
+ExecStart=%h/projects/waypoint-scenes/scripts/start-waypoint-kiosk.sh
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=graphical-session.target

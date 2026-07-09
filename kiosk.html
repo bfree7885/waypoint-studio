@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Studio live outdoor dashboard kiosk">
+  <title>Waypoint Outdoor Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/kiosk.css">
+</head>
+<body>
+  <div id="kiosk" class="kiosk" aria-live="polite">
+    <header class="kiosk__header">
+      <div class="kiosk__brand">
+        <span class="kiosk__mark" aria-hidden="true"></span>
+        <div>
+          <p class="kiosk__title">Waypoint Outdoor Dashboard</p>
+          <p class="kiosk__location" id="kiosk-location">Loading location…</p>
+        </div>
+      </div>
+      <div class="kiosk__clock">
+        <p class="kiosk__clock-time" id="kiosk-clock">—</p>
+        <p class="kiosk__clock-date" id="kiosk-date">—</p>
+      </div>
+      <div class="kiosk__status" id="kiosk-engine-badge">Engine —</div>
+    </header>
+
+    <section class="kiosk__hero" aria-label="Current weather">
+      <div class="kiosk__hero-main">
+        <p class="kiosk__temp" id="kiosk-temp">—</p>
+        <p class="kiosk__conditions" id="kiosk-conditions">Loading…</p>
+        <p class="kiosk__updated" id="kiosk-updated">Last updated —</p>
+      </div>
+      <div class="kiosk__hero-now">
+        <h2 class="kiosk__section-label">Now</h2>
+        <dl class="kiosk__facts" id="kiosk-now"></dl>
+      </div>
+    </section>
+
+    <section class="kiosk__row" aria-label="Today and next hours">
+      <article class="kiosk__panel kiosk__panel--wide">
+        <h2 class="kiosk__section-label">Today</h2>
+        <p class="kiosk__panel-value" id="kiosk-today-range">—</p>
+        <p class="kiosk__panel-detail" id="kiosk-today-summary">—</p>
+      </article>
+      <article class="kiosk__panel kiosk__panel--wide">
+        <h2 class="kiosk__section-label">Next</h2>
+        <p class="kiosk__panel-detail" id="kiosk-hourly-note">—</p>
+        <div class="kiosk__hourly" id="kiosk-hourly"></div>
+      </article>
+    </section>
+
+    <section class="kiosk__row" aria-label="Outdoor conditions">
+      <article class="kiosk__panel">
+        <h2 class="kiosk__section-label">Sun &amp; Moon</h2>
+        <div id="kiosk-sun-moon"></div>
+      </article>
+      <article class="kiosk__panel">
+        <h2 class="kiosk__section-label">Air Quality</h2>
+        <div id="kiosk-aqi"></div>
+      </article>
+      <article class="kiosk__panel">
+        <h2 class="kiosk__section-label">UV</h2>
+        <div id="kiosk-uv"></div>
+      </article>
+      <article class="kiosk__panel">
+        <h2 class="kiosk__section-label">Photography</h2>
+        <div id="kiosk-photo"></div>
+      </article>
+    </section>
+
+    <footer class="kiosk__footer" id="kiosk-footer" aria-label="Engine health">
+      Engine health — · Next run — · Data age —
+    </footer>
+  </div>
+  <script src="js/kiosk.js"></script>
+</body>
+</html>
