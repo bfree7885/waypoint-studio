@@ -103,7 +103,7 @@
 
   function badgeClass(status) {
     var key = String(status || "unknown").toLowerCase();
-    if (key === "healthy" || key === "live") return "swk-badge--healthy";
+    if (key === "healthy" || key === "healthy-degraded" || key === "live") return "swk-badge--healthy";
     if (key === "warning" || key === "estimated") return "swk-badge--warning";
     return "swk-badge--degraded";
   }
