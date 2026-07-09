@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Mobile layout checks — iPhone-width viewport (~390px).
+ * Mobile layout checks — portrait and landscape (~320–430px wide).
  * Usage: node automation/mobile-layout.mjs [baseUrl]
  */
 import { spawn } from "child_process";
@@ -10,8 +10,11 @@ import { setTimeout as delay } from "timers/promises";
 const BASE = process.argv[2] || "http://127.0.0.1:8080";
 const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const PORT = 9225;
-const WIDTH = 390;
-const HEIGHT = 844;
+const VIEWPORTS = [
+  { name: "iphone-portrait", width: 390, height: 844 },
+  { name: "iphone-narrow", width: 320, height: 568 },
+  { name: "iphone-landscape", width: 844, height: 390 }
+];
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 18000 },
   { name: "kiosk", path: "/kiosk.html", waitMs: 5000 },
@@ -70,10 +73,10 @@ async function cdp(wsUrl) {
   return { send, close: () => ws.close() };
 }
 
-async function testPage(client, page) {
+async function testPage(client, page, viewport) {
   await client.send("Emulation.setDeviceMetricsOverride", {
-    width: WIDTH,
-    height: HEIGHT,
+    width: viewport.width,
+    height: viewport.height,
     deviceScaleFactor: 3,
     mobile: true
   });
@@ -83,10 +86,8 @@ async function testPage(client, page) {
   const { result } = await client.send("Runtime.evaluate", {
     expression: `(() => {
       const doc = document.documentElement;
-      const body = document.body;
-      const hScroll = doc.scrollWidth > doc.clientWidth + 1;
       const panels = Array.from(document.querySelectorAll(
-        '.swk-panel, .wdb-widget, .wdb-section, .wle-card, .swk-topbar, .swk-statusbar'
+        '.swk-panel, .wdb-widget, .wdb-section, .wle-card, .swk-topbar, .swk-statusbar, .wdb-brief, .wdb-doc'
       ));
       const overlaps = [];
       for (let i = 0; i < panels.length; i++) {
@@ -102,23 +103,22 @@ async function testPage(client, page) {
           }
         }
       }
-      const grids = Array.from(document.querySelectorAll('.swk-grid, .wdb-grid, .wdb-vitals'));
-      const gridCols = grids.map((el) => window.getComputedStyle(el).gridTemplateColumns);
-      const moduleChips = document.querySelectorAll('.swk-module, .wdb-widget__tag');
       return {
-        hScroll,
+        hScroll: doc.scrollWidth > doc.clientWidth + 1,
         scrollWidth: doc.scrollWidth,
         clientWidth: doc.clientWidth,
         overlapCount: overlaps.length,
-        overlaps: overlaps.slice(0, 5),
-        gridCols,
-        chipCount: moduleChips.length,
-        bodyLen: body ? body.innerText.length : 0
+        overlaps: overlaps.slice(0, 5)
       };
     })()`,
     returnByValue: true
   });
-  return { name: page.name, url: BASE + page.path, layout: result.value || {} };
+  return {
+    viewport: viewport.name,
+    page: page.name,
+    url: BASE + page.path,
+    layout: result.value || {}
+  };
 }
 
 async function main() {
@@ -130,8 +130,10 @@ async function main() {
     client = await cdp(chrome.wsUrl);
     await client.send("Runtime.enable");
     await client.send("Page.enable");
-    for (const page of PAGES) {
-      results.push(await testPage(client, page));
+    for (const viewport of VIEWPORTS) {
+      for (const page of PAGES) {
+        results.push(await testPage(client, page, viewport));
+      }
     }
   } finally {
     if (client) client.close();
@@ -139,15 +141,14 @@ async function main() {
   }
 
   let failed = false;
-  console.log(`Mobile layout test @ ${WIDTH}px — ${BASE}\n`);
+  console.log(`Mobile layout test — ${BASE}\n`);
   for (const r of results) {
     const l = r.layout;
     const issues = [];
     if (l.hScroll) issues.push(`horizontal scroll (${l.scrollWidth}px > ${l.clientWidth}px)`);
-    if (l.overlapCount > 0) issues.push(`${l.overlapCount} panel overlap(s): ${(l.overlaps || []).join("; ")}`);
-    console.log(`${r.name}: ${issues.length ? "FAIL — " + issues.join("; ") : "PASS"}`);
-    console.log(`  url: ${r.url}`);
-    if (l.gridCols && l.gridCols.length) console.log(`  grids: ${l.gridCols.join(" | ")}`);
+    if (l.overlapCount > 0) issues.push(`${l.overlapCount} overlap(s): ${(l.overlaps || []).join("; ")}`);
+    const label = `${r.viewport} / ${r.page}`;
+    console.log(`${label}: ${issues.length ? "FAIL — " + issues.join("; ") : "PASS"}`);
     if (issues.length) failed = true;
   }
   if (failed) process.exitCode = 1;

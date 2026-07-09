@@ -999,6 +999,7 @@
     var inner = briefingHtml + liveUpdatedHtml + renderHome(data, renderOpts);
     mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
     mount.removeAttribute("aria-busy");
+    mount.classList.add("wdb-content-ready");
     if (!(Briefing && Briefing.bind)) {
       bindLocationBar(mount, options);
     }

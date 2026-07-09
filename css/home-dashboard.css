@@ -19,9 +19,20 @@
   margin-top: 0;
 }
 
+/* Hydrated content — smooth first paint */
+#wds-content-engine.wdb-content-ready {
+  animation: wdb-content-in 0.4s var(--wds-ease-out, ease-out) both;
+}
+
+@keyframes wdb-content-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Top nav — horizontal scroll on small screens */
 .wds-topbar__inner {
   gap: var(--wds-space-3);
+  align-items: center;
 }
 
 .ws-topnav {
@@ -64,51 +75,83 @@
   outline-offset: 2px;
 }
 
-/* Location bar — light touch on dashboard */
-.wce-location-bar--story {
-  max-width: 88rem;
-  margin: 0 auto;
-  padding: var(--wds-space-3) clamp(1rem, 4vw, 2rem) var(--wds-space-2);
-  background: transparent;
-  border: none;
-}
-
-.wce-location-bar--story .wce-location-bar__main {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--wds-space-2) var(--wds-space-4);
-}
-
-.wce-location-bar--story .wce-location-bar__status {
-  font-size: var(--wds-text-xs);
-  color: var(--wds-text-tertiary);
-}
-
-/* Page boot loading */
+/* Page boot loading — layout-shaped skeleton */
 .wdb-page-loading {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
   gap: var(--wds-space-4);
+  max-width: 88rem;
+  margin: 0 auto;
   min-height: 50vh;
-  padding: clamp(2rem, 6vw, 4rem);
-  text-align: center;
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem);
 }
 
-.wdb-page-loading__pulse {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 2px solid var(--wds-border-subtle);
-  border-top-color: var(--wds-accent);
-  border-radius: 50%;
-  animation: wdb-spin 0.9s linear infinite;
+.wdb-page-loading__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+  width: 100%;
+}
+
+.wdb-skel {
+  border-radius: var(--wds-radius-md, 0.5rem);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.09) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: wdb-skel-shimmer 1.4s ease-in-out infinite;
+}
+
+.wdb-skel--line {
+  height: 0.85rem;
+  max-width: 100%;
+}
+
+.wdb-skel--title {
+  width: min(14rem, 70%);
+  height: 1.35rem;
+}
+
+.wdb-skel--sub {
+  width: min(10rem, 50%);
+  opacity: 0.85;
+}
+
+.wdb-skel--card {
+  min-height: 5.5rem;
+  border-radius: var(--wds-radius-lg, 0.75rem);
+}
+
+.wdb-skel--hero {
+  min-height: 7rem;
+}
+
+.wdb-skel--row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  background: none;
+  animation: none;
+}
+
+.wdb-skel--chip {
+  width: 5.5rem;
+  height: 2rem;
+  border-radius: var(--wds-radius-full, 999px);
+}
+
+@keyframes wdb-skel-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }
 
 .wdb-page-loading__text {
   margin: 0;
+  text-align: center;
   font-size: var(--wds-text-sm);
   color: var(--wds-text-secondary);
 }
@@ -130,25 +173,24 @@
   color: var(--wds-text);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .wdb-page-loading__pulse {
-    animation: none;
-    border-top-color: var(--wds-border-subtle);
-  }
+.wdb-boot-error .wds-btn:focus-visible {
+  outline: 2px solid var(--wds-accent);
+  outline-offset: 2px;
 }
 
 /* Live Engine last-updated strip */
 .wdb-live-updated {
-  max-width: var(--wds-max-content, 72rem);
+  max-width: 88rem;
   margin: 0 auto;
-  padding: 0.35rem clamp(1.25rem, 4vw, 2rem) 0.75rem;
-  font-size: 0.875rem;
-  color: var(--wds-text-muted, #57534e);
+  padding: 0.25rem clamp(1rem, 4vw, 2rem) 0.65rem;
+  font-size: var(--wds-text-xs, 0.8rem);
+  color: var(--wds-text-muted, #78716c);
+  letter-spacing: 0.01em;
 }
 
 .wdb-live-updated__label {
   font-weight: 600;
-  color: var(--wds-text, #1c1917);
+  color: var(--wds-text-secondary, #a8b4c4);
 }
 
 .wdb-live-updated__src {
@@ -159,3 +201,43 @@
   font-variant-numeric: tabular-nums;
 }
 
+@media (max-width: 700px) {
+  .wds-topbar__inner {
+    flex-wrap: wrap;
+  }
+
+  .ws-topnav {
+    max-width: 100%;
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .wdb-page-loading {
+    min-height: 40vh;
+  }
+
+  .wdb-skel--hero {
+    min-height: 5.5rem;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .wdb-page-loading {
+    min-height: 28vh;
+  }
+
+  .wdb-skel--card {
+    min-height: 3.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wds-content-engine.wdb-content-ready {
+    animation: none;
+  }
+
+  .wdb-skel {
+    animation: none;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
