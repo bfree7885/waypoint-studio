@@ -148,11 +148,13 @@ async function testPage(client, page) {
     const text = (document.body && document.body.innerText || '').toLowerCase();
   return {
     title: document.title,
-    hasTemp: (document.getElementById('kiosk-temp') || {}).textContent !== '—',
-    hasConditions: !/loading/i.test((document.getElementById('kiosk-conditions') || {}).textContent || ''),
-    hasUpdated: /last updated/i.test((document.getElementById('kiosk-updated') || {}).textContent || ''),
-    hasHourly: document.querySelectorAll('.kiosk__hour').length >= 1,
-    hasEngineBadge: /engine/i.test((document.getElementById('kiosk-engine-badge') || {}).textContent || ''),
+    hasTemp: (document.getElementById('swk-temp') || {}).textContent !== '—',
+    hasConditions: !/loading/i.test((document.getElementById('swk-conditions') || {}).textContent || ''),
+    hasUpdated: (document.getElementById('swk-updated') || {}).textContent !== '—',
+    hasHourly: document.querySelectorAll('.swk-hour').length >= 1,
+    hasEngineBadge: /engine|healthy|degraded|stale|offline/i.test((document.getElementById('swk-health-badge') || {}).textContent || ''),
+    hasModules: document.querySelectorAll('.swk-module').length >= 1,
+    hasSynthwaveBrand: /waypoint live engine/i.test(text),
     banned: ['coming soon','assignment','homework','lesson','educational'].filter((w) => text.includes(w)),
     bodyLen: text.length
   };
@@ -305,6 +307,14 @@ async function main() {
     if (r.name === "kiosk" && !r.checks.hasHourly) {
       failed = true;
       console.log("FAIL: kiosk hourly strip missing");
+    }
+    if (r.name === "kiosk" && !r.checks.hasModules) {
+      failed = true;
+      console.log("FAIL: kiosk module status strip missing");
+    }
+    if (r.name === "kiosk" && !r.checks.hasSynthwaveBrand) {
+      failed = true;
+      console.log("FAIL: kiosk brand header missing");
     }
     if (r.name === "kiosk" && (r.checks.banned || []).length) {
       failed = true;

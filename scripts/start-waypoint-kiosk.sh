@@ -93,7 +93,7 @@ open_kiosk() {
     exit 1
   }
 
-  log "opening kiosk in ${browser}: ${URL}"
+  log "opening Waypoint Live Engine kiosk in ${browser}: ${URL}"
   prevent_sleep
 
   case "$browser" in

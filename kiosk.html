@@ -1,78 +1,131 @@
 <!DOCTYPE html>
-<html lang="en" data-product="scenes">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Studio live outdoor dashboard kiosk">
-  <title>Waypoint Outdoor Dashboard</title>
+  <meta name="description" content="Waypoint Live Engine personal kiosk dashboard">
+  <title>Waypoint Live Engine — Kiosk</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/kiosk.css">
 </head>
 <body>
-  <div id="kiosk" class="kiosk" aria-live="polite">
-    <header class="kiosk__header">
-      <div class="kiosk__brand">
-        <span class="kiosk__mark" aria-hidden="true"></span>
-        <div>
-          <p class="kiosk__title">Waypoint Outdoor Dashboard</p>
-          <p class="kiosk__location" id="kiosk-location">Loading location…</p>
-        </div>
+  <div id="swk" class="swk" aria-live="polite">
+    <header class="swk-topbar" aria-label="Status bar">
+      <div class="swk-topbar__brand">
+        <span class="swk-topbar__mark" aria-hidden="true"></span>
+        <span class="swk-topbar__title">Waypoint Live Engine</span>
       </div>
-      <div class="kiosk__clock">
-        <p class="kiosk__clock-time" id="kiosk-clock">—</p>
-        <p class="kiosk__clock-date" id="kiosk-date">—</p>
+      <div class="swk-topbar__cell">
+        <span class="swk-topbar__label">Current Time</span>
+        <span class="swk-topbar__value" id="swk-clock">—</span>
+        <span class="swk-topbar__sub" id="swk-date">—</span>
       </div>
-      <div class="kiosk__status" id="kiosk-engine-badge">Engine —</div>
+      <div class="swk-topbar__cell">
+        <span class="swk-topbar__label">Current Location</span>
+        <span class="swk-topbar__value" id="swk-location">—</span>
+      </div>
+      <div class="swk-topbar__cell">
+        <span class="swk-topbar__label">Last Updated</span>
+        <span class="swk-topbar__value" id="swk-updated">—</span>
+      </div>
+      <div class="swk-topbar__cell swk-topbar__cell--health">
+        <span class="swk-topbar__label">Engine Health</span>
+        <span class="swk-badge" id="swk-health-badge">—</span>
+      </div>
     </header>
 
-    <section class="kiosk__hero" aria-label="Current weather">
-      <div class="kiosk__hero-main">
-        <p class="kiosk__temp" id="kiosk-temp">—</p>
-        <p class="kiosk__conditions" id="kiosk-conditions">Loading…</p>
-        <p class="kiosk__updated" id="kiosk-updated">Last updated —</p>
+    <main class="swk-grid" aria-label="Outdoor operations dashboard">
+      <section class="swk-panel swk-panel--weather" aria-label="Weather">
+        <h2 class="swk-panel__title">Weather</h2>
+        <p class="swk-weather__temp" id="swk-temp">—</p>
+        <p class="swk-weather__conditions" id="swk-conditions">Loading…</p>
+        <dl class="swk-weather__facts" id="swk-weather-facts"></dl>
+      </section>
+
+      <section class="swk-panel swk-panel--timeline" aria-label="Today, now, and next">
+        <h2 class="swk-panel__title">Today / Now / Next</h2>
+        <div class="swk-timeline">
+          <div class="swk-timeline__block">
+            <h3 class="swk-timeline__label">Today</h3>
+            <p class="swk-timeline__value" id="swk-today-range">—</p>
+            <p class="swk-timeline__detail" id="swk-today-summary">—</p>
+          </div>
+          <div class="swk-timeline__block">
+            <h3 class="swk-timeline__label">Now</h3>
+            <dl class="swk-timeline__facts" id="swk-now"></dl>
+          </div>
+          <div class="swk-timeline__block swk-timeline__block--next">
+            <h3 class="swk-timeline__label">Next</h3>
+            <p class="swk-timeline__detail" id="swk-hourly-note">—</p>
+            <div class="swk-hourly" id="swk-hourly"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="swk-panel" aria-label="Photography conditions">
+        <h2 class="swk-panel__title">Photography Conditions</h2>
+        <div id="swk-photo"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="Sun and moon">
+        <h2 class="swk-panel__title">Sun and Moon</h2>
+        <div id="swk-sun-moon"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="Air quality">
+        <h2 class="swk-panel__title">Air Quality</h2>
+        <div id="swk-aqi"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="UV index">
+        <h2 class="swk-panel__title">UV</h2>
+        <div id="swk-uv"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="Pollen">
+        <h2 class="swk-panel__title">Pollen</h2>
+        <div id="swk-pollen"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="River conditions">
+        <h2 class="swk-panel__title">River Conditions</h2>
+        <div id="swk-river"></div>
+      </section>
+
+      <section class="swk-panel swk-panel--muted" aria-label="Wildlife activity">
+        <h2 class="swk-panel__title">Wildlife Activity</h2>
+        <div id="swk-wildlife"></div>
+      </section>
+
+      <section class="swk-panel" aria-label="Alerts">
+        <h2 class="swk-panel__title">Alerts</h2>
+        <div id="swk-alerts"></div>
+      </section>
+    </main>
+
+    <footer class="swk-statusbar" aria-label="Engine status">
+      <div class="swk-statusbar__item">
+        <span class="swk-statusbar__label">Engine Version</span>
+        <span class="swk-statusbar__value" id="swk-engine-version">—</span>
       </div>
-      <div class="kiosk__hero-now">
-        <h2 class="kiosk__section-label">Now</h2>
-        <dl class="kiosk__facts" id="kiosk-now"></dl>
+      <div class="swk-statusbar__item swk-statusbar__item--modules">
+        <span class="swk-statusbar__label">Module Status</span>
+        <div class="swk-modules" id="swk-modules"></div>
       </div>
-    </section>
-
-    <section class="kiosk__row" aria-label="Today and next hours">
-      <article class="kiosk__panel kiosk__panel--wide">
-        <h2 class="kiosk__section-label">Today</h2>
-        <p class="kiosk__panel-value" id="kiosk-today-range">—</p>
-        <p class="kiosk__panel-detail" id="kiosk-today-summary">—</p>
-      </article>
-      <article class="kiosk__panel kiosk__panel--wide">
-        <h2 class="kiosk__section-label">Next</h2>
-        <p class="kiosk__panel-detail" id="kiosk-hourly-note">—</p>
-        <div class="kiosk__hourly" id="kiosk-hourly"></div>
-      </article>
-    </section>
-
-    <section class="kiosk__row" aria-label="Outdoor conditions">
-      <article class="kiosk__panel">
-        <h2 class="kiosk__section-label">Sun &amp; Moon</h2>
-        <div id="kiosk-sun-moon"></div>
-      </article>
-      <article class="kiosk__panel">
-        <h2 class="kiosk__section-label">Air Quality</h2>
-        <div id="kiosk-aqi"></div>
-      </article>
-      <article class="kiosk__panel">
-        <h2 class="kiosk__section-label">UV</h2>
-        <div id="kiosk-uv"></div>
-      </article>
-      <article class="kiosk__panel">
-        <h2 class="kiosk__section-label">Photography</h2>
-        <div id="kiosk-photo"></div>
-      </article>
-    </section>
-
-    <footer class="kiosk__footer" id="kiosk-footer" aria-label="Engine health">
-      Engine health — · Next run — · Data age —
+      <div class="swk-statusbar__item">
+        <span class="swk-statusbar__label">Next Update</span>
+        <span class="swk-statusbar__value" id="swk-countdown">—</span>
+      </div>
+      <div class="swk-statusbar__item">
+        <span class="swk-statusbar__label">Live Engine Health</span>
+        <span class="swk-statusbar__value" id="swk-engine-health">—</span>
+      </div>
+      <div class="swk-statusbar__item swk-statusbar__item--refresh">
+        <span class="swk-statusbar__label">Refresh</span>
+        <span class="swk-statusbar__value" id="swk-refresh">Live</span>
+      </div>
     </footer>
   </div>
   <script src="js/kiosk.js"></script>

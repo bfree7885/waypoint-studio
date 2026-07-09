@@ -2,23 +2,23 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T01:40:20.749Z",
+  "generatedAt": "2026-07-09T01:54:57.092Z",
   "nextScheduledUpdate": "2026-07-09T02:00:00.000Z",
   "overall": {
     "status": "degraded",
     "message": "One or more modules failed; serving previous successful module data where available.",
-    "lastSuccessfulRefresh": "2026-07-09T01:40:21.990Z"
+    "lastSuccessfulRefresh": "2026-07-09T01:54:58.359Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T01:40:20.749Z",
-    "dataUpdatedAt": "2026-07-09T01:40:20.749Z",
+    "lastEngineRun": "2026-07-09T01:54:57.092Z",
+    "dataUpdatedAt": "2026-07-09T01:54:57.092Z",
     "nextScheduledRun": "2026-07-09T02:00:00.000Z",
     "lastPublishAt": null,
     "lastPublishedDataAt": null,
     "lastPublishCommit": null,
-    "lastPublishStatus": "never",
-    "lastPublishMessage": "No publish attempted yet"
+    "lastPublishStatus": "skipped",
+    "lastPublishMessage": "WAYPOINT_PUBLISH_ENABLED=0"
   },
   "modules": {
     "weather": {
@@ -27,7 +27,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 1.5635490417480469,
+        "generationtime_ms": 20.218372344970703,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -48,17 +48,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-08T21:30",
+          "time": "2026-07-08T21:45",
           "interval": 900,
-          "temperature_2m": 72.7,
+          "temperature_2m": 72.3,
           "relative_humidity_2m": 69,
-          "apparent_temperature": 74.6,
+          "apparent_temperature": 73.7,
           "weather_code": 0,
-          "wind_speed_10m": 5.4,
-          "wind_direction_10m": 187,
-          "wind_gusts_10m": 11,
+          "wind_speed_10m": 6.1,
+          "wind_direction_10m": 190,
+          "wind_gusts_10m": 12.1,
           "cloud_cover": 0,
-          "surface_pressure": 968.5,
+          "surface_pressure": 968.8,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -373,9 +373,9 @@
       },
       "source": "Open-Meteo",
       "error": null,
-      "responseMs": 560,
-      "lastAttempt": "2026-07-09T01:40:20.750Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:20.750Z",
+      "responseMs": 639,
+      "lastAttempt": "2026-07-09T01:54:57.093Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:57.093Z",
       "stale": false
     },
     "sunrise_sunset": {
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 13,
-      "lastAttempt": "2026-07-09T01:40:21.310Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.310Z",
+      "responseMs": 19,
+      "lastAttempt": "2026-07-09T01:54:57.732Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:57.732Z",
       "stale": false
     },
     "moon": {
@@ -407,8 +407,8 @@
       "source": "Calculated",
       "error": null,
       "responseMs": 1,
-      "lastAttempt": "2026-07-09T01:40:21.323Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.323Z",
+      "lastAttempt": "2026-07-09T01:54:57.751Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:57.751Z",
       "stale": false
     },
     "air_quality": {
@@ -422,9 +422,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 433,
-      "lastAttempt": "2026-07-09T01:40:21.324Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.324Z",
+      "responseMs": 467,
+      "lastAttempt": "2026-07-09T01:54:57.752Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:57.752Z",
       "stale": false
     },
     "uv": {
@@ -437,8 +437,8 @@
       "source": "Open-Meteo",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T01:40:21.757Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.757Z",
+      "lastAttempt": "2026-07-09T01:54:58.220Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:58.220Z",
       "stale": false
     },
     "pollen": {
@@ -451,8 +451,8 @@
       "source": "Unavailable",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T01:40:21.757Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.757Z",
+      "lastAttempt": "2026-07-09T01:54:58.220Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:58.220Z",
       "stale": false
     },
     "river_gauges": {
@@ -465,8 +465,8 @@
       "source": "Unavailable",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T01:40:21.757Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.757Z",
+      "lastAttempt": "2026-07-09T01:54:58.220Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:58.220Z",
       "stale": false
     },
     "alerts": {
@@ -479,9 +479,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 233,
-      "lastAttempt": "2026-07-09T01:40:21.757Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.757Z",
+      "responseMs": 139,
+      "lastAttempt": "2026-07-09T01:54:58.220Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:58.220Z",
       "stale": false
     },
     "photography_conditions": {
@@ -497,21 +497,21 @@
       },
       "source": "Derived from weather/sun",
       "error": null,
-      "responseMs": 0,
-      "lastAttempt": "2026-07-09T01:40:21.990Z",
-      "lastSuccessfulUpdate": "2026-07-09T01:40:21.990Z",
+      "responseMs": 1,
+      "lastAttempt": "2026-07-09T01:54:58.359Z",
+      "lastSuccessfulUpdate": "2026-07-09T01:54:58.359Z",
       "stale": false
     }
   },
   "runtime": {
     "uptimeSeconds": 1,
-    "runDurationMs": 1243,
+    "runDurationMs": 1269,
     "memory": {
-      "rss": 75571200,
+      "rss": 67137536,
       "heapTotal": 11403264,
-      "heapUsed": 8102856,
-      "external": 3554103,
-      "arrayBuffers": 150808
+      "heapUsed": 8112456,
+      "external": 3554113,
+      "arrayBuffers": 150818
     },
     "nodeVersion": "v20.20.0",
     "platform": "linux"
