@@ -914,13 +914,15 @@
   function formatLiveUpdated(platform) {
     var iso = platform && platform.meta && (platform.meta.liveUpdatedAt || platform.meta.hydratedAt);
     if (!iso) return null;
+    var tz = platform && platform.timezone ? platform.timezone : undefined;
     try {
       return new Date(iso).toLocaleString(undefined, {
         month: "short",
         day: "numeric",
         hour: "numeric",
         minute: "2-digit",
-        timeZoneName: "short"
+        timeZoneName: "short",
+        timeZone: tz
       });
     } catch (e) {
       return iso;

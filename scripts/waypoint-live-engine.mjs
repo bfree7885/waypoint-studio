@@ -118,6 +118,17 @@ function writePublishState(state) {
 function formatLocalTime(iso, timeZone) {
   if (!iso) return null;
   try {
+    const hasExplicitZone = /([zZ]|[+-]\d{2}:\d{2})$/.test(String(iso));
+    if (!hasExplicitZone && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(String(iso))) {
+      const m = String(iso).match(/T(\d{2}):(\d{2})/);
+      if (m) {
+        const h24 = Number(m[1]);
+        const min = m[2];
+        const suffix = h24 >= 12 ? "PM" : "AM";
+        const h12 = h24 % 12 || 12;
+        return h12 + ":" + min + " " + suffix;
+      }
+    }
     const d = new Date(iso.includes("T") ? iso : iso + "T12:00:00");
     return d.toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -302,6 +313,33 @@ function summarizePollen(current) {
     ? " · also " + types.slice(1, 3).map(([name, val]) => name + " " + pollenLevelLabel(val).toLowerCase()).join(", ")
     : "";
   return top[0] + " pollen " + (level ? level.toLowerCase() : "active") + extra;
+}
+
+function localHourMinute(iso) {
+  if (!iso || typeof iso !== "string") return null;
+  const m = iso.match(/T(\d{2}):(\d{2})/);
+  if (!m) return null;
+  const hour = Number(m[1]);
+  const minute = Number(m[2]);
+  if (!Number.isFinite(hour) || !Number.isFinite(minute)) return null;
+  return { hour, minute };
+}
+
+function validateSunWindow(sunriseIso, sunsetIso, lat) {
+  const sr = localHourMinute(sunriseIso);
+  const ss = localHourMinute(sunsetIso);
+  if (!sr || !ss) return { ok: false, reason: "Missing sunrise/sunset fields" };
+  if (Math.abs(Number(lat)) >= 60) return { ok: true };
+  const sunriseMinutes = sr.hour * 60 + sr.minute;
+  const sunsetMinutes = ss.hour * 60 + ss.minute;
+  const sunrisePlausible = sunriseMinutes >= 180 && sunriseMinutes <= 600;
+  const sunsetPlausible = sunsetMinutes >= 900 && sunsetMinutes <= 1380;
+  const orderingPlausible = sunsetMinutes > sunriseMinutes;
+  if (sunrisePlausible && sunsetPlausible && orderingPlausible) return { ok: true };
+  return {
+    ok: false,
+    reason: "Impossible sun window for location: sunrise " + sunriseIso + ", sunset " + sunsetIso
+  };
 }
 
 function formatBirdObservationTime(iso, timeZone) {
@@ -518,6 +556,8 @@ function buildPlugins() {
         }
         const sunrise = wx.daily.sunrise[0] || null;
         const sunset = wx.daily.sunset[0] || null;
+        const check = validateSunWindow(sunrise, sunset, ctx.location.lat);
+        if (!check.ok) throw new Error(check.reason);
         return {
           source: "Open-Meteo astronomy",
           data: {
@@ -931,8 +971,14 @@ function buildHealth(ctx, moduleList, payload) {
     if (OPTIONAL_UNAVAILABLE_OK.has(name) && m.status === "unavailable") return false;
     return m.status === "unavailable";
   });
+  const criticalModules = ["weather", "sunrise_sunset", "air_quality", "uv", "alerts"];
+  const healthyLike = new Set(["live", "estimated", "degraded", "fallback"]);
+  const criticalHealthyCount = criticalModules.filter((name) => {
+    const mod = modules[name];
+    return mod && healthyLike.has(mod.status);
+  }).length;
   const anyStale = Object.values(modules).some((m) => m.stale);
-  const overallStatus = anyHardFailure ? "degraded" : (anyStale ? "warning" : "healthy");
+  const overallStatus = criticalHealthyCount === 0 ? "stale" : "healthy";
 
   const successful = Object.values(modules)
     .map((m) => m.lastSuccessfulUpdate)
@@ -948,9 +994,13 @@ function buildHealth(ctx, moduleList, payload) {
     nextScheduledUpdate: payload.nextScheduledUpdate,
     overall: {
       status: overallStatus,
-      message: anyHardFailure
-        ? "One or more modules failed; serving previous successful module data where available."
-        : (anyStale ? "Modules available but stale data detected." : "All modules healthy."),
+      message: criticalHealthyCount === 0
+        ? "All critical live modules unavailable. Check upstream providers and publish pipeline."
+        : (anyHardFailure
+          ? "Core modules healthy; one or more non-critical modules are temporarily unavailable."
+          : (anyStale
+            ? "Core modules healthy; stale flags detected in one or more modules."
+            : "Core modules healthy.")),
       lastSuccessfulRefresh: lastSuccessfulRefresh
     },
     publish: ctx.publishState || defaultPublishState(),
@@ -961,6 +1011,19 @@ function buildHealth(ctx, moduleList, payload) {
       memory: process.memoryUsage(),
       nodeVersion: process.version,
       platform: process.platform
+    },
+    pipeline: {
+      stage: {
+        apiFetch: ctx.failures.length ? "partial" : "ok",
+        payloadBuild: payload && payload.updatedAt ? "ok" : "failed",
+        healthBuild: "ok",
+        writeLiveJson: "ok",
+        writeHealthJson: "ok",
+        writeStatusDebug: "ok",
+        publishState: ctx.publishState && ctx.publishState.lastPublishStatus ? ctx.publishState.lastPublishStatus : "unknown"
+      },
+      criticalModulesHealthy: criticalHealthyCount,
+      criticalModulesTotal: criticalModules.length
     },
     failures: ctx.failures.slice()
   };
@@ -978,10 +1041,23 @@ function makeStatusHtml(payload, health) {
   const publishOk = publish.lastPublishStatus === "succeeded";
   const publishRecent = publish.lastPublishAt &&
     Date.now() - Date.parse(publish.lastPublishAt) <= ENGINE_STALE_MS;
+  function moduleHealthLabel(status) {
+    const s = String(status || "").toLowerCase();
+    if (s === "live") return "LIVE";
+    if (s === "estimated" || s === "degraded" || s === "fallback") return "ESTIMATED";
+    return "TEMPORARILY UNAVAILABLE";
+  }
+
   const moduleRows = Object.keys(health.modules || {}).map((name) => {
     const m = health.modules[name];
-    return `<tr><td>${esc(name)}</td><td>${esc(m.status)}</td><td>${esc(m.lastSuccessfulUpdate || "—")}</td><td>${esc(String(m.responseMs) + " ms")}</td><td>${esc(m.stale ? "yes" : "no")}</td></tr>`;
+    return `<tr><td>${esc(name)}</td><td>${esc(moduleHealthLabel(m.status))}</td><td>${esc(m.status)}</td><td>${esc(m.lastSuccessfulUpdate || "—")}</td><td>${esc(String(m.responseMs) + " ms")}</td><td>${esc(m.stale ? "yes" : "no")}</td></tr>`;
   }).join("");
+  const refreshIntervalMins = 30;
+  const moduleFailures = failures.filter((f) => f && f.module);
+  const lastFailedModule = moduleFailures.length ? moduleFailures[moduleFailures.length - 1].module : "none";
+  const cacheAge = payload.updatedAt ? ageLabel(payload.updatedAt) : "unknown";
+  const tz = payload.timezone || "unknown";
+  const pipeline = health.pipeline && health.pipeline.stage ? health.pipeline.stage : {};
 
   const sourceLis = sources.length
     ? sources.map((s) => `<li>${esc(s)}</li>`).join("")
@@ -1030,8 +1106,12 @@ function makeStatusHtml(payload, health) {
       <div class="wle-row"><span>Last successful refresh</span><span>${esc(shortTime(health.overall.lastSuccessfulRefresh))}</span></div>
       <div class="wle-row"><span>Next scheduled run</span><span>${esc(shortTime(health.nextScheduledUpdate))}</span></div>
       <div class="wle-row"><span>Engine version</span><span>${esc(health.engineVersion)}</span></div>
+      <div class="wle-row"><span>Timezone</span><span>${esc(tz)}</span></div>
+      <div class="wle-row"><span>Refresh interval</span><span>${esc(String(refreshIntervalMins) + " min")}</span></div>
       <div class="wle-row"><span>Data age</span><span class="${fresh ? "wle-ok" : "wle-bad"}">${esc(ageLabel(payload.updatedAt))} · ${esc(updated)}</span></div>
       <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="${fresh ? "wle-ok" : "wle-bad"}">${fresh ? "Yes" : "No / stale"}</span></div>
+      <div class="wle-row"><span>Cache age</span><span>${esc(cacheAge)}</span></div>
+      <div class="wle-row"><span>Last failed module</span><span>${esc(lastFailedModule)}</span></div>
       <p class="wle-muted">${esc(health.overall.message)}</p>
     </section>
 
@@ -1047,9 +1127,20 @@ function makeStatusHtml(payload, health) {
     <section class="wle-card" aria-label="Module health">
       <h2>Module Health</h2>
       <table>
-        <thead><tr><th>Module</th><th>Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
+        <thead><tr><th>Module</th><th>Health</th><th>Raw Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
         <tbody>${moduleRows}</tbody>
       </table>
+    </section>
+
+    <section class="wle-card" aria-label="Pipeline trace">
+      <h2>Refresh Pipeline Trace</h2>
+      <div class="wle-row"><span>API fetch stage</span><span>${esc(pipeline.apiFetch || "unknown")}</span></div>
+      <div class="wle-row"><span>Payload generation</span><span>${esc(pipeline.payloadBuild || "unknown")}</span></div>
+      <div class="wle-row"><span>Health generation</span><span>${esc(pipeline.healthBuild || "unknown")}</span></div>
+      <div class="wle-row"><span>live.json write</span><span>${esc(pipeline.writeLiveJson || "unknown")}</span></div>
+      <div class="wle-row"><span>health.json write</span><span>${esc(pipeline.writeHealthJson || "unknown")}</span></div>
+      <div class="wle-row"><span>status/debug write</span><span>${esc(pipeline.writeStatusDebug || "unknown")}</span></div>
+      <div class="wle-row"><span>Publish stage</span><span>${esc(pipeline.publishState || "unknown")}</span></div>
     </section>
 
     <section class="wle-card" aria-label="Live file">

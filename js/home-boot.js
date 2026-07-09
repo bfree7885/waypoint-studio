@@ -13,6 +13,8 @@
   var DEBUG_BUILD_TIME = new Date().toISOString();
   var DEBUG_KEY = "waypointDebugSnapshot";
   var BANNED_TERMS = ["coming soon", "assignment", "homework", "lesson", "educational"];
+  var DASHBOARD_REFRESH_MS = 5 * 60 * 1000;
+  var dashboardTimer = null;
 
   function txt(el) {
     return (el && el.textContent ? el.textContent : "").replace(/\s+/g, " ").trim();
@@ -131,6 +133,16 @@
     });
   }
 
+  function scheduleDashboardRefresh() {
+    if (dashboardTimer) clearInterval(dashboardTimer);
+    dashboardTimer = setInterval(function () {
+      if (!window.WDS || !WDS.location || !WDS.location.getState) return;
+      var state = WDS.location.getState();
+      if (!state) return;
+      startDashboard(state);
+    }, DASHBOARD_REFRESH_MS);
+  }
+
   function showBootError() {
     var mount = document.getElementById("wds-content-engine");
     if (mount) {
@@ -182,9 +194,11 @@
     document.addEventListener("DOMContentLoaded", function () {
       wireDebugSnapshot();
       boot();
+      scheduleDashboardRefresh();
     });
   } else {
     wireDebugSnapshot();
     boot();
+    scheduleDashboardRefresh();
   }
 })();
