@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Waypoint Photo Importer v1
+ * Waypoint Photo Importer v1.1
  *
  * Copy Sony a6700 media from a mounted SD card into Google Drive/Photography
  * with verification, duplicate skipping, and import logs.
@@ -8,6 +8,7 @@
  * Usage:
  *   node scripts/photo-importer.mjs --dry-run
  *   node scripts/photo-importer.mjs --source /media/$USER/CARD --dest "$HOME/Google Drive/Photography"
+ *   ./scripts/photo-import --source /media/$USER/CARD
  */
 import crypto from "crypto";
 import fs from "fs";
@@ -19,7 +20,7 @@ import { fileURLToPath } from "url";
 import { spawnSync } from "child_process";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const PHOTO_EXT = new Set([".arw", ".jpg", ".jpeg"]);
 const VIDEO_EXT = new Set([".mp4", ".mov"]);
@@ -30,16 +31,42 @@ const SYSTEM_PREFIXES = [
   "/sbin", "/snap", "/srv", "/sys", "/tmp", "/usr", "/var"
 ];
 
+function photographyDestCandidates(home) {
+  return [
+    path.join(home, "Google Drive", "Photography"),
+    path.join(home, "GoogleDrive", "Photography"),
+    path.join(home, "google-drive", "Photography"),
+    path.join(home, "Drive", "Photography"),
+    path.join(home, "Google Drive", "My Drive", "Photography"),
+    path.join(home, "Google Drive", "My Drive", "Photos"),
+    path.join(home, "GoogleDrive", "My Drive", "Photography"),
+    path.join(home, "Insync", "Google Drive", "Photography"),
+    path.join(home, "Insync", "bryan@waypoint.studio", "Google Drive", "Photography")
+  ];
+}
+
+function driveRootCandidates(home) {
+  return [
+    path.join(home, "Google Drive"),
+    path.join(home, "GoogleDrive"),
+    path.join(home, "google-drive"),
+    path.join(home, "Insync", "Google Drive"),
+    path.join(home, "Insync")
+  ];
+}
+
 function printHelp() {
   console.log(`Waypoint Photo Importer v${VERSION}
 
-Copy camera media from a mounted SD card into Google Drive/Photography.
+Copy Sony a6700 media from a mounted SD card into Google Drive/Photography.
 
 Options:
   --dry-run              Scan and report only; do not copy files
   --verbose, -v          Detailed logging
   --source, -s <path>    SD card mount or folder (auto-detect if omitted)
   --dest, -d <path>      Destination root (default: detect Google Drive/Photography)
+  --create-dest          Create Photography folder if Google Drive exists (default)
+  --no-create-dest       Fail if Photography folder is missing
   --no-video             Skip .mp4 and .mov files
   --no-notify            Skip desktop notification
   --help, -h             Show this help
@@ -47,12 +74,12 @@ Options:
 Examples:
   node scripts/photo-importer.mjs --dry-run
   node scripts/photo-importer.mjs --source /media/$USER/NO\\ NAME --verbose
-  node scripts/photo-importer.mjs --dest "$HOME/Google Drive/Photography"
+  ./scripts/photo-import --source /media/$USER/CARDNAME
 
 Safety:
   - Never deletes files on the SD card
   - Never overwrites without checksum verification
-  - Skips identical duplicates
+  - Skips identical duplicates anywhere under Photography/
   - Refuses system paths and Google Drive as source
 `);
 }
@@ -63,6 +90,7 @@ function parseArgs(argv) {
     verbose: false,
     includeVideo: true,
     notify: true,
+    createDest: true,
     source: null,
     dest: null,
     help: false
@@ -74,6 +102,8 @@ function parseArgs(argv) {
     else if (a === "--verbose" || a === "-v") opts.verbose = true;
     else if (a === "--no-video") opts.includeVideo = false;
     else if (a === "--no-notify") opts.notify = false;
+    else if (a === "--create-dest") opts.createDest = true;
+    else if (a === "--no-create-dest") opts.createDest = false;
     else if (a === "--source" || a === "-s") opts.source = argv[++i];
     else if (a === "--dest" || a === "-d") opts.dest = argv[++i];
     else throw new Error(`Unknown argument: ${a}`);
@@ -135,43 +165,35 @@ async function isDirectory(p) {
   }
 }
 
-async function findGoogleDrivePhotographyRoot(explicitDest) {
+async function findGoogleDrivePhotographyRoot(explicitDest, createDest) {
   if (explicitDest) {
     const dest = normalize(explicitDest);
     if (!(await pathExists(dest))) {
+      if (createDest) {
+        await fsp.mkdir(dest, { recursive: true });
+        return { ok: true, path: dest, tried: [dest], detected: "explicit-created" };
+      }
       return {
         ok: false,
         path: dest,
         tried: [dest],
-        message: `Destination does not exist: ${dest}\nCreate it or pass a different --dest path.`
+        message: `Destination does not exist: ${dest}\nCreate it or pass --create-dest / a different --dest path.`
       };
     }
     return { ok: true, path: dest, tried: [dest], detected: "explicit" };
   }
 
   const home = os.homedir();
-  const candidates = [
-    path.join(home, "Google Drive", "Photography"),
-    path.join(home, "GoogleDrive", "Photography"),
-    path.join(home, "google-drive", "Photography"),
-    path.join(home, "Drive", "Photography"),
-    path.join(home, "Google Drive", "My Drive", "Photography"),
-    path.join(home, "Google Drive", "My Drive", "Photos"),
-    path.join(home, "GoogleDrive", "My Drive", "Photography")
-  ];
-
+  const candidates = photographyDestCandidates(home);
   const tried = [...candidates];
+
   for (const c of candidates) {
     if (await pathExists(c)) {
       return { ok: true, path: normalize(c), tried, detected: "candidate" };
     }
   }
 
-  const driveRoots = [
-    path.join(home, "Google Drive"),
-    path.join(home, "GoogleDrive"),
-    path.join(home, "google-drive")
-  ];
+  const driveRoots = driveRootCandidates(home);
   for (const root of driveRoots) {
     if (!(await isDirectory(root))) continue;
     tried.push(root);
@@ -189,6 +211,28 @@ async function findGoogleDrivePhotographyRoot(explicitDest) {
     }
   }
 
+  if (createDest) {
+    for (const root of driveRoots) {
+      if (!(await isDirectory(root))) continue;
+      const created = normalize(path.join(root, "Photography"));
+      tried.push(created);
+      try {
+        await fsp.mkdir(created, { recursive: true });
+        return { ok: true, path: created, tried, detected: "created", created: true };
+      } catch {
+        /* try next root */
+      }
+    }
+    const fallback = path.join(home, "Google Drive", "Photography");
+    tried.push(fallback);
+    try {
+      await fsp.mkdir(fallback, { recursive: true });
+      return { ok: true, path: normalize(fallback), tried, detected: "created-fallback", created: true };
+    } catch {
+      /* fall through */
+    }
+  }
+
   return {
     ok: false,
     path: candidates[0],
@@ -199,7 +243,7 @@ async function findGoogleDrivePhotographyRoot(explicitDest) {
       tried.map((t) => `  - ${t}`).join("\n") +
       "\n\nCreate one, for example:\n" +
       `  mkdir -p "${path.join(home, "Google Drive", "Photography")}"\n` +
-      "Then re-run with --dest pointing at that folder."
+      "Or re-run with --create-dest after Google Drive is mounted."
   };
 }
 
@@ -230,6 +274,15 @@ async function listMediaMounts() {
   return mounts;
 }
 
+function driveGuardPaths(home) {
+  return [
+    path.join(home, "Google Drive"),
+    path.join(home, "GoogleDrive"),
+    path.join(home, "google-drive"),
+    path.join(home, "Insync")
+  ];
+}
+
 function validateSourcePath(sourcePath, destRoot, explicit) {
   const src = normalize(sourcePath);
   if (isSystemPath(src)) {
@@ -239,14 +292,9 @@ function validateSourcePath(sourcePath, destRoot, explicit) {
     return { ok: false, message: `Refusing source inside destination: ${src}` };
   }
   const home = os.homedir();
-  const driveGuards = [
-    path.join(home, "Google Drive"),
-    path.join(home, "GoogleDrive"),
-    path.join(home, "google-drive")
-  ];
-  for (const guard of driveGuards) {
+  for (const guard of driveGuardPaths(home)) {
     if (isUnder(src, guard)) {
-      return { ok: false, message: `Refusing Google Drive path as source: ${src}` };
+      return { ok: false, message: `Refusing cloud-sync path as source: ${src}` };
     }
   }
   if (!explicit) {
@@ -314,6 +362,44 @@ async function sha256File(filePath) {
   });
 }
 
+async function buildDestIndex(destRoot, includeVideo) {
+  const index = new Map();
+  const root = normalize(destRoot);
+  const logDir = path.join(root, "import-logs");
+
+  async function walk(dir) {
+    const entries = await fsp.readdir(dir, { withFileTypes: true }).catch(() => []);
+    for (const ent of entries) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) {
+        if (full === logDir || ent.name === "import-logs") continue;
+        await walk(full);
+      } else if (ent.isFile() && isSupportedFile(full, includeVideo)) {
+        const base = path.basename(full).toLowerCase();
+        const st = await fsp.stat(full);
+        const list = index.get(base) || [];
+        list.push({ path: full, size: st.size });
+        index.set(base, list);
+      }
+    }
+  }
+
+  if (await isDirectory(root)) await walk(root);
+  return index;
+}
+
+async function findGlobalDuplicate(index, basename, srcSize, srcHash) {
+  const key = basename.toLowerCase();
+  const candidates = index.get(key) || [];
+  for (const c of candidates) {
+    if (c.size !== srcSize) continue;
+    const hash = c.hash || await sha256File(c.path);
+    c.hash = hash;
+    if (hash === srcHash) return c.path;
+  }
+  return null;
+}
+
 async function uniqueDestPath(destPath) {
   if (!(await pathExists(destPath))) return destPath;
   const dir = path.dirname(destPath);
@@ -353,19 +439,26 @@ async function copyVerified(src, dest, opts, lines) {
   return { status: "copied", src, dest, bytes: srcStat.size, sha256: srcHash };
 }
 
-async function importFile(src, destRoot, opts, lines) {
+async function importFile(src, destRoot, opts, lines, destIndex) {
   const srcStat = await fsp.stat(src);
+  const basename = path.basename(src);
+  const srcHash = await sha256File(src);
+  const existing = await findGlobalDuplicate(destIndex, basename, srcStat.size, srcHash);
+  if (existing) {
+    vlog(opts, lines, `Duplicate skipped (already in library): ${existing}`);
+    return { status: "duplicate", src, dest: existing, bytes: srcStat.size, sha256: srcHash };
+  }
+
   const { year, day } = dateFolderForFile(src, srcStat);
   const destDir = path.join(destRoot, year, day);
-  let destPath = path.join(destDir, path.basename(src));
+  let destPath = path.join(destDir, basename);
 
   if (await pathExists(destPath)) {
     const destStat = await fsp.stat(destPath);
     if (destStat.size === srcStat.size) {
-      const srcHash = await sha256File(src);
       const destHash = await sha256File(destPath);
-      if (srcHash === destHash) {
-        vlog(opts, lines, `Duplicate skipped (identical): ${src}`);
+      if (destHash === srcHash) {
+        vlog(opts, lines, `Duplicate skipped (identical at destination): ${destPath}`);
         return { status: "duplicate", src, dest: destPath, bytes: srcStat.size, sha256: srcHash };
       }
     }
@@ -373,12 +466,19 @@ async function importFile(src, destRoot, opts, lines) {
     logLine(lines, "warn", `Name collision; using ${destPath}`);
   }
 
+  if (opts.dryRun) {
+    logLine(lines, "info", `DRY-RUN would copy ${basename} -> ${destPath}`);
+    return { status: "copied", src, dest: destPath, bytes: srcStat.size, dryRun: true };
+  }
+
   try {
-    return await copyVerified(src, destPath, opts, lines);
+    const outcome = await copyVerified(src, destPath, opts, lines);
+    const key = basename.toLowerCase();
+    const list = destIndex.get(key) || [];
+    list.push({ path: destPath, size: srcStat.size, hash: outcome.sha256 });
+    destIndex.set(key, list);
+    return outcome;
   } catch (err) {
-    if (err && err.code === "EEXIST") {
-      return { status: "failed", src, dest: destPath, error: err.message };
-    }
     return { status: "failed", src, dest: destPath, error: err.message || String(err) };
   }
 }
@@ -389,6 +489,13 @@ function formatDuration(ms) {
   const min = Math.floor(sec / 60);
   const rem = sec % 60;
   return `${min}m ${rem}s`;
+}
+
+function formatBytes(n) {
+  if (n < 1024) return `${n} B`;
+  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+  if (n < 1024 * 1024 * 1024) return `${(n / (1024 * 1024)).toFixed(1)} MB`;
+  return `${(n / (1024 * 1024 * 1024)).toFixed(2)} GB`;
 }
 
 function buildSummary(result) {
@@ -403,10 +510,13 @@ function buildSummary(result) {
     `Copied: ${result.copied}`,
     `Duplicates skipped: ${result.duplicates}`,
     `Failures: ${result.failures}`,
-    `Bytes copied: ${result.bytesCopied}`,
+    `Bytes copied: ${formatBytes(result.bytesCopied)}`,
     `Elapsed: ${formatDuration(result.elapsedMs)}`,
     `Log file: ${result.logFile || "(not written)"}`
   ];
+  if (result.destFolders && result.destFolders.length) {
+    lines.push(`Date folders: ${result.destFolders.join(", ")}`);
+  }
   if (result.failureDetails.length) {
     lines.push("Failures:");
     result.failureDetails.forEach((f) => lines.push(`  - ${f}`));
@@ -414,6 +524,13 @@ function buildSummary(result) {
   if (result.notes.length) {
     lines.push("Notes:");
     result.notes.forEach((n) => lines.push(`  - ${n}`));
+  }
+  if (result.dryRun && result.planned && result.planned.length) {
+    lines.push("Planned copies (first 10):");
+    result.planned.slice(0, 10).forEach((p) => lines.push(`  ${path.basename(p.src)} -> ${p.dest}`));
+    if (result.planned.length > 10) {
+      lines.push(`  ... and ${result.planned.length - 10} more`);
+    }
   }
   return lines.join("\n");
 }
@@ -431,6 +548,8 @@ async function writeImportLog(destRoot, logLines) {
 }
 
 function desktopNotify(title, body) {
+  const which = spawnSync("which", ["notify-send"], { encoding: "utf8" });
+  if (which.status !== 0) return false;
   const res = spawnSync("notify-send", [title, body, "-i", "camera-photo"], { encoding: "utf8" });
   return res.status === 0;
 }
@@ -467,12 +586,13 @@ async function resolveSource(opts, destRoot, lines) {
     ok: false,
     message:
       "No SD card with DCIM/PRIVATE detected under /media/$USER/.\n\n" +
-      "To test without a card:\n" +
-      "  node scripts/photo-importer.mjs --dry-run\n\n" +
-      "When your card is mounted:\n" +
-      "  ls /media/$USER/\n" +
-      "  node scripts/photo-importer.mjs --dry-run --source /media/$USER/CARDNAME\n\n" +
-      "Then run the actual import without --dry-run."
+      "Next steps:\n" +
+      "  1. Plug in your Sony a6700 SD card\n" +
+      "  2. ls /media/$USER/\n" +
+      "  3. node scripts/photo-importer.mjs --dry-run --source /media/$USER/CARDNAME\n" +
+      "  4. node scripts/photo-importer.mjs --source /media/$USER/CARDNAME\n\n" +
+      "Or use the shortcut:\n" +
+      "  ./scripts/photo-import --dry-run --source /media/$USER/CARDNAME"
   };
 }
 
@@ -488,7 +608,7 @@ export async function runImporter(argv = process.argv.slice(2)) {
   logLine(lines, "info", `Waypoint Photo Importer v${VERSION} started`);
   if (opts.dryRun) logLine(lines, "info", "DRY-RUN mode — no files will be copied");
 
-  const destResult = await findGoogleDrivePhotographyRoot(opts.dest);
+  const destResult = await findGoogleDrivePhotographyRoot(opts.dest, opts.createDest);
   if (!destResult.ok) {
     logLine(lines, "error", destResult.message);
     console.error(destResult.message);
@@ -499,12 +619,16 @@ export async function runImporter(argv = process.argv.slice(2)) {
 
   const destRoot = destResult.path;
   logLine(lines, "info", `Destination root: ${destRoot} (${destResult.detected})`);
+  if (destResult.created) {
+    logLine(lines, "info", "Created Photography destination folder");
+    console.log(`Created destination: ${destRoot}`);
+  }
 
   const sourceResult = await resolveSource(opts, destRoot, lines);
   if (!sourceResult.ok) {
     logLine(lines, "error", sourceResult.message);
     console.log(sourceResult.message);
-    if (opts.dryRun) {
+    if (opts.dryRun && destRoot) {
       console.log(`\nDestination root resolved: ${destRoot}`);
       console.log("Dry-run complete — plug in SD card and pass --source to scan files.");
     }
@@ -517,6 +641,9 @@ export async function runImporter(argv = process.argv.slice(2)) {
   const files = await walkSonyFiles(source, opts.includeVideo);
   logLine(lines, "info", `Files found: ${files.length}`);
 
+  const destIndex = await buildDestIndex(destRoot, opts.includeVideo);
+  vlog(opts, lines, `Indexed ${destIndex.size} existing filenames in destination library`);
+
   const result = {
     dryRun: opts.dryRun,
     source,
@@ -528,6 +655,8 @@ export async function runImporter(argv = process.argv.slice(2)) {
     bytesCopied: 0,
     failureDetails: [],
     notes: [],
+    planned: [],
+    destFolders: new Set(),
     elapsedMs: 0,
     logFile: null
   };
@@ -535,7 +664,7 @@ export async function runImporter(argv = process.argv.slice(2)) {
   if (!files.length) {
     result.notes.push("No supported files found in DCIM/PRIVATE.");
     result.elapsedMs = Date.now() - started;
-    const summary = buildSummary(result);
+    const summary = buildSummary({ ...result, destFolders: [] });
     lines.push(summary);
     console.log(summary);
     if (!opts.dryRun) {
@@ -545,12 +674,21 @@ export async function runImporter(argv = process.argv.slice(2)) {
     return { code: 0, lines, result };
   }
 
+  let n = 0;
   for (const file of files) {
+    n += 1;
+    if (!opts.dryRun && files.length > 3) {
+      process.stdout.write(`\rImporting ${n}/${files.length}...`);
+    }
     try {
-      const outcome = await importFile(file, destRoot, opts, lines);
+      const outcome = await importFile(file, destRoot, opts, lines, destIndex);
       if (outcome.status === "copied") {
         result.copied += 1;
         result.bytesCopied += outcome.bytes || 0;
+        if (outcome.dest) {
+          result.planned.push({ src: file, dest: outcome.dest });
+          result.destFolders.add(path.dirname(outcome.dest).replace(destRoot + path.sep, ""));
+        }
       } else if (outcome.status === "duplicate") {
         result.duplicates += 1;
       } else if (outcome.status === "failed") {
@@ -565,9 +703,13 @@ export async function runImporter(argv = process.argv.slice(2)) {
       logLine(lines, "error", `FAILED ${file}: ${msg}`);
     }
   }
+  if (!opts.dryRun && files.length > 3) process.stdout.write("\n");
 
   result.elapsedMs = Date.now() - started;
-  const summary = buildSummary(result);
+  const summary = buildSummary({
+    ...result,
+    destFolders: [...result.destFolders].sort()
+  });
   lines.push(summary);
   console.log(summary);
 

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Waypoint Photo Importer — one-command shortcut
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec node "$ROOT/scripts/photo-importer.mjs" "$@"

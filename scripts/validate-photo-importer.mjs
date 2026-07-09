@@ -25,7 +25,7 @@ check("syntax", syntax.status === 0, syntax.stderr?.trim());
 const help = spawnSync(process.execPath, [IMPORTER, "--help"], { encoding: "utf8" });
 check("help", help.status === 0 && help.stdout.includes("dry-run"));
 
-const tmpRoot = await fsp.mkdtemp(path.join(os.homedir(), ".waypoint-photo-importer-"));
+const tmpRoot = await fsp.mkdtemp(path.join(__dirname, ".photo-importer-test-"));
 const fakeCard = path.join(tmpRoot, "fake-card");
 const fakeDcim = path.join(fakeCard, "DCIM", "100MSDCF");
 await fsp.mkdir(fakeDcim, { recursive: true });
@@ -45,6 +45,13 @@ check(
   `found=${dryScan.result?.found}`
 );
 
+const dryPlan = await runImporter(["--dry-run", "--dest", destRoot, "--source", fakeCard]);
+check(
+  "dry-run planned copies",
+  dryPlan.code === 0 && dryPlan.result && dryPlan.result.planned && dryPlan.result.planned.length === 2,
+  `planned=${dryPlan.result?.planned?.length}`
+);
+
 const realImport = await runImporter(["--dest", destRoot, "--source", fakeCard, "--no-notify"]);
 check(
   "import copy",
@@ -57,6 +64,13 @@ check(
   "duplicate skip",
   dupe.code === 0 && dupe.result && dupe.result.duplicates === 2 && dupe.result.copied === 0,
   `duplicates=${dupe.result?.duplicates}`
+);
+
+const globalDupe = await runImporter(["--dest", destRoot, "--source", fakeCard, "--no-notify"]);
+check(
+  "global duplicate skip",
+  globalDupe.code === 0 && globalDupe.result && globalDupe.result.duplicates === 2,
+  `duplicates=${globalDupe.result?.duplicates}`
 );
 
 await fsp.rm(tmpRoot, { recursive: true, force: true });
