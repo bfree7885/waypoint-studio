@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-09T18:30:01.356Z",
-  "nextScheduledUpdate": "2026-07-09T19:00:00.000Z",
+  "updatedAt": "2026-07-09T19:00:01.884Z",
+  "nextScheduledUpdate": "2026-07-09T19:30:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/New_York",
   "current": {
-    "temperatureF": 81,
-    "feelsLikeF": 86,
-    "humidity": 58,
-    "windMph": 10,
-    "windGustMph": 15,
+    "temperatureF": 82,
+    "feelsLikeF": 88,
+    "humidity": 63,
+    "windMph": 9,
+    "windGustMph": 14,
     "cloudCover": 3,
-    "uvIndex": 6.8,
+    "uvIndex": 6.4,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-09T14:30"
+    "observedAt": "2026-07-09T15:00"
   },
   "forecast": {
     "highF": 84,
@@ -46,13 +46,13 @@
         "time": "2026-07-09T16:00",
         "temperatureF": 83,
         "precipProbability": 8,
-        "conditions": "Overcast"
+        "conditions": "Mainly clear"
       },
       {
         "time": "2026-07-09T17:00",
         "temperatureF": 84,
         "precipProbability": 8,
-        "conditions": "Partly cloudy"
+        "conditions": "Clear sky"
       },
       {
         "time": "2026-07-09T18:00",
@@ -89,8 +89,8 @@
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 44,
-    "pm25": 5.7,
+    "usAqi": 47,
+    "pm25": 6.5,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
-        "generationtime_ms": 0.658869743347168,
+        "generationtime_ms": 926.9813299179077,
         "utc_offset_seconds": -14400,
         "timezone": "America/New_York",
         "timezone_abbreviation": "GMT-4",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-09T14:30",
+          "time": "2026-07-09T15:00",
           "interval": 900,
-          "temperature_2m": 81,
-          "relative_humidity_2m": 58,
-          "apparent_temperature": 85.7,
+          "temperature_2m": 82,
+          "relative_humidity_2m": 63,
+          "apparent_temperature": 88.3,
           "weather_code": 0,
-          "wind_speed_10m": 9.6,
-          "wind_direction_10m": 211,
-          "wind_gusts_10m": 14.5,
+          "wind_speed_10m": 8.9,
+          "wind_direction_10m": 225,
+          "wind_gusts_10m": 13.6,
           "cloud_cover": 3,
-          "surface_pressure": 967.2,
-          "uv_index": 6.8,
+          "surface_pressure": 967,
+          "uv_index": 6.35,
           "precipitation": 0
         },
         "hourly_units": {
@@ -222,9 +222,9 @@
             70.6,
             69.3,
             68.9,
-            68,
-            67.3,
-            69.5,
+            68.1,
+            67.4,
+            69.7,
             72.5,
             75.1,
             77.5,
@@ -256,22 +256,22 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            3,
-            2,
-            0,
-            0,
-            0,
-            3,
-            3,
-            3,
-            2,
-            3,
-            0,
-            2,
             1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            3,
+            3,
+            1,
+            0,
+            2,
+            0,
+            0,
+            3,
             3,
             3,
             3,
@@ -463,15 +463,15 @@
     },
     "air_quality": {
       "data": {
-        "usAqi": 44,
-        "pm25": 5.7,
+        "usAqi": 47,
+        "pm25": 6.5,
         "category": "Good",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 6.8,
+        "uvIndex": 6.4,
         "status": "live"
       }
     },
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T18:30:01.356Z",
+    "generatedAt": "2026-07-09T19:00:01.884Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
