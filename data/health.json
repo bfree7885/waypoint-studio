@@ -2,23 +2,23 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T03:30:01.760Z",
-  "nextScheduledUpdate": "2026-07-09T04:00:00.000Z",
+  "generatedAt": "2026-07-09T04:00:01.679Z",
+  "nextScheduledUpdate": "2026-07-09T04:30:00.000Z",
   "overall": {
     "status": "healthy",
     "message": "All modules healthy.",
-    "lastSuccessfulRefresh": "2026-07-09T03:30:28.459Z"
+    "lastSuccessfulRefresh": "2026-07-09T04:00:19.201Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T03:30:01.760Z",
-    "dataUpdatedAt": "2026-07-09T03:30:01.760Z",
-    "nextScheduledRun": "2026-07-09T04:00:00.000Z",
-    "lastPublishAt": "2026-07-09T03:00:21.623Z",
-    "lastPublishedDataAt": "2026-07-09T03:00:02.040Z",
-    "lastPublishCommit": "ee555f6",
+    "lastEngineRun": "2026-07-09T04:00:01.679Z",
+    "dataUpdatedAt": "2026-07-09T04:00:01.679Z",
+    "nextScheduledRun": "2026-07-09T04:30:00.000Z",
+    "lastPublishAt": "2026-07-09T03:30:29.538Z",
+    "lastPublishedDataAt": "2026-07-09T03:30:01.760Z",
+    "lastPublishCommit": "b838a10",
     "lastPublishStatus": "succeeded",
-    "lastPublishMessage": "Pushed ee555f6 to origin/main"
+    "lastPublishMessage": "Pushed b838a10 to origin/main"
   },
   "modules": {
     "weather": {
@@ -373,8 +373,8 @@
       },
       "source": "previous-success",
       "error": "HTTP 503",
-      "responseMs": 840,
-      "lastAttempt": "2026-07-09T03:30:01.761Z",
+      "responseMs": 744,
+      "lastAttempt": "2026-07-09T04:00:01.680Z",
       "lastSuccessfulUpdate": "2026-07-09T02:41:57.431Z",
       "stale": false
     },
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 13,
-      "lastAttempt": "2026-07-09T03:30:02.601Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:02.601Z",
+      "responseMs": 12,
+      "lastAttempt": "2026-07-09T04:00:02.424Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.424Z",
       "stale": false
     },
     "moon": {
@@ -407,24 +407,24 @@
       "source": "Calculated",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T03:30:02.614Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:02.614Z",
+      "lastAttempt": "2026-07-09T04:00:02.436Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.436Z",
       "stale": false
     },
     "air_quality": {
       "name": "air_quality",
       "status": "live",
       "data": {
-        "usAqi": 42,
-        "pm25": 4.5,
+        "usAqi": 40,
+        "pm25": 4.8,
         "category": "Good",
         "status": "live"
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 495,
-      "lastAttempt": "2026-07-09T03:30:02.614Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:02.614Z",
+      "responseMs": 451,
+      "lastAttempt": "2026-07-09T04:00:02.436Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.436Z",
       "stale": false
     },
     "uv": {
@@ -437,8 +437,8 @@
       "source": "Open-Meteo",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T03:30:03.109Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:03.109Z",
+      "lastAttempt": "2026-07-09T04:00:02.887Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.887Z",
       "stale": false
     },
     "pollen": {
@@ -450,14 +450,14 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 198,
-      "lastAttempt": "2026-07-09T03:30:03.109Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:03.109Z",
+      "responseMs": 112,
+      "lastAttempt": "2026-07-09T04:00:02.887Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.887Z",
       "stale": false
     },
     "river_gauges": {
       "name": "river_gauges",
-      "status": "fallback",
+      "status": "live",
       "data": {
         "status": "live",
         "summary": "Little Bush Kill at Edgemere, PA — 4.5 ft stage · 13.7 cfs · 8.8 km away",
@@ -466,7 +466,7 @@
           "siteName": "Little Bush Kill at Edgemere, PA",
           "lat": 41.25860935,
           "lng": -74.9954313,
-          "observedAt": "2026-07-08T22:45:00.000-04:00",
+          "observedAt": "2026-07-08T23:45:00.000-04:00",
           "dischargeCfs": 13.7,
           "dischargeUnit": "ft3/s",
           "stageFt": 4.5,
@@ -476,11 +476,11 @@
         "siteCount": 26,
         "disclaimer": "Provisional USGS data — subject to revision"
       },
-      "source": "previous-success",
-      "error": "This operation was aborted",
-      "responseMs": 25004,
-      "lastAttempt": "2026-07-09T03:30:03.307Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:00:03.406Z",
+      "source": "USGS Water Services",
+      "error": null,
+      "responseMs": 15092,
+      "lastAttempt": "2026-07-09T04:00:02.999Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:02.999Z",
       "stale": false
     },
     "alerts": {
@@ -493,9 +493,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 148,
-      "lastAttempt": "2026-07-09T03:30:28.311Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:28.311Z",
+      "responseMs": 1110,
+      "lastAttempt": "2026-07-09T04:00:18.091Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:18.091Z",
       "stale": false
     },
     "photography_conditions": {
@@ -512,20 +512,20 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 1,
-      "lastAttempt": "2026-07-09T03:30:28.459Z",
-      "lastSuccessfulUpdate": "2026-07-09T03:30:28.459Z",
+      "lastAttempt": "2026-07-09T04:00:19.201Z",
+      "lastSuccessfulUpdate": "2026-07-09T04:00:19.201Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 27,
-    "runDurationMs": 26702,
+    "uptimeSeconds": 18,
+    "runDurationMs": 17525,
     "memory": {
-      "rss": 82636800,
-      "heapTotal": 7639040,
-      "heapUsed": 6315728,
-      "external": 3602748,
-      "arrayBuffers": 45674
+      "rss": 84303872,
+      "heapTotal": 8163328,
+      "heapUsed": 6824344,
+      "external": 3843163,
+      "arrayBuffers": 286089
     },
     "nodeVersion": "v18.19.1",
     "platform": "linux"
@@ -535,11 +535,6 @@
       "module": "weather",
       "source": "previous-success",
       "error": "HTTP 503"
-    },
-    {
-      "module": "river_gauges",
-      "source": "previous-success",
-      "error": "This operation was aborted"
     }
   ]
 }

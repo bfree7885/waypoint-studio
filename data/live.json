@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-09T03:30:01.760Z",
-  "nextScheduledUpdate": "2026-07-09T04:00:00.000Z",
+  "updatedAt": "2026-07-09T04:00:01.679Z",
+  "nextScheduledUpdate": "2026-07-09T04:30:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -89,8 +89,8 @@
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 42,
-    "pm25": 4.5,
+    "usAqi": 40,
+    "pm25": 4.8,
     "category": "Good",
     "status": "live"
   },
@@ -463,8 +463,8 @@
     },
     "air_quality": {
       "data": {
-        "usAqi": 42,
-        "pm25": 4.5,
+        "usAqi": 40,
+        "pm25": 4.8,
         "category": "Good",
         "status": "live"
       }
@@ -490,7 +490,7 @@
           "siteName": "Little Bush Kill at Edgemere, PA",
           "lat": 41.25860935,
           "lng": -74.9954313,
-          "observedAt": "2026-07-08T22:45:00.000-04:00",
+          "observedAt": "2026-07-08T23:45:00.000-04:00",
           "dischargeCfs": 13.7,
           "dischargeUnit": "ft3/s",
           "stageFt": 4.5,
@@ -526,7 +526,7 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "previous-success",
+      "USGS Water Services",
       "NWS"
     ],
     "failures": [
@@ -534,15 +534,10 @@
         "module": "weather",
         "source": "previous-success",
         "error": "HTTP 503"
-      },
-      {
-        "module": "river_gauges",
-        "source": "previous-success",
-        "error": "This operation was aborted"
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T03:30:01.760Z",
+    "generatedAt": "2026-07-09T04:00:01.679Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
