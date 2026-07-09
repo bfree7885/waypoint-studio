@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-09T15:30:01.836Z",
-  "dataUpdatedAt": "2026-07-09T15:30:01.836Z",
-  "nextScheduledRun": "2026-07-09T16:00:00.000Z",
-  "lastPublishAt": "2026-07-09T15:00:15.693Z",
-  "lastPublishedDataAt": "2026-07-09T15:00:01.175Z",
-  "lastPublishCommit": "fe60b0e",
+  "lastEngineRun": "2026-07-09T16:00:01.280Z",
+  "dataUpdatedAt": "2026-07-09T16:00:01.280Z",
+  "nextScheduledRun": "2026-07-09T16:30:00.000Z",
+  "lastPublishAt": "2026-07-09T15:30:43.160Z",
+  "lastPublishedDataAt": "2026-07-09T15:30:01.836Z",
+  "lastPublishCommit": "69078f7",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed fe60b0e to origin/main"
+  "lastPublishMessage": "Pushed 69078f7 to origin/main"
 }
