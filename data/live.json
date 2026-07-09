@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "updatedAt": "2026-07-09T03:00:02.040Z",
-  "nextScheduledUpdate": "2026-07-09T03:30:00.000Z",
+  "updatedAt": "2026-07-09T03:30:01.760Z",
+  "nextScheduledUpdate": "2026-07-09T04:00:00.000Z",
   "location": {
     "id": "pike-county-pa",
     "name": "Pike County",
@@ -37,12 +37,6 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-07-08T23:00",
-        "temperatureF": 71,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
         "time": "2026-07-09T00:00",
         "temperatureF": 70,
         "precipProbability": 0,
@@ -71,6 +65,12 @@
         "temperatureF": 67,
         "precipProbability": 0,
         "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-09T05:00",
+        "temperatureF": 67,
+        "precipProbability": 1,
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 33,
-    "phaseValue": 0.834,
+    "phaseValue": 0.835,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 33,
-        "phaseValue": 0.834,
+        "phaseValue": 0.835,
         "trust": "Estimated"
       }
     },
@@ -526,7 +526,7 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
     "failures": [
@@ -534,10 +534,15 @@
         "module": "weather",
         "source": "previous-success",
         "error": "HTTP 503"
+      },
+      {
+        "module": "river_gauges",
+        "source": "previous-success",
+        "error": "This operation was aborted"
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T03:00:02.040Z",
+    "generatedAt": "2026-07-09T03:30:01.760Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",

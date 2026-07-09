@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-09T03:00:02.040Z",
-  "dataUpdatedAt": "2026-07-09T03:00:02.040Z",
-  "nextScheduledRun": "2026-07-09T03:30:00.000Z",
-  "lastPublishAt": null,
-  "lastPublishedDataAt": null,
-  "lastPublishCommit": null,
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes"
+  "lastEngineRun": "2026-07-09T03:30:01.760Z",
+  "dataUpdatedAt": "2026-07-09T03:30:01.760Z",
+  "nextScheduledRun": "2026-07-09T04:00:00.000Z",
+  "lastPublishAt": "2026-07-09T03:00:21.623Z",
+  "lastPublishedDataAt": "2026-07-09T03:00:02.040Z",
+  "lastPublishCommit": "ee555f6",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed ee555f6 to origin/main"
 }
