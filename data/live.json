@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-09T22:30:01.211Z",
-  "nextScheduledUpdate": "2026-07-09T23:00:00.000Z",
+  "updatedAt": "2026-07-09T23:00:01.581Z",
+  "nextScheduledUpdate": "2026-07-09T23:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "Engine publish point",
@@ -17,16 +17,16 @@
   "timezone": "America/Chicago",
   "current": {
     "temperatureF": 88,
-    "feelsLikeF": 91,
-    "humidity": 48,
-    "windMph": 8,
+    "feelsLikeF": 92,
+    "humidity": 52,
+    "windMph": 7,
     "windGustMph": 8,
-    "cloudCover": 11,
-    "uvIndex": 4.5,
+    "cloudCover": 1,
+    "uvIndex": 3.7,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-09T17:30"
+    "observedAt": "2026-07-09T18:00"
   },
   "forecast": {
     "highF": 88,
@@ -39,7 +39,7 @@
       {
         "time": "2026-07-09T19:00",
         "temperatureF": 87,
-        "precipProbability": 1,
+        "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
@@ -51,7 +51,7 @@
       {
         "time": "2026-07-09T21:00",
         "temperatureF": 82,
-        "precipProbability": 3,
+        "precipProbability": 2,
         "conditions": "Clear sky"
       },
       {
@@ -69,7 +69,7 @@
       {
         "time": "2026-07-10T00:00",
         "temperatureF": 76,
-        "precipProbability": 5,
+        "precipProbability": 3,
         "conditions": "Overcast"
       }
     ],
@@ -85,11 +85,11 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 28,
-    "phaseValue": 0.861,
+    "phaseValue": 0.862,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 46,
+    "usAqi": 49,
     "pm25": 3.7,
     "category": "Good",
     "status": "live"
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 1.1311769485473633,
+        "generationtime_ms": 390.4498815536499,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-09T17:30",
+          "time": "2026-07-09T18:00",
           "interval": 900,
-          "temperature_2m": 88,
-          "relative_humidity_2m": 48,
-          "apparent_temperature": 91.2,
+          "temperature_2m": 87.7,
+          "relative_humidity_2m": 52,
+          "apparent_temperature": 91.5,
           "weather_code": 0,
-          "wind_speed_10m": 7.7,
-          "wind_direction_10m": 60,
-          "wind_gusts_10m": 8.3,
-          "cloud_cover": 11,
-          "surface_pressure": 945.8,
-          "uv_index": 4.45,
+          "wind_speed_10m": 7.3,
+          "wind_direction_10m": 67,
+          "wind_gusts_10m": 8.1,
+          "cloud_cover": 1,
+          "surface_pressure": 946,
+          "uv_index": 3.65,
           "precipitation": 0
         },
         "hourly_units": {
@@ -225,9 +225,9 @@
             70.8,
             71.1,
             71.3,
-            73.3,
-            74,
-            77.2,
+            73.4,
+            73.5,
+            73.5,
             82.4,
             84.5,
             86.3,
@@ -259,17 +259,17 @@
             0,
             1,
             1,
-            0,
-            0,
             1,
             0,
             0,
             0,
+            0,
+            0,
             3,
             3,
             3,
             3,
-            3,
+            2,
             51,
             3,
             3,
@@ -277,7 +277,7 @@
             3,
             3,
             3,
-            1,
+            3,
             0,
             3,
             1,
@@ -312,33 +312,33 @@
             0,
             0,
             0,
-            1,
+            0,
+            2,
             2,
             3,
-            3,
             2,
-            5,
+            3,
             11,
-            28,
-            33,
+            27,
             31,
-            25,
-            17,
-            16,
-            19,
-            14,
-            10,
-            8,
-            6,
-            5,
-            4,
-            2,
-            3,
+            28,
+            22,
             11,
-            6,
-            2,
-            2,
-            2,
+            10,
+            16,
+            12,
+            11,
+            11,
+            11,
+            7,
+            5,
+            3,
+            3,
+            10,
+            5,
+            1,
+            1,
+            1,
             2,
             2
           ],
@@ -423,7 +423,7 @@
           ],
           "precipitation_probability_max": [
             13,
-            33
+            31
           ],
           "precipitation_sum": [
             0.039,
@@ -457,13 +457,13 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 28,
-        "phaseValue": 0.861,
+        "phaseValue": 0.862,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 46,
+        "usAqi": 49,
         "pm25": 3.7,
         "category": "Good",
         "status": "live"
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 4.5,
+        "uvIndex": 3.7,
         "status": "live"
       }
     },
@@ -484,16 +484,16 @@
     "river_gauges": {
       "data": {
         "status": "live",
-        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.26 ft stage · 1.28 cfs · 29.2 km away",
+        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.25 ft stage · 1.21 cfs · 29.2 km away",
         "nearest": {
           "siteId": "06853800",
           "siteName": "WHITE ROCK C NR BURR OAK, KS",
           "lat": 39.89918,
           "lng": -98.2503276,
-          "observedAt": "2026-07-09T16:45:00.000-05:00",
-          "dischargeCfs": 1.28,
+          "observedAt": "2026-07-09T17:45:00.000-05:00",
+          "dischargeCfs": 1.21,
           "dischargeUnit": "ft3/s",
-          "stageFt": 1.26,
+          "stageFt": 1.25,
           "stageUnit": "ft",
           "distanceKm": 29.179412056109083
         },
@@ -520,7 +520,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 11,
+        "cloudCover": 1,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:14 AM",
@@ -540,7 +540,7 @@
     ],
     "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-09T22:30:01.211Z",
+    "generatedAt": "2026-07-09T23:00:01.581Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
