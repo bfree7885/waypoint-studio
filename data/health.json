@@ -2,18 +2,18 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.0.0",
-  "generatedAt": "2026-07-09T02:41:57.430Z",
-  "nextScheduledUpdate": "2026-07-09T03:00:00.000Z",
+  "generatedAt": "2026-07-09T03:00:02.040Z",
+  "nextScheduledUpdate": "2026-07-09T03:30:00.000Z",
   "overall": {
     "status": "healthy",
     "message": "All modules healthy.",
-    "lastSuccessfulRefresh": "2026-07-09T02:42:03.899Z"
+    "lastSuccessfulRefresh": "2026-07-09T03:00:20.593Z"
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-07-09T02:41:57.430Z",
-    "dataUpdatedAt": "2026-07-09T02:41:57.430Z",
-    "nextScheduledRun": "2026-07-09T03:00:00.000Z",
+    "lastEngineRun": "2026-07-09T03:00:02.040Z",
+    "dataUpdatedAt": "2026-07-09T03:00:02.040Z",
+    "nextScheduledRun": "2026-07-09T03:30:00.000Z",
     "lastPublishAt": null,
     "lastPublishedDataAt": null,
     "lastPublishCommit": null,
@@ -23,7 +23,7 @@
   "modules": {
     "weather": {
       "name": "weather",
-      "status": "live",
+      "status": "fallback",
       "data": {
         "latitude": 41.32856,
         "longitude": -75.03756,
@@ -371,10 +371,10 @@
           ]
         }
       },
-      "source": "Open-Meteo",
-      "error": null,
-      "responseMs": 501,
-      "lastAttempt": "2026-07-09T02:41:57.431Z",
+      "source": "previous-success",
+      "error": "HTTP 503",
+      "responseMs": 741,
+      "lastAttempt": "2026-07-09T03:00:02.042Z",
       "lastSuccessfulUpdate": "2026-07-09T02:41:57.431Z",
       "stale": false
     },
@@ -390,9 +390,9 @@
       },
       "source": "Open-Meteo astronomy",
       "error": null,
-      "responseMs": 14,
-      "lastAttempt": "2026-07-09T02:41:57.932Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:57.932Z",
+      "responseMs": 13,
+      "lastAttempt": "2026-07-09T03:00:02.783Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:02.783Z",
       "stale": false
     },
     "moon": {
@@ -401,30 +401,30 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 33,
-        "phaseValue": 0.833,
+        "phaseValue": 0.834,
         "trust": "Estimated"
       },
       "source": "Calculated",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:41:57.946Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:57.946Z",
+      "lastAttempt": "2026-07-09T03:00:02.796Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:02.796Z",
       "stale": false
     },
     "air_quality": {
       "name": "air_quality",
       "status": "live",
       "data": {
-        "usAqi": 43,
-        "pm25": 4.2,
+        "usAqi": 42,
+        "pm25": 4.5,
         "category": "Good",
         "status": "live"
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 401,
-      "lastAttempt": "2026-07-09T02:41:57.946Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:57.946Z",
+      "responseMs": 505,
+      "lastAttempt": "2026-07-09T03:00:02.796Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:02.796Z",
       "stale": false
     },
     "uv": {
@@ -437,8 +437,8 @@
       "source": "Open-Meteo",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:41:58.347Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:58.347Z",
+      "lastAttempt": "2026-07-09T03:00:03.301Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:03.301Z",
       "stale": false
     },
     "pollen": {
@@ -450,9 +450,9 @@
       },
       "source": "Open-Meteo Air Quality",
       "error": null,
-      "responseMs": 104,
-      "lastAttempt": "2026-07-09T02:41:58.347Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:58.347Z",
+      "responseMs": 105,
+      "lastAttempt": "2026-07-09T03:00:03.301Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:03.301Z",
       "stale": false
     },
     "river_gauges": {
@@ -460,16 +460,16 @@
       "status": "live",
       "data": {
         "status": "live",
-        "summary": "Little Bush Kill at Edgemere, PA — 4.51 ft stage · 14.1 cfs · 8.8 km away",
+        "summary": "Little Bush Kill at Edgemere, PA — 4.5 ft stage · 13.7 cfs · 8.8 km away",
         "nearest": {
           "siteId": "01439590",
           "siteName": "Little Bush Kill at Edgemere, PA",
           "lat": 41.25860935,
           "lng": -74.9954313,
-          "observedAt": "2026-07-08T21:45:00.000-04:00",
-          "dischargeCfs": 14.1,
+          "observedAt": "2026-07-08T22:45:00.000-04:00",
+          "dischargeCfs": 13.7,
           "dischargeUnit": "ft3/s",
-          "stageFt": 4.51,
+          "stageFt": 4.5,
           "stageUnit": "ft",
           "distanceKm": 8.82043113502746
         },
@@ -478,9 +478,9 @@
       },
       "source": "USGS Water Services",
       "error": null,
-      "responseMs": 5333,
-      "lastAttempt": "2026-07-09T02:41:58.451Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:41:58.451Z",
+      "responseMs": 16889,
+      "lastAttempt": "2026-07-09T03:00:03.406Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:03.406Z",
       "stale": false
     },
     "alerts": {
@@ -493,9 +493,9 @@
       },
       "source": "NWS",
       "error": null,
-      "responseMs": 115,
-      "lastAttempt": "2026-07-09T02:42:03.784Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:42:03.784Z",
+      "responseMs": 298,
+      "lastAttempt": "2026-07-09T03:00:20.295Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:20.295Z",
       "stale": false
     },
     "photography_conditions": {
@@ -512,23 +512,29 @@
       "source": "Derived from weather/sun",
       "error": null,
       "responseMs": 0,
-      "lastAttempt": "2026-07-09T02:42:03.899Z",
-      "lastSuccessfulUpdate": "2026-07-09T02:42:03.899Z",
+      "lastAttempt": "2026-07-09T03:00:20.593Z",
+      "lastSuccessfulUpdate": "2026-07-09T03:00:20.593Z",
       "stale": false
     }
   },
   "runtime": {
-    "uptimeSeconds": 6,
-    "runDurationMs": 6471,
+    "uptimeSeconds": 19,
+    "runDurationMs": 18553,
     "memory": {
-      "rss": 75456512,
-      "heapTotal": 9306112,
-      "heapUsed": 8273568,
-      "external": 3522367,
-      "arrayBuffers": 119072
+      "rss": 83668992,
+      "heapTotal": 7639040,
+      "heapUsed": 6772072,
+      "external": 3843134,
+      "arrayBuffers": 286060
     },
-    "nodeVersion": "v20.20.0",
+    "nodeVersion": "v18.19.1",
     "platform": "linux"
   },
-  "failures": []
+  "failures": [
+    {
+      "module": "weather",
+      "source": "previous-success",
+      "error": "HTTP 503"
+    }
+  ]
 }

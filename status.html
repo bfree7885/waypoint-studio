@@ -34,11 +34,11 @@
     <section class="wle-card" aria-label="Engine health">
       <h2>Engine Health</h2>
       <div class="wle-row"><span>Status</span><span class="wle-ok">healthy</span></div>
-      <div class="wle-row"><span>Last engine run</span><span class="wle-ok">7/8/2026, 10:41:57 PM</span></div>
-      <div class="wle-row"><span>Last successful refresh</span><span>7/8/2026, 10:42:03 PM</span></div>
-      <div class="wle-row"><span>Next scheduled run</span><span>7/8/2026, 11:00:00 PM</span></div>
+      <div class="wle-row"><span>Last engine run</span><span class="wle-ok">7/8/2026, 11:00:02 PM</span></div>
+      <div class="wle-row"><span>Last successful refresh</span><span>7/8/2026, 11:00:20 PM</span></div>
+      <div class="wle-row"><span>Next scheduled run</span><span>7/8/2026, 11:30:00 PM</span></div>
       <div class="wle-row"><span>Engine version</span><span>2.0.0</span></div>
-      <div class="wle-row"><span>Data age</span><span class="wle-ok">just now · 7/8/2026, 10:41:57 PM</span></div>
+      <div class="wle-row"><span>Data age</span><span class="wle-ok">just now · 7/8/2026, 11:00:02 PM</span></div>
       <div class="wle-row"><span>Payload freshness (&lt;3h)</span><span class="wle-ok">Yes</span></div>
       <p class="wle-muted">All modules healthy.</p>
     </section>
@@ -56,7 +56,7 @@
       <h2>Module Health</h2>
       <table>
         <thead><tr><th>Module</th><th>Status</th><th>Last Successful Update</th><th>Response Time</th><th>Stale</th></tr></thead>
-        <tbody><tr><td>weather</td><td>live</td><td>2026-07-09T02:41:57.431Z</td><td>501 ms</td><td>no</td></tr><tr><td>sunrise_sunset</td><td>live</td><td>2026-07-09T02:41:57.932Z</td><td>14 ms</td><td>no</td></tr><tr><td>moon</td><td>live</td><td>2026-07-09T02:41:57.946Z</td><td>0 ms</td><td>no</td></tr><tr><td>air_quality</td><td>live</td><td>2026-07-09T02:41:57.946Z</td><td>401 ms</td><td>no</td></tr><tr><td>uv</td><td>live</td><td>2026-07-09T02:41:58.347Z</td><td>0 ms</td><td>no</td></tr><tr><td>pollen</td><td>unavailable</td><td>2026-07-09T02:41:58.347Z</td><td>104 ms</td><td>no</td></tr><tr><td>river_gauges</td><td>live</td><td>2026-07-09T02:41:58.451Z</td><td>5333 ms</td><td>no</td></tr><tr><td>alerts</td><td>live</td><td>2026-07-09T02:42:03.784Z</td><td>115 ms</td><td>no</td></tr><tr><td>photography_conditions</td><td>estimated</td><td>2026-07-09T02:42:03.899Z</td><td>0 ms</td><td>no</td></tr></tbody>
+        <tbody><tr><td>weather</td><td>fallback</td><td>2026-07-09T02:41:57.431Z</td><td>741 ms</td><td>no</td></tr><tr><td>sunrise_sunset</td><td>live</td><td>2026-07-09T03:00:02.783Z</td><td>13 ms</td><td>no</td></tr><tr><td>moon</td><td>live</td><td>2026-07-09T03:00:02.796Z</td><td>0 ms</td><td>no</td></tr><tr><td>air_quality</td><td>live</td><td>2026-07-09T03:00:02.796Z</td><td>505 ms</td><td>no</td></tr><tr><td>uv</td><td>live</td><td>2026-07-09T03:00:03.301Z</td><td>0 ms</td><td>no</td></tr><tr><td>pollen</td><td>unavailable</td><td>2026-07-09T03:00:03.301Z</td><td>105 ms</td><td>no</td></tr><tr><td>river_gauges</td><td>live</td><td>2026-07-09T03:00:03.406Z</td><td>16889 ms</td><td>no</td></tr><tr><td>alerts</td><td>live</td><td>2026-07-09T03:00:20.295Z</td><td>298 ms</td><td>no</td></tr><tr><td>photography_conditions</td><td>estimated</td><td>2026-07-09T03:00:20.593Z</td><td>0 ms</td><td>no</td></tr></tbody>
       </table>
     </section>
 
@@ -68,20 +68,20 @@
 
     <section class="wle-card" aria-label="Sources">
       <h2>Data sources used</h2>
-      <ul class="wle-list"><li>Open-Meteo</li><li>Open-Meteo astronomy</li><li>Calculated</li><li>Open-Meteo Air Quality</li><li>Open-Meteo</li><li>USGS Water Services</li><li>NWS</li></ul>
+      <ul class="wle-list"><li>previous-success</li><li>Open-Meteo astronomy</li><li>Calculated</li><li>Open-Meteo Air Quality</li><li>Open-Meteo</li><li>USGS Water Services</li><li>NWS</li></ul>
     </section>
 
     <section class="wle-card" aria-label="Failures">
       <h2>Failures</h2>
-      <ul class="wle-list"><li class="wle-muted">No failed sources</li></ul>
+      <ul class="wle-list"><li>weather: HTTP 503</li></ul>
     </section>
 
     <section class="wle-card" aria-label="Runtime">
       <h2>Runtime Stats</h2>
-      <div class="wle-row"><span>Run duration</span><span>6471 ms</span></div>
-      <div class="wle-row"><span>Process uptime</span><span>6 s</span></div>
-      <div class="wle-row"><span>Memory RSS</span><span>75456512</span></div>
-      <div class="wle-row"><span>Node</span><span>v20.20.0</span></div>
+      <div class="wle-row"><span>Run duration</span><span>18553 ms</span></div>
+      <div class="wle-row"><span>Process uptime</span><span>19 s</span></div>
+      <div class="wle-row"><span>Memory RSS</span><span>83668992</span></div>
+      <div class="wle-row"><span>Node</span><span>v18.19.1</span></div>
     </section>
 
     <section class="wle-card" aria-label="Integrity">
@@ -96,8 +96,8 @@
   &quot;version&quot;: 2,
   &quot;engine&quot;: &quot;waypoint-live-engine&quot;,
   &quot;engineVersion&quot;: &quot;2.0.0&quot;,
-  &quot;updatedAt&quot;: &quot;2026-07-09T02:41:57.430Z&quot;,
-  &quot;nextScheduledUpdate&quot;: &quot;2026-07-09T03:00:00.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2026-07-09T03:00:02.040Z&quot;,
+  &quot;nextScheduledUpdate&quot;: &quot;2026-07-09T03:30:00.000Z&quot;,
   &quot;location&quot;: {
     &quot;id&quot;: &quot;pike-county-pa&quot;,
     &quot;name&quot;: &quot;Pike County&quot;,
@@ -179,12 +179,12 @@
   &quot;moon&quot;: {
     &quot;phase&quot;: &quot;Waning crescent&quot;,
     &quot;illumination&quot;: 33,
-    &quot;phaseValue&quot;: 0.833,
+    &quot;phaseValue&quot;: 0.834,
     &quot;trust&quot;: &quot;Estimated&quot;
   },
   &quot;airQuality&quot;: {
-    &quot;usAqi&quot;: 43,
-    &quot;pm25&quot;: 4.2,
+    &quot;usAqi&quot;: 42,
+    &quot;pm25&quot;: 4.5,
     &quot;category&quot;: &quot;Good&quot;,
     &quot;status&quot;: &quot;live&quot;
   },
@@ -551,14 +551,14 @@
       &quot;data&quot;: {
         &quot;phase&quot;: &quot;Waning crescent&quot;,
         &quot;illumination&quot;: 33,
-        &quot;phaseValue&quot;: 0.833,
+        &quot;phaseValue&quot;: 0.834,
         &quot;trust&quot;: &quot;Estimated&quot;
       }
     },
     &quot;air_quality&quot;: {
       &quot;data&quot;: {
-        &quot;usAqi&quot;: 43,
-        &quot;pm25&quot;: 4.2,
+        &quot;usAqi&quot;: 42,
+        &quot;pm25&quot;: 4.5,
         &quot;category&quot;: &quot;Good&quot;,
         &quot;status&quot;: &quot;live&quot;
       }
@@ -578,16 +578,16 @@
     &quot;river_gauges&quot;: {
       &quot;data&quot;: {
         &quot;status&quot;: &quot;live&quot;,
-        &quot;summary&quot;: &quot;Little Bush Kill at Edgemere, PA — 4.51 ft stage · 14.1 cfs · 8.8 km away&quot;,
+        &quot;summary&quot;: &quot;Little Bush Kill at Edgemere, PA — 4.5 ft stage · 13.7 cfs · 8.8 km away&quot;,
         &quot;nearest&quot;: {
           &quot;siteId&quot;: &quot;01439590&quot;,
           &quot;siteName&quot;: &quot;Little Bush Kill at Edgemere, PA&quot;,
           &quot;lat&quot;: 41.25860935,
           &quot;lng&quot;: -74.9954313,
-          &quot;observedAt&quot;: &quot;2026-07-08T21:45:00.000-04:00&quot;,
-          &quot;dischargeCfs&quot;: 14.1,
+          &quot;observedAt&quot;: &quot;2026-07-08T22:45:00.000-04:00&quot;,
+          &quot;dischargeCfs&quot;: 13.7,
           &quot;dischargeUnit&quot;: &quot;ft3/s&quot;,
-          &quot;stageFt&quot;: 4.51,
+          &quot;stageFt&quot;: 4.5,
           &quot;stageUnit&quot;: &quot;ft&quot;,
           &quot;distanceKm&quot;: 8.82043113502746
         },
@@ -615,7 +615,7 @@
   },
   &quot;meta&quot;: {
     &quot;sources&quot;: [
-      &quot;Open-Meteo&quot;,
+      &quot;previous-success&quot;,
       &quot;Open-Meteo astronomy&quot;,
       &quot;Calculated&quot;,
       &quot;Open-Meteo Air Quality&quot;,
@@ -623,9 +623,15 @@
       &quot;USGS Water Services&quot;,
       &quot;NWS&quot;
     ],
-    &quot;failures&quot;: [],
+    &quot;failures&quot;: [
+      {
+        &quot;module&quot;: &quot;weather&quot;,
+        &quot;source&quot;: &quot;previous-success&quot;,
+        &quot;error&quot;: &quot;HTTP 503&quot;
+      }
+    ],
     &quot;generatedBy&quot;: &quot;waypoint-live-engine&quot;,
-    &quot;generatedAt&quot;: &quot;2026-07-09T02:41:57.430Z&quot;,
+    &quot;generatedAt&quot;: &quot;2026-07-09T03:00:02.040Z&quot;,
     &quot;healthFile&quot;: &quot;data/health.json&quot;,
     &quot;blockStatus&quot;: {
       &quot;weather&quot;: &quot;live&quot;,

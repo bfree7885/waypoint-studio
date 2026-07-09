@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: bf4ad34
-2) Build date/time: 2026-07-09T02:42:03.911Z
+1) Current deployed commit hash: c19c5e0
+2) Build date/time: 2026-07-09T03:00:20.599Z
 3) Active page title: Waypoint Studio — Outdoor Dashboard
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -21,13 +21,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: healthy
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-09T02:41:57.430Z
+Snapshot captured at: 2026-07-09T03:00:02.040Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;bf4ad34&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-09T02:42:03.911Z&quot;,
+  &quot;commitHash&quot;: &quot;c19c5e0&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-09T03:00:20.599Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio — Outdoor Dashboard&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-09T02:41:57.430Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-09T03:00:02.040Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -37,7 +37,7 @@ Raw snapshot:
   &quot;engineHealth&quot;: &quot;healthy&quot;,
   &quot;moduleHealth&quot;: {
     &quot;weather&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
+      &quot;status&quot;: &quot;fallback&quot;,
       &quot;stale&quot;: false
     },
     &quot;sunrise_sunset&quot;: {
@@ -79,8 +79,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "bf4ad34";
-  var FALLBACK_BUILD = "2026-07-09T02:42:03.911Z";
+  var FALLBACK_COMMIT = "c19c5e0";
+  var FALLBACK_BUILD = "2026-07-09T03:00:20.599Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -150,7 +150,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"bf4ad34","buildTime":"2026-07-09T02:42:03.911Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T02:41:57.430Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"healthy","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"live","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"c19c5e0","buildTime":"2026-07-09T03:00:20.599Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-09T03:00:02.040Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"healthy","moduleHealth":{"weather":{"status":"fallback","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"live","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
