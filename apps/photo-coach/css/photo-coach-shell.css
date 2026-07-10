@@ -477,9 +477,56 @@
   background: rgba(255, 255, 255, 0.14);
 }
 
-.pc-shell .coach-next-action {
-  border-color: rgba(200, 240, 85, 0.4);
-  background: linear-gradient(160deg, rgba(200, 240, 85, 0.1), var(--coach-surface));
+.pc-shell .coach-genre {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--coach-text-secondary);
+}
+
+.pc-shell .coach-genre--uncertain {
+  font-size: 0.82rem;
+  color: var(--coach-text-muted);
+}
+
+.pc-shell .coach-priority-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.12rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  color: #0b1220;
+  background: var(--coach-accent);
+  border-radius: 0.25rem;
+}
+
+.pc-shell .coach-priority-badge--secondary {
+  color: var(--coach-text-secondary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pc-shell .coach-coach-card--primary {
+  border-color: rgba(200, 240, 85, 0.45);
+}
+
+.pc-shell .coach-edit-priority {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0b1220;
+  background: var(--coach-accent);
+  border-radius: 0.25rem;
+}
+
+.pc-shell .coach-slider--primary {
+  padding: 0.5rem;
+  border-radius: 0.45rem;
+  background: rgba(200, 240, 85, 0.06);
 }
 
 .pc-shell .coach-next-action__why {

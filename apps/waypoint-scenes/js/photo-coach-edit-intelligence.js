@@ -1,5 +1,6 @@
 /**
- * Photo Coach edit intelligence — slider-style adjustment schema.
+ * Photo Coach edit intelligence — selective, confidence-aware suggestions.
+ * Does not pretend edits were applied.
  */
 (function (global) {
   "use strict";
@@ -10,7 +11,7 @@
     "sharpening", "noiseReduction", "lensCorrection", "perspective", "crop"
   ];
 
-  function adj(type, label, value, min, max, reason, effect, trust) {
+  function adj(type, label, value, min, max, reason, effect, trust, priority) {
     return {
       type: type,
       label: label,
@@ -19,85 +20,142 @@
       max: max,
       reason: reason,
       expectedImprovement: effect,
-      trust: trust || "Estimated"
+      trust: trust || "Estimated",
+      priority: priority || "secondary"
     };
   }
 
-  function buildFromSignals(signals) {
+  function hintSet(improvements) {
+    var set = {};
+    (improvements || []).forEach(function (imp) {
+      (imp.editHints || []).forEach(function (h) { set[h] = true; });
+      if (imp.priority === "primary") {
+        (imp.editHints || []).forEach(function (h) { set["primary:" + h] = true; });
+      }
+    });
+    return set;
+  }
+
+  function buildFromSignals(signals, options) {
     signals = signals || {};
-    var exposure = signals.brightness < 95 ? "+0.25 EV" : signals.brightness > 170 ? "−0.15 EV" : "0 EV";
-    var highlights = signals.brightFraction > 0.05 ? "−18" : "−6";
-    var shadows = signals.darkFraction > 0.25 ? "+22" : "+8";
-    var contrast = signals.contrast < 32 ? "+12" : signals.contrast > 70 ? "−5" : "+6";
-    var wb = signals.dominantWarm ? "Cool −350K" : signals.coolness > 0.15 ? "Warm +400K" : "Neutral";
-    var clarity = signals.contrast < 35 ? "+10" : "+5";
-    var dehaze = signals.contrast < 30 ? "+8" : "+2";
-    var vibrance = signals.contrast < 40 ? "+8" : "+4";
-    var saturation = "+3";
-    var texture = "+6";
-    var sharpen = signals.edgeDensity > 0.1 ? "Amount 40" : "Amount 55";
-    var nr = signals.brightFraction > 0.03 ? "Luminance 8" : "Luminance 4";
-    var lens = signals.vignetteLeft + signals.vignetteRight > 0.1 ? "Enable + vignette +12" : "Enable profile";
+    options = options || {};
+    var hints = hintSet(options.improvements);
+    var outdoor = options.outdoor || null;
+    var list = [];
+
+    function want(keys, primaryBoost) {
+      for (var i = 0; i < keys.length; i++) {
+        if (hints[keys[i]] || hints["primary:" + keys[i]]) return true;
+      }
+      return !!primaryBoost;
+    }
+
+    if (signals.brightness < 90 || want(["brighten"])) {
+      list.push(adj("exposure", "Brighten", "+0.3 EV", -2, 2,
+        "Midtones read dark — lift the base exposure before local work.",
+        "Clearer subject and more usable color.", "Estimated",
+        want(["brighten"]) ? "primary" : "secondary"));
+    } else if (signals.brightness > 180) {
+      list.push(adj("exposure", "Exposure", "−0.2 EV", -2, 2,
+        "Midtones read hot — lower exposure before adding contrast.",
+        "Richer midtones and safer print headroom.", "Estimated", "primary"));
+    }
+
+    if (signals.brightFraction > 0.05 || want(["recover highlights"])) {
+      list.push(adj("highlights", "Recover highlights", "−22", -100, 0,
+        "Bright areas may be clipping and pulling attention from the subject.",
+        "Calmer skies and more credible specular detail.", "Estimated",
+        want(["recover highlights"]) || signals.brightFraction > 0.05 ? "primary" : "secondary"));
+    }
+
+    if (signals.darkFraction > 0.26 || want(["lift shadows"])) {
+      list.push(adj("shadows", "Lift shadows", "+24", 0, 100,
+        "Heavy shadows hide texture that carries depth and story.",
+        "Foreground depth without a flat HDR look.", "Estimated",
+        want(["lift shadows"]) ? "primary" : "secondary"));
+    }
+
+    if (signals.contrast < 30 || want(["increase contrast"])) {
+      list.push(adj("contrast", "Increase contrast", "+12", -30, 30,
+        "Low global contrast flattens subject presence, especially on mobile.",
+        "Stronger separation between subject and background.", "Estimated",
+        want(["increase contrast"]) ? "primary" : "secondary"));
+    } else if (signals.contrast > 80 || want(["reduce contrast"])) {
+      list.push(adj("contrast", "Reduce contrast", "−8", -30, 30,
+        "Contrast may be crushing midtones.",
+        "Softer, more printable tonal transitions.", "Estimated", "secondary"));
+    }
+
+    if (signals.warmth > 0.22 || want(["cool white balance"])) {
+      list.push(adj("whiteBalance", "Cool white balance", "−350K", -10, 10,
+        "Warm cast can age foliage and skew natural color.",
+        "More believable outdoor color before saturation edits.", "Estimated",
+        want(["cool white balance"]) ? "primary" : "secondary"));
+    } else if (signals.coolness > 0.2 || want(["warm white balance"])) {
+      list.push(adj("whiteBalance", "Warm white balance", "+350K", -10, 10,
+        "Cool cast can make daylight scenes feel clinical unless intentional.",
+        "Friendlier, more natural outdoor color.", "Estimated",
+        want(["warm white balance"]) ? "primary" : "secondary"));
+    }
+
+    if (signals.saturation > 0.45 || want(["reduce saturation"])) {
+      list.push(adj("saturation", "Reduce saturation", "−8", -20, 20,
+        "High saturation competes with form and can look artificial outdoors.",
+        "Calmer palette so shape and light lead.", "Estimated", "secondary"));
+    }
+
+    if (want(["local emphasis"]) || signals.subjectEmphasis < 0.06) {
+      list.push(adj("clarity", "Local emphasis (clarity)", "+10", 0, 40,
+        "Subject separation is weak — add midtone snap on the subject, not the whole frame.",
+        "Immediate subject recognition.", "Estimated",
+        want(["local emphasis"]) ? "primary" : "secondary"));
+    }
+
+    if ((outdoor && outdoor.airQuality && outdoor.airQuality.usAqi > 80) || signals.contrast < 28) {
+      list.push(adj("dehaze", "Light dehaze", "+6", 0, 30,
+        "Atmosphere may be flattening distance — use lightly so the mood stays honest.",
+        "Near subject presence without sterilizing the air.", "Estimated", "secondary"));
+    }
+
+    if (want(["crop", "remove distractions by cropping"]) || signals.leftRightBalance > 0.12 || signals.subjectEmphasis < 0.05) {
+      list.push(adj("crop", "Crop", "Tighten / rebalance", 0, 100,
+        "Cropping removes distractions and restores visual hierarchy without inventing detail.",
+        "Clearer subject and cleaner edges. Edits are suggestions only — nothing was applied.", "Estimated",
+        want(["crop", "remove distractions by cropping"]) ? "primary" : "secondary"));
+    }
+
+    if (want(["rotate"]) || (signals.skyBrightness > 0.28 && signals.edgeHorizontal > 0.08)) {
+      list.push(adj("perspective", "Rotate / level", "Level horizon", -20, 20,
+        "A tilted horizon reads immediately in landscapes with a clear skyline.",
+        "A grounded, intentional frame after a small rotate + crop.", "Estimated", "secondary"));
+    }
+
+    if (signals.blurEstimate < 45) {
+      list.push(adj("sharpening", "Gentle sharpening", "Amount 35", 0, 100,
+        "Softness is present — sharpen modestly for screen; do not expect a soft file to print large.",
+        "Slightly clearer presentation at intended size.", "Estimated", "secondary"));
+    }
+
+    // Prefer primary first, then cap list so the recipe stays actionable
+    list.sort(function (a, b) {
+      if (a.priority === b.priority) return 0;
+      return a.priority === "primary" ? -1 : 1;
+    });
+    if (list.length > 7) list = list.slice(0, 7);
+
+    if (!list.length) {
+      list.push(adj("crop", "Subtle reframe", "Optional", 0, 100,
+        "No high-confidence global edit stood out — refine framing only if something distracts.",
+        "Avoid stacking edits when the file is already balanced.", "Estimated", "secondary"));
+    }
 
     return {
-      version: "2.0.0",
+      version: "3.0.0",
       engineStatus: "disconnected",
       isDemo: true,
       trust: "Demo Analysis",
-      adjustments: [
-        adj("exposure", "Exposure", exposure, -2, 2,
-          signals.brightness < 95 ? "Image reads dark in midtones." : "Balance overall luminance.",
-          "Correct base brightness before local edits.", "Estimated"),
-        adj("highlights", "Highlights", highlights, -100, 0,
-          signals.brightFraction > 0.05 ? "Bright areas may be clipping." : "Protect sky and specular detail.",
-          "Calmer skies and credible light.", "Estimated"),
-        adj("shadows", "Shadows", shadows, 0, 100,
-          signals.darkFraction > 0.25 ? "Shadows are heavy." : "Reveal subtle depth.",
-          "Foreground texture without flat HDR.", "Estimated"),
-        adj("whites", "Whites", signals.brightFraction > 0.04 ? "−10" : "+4", -50, 50,
-          "Set white point for paper and screen.",
-          "Crisp highlights without clipping.", "Estimated"),
-        adj("blacks", "Blacks", signals.darkFraction > 0.2 ? "+6" : "−4", -50, 50,
-          "Anchor deepest tones for print depth.",
-          "Rich blacks without muddy shadows.", "Estimated"),
-        adj("contrast", "Contrast", contrast, -30, 30,
-          signals.contrast < 32 ? "Global contrast is low." : "Refine tonal separation.",
-          "Subject presence without crunch.", "Estimated"),
-        adj("whiteBalance", "White balance", wb, -10, 10,
-          signals.dominantWarm ? "Warm cast detected." : "Neutralize before color grading.",
-          "Believable natural color.", "Estimated"),
-        adj("vibrance", "Vibrance", vibrance, 0, 30,
-          "Boost muted colors before saturation.",
-          "Life in foliage and sky without neon.", "Estimated"),
-        adj("saturation", "Saturation", saturation, -20, 20,
-          "Gentle global saturation after WB.",
-          "Cohesive palette.", "Estimated"),
-        adj("texture", "Texture", texture, 0, 40,
-          "Micro-contrast in focused areas.",
-          "Tactile detail on the anchor.", "Estimated"),
-        adj("clarity", "Clarity", clarity, 0, 40,
-          signals.contrast < 35 ? "Midtone snap is low." : "Local presence on subject.",
-          "Separation from background.", "Estimated"),
-        adj("dehaze", "Dehaze", dehaze, 0, 30,
-          "Cut atmospheric flatness if present.",
-          "Clearer distance and depth.", "Estimated"),
-        adj("sharpening", "Sharpening", sharpen, 0, 100,
-          "Output sharpening for web or print.",
-          "Crisp presentation at intended size.", "Estimated"),
-        adj("noiseReduction", "Noise reduction", nr, 0, 50,
-          "Protect smooth areas; keep subject texture.",
-          "Cleaner skies and bokeh.", "Estimated"),
-        adj("lensCorrection", "Lens correction", lens, 0, 100,
-          signals.vignetteLeft + signals.vignetteRight > 0.1 ? "Edge darkening detected." : "Standard profile correction.",
-          "Straighter geometry and cleaner edges.", "Estimated"),
-        adj("perspective", "Perspective", signals.vignetteLeft + signals.vignetteRight > 0.12 ? "Vertical −6" : "0", -20, 20,
-          "Correct converging verticals when shooting upward at trees or cliffs.",
-          "Architecture and trunks feel upright instead of leaning.", "Estimated"),
-        adj("crop", "Crop", "See Crop Coach", 0, 100,
-          signals.orientation === "portrait" ? "Vertical frame — tighten for mobile storytelling." : "Reframe for stronger thirds and fewer distractions.",
-          "Clearer subject hierarchy before color grading.", "Estimated")
-      ],
-      pipelineNote: "Demo Analysis — values derived from brightness, contrast, and color sampling. Not pixel-level AI."
+      adjustments: list,
+      pipelineNote: "Suggested edits only — nothing was applied to your file. Values come from browser image signals and your highest-impact coaching notes."
     };
   }
 
@@ -125,24 +183,27 @@
       ? '<span class="coach-trust coach-trust--demo">Demo Analysis</span>'
       : '<span class="coach-trust coach-trust--live">Live</span>';
     var html = '<section class="coach-card coach-card--edits" aria-labelledby="coach-edits-title">' +
-      '<h3 class="coach-card__title" id="coach-edits-title">Edit recipe ' + badge + "</h3>";
+      '<h3 class="coach-card__title" id="coach-edits-title">Suggested edits ' + badge + "</h3>";
     if (plan.pipelineNote) {
       html += '<p class="coach-card__note">' + escape(plan.pipelineNote) + "</p>";
     }
     html += '<ul class="coach-sliders">';
     plan.adjustments.forEach(function (a) {
       var pos = sliderPosition(a.suggestedValue, a.min != null ? a.min : -50, a.max != null ? a.max : 50);
-      html += '<li class="coach-slider">' +
+      var pri = a.priority === "primary"
+        ? '<span class="coach-edit-priority">Try first</span>'
+        : "";
+      html += '<li class="coach-slider' + (a.priority === "primary" ? " coach-slider--primary" : "") + '">' +
         '<div class="coach-slider__head">' +
-          '<span class="coach-slider__label">' + escape(a.label) + "</span>" +
+          '<span class="coach-slider__label">' + escape(a.label) + " " + pri + "</span>" +
           '<span class="coach-slider__value">' + escape(a.suggestedValue) + "</span>" +
         "</div>" +
         '<div class="coach-slider__track" aria-hidden="true">' +
           '<div class="coach-slider__fill" style="width:' + pos + '%"></div>' +
           '<div class="coach-slider__thumb" style="left:' + pos + '%"></div>' +
         "</div>" +
-        '<p class="coach-slider__why">' + escape(a.reason) + "</p>" +
-        '<p class="coach-slider__effect">' + escape(a.expectedImprovement) + "</p>" +
+        '<p class="coach-slider__why"><strong>Why:</strong> ' + escape(a.reason) + "</p>" +
+        '<p class="coach-slider__effect"><strong>Expected:</strong> ' + escape(a.expectedImprovement) + "</p>" +
       "</li>";
     });
     html += "</ul></section>";

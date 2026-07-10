@@ -113,6 +113,11 @@
     var badge = c.isDemo || c.isSample
       ? '<span class="coach-trust coach-trust--demo">Demo Analysis</span>'
       : '<span class="coach-trust coach-trust--live">AI Analysis</span>';
+    var genre = c.genre && !c.genre.uncertain && c.genre.confidence >= 0.58
+      ? '<p class="coach-genre">Likely genre: <strong>' + escapeHtml(c.genre.label) + "</strong></p>"
+      : (c.coaching && c.coaching.uncertainNote
+        ? '<p class="coach-genre coach-genre--uncertain">' + escapeHtml(c.coaching.uncertainNote) + "</p>"
+        : "");
     return '<section class="coach-grade-card" aria-labelledby="coach-grade-title">' +
       '<div class="coach-grade-card__head">' +
         '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall grade</h2>' + badge +
@@ -122,6 +127,7 @@
         '<span class="coach-grade-num">' + escapeHtml(String(g.score != null ? g.score : c.overallScore || "—")) +
           '<span class="coach-grade-max">/100</span></span>' +
       "</div>" +
+      genre +
       '<p class="coach-grade-summary">' + escapeHtml(c.narrativeSummary || g.summary || "") + "</p>" +
       '<dl class="coach-grade-meta">' +
         "<div><dt>Portfolio</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
@@ -217,12 +223,20 @@
 
   function renderImprovements(c) {
     var list = c.improvements || [];
-    if (!list.length) return "";
+    if (!list.length) {
+      return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
+        '<h3 class="coach-card__title" id="coach-improve-title">What could improve</h3>' +
+        '<p class="coach-muted">No high-confidence issue stood out from browser signals. Refine gently rather than stacking edits.</p></section>';
+    }
     return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
       '<h3 class="coach-card__title" id="coach-improve-title">What could improve</h3>' +
-      '<ul class="coach-coach-cards">' + list.map(function (s) {
-        return '<li class="coach-coach-card coach-coach-card--grow">' +
-          '<h4>' + escapeHtml(s.issue) + "</h4>" +
+      '<ul class="coach-coach-cards">' + list.map(function (s, idx) {
+        var badge = s.priority === "primary" || idx === 0
+          ? '<span class="coach-priority-badge">Improve first</span>'
+          : '<span class="coach-priority-badge coach-priority-badge--secondary">Secondary</span>';
+        return '<li class="coach-coach-card coach-coach-card--grow' +
+          (s.priority === "primary" || idx === 0 ? " coach-coach-card--primary" : "") + '">' +
+          '<h4>' + escapeHtml(s.issue) + " " + badge + "</h4>" +
           '<p><strong>Why it matters:</strong> ' + escapeHtml(s.whyItMatters) + "</p>" +
           '<p><strong>What to do:</strong> ' + escapeHtml(s.whatToDo) + "</p>" +
           '<p><strong>Expected:</strong> ' + escapeHtml(s.expectedImprovement) + "</p>" +
@@ -284,9 +298,10 @@
 
   function renderNextAction(c) {
     var improvements = c.improvements || [];
-    var first = improvements[0];
+    var first = (c.coaching && c.coaching.primaryImprovement) || improvements[0];
     var edits = c.editIntelligence && c.editIntelligence.adjustments
-      ? c.editIntelligence.adjustments[0]
+      ? c.editIntelligence.adjustments.filter(function (a) { return a.priority === "primary"; })[0] ||
+        c.editIntelligence.adjustments[0]
       : null;
     var title = first ? first.whatToDo : (edits ? "Try: " + edits.label + " → " + edits.suggestedValue : "");
     var why = first
@@ -297,6 +312,7 @@
       '<h3 class="coach-card__title" id="coach-next-title">Suggested next edit</h3>' +
       '<p>' + escapeHtml(title) + "</p>" +
       (why ? '<p class="coach-next-action__why"><strong>Why that may help:</strong> ' + escapeHtml(why) + "</p>" : "") +
+      '<p class="coach-muted">Suggestions only — your original file is unchanged.</p>' +
     "</section>";
   }
 
