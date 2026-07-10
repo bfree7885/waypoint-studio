@@ -64,8 +64,8 @@
     if (Outdoor) {
       return Outdoor.render();
     }
-    return '<div class="coach-card coach-card--field"><h3 class="coach-card__title">Field insights</h3>' +
-      '<p class="coach-muted">Open the <a href="../../">Waypoint Dashboard</a> to attach weather, light, and challenge context.</p></div>';
+    return '<div class="coach-card coach-card--field"><h3 class="coach-card__title">Field conditions</h3>' +
+      '<p class="coach-muted">Optional. Photo Coach works without the dashboard. If you have recently opened the outdoor dashboard with your location, weather and light context can appear here.</p></div>';
   }
 
   function updatePreviewOverlay(critique) {
@@ -129,7 +129,7 @@
         "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "Demo signals") + "</dd></div>" +
       "</dl>" +
       (c.engineStatus === "disconnected"
-        ? '<p class="coach-engine-note" role="status">Vision API not connected — analysis uses local pixel sampling and field context. Always labeled Demo Analysis.</p>'
+        ? '<p class="coach-engine-note" role="status">Browser-based Demo Analysis — guidance from image characteristics, not a cloud AI review.</p>'
         : "") +
     "</section>";
   }
@@ -205,7 +205,7 @@
     var list = c.strengths || [];
     if (!list.length) return "";
     return '<section class="coach-card" aria-labelledby="coach-strengths-title">' +
-      '<h3 class="coach-card__title" id="coach-strengths-title">What works</h3>' +
+      '<h3 class="coach-card__title" id="coach-strengths-title">What is working</h3>' +
       '<ul class="coach-coach-cards">' + list.map(function (s) {
         return '<li class="coach-coach-card coach-coach-card--good">' +
           '<h4>' + escapeHtml(s.title) + "</h4>" +
@@ -219,7 +219,7 @@
     var list = c.improvements || [];
     if (!list.length) return "";
     return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
-      '<h3 class="coach-card__title" id="coach-improve-title">What to improve & why</h3>' +
+      '<h3 class="coach-card__title" id="coach-improve-title">What could improve</h3>' +
       '<ul class="coach-coach-cards">' + list.map(function (s) {
         return '<li class="coach-coach-card coach-coach-card--grow">' +
           '<h4>' + escapeHtml(s.issue) + "</h4>" +
@@ -282,13 +282,41 @@
       '<p>' + escapeHtml(c.nextShootChallenge || c.fieldAssignment || "—") + "</p></section>";
   }
 
+  function renderNextAction(c) {
+    var improvements = c.improvements || [];
+    var first = improvements[0];
+    var edits = c.editIntelligence && c.editIntelligence.adjustments
+      ? c.editIntelligence.adjustments[0]
+      : null;
+    var title = first ? first.whatToDo : (edits ? "Try: " + edits.label + " → " + edits.suggestedValue : "");
+    var why = first
+      ? (first.expectedImprovement || first.whyItMatters || "")
+      : (edits ? (edits.expectedImprovement || edits.reason || "") : "");
+    if (!title) return "";
+    return '<section class="coach-card coach-next-action" aria-labelledby="coach-next-title">' +
+      '<h3 class="coach-card__title" id="coach-next-title">Suggested next edit</h3>' +
+      '<p>' + escapeHtml(title) + "</p>" +
+      (why ? '<p class="coach-next-action__why"><strong>Why that may help:</strong> ' + escapeHtml(why) + "</p>" : "") +
+    "</section>";
+  }
+
+  function renderTechnicalDetails(c) {
+    var body = renderPhotoBreakdown(c) + renderBreakdown(c);
+    if (!body) return "";
+    return '<details class="coach-tech-details">' +
+      "<summary>Technical details</summary>" +
+      '<p class="coach-muted">Measured image signals and category scores — secondary to the coaching above.</p>' +
+      body +
+    "</details>";
+  }
+
   function renderCenter(critique) {
     return renderGradeCard(critique) +
-      renderPhotoBreakdown(critique) +
-      renderBreakdown(critique) +
       renderStrengths(critique) +
       renderImprovements(critique) +
+      renderNextAction(critique) +
       renderLearning(critique) +
+      renderTechnicalDetails(critique) +
       '<div class="coach-actions coach-actions--center">' +
         '<button type="button" class="btn btn-secondary" id="btn-coach-save-session">Save session</button>' +
       "</div>";
@@ -306,9 +334,10 @@
 
   function renderAnalyzing() {
     var html = '<div class="coach-analyzing" role="status" aria-live="polite">' +
-      '<p class="coach-analyzing__title">Analyzing…</p>' +
-      '<p class="coach-muted">Sampling pixels and field context — Demo Analysis.</p></div>';
+      '<p class="coach-analyzing__title">Analyzing your photo…</p>' +
+      '<p class="coach-muted">Reviewing visual qualities in your browser. This usually takes a moment.</p></div>';
     if (els.centerMount) els.centerMount.innerHTML = html;
+    if (els.dropZone) els.dropZone.classList.add("is-loading");
     if (els.rightMount) {
       els.rightMount.innerHTML = "";
       els.rightMount.hidden = true;
@@ -318,6 +347,7 @@
   function renderCritique(critique) {
     if (!critique) return;
     currentCritique = critique;
+    if (els.dropZone) els.dropZone.classList.remove("is-loading");
     if (els.centerMount) {
       els.centerMount.innerHTML = renderCenter(critique);
       els.centerMount.hidden = false;
@@ -493,6 +523,7 @@
         saveCurrentSession();
       });
     }).catch(function (err) {
+      if (els.dropZone) els.dropZone.classList.remove("is-loading");
       if (els.error) {
         els.error.textContent = err && err.message ? err.message : "Analysis failed.";
         els.error.hidden = false;

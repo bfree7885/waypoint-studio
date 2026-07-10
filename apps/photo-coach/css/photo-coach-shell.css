@@ -1,23 +1,46 @@
-/* Photo Coach — standalone critique shell (part of Waypoint Scenes) */
+/**
+ * Photo Coach — public product shell
+ * Scoped to .pc-shell so the shared studio coach styles remain available.
+ */
 
 .pc-shell {
-  --coach-accent: #3ecf8e;
+  --coach-accent: var(--wds-accent, #c8f055);
+  --coach-accent-dim: var(--wds-accent-dim, rgba(200, 240, 85, 0.16));
+  --coach-surface: rgba(255, 255, 255, 0.06);
+  --coach-surface-raised: rgba(255, 255, 255, 0.09);
+  --coach-border: rgba(255, 255, 255, 0.16);
+  --coach-border-strong: rgba(255, 255, 255, 0.28);
+  --coach-text: var(--wds-text, #f4f1ea);
+  --coach-text-secondary: var(--wds-text-secondary, rgba(244, 241, 234, 0.82));
+  --coach-text-muted: var(--wds-text-tertiary, rgba(244, 241, 234, 0.68));
+  --coach-radius: 0.75rem;
+  color: var(--coach-text);
 }
 
+.pc-shell body,
+.pc-shell.pc-shell {
+  color: var(--coach-text);
+}
+
+.pc-shell .wds-app {
+  min-height: 100vh;
+}
+
+/* ——— Breadcrumb ——— */
 .pc-breadcrumb {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem 0.5rem;
-  padding: 0.75rem clamp(1rem, 3vw, 2rem) 0;
-  max-width: 96rem;
+  padding: 0.85rem clamp(1rem, 3vw, 2rem) 0;
+  max-width: 72rem;
   margin: 0 auto;
-  font-size: 0.8rem;
-  color: var(--wds-text-tertiary);
+  font-size: 0.8125rem;
+  color: var(--coach-text-muted);
 }
 
 .pc-breadcrumb a {
-  color: var(--wds-accent);
+  color: var(--coach-accent);
   text-decoration: none;
 }
 
@@ -25,45 +48,692 @@
   text-decoration: underline;
 }
 
+.pc-breadcrumb a:focus-visible {
+  outline: 2px solid var(--coach-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .pc-breadcrumb__sep {
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 .pc-breadcrumb__current {
-  color: var(--wds-text-secondary);
+  color: var(--coach-text-secondary);
   font-weight: 500;
 }
 
-.pc-context-banner {
-  max-width: 96rem;
-  margin: 0 auto;
-  padding: 0  clamp(1rem, 3vw, 2rem);
-}
-
-.pc-context-banner p {
-  margin: 0.5rem 0 0;
-  padding: 0.65rem 0.85rem;
-  font-size: 0.8rem;
-  line-height: 1.45;
-  color: var(--wds-text-secondary);
-  background: var(--wds-inset);
-  border: 1px solid var(--wds-border-subtle);
-  border-radius: var(--wds-radius-md);
-}
-
-.pc-context-banner a {
-  color: var(--wds-accent);
-}
-
+/* ——— Page shell ——— */
 .pc-page .mode-coach {
-  padding-top: 0.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem) 3.5rem;
 }
 
-.pc-page .coach-muted,
-.pc-page .muted {
-  color: var(--wds-text-tertiary);
+.pc-hero {
+  margin-bottom: 1rem;
 }
 
-.pc-page .coach-outdoor-context a {
-  color: var(--coach-accent, var(--wds-accent));
+.pc-product-link {
+  color: var(--coach-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pc-product-link:hover {
+  text-decoration: underline;
+}
+
+.pc-product-sep {
+  margin: 0 0.35rem;
+  opacity: 0.55;
+}
+
+.pc-shell .coach-hero__eyebrow {
+  opacity: 1;
+  color: var(--coach-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.pc-hero__title,
+.pc-shell .coach-hero__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0 0 0.65rem;
+  color: var(--coach-text);
+}
+
+.pc-shell .coach-hero__lead {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  opacity: 1;
+  color: var(--coach-text-secondary);
+}
+
+.pc-trust {
+  margin: 0 0 0.75rem;
+  padding: 0.7rem 0.9rem;
+  max-width: 42rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--coach-text-secondary);
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+}
+
+.pc-disclosure {
+  margin: 0 0 1.5rem;
+  max-width: 42rem;
+  font-size: 0.85rem;
+  color: var(--coach-text-muted);
+}
+
+.pc-disclosure summary {
+  cursor: pointer;
+  color: var(--coach-text-secondary);
+  font-weight: 500;
+  list-style: none;
+}
+
+.pc-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.pc-disclosure summary::before {
+  content: "▸ ";
+  color: var(--coach-accent);
+}
+
+.pc-disclosure[open] summary::before {
+  content: "▾ ";
+}
+
+.pc-disclosure summary:focus-visible {
+  outline: 2px solid var(--coach-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.pc-disclosure__body {
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+  line-height: 1.5;
+}
+
+.pc-disclosure__body p {
+  margin: 0 0 0.65rem;
+}
+
+.pc-disclosure__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ——— Dashboard layout ——— */
+.pc-shell .coach-dashboard {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(340px, 1.25fr);
+  gap: 1.25rem 1.5rem;
+  align-items: start;
+}
+
+.pc-shell .coach-dashboard.has-results {
+  grid-template-columns: minmax(260px, 0.85fr) minmax(360px, 1.35fr) minmax(240px, 0.9fr);
+}
+
+.pc-shell .coach-col--left {
+  position: sticky;
+  top: 1rem;
+}
+
+.pc-shell .coach-col--right[hidden] {
+  display: none !important;
+}
+
+/* ——— Upload zone ——— */
+.pc-shell .coach-drop-zone {
+  min-height: 14rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+  border: 2px dashed var(--coach-border-strong);
+  border-radius: var(--coach-radius);
+  background: linear-gradient(160deg, rgba(200, 240, 85, 0.08), var(--coach-surface));
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.pc-shell .coach-drop-zone:hover {
+  border-color: var(--coach-accent);
+  background: linear-gradient(160deg, rgba(200, 240, 85, 0.14), var(--coach-surface-raised));
+  box-shadow: 0 0 0 1px rgba(200, 240, 85, 0.2);
+}
+
+.pc-shell .coach-drop-zone.is-dragover {
+  border-color: var(--coach-accent);
+  border-style: solid;
+  background: var(--coach-accent-dim);
+  box-shadow: 0 0 0 3px rgba(200, 240, 85, 0.25);
+}
+
+.pc-shell .coach-drop-zone:focus-visible {
+  outline: 2px solid var(--coach-accent);
+  outline-offset: 3px;
+  border-color: var(--coach-accent);
+}
+
+.pc-shell .coach-drop-zone.is-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.pc-shell .coach-empty {
+  text-align: center;
+  width: 100%;
+}
+
+.pc-shell .coach-empty__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: var(--coach-text);
+}
+
+.pc-shell .coach-empty__text {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  opacity: 1;
+  color: var(--coach-text-secondary);
+}
+
+.pc-shell .coach-empty__formats {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--coach-text-muted);
+}
+
+.pc-shell .coach-drop-zone .btn-primary {
+  min-height: 2.75rem;
+  padding: 0.7rem 1.35rem;
+  font-weight: 600;
+}
+
+.pc-shell .coach-preview-img {
+  max-height: 420px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--coach-border);
+}
+
+.pc-shell .coach-file-name {
+  opacity: 1;
+  color: var(--coach-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.pc-shell .btn-secondary {
+  opacity: 1;
+  color: var(--coach-text);
+  border-color: var(--coach-border-strong);
+  background: var(--coach-surface);
+}
+
+.pc-shell .btn-secondary:hover:not(:disabled) {
+  border-color: var(--coach-accent);
+  background: var(--coach-surface-raised);
+}
+
+.pc-shell .btn:disabled,
+.pc-shell .btn-primary:disabled,
+.pc-shell .btn-secondary:disabled {
+  opacity: 0.55;
+  color: var(--coach-text-muted);
+  cursor: not-allowed;
+}
+
+.pc-shell .upload-error {
+  margin: 0.35rem 0 0;
+  padding: 0.65rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 0.5rem;
+}
+
+/* ——— Empty analysis preview ——— */
+.pc-preview {
+  padding: 1.35rem 1.4rem;
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+}
+
+.pc-preview__badge {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.16);
+  border-radius: 0.3rem;
+}
+
+.pc-preview__title {
+  margin: 0 0 0.45rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--coach-text);
+}
+
+.pc-preview__lead {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--coach-text-secondary);
+}
+
+.pc-preview__grade {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(145deg, rgba(200, 240, 85, 0.12), transparent);
+  border: 1px dashed var(--coach-border-strong);
+  border-radius: 0.55rem;
+}
+
+.pc-preview__letter {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--coach-accent);
+}
+
+.pc-preview__score {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--coach-text-secondary);
+}
+
+.pc-preview__max {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.pc-preview__list {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.pc-preview__list > div {
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--coach-border);
+}
+
+.pc-preview__list > div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.pc-preview__list dt {
+  margin: 0 0 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--coach-accent);
+}
+
+.pc-preview__list dd {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--coach-text-secondary);
+}
+
+.pc-preview__note {
+  margin: 1rem 0 0;
+  font-size: 0.78rem;
+  color: var(--coach-text-muted);
+}
+
+/* ——— Analysis cards ——— */
+.pc-shell .coach-card,
+.pc-shell .coach-grade-card,
+.pc-shell .coach-outdoor-context,
+.pc-shell .coach-outdoor-context--empty {
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+  color: var(--coach-text);
+}
+
+.pc-shell .coach-grade-card {
+  background: linear-gradient(145deg, rgba(200, 240, 85, 0.14), var(--coach-surface));
+  border-color: rgba(200, 240, 85, 0.4);
+  padding: 1.35rem 1.4rem;
+}
+
+.pc-shell .coach-grade-card__title,
+.pc-shell .coach-card__title,
+.pc-shell .coach-outdoor-context__title,
+.pc-shell .coach-history__title {
+  color: var(--coach-text);
+}
+
+.pc-shell .coach-grade-summary {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--coach-text);
+  opacity: 1;
+}
+
+.pc-shell .coach-grade-meta dt,
+.pc-shell .coach-muted,
+.pc-shell .muted {
+  opacity: 1;
+  color: var(--coach-text-muted);
+}
+
+.pc-shell .coach-grade-meta dd,
+.pc-shell .coach-coach-card,
+.pc-shell .coach-breakdown__reason,
+.pc-shell .coach-card__note {
+  color: var(--coach-text-secondary);
+}
+
+.pc-shell .coach-coach-card h4 {
+  color: var(--coach-text);
+}
+
+.pc-shell .coach-coach-card--good {
+  border-color: rgba(200, 240, 85, 0.35);
+  background: rgba(200, 240, 85, 0.08);
+}
+
+.pc-shell .coach-coach-card--grow {
+  border-color: rgba(251, 191, 36, 0.35);
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.pc-shell .coach-breakdown__bar,
+.pc-shell .coach-slider__track {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.pc-shell .coach-next-action {
+  border-color: rgba(200, 240, 85, 0.4);
+  background: linear-gradient(160deg, rgba(200, 240, 85, 0.1), var(--coach-surface));
+}
+
+.pc-shell .coach-next-action__why {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--coach-text-secondary);
+}
+
+.pc-shell .coach-tech-details {
+  margin-top: 0.25rem;
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+  background: var(--coach-surface);
+  padding: 0.15rem 0.9rem 0.9rem;
+}
+
+.pc-shell .coach-tech-details > summary {
+  cursor: pointer;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  color: var(--coach-text-secondary);
+  list-style: none;
+}
+
+.pc-shell .coach-tech-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pc-shell .coach-tech-details > summary::before {
+  content: "▸ ";
+  color: var(--coach-accent);
+}
+
+.pc-shell .coach-tech-details[open] > summary::before {
+  content: "▾ ";
+}
+
+.pc-shell .coach-tech-details > summary:focus-visible {
+  outline: 2px solid var(--coach-accent);
+  outline-offset: 2px;
+}
+
+.pc-shell .coach-tech-details .coach-card {
+  margin-top: 0.75rem;
+}
+
+.pc-shell .coach-analyzing {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+}
+
+.pc-shell .coach-analyzing__title {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ——— Supporting panels ——— */
+.pc-support {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--coach-border);
+}
+
+.pc-support > [hidden] {
+  display: none !important;
+}
+
+.pc-shell .coach-field-mount,
+.pc-shell .coach-history-mount,
+.pc-shell .coach-notes-mount,
+.pc-shell .coach-signals-mount {
+  min-width: 0;
+}
+
+.pc-shell .coach-outdoor-context,
+.pc-shell .coach-outdoor-context--empty,
+.pc-shell .coach-history-mount .coach-card,
+.pc-shell .coach-card--field,
+.pc-shell .coach-card--meta,
+.pc-shell .coach-card--signals {
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+
+.pc-shell .coach-outdoor-context__title,
+.pc-shell .coach-history__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.pc-shell .coach-history-empty {
+  margin: 0;
+  padding: 0.85rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--coach-text-secondary);
+}
+
+.pc-shell .coach-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pc-shell .coach-history-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.35rem;
+  border: 1px solid var(--coach-border);
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.pc-shell .coach-history-thumb {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.pc-shell .coach-history-open {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  width: 100%;
+  padding: 0.35rem 0.4rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 0.35rem;
+  min-height: 2.75rem;
+}
+
+.pc-shell .coach-history-open:hover {
+  background: var(--coach-surface-raised);
+}
+
+.pc-shell .coach-history-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--coach-text);
+  word-break: break-word;
+}
+
+.pc-shell .coach-history-meta {
+  font-size: 0.75rem;
+  color: var(--coach-text-muted);
+}
+
+.pc-shell .coach-history-fav,
+.pc-shell .coach-history-delete {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--coach-border);
+  border-radius: 0.4rem;
+  background: var(--coach-surface);
+  color: var(--coach-text-secondary);
+  cursor: pointer;
+}
+
+.pc-shell .coach-history-fav.is-fav {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.pc-shell .coach-history-open:focus-visible,
+.pc-shell .coach-history-fav:focus-visible,
+.pc-shell .coach-history-delete:focus-visible {
+  outline: 2px solid var(--coach-accent);
+  outline-offset: 2px;
+}
+
+.pc-shell .coach-engine-note {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--coach-border);
+  color: var(--coach-text-secondary);
+  opacity: 1;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 1100px) {
+  .pc-shell .coach-dashboard.has-results {
+    grid-template-columns: minmax(240px, 0.9fr) minmax(320px, 1.3fr);
+  }
+
+  .pc-shell .coach-dashboard.has-results .coach-col--right {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 960px) {
+  .pc-shell .coach-dashboard,
+  .pc-shell .coach-dashboard.has-results {
+    grid-template-columns: 1fr;
+  }
+
+  .pc-shell .coach-col--left {
+    position: static;
+  }
+
+  .pc-shell .coach-drop-zone {
+    min-height: 11rem;
+  }
+
+  .pc-support {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .pc-page .mode-coach {
+    padding-bottom: 2.5rem;
+  }
+
+  .pc-shell .coach-drop-zone .btn-primary {
+    width: 100%;
+  }
+
+  .pc-preview {
+    padding: 1.1rem;
+  }
+
+  .pc-preview__letter {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .pc-page .mode-coach,
+  .pc-breadcrumb {
+    max-width: 80rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-shell .coach-drop-zone {
+    transition: none;
+  }
 }

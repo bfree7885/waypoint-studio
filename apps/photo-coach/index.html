@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Photo Coach — the first tool in Waypoint Scenes. Upload a photograph for browser-based Demo Analysis: grade, strengths, and improvement coaching.">
+  <meta name="description" content="Photo Coach — the first tool in Waypoint Scenes. Upload a photograph for browser-based analysis: grade, strengths, and improvement coaching.">
   <title>Photo Coach — Waypoint Scenes · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="css/photo-coach-shell.css">
 </head>
 <body class="pc-shell">
-  <a class="wds-skip" href="#coach-dashboard">Skip to Photo Coach</a>
+  <a class="wds-skip" href="#coach-drop-zone">Skip to upload</a>
   <div class="wds-app">
     <header class="wds-topbar pc-topbar">
       <div class="wds-topbar__inner">
@@ -38,24 +38,37 @@
       <span class="pc-breadcrumb__current">Photo Coach</span>
     </nav>
 
-    <div class="pc-context-banner">
-      <p><strong>Part of Waypoint Scenes.</strong> Demo Analysis runs in your browser using image pixels and optional dashboard field context — heuristic coaching structure, not cloud AI. Images stay on your device unless you choose to export.</p>
-    </div>
-
     <main id="main" class="pc-page">
       <section class="mode-coach" id="mode-coach">
-        <header class="coach-hero">
-          <p class="coach-hero__eyebrow">Photo Coach · Waypoint Scenes</p>
-          <h1 class="coach-hero__title"><span class="coach-hero__step">Upload</span><span class="coach-hero__step">Grade</span><span class="coach-hero__step">Improve</span></h1>
-          <p class="coach-hero__lead">Observe your image more carefully, understand what is working, and make deliberate improvements. Demo Analysis uses your image pixels and field context — clearly labeled, production-ready coaching structure.</p>
+        <header class="coach-hero pc-hero">
+          <p class="coach-hero__eyebrow">
+            <a class="pc-product-link" href="../scenes/">Waypoint Scenes</a>
+            <span class="pc-product-sep" aria-hidden="true">·</span>
+            Photo Coach
+          </p>
+          <h1 class="coach-hero__title pc-hero__title">Upload. Understand. Improve.</h1>
+          <p class="coach-hero__lead">Photo Coach reviews the visual qualities of your image, highlights what is working, and suggests deliberate ways to improve it.</p>
         </header>
 
+        <p class="pc-trust" role="note">
+          Analysis runs in your browser using image characteristics and optional field context. It is guidance, not a professional or cloud-AI review.
+        </p>
+
+        <details class="pc-disclosure">
+          <summary>How analysis works</summary>
+          <div class="pc-disclosure__body">
+            <p>Demo Analysis samples brightness, contrast, sharpness estimates, color distribution, and clipping from your image pixels. If you have recently opened the outdoor dashboard with your location, optional weather and light context may be included.</p>
+            <p>Images stay on your device. Accepted formats: JPG, PNG, WebP · up to 20 MB. Recent sessions are saved in this browser only.</p>
+          </div>
+        </details>
+
         <div class="coach-dashboard" id="coach-dashboard">
-          <aside class="coach-col coach-col--left" aria-label="Photo and context">
-            <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload or drop a photo">
+          <aside class="coach-col coach-col--left pc-upload-col" aria-label="Upload photo">
+            <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload a photo: drop, click to browse, or paste with Control V">
               <div class="coach-empty" id="coach-empty">
                 <p class="coach-empty__title">Drop a photo here</p>
-                <p class="coach-empty__text">JPG, PNG, WebP · drag, browse, or paste (Ctrl+V)</p>
+                <p class="coach-empty__text">Or click to browse · paste with Ctrl+V</p>
+                <p class="coach-empty__formats">JPG, PNG, WebP · max 20 MB</p>
                 <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photo</button>
               </div>
               <div class="coach-preview-frame" id="coach-preview-frame" hidden>
@@ -64,25 +77,56 @@
               </div>
             </div>
             <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload another</button>
-            <div id="coach-signals-mount" class="coach-signals-mount" aria-live="polite" hidden></div>
-            <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
-            <div id="coach-field-mount" class="coach-field-mount" aria-live="polite"></div>
-            <div id="coach-notes-mount" class="coach-notes-mount" aria-live="polite" hidden></div>
-            <div id="coach-history-mount" class="coach-history-mount" aria-live="polite"></div>
-            <div id="coach-compare-mount" class="coach-compare-mount" hidden></div>
             <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
             <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" hidden>
+            <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
           </aside>
 
-          <div class="coach-col coach-col--center" id="coach-center-mount" aria-label="Grade and coaching">
-            <div class="coach-welcome">
-              <p class="coach-welcome__title">Your grade appears here</p>
-              <p class="coach-muted">Upload a photo to receive letter grade, score breakdown, strengths, and improvement coaching.</p>
+          <div class="coach-col coach-col--center" id="coach-center-mount" aria-label="Analysis and coaching" aria-live="polite">
+            <div class="coach-welcome pc-preview" aria-labelledby="pc-preview-title">
+              <div class="pc-preview__badge">Example preview</div>
+              <h2 class="pc-preview__title" id="pc-preview-title">What you will receive</h2>
+              <p class="pc-preview__lead">After you upload, Photo Coach fills this space with a real analysis of your image. The structure looks like this:</p>
+              <div class="pc-preview__grade" aria-hidden="true">
+                <span class="pc-preview__letter">B+</span>
+                <span class="pc-preview__score">84<span class="pc-preview__max">/100</span></span>
+              </div>
+              <dl class="pc-preview__list">
+                <div>
+                  <dt>Overall grade</dt>
+                  <dd>A letter grade and short assessment of the frame</dd>
+                </div>
+                <div>
+                  <dt>What is working</dt>
+                  <dd>Strengths to preserve in your next edit or shoot</dd>
+                </div>
+                <div>
+                  <dt>What could improve</dt>
+                  <dd>Specific issues and why they matter</dd>
+                </div>
+                <div>
+                  <dt>Suggested next edit</dt>
+                  <dd>One deliberate change to try first</dd>
+                </div>
+                <div>
+                  <dt>Why that change may help</dt>
+                  <dd>A short explanation tied to what the image shows</dd>
+                </div>
+              </dl>
+              <p class="pc-preview__note">This is a labeled example — not a real analysis.</p>
             </div>
           </div>
 
-          <aside class="coach-col coach-col--right" id="coach-right-mount" aria-label="Edits and scene tools" hidden>
+          <aside class="coach-col coach-col--right" id="coach-right-mount" aria-label="Edit suggestions" hidden>
           </aside>
+        </div>
+
+        <div class="pc-support" aria-label="Supporting information">
+          <div id="coach-signals-mount" class="coach-signals-mount" aria-live="polite" hidden></div>
+          <div id="coach-field-mount" class="coach-field-mount" aria-live="polite"></div>
+          <div id="coach-notes-mount" class="coach-notes-mount" aria-live="polite" hidden></div>
+          <div id="coach-history-mount" class="coach-history-mount" aria-live="polite"></div>
+          <div id="coach-compare-mount" class="coach-compare-mount" hidden></div>
         </div>
       </section>
     </main>

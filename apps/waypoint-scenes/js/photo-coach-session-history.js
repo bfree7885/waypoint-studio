@@ -41,7 +41,7 @@
     if (!P) return '<p class="coach-muted">Portfolio unavailable.</p>';
     var sessions = P.listSessions();
     if (!sessions.length) {
-      return '<p class="coach-history-empty coach-muted">No sessions yet — upload a photo to start.</p>';
+      return '<p class="coach-history-empty">No saved sessions yet. Upload a photo to create your first analysis — sessions stay in this browser so you can reopen them later.</p>';
     }
     return (
       '<ul class="coach-history-list">' +
@@ -83,7 +83,7 @@
         var P = global.WaypointPhotoCoachPortfolio;
         if (P && P.toggleFavorite) P.toggleFavorite(id);
         mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
+          '<p class="coach-muted coach-history-hint">Open a session to reload it · open a second to compare · ★ to favorite</p>' +
           renderList() + "</div>";
         bind(mount, callbacks);
       });
@@ -95,7 +95,7 @@
         if (P && P.deleteSession) P.deleteSession(id);
         if (callbacks.onDelete) callbacks.onDelete(id);
         mount.innerHTML = '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-          '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
+          '<p class="coach-muted coach-history-hint">Open a session to reload it · open a second to compare · ★ to favorite</p>' +
           renderList() + "</div>";
         bind(mount, callbacks);
       });
@@ -106,7 +106,7 @@
     if (!el) return;
     el.innerHTML =
       '<div class="coach-card"><h3 class="coach-history__title">Recent sessions</h3>' +
-        '<p class="coach-muted coach-history-hint">Click a session to open · click another to compare · ★ to favorite</p>' +
+        '<p class="coach-muted coach-history-hint">Open a session to reload it · open a second to compare · ★ to favorite</p>' +
         renderList() + "</div>";
     bind(el, callbacks);
   }
