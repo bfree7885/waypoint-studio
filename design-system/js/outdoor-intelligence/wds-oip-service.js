@@ -407,13 +407,14 @@
   function get(request) {
     var req = normalizeRequest(request);
     lastRequest = req;
-    activeGeneration += 1;
-    var generation = activeGeneration;
     if (global.WDS && global.WDS.locationContext && global.WDS.locationContext.invalidateCaches) {
-      if (req.location && req.location.refreshReason === "user-change") {
+      var reason = req.location && req.location.refreshReason;
+      if (reason === "user-change" || reason === "kiosk-refresh" || reason === "kiosk-wake") {
         global.WDS.locationContext.invalidateCaches();
       }
     }
+    activeGeneration += 1;
+    var generation = activeGeneration;
     var E = global.WDS && global.WDS.regionalIntelligence && global.WDS.regionalIntelligence.engine;
     if (!E || !E.get) {
       return Promise.reject(new Error("Outdoor intelligence engine is not available"));

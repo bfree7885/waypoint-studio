@@ -229,6 +229,8 @@
     if (US && US.clearCache) US.clearCache();
     var RI = global.WDS && global.WDS.regionalIntelligence;
     if (RI && RI.engine && RI.engine.clearCache) RI.engine.clearCache();
+    var NWS = global.WDS && global.WDS.nwsAlerts;
+    if (NWS && NWS.clearCache) NWS.clearCache();
     var OIP = global.WDS && global.WDS.outdoorIntelligence;
     if (OIP && OIP.resetLastPackage) {
       OIP.resetLastPackage();

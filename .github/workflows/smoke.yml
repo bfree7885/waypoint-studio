@@ -37,6 +37,9 @@ jobs:
       - name: Test persistent profile migration
         run: node automation/test-profile-migration.mjs http://127.0.0.1:8080
 
+      - name: Test kiosk refresh lifecycle
+        run: node automation/test-kiosk-refresh.mjs http://127.0.0.1:8080
+
       - name: Syntax-check live engine
         run: node --check scripts/waypoint-live-engine.mjs
 
