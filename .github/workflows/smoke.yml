@@ -39,3 +39,6 @@ jobs:
 
       - name: Validate dashboard data layer
         run: node scripts/validate-dashboard-data.mjs
+
+      - name: Validate cross-surface consistency
+        run: node scripts/validate-surface-consistency.mjs

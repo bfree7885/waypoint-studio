@@ -191,16 +191,15 @@
     );
   }
 
-  function renderPhoto(live, health) {
-    var photo = moduleData(live, "photography_conditions") || {};
-    var status = moduleStatus(health, "photography_conditions") || photo.status;
-    if (!photo || photo.status === "unavailable" || status === "unavailable") {
+  function renderPhoto(photo) {
+    if (!photo || photo.status === "unavailable") {
       return renderUnavailable("Photography outlook");
     }
     return (
       "<p class=\"swk-metric swk-metric--cyan\">" + esc(photo.score != null ? "Score " + photo.score : "—") + "</p>" +
       "<p class=\"swk-detail\">" + esc(photo.summary || "—") + "</p>" +
-      (photo.cloudCover != null ? "<p class=\"swk-line\">Cloud cover " + esc(String(photo.cloudCover)) + "%</p>" : "")
+      (photo.cloudCover != null ? "<p class=\"swk-line\">Cloud cover " + esc(String(photo.cloudCover)) + "%</p>" : "") +
+      (photo.source ? "<p class=\"swk-line\">Source " + esc(photo.source) + "</p>" : "")
     );
   }
 
@@ -286,13 +285,6 @@
         })
       });
     }
-    if (userMods && userMods.photography) {
-      live = Object.assign({}, live, {
-        modules: Object.assign({}, live.modules, {
-          photography_conditions: { data: userMods.photography }
-        })
-      });
-    }
     timezone = live.timezone || timezone;
     var cur = live.current || {};
     var forecast = live.forecast || {};
@@ -346,8 +338,11 @@
 
     setText("swk-hourly-note", (live.hourly && live.hourly.note) || "Next hours");
     setHtml("swk-hourly", renderHourly(live.hourly));
-    setHtml("swk-photo", renderPhoto(live, health || {}));
-    setHtml("swk-sun-moon", renderSunMoon(live.sun, live.moon));
+    setHtml("swk-photo", renderPhoto(userMods && userMods.photography));
+    setHtml("swk-sun-moon", renderSunMoon(
+      (userWx && userWx.sun) || live.sun,
+      (userWx && userWx.moon) || live.moon
+    ));
     setHtml("swk-aqi", renderAqi(live.airQuality, moduleStatus(health, "air_quality")));
     setHtml("swk-uv", renderUv(live, health || {}));
     setHtml("swk-pollen", renderPollen(live, health || {}));

@@ -123,6 +123,33 @@ Raw snapshot:
     out.push("8) Dashboard sections currently rendered:");
     out = out.concat(lines(sectionList));
     out.push("");
+    if (snapshot && snapshot.coordinates) {
+      out.push("9) User coordinates: " + snapshot.coordinates.lat + ", " + snapshot.coordinates.lng);
+      out.push("10) Location source: " + (snapshot.locationSource || "unavailable"));
+    }
+    if (snapshot && snapshot.moduleSources) {
+      out.push("11) Module sources:");
+      Object.keys(snapshot.moduleSources).forEach(function (key) {
+        out.push("   - " + key + ": " + snapshot.moduleSources[key]);
+      });
+    }
+    if (snapshot && snapshot.photography) {
+      out.push("12) Photography score: " + (snapshot.photography.score != null ? snapshot.photography.score : "unavailable"));
+      out.push("    Source: " + (snapshot.photography.source || "—") + " · module: " + (snapshot.photography.moduleSource || "—"));
+      if (snapshot.photography.inputs) {
+        out.push("    Inputs: cloud " + (snapshot.photography.inputs.cloudCover != null ? snapshot.photography.inputs.cloudCover + "%" : "—") +
+          " · AQI " + (snapshot.photography.inputs.usAqi != null ? snapshot.photography.inputs.usAqi : "—") +
+          " · " + (snapshot.photography.inputs.conditions || "—"));
+      }
+    }
+    if (snapshot && snapshot.engineMetadata) {
+      out.push("13) Engine metadata: health " + (snapshot.engineMetadata.health || "—") +
+        " · version " + (snapshot.engineMetadata.engineVersion || "—"));
+      if (snapshot.engineMetadata.publishLocation) {
+        out.push("    Publish point: " + snapshot.engineMetadata.publishLocation.lat + ", " + snapshot.engineMetadata.publishLocation.lng);
+      }
+    }
+    out.push("");
     out.push("Snapshot source: " + (snapshot ? "window/localStorage" : "none found"));
     out.push("Snapshot captured at: " + ((snapshot && snapshot.capturedAt) || "unavailable"));
     out.push("");

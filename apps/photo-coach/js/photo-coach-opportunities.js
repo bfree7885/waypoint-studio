@@ -7,6 +7,11 @@
   var U = function () { return global.PhotoCoachUtil; };
 
   function briefingFromPlatform(platform, location) {
+    var BP = global.WDS && global.WDS.briefingPackage;
+    if (BP && BP.compose) {
+      var doc = BP.compose({ platform: platform, location: location || {} });
+      return doc && doc._briefing ? doc._briefing : null;
+    }
     var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
     if (!OIE || !OIE.build) return null;
     return OIE.build({ platform: platform, location: location || {} });

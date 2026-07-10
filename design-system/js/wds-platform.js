@@ -1,8 +1,6 @@
 /**
  * Waypoint Studio — Outdoor Intelligence Platform loader
- * Minimal script bundle for apps that need OIP without the full design system.
- *
- * Loads: location → weather → regional intelligence engine → outdoor intelligence
+ * Minimal script bundle for apps that need full user-coordinate OIP.
  */
 (function () {
   "use strict";
@@ -21,8 +19,16 @@
     "wds-provenance.js",
     "ethics/wds-outdoor-ethics.js",
     "weather/wds-weather-core.js",
+    "weather/wds-daylight-utils.js",
     "weather/wds-weather-providers.js",
     "weather/wds-weather-service.js",
+    "weather/wds-nws-alerts-service.js",
+    "weather/wds-air-quality-service.js",
+    "weather/wds-elevation-service.js",
+    "water/wds-usgs-water-service.js",
+    "weather/wds-outdoor-weather-intel.js",
+    "weather/wds-sky-dashboard-intel.js",
+    "weather/wds-photography-conditions.js",
     "regional-intelligence/wds-regional-intelligence-engine.js",
     "regional-intelligence/wds-regional-intelligence-core.js",
     "regional-intelligence/wds-regional-intelligence-sources.js",
@@ -31,6 +37,7 @@
     "outdoor-intelligence/wds-oip-sources.js",
     "outdoor-intelligence/wds-oip-adapters.js",
     "outdoor-intelligence/wds-oip-service.js",
+    "outdoor-intelligence/wds-live-engine-feed.js",
     "outdoor-intelligence/wds-oie-core.js",
     "outdoor-intelligence/wds-oie-weather-rules.js",
     "outdoor-intelligence/wds-oie-photography-rules.js",
@@ -41,7 +48,8 @@
     "regional-intelligence/wds-regional-intelligence-service.js",
     "species/wds-wskb-core.js",
     "species/wds-wskb-render.js",
-    "observations/wds-wos-core.js"
+    "observations/wds-wos-core.js",
+    "wds-app-boot.js"
   ].forEach(function (file) {
     var s = document.createElement("script");
     s.src = base + file;

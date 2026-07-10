@@ -80,6 +80,14 @@
           return pkg && pkg.ebird ? pkg.ebird : null;
         })()
       : null;
+    var platform = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast
+      ? WDS.outdoorIntelligence.getLast()
+      : null;
+    var locState = window.WDS && WDS.location && WDS.location.getState ? WDS.location.getState() : null;
+    var photo = window.WDS && WDS.photographyConditions && WDS.photographyConditions.fromPlatform && platform
+      ? WDS.photographyConditions.fromPlatform(platform)
+      : null;
+    var engineCtx = platform && platform.engineContext;
 
     return {
       commitHash: typeof DEBUG_COMMIT === "function" ? DEBUG_COMMIT() : DEBUG_COMMIT,
@@ -93,7 +101,30 @@
       ebirdStatus: ebirdSlice && ebirdSlice.status ? ebirdSlice.status : "unavailable",
       ebirdObservations: ebirdSlice && Array.isArray(ebirdSlice.observations) ? ebirdSlice.observations.length : 0,
       bannedTextPresent: bannedHits.length > 0,
-      bannedTextHits: bannedHits
+      bannedTextHits: bannedHits,
+      locationSource: locState && locState.source ? locState.source : null,
+      coordinates: locState && locState.lat != null && locState.lng != null
+        ? { lat: locState.lat, lng: locState.lng }
+        : null,
+      moduleSources: platform && platform.meta && platform.meta.moduleSources
+        ? platform.meta.moduleSources
+        : null,
+      photography: photo ? {
+        score: photo.score,
+        status: photo.status,
+        summary: photo.summary,
+        source: photo.source,
+        moduleSource: photo.moduleSource,
+        inputs: photo.inputs || null
+      } : null,
+      engineMetadata: engineCtx ? {
+        health: engineCtx.health && engineCtx.health.overall ? engineCtx.health.overall.label : null,
+        engineVersion: engineCtx.engine && engineCtx.engine.version ? engineCtx.engine.version : null,
+        publishLocation: platform && platform.meta && platform.meta.enginePublishLocation
+          ? platform.meta.enginePublishLocation
+          : (engineCtx.engine && engineCtx.engine.publishLocation ? engineCtx.engine.publishLocation : null),
+        refreshedAt: engineCtx.engine && engineCtx.engine.updatedAt ? engineCtx.engine.updatedAt : null
+      } : null
     };
   }
 

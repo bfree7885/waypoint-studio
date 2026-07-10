@@ -100,7 +100,31 @@
     rows.push(
       ["River gauge", gauge ? gauge.siteName : (usgs && usgs.status === "no-nearby" ? "none within 50 mi" : "—")],
       ["Gauge distance", gauge && gauge.distanceKm != null ? gauge.distanceKm.toFixed(1) + " km" : "—"],
-      ["Weather TZ", wxMeta && wxMeta.timezone ? wxMeta.timezone : "—"]
+      ["Weather TZ", wxMeta && wxMeta.timezone ? wxMeta.timezone : "—"],
+      ["— Photography (user OIP) —", ""]
+    );
+    var photo = global.WDS && global.WDS.photographyConditions && global.WDS.photographyConditions.fromPlatform
+      ? global.WDS.photographyConditions.fromPlatform(platform)
+      : null;
+    var inputs = photo && photo.inputs ? photo.inputs : {};
+    rows.push(
+      ["Photo module source", photo && photo.moduleSource ? photo.moduleSource : (photo && photo.source ? photo.source : "—")],
+      ["Photo score", photo && photo.score != null ? photo.score : "—"],
+      ["Photo status", photo && photo.status ? photo.status : "—"],
+      ["Photo summary", photo && photo.summary ? photo.summary : "—"],
+      ["Input cloud cover", inputs.cloudCover != null ? inputs.cloudCover + "%" : "—"],
+      ["Input conditions", inputs.conditions || "—"],
+      ["Input visibility", inputs.visibility != null ? inputs.visibility : "—"],
+      ["Input AQI", inputs.usAqi != null ? inputs.usAqi : "—"],
+      ["Input golden hour", inputs.goldenHour || "—"],
+      ["Input sunrise", inputs.sunrise || "—"],
+      ["Input sunset", inputs.sunset || "—"],
+      ["Input moon", inputs.moonPhase
+        ? inputs.moonPhase + (inputs.moonIllumination != null ? " (" + inputs.moonIllumination + "%)" : "")
+        : "—"],
+      ["Photo trust", photo && photo.trust ? photo.trust : "—"],
+      ["Photo calculated at", platform && platform.meta && platform.meta.hydratedAt
+        ? ageFromIso(platform.meta.hydratedAt) : "—"]
     );
     var body = rows.map(function (row) {
       if (row[0].indexOf("—") === 0) {

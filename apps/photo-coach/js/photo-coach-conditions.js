@@ -17,18 +17,10 @@
     return Intel.analyze(pkg, platform);
   }
 
-  function fetchLivePhotography() {
-    return fetch("../../data/live.json", { cache: "no-store" })
-      .then(function (res) {
-        if (!res.ok) return null;
-        return res.json();
-      })
-      .then(function (live) {
-        if (!live || !live.modules) return null;
-        var mod = live.modules.photography_conditions;
-        return mod && mod.data ? mod.data : null;
-      })
-      .catch(function () { return null; });
+  function photographyFromPlatform(platform) {
+    var PC = global.WDS && global.WDS.photographyConditions;
+    if (!PC || !PC.fromPlatform) return null;
+    return PC.fromPlatform(platform);
   }
 
   function card(label, headline, detail, level, trust) {
@@ -51,7 +43,7 @@
     var dl = platform && platform.daylight;
     var cur = wx && wx.current;
     var sky = buildSkyIntel(platform);
-    var livePhoto = ctx.livePhotography;
+    var photo = ctx.photography || photographyFromPlatform(platform);
     var placeholder = wx && wx.meta && wx.meta.isPlaceholder;
 
     if (!platform || !cur || placeholder) {
@@ -79,11 +71,11 @@
     }
 
     if (sky) {
-      html += card("Sunrise quality", sky.sunriseQuality.headline, sky.sunriseQuality.detail, sky.sunriseQuality.level, "Derived");
-      html += card("Sunset quality", sky.sunsetQuality.headline, sky.sunsetQuality.detail, sky.sunsetQuality.level, "Derived");
-      html += card("Fog probability", sky.fogPotential.headline, sky.fogPotential.detail, sky.fogPotential.level, "Derived");
-      html += card("Cloud forecast", sky.cloudCover.headline, sky.cloudCover.detail, sky.cloudCover.level, "Derived");
-      html += card("Night photography", sky.nightPhotography.headline, sky.nightPhotography.detail, sky.nightPhotography.level, "Derived");
+      html += card("Sunrise quality", sky.sunriseQuality.headline, sky.sunriseQuality.detail, sky.sunriseQuality.level, "Derived · OIP");
+      html += card("Sunset quality", sky.sunsetQuality.headline, sky.sunsetQuality.detail, sky.sunsetQuality.level, "Derived · OIP");
+      html += card("Fog probability", sky.fogPotential.headline, sky.fogPotential.detail, sky.fogPotential.level, "Derived · OIP");
+      html += card("Cloud forecast", sky.cloudCover.headline, sky.cloudCover.detail, sky.cloudCover.level, "Derived · OIP");
+      html += card("Night photography", sky.nightPhotography.headline, sky.nightPhotography.detail, sky.nightPhotography.level, "Derived · OIP");
       html += card("Milky Way", sky.milkyWay.headline, sky.milkyWay.detail, sky.milkyWay.level, "Not yet available");
     }
 
@@ -94,14 +86,22 @@
         windDir != null ? "From " + Math.round(windDir) + "°" : "Calm wind helps reflections and macro",
         wind != null && wind < 8 ? "good" : wind != null && wind < 18 ? "fair" : "poor", "Live");
       var humidity = util.num(cur.humidity);
+      var aqi = platform.airQuality;
       html += card("Air clarity", cur.conditions && cur.conditions.summary ? cur.conditions.summary : "Current sky",
-        humidity != null ? "Humidity " + Math.round(humidity) + "%" : "", "fair", "Live");
+        (aqi && aqi.usAqi != null ? "AQI " + aqi.usAqi + (aqi.category ? " · " + aqi.category : "") : "") +
+          (humidity != null ? (aqi && aqi.usAqi != null ? " · " : "") + "Humidity " + Math.round(humidity) + "%" : ""),
+        aqi && aqi.usAqi >= 100 ? "fair" : "good", "Live");
     }
 
-    if (livePhoto && livePhoto.summary) {
-      html += card("Regional light score", livePhoto.score != null ? String(livePhoto.score) + " / 100" : livePhoto.summary,
-        livePhoto.cloudCover != null ? "Cloud cover " + livePhoto.cloudCover + "%" : livePhoto.summary,
-        "estimated", "Waypoint live engine");
+    if (photo && photo.summary) {
+      var photoLevel = photo.score != null && photo.score >= 80 ? "excellent"
+        : photo.score != null && photo.score >= 60 ? "good" : "fair";
+      html += card("Light score", photo.score != null ? String(photo.score) + " / 100" : photo.summary,
+        [
+          photo.cloudCover != null ? "Cloud cover " + photo.cloudCover + "%" : null,
+          photo.detail || photo.summary
+        ].filter(Boolean).join(" · "),
+        photoLevel, photo.trust || "Live · OIP");
     }
 
     html += "</div>";
@@ -119,6 +119,6 @@
 
   global.PhotoCoachConditions = {
     render: render,
-    fetchLivePhotography: fetchLivePhotography
+    photographyFromPlatform: photographyFromPlatform
   };
 })(window);

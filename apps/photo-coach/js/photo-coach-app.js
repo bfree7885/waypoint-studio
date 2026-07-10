@@ -7,7 +7,7 @@
   var state = {
     location: null,
     platform: null,
-    livePhotography: null,
+    photography: null,
     conceptIndex: 0
   };
 
@@ -185,7 +185,7 @@
     var ctx = {
       platform: state.platform,
       location: loc,
-      livePhotography: state.livePhotography
+      photography: state.photography
     };
 
     var conditionsHtml = global.PhotoCoachConditions.render(ctx);
@@ -272,16 +272,20 @@
     var mount = document.getElementById("photo-coach-app");
     if (!mount) return Promise.resolve();
 
-    return global.PhotoCoachConditions.fetchLivePhotography().then(function (live) {
-      state.livePhotography = live;
-      refreshSection(mount);
+    var PC = global.PhotoCoachConditions;
+    state.photography = PC && PC.photographyFromPlatform
+      ? PC.photographyFromPlatform(state.platform)
+      : null;
+    refreshSection(mount);
 
-      var Bridge = global.WDS && global.WDS.ecosystemBridge;
-      if (Bridge && Bridge.save && state.platform) {
-        Bridge.save(state.platform, state.location);
-      }
-      return state;
-    });
+    var Bridge = global.WDS && global.WDS.ecosystemBridge;
+    if (Bridge && Bridge.save && state.platform) {
+      Bridge.save(state.platform, state.location);
+    }
+    if (global.WDS && global.WDS.locationDebug && global.WDS.locationDebug.mount) {
+      global.WDS.locationDebug.mount(state.location, state.platform, document.getElementById("photo-coach-app"));
+    }
+    return Promise.resolve(state);
   }
 
   function refresh(loc) {
