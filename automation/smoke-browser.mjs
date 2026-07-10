@@ -16,7 +16,8 @@ const PAGES = [
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 },
-  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 12000 }
+  { name: "scenes", path: "/apps/scenes/", waitMs: 3000 },
+  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 8000 }
 ];
 
 function fetchJson(url) {
@@ -232,7 +233,9 @@ async function testPage(client, page) {
           var pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast ? WDS.outdoorIntelligence.getLast() : null;
           return pkg && pkg.daylight ? pkg.daylight.locationContextId : null;
         })(),
-        hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
+        hasCoach: !!document.querySelector('.mode-coach, #coach-dashboard, #coach-drop-zone'),
+        hasScenesNav: !!document.querySelector('a[href*="apps/scenes"]'),
+        hasPhotoCoachNav: !!document.querySelector('a[href*="apps/photo-coach"]'),
         hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
         bodyLen: document.body ? document.body.innerText.length : 0
       };
@@ -347,6 +350,26 @@ async function main() {
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
       console.log("FAIL: scenes appears blank");
+    }
+    if (r.name === "scenes" && r.checks.bodyLen < 100) {
+      failed = true;
+      console.log("FAIL: Waypoint Scenes hub appears blank");
+    }
+    if (r.name === "scenes" && !/Waypoint Scenes/i.test(r.checks.title || "")) {
+      failed = true;
+      console.log("FAIL: Waypoint Scenes hub title missing");
+    }
+    if (r.name === "photo-coach" && !r.checks.hasCoach) {
+      failed = true;
+      console.log("FAIL: Photo Coach critique UI missing");
+    }
+    if (r.name === "photo-coach" && r.checks.bodyLen < 100) {
+      failed = true;
+      console.log("FAIL: Photo Coach page appears blank");
+    }
+    if (r.name === "homepage" && !r.checks.hasScenesNav) {
+      failed = true;
+      console.log("FAIL: Scenes link missing from homepage navigation");
     }
     if (r.name === "status" && !/live engine/i.test(r.checks.title || "")) {
       failed = true;

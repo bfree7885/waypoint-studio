@@ -1,0 +1,110 @@
+/* Waypoint Scenes — public product hub */
+
+.scenes-page {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) 4rem;
+}
+
+.scenes-hero {
+  margin-bottom: 2.5rem;
+}
+
+.scenes-hero__title {
+  font-family: var(--wds-font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0.5rem 0 1rem;
+}
+
+.scenes-hero__lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--wds-text-secondary);
+  max-width: 42rem;
+  margin: 0;
+}
+
+.scenes-features {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .scenes-features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scenes-feature {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--wds-border);
+  border-radius: var(--wds-radius-lg);
+  background: var(--wds-surface);
+}
+
+.scenes-feature--planned {
+  opacity: 0.85;
+}
+
+.scenes-feature__status {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--wds-radius-sm);
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+
+.scenes-feature--live .scenes-feature__status {
+  background: var(--wds-accent-dim);
+  color: var(--wds-accent);
+}
+
+.scenes-feature--planned .scenes-feature__status {
+  background: var(--wds-inset);
+  color: var(--wds-text-tertiary);
+}
+
+.scenes-feature__title {
+  font-family: var(--wds-font-display);
+  font-size: 1.35rem;
+  margin: 0 0 0.5rem;
+}
+
+.scenes-feature__desc {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--wds-text-secondary);
+  margin: 0 0 1rem;
+}
+
+.scenes-feature__note {
+  font-size: 0.8rem;
+  color: var(--wds-text-tertiary);
+  margin: 0 0 1rem;
+}
+
+.scenes-feature__cta {
+  margin-top: auto;
+}
+
+.scenes-context {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--wds-border-subtle);
+  font-size: 0.85rem;
+  color: var(--wds-text-tertiary);
+  line-height: 1.55;
+}
+
+.scenes-context a {
+  color: var(--wds-accent);
+}

@@ -10,7 +10,7 @@
     if (boot) return boot;
     if (!global.WDS || !global.WDS.appBoot) return null;
     boot = global.WDS.appBoot.create({
-      base: "../../design-system/content-engine/",
+      base: "../../../design-system/content-engine/",
       promptMountId: "wds-location-prompt"
     });
     return boot;
@@ -33,9 +33,31 @@
     if (B) B.bindRegionChange(mount, onChange);
   }
 
+  function waitForAppBoot(maxMs) {
+    maxMs = maxMs != null ? maxMs : 20000;
+    return new Promise(function (resolve, reject) {
+      var started = Date.now();
+      function check() {
+        if (global.WDS && global.WDS.appBoot && global.WDS.appBoot.create) {
+          resolve();
+          return;
+        }
+        if (Date.now() - started >= maxMs) {
+          reject(new Error("WDS.appBoot is not available"));
+          return;
+        }
+        requestAnimationFrame(check);
+      }
+      check();
+    });
+  }
+
   function init() {
     if (!global.PhotoCoachApp) return;
-    bootstrapLocation()
+    waitForAppBoot()
+      .then(function () {
+        return bootstrapLocation();
+      })
       .then(function (loc) {
         var bar = document.getElementById("pc-location-bar");
         if (bar) {
@@ -66,7 +88,7 @@
   }
 
   global.PhotoCoachBoot = {
-    ENGINE_BASE: "../../design-system/content-engine/",
+    ENGINE_BASE: "../../../design-system/content-engine/",
     bootstrapLocation: bootstrapLocation,
     fetchPlatform: fetchPlatform,
     bindRegionChange: bindRegionChange

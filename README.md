@@ -18,7 +18,9 @@ python3 -m http.server 8080
 | [http://localhost:8080/apps/foragecast/](http://localhost:8080/apps/foragecast/) | **ForageCast** — flagship habitat & season laboratory |
 | [http://localhost:8080/apps/fieldry/](http://localhost:8080/apps/fieldry/) | **Fieldry** — private WOS field notebook (local MVP) |
 | [http://localhost:8080/design-system/species/profile.html?id=morchella-americana](http://localhost:8080/design-system/species/profile.html?id=morchella-americana) | **WSKB** — species profile (shared knowledge base) |
-| [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Waypoint Scenes** — creative reflection from field photographs |
+| [http://localhost:8080/apps/scenes/](http://localhost:8080/apps/scenes/) | **Waypoint Scenes** — photography & visual observation (Photo Coach available now) |
+| [http://localhost:8080/apps/photo-coach/](http://localhost:8080/apps/photo-coach/) | **Photo Coach** — upload & critique (first tool in Waypoint Scenes) |
+| [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Scene Builder studio** — Living Scenes experiments (planned product) |
 
 Other directories under `apps/` hold **content track concepts** and shared-module previews — not equal standalone products. See [Strategic Direction](docs/STRATEGIC-DIRECTION.md).
 

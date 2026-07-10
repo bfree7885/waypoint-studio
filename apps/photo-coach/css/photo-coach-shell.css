@@ -1,0 +1,69 @@
+/* Photo Coach — standalone critique shell (part of Waypoint Scenes) */
+
+.pc-shell {
+  --coach-accent: #3ecf8e;
+}
+
+.pc-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem) 0;
+  max-width: 96rem;
+  margin: 0 auto;
+  font-size: 0.8rem;
+  color: var(--wds-text-tertiary);
+}
+
+.pc-breadcrumb a {
+  color: var(--wds-accent);
+  text-decoration: none;
+}
+
+.pc-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.pc-breadcrumb__sep {
+  opacity: 0.5;
+}
+
+.pc-breadcrumb__current {
+  color: var(--wds-text-secondary);
+  font-weight: 500;
+}
+
+.pc-context-banner {
+  max-width: 96rem;
+  margin: 0 auto;
+  padding: 0  clamp(1rem, 3vw, 2rem);
+}
+
+.pc-context-banner p {
+  margin: 0.5rem 0 0;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--wds-text-secondary);
+  background: var(--wds-inset);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+}
+
+.pc-context-banner a {
+  color: var(--wds-accent);
+}
+
+.pc-page .mode-coach {
+  padding-top: 0.5rem;
+}
+
+.pc-page .coach-muted,
+.pc-page .muted {
+  color: var(--wds-text-tertiary);
+}
+
+.pc-page .coach-outdoor-context a {
+  color: var(--coach-accent, var(--wds-accent));
+}
