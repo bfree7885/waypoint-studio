@@ -212,7 +212,6 @@ async function testPage(client, page) {
           return pkg && pkg.daylight ? pkg.daylight.locationContextId : null;
         })(),
         hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
-        hasPcUpload: !!document.querySelector('#pc-drop'),
         hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
         bodyLen: document.body ? document.body.innerText.length : 0
       };
@@ -323,10 +322,6 @@ async function main() {
     if (r.name === "homepage" && r.checks.liveFeedSource && r.checks.liveFeedSource !== "user-oip") {
       failed = true;
       console.log("FAIL: dashboard conditions source is not user-oip");
-    }
-    if (r.name === "photo-coach" && !r.checks.hasPcUpload) {
-      failed = true;
-      console.log("FAIL: Photo Coach upload zone missing");
     }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;

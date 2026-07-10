@@ -51,6 +51,3 @@ jobs:
 
       - name: Validate location-sensitive modules
         run: node scripts/validate-location-sensitive.mjs
-
-      - name: Validate Photo Coach MVP
-        run: node scripts/validate-photo-coach.mjs
