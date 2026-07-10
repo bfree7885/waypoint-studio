@@ -369,6 +369,11 @@
     }
 
     var usgs = platform.usgsWater;
+    var LC = global.WDS && global.WDS.locationContext;
+    if (LC && LC.validateUsgsWater && usgs) {
+      var riverVerdict = LC.validateUsgsWater(usgs, LC.getActive && LC.getActive());
+      if (!riverVerdict.eligible) usgs = null;
+    }
     if (usgs && usgs.nearest) {
       var US = global.WDS && global.WDS.usgsWater;
       var fg = US && US.formatGauge ? US.formatGauge(usgs) : null;

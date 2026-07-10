@@ -13,6 +13,7 @@
     "wds-geocode-service.js",
     "wds-ip-geolocation.js",
     "dashboard/wds-us-national-context.js",
+    "wds-location-context.js",
     "wds-location.js",
     "wds-location-debug.js",
     "wds-research-integrity.js",

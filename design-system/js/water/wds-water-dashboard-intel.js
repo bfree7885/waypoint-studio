@@ -122,8 +122,26 @@
     return null;
   }
 
-  function buildRiverLevels(platform) {
+  function validatedUsgs(platform) {
     var usgs = platform && platform.usgsWater;
+    if (!usgs) return null;
+    var LC = global.WDS && global.WDS.locationContext;
+    if (LC && LC.validateUsgsWater) {
+      var verdict = LC.validateUsgsWater(usgs, LC.getActive && LC.getActive());
+      if (!verdict.eligible) {
+        return {
+          nearest: null,
+          status: "no-nearby",
+          fallbackReason: verdict.reason || "location-context-mismatch",
+          sourceClassification: "rejected"
+        };
+      }
+    }
+    return usgs;
+  }
+
+  function buildRiverLevels(platform) {
+    var usgs = validatedUsgs(platform);
     if (usgs && usgs.nearest && usgs.nearest.stageFt != null) {
       var n = usgs.nearest;
       return card(
@@ -173,7 +191,7 @@
   }
 
   function buildStreamFlow(platform) {
-    var usgs = platform && platform.usgsWater;
+    var usgs = validatedUsgs(platform);
     if (usgs && usgs.nearest && usgs.nearest.dischargeCfs != null) {
       var n = usgs.nearest;
       return card(

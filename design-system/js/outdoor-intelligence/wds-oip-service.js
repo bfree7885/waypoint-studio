@@ -33,6 +33,7 @@
   var lastPackage = null;
   var lastRequest = null;
   var changeListeners = [];
+  var activeGeneration = 0;
   var DEFAULT_PROVIDER_TIMEOUT_MS = 8000;
   var providerTelemetry = [];
 
@@ -145,6 +146,25 @@
     });
   }
 
+  function coordsFromRequest(req, pkg) {
+    if (req && req.location && M.isFiniteCoord(req.location.lat) && M.isFiniteCoord(req.location.lng)) {
+      return { lat: Number(req.location.lat), lng: Number(req.location.lng) };
+    }
+    return coordsFromPkg(pkg);
+  }
+
+  function activateLocationContext(req, pkg, weatherPkg) {
+    var LC = global.WDS && global.WDS.locationContext;
+    if (!LC || !LC.setActive) return null;
+    var coords = coordsFromRequest(req, pkg);
+    if (!coords) return null;
+    var tz = (weatherPkg && weatherPkg.meta && weatherPkg.meta.timezone) ||
+      (pkg && pkg.timezone) ||
+      (req.location && req.location.timezone) ||
+      null;
+    return LC.setActive(Object.assign({}, req.location || {}, coords), tz);
+  }
+
   function coordsFromPkg(pkg) {
     if (!pkg) return null;
     var lat = pkg.location ? pkg.location.latitude : (pkg.coordinates && pkg.coordinates.latitude);
@@ -156,7 +176,7 @@
   function resolveAirQuality(request, pkg) {
     var AQ = global.WDS && global.WDS.airQuality;
     if (!AQ || !AQ.fetchCurrent) return Promise.resolve(null);
-    var coords = coordsFromPkg(pkg);
+    var coords = coordsFromRequest(request, pkg);
     if (!coords) return Promise.resolve(null);
     return AQ.fetchCurrent({ lat: coords.lat, lng: coords.lng });
   }
@@ -164,7 +184,7 @@
   function resolveAlerts(request, pkg) {
     var NWS = global.WDS && global.WDS.nwsAlerts;
     if (!NWS || !NWS.fetchActive) return Promise.resolve(null);
-    var coords = coordsFromPkg(pkg);
+    var coords = coordsFromRequest(request, pkg);
     if (!coords) return Promise.resolve(null);
     return NWS.fetchActive({ lat: coords.lat, lng: coords.lng });
   }
@@ -175,7 +195,7 @@
     if (!W || !W.getForecast) return Promise.resolve(null);
     if (!pkg) return Promise.resolve(null);
 
-    var coords = coordsFromPkg(pkg);
+    var coords = coordsFromRequest(request, pkg);
     if (!coords) return Promise.resolve(null);
     var lat = coords.lat;
     var lng = coords.lng;
@@ -222,7 +242,7 @@
   function resolveElevation(request, pkg) {
     var EL = global.WDS && global.WDS.elevation;
     if (!EL || !EL.fetchElevation) return Promise.resolve(null);
-    var coords = coordsFromPkg(pkg);
+    var coords = coordsFromRequest(request, pkg);
     if (!coords) return Promise.resolve(null);
     return EL.fetchElevation(coords);
   }
@@ -230,15 +250,25 @@
   function resolveUsgsWater(request, pkg) {
     var US = global.WDS && global.WDS.usgsWater;
     if (!US || !US.fetchNearestGauge) return Promise.resolve(null);
-    var coords = coordsFromPkg(pkg);
+    var coords = coordsFromRequest(request, pkg);
     if (!coords) return Promise.resolve(null);
     return US.fetchNearestGauge(coords);
   }
 
-  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg) {
+  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg, req, generation) {
+    if (generation != null && generation !== activeGeneration) {
+      M.devLog("stale OIP response ignored", generation, activeGeneration);
+      return null;
+    }
+    activateLocationContext(req || lastRequest, pkg, weatherPkg);
     if (weatherPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromWeatherPackage(weatherPkg)));
       pkg.weatherRef = weatherPkg;
+      if (weatherPkg.meta) {
+        weatherPkg.meta.dataCoordSource = "user";
+        weatherPkg.meta.requestLat = req && req.location ? Number(req.location.lat) : weatherPkg.meta.lat;
+        weatherPkg.meta.requestLng = req && req.location ? Number(req.location.lng) : weatherPkg.meta.lng;
+      }
     }
     if (alertsPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromAlertsPackage(alertsPkg)));
@@ -253,6 +283,13 @@
     }
     if (usgsWaterPkg) {
       pkg.usgsWater = usgsWaterPkg;
+    }
+    if (pkg.daylight && global.WDS && global.WDS.locationContext) {
+      var LC = global.WDS.locationContext;
+      var ctx = LC.getActive && LC.getActive();
+      if (ctx && LC.attachModule) {
+        LC.attachModule("daylight", pkg.daylight, ctx);
+      }
     }
     pkg.legacy = S.toLegacyV1(pkg);
     pkg.meta.sources = Object.assign({}, pkg.meta.sources || {}, {
@@ -295,7 +332,7 @@
     return pkg;
   }
 
-  function enrichFromEngine(core, req) {
+  function enrichFromEngine(core, req, generation) {
     var national = req.location && (req.location.useNationalFallback || req.location.contentMode === "national-educational");
     var regionId = (core.meta && core.meta.contentBundleId) ||
       (core.meta && core.meta.regionId) ||
@@ -323,7 +360,9 @@
           alertsPkg,
           airQualityPkg,
           elevationPkg,
-          usgsWaterPkg
+          usgsWaterPkg,
+          req,
+          generation
         );
       }
       if (req.bundle) {
@@ -333,7 +372,9 @@
           alertsPkg,
           airQualityPkg,
           elevationPkg,
-          usgsWaterPkg
+          usgsWaterPkg,
+          req,
+          generation
         );
       }
       return loadBundle(regionId, req.contentEngineBase).then(function (bundle) {
@@ -343,11 +384,22 @@
           alertsPkg,
           airQualityPkg,
           elevationPkg,
-          usgsWaterPkg
+          usgsWaterPkg,
+          req,
+          generation
         );
       }).catch(function (err) {
         M.devLog("platform extensions failed — engine core only", err && err.message);
-        return finalizePlatformPackage(M.normalizePackage(core), weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg);
+        return finalizePlatformPackage(
+          M.normalizePackage(core),
+          weatherPkg,
+          alertsPkg,
+          airQualityPkg,
+          elevationPkg,
+          usgsWaterPkg,
+          req,
+          generation
+        );
       });
     });
   }
@@ -355,12 +407,22 @@
   function get(request) {
     var req = normalizeRequest(request);
     lastRequest = req;
+    activeGeneration += 1;
+    var generation = activeGeneration;
+    if (global.WDS && global.WDS.locationContext && global.WDS.locationContext.invalidateCaches) {
+      if (req.location && req.location.refreshReason === "user-change") {
+        global.WDS.locationContext.invalidateCaches();
+      }
+    }
     var E = global.WDS && global.WDS.regionalIntelligence && global.WDS.regionalIntelligence.engine;
     if (!E || !E.get) {
       return Promise.reject(new Error("Outdoor intelligence engine is not available"));
     }
     return E.get(req).then(function (core) {
-      return enrichFromEngine(core, req);
+      return enrichFromEngine(core, req, generation).then(function (pkg) {
+        if (!pkg && lastPackage) return M.normalizePackage(lastPackage);
+        return pkg;
+      });
     }).catch(function (err) {
       M.devLog("get failed — minimal fallback", err && err.message);
       providerTelemetry.push({
@@ -408,8 +470,16 @@
   function clearCache() {
     lastPackage = null;
     lastRequest = null;
+    activeGeneration += 1;
+    var US = global.WDS && global.WDS.usgsWater;
+    if (US && US.clearCache) US.clearCache();
     var RI = global.WDS && global.WDS.regionalIntelligence;
     if (RI && RI.engine && RI.engine.clearCache) RI.engine.clearCache();
+  }
+
+  function resetLastPackage() {
+    lastPackage = null;
+    activeGeneration += 1;
   }
 
   function refresh() {
@@ -431,6 +501,7 @@
     resolveLocation: OIP.location.resolve,
     getLast: getLast,
     clearCache: clearCache,
+    resetLastPackage: resetLastPackage,
     onChange: onChange,
     refresh: refresh,
     getProviderTelemetry: function () { return providerTelemetry.slice(); },

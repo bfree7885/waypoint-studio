@@ -42,14 +42,14 @@
       ? WDS.photographyConditions.fromPlatform(platform)
       : null;
     var hours = [];
-    if (hourly && hourly.time) {
-      for (var i = 0; i < Math.min(6, hourly.time.length); i++) {
+    var hourlyArr = Array.isArray(hourly) ? hourly : (hourly && hourly.nextHours ? hourly.nextHours : []);
+    if (hourlyArr.length) {
+      for (var i = 0; i < Math.min(6, hourlyArr.length); i++) {
+        var row = hourlyArr[i];
         hours.push({
-          time: hourly.time[i],
-          temperatureF: num(hourly.temperature && hourly.temperature[i]),
-          conditions: hourly.conditions && hourly.conditions[i]
-            ? (hourly.conditions[i].summary || hourly.conditions[i])
-            : null
+          time: row.time,
+          temperatureF: num(row.temperature),
+          conditions: row.conditions && row.conditions.summary ? row.conditions.summary : null
         });
       }
     }

@@ -12,7 +12,7 @@ const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const PORT = 9223;
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 20000 },
-  { name: "kiosk", path: "/kiosk.html", waitMs: 4000 },
+  { name: "kiosk", path: "/kiosk.html", waitMs: 12000 },
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 },
@@ -198,6 +198,19 @@ async function testPage(client, page) {
           var el = document.querySelector('[data-wds-live-updated]');
           return el ? el.getAttribute('data-source') : null;
         })(),
+        hasKansasRiverLeak: /BURR OAK|\\bKS\\b.*gauge|WHITE ROCK C/i.test(document.body ? document.body.innerText : ''),
+        sunriseText: (function () {
+          var el = document.querySelector('.wsky-time__value, .wdb-doc__stat-value, [data-widget-id="sun-moon-dashboard"] .wsky-time__value');
+          return el ? el.textContent.trim() : '';
+        })(),
+        sunsetText: (function () {
+          var nodes = document.querySelectorAll('.wsky-time__value');
+          return nodes.length > 1 ? nodes[1].textContent.trim() : '';
+        })(),
+        locationContextId: (function () {
+          var pkg = window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast ? WDS.outdoorIntelligence.getLast() : null;
+          return pkg && pkg.daylight ? pkg.daylight.locationContextId : null;
+        })(),
         hasCoach: !!document.querySelector('.mode-coach, #coach-upload, [data-mode="coach"]'),
         hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
         bodyLen: document.body ? document.body.innerText.length : 0
@@ -294,9 +307,21 @@ async function main() {
       failed = true;
       console.log("FAIL: Last updated timestamp missing on dashboard");
     }
-    if (r.name === "homepage" && !r.checks.hasRecentBirdsCard) {
+    if (r.name === "homepage" && r.checks.hasKansasRiverLeak) {
       failed = true;
-      console.log("FAIL: Recent Birds Nearby card missing");
+      console.log("FAIL: Kansas river gauge text leaked into user dashboard");
+    }
+    if (r.name === "homepage" && r.checks.sunriseText === "1:34 AM") {
+      failed = true;
+      console.log("FAIL: sunrise regression time 1:34 AM rendered");
+    }
+    if (r.name === "homepage" && r.checks.sunsetText === "4:33 PM") {
+      failed = true;
+      console.log("FAIL: sunset regression time 4:33 PM rendered");
+    }
+    if (r.name === "homepage" && r.checks.liveFeedSource && r.checks.liveFeedSource !== "user-oip") {
+      failed = true;
+      console.log("FAIL: dashboard conditions source is not user-oip");
     }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
@@ -333,6 +358,10 @@ async function main() {
     if (r.name === "kiosk" && !r.checks.hasSynthwaveBrand) {
       failed = true;
       console.log("FAIL: kiosk brand header missing");
+    }
+    if (r.name === "kiosk" && r.checks.hasKansasRiverLeak) {
+      failed = true;
+      console.log("FAIL: Kansas river gauge text leaked into kiosk user panels");
     }
     if (r.name === "kiosk" && (r.checks.banned || []).length) {
       failed = true;

@@ -72,8 +72,19 @@
     );
   }
 
-  function renderSunMoon(pkg, platform) {
+  function validatedDaylight(platform, pkg) {
     var dl = daylightFrom(platform, pkg);
+    if (!dl) return null;
+    var LC = global.WDS && global.WDS.locationContext;
+    if (LC && LC.validateDaylight) {
+      var verdict = LC.validateDaylight(dl, LC.getActive && LC.getActive());
+      if (!verdict.eligible) return null;
+    }
+    return dl;
+  }
+
+  function renderSunMoon(pkg, platform) {
+    var dl = validatedDaylight(platform, pkg);
     if (!dl || (!dl.sunrise && !dl.sunriseFormatted)) {
       return renderError("Sun & moon unavailable", "Daylight data could not be loaded for your location.", "astronomy");
     }

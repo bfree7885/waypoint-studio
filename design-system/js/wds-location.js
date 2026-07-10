@@ -5,8 +5,9 @@
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "wds-location-v2";
+  var STORAGE_KEY = "wds-location-v3";
   var LEGACY_STORAGE_KEY = "wds-location-v1";
+  var LEGACY_STORAGE_KEY_V2 = "wds-location-v2";
   var PROMPT_KEY = "wds-location-prompted";
   var MOVE_THRESHOLD_KM = 5;
   var CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
@@ -49,6 +50,10 @@
         if (legacy) {
           localStorage.removeItem(LEGACY_STORAGE_KEY);
         }
+        var legacyV2 = localStorage.getItem(LEGACY_STORAGE_KEY_V2);
+        if (legacyV2) {
+          localStorage.removeItem(LEGACY_STORAGE_KEY_V2);
+        }
         return null;
       }
       return JSON.parse(raw);
@@ -61,6 +66,7 @@
     try {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem(LEGACY_STORAGE_KEY);
+      localStorage.removeItem(LEGACY_STORAGE_KEY_V2);
     } catch (e) { /* noop */ }
     currentState = null;
   }
@@ -118,8 +124,19 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       localStorage.setItem(PROMPT_KEY, "1");
     } catch (e) { /* private mode */ }
+    var prev = currentState;
     currentState = state;
     if (options.silent !== true) notifyChange(state);
+    var LC = global.WDS && global.WDS.locationContext;
+    if (LC && LC.setActive) {
+      LC.setActive(state, state.timezone || null);
+    }
+    var moved = !prev || !isValidCoords(prev) ||
+      Math.abs(Number(prev.lat) - Number(state.lat)) > 0.01 ||
+      Math.abs(Number(prev.lng) - Number(state.lng)) > 0.01;
+    if (moved && LC && LC.invalidateCaches) {
+      LC.invalidateCaches();
+    }
     return state;
   }
 

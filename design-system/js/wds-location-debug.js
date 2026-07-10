@@ -124,8 +124,39 @@
         : "—"],
       ["Photo trust", photo && photo.trust ? photo.trust : "—"],
       ["Photo calculated at", platform && platform.meta && platform.meta.hydratedAt
-        ? ageFromIso(platform.meta.hydratedAt) : "—"]
+        ? ageFromIso(platform.meta.hydratedAt) : "—"],
+      ["— Location-sensitive modules —", ""]
     );
+    var LC = global.WDS && global.WDS.locationContext;
+    if (LC && LC.auditRows) {
+      LC.auditRows(platform, LC.getActive && LC.getActive()).forEach(function (row) {
+        rows.push(
+          [row.module + " eligible", row.eligible ? "yes" : "no"],
+          [row.module + " rejection", row.rejectionReason || "—"],
+          [row.module + " request coords", row.requestLat + ", " + row.requestLng],
+          [row.module + " context id", row.moduleContextId || "—"]
+        );
+        if (row.module === "daylight") {
+          var dl = platform && platform.daylight;
+          rows.push(
+            ["Daylight raw sunrise", dl && dl.rawSunrise ? dl.rawSunrise : "—"],
+            ["Daylight raw sunset", dl && dl.rawSunset ? dl.rawSunset : "—"],
+            ["Daylight local sunrise", dl && dl.sunriseFormatted ? dl.sunriseFormatted : "—"],
+            ["Daylight local sunset", dl && dl.sunsetFormatted ? dl.sunsetFormatted : "—"],
+            ["Daylight local date", dl && dl.localDate ? dl.localDate : "—"]
+          );
+        }
+        if (row.module === "usgsWater") {
+          var ug = platform && platform.usgsWater;
+          var g = ug && ug.nearest;
+          rows.push(
+            ["River gauge coords", g && g.lat != null ? g.lat + ", " + g.lng : "—"],
+            ["River gauge state", g && g.siteName ? g.siteName : "—"],
+            ["Engine river ignored", platform && platform.engineContext ? "yes" : "n/a"]
+          );
+        }
+      });
+    }
     var body = rows.map(function (row) {
       if (row[0].indexOf("—") === 0) {
         return "<tr class=\"wds-loc-debug__section\"><th colspan=\"2\">" + esc(row[0]) + "</th></tr>";

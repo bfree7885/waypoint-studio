@@ -7,11 +7,16 @@
 
   var CACHE = {};
   var CACHE_MS = 15 * 60 * 1000;
+  var CACHE_VERSION = 3;
   var MAX_GAUGE_DISTANCE_MILES = 50;
   var MAX_GAUGE_DISTANCE_KM = MAX_GAUGE_DISTANCE_MILES * 1.60934;
 
   function cacheKey(lat, lng) {
-    return Number(lat).toFixed(2) + "," + Number(lng).toFixed(2);
+    return CACHE_VERSION + ":" + Number(lat).toFixed(2) + "," + Number(lng).toFixed(2);
+  }
+
+  function clearCache() {
+    CACHE = {};
   }
 
   function distanceKm(lat1, lng1, lat2, lng2) {
@@ -126,7 +131,10 @@
           status: "no-nearby",
           fallbackReason: "no-gauge-within-" + MAX_GAUGE_DISTANCE_MILES + "-miles",
           disclaimer: "No monitored USGS gauge within " + MAX_GAUGE_DISTANCE_MILES + " miles",
-          fetchedAt: new Date().toISOString()
+          fetchedAt: new Date().toISOString(),
+          requestLat: coords.lat,
+          requestLng: coords.lng,
+          sourceClassification: "user-oip"
         };
       }
       var pkg = {
@@ -137,8 +145,24 @@
         trust: "Live",
         status: "live",
         disclaimer: "Provisional USGS data — subject to revision",
-        fetchedAt: new Date().toISOString()
+        fetchedAt: new Date().toISOString(),
+        requestLat: coords.lat,
+        requestLng: coords.lng,
+        dataLat: coords.lat,
+        dataLng: coords.lng,
+        sourceClassification: "user-oip",
+        cacheSource: "live"
       };
+      var LC = global.WDS && global.WDS.locationContext;
+      if (LC && LC.attachModule) {
+        LC.attachModule("usgsWater", pkg, LC.getActive && LC.getActive(), {
+          requestLat: coords.lat,
+          requestLng: coords.lng,
+          moduleSource: "usgs-iv",
+          sourceClassification: "user-oip",
+          cacheSource: pkg.cacheSource
+        });
+      }
       CACHE[key] = { at: Date.now(), pkg: pkg };
       return pkg;
     }).catch(function () {
@@ -165,6 +189,7 @@
     MAX_GAUGE_DISTANCE_MILES: MAX_GAUGE_DISTANCE_MILES,
     MAX_GAUGE_DISTANCE_KM: MAX_GAUGE_DISTANCE_KM,
     fetchNearestGauge: fetchNearestGauge,
-    formatGauge: formatGauge
+    formatGauge: formatGauge,
+    clearCache: clearCache
   };
 })(window);

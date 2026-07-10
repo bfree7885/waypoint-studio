@@ -60,6 +60,24 @@
 
   function resolveCoords(request) {
     request = request || {};
+    var loc = request.location;
+    if (!loc && global.WDS && global.WDS.location) {
+      loc = global.WDS.location.getState();
+    }
+    if (loc && isFinite(Number(loc.lat)) && isFinite(Number(loc.lng))) {
+      return {
+        lat: Number(loc.lat),
+        lng: Number(loc.lng),
+        timezone: request.timezone || loc.timezone || null
+      };
+    }
+    if (isFinite(Number(request.lat)) && isFinite(Number(request.lng))) {
+      return {
+        lat: Number(request.lat),
+        lng: Number(request.lng),
+        timezone: request.timezone || null
+      };
+    }
     var intel = request.intelligence || request.regionalIntelligence;
     if (intel && intel.coordinates) {
       var lat = Number(intel.coordinates.latitude);
@@ -74,24 +92,6 @@
             null
         };
       }
-    }
-    var loc = request.location;
-    if (!loc && global.WDS && global.WDS.location) {
-      loc = global.WDS.location.getState();
-    }
-    if (loc && isFinite(Number(loc.lat)) && isFinite(Number(loc.lng))) {
-      return {
-        lat: Number(loc.lat),
-        lng: Number(loc.lng),
-        timezone: request.timezone || null
-      };
-    }
-    if (isFinite(Number(request.lat)) && isFinite(Number(request.lng))) {
-      return {
-        lat: Number(request.lat),
-        lng: Number(request.lng),
-        timezone: request.timezone || null
-      };
     }
     return null;
   }
