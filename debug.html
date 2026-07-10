@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: d1c1614
-2) Build date/time: 2026-07-10T00:30:33.418Z
+1) Current deployed commit hash: 4fc8fa9
+2) Build date/time: 2026-07-10T01:00:46.546Z
 3) Active page title: Waypoint Studio — Outdoor Dashboard
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -21,13 +21,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: HEALTHY
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-10T00:30:01.879Z
+Snapshot captured at: 2026-07-10T01:00:01.673Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;d1c1614&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-10T00:30:33.418Z&quot;,
+  &quot;commitHash&quot;: &quot;4fc8fa9&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-10T01:00:46.546Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio — Outdoor Dashboard&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-10T00:30:01.879Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-10T01:00:01.673Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -85,8 +85,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "d1c1614";
-  var FALLBACK_BUILD = "2026-07-10T00:30:33.418Z";
+  var FALLBACK_COMMIT = "4fc8fa9";
+  var FALLBACK_BUILD = "2026-07-10T01:00:46.546Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -123,33 +123,6 @@ Raw snapshot:
     out.push("8) Dashboard sections currently rendered:");
     out = out.concat(lines(sectionList));
     out.push("");
-    if (snapshot && snapshot.coordinates) {
-      out.push("9) User coordinates: " + snapshot.coordinates.lat + ", " + snapshot.coordinates.lng);
-      out.push("10) Location source: " + (snapshot.locationSource || "unavailable"));
-    }
-    if (snapshot && snapshot.moduleSources) {
-      out.push("11) Module sources:");
-      Object.keys(snapshot.moduleSources).forEach(function (key) {
-        out.push("   - " + key + ": " + snapshot.moduleSources[key]);
-      });
-    }
-    if (snapshot && snapshot.photography) {
-      out.push("12) Photography score: " + (snapshot.photography.score != null ? snapshot.photography.score : "unavailable"));
-      out.push("    Source: " + (snapshot.photography.source || "—") + " · module: " + (snapshot.photography.moduleSource || "—"));
-      if (snapshot.photography.inputs) {
-        out.push("    Inputs: cloud " + (snapshot.photography.inputs.cloudCover != null ? snapshot.photography.inputs.cloudCover + "%" : "—") +
-          " · AQI " + (snapshot.photography.inputs.usAqi != null ? snapshot.photography.inputs.usAqi : "—") +
-          " · " + (snapshot.photography.inputs.conditions || "—"));
-      }
-    }
-    if (snapshot && snapshot.engineMetadata) {
-      out.push("13) Engine metadata: health " + (snapshot.engineMetadata.health || "—") +
-        " · version " + (snapshot.engineMetadata.engineVersion || "—"));
-      if (snapshot.engineMetadata.publishLocation) {
-        out.push("    Publish point: " + snapshot.engineMetadata.publishLocation.lat + ", " + snapshot.engineMetadata.publishLocation.lng);
-      }
-    }
-    out.push("");
     out.push("Snapshot source: " + (snapshot ? "window/localStorage" : "none found"));
     out.push("Snapshot captured at: " + ((snapshot && snapshot.capturedAt) || "unavailable"));
     out.push("");
@@ -183,7 +156,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"d1c1614","buildTime":"2026-07-10T00:30:33.418Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-10T00:30:01.879Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":false},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"4fc8fa9","buildTime":"2026-07-10T01:00:46.546Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-10T01:00:01.673Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":false},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
