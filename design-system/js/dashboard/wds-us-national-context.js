@@ -6,7 +6,9 @@
   "use strict";
 
   var LOCAL_BUNDLE_ID = "pike-county-pa";
-  var BUNDLE_MATCH_KM = 50;
+  /** Max distance to an indexed PA/NJ/NY county centroid before using national mode. */
+  var INDEXED_REGION_MAX_KM = 30;
+  var BUNDLE_MATCH_KM = INDEXED_REGION_MAX_KM;
   var CONTENT_MODE_LOCAL = "local-bundle";
   var CONTENT_MODE_NATIONAL = "national-educational";
 
@@ -60,26 +62,43 @@
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  function pikeRegion(index) {
-    if (!index || !index.regions) return null;
-    for (var i = 0; i < index.regions.length; i += 1) {
-      if (index.regions[i].id === LOCAL_BUNDLE_ID) return index.regions[i];
+  function nearestIndexedRegion(index, lat, lng) {
+    if (!index || !index.regions || !index.regions.length) {
+      return { region: null, distanceKm: Infinity };
     }
-    return null;
+    var best = null;
+    var bestDist = Infinity;
+    index.regions.forEach(function (r) {
+      var d = distanceKm(lat, lng, r.lat, r.lng);
+      if (d < bestDist) {
+        bestDist = d;
+        best = r;
+      }
+    });
+    return { region: best, distanceKm: bestDist };
+  }
+
+  function isIndexedRegionMatch(index, lat, lng) {
+    var match = nearestIndexedRegion(index, lat, lng);
+    return {
+      region: match.region,
+      distanceKm: match.distanceKm,
+      eligible: !!(match.region && match.distanceKm <= INDEXED_REGION_MAX_KM)
+    };
   }
 
   function isLocalBundleEligible(loc, index) {
     if (!loc || !isFinite(Number(loc.lat)) || !isFinite(Number(loc.lng))) return false;
     if (loc.source === "manual") {
-      return loc.regionId === LOCAL_BUNDLE_ID;
+      return !!(index && index.regions && index.regions.some(function (r) {
+        return r.id === loc.regionId;
+      }));
     }
     if (loc.source === "default" && loc.regionId === LOCAL_BUNDLE_ID) {
       return true;
     }
-    if (loc.source === "geo") {
-      var pike = pikeRegion(index);
-      if (!pike) return false;
-      return distanceKm(Number(loc.lat), Number(loc.lng), pike.lat, pike.lng) <= BUNDLE_MATCH_KM;
+    if (loc.source === "geo" || loc.source === "ip") {
+      return isIndexedRegionMatch(index, Number(loc.lat), Number(loc.lng)).eligible;
     }
     return false;
   }
@@ -98,17 +117,24 @@
     return US.inferState(Number(loc.lat), Number(loc.lng));
   }
 
+  function withApproximateLabel(title, loc) {
+    if (!title || !loc || loc.source !== "ip") return title;
+    if (/\(approximate\)/i.test(title)) return title;
+    return title + " (approximate)";
+  }
+
   function displayTitle(loc) {
     if (!loc) return "United States";
-    if (loc.displayTitle) return loc.displayTitle;
-    if (loc.placeLabel) return loc.placeLabel;
+    if (loc.displayTitle) return withApproximateLabel(loc.displayTitle, loc);
+    if (loc.placeLabel) return withApproximateLabel(loc.placeLabel, loc);
     if (loc.city && (loc.stateCode || loc.state)) {
-      return loc.city + ", " + (loc.stateCode || loc.state);
+      return withApproximateLabel(loc.city + ", " + (loc.stateCode || loc.state), loc);
     }
     if (loc.county && (loc.stateCode || loc.state) && !loc.useNationalFallback) {
-      return loc.county + ", " + (loc.stateCode || loc.state);
+      return withApproximateLabel(loc.county + ", " + (loc.stateCode || loc.state), loc);
     }
-    if (isLocalBundleEligible(loc) || loc.contentMode === CONTENT_MODE_LOCAL) {
+    if ((isLocalBundleEligible(loc) || loc.contentMode === CONTENT_MODE_LOCAL) &&
+        loc.name && loc.source !== "geo" && loc.source !== "ip") {
       return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
     }
     if (loc.source === "manual" && loc.name && loc.stateCode) {
@@ -133,6 +159,7 @@
       return "Local editorial bundle available";
     }
     if (loc.source === "geo") return "Live data for your coordinates · regional nature guidance";
+    if (loc.source === "ip") return "Approximate location from IP · live weather at these coordinates";
     if (loc.source === "manual" && loc.regionId && loc.regionId.indexOf("us-state-") === 0) {
       return "State-level view · regional guidance for " + (loc.state || "your state");
     }
@@ -309,7 +336,10 @@
   global.WDS = global.WDS || {};
   global.WDS.usNational = {
     LOCAL_BUNDLE_ID: LOCAL_BUNDLE_ID,
+    INDEXED_REGION_MAX_KM: INDEXED_REGION_MAX_KM,
     BUNDLE_MATCH_KM: BUNDLE_MATCH_KM,
+    nearestIndexedRegion: nearestIndexedRegion,
+    isIndexedRegionMatch: isIndexedRegionMatch,
     CONTENT_MODE_LOCAL: CONTENT_MODE_LOCAL,
     CONTENT_MODE_NATIONAL: CONTENT_MODE_NATIONAL,
     isLocalBundleEligible: isLocalBundleEligible,

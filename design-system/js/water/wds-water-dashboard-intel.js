@@ -138,6 +138,16 @@
         "live", "riverLevels", n.stageFt + " ft"
       );
     }
+    if (usgs && (usgs.status === "no-nearby" || (usgs.nearest == null && usgs.fallbackReason))) {
+      return card(
+        "river-levels", "〰", "River Levels",
+        "empty",
+        "No nearby monitored rivers",
+        "No USGS gauge within 50 miles of your coordinates.",
+        "Check USGS WaterWatch for rivers in your area.",
+        "unavailable", "riverLevels", "—"
+      );
+    }
     var ws = watershedLabel(platform);
     var notes = observationsMatching(platform, /river|delaware|lackawaxen|creek crossing|water level/i);
     if (notes.length && /high|cross|flood|elevated|mud|water/i.test(notes[0].title + notes[0].body)) {
@@ -174,6 +184,16 @@
           (n.stageFt != null ? " · stage " + n.stageFt + " ft" : "") + ".",
         "High or muddy flow can make crossings dangerous — verify locally.",
         "live", "streamFlow", n.dischargeCfs + " cfs"
+      );
+    }
+    if (usgs && (usgs.status === "no-nearby" || (usgs.nearest == null && usgs.fallbackReason))) {
+      return card(
+        "stream-flow", "≋", "Stream Flow",
+        "empty",
+        "No nearby monitored rivers",
+        "No USGS discharge gauge within 50 miles of your coordinates.",
+        "Check USGS WaterWatch for streams in your area.",
+        "unavailable", "streamFlow", "—"
       );
     }
     var notes = observationsMatching(platform, /creek|stream|flow|crossing|cfs|tributary/i);

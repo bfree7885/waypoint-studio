@@ -7,6 +7,8 @@
 
   var CACHE = {};
   var CACHE_MS = 15 * 60 * 1000;
+  var MAX_GAUGE_DISTANCE_MILES = 50;
+  var MAX_GAUGE_DISTANCE_KM = MAX_GAUGE_DISTANCE_MILES * 1.60934;
 
   function cacheKey(lat, lng) {
     return Number(lat).toFixed(2) + "," + Number(lng).toFixed(2);
@@ -114,12 +116,26 @@
       });
       sites.sort(function (a, b) { return a.distanceKm - b.distanceKm; });
       var nearest = sites[0];
+      if (!nearest || nearest.distanceKm > MAX_GAUGE_DISTANCE_KM) {
+        return {
+          nearest: null,
+          siteCount: sites.length,
+          source: "USGS Water Services",
+          provider: "usgs-iv",
+          trust: "Unavailable",
+          status: "no-nearby",
+          fallbackReason: "no-gauge-within-" + MAX_GAUGE_DISTANCE_MILES + "-miles",
+          disclaimer: "No monitored USGS gauge within " + MAX_GAUGE_DISTANCE_MILES + " miles",
+          fetchedAt: new Date().toISOString()
+        };
+      }
       var pkg = {
         nearest: nearest,
         siteCount: sites.length,
         source: "USGS Water Services",
         provider: "usgs-iv",
         trust: "Live",
+        status: "live",
         disclaimer: "Provisional USGS data — subject to revision",
         fetchedAt: new Date().toISOString()
       };
@@ -146,6 +162,8 @@
 
   global.WDS = global.WDS || {};
   global.WDS.usgsWater = {
+    MAX_GAUGE_DISTANCE_MILES: MAX_GAUGE_DISTANCE_MILES,
+    MAX_GAUGE_DISTANCE_KM: MAX_GAUGE_DISTANCE_KM,
     fetchNearestGauge: fetchNearestGauge,
     formatGauge: formatGauge
   };

@@ -41,9 +41,13 @@
     if (!enabled() || !loc) return "";
     var wx = platform && platform.weatherRef;
     var wxMeta = wx && wx.meta;
+    var usgs = platform && platform.usgsWater;
+    var gauge = usgs && usgs.nearest;
     var rows = [
+      ["Location source", loc.source],
       ["Latitude", loc.lat],
       ["Longitude", loc.lng],
+      ["Label source", loc.labelSource || (loc.geocodeSource ? "reverse-geocode" : "—")],
       ["Detection method", loc.detectionMethod || loc.source],
       ["GPS accuracy", loc.accuracy != null ? Math.round(loc.accuracy) + " m" : "—"],
       ["Timestamp", loc.detectedAt || (loc.timestamp ? new Date(loc.timestamp).toISOString() : "—")],
@@ -56,7 +60,11 @@
       ["County", loc.county || "—"],
       ["State", loc.stateCode || loc.state || "—"],
       ["Nearest indexed county", loc.nearestIndexedCounty || "—"],
+      ["Indexed region eligible", loc.indexedRegionEligible != null ? String(loc.indexedRegionEligible) : "—"],
       ["Distance to index", loc.distanceKm != null ? loc.distanceKm + " km" : "—"],
+      ["River gauge", gauge ? gauge.siteName : (usgs && usgs.status === "no-nearby" ? "none within 50 mi" : "—")],
+      ["Gauge distance", gauge && gauge.distanceKm != null ? gauge.distanceKm.toFixed(1) + " km" : "—"],
+      ["Gauge fallback", usgs && usgs.fallbackReason ? usgs.fallbackReason : "—"],
       ["Weather provider TZ", wxMeta && wxMeta.timezone ? wxMeta.timezone : "—"],
       ["Content mode", loc.contentMode || "—"]
     ];

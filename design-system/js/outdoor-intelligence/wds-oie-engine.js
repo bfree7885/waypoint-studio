@@ -181,12 +181,15 @@
       water = domainBlock("water", domains.water.summary, domains.water.intel,
         "Estimated", "USGS + regional hydrology");
     } else {
+      var noRiverMsg = platform.usgsWater && platform.usgsWater.status === "no-nearby"
+        ? "No nearby monitored rivers"
+        : "Data currently unavailable";
       water = block({
         category: "water",
-        what: "Data currently unavailable",
-        why: "No live USGS gauge resolved for these coordinates.",
+        what: noRiverMsg,
+        why: "No live USGS gauge resolved within 50 miles of these coordinates.",
         whyItMatters: "Water stage informs crossing and flood risk.",
-        whatToDo: "Retry after location refresh.",
+        whatToDo: "Check USGS WaterWatch for rivers in your area.",
         whatToLookFor: "Gauge proximity and recent rainfall upstream.",
         trust: "Unavailable",
         source: "USGS"

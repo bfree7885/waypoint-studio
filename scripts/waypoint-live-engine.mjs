@@ -264,6 +264,8 @@ function mergeUsgsBySite(rows) {
 }
 
 async function fetchUsgsNearestGauge(lat, lng, resilientFetch, timeoutMs) {
+  const MAX_GAUGE_DISTANCE_MILES = 50;
+  const MAX_GAUGE_DISTANCE_KM = MAX_GAUGE_DISTANCE_MILES * 1.60934;
   const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&bBox=" +
     encodeURIComponent(usgsBbox(lat, lng)) +
     "&parameterCd=00060,00065&siteStatus=active";
@@ -278,7 +280,16 @@ async function fetchUsgsNearestGauge(lat, lng, resilientFetch, timeoutMs) {
     }
   });
   sites.sort((a, b) => a.distanceKm - b.distanceKm);
-  return { nearest: sites[0], siteCount: sites.length };
+  const nearest = sites[0];
+  if (!nearest || nearest.distanceKm > MAX_GAUGE_DISTANCE_KM) {
+    return {
+      nearest: null,
+      siteCount: sites.length,
+      status: "no-nearby",
+      fallbackReason: `no-gauge-within-${MAX_GAUGE_DISTANCE_MILES}-miles`
+    };
+  }
+  return { nearest, siteCount: sites.length };
 }
 
 function formatRiverSummary(gauge) {
@@ -806,7 +817,11 @@ function buildPlugins() {
         if (!gauge || !gauge.nearest) {
           return {
             source: "USGS Water Services",
-            data: { status: "unavailable", summary: "No active gauge found nearby" },
+            data: {
+              status: gauge && gauge.status === "no-nearby" ? "no-nearby" : "unavailable",
+              summary: "No nearby monitored rivers",
+              fallbackReason: gauge && gauge.fallbackReason ? gauge.fallbackReason : "no-active-gauge"
+            },
             fetchMeta: ctx.lastFetchMeta || { attempts: 1, responseMs: 0 }
           };
         }

@@ -158,7 +158,22 @@
 
   function toUsgsWater(feed) {
     var river = feed.modules && feed.modules.river_gauges && feed.modules.river_gauges.data;
-    if (!river || river.status === "unavailable" || !river.nearest) return null;
+    if (!river || river.status === "unavailable" || river.status === "no-nearby" || !river.nearest) {
+      if (river && river.status === "no-nearby") {
+        return {
+          nearest: null,
+          siteCount: 0,
+          source: "USGS Water Services",
+          provider: "usgs-iv",
+          trust: "Unavailable",
+          status: "no-nearby",
+          fallbackReason: river.fallbackReason || "no-gauge-within-50-miles",
+          disclaimer: "No monitored USGS gauge within 50 miles",
+          fetchedAt: feed.updatedAt
+        };
+      }
+      return null;
+    }
     return {
       nearest: river.nearest,
       siteCount: river.siteCount,

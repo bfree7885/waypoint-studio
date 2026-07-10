@@ -5,7 +5,8 @@
 (function (global) {
   "use strict";
 
-  var STORAGE_KEY = "wds-location-v1";
+  var STORAGE_KEY = "wds-location-v2";
+  var LEGACY_STORAGE_KEY = "wds-location-v1";
   var PROMPT_KEY = "wds-location-prompted";
   var MOVE_THRESHOLD_KM = 5;
   var CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
@@ -43,10 +44,61 @@
   function readStored() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) {
+        var legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+        if (legacy) {
+          localStorage.removeItem(LEGACY_STORAGE_KEY);
+        }
+        return null;
+      }
+      return JSON.parse(raw);
     } catch (e) {
       return null;
     }
+  }
+
+  function clearStored() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch (e) { /* noop */ }
+    currentState = null;
+  }
+
+  function isKnownTestCoords(lat, lng) {
+    if (!isFinite(lat) || !isFinite(lng)) return false;
+    if (lat >= 37 && lat <= 40 && lng <= -94 && lng >= -102) return true;
+    return false;
+  }
+
+  function isStaleOrInvalidCache(state, index) {
+    if (!state || !isValidCoords(state)) return true;
+    if (isLegacyDefault(state)) return true;
+    var lat = Number(state.lat);
+    var lng = Number(state.lng);
+    if (isKnownTestCoords(lat, lng)) return true;
+
+    var label = String(state.placeLabel || state.displayTitle || state.city || "").toLowerCase();
+    if (/middletown/.test(label) && /new jersey|\bnj\b/.test(label) && lat > 41) return true;
+    if (/kansas|\bks\b/.test(label) && lng > -95) return true;
+
+    var US = global.WDS && global.WDS.usNational;
+    if (US && US.isIndexedRegionMatch && index) {
+      var match = US.isIndexedRegionMatch(index, lat, lng);
+      state.nearestIndexedCounty = match.region ? match.region.name : state.nearestIndexedCounty;
+      state.distanceKm = match.distanceKm != null ? Math.round(match.distanceKm) : state.distanceKm;
+      if (state.regionId && state.regionId !== "us-coords" && state.regionId.indexOf("us-state-") !== 0) {
+        if (!match.eligible) return true;
+        if (match.region && state.regionId !== match.region.id) return true;
+      }
+      if (match.region && !match.eligible && state.contentMode === "local-bundle") return true;
+    }
+
+    var inferred = global.WDS && global.WDS.usStates && global.WDS.usStates.inferState(lat, lng);
+    if (inferred && state.stateCode && state.source !== "manual") {
+      if (String(state.stateCode).toUpperCase() !== inferred.code) return true;
+    }
+    return false;
   }
 
   function notifyChange(state) {
@@ -76,7 +128,10 @@
     if (!GC || !GC.reverse || !state || !isFinite(Number(state.lat)) || !isFinite(Number(state.lng))) {
       return Promise.resolve(applyPlaceDisplay(state));
     }
-    if (state.city && state.county && state.geocodeAt) {
+    var needsGeocode = !state.geocodeAt ||
+      state.source === "ip" ||
+      (state.source === "geo" && !state.placeLabel);
+    if (!needsGeocode && state.city && state.placeLabel) {
       return Promise.resolve(applyPlaceDisplay(state));
     }
     return GC.reverse({ lat: Number(state.lat), lng: Number(state.lng) }).then(function (geo) {
@@ -86,11 +141,15 @@
         if (geo.state) state.state = geo.state;
         if (geo.stateCode) state.stateCode = geo.stateCode;
         if (geo.placeLabel) state.placeLabel = geo.placeLabel;
+        state.labelSource = "reverse-geocode";
         state.geocodeSource = geo.meta && geo.meta.provider;
         state.geocodeAt = geo.meta && geo.meta.fetchedAt;
+      } else {
+        state.labelSource = state.labelSource || "coordinates";
       }
       return applyPlaceDisplay(state);
     }).catch(function () {
+      state.labelSource = state.labelSource || "coordinates";
       return applyPlaceDisplay(state);
     });
   }
@@ -103,9 +162,10 @@
     return !!(state && (state.source === "default" || state.isDefault === true));
   }
 
-  function shouldRefreshStored(state) {
+  function shouldRefreshStored(state, index) {
     if (!isValidCoords(state)) return true;
     if (isLegacyDefault(state)) return true;
+    if (isStaleOrInvalidCache(state, index)) return true;
     var age = Date.now() - (state.timestamp || 0);
     return age > CACHE_MAX_AGE_MS;
   }
@@ -120,18 +180,29 @@
     var US = global.WDS && global.WDS.usNational;
     if (state.placeLabel) {
       state.displayTitle = state.placeLabel;
+      if (state.source === "ip") {
+        state.displayTitle = US && US.displayTitle
+          ? US.displayTitle(state)
+          : state.placeLabel + " (approximate)";
+      }
     } else if (state.city && (state.stateCode || state.state)) {
       state.placeLabel = state.city + ", " + (state.stateCode || state.state);
-      state.displayTitle = state.placeLabel;
+      state.displayTitle = state.source === "ip"
+        ? state.placeLabel + " (approximate)"
+        : state.placeLabel;
+      state.labelSource = state.labelSource || "city-state";
     } else if (state.county && (state.stateCode || state.state)) {
       state.placeLabel = state.county + ", " + (state.stateCode || state.state);
       state.displayTitle = state.placeLabel;
+      state.labelSource = state.labelSource || "county-state";
     } else if (state.city) {
       state.placeLabel = "Near " + state.city + (state.state ? ", " + state.state : "");
       state.displayTitle = state.placeLabel;
+      state.labelSource = state.labelSource || "city";
     } else if (isValidCoords(state)) {
       state.displayTitle = formatCoords(state.lat, state.lng) +
         (state.stateCode ? " · " + state.stateCode : state.state ? " · " + state.state : "");
+      state.labelSource = state.labelSource || "coordinates";
     }
     if (US && US.finalizeLocation) {
       state = US.finalizeLocation(state, indexCache);
@@ -321,21 +392,13 @@
   function buildStateFromCoords(lat, lng, index, extra) {
     extra = extra || {};
     var US = global.WDS && global.WDS.usNational;
-    var bundleKm = US && US.BUNDLE_MATCH_KM ? US.BUNDLE_MATCH_KM : 50;
-    var match = nearestRegion(index, lat, lng);
-    var region = match.region;
-    var eligible = false;
-
-    if (region && US && US.isLocalBundleEligible) {
-      eligible = US.isLocalBundleEligible({
-        source: extra.source || "geo",
-        lat: lat,
-        lng: lng,
-        regionId: region.id
-      }, index);
-    } else if (region) {
-      eligible = match.distanceKm <= bundleKm;
-    }
+    var indexed = US && US.isIndexedRegionMatch
+      ? US.isIndexedRegionMatch(index, lat, lng)
+      : { region: nearestRegion(index, lat, lng).region, distanceKm: nearestRegion(index, lat, lng).distanceKm, eligible: false };
+    var region = indexed.region;
+    var localEligible = US && US.isLocalBundleEligible
+      ? US.isLocalBundleEligible({ source: extra.source || "geo", lat: lat, lng: lng }, index)
+      : false;
 
     var state = {
       source: extra.source || "geo",
@@ -348,19 +411,17 @@
         (extra.source === "ip" ? "ip-geolocation" : "browser-geolocation"),
       refreshReason: extra.refreshReason || null,
       fallbackReason: extra.fallbackReason || null,
-      distanceKm: region ? Math.round(match.distanceKm) : null,
+      distanceKm: region ? Math.round(indexed.distanceKm) : null,
       nearestIndexedCounty: region ? region.name : null,
       nearestIndexedState: region ? region.stateCode : null,
+      indexedRegionEligible: !!indexed.eligible,
       isDefault: false,
       geoDenied: !!extra.geoDenied,
-      usingNearestBundle: false
+      usingNearestBundle: false,
+      labelSource: extra.source === "ip" ? "ip-coordinates" : "gps-coordinates"
     };
 
-    if (extra.city) state.city = extra.city;
-    if (extra.regionName) state.state = extra.regionName;
-    if (extra.stateCode) state.stateCode = extra.stateCode;
-
-    if (eligible && region) {
+    if (localEligible && region) {
       state.regionId = region.id;
       state.contentBundle = region.contentBundle || region.id;
       state.name = region.name;
@@ -415,9 +476,6 @@
     return IP.lookup().then(function (ip) {
       return buildStateFromCoords(ip.lat, ip.lng, index, Object.assign({}, extra, {
         source: "ip",
-        city: ip.city,
-        regionName: ip.region,
-        stateCode: ip.stateCode,
         detectionMethod: "ip-geolocation",
         refreshReason: extra.refreshReason || "ip-geolocation",
         fallbackReason: extra.fallbackReason || "browser-geolocation-denied"
@@ -431,8 +489,12 @@
     var force = !!options.forceRefresh;
     var stored = readStored();
     if (stored && isLegacyDefault(stored)) stored = null;
+    if (stored && isStaleOrInvalidCache(stored, index)) {
+      clearStored();
+      stored = null;
+    }
 
-    if (!force && stored && isValidCoords(stored) && !shouldRefreshStored(stored)) {
+    if (!force && stored && isValidCoords(stored) && !shouldRefreshStored(stored, index)) {
       stored.refreshReason = "cache-hit";
       return Promise.resolve(finalizeStored(stored, index));
     }
@@ -447,12 +509,7 @@
         return saveState(state, { silent: options.silent });
       })
       .catch(function () {
-        if (stored && isValidCoords(stored)) {
-          stored.fallbackReason = "all-detection-failed-using-cache";
-          stored.refreshReason = "stale-cache";
-          return finalizeStored(stored, index);
-        }
-        return Promise.reject(new Error("Could not detect location — enable browser location or try again."));
+        return Promise.reject(new Error("Could not detect location — enable browser location or choose a region."));
       });
   }
 
@@ -766,11 +823,15 @@
       var stored = readStored();
 
       if (stored && isLegacyDefault(stored)) {
-        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
+        clearStored();
+        stored = null;
+      }
+      if (stored && isStaleOrInvalidCache(stored, index)) {
+        clearStored();
         stored = null;
       }
 
-      if (stored && isValidCoords(stored) && !options.forceRefresh && !shouldRefreshStored(stored)) {
+      if (stored && isValidCoords(stored) && !options.forceRefresh && !shouldRefreshStored(stored, index)) {
         currentState = finalizeStored(stored, index);
         if (Date.now() - (stored.timestamp || 0) > GEO_SOFT_REFRESH_MS) {
           refreshLocationInBackground(index, base);
@@ -879,6 +940,8 @@
     buildStateFromCoords: buildStateFromCoords,
     applyPlaceDisplay: applyPlaceDisplay,
     isLegacyDefault: isLegacyDefault,
+    isStaleOrInvalidCache: isStaleOrInvalidCache,
+    clearStored: clearStored,
     getState: getState,
     readStored: readStored,
     writeStored: writeStored,

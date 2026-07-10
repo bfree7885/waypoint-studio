@@ -33,3 +33,6 @@ jobs:
 
       - name: Syntax-check live engine
         run: node --check scripts/waypoint-live-engine.mjs
+
+      - name: Validate location pipeline
+        run: node scripts/validate-location.mjs

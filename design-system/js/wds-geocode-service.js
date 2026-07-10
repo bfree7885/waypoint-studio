@@ -12,10 +12,20 @@
     return lat.toFixed(3) + "," + lng.toFixed(3);
   }
 
+  function cleanPlaceName(name) {
+    if (!name) return null;
+    return String(name)
+      .replace(/^Village of\s+/i, "")
+      .replace(/^Town of\s+/i, "")
+      .replace(/^City of\s+/i, "")
+      .trim();
+  }
+
   function pickAddress(addr) {
     if (!addr) return {};
+    var city = cleanPlaceName(addr.city || addr.town || addr.village || addr.hamlet || addr.municipality);
     return {
-      city: addr.city || addr.town || addr.village || addr.hamlet || addr.municipality || null,
+      city: city,
       county: addr.county ? String(addr.county).replace(/\s+County$/i, "") : null,
       state: addr.state || null,
       stateCode: null,

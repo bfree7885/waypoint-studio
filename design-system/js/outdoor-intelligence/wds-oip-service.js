@@ -251,7 +251,7 @@
       pkg.location.elevationMeters = elevationPkg.meters;
       pkg.location.elevation = elevationPkg;
     }
-    if (usgsWaterPkg && usgsWaterPkg.nearest) {
+    if (usgsWaterPkg) {
       pkg.usgsWater = usgsWaterPkg;
     }
     pkg.legacy = S.toLegacyV1(pkg);
@@ -270,7 +270,8 @@
       alerts: alertsPkg ? (alertsPkg.status === "unavailable" ? "unavailable" : "live") : "unavailable",
       airQuality: airQualityPkg && airQualityPkg.status === "live" ? "live" : "unavailable",
       elevation: elevationPkg && elevationPkg.meters != null ? "live" : "unavailable",
-      usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "live" : "unavailable"
+      usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "live" :
+        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "no-nearby" : "unavailable")
     };
     lastPackage = pkg;
     M.devLog("get complete", pkg.region.label, pkg.location.source, pkg.weather.status);
