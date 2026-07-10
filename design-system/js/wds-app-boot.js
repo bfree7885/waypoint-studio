@@ -8,11 +8,17 @@
     cfg = cfg || {};
     var ENGINE_BASE = (cfg.base || "design-system/content-engine/").replace(/\/?$/, "/");
 
-    function waitForPlatform() {
-      return new Promise(function (resolve) {
+    function waitForPlatform(maxMs) {
+      maxMs = maxMs != null ? maxMs : 20000;
+      return new Promise(function (resolve, reject) {
+        var started = Date.now();
         function check() {
           if (global.WDS && global.WDS.outdoorIntelligence && global.WDS.outdoorIntelligence.get) {
             resolve();
+            return;
+          }
+          if (Date.now() - started >= maxMs) {
+            reject(new Error("Outdoor intelligence modules timed out"));
             return;
           }
           requestAnimationFrame(check);
@@ -44,7 +50,8 @@
         return global.WDS.location.bootstrap({
           base: ENGINE_BASE,
           promptMount: promptMount,
-          skipPrompt: !!cfg.skipPrompt
+          skipPrompt: !!cfg.skipPrompt,
+          skipEnrich: !!cfg.skipEnrich
         }).catch(function () {
           return global.WDS.location.loadIndex(ENGINE_BASE).then(function (index) {
             return global.WDS.location.detectLocation({ index: index });

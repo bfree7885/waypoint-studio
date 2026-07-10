@@ -12,6 +12,8 @@
   var MOVE_THRESHOLD_KM = 5;
   var CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;
   var GEO_SOFT_REFRESH_MS = 30 * 60 * 1000;
+  var GEO_BOOT_TIMEOUT_MS = 8000;
+  var GEOCODE_TIMEOUT_MS = 6000;
 
   var indexCache = null;
   var currentState = null;
@@ -89,9 +91,13 @@
 
   function publishDiagnostics(diag) {
     lastDiagnostics = diag;
-    try {
-      console.info("[Waypoint location]", diag);
-    } catch (e) { /* noop */ }
+    if (!diag) return;
+    var failed = (diag.attempts || []).some(function (a) { return a && a.ok === false; });
+    if (failed || diag.selectedSource === "unavailable") {
+      try {
+        console.warn("[Waypoint location]", diag);
+      } catch (e) { /* noop */ }
+    }
   }
 
   function getDiagnostics() {
@@ -223,7 +229,7 @@
     if (!needsGeocode && state.city && state.placeLabel) {
       return Promise.resolve(applyPlaceDisplay(state));
     }
-    return GC.reverse({ lat: Number(state.lat), lng: Number(state.lng) }).then(function (geo) {
+    var geocodePromise = GC.reverse({ lat: Number(state.lat), lng: Number(state.lng) }).then(function (geo) {
       if (geo && geo.status === "live") {
         if (geo.city) state.city = geo.city;
         if (geo.county) state.county = geo.county;
@@ -241,6 +247,15 @@
       state.labelSource = state.labelSource || "coordinates";
       return applyPlaceDisplay(state);
     });
+    return Promise.race([
+      geocodePromise,
+      new Promise(function (resolve) {
+        setTimeout(function () {
+          state.labelSource = state.labelSource || "coordinates";
+          resolve(applyPlaceDisplay(state));
+        }, GEOCODE_TIMEOUT_MS);
+      })
+    ]);
   }
 
   function isValidCoords(state) {
@@ -309,6 +324,9 @@
 
   function saveState(state, options) {
     options = options || {};
+    if (options.skipEnrich) {
+      return Promise.resolve(writeStored(applyPlaceDisplay(state), options));
+    }
     return enrichWithGeocode(state).then(function (enriched) {
       return writeStored(enriched, options);
     });
@@ -471,7 +489,7 @@
         },
         {
           enableHighAccuracy: options.enableHighAccuracy !== false,
-          timeout: options.timeout || 15000,
+          timeout: options.timeout != null ? options.timeout : GEO_BOOT_TIMEOUT_MS,
           maximumAge: options.maximumAge != null ? options.maximumAge : 60000
         }
       );
@@ -546,7 +564,11 @@
 
   function detectFromBrowser(index, extra) {
     extra = extra || {};
-    return getGeolocation({ enableHighAccuracy: true, maximumAge: 60000 }).then(function (coords) {
+    return getGeolocation({
+      enableHighAccuracy: true,
+      maximumAge: 60000,
+      timeout: GEO_BOOT_TIMEOUT_MS
+    }).then(function (coords) {
       return buildStateFromCoords(coords.lat, coords.lng, index, Object.assign({}, extra, {
         source: "geo",
         accuracy: coords.accuracy,
@@ -617,7 +639,10 @@
           currentState = state;
           return state;
         }
-        return saveState(state, { silent: options.silent }).then(function (saved) {
+        return saveState(state, {
+          silent: options.silent,
+          skipEnrich: !!options.skipEnrich
+        }).then(function (saved) {
           annotateDiagnostics(saved, diag);
           return saved;
         });
@@ -947,7 +972,8 @@
         index: index,
         base: base,
         silent: true,
-        forceRefresh: !!options.forceRefresh
+        forceRefresh: !!options.forceRefresh,
+        skipEnrich: !!options.skipEnrich
       }).then(function (state) {
         currentState = state;
         if (promptMount && state && state.source !== "unavailable") {
@@ -959,6 +985,10 @@
         if (state && state.source !== "unavailable") {
           if (Date.now() - (state.timestamp || 0) > GEO_SOFT_REFRESH_MS) {
             refreshLocationInBackground(index, base);
+          }
+          if (options.skipEnrich) {
+            currentState = applyPlaceDisplay(state);
+            return currentState;
           }
           return enrichWithGeocode(state).then(function (enriched) {
             if (enriched !== state && enriched.source !== "unavailable") {

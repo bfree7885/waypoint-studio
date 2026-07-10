@@ -19,19 +19,6 @@
     }
   }
 
-  function isEnginePublishLive(live) {
-    if (!live || !live.location) return false;
-    var PG = window.WDS && window.WDS.platformGuard;
-    if (PG && PG.isEnginePublishPoint) {
-      return PG.isEnginePublishPoint(live.location.lat, live.location.lng);
-    }
-    var LOC = window.WDS && window.WDS.location;
-    if (LOC && LOC.isEnginePublishPoint) {
-      return LOC.isEnginePublishPoint(live.location.lat, live.location.lng);
-    }
-    return false;
-  }
-
   function hasUserWeather(userMods) {
     return !!(userMods && userMods.weather && userMods.weather.userLocation);
   }
@@ -42,9 +29,18 @@
     return browserTimezone();
   }
 
+  function isBootDone() {
+    return window.__WAYPOINT_KIOSK_BOOT_DONE__ === true;
+  }
+
+  function isLocationUnavailable(userLoc) {
+    return !userLoc || userLoc.unavailable || userLoc.source === "unavailable" ||
+      userLoc.lat == null || userLoc.lng == null;
+  }
+
   function resolveLocationLabel(userLoc) {
-    if (!userLoc) return "Locating…";
-    if (userLoc.unavailable || userLoc.source === "unavailable") return "Location unavailable";
+    if (!userLoc && !isBootDone()) return "Locating…";
+    if (isLocationUnavailable(userLoc)) return "Location unavailable";
     if (userLoc.displayTitle) return userLoc.displayTitle;
     if (userLoc.placeLabel) return userLoc.placeLabel;
     if (userLoc.lat != null && userLoc.lng != null) {
@@ -55,21 +51,11 @@
     return "Location unavailable";
   }
 
-  function logKioskDiagnostics(userLoc, userMods, live) {
-    var diag = window.WDS && window.WDS.location && window.WDS.location.getDiagnostics
-      ? window.WDS.location.getDiagnostics()
-      : null;
-    console.info("[Waypoint kiosk]", {
-      locationSource: userLoc && userLoc.source,
-      latitude: userLoc && userLoc.lat,
-      longitude: userLoc && userLoc.lng,
-      timezone: resolveTimezone(userLoc, userMods && userMods.weather),
-      cacheUsed: diag && diag.cacheUsed,
-      locationAttempts: diag && diag.attempts,
-      userWeatherReady: hasUserWeather(userMods),
-      enginePublishLiveJson: isEnginePublishLive(live),
-      engineLocationIgnored: isEnginePublishLive(live)
-    });
+  function userStatusMessage(userLoc, userReady) {
+    if (userReady) return null;
+    if (!isBootDone()) return "Waiting for your location…";
+    if (isLocationUnavailable(userLoc)) return "Location unavailable";
+    return "Refreshing your conditions…";
   }
 
   function $(id) {
@@ -313,7 +299,6 @@
     var userReady = hasUserWeather(userMods);
 
     timezone = resolveTimezone(userLoc, userWx);
-    logKioskDiagnostics(userLoc, userMods, live);
 
     var stale = !live.updatedAt || Date.now() - Date.parse(live.updatedAt) > STALE_MS;
     var overall = (health && health.overall && health.overall.status) || "unknown";
@@ -328,11 +313,12 @@
     $("swk-date").textContent = formatDate(new Date(), timezone);
     setText("swk-location", resolveLocationLabel(userLoc));
 
+    var statusMessage = userStatusMessage(userLoc, userReady);
     var updatedEl = $("swk-updated");
     var userUpdated = userReady && userWx.current && userWx.current.observedAt;
     updatedEl.textContent = userUpdated
       ? formatStamp(userUpdated, timezone) + " · your location · " + ageLabel(userUpdated)
-      : (userReady ? "Refreshing your conditions…" : "Waiting for your location…");
+      : (statusMessage || "Conditions unavailable");
     updatedEl.className = "swk-topbar__value" + (stale && !userReady ? " swk-topbar__value--stale" : "");
 
     var badge = $("swk-health-badge");
@@ -343,7 +329,7 @@
     var forecast = userReady ? (userWx.forecast || {}) : {};
 
     setText("swk-temp", userReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—");
-    setText("swk-conditions", userReady ? (cur.conditions || "Conditions unavailable") : "Waiting for your location…");
+    setText("swk-conditions", userReady ? (cur.conditions || "Conditions unavailable") : (statusMessage || "Conditions unavailable"));
 
     renderFacts("swk-weather-facts", [
       { label: "Feels like", value: userReady && cur.feelsLikeF != null ? cur.feelsLikeF + "°" : "—" },

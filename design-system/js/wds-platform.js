@@ -68,7 +68,7 @@
   ].forEach(function (file) {
     var s = document.createElement("script");
     s.src = base + file + vq;
-    s.defer = true;
+    s.async = false;
     if (window.WDS && window.WDS.build && window.WDS.build.trackScript) {
       window.WDS.build.trackScript(s);
     }

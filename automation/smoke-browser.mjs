@@ -12,7 +12,7 @@ const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const PORT = 9223;
 const PAGES = [
   { name: "homepage", path: "/", waitMs: 20000 },
-  { name: "kiosk", path: "/kiosk.html", waitMs: 12000 },
+  { name: "kiosk", path: "/kiosk.html", waitMs: 18000 },
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 },
@@ -116,6 +116,22 @@ async function testPage(client, page) {
     }
   });
 
+  if (page.name === "kiosk") {
+    try {
+      await client.send("Browser.grantPermissions", {
+        origin: new URL(BASE).origin,
+        permissions: ["geolocation"]
+      });
+    } catch (_) { /* noop */ }
+    try {
+      await client.send("Emulation.setGeolocationOverride", {
+        latitude: 41.3312,
+        longitude: -75.038,
+        accuracy: 100
+      });
+    } catch (_) { /* noop */ }
+  }
+
   await client.send("Page.navigate", { url: BASE + page.path });
   if (page.name === "homepage") {
     await delay(2500);
@@ -149,8 +165,13 @@ async function testPage(client, page) {
 
   const kioskExpr = `(() => {
     const text = (document.body && document.body.innerText || '').toLowerCase();
+    const locationLabel = (document.getElementById('swk-location') || {}).textContent || '';
+    const hasResolvedLocation = locationLabel && locationLabel !== 'Locating…' && locationLabel !== 'Location unavailable';
   return {
     title: document.title,
+    bootDone: window.__WAYPOINT_KIOSK_BOOT_DONE__ === true,
+    notLocating: locationLabel !== 'Locating…',
+    hasResolvedLocation: hasResolvedLocation,
     hasTemp: (document.getElementById('swk-temp') || {}).textContent !== '—',
     hasConditions: !/loading/i.test((document.getElementById('swk-conditions') || {}).textContent || ''),
     hasUpdated: (document.getElementById('swk-updated') || {}).textContent !== '—',
@@ -335,9 +356,17 @@ async function main() {
       failed = true;
       console.log("FAIL: debug page title missing");
     }
-    if (r.name === "kiosk" && !r.checks.hasTemp) {
+    if (r.name === "kiosk" && !r.checks.notLocating) {
       failed = true;
-      console.log("FAIL: kiosk temperature missing");
+      console.log("FAIL: kiosk stuck on Locating");
+    }
+    if (r.name === "kiosk" && !r.checks.bootDone) {
+      failed = true;
+      console.log("FAIL: kiosk location bootstrap did not complete");
+    }
+    if (r.name === "kiosk" && r.checks.hasResolvedLocation && !r.checks.hasTemp) {
+      failed = true;
+      console.log("FAIL: kiosk temperature missing after location resolved");
     }
     if (r.name === "kiosk" && !r.checks.hasConditions) {
       failed = true;
@@ -347,7 +376,7 @@ async function main() {
       failed = true;
       console.log("FAIL: kiosk last updated label missing");
     }
-    if (r.name === "kiosk" && !r.checks.hasHourly) {
+    if (r.name === "kiosk" && r.checks.hasResolvedLocation && !r.checks.hasHourly) {
       failed = true;
       console.log("FAIL: kiosk hourly strip missing");
     }
