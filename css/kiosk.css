@@ -1,6 +1,6 @@
 /**
  * Waypoint Live Engine — personal synthwave kiosk
- * User-location OIP via kiosk-refresh.js; engine health metadata only.
+ * Reads data/live.json and data/health.json only.
  */
 :root {
   --swk-bg: #090b12;
@@ -666,48 +666,4 @@ body {
   .swk-hourly {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-}
-
-.swk-refresh-debug {
-  position: fixed;
-  right: 0.75rem;
-  bottom: 3.5rem;
-  z-index: 20;
-  max-width: 28rem;
-  max-height: 40vh;
-  overflow: auto;
-  padding: 0.75rem;
-  border: 1px solid var(--swk-border);
-  border-radius: 0.5rem;
-  background: rgba(9, 11, 18, 0.94);
-  font-size: 0.75rem;
-  color: var(--swk-muted);
-}
-
-.swk-refresh-debug h2,
-.swk-refresh-debug h3 {
-  margin: 0 0 0.5rem;
-  font-size: 0.8rem;
-  color: var(--swk-cyan);
-}
-
-.swk-refresh-debug table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.swk-refresh-debug th {
-  text-align: left;
-  padding: 0.15rem 0.5rem 0.15rem 0;
-  color: var(--swk-text);
-  font-weight: 500;
-}
-
-.swk-refresh-debug td {
-  padding: 0.15rem 0;
-  word-break: break-word;
-}
-
-.swk-topbar__value--warn {
-  color: var(--swk-warning);
 }

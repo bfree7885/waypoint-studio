@@ -1,14 +1,15 @@
 /**
- * Waypoint Live Engine — personal synthwave kiosk (render only).
+ * Waypoint Live Engine — personal synthwave kiosk
  */
 (function () {
   "use strict";
 
-  var STALE_MS = 10 * 60 * 1000;
+  var REFRESH_MS = 5 * 60 * 1000;
+  var STALE_MS = 3 * 60 * 60 * 1000;
   var timezone = "America/New_York";
   var nextUpdateIso = null;
-  var lastPayload = null;
-  var tickTimer = null;
+  var refreshTimer = null;
+  var refreshCountdown = REFRESH_MS;
 
   function $(id) {
     return document.getElementById(id);
@@ -21,6 +22,14 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function fetchJson(url) {
+    var bust = (url.indexOf("?") >= 0 ? "&" : "?") + "_=" + Date.now();
+    return fetch(url + bust, { cache: "no-store" }).then(function (res) {
+      if (!res.ok) throw new Error(url + " HTTP " + res.status);
+      return res.json();
+    });
   }
 
   function formatClock(now, tz) {
@@ -95,7 +104,7 @@
   function badgeClass(status) {
     var key = String(status || "unknown").toLowerCase();
     if (key === "healthy" || key === "healthy-degraded" || key === "live") return "swk-badge--healthy";
-    if (key === "warning" || key === "estimated" || key === "stale") return "swk-badge--warning";
+    if (key === "warning" || key === "estimated") return "swk-badge--warning";
     return "swk-badge--degraded";
   }
 
@@ -121,45 +130,14 @@
     }).join(""));
   }
 
-  function moduleStatus(health, name) {
-    return health && health.modules && health.modules[name] ? health.modules[name].status : "unknown";
+  function moduleData(live, name) {
+    return live.modules && live.modules[name] && live.modules[name].data
+      ? live.modules[name].data
+      : null;
   }
 
-  function buildLiveView(payload) {
-    var userMods = payload && payload.userModules;
-    var userWx = userMods && userMods.weather;
-    var engineCtx = payload && payload.engineContext;
-    var health = engineCtx && engineCtx.health;
-    var modules = {};
-
-    if (health && health.modules) {
-      Object.keys(health.modules).forEach(function (name) {
-        modules[name] = { data: health.modules[name] };
-      });
-    }
-    if (userMods && userMods.alerts) {
-      modules.alerts = { data: userMods.alerts };
-    }
-    if (userMods && userMods.usgsWater) {
-      var riverData = userMods.usgsWater.nearest
-        ? { status: "live", nearest: userMods.usgsWater.nearest, summary: userMods.usgsWater.nearest.siteName }
-        : { status: userMods.usgsWater.status || "unavailable", summary: "No nearby monitored rivers" };
-      modules.river_gauges = { data: riverData };
-    }
-
-    return {
-      timezone: (userWx && userWx.timezone) ||
-        (engineCtx && engineCtx.engine && engineCtx.engine.timezone) ||
-        timezone,
-      current: (userWx && userWx.current) || {},
-      forecast: (userWx && userWx.forecast) || {},
-      hourly: (userWx && userWx.hourly) || { nextHours: [], note: "Next hours at your location" },
-      sun: (userWx && userWx.sun) || null,
-      moon: (userWx && userWx.moon) || null,
-      airQuality: userMods && userMods.airQuality,
-      engineVersion: engineCtx && engineCtx.engine && engineCtx.engine.version,
-      modules: modules
-    };
+  function moduleStatus(health, name) {
+    return health.modules && health.modules[name] ? health.modules[name].status : "unknown";
   }
 
   function renderHourly(hourly) {
@@ -197,14 +175,15 @@
       return renderUnavailable("Air quality");
     }
     return (
-      "<p class=\"swk-metric swk-metric--cyan\">" + esc(aqi.usAqi != null ? "AQI " + aqi.usAqi : (aqi.aqi != null ? "AQI " + aqi.aqi : "—")) + "</p>" +
+      "<p class=\"swk-metric swk-metric--cyan\">" + esc(aqi.usAqi != null ? "AQI " + aqi.usAqi : "—") + "</p>" +
       "<p class=\"swk-detail\">" + esc(aqi.category || "—") + (aqi.pm25 != null ? " · PM2.5 " + aqi.pm25 : "") + "</p>"
     );
   }
 
   function renderUv(live, health) {
-    var value = live.current && live.current.uvIndex;
-    var status = moduleStatus(health, "uv");
+    var uv = moduleData(live, "uv") || {};
+    var value = uv.uvIndex != null ? uv.uvIndex : (live.current && live.current.uvIndex);
+    var status = moduleStatus(health, "uv") || uv.status;
     if (value == null) return renderUnavailable("UV index");
     return (
       "<p class=\"swk-metric swk-metric--magenta\">UV " + esc(String(value)) + "</p>" +
@@ -225,8 +204,8 @@
   }
 
   function renderPollen(live, health) {
-    var pollen = live.modules && live.modules.pollen && live.modules.pollen.data;
-    var status = moduleStatus(health, "pollen") || (pollen && pollen.status);
+    var pollen = moduleData(live, "pollen") || {};
+    var status = moduleStatus(health, "pollen") || pollen.status;
     if (!pollen || status === "unavailable" || pollen.status === "unavailable") {
       return renderUnavailable("Pollen");
     }
@@ -234,8 +213,8 @@
   }
 
   function renderRiver(live, health) {
-    var river = live.modules && live.modules.river_gauges && live.modules.river_gauges.data;
-    var status = moduleStatus(health, "river_gauges") || (river && river.status);
+    var river = moduleData(live, "river_gauges") || {};
+    var status = moduleStatus(health, "river_gauges") || river.status;
     if (!river || status === "unavailable" || river.status === "unavailable") {
       return renderUnavailable("River gauge");
     }
@@ -253,10 +232,10 @@
   }
 
   function renderAlerts(live, health) {
-    var alerts = live.modules && live.modules.alerts && live.modules.alerts.data;
-    var status = moduleStatus(health, "alerts") || (alerts && alerts.status);
+    var alerts = moduleData(live, "alerts") || live.alerts || {};
+    var status = moduleStatus(health, "alerts") || alerts.status;
     if (status === "unavailable") return renderUnavailable("Alerts");
-    var items = (alerts && alerts.items) || [];
+    var items = alerts.items || [];
     if (!items.length) {
       return "<p class=\"swk-detail\">No active weather alerts</p>";
     }
@@ -273,75 +252,61 @@
     }).join("");
   }
 
-  function refreshIntervalMs() {
-    var ref = window.__WAYPOINT_KIOSK_REFRESH__;
-    return ref && ref.refreshIntervalMs ? ref.refreshIntervalMs : 5 * 60 * 1000;
-  }
-
-  function renderUpdatedLabel(payload) {
-    var refresh = payload && payload.refresh;
-    var conditionsUpdated = payload && payload.conditionsUpdatedAt;
-    var inFlight = refresh && refresh.inFlight;
-    var error = payload && payload.error;
-    var ageMs = conditionsUpdated ? Date.now() - Date.parse(conditionsUpdated) : Infinity;
-    var stale = !conditionsUpdated || ageMs > refreshIntervalMs() * 2;
-    var updatedEl = $("swk-updated");
-
-    if (inFlight && !conditionsUpdated) {
-      updatedEl.textContent = "Updating…";
-      updatedEl.className = "swk-topbar__value swk-topbar__value--warn";
-      return;
+  function render(live, health) {
+    var userLoc = window.__WAYPOINT_KIOSK_LOC__;
+    var userMods = window.__WAYPOINT_KIOSK_USER_MODULES__;
+    var userWx = userMods && userMods.weather;
+    if (userWx && userWx.userLocation) {
+      live = Object.assign({}, live, {
+        timezone: userWx.timezone || live.timezone,
+        current: Object.assign({}, live.current, userWx.current),
+        forecast: Object.assign({}, live.forecast, userWx.forecast),
+        hourly: userWx.hourly || live.hourly,
+        sun: userWx.sun || live.sun
+      });
     }
-    if (inFlight) {
-      updatedEl.textContent = "Updating… · last " + ageLabel(conditionsUpdated);
-      updatedEl.className = "swk-topbar__value swk-topbar__value--warn";
-      return;
+    if (userMods && userMods.airQuality) {
+      live = Object.assign({}, live, { airQuality: userMods.airQuality });
     }
-    if (!conditionsUpdated) {
-      updatedEl.textContent = error ? "Refresh failed — retrying" : "Waiting for conditions…";
-      updatedEl.className = "swk-topbar__value" + (error ? " swk-topbar__value--stale" : "");
-      return;
+    if (userMods && userMods.alerts) {
+      live = Object.assign({}, live, {
+        modules: Object.assign({}, live.modules, {
+          alerts: { data: userMods.alerts }
+        })
+      });
     }
-    if (error && stale) {
-      updatedEl.textContent = "Refresh failed — retrying · conditions last updated " + ageLabel(conditionsUpdated);
-      updatedEl.className = "swk-topbar__value swk-topbar__value--stale";
-      return;
+    if (userMods && userMods.usgsWater) {
+      var riverData = userMods.usgsWater.nearest
+        ? { status: "live", nearest: userMods.usgsWater.nearest, summary: userMods.usgsWater.nearest.siteName }
+        : { status: userMods.usgsWater.status || "unavailable", summary: "No nearby monitored rivers" };
+      live = Object.assign({}, live, {
+        modules: Object.assign({}, live.modules, {
+          river_gauges: { data: riverData }
+        })
+      });
     }
-    if (stale) {
-      updatedEl.textContent = "Conditions last updated " + ageLabel(conditionsUpdated);
-      updatedEl.className = "swk-topbar__value swk-topbar__value--stale";
-      return;
-    }
-    updatedEl.textContent = formatStamp(conditionsUpdated, timezone) + " · your location · " + ageLabel(conditionsUpdated);
-    updatedEl.className = "swk-topbar__value";
-  }
-
-  function render(payload) {
-    lastPayload = payload || lastPayload;
-    if (!lastPayload) return;
-
-    var userLoc = lastPayload.location || window.__WAYPOINT_KIOSK_LOC__;
-    var userMods = lastPayload.userModules || window.__WAYPOINT_KIOSK_USER_MODULES__;
-    var engineCtx = lastPayload.engineContext || null;
-    var health = engineCtx && engineCtx.health ? engineCtx.health : {};
-    var live = buildLiveView(lastPayload);
+    timezone = live.timezone || timezone;
     var cur = live.current || {};
     var forecast = live.forecast || {};
-    var overall = (health.overall && health.overall.status) || "unknown";
-    var conditionsUpdated = lastPayload.conditionsUpdatedAt;
-    var stale = !conditionsUpdated || Date.now() - Date.parse(conditionsUpdated) > STALE_MS;
+    var stale = !live.updatedAt || Date.now() - Date.parse(live.updatedAt) > STALE_MS;
+    var overall = (health && health.overall && health.overall.status) || "unknown";
     var displayHealth = stale ? "stale" : overall;
 
-    timezone = live.timezone || timezone;
     nextUpdateIso = (health && health.nextScheduledUpdate) ||
       (health && health.publish && health.publish.nextScheduledRun) ||
-      (lastPayload.refresh && lastPayload.refresh.nextRefreshAt) ||
+      live.nextScheduledUpdate ||
       null;
 
     $("swk-clock").textContent = formatClock(new Date(), timezone);
     $("swk-date").textContent = formatDate(new Date(), timezone);
-    setText("swk-location", (userLoc && (userLoc.displayTitle || userLoc.placeLabel)) || "Outdoor location");
-    renderUpdatedLabel(lastPayload);
+    setText("swk-location", (userLoc && (userLoc.displayTitle || userLoc.placeLabel)) ||
+      (live.location && live.location.label) || "Outdoor location");
+
+    var updatedEl = $("swk-updated");
+    var userUpdated = userWx && userWx.current && userWx.current.observedAt;
+    updatedEl.textContent = (userUpdated ? formatStamp(userUpdated, timezone) + " · your location" : formatStamp(live.updatedAt, timezone)) +
+      " · " + ageLabel(userUpdated || live.updatedAt);
+    updatedEl.className = "swk-topbar__value" + (stale ? " swk-topbar__value--stale" : "");
 
     var badge = $("swk-health-badge");
     badge.textContent = displayHealth;
@@ -374,39 +339,22 @@
     setText("swk-hourly-note", (live.hourly && live.hourly.note) || "Next hours");
     setHtml("swk-hourly", renderHourly(live.hourly));
     setHtml("swk-photo", renderPhoto(userMods && userMods.photography));
-    setHtml("swk-sun-moon", renderSunMoon(live.sun, live.moon));
+    setHtml("swk-sun-moon", renderSunMoon(
+      (userWx && userWx.sun) || live.sun,
+      (userWx && userWx.moon) || live.moon
+    ));
     setHtml("swk-aqi", renderAqi(live.airQuality, moduleStatus(health, "air_quality")));
-    setHtml("swk-uv", renderUv(live, health));
-    setHtml("swk-pollen", renderPollen(live, health));
-    setHtml("swk-river", renderRiver(live, health));
+    setHtml("swk-uv", renderUv(live, health || {}));
+    setHtml("swk-pollen", renderPollen(live, health || {}));
+    setHtml("swk-river", renderRiver(live, health || {}));
     setHtml("swk-wildlife", renderWildlife());
-    setHtml("swk-alerts", renderAlerts(live, health));
+    setHtml("swk-alerts", renderAlerts(live, health || {}));
 
-    setText("swk-engine-version", live.engineVersion || "—");
+    setText("swk-engine-version", live.engineVersion || health.engineVersion || "—");
     setHtml("swk-modules", renderModules(health));
     setText("swk-countdown", countdownLabel(nextUpdateIso));
-
-    var enginePublished = lastPayload.enginePublishedAt;
-    var engineHealthText = (health.overall && health.overall.message) || overall;
-    if (enginePublished) {
-      engineHealthText += " · engine published " + ageLabel(enginePublished);
-    }
-    setText("swk-engine-health", engineHealthText);
-
-    var refresh = lastPayload.refresh || window.__WAYPOINT_KIOSK_REFRESH__;
-    var refreshLabel = "Live";
-    if (refresh && refresh.inFlight) {
-      refreshLabel = "Refreshing…";
-    } else if (lastPayload.error) {
-      refreshLabel = "Retrying";
-    } else if (refresh && refresh.nextRefreshAt) {
-      refreshLabel = "Live · next in " + countdownLabel(refresh.nextRefreshAt);
-    }
-    setText(
-      "swk-refresh",
-      refreshLabel,
-      "swk-statusbar__value " + (lastPayload.error ? "swk-statusbar__value--warn" : "swk-statusbar__value--ok")
-    );
+    setText("swk-engine-health", (health.overall && health.overall.message) || overall);
+    setText("swk-refresh", "Live · next in " + Math.max(1, Math.ceil(refreshCountdown / 60000)) + " min", "swk-statusbar__value swk-statusbar__value--ok");
   }
 
   function renderError(message) {
@@ -428,21 +376,34 @@
     }, 180);
   }
 
-  function onRefresh(ev) {
-    var detail = ev && ev.detail;
-    if (!detail) return;
-    if (detail.error && !detail.userModules) {
-      renderError(detail.error);
-      return;
-    }
-    render(detail);
-    pulseRefresh();
+  function refresh() {
+    setText("swk-refresh", "Refreshing…", "swk-statusbar__value swk-statusbar__value--warn");
+    return Promise.all([
+      fetchJson("data/live.json"),
+      fetchJson("data/health.json").catch(function () { return {}; })
+    ]).then(function (results) {
+      render(results[0], results[1] || {});
+      refreshCountdown = REFRESH_MS;
+      pulseRefresh();
+    }).catch(function (err) {
+      renderError("Live data unavailable — " + (err && err.message ? err.message : "check server"));
+    });
   }
 
-  document.addEventListener("waypoint:kiosk-refresh", onRefresh);
-  tickTimer = window.setInterval(function () {
+  function tick() {
     $("swk-clock").textContent = formatClock(new Date(), timezone);
     setText("swk-countdown", countdownLabel(nextUpdateIso));
-    if (lastPayload) renderUpdatedLabel(lastPayload);
-  }, 1000);
+    if (refreshCountdown > 0) refreshCountdown -= 1000;
+    var refreshEl = $("swk-refresh");
+    if (refreshEl && refreshEl.textContent.indexOf("Refreshing") === -1 && refreshEl.textContent.indexOf("failed") === -1) {
+      refreshEl.textContent = "Live · next in " + Math.max(1, Math.ceil(refreshCountdown / 60000)) + " min";
+    }
+  }
+
+  refresh();
+  document.addEventListener("waypoint:kiosk-location-ready", function () {
+    refresh();
+  });
+  refreshTimer = window.setInterval(refresh, REFRESH_MS);
+  window.setInterval(tick, 1000);
 })();

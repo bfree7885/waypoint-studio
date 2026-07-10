@@ -1,7 +1,7 @@
 /**
- * Kiosk — user location helpers and platform mapping (no refresh lifecycle).
+ * Kiosk — user location bootstrap + full OIP at detected coordinates.
  */
-(function (global) {
+(function () {
   "use strict";
 
   var ENGINE_BASE = "design-system/content-engine/";
@@ -9,9 +9,19 @@
 
   function getBoot() {
     if (boot) return boot;
-    if (!global.WDS || !global.WDS.appBoot || !global.WDS.appBoot.create) return null;
-    boot = global.WDS.appBoot.create({ base: ENGINE_BASE, promptMount: null, skipPrompt: true });
+    if (!window.WDS || !WDS.appBoot || !WDS.appBoot.create) return null;
+    boot = WDS.appBoot.create({ base: ENGINE_BASE, promptMount: null });
     return boot;
+  }
+
+  function waitForBoot() {
+    return new Promise(function (resolve) {
+      function check() {
+        if (getBoot()) resolve();
+        else requestAnimationFrame(check);
+      }
+      check();
+    });
   }
 
   function num(meas) {
@@ -28,8 +38,8 @@
     var daily = pkg && pkg.daily && pkg.daily[0];
     var hourly = pkg && pkg.hourly;
     var dl = platform.daylight;
-    var photo = global.WDS && global.WDS.photographyConditions && global.WDS.photographyConditions.fromPlatform
-      ? global.WDS.photographyConditions.fromPlatform(platform)
+    var photo = window.WDS && WDS.photographyConditions && WDS.photographyConditions.fromPlatform
+      ? WDS.photographyConditions.fromPlatform(platform)
       : null;
     var hours = [];
     var hourlyArr = Array.isArray(hourly) ? hourly : (hourly && hourly.nextHours ? hourly.nextHours : []);
@@ -82,63 +92,48 @@
     };
   }
 
-  function applyUserPackage(platform, loc) {
-    var mods = platformToKioskModules(platform);
-    global.__WAYPOINT_KIOSK_LOC__ = loc || global.__WAYPOINT_KIOSK_LOC__ || null;
-    global.__WAYPOINT_KIOSK_PLATFORM__ = platform || null;
-    global.__WAYPOINT_KIOSK_USER_MODULES__ = mods;
-    global.__WAYPOINT_KIOSK_WEATHER__ = mods && mods.weather;
-    return mods;
-  }
-
-  function mountRefreshDebug(diag) {
-    var host = global.document.getElementById("swk");
-    if (!host) return;
-    var panel = global.document.getElementById("swk-refresh-debug");
-    if (!panel) {
-      panel = global.document.createElement("aside");
-      panel.id = "swk-refresh-debug";
-      panel.className = "swk-refresh-debug";
-      panel.setAttribute("aria-label", "Kiosk refresh diagnostics");
-      host.appendChild(panel);
-    }
-    var rows = [
-      ["Build", diag.buildId || "—"],
-      ["Coords", diag.coordinates ? diag.coordinates.lat + ", " + diag.coordinates.lng : "—"],
-      ["Context ID", diag.locationContextId || "—"],
-      ["Interval", diag.refreshIntervalMs + " ms"],
-      ["Generation", String(diag.generation)],
-      ["In flight", String(diag.inFlight)],
-      ["Failures", String(diag.failureCount)],
-      ["Last attempt", diag.lastAttemptAt || "—"],
-      ["Last success", diag.lastSuccessAt || "—"],
-      ["Next refresh", diag.nextRefreshAt || "—"],
-      ["Conditions updated", diag.conditionsUpdatedAt || "—"],
-      ["Engine published", diag.enginePublishedAt || "—"],
-      ["Error", diag.latestError || "—"]
-    ];
-    var modRows = "";
-    if (diag.moduleResults) {
-      Object.keys(diag.moduleResults).forEach(function (name) {
-        var mod = diag.moduleResults[name];
-        modRows += "<tr><td>" + name + "</td><td>" + (mod.status || "—") + "</td><td>" + (mod.updatedAt || "—") + "</td></tr>";
+  function bootKiosk() {
+    waitForBoot()
+      .then(function () {
+        var B = getBoot();
+        return B.bootstrapLocation();
+      })
+      .then(function (loc) {
+        window.__WAYPOINT_KIOSK_LOC__ = loc;
+        if (!loc || loc.lat == null || loc.lng == null) {
+          window.__WAYPOINT_KIOSK_PLATFORM__ = null;
+          window.__WAYPOINT_KIOSK_USER_MODULES__ = null;
+          window.__WAYPOINT_KIOSK_WEATHER__ = null;
+          return loc;
+        }
+        return getBoot().fetchPlatform(loc).then(function (platform) {
+          window.__WAYPOINT_KIOSK_PLATFORM__ = platform;
+          var mods = platformToKioskModules(platform);
+          window.__WAYPOINT_KIOSK_USER_MODULES__ = mods;
+          window.__WAYPOINT_KIOSK_WEATHER__ = mods && mods.weather;
+          if (window.WDS && WDS.locationDebug && WDS.locationDebug.mount) {
+            WDS.locationDebug.mount(loc, platform, document.getElementById("swk"));
+          }
+          return loc;
+        });
+      })
+      .then(function (loc) {
+        document.dispatchEvent(new CustomEvent("waypoint:kiosk-location-ready", {
+          detail: {
+            location: loc,
+            platform: window.__WAYPOINT_KIOSK_PLATFORM__,
+            weather: window.__WAYPOINT_KIOSK_WEATHER__
+          }
+        }));
+      })
+      .catch(function () {
+        document.dispatchEvent(new CustomEvent("waypoint:kiosk-location-ready", { detail: {} }));
       });
-    }
-    panel.innerHTML =
-      "<h2>Kiosk refresh debug</h2>" +
-      "<table><tbody>" +
-      rows.map(function (row) {
-        return "<tr><th>" + row[0] + "</th><td>" + row[1] + "</td></tr>";
-      }).join("") +
-      "</tbody></table>" +
-      (modRows ? "<h3>Modules</h3><table><tbody>" + modRows + "</tbody></table>" : "");
   }
 
-  global.KioskBoot = {
-    ENGINE_BASE: ENGINE_BASE,
-    getBoot: getBoot,
-    platformToKioskModules: platformToKioskModules,
-    applyUserPackage: applyUserPackage,
-    mountRefreshDebug: mountRefreshDebug
-  };
-})(window);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootKiosk);
+  } else {
+    bootKiosk();
+  }
+})();
