@@ -6,6 +6,9 @@
 
   var ENGINE_BASE = "design-system/content-engine/";
   var DEBUG_COMMIT = (function () {
+    if (window.__WAYPOINT_BUILD__ && window.__WAYPOINT_BUILD__.commit) {
+      return window.__WAYPOINT_BUILD__.commit;
+    }
     var feed = window.WDS && WDS.liveEngine && WDS.liveEngine.getLast && WDS.liveEngine.getLast();
     if (feed && feed.engineVersion) return "engine-" + feed.engineVersion;
     return "local";
@@ -88,9 +91,11 @@
       ? WDS.photographyConditions.fromPlatform(platform)
       : null;
     var engineCtx = platform && platform.engineContext;
+    var build = window.__WAYPOINT_BUILD__ || null;
 
     return {
       commitHash: typeof DEBUG_COMMIT === "function" ? DEBUG_COMMIT() : DEBUG_COMMIT,
+      build: build,
       buildTime: DEBUG_BUILD_TIME,
       activePageTitle: document.title || "",
       capturedAt: new Date().toISOString(),

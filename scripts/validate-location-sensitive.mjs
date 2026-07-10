@@ -182,6 +182,65 @@ const resolveResult = runHarness({}, resolveHarness);
 console.log(resolveResult.stdout);
 check("weather resolveCoords priority harness", resolveResult.status === 0);
 
+const guardHarness = `
+global.window = global;
+const fs = require('fs');
+const vm = require('vm');
+const root = ${JSON.stringify(ROOT)};
+function load(file) {
+  vm.runInThisContext(fs.readFileSync(root + '/' + file, 'utf8'), { filename: file });
+}
+load('design-system/js/wds-location-context.js');
+load('design-system/js/wds-platform-guard.js');
+
+WDS.locationContext.setActive({ lat: 41.331, lng: -75.038, timezone: 'America/New_York' });
+const enginePlatform = {
+  meta: { liveFeed: true, contentMode: 'live-engine', contentSource: 'live-engine' },
+  daylight: {
+    sunriseFormatted: '6:14 AM',
+    sunsetFormatted: '9:04 PM',
+    requestLat: 39.828,
+    requestLng: -98.579,
+    timezone: 'America/Chicago',
+    sourceClassification: 'live-engine'
+  },
+  usgsWater: {
+    nearest: { siteName: 'WHITE ROCK C NR BURR OAK, KS', lat: 39.9, lng: -98.3 },
+    requestLat: 39.828,
+    requestLng: -98.579,
+    sourceClassification: 'live-engine'
+  }
+};
+const cleaned = WDS.platformGuard.sanitizeUserPlatform(enginePlatform, { lat: 41.331, lng: -75.038 });
+if (cleaned.daylight !== null) {
+  console.log('FAIL platform guard should strip engine daylight');
+  process.exit(1);
+}
+if (cleaned.usgsWater && cleaned.usgsWater.nearest) {
+  console.log('FAIL platform guard should strip engine river');
+  process.exit(1);
+}
+let threw = false;
+try {
+  load('design-system/js/outdoor-intelligence/wds-live-engine-feed.js');
+  WDS.liveEngine.toPlatform({}, {});
+} catch (e) {
+  threw = /disabled for user-facing/.test(e.message);
+}
+if (!threw) {
+  console.log('FAIL liveEngine.toPlatform should throw for user surfaces');
+  process.exit(1);
+}
+console.log('PASS platform guard rejects engine live.json package');
+console.log('PASS liveEngine.toPlatform disabled for user surfaces');
+process.exit(0);
+`;
+
+const guardResult = runHarness({}, guardHarness);
+console.log(guardResult.stdout);
+if (guardResult.stderr) console.error(guardResult.stderr);
+check("platform guard + toPlatform disable harness", guardResult.status === 0);
+
 if (issues.length) {
   console.error("\nLOCATION-SENSITIVE VALIDATION FAILED");
   process.exit(1);

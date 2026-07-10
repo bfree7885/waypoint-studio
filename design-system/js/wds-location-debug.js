@@ -60,7 +60,13 @@
     var gauge = usgs && usgs.nearest;
     var engineCtx = platform && platform.engineContext;
     var engineLoc = engineCtx && engineCtx.engine && engineCtx.engine.publishLocation;
+    var build = global.__WAYPOINT_BUILD__ || null;
     var rows = [
+      ["— Build —", ""],
+      ["Deployed commit", build && build.commit ? build.commit : "—"],
+      ["Deployed at", build && build.deployedAt ? build.deployedAt : "—"],
+      ["Location schema", build && build.locationSchema != null ? build.locationSchema : "—"],
+      ["Loader version", build && build.loaderVersion != null ? build.loaderVersion : "—"],
       ["— User context —", ""],
       ["Location source", loc.source],
       ["User latitude", loc.lat],
@@ -127,6 +133,15 @@
         ? ageFromIso(platform.meta.hydratedAt) : "—"],
       ["— Location-sensitive modules —", ""]
     );
+    if (global.WDS && global.WDS.build && global.WDS.build.getScriptLoads) {
+      rows.push(["— Loaded scripts —", ""]);
+      global.WDS.build.getScriptLoads().slice(-12).forEach(function (entry) {
+        rows.push(["Script", (entry.status || "pending") + " · " + (entry.url || "—")]);
+      });
+    }
+    if (global.__WAYPOINT_RENDER_AUDIT__) {
+      rows.push(["Render audit traces", (global.__WAYPOINT_RENDER_AUDIT__.valueTraces || []).length]);
+    }
     var LC = global.WDS && global.WDS.locationContext;
     if (LC && LC.auditRows) {
       LC.auditRows(platform, LC.getActive && LC.getActive()).forEach(function (row) {

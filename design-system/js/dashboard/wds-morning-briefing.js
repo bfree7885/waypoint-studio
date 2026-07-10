@@ -370,7 +370,10 @@
 
     var usgs = platform.usgsWater;
     var LC = global.WDS && global.WDS.locationContext;
-    if (LC && LC.validateUsgsWater && usgs) {
+    var PG = global.WDS && global.WDS.platformGuard;
+    if (PG && PG.getValidatedUsgs) {
+      usgs = PG.getValidatedUsgs(platform, ctx && ctx.location);
+    } else if (LC && LC.validateUsgsWater && usgs) {
       var riverVerdict = LC.validateUsgsWater(usgs, LC.getActive && LC.getActive());
       if (!riverVerdict.eligible) usgs = null;
     }
@@ -464,6 +467,10 @@
     var intel = doc.intel;
     var learn = doc.learn;
     var loc = ctx.location || {};
+    var PG = global.WDS && global.WDS.platformGuard;
+    var validatedDaylight = PG && PG.getValidatedDaylight
+      ? PG.getValidatedDaylight(platform, loc)
+      : platform.daylight;
     var since = compareSinceYesterday(wx, brief);
     var photoGuide = doc.photoFieldGuide || buildPhotoFieldGuide(wx, platform, intel);
 
@@ -497,9 +504,9 @@
       pulse: {
         today: brief ? brief.verdictLabel : "Outdoor briefing",
         now: wx && wx.current ? (num(wx.current.temperature) != null ? Math.round(num(wx.current.temperature)) + "° · " + ((wx.current.conditions && wx.current.conditions.summary) || "") : synthesizeNow(wx, intel)) : "Loading…",
-        next: platform.daylight && platform.daylight.goldenHour
-          ? "Golden hour · " + platform.daylight.goldenHour
-          : (platform.daylight && platform.daylight.sunriseFormatted ? "Sunrise " + platform.daylight.sunriseFormatted : "Check hourly forecast")
+        next: validatedDaylight && validatedDaylight.goldenHour
+          ? "Golden hour · " + validatedDaylight.goldenHour
+          : (validatedDaylight && validatedDaylight.sunriseFormatted ? "Sunrise " + validatedDaylight.sunriseFormatted : "Check hourly forecast")
       }
     };
   }

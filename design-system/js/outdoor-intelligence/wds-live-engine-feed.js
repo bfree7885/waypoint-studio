@@ -327,6 +327,13 @@
   }
 
   function toPlatform(feed, loc) {
+    throw new Error(
+      "liveEngine.toPlatform is disabled for user-facing surfaces. " +
+      "Dashboard and kiosk must use WDS.outdoorIntelligence.get() at user coordinates."
+    );
+  }
+
+  function toPlatformEngineDiagnostics(feed, loc) {
     if (!usable(feed)) return null;
     var weatherRef = toWeatherPackage(feed);
     var aq = toAirQuality(feed);
@@ -417,6 +424,7 @@
     mergeEngineContext: mergeEngineContext,
     buildModuleSources: buildModuleSources,
     toPlatform: toPlatform,
+    toPlatformEngineDiagnostics: toPlatformEngineDiagnostics,
     toWeatherPackage: toWeatherPackage,
     getLast: getLast,
     getLastHealth: function () { return lastHealth; },

@@ -420,7 +420,14 @@
     }
     return E.get(req).then(function (core) {
       return enrichFromEngine(core, req, generation).then(function (pkg) {
-        if (!pkg && lastPackage) return M.normalizePackage(lastPackage);
+        if (!pkg && lastPackage) {
+          var stale = M.normalizePackage(lastPackage);
+          var PG = global.WDS && global.WDS.platformGuard;
+          if (PG && PG.sanitizeUserPlatform) {
+            stale = PG.sanitizeUserPlatform(stale, req.location);
+          }
+          return stale;
+        }
         return pkg;
       });
     }).catch(function (err) {
@@ -508,6 +515,10 @@
     adoptPackage: function (pkg) {
       if (!pkg) return null;
       pkg = M.normalizePackage(pkg);
+      var PG = global.WDS && global.WDS.platformGuard;
+      if (PG && PG.sanitizeUserPlatform) {
+        pkg = PG.sanitizeUserPlatform(pkg, lastRequest && lastRequest.location);
+      }
       lastPackage = pkg;
       notifyChange(pkg);
       return pkg;

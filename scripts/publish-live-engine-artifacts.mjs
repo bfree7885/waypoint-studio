@@ -199,6 +199,12 @@ function main() {
 
   try {
     const addArgs = ARTIFACTS.map((rel) => JSON.stringify(rel)).join(" ");
+    run(`git fetch ${remote} ${branch}`, { silent: true });
+    const behind = runQuiet(`git rev-list --count HEAD..${remote}/${branch} 2>/dev/null`);
+    if (behind && Number(behind) > 0) {
+      log(`rebasing onto ${remote}/${branch} (${behind} commit(s) behind)`);
+      run(`git rebase ${remote}/${branch}`, { silent: true });
+    }
     run(`git add -- ${addArgs}`, { silent: true });
     run(`git commit -m ${JSON.stringify(commitMessage)}`, { silent: true });
     const commit = runQuiet("git rev-parse --short HEAD");

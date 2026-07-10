@@ -8,12 +8,25 @@
     ? document.currentScript.src.replace(/\/[^/]+$/, "/")
     : "design-system/js/";
 
+  function versionQuery() {
+    if (window.WDS && window.WDS.build && window.WDS.build.getVersionQuery) {
+      return window.WDS.build.getVersionQuery();
+    }
+    var src = document.currentScript && document.currentScript.src;
+    var match = src && src.match(/[?&]v=([^&]+)/);
+    return match ? "?v=" + decodeURIComponent(match[1]) : "";
+  }
+
+  var vq = versionQuery();
+
   [
     "wds-us-states.js",
     "wds-geocode-service.js",
     "wds-ip-geolocation.js",
     "dashboard/wds-us-national-context.js",
     "wds-location-context.js",
+    "wds-platform-guard.js",
+    "wds-render-audit.js",
     "wds-location.js",
     "wds-location-debug.js",
     "wds-research-integrity.js",
@@ -53,8 +66,11 @@
     "wds-app-boot.js"
   ].forEach(function (file) {
     var s = document.createElement("script");
-    s.src = base + file;
+    s.src = base + file + vq;
     s.defer = true;
+    if (window.WDS && window.WDS.build && window.WDS.build.trackScript) {
+      window.WDS.build.trackScript(s);
+    }
     document.head.appendChild(s);
   });
 })();

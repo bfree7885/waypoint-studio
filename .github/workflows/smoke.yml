@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Generate build metadata
+        run: node scripts/generate-build-info.mjs
+
       - name: Install smoke test dependency
         run: npm install ws@8.21.0 --no-save
 

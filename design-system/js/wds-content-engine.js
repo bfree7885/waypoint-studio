@@ -905,6 +905,10 @@
         if (platform && LE && LE.mergeEngineContext) {
           platform = LE.mergeEngineContext(platform, engineCtx, loc);
         }
+        var PG = global.WDS && global.WDS.platformGuard;
+        if (platform && PG && PG.sanitizeUserPlatform) {
+          platform = PG.sanitizeUserPlatform(platform, loc);
+        }
         if (platform && OIP && typeof OIP.adoptPackage === "function") {
           try { OIP.adoptPackage(platform); } catch (e) { /* noop */ }
         }
