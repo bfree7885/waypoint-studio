@@ -5,12 +5,12 @@
 (function (global) {
   "use strict";
   var BUILD = {
-  "commit": "befac31",
-  "commitFull": "befac314d50b2fb5176e3bc8367e9b57bcb4285a",
-  "deployedAt": "2026-07-10T02:23:03.308Z",
-  "locationSchema": 3,
+  "commit": "8d2980f",
+  "commitFull": "8d2980f994913bd7fdad24bdd46e3b638a63b400",
+  "deployedAt": "2026-07-10T14:07:02.438Z",
+  "locationSchema": 4,
   "loaderVersion": 2,
-  "migrationEpoch": 2,
+  "migrationEpoch": 3,
   "minRecoveryBuild": "cf51ce4"
 };
   var scriptLoads = [];
@@ -95,10 +95,24 @@
       return /WHITE ROCK|BURR OAK,\s*KS|live-engine|waypoint-live-engine|engine-publish/i.test(String(raw));
     }
 
+    function looksEngineLocation(raw) {
+      if (!raw) return false;
+      try {
+        var parsed = JSON.parse(String(raw));
+        if (!parsed || !isFinite(Number(parsed.lat)) || !isFinite(Number(parsed.lng))) return false;
+        return Math.abs(Number(parsed.lat) - 39.8283) <= 0.2 &&
+          Math.abs(Number(parsed.lng) + 98.5795) <= 0.2;
+      } catch (e) { return false; }
+    }
+
     function clearStale() {
       try {
         if (global.localStorage) {
           STALE_LOCAL.forEach(function (k) { global.localStorage.removeItem(k); });
+          var locRaw = global.localStorage.getItem("wds-location-v3");
+          if (looksEngineLocation(locRaw)) {
+            global.localStorage.removeItem("wds-location-v3");
+          }
           var purge = [];
           for (var i = 0; i < global.localStorage.length; i++) {
             var key = global.localStorage.key(i);

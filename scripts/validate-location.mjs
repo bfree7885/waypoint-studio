@@ -110,6 +110,14 @@ console.log(pikeOk ? 'PASS Pike local bundle eligible' : 'FAIL Pike local bundle
 const legacy = { source: 'default', isDefault: true, regionId: 'pike-county-pa', lat: 41.3312, lng: -75.038 };
 console.log(WDS.location.isLegacyDefault(legacy) ? 'PASS legacy default detection' : 'FAIL legacy default');
 
+const enginePublish = { source: 'geo', lat: 39.8283, lng: -98.5795, timestamp: Date.now() };
+console.log(WDS.location.isStaleOrInvalidCache(enginePublish, index)
+  ? 'PASS engine publish cache rejected'
+  : 'FAIL engine publish cache should be rejected');
+console.log(WDS.location.isEnginePublishPoint(39.8283, -98.5795)
+  ? 'PASS engine publish point detection'
+  : 'FAIL engine publish point detection');
+
 const maxKm = WDS.usgsWater.MAX_GAUGE_DISTANCE_KM;
 const maxMiles = WDS.usgsWater.MAX_GAUGE_DISTANCE_MILES;
 console.log(maxMiles === 50 && maxKm > 80 && maxKm < 81

@@ -12,8 +12,8 @@ const ROOT = path.resolve(__dirname, "..");
 const BUILD_JSON = path.join(ROOT, "data", "build-info.json");
 const BUILD_JS = path.join(ROOT, "design-system", "js", "wds-build.js");
 const LOADER_VERSION = 2;
-const LOCATION_SCHEMA = 3;
-const MIGRATION_EPOCH = 2;
+const LOCATION_SCHEMA = 4;
+const MIGRATION_EPOCH = 3;
 const MIN_RECOVERY_BUILD = "cf51ce4";
 
 function gitShortSha() {
@@ -187,10 +187,24 @@ function main() {
       return /WHITE ROCK|BURR OAK,\\s*KS|live-engine|waypoint-live-engine|engine-publish/i.test(String(raw));
     }
 
+    function looksEngineLocation(raw) {
+      if (!raw) return false;
+      try {
+        var parsed = JSON.parse(String(raw));
+        if (!parsed || !isFinite(Number(parsed.lat)) || !isFinite(Number(parsed.lng))) return false;
+        return Math.abs(Number(parsed.lat) - 39.8283) <= 0.2 &&
+          Math.abs(Number(parsed.lng) + 98.5795) <= 0.2;
+      } catch (e) { return false; }
+    }
+
     function clearStale() {
       try {
         if (global.localStorage) {
           STALE_LOCAL.forEach(function (k) { global.localStorage.removeItem(k); });
+          var locRaw = global.localStorage.getItem("wds-location-v3");
+          if (looksEngineLocation(locRaw)) {
+            global.localStorage.removeItem("wds-location-v3");
+          }
           var purge = [];
           for (var i = 0; i < global.localStorage.length; i++) {
             var key = global.localStorage.key(i);

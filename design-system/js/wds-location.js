@@ -16,6 +16,9 @@
   var indexCache = null;
   var currentState = null;
   var changeListeners = [];
+  var lastDiagnostics = null;
+  var US_CENTER = { lat: 39.8283, lng: -98.5795 };
+  var ENGINE_TOLERANCE = 0.2;
 
   function escapeHtml(str) {
     if (str == null) return "";
@@ -71,10 +74,79 @@
     currentState = null;
   }
 
+  function isEnginePublishPoint(lat, lng) {
+    if (!isFinite(Number(lat)) || !isFinite(Number(lng))) return false;
+    return Math.abs(Number(lat) - US_CENTER.lat) <= ENGINE_TOLERANCE &&
+      Math.abs(Number(lng) - US_CENTER.lng) <= ENGINE_TOLERANCE;
+  }
+
   function isKnownTestCoords(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return false;
+    if (isEnginePublishPoint(lat, lng)) return true;
     if (lat >= 37 && lat <= 40 && lng <= -94 && lng >= -102) return true;
     return false;
+  }
+
+  function publishDiagnostics(diag) {
+    lastDiagnostics = diag;
+    try {
+      console.info("[Waypoint location]", diag);
+    } catch (e) { /* noop */ }
+  }
+
+  function getDiagnostics() {
+    return lastDiagnostics;
+  }
+
+  function unavailableState() {
+    return {
+      source: "unavailable",
+      lat: null,
+      lng: null,
+      displayTitle: "Location unavailable",
+      placeLabel: "Location unavailable",
+      unavailable: true,
+      timestamp: Date.now(),
+      refreshReason: "all-providers-failed"
+    };
+  }
+
+  function annotateDiagnostics(state, diag) {
+    if (!diag) return;
+    diag.selectedSource = state && state.source ? state.source : null;
+    diag.selectedLat = state && state.lat != null ? state.lat : null;
+    diag.selectedLng = state && state.lng != null ? state.lng : null;
+    diag.selectedTimezone = state && state.timezone ? state.timezone : null;
+    diag.cacheUsed = !!(state && (state.cacheUsed || state.refreshReason === "cache-fallback"));
+    publishDiagnostics(diag);
+  }
+
+  function tryCacheFallback(index, diag) {
+    var stored = readStored();
+    if (stored && isLegacyDefault(stored)) stored = null;
+    if (stored && isStaleOrInvalidCache(stored, index)) {
+      clearStored();
+      stored = null;
+    }
+    if (stored && isValidCoords(stored) && !isEnginePublishPoint(stored.lat, stored.lng)) {
+      stored.refreshReason = "cache-fallback";
+      stored.cacheUsed = true;
+      if (diag) diag.attempts.push({ method: "cache", ok: true, reason: null });
+      var finalized = finalizeStored(stored, index);
+      annotateDiagnostics(finalized, diag);
+      return finalized;
+    }
+    if (diag) {
+      diag.attempts.push({
+        method: "cache",
+        ok: false,
+        reason: stored ? "stale-or-engine-publish-coordinates" : "no-cached-coordinates"
+      });
+    }
+    var unavailable = unavailableState();
+    if (diag) diag.attempts.push({ method: "unavailable", ok: true, reason: "all-providers-failed" });
+    annotateDiagnostics(unavailable, diag);
+    return unavailable;
   }
 
   function isStaleOrInvalidCache(state, index) {
@@ -504,29 +576,51 @@
     options = options || {};
     var index = options.index || indexCache;
     var force = !!options.forceRefresh;
-    var stored = readStored();
-    if (stored && isLegacyDefault(stored)) stored = null;
-    if (stored && isStaleOrInvalidCache(stored, index)) {
-      clearStored();
-      stored = null;
-    }
-
-    if (!force && stored && isValidCoords(stored) && !shouldRefreshStored(stored, index)) {
-      stored.refreshReason = "cache-hit";
-      return Promise.resolve(finalizeStored(stored, index));
-    }
+    var diag = {
+      startedAt: new Date().toISOString(),
+      attempts: [],
+      cacheUsed: false,
+      selectedSource: null,
+      selectedLat: null,
+      selectedLng: null,
+      selectedTimezone: null
+    };
 
     return detectFromBrowser(index, { refreshReason: force ? "forced-refresh" : "bootstrap" })
+      .then(function (state) {
+        diag.attempts.push({ method: "browser-geolocation", ok: true, reason: null });
+        return state;
+      })
       .catch(function (browserErr) {
+        diag.attempts.push({
+          method: "browser-geolocation",
+          ok: false,
+          reason: geolocationErrorMessage(browserErr)
+        });
         return detectFromIp(index, {
           fallbackReason: geolocationErrorMessage(browserErr)
+        }).then(function (state) {
+          diag.attempts.push({ method: "ip-geolocation", ok: true, reason: null });
+          return state;
+        }).catch(function (ipErr) {
+          diag.attempts.push({
+            method: "ip-geolocation",
+            ok: false,
+            reason: ipErr && ipErr.message ? ipErr.message : "IP geolocation unavailable"
+          });
+          return tryCacheFallback(index, diag);
         });
       })
       .then(function (state) {
-        return saveState(state, { silent: options.silent });
-      })
-      .catch(function () {
-        return Promise.reject(new Error("Could not detect location — enable browser location or choose a region."));
+        if (!state) return tryCacheFallback(index, diag);
+        if (state.source === "unavailable") {
+          currentState = state;
+          return state;
+        }
+        return saveState(state, { silent: options.silent }).then(function (saved) {
+          annotateDiagnostics(saved, diag);
+          return saved;
+        });
       });
   }
 
@@ -564,7 +658,8 @@
   }
 
   function formatStatusLine(loc) {
-    if (!loc) return getDefaultLabel();
+    if (!loc) return "Location unavailable";
+    if (loc.unavailable || loc.source === "unavailable") return "Location unavailable";
     if (loc.displayTitle) {
       var line = loc.displayTitle;
       if (loc.displaySubtitle) line += " — " + loc.displaySubtitle;
@@ -848,27 +943,37 @@
         stored = null;
       }
 
-      if (stored && isValidCoords(stored) && !options.forceRefresh && !shouldRefreshStored(stored, index)) {
-        currentState = finalizeStored(stored, index);
-        if (Date.now() - (stored.timestamp || 0) > GEO_SOFT_REFRESH_MS) {
-          refreshLocationInBackground(index, base);
-        }
-        return enrichWithGeocode(currentState).then(function (enriched) {
-          if (enriched !== currentState) writeStored(enriched, { silent: true });
-          currentState = enriched;
-          return enriched;
-        });
-      }
-
-      return detectLocation({ index: index, base: base, silent: true }).then(function (state) {
+      return detectLocation({
+        index: index,
+        base: base,
+        silent: true,
+        forceRefresh: !!options.forceRefresh
+      }).then(function (state) {
         currentState = state;
-        if (promptMount) {
+        if (promptMount && state && state.source !== "unavailable") {
           try {
             promptMount.innerHTML = "";
             promptMount.setAttribute("hidden", "hidden");
           } catch (e) { /* noop */ }
         }
-        return state;
+        if (state && state.source !== "unavailable") {
+          if (Date.now() - (state.timestamp || 0) > GEO_SOFT_REFRESH_MS) {
+            refreshLocationInBackground(index, base);
+          }
+          return enrichWithGeocode(state).then(function (enriched) {
+            if (enriched !== state && enriched.source !== "unavailable") {
+              writeStored(enriched, { silent: true });
+            }
+            currentState = enriched;
+            return enriched;
+          });
+        }
+        if (options.skipPrompt || !promptMount) {
+          return state;
+        }
+        return new Promise(function (resolve) {
+          renderPrompt(promptMount, index, resolve);
+        });
       }).catch(function (err) {
         if (options.skipPrompt) {
           throw err;
@@ -982,7 +1087,12 @@
     projectToSchematic: projectToSchematic,
     getRegionForProjection: getRegionForProjection,
     renderBar: renderBar,
-    bindBar: bindBar
+    bindBar: bindBar,
+    isEnginePublishPoint: isEnginePublishPoint,
+    isKnownTestCoords: isKnownTestCoords,
+    unavailableState: unavailableState,
+    getDiagnostics: getDiagnostics,
+    US_CENTER: US_CENTER
   };
   Object.defineProperty(locationApi, "DEFAULT_REGION_ID", {
     configurable: true,

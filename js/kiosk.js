@@ -6,10 +6,71 @@
 
   var REFRESH_MS = 5 * 60 * 1000;
   var STALE_MS = 3 * 60 * 60 * 1000;
-  var timezone = "America/New_York";
+  var timezone = browserTimezone();
   var nextUpdateIso = null;
   var refreshTimer = null;
   var refreshCountdown = REFRESH_MS;
+
+  function browserTimezone() {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch (e) {
+      return "America/New_York";
+    }
+  }
+
+  function isEnginePublishLive(live) {
+    if (!live || !live.location) return false;
+    var PG = window.WDS && window.WDS.platformGuard;
+    if (PG && PG.isEnginePublishPoint) {
+      return PG.isEnginePublishPoint(live.location.lat, live.location.lng);
+    }
+    var LOC = window.WDS && window.WDS.location;
+    if (LOC && LOC.isEnginePublishPoint) {
+      return LOC.isEnginePublishPoint(live.location.lat, live.location.lng);
+    }
+    return false;
+  }
+
+  function hasUserWeather(userMods) {
+    return !!(userMods && userMods.weather && userMods.weather.userLocation);
+  }
+
+  function resolveTimezone(userLoc, userWx) {
+    if (userWx && userWx.timezone) return userWx.timezone;
+    if (userLoc && userLoc.timezone) return userLoc.timezone;
+    return browserTimezone();
+  }
+
+  function resolveLocationLabel(userLoc) {
+    if (!userLoc) return "Locating…";
+    if (userLoc.unavailable || userLoc.source === "unavailable") return "Location unavailable";
+    if (userLoc.displayTitle) return userLoc.displayTitle;
+    if (userLoc.placeLabel) return userLoc.placeLabel;
+    if (userLoc.lat != null && userLoc.lng != null) {
+      var LOC = window.WDS && window.WDS.location;
+      if (LOC && LOC.formatCoords) return LOC.formatCoords(userLoc.lat, userLoc.lng);
+      return userLoc.lat.toFixed(2) + ", " + userLoc.lng.toFixed(2);
+    }
+    return "Location unavailable";
+  }
+
+  function logKioskDiagnostics(userLoc, userMods, live) {
+    var diag = window.WDS && window.WDS.location && window.WDS.location.getDiagnostics
+      ? window.WDS.location.getDiagnostics()
+      : null;
+    console.info("[Waypoint kiosk]", {
+      locationSource: userLoc && userLoc.source,
+      latitude: userLoc && userLoc.lat,
+      longitude: userLoc && userLoc.lng,
+      timezone: resolveTimezone(userLoc, userMods && userMods.weather),
+      cacheUsed: diag && diag.cacheUsed,
+      locationAttempts: diag && diag.attempts,
+      userWeatherReady: hasUserWeather(userMods),
+      enginePublishLiveJson: isEnginePublishLive(live),
+      engineLocationIgnored: isEnginePublishLive(live)
+    });
+  }
 
   function $(id) {
     return document.getElementById(id);
@@ -180,10 +241,9 @@
     );
   }
 
-  function renderUv(live, health) {
-    var uv = moduleData(live, "uv") || {};
-    var value = uv.uvIndex != null ? uv.uvIndex : (live.current && live.current.uvIndex);
-    var status = moduleStatus(health, "uv") || uv.status;
+  function renderUv(userWx, health) {
+    var value = userWx && userWx.current ? userWx.current.uvIndex : null;
+    var status = moduleStatus(health, "uv");
     if (value == null) return renderUnavailable("UV index");
     return (
       "<p class=\"swk-metric swk-metric--magenta\">UV " + esc(String(value)) + "</p>" +
@@ -203,26 +263,22 @@
     );
   }
 
-  function renderPollen(live, health) {
-    var pollen = moduleData(live, "pollen") || {};
-    var status = moduleStatus(health, "pollen") || pollen.status;
-    if (!pollen || status === "unavailable" || pollen.status === "unavailable") {
-      return renderUnavailable("Pollen");
-    }
-    return "<p class=\"swk-detail\">" + esc(pollen.summary || "Pollen data unavailable") + "</p>";
+  function renderPollen() {
+    return renderUnavailable("Pollen");
   }
 
-  function renderRiver(live, health) {
-    var river = moduleData(live, "river_gauges") || {};
-    var status = moduleStatus(health, "river_gauges") || river.status;
-    if (!river || status === "unavailable" || river.status === "unavailable") {
+  function renderRiver(riverData) {
+    if (!riverData || riverData.status === "unavailable") {
       return renderUnavailable("River gauge");
     }
-    var nearest = river.nearest || {};
+    if (riverData.status === "no-nearby" || !riverData.nearest) {
+      return "<p class=\"swk-detail\">No nearby monitored rivers</p>";
+    }
+    var nearest = riverData.nearest || {};
     var parts = [];
     if (nearest.stageFt != null) parts.push(nearest.stageFt + " ft stage");
     if (nearest.dischargeCfs != null) parts.push(nearest.dischargeCfs + " cfs");
-    var detail = parts.length ? parts.join(" · ") : (river.summary || "River data unavailable");
+    var detail = parts.length ? parts.join(" · ") : (riverData.summary || "River data unavailable");
     var site = nearest.siteName ? "<p class=\"swk-line\">" + esc(nearest.siteName) + "</p>" : "";
     return site + "<p class=\"swk-detail\">" + esc(detail) + "</p>";
   }
@@ -231,10 +287,8 @@
     return "<p class=\"swk-detail\">Wildlife feed not connected on this kiosk yet.</p>";
   }
 
-  function renderAlerts(live, health) {
-    var alerts = moduleData(live, "alerts") || live.alerts || {};
-    var status = moduleStatus(health, "alerts") || alerts.status;
-    if (status === "unavailable") return renderUnavailable("Alerts");
+  function renderAlerts(alerts) {
+    if (!alerts || alerts.status === "unavailable") return renderUnavailable("Alerts");
     var items = alerts.items || [];
     if (!items.length) {
       return "<p class=\"swk-detail\">No active weather alerts</p>";
@@ -256,38 +310,11 @@
     var userLoc = window.__WAYPOINT_KIOSK_LOC__;
     var userMods = window.__WAYPOINT_KIOSK_USER_MODULES__;
     var userWx = userMods && userMods.weather;
-    if (userWx && userWx.userLocation) {
-      live = Object.assign({}, live, {
-        timezone: userWx.timezone || live.timezone,
-        current: Object.assign({}, live.current, userWx.current),
-        forecast: Object.assign({}, live.forecast, userWx.forecast),
-        hourly: userWx.hourly || live.hourly,
-        sun: userWx.sun || live.sun
-      });
-    }
-    if (userMods && userMods.airQuality) {
-      live = Object.assign({}, live, { airQuality: userMods.airQuality });
-    }
-    if (userMods && userMods.alerts) {
-      live = Object.assign({}, live, {
-        modules: Object.assign({}, live.modules, {
-          alerts: { data: userMods.alerts }
-        })
-      });
-    }
-    if (userMods && userMods.usgsWater) {
-      var riverData = userMods.usgsWater.nearest
-        ? { status: "live", nearest: userMods.usgsWater.nearest, summary: userMods.usgsWater.nearest.siteName }
-        : { status: userMods.usgsWater.status || "unavailable", summary: "No nearby monitored rivers" };
-      live = Object.assign({}, live, {
-        modules: Object.assign({}, live.modules, {
-          river_gauges: { data: riverData }
-        })
-      });
-    }
-    timezone = live.timezone || timezone;
-    var cur = live.current || {};
-    var forecast = live.forecast || {};
+    var userReady = hasUserWeather(userMods);
+
+    timezone = resolveTimezone(userLoc, userWx);
+    logKioskDiagnostics(userLoc, userMods, live);
+
     var stale = !live.updatedAt || Date.now() - Date.parse(live.updatedAt) > STALE_MS;
     var overall = (health && health.overall && health.overall.status) || "unknown";
     var displayHealth = stale ? "stale" : overall;
@@ -299,56 +326,58 @@
 
     $("swk-clock").textContent = formatClock(new Date(), timezone);
     $("swk-date").textContent = formatDate(new Date(), timezone);
-    setText("swk-location", (userLoc && (userLoc.displayTitle || userLoc.placeLabel)) ||
-      (live.location && live.location.label) || "Outdoor location");
+    setText("swk-location", resolveLocationLabel(userLoc));
 
     var updatedEl = $("swk-updated");
-    var userUpdated = userWx && userWx.current && userWx.current.observedAt;
-    updatedEl.textContent = (userUpdated ? formatStamp(userUpdated, timezone) + " · your location" : formatStamp(live.updatedAt, timezone)) +
-      " · " + ageLabel(userUpdated || live.updatedAt);
-    updatedEl.className = "swk-topbar__value" + (stale ? " swk-topbar__value--stale" : "");
+    var userUpdated = userReady && userWx.current && userWx.current.observedAt;
+    updatedEl.textContent = userUpdated
+      ? formatStamp(userUpdated, timezone) + " · your location · " + ageLabel(userUpdated)
+      : (userReady ? "Refreshing your conditions…" : "Waiting for your location…");
+    updatedEl.className = "swk-topbar__value" + (stale && !userReady ? " swk-topbar__value--stale" : "");
 
     var badge = $("swk-health-badge");
     badge.textContent = displayHealth;
     badge.className = "swk-badge " + badgeClass(displayHealth);
 
-    setText("swk-temp", cur.temperatureF != null ? cur.temperatureF + "°" : "—");
-    setText("swk-conditions", cur.conditions || "Conditions unavailable");
+    var cur = userReady ? (userWx.current || {}) : {};
+    var forecast = userReady ? (userWx.forecast || {}) : {};
+
+    setText("swk-temp", userReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—");
+    setText("swk-conditions", userReady ? (cur.conditions || "Conditions unavailable") : "Waiting for your location…");
 
     renderFacts("swk-weather-facts", [
-      { label: "Feels like", value: cur.feelsLikeF != null ? cur.feelsLikeF + "°" : "—" },
-      { label: "Humidity", value: cur.humidity != null ? cur.humidity + "%" : "—" },
-      { label: "Wind", value: cur.windMph != null ? cur.windMph + " mph" : "—" },
-      { label: "Gusts", value: cur.windGustMph != null ? cur.windGustMph + " mph" : "—" },
-      { label: "Cloud cover", value: cur.cloudCover != null ? cur.cloudCover + "%" : "—" },
-      { label: "Rain chance", value: forecast.precipProbability != null ? forecast.precipProbability + "%" : "—" }
+      { label: "Feels like", value: userReady && cur.feelsLikeF != null ? cur.feelsLikeF + "°" : "—" },
+      { label: "Humidity", value: userReady && cur.humidity != null ? cur.humidity + "%" : "—" },
+      { label: "Wind", value: userReady && cur.windMph != null ? cur.windMph + " mph" : "—" },
+      { label: "Gusts", value: userReady && cur.windGustMph != null ? cur.windGustMph + " mph" : "—" },
+      { label: "Cloud cover", value: userReady && cur.cloudCover != null ? cur.cloudCover + "%" : "—" },
+      { label: "Rain chance", value: userReady && forecast.precipProbability != null ? forecast.precipProbability + "%" : "—" }
     ]);
 
     setText("swk-today-range",
-      forecast.highF != null && forecast.lowF != null
+      userReady && forecast.highF != null && forecast.lowF != null
         ? "High " + forecast.highF + "° / Low " + forecast.lowF + "°"
         : "Daily range unavailable");
-    setText("swk-today-summary", forecast.summary || "Forecast unavailable");
+    setText("swk-today-summary", userReady ? (forecast.summary || "Forecast unavailable") : "—");
 
     renderFacts("swk-now", [
-      { label: "Temperature", value: cur.temperatureF != null ? cur.temperatureF + "°" : "—" },
-      { label: "UV", value: cur.uvIndex != null ? String(cur.uvIndex) : "—" },
-      { label: "Observed", value: formatStamp(cur.observedAt, timezone) }
+      { label: "Temperature", value: userReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—" },
+      { label: "UV", value: userReady && cur.uvIndex != null ? String(cur.uvIndex) : "—" },
+      { label: "Observed", value: userReady ? formatStamp(cur.observedAt, timezone) : "—" }
     ]);
 
-    setText("swk-hourly-note", (live.hourly && live.hourly.note) || "Next hours");
-    setHtml("swk-hourly", renderHourly(live.hourly));
+    setText("swk-hourly-note", userReady && userWx.hourly ? userWx.hourly.note : "Next hours");
+    setHtml("swk-hourly", userReady ? renderHourly(userWx.hourly) : renderUnavailable("Hourly forecast"));
     setHtml("swk-photo", renderPhoto(userMods && userMods.photography));
-    setHtml("swk-sun-moon", renderSunMoon(
-      (userWx && userWx.sun) || live.sun,
-      (userWx && userWx.moon) || live.moon
-    ));
-    setHtml("swk-aqi", renderAqi(live.airQuality, moduleStatus(health, "air_quality")));
-    setHtml("swk-uv", renderUv(live, health || {}));
-    setHtml("swk-pollen", renderPollen(live, health || {}));
-    setHtml("swk-river", renderRiver(live, health || {}));
+    setHtml("swk-sun-moon", userReady
+      ? renderSunMoon(userWx.sun, userWx.moon)
+      : renderUnavailable("Sun and moon data"));
+    setHtml("swk-aqi", renderAqi(userMods && userMods.airQuality, userReady ? "live" : "unavailable"));
+    setHtml("swk-uv", renderUv(userWx, health || {}));
+    setHtml("swk-pollen", renderPollen());
+    setHtml("swk-river", renderRiver(userMods && userMods.usgsWater));
     setHtml("swk-wildlife", renderWildlife());
-    setHtml("swk-alerts", renderAlerts(live, health || {}));
+    setHtml("swk-alerts", renderAlerts(userMods && userMods.alerts));
 
     setText("swk-engine-version", live.engineVersion || health.engineVersion || "—");
     setHtml("swk-modules", renderModules(health));

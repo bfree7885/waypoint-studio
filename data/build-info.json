@@ -1,9 +1,9 @@
 {
-  "commit": "befac31",
-  "commitFull": "befac314d50b2fb5176e3bc8367e9b57bcb4285a",
-  "deployedAt": "2026-07-10T02:23:03.308Z",
-  "locationSchema": 3,
+  "commit": "8d2980f",
+  "commitFull": "8d2980f994913bd7fdad24bdd46e3b638a63b400",
+  "deployedAt": "2026-07-10T14:07:02.438Z",
+  "locationSchema": 4,
   "loaderVersion": 2,
-  "migrationEpoch": 2,
+  "migrationEpoch": 3,
   "minRecoveryBuild": "cf51ce4"
 }

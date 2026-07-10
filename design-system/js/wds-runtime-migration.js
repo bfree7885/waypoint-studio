@@ -105,6 +105,17 @@
     return false;
   }
 
+  function storedLocationLooksEngine() {
+    try {
+      var raw = global.localStorage && global.localStorage.getItem("wds-location-v3");
+      if (!raw) return false;
+      var parsed = JSON.parse(raw);
+      if (!parsed || !isFinite(Number(parsed.lat)) || !isFinite(Number(parsed.lng))) return false;
+      return Math.abs(Number(parsed.lat) - 39.8283) <= 0.2 &&
+        Math.abs(Number(parsed.lng) + 98.5795) <= 0.2;
+    } catch (e) { return false; }
+  }
+
   function clearStaleCaches() {
     var removed = { local: [], session: [] };
     try {
@@ -115,6 +126,10 @@
             removed.local.push(key);
           }
         });
+        if (storedLocationLooksEngine()) {
+          global.localStorage.removeItem("wds-location-v3");
+          removed.local.push("wds-location-v3");
+        }
         var purge = [];
         for (var i = 0; i < global.localStorage.length; i++) {
           var k = global.localStorage.key(i);

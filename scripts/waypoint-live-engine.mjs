@@ -36,7 +36,7 @@ const EBIRD_API_KEY = (process.env.WAYPOINT_EBIRD_API_KEY || process.env.EBIRD_A
 
 const DEFAULT_LOCATION = {
   id: "engine-publish",
-  name: "Engine publish point",
+  name: "U.S. regional engine publish point",
   state: "United States",
   stateCode: "US",
   lat: 39.8283,
@@ -525,7 +525,7 @@ function resolveLocation() {
     ...DEFAULT_LOCATION,
     contentBundle: "us-national",
     enginePublish: true,
-    label: "Engine publish point (set WAYPOINT_ENGINE_LAT/LNG for your kiosk)"
+    label: "U.S. regional engine publish point (operational metadata only — not a user location)"
   };
 }
 
