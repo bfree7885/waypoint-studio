@@ -10,6 +10,8 @@
   var nextUpdateIso = null;
   var refreshTimer = null;
   var refreshCountdown = REFRESH_MS;
+  var lastLive = null;
+  var lastHealth = null;
 
   function browserTimezone() {
     try {
@@ -19,23 +21,36 @@
     }
   }
 
-  function hasUserWeather(userMods) {
-    return !!(userMods && userMods.weather && userMods.weather.userLocation);
+  function normalizeApi() {
+    return window.WDS && WDS.kioskNormalize ? WDS.kioskNormalize : null;
   }
 
-  function resolveTimezone(userLoc, userWx) {
-    if (userWx && userWx.timezone) return userWx.timezone;
-    if (userLoc && userLoc.timezone) return userLoc.timezone;
-    return browserTimezone();
+  function getModules() {
+    var normalized = window.__WAYPOINT_KIOSK_NORMALIZED__;
+    if (normalized && normalized.modules) return normalized.modules;
+    return window.__WAYPOINT_KIOSK_USER_MODULES__ || null;
+  }
+
+  function getBootState() {
+    return window.__WAYPOINT_KIOSK_STATE__ || { phase: "BOOTING" };
   }
 
   function isBootDone() {
-    return window.__WAYPOINT_KIOSK_BOOT_DONE__ === true;
+    var phase = getBootState().phase;
+    return phase === "READY" || phase === "PARTIAL" || phase === "FAILED" ||
+      window.__WAYPOINT_KIOSK_BOOT_DONE__ === true;
   }
 
   function isLocationUnavailable(userLoc) {
     return !userLoc || userLoc.unavailable || userLoc.source === "unavailable" ||
       userLoc.lat == null || userLoc.lng == null;
+  }
+
+  function resolveTimezone(userLoc, userWx, daylight) {
+    if (userWx && userWx.timezone) return userWx.timezone;
+    if (daylight && daylight.timezone) return daylight.timezone;
+    if (userLoc && userLoc.timezone) return userLoc.timezone;
+    return browserTimezone();
   }
 
   function resolveLocationLabel(userLoc) {
@@ -51,10 +66,16 @@
     return "Location unavailable";
   }
 
-  function userStatusMessage(userLoc, userReady) {
-    if (userReady) return null;
-    if (!isBootDone()) return "Waiting for your location…";
+  function moduleStatusMessage(phase, userLoc, mods) {
+    var N = normalizeApi();
+    var wxReady = mods && mods.weather && N && N.moduleReady(mods.weather, "weather");
+    if (wxReady) return null;
+    if (phase === "BOOTING" || phase === "RESOLVING_LOCATION") return "Waiting for your location…";
     if (isLocationUnavailable(userLoc)) return "Location unavailable";
+    if (phase === "LOADING_CONDITIONS") return "Refreshing your conditions…";
+    if (phase === "PARTIAL") return "Some conditions unavailable";
+    if (phase === "FAILED") return "Conditions unavailable";
+    if (!isBootDone()) return "Waiting for your location…";
     return "Refreshing your conditions…";
   }
 
@@ -151,7 +172,7 @@
   function badgeClass(status) {
     var key = String(status || "unknown").toLowerCase();
     if (key === "healthy" || key === "healthy-degraded" || key === "live") return "swk-badge--healthy";
-    if (key === "warning" || key === "estimated") return "swk-badge--warning";
+    if (key === "warning" || key === "estimated" || key === "partial") return "swk-badge--warning";
     return "swk-badge--degraded";
   }
 
@@ -177,12 +198,6 @@
     }).join(""));
   }
 
-  function moduleData(live, name) {
-    return live.modules && live.modules[name] && live.modules[name].data
-      ? live.modules[name].data
-      : null;
-  }
-
   function moduleStatus(health, name) {
     return health.modules && health.modules[name] ? health.modules[name].status : "unknown";
   }
@@ -205,31 +220,39 @@
     return "<p class=\"swk-detail\">" + esc(label) + " unavailable</p>";
   }
 
-  function renderSunMoon(sun, moon) {
+  function renderSunMoon(sun, moon, daylight) {
     var lines = [];
-    if (sun) {
-      lines.push("<p class=\"swk-line\">Sunrise " + esc(sun.sunriseFormatted || formatStamp(sun.sunrise, timezone)) + "</p>");
-      lines.push("<p class=\"swk-line\">Sunset " + esc(sun.sunsetFormatted || formatStamp(sun.sunset, timezone)) + "</p>");
+    var dl = daylight || {};
+    var sunrise = sun && (sun.sunriseFormatted || sun.sunrise) || dl.sunriseFormatted || dl.sunrise;
+    var sunset = sun && (sun.sunsetFormatted || sun.sunset) || dl.sunsetFormatted || dl.sunset;
+    if (sunrise) {
+      lines.push("<p class=\"swk-line\">Sunrise " + esc(sun && sun.sunriseFormatted ? sun.sunriseFormatted : formatStamp(sunrise, timezone)) + "</p>");
     }
-    if (moon && moon.phase) {
-      lines.push("<p class=\"swk-line\">" + esc(moon.phase) + (moon.illumination != null ? " · " + moon.illumination + "% lit" : "") + "</p>");
+    if (sunset) {
+      lines.push("<p class=\"swk-line\">Sunset " + esc(sun && sun.sunsetFormatted ? sun.sunsetFormatted : formatStamp(sunset, timezone)) + "</p>");
+    }
+    var phase = (moon && moon.phase) || dl.moonPhase;
+    var illum = moon && moon.illumination != null ? moon.illumination : dl.moonIllumination;
+    if (phase) {
+      lines.push("<p class=\"swk-line\">" + esc(phase) + (illum != null ? " · " + illum + "% lit" : "") + "</p>");
     }
     return lines.length ? lines.join("") : renderUnavailable("Sun and moon data");
   }
 
-  function renderAqi(aqi, status) {
-    if (!aqi || aqi.status === "unavailable" || status === "unavailable") {
+  function renderAqi(aqi) {
+    if (!aqi || aqi.status === "unavailable") {
       return renderUnavailable("Air quality");
     }
+    var value = aqi.usAqi != null ? aqi.usAqi : aqi.aqi;
     return (
-      "<p class=\"swk-metric swk-metric--cyan\">" + esc(aqi.usAqi != null ? "AQI " + aqi.usAqi : "—") + "</p>" +
+      "<p class=\"swk-metric swk-metric--cyan\">" + esc(value != null ? "AQI " + value : "—") + "</p>" +
       "<p class=\"swk-detail\">" + esc(aqi.category || "—") + (aqi.pm25 != null ? " · PM2.5 " + aqi.pm25 : "") + "</p>"
     );
   }
 
   function renderUv(userWx, health) {
     var value = userWx && userWx.current ? userWx.current.uvIndex : null;
-    var status = moduleStatus(health, "uv");
+    var status = moduleStatus(health || {}, "uv");
     if (value == null) return renderUnavailable("UV index");
     return (
       "<p class=\"swk-metric swk-metric--magenta\">UV " + esc(String(value)) + "</p>" +
@@ -284,25 +307,48 @@
     }).join("");
   }
 
-  function renderModules(health) {
+  function renderModules(health, blockStatus) {
     var mods = (health && health.modules) || {};
-    return Object.keys(mods).map(function (name) {
+    var keys = Object.keys(mods);
+    if (!keys.length && blockStatus) {
+      keys = Object.keys(blockStatus);
+      return keys.map(function (name) {
+        return "<span class=\"" + moduleClass(blockStatus[name]) + "\">" + esc(name) + ": " + esc(blockStatus[name]) + "</span>";
+      }).join("");
+    }
+    return keys.map(function (name) {
       var mod = mods[name];
       return "<span class=\"" + moduleClass(mod.status) + "\">" + esc(name) + ": " + esc(mod.status) + "</span>";
     }).join("");
   }
 
-  function render(live, health) {
-    var userLoc = window.__WAYPOINT_KIOSK_LOC__;
-    var userMods = window.__WAYPOINT_KIOSK_USER_MODULES__;
-    var userWx = userMods && userMods.weather;
-    var userReady = hasUserWeather(userMods);
+  function safeRender(fn, fallbackId, fallbackLabel) {
+    try {
+      return fn();
+    } catch (err) {
+      console.warn("[Waypoint kiosk] render failed:", fallbackLabel, err && err.message ? err.message : err);
+      return renderUnavailable(fallbackLabel);
+    }
+  }
 
-    timezone = resolveTimezone(userLoc, userWx);
+  function render(live, health) {
+    live = live || lastLive || {};
+    health = health || lastHealth || {};
+
+    var userLoc = window.__WAYPOINT_KIOSK_LOC__;
+    var mods = getModules() || {};
+    var userWx = mods.weather || null;
+    var daylight = mods.daylight || null;
+    var boot = getBootState();
+    var N = normalizeApi();
+    var wxReady = !!(userWx && N && N.moduleReady(userWx, "weather"));
+    var hourlyReady = !!(userWx && userWx.hourly && userWx.hourly.nextHours && userWx.hourly.nextHours.length);
+
+    timezone = resolveTimezone(userLoc, userWx, daylight);
 
     var stale = !live.updatedAt || Date.now() - Date.parse(live.updatedAt) > STALE_MS;
     var overall = (health && health.overall && health.overall.status) || "unknown";
-    var displayHealth = stale ? "stale" : overall;
+    var displayHealth = stale && !wxReady ? "stale" : (boot.phase === "PARTIAL" ? "partial" : overall);
 
     nextUpdateIso = (health && health.nextScheduledUpdate) ||
       (health && health.publish && health.publish.nextScheduledRun) ||
@@ -313,60 +359,64 @@
     $("swk-date").textContent = formatDate(new Date(), timezone);
     setText("swk-location", resolveLocationLabel(userLoc));
 
-    var statusMessage = userStatusMessage(userLoc, userReady);
+    var statusMessage = moduleStatusMessage(boot.phase, userLoc, mods);
     var updatedEl = $("swk-updated");
-    var userUpdated = userReady && userWx.current && userWx.current.observedAt;
+    var userUpdated = wxReady && userWx.current && userWx.current.observedAt;
     updatedEl.textContent = userUpdated
       ? formatStamp(userUpdated, timezone) + " · your location · " + ageLabel(userUpdated)
       : (statusMessage || "Conditions unavailable");
-    updatedEl.className = "swk-topbar__value" + (stale && !userReady ? " swk-topbar__value--stale" : "");
+    updatedEl.className = "swk-topbar__value" + (stale && !wxReady ? " swk-topbar__value--stale" : "");
 
     var badge = $("swk-health-badge");
     badge.textContent = displayHealth;
     badge.className = "swk-badge " + badgeClass(displayHealth);
 
-    var cur = userReady ? (userWx.current || {}) : {};
-    var forecast = userReady ? (userWx.forecast || {}) : {};
+    var cur = wxReady && userWx.current ? userWx.current : {};
+    var forecast = wxReady && userWx.forecast ? userWx.forecast : {};
 
-    setText("swk-temp", userReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—");
-    setText("swk-conditions", userReady ? (cur.conditions || "Conditions unavailable") : (statusMessage || "Conditions unavailable"));
+    setText("swk-temp", wxReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—");
+    setText("swk-conditions", wxReady ? (cur.conditions || "Conditions unavailable") : (statusMessage || "Conditions unavailable"));
 
     renderFacts("swk-weather-facts", [
-      { label: "Feels like", value: userReady && cur.feelsLikeF != null ? cur.feelsLikeF + "°" : "—" },
-      { label: "Humidity", value: userReady && cur.humidity != null ? cur.humidity + "%" : "—" },
-      { label: "Wind", value: userReady && cur.windMph != null ? cur.windMph + " mph" : "—" },
-      { label: "Gusts", value: userReady && cur.windGustMph != null ? cur.windGustMph + " mph" : "—" },
-      { label: "Cloud cover", value: userReady && cur.cloudCover != null ? cur.cloudCover + "%" : "—" },
-      { label: "Rain chance", value: userReady && forecast.precipProbability != null ? forecast.precipProbability + "%" : "—" }
+      { label: "Feels like", value: wxReady && cur.feelsLikeF != null ? cur.feelsLikeF + "°" : "—" },
+      { label: "Humidity", value: wxReady && cur.humidity != null ? cur.humidity + "%" : "—" },
+      { label: "Wind", value: wxReady && cur.windMph != null ? cur.windMph + " mph" : "—" },
+      { label: "Gusts", value: wxReady && cur.windGustMph != null ? cur.windGustMph + " mph" : "—" },
+      { label: "Cloud cover", value: wxReady && cur.cloudCover != null ? cur.cloudCover + "%" : "—" },
+      { label: "Rain chance", value: forecast.precipProbability != null ? forecast.precipProbability + "%" : "—" }
     ]);
 
     setText("swk-today-range",
-      userReady && forecast.highF != null && forecast.lowF != null
+      forecast.highF != null && forecast.lowF != null
         ? "High " + forecast.highF + "° / Low " + forecast.lowF + "°"
-        : "Daily range unavailable");
-    setText("swk-today-summary", userReady ? (forecast.summary || "Forecast unavailable") : "—");
+        : (wxReady ? "Daily range unavailable" : "—"));
+    setText("swk-today-summary", wxReady ? (forecast.summary || "Forecast unavailable") : "—");
 
     renderFacts("swk-now", [
-      { label: "Temperature", value: userReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—" },
-      { label: "UV", value: userReady && cur.uvIndex != null ? String(cur.uvIndex) : "—" },
-      { label: "Observed", value: userReady ? formatStamp(cur.observedAt, timezone) : "—" }
+      { label: "Temperature", value: wxReady && cur.temperatureF != null ? cur.temperatureF + "°" : "—" },
+      { label: "UV", value: cur.uvIndex != null ? String(cur.uvIndex) : "—" },
+      { label: "Observed", value: wxReady ? formatStamp(cur.observedAt, timezone) : "—" }
     ]);
 
-    setText("swk-hourly-note", userReady && userWx.hourly ? userWx.hourly.note : "Next hours");
-    setHtml("swk-hourly", userReady ? renderHourly(userWx.hourly) : renderUnavailable("Hourly forecast"));
-    setHtml("swk-photo", renderPhoto(userMods && userMods.photography));
-    setHtml("swk-sun-moon", userReady
-      ? renderSunMoon(userWx.sun, userWx.moon)
-      : renderUnavailable("Sun and moon data"));
-    setHtml("swk-aqi", renderAqi(userMods && userMods.airQuality, userReady ? "live" : "unavailable"));
-    setHtml("swk-uv", renderUv(userWx, health || {}));
+    setText("swk-hourly-note", hourlyReady ? userWx.hourly.note : "Next hours");
+    setHtml("swk-hourly", safeRender(function () {
+      return hourlyReady ? renderHourly(userWx.hourly) : renderUnavailable("Hourly forecast");
+    }, "swk-hourly", "Hourly forecast"));
+
+    setHtml("swk-photo", safeRender(function () { return renderPhoto(mods.photography); }, "swk-photo", "Photography outlook"));
+    setHtml("swk-sun-moon", safeRender(function () {
+      return renderSunMoon(userWx && userWx.sun, userWx && userWx.moon, daylight);
+    }, "swk-sun-moon", "Sun and moon data"));
+    setHtml("swk-aqi", safeRender(function () { return renderAqi(mods.airQuality); }, "swk-aqi", "Air quality"));
+    setHtml("swk-uv", safeRender(function () { return renderUv(wxReady ? userWx : null, health); }, "swk-uv", "UV index"));
     setHtml("swk-pollen", renderPollen());
-    setHtml("swk-river", renderRiver(userMods && userMods.usgsWater));
+    setHtml("swk-river", safeRender(function () { return renderRiver(mods.usgsWater); }, "swk-river", "River gauge"));
     setHtml("swk-wildlife", renderWildlife());
-    setHtml("swk-alerts", renderAlerts(userMods && userMods.alerts));
+    setHtml("swk-alerts", safeRender(function () { return renderAlerts(mods.alerts); }, "swk-alerts", "Alerts"));
 
     setText("swk-engine-version", live.engineVersion || health.engineVersion || "—");
-    setHtml("swk-modules", renderModules(health));
+    var blockStatus = window.__WAYPOINT_KIOSK_NORMALIZED__ && window.__WAYPOINT_KIOSK_NORMALIZED__.blockStatus;
+    setHtml("swk-modules", renderModules(health, blockStatus));
     setText("swk-countdown", countdownLabel(nextUpdateIso));
     setText("swk-engine-health", (health.overall && health.overall.message) || overall);
     setText("swk-refresh", "Live · next in " + Math.max(1, Math.ceil(refreshCountdown / 60000)) + " min", "swk-statusbar__value swk-statusbar__value--ok");
@@ -391,18 +441,25 @@
     }, 180);
   }
 
-  function refresh() {
+  function refreshEngineMeta() {
     setText("swk-refresh", "Refreshing…", "swk-statusbar__value swk-statusbar__value--warn");
     return Promise.all([
       fetchJson("data/live.json"),
       fetchJson("data/health.json").catch(function () { return {}; })
     ]).then(function (results) {
-      render(results[0], results[1] || {});
+      lastLive = results[0];
+      lastHealth = results[1] || {};
+      render(lastLive, lastHealth);
       refreshCountdown = REFRESH_MS;
       pulseRefresh();
     }).catch(function (err) {
+      render(lastLive || {}, lastHealth || {});
       renderError("Live data unavailable — " + (err && err.message ? err.message : "check server"));
     });
+  }
+
+  function onKioskUpdate() {
+    render(lastLive || {}, lastHealth || {});
   }
 
   function tick() {
@@ -415,10 +472,11 @@
     }
   }
 
-  refresh();
+  refreshEngineMeta();
   document.addEventListener("waypoint:kiosk-location-ready", function () {
-    refresh();
+    onKioskUpdate();
+    refreshEngineMeta();
   });
-  refreshTimer = window.setInterval(refresh, REFRESH_MS);
+  refreshTimer = window.setInterval(refreshEngineMeta, REFRESH_MS);
   window.setInterval(tick, 1000);
 })();

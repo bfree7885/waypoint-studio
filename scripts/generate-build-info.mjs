@@ -51,7 +51,7 @@ function updateHtmlFiles(sha) {
       .replace(/\?v=[a-f0-9]{7,40}/gi, "?v=" + sha)
       .replace(/(src="[^"]+\.js)(?!\?v=)/g, (match, prefix) => {
         if (prefix.includes("fonts.googleapis") || prefix.includes("gstatic")) return match;
-        if (/wds-build\.js|wds\.js|wds-platform\.js|home-boot\.js|kiosk-boot\.js|kiosk\.js/.test(prefix)) {
+        if (/wds-build\.js|wds\.js|wds-platform\.js|home-boot\.js|kiosk-normalize\.js|kiosk-boot\.js|kiosk\.js/.test(prefix)) {
           return prefix + "?v=" + sha;
         }
         return match;
