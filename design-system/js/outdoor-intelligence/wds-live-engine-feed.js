@@ -6,9 +6,123 @@
   "use strict";
 
   var LIVE_URL = "data/live.json";
+  var HEALTH_URL = "data/health.json";
   var MAX_AGE_MS = 3 * 60 * 60 * 1000;
   var lastFeed = null;
+  var lastHealth = null;
   var lastError = null;
+
+  function fetchHealth(url) {
+    url = url || HEALTH_URL;
+    var bust = (url.indexOf("?") >= 0 ? "&" : "?") + "_=" + Date.now();
+    return fetch(url + bust, { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("health.json HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        lastHealth = data;
+        return data;
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+  function fetchEngineContext() {
+    return Promise.all([fetchLive(), fetchHealth()]).then(function (parts) {
+      var feed = parts[0];
+      var health = parts[1];
+      if (!feed) return null;
+      return toEngineContext(feed, health);
+    });
+  }
+
+  function toEngineContext(feed, health) {
+    if (!feed) return null;
+    return {
+      engine: {
+        version: feed.engineVersion,
+        name: feed.engine || "waypoint-live-engine",
+        updatedAt: feed.updatedAt,
+        nextScheduledUpdate: feed.nextScheduledUpdate,
+        publishLocation: feed.location || null,
+        timezone: feed.timezone || null
+      },
+      health: health ? {
+        overall: health.overall || null,
+        modules: health.modules || null,
+        publish: health.publish || null,
+        generatedAt: health.generatedAt || null,
+        nextScheduledUpdate: health.nextScheduledUpdate || null
+      } : null,
+      operational: {
+        isFresh: isFresh(feed),
+        sources: (feed.meta && feed.meta.sources) || [],
+        failures: (feed.meta && feed.meta.failures) || []
+      }
+    };
+  }
+
+  function buildModuleSources(platform) {
+    platform = platform || {};
+    var wx = platform.weatherRef;
+    var sources = {
+      weather: wx && wx.meta && wx.meta.provider
+        ? wx.meta.provider + " (user)"
+        : (platform.weather && platform.weather.status === "live" ? "oip (user)" : "unavailable"),
+      alerts: platform.alerts && platform.alerts.status === "live"
+        ? "nws (user)"
+        : (platform.alerts && platform.alerts.status === "unavailable" ? "nws-unavailable" : "unavailable"),
+      airQuality: platform.airQuality && platform.airQuality.status === "live"
+        ? "open-meteo-aq (user)"
+        : "unavailable",
+      usgsWater: platform.usgsWater && platform.usgsWater.nearest
+        ? "usgs-iv (user)"
+        : (platform.usgsWater && platform.usgsWater.status === "no-nearby" ? "usgs-no-nearby (user)" : "unavailable"),
+      daylight: platform.daylight ? "oip-derived (user)" : "unavailable",
+      elevation: platform.location && platform.location.elevationMeters != null
+        ? "elevation (user)"
+        : "unavailable",
+      photography: "oie-derived (user)",
+      engineHealth: platform.engineContext ? "live-engine metadata" : "unavailable"
+    };
+    return sources;
+  }
+
+  function mergeEngineContext(platform, engineCtx, userLoc) {
+    if (!platform) return null;
+    platform.meta = Object.assign({}, platform.meta || {});
+    platform.meta.contentSource = "user-oip";
+    platform.meta.liveFeed = false;
+    if (userLoc && isFinite(Number(userLoc.lat)) && isFinite(Number(userLoc.lng))) {
+      platform.location = Object.assign({}, platform.location || {}, {
+        latitude: Number(userLoc.lat),
+        longitude: Number(userLoc.lng),
+        source: userLoc.source || "user",
+        label: userLoc.displayTitle || userLoc.placeLabel || null
+      });
+      if (platform.weatherRef && platform.weatherRef.meta) {
+        platform.weatherRef.meta = Object.assign({}, platform.weatherRef.meta, {
+          lat: Number(userLoc.lat),
+          lng: Number(userLoc.lng),
+          dataCoordSource: "user"
+        });
+      }
+    }
+    if (engineCtx) {
+      platform.engineContext = engineCtx;
+      platform.meta.engineHealth = engineCtx.health && engineCtx.health.overall;
+      platform.meta.engineStatus = engineCtx.health && engineCtx.health.overall &&
+        engineCtx.health.overall.label;
+      platform.meta.engineUpdatedAt = engineCtx.engine && engineCtx.engine.updatedAt;
+      platform.meta.enginePublishLocation = engineCtx.engine && engineCtx.engine.publishLocation;
+      platform.meta.engineOperational = engineCtx.operational;
+      platform.meta.engineModuleStatus = engineCtx.health && engineCtx.health.modules;
+    }
+    platform.meta.moduleSources = buildModuleSources(platform);
+    return platform;
+  }
 
   function fetchLive(url) {
     url = url || LIVE_URL;
@@ -292,13 +406,20 @@
   global.WDS = global.WDS || {};
   global.WDS.liveEngine = {
     LIVE_URL: LIVE_URL,
+    HEALTH_URL: HEALTH_URL,
     MAX_AGE_MS: MAX_AGE_MS,
     fetchLive: fetchLive,
+    fetchHealth: fetchHealth,
+    fetchEngineContext: fetchEngineContext,
     isFresh: isFresh,
     usable: usable,
+    toEngineContext: toEngineContext,
+    mergeEngineContext: mergeEngineContext,
+    buildModuleSources: buildModuleSources,
     toPlatform: toPlatform,
     toWeatherPackage: toWeatherPackage,
     getLast: getLast,
+    getLastHealth: function () { return lastHealth; },
     getLastError: getLastError
   };
 })(window);

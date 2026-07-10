@@ -37,38 +37,75 @@
     return Math.round(hours / 24) + " d ago";
   }
 
+  function ageFromIso(iso) {
+    if (!iso) return "—";
+    var t = Date.parse(iso);
+    if (!isFinite(t)) return "—";
+    return ageLabel(t);
+  }
+
+  function moduleSourceRows(platform) {
+    var sources = platform && platform.meta && platform.meta.moduleSources;
+    if (!sources) return [];
+    return Object.keys(sources).map(function (key) {
+      return [key, sources[key]];
+    });
+  }
+
   function render(loc, platform) {
     if (!enabled() || !loc) return "";
     var wx = platform && platform.weatherRef;
     var wxMeta = wx && wx.meta;
     var usgs = platform && platform.usgsWater;
     var gauge = usgs && usgs.nearest;
+    var engineCtx = platform && platform.engineContext;
+    var engineLoc = engineCtx && engineCtx.engine && engineCtx.engine.publishLocation;
     var rows = [
+      ["— User context —", ""],
       ["Location source", loc.source],
-      ["Latitude", loc.lat],
-      ["Longitude", loc.lng],
+      ["User latitude", loc.lat],
+      ["User longitude", loc.lng],
       ["Label source", loc.labelSource || (loc.geocodeSource ? "reverse-geocode" : "—")],
       ["Detection method", loc.detectionMethod || loc.source],
       ["GPS accuracy", loc.accuracy != null ? Math.round(loc.accuracy) + " m" : "—"],
-      ["Timestamp", loc.detectedAt || (loc.timestamp ? new Date(loc.timestamp).toISOString() : "—")],
-      ["Cache age", ageLabel(loc.timestamp)],
+      ["Location cache age", ageLabel(loc.timestamp)],
       ["Refresh reason", loc.refreshReason || "—"],
       ["Fallback reason", loc.fallbackReason || "—"],
-      ["Reverse geocoder", loc.geocodeSource || "—"],
       ["Place label", loc.placeLabel || loc.displayTitle || "—"],
-      ["City", loc.city || "—"],
-      ["County", loc.county || "—"],
-      ["State", loc.stateCode || loc.state || "—"],
-      ["Nearest indexed county", loc.nearestIndexedCounty || "—"],
-      ["Indexed region eligible", loc.indexedRegionEligible != null ? String(loc.indexedRegionEligible) : "—"],
-      ["Distance to index", loc.distanceKm != null ? loc.distanceKm + " km" : "—"],
+      ["Content mode", loc.contentMode || "—"],
+      ["— Data coordinates —", ""],
+      ["Platform lat", platform && platform.location ? platform.location.latitude : "—"],
+      ["Platform lng", platform && platform.location ? platform.location.longitude : "—"],
+      ["Weather data lat", wxMeta && wxMeta.lat != null ? wxMeta.lat : "—"],
+      ["Weather data lng", wxMeta && wxMeta.lng != null ? wxMeta.lng : "—"],
+      ["Coord source", wxMeta && wxMeta.dataCoordSource ? wxMeta.dataCoordSource : "user"],
+      ["Content source", platform && platform.meta ? platform.meta.contentSource : "—"],
+      ["OIP hydrated", platform && platform.meta ? ageFromIso(platform.meta.hydratedAt) : "—"],
+      ["— Engine context (metadata only) —", ""],
+      ["Engine status", platform && platform.meta ? platform.meta.engineStatus : "—"],
+      ["Engine health", engineCtx && engineCtx.health && engineCtx.health.overall
+        ? engineCtx.health.overall.label : "—"],
+      ["Engine refreshed", engineCtx && engineCtx.engine
+        ? ageFromIso(engineCtx.engine.updatedAt) : "—"],
+      ["Engine publish lat", engineLoc && engineLoc.lat != null ? engineLoc.lat : "—"],
+      ["Engine publish lng", engineLoc && engineLoc.lng != null ? engineLoc.lng : "—"],
+      ["Engine publish label", engineLoc && engineLoc.label ? engineLoc.label : "—"],
+      ["Feed fresh", engineCtx && engineCtx.operational
+        ? String(engineCtx.operational.isFresh) : "—"],
+      ["— Module data sources —", ""]
+    ];
+    moduleSourceRows(platform).forEach(function (pair) {
+      rows.push([pair[0], pair[1]]);
+    });
+    rows.push(
       ["River gauge", gauge ? gauge.siteName : (usgs && usgs.status === "no-nearby" ? "none within 50 mi" : "—")],
       ["Gauge distance", gauge && gauge.distanceKm != null ? gauge.distanceKm.toFixed(1) + " km" : "—"],
-      ["Gauge fallback", usgs && usgs.fallbackReason ? usgs.fallbackReason : "—"],
-      ["Weather provider TZ", wxMeta && wxMeta.timezone ? wxMeta.timezone : "—"],
-      ["Content mode", loc.contentMode || "—"]
-    ];
+      ["Weather TZ", wxMeta && wxMeta.timezone ? wxMeta.timezone : "—"]
+    );
     var body = rows.map(function (row) {
+      if (row[0].indexOf("—") === 0) {
+        return "<tr class=\"wds-loc-debug__section\"><th colspan=\"2\">" + esc(row[0]) + "</th></tr>";
+      }
       return "<tr><th>" + esc(row[0]) + "</th><td>" + esc(row[1]) + "</td></tr>";
     }).join("");
     return (

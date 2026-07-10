@@ -265,6 +265,18 @@
     });
     pkg.meta.providerTelemetry = providerTelemetry.slice();
     pkg.meta.hydratedAt = new Date().toISOString();
+    pkg.meta.contentSource = "user-oip";
+    pkg.meta.liveFeed = false;
+    pkg.meta.moduleSources = {
+      weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider + " (user)" : "unavailable",
+      alerts: alertsPkg && alertsPkg.status === "live" ? "nws (user)" : "unavailable",
+      airQuality: airQualityPkg && airQualityPkg.status === "live" ? "open-meteo-aq (user)" : "unavailable",
+      elevation: elevationPkg && elevationPkg.meters != null ? "elevation (user)" : "unavailable",
+      usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "usgs-iv (user)" :
+        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "usgs-no-nearby (user)" : "unavailable"),
+      daylight: weatherPkg ? "oip-derived (user)" : "unavailable",
+      photography: "oie-derived (user)"
+    };
     pkg.meta.blockStatus = {
       weather: weatherPkg && weatherPkg.meta && !weatherPkg.meta.isPlaceholder ? "live" : "unavailable",
       alerts: alertsPkg ? (alertsPkg.status === "unavailable" ? "unavailable" : "live") : "unavailable",

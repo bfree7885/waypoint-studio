@@ -255,7 +255,8 @@
 
   function render(live, health) {
     var userLoc = window.__WAYPOINT_KIOSK_LOC__;
-    var userWx = window.__WAYPOINT_KIOSK_WEATHER__;
+    var userMods = window.__WAYPOINT_KIOSK_USER_MODULES__;
+    var userWx = userMods && userMods.weather;
     if (userWx && userWx.userLocation) {
       live = Object.assign({}, live, {
         timezone: userWx.timezone || live.timezone,
@@ -263,6 +264,33 @@
         forecast: Object.assign({}, live.forecast, userWx.forecast),
         hourly: userWx.hourly || live.hourly,
         sun: userWx.sun || live.sun
+      });
+    }
+    if (userMods && userMods.airQuality) {
+      live = Object.assign({}, live, { airQuality: userMods.airQuality });
+    }
+    if (userMods && userMods.alerts) {
+      live = Object.assign({}, live, {
+        modules: Object.assign({}, live.modules, {
+          alerts: { data: userMods.alerts }
+        })
+      });
+    }
+    if (userMods && userMods.usgsWater) {
+      var riverData = userMods.usgsWater.nearest
+        ? { status: "live", nearest: userMods.usgsWater.nearest, summary: userMods.usgsWater.nearest.siteName }
+        : { status: userMods.usgsWater.status || "unavailable", summary: "No nearby monitored rivers" };
+      live = Object.assign({}, live, {
+        modules: Object.assign({}, live.modules, {
+          river_gauges: { data: riverData }
+        })
+      });
+    }
+    if (userMods && userMods.photography) {
+      live = Object.assign({}, live, {
+        modules: Object.assign({}, live.modules, {
+          photography_conditions: { data: userMods.photography }
+        })
       });
     }
     timezone = live.timezone || timezone;
@@ -283,7 +311,9 @@
       (live.location && live.location.label) || "Outdoor location");
 
     var updatedEl = $("swk-updated");
-    updatedEl.textContent = formatStamp(live.updatedAt, timezone) + " · " + ageLabel(live.updatedAt);
+    var userUpdated = userWx && userWx.current && userWx.current.observedAt;
+    updatedEl.textContent = (userUpdated ? formatStamp(userUpdated, timezone) + " · your location" : formatStamp(live.updatedAt, timezone)) +
+      " · " + ageLabel(userUpdated || live.updatedAt);
     updatedEl.className = "swk-topbar__value" + (stale ? " swk-topbar__value--stale" : "");
 
     var badge = $("swk-health-badge");

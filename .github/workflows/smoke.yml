@@ -36,3 +36,6 @@ jobs:
 
       - name: Validate location pipeline
         run: node scripts/validate-location.mjs
+
+      - name: Validate dashboard data layer
+        run: node scripts/validate-dashboard-data.mjs

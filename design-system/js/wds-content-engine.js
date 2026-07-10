@@ -878,35 +878,37 @@
     });
   }
 
-  function fetchLiveEnginePlatform(loc) {
+  function fetchEngineContext() {
     var LE = global.WDS && global.WDS.liveEngine;
-    if (!LE || !LE.fetchLive) return Promise.resolve(null);
-    return LE.fetchLive().then(function (feed) {
-      if (!feed || !LE.usable(feed) || !LE.isFresh(feed)) return null;
-      var platform = LE.toPlatform(feed, loc);
-      var OIP = global.WDS && global.WDS.outdoorIntelligence;
-      if (platform && OIP && typeof OIP.adoptPackage === "function") {
-        try { OIP.adoptPackage(platform); } catch (e) { /* noop */ }
-      }
-      return platform;
-    }).catch(function () {
+    if (!LE || !LE.fetchEngineContext) return Promise.resolve(null);
+    return LE.fetchEngineContext().catch(function () {
       return null;
     });
   }
 
   function fetchOutdoorIntelligence(loc, base, bundle) {
     var hints = bundle && bundle.thisWeekOutdoors && bundle.thisWeekOutdoors.weather;
-    return fetchLiveEnginePlatform(loc).then(function (livePlatform) {
-      if (livePlatform) return livePlatform;
-      return waitForOipGet(4000).then(function (OIP) {
-        if (!OIP || !OIP.get) return null;
-        return OIP.get({
-          location: loc,
-          bundle: bundle,
-          contentEngineBase: base,
-          includeWeather: true,
-          weatherHints: hints
-        });
+    return waitForOipGet(4000).then(function (OIP) {
+      var oipPromise = (OIP && OIP.get)
+        ? OIP.get({
+            location: loc,
+            bundle: bundle,
+            contentEngineBase: base,
+            includeWeather: true,
+            weatherHints: hints
+          })
+        : Promise.resolve(null);
+      return Promise.all([oipPromise, fetchEngineContext()]).then(function (parts) {
+        var platform = parts[0];
+        var engineCtx = parts[1];
+        var LE = global.WDS && global.WDS.liveEngine;
+        if (platform && LE && LE.mergeEngineContext) {
+          platform = LE.mergeEngineContext(platform, engineCtx, loc);
+        }
+        if (platform && OIP && typeof OIP.adoptPackage === "function") {
+          try { OIP.adoptPackage(platform); } catch (e) { /* noop */ }
+        }
+        return platform;
       });
     });
   }
@@ -930,20 +932,34 @@
   }
 
   function renderLiveUpdatedBanner(platform) {
-    var stamped = formatLiveUpdated(platform);
-    if (!stamped) return "";
-    var fromLive = !!(platform && platform.meta && platform.meta.liveFeed);
-    return (
-      '<p class="wdb-live-updated" data-wds-live-updated' +
-        (fromLive ? ' data-source="live-engine"' : ' data-source="browser"') +
-        '>' +
-        '<span class="wdb-live-updated__label">Last updated</span> ' +
-        '<time class="wdb-live-updated__time" datetime="' + escapeHtml((platform.meta && (platform.meta.liveUpdatedAt || platform.meta.hydratedAt)) || "") + '">' +
-          escapeHtml(stamped) +
-        "</time>" +
-        (fromLive ? ' <span class="wdb-live-updated__src">· Live Engine</span>' : "") +
-      "</p>"
-    );
+    if (!platform) return "";
+    var userIso = platform.meta && platform.meta.hydratedAt;
+    var userStamped = userIso ? formatLiveUpdated(platform) : null;
+    var engineCtx = platform.engineContext;
+    var engineStatus = platform.meta && platform.meta.engineStatus;
+    var engineIso = engineCtx && engineCtx.engine && engineCtx.engine.updatedAt;
+    var engineStamped = engineIso
+      ? formatLiveUpdated({ meta: { hydratedAt: engineIso }, timezone: platform.timezone })
+      : null;
+    var html = "";
+    if (userStamped) {
+      html +=
+        '<p class="wdb-live-updated" data-wds-live-updated data-source="user-oip">' +
+          '<span class="wdb-live-updated__label">Your conditions updated</span> ' +
+          '<time class="wdb-live-updated__time" datetime="' + escapeHtml(userIso || "") + '">' +
+            escapeHtml(userStamped) +
+          "</time>" +
+        "</p>";
+    }
+    if (engineCtx) {
+      html +=
+        '<p class="wdb-live-updated wdb-live-updated--engine" data-wds-engine-health data-source="live-engine-metadata">' +
+          '<span class="wdb-live-updated__label">System health</span> ' +
+          escapeHtml(engineStatus || "—") +
+          (engineStamped ? " · Engine refreshed " + escapeHtml(engineStamped) : "") +
+        "</p>";
+    }
+    return html;
   }
 
   function mountDashboardWidgets(mount, loc, base, data, platform) {

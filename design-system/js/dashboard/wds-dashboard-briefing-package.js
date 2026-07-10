@@ -90,8 +90,8 @@
       ? new Date(updatedIso).toLocaleString()
       : "—";
     var liveMeta = ctx && ctx.platform && ctx.platform.meta;
-    if (liveMeta && (liveMeta.liveUpdatedAt || (liveMeta.liveFeed && liveMeta.hydratedAt))) {
-      updatedIso = liveMeta.liveUpdatedAt || liveMeta.hydratedAt;
+    if (liveMeta && liveMeta.hydratedAt) {
+      updatedIso = liveMeta.hydratedAt;
       try { updated = new Date(updatedIso).toLocaleString(); } catch (e) { /* keep */ }
     }
 

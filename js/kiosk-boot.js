@@ -87,16 +87,68 @@
     });
   }
 
+  function derivePhotography(cloudCover) {
+    if (cloudCover == null || !isFinite(Number(cloudCover))) {
+      return { status: "unavailable", summary: "Photography outlook unavailable" };
+    }
+    var cloud = Math.round(Number(cloudCover));
+    var score = 50;
+    if (cloud <= 15) score = 80;
+    else if (cloud <= 55) score = 92;
+    else if (cloud <= 85) score = 68;
+    else score = 48;
+    return {
+      status: "estimated",
+      score: score,
+      cloudCover: cloud,
+      summary: score >= 80 ? "Strong outdoor light conditions" : "Moderate outdoor light conditions"
+    };
+  }
+
+  function fetchUserModules(lat, lng) {
+    var coords = { lat: lat, lng: lng };
+    var tasks = [fetchUserWeather(lat, lng)];
+    if (window.WDS && WDS.airQuality && WDS.airQuality.fetchCurrent) {
+      tasks.push(WDS.airQuality.fetchCurrent(coords).catch(function () { return null; }));
+    } else {
+      tasks.push(Promise.resolve(null));
+    }
+    if (window.WDS && WDS.nwsAlerts && WDS.nwsAlerts.fetchActive) {
+      tasks.push(WDS.nwsAlerts.fetchActive(coords).catch(function () { return null; }));
+    } else {
+      tasks.push(Promise.resolve(null));
+    }
+    if (window.WDS && WDS.usgsWater && WDS.usgsWater.fetchNearestGauge) {
+      tasks.push(WDS.usgsWater.fetchNearestGauge(coords).catch(function () { return null; }));
+    } else {
+      tasks.push(Promise.resolve(null));
+    }
+    return Promise.all(tasks).then(function (parts) {
+      var wx = parts[0];
+      var photo = wx && wx.current ? derivePhotography(wx.current.cloudCover) : null;
+      return {
+        weather: wx,
+        airQuality: parts[1],
+        alerts: parts[2],
+        usgsWater: parts[3],
+        photography: photo
+      };
+    });
+  }
+
   function boot() {
-    waitFor(function () { return window.WDS && WDS.location && WDS.location.bootstrap; })
+    waitFor(function () {
+      return window.WDS && WDS.location && WDS.location.bootstrap;
+    })
       .then(function () {
         return WDS.location.bootstrap({ base: ENGINE_BASE, promptMount: null });
       })
       .then(function (loc) {
         window.__WAYPOINT_KIOSK_LOC__ = loc;
         if (!loc || loc.lat == null || loc.lng == null) return null;
-        return fetchUserWeather(loc.lat, loc.lng).then(function (wx) {
-          window.__WAYPOINT_KIOSK_WEATHER__ = wx;
+        return fetchUserModules(loc.lat, loc.lng).then(function (mods) {
+          window.__WAYPOINT_KIOSK_USER_MODULES__ = mods;
+          window.__WAYPOINT_KIOSK_WEATHER__ = mods.weather;
           return loc;
         });
       })
