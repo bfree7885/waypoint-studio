@@ -118,10 +118,6 @@
           }
           return null;
         }
-        var PG = WDS.platformGuard;
-        if (PG && PG.sanitizeUserPlatform) {
-          platform = PG.sanitizeUserPlatform(platform, loc);
-        }
         var LE = WDS.liveEngine;
         if (!LE || !LE.fetchEngineContext || !LE.mergeEngineContext) return platform;
         return LE.fetchEngineContext().then(function (engineCtx) {
@@ -152,10 +148,6 @@
   function onPlatformUpdate(platform) {
     if (!bootState.location || bootState.location.lat == null) return;
     if (!platform) return;
-    var PG = WDS.platformGuard;
-    if (PG && PG.sanitizeUserPlatform) {
-      platform = PG.sanitizeUserPlatform(platform, bootState.location);
-    }
     applyNormalized(bootState.location, platform);
     var N = normalizeApi();
     var wxReady = N && N.moduleReady(bootState.normalized.modules.weather, "weather");
