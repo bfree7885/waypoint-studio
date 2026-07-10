@@ -284,3 +284,176 @@
   font-size: var(--wds-text-sm);
   color: var(--wds-text-secondary);
 }
+
+/* Live trail conditions */
+.wtrail-live {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+  padding: var(--wds-space-4);
+  border-radius: var(--wds-radius-lg);
+  border: 1px solid rgba(140, 200, 120, 0.15);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.wtrail-live__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--wds-space-3);
+}
+
+.wtrail-live__title {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text);
+}
+
+.wtrail-live__badge {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--wds-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wtrail-live__badge--live { color: #a8d4a0; background: rgba(140, 200, 120, 0.12); }
+.wtrail-live__badge--empty,
+.wtrail-live__badge--unavailable { color: var(--wds-text-muted); }
+
+.wtrail-trail-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-3);
+}
+
+.wtrail-trail {
+  padding: var(--wds-space-3) var(--wds-space-4);
+  border-radius: var(--wds-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.wtrail-trail__name {
+  margin: 0;
+  font-family: var(--wds-font-display);
+  font-size: var(--wds-text-lg);
+  color: var(--wds-text);
+}
+
+.wtrail-trail__operator {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.wtrail-trail__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2) var(--wds-space-4);
+  margin-top: var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-secondary);
+}
+
+.wtrail-trail__stat-k {
+  font-weight: 600;
+  color: var(--wds-text-muted);
+  text-transform: uppercase;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.wtrail-trail__impacts,
+.wtrail-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  margin-top: var(--wds-space-2);
+}
+
+.wtrail-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--wds-radius-sm);
+  font-size: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.wtrail-chip--minimal { color: var(--wds-text-muted); }
+.wtrail-chip--low { color: #a8d4a0; border-color: rgba(140, 200, 120, 0.2); }
+.wtrail-chip--moderate { color: #e8c878; border-color: rgba(220, 170, 80, 0.25); }
+.wtrail-chip--high { color: #e89898; border-color: rgba(220, 100, 100, 0.28); }
+
+.wtrail-chip__label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.wtrail-live__block { margin-top: var(--wds-space-2); }
+.wtrail-live__label {
+  margin: 0 0 var(--wds-space-1);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-muted);
+}
+
+.wtrail-live__line,
+.wtrail-live__sub,
+.wtrail-live__empty {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.wtrail-live__alert {
+  margin: 0 0 var(--wds-space-1);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+}
+
+.wtrail-live__alert--caution { color: #e8c878; }
+.wtrail-live__alert--closed { color: #e89898; }
+
+.wtrail-photo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+}
+
+.wtrail-photo-pill {
+  font-size: var(--wds-text-xs);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--wds-cyan, #7ec8e3);
+  background: rgba(126, 200, 227, 0.08);
+}
+
+.wtrail-live__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  justify-content: space-between;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+  padding-top: var(--wds-space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wtrail__grid--compact {
+  margin-top: var(--wds-space-2);
+}
+
+@media (min-width: 1100px) {
+  .wtrail__grid--compact {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

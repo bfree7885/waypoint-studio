@@ -84,6 +84,9 @@
     hideIfNew("photography-conditions-dashboard", ["sunrise-quality", "sunset-quality", "fog-potential", "cloud-cover", "milky-way", "aurora"], 700);
     hideIfNew("wildlife-dashboard", ["wildlife-activity", "bird-migration", "amphibian-activity", "insect-activity"], 200);
     hideIfNew("trail-dashboard", ["trail-conditions", "trail-closures", "park-alerts", "parking-updates"], 600);
+    if (base.widgets["trail-dashboard"]) {
+      base.widgets["trail-dashboard"].visible = true;
+    }
     hideIfNew("water-dashboard", ["river-levels", "stream-flow", "water-temperature", "flood-status"], 500);
     hideIfNew("foraging-dashboard", ["mushroom-outlook", "berry-conditions", "seasonal-edibles", "recent-rainfall"], 300);
     hideIfNew("flora-dashboard", ["bloom-calendar", "tree-phenology", "wildflower-activity", "fall-color"], 400);
@@ -93,8 +96,8 @@
 
   var V1_MORNING_VISIBLE = [
     "outdoor-weather", "glance-temp", "glance-sunrise", "glance-uv", "air-quality",
-    "sun-moon-dashboard", "water-dashboard", "safety-dashboard", "photography-conditions-dashboard",
-    "recent-birds-nearby"
+    "sun-moon-dashboard", "water-dashboard", "trail-dashboard", "safety-dashboard",
+    "photography-conditions-dashboard", "recent-birds-nearby"
   ];
 
   var PRESETS = {

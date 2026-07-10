@@ -42,6 +42,12 @@
       label: "Precipitation and rainfall totals",
       status: "partial"
     },
+    nearbyTrails: {
+      slot: "nearby-trails",
+      provider: "openstreetmap-overpass",
+      label: "Nearby named trails",
+      status: "live"
+    },
     mudPotential: {
       slot: "mud-potential",
       provider: "trail-reports",
@@ -474,11 +480,17 @@
       cards.bridgeClosures,
       cards.stateParkNotices
     ];
+    var TCI = global.WDS && global.WDS.trailConditionsIntel;
+    var live = TCI && TCI.analyze
+      ? TCI.analyze(platform, platform.trailConditions)
+      : null;
     return {
       cards: cards,
       cardList: list,
+      live: live,
       overallStatus: overallStatus(list),
       hasLiveWeather: wx.live,
+      hasLiveTrails: !!(live && live.status === "live" && live.trailCount > 0),
       feedRegistry: FEED_REGISTRY,
       regionLabel: (platform.region && platform.region.label) ||
         (platform.geography && platform.geography.ecoregion) || null
@@ -486,7 +498,12 @@
   }
 
   function summary(intel) {
-    if (!intel || !intel.cards) return null;
+    if (!intel) return null;
+    var TCI = global.WDS && global.WDS.trailConditionsIntel;
+    if (intel.live && TCI && TCI.summary) {
+      var liveSum = TCI.summary(intel.live);
+      if (liveSum) return liveSum;
+    }
     var t = intel.cards.trailConditions;
     var m = intel.cards.mudPotential;
     if (t && m) return t.headline + " · " + m.headline;

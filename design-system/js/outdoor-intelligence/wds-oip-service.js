@@ -67,8 +67,8 @@
     });
   }
 
-  function settleProvider(promise, label) {
-    return withTimeout(promise || Promise.resolve(null), DEFAULT_PROVIDER_TIMEOUT_MS, label).then(function (result) {
+  function settleProvider(promise, label, timeoutMs) {
+    return withTimeout(promise || Promise.resolve(null), timeoutMs, label).then(function (result) {
       if (!result.ok) return null;
       return result.value == null ? null : result.value;
     });
@@ -255,7 +255,15 @@
     return US.fetchNearestGauge(coords);
   }
 
-  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg, req, generation) {
+  function resolveTrails(request, pkg) {
+    var TC = global.WDS && global.WDS.trailConditions;
+    if (!TC || !TC.fetchNearby) return Promise.resolve(null);
+    var coords = coordsFromRequest(request, pkg);
+    if (!coords) return Promise.resolve(null);
+    return TC.fetchNearby({ lat: coords.lat, lng: coords.lng });
+  }
+
+  function finalizePlatformPackage(pkg, weatherPkg, alertsPkg, airQualityPkg, elevationPkg, usgsWaterPkg, trailPkg, req, generation) {
     if (generation != null && generation !== activeGeneration) {
       M.devLog("stale OIP response ignored", generation, activeGeneration);
       return null;
@@ -284,6 +292,9 @@
     if (usgsWaterPkg) {
       pkg.usgsWater = usgsWaterPkg;
     }
+    if (trailPkg) {
+      pkg.trailConditions = trailPkg;
+    }
     if (pkg.daylight && global.WDS && global.WDS.locationContext) {
       var LC = global.WDS.locationContext;
       var ctx = LC.getActive && LC.getActive();
@@ -298,6 +309,7 @@
       airQuality: airQualityPkg && airQualityPkg.meta ? airQualityPkg.meta.provider : "none",
       elevation: elevationPkg ? elevationPkg.provider : "none",
       usgsWater: usgsWaterPkg ? usgsWaterPkg.provider : "none",
+      trailConditions: trailPkg && trailPkg.provider ? trailPkg.provider : "none",
       regionalIntelligence: "engine"
     });
     pkg.meta.providerTelemetry = providerTelemetry.slice();
@@ -311,6 +323,8 @@
       elevation: elevationPkg && elevationPkg.meters != null ? "elevation (user)" : "unavailable",
       usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "usgs-iv (user)" :
         (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "usgs-no-nearby (user)" : "unavailable"),
+      trailConditions: trailPkg && trailPkg.status === "live" ? "openstreetmap-overpass (user)" :
+        (trailPkg && trailPkg.status === "empty" ? "openstreetmap-empty (user)" : "unavailable"),
       daylight: weatherPkg ? "oip-derived (user)" : "unavailable",
       photography: "oie-derived (user)"
     };
@@ -320,7 +334,9 @@
       airQuality: airQualityPkg && airQualityPkg.status === "live" ? "live" : "unavailable",
       elevation: elevationPkg && elevationPkg.meters != null ? "live" : "unavailable",
       usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "live" :
-        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "no-nearby" : "unavailable")
+        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "no-nearby" : "unavailable"),
+      trailConditions: trailPkg && trailPkg.status === "live" ? "live" :
+        (trailPkg && trailPkg.status === "empty" ? "empty" : "unavailable")
     };
     lastPackage = pkg;
     M.devLog("get complete", pkg.region.label, pkg.location.source, pkg.weather.status);
@@ -344,13 +360,15 @@
       settleProvider(resolveAlerts(req, core), "alerts"),
       settleProvider(resolveAirQuality(req, core), "airQuality"),
       settleProvider(resolveElevation(req, core), "elevation"),
-      settleProvider(resolveUsgsWater(req, core), "usgsWater")
+      settleProvider(resolveUsgsWater(req, core), "usgsWater"),
+      settleProvider(resolveTrails(req, core), "trailConditions", 75000)
     ]).then(function (parts) {
       var weatherPkg = parts[0];
       var alertsPkg = parts[1];
       var airQualityPkg = parts[2];
       var elevationPkg = parts[3];
       var usgsWaterPkg = parts[4];
+      var trailPkg = parts[5];
       if (national) {
         var UN = global.WDS && global.WDS.usNational;
         var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
@@ -361,6 +379,7 @@
           airQualityPkg,
           elevationPkg,
           usgsWaterPkg,
+          trailPkg,
           req,
           generation
         );
@@ -373,6 +392,7 @@
           airQualityPkg,
           elevationPkg,
           usgsWaterPkg,
+          trailPkg,
           req,
           generation
         );
@@ -385,6 +405,7 @@
           airQualityPkg,
           elevationPkg,
           usgsWaterPkg,
+          trailPkg,
           req,
           generation
         );
@@ -397,6 +418,7 @@
           airQualityPkg,
           elevationPkg,
           usgsWaterPkg,
+          trailPkg,
           req,
           generation
         );
@@ -480,6 +502,8 @@
     activeGeneration += 1;
     var US = global.WDS && global.WDS.usgsWater;
     if (US && US.clearCache) US.clearCache();
+    var TC = global.WDS && global.WDS.trailConditions;
+    if (TC && TC.clearCache) TC.clearCache();
     var RI = global.WDS && global.WDS.regionalIntelligence;
     if (RI && RI.engine && RI.engine.clearCache) RI.engine.clearCache();
   }

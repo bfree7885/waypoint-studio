@@ -883,14 +883,14 @@
   /* ——— Trail dashboard ——— */
   reg({
     id: "trail-dashboard",
-    title: "Trail Conditions",
+    title: "Live Trail Conditions",
     icon: "Tk",
     category: "trails",
     defaultOrder: 600,
-    defaultVisible: false,
+    defaultVisible: true,
     size: "full",
     getData: function () {
-      return D().intelMount("trail-dashboard", "Trail ops at a glance");
+      return D().intelMount("trail-dashboard", "Nearby trails and conditions");
     }
   });
 
