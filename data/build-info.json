@@ -1,7 +1,9 @@
 {
-  "commit": "cf51ce4",
-  "commitFull": "cf51ce49f1152aade6346968d94aba3b04d6ea17",
-  "deployedAt": "2026-07-10T02:02:47.368Z",
+  "commit": "ae58fe0",
+  "commitFull": "ae58fe01e824137b2cd06161b258bac477dd3fe5",
+  "deployedAt": "2026-07-10T02:21:49.832Z",
   "locationSchema": 3,
-  "loaderVersion": 2
+  "loaderVersion": 2,
+  "migrationEpoch": 2,
+  "minRecoveryBuild": "cf51ce4"
 }

@@ -61,12 +61,20 @@
     var engineCtx = platform && platform.engineContext;
     var engineLoc = engineCtx && engineCtx.engine && engineCtx.engine.publishLocation;
     var build = global.__WAYPOINT_BUILD__ || null;
+    var migration = global.WDS && global.WDS.runtimeMigration && global.WDS.runtimeMigration.diagnose
+      ? global.WDS.runtimeMigration.diagnose()
+      : null;
     var rows = [
       ["— Build —", ""],
       ["Deployed commit", build && build.commit ? build.commit : "—"],
       ["Deployed at", build && build.deployedAt ? build.deployedAt : "—"],
       ["Location schema", build && build.locationSchema != null ? build.locationSchema : "—"],
       ["Loader version", build && build.loaderVersion != null ? build.loaderVersion : "—"],
+      ["Migration epoch", build && build.migrationEpoch != null ? build.migrationEpoch : "—"],
+      ["Migration state", migration && migration.migrationState ? JSON.stringify(migration.migrationState) : "—"],
+      ["Needs migration", migration && migration.needsMigration ? "yes" : "no"],
+      ["Stale outdoor context", migration && migration.outdoorContextEngine ? "yes" : "no"],
+      ["Stale child scripts", migration && migration.staleScriptLoads ? migration.staleScriptLoads.length : "0"],
       ["— User context —", ""],
       ["Location source", loc.source],
       ["User latitude", loc.lat],

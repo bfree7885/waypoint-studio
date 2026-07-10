@@ -70,6 +70,10 @@
   }
 
   function save(pkg, loc) {
+    var PG = global.WDS && global.WDS.platformGuard;
+    if (PG && PG.sanitizeUserPlatform && pkg) {
+      pkg = PG.sanitizeUserPlatform(Object.assign({}, pkg), loc);
+    }
     var OIE = global.WDS && global.WDS.outdoorIntelligenceEngine;
     if (OIE && OIE.build && OIE.toPhotoCoachSnapshot) {
       return saveFromBriefing(OIE.build({ platform: pkg, location: loc }), loc);
@@ -85,7 +89,12 @@
   function load() {
     try {
       var raw = sessionStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : null;
+      if (!raw) return null;
+      if (/WHITE ROCK|BURR OAK,\s*KS|live-engine|waypoint-live-engine/i.test(raw)) {
+        sessionStorage.removeItem(STORAGE_KEY);
+        return null;
+      }
+      return JSON.parse(raw);
     } catch (e) {
       return null;
     }

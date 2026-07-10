@@ -13,6 +13,8 @@ const BUILD_JSON = path.join(ROOT, "data", "build-info.json");
 const BUILD_JS = path.join(ROOT, "design-system", "js", "wds-build.js");
 const LOADER_VERSION = 2;
 const LOCATION_SCHEMA = 3;
+const MIGRATION_EPOCH = 2;
+const MIN_RECOVERY_BUILD = "cf51ce4";
 
 function gitShortSha() {
   try {
@@ -53,7 +55,8 @@ function updateHtmlFiles(sha) {
           return prefix + "?v=" + sha;
         }
         return match;
-      });
+      })
+      .replace(/(<script src="design-system\/js\/wds-build\.js\?v=[^"]+") defer>/g, "$1>");
     if (next !== html) {
       fs.writeFileSync(file, next, "utf8");
       console.log("updated", rel);
@@ -70,7 +73,9 @@ function main() {
     commitFull,
     deployedAt,
     locationSchema: LOCATION_SCHEMA,
-    loaderVersion: LOADER_VERSION
+    loaderVersion: LOADER_VERSION,
+    migrationEpoch: MIGRATION_EPOCH,
+    minRecoveryBuild: MIN_RECOVERY_BUILD
   };
 
   fs.mkdirSync(path.dirname(BUILD_JSON), { recursive: true });
@@ -114,7 +119,9 @@ function main() {
       commitFull: BUILD.commitFull,
       deployedAt: BUILD.deployedAt,
       locationSchema: BUILD.locationSchema,
-      loaderVersion: BUILD.loaderVersion
+      loaderVersion: BUILD.loaderVersion,
+      migrationEpoch: BUILD.migrationEpoch,
+      minRecoveryBuild: BUILD.minRecoveryBuild
     };
     global.WDS = global.WDS || {};
     global.WDS.build = {
@@ -126,6 +133,128 @@ function main() {
   }
 
   expose();
+
+  (function earlyRuntimeMigration() {
+    var MKEY = "waypoint-runtime-migration";
+    var AKEY = "waypoint-active-build";
+    var STALE_LOCAL = ${JSON.stringify([
+    "waypoint-briefing-snapshot-v1",
+    "waypointDebugSnapshot",
+    "wds-location-v1",
+    "wds-location-v2",
+    "waypoint-oip-last-package-v1",
+    "waypoint-usgs-cache-v1",
+    "waypoint-daylight-cache-v1",
+    "waypoint-weather-cache-v1"
+  ])};
+    var STALE_SESSION = ${JSON.stringify(["waypoint-outdoor-context-v1"])};
+    var KEEP = ${JSON.stringify([
+    "wds-location-v3",
+    "wds-location-prompted",
+    "waypoint-dashboard-widgets-v4",
+    "waypoint-dashboard-favorites-v1",
+    "waypoint-debug-location",
+    "waypoint-runtime-migration",
+    "waypoint-active-build"
+  ])};
+
+    function keepKey(key) {
+      if (!key) return false;
+      for (var i = 0; i < KEEP.length; i++) {
+        if (key === KEEP[i] || key.indexOf(KEEP[i]) === 0) return true;
+      }
+      return false;
+    }
+
+    function readState() {
+      try {
+        var raw = global.localStorage && global.localStorage.getItem(MKEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    }
+
+    function needs(stored) {
+      if (!stored) return true;
+      if (stored.epoch != null && BUILD.migrationEpoch != null && stored.epoch < BUILD.migrationEpoch) return true;
+      if (stored.loaderVersion != null && BUILD.loaderVersion != null && stored.loaderVersion < BUILD.loaderVersion) return true;
+      if (stored.locationSchema != null && BUILD.locationSchema != null && stored.locationSchema < BUILD.locationSchema) return true;
+      if (stored.build && BUILD.commit && stored.build !== BUILD.commit) return true;
+      return false;
+    }
+
+    function looksEngine(raw) {
+      if (!raw) return false;
+      return /WHITE ROCK|BURR OAK,\\s*KS|live-engine|waypoint-live-engine|engine-publish/i.test(String(raw));
+    }
+
+    function clearStale() {
+      try {
+        if (global.localStorage) {
+          STALE_LOCAL.forEach(function (k) { global.localStorage.removeItem(k); });
+          var purge = [];
+          for (var i = 0; i < global.localStorage.length; i++) {
+            var key = global.localStorage.key(i);
+            if (!key || keepKey(key)) continue;
+            if (/oip|usgs|daylight|weather|briefing|outdoor-context|live-engine/i.test(key)) purge.push(key);
+          }
+          purge.forEach(function (k) { global.localStorage.removeItem(k); });
+        }
+      } catch (e1) { /* noop */ }
+      try {
+        if (global.sessionStorage) {
+          STALE_SESSION.forEach(function (k) { global.sessionStorage.removeItem(k); });
+        }
+      } catch (e2) { /* noop */ }
+    }
+
+    try {
+      if (!global.localStorage || !global.location) return;
+      var migrateReload = /(?:^|[?&])wds-migrate=1(?:&|$)/.test(global.location.search || "");
+      var stored = readState();
+      var staleOutdoor = false;
+      try {
+        staleOutdoor = looksEngine(global.sessionStorage && global.sessionStorage.getItem("waypoint-outdoor-context-v1"));
+      } catch (e3) { /* noop */ }
+
+      if (migrateReload) {
+        global.localStorage.setItem(MKEY, JSON.stringify({
+          epoch: BUILD.migrationEpoch,
+          build: BUILD.commit,
+          loaderVersion: BUILD.loaderVersion,
+          locationSchema: BUILD.locationSchema,
+          migratedAt: new Date().toISOString(),
+          via: "reload"
+        }));
+        global.localStorage.setItem(AKEY, BUILD.commit);
+        try {
+          var doneUrl = new URL(global.location.href);
+          doneUrl.searchParams.delete("wds-migrate");
+          global.history.replaceState(null, "", doneUrl.pathname + doneUrl.search + doneUrl.hash);
+        } catch (e4) { /* noop */ }
+        return;
+      }
+
+      if (!needs(stored) && !staleOutdoor) {
+        global.localStorage.setItem(AKEY, BUILD.commit);
+        return;
+      }
+
+      clearStale();
+      global.localStorage.setItem(MKEY, JSON.stringify({
+        epoch: BUILD.migrationEpoch,
+        build: BUILD.commit,
+        loaderVersion: BUILD.loaderVersion,
+        locationSchema: BUILD.locationSchema,
+        stagedAt: new Date().toISOString(),
+        pendingReload: true
+      }));
+
+      var target = new URL(global.location.href);
+      target.searchParams.set("wds-migrate", "1");
+      if (BUILD.commit) target.searchParams.set("v", BUILD.commit);
+      global.location.replace(target.toString());
+    } catch (e5) { /* noop */ }
+  })();
 })(typeof window !== "undefined" ? window : globalThis);
 `;
 

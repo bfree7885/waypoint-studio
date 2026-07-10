@@ -24,6 +24,7 @@
     "wds-geocode-service.js",
     "wds-ip-geolocation.js",
     "dashboard/wds-us-national-context.js",
+    "wds-runtime-migration.js",
     "wds-location-context.js",
     "wds-platform-guard.js",
     "wds-render-audit.js",

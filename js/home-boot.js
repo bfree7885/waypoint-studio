@@ -181,6 +181,9 @@
   function scheduleDashboardRefresh() {
     if (dashboardTimer) clearInterval(dashboardTimer);
     dashboardTimer = setInterval(function () {
+      if (WDS.runtimeMigration && WDS.runtimeMigration.watchdog) {
+        WDS.runtimeMigration.watchdog();
+      }
       if (!window.WDS || !WDS.location || !WDS.location.getState) return;
       var state = WDS.location.getState();
       if (!state) return;
@@ -227,7 +230,12 @@
     WDS.location.bootstrap({
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")
-    }).then(startDashboard).catch(function () {
+    }).then(function (loc) {
+      if (WDS.runtimeMigration && WDS.runtimeMigration.onModulesReady) {
+        WDS.runtimeMigration.onModulesReady();
+      }
+      startDashboard(loc);
+    }).catch(function () {
       showBootError();
     });
   }
@@ -243,4 +251,10 @@
     boot();
     scheduleDashboardRefresh();
   }
+
+  window.addEventListener("pageshow", function (ev) {
+    if (ev && ev.persisted && window.WDS && WDS.runtimeMigration && WDS.runtimeMigration.handleBfcacheRestore) {
+      WDS.runtimeMigration.handleBfcacheRestore();
+    }
+  });
 })();
