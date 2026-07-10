@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-10T12:30:01.270Z",
-  "dataUpdatedAt": "2026-07-10T12:30:01.270Z",
-  "nextScheduledRun": "2026-07-10T13:00:00.000Z",
-  "lastPublishAt": "2026-07-10T01:30:25.310Z",
-  "lastPublishedDataAt": "2026-07-10T01:30:01.831Z",
-  "lastPublishCommit": "cf82ef9",
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes"
+  "lastEngineRun": "2026-07-10T13:00:01.722Z",
+  "dataUpdatedAt": "2026-07-10T13:00:01.722Z",
+  "nextScheduledRun": "2026-07-10T13:30:00.000Z",
+  "lastPublishAt": "2026-07-10T12:30:14.593Z",
+  "lastPublishedDataAt": "2026-07-10T12:30:01.270Z",
+  "lastPublishCommit": "865ef5b",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed 865ef5b to origin/main"
 }
