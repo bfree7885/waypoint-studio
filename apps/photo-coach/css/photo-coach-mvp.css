@@ -1,0 +1,306 @@
+/**
+ * Photo Coach MVP — upload, critique, local history
+ */
+:root {
+  --pc-accent: #3d6b4f;
+  --pc-accent-soft: rgba(61, 107, 79, 0.12);
+  --pc-border: rgba(30, 40, 35, 0.12);
+  --pc-text: #1a2420;
+  --pc-muted: #5c6b64;
+  --pc-bg: #f7f6f2;
+  --pc-card: #ffffff;
+  --pc-radius: 12px;
+}
+
+.pc-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.pc-topbar .pc-nav {
+  display: none;
+}
+
+.pc-upload__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+  color: var(--pc-text);
+}
+
+.pc-upload__lead {
+  margin: 0 0 1.75rem;
+  color: var(--pc-muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 38em;
+}
+
+.pc-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 220px;
+  padding: 2rem;
+  border: 2px dashed var(--pc-border);
+  border-radius: var(--pc-radius);
+  background: var(--pc-card);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.pc-drop:hover,
+.pc-drop--hover {
+  border-color: var(--pc-accent);
+  background: var(--pc-accent-soft);
+}
+
+.pc-drop__icon {
+  font-size: 2rem;
+  color: var(--pc-accent);
+  line-height: 1;
+}
+
+.pc-drop__label {
+  font-weight: 500;
+  color: var(--pc-text);
+}
+
+.pc-drop__hint {
+  font-size: 0.875rem;
+  color: var(--pc-muted);
+}
+
+.pc-status {
+  min-height: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--pc-muted);
+}
+
+.pc-status--error {
+  color: #9b3b32;
+}
+
+.pc-workspace {
+  margin-top: 2rem;
+}
+
+.pc-preview {
+  margin: 0 0 1.25rem;
+  border-radius: var(--pc-radius);
+  overflow: hidden;
+  background: #111;
+}
+
+.pc-preview img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.pc-critique {
+  background: var(--pc-card);
+  border: 1px solid var(--pc-border);
+  border-radius: var(--pc-radius);
+  padding: 1.5rem;
+}
+
+.pc-critique__head {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--pc-border);
+}
+
+.pc-critique__title {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.pc-critique__meta {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--pc-muted);
+}
+
+.pc-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--pc-accent-soft);
+  color: var(--pc-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pc-score {
+  font-weight: 600;
+  color: var(--pc-text);
+}
+
+.pc-critique__section {
+  margin-top: 1.25rem;
+}
+
+.pc-critique__section--impression .pc-critique__prose {
+  margin: 0;
+  line-height: 1.65;
+  color: var(--pc-text);
+}
+
+.pc-critique__heading {
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pc-muted);
+}
+
+.pc-critique__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  line-height: 1.55;
+}
+
+.pc-critique__list li {
+  margin-bottom: 0.5rem;
+}
+
+.pc-critique__tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--pc-accent);
+  margin-right: 0.25rem;
+}
+
+.pc-engine-note {
+  margin: 1.25rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--pc-border);
+  font-size: 0.8rem;
+  color: var(--pc-muted);
+}
+
+.pc-recent {
+  margin-top: 3rem;
+}
+
+.pc-recent__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+.pc-muted {
+  color: var(--pc-muted);
+  font-size: 0.95rem;
+}
+
+.pc-history__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pc-history__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--pc-card);
+  border: 1px solid var(--pc-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pc-history__open {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.pc-history__open:hover {
+  background: var(--pc-accent-soft);
+}
+
+.pc-history__thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: #ddd;
+}
+
+.pc-history__thumb--empty {
+  background: linear-gradient(135deg, #e8e6e0, #d4d2cc);
+}
+
+.pc-history__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.pc-history__name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pc-history__sub {
+  font-size: 0.8rem;
+  color: var(--pc-muted);
+}
+
+.pc-history__delete {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-right: 0.35rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pc-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pc-history__delete:hover {
+  background: rgba(155, 59, 50, 0.1);
+  color: #9b3b32;
+}
+
+body {
+  background: var(--pc-bg);
+}
+
+@media (min-width: 640px) {
+  .pc-drop {
+    min-height: 260px;
+  }
+}

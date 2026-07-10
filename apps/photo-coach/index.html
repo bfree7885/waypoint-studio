@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Photo Coach — learn to see. Field guidance for outdoor photography: conditions, opportunities, composition, editing, and gear for your Sony a6700.">
-  <title>Photo Coach — My Photography Journey · Waypoint Studio</title>
+  <meta name="description" content="Photo Coach — upload a photo and get a thoughtful critique. What works, what to improve, and what to try next time.">
+  <title>Photo Coach · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
-  <link rel="stylesheet" href="css/photo-coach-journey.css">
+  <link rel="stylesheet" href="css/photo-coach-mvp.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
@@ -20,44 +20,29 @@
           <span class="wds-brand__mark" aria-hidden="true"></span>
           <span class="wds-brand__name">Waypoint Studio</span>
         </a>
-        <nav class="pc-nav" aria-label="Photo Coach sections">
-          <a href="#conditions">Conditions</a>
-          <a href="#opportunities">Opportunities</a>
-          <a href="#coach">Coach</a>
-          <a href="#checklist">Checklist</a>
-          <a href="#editing">Editing</a>
-          <a href="#gear">Gear</a>
-          <a href="#progress">Progress</a>
-        </nav>
       </div>
     </header>
 
-    <div id="wds-location-prompt"></div>
-    <div id="pc-location-bar" class="pc-location-bar" hidden></div>
-
     <main id="main" class="pc-page">
-      <div id="photo-coach-app" aria-busy="true">
-        <section class="pc-hero" aria-label="Loading">
-          <p class="wds-eyebrow">Photo Coach</p>
-          <p class="pc-hero__lead">Opening your field guide…</p>
-        </section>
+      <div id="photo-coach-app" aria-busy="true" aria-live="polite">
+        <p class="pc-muted">Loading Photo Coach…</p>
       </div>
     </main>
 
-    <footer class="wds-footer">
-      <p>Photo Coach · Learn to see · <a href="../../#how-waypoint-works">How Waypoint works</a></p>
+    <footer class="wds-footer wds-footer--minimal">
+      <p>Photo Coach · Private on this device · <a href="../../">Waypoint Studio</a></p>
     </footer>
   </div>
 
-  <script src="../../design-system/js/wds-platform.js" defer></script>
-  <script src="../../design-system/js/weather/wds-sky-dashboard-intel.js" defer></script>
-  <script src="../../design-system/js/wds-ecosystem-bridge.js" defer></script>
-  <script src="js/photo-coach-util.js" defer></script>
-  <script src="js/photo-coach-content.js" defer></script>
-  <script src="js/photo-coach-progress.js" defer></script>
-  <script src="js/photo-coach-conditions.js" defer></script>
-  <script src="js/photo-coach-opportunities.js" defer></script>
-  <script src="js/photo-coach-app.js" defer></script>
-  <script src="js/photo-coach-boot.js" defer></script>
+  <script src="../waypoint-scenes/js/exif-reader.js" defer></script>
+  <script src="js/pc-critique-model.js" defer></script>
+  <script src="js/pc-image-loader.js" defer></script>
+  <script src="js/pc-image-metadata.js" defer></script>
+  <script src="js/pc-pixel-sampler.js" defer></script>
+  <script src="js/pc-analysis-engine.js" defer></script>
+  <script src="js/pc-history-store.js" defer></script>
+  <script src="js/pc-critique-renderer.js" defer></script>
+  <script src="js/pc-app.js" defer></script>
+  <script src="js/pc-boot.js" defer></script>
 </body>
 </html>
