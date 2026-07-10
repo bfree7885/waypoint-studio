@@ -142,6 +142,14 @@
   }
 
   function wireDebugSnapshot() {
+    var debugOn = false;
+    try {
+      debugOn = /(?:^|[?&])debug=location(?:&|$)/.test(window.location && window.location.search);
+      if (!debugOn && window.localStorage && window.localStorage.getItem("waypoint-debug-location") === "1") {
+        debugOn = true;
+      }
+    } catch (e) { /* noop */ }
+    if (!debugOn) return;
     publishDebugSnapshot();
     var mount = document.getElementById("wds-content-engine") || document.body;
     if (!mount) return;
@@ -218,8 +226,6 @@
         contentEngineBase: ENGINE_BASE,
         includeWeather: true
       });
-    } else if (WDS.regionalIntelligence && WDS.regionalIntelligence.configure) {
-      WDS.regionalIntelligence.configure({ contentEngineBase: ENGINE_BASE });
     }
     if (WDS.weather && WDS.weather.configure) {
       WDS.weather.configure({ provider: "open-meteo", fallback: false });

@@ -137,17 +137,17 @@ check(
   "engine photography dependency removed"
 );
 
-const kioskBoot = fs.readFileSync(path.join(ROOT, "js/kiosk-boot.js"), "utf8");
+const kioskNormalize = fs.readFileSync(path.join(ROOT, "js/kiosk-normalize.js"), "utf8");
 check(
-  "kiosk boot has no duplicate derivePhotography",
-  !kioskBoot.includes("derivePhotography") && kioskBoot.includes("photographyConditions.fromPlatform"),
+  "kiosk normalize uses canonical photography module",
+  !kioskNormalize.includes("derivePhotography") && kioskNormalize.includes("photographyConditions.fromPlatform"),
   "uses canonical photography module"
 );
 
 const kioskJs = fs.readFileSync(path.join(ROOT, "js/kiosk.js"), "utf8");
 check(
-  "kiosk render uses user photography not engine module",
-  kioskJs.includes("userMods && userMods.photography") &&
+  "kiosk render uses normalized user photography",
+  (kioskJs.includes("mods.photography") || kioskJs.includes("getModules()")) &&
     !kioskJs.includes('moduleData(live, "photography_conditions")'),
   "engine photography overlay removed"
 );

@@ -165,7 +165,17 @@
     }
   }
 
+  function debugEnabled() {
+    try {
+      if (global.localStorage && global.localStorage.getItem("waypoint-debug-location") === "1") return true;
+    } catch (e) { /* noop */ }
+    try {
+      return /(?:^|[?&])debug=location(?:&|$)/.test(global.location && global.location.search);
+    } catch (e2) { return false; }
+  }
+
   function init() {
+    if (!debugEnabled()) return;
     publish();
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", function () {
