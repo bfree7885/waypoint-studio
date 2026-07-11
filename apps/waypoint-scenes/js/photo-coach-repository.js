@@ -1,8 +1,9 @@
 /**
  * Waypoint Scenes / Photo Coach — repositories for growth data.
  *
- * Quiet persistence behind the existing UI. No profile calculation.
+ * Quiet persistence behind the existing UI.
  * Storage keys are versioned; older shoot/session stores remain valid.
+ * Profile calculation lives in WaypointPhotoCoachProfileEngine.
  */
 (function (global) {
   "use strict";
@@ -18,6 +19,10 @@
   function models() {
     if (!Models) Models = global.WaypointPhotoCoachModels;
     return Models;
+  }
+
+  function engine() {
+    return global.WaypointPhotoCoachProfileEngine || null;
   }
 
   function readJson(key, fallback) {
@@ -326,23 +331,31 @@
 
   var PhotoRepository = {
     list: function () {
-      return readJson(PHOTO_KEY, []);
+      var M = models();
+      return readJson(PHOTO_KEY, []).map(function (p) {
+        return M && M.migratePhotoRecord ? M.migratePhotoRecord(p) : p;
+      });
     },
     get: function (uuid) {
       return this.list().filter(function (p) { return p.uuid === uuid; })[0] || null;
     },
     save: function (record) {
       if (!record || !record.uuid) return false;
+      var M = models();
+      if (M && M.migratePhotoRecord) record = M.migratePhotoRecord(record);
       var all = this.list().filter(function (p) { return p.uuid !== record.uuid; });
       all.unshift(record);
       return writeJson(PHOTO_KEY, all.slice(0, MAX_PHOTOS));
     },
     saveMany: function (records) {
+      var M = models();
       var all = this.list();
       var byId = {};
       all.forEach(function (p) { byId[p.uuid] = p; });
       (records || []).forEach(function (r) {
-        if (r && r.uuid) byId[r.uuid] = r;
+        if (r && r.uuid) {
+          byId[r.uuid] = M && M.migratePhotoRecord ? M.migratePhotoRecord(r) : r;
+        }
       });
       var merged = Object.keys(byId).map(function (k) { return byId[k]; });
       merged.sort(function (a, b) {
@@ -355,6 +368,32 @@
     },
     count: function () {
       return this.list().length;
+    },
+    setExcluded: function (uuid, excluded) {
+      var photo = this.get(uuid);
+      if (!photo) return false;
+      photo.excludeFromProfile = !!excluded;
+      return this.save(photo);
+    },
+    correctSubjects: function (uuid, subjects, nicheLabel) {
+      var photo = this.get(uuid);
+      if (!photo) return false;
+      if (!photo.userCorrections) {
+        photo.userCorrections = models().emptyUserCorrections();
+      }
+      // Preserve original subjectCategories / critique; only override for learning
+      photo.userCorrections.subjectCategories = (subjects || []).filter(Boolean);
+      if (nicheLabel != null) {
+        photo.userCorrections.nicheLabel = nicheLabel || null;
+      }
+      photo.userCorrections.correctedAt = new Date().toISOString();
+      return this.save(photo);
+    },
+    clearCorrections: function (uuid) {
+      var photo = this.get(uuid);
+      if (!photo) return false;
+      photo.userCorrections = models().emptyUserCorrections();
+      return this.save(photo);
     }
   };
 
@@ -362,30 +401,52 @@
 
   var ShootRepository = {
     list: function () {
-      return readJson(SHOOT_KEY, []);
+      var M = models();
+      return readJson(SHOOT_KEY, []).map(function (s) {
+        return M && M.migrateShoot ? M.migrateShoot(s) : s;
+      });
     },
     get: function (id) {
       return this.list().filter(function (s) { return s.id === id; })[0] || null;
     },
     save: function (shoot) {
       if (!shoot || !shoot.id) return false;
+      var M = models();
+      if (M && M.migrateShoot) shoot = M.migrateShoot(shoot);
       var all = this.list().filter(function (s) { return s.id !== shoot.id; });
       all.unshift(shoot);
       return writeJson(SHOOT_KEY, all.slice(0, MAX_SHOOTS));
     },
     count: function () {
       return this.list().length;
+    },
+    setExcluded: function (id, excluded) {
+      var shoot = this.get(id);
+      if (!shoot) return false;
+      shoot.excludeFromProfile = !!excluded;
+      shoot.updatedAt = new Date().toISOString();
+      return this.save(shoot);
+    },
+    setExperimentation: function (id, isExperiment) {
+      var shoot = this.get(id);
+      if (!shoot) return false;
+      shoot.isExperimentation = !!isExperiment;
+      shoot.updatedAt = new Date().toISOString();
+      return this.save(shoot);
     }
   };
 
-  /* ——— Photographer profile repository (shape only; no calculation) ——— */
+  /* ——— Photographer profile repository ——— */
 
   var ProfileRepository = {
     load: function () {
       var M = models();
       var stored = readJson(PROFILE_KEY, null);
-      if (stored) return stored;
-      // Migrate soft fields from legacy learning profile if present
+      if (stored) {
+        return M && M.migratePhotographerProfile
+          ? M.migratePhotographerProfile(stored)
+          : stored;
+      }
       var legacy = null;
       try {
         var raw = localStorage.getItem("waypoint-photo-coach-profile-v1");
@@ -403,18 +464,22 @@
             createdAt: legacy.createdAt || new Date().toISOString(),
             updatedAt: legacy.updatedAt || new Date().toISOString()
           } : {})
-        : { schemaVersion: "1.0.0", id: "local-default" };
+        : { schemaVersion: "1.1.0", id: "local-default", privacy: { visibility: "private" } };
+      if (M && M.migratePhotographerProfile) {
+        profile = M.migratePhotographerProfile(profile);
+      }
       writeJson(PROFILE_KEY, profile);
       return profile;
     },
     save: function (profile) {
       if (!profile) return false;
+      var M = models();
+      if (M && M.migratePhotographerProfile) {
+        profile = M.migratePhotographerProfile(profile);
+      }
       profile.updatedAt = new Date().toISOString();
       return writeJson(PROFILE_KEY, profile);
     },
-    /**
-     * Touch bookkeeping counters only — does NOT compute niche/style/etc.
-     */
     touchCounters: function (opts) {
       opts = opts || {};
       var profile = this.load();
@@ -422,9 +487,74 @@
       profile.shootCount = ShootRepository.count();
       if (opts.lastPhotoUuid) profile.lastPhotoUuid = opts.lastPhotoUuid;
       if (opts.lastShootId) profile.lastShootId = opts.lastShootId;
-      // Explicitly leave preferredSubjects, emergingNiche, visualStyle, etc. untouched
-      profile.computedAt = null;
-      return this.save(profile);
+      this.save(profile);
+      if (!opts.skipRecalculate) {
+        this.recalculate();
+      }
+      return this.load();
+    },
+    recalculate: function () {
+      var Eng = engine();
+      var profile = this.load();
+      if (!Eng || !Eng.compute) {
+        profile.photoCount = PhotoRepository.count();
+        profile.shootCount = ShootRepository.count();
+        return this.save(profile) ? profile : null;
+      }
+      var computed = Eng.compute(PhotoRepository.list(), ShootRepository.list());
+      Object.keys(computed).forEach(function (key) {
+        profile[key] = computed[key];
+      });
+      if (!profile.privacy) {
+        profile.privacy = { visibility: "private", shareEnabled: false };
+      }
+      profile.privacy.visibility = "private";
+      profile.awaitingRecalculation = false;
+      this.save(profile);
+      return profile;
+    },
+    /**
+     * Clear computed profile fields. Keeps photos/shoots and learning flags.
+     */
+    resetComputed: function () {
+      var M = models();
+      var current = this.load();
+      var shell = M
+        ? M.createPhotographerProfile({
+            id: current.id || "local-default",
+            createdAt: current.createdAt || new Date().toISOString(),
+            displayName: current.displayName || null,
+            experienceLevel: current.experienceLevel || "developing",
+            goals: current.goals || ["composition", "lighting"],
+            focusAreas: current.focusAreas || [],
+            completedAssignments: current.completedAssignments || [],
+            privacy: { visibility: "private", shareEnabled: false },
+            photoCount: PhotoRepository.count(),
+            shootCount: ShootRepository.count(),
+            lastPhotoUuid: current.lastPhotoUuid || null,
+            lastShootId: current.lastShootId || null
+          })
+        : current;
+      shell.awaitingRecalculation = true;
+      this.save(shell);
+      return shell;
+    },
+    /**
+     * Full learning reset: clear exclusions/experiment flags/corrections, then recompute empty.
+     */
+    resetLearning: function () {
+      var photos = PhotoRepository.list().map(function (p) {
+        p.excludeFromProfile = false;
+        p.userCorrections = models().emptyUserCorrections();
+        return p;
+      });
+      PhotoRepository.saveMany(photos);
+      ShootRepository.list().forEach(function (s) {
+        s.excludeFromProfile = false;
+        s.isExperimentation = false;
+        ShootRepository.save(s);
+      });
+      return this.resetComputed();
     }
   };
 
@@ -434,6 +564,8 @@
   function ingestAnalysis(critique, meta) {
     var record = photoRecordFromCritique(critique, meta);
     if (!record) return null;
+    var M = models();
+    if (M && M.migratePhotoRecord) record = M.migratePhotoRecord(record);
     PhotoRepository.save(record);
     ProfileRepository.touchCounters({ lastPhotoUuid: record.uuid });
     return record;
@@ -442,7 +574,8 @@
   function ingestShoot(sessionShoot, photoRecords) {
     var entity = shootEntityFromSession(sessionShoot, photoRecords);
     if (!entity) return null;
-    // Link best image UUIDs when filenames match
+    var M = models();
+    if (M && M.migrateShoot) entity = M.migrateShoot(entity);
     var byName = {};
     (photoRecords || []).forEach(function (p) {
       if (p.originalFilename) byName[p.originalFilename] = p.uuid;
@@ -451,6 +584,12 @@
       if (b.fileName && byName[b.fileName]) b.photoUuid = byName[b.fileName];
       return b;
     });
+    // Preserve learning flags if shoot already exists
+    var existing = ShootRepository.get(entity.id);
+    if (existing) {
+      entity.excludeFromProfile = !!existing.excludeFromProfile;
+      entity.isExperimentation = !!existing.isExperimentation;
+    }
     ShootRepository.save(entity);
     ProfileRepository.touchCounters({ lastShootId: entity.id });
     return entity;
@@ -468,4 +607,4 @@
     ingestAnalysis: ingestAnalysis,
     ingestShoot: ingestShoot
   };
-})(window);
+})(typeof window !== "undefined" ? window : global);

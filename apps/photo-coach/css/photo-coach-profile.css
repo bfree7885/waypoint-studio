@@ -1,0 +1,234 @@
+/**
+ * Photographer Profile page — Waypoint Scenes
+ */
+.pc-shell.pp-page-body {
+  color: var(--coach-text);
+}
+
+.pp-page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 0.75rem clamp(1rem, 3vw, 2rem) 3.5rem;
+}
+
+.pp-hero {
+  margin-bottom: 1.25rem;
+}
+
+.pp-hero__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.pp-hero__lead {
+  color: var(--coach-text-secondary);
+  max-width: 38rem;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.pp-status {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+  background: var(--coach-surface);
+  color: var(--coach-text-secondary);
+  font-size: 0.9rem;
+}
+
+.pp-privacy {
+  font-size: 0.8125rem;
+  color: var(--coach-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.pp-section {
+  margin: 0 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--coach-border);
+}
+
+.pp-section:last-child {
+  border-bottom: 0;
+}
+
+.pp-section h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.65rem;
+  margin: 0 0 0.5rem;
+}
+
+.pp-section h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--coach-text-secondary);
+}
+
+.pp-lede,
+.pp-direction-summary {
+  color: var(--coach-text-secondary);
+  line-height: 1.55;
+  margin: 0 0 0.85rem;
+}
+
+.pp-direction-summary {
+  font-size: 1.05rem;
+  color: var(--coach-text);
+}
+
+.pp-empty,
+.pp-muted,
+.pp-note {
+  color: var(--coach-text-muted);
+  font-size: 0.9rem;
+}
+
+.pp-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--coach-border);
+  border-radius: 0.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  color: var(--coach-text-muted);
+  vertical-align: middle;
+}
+
+.pp-badge[data-strength="experimental"],
+.pp-badge[data-strength="insufficient"],
+.pp-badge[data-strength="tentative"] {
+  border-color: rgba(244, 241, 234, 0.22);
+}
+
+.pp-badge[data-strength="moderate"],
+.pp-badge[data-strength="strong"],
+.pp-badge[data-strength="early"] {
+  border-color: var(--coach-accent);
+  color: var(--coach-accent);
+}
+
+.pp-rank-list,
+.pp-growth-list,
+.pp-control-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pp-rank-list li,
+.pp-growth-list li,
+.pp-control-list li {
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pp-rank-list__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pp-evidence-line {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--coach-text-muted);
+}
+
+.pp-style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.pp-style-block {
+  padding: 0.75rem;
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+  background: var(--coach-surface);
+}
+
+.pp-style-block h3 {
+  margin: 0 0 0.35rem;
+}
+
+.pp-style-value {
+  margin: 0 0 0.35rem;
+  color: var(--coach-text);
+}
+
+.pp-evidence-dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.85rem 1.25rem;
+  margin: 0;
+}
+
+.pp-evidence-dl dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--coach-text-muted);
+}
+
+.pp-evidence-dl dd {
+  margin: 0.2rem 0 0;
+  color: var(--coach-text);
+}
+
+.pp-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.35rem 0.75rem 0.35rem 0;
+  font-size: 0.85rem;
+  color: var(--coach-text-secondary);
+}
+
+.pp-correct-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
+
+.pp-correct-row input[type="text"] {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--coach-border);
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--coach-text);
+}
+
+.pp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.pp-growth-list li[data-direction="improving"] strong {
+  color: var(--coach-accent);
+}
+
+.ws-topnav a[aria-current="page"] {
+  color: var(--coach-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 640px) {
+  .pp-actions .btn {
+    width: 100%;
+  }
+}

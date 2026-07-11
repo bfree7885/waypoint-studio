@@ -1,20 +1,18 @@
 /**
- * Waypoint Scenes / Photo Coach — growth data models (schema only).
- *
- * Architectural foundation for long-term photographer profiles.
- * Does NOT compute profiles or change the Photo Coach UI.
+ * Waypoint Scenes / Photo Coach — growth data models.
  *
  * Entities:
- *   PhotoRecord  — one analyzed photograph (structured, not prose-only)
- *   Shoot        — one import / batch analysis session
- *   PhotographerProfile — future living profile (storage shape only)
+ *   PhotoRecord         — one analyzed photograph (structured)
+ *   Shoot               — one import / batch analysis session
+ *   PhotographerProfile — living profile computed from eligible work
  */
 (function (global) {
   "use strict";
 
-  var PHOTO_SCHEMA = "2.0.0";
-  var SHOOT_SCHEMA = "2.0.0";
-  var PROFILE_SCHEMA = "1.0.0";
+  var PHOTO_SCHEMA = "2.1.0";
+  var SHOOT_SCHEMA = "2.1.0";
+  var PROFILE_SCHEMA = "1.1.0";
+  var COMPUTATION_VERSION = "1.0.0";
 
   function uuid() {
     if (global.crypto && typeof global.crypto.randomUUID === "function") {
@@ -52,9 +50,17 @@
     };
   }
 
+  function emptyUserCorrections() {
+    return {
+      subjectCategories: null,
+      nicheLabel: null,
+      notes: null,
+      correctedAt: null
+    };
+  }
+
   /**
    * Structured per-photo analysis record.
-   * Every analyzed upload should produce one of these.
    */
   function createPhotoRecord(overrides) {
     overrides = overrides || {};
@@ -91,9 +97,11 @@
       analyzedAt: null,
       portfolioSessionId: null,
       thumbnail: null,
-      // Compatibility / debugging
       legacyImageId: null,
-      engineVersion: null
+      engineVersion: null,
+      // Profile learning controls (do not delete original critique)
+      excludeFromProfile: false,
+      userCorrections: emptyUserCorrections()
     }, overrides);
   }
 
@@ -121,16 +129,18 @@
       commonStrengths: [],
       commonImprovementThemes: [],
       aiSummary: null,
-      // Optional rich summary (existing Shoot Summary UI)
       summaryDetail: null,
       outdoorContext: null,
-      communityMatchReady: false
+      communityMatchReady: false,
+      // Profile learning controls
+      excludeFromProfile: false,
+      isExperimentation: false
     }, overrides);
   }
 
   /**
-   * Photographer growth profile — storage shape only.
-   * Do NOT calculate these fields yet; leave null/empty for future jobs.
+   * Photographer growth profile — private by default.
+   * Computed fields are filled by the profile engine.
    */
   function createPhotographerProfile(overrides) {
     overrides = overrides || {};
@@ -139,9 +149,13 @@
       id: "local-default",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      // Future-computed fields (not calculated in this sprint)
+      privacy: {
+        visibility: "private",
+        shareEnabled: false
+      },
       preferredSubjects: [],
       emergingNiche: null,
+      likelyNiches: [],
       visualStyle: null,
       strengths: [],
       recurringCoachingThemes: [],
@@ -151,14 +165,14 @@
       typicalCompositions: [],
       recentImprovements: [],
       confidenceScore: null,
-      // Bookkeeping for future aggregation
+      currentDirection: null,
+      evidence: null,
       photoCount: 0,
       shootCount: 0,
       lastPhotoUuid: null,
       lastShootId: null,
       computedAt: null,
       computationVersion: null,
-      // Legacy learning-profile fields (backwards compatible)
       displayName: null,
       experienceLevel: "developing",
       goals: ["composition", "lighting"],
@@ -167,15 +181,59 @@
     }, overrides);
   }
 
+  function migratePhotoRecord(record) {
+    if (!record || typeof record !== "object") return record;
+    if (!record.schemaVersion) record.schemaVersion = PHOTO_SCHEMA;
+    if (record.excludeFromProfile == null) record.excludeFromProfile = false;
+    if (!record.userCorrections) record.userCorrections = emptyUserCorrections();
+    if (record.userCorrections.subjectCategories === undefined) {
+      record.userCorrections.subjectCategories = null;
+    }
+    if (record.userCorrections.nicheLabel === undefined) {
+      record.userCorrections.nicheLabel = null;
+    }
+    record.schemaVersion = PHOTO_SCHEMA;
+    return record;
+  }
+
+  function migrateShoot(shoot) {
+    if (!shoot || typeof shoot !== "object") return shoot;
+    if (shoot.excludeFromProfile == null) shoot.excludeFromProfile = false;
+    if (shoot.isExperimentation == null) shoot.isExperimentation = false;
+    shoot.schemaVersion = SHOOT_SCHEMA;
+    return shoot;
+  }
+
+  function migratePhotographerProfile(profile) {
+    if (!profile || typeof profile !== "object") {
+      return createPhotographerProfile();
+    }
+    if (!profile.privacy) {
+      profile.privacy = { visibility: "private", shareEnabled: false };
+    }
+    if (profile.privacy.visibility == null) profile.privacy.visibility = "private";
+    if (profile.privacy.shareEnabled == null) profile.privacy.shareEnabled = false;
+    if (!Array.isArray(profile.likelyNiches)) profile.likelyNiches = [];
+    if (profile.currentDirection === undefined) profile.currentDirection = null;
+    if (profile.evidence === undefined) profile.evidence = null;
+    profile.schemaVersion = PROFILE_SCHEMA;
+    return profile;
+  }
+
   global.WaypointPhotoCoachModels = {
     PHOTO_SCHEMA: PHOTO_SCHEMA,
     SHOOT_SCHEMA: SHOOT_SCHEMA,
     PROFILE_SCHEMA: PROFILE_SCHEMA,
+    COMPUTATION_VERSION: COMPUTATION_VERSION,
     uuid: uuid,
     emptyCamera: emptyCamera,
     emptyLocation: emptyLocation,
+    emptyUserCorrections: emptyUserCorrections,
     createPhotoRecord: createPhotoRecord,
     createShoot: createShoot,
-    createPhotographerProfile: createPhotographerProfile
+    createPhotographerProfile: createPhotographerProfile,
+    migratePhotoRecord: migratePhotoRecord,
+    migrateShoot: migrateShoot,
+    migratePhotographerProfile: migratePhotographerProfile
   };
-})(window);
+})(typeof window !== "undefined" ? window : global);

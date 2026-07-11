@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-product="photo-coach">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photographer Profile — a private, living summary of tendencies from your Photo Coach analyses within Waypoint Scenes.">
+  <title>Photographer Profile — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../waypoint-scenes/css/studio-shell.css">
+  <link rel="stylesheet" href="../../waypoint-scenes/css/photo-coach.css">
+  <link rel="stylesheet" href="../css/photo-coach-shell.css">
+  <link rel="stylesheet" href="../css/photo-coach-profile.css">
+</head>
+<body class="pc-shell pp-page-body">
+  <a class="wds-skip" href="#pp-mount">Skip to profile</a>
+  <div class="wds-app">
+    <header class="wds-topbar pc-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="../../../">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Waypoint Studio</span>
+        </a>
+        <nav class="ws-topnav" aria-label="Photo Coach">
+          <a href="../../scenes/">Waypoint Scenes</a>
+          <a href="../">Photo Coach</a>
+          <a href="./" aria-current="page">Profile</a>
+          <a href="../guide/">Field guide</a>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="pc-breadcrumb" aria-label="Breadcrumb">
+      <a href="../../../">Waypoint Studio</a>
+      <span class="pc-breadcrumb__sep" aria-hidden="true">›</span>
+      <a href="../../scenes/">Waypoint Scenes</a>
+      <span class="pc-breadcrumb__sep" aria-hidden="true">›</span>
+      <a href="../">Photo Coach</a>
+      <span class="pc-breadcrumb__sep" aria-hidden="true">›</span>
+      <span class="pc-breadcrumb__current">Photographer Profile</span>
+    </nav>
+
+    <main id="main" class="pp-page">
+      <header class="pp-hero">
+        <p class="coach-hero__eyebrow">
+          <a class="pc-product-link" href="../../scenes/">Waypoint Scenes</a>
+          <span class="pc-product-sep" aria-hidden="true">·</span>
+          Photographer Profile
+        </p>
+        <h1 class="pp-hero__title">Your evolving tendencies</h1>
+        <p class="pp-hero__lead">
+          A private description of patterns across your analyzed work — subjects, light, craft strengths, and coaching themes.
+          It updates as you analyze more, without turning practice into a competition.
+        </p>
+      </header>
+
+      <p class="pp-status" id="pp-status" role="status" hidden></p>
+      <div id="pp-mount" aria-live="polite"></div>
+    </main>
+
+    <footer class="wds-footer">
+      <p>Photographer Profile · Part of <a href="../../scenes/">Waypoint Scenes</a> · <a href="../">Photo Coach</a></p>
+    </footer>
+  </div>
+
+  <script src="../../waypoint-scenes/js/photo-coach-models.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-profile-engine.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-repository.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-profile-demo.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-profile-page.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointPhotoCoachProfilePage) {
+        window.WaypointPhotoCoachProfilePage.init();
+      }
+    });
+  </script>
+</body>
+</html>
