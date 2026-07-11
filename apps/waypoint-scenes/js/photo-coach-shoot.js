@@ -131,8 +131,11 @@
         : null,
       styleSignals: styleSignals,
       nicheHints: genre && genre.label && !genre.uncertain ? [genre.label] : [],
+      photoUuid: null,
       profileContribution: {
-        // Reserved for future long-term Photographer Profiles
+        // Linked PhotoRecord UUID filled after repository ingest.
+        // PreferredSubjects / niche / style live on PhotographerProfile (not computed here).
+        photoUuid: null,
         skillScores: breakdown.map(function (row) {
           return { category: row.category, score: row.score };
         }),

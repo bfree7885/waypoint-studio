@@ -631,6 +631,31 @@
 
           // Persist individual portfolio session (existing behavior)
           var P = global.WaypointPhotoCoachPortfolio;
+          var afterPersist = function () {
+            // Growth data model — silent PhotoRecord write (no UI change)
+            var Repo = global.WaypointPhotoCoachRepository;
+            if (Repo && Repo.ingestAnalysis) {
+              var record = Repo.ingestAnalysis(critique, {
+                originalFilename: file.name,
+                exif: exif,
+                outdoorContext: outdoorCtx,
+                shootId: currentShoot ? currentShoot.id : null,
+                portfolioSessionId: imageRec.portfolioSessionId || null,
+                thumbnail: thumb,
+                legacyImageId: imageRec.id
+              });
+              if (record) {
+                imageRec.photoUuid = record.uuid;
+                if (imageRec.analysis) {
+                  imageRec.analysis.photoUuid = record.uuid;
+                  if (imageRec.analysis.profileContribution) {
+                    imageRec.analysis.profileContribution.photoUuid = record.uuid;
+                  }
+                }
+              }
+            }
+            return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
+          };
           if (P && P.saveSession) {
             return P.saveSession({
               imageName: file.name,
@@ -643,10 +668,10 @@
               shootImageId: imageRec.id
             }).then(function (session) {
               imageRec.portfolioSessionId = session.id;
-              return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
+              return afterPersist();
             });
           }
-          return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
+          return afterPersist();
         });
       });
     }).catch(function (err) {
@@ -703,6 +728,17 @@
       })
     };
     Shoot.persistShoot(persistCopy);
+
+    // Growth Shoot entity + profile bookkeeping (no UI / no profile calculation)
+    var Repo = global.WaypointPhotoCoachRepository;
+    if (Repo && Repo.ingestShoot) {
+      var photoRecords = [];
+      if (Repo.PhotoRepository && Repo.PhotoRepository.byShoot) {
+        photoRecords = Repo.PhotoRepository.byShoot(currentShoot.id);
+      }
+      Repo.ingestShoot(persistCopy, photoRecords);
+    }
+
     refreshFilmstrip();
     refreshShootSummary();
     if (els.dropZone) els.dropZone.classList.remove("is-loading");
@@ -907,6 +943,11 @@
     }
     if (els.historyMount && global.WaypointPhotoCoachHistory) {
       global.WaypointPhotoCoachHistory.mount(els.historyMount, historyCallbacks());
+    }
+    // Ensure PhotographerProfile storage shell exists (fields stay empty / uncomputed)
+    var Repo = global.WaypointPhotoCoachRepository;
+    if (Repo && Repo.ProfileRepository && Repo.ProfileRepository.load) {
+      Repo.ProfileRepository.load();
     }
   }
 
