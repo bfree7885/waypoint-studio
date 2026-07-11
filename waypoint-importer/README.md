@@ -4,8 +4,8 @@ Desktop app for **Linux Mint 22 / Ubuntu 24.04** that imports new photos from a 
 
 - Detects removable cards with a `DCIM` folder  
 - Imports only **never-seen** files (SHA256, not filenames)  
-- Organizes locally as `~/Pictures/Waypoint Library/YYYY/MM-DD/`  
-- Uploads with **rclone** to `gdrive:Waypoint Photos/YYYY/MM-DD/`  
+- Organizes locally as `~/Pictures/Waypoint Library/YYYY/YYYY-MM-DD/`
+- Uploads with **rclone** to `gdrive:Waypoint Photos/YYYY/YYYY-MM-DD/`
 - **Never** deletes or modifies files on the SD card  
 
 ## Requirements
@@ -40,6 +40,29 @@ waypoint-importer
 ```
 
 Or open **Waypoint Importer** from the application menu.
+
+## Folder structure
+
+Photos are grouped by **shoot date** (one folder per capture day):
+
+| Location | Path |
+|----------|------|
+| Local | `~/Pictures/Waypoint Library/YYYY/YYYY-MM-DD/` |
+| Google Drive | `gdrive:Waypoint Photos/YYYY/YYYY-MM-DD/` |
+
+Example for a shoot on 10 July 2026:
+
+```
+~/Pictures/Waypoint Library/2026/2026-07-10/
+gdrive:Waypoint Photos/2026/2026-07-10/
+```
+
+Date resolution:
+
+1. **EXIF `DateTimeOriginal`** when present  
+2. **File modification time** only when `DateTimeOriginal` is unavailable  
+
+All photos from the same capture date share the same folder. Folders are created automatically if missing; repeated imports reuse the same path and skip already-imported files via the SHA256 ledger.
 
 ## Workflow
 

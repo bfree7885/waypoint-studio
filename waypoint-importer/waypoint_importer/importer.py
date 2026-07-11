@@ -141,13 +141,17 @@ class Importer:
                     from datetime import datetime
 
                     captured = datetime.now()
-                yyyy, mm_dd = folder_parts_from_datetime(captured)
-                dest_dir = library / yyyy / mm_dd
+                yyyy, shoot_date = folder_parts_from_datetime(captured)
+                dest_dir = library / yyyy / shoot_date
                 dest_dir.mkdir(parents=True, exist_ok=True)
                 dest = unique_dest_path(dest_dir, src.name)
 
                 if progress:
-                    progress(f"Copying {src.name} → {yyyy}/{mm_dd}/", frac, stats.as_dict())
+                    progress(
+                        f"Copying {src.name} → {yyyy}/{shoot_date}/",
+                        frac,
+                        stats.as_dict(),
+                    )
 
                 shutil.copy2(src, dest)
                 # Verify we did not alter source (copy2 is read of source only)
@@ -159,14 +163,14 @@ class Importer:
                 )
                 stats.imported += 1
                 stats.last_yyyy = yyyy
-                stats.last_mm_dd = mm_dd
+                stats.last_mm_dd = shoot_date
                 stats.last_local_dir = dest_dir
                 log.info("Imported %s → %s", src.name, dest)
 
                 if do_upload:
                     if progress:
                         progress(f"Uploading {dest.name}…", frac, stats.as_dict())
-                    result = upload_file(dest, yyyy, mm_dd, self.prefs)
+                    result = upload_file(dest, yyyy, shoot_date, self.prefs)
                     if result.ok:
                         stats.uploaded += 1
                     else:

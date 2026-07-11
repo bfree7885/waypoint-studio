@@ -68,10 +68,10 @@ class Preferences:
     def library_path(self) -> Path:
         return Path(self.library_root).expanduser()
 
-    def drive_dest(self, yyyy: str, mm_dd: str) -> str:
-        """rclone destination: remote:Waypoint Photos/YYYY/MM-DD/"""
+    def drive_dest(self, yyyy: str, shoot_date: str) -> str:
+        """rclone destination: remote:Waypoint Photos/YYYY/YYYY-MM-DD/"""
         root = self.drive_root.strip("/")
-        return f"{self.rclone_remote}:{root}/{yyyy}/{mm_dd}"
+        return f"{self.rclone_remote}:{root}/{yyyy}/{shoot_date}"
 
 
 def ensure_dirs() -> None:

@@ -1,7 +1,7 @@
 """
 Google Drive sync via rclone.
 
-Uploads to: gdrive:Waypoint Photos/YYYY/MM-DD/
+Uploads to: gdrive:Waypoint Photos/YYYY/YYYY-MM-DD/
 Never deletes remote files; never touches the SD card.
 """
 from __future__ import annotations
@@ -51,14 +51,14 @@ def rclone_remote_configured(remote: str) -> bool:
 def upload_file(
     local_path: Path,
     yyyy: str,
-    mm_dd: str,
+    shoot_date: str,
     prefs: Preferences,
 ) -> UploadResult:
     """
-    Upload a single local file into remote YYYY/MM-DD/.
-    Uses rclone copyto to preserve the filename.
+    Upload a single local file into remote YYYY/YYYY-MM-DD/.
+    Creates the destination folder if needed (rclone mkdir is idempotent).
     """
-    dest_dir = prefs.drive_dest(yyyy, mm_dd)
+    dest_dir = prefs.drive_dest(yyyy, shoot_date)
     remote_file = f"{dest_dir}/{local_path.name}"
 
     if not rclone_available():
@@ -68,7 +68,7 @@ def upload_file(
         return UploadResult(False, remote_file, "Local file missing")
 
     try:
-        # Ensure remote directory exists (mkdir is idempotent)
+        # Ensure remote shoot folder exists (idempotent — no duplicates)
         subprocess.run(
             ["rclone", "mkdir", dest_dir],
             check=False,
@@ -104,12 +104,9 @@ def upload_file(
         return UploadResult(False, remote_file, str(exc))
 
 
-def open_drive_folder(yyyy: str | None, mm_dd: str | None, prefs: Preferences) -> str:
-    """
-    Best-effort: open Drive in a browser via rclone link, or return the path string.
-    Future: deeper Drive UI integration.
-    """
-    if yyyy and mm_dd:
-        return prefs.drive_dest(yyyy, mm_dd)
+def open_drive_folder(yyyy: str | None, shoot_date: str | None, prefs: Preferences) -> str:
+    """Best-effort: return the Drive path string for the shoot folder."""
+    if yyyy and shoot_date:
+        return prefs.drive_dest(yyyy, shoot_date)
     root = prefs.drive_root.strip("/")
     return f"{prefs.rclone_remote}:{root}"

@@ -252,7 +252,7 @@ class WaypointImporterApp(ctk.CTk):
         drive_ok = rclone_available() and rclone_remote_configured(self.prefs.rclone_remote)
         if drive_ok:
             self.drive_dest_label.configure(
-                text=f"✓ Google Drive\n    {self.prefs.rclone_remote}:{self.prefs.drive_root}/YYYY/MM-DD/"
+                text=f"✓ Google Drive\n    {self.prefs.rclone_remote}:{self.prefs.drive_root}/YYYY/YYYY-MM-DD/"
             )
         elif not rclone_available():
             self.drive_dest_label.configure(text="✗ Google Drive — rclone not installed")

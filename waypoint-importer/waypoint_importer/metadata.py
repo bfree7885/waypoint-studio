@@ -44,15 +44,17 @@ def _parse_datetime(value: str | None) -> datetime | None:
 
 def get_capture_datetime(path: Path) -> datetime | None:
     """
-    Return capture datetime from EXIF when available.
-    Falls back to file mtime if exiftool is missing or tags are absent.
+    Return capture datetime from EXIF DateTimeOriginal when available.
+    Falls back to file modification time only when DateTimeOriginal is unavailable.
     """
     if not path.exists():
         return None
 
+    mtime = datetime.fromtimestamp(path.stat().st_mtime)
+
     if not exiftool_available():
         log.warning("exiftool not found; using file mtime for %s", path.name)
-        return datetime.fromtimestamp(path.stat().st_mtime)
+        return mtime
 
     try:
         proc = subprocess.run(
@@ -61,9 +63,6 @@ def get_capture_datetime(path: Path) -> datetime | None:
                 "-json",
                 "-n",
                 "-DateTimeOriginal",
-                "-CreateDate",
-                "-MediaCreateDate",
-                "-FileModifyDate",
                 str(path),
             ],
             check=False,
@@ -72,23 +71,42 @@ def get_capture_datetime(path: Path) -> datetime | None:
             timeout=60,
         )
         if proc.returncode != 0 or not proc.stdout.strip():
-            log.debug("exiftool failed for %s: %s", path.name, proc.stderr.strip())
-            return datetime.fromtimestamp(path.stat().st_mtime)
+            log.debug(
+                "exiftool DateTimeOriginal unavailable for %s; using mtime",
+                path.name,
+            )
+            return mtime
 
         rows = json.loads(proc.stdout)
         if not rows:
-            return datetime.fromtimestamp(path.stat().st_mtime)
-        row = rows[0]
-        for key in ("DateTimeOriginal", "CreateDate", "MediaCreateDate", "FileModifyDate"):
-            dt = _parse_datetime(row.get(key))
-            if dt:
-                return dt
+            return mtime
+        dt = _parse_datetime(rows[0].get("DateTimeOriginal"))
+        if dt:
+            return dt
+        log.debug("No DateTimeOriginal for %s; using mtime", path.name)
     except (subprocess.TimeoutExpired, json.JSONDecodeError, OSError) as exc:
         log.warning("Metadata read failed for %s: %s", path.name, exc)
 
-    return datetime.fromtimestamp(path.stat().st_mtime)
+    return mtime
 
 
 def folder_parts_from_datetime(dt: datetime) -> tuple[str, str]:
-    """Return (YYYY, MM-DD) for library / Drive layout."""
-    return dt.strftime("%Y"), dt.strftime("%m-%d")
+    """
+    Return (YYYY, YYYY-MM-DD) for library / Drive shoot folders.
+
+    Example: 2026-07-10 → ("2026", "2026-07-10")
+    """
+    return dt.strftime("%Y"), dt.strftime("%Y-%m-%d")
+
+
+def local_shoot_dir(library_root: Path, dt: datetime) -> Path:
+    """~/Pictures/Waypoint Library/YYYY/YYYY-MM-DD/"""
+    yyyy, shoot_date = folder_parts_from_datetime(dt)
+    return library_root / yyyy / shoot_date
+
+
+def drive_shoot_path(remote: str, drive_root: str, dt: datetime) -> str:
+    """gdrive:Waypoint Photos/YYYY/YYYY-MM-DD/"""
+    yyyy, shoot_date = folder_parts_from_datetime(dt)
+    root = drive_root.strip("/")
+    return f"{remote}:{root}/{yyyy}/{shoot_date}"
