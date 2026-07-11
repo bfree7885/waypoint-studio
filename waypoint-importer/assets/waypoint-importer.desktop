@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Waypoint Importer
+Comment=Import Sony SD card photos to Waypoint Library and Google Drive
+Exec=waypoint-importer
+Icon=camera-photo
+Terminal=false
+Categories=Graphics;Photography;
+StartupNotify=true
+Keywords=sony;sd;photo;rclone;waypoint;
