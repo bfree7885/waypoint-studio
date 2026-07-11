@@ -430,8 +430,41 @@
     "</details>";
   }
 
+  function renderPersonalized(c) {
+    var p = c.personalized;
+    if (!p) return "";
+    var steps = (p.nextSteps || []).map(function (s) {
+      return "<li>" + escapeHtml(s.text) +
+        (s.wasRepeated ? ' <span class="coach-muted">(ongoing focus)</span>' : "") +
+        "</li>";
+    }).join("");
+    var styleNotes = (p.technicalVsStyle || []).map(function (n) {
+      return "<li>" + escapeHtml(n.text) + "</li>";
+    }).join("");
+    var growth = (p.growthNotes || []).map(function (g) {
+      return "<li><strong>" + escapeHtml(g.area) + "</strong> — " + escapeHtml(g.explanation) +
+        ' <span class="coach-muted">(' + escapeHtml(String(g.confidencePercent)) + "% · " +
+        escapeHtml(g.confidenceLabel || "") + ")</span></li>";
+    }).join("");
+
+    return '<section class="coach-card coach-card--personalized" aria-labelledby="coach-for-you-title">' +
+      '<h3 class="coach-card__title" id="coach-for-you-title">For you</h3>' +
+      (p.limitedEvidence
+        ? '<p class="coach-muted">' + escapeHtml(p.limitedNote || "Personal coaching is still light.") + "</p>"
+        : "") +
+      (p.styleRelation ? "<p>" + escapeHtml(p.styleRelation) + "</p>" : "") +
+      (growth ? '<ul class="coach-personalized__growth">' + growth + "</ul>" : "") +
+      (steps ? "<p><strong>Useful next steps</strong></p><ul>" + steps + "</ul>" : "") +
+      (styleNotes
+        ? "<p><strong>Technical vs style</strong></p><ul>" + styleNotes + "</ul>"
+        : "") +
+      '<p class="coach-muted">Private coaching from your profile and recent shoots — not a comparison to anyone else.</p>' +
+    "</section>";
+  }
+
   function renderCenter(critique) {
     return renderGradeCard(critique) +
+      renderPersonalized(critique) +
       renderStrengths(critique) +
       renderImprovements(critique) +
       renderNextAction(critique) +
@@ -621,6 +654,19 @@
       }
       return Demo.analyze(file, url, exif, outdoorCtx).then(function (critique) {
         critique.outdoorContext = outdoorCtx;
+
+        // Personalized coaching from profile + memory (before persist/render)
+        var Repo = global.WaypointPhotoCoachRepository;
+        if (Repo && Repo.applyPersonalizedCritique) {
+          Repo.applyPersonalizedCritique(critique, {
+            photoId: null,
+            shootId: currentShoot ? currentShoot.id : null,
+            shootImages: currentShoot
+              ? currentShoot.images.filter(function (i) { return i.status === "done" && i.critique; })
+              : []
+          });
+        }
+
         return Shoot.makeThumbnail(url).then(function (thumb) {
           imageRec.thumbnail = thumb;
           imageRec.critique = critique;
@@ -632,8 +678,7 @@
           // Persist individual portfolio session (existing behavior)
           var P = global.WaypointPhotoCoachPortfolio;
           var afterPersist = function () {
-            // Growth data model — silent PhotoRecord write (no UI change)
-            var Repo = global.WaypointPhotoCoachRepository;
+            // Growth data model — silent PhotoRecord write
             if (Repo && Repo.ingestAnalysis) {
               var record = Repo.ingestAnalysis(critique, {
                 originalFilename: file.name,
@@ -646,6 +691,15 @@
               });
               if (record) {
                 imageRec.photoUuid = record.uuid;
+                // Link memory photo IDs when possible
+                if (Repo.CoachingRepository && critique.personalized) {
+                  Repo.CoachingRepository.list().slice(0, 6).forEach(function (mem) {
+                    if (!mem.photoId && mem.shootId === (currentShoot && currentShoot.id)) {
+                      mem.photoId = record.uuid;
+                      Repo.CoachingRepository.save(mem);
+                    }
+                  });
+                }
                 if (imageRec.analysis) {
                   imageRec.analysis.photoUuid = record.uuid;
                   if (imageRec.analysis.profileContribution) {
@@ -692,6 +746,12 @@
         ? "partial"
         : "complete";
     currentShoot.summary = done.length ? Shoot.buildSummary(currentShoot) : null;
+
+    var Repo = global.WaypointPhotoCoachRepository;
+    if (currentShoot.summary && Repo && Repo.applyNextOutingCoaching) {
+      Repo.applyNextOutingCoaching(currentShoot);
+    }
+
     var persistCopy = {
       schemaVersion: currentShoot.schemaVersion,
       id: currentShoot.id,
@@ -729,8 +789,7 @@
     };
     Shoot.persistShoot(persistCopy);
 
-    // Growth Shoot entity + profile bookkeeping (no UI / no profile calculation)
-    var Repo = global.WaypointPhotoCoachRepository;
+    // Growth Shoot entity + profile bookkeeping
     if (Repo && Repo.ingestShoot) {
       var photoRecords = [];
       if (Repo.PhotoRepository && Repo.PhotoRepository.byShoot) {

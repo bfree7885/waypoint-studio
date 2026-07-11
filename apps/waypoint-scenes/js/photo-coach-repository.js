@@ -11,8 +11,11 @@
   var PHOTO_KEY = "waypoint-photo-records-v1";
   var SHOOT_KEY = "waypoint-photo-shoots-entity-v1";
   var PROFILE_KEY = "waypoint-photographer-profile-v1";
+  var COACHING_KEY = "waypoint-photo-coaching-memory-v1";
+  var COACHING_PREFS_KEY = "waypoint-photo-coaching-prefs-v1";
   var MAX_PHOTOS = 200;
   var MAX_SHOOTS = 40;
+  var MAX_COACHING = 120;
 
   var Models = null;
 
@@ -23,6 +26,10 @@
 
   function engine() {
     return global.WaypointPhotoCoachProfileEngine || null;
+  }
+
+  function personalized() {
+    return global.WaypointPhotoCoachPersonalized || null;
   }
 
   function readJson(key, fallback) {
@@ -558,6 +565,202 @@
     }
   };
 
+  /* ——— Coaching memory + preferences ——— */
+
+  var CoachingRepository = {
+    list: function () {
+      var M = models();
+      return readJson(COACHING_KEY, []).map(function (r) {
+        return M && M.migrateCoachingRecord ? M.migrateCoachingRecord(r) : r;
+      });
+    },
+    save: function (record) {
+      if (!record || !record.uuid) return false;
+      var M = models();
+      if (M && M.migrateCoachingRecord) record = M.migrateCoachingRecord(record);
+      var all = this.list().filter(function (r) { return r.uuid !== record.uuid; });
+      all.unshift(record);
+      return writeJson(COACHING_KEY, all.slice(0, MAX_COACHING));
+    },
+    saveMany: function (records) {
+      var all = this.list();
+      var byId = {};
+      all.forEach(function (r) { byId[r.uuid] = r; });
+      (records || []).forEach(function (r) {
+        if (r && r.uuid) byId[r.uuid] = r;
+      });
+      var merged = Object.keys(byId).map(function (k) { return byId[k]; });
+      merged.sort(function (a, b) {
+        return String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
+      });
+      return writeJson(COACHING_KEY, merged.slice(0, MAX_COACHING));
+    },
+    setFeedback: function (uuid, feedback) {
+      var rec = this.list().filter(function (r) { return r.uuid === uuid; })[0];
+      if (!rec) return false;
+      rec.userFeedback = feedback;
+      rec.feedbackAt = new Date().toISOString();
+      this.save(rec);
+      if (rec.coachingTheme) {
+        PreferencesRepository.recordThemeFeedback(rec.coachingTheme, feedback);
+      }
+      return true;
+    },
+    clear: function () {
+      return writeJson(COACHING_KEY, []);
+    }
+  };
+
+  var PreferencesRepository = {
+    load: function () {
+      var M = models();
+      var stored = readJson(COACHING_PREFS_KEY, null);
+      if (stored) {
+        return M && M.migrateCoachingPreferences
+          ? M.migrateCoachingPreferences(stored)
+          : stored;
+      }
+      var prefs = M ? M.createCoachingPreferences() : { hiddenThemes: [], intentionalThemes: [], boostedThemes: [], themeFeedback: {} };
+      writeJson(COACHING_PREFS_KEY, prefs);
+      return prefs;
+    },
+    save: function (prefs) {
+      var M = models();
+      if (M && M.migrateCoachingPreferences) prefs = M.migrateCoachingPreferences(prefs);
+      prefs.updatedAt = new Date().toISOString();
+      return writeJson(COACHING_PREFS_KEY, prefs);
+    },
+    hideTheme: function (family) {
+      var prefs = this.load();
+      if (prefs.hiddenThemes.indexOf(family) < 0) prefs.hiddenThemes.push(family);
+      prefs.boostedThemes = prefs.boostedThemes.filter(function (t) { return t !== family; });
+      return this.save(prefs);
+    },
+    restoreTheme: function (family) {
+      var prefs = this.load();
+      prefs.hiddenThemes = prefs.hiddenThemes.filter(function (t) { return t !== family; });
+      return this.save(prefs);
+    },
+    markIntentional: function (family) {
+      var prefs = this.load();
+      if (prefs.intentionalThemes.indexOf(family) < 0) prefs.intentionalThemes.push(family);
+      this.recordThemeFeedback(family, "intentional");
+      return this.save(prefs);
+    },
+    clearIntentional: function (family) {
+      var prefs = this.load();
+      prefs.intentionalThemes = prefs.intentionalThemes.filter(function (t) { return t !== family; });
+      return this.save(prefs);
+    },
+    wantMore: function (family) {
+      var prefs = this.load();
+      if (prefs.boostedThemes.indexOf(family) < 0) prefs.boostedThemes.push(family);
+      prefs.hiddenThemes = prefs.hiddenThemes.filter(function (t) { return t !== family; });
+      this.recordThemeFeedback(family, "want_more");
+      return this.save(prefs);
+    },
+    recordThemeFeedback: function (family, feedback) {
+      if (!family || !feedback) return false;
+      var prefs = this.load();
+      if (!prefs.themeFeedback[family]) {
+        prefs.themeFeedback[family] = { helpful: 0, not_relevant: 0, intentional: 0, want_more: 0 };
+      }
+      var key = feedback;
+      if (!prefs.themeFeedback[family][key] && prefs.themeFeedback[family][key] !== 0) {
+        prefs.themeFeedback[family][key] = 0;
+      }
+      if (prefs.themeFeedback[family][key] != null) {
+        prefs.themeFeedback[family][key] += 1;
+      }
+      if (feedback === "not_relevant") {
+        // Soft — do not auto-hide; engine skips after repeated not_relevant
+      }
+      if (feedback === "intentional") {
+        if (prefs.intentionalThemes.indexOf(family) < 0) prefs.intentionalThemes.push(family);
+      }
+      return this.save(prefs);
+    },
+    reset: function () {
+      var M = models();
+      var prefs = M ? M.createCoachingPreferences() : { hiddenThemes: [], intentionalThemes: [], boostedThemes: [], themeFeedback: {} };
+      return this.save(prefs);
+    }
+  };
+
+  /**
+   * Apply personalized coaching to a critique using current profile memory.
+   */
+  function applyPersonalizedCritique(critique, meta) {
+    meta = meta || {};
+    var Pers = personalized();
+    if (!Pers || !critique) return critique;
+    var profile = ProfileRepository.load();
+    var photos = PhotoRepository.list();
+    var shoots = ShootRepository.list();
+    var memory = CoachingRepository.list();
+    var prefs = PreferencesRepository.load();
+    var growth = Pers.detectGrowth(photos, shoots, { preferences: prefs });
+    memory = Pers.markLaterImprovement(memory, growth);
+    CoachingRepository.saveMany(memory);
+
+    Pers.personalizeCritique(critique, {
+      profile: profile,
+      photos: photos,
+      shoots: shoots,
+      memory: memory,
+      preferences: prefs,
+      growth: growth,
+      shootImages: meta.shootImages || []
+    });
+
+    var records = Pers.buildMemoryRecords(critique.personalized || {}, {
+      photoId: meta.photoId || null,
+      shootId: meta.shootId || null,
+      photoCount: photos.length,
+      shootCount: shoots.length,
+      profileTier: profile.evidence && profile.evidence.confidenceTier,
+      confidencePercent: critique.personalized && critique.personalized.limitedEvidence ? 20 : 50
+    });
+    if (records.length) CoachingRepository.saveMany(records);
+    return critique;
+  }
+
+  function applyNextOutingCoaching(sessionShoot) {
+    var Pers = personalized();
+    if (!Pers || !sessionShoot) return null;
+    var profile = ProfileRepository.load();
+    var photos = PhotoRepository.list();
+    var shoots = ShootRepository.list();
+    var memory = CoachingRepository.list();
+    var prefs = PreferencesRepository.load();
+    var plan = Pers.buildNextOutingPlan(sessionShoot, {
+      profile: profile,
+      photos: photos,
+      shoots: shoots,
+      memory: memory,
+      preferences: prefs
+    });
+    if (sessionShoot.summary) {
+      sessionShoot.summary.personalizedOuting = plan;
+      // Prefer personalized short plan in the focus slot when available
+      if (plan && plan.summary) {
+        sessionShoot.summary.nextOutingFocus = {
+          title: "Next outing",
+          why: plan.continueStrength,
+          practice: plan.summary
+        };
+      }
+    }
+    var rec = Pers.buildOutingMemoryRecord(plan, {
+      shootId: sessionShoot.id,
+      photoCount: photos.length,
+      shootCount: shoots.length,
+      profileTier: profile.evidence && profile.evidence.confidenceTier
+    });
+    if (rec) CoachingRepository.save(rec);
+    return plan;
+  }
+
   /**
    * Persist growth records after analysis without affecting UI.
    */
@@ -566,6 +769,14 @@
     if (!record) return null;
     var M = models();
     if (M && M.migratePhotoRecord) record = M.migratePhotoRecord(record);
+    // Carry personalization snippet onto the photo record when present
+    if (critique && critique.personalized) {
+      record.personalizedCoaching = {
+        narrative: critique.personalized.narrative || null,
+        nextSteps: critique.personalized.nextSteps || [],
+        limitedEvidence: !!critique.personalized.limitedEvidence
+      };
+    }
     PhotoRepository.save(record);
     ProfileRepository.touchCounters({ lastPhotoUuid: record.uuid });
     return record;
@@ -599,11 +810,17 @@
     PHOTO_KEY: PHOTO_KEY,
     SHOOT_KEY: SHOOT_KEY,
     PROFILE_KEY: PROFILE_KEY,
+    COACHING_KEY: COACHING_KEY,
+    COACHING_PREFS_KEY: COACHING_PREFS_KEY,
     photoRecordFromCritique: photoRecordFromCritique,
     shootEntityFromSession: shootEntityFromSession,
     PhotoRepository: PhotoRepository,
     ShootRepository: ShootRepository,
     ProfileRepository: ProfileRepository,
+    CoachingRepository: CoachingRepository,
+    PreferencesRepository: PreferencesRepository,
+    applyPersonalizedCritique: applyPersonalizedCritique,
+    applyNextOutingCoaching: applyNextOutingCoaching,
     ingestAnalysis: ingestAnalysis,
     ingestShoot: ingestShoot
   };

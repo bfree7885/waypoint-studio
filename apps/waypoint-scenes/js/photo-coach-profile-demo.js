@@ -321,7 +321,69 @@
       Repo.ShootRepository.save(s);
     });
     var profile = Repo.ProfileRepository.recalculate();
-    return { ok: true, corpus: corpus, profile: profile };
+
+    // Seed coaching memory from personalized engine for demo validation
+    var Pers = global.WaypointPhotoCoachPersonalized;
+    var outingPlan = null;
+    var samplePersonalized = null;
+    if (Pers && Repo.CoachingRepository) {
+      try {
+        localStorage.setItem(Repo.COACHING_KEY, "[]");
+      } catch (e2) { /* ignore */ }
+      var recentShoot = corpus.shoots.filter(function (s) {
+        return s.id === "shoot-woodland-recent";
+      })[0];
+      if (recentShoot) {
+        recentShoot.summary = {
+          commonStrengths: recentShoot.commonStrengths,
+          recurringImprovements: (recentShoot.commonImprovementThemes || []).map(function (t) {
+            return { issue: t.theme, count: t.count };
+          })
+        };
+        outingPlan = Repo.applyNextOutingCoaching
+          ? Repo.applyNextOutingCoaching(recentShoot)
+          : Pers.buildNextOutingPlan(recentShoot, {
+              profile: profile,
+              memory: [],
+              preferences: Repo.PreferencesRepository.load()
+            });
+      }
+      var sampleCritique = {
+        narrativeSummary: "A quiet woodland frame with a clear subject.",
+        strengths: [{ title: "Subject isolation", whyItWorks: "Quiet background." }],
+        improvements: [
+          {
+            priority: "primary",
+            issue: "Bright branch near the upper edge",
+            whatToDo: "Recompose to exclude the competing branch.",
+            category: "Framing"
+          }
+        ],
+        signals: { subjectEmphasis: 0.14 }
+      };
+      samplePersonalized = Pers.personalizeCritique(sampleCritique, {
+        profile: profile,
+        photos: corpus.photos,
+        shoots: corpus.shoots,
+        memory: Repo.CoachingRepository.list(),
+        preferences: Repo.PreferencesRepository.load()
+      });
+      var mem = Pers.buildMemoryRecords(samplePersonalized, {
+        photoId: corpus.photos[corpus.photos.length - 1].uuid,
+        shootId: "shoot-woodland-recent",
+        photoCount: corpus.photos.length,
+        shootCount: corpus.shoots.length
+      });
+      if (mem.length) Repo.CoachingRepository.saveMany(mem);
+    }
+
+    return {
+      ok: true,
+      corpus: corpus,
+      profile: profile,
+      outingPlan: outingPlan,
+      samplePersonalized: samplePersonalized
+    };
   }
 
   global.WaypointPhotoCoachProfileDemo = {

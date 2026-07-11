@@ -272,6 +272,158 @@
     );
   }
 
+  function renderYourCoaching(profile) {
+    var Repo = global.WaypointPhotoCoachRepository;
+    var Pers = global.WaypointPhotoCoachPersonalized;
+    if (!Repo || !Pers) {
+      return '<p class="pp-empty">Personalized coaching will appear after analyses accumulate.</p>';
+    }
+    var memory = Repo.CoachingRepository.list();
+    var prefs = Repo.PreferencesRepository.load();
+    var photos = Repo.PhotoRepository.list();
+    var shoots = Repo.ShootRepository.list();
+    var growth = Pers.detectGrowth(photos, shoots, { preferences: prefs });
+    var focus = Pers.currentFocus(memory, prefs, profile);
+    var outingRec = memory.filter(function (r) { return r.source === "outing"; })[0];
+    var recent = memory.slice(0, 12);
+
+    var focusHtml = focus.length
+      ? '<ul class="pp-rank-list">' +
+        focus
+          .map(function (f) {
+            return (
+              "<li><div class=\"pp-rank-list__head\"><strong>" +
+              esc(f.label) +
+              "</strong>" +
+              (f.ongoing
+                ? '<span class="pp-badge" data-strength="early">Ongoing focus</span>'
+                : "") +
+              "</div>" +
+              '<div class="pp-coach-actions">' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="hide" data-family="' +
+              esc(f.family) +
+              '">Hide theme</button> ' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="want-more" data-family="' +
+              esc(f.family) +
+              '">More guidance</button> ' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="intentional" data-family="' +
+              esc(f.family) +
+              '">This was intentional</button>' +
+              "</div></li>"
+            );
+          })
+          .join("") +
+        "</ul>"
+      : '<p class="pp-empty">No active coaching focus yet — analyze a shoot to begin.</p>';
+
+    var progressHtml = "";
+    if (!growth.available) {
+      progressHtml =
+        '<p class="pp-empty">' +
+        esc(growth.confidenceLabel || "Not enough work analyzed yet") +
+        " for growth claims.</p>";
+    } else {
+      progressHtml =
+        '<ul class="pp-growth-list">' +
+        growth.improvements
+          .map(function (g) {
+            return (
+              '<li data-direction="improving"><strong>' +
+              esc(g.area) +
+              "</strong> — " +
+              esc(g.explanation) +
+              '<p class="pp-evidence-line">' +
+              esc(g.confidencePercent) +
+              "% · " +
+              esc(g.confidenceLabel) +
+              " · window " +
+              esc(g.evidenceWindow.recentPhotos) +
+              " recent / " +
+              esc(g.evidenceWindow.earlyPhotos) +
+              " earlier photos</p></li>"
+            );
+          })
+          .join("") +
+        "</ul>";
+    }
+
+    var outingHtml = outingRec
+      ? "<p>" + esc(outingRec.recommendation) + "</p>" +
+        (outingRec.wasRepeated
+          ? '<p class="pp-muted">Continues an ongoing focus rather than a new assignment.</p>'
+          : "")
+      : '<p class="pp-empty">Finish a multi-photo shoot to receive a short next-outing suggestion.</p>';
+
+    var historyHtml = recent.length
+      ? '<ul class="pp-control-list">' +
+        recent
+          .map(function (r) {
+            return (
+              '<li data-coach-uuid="' +
+              esc(r.uuid) +
+              '">' +
+              "<div><strong>" +
+              esc(r.themeLabel || r.coachingTheme || "Coaching") +
+              "</strong>" +
+              '<span class="pp-muted"> · ' +
+              esc(r.date || fmtDate(r.createdAt)) +
+              (r.wasRepeated ? " · ongoing" : "") +
+              (r.laterShowedImprovement ? " · later improvement noted" : "") +
+              (r.userFeedback ? " · feedback: " + esc(r.userFeedback) : "") +
+              "</span></div>" +
+              "<p>" +
+              esc(r.recommendation) +
+              "</p>" +
+              '<div class="pp-coach-actions">' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="helpful" data-uuid="' +
+              esc(r.uuid) +
+              '">Helpful</button> ' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="not-relevant" data-uuid="' +
+              esc(r.uuid) +
+              '">Not relevant</button> ' +
+              '<button type="button" class="btn btn-secondary" data-coach-action="intentional-rec" data-uuid="' +
+              esc(r.uuid) +
+              '" data-family="' +
+              esc(r.coachingTheme || "") +
+              '">This was intentional</button>' +
+              "</div></li>"
+            );
+          })
+          .join("") +
+        "</ul>"
+      : '<p class="pp-empty">Coaching history will collect as you analyze photos.</p>';
+
+    var hidden = prefs.hiddenThemes || [];
+    var hiddenHtml = hidden.length
+      ? "<p class=\"pp-muted\">Hidden themes:</p><ul class=\"pp-control-list\">" +
+        hidden
+          .map(function (f) {
+            return (
+              "<li>" +
+              esc(Pers.familyLabel(f)) +
+              ' <button type="button" class="btn btn-secondary" data-coach-action="restore" data-family="' +
+              esc(f) +
+              '">Restore</button></li>'
+            );
+          })
+          .join("") +
+        "</ul>"
+      : "";
+
+    return (
+      '<h3>Current Focus</h3>' +
+      focusHtml +
+      "<h3>Recent Progress</h3>" +
+      progressHtml +
+      "<h3>Next Outing</h3>" +
+      outingHtml +
+      "<h3>Coaching History</h3>" +
+      historyHtml +
+      hiddenHtml +
+      '<p class="pp-muted">Feedback shapes future coaching. Disagreement is welcome — it is not a failure.</p>'
+    );
+  }
+
   function renderProfile() {
     var Repo = global.WaypointPhotoCoachRepository;
     var mount = $("pp-mount");
@@ -297,6 +449,13 @@
       (direction.confidencePercent != null
         ? evidenceLine(direction) + claimBadge(direction)
         : "") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section pp-section--coaching" aria-labelledby="pp-your-coaching">' +
+      '<h2 id="pp-your-coaching">Your Coaching</h2>' +
+      '<p class="pp-lede">An ongoing relationship with your work — not an isolated grade.</p>' +
+      renderYourCoaching(profile) +
       "</section>";
 
     html +=
@@ -349,6 +508,7 @@
 
     mount.innerHTML = html;
     bindControls();
+    bindCoachingControls();
   }
 
   function status(msg) {
@@ -356,6 +516,46 @@
     if (!el) return;
     el.hidden = !msg;
     el.textContent = msg || "";
+  }
+
+  function bindCoachingControls() {
+    var Repo = global.WaypointPhotoCoachRepository;
+    if (!Repo || !Repo.PreferencesRepository) return;
+    var mount = $("pp-mount");
+    if (!mount) return;
+
+    mount.querySelectorAll("[data-coach-action]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var action = btn.getAttribute("data-coach-action");
+        var family = btn.getAttribute("data-family");
+        var uuid = btn.getAttribute("data-uuid");
+
+        if (action === "hide" && family) {
+          Repo.PreferencesRepository.hideTheme(family);
+          status("Theme hidden from future coaching.");
+        } else if (action === "restore" && family) {
+          Repo.PreferencesRepository.restoreTheme(family);
+          status("Theme restored.");
+        } else if (action === "want-more" && family) {
+          Repo.PreferencesRepository.wantMore(family);
+          status("Will offer more guidance on this theme.");
+        } else if (action === "intentional" && family) {
+          Repo.PreferencesRepository.markIntentional(family);
+          status("Marked as intentional — future coaching will treat it as style, not a flaw.");
+        } else if (action === "helpful" && uuid) {
+          Repo.CoachingRepository.setFeedback(uuid, "helpful");
+          status("Thanks — marked helpful.");
+        } else if (action === "not-relevant" && uuid) {
+          Repo.CoachingRepository.setFeedback(uuid, "not_relevant");
+          status("Noted as not relevant. Disagreement is welcome.");
+        } else if (action === "intentional-rec" && uuid) {
+          Repo.CoachingRepository.setFeedback(uuid, "intentional");
+          if (family) Repo.PreferencesRepository.markIntentional(family);
+          status("Marked intentional. Future coaching will adapt.");
+        }
+        renderProfile();
+      });
+    });
   }
 
   function bindControls() {

@@ -221,10 +221,36 @@
   color: var(--coach-accent);
 }
 
-.ws-topnav a[aria-current="page"] {
-  color: var(--coach-accent);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.pp-coach-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.pp-coach-actions .btn {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.55rem;
+}
+
+.pp-section--coaching h3 {
+  margin-top: 1.35rem;
+}
+
+.coach-card--personalized {
+  border-color: var(--coach-border-strong, rgba(255, 255, 255, 0.28));
+}
+
+.pc-shoot-summary__outing {
+  margin: 1rem 0;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pc-shoot-summary__outing ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--coach-text-secondary, rgba(244, 241, 234, 0.82));
 }
 
 @media (max-width: 640px) {

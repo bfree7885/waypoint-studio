@@ -12,6 +12,7 @@
   var PHOTO_SCHEMA = "2.1.0";
   var SHOOT_SCHEMA = "2.1.0";
   var PROFILE_SCHEMA = "1.1.0";
+  var COACHING_SCHEMA = "1.0.0";
   var COMPUTATION_VERSION = "1.0.0";
 
   function uuid() {
@@ -220,10 +221,74 @@
     return profile;
   }
 
+  function createCoachingRecord(overrides) {
+    overrides = overrides || {};
+    return Object.assign({
+      schemaVersion: COACHING_SCHEMA,
+      uuid: uuid(),
+      createdAt: new Date().toISOString(),
+      date: new Date().toISOString().slice(0, 10),
+      photoId: null,
+      shootId: null,
+      coachingTheme: null,
+      themeLabel: null,
+      recommendation: null,
+      evidenceUsed: {
+        photoCount: 0,
+        shootCount: 0,
+        signals: [],
+        profileTier: null
+      },
+      confidence: null,
+      confidencePercent: null,
+      wasRepeated: false,
+      laterShowedImprovement: null,
+      userFeedback: null,
+      feedbackAt: null,
+      source: "photo",
+      privacy: "private"
+    }, overrides);
+  }
+
+  function createCoachingPreferences(overrides) {
+    overrides = overrides || {};
+    return Object.assign({
+      schemaVersion: COACHING_SCHEMA,
+      hiddenThemes: [],
+      intentionalThemes: [],
+      boostedThemes: [],
+      themeFeedback: {},
+      updatedAt: new Date().toISOString()
+    }, overrides);
+  }
+
+  function migrateCoachingRecord(record) {
+    if (!record || typeof record !== "object") return record;
+    if (record.wasRepeated == null) record.wasRepeated = false;
+    if (record.laterShowedImprovement === undefined) record.laterShowedImprovement = null;
+    if (record.userFeedback === undefined) record.userFeedback = null;
+    if (!record.evidenceUsed) {
+      record.evidenceUsed = { photoCount: 0, shootCount: 0, signals: [], profileTier: null };
+    }
+    record.schemaVersion = COACHING_SCHEMA;
+    return record;
+  }
+
+  function migrateCoachingPreferences(prefs) {
+    if (!prefs || typeof prefs !== "object") return createCoachingPreferences();
+    if (!Array.isArray(prefs.hiddenThemes)) prefs.hiddenThemes = [];
+    if (!Array.isArray(prefs.intentionalThemes)) prefs.intentionalThemes = [];
+    if (!Array.isArray(prefs.boostedThemes)) prefs.boostedThemes = [];
+    if (!prefs.themeFeedback || typeof prefs.themeFeedback !== "object") prefs.themeFeedback = {};
+    prefs.schemaVersion = COACHING_SCHEMA;
+    return prefs;
+  }
+
   global.WaypointPhotoCoachModels = {
     PHOTO_SCHEMA: PHOTO_SCHEMA,
     SHOOT_SCHEMA: SHOOT_SCHEMA,
     PROFILE_SCHEMA: PROFILE_SCHEMA,
+    COACHING_SCHEMA: COACHING_SCHEMA,
     COMPUTATION_VERSION: COMPUTATION_VERSION,
     uuid: uuid,
     emptyCamera: emptyCamera,
@@ -232,8 +297,12 @@
     createPhotoRecord: createPhotoRecord,
     createShoot: createShoot,
     createPhotographerProfile: createPhotographerProfile,
+    createCoachingRecord: createCoachingRecord,
+    createCoachingPreferences: createCoachingPreferences,
     migratePhotoRecord: migratePhotoRecord,
     migrateShoot: migrateShoot,
-    migratePhotographerProfile: migratePhotographerProfile
+    migratePhotographerProfile: migratePhotographerProfile,
+    migrateCoachingRecord: migrateCoachingRecord,
+    migrateCoachingPreferences: migrateCoachingPreferences
   };
 })(typeof window !== "undefined" ? window : global);

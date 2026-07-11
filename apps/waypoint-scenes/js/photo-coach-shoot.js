@@ -530,6 +530,24 @@
     }).join("");
 
     var focus = summary.nextOutingFocus || {};
+    var outing = summary.personalizedOuting || null;
+    var outingHtml = "";
+    if (outing) {
+      outingHtml =
+        '<div class="pc-shoot-summary__outing">' +
+          '<h3 class="pc-shoot-summary__h">Next outing</h3>' +
+          "<p>" + escapeHtml(outing.summary || "") + "</p>" +
+          "<ul>" +
+            "<li>" + escapeHtml(outing.continueStrength || "") + "</li>" +
+            "<li>" + escapeHtml(outing.practiceSkill || "") + "</li>" +
+            "<li>" + escapeHtml(outing.optionalExperiment || "") + "</li>" +
+            "<li>" + escapeHtml(outing.subjectOrCondition || "") + "</li>" +
+          "</ul>" +
+          (outing.wasRepeated
+            ? '<p class="coach-muted">This continues an ongoing focus — not a brand-new theme.</p>'
+            : "") +
+        "</div>";
+    }
 
     return '<section class="pc-shoot-summary coach-card" aria-labelledby="pc-shoot-summary-title">' +
       '<div class="pc-shoot-summary__head">' +
@@ -550,13 +568,14 @@
         '<div><h3 class="pc-shoot-summary__h">Technical consistency · ' +
           escapeHtml(String(summary.technicalConsistency.score)) + "/100</h3><ul>" + tech + "</ul></div>" +
       "</div>" +
+      outingHtml +
       '<div class="pc-shoot-summary__focus">' +
         "<h3 class=\"pc-shoot-summary__h\">Suggested focus for next outing</h3>" +
         "<p><strong>" + escapeHtml(focus.title || "") + "</strong></p>" +
         "<p>" + escapeHtml(focus.why || "") + "</p>" +
         "<p>" + escapeHtml(focus.practice || "") + "</p>" +
       "</div>" +
-      '<p class="coach-muted">Stored as structured JSON in this browser — foundation for future progress and profile features.</p>' +
+      '<p class="coach-muted">Stored as structured JSON in this browser — foundation for progress and profile coaching.</p>' +
     "</section>";
   }
 
