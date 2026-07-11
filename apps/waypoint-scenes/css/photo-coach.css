@@ -977,3 +977,118 @@
     font-size: 1.5rem;
   }
 }
+
+/* Batch shoot filmstrip + summary (shared with Photo Coach shell) */
+.pc-filmstrip-mount,
+.pc-shoot-summary-mount {
+  margin: 0 0 1rem;
+}
+
+.pc-filmstrip {
+  padding: 0.75rem 0.9rem;
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+}
+
+.pc-filmstrip__meta {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+
+.pc-filmstrip__track {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+}
+
+.pc-filmstrip__item {
+  flex: 0 0 auto;
+  width: 4.5rem;
+  padding: 0;
+  border: 2px solid var(--coach-border);
+  border-radius: 0.45rem;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.pc-filmstrip__item.is-active {
+  border-color: var(--coach-accent);
+}
+
+.pc-filmstrip__thumb {
+  display: block;
+  width: 100%;
+  height: 3.25rem;
+  object-fit: cover;
+}
+
+.pc-filmstrip__placeholder {
+  display: block;
+  height: 3.25rem;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.pc-filmstrip__grade {
+  display: block;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0;
+}
+
+.pc-batch-progress {
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--coach-surface);
+  border: 1px solid var(--coach-border);
+  border-radius: var(--coach-radius);
+}
+
+.pc-batch-progress__bar {
+  margin-top: 0.85rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.pc-batch-progress__fill {
+  height: 100%;
+  background: var(--coach-accent);
+}
+
+.pc-shoot-summary__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pc-shoot-summary__letter {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--coach-accent);
+  font-weight: 600;
+}
+
+.pc-shoot-summary__strong {
+  display: flex;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.pc-shoot-summary__thumb {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.35rem;
+}
+
+@media (max-width: 720px) {
+  .pc-shoot-summary__grid {
+    grid-template-columns: 1fr;
+  }
+}

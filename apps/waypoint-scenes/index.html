@@ -61,20 +61,23 @@
         <p class="coach-hero__lead">Demo Analysis uses your image pixels and field context — clearly labeled, production-ready coaching structure.</p>
       </header>
 
+      <div id="coach-filmstrip-mount" class="pc-filmstrip-mount" hidden></div>
+      <div id="coach-shoot-summary-mount" class="pc-shoot-summary-mount" hidden></div>
+
       <div class="coach-dashboard" id="coach-dashboard">
         <aside class="coach-col coach-col--left" aria-label="Photo and context">
-          <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload or drop a photo">
+          <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload photos: drop, click to browse, or paste. Up to 20 images.">
             <div class="coach-empty" id="coach-empty">
-              <p class="coach-empty__title">Drop a photo here</p>
-              <p class="coach-empty__text">JPG, PNG, WebP · drag, browse, or paste (Ctrl+V)</p>
-              <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photo</button>
+              <p class="coach-empty__title">Drop photos here</p>
+              <p class="coach-empty__text">1–20 images · JPG, PNG, WebP · drag, browse, or paste (Ctrl+V)</p>
+              <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photos</button>
             </div>
             <div class="coach-preview-frame" id="coach-preview-frame" hidden>
               <img id="coach-preview-img" class="coach-preview-img" alt="" hidden>
               <p class="coach-file-name" id="coach-file-name"></p>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload another</button>
+          <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload more</button>
           <div id="coach-signals-mount" class="coach-signals-mount" aria-live="polite" hidden></div>
           <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
           <div id="coach-field-mount" class="coach-field-mount" aria-live="polite"></div>
@@ -82,7 +85,7 @@
           <div id="coach-history-mount" class="coach-history-mount" aria-live="polite"></div>
           <div id="coach-compare-mount" class="coach-compare-mount" hidden></div>
           <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
-          <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" hidden>
+          <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
         </aside>
 
         <main class="coach-col coach-col--center" id="coach-center-mount" aria-label="Grade and coaching">
@@ -413,6 +416,7 @@
   <script src="js/photo-coach-session-history.js"></script>
   <script src="js/photo-coach-schema.js"></script>
   <script src="js/photo-coach-portfolio.js"></script>
+  <script src="js/photo-coach-shoot.js"></script>
   <script src="js/photo-coach-profile.js"></script>
   <script src="js/photo-coach-skills.js"></script>
   <script src="js/scene-context.js"></script>

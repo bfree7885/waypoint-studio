@@ -9,6 +9,10 @@
   var currentExif = null;
   var currentCritique = null;
   var currentSessionId = null;
+  var currentShoot = null;
+  var currentImageId = null;
+  var batchBusy = false;
+  var objectUrls = [];
   var els = {};
 
   function $(id) {
@@ -33,6 +37,106 @@
   function revokeUrl() {
     if (imageUrl && imageUrl.indexOf("blob:") === 0) URL.revokeObjectURL(imageUrl);
     imageUrl = null;
+  }
+
+  function revokeAllObjectUrls() {
+    objectUrls.forEach(function (u) {
+      if (u && u.indexOf("blob:") === 0) URL.revokeObjectURL(u);
+    });
+    objectUrls = [];
+    imageUrl = null;
+  }
+
+  function trackUrl(url) {
+    if (url) objectUrls.push(url);
+    return url;
+  }
+
+  function maxBatch() {
+    var Shoot = global.WaypointPhotoCoachShoot;
+    return Shoot && Shoot.MAX_IMAGES ? Shoot.MAX_IMAGES : 20;
+  }
+
+  function showError(message) {
+    if (!els.error) return;
+    els.error.textContent = message || "Something went wrong.";
+    els.error.hidden = false;
+  }
+
+  function clearError() {
+    if (els.error) els.error.hidden = true;
+  }
+
+  function refreshFilmstrip() {
+    if (!els.filmstripMount || !global.WaypointPhotoCoachShoot) return;
+    if (!currentShoot || !currentShoot.images.length) {
+      els.filmstripMount.innerHTML = "";
+      els.filmstripMount.hidden = true;
+      return;
+    }
+    els.filmstripMount.hidden = false;
+    els.filmstripMount.innerHTML = global.WaypointPhotoCoachShoot.renderFilmstripHtml(
+      currentShoot,
+      currentImageId
+    );
+    els.filmstripMount.querySelectorAll(".pc-filmstrip__item").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-image-id");
+        if (id) showShootImage(id);
+      });
+    });
+  }
+
+  function refreshShootSummary() {
+    if (!els.summaryMount || !global.WaypointPhotoCoachShoot) return;
+    if (!currentShoot || !currentShoot.summary || currentShoot.images.length < 2) {
+      els.summaryMount.innerHTML = "";
+      els.summaryMount.hidden = true;
+      return;
+    }
+    els.summaryMount.hidden = false;
+    els.summaryMount.innerHTML = global.WaypointPhotoCoachShoot.renderSummaryHtml(
+      currentShoot.summary,
+      currentShoot
+    );
+    els.summaryMount.querySelectorAll(".pc-shoot-summary__open").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-image-id");
+        if (id) showShootImage(id);
+      });
+    });
+  }
+
+  function showShootImage(imageId) {
+    if (!currentShoot) return;
+    var img = currentShoot.images.filter(function (i) { return i.id === imageId; })[0];
+    if (!img || (img.status !== "done" && img.status !== "error")) return;
+    if (!img.critique && img.portfolioSessionId && global.WaypointPhotoCoachPortfolio) {
+      var sess = global.WaypointPhotoCoachPortfolio.getSession(img.portfolioSessionId);
+      if (sess && sess.critique) {
+        img.critique = sess.critique;
+        img.exif = img.exif || sess.exif;
+      }
+    }
+    if (!img.critique) return;
+    currentImageId = img.id;
+    currentCritique = img.critique;
+    currentExif = img.exif;
+    currentSessionId = img.portfolioSessionId || null;
+    currentFile = { name: img.fileName };
+    if (img.thumbnail && els.previewImg) {
+      els.previewImg.src = img.thumbnail;
+      els.previewImg.alt = "Photo: " + img.fileName;
+      els.previewImg.hidden = false;
+    }
+    if (els.previewFrame) els.previewFrame.hidden = false;
+    if (els.empty) els.empty.hidden = true;
+    if (els.fileName) els.fileName.textContent = img.fileName || "";
+    if (els.exifMount) els.exifMount.innerHTML = renderExifPanel(img.exif);
+    if (els.fieldMount) els.fieldMount.innerHTML = renderFieldInsights(img.critique);
+    if (els.notesMount) showSessionNotes("");
+    renderCritique(img.critique);
+    refreshFilmstrip();
   }
 
   function renderExifPanel(exif) {
@@ -500,65 +604,227 @@
     }
   }
 
-  function handleFile(file) {
-    var check = validateFile(file);
-    if (!check.ok) {
-      if (els.error) {
-        els.error.textContent = check.message || "Could not use that file.";
-        els.error.hidden = false;
+  function analyzeOne(file, imageRec, outdoorCtx) {
+    var Shoot = global.WaypointPhotoCoachShoot;
+    var E = global.WaypointExifReader;
+    var Demo = global.WaypointPhotoCoachDemo;
+    var url = trackUrl(URL.createObjectURL(file));
+    imageRec.status = "analyzing";
+    refreshFilmstrip();
+
+    var exifPromise = E && E.readFromFile ? E.readFromFile(file) : Promise.resolve(null);
+
+    return exifPromise.then(function (exif) {
+      imageRec.exif = exif;
+      if (!Demo || !Demo.analyze) {
+        throw new Error("Analysis engine unavailable.");
       }
+      return Demo.analyze(file, url, exif, outdoorCtx).then(function (critique) {
+        critique.outdoorContext = outdoorCtx;
+        return Shoot.makeThumbnail(url).then(function (thumb) {
+          imageRec.thumbnail = thumb;
+          imageRec.critique = critique;
+          imageRec.analysis = Shoot.toStructuredAnalysis(critique);
+          imageRec.analyzedAt = critique.analyzedAt || new Date().toISOString();
+          imageRec.status = "done";
+          imageRec.error = null;
+
+          // Persist individual portfolio session (existing behavior)
+          var P = global.WaypointPhotoCoachPortfolio;
+          if (P && P.saveSession) {
+            return P.saveSession({
+              imageName: file.name,
+              exif: exif,
+              critique: critique,
+              imageUrl: url,
+              thumbnail: thumb,
+              outdoorContext: outdoorCtx,
+              shootId: currentShoot ? currentShoot.id : null,
+              shootImageId: imageRec.id
+            }).then(function (session) {
+              imageRec.portfolioSessionId = session.id;
+              return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
+            });
+          }
+          return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
+        });
+      });
+    }).catch(function (err) {
+      imageRec.status = "error";
+      imageRec.error = err && err.message ? err.message : "Analysis failed.";
+      return null;
+    });
+  }
+
+  function finishShoot() {
+    var Shoot = global.WaypointPhotoCoachShoot;
+    if (!currentShoot || !Shoot) return;
+    var done = currentShoot.images.filter(function (i) { return i.status === "done"; });
+    var failed = currentShoot.images.filter(function (i) { return i.status === "error"; });
+    currentShoot.status = failed.length && !done.length
+      ? "error"
+      : failed.length
+        ? "partial"
+        : "complete";
+    currentShoot.summary = done.length ? Shoot.buildSummary(currentShoot) : null;
+    var persistCopy = {
+      schemaVersion: currentShoot.schemaVersion,
+      id: currentShoot.id,
+      createdAt: currentShoot.createdAt,
+      updatedAt: new Date().toISOString(),
+      status: currentShoot.status,
+      outdoorContext: currentShoot.outdoorContext,
+      summary: currentShoot.summary,
+      profileLink: null,
+      communityMatchReady: false,
+      images: currentShoot.images.map(function (img) {
+        return {
+          id: img.id,
+          fileName: img.fileName,
+          fileSize: img.fileSize,
+          status: img.status,
+          error: img.error,
+          analyzedAt: img.analyzedAt,
+          thumbnail: img.thumbnail,
+          portfolioSessionId: img.portfolioSessionId,
+          analysis: img.analysis,
+          exif: img.exif
+            ? {
+                hasExif: !!img.exif.hasExif,
+                make: img.exif.make || null,
+                model: img.exif.model || null,
+                iso: img.exif.iso || null,
+                focalLengthMm: img.exif.focalLengthMm || null,
+                fNumber: img.exif.fNumber || null,
+                exposureTimeSec: img.exif.exposureTimeSec || null
+              }
+            : null
+        };
+      })
+    };
+    Shoot.persistShoot(persistCopy);
+    refreshFilmstrip();
+    refreshShootSummary();
+    if (els.dropZone) els.dropZone.classList.remove("is-loading");
+    batchBusy = false;
+    refreshHistory();
+  }
+
+  function runBatch(files) {
+    var Shoot = global.WaypointPhotoCoachShoot;
+    if (!Shoot) {
+      // Fallback: single-file path without shoot module
+      if (files[0]) handleFile(files[0]);
       return;
     }
-    if (els.error) els.error.hidden = true;
-    revokeUrl();
-    currentFile = file;
-    currentSessionId = null;
-    imageUrl = URL.createObjectURL(file);
-    renderAnalyzing();
+    if (batchBusy) {
+      showError("A shoot is already analyzing. Wait for it to finish.");
+      return;
+    }
 
-    var E = global.WaypointExifReader;
+    var accepted = [];
+    var rejected = [];
+    for (var i = 0; i < files.length; i++) {
+      var check = validateFile(files[i]);
+      if (check.ok) accepted.push(files[i]);
+      else rejected.push((files[i] && files[i].name ? files[i].name : "file") + ": " + (check.message || "invalid"));
+    }
+    if (accepted.length > maxBatch()) {
+      showError("You can analyze up to " + maxBatch() + " photos per shoot. Only the first " + maxBatch() + " will be used.");
+      accepted = accepted.slice(0, maxBatch());
+    }
+    if (!accepted.length) {
+      showError(rejected[0] || "No valid images selected.");
+      return;
+    }
+    if (rejected.length) {
+      showError(rejected.length + " file(s) skipped. Analyzing " + accepted.length + " photo(s).");
+    } else {
+      clearError();
+    }
+
+    revokeAllObjectUrls();
+    batchBusy = true;
     var outdoorCtx = global.WaypointPhotoCoachOutdoorContext &&
       global.WaypointPhotoCoachOutdoorContext.load
       ? global.WaypointPhotoCoachOutdoorContext.load()
       : null;
 
-    var exifPromise = E && E.readFromFile ? E.readFromFile(file) : Promise.resolve(null);
-    var Demo = global.WaypointPhotoCoachDemo;
+    currentShoot = Shoot.createShoot({ outdoorContext: outdoorCtx });
+    currentShoot.status = "analyzing";
+    currentShoot.images = accepted.map(function (f) { return Shoot.createImageRecord(f); });
+    currentImageId = null;
+    currentSessionId = null;
+    if (els.summaryMount) {
+      els.summaryMount.innerHTML = "";
+      els.summaryMount.hidden = true;
+    }
+    refreshFilmstrip();
+    if (els.dropZone) els.dropZone.classList.add("is-loading");
 
-    exifPromise.then(function (exif) {
-      currentExif = exif;
-      setPreview(file, imageUrl);
-      if (!Demo || !Demo.analyze) {
-        renderCritique({ overallGrade: { letter: "—", score: 0, summary: "Analysis engine unavailable." } });
+    var idx = 0;
+    function next() {
+      if (idx >= accepted.length) {
+        finishShoot();
+        // Show best or first completed image
+        var done = currentShoot.images.filter(function (im) { return im.status === "done"; });
+        if (done.length) {
+          var best = done.slice().sort(function (a, b) {
+            return (b.analysis.overallScore || 0) - (a.analysis.overallScore || 0);
+          })[0];
+          showShootImage(best.id);
+        } else {
+          showError("Could not analyze any photos in this shoot.");
+        }
         return;
       }
-      return Demo.analyze(file, imageUrl, exif, outdoorCtx).then(function (critique) {
-        critique.outdoorContext = outdoorCtx;
-        if (els.fieldMount) els.fieldMount.innerHTML = renderFieldInsights(critique);
-        renderCritique(critique);
-        saveCurrentSession();
-      });
-    }).catch(function (err) {
-      if (els.dropZone) els.dropZone.classList.remove("is-loading");
-      if (els.error) {
-        els.error.textContent = err && err.message ? err.message : "Analysis failed.";
-        els.error.hidden = false;
+      var file = accepted[idx];
+      var imageRec = currentShoot.images[idx];
+      if (els.centerMount && global.WaypointPhotoCoachShoot) {
+        els.centerMount.innerHTML = Shoot.renderProgressHtml(idx + 1, accepted.length, file.name);
       }
-    });
+      if (els.rightMount) {
+        els.rightMount.innerHTML = "";
+        els.rightMount.hidden = true;
+      }
+      analyzeOne(file, imageRec, outdoorCtx).then(function (result) {
+        refreshFilmstrip();
+        if (result) {
+          currentFile = result.file;
+          imageUrl = result.url;
+          currentExif = result.exif;
+          currentCritique = result.critique;
+          currentImageId = result.imageRec.id;
+          currentSessionId = result.imageRec.portfolioSessionId;
+          setPreview(result.file, result.url);
+          if (els.fieldMount) els.fieldMount.innerHTML = renderFieldInsights(result.critique);
+          renderCritique(result.critique);
+        }
+        idx++;
+        // Yield to UI between images
+        setTimeout(next, 30);
+      });
+    }
+    next();
+  }
+
+  function handleFile(file) {
+    if (!file) return;
+    runBatch([file]);
+  }
+
+  function handleFiles(fileList) {
+    var files = [];
+    if (!fileList) return;
+    for (var i = 0; i < fileList.length; i++) files.push(fileList[i]);
+    if (!files.length) return;
+    runBatch(files);
   }
 
   function bindUpload() {
     function openPicker() {
       if (els.fileInput) els.fileInput.click();
     }
-    [els.uploadBtn, els.uploadEmptyBtn, els.dropZone].forEach(function (el) {
-      if (!el) return;
-      if (el === els.dropZone) return;
-      el.addEventListener("click", function (e) {
-        if (el === els.dropZone) return;
-        openPicker();
-      });
-    });
     if (els.uploadEmptyBtn) els.uploadEmptyBtn.addEventListener("click", openPicker);
     if (els.uploadBtn) els.uploadBtn.addEventListener("click", openPicker);
     if (els.dropZone) {
@@ -582,14 +848,16 @@
       els.dropZone.addEventListener("drop", function (e) {
         e.preventDefault();
         els.dropZone.classList.remove("is-dragover");
-        var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
-        if (file) handleFile(file);
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+          handleFiles(e.dataTransfer.files);
+        }
       });
     }
     if (els.fileInput) {
       els.fileInput.addEventListener("change", function () {
-        var file = els.fileInput.files && els.fileInput.files[0];
-        if (file) handleFile(file);
+        if (els.fileInput.files && els.fileInput.files.length) {
+          handleFiles(els.fileInput.files);
+        }
         els.fileInput.value = "";
       });
     }
@@ -597,15 +865,16 @@
       if (!els.dashboard || els.dashboard.closest("[hidden]")) return;
       var items = e.clipboardData && e.clipboardData.items;
       if (!items) return;
+      var pasted = [];
       for (var i = 0; i < items.length; i++) {
         if (items[i].type && items[i].type.indexOf("image") === 0) {
           var file = items[i].getAsFile();
-          if (file) {
-            e.preventDefault();
-            handleFile(file);
-            break;
-          }
+          if (file) pasted.push(file);
         }
+      }
+      if (pasted.length) {
+        e.preventDefault();
+        handleFiles(pasted);
       }
     });
   }
@@ -629,6 +898,8 @@
     els.compareMount = $("coach-compare-mount");
     els.signalsMount = $("coach-signals-mount");
     els.dashboard = $("coach-dashboard");
+    els.filmstripMount = $("coach-filmstrip-mount");
+    els.summaryMount = $("coach-shoot-summary-mount");
 
     bindUpload();
     if (els.fieldMount) {
@@ -644,6 +915,8 @@
     renderCritique: renderCritique,
     getCritique: function () { return currentCritique; },
     getExif: function () { return currentExif; },
-    handleFile: handleFile
+    getShoot: function () { return currentShoot; },
+    handleFile: handleFile,
+    handleFiles: handleFiles
   };
 })(window);
