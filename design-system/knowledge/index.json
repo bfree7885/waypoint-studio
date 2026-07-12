@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "schema": "https://waypoint.studio/schemas/knowledge/v1",
+  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "note": "Representative sample catalog for architecture demonstration — not a complete production dataset.",
+  "entries": [
+    { "id": "kn_acer-saccharum", "kind": "species", "common": "Sugar maple", "scientific": "Acer saccharum", "domains": ["fieldry", "foragecast", "shared"], "categories": ["trees", "plants"], "wskbId": "acer-saccharum", "tags": ["maple", "hardwood"] },
+    { "id": "kn_odocoileus-virginianus", "kind": "species", "common": "White-tailed deer", "scientific": "Odocoileus virginianus", "domains": ["fieldry", "sheds", "shared"], "categories": ["mammals", "cervids"], "wskbId": "odocoileus-virginianus", "tags": ["deer", "wildlife"] },
+    { "id": "kn_turdus-migratorius", "kind": "species", "common": "American robin", "scientific": "Turdus migratorius", "domains": ["fieldry"], "categories": ["birds"], "wskbId": "turdus-migratorius", "tags": ["songbird"] },
+    { "id": "kn_morchella-americana", "kind": "species", "common": "Yellow morel", "scientific": "Morchella americana", "domains": ["fieldry", "foragecast"], "categories": ["mushrooms", "edible-plants"], "wskbId": "morchella-americana", "tags": ["fungi", "spring"] },
+    { "id": "kn_white-oak", "kind": "species", "common": "White oak", "scientific": "Quercus alba", "domains": ["fieldry", "foragecast", "sheds", "shared"], "categories": ["trees", "plants", "nuts"], "tags": ["oak", "mast"] },
+    { "id": "kn_oak-acorn", "kind": "material", "common": "Acorn", "scientific": null, "domains": ["fieldry", "foragecast", "sheds", "shared"], "categories": ["nuts", "food-source"], "tags": ["mast", "oak"] },
+    { "id": "kn_deer-shed-cycle", "kind": "concept", "common": "Antler shed cycle", "scientific": null, "domains": ["sheds", "fieldry"], "categories": ["antler-biology", "cervids"], "tags": ["shed", "winter"] },
+    { "id": "kn_bedding-cover", "kind": "habitat", "common": "Bedding cover", "scientific": null, "domains": ["sheds", "foragecast", "shared"], "categories": ["habitats", "sign"], "tags": ["deer", "cover"] },
+    { "id": "kn_track-sign", "kind": "concept", "common": "Track and sign reading", "scientific": null, "domains": ["sheds", "fieldry"], "categories": ["sign"], "tags": ["tracks", "ethics"] },
+    { "id": "kn_chanterelle", "kind": "species", "common": "Golden chanterelle", "scientific": "Cantharellus cibarius", "domains": ["fieldry", "foragecast"], "categories": ["mushrooms", "edible-plants"], "tags": ["fungi", "summer"] },
+    { "id": "kn_post-rain-fruiting", "kind": "phenomenon", "common": "Post-rainfall fruiting", "scientific": null, "domains": ["foragecast", "outdoor-intelligence", "shared"], "categories": ["phenology", "seasonal-events", "weather"], "tags": ["rain", "mushrooms"] },
+    { "id": "kn_mixed-hardwood", "kind": "habitat", "common": "Mixed hardwood forest", "scientific": null, "domains": ["foragecast", "fieldry", "sheds", "shared"], "categories": ["habitats"], "tags": ["forest", "ecology"] },
+    { "id": "kn_longjing", "kind": "cultivar", "common": "Longjing (Dragonwell)", "scientific": "Camellia sinensis", "domains": ["steepleaf"], "categories": ["tea-varieties", "cultivars"], "tags": ["green-tea", "china"] },
+    { "id": "kn_gongfu-brew", "kind": "technique", "common": "Gongfu brewing", "scientific": null, "domains": ["steepleaf"], "categories": ["brewing", "technique"], "tags": ["tea", "steep"] },
+    { "id": "kn_cabernet-sauvignon", "kind": "cultivar", "common": "Cabernet Sauvignon", "scientific": "Vitis vinifera", "domains": ["savant-sommelier"], "categories": ["grape-varieties"], "tags": ["wine", "red"] },
+    { "id": "kn_limestone-soil", "kind": "material", "common": "Limestone-derived soil", "scientific": null, "domains": ["savant-sommelier", "shared"], "categories": ["soils", "geology"], "tags": ["terroir", "calcium"] },
+    { "id": "kn_vhf-band", "kind": "service", "common": "VHF band", "scientific": null, "domains": ["signalterrain"], "categories": ["frequency-bands"], "tags": ["radio", "vhf"] },
+    { "id": "kn_fm-modulation", "kind": "concept", "common": "Frequency modulation (FM)", "scientific": null, "domains": ["signalterrain"], "categories": ["modulation", "terminology"], "tags": ["radio"] },
+    { "id": "kn_aqi", "kind": "concept", "common": "Air Quality Index (AQI)", "scientific": null, "domains": ["outdoor-intelligence", "shared"], "categories": ["aqi", "weather"], "tags": ["air", "health"] },
+    { "id": "kn_uv-index", "kind": "concept", "common": "UV Index", "scientific": null, "domains": ["outdoor-intelligence", "scenes"], "categories": ["uv", "photography"], "tags": ["sun", "safety"] },
+    { "id": "kn_golden-hour", "kind": "phenomenon", "common": "Golden hour", "scientific": null, "domains": ["outdoor-intelligence", "scenes"], "categories": ["photography", "astronomy", "light"], "tags": ["light", "photography"] }
+  ]
+}

@@ -49,6 +49,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 | Layer | Location | Purpose |
 |-------|----------|---------|
 | **Platform kernel** | `design-system/js/platform/` | Shared chrome, profile, collections, foundation UI |
+| **Knowledge Platform** | `design-system/knowledge/`, `design-system/js/knowledge/` | Shared reference knowledge, search, relationships |
 | **Outdoor Intelligence Platform** | `design-system/js/outdoor-intelligence/` | Canonical regional package for dashboard and apps |
 | **Regional Intelligence Engine** | `design-system/js/regional-intelligence/` | County profiles, phenology, species slices |
 | **Content Engine** | `design-system/content-engine/` | Editorial regional bundles (Pike County Preview) |

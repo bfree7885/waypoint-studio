@@ -70,14 +70,16 @@ Canonical research-grade schema: **Waypoint Observation Standard (WOS)**
 
 Runtime helpers: `WDS.observations` + `WDS.observations.extensions`
 
-Every observation supports:
+Taxon links may use `taxonIdSource`: `wskb` or `knowledge` in addition to external authorities.
 
-- unique id · application · type · timestamp · location  
-- privacy (`private` / `shared` / `public` / `anonymized`)  
-- environmental context · media · tags · notes  
-- AI metadata (must be labeled) · confidence · licensing · sync state  
+---
 
-Apps extend via `observation.extensions[<appId>]` without mutating the core schema.
+## Knowledge Platform
+
+Structured reference backbone for every application:  
+`docs/WAYPOINT-KNOWLEDGE-PLATFORM.md` · `WDS.knowledge`
+
+Applications query shared knowledge (and WSKB for species detail) instead of maintaining duplicate encyclopedias.
 
 ---
 

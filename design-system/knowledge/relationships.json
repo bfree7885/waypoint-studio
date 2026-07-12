@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "note": "Typed relationships between knowledge entries. Apps should query this graph rather than hard-coding chains.",
+  "relationshipTypes": [
+    "produces",
+    "feeds",
+    "inhabits",
+    "appears-after",
+    "associated-with",
+    "used-in",
+    "grows-in",
+    "preferred-soil",
+    "part-of",
+    "see-also",
+    "powers-app-concept"
+  ],
+  "edges": [
+    { "id": "rel_oak_acorn", "from": "kn_white-oak", "type": "produces", "to": "kn_oak-acorn", "label": "Produces acorns" },
+    { "id": "rel_acorn_deer", "from": "kn_oak-acorn", "type": "feeds", "to": "kn_odocoileus-virginianus", "label": "Feeds white-tailed deer" },
+    { "id": "rel_deer_shed", "from": "kn_odocoileus-virginianus", "type": "associated-with", "to": "kn_deer-shed-cycle", "label": "Sheds antlers seasonally" },
+    { "id": "rel_deer_bedding", "from": "kn_odocoileus-virginianus", "type": "inhabits", "to": "kn_bedding-cover", "label": "Uses bedding cover" },
+    { "id": "rel_oak_habitat", "from": "kn_white-oak", "type": "inhabits", "to": "kn_mixed-hardwood", "label": "Common in mixed hardwoods" },
+    { "id": "rel_maple_habitat", "from": "kn_acer-saccharum", "type": "inhabits", "to": "kn_mixed-hardwood", "label": "Dominant canopy associate" },
+    { "id": "rel_chanterelle_rain", "from": "kn_chanterelle", "type": "appears-after", "to": "kn_post-rain-fruiting", "label": "Often fruits after rainfall" },
+    { "id": "rel_chanterelle_habitat", "from": "kn_chanterelle", "type": "inhabits", "to": "kn_mixed-hardwood", "label": "Mycorrhizal in hardwood stands" },
+    { "id": "rel_morel_habitat", "from": "kn_morchella-americana", "type": "inhabits", "to": "kn_mixed-hardwood", "label": "Spring hardwood association" },
+    { "id": "rel_longjing_brew", "from": "kn_longjing", "type": "used-in", "to": "kn_gongfu-brew", "label": "Often brewed with attentive steeping" },
+    { "id": "rel_cab_soil", "from": "kn_cabernet-sauvignon", "type": "preferred-soil", "to": "kn_limestone-soil", "label": "Often associated with calcareous sites" },
+    { "id": "rel_vhf_fm", "from": "kn_vhf-band", "type": "associated-with", "to": "kn_fm-modulation", "label": "Commonly carries FM voice" },
+    { "id": "rel_golden_uv", "from": "kn_golden-hour", "type": "see-also", "to": "kn_uv-index", "label": "Light quality vs UV exposure" },
+    { "id": "rel_shed_track", "from": "kn_deer-shed-cycle", "type": "see-also", "to": "kn_track-sign", "label": "Read sign ethically while searching" }
+  ]
+}

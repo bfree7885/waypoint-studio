@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "domains": [
+    {
+      "id": "fieldry",
+      "label": "Fieldry",
+      "description": "Observation life-list knowledge: organisms, rocks, weather concepts.",
+      "categories": ["plants", "trees", "mammals", "birds", "reptiles", "amphibians", "fish", "insects", "butterflies", "dragonflies", "mushrooms", "lichens", "rocks", "minerals", "clouds", "weather"]
+    },
+    {
+      "id": "foragecast",
+      "label": "ForageCast",
+      "description": "Seasonal foraging and habitat literacy.",
+      "categories": ["edible-plants", "medicinal-plants", "mushrooms", "berries", "nuts", "habitats", "phenology", "seasonal-events"]
+    },
+    {
+      "id": "sheds",
+      "label": "Sheds",
+      "description": "Cervid ecology, antler biology, sign, and regulations metadata.",
+      "categories": ["cervids", "antler-biology", "habitats", "sign", "regulations"]
+    },
+    {
+      "id": "steepleaf",
+      "label": "Steepleaf",
+      "description": "Tea varieties, regions, processing, flavor, and brewing.",
+      "categories": ["tea-varieties", "cultivars", "growing-regions", "processing", "flavor-notes", "brewing"]
+    },
+    {
+      "id": "savant-sommelier",
+      "label": "Savant Sommelier",
+      "description": "Grape varieties, vineyard regions, soils, climate, wine styles.",
+      "categories": ["grape-varieties", "vineyard-regions", "soils", "geology", "climate", "rootstocks", "wineries", "wine-styles"]
+    },
+    {
+      "id": "signalterrain",
+      "label": "SignalTerrain",
+      "description": "Radio services, bands, modulation, agencies, equipment, terminology.",
+      "categories": ["radio-services", "frequency-bands", "modulation", "agencies", "equipment", "terminology"]
+    },
+    {
+      "id": "outdoor-intelligence",
+      "label": "Outdoor Intelligence",
+      "description": "Weather, AQI, UV, astronomy, and photography terminology.",
+      "categories": ["weather", "aqi", "uv", "astronomy", "photography"]
+    },
+    {
+      "id": "scenes",
+      "label": "Waypoint Scenes",
+      "description": "Photography craft concepts shared with Outdoor Intelligence.",
+      "categories": ["photography", "composition", "light"]
+    },
+    {
+      "id": "shared",
+      "label": "Shared",
+      "description": "Cross-cutting concepts used by multiple applications.",
+      "categories": ["ecology", "ethics", "habitat"]
+    }
+  ]
+}

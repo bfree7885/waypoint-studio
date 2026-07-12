@@ -79,7 +79,7 @@
         },
         "hierarchy": { "$ref": "#/$defs/taxonomicHierarchy" },
         "taxonId": { "type": ["string", "null"], "description": "External taxonomy identifier (e.g. ITIS, GBIF, iNaturalist taxon_id)." },
-        "taxonIdSource": { "type": ["string", "null"], "enum": ["itis", "gbif", "inaturalist", "col", "manual", null] },
+        "taxonIdSource": { "type": ["string", "null"], "enum": ["itis", "gbif", "inaturalist", "col", "manual", "wskb", "knowledge", null] },
         "lifeStage": { "type": ["string", "null"], "description": "e.g. adult, larva, fruiting body, bud" },
         "organismRemarks": { "type": ["string", "null"], "maxLength": 500 }
       }

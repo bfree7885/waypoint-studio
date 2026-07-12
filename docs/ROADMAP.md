@@ -37,6 +37,7 @@
 | 3 | Foundation landings for long-term products |
 | 4 | Consistent nav across core instruments |
 | 5 | Future data platform stubs (disabled) |
+| 6 | **Knowledge Platform** — shared schema, search, relationships |
 
 ---
 
