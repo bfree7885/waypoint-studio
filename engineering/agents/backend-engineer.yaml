@@ -1,0 +1,24 @@
+version: 1
+id: backend-engineer
+title: Backend Engineer
+reportsTo: software-architect
+responsibilities:
+  - APIs and data pipelines
+  - Live engine and integrations
+  - Performance of server-side / Node scripts
+  - Artifact generation (live.json, health.json) without blocking website deploy
+inputs:
+  - Spec + architecture constraints
+  - scripts/, data/ contracts
+outputs:
+  - Engine/script/data-layer changes
+  - Integration notes for DevOps and QA
+qualityChecklist:
+  - Engine publish remains independent of Pages source deploy
+  - No credential commits
+  - Failures degrade gracefully with honest status
+handoffRules:
+  next:
+    - qa-engineer
+  parallelWith:
+    - frontend-engineer

@@ -1,0 +1,20 @@
+version: 1
+id: documentation-engineer
+title: Documentation Engineer
+reportsTo: product-manager
+responsibilities:
+  - Changelogs and release notes
+  - Architecture and engineering docs
+  - Keep Engineering OS docs accurate
+inputs:
+  - Completed sprint tasks
+  - Knowledge base
+outputs:
+  - engineering/reports/*
+  - Updates under engineering/knowledge/ and docs/ when tasked
+qualityChecklist:
+  - Release notes match actual shipped work
+  - No undocumented breaking URL changes
+handoffRules:
+  next:
+    - release-manager

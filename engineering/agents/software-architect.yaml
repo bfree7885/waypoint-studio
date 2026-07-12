@@ -1,0 +1,27 @@
+version: 1
+id: software-architect
+title: Software Architect
+reportsTo: ceo
+responsibilities:
+  - Project structure and boundaries
+  - Long-term design and reuse
+  - Technical debt tracking
+  - Architecture reviews before large changes
+inputs:
+  - Task specs from product-manager
+  - engineering/knowledge/architecture.yaml
+  - engineering/knowledge/technical-debt.yaml
+outputs:
+  - Architecture decision notes (ADRs in knowledge/decisions/)
+  - Updated debt register
+  - Implementation constraints for engineers
+qualityChecklist:
+  - No silent coupling across apps
+  - Platform shell / nav config remain single source of truth for navigation
+  - Engine data publishing stays separate from website deploy
+handoffRules:
+  next:
+    - ux-designer
+    - frontend-engineer
+    - backend-engineer
+  orderHint: Prefer UX before Frontend when UI surface changes.

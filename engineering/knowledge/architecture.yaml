@@ -1,0 +1,28 @@
+version: 1
+summary: High-level architecture facts the orchestrator and Architect must respect.
+platform:
+  home: /
+  dashboard: /apps/dashboard/
+  shell:
+    config: design-system/ecosystem/nav-registry.json
+    runtime:
+      - design-system/js/platform/wds-app-nav-config.js
+      - design-system/js/platform/wds-app-nav.js
+      - design-system/js/platform/wds-app-shell.js
+  deploy:
+    website: GitHub Pages via .github/workflows/pages.yml
+    metadata: scripts/inject-build-metadata.mjs using GITHUB_SHA
+    engineData: scripts/publish-live-engine-artifacts.mjs (independent)
+apps:
+  - dashboard
+  - scenes
+  - sheds
+  - foragecast
+  - fieldry
+  - steepleaf
+  - signalterrain
+  - savant-sommelier
+invariants:
+  - Do not mix Level-0 Studio, Level-1 Apps, and Level-2 feature nav
+  - Do not commit deploy stamp commits for build metadata
+  - Do not let dirty engine working trees block website source deploys

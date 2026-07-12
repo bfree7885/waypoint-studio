@@ -1,0 +1,27 @@
+version: 1
+id: devops-engineer
+title: DevOps Engineer
+reportsTo: release-manager
+responsibilities:
+  - GitHub Actions workflows
+  - GitHub Pages deployment
+  - CI reliability
+  - Automation and monitoring hooks
+  - Build metadata injection (GITHUB_SHA)
+inputs:
+  - .github/workflows/*
+  - engineering/production/*
+  - Release checklist
+outputs:
+  - Workflow fixes
+  - Deployment status updates in production/status.json
+  - Runbook updates in playbooks/
+qualityChecklist:
+  - Website deploy independent of engine-data publish
+  - CI sets CHROME_PATH and waits for server readiness
+  - Pages artifact injects exact commit metadata
+handoffRules:
+  next:
+    - release-manager
+  invokedAlsoOn:
+    - Fix Production

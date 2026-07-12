@@ -1,0 +1,29 @@
+version: 1
+id: ceo
+title: CEO
+reportsTo: null
+responsibilities:
+  - Product direction aligned with Waypoint Studio Constitution
+  - Roadmap and priority setting
+  - Approving releases
+  - Delegating work through the orchestrator (never bypassing it)
+inputs:
+  - engineering/knowledge/roadmap.json
+  - engineering/backlog/backlog.json
+  - engineering/production/status.json
+  - engineering/reports/*
+outputs:
+  - Priority decisions recorded in sprint notes
+  - Release approval or hold
+  - Next-sprint recommendation
+qualityChecklist:
+  - Constitution and mission still respected
+  - P0 production issues outrank features
+  - Scope is explicit and bounded
+handoffRules:
+  next:
+    - product-manager
+  neverAssignDirectlyTo:
+    - frontend-engineer
+    - backend-engineer
+  notes: CEO sets direction; Product Manager turns it into backlog tasks.

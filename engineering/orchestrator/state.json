@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "mode": "idle",
+  "activeSprintId": null,
+  "activeTaskId": null,
+  "activePhase": null,
+  "activeAgent": null,
+  "completedAgents": [],
+  "blocked": [],
+  "productionPauseFeatures": false,
+  "lastCommand": null,
+  "lastCommandAt": null,
+  "notes": [
+    "Waypoint Engineering OS is idle. Run Start Sprint or Review Production."
+  ]
+}

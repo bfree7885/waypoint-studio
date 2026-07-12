@@ -1,0 +1,13 @@
+version: 1
+title: Coding patterns
+do:
+  - Keep App Shell navigation data-driven from design-system/ecosystem/nav-registry.json
+  - Prefer small, focused commits that match existing style
+  - Use automation readiness waits instead of fixed sleeps
+  - Separate website Pages deploy concerns from engine-data publish
+  - Record architecture decisions under knowledge/decisions/
+dont:
+  - Redesign apps from Engineering OS prompts alone without a sprint task
+  - Stamp GITHUB_SHA into source commits
+  - Let agents self-select work outside orchestrator assignment
+  - Bypass Release Manager gates for production deploys

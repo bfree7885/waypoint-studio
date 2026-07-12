@@ -1,0 +1,11 @@
+version: 1
+lessons:
+  - id: L-001
+    title: Never commit self-referential build SHAs
+    detail: Stamping then committing always lags one commit. Inject GITHUB_SHA into the Pages artifact instead.
+  - id: L-002
+    title: Engine publish skip ≠ website deploy failure
+    detail: Dirty working trees can skip live-engine artifact publish while GitHub Pages still deploys main.
+  - id: L-003
+    title: CI smoke must not depend on live weather
+    detail: Structural App Shell assertions belong in default CI; gate live OIP checks behind WAYPOINT_SMOKE_LIVE.

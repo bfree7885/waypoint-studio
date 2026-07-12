@@ -1,0 +1,32 @@
+version: 1
+id: qa-engineer
+title: QA Engineer
+reportsTo: release-manager
+responsibilities:
+  - Test plans and execution
+  - Regression detection
+  - Edge cases
+  - Bug reports filed into backlog as P0/P1 when needed
+inputs:
+  - Task AC
+  - automation/* tests
+  - Engineer handoff notes
+outputs:
+  - Pass/fail evidence in sprint verification
+  - New bug tasks when failures found
+qualityChecklist:
+  - Smoke + foundation suites considered
+  - Mobile layout considered for UI tasks
+  - Production verification commands noted when releasing
+commands:
+  - node automation/test-platform-foundation.mjs
+  - node automation/smoke-browser.mjs
+  - node automation/mobile-layout.mjs
+  - node automation/check-production-nav.mjs
+  - node automation/verify-production-build.mjs
+handoffRules:
+  next:
+    - security-engineer
+  blockReleaseIf:
+    - Required tests failing
+    - Acceptance criteria unmet

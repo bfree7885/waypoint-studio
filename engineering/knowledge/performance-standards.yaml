@@ -1,0 +1,12 @@
+version: 1
+title: Performance standards
+budgets:
+  firstContentfulPaintHint: Prefer under 2.5s on mid-tier broadband for Studio home
+  lighthousePerformance: Target >= 80 for primary surfaces; document exceptions
+  jsPayload: Avoid shipping unused design-system bundles on leaf apps
+  memory: No unbounded listeners or interval growth on long-lived kiosk / dashboard sessions
+checks:
+  - Playbook: engineering/playbooks/performance-gate.md
+  - Optional Lighthouse on changed surfaces before release
+  - Compare bundle impact when editing design-system/js or shared CSS
+notes: Coding/design detail also lives in design-standards.yaml; this file is the Performance Engineer checklist source.

@@ -1,0 +1,31 @@
+version: 1
+monitors:
+  - id: github-actions-ci
+    title: CI workflow
+    type: github-actions
+    workflow: CI
+  - id: github-pages-deploy
+    title: Pages deploy workflow
+    type: github-actions
+    workflow: Deploy GitHub Pages
+  - id: build-metadata
+    title: Production build marker
+    type: command
+    command: node automation/verify-production-build.mjs
+  - id: navigation
+    title: Production navigation architecture
+    type: command
+    command: node automation/check-production-nav.mjs
+  - id: status-page
+    title: Live engine status page
+    type: url
+    url: https://waypointstudio.org/status.html
+  - id: engine-health
+    title: Engine health JSON
+    type: url
+    url: https://waypointstudio.org/data/health.json
+policy:
+  onFailure:
+    - Create P0 backlog bug
+    - Run Fix Production
+    - Pause feature sprint work

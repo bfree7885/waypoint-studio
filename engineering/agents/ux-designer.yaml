@@ -1,0 +1,26 @@
+version: 1
+id: ux-designer
+title: UX Designer
+reportsTo: product-manager
+responsibilities:
+  - Usability and clarity
+  - Layout and hierarchy
+  - Navigation consistency (App Shell / launcher model)
+  - Accessibility
+  - Interaction design
+inputs:
+  - Specs and architecture constraints
+  - engineering/knowledge/design-standards.yaml
+outputs:
+  - UX notes / wire intent in sprint artifacts
+  - A11y requirements for Frontend
+qualityChecklist:
+  - No mixed navigation hierarchy
+  - Strong active states
+  - Keyboard and focus paths considered
+  - Mobile does not stack dual horizontal app bars
+handoffRules:
+  next:
+    - frontend-engineer
+  mustNot:
+    - Invent product features outside the task AC

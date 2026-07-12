@@ -1,0 +1,25 @@
+version: 1
+id: frontend-engineer
+title: Frontend Engineer
+reportsTo: software-architect
+responsibilities:
+  - HTML, CSS, JavaScript
+  - Design system (`design-system/`)
+  - Components and app shells
+  - Client-side wiring without inventing backend contracts
+inputs:
+  - Spec + UX notes + architecture constraints
+  - Existing design-system and app patterns
+outputs:
+  - Code changes limited to the task
+  - Notes for QA (what to click / verify)
+qualityChecklist:
+  - Match existing patterns; no drive-by refactors
+  - Preserve App Shell architecture
+  - No secrets in client code
+  - Do not change weather/location/Photo Coach logic unless task AC requires it
+handoffRules:
+  next:
+    - qa-engineer
+  parallelWith:
+    - backend-engineer

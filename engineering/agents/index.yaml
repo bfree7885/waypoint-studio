@@ -1,0 +1,15 @@
+version: 1
+agents:
+  - ceo
+  - product-manager
+  - software-architect
+  - ux-designer
+  - frontend-engineer
+  - backend-engineer
+  - qa-engineer
+  - security-engineer
+  - performance-engineer
+  - devops-engineer
+  - documentation-engineer
+  - release-manager
+note: One YAML file per agent under this directory. Orchestrator assigns; agents do not self-select work.

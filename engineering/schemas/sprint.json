@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/engineering/schemas/sprint.json",
+  "title": "Waypoint Engineering Sprint",
+  "type": "object",
+  "required": ["id", "goal", "status", "tasks"],
+  "properties": {
+    "id": { "type": "string" },
+    "goal": { "type": "string" },
+    "status": {
+      "enum": ["planned", "active", "blocked", "verifying", "deploying", "complete", "aborted"]
+    },
+    "startedAt": { "type": ["string", "null"] },
+    "completedAt": { "type": ["string", "null"] },
+    "tasks": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "completedWork": { "type": "array", "items": { "type": "string" } },
+    "blockedWork": { "type": "array", "items": { "type": "string" } },
+    "deployment": { "type": "object" },
+    "verification": { "type": "object" },
+    "releaseNotes": { "type": "string" },
+    "activeTask": { "type": ["string", "null"] },
+    "phase": { "type": "string" }
+  }
+}

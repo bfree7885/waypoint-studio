@@ -1,0 +1,19 @@
+{
+  "id": "sprint-YYYYMMDD",
+  "goal": "",
+  "status": "planned",
+  "startedAt": null,
+  "completedAt": null,
+  "tasks": [],
+  "risks": [],
+  "completedWork": [],
+  "blockedWork": [],
+  "deployment": { "status": "not_started" },
+  "verification": { "status": "not_started", "gates": {} },
+  "releaseNotes": "",
+  "activeTask": null,
+  "phase": null,
+  "assignedSequence": [],
+  "repoAtStart": {},
+  "log": []
+}

@@ -1,0 +1,23 @@
+version: 1
+updatedAt: "2026-07-12T22:00:00.000Z"
+items:
+  - id: TD-001
+    title: Legacy docs/ai-agents roles overlap Engineering OS agents
+    severity: low
+    owner: documentation-engineer
+    status: open
+    notes: Keep ai-agents as prompt helpers; Engineering OS is authoritative for process.
+
+  - id: TD-002
+    title: Branch Pages workflow may still race Actions deploy
+    severity: medium
+    owner: devops-engineer
+    status: open
+    notes: Ensure Settings → Pages → Source = GitHub Actions only.
+
+  - id: TD-003
+    title: Species profile and some design-system pages still use old topbars
+    severity: low
+    owner: frontend-engineer
+    status: open
+    notes: Out of App Shell scope unless tasked; do not drive-by rewrite.

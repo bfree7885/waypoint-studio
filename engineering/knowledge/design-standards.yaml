@@ -1,0 +1,19 @@
+version: 1
+codingStandards:
+  - Prefer focused diffs; no drive-by refactors
+  - Match existing HTML/CSS/JS patterns
+  - Escape untrusted HTML
+  - Keep App Shell data-driven from nav-registry
+  - Engine publish artifacts only: live/health/publish-state/status/debug
+designStandards:
+  - Calm, minimal, professional SaaS shell
+  - Strong active states; no overlapping headers
+  - No dual horizontal scrolling app bars on mobile
+securityStandards:
+  - No secrets in git
+  - Review CSP/header implications for new third parties
+  - Treat user content as untrusted
+performanceStandards:
+  - Avoid large synchronous work on first paint
+  - Cache-bust shell assets via inject-build-metadata
+  - Prefer readiness waits over fixed sleeps in automation

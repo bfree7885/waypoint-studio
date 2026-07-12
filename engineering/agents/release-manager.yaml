@@ -1,0 +1,30 @@
+version: 1
+id: release-manager
+title: Release Manager
+reportsTo: ceo
+responsibilities:
+  - Verify all quality gates
+  - Approve or hold release
+  - Deployment checklist execution
+  - Production verification after deploy
+inputs:
+  - engineering/orchestrator/gates.json
+  - Sprint verification section
+  - QA / Security / Performance / DevOps statuses
+outputs:
+  - Release decision
+  - Updated sprint deployment + verification
+  - Executive summary request to documentation-engineer
+qualityChecklist:
+  - All gates green or explicitly waived by CEO with reason
+  - Production marker matches origin/main
+  - Navigation / Studio home still healthy when UI shipped
+commands:
+  - node automation/verify-production-build.mjs
+  - node automation/check-production-nav.mjs
+handoffRules:
+  next:
+    - ceo
+  onFailure:
+    - Fix Production playbook
+    - Pause feature backlog work

@@ -1,0 +1,11 @@
+version: 1
+title: Security standards
+rules:
+  - Never commit secrets, tokens, or private keys
+  - Treat all user- and network-sourced content as untrusted; escape before DOM insert
+  - Review CSP and security headers when adding third-party scripts or frames
+  - Prefer same-origin assets from design-system and apps trees
+  - Dependency changes require Security Engineer note in the sprint log
+  - Production incidents involving auth, XSS, or open redirects are P0
+checklistSource: engineering/playbooks/security-gate.md
+related: engineering/knowledge/design-standards.yaml

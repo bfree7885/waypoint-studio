@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "gates": [
+    {
+      "id": "tests",
+      "title": "Automated tests",
+      "required": true,
+      "commands": ["node automation/test-platform-foundation.mjs"],
+      "notes": "Extend per-task with Fieldry/knowledge suites when those areas change."
+    },
+    {
+      "id": "smoke",
+      "title": "Browser smoke",
+      "required": true,
+      "commands": ["node automation/smoke-browser.mjs"],
+      "notes": "Structural App Shell / navigation smoke; live weather gated by WAYPOINT_SMOKE_LIVE=1."
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility checklist",
+      "required": true,
+      "checklist": "engineering/playbooks/accessibility-gate.md"
+    },
+    {
+      "id": "performance",
+      "title": "Performance acceptable",
+      "required": true,
+      "checklist": "engineering/playbooks/performance-gate.md"
+    },
+    {
+      "id": "security",
+      "title": "Security review",
+      "required": true,
+      "checklist": "engineering/playbooks/security-gate.md"
+    },
+    {
+      "id": "production",
+      "title": "Production verification",
+      "required": true,
+      "commands": [
+        "node automation/verify-production-build.mjs",
+        "node automation/check-production-nav.mjs"
+      ]
+    }
+  ],
+  "policy": {
+    "deployBlockedUnlessAllRequiredPass": true,
+    "featureWorkPausedOnProductionIncident": true,
+    "onlyReleaseManagerOrCeoMayWaiveGate": true
+  }
+}

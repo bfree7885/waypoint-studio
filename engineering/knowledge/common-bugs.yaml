@@ -1,0 +1,27 @@
+version: 1
+title: Common bugs and failure modes
+items:
+  - id: BUG-META-LAG
+    title: Build marker SHA lags the commit that contains it
+    symptom: status page or build-info.json shows an older SHA than origin/main
+    cause: Self-referential stamp commits in source tree
+    fix: Inject GITHUB_SHA only into the Pages deploy artifact via scripts/inject-build-metadata.mjs
+    owner: devops-engineer
+  - id: BUG-SMOKE-LIVE
+    title: CI smoke fails on live weather hydration
+    symptom: smoke-browser.mjs fails waiting for live OIP content
+    cause: Structural smoke asserting live network data
+    fix: Keep live checks behind WAYPOINT_SMOKE_LIVE=1; CI runs structural App Shell smoke only
+    owner: qa-engineer
+  - id: BUG-ENGINE-DIRTY
+    title: Engine publish skipped while site deploy succeeds
+    symptom: status page shows skipped public publish; users confuse this with Pages outage
+    cause: Dirty local data/* tree blocks engine artifact publish only
+    fix: Treat Website Build and Engine Data Publish as separate monitors
+    owner: devops-engineer
+  - id: BUG-PAGES-BRANCH
+    title: Branch-based Pages briefly serves source stubs
+    symptom: Production shows source-tree / local markers
+    cause: GitHub Pages source set to branch instead of GitHub Actions
+    fix: Settings → Pages → Source = GitHub Actions; prefer WE-001 checklist
+    owner: release-manager

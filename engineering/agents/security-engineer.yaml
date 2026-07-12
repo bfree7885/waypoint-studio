@@ -1,0 +1,24 @@
+version: 1
+id: security-engineer
+title: Security Engineer
+reportsTo: release-manager
+responsibilities:
+  - Security review of changes
+  - Dependency and secret hygiene
+  - CSP / headers awareness
+  - Vulnerability notes
+inputs:
+  - Diff / changed paths for the sprint tasks
+  - engineering/knowledge/security-standards.yaml
+outputs:
+  - Security review status in sprint verification
+  - Findings as backlog items (P0 if exploitable)
+qualityChecklist:
+  - No secrets in repo
+  - User HTML escaped where dynamic
+  - Publish scripts cannot escalate beyond intended paths
+handoffRules:
+  next:
+    - performance-engineer
+  blockReleaseIf:
+    - Open P0 security finding

@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "policy": {
+    "priorities": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "productionBugsAreP0": true
+  },
+  "tasks": [
+    {
+      "id": "WE-001",
+      "title": "Confirm GitHub Pages source remains GitHub Actions only",
+      "priority": "P1",
+      "estimate": "S",
+      "dependencies": [],
+      "assignedAgent": "devops-engineer",
+      "status": "ready",
+      "acceptanceCriteria": [
+        "Repo Pages settings use GitHub Actions (not branch deploy)",
+        "Deploy workflow injects GITHUB_SHA metadata",
+        "Production marker matches origin/main"
+      ],
+      "area": "devops",
+      "risk": "medium",
+      "notes": "Prevents local stub markers from briefly shipping via branch Pages."
+    },
+    {
+      "id": "WE-002",
+      "title": "Add Engineering OS onboarding note to docs README",
+      "priority": "P2",
+      "estimate": "S",
+      "dependencies": [],
+      "assignedAgent": "documentation-engineer",
+      "status": "backlog",
+      "acceptanceCriteria": [
+        "docs/README links to engineering/README.md",
+        "No application code changes"
+      ],
+      "area": "docs",
+      "risk": "low",
+      "notes": "Optional documentation cross-link only."
+    },
+    {
+      "id": "WE-003",
+      "title": "Catalog known technical debt after App Shell migration",
+      "priority": "P2",
+      "estimate": "M",
+      "dependencies": [],
+      "assignedAgent": "software-architect",
+      "status": "backlog",
+      "acceptanceCriteria": [
+        "engineering/knowledge/technical-debt.yaml lists top debt items",
+        "Each item has severity and suggested owner role"
+      ],
+      "area": "architecture",
+      "risk": "low",
+      "notes": "Knowledge capture only."
+    },
+    {
+      "id": "WE-004",
+      "title": "Define accessibility gate checklist for App Shell pages",
+      "priority": "P2",
+      "estimate": "S",
+      "dependencies": [],
+      "assignedAgent": "ux-designer",
+      "status": "ready",
+      "acceptanceCriteria": [
+        "Playbook accessibility-gate.md covers focus, contrast, skip link, launcher a11y",
+        "QA references the checklist in sprint verification"
+      ],
+      "area": "ux",
+      "risk": "low",
+      "notes": "Checklist already scaffolded; keep current and enforce."
+    },
+    {
+      "id": "WE-005",
+      "title": "Separate optional live-weather smoke from structural CI smoke",
+      "priority": "P1",
+      "estimate": "M",
+      "dependencies": [],
+      "assignedAgent": "qa-engineer",
+      "status": "done",
+      "acceptanceCriteria": [
+        "CI smoke does not require live OIP hydration",
+        "WAYPOINT_SMOKE_LIVE remains available for live checks"
+      ],
+      "area": "qa",
+      "risk": "low",
+      "notes": "Completed in deploy-reliability work."
+    }
+  ]
+}

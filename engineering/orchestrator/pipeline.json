@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "description": "Default agent sequence for feature delivery. Orchestrator may skip unused roles.",
+  "phases": [
+    { "id": "direction", "agents": ["ceo", "product-manager"] },
+    { "id": "design", "agents": ["software-architect", "ux-designer"] },
+    { "id": "build", "agents": ["frontend-engineer", "backend-engineer"] },
+    { "id": "verify", "agents": ["qa-engineer", "security-engineer", "performance-engineer"] },
+    { "id": "ship", "agents": ["documentation-engineer", "devops-engineer", "release-manager"] },
+    { "id": "confirm", "agents": ["release-manager", "ceo"] }
+  ],
+  "production_incident_phases": [
+    { "id": "triage", "agents": ["devops-engineer", "qa-engineer", "release-manager"] },
+    { "id": "fix", "agents": ["frontend-engineer", "backend-engineer", "devops-engineer"] },
+    { "id": "verify", "agents": ["qa-engineer", "security-engineer", "release-manager"] },
+    { "id": "report", "agents": ["documentation-engineer", "ceo"] }
+  ]
+}

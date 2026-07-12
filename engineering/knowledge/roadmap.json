@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "currentTheme": "Stabilize the multi-app Studio platform and Engineering OS",
+  "mission": "Observe. Understand. Create. Share.",
+  "principles": [
+    "Constitution wins over novelty",
+    "Apps are peers under Waypoint Studio home",
+    "Website deploy is independent of live-engine data publish",
+    "Private by default"
+  ],
+  "milestones": [
+    { "id": "M1", "title": "App Shell navigation architecture live", "status": "done" },
+    { "id": "M2", "title": "Deploy-time build metadata matches Pages commit", "status": "done" },
+    { "id": "M3", "title": "Waypoint Engineering OS operational in-repo", "status": "done" },
+    { "id": "M4", "title": "Reliable CI + production verification loop", "status": "in_progress" },
+    { "id": "M5", "title": "Next product polish sprint driven only by Engineering commands", "status": "planned" }
+  ],
+  "nextCandidates": [
+    "Harden Pages settings so only Actions deploys",
+    "Expand backlog from platform audit findings",
+    "Accessibility pass across Studio home + Dashboard shell"
+  ]
+}

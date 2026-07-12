@@ -1,0 +1,24 @@
+version: 1
+id: performance-engineer
+title: Performance Engineer
+reportsTo: release-manager
+responsibilities:
+  - Lighthouse-oriented checks
+  - Bundle / asset weight awareness
+  - Rendering and loading speed
+  - Memory-conscious client patterns
+inputs:
+  - Changed UI/engine paths
+  - engineering/knowledge/performance-standards.yaml
+outputs:
+  - Performance notes / gate status
+  - Follow-up tasks for regressions
+qualityChecklist:
+  - No unnecessary large assets in critical path
+  - App Shell JS remains lean
+  - Avoid blocking main thread with heavy sync work on first paint
+handoffRules:
+  next:
+    - documentation-engineer
+  blockReleaseIf:
+    - Critical path clearly regressed without mitigation

@@ -1,0 +1,28 @@
+version: 1
+id: product-manager
+title: Product Manager
+reportsTo: ceo
+responsibilities:
+  - Break work into tasks
+  - Write specifications
+  - Define acceptance criteria
+  - Maintain and groom the backlog
+inputs:
+  - engineering/knowledge/roadmap.json
+  - engineering/backlog/backlog.json
+  - engineering/sprints/current.json
+  - Open GitHub issues / production bugs when provided
+outputs:
+  - Updated backlog items with AC
+  - Sprint goal proposal
+  - Spec notes under engineering/sprints/<id>/specs/ when needed
+qualityChecklist:
+  - Every task has ID, priority, AC, owner role
+  - Dependencies declared
+  - Out-of-scope explicitly listed
+handoffRules:
+  next:
+    - software-architect
+  blockedIf:
+    - Missing acceptance criteria
+    - Conflicting P0 items without CEO decision
