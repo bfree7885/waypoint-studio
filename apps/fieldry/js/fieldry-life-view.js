@@ -55,7 +55,7 @@
   function renderEntry(entry) {
     var title = entry.commonName || entry.label;
     var knowLink = entry.knowledgeId
-      ? '<a href="#/knowledge/' + encodeURIComponent(entry.knowledgeId) + '">Knowledge profile</a>'
+      ? '<a href="#/knowledge/' + encodeURIComponent(entry.knowledgeId) + '">Species profile</a>'
       : "";
     return (
       '<article class="fld-life-card">' +
@@ -86,9 +86,34 @@
       category: options.category || "all",
       sort: options.sort || "recent",
       query: options.q || options.query || "",
-      unidentifiedOnly: options.unidentified === "1" || options.unidentifiedOnly === true
+      unidentifiedOnly: options.unidentified === "1" || options.unidentifiedOnly === true,
+      subject: options.subject || ""
     };
-    var list = Life().deriveLifeList(observations, opts);
+    var all = Life().deriveLifeList(observations, {
+      category: opts.category,
+      sort: opts.sort,
+      query: opts.query,
+      unidentifiedOnly: opts.unidentifiedOnly
+    });
+    var totalSubjects = Life().deriveLifeList(observations, {}).length;
+    var list = opts.subject
+      ? all.filter(function (e) { return e.key === opts.subject; })
+      : all;
+
+    var emptyHtml;
+    if (list.length) {
+      emptyHtml = "";
+    } else if (!totalSubjects) {
+      emptyHtml =
+        '<div class="fld-empty"><p class="fld-empty__title">Start your life list</p>' +
+        '<p class="fld-empty__text">Record an encounter to begin. Unknown species are welcome — you can identify them later.</p>' +
+        '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a></div>';
+    } else {
+      emptyHtml =
+        '<div class="fld-empty"><p class="fld-empty__title">No matching subjects</p>' +
+        '<p class="fld-empty__text">Nothing matches these filters. Clear them to see your full life list.</p>' +
+        '<a class="wds-btn wds-btn--ghost" href="#/life">Clear filters</a></div>';
+    }
 
     return (
       '<section class="fld-life" aria-labelledby="fld-life-view-title">' +
@@ -96,14 +121,14 @@
           '<a class="fld-form__back" href="#/">← Home</a>' +
           '<h1 id="fld-life-view-title">Life list</h1>' +
           '<p class="fld-view-lead">Unique subjects you have observed — derived from your saved records. Personal statistics only.</p>' +
+          '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
         "</header>" +
-        renderFilters(opts) +
+        (totalSubjects ? renderFilters(opts) : "") +
+        (opts.subject ? '<p class="fld-hint" role="status">Showing one subject from your discoveries.</p>' : "") +
         '<p class="fld-life-count" role="status">' + list.length + " subject" + (list.length === 1 ? "" : "s") + "</p>" +
         (list.length
           ? '<div class="fld-life-grid">' + list.map(renderEntry).join("") + "</div>"
-          : '<div class="fld-empty"><p class="fld-empty__title">Start your life list</p>' +
-            '<p class="fld-empty__text">Record an encounter to begin. Unknown species are welcome — you can identify them later.</p>' +
-            '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a></div>') +
+          : emptyHtml) +
       "</section>"
     );
   }

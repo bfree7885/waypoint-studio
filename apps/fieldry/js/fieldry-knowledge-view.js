@@ -11,7 +11,7 @@
     return (
       '<section class="fld-knowledge-view" aria-busy="true">' +
         '<a class="fld-form__back" href="#/">← Home</a>' +
-        '<p role="status">Loading Knowledge entry…</p>' +
+        '<p role="status">Loading species profile…</p>' +
         '<p class="fld-hint">ID: ' + U().escapeHtml(id) + "</p>" +
       "</section>"
     );
@@ -21,8 +21,8 @@
     return (
       '<section class="fld-knowledge-view">' +
         '<a class="fld-form__back" href="#/">← Home</a>' +
-        '<h1>Knowledge entry unavailable</h1>' +
-        '<p>This shared reference could not be loaded. Your personal observations remain available.</p>' +
+        '<h1>Species profile unavailable</h1>' +
+        '<p>This reference could not be loaded. Your personal observations remain available.</p>' +
         '<p class="fld-hint">Requested id: <code>' + U().escapeHtml(id) + "</code></p>" +
         '<a class="wds-btn wds-btn--ghost" href="#/life">Back to life list</a>' +
       "</section>"
@@ -37,7 +37,8 @@
     });
     if (!related.length) {
       return '<p class="fld-hint">You have not recorded this subject yet.</p>' +
-        '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>';
+        '<a class="wds-btn wds-btn--primary" href="#/new?knowledgeId=' + encodeURIComponent(knowledgeId) +
+        '">Record an observation</a>';
     }
     return (
       '<ul class="fld-home-recent">' +
@@ -64,14 +65,19 @@
     return (
       '<article class="fld-knowledge-view" aria-labelledby="fld-know-title">' +
         '<a class="fld-form__back" href="#/life">← Life list</a>' +
-        '<p class="wds-eyebrow">Shared Knowledge · sample catalog</p>' +
+        '<p class="wds-eyebrow">Species profile</p>' +
         '<h1 id="fld-know-title">' + U().escapeHtml(names.common || entry.id) + "</h1>" +
         (names.scientific ? '<p class="fld-life-card__sci"><em>' + U().escapeHtml(names.scientific) + "</em></p>" : "") +
         (names.aliases && names.aliases.length
           ? '<p class="fld-hint">Also known as: ' + U().escapeHtml(names.aliases.join(", ")) + "</p>"
           : "") +
-        '<p class="fld-sample-banner">Representative Knowledge sample — not a complete production species database.</p>' +
+        '<p class="fld-sample-banner">Sample reference entry — helpful context, not a complete field guide.</p>' +
         (entry.description ? '<p class="fld-knowledge-desc">' + U().escapeHtml(entry.description) + "</p>" : "") +
+        '<p class="fld-knowledge-cta"><a class="wds-btn wds-btn--primary" href="#/new?knowledgeId=' +
+          encodeURIComponent(entry.id) +
+          "&common=" + encodeURIComponent(names.common || "") +
+          "&scientific=" + encodeURIComponent(names.scientific || "") +
+          '">Record this subject</a></p>' +
         '<section class="fld-detail__section"><h2>Taxonomy</h2><dl class="fld-detail__dl">' +
           (taxonomy.kingdom ? "<div><dt>Kingdom</dt><dd>" + U().escapeHtml(taxonomy.kingdom) + "</dd></div>" : "") +
           (taxonomy.family ? "<div><dt>Family</dt><dd>" + U().escapeHtml(taxonomy.family) + "</dd></div>" : "") +
@@ -104,7 +110,7 @@
           : "") +
         '<section class="fld-detail__section" aria-labelledby="fld-personal-obs">' +
           '<h2 id="fld-personal-obs">Your observations</h2>' +
-          '<p class="fld-hint">Personal records stored on this device — distinct from shared reference knowledge.</p>' +
+          '<p class="fld-hint">Personal records stored on this device.</p>' +
           personalHistory(entry.id, observations) +
         "</section>" +
       "</article>"

@@ -71,6 +71,7 @@
   }
 
   function exportCSV(observations) {
+    var U = global.FieldryUtil;
     var headers = [
       "id",
       "date",
@@ -85,6 +86,8 @@
       "state",
       "latitude",
       "longitude",
+      "location_precision",
+      "location_display",
       "season",
       "phenology_stage",
       "weather",
@@ -94,6 +97,16 @@
       "wos_version"
     ];
     var rows = observations.map(function (obs) {
+      var precision = U ? U.locationPrecision(obs) : "county";
+      var lat = "";
+      var lon = "";
+      if (precision === "exact" && obs.location) {
+        lat = obs.location.latitude != null ? obs.location.latitude : "";
+        lon = obs.location.longitude != null ? obs.location.longitude : "";
+      } else if (precision === "obfuscated" && obs.location) {
+        lat = obs.location.latitude != null ? Number(obs.location.latitude).toFixed(2) : "";
+        lon = obs.location.longitude != null ? Number(obs.location.longitude).toFixed(2) : "";
+      }
       return [
         obs.id,
         obs.observedAt && obs.observedAt.date,
@@ -106,8 +119,10 @@
         obs.habitat && obs.habitat.label,
         obs.location && obs.location.county,
         obs.location && obs.location.state,
-        obs.location && obs.location.latitude,
-        obs.location && obs.location.longitude,
+        lat,
+        lon,
+        precision,
+        U ? U.formatLocation(obs) : "",
         obs.context && obs.context.season,
         obs.context && obs.context.phenologyStage,
         weatherSummary(obs),

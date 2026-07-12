@@ -6,14 +6,44 @@
 
   var U = function () { return global.FieldryUtil; };
   var Life = function () { return global.WaypointFieldryLifeList; };
+  var ONBOARD_KEY = "waypoint-fieldry-onboarded-v1";
+
+  function hasOnboarded() {
+    try {
+      return global.localStorage && global.localStorage.getItem(ONBOARD_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function markOnboarded() {
+    try {
+      if (global.localStorage) global.localStorage.setItem(ONBOARD_KEY, "1");
+    } catch (e) { /* noop */ }
+  }
+
+  function onboardingPanel() {
+    if (hasOnboarded()) return "";
+    return (
+      '<section class="fld-onboard" aria-labelledby="fld-onboard-title">' +
+        '<h2 id="fld-onboard-title">How Fieldry works</h2>' +
+        '<ol class="fld-onboard__steps">' +
+          "<li><strong>Record</strong> what you encounter — species optional.</li>" +
+          "<li><strong>Build</strong> a private life list over time.</li>" +
+          "<li><strong>Revisit</strong> history, stats, and favorites whenever you like.</li>" +
+        "</ol>" +
+        '<p class="fld-hint">Everything stays on this device. No accounts. No rankings.</p>' +
+        '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-onboard-dismiss">Got it</button>' +
+      "</section>"
+    );
+  }
 
   function emptyHome() {
     return (
       '<section class="fld-home-empty" aria-labelledby="fld-empty-title">' +
         '<h2 id="fld-empty-title">Begin your life list</h2>' +
-        '<p>Fieldry is a calm place to record what you encounter outdoors — birds, mushrooms, rocks, weather, and more. No rankings. No competition. Just your observations.</p>' +
-        '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
-        '<p class="fld-hint">Unidentified encounters are welcome. You can identify them later.</p>' +
+        "<p>Record birds, mushrooms, trees, rocks, weather, and more. Unidentified encounters are welcome — you can name them later.</p>" +
+        '<a class="wds-btn wds-btn--primary" href="#/new">Record your first observation</a>' +
       "</section>"
     );
   }
@@ -48,7 +78,11 @@
   function lifeProgress(summary, uniqueCount) {
     var cats = summary.byCategory.filter(function (c) { return c.count > 0 && c.id !== "other"; }).slice(0, 8);
     var chips = cats.map(function (c) {
-      return '<li><span class="fld-cat-chip">' + U().escapeHtml(c.label) + " · " + c.count + "</span></li>";
+      return (
+        '<li><a class="fld-cat-chip" href="#/life?category=' + encodeURIComponent(c.id) + '">' +
+          U().escapeHtml(c.label) + " · " + c.count +
+        "</a></li>"
+      );
     }).join("");
     return (
       '<section class="fld-home-section" aria-labelledby="fld-life-title">' +
@@ -70,10 +104,10 @@
     if (!recent.length) return "";
     var items = recent.map(function (e) {
       return (
-        '<li>' +
-          '<a href="#/life?subject=' + encodeURIComponent(e.key) + '">' +
+        "<li>" +
+          '<a href="#/history?subject=' + encodeURIComponent(e.key) + '">' +
             U().escapeHtml(e.commonName || e.label) +
-            '<span>' + U().escapeHtml(Life().categoryLabel(e.category)) +
+            "<span>" + U().escapeHtml(Life().categoryLabel(e.category)) +
             (e.firstObserved === e.lastObserved ? " · first recorded " : " · revisited ") +
             U().escapeHtml(U().formatDate(e.lastObserved)) +
             "</span></a>" +
@@ -88,11 +122,12 @@
     );
   }
 
-  function achievementsBlock(earned) {
+  function achievementsBlock(earned, totalObs) {
+    if (!totalObs) return "";
     if (!earned.length) {
       return (
         '<section class="fld-home-section" aria-labelledby="fld-ach-title">' +
-          '<h2 id="fld-ach-title">Discoveries</h2>' +
+          '<h2 id="fld-ach-title">Milestones</h2>' +
           '<p class="fld-home-lead">Gentle milestones appear as you explore — never as competition.</p>' +
           '<a href="#/stats">View statistics</a>' +
         "</section>"
@@ -101,15 +136,15 @@
     var items = earned.slice(0, 4).map(function (a) {
       return (
         '<li class="fld-ach-chip">' +
-          '<strong>' + U().escapeHtml(a.title) + "</strong>" +
-          '<span>' + U().escapeHtml(a.explanation || a.description) + "</span>" +
+          "<strong>" + U().escapeHtml(a.title) + "</strong>" +
+          "<span>" + U().escapeHtml(a.explanation || a.description) + "</span>" +
         "</li>"
       );
     }).join("");
     return (
       '<section class="fld-home-section" aria-labelledby="fld-ach-title">' +
         '<header class="fld-home-section__head">' +
-          '<h2 id="fld-ach-title">Gentle achievements</h2>' +
+          '<h2 id="fld-ach-title">Milestones</h2>' +
           '<a href="#/stats">All statistics</a>' +
         "</header>" +
         '<ul class="fld-ach-list">' + items + "</ul>" +
@@ -124,32 +159,54 @@
     var earned = global.FieldryAchievements
       ? global.FieldryAchievements.earned(list)
       : [];
+    var collectionsTeaser = global.FieldryCollections
+      ? global.FieldryCollections.renderHomeTeaser()
+      : "";
 
     return (
       '<section class="fld-home">' +
         '<header class="fld-hero fld-hero--home">' +
           '<p class="wds-eyebrow">Fieldry</p>' +
-          '<h1 class="fld-hero__title">Your life list</h1>' +
-          '<p class="fld-hero__lead">Record what you encounter outdoors. Build a private collection of birds, mushrooms, trees, rocks, and more — at your own pace.</p>' +
+          '<h1 class="fld-hero__title">Your private life list</h1>' +
+          '<p class="fld-hero__lead">' +
+            (list.length
+              ? "Keep noticing. Record encounters, grow your collection, and revisit what you have seen — at your own pace."
+              : "A calm place to record what you encounter outdoors. Build a private collection of birds, mushrooms, trees, rocks, and more.") +
+          "</p>" +
           '<div class="fld-hero__actions">' +
             '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
-            '<a class="wds-btn wds-btn--ghost" href="#/life">Life list</a>' +
-            '<a class="wds-btn wds-btn--ghost" href="#/history">History</a>' +
+            (list.length
+              ? '<a class="wds-btn wds-btn--ghost" href="#/life">Life list</a>' +
+                '<a class="wds-btn wds-btn--ghost" href="#/history">History</a>'
+              : '<a class="wds-btn wds-btn--ghost" href="#/browse">Browse categories</a>') +
           "</div>" +
         "</header>" +
+        (list.length ? "" : onboardingPanel()) +
         (list.length ? "" : emptyHome()) +
         (list.length ? lifeProgress(summary, life.length) : "") +
         recentBlock(list) +
         seasonalBlock(life) +
-        achievementsBlock(earned) +
+        (list.length ? collectionsTeaser : "") +
+        achievementsBlock(earned, list.length) +
         '<nav class="fld-home-nav" aria-label="Fieldry sections">' +
-          '<a href="#/browse">Browse categories</a>' +
-          '<a href="#/stats">Personal statistics</a>' +
-          '<a href="#/history">Observation history</a>' +
+          '<a href="#/browse">Categories</a>' +
+          '<a href="#/stats">Statistics</a>' +
+          '<a href="#/collections">Collections</a>' +
+          '<a href="#/history">History</a>' +
         "</nav>" +
       "</section>"
     );
   }
 
-  global.FieldryHome = { render: render };
+  function bind(mount) {
+    var btn = mount && mount.querySelector("#fld-onboard-dismiss");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      markOnboarded();
+      var panel = mount.querySelector(".fld-onboard");
+      if (panel) panel.remove();
+    });
+  }
+
+  global.FieldryHome = { render: render, bind: bind };
 })(typeof window !== "undefined" ? window : global);

@@ -20,20 +20,65 @@
     if (parts[0] === "history" || parts[0] === "ledger") return { view: "history" };
     if (parts[0] === "stats") return { view: "stats" };
     if (parts[0] === "browse") return { view: "browse" };
+    if (parts[0] === "collections") return { view: "collections" };
     if (parts[0] === "knowledge" && parts[1]) return { view: "knowledge", id: decodeURIComponent(parts[1]) };
     return { view: "home" };
   }
 
+  function setDocumentTitle(route) {
+    var base = "Fieldry · Waypoint Studio";
+    var titles = {
+      home: "Fieldry — Life List · Waypoint Studio",
+      new: "Record · " + base,
+      edit: "Edit · " + base,
+      detail: "Observation · " + base,
+      life: "Life list · " + base,
+      history: "History · " + base,
+      stats: "Statistics · " + base,
+      browse: "Categories · " + base,
+      collections: "Collections · " + base,
+      knowledge: "Species profile · " + base
+    };
+    document.title = titles[route.view] || titles.home;
+  }
+
+  function updateNavCurrent(route) {
+    var map = {
+      home: "#/",
+      new: "#/new",
+      edit: "#/history",
+      detail: "#/history",
+      life: "#/life",
+      history: "#/history",
+      stats: "#/stats",
+      browse: "#/browse",
+      collections: "#/collections",
+      knowledge: "#/life"
+    };
+    var currentHref = map[route.view] || "#/";
+    var links = document.querySelectorAll(".ws-topnav a[href^='#']");
+    links.forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (href === currentHref || (route.view === "home" && href === "#/")) {
+        a.setAttribute("aria-current", "page");
+      } else {
+        a.removeAttribute("aria-current");
+      }
+    });
+  }
+
   function renderExportPanel(count) {
+    if (!count) return "";
     return (
-      '<section class="fld-export" aria-labelledby="fld-export-title">' +
-        '<h2 class="fld-export__title" id="fld-export-title">Export archive</h2>' +
-        '<p class="fld-export__text">' + count + ' observation' + (count === 1 ? "" : "s") + ' on this device. Export as JSON or CSV for your own archive.</p>' +
+      '<details class="fld-export">' +
+        '<summary class="fld-export__title" id="fld-export-title">Export archive</summary>' +
+        '<p class="fld-export__text">' + count + " observation" + (count === 1 ? "" : "s") +
+          " on this device. Export JSON or CSV for your own archive. Coordinates respect each record’s location precision.</p>" +
         '<div class="fld-export__actions">' +
-          '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-json"' + (count ? "" : " disabled") + ">Export JSON</button>" +
-          '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-csv"' + (count ? "" : " disabled") + ">Export CSV</button>" +
+          '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-json">Export JSON</button>' +
+          '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-csv">Export CSV</button>' +
         "</div>" +
-      "</section>"
+      "</details>"
     );
   }
 
@@ -55,6 +100,7 @@
   function renderHome() {
     var list = global.FieldryStorage.list();
     mountEl.innerHTML = global.FieldryHome.render(list) + renderExportPanel(list.length);
+    if (global.FieldryHome.bind) global.FieldryHome.bind(mountEl);
     bindExport(list);
   }
 
@@ -83,8 +129,18 @@
     mountEl.innerHTML = global.FieldryBrowse.render(global.FieldryStorage.list());
   }
 
+  function renderCollections() {
+    mountEl.innerHTML = global.FieldryCollections.render();
+  }
+
   function renderNew() {
     var obs = global.FieldryStorage.createDraft(state.platform, state.loc);
+    if (!obs) {
+      mountEl.innerHTML =
+        '<section class="fld-empty"><p class="fld-empty__title">Unable to start a record</p>' +
+        '<p class="fld-empty__text">Observation tools did not load. Refresh the page and try again.</p></section>';
+      return;
+    }
     mountEl.innerHTML = global.FieldryForm.render(obs, { isEdit: false });
     global.FieldryForm.bind(mountEl.querySelector("#fld-observation-form"), {
       platform: state.platform,
@@ -130,6 +186,8 @@
     if (!mountEl) return;
     var route = parseRoute();
     mountEl.setAttribute("aria-busy", "false");
+    setDocumentTitle(route);
+    updateNavCurrent(route);
     if (route.view === "new") renderNew();
     else if (route.view === "edit") renderEdit(route.id);
     else if (route.view === "detail") renderDetail(route.id);
@@ -137,6 +195,7 @@
     else if (route.view === "history") renderHistory();
     else if (route.view === "stats") renderStats();
     else if (route.view === "browse") renderBrowse();
+    else if (route.view === "collections") renderCollections();
     else if (route.view === "knowledge") renderKnowledge(route.id);
     else renderHome();
     window.scrollTo(0, 0);
@@ -174,12 +233,13 @@
         extraLinks: [
           { id: "fld-new", label: "Record", href: "#/new" },
           { id: "fld-life", label: "Life list", href: "#/life" },
-          { id: "fld-history", label: "History", href: "#/history" }
+          { id: "fld-history", label: "History", href: "#/history" },
+          { id: "fld-stats", label: "Stats", href: "#/stats" },
+          { id: "fld-browse", label: "Categories", href: "#/browse" }
         ]
       });
     }
 
-    // Show the life list immediately — location can refine context later.
     render();
 
     global.FieldryBoot.bootstrapLocation().then(function (loc) {

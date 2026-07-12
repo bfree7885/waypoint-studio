@@ -19,7 +19,7 @@
 
   function weatherBlock(obs) {
     var snap = obs.context && obs.context.weatherSnapshot;
-    if (!snap) return row("Weather", "—");
+    if (!snap) return "";
     var parts = [];
     if (snap.conditions) parts.push(U().escapeHtml(snap.conditions));
     if (snap.temperatureF != null) parts.push(U().escapeHtml(snap.temperatureF + "°F"));
@@ -32,38 +32,57 @@
     var ext = Life().fieldryExt(obs);
     var refs = ext.mediaRefs || [];
     var photos = (obs.media && obs.media.photos) || [];
-    if (!photos.length && !refs.length) {
-      return (
-        '<div class="fld-media fld-media--placeholder">' +
-          '<p class="fld-media__label">Media</p>' +
-          '<p class="fld-media__hint">Photo attachment — local storage in a future update. Media references are stored when provided.</p>' +
-        "</div>"
-      );
-    }
+    if (!photos.length && !refs.length) return "";
     return (
       '<div class="fld-media">' +
         (photos.length ? '<p class="fld-media__label">Photographs (' + photos.length + ")</p>" : "") +
         photos.map(function (p) {
           return '<p class="fld-media__item">' + U().escapeHtml(p.caption || p.id) + "</p>";
         }).join("") +
-        (refs.length ? '<p class="fld-media__label">Media references</p>' +
+        (refs.length ? '<p class="fld-media__label">Media notes</p>' +
           refs.map(function (r) {
-            return '<p class="fld-media__item"><code>' + U().escapeHtml(r) + "</code></p>";
+            return '<p class="fld-media__item">' + U().escapeHtml(r) + "</p>";
           }).join("") : "") +
       "</div>"
+    );
+  }
+
+  function membershipHtml(obs) {
+    var Stores = global.WDS && global.WDS.platform;
+    if (!Stores || !Stores.Collections) return "";
+    var cols = Stores.Collections.list().filter(function (c) {
+      return (!c.appId || c.appId === "fieldry") && (c.itemIds || []).indexOf(obs.id) >= 0;
+    });
+    if (!cols.length) return "";
+    return (
+      '<p class="fld-hint fld-detail__membership">In: ' +
+      cols.map(function (c) {
+        var href = c.kind === "favorites"
+          ? "#/history?favorites=1"
+          : "#/history?collection=" + encodeURIComponent(c.id);
+        return '<a href="' + href + '">' + U().escapeHtml(c.title) + "</a>";
+      }).join(", ") +
+      "</p>"
     );
   }
 
   function collectionActions(obs) {
     return (
       '<div class="fld-detail__collections">' +
-        '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-fav-obs">Save to favorites</button>' +
+        membershipHtml(obs) +
+        '<div class="fld-detail__collection-actions">' +
+          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-fav-obs">Save to favorites</button>' +
+          '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="#/history?favorites=1">View favorites</a>' +
+        "</div>" +
         '<label class="fld-hint" for="fld-collection-select">Add to collection</label>' +
-        '<select class="wds-select" id="fld-collection-select">' +
-          '<option value="">Choose collection…</option>' +
-        "</select>" +
-        '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-add-collection">Add</button>' +
+        '<div class="fld-detail__collection-row">' +
+          '<select class="wds-select" id="fld-collection-select">' +
+            '<option value="">Choose collection…</option>' +
+          "</select>" +
+          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-add-collection">Add</button>' +
+        "</div>" +
         '<p class="fld-hint" id="fld-collection-status" role="status"></p>' +
+        '<p class="fld-hint"><a href="#/collections">Manage collections</a></p>' +
       "</div>"
     );
   }
@@ -72,7 +91,7 @@
     if (!obs) {
       return (
         '<section class="fld-detail fld-detail--missing">' +
-          '<p>Observation not found on this device.</p>' +
+          "<p>Observation not found on this device.</p>" +
           '<a class="wds-btn wds-btn--ghost" href="#/">Back to home</a>' +
         "</section>"
       );
@@ -105,7 +124,7 @@
             '<h2 class="fld-detail__section-title">Record</h2>' +
             '<dl class="fld-detail__dl">' +
               row("Subject", species ? U().escapeHtml(species) : "—") +
-              row("Scientific name", sci ? '<em>' + U().escapeHtml(sci) + "</em>" : "—") +
+              row("Scientific name", sci ? "<em>" + U().escapeHtml(sci) + "</em>" : "") +
               row("Category", U().escapeHtml(U().categoryLabel(obs))) +
               row("Identification", fieldry.unidentified || fieldry.identificationStatus === "unidentified"
                 ? "Unidentified" : U().escapeHtml(fieldry.identificationStatus || "Identified")) +
@@ -113,10 +132,10 @@
               row("Count", fieldry.count != null ? U().escapeHtml(String(fieldry.count)) :
                 (obs.record && obs.record.quantity != null ? U().escapeHtml(String(obs.record.quantity)) : "")) +
               row("Tags", tags ? U().escapeHtml(tags) : "") +
-              row("Knowledge", knowledgeLink) +
-              row("Habitat", obs.habitat && obs.habitat.label ? U().escapeHtml(obs.habitat.label) : "—") +
-              row("Season", obs.context && obs.context.season ? U().escapeHtml(obs.context.season) : "—") +
-              row("Phenology", obs.context && obs.context.phenologyStage ? U().escapeHtml(obs.context.phenologyStage) : "—") +
+              row("Species profile", knowledgeLink) +
+              row("Habitat", obs.habitat && obs.habitat.label ? U().escapeHtml(obs.habitat.label) : "") +
+              row("Season", obs.context && obs.context.season ? U().escapeHtml(obs.context.season) : "") +
+              row("Phenology", obs.context && obs.context.phenologyStage ? U().escapeHtml(obs.context.phenologyStage) : "") +
               weatherBlock(obs) +
             "</dl>" +
           "</section>" +
@@ -125,7 +144,7 @@
             '<dl class="fld-detail__dl">' +
               row("Location", U().escapeHtml(U().formatLocation(obs))) +
               row("Location precision", U().escapeHtml(U().precisionLabel(precision))) +
-              row("Privacy", U().escapeHtml(U().privacyLabel(obs))) +
+              row("Privacy", "Private · this device") +
               (precision === "exact"
                 ? row("Coordinates", obs.location && obs.location.latitude != null
                   ? U().escapeHtml(Number(obs.location.latitude).toFixed(5) + ", " + Number(obs.location.longitude).toFixed(5))
@@ -142,15 +161,13 @@
           : "") +
         mediaBlock(obs) +
         '<section class="fld-detail__section"><h2>Collections</h2>' + collectionActions(obs) + "</section>" +
-        '<section class="fld-detail__meta">' +
-          '<h2 class="fld-detail__section-title">Record details</h2>' +
+        '<details class="fld-detail__meta-details">' +
+          '<summary>Record details</summary>' +
           '<dl class="fld-detail__dl fld-detail__dl--compact">' +
-            row("Record ID", '<code>' + U().escapeHtml(obs.id) + "</code>") +
-            row("Schema", obs.meta && obs.meta.schema ? U().escapeHtml(obs.meta.schema) : "—") +
-            row("Source", "fieldry") +
-            row("Retention", obs.privacy && obs.privacy.retention ? U().escapeHtml(obs.privacy.retention) : "local-only") +
+            row("Record ID", "<code>" + U().escapeHtml(obs.id) + "</code>") +
+            row("Retention", "Local only on this device") +
           "</dl>" +
-        "</section>" +
+        "</details>" +
         U().ethicsHtml() +
         '<footer class="fld-detail__foot">' +
           '<a class="wds-btn wds-btn--primary" href="#/edit/' + encodeURIComponent(obs.id) + '">Edit record</a>' +
@@ -171,7 +188,7 @@
     });
     if (select) {
       select.innerHTML = '<option value="">Choose collection…</option>' +
-        collections.map(function (c) {
+        collections.filter(function (c) { return c.kind !== "favorites"; }).map(function (c) {
           return '<option value="' + U().escapeHtml(c.id) + '">' + U().escapeHtml(c.title) + "</option>";
         }).join("") +
         '<option value="__new_backyard">+ Backyard Birds</option>' +
@@ -185,7 +202,9 @@
       favBtn.addEventListener("click", function () {
         var fav = Stores.Collections.favorites("fieldry");
         Stores.Collections.addItem(fav.id, obs.id);
-        if (status) status.textContent = "Saved to favorites.";
+        if (status) {
+          status.innerHTML = 'Saved to favorites. <a href="#/history?favorites=1">View favorites</a>';
+        }
       });
     }
     var addBtn = mount.querySelector("#fld-add-collection");
@@ -215,7 +234,10 @@
           id = created.id;
         }
         Stores.Collections.addItem(id, obs.id);
-        if (status) status.textContent = "Added to collection.";
+        if (status) {
+          status.innerHTML = 'Added to collection. <a href="#/history?collection=' +
+            encodeURIComponent(id) + '">View collection</a>';
+        }
       });
     }
   }

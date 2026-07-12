@@ -36,8 +36,19 @@
           '<a class="fld-form__back" href="#/">← Home</a>' +
           '<h1 id="fld-stats-title">Personal statistics</h1>' +
           '<p class="fld-view-lead">A private reflection of what you have recorded. More observations do not make someone a better naturalist — they only mean more encounters noticed.</p>' +
+          (stats.totalObservations
+            ? '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>'
+            : "") +
         "</header>" +
-        '<div class="fld-stats">' +
+        (!stats.totalObservations
+          ? '<div class="fld-empty">' +
+              '<p class="fld-empty__title">No statistics yet</p>' +
+              '<p class="fld-empty__text">Record your first observation to see personal counts, categories, and gentle milestones.</p>' +
+              '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
+            "</div>"
+          : "") +
+        (stats.totalObservations
+          ? '<div class="fld-stats">' +
           '<div class="fld-stat"><p class="fld-stat__value">' + stats.totalObservations + '</p><p class="fld-stat__label">Observations</p></div>' +
           '<div class="fld-stat"><p class="fld-stat__value">' + stats.uniqueSubjects + '</p><p class="fld-stat__label">Unique subjects</p></div>' +
           '<div class="fld-stat"><p class="fld-stat__value">' + stats.categoriesExplored + '</p><p class="fld-stat__label">Categories explored</p></div>' +
@@ -53,10 +64,11 @@
             '<table class="fld-table"><thead><tr><th>Month</th><th>Count</th></tr></thead><tbody>' + monthRows + "</tbody></table></section>" +
         "</div>" +
         '<section class="fld-ach-panel" aria-labelledby="fld-ach-panel-title">' +
-          '<h2 id="fld-ach-panel-title">Achievements</h2>' +
-          '<p class="fld-view-lead">Discovery milestones with stable identifiers. No rankings, scarcity timers, or public comparison.</p>' +
+          '<h2 id="fld-ach-panel-title">Milestones</h2>' +
+          '<p class="fld-view-lead">Discovery milestones with stable identifiers. No rankings or public comparison.</p>' +
           '<ul class="fld-ach-grid">' + achItems + "</ul>" +
-        "</section>" +
+        "</section>"
+          : "") +
       "</section>"
     );
   }

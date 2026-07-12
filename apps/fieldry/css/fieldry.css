@@ -130,9 +130,7 @@
 }
 
 .fld-card__link {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: var(--wds-space-4);
+  display: block;
   padding: var(--wds-space-5);
   color: inherit;
   text-decoration: none;
@@ -242,17 +240,22 @@
 /* Export */
 .fld-export {
   margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding: var(--wds-space-6);
+  padding: var(--wds-space-5) var(--wds-space-6);
   background: var(--wds-surface);
   border: 1px solid var(--wds-border-subtle);
   border-radius: var(--wds-radius-lg);
 }
 
 .fld-export__title {
-  margin: 0 0 var(--wds-space-2);
+  margin: 0;
   font-family: var(--wds-font-display);
-  font-size: var(--wds-text-xl);
+  font-size: var(--wds-text-lg);
   font-weight: 400;
+  cursor: pointer;
+}
+
+.fld-export[open] .fld-export__title {
+  margin-bottom: var(--wds-space-3);
 }
 
 .fld-export__text,
@@ -962,7 +965,132 @@
 .fld-detail__collections {
   display: grid;
   gap: var(--wds-space-3);
-  max-width: 24rem;
+  max-width: 28rem;
+}
+
+.fld-detail__collection-actions,
+.fld-detail__collection-row,
+.fld-filters__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2);
+  align-items: center;
+}
+
+.fld-detail__membership a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.fld-detail__meta-details {
+  margin: var(--wds-space-6) 0;
+  padding: var(--wds-space-4);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+}
+
+.fld-detail__meta-details summary {
+  cursor: pointer;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-muted);
+}
+
+.fld-onboard {
+  margin-bottom: var(--wds-space-6);
+  padding: var(--wds-space-5) var(--wds-space-6);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  background: var(--wds-surface);
+}
+
+.fld-onboard h2 {
+  margin: 0 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-weight: 400;
+  font-size: var(--wds-text-xl);
+}
+
+.fld-onboard__steps {
+  margin: 0 0 var(--wds-space-4);
+  padding-left: 1.25rem;
+  color: var(--wds-text-secondary);
+  line-height: var(--wds-leading-relaxed);
+}
+
+.fld-onboard__steps li + li {
+  margin-top: var(--wds-space-2);
+}
+
+.fld-cat-chip {
+  text-decoration: none;
+  color: inherit;
+}
+
+.fld-cat-chip:hover,
+.fld-cat-chip:focus-visible {
+  border-color: var(--wds-accent);
+  outline: none;
+}
+
+.fld-collections-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--wds-space-3);
+}
+
+.fld-collections-item a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: var(--wds-space-4) var(--wds-space-5);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-md);
+  background: var(--wds-surface);
+  text-decoration: none;
+  color: inherit;
+  min-height: 44px;
+}
+
+.fld-collections-item a:hover,
+.fld-collections-item a:focus-visible {
+  border-color: var(--wds-accent);
+  outline: none;
+}
+
+.fld-collections-item span {
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+}
+
+.fld-browse-sub {
+  margin: var(--wds-space-5) 0 var(--wds-space-3);
+  font-family: var(--wds-font-display);
+  font-weight: 400;
+  font-size: var(--wds-text-lg);
+}
+
+.fld-browse-more {
+  margin-top: var(--wds-space-6);
+}
+
+.fld-browse-more summary {
+  cursor: pointer;
+  margin-bottom: var(--wds-space-4);
+  color: var(--wds-text-secondary);
+}
+
+.fld-browse-card--empty {
+  opacity: 0.72;
+}
+
+.fld-knowledge-cta {
+  margin: var(--wds-space-4) 0 var(--wds-space-5);
+}
+
+.fld-form__privacy-note {
+  margin: 0 0 var(--wds-space-4);
 }
 
 .fld-form__status {
@@ -973,8 +1101,32 @@
   border-radius: var(--wds-radius-md);
 }
 
+.fld-card:focus-within {
+  border-color: var(--wds-accent);
+}
+
+.fld-hero--home {
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .fld-hero__actions .wds-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .fld-home-nav {
+    gap: var(--wds-space-3);
+  }
+
+  .fld-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .fld-browse-card {
+  .fld-browse-card,
+  .fld-card {
     transition: none;
   }
 }

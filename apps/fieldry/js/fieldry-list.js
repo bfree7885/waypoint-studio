@@ -34,7 +34,6 @@
               (species ? "<div><dt>Subject</dt><dd>" + U().escapeHtml(species) + "</dd></div>" : "") +
               "<div><dt>Confidence</dt><dd>" + U().escapeHtml(conf) + "</dd></div>" +
               "<div><dt>Location</dt><dd>" + U().escapeHtml(U().formatLocation(obs)) + "</dd></div>" +
-              "<div><dt>Privacy</dt><dd>" + U().escapeHtml(U().privacyLabel(obs)) + "</dd></div>" +
             "</dl>" +
           "</div>" +
         "</a>" +
@@ -46,14 +45,56 @@
     );
   }
 
-  function renderEmpty() {
+  function renderEmptyTrue() {
     return (
       '<div class="fld-empty">' +
-        '<p class="fld-empty__title">Begin your life list</p>' +
+        '<p class="fld-empty__title">No observations yet</p>' +
         '<p class="fld-empty__text">Record what you encounter outdoors. Exact species optional — unidentified records are welcome.</p>' +
         '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
       "</div>"
     );
+  }
+
+  function renderEmptyFiltered(options) {
+    var bits = [];
+    if (options.query) bits.push("search");
+    if (options.category && options.category !== "all") bits.push("category");
+    if (options.identified && options.identified !== "all") bits.push("identification");
+    if (options.privacy && options.privacy !== "all") bits.push("privacy");
+    if (options.favorites === "1") bits.push("favorites");
+    if (options.collection) bits.push("collection");
+    if (options.subject) bits.push("subject");
+    return (
+      '<div class="fld-empty">' +
+        '<p class="fld-empty__title">No matching observations</p>' +
+        '<p class="fld-empty__text">Nothing matches your current ' +
+          (bits.length ? bits.join(" / ") : "filters") +
+          ". Try clearing filters or recording a new encounter.</p>" +
+        '<a class="wds-btn wds-btn--ghost" href="#/history">Clear filters</a>' +
+        ' <a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
+      "</div>"
+    );
+  }
+
+  function hasActiveFilters(options) {
+    return !!(
+      (options.query && options.query.trim()) ||
+      (options.category && options.category !== "all") ||
+      (options.identified && options.identified !== "all") ||
+      (options.privacy && options.privacy !== "all") ||
+      options.favorites === "1" ||
+      options.collection ||
+      options.subject
+    );
+  }
+
+  function collectionItemIds(collectionId) {
+    if (!collectionId || !global.FieldryCollections) return null;
+    var cols = global.FieldryCollections.list();
+    for (var i = 0; i < cols.length; i += 1) {
+      if (cols[i].id === collectionId) return cols[i].itemIds || [];
+    }
+    return [];
   }
 
   function renderFilters(options) {
@@ -63,7 +104,7 @@
     return (
       '<form class="fld-filters" id="fld-history-filters">' +
         '<div class="wds-field"><label class="wds-label" for="fld-hist-q">Search</label>' +
-          '<input class="wds-input" id="fld-hist-q" name="q" type="search" value="' + U().escapeHtml(options.query || "") + '">' +
+          '<input class="wds-input" id="fld-hist-q" name="q" type="search" value="' + U().escapeHtml(options.query || "") + '" placeholder="Title, species, notes">' +
         "</div>" +
         '<div class="wds-field"><label class="wds-label" for="fld-hist-cat">Category</label>' +
           '<select class="wds-select" id="fld-hist-cat" name="category">' +
@@ -80,16 +121,14 @@
             '<option value="unidentified"' + (options.identified === "unidentified" ? " selected" : "") + ">Unidentified</option>" +
           "</select>" +
         "</div>" +
-        '<div class="wds-field"><label class="wds-label" for="fld-hist-priv">Privacy</label>' +
-          '<select class="wds-select" id="fld-hist-priv" name="privacy">' +
-            '<option value="all">All</option>' +
-            '<option value="private"' + (options.privacy === "private" ? " selected" : "") + ">Private</option>" +
-            '<option value="shared"' + (options.privacy === "shared" ? " selected" : "") + ">Shared</option>" +
-            '<option value="public"' + (options.privacy === "public" ? " selected" : "") + ">Public</option>" +
-            '<option value="anonymized"' + (options.privacy === "anonymized" ? " selected" : "") + ">Anonymized</option>" +
-          "</select>" +
+        '<div class="wds-field fld-filters__check">' +
+          '<label><input type="checkbox" name="favorites" value="1"' +
+            (options.favorites === "1" ? " checked" : "") + "> Favorites only</label>" +
         "</div>" +
-        '<button type="submit" class="wds-btn wds-btn--ghost wds-btn--sm">Filter</button>' +
+        '<div class="fld-filters__actions">' +
+          '<button type="submit" class="wds-btn wds-btn--ghost wds-btn--sm">Apply</button>' +
+          (hasActiveFilters(options) ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="#/history">Clear</a>' : "") +
+        "</div>" +
       "</form>"
     );
   }
@@ -117,12 +156,38 @@
       query: options.q || options.query || "",
       identified: options.identified || "all",
       privacy: options.privacy || "all",
-      favoriteIds: options.favorites === "1" ? (favoriteIds() || []) : null
+      favorites: options.favorites || "",
+      collection: options.collection || "",
+      subject: options.subject || "",
+      favoriteIds: null
     };
+    if (options.favorites === "1") {
+      filterOpts.favoriteIds = favoriteIds() || [];
+    } else if (options.collection) {
+      filterOpts.favoriteIds = collectionItemIds(options.collection);
+    }
+
+    var totalCount = (observations || []).length;
     var list = global.FieldryStorage.filter
-      ? global.FieldryStorage.filter(filterOpts)
+      ? global.FieldryStorage.filter({
+          category: filterOpts.category,
+          query: filterOpts.query,
+          identified: filterOpts.identified,
+          privacy: filterOpts.privacy,
+          favoriteIds: filterOpts.favoriteIds
+        })
       : (observations || []);
-    list = applySubjectFilter(list, options.subject);
+    list = applySubjectFilter(list, filterOpts.subject);
+
+    var emptyHtml;
+    if (list.length) emptyHtml = "";
+    else if (!totalCount) emptyHtml = renderEmptyTrue();
+    else emptyHtml = renderEmptyFiltered(filterOpts);
+
+    var filterNote = "";
+    if (options.favorites === "1") filterNote = '<p class="fld-hint" role="status">Showing favorites only.</p>';
+    else if (options.collection) filterNote = '<p class="fld-hint" role="status">Showing one collection.</p>';
+    else if (options.subject) filterNote = '<p class="fld-hint" role="status">Showing one life-list subject.</p>';
 
     return (
       '<section class="fld-timeline" aria-labelledby="fld-timeline-title">' +
@@ -132,11 +197,12 @@
           '<p class="fld-view-lead">Your personal record of encounters — private by default.</p>' +
           '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
         "</header>" +
-        renderFilters(filterOpts) +
-        (options.favorites === "1" ? '<p class="fld-hint">Showing favorites only.</p>' : "") +
+        (totalCount ? renderFilters(filterOpts) : "") +
+        filterNote +
         (list.length
-          ? '<div class="fld-timeline__list">' + list.map(renderCard).join("") + "</div>"
-          : renderEmpty()) +
+          ? '<p class="fld-life-count" role="status">' + list.length + " observation" + (list.length === 1 ? "" : "s") + "</p>" +
+            '<div class="fld-timeline__list">' + list.map(renderCard).join("") + "</div>"
+          : emptyHtml) +
       "</section>"
     );
   }
@@ -162,12 +228,14 @@
       e.preventDefault();
       var fd = new FormData(form);
       var parts = [];
-      ["q", "category", "identified", "privacy"].forEach(function (key) {
+      ["q", "category", "identified"].forEach(function (key) {
         var v = String(fd.get(key) || "").trim();
         if (!v || v === "all") return;
-        if (key === "category" && v === "all") return;
         parts.push(key + "=" + encodeURIComponent(v));
       });
+      if (form.querySelector('[name="favorites"]') && form.querySelector('[name="favorites"]').checked) {
+        parts.push("favorites=1");
+      }
       window.location.hash = "#/history" + (parts.length ? "?" + parts.join("&") : "");
     });
   }

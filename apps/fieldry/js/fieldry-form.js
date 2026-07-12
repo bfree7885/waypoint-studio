@@ -14,13 +14,6 @@
     { value: "hidden", label: "Hidden" }
   ];
 
-  var PRIVACY_OPTS = [
-    { value: "private", label: "Private (device only)" },
-    { value: "shared", label: "Shared" },
-    { value: "public", label: "Public" },
-    { value: "anonymized", label: "Anonymized" }
-  ];
-
   var ID_STATUS_OPTS = [
     { value: "identified", label: "Identified" },
     { value: "tentative", label: "Tentative" },
@@ -168,12 +161,12 @@
               field("fld-time", "Time <span class='fld-optional'>(optional)</span>", textInput("fld-time", "time", val(obs, "observedAt.time"), { type: "time" })) +
               field("fld-precision", "Location precision", selectOptions("locationPrecision", LOCATION_PRECISION_OPTS, precision),
                 "Exact coordinates stay on device; regional and hidden protect sensitive places.") +
-              field("fld-privacy", "Privacy", selectOptions("privacyLevel", PRIVACY_OPTS, privacy),
-                "Default is private. No public feeds in this release.") +
+              '<input type="hidden" name="privacyLevel" value="private">' +
+              '<p class="fld-hint fld-form__privacy-note">Privacy: private on this device. Sharing is not part of Fieldry yet.</p>' +
               field("fld-county", "County / region", textInput("fld-county", "county", val(obs, "location.county"))) +
               field("fld-state", "State", textInput("fld-state", "state", val(obs, "location.state"))) +
               '<details class="fld-form__advanced">' +
-                '<summary>Coordinates (optional)</summary>' +
+                "<summary>Coordinates (optional)</summary>" +
                 '<div class="fld-form__advanced-body">' +
                   field("fld-lat", "Latitude", textInput("fld-lat", "latitude", val(obs, "location.latitude"), { type: "number", step: "any" })) +
                   field("fld-lon", "Longitude", textInput("fld-lon", "longitude", val(obs, "location.longitude"), { type: "number", step: "any" })) +
@@ -182,7 +175,7 @@
               "</details>" +
             "</fieldset>" +
             '<fieldset class="fld-form__group">' +
-              '<legend>Notes &amp; context</legend>' +
+              "<legend>Notes &amp; context</legend>" +
               field("fld-notes", "Notes", textarea("fld-notes", "notes", val(obs, "record.notes"), 5),
                 "Describe what you observed — behavior, signs, context.") +
               field("fld-tags", "Tags", textInput("fld-tags", "tags", tags, {
@@ -193,14 +186,15 @@
               })) +
               field("fld-type", "Record type <span class='fld-optional'>(optional)</span>",
                 selectOptions("observationType", typeOpts, fieldry.observationType || "")) +
-              field("fld-season", "Season", textInput("fld-season", "season", val(obs, "context.season"), { placeholder: "e.g. late spring" })) +
-              field("fld-phenology", "Phenology", textInput("fld-phenology", "phenologyStage", val(obs, "context.phenologyStage"), { placeholder: "e.g. fruiting" })) +
-              '<div class="wds-field fld-field"><span class="wds-label">Weather snapshot</span>' + weatherReadonly(obs) + "</div>" +
-              field("fld-media-ref", "Media reference <span class='fld-optional'>(optional)</span>",
-                textInput("fld-media-ref", "mediaRef", (fieldry.mediaRefs && fieldry.mediaRefs[0]) || "", {
-                  placeholder: "Local path or note — attachment UI coming later"
-                }), "Stores a reference only; photo upload is not yet wired.") +
-              field("fld-ethical", "Ethical notes", textarea("fld-ethical", "ethicalNotes", fieldry.ethicalNotes || "", 3)) +
+              '<details class="fld-form__advanced">' +
+                "<summary>Season &amp; phenology</summary>" +
+                '<div class="fld-form__advanced-body">' +
+                  field("fld-season", "Season", textInput("fld-season", "season", val(obs, "context.season"), { placeholder: "e.g. late spring" })) +
+                  field("fld-phenology", "Phenology", textInput("fld-phenology", "phenologyStage", val(obs, "context.phenologyStage"), { placeholder: "e.g. fruiting" })) +
+                  '<div class="wds-field fld-field"><span class="wds-label">Weather snapshot</span>' + weatherReadonly(obs) + "</div>" +
+                "</div>" +
+              "</details>" +
+              field("fld-ethical", "Ethical notes <span class='fld-optional'>(optional)</span>", textarea("fld-ethical", "ethicalNotes", fieldry.ethicalNotes || "", 3)) +
             "</fieldset>" +
             '<div class="fld-form__status" id="fld-form-status" role="status" aria-live="polite" hidden></div>' +
             '<footer class="fld-form__foot">' +
@@ -250,10 +244,10 @@
     var unidentified = idStatus === "unidentified";
     var knowledgeId = String(fd.get("knowledgeId") || "").trim() || null;
     var tags = parseTags(fd.get("tags"));
-    var privacyLevel = String(fd.get("privacyLevel") || "private");
+    var privacyLevel = "private";
     var countRaw = fd.get("count");
     var count = countRaw !== "" && countRaw != null ? Number(countRaw) : null;
-    var mediaRef = String(fd.get("mediaRef") || "").trim();
+    var mediaRef = "";
 
     obs.taxon = obs.taxon || {};
     obs.taxon.commonName = common || null;
@@ -290,7 +284,7 @@
     obs.meta.fieldry.tags = tags;
     obs.meta.fieldry.privacyLevel = privacyLevel;
     obs.meta.fieldry.count = count;
-    obs.meta.fieldry.mediaRefs = mediaRef ? [mediaRef] : [];
+    obs.meta.fieldry.mediaRefs = mediaRef ? [mediaRef] : (obs.meta.fieldry.mediaRefs || []);
     obs.meta.fieldry.knowledgeId = knowledgeId;
 
     if (knowledgeId && global.WDS && global.WDS.knowledge && global.WDS.knowledge.getSync) {
@@ -539,6 +533,28 @@
     }
 
     bindKnowledgeSearch(form);
+    applyQueryPrefill(form);
+  }
+
+  function applyQueryPrefill(form) {
+    if (!global.FieldryLifeView || !global.FieldryLifeView.parseQuery) return;
+    var q = global.FieldryLifeView.parseQuery();
+    if (!q || (!q.knowledgeId && !q.common && !q.scientific && !q.category && !q.title)) return;
+    var commonInput = form.querySelector('[name="commonName"]');
+    var sciInput = form.querySelector('[name="scientificName"]');
+    var titleInput = form.querySelector('[name="title"]');
+    var catInput = form.querySelector('[name="category"]');
+    var hiddenId = form.querySelector("#fld-knowledge-id");
+    if (q.common && commonInput && !commonInput.value) commonInput.value = q.common;
+    if (q.scientific && sciInput && !sciInput.value) sciInput.value = q.scientific;
+    if (q.title && titleInput && !titleInput.value) titleInput.value = q.title;
+    if (q.category && catInput && !catInput.value) catInput.value = q.category;
+    if (q.knowledgeId && hiddenId) {
+      hiddenId.value = q.knowledgeId;
+      if (commonInput && commonInput.value && titleInput && !titleInput.value) {
+        titleInput.value = commonInput.value;
+      }
+    }
   }
 
   global.FieldryForm = {
