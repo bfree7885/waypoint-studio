@@ -1342,6 +1342,19 @@ function makeStatusHtml(payload, health) {
   const cacheAge = payload.updatedAt ? ageLabel(payload.updatedAt) : "unknown";
   const tz = payload.timezone || "unknown";
   const pipeline = health.pipeline && health.pipeline.stage ? health.pipeline.stage : {};
+  let websiteBuild = { commit: "—", commitFull: "", deployedAt: "" };
+  try {
+    websiteBuild = {
+      ...websiteBuild,
+      ...JSON.parse(fs.readFileSync(path.join(DATA_DIR, "build-info.json"), "utf8"))
+    };
+  } catch (_) { /* optional */ }
+  let sourceCommit = "—";
+  try {
+    sourceCommit = execSync("git rev-parse --short HEAD", { cwd: ROOT, encoding: "utf8" }).trim();
+  } catch (_) {
+    sourceCommit = websiteBuild.commit || "—";
+  }
 
   const sourceLis = sources.length
     ? sources.map((s) => "<li>" + esc(s) + "</li>").join("")
@@ -1393,9 +1406,18 @@ function makeStatusHtml(payload, health) {
 </head>
 <body>
   <div class="wle-status">
-    <p class="wle-nav"><a href="./">← Outdoor dashboard</a></p>
+    <p class="wle-nav"><a href="./">← Waypoint Studio</a> · <a href="apps/dashboard/">Dashboard</a></p>
     <h1>Live Engine status</h1>
-    <p class="lead">Operational check for <code>data/live.json</code> and <code>data/health.json</code>.</p>
+    <p class="lead">Operational check for <code>data/live.json</code> and <code>data/health.json</code>. Website source deploys separately via GitHub Pages from <code>main</code>.</p>
+
+    <section class="wle-card" aria-label="Website build">
+      <h2>Website Build</h2>
+      <div class="wle-row"><span>Source commit</span><span id="wle-source-commit">${esc(sourceCommit)}</span></div>
+      <div class="wle-row"><span>Deployed build commit</span><span id="wle-deployed-commit">${esc(websiteBuild.commit || "—")}</span></div>
+      <div class="wle-row"><span>Build timestamp</span><span id="wle-deployed-at">${esc(websiteBuild.deployedAt ? shortTime(websiteBuild.deployedAt) : "—")}</span></div>
+      <div class="wle-row"><span>App Shell in live HTML</span><span id="wle-appshell">Checking…</span></div>
+      <p class="wle-muted">Website freshness comes from GitHub Pages deploys of <code>main</code>. Engine-data publish below is a separate schedule and can skip without blocking site updates.</p>
+    </section>
 
     <section class="wle-card" aria-label="Engine health">
       <h2>Engine Health</h2>
@@ -1417,13 +1439,13 @@ function makeStatusHtml(payload, health) {
       <p class="wle-muted">${esc(health.overall.message)}</p>
     </section>
 
-    <section class="wle-card" aria-label="Public publish">
-      <h2>Public Publish</h2>
-      <div class="wle-row"><span>Last public publish</span><span class="${publishOk && publishRecent ? "wle-ok" : "wle-bad"}">${esc(shortTime(publish.lastPublishAt))}</span></div>
+    <section class="wle-card" aria-label="Engine data publish">
+      <h2>Engine Data Publish</h2>
+      <div class="wle-row"><span>Last engine-data publish</span><span class="${publishOk && publishRecent ? "wle-ok" : "wle-bad"}">${esc(shortTime(publish.lastPublishAt))}</span></div>
       <div class="wle-row"><span>Published data age</span><span>${esc(ageLabel(publish.lastPublishedDataAt))}</span></div>
-      <div class="wle-row"><span>Publish commit</span><span>${esc(publish.lastPublishCommit || "—")}</span></div>
+      <div class="wle-row"><span>Engine publish commit</span><span>${esc(publish.lastPublishCommit || "—")}</span></div>
       <div class="wle-row"><span>Publish status</span><span class="${publishOk ? "wle-ok" : "wle-bad"}">${esc(publish.lastPublishStatus || "unknown")}</span></div>
-      <p class="wle-muted">${esc(publish.lastPublishMessage || "No publish log message")}</p>
+      <p class="wle-muted">${esc(publish.lastPublishMessage || "No publish log message")}. Skipped engine publish does not mean the website failed to deploy.</p>
     </section>
 
     <section class="wle-card" aria-label="Module health">
@@ -1496,6 +1518,36 @@ function makeStatusHtml(payload, health) {
   <script src="design-system/js/wds-location.js" defer></script>
   <script src="design-system/js/wds-location-debug.js" defer></script>
   <script src="js/status-location.js" defer></script>
+  <script>
+    (function () {
+      var commitEl = document.getElementById("wle-deployed-commit");
+      var atEl = document.getElementById("wle-deployed-at");
+      var shellEl = document.getElementById("wle-appshell");
+      fetch("data/build-info.json", { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (info) {
+          if (!info) return;
+          if (commitEl) commitEl.textContent = info.commit || "—";
+          if (atEl && info.deployedAt) {
+            try { atEl.textContent = new Date(info.deployedAt).toLocaleString(); }
+            catch (e) { atEl.textContent = info.deployedAt; }
+          }
+        })
+        .catch(function () {});
+      fetch("./?status-shell-probe=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          if (!shellEl) return;
+          var hasShell = /data-product="studio-home"|was-shell|wds-app-shell|was-apps-btn/.test(html);
+          var hasOldDash = /Outdoor Dashboard|ws-topnav/.test(html) && /#outdoor-dashboard/.test(html);
+          shellEl.textContent = hasShell && !hasOldDash ? "Yes — Studio home + App Shell" : (hasOldDash ? "No — old dashboard HTML" : "Unclear");
+          shellEl.className = hasShell && !hasOldDash ? "wle-ok" : "wle-bad";
+        })
+        .catch(function () {
+          if (shellEl) { shellEl.textContent = "Probe failed"; shellEl.className = "wle-warn"; }
+        });
+    })();
+  </script>
 </body>
 </html>`;
 }
@@ -1504,7 +1556,7 @@ function makeDebugSeed(payload, health, commitHash, buildTime) {
   return {
     commitHash,
     buildTime,
-    activePageTitle: "Waypoint Studio — Outdoor Dashboard",
+    activePageTitle: "Waypoint Studio",
     capturedAt: payload.updatedAt,
     headings: [],
     sectionsRendered: [],

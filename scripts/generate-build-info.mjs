@@ -35,28 +35,63 @@ function gitFullSha() {
 function updateHtmlFiles(sha) {
   const htmlFiles = [
     "index.html",
+    "dashboard.html",
+    "apps/dashboard/index.html",
     "kiosk.html",
     "debug.html",
     "status.html",
+    "apps/scenes/index.html",
+    "apps/photo-coach/index.html",
     "design-system/patterns/product-shell.html",
     "design-system/content-engine/demo.html",
     "design-system/ecosystem/product-home-shell.html"
   ];
+  const versioned = [
+    "wds-build.js",
+    "wds.js",
+    "wds-platform.js",
+    "home-boot.js",
+    "kiosk-normalize.js",
+    "kiosk-boot.js",
+    "kiosk.js",
+    "wds-app-nav-config.js",
+    "wds-app-nav.js",
+    "wds-app-shell.js",
+    "wds-app-shell.css",
+    "studio-home.js"
+  ];
+
   htmlFiles.forEach((rel) => {
     const file = path.join(ROOT, rel);
     if (!fs.existsSync(file)) return;
     let html = fs.readFileSync(file, "utf8");
-    const next = html
+    let next = html
       .replace(/__WAYPOINT_BUILD_SHA__/g, sha)
-      .replace(/\?v=[a-f0-9]{7,40}/gi, "?v=" + sha)
-      .replace(/(src="[^"]+\.js)(?!\?v=)/g, (match, prefix) => {
-        if (prefix.includes("fonts.googleapis") || prefix.includes("gstatic")) return match;
-        if (/wds-build\.js|wds\.js|wds-platform\.js|home-boot\.js|kiosk-normalize\.js|kiosk-boot\.js|kiosk\.js/.test(prefix)) {
-          return prefix + "?v=" + sha;
-        }
-        return match;
-      })
-      .replace(/(<script src="design-system\/js\/wds-build\.js\?v=[^"]+") defer>/g, "$1>");
+      .replace(/\?v=[a-f0-9]{7,40}/gi, "?v=" + sha);
+
+    versioned.forEach((name) => {
+      const esc = name.replace(/\./g, "\\.");
+      const re = new RegExp(
+        '((?:src|href)="[^"]*' + esc + ')(?:\\?v=[^"]*)?(")',
+        "g"
+      );
+      next = next.replace(re, "$1?v=" + sha + "$2");
+    });
+
+    if (/<meta\s+name="waypoint-build"/i.test(next)) {
+      next = next.replace(
+        /<meta\s+name="waypoint-build"[^>]*>/i,
+        '<meta name="waypoint-build" content="' + sha + '">'
+      );
+    } else if (/<meta\s+charset=/i.test(next)) {
+      next = next.replace(
+        /(<meta\s+charset=[^>]*>)/i,
+        '$1\n  <meta name="waypoint-build" content="' + sha + '">'
+      );
+    }
+
+    next = next.replace(/(<script src="design-system\/js\/wds-build\.js\?v=[^"]+") defer>/g, "$1>");
+
     if (next !== html) {
       fs.writeFileSync(file, next, "utf8");
       console.log("updated", rel);

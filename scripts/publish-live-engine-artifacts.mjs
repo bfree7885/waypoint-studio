@@ -182,9 +182,22 @@ function main() {
     return;
   }
 
-  const dirtyOutside = runQuiet('git status --porcelain -- . ":(exclude)data/live.json" ":(exclude)data/health.json" ":(exclude)data/publish-state.json" ":(exclude)status.html" ":(exclude)debug.html"');
+  const dirtyOutside = runQuiet(
+    'git status --porcelain -- . ' +
+      '":(exclude)data/live.json" ' +
+      '":(exclude)data/health.json" ' +
+      '":(exclude)data/publish-state.json" ' +
+      '":(exclude)data/build-info.json" ' +
+      '":(exclude)status.html" ' +
+      '":(exclude)debug.html" ' +
+      '":(exclude)design-system/js/wds-build.js"'
+  );
   if (dirtyOutside) {
-    finish(state, "skipped", "Working tree has unrelated uncommitted changes");
+    finish(
+      state,
+      "skipped",
+      "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
+    );
     return;
   }
 
