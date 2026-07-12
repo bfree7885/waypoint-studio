@@ -11,13 +11,13 @@
     "animated-water": { status: "partial", label: "Animated water", trust: "Estimated", note: "Canvas overlay — not fluid simulation" },
     "animated-clouds": { status: "partial", label: "Animated clouds", trust: "Estimated", note: "Drift effect module" },
     "wind-grass": { status: "partial", label: "Moving grass / leaves", trust: "Estimated", note: "Leaf drift effect" },
-    "weather-aware": { status: "pending", label: "Weather-aware scenes", trust: "Not yet available" },
-    "time-of-day": { status: "pending", label: "Time-of-day lighting", trust: "Not yet available" },
-    "3d-outdoor": { status: "pending", label: "3D outdoor environments", trust: "Not yet available" },
-    "desktop-wallpaper": { status: "pending", label: "Desktop wallpaper export", trust: "Not yet available" },
-    "mobile-wallpaper": { status: "pending", label: "Mobile wallpaper export", trust: "Not yet available" },
-    "cinematic-loop": { status: "pending", label: "Cinematic loop export", trust: "Not yet available" },
-    vr: { status: "pending", label: "VR support", trust: "Not yet available" }
+    "weather-aware": { status: "pending", label: "Weather-aware scenes", trust: "Coming later" },
+    "time-of-day": { status: "pending", label: "Time-of-day lighting", trust: "Coming later" },
+    "3d-outdoor": { status: "pending", label: "3D outdoor environments", trust: "Coming later" },
+    "desktop-wallpaper": { status: "pending", label: "Desktop wallpaper export", trust: "Coming later" },
+    "mobile-wallpaper": { status: "pending", label: "Mobile wallpaper export", trust: "Coming later" },
+    "cinematic-loop": { status: "pending", label: "Cinematic loop export", trust: "Coming later" },
+    vr: { status: "pending", label: "VR support", trust: "Coming later" }
   };
 
   function createContext(options) {

@@ -1,41 +1,32 @@
 {
   "name": "Fieldry",
-  "eyebrow": "Observation ledger",
-  "mission": "The structured field notebook and future research-grade observation capture tool for Waypoint Studio. Private by default — your evidence, your choice to share.",
-  "status": "preview",
-  "statusLabel": "Building toward WOS capture",
+  "eyebrow": "Private life list",
+  "mission": "A calm field notebook for what you encounter outdoors — birds, mushrooms, rocks, weather, and more. Private by default.",
+  "status": "live",
+  "statusLabel": "Available now",
   "portfolioStatus": "core",
-  "portfolioNote": "Core platform instrument — primary place where field observations become useful evidence over time.",
-  "strategicRole": "Fieldry will implement the Waypoint Observation Standard (WOS) for local capture: date, time, location (with privacy controls), habitat, weather, photos, notes, confidence, verification, and license.",
+  "portfolioNote": "Your private life list and observation notes — no rankings, no competition.",
+  "strategicRole": "Fieldry helps careful observers record encounters with date, place, habitat, weather, confidence, and notes on this device.",
   "learnToday": [
-    "Why observation ledgers beat social feeds for naturalists — private first, share only with informed consent",
-    "The difference between what you saw, what you measured, and what you think it means",
-    "How WOS fields map to a field day: when, where, habitat context, weather, media, and uncertainty",
-    "Location privacy: general place names in public copy; precise coordinates only when you choose"
+    "Record what you noticed without needing a perfect identification",
+    "Keep location privacy under your control",
+    "Build a personal life list across birds, plants, fungi, and more",
+    "Export your notes when you want a backup"
   ],
   "wosFields": [
     "Date and time of observation",
-    "Location with fuzzing and privacy tiers",
+    "Location with privacy tiers",
     "Habitat and substrate notes",
-    "Weather and phenology context",
-    "Photographs as evidence (not proof of ID alone)",
+    "Weather context",
     "Taxonomy with confidence level",
-    "Verification tier and reviewer notes",
-    "License and attribution when sharing"
+    "Personal notes"
   ],
-  "comingSoon": [
-    "Local field journal aligned with WOS v1",
-    "Structured observation form — not a generic notes app",
-    "Sketch and photo attachment per record",
-    "Export for your archive (Darwin Core–compatible when sharing)",
-    "Optional anonymous county-level contribution — never exact harvest or den locations",
-    "No accounts required for local capture in v1"
-  ],
+  "comingSoon": [],
   "preview": {
-    "title": "Your observation ledger",
-    "placeholderLabel": "WOS field record · placeholder",
-    "placeholderHint": "Date · time · place · habitat · weather · three observations · confidence",
-    "description": "Fieldry is not a social journal. It is the place where careful observations become evidence — building toward research-grade environmental records without overstating what exists today. Write what you noticed, attach photographs, note uncertainty, and keep coordinates private until you deliberately share."
+    "title": "Your life list",
+    "placeholderLabel": "Field observation",
+    "placeholderHint": "Date · place · habitat · species or unidentified · confidence",
+    "description": "Fieldry is not a social journal. Record encounters, build your collection, and learn without competition. Notes stay on this device."
   },
   "homeLink": "../../#experiences"
 }

@@ -3,7 +3,7 @@
 
   global.WaypointStudioCopy = {
     tagline: "Bring Nature to Life",
-    mission: "Observe · Understand · Create · Share",
+    mission: "Bring Nature to Life",
 
     hero: {
       eyebrow: "Bring Nature to Life",

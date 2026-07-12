@@ -129,8 +129,8 @@
       '<section class="fld-home">' +
         '<header class="fld-hero fld-hero--home">' +
           '<p class="wds-eyebrow">Fieldry</p>' +
-          '<h1 class="fld-hero__title">Your living life list</h1>' +
-          '<p class="fld-hero__lead">A private Pokédex for the natural world — record what you encounter, build your life list, and learn at your own pace. Curiosity, not competition.</p>' +
+          '<h1 class="fld-hero__title">Your life list</h1>' +
+          '<p class="fld-hero__lead">Record what you encounter outdoors. Build a private collection of birds, mushrooms, trees, rocks, and more — at your own pace.</p>' +
           '<div class="fld-hero__actions">' +
             '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
             '<a class="wds-btn wds-btn--ghost" href="#/life">Life list</a>' +

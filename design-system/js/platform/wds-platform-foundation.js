@@ -1,7 +1,6 @@
 /**
- * Shared foundation landing renderer for Waypoint Studio apps.
- * Builds calm, professional product foundations — not marketing fluff,
- * not fake finished products.
+ * Shared product landing renderer for early Waypoint Studio apps.
+ * Calm, professional product pages — what exists today and what to do next.
  */
 (function (global) {
   "use strict";
@@ -16,17 +15,20 @@
 
   function statusLabel(status) {
     if (status === "live") return "Available now";
-    if (status === "foundation") return "Foundation";
-    if (status === "planned") return "Planned architecture";
-    return status || "In development";
+    if (status === "foundation" || status === "ready") return "Ready to explore";
+    if (status === "planned" || status === "next") return "Coming later";
+    return "Ready to explore";
   }
 
   function renderModules(modules) {
-    modules = modules || [];
+    modules = (modules || []).filter(function (m) {
+      var s = m && m.status;
+      return s === "foundation" || s === "ready" || s === "live";
+    });
     if (!modules.length) return "";
     return (
       '<section class="wpf-section" aria-labelledby="wpf-modules">' +
-        '<h2 id="wpf-modules">Architecture modules</h2>' +
+        '<h2 id="wpf-modules">What you can explore</h2>' +
         '<ul class="wpf-modules">' +
         modules
           .map(function (m) {
@@ -55,7 +57,7 @@
     if (!list.length) return "";
     return (
       '<section class="wpf-section" aria-labelledby="wpf-principles">' +
-        '<h2 id="wpf-principles">Product principles</h2>' +
+        '<h2 id="wpf-principles">How this product works</h2>' +
         "<ul class=\"wpf-principles\">" +
         list.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") +
         "</ul>" +
@@ -64,24 +66,22 @@
   }
 
   function renderRoutes(routes) {
-    routes = routes || [];
-    if (!routes.length) return "";
+    var ready = (routes || []).filter(function (r) { return r.ready; });
+    if (!ready.length) return "";
+    var items = ready
+      .map(function (r) {
+        return (
+          "<li><strong>" +
+          esc(r.label) +
+          '</strong> <span class="wpf-pill">open</span></li>'
+        );
+      })
+      .join("");
     return (
       '<section class="wpf-section" aria-labelledby="wpf-routes">' +
-        '<h2 id="wpf-routes">Planned routes</h2>' +
+        '<h2 id="wpf-routes">Open now</h2>' +
         '<ul class="wpf-routes">' +
-        routes
-          .map(function (r) {
-            return (
-              "<li><code>" +
-              esc(r.path) +
-              "</code> — " +
-              esc(r.label) +
-              (r.ready ? ' <span class="wpf-pill">ready</span>' : "") +
-              "</li>"
-            );
-          })
-          .join("") +
+        items +
         "</ul>" +
       "</section>"
     );
@@ -99,7 +99,7 @@
         esc(statusLabel(config.status || "foundation")) +
         "</p>" +
         "<h1>" +
-        esc(config.title || "Product foundation") +
+        esc(config.title || "Waypoint Studio") +
         "</h1>" +
         '<p class="wpf-lead">' +
         esc(config.lead || "") +
@@ -113,7 +113,7 @@
           : "") +
       "</header>" +
       (config.mission
-        ? '<section class="wpf-section"><h2>Mission</h2><p>' +
+        ? '<section class="wpf-section"><h2>Who it is for</h2><p>' +
           esc(config.mission) +
           "</p></section>"
         : "") +
@@ -121,13 +121,12 @@
       renderModules(config.modules) +
       renderRoutes(config.routes) +
       (config.dataModel
-        ? '<section class="wpf-section" aria-labelledby="wpf-data"><h2 id="wpf-data">Data foundation</h2><p>' +
+        ? '<section class="wpf-section" aria-labelledby="wpf-data"><h2 id="wpf-data">Your data</h2><p>' +
           esc(config.dataModel) +
           "</p></section>"
         : "") +
       '<section class="wpf-section wpf-section--note">' +
-        "<p>This is a real architectural foundation — not a finished product and not a placeholder mock. " +
-        "Features ship when they meet Waypoint Studio’s calm, private-by-default standard.</p>" +
+        "<p>Private by default. Calm tools for careful outdoor work.</p>" +
       "</section>"
     );
   }

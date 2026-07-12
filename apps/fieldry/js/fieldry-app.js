@@ -28,7 +28,7 @@
     return (
       '<section class="fld-export" aria-labelledby="fld-export-title">' +
         '<h2 class="fld-export__title" id="fld-export-title">Export archive</h2>' +
-        '<p class="fld-export__text">' + count + ' observation' + (count === 1 ? "" : "s") + ' on this device. Export follows WOS v1.</p>' +
+        '<p class="fld-export__text">' + count + ' observation' + (count === 1 ? "" : "s") + ' on this device. Export as JSON or CSV for your own archive.</p>' +
         '<div class="fld-export__actions">' +
           '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-json"' + (count ? "" : " disabled") + ">Export JSON</button>" +
           '<button type="button" class="wds-btn wds-btn--ghost" id="fld-export-csv"' + (count ? "" : " disabled") + ">Export CSV</button>" +
@@ -178,6 +178,9 @@
         ]
       });
     }
+
+    // Show the life list immediately — location can refine context later.
+    render();
 
     global.FieldryBoot.bootstrapLocation().then(function (loc) {
       state.loc = loc;

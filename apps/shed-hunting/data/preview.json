@@ -1,28 +1,24 @@
 {
-  "name": "Shed Hunting",
-  "eyebrow": "Future learning track",
-  "mission": "Winter wildlife sign, deer ecology, and the ethics of patient searching — not a standalone product.",
-  "status": "preview",
-  "statusLabel": "Content track — not a product",
-  "portfolioStatus": "content-track",
-  "portfolioNote": "Shed Hunting becomes a seasonal winter wildlife and deer ecology learning track on the regional dashboard and ForageCast — not a separate seven-room app.",
+  "name": "Sheds",
+  "eyebrow": "Wildlife sign & seasonality",
+  "mission": "A calm place for antler shed hunting — species knowledge, private finds, and seasonal timing without trophy culture.",
+  "status": "ready",
+  "statusLabel": "Ready to explore",
+  "portfolioStatus": "foundation",
+  "portfolioNote": "Professional wildlife mapping and seasonality for careful hunters and naturalists.",
+  "strategicRole": "Help people read sign, learn cervid ecology, and keep find locations private.",
   "learnToday": [
-    "Why deer drop antlers in late winter — nutrition, testosterone, and terrain",
-    "Reading south-facing slopes and bedding cover without disturbing wintering wildlife",
-    "Ethics: empty-handed miles still produce evidence — tracks, browse, rubs, and bedding sign",
-    "Why Waypoint will not build leaderboards, exact find maps, or trophy gamification"
+    "Why deer drop antlers in late winter — nutrition, hormones, and terrain",
+    "Reading south-facing slopes and bedding cover without disturbing wildlife",
+    "Ethics: empty-handed miles still teach tracks, browse, rubs, and bedding sign",
+    "Keep exact find locations private"
   ],
-  "comingSoon": [
-    "Winter track lessons on the regional dashboard",
-    "Sign identification field investigations",
-    "Fieldry template for sign encounters and empty-day walks",
-    "Optional anonymous county-level phenology — never den or shed coordinates"
-  ],
+  "comingSoon": [],
   "preview": {
     "title": "The quiet search",
-    "placeholderLabel": "Trail sign · placeholder",
+    "placeholderLabel": "Trail sign",
     "placeholderHint": "Slope · bedding · browse line · track",
-    "description": "Patience as a field skill. This concept is preserved as a learning track — teaching sign reading and wildlife ethics without implying a finished app exists today."
+    "description": "Patience as a field skill. Sheds is for people who walk carefully and keep finds private."
   },
   "homeLink": "../../#experiences"
 }

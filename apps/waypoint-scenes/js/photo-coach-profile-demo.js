@@ -49,7 +49,7 @@
       },
       aiCritique: {
         engine: "demo-analysis",
-        trustLabel: "Demo Analysis",
+        trustLabel: "On-device analysis",
         narrative: opts.narrative || null,
         strengths: (opts.strengths || []).map(function (t) {
           return { title: t, whyItWorks: "Consistent in this body of work." };

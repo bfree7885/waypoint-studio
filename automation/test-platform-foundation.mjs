@@ -100,7 +100,7 @@ function run() {
     lead: "Test",
     modules: [{ title: "Species", status: "foundation", description: "Cervids" }]
   });
-  assert("foundation render", /Sheds/.test(foundationHtml) && /Architecture modules/.test(foundationHtml));
+  assert("foundation render", /Sheds/.test(foundationHtml) && /What you can explore/.test(foundationHtml));
 
   const env = global.WDS.observations.extensions.createEnvelope({
     application: "shed-hunting",

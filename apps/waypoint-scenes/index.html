@@ -36,13 +36,13 @@
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-hearth" aria-hidden="true"></div>
       <div class="hero-inner">
-        <p class="hero-eyebrow">Waypoint Scenes · Photo Coach &amp; Living Scenes studio</p>
-        <h1 class="hero-title">Upload. Grade. Improve.<br><em>Living Scenes — planned.</em></h1>
-        <p class="hero-lead">Photo Coach is available at <a href="../photo-coach/">apps/photo-coach/</a>. This studio also hosts Scene Builder experiments for future Living Scenes — atmosphere, parallax, and export tools.</p>
+        <p class="hero-eyebrow">Waypoint Scenes</p>
+        <h1 class="hero-title">Upload. Grade. Improve.</h1>
+        <p class="hero-lead">Photo Coach helps you read a photograph carefully. Scene Builder lets you try quiet atmosphere tools on the same frames.</p>
         <div class="hero-actions">
-          <button type="button" class="btn btn-primary btn-lg" id="btn-mode-coach-hero">Photo Coach</button>
-          <button type="button" class="btn btn-secondary btn-lg" id="btn-mode-builder-hero">Scene Builder</button>
-          <p class="hero-hint">JPG, PNG, WebP · 20 MB · No cloud upload required for critique demo</p>
+          <button type="button" class="btn btn-primary btn-lg" id="btn-mode-coach-hero">Open Photo Coach</button>
+          <button type="button" class="btn btn-secondary btn-lg" id="btn-mode-builder-hero">Try Scene Builder</button>
+          <p class="hero-hint">JPG, PNG, WebP · up to 20 MB · stays on your device</p>
         </div>
       </div>
       <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/svg+xml" hidden>
@@ -58,7 +58,7 @@
       <header class="coach-hero">
         <p class="coach-hero__eyebrow">Photo Coach</p>
         <h2 class="coach-hero__title"><span class="coach-hero__step">Upload</span><span class="coach-hero__step">Grade</span><span class="coach-hero__step">Improve</span><span class="coach-hero__step">Bring it to Life</span></h2>
-        <p class="coach-hero__lead">Demo Analysis uses your image pixels and field context — clearly labeled, production-ready coaching structure.</p>
+        <p class="coach-hero__lead">On-device analysis of your image — clearly labeled guidance you can use on the next outing.</p>
       </header>
 
       <div id="coach-filmstrip-mount" class="pc-filmstrip-mount" hidden></div>
@@ -108,8 +108,7 @@
       </div>
       <p class="builder-roadmap" role="note">
         <strong>Scene Builder</strong>
-        Living scenes from your photographs — atmosphere, parallax depth, animated weather layers, and still exports today.
-        Roadmap: weather-aware scenes, time-of-day lighting, 3D outdoor environments, desktop and mobile wallpapers, cinematic loops.
+        Add quiet atmosphere to a still photograph — fog, light, and depth. Exports work today. Weather-aware scenes and wallpapers come later.
       </p>
       <p class="workspace-upload-error" id="workspace-upload-error" role="alert" hidden></p>
 
@@ -345,7 +344,7 @@
               <h2 class="panel-title" id="coming-soon-heading">On the horizon</h2>
               <p class="panel-subtitle">Layer masks, video export, and scene intelligence — still gathering light.</p>
             </header>
-            <div class="coming-soon-panel-inner" id="coming-soon-mount" aria-label="Roadmap"></div>
+            <div class="coming-soon-panel-inner" id="coming-soon-mount" aria-label="Coming later"></div>
           </section>
         </div>
       </section>
@@ -363,7 +362,7 @@
             <div class="export-actions">
               <button type="button" class="btn btn-primary" id="btn-export-download" disabled>Save this moment</button>
             </div>
-            <p class="export-roadmap-note muted">Video export is on the horizon. <button type="button" class="inline-link learn-goto" data-tab="learn">Field Guide</button></p>
+            <p class="export-roadmap-note muted">Need a quieter still? <button type="button" class="inline-link learn-goto" data-tab="learn">Open the Field Guide</button></p>
           </section>
         </div>
       </section>

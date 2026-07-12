@@ -153,7 +153,7 @@
       version: "3.0.0",
       engineStatus: "disconnected",
       isDemo: true,
-      trust: "Demo Analysis",
+      trust: "On-device analysis",
       adjustments: list,
       pipelineNote: "Suggested edits only — nothing was applied to your file. Values come from browser image signals and your highest-impact coaching notes."
     };
@@ -180,7 +180,7 @@
   function renderHtml(plan) {
     if (!plan || !plan.adjustments || !plan.adjustments.length) return "";
     var badge = plan.isDemo || plan.isSample
-      ? '<span class="coach-trust coach-trust--demo">Demo Analysis</span>'
+      ? '<span class="coach-trust coach-trust--demo">On-device analysis</span>'
       : '<span class="coach-trust coach-trust--live">Live</span>';
     var html = '<section class="coach-card coach-card--edits" aria-labelledby="coach-edits-title">' +
       '<h3 class="coach-card__title" id="coach-edits-title">Suggested edits ' + badge + "</h3>";

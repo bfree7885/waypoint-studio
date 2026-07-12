@@ -666,9 +666,11 @@
       if (exp.featured) statusClass += " is-featured";
       var statusLabel = exp.statusLabel;
       if (!statusLabel) {
-        statusLabel = exp.status === "live" ? "Preview app" : "In development";
-      } else if (exp.status === "live" && statusLabel === "Live") {
-        statusLabel = "Preview app";
+        statusLabel = exp.status === "live" ? "Available" : "Coming next";
+      } else if (exp.status === "live" && (statusLabel === "Live" || statusLabel === "Preview app")) {
+        statusLabel = "Available";
+      } else if (statusLabel === "In development" || statusLabel === "Preview app") {
+        statusLabel = exp.status === "live" ? "Available" : "Coming next";
       }
       var mission = exp.mission || exp.learnNow || exp.summary || "";
       var educationalValue = exp.educationalValue || exp.desc || "";
@@ -688,7 +690,7 @@
             (whatItDoes ? '<dl class="ws-experience-card__spec"><dt>What it does</dt><dd>' + escapeHtml(whatItDoes) + "</dd></dl>" : "") +
             (whoItHelps ? '<dl class="ws-experience-card__spec"><dt>Who it helps</dt><dd>' + escapeHtml(whoItHelps) + "</dd></dl>" : "") +
             (educationalValue ? '<p class="ws-experience-card__value">' + escapeHtml(educationalValue) + "</p>" : "") +
-            (futurePlanned ? '<p class="ws-experience-card__future"><strong>Building toward:</strong> ' + escapeHtml(futurePlanned) + "</p>" : "") +
+            (futurePlanned ? '<p class="ws-experience-card__future"><strong>Next:</strong> ' + escapeHtml(futurePlanned) + "</p>" : "") +
           "</div>" +
           '<footer class="ws-experience-card__foot">' +
             '<a class="wds-btn wds-btn--secondary wds-btn--sm ws-experience-card__cta" href="' + escapeHtml(exp.href) + '" aria-label="' + escapeHtml(ctaLabel) + '">' + escapeHtml(ctaLabel) + "</a>" +
@@ -699,9 +701,9 @@
 
     return (
       '<section class="' + storySection("catalog") + '" id="experiences" aria-labelledby="wce-exp-title">' +
-        blockHead("Platform", "Instruments", "One regional laboratory with specialized instruments — not eight separate apps.", "catalog") +
-        '<h3 class="wds-sr-only" id="wce-exp-title">Platform instruments</h3>' +
-        '<p class="wce-experiences-intro">Waypoint Studio helps people learn, get outdoors, and make better observations. The dashboard is the trailhead; ForageCast, Fieldry, and Scenes are the core instruments.</p>' +
+        blockHead("Apps", "What you can open today", "One studio with calm tools for weather, seasons, field notes, and photographs.", "catalog") +
+        '<h3 class="wds-sr-only" id="wce-exp-title">Waypoint Studio apps</h3>' +
+        '<p class="wce-experiences-intro">Start with the dashboard for live conditions. Then open ForageCast, Fieldry, or Scenes for the work you care about.</p>' +
         '<div class="ws-card-grid ws-card-grid--experiences">' + cards + "</div>" +
         renderContentTracks(data) +
       "</section>"
@@ -723,7 +725,7 @@
     }).join("");
     return (
       '<details class="wce-content-tracks">' +
-        '<summary class="wce-content-tracks__summary">Future learning tracks &amp; shared modules (not standalone products)</summary>' +
+        '<summary class="wce-content-tracks__summary">More Waypoint Studio tools</summary>' +
         '<ul class="wce-content-tracks__list">' + items + "</ul>" +
       "</details>"
     );
@@ -737,10 +739,8 @@
         '<details class="wce-methodology">' +
           '<summary class="wce-methodology__summary" id="wce-how-title">How Waypoint works</summary>' +
           '<div class="wce-methodology__body">' +
-            '<p class="wds-body">Waypoint Studio is a regional outdoor intelligence platform and field laboratory — beginning with Pike County Preview. ' +
-            "Learn, go outside, and build toward research-grade observations. Private by default.</p>" +
-            '<p class="wds-caption">Private by default — no accounts, no feeds, no gamification. ' +
-            "Contributor documentation (Constitution, Method, Platform Architecture) lives in the repository <code>docs/</code> folder.</p>" +
+            '<p class="wds-body">Waypoint Studio helps you learn the outdoors, go outside with better context, and keep careful notes. Private by default.</p>' +
+            '<p class="wds-caption">No accounts, no feeds, no scoreboards.</p>' +
           "</div>" +
         "</details>" +
       "</section>"
@@ -784,8 +784,8 @@
       '<section class="ws-block" id="citizen-science" aria-labelledby="wce-cs-title">' +
         blockHead("Privacy", "Private by default", "Your notes and photographs are yours.") +
         '<div class="ws-citizen">' +
-          "<p class=\"wds-body\"><strong>You own your observations.</strong> Waypoint is designed to support research-grade observations when you choose to record them. Submission is not available yet — citizen science participation will always be optional.</p>" +
-          "<p class=\"wds-body\" style=\"margin-top:var(--wds-space-3);\">Identity never required. Location privacy respected. No comments, likes, profiles, or feeds — a field guide, not social media.</p>" +
+          "<p class=\"wds-body\"><strong>You own your observations.</strong> Notes and photographs stay on your device until you choose otherwise. Sharing is always optional.</p>" +
+          "<p class=\"wds-body\" style=\"margin-top:var(--wds-space-3);\">No accounts required for local notes. No comments, likes, profiles, or feeds — a field guide, not social media.</p>" +
           ethicsBlock +
           '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(href) + '">Privacy approach</a></p>' +
         "</div>" +

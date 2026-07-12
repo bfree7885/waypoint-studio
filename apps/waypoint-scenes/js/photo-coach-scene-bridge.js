@@ -17,9 +17,9 @@
     return [
       { id: "living-scene", label: "Living Scene", status: "live", desc: "Atmosphere, drift, and animated weather layers." },
       { id: "parallax", label: "Parallax Scene", status: "live", desc: "Depth and presence — tilt and wander." },
-      { id: "cinematic", label: "Cinematic Loop", status: "pending", desc: "Not yet available — roadmap export." },
-      { id: "3d", label: "3D Scene", status: "pending", desc: "Not yet available — honest roadmap." },
-      { id: "wallpaper", label: "Wallpaper export", status: "pending", desc: "Not yet available — still export works today." }
+      { id: "cinematic", label: "Cinematic Loop", status: "pending", desc: "Coming later — still export works today." },
+      { id: "3d", label: "3D Scene", status: "pending", desc: "Coming later." },
+      { id: "wallpaper", label: "Wallpaper export", status: "pending", desc: "Coming later — still export works today." }
     ].map(function (opt) {
       if (opt.id === "living-scene" && sug && sug.presetId) {
         opt.recommended = true;
@@ -41,7 +41,7 @@
         '<div class="coach-scene-opt__copy">' +
           '<strong>' + escapeHtml(opt.label) + "</strong>" +
           (opt.recommended ? ' <span class="coach-trust coach-trust--live">Suggested</span>' : "") +
-          (opt.status === "pending" ? ' <span class="coach-trust coach-trust--pending">Not yet available</span>' : "") +
+          (opt.status === "pending" ? ' <span class="coach-trust coach-trust--pending">Coming later</span>' : "") +
           '<p>' + escapeHtml(opt.desc) + "</p>" +
         "</div>";
       if (opt.status === "live") {
@@ -51,12 +51,12 @@
       html += "</li>";
     });
     html += "</ul>" +
-      '<p class="coach-scene-roadmap-title">Effect roadmap (honest status)</p>' +
+      '<p class="coach-scene-roadmap-title">What works today</p>' +
       '<ul class="coach-scene-roadmap">' +
-        '<li><span class="coach-trust coach-trust--live">Live</span> Fog, rain, snow, cloud drift, parallax</li>' +
-        '<li><span class="coach-trust coach-trust--live">Live</span> Leaf drift (wind), light rays, fireflies</li>' +
-        '<li><span class="coach-trust coach-trust--pending">Not yet</span> Animated water, stars, aurora</li>' +
-        '<li><span class="coach-trust coach-trust--pending">Not yet</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
+        '<li><span class="coach-trust coach-trust--live">Ready</span> Fog, rain, snow, cloud drift, parallax</li>' +
+        '<li><span class="coach-trust coach-trust--live">Ready</span> Leaf drift (wind), light rays, fireflies</li>' +
+        '<li><span class="coach-trust coach-trust--pending">Later</span> Animated water, stars, aurora</li>' +
+        '<li><span class="coach-trust coach-trust--pending">Later</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
       "</ul>" +
       '<button type="button" class="btn btn-primary coach-scene-primary" id="btn-coach-send-builder">' +
         "Create Living Scene</button>" +

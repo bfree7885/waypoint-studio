@@ -49,9 +49,9 @@
   function renderEmpty() {
     return (
       '<div class="fld-empty">' +
-        '<p class="fld-empty__title">No observations yet</p>' +
-        '<p class="fld-empty__text">Record what you encounter — identified or unidentified.</p>' +
-        '<a class="wds-btn wds-btn--primary" href="#/new">Record first observation</a>' +
+        '<p class="fld-empty__title">Begin your life list</p>' +
+        '<p class="fld-empty__text">Record what you encounter outdoors. Exact species optional — unidentified records are welcome.</p>' +
+        '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a>' +
       "</div>"
     );
   }

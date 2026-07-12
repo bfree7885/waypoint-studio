@@ -249,7 +249,7 @@
       dominantMood: dominantMoodFrom(critique, outdoor),
       aiCritique: {
         engine: "demo-analysis",
-        trustLabel: critique.trustLabel || "Demo Analysis",
+        trustLabel: critique.trustLabel || "On-device analysis",
         narrative: critique.narrativeSummary || null,
         strengths: (critique.strengths || []).map(function (s) {
           return { title: s.title, whyItWorks: s.whyItWorks };

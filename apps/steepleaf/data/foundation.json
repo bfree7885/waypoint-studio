@@ -3,28 +3,28 @@
   "title": "Steepleaf",
   "eyebrow": "Waypoint Studio · Steepleaf",
   "status": "foundation",
-  "lead": "A thoughtful tea companion — catalog, brew journal, flavor notes, and discovery without social ranking.",
-  "mission": "Help people explore tea with curiosity and sensory attention: what you brew, how it tastes, and what you want to try next.",
+  "lead": "A refined tea companion — catalog your leaves, journal your brews, and notice flavor without social ranking.",
+  "mission": "For people who brew with attention: what you steep, how it tastes, and what you want to try next.",
   "principles": [
     "Personal taste over popularity",
     "No influencer rankings or follower counts",
-    "Brew notes are private by default",
-    "Recommendations stay explainable and optional"
+    "Brew notes stay private",
+    "Suggestions stay optional and explainable"
   ],
   "modules": [
-    { "title": "Tea catalog", "status": "foundation", "description": "Tea entries with origin, type, and tasting vocabulary." },
-    { "title": "Brew journal", "status": "foundation", "description": "Local brew sessions: leaf, water, time, temperature, and notes." },
-    { "title": "Collections", "status": "foundation", "description": "Private shelves and tasting sets via shared platform collections." },
+    { "title": "Tea catalog", "status": "foundation", "description": "Origin, type, and tasting words for the teas you keep." },
+    { "title": "Brew journal", "status": "foundation", "description": "Leaf, water, time, temperature, and quiet tasting notes." },
+    { "title": "Collections", "status": "foundation", "description": "Private shelves and tasting sets for your own cupboards." },
     { "title": "Ratings & flavor notes", "status": "planned", "description": "Personal scales — never public scoreboards." },
-    { "title": "Brew timer architecture", "status": "planned", "description": "Timer hooks tied to brew journal entries." },
-    { "title": "Discovery & recommendations", "status": "planned", "description": "Taste-neighbor suggestions without social graphs." },
-    { "title": "Search", "status": "planned", "description": "Catalog and journal search architecture." }
+    { "title": "Brew timer", "status": "planned", "description": "Timers that save straight into your brew journal." },
+    { "title": "Discovery", "status": "planned", "description": "Gentle taste neighbors — no social graphs." },
+    { "title": "Search", "status": "planned", "description": "Find teas and past brews quickly." }
   ],
   "routes": [
-    { "path": "/", "label": "Foundation home", "ready": true },
+    { "path": "/", "label": "Steepleaf home", "ready": true },
     { "path": "/catalog/", "label": "Tea catalog", "ready": false },
     { "path": "/journal/", "label": "Brew journal", "ready": false },
     { "path": "/collections/", "label": "Collections", "ready": false }
   ],
-  "dataModel": "TeaEntry and BrewSession models store locally. Platform Collections and Profile integrate across apps. No marketplace layer."
+  "dataModel": "Your catalog and brew journal stay on this device. There is no marketplace and no public tasting board."
 }

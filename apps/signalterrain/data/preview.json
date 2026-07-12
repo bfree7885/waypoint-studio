@@ -1,28 +1,24 @@
 {
   "name": "SignalTerrain",
-  "eyebrow": "Shared platform module",
-  "mission": "Map, navigation, geology, and earth science capabilities — shared modules across the platform, not a standalone product.",
-  "status": "preview",
-  "statusLabel": "Platform module — not a product",
-  "portfolioStatus": "module",
-  "portfolioNote": "SignalTerrain concepts become shared map, coordinate, and earth-science modules (already used in ForageCast heat maps) plus navigation lessons in Fieldry and the dashboard.",
+  "eyebrow": "Maps & terrain",
+  "mission": "Maps, contours, sky, and the ground beneath your boots — navigation and terrain literacy for outdoor students.",
+  "status": "ready",
+  "statusLabel": "Ready to explore",
+  "portfolioStatus": "foundation",
+  "portfolioNote": "Technical, reliable terrain and navigation tools for careful travelers.",
+  "strategicRole": "Help people read contour, aspect, drainage, and horizon with humility.",
   "learnToday": [
-    "How contour lines describe drainage and aspect — poetry you can walk",
-    "Reading a schematic terrain map as an educational estimate, not a GIS guarantee",
-    "Bearing, humility, and turnaround planning before summit fever",
-    "Why maps belong beside lessons, not as a separate app door"
+    "How contour lines describe drainage and aspect",
+    "Reading a terrain map as guidance, not a guarantee",
+    "Bearing, turnaround planning, and humility before summit fever",
+    "Connecting geology notes to what you see underfoot"
   ],
-  "comingSoon": [
-    "Shared WDS map module improvements",
-    "Navigation lessons in Fieldry Learn",
-    "Geology and weather cross-links on the regional dashboard",
-    "Honest offline-stub documentation — no fake live telemetry"
-  ],
+  "comingSoon": [],
   "preview": {
     "title": "The observatory deck",
-    "placeholderLabel": "Terrain schematic · placeholder",
+    "placeholderLabel": "Terrain schematic",
     "placeholderHint": "Aspect · drainage · horizon · sky",
-    "description": "Horizon, contour, and signal reading are platform capabilities — woven into ForageCast terrain bands and future Fieldry route notes — not a separate destination."
+    "description": "Horizon, contour, and signal reading for people who want reliable navigation literacy."
   },
   "homeLink": "../../#experiences"
 }

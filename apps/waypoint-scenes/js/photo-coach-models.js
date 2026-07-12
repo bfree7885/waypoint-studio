@@ -87,7 +87,7 @@
       dominantMood: null,
       aiCritique: {
         engine: "demo-analysis",
-        trustLabel: "Demo Analysis",
+        trustLabel: "On-device analysis",
         narrative: null,
         strengths: [],
         improvements: [],

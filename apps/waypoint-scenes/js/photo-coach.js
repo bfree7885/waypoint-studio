@@ -215,7 +215,7 @@
   function renderGradeCard(c) {
     var g = c.overallGrade || {};
     var badge = c.isDemo || c.isSample
-      ? '<span class="coach-trust coach-trust--demo">Demo Analysis</span>'
+      ? '<span class="coach-trust coach-trust--demo">On-device analysis</span>'
       : '<span class="coach-trust coach-trust--live">AI Analysis</span>';
     var genre = c.genre && !c.genre.uncertain && c.genre.confidence >= 0.58
       ? '<p class="coach-genre">Likely genre: <strong>' + escapeHtml(c.genre.label) + "</strong></p>"
@@ -236,10 +236,10 @@
       '<dl class="coach-grade-meta">' +
         "<div><dt>Portfolio</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
         "<div><dt>Print</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
-        "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "Demo signals") + "</dd></div>" +
+        "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "On-device signals") + "</dd></div>" +
       "</dl>" +
       (c.engineStatus === "disconnected"
-        ? '<p class="coach-engine-note" role="status">Browser-based Demo Analysis — guidance from image characteristics, not a cloud AI review.</p>'
+        ? '<p class="coach-engine-note" role="status">On-device analysis — guidance from image characteristics, not a cloud AI review.</p>'
         : "") +
     "</section>";
   }

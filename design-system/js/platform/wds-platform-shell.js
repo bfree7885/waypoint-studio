@@ -75,7 +75,7 @@
   function renderFooter(options) {
     options = options || {};
     var productName = options.productName || "Waypoint Studio";
-    var note = options.note || "Observe · Understand · Create · Share";
+    var note = options.note || "Private by default";
     var depth = options.depth != null ? options.depth : 1;
     var how = depth === 0 ? "#how-waypoint-works" : depth === 1 ? "../../#how-waypoint-works" : "../../../#how-waypoint-works";
     return (

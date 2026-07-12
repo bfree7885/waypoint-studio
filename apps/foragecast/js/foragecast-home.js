@@ -313,7 +313,7 @@
           '<div class="wce-methodology__body">' +
             '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm lessons, and private-by-default observations. ' +
             "The references below are for contributors and builders.</p>" +
-            '<p class="wds-caption">Private by default — no accounts, no feeds, no gamification. ' +
+            '<p class="wds-caption">No accounts, no feeds, no scoreboards. ' +
             "Contributor documentation lives in the repository <code>docs/</code> folder.</p>" +
           "</div>" +
         "</details>" +
@@ -474,14 +474,29 @@
     var mount = document.getElementById("foragecast-home");
     if (!mount) return;
 
-    function start(loc) {
+    var started = false;
+    function startOnce(loc) {
+      if (started) return;
+      started = true;
       loadHome(loc);
     }
 
     if (window.ForageCastBoot) {
-      ForageCastBoot.bootstrapLocation().then(start);
+      // Do not leave visitors on a skeleton while the region prompt waits.
+      var timer = setTimeout(function () {
+        startOnce(null);
+      }, 2200);
+      ForageCastBoot.bootstrapLocation()
+        .then(function (loc) {
+          clearTimeout(timer);
+          startOnce(loc);
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          startOnce(null);
+        });
     } else {
-      start(null);
+      startOnce(null);
     }
   }
 

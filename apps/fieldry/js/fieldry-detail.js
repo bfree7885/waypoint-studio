@@ -143,7 +143,7 @@
         mediaBlock(obs) +
         '<section class="fld-detail__section"><h2>Collections</h2>' + collectionActions(obs) + "</section>" +
         '<section class="fld-detail__meta">' +
-          '<h2 class="fld-detail__section-title">WOS metadata</h2>' +
+          '<h2 class="fld-detail__section-title">Record details</h2>' +
           '<dl class="fld-detail__dl fld-detail__dl--compact">' +
             row("Record ID", '<code>' + U().escapeHtml(obs.id) + "</code>") +
             row("Schema", obs.meta && obs.meta.schema ? U().escapeHtml(obs.meta.schema) : "—") +

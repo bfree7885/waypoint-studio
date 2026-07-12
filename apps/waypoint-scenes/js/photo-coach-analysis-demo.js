@@ -1,7 +1,7 @@
 /**
- * Photo Coach — Demo Analysis engine v4
+ * Photo Coach — On-device analysis engine v4
  * Browser-only, deterministic, confidence-gated mentoring.
- * Always labeled Demo Analysis. Never invents low-confidence critique.
+ * Always labeled On-device analysis. Never invents low-confidence critique.
  */
 (function (global) {
   "use strict";
@@ -1149,7 +1149,7 @@
       engineStatus: "disconnected",
       isDemo: true,
       isSample: true,
-      trustLabel: "Demo Analysis",
+      trustLabel: "On-device analysis",
       analyzedAt: new Date().toISOString(),
       imageName: file && file.name ? file.name : "photo.jpg",
       outdoorContext: outdoorContext || null,
@@ -1174,7 +1174,7 @@
         summary: narrativeSummary,
         portfolioPotential: overall >= 78 ? "High" : overall >= 68 ? "Medium" : "Developing",
         printPotential: printRec.worthy ? "Good after edits" : "Screen-first for now",
-        confidence: "Moderate — browser Demo Analysis with confidence gating (not cloud AI)"
+        confidence: "Moderate — on-device analysis with confidence gating (not cloud AI)"
       },
       overallScore: overall,
       narrativeSummary: narrativeSummary,

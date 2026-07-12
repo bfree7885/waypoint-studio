@@ -303,7 +303,7 @@
 
     var prefix = cs.submissionAvailable
       ? ""
-      : "<p class=\"wds-ethics-cs__soon\"><strong>Submission not yet available.</strong> These principles apply when sharing is offered.</p>";
+      : "<p class=\"wds-ethics-cs__soon\"><strong>Sharing stays optional.</strong> These principles apply whenever you choose to contribute.</p>";
 
     return (
       '<div class="wds-ethics-cs" role="note" aria-label="Citizen science ethics">' +

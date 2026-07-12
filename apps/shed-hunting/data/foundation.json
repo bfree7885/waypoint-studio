@@ -3,57 +3,52 @@
   "title": "Sheds",
   "eyebrow": "Waypoint Studio · Sheds",
   "status": "foundation",
-  "lead": "A calm, worldwide platform for antler shed hunting — species knowledge, personal finds, seasonal forecasts, and ethics without trophy culture.",
-  "mission": "Help shed hunters observe sign, understand cervid ecology, record private finds, and plan ethical outings across all antler-shedding species.",
+  "lead": "A calm place for antler shed hunting — species knowledge, private finds, and seasonal timing without trophy culture.",
+  "mission": "For hunters and naturalists who want to read sign, learn cervid ecology, and keep find locations private.",
   "principles": [
-    "No leaderboards, find rankings, or trophy competition",
-    "Exact find coordinates stay private by default",
-    "Support White-tailed Deer, Mule Deer, Elk, Moose, Caribou, Red Deer, Fallow, Roe, Sika, and other cervids",
-    "Encourage empty-handed miles as valuable field evidence"
+    "No leaderboards or find rankings",
+    "Exact find coordinates stay private",
+    "Support for deer, elk, moose, and other antler-shedding species",
+    "Empty-handed miles still count as useful field time"
   ],
   "modules": [
     {
       "title": "Species browser",
       "status": "foundation",
-      "description": "Cervid species profiles: shed timing, habitat, and regional notes."
+      "description": "Shed timing, habitat notes, and regional context for the animals you follow."
     },
     {
-      "title": "Personal finds ledger",
+      "title": "Personal finds",
       "status": "foundation",
-      "description": "Private WOS-aligned find records with media, notes, and privacy controls."
+      "description": "Private find records with notes, photos, and location privacy you control."
     },
     {
-      "title": "Heat map architecture",
+      "title": "Seasonal heat map",
       "status": "planned",
-      "description": "Aggregated, obfuscated seasonal intensity — never public pin-drops of finds."
+      "description": "Soft seasonal intensity by region — never public pins of your finds."
     },
     {
-      "title": "Forecast architecture",
+      "title": "Seasonal forecast",
       "status": "planned",
-      "description": "Weather, snow, and phenology signals for shed likelihood by region."
+      "description": "Weather, snow, and timing signals that help you choose when to walk."
     },
     {
-      "title": "Regulations framework",
+      "title": "Regulations guidance",
       "status": "planned",
-      "description": "Jurisdiction-aware guidance with clear provenance labels."
+      "description": "Clear jurisdiction notes with sources you can check."
     },
     {
-      "title": "Trail camera integration",
+      "title": "Trail camera notes",
       "status": "planned",
-      "description": "Import architecture for camera evidence linked to private observations."
-    },
-    {
-      "title": "AI prediction framework",
-      "status": "planned",
-      "description": "Future model hooks — clearly labeled, never presented as certainty."
+      "description": "Link camera evidence to your private finds when you want context."
     }
   ],
   "routes": [
-    { "path": "/", "label": "Foundation home", "ready": true },
+    { "path": "/", "label": "Sheds home", "ready": true },
     { "path": "/species/", "label": "Species browser", "ready": false },
     { "path": "/finds/", "label": "Personal finds", "ready": false },
-    { "path": "/map/", "label": "Heat map (obfuscated)", "ready": false },
+    { "path": "/map/", "label": "Seasonal heat map", "ready": false },
     { "path": "/forecast/", "label": "Seasonal forecast", "ready": false }
   ],
-  "dataModel": "Local Sheds models (FindRecord, SpeciesProfile, ForecastPackage) extend the shared Waypoint Observation Standard via namespaced extensions. Privacy levels: private, shared, public, anonymized."
+  "dataModel": "Your finds and notes stay on this device. Share only what you choose — nothing is posted by default."
 }

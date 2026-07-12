@@ -105,7 +105,7 @@
     return {
       schemaVersion: SCHEMA_VERSION,
       engineVersion: critique.version || null,
-      trustLabel: critique.trustLabel || "Demo Analysis",
+      trustLabel: critique.trustLabel || "On-device analysis",
       isDemo: critique.isDemo !== false,
       analyzedAt: critique.analyzedAt || new Date().toISOString(),
       overallGrade: critique.overallGrade || null,
@@ -552,7 +552,7 @@
     return '<section class="pc-shoot-summary coach-card" aria-labelledby="pc-shoot-summary-title">' +
       '<div class="pc-shoot-summary__head">' +
         '<h2 class="coach-card__title" id="pc-shoot-summary-title">Shoot Summary</h2>' +
-        '<span class="coach-trust coach-trust--demo">Demo Analysis</span>' +
+        '<span class="coach-trust coach-trust--demo">On-device analysis</span>' +
       "</div>" +
       '<div class="pc-shoot-summary__score">' +
         '<span class="pc-shoot-summary__letter">' + escapeHtml(summary.letter) + "</span>" +

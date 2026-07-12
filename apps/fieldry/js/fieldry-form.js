@@ -133,7 +133,7 @@
               '<legend>Subject</legend>' +
               field("fld-category", "Category", selectOptions("category", categoryOptions(category), category),
                 "Life-list category — birds, mushrooms, rocks, weather, and more.") +
-              field("fld-knowledge-q", "Search Knowledge",
+              field("fld-knowledge-q", "Search species",
                 textInput("fld-knowledge-q", "knowledgeQuery", "", {
                   placeholder: "Common or scientific name…",
                   autocomplete: "off",
@@ -142,7 +142,7 @@
                 '<div class="fld-knowledge-status" id="fld-knowledge-status" role="status" aria-live="polite"></div>' +
                 '<ul class="fld-knowledge-results" id="fld-knowledge-results" hidden></ul>' +
                 '<div class="fld-knowledge-selected" id="fld-knowledge-selected" hidden></div>',
-                "Uses the shared Knowledge Platform sample catalog when available. Representative samples only — not a complete field guide.") +
+                "Suggestions come from a sample species catalog when available — not a complete field guide.") +
               field("fld-common", "Common name", textInput("fld-common", "commonName", val(obs, "taxon.commonName") || fieldry.knowledgeCommon || "", {
                 placeholder: "e.g. Eastern bluebird — or Unknown mushroom"
               })) +
@@ -358,9 +358,9 @@
       selected.hidden = false;
       var names = entry.names || {};
       selected.innerHTML =
-        '<p><strong>Linked Knowledge</strong> · ' + U().escapeHtml(names.common || entry.id) +
+        '<p><strong>Linked species</strong> · ' + U().escapeHtml(names.common || entry.id) +
         (names.scientific ? ' <em>(' + U().escapeHtml(names.scientific) + ")</em>" : "") +
-        ' · <span class="fld-sample-label">Shared reference</span></p>' +
+        ' · <span class="fld-sample-label">Reference</span></p>' +
         '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-clear-knowledge">Clear link</button>';
       var clear = selected.querySelector("#fld-clear-knowledge");
       if (clear) {
@@ -390,7 +390,7 @@
         results.hidden = true;
         results.innerHTML = "";
       }
-      setStatus(status, "Linked to Knowledge entry.", "ok");
+      setStatus(status, "Linked to species reference.", "ok");
     }
 
     function renderHits(hits) {
@@ -434,7 +434,7 @@
       }
       var K = global.WDS && global.WDS.knowledge;
       if (!K || !K.search) {
-        setStatus(status, "Knowledge Platform unavailable — you can still record a manual or unidentified observation.", "warn");
+        setStatus(status, "Species suggestions unavailable — you can still record a name or leave it unidentified.", "warn");
         return;
       }
       setStatus(status, "Searching…", "loading");
@@ -445,14 +445,14 @@
       Promise.resolve(searchFn(q, opts)).then(function (hits) {
         lastHits = hits || [];
         if (!hits || !hits.length) {
-          setStatus(status, "No Knowledge matches. Record with a custom name or as unidentified.", "empty");
+          setStatus(status, "No matches. Use a custom name or leave it unidentified.", "empty");
           renderHits([]);
           return;
         }
-        setStatus(status, hits.length + " suggestion" + (hits.length === 1 ? "" : "s") + " · sample catalog", "ok");
+        setStatus(status, hits.length + " suggestion" + (hits.length === 1 ? "" : "s"), "ok");
         renderHits(hits);
       }).catch(function () {
-        setStatus(status, "Knowledge search unavailable offline — continue with a manual name.", "warn");
+        setStatus(status, "Suggestions unavailable offline — continue with a manual name.", "warn");
         renderHits([]);
       });
     }

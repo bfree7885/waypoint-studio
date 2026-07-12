@@ -31,13 +31,13 @@
     }
   },
   "platformScope": {
-    "label": "Pike County Preview",
-    "detail": "Using Pike County, Pennsylvania as the current regional preview. Locations outside this bundle may show nearest editorial content — not county-specific outdoor intelligence."
+    "label": "Regional focus",
+    "detail": "Currently featuring Pike County, Pennsylvania. Other places may show nearest editorial content until local coverage expands."
   },
   "platformMission": {
-    "lead": "A regional outdoor intelligence dashboard and field laboratory — designed for ethical outdoor learning.",
-    "pillars": "Learn about the natural world · Get outdoors · Build toward research-grade observations",
-    "honest": "Observation capture is in development. Fieldry will become the structured observation ledger aligned with the Waypoint Observation Standard."
+    "lead": "Weather, seasons, and field notes — calm outdoor tools for careful observers.",
+    "pillars": "Learn outdoors · Record what you notice · Keep your notes private",
+    "honest": "Fieldry is ready for private life lists and observation notes on this device."
   },
   "season": "late spring",
   "thisWeekOutdoors": {
@@ -72,7 +72,7 @@
     "relatedTools": ["foragecast", "fieldry"],
     "outdoorChallenge": "Saturday: be on trail by 8 a.m. before convection builds.",
     "outdoorQuestion": "Can you find the fog line along the Delaware this weekend — and name three species that change with it?",
-    "citizenScience": "Coming soon — optional fog duration observation (anonymous, county-level only).",
+    "citizenScience": "Optional fog notes stay on your device until you choose to share.",
     "subscriptionValue": "Free this week. Subscribers: full May archive + Monroe & Wayne counties.",
     "outdoorDashboard": {
       "cards": [
@@ -114,7 +114,7 @@
               ]
             },
             {
-              "label": "Coming soon",
+              "label": "Later this season",
               "items": [
                 { "name": "Chanterelle", "status": "watch", "note": "Late June on oak ridges after rain" },
                 { "name": "Highbush blueberry", "status": "watch", "note": "Green fruit set; harvest late July" }
@@ -459,9 +459,9 @@
   },
   "featuredProject": {
     "name": "ForageCast",
-    "eyebrow": "Flagship application",
+    "eyebrow": "Start here",
     "headline": "Understand why species appear where and when they do.",
-    "summary": "Habitat literacy, seasonal timing, and ethical field investigation for Pike County Preview — educational estimates, not guarantees. Learn conditions first; confirm outdoors.",
+    "summary": "Seasonal timing and habitat context for careful foragers. Estimates help you learn — confirm outdoors before you harvest.",
     "href": "apps/foragecast/",
     "toolHref": "apps/foragecast/season-table.html",
     "toolLabel": "Open season table"
@@ -470,63 +470,63 @@
     {
       "slug": "studio-dashboard",
       "name": "Waypoint Studio Dashboard",
-      "mission": "What is happening outdoors this week? What can you learn, observe, and investigate — safely and ethically?",
-      "whatItDoes": "Surfaces regional outdoor intelligence — weather context, phenology, wildlife notes, and field investigations.",
-      "whoItHelps": "Teachers, hikers, naturalists, and curious residents starting their week outside.",
-      "futurePlanned": "Progressive learning paths, optional observation capture, and additional honest county bundles.",
-      "educationalValue": "The regional trailhead: outdoor intelligence, lessons, and stewardship for Pike County Preview.",
+      "mission": "What is happening outdoors this week — weather, seasons, and places worth noticing.",
+      "whatItDoes": "Shows outdoor conditions, seasonal notes, wildlife context, and field investigations for your region.",
+      "whoItHelps": "Teachers, hikers, naturalists, and anyone planning time outside.",
+      "futurePlanned": "",
+      "educationalValue": "Start here before you open a specific tool.",
       "href": "#this-week-outdoors",
       "status": "live",
-      "statusLabel": "Pike County Preview",
+      "statusLabel": "Available",
       "featured": true
     },
     {
       "slug": "foragecast",
       "name": "ForageCast",
-      "mission": "Understand why species appear where and when they do — habitat bands, seasonal timing, and ethical investigation.",
-      "whatItDoes": "Teaches habitat literacy and seasonal timing through schematic terrain bands and species education.",
-      "whoItHelps": "Foragers, botanists, and field investigators learning to read place and season — not harvest scoreboards.",
-      "futurePlanned": "Expanded species library, phenology overlays, and WOS-linked foray notes in Fieldry.",
-      "educationalValue": "Read timing and terrain like a field guide. Prediction zones are educational estimates, not harvest guarantees.",
+      "mission": "Understand why species appear where and when they do.",
+      "whatItDoes": "Habitat bands, seasonal timing, and ethical foraging lessons for careful observers.",
+      "whoItHelps": "Foragers, botanists, and field learners reading place and season.",
+      "futurePlanned": "",
+      "educationalValue": "Estimates help you learn — confirm outdoors before you harvest.",
       "href": "apps/foragecast/",
       "status": "live",
-      "statusLabel": "Pike County preview",
+      "statusLabel": "Available",
       "featured": true
     },
     {
       "slug": "fieldry",
       "name": "Fieldry",
-      "mission": "The structured observation ledger — a private field notebook building toward research-grade environmental records.",
-      "whatItDoes": "Captures WOS-aligned field observations locally — date, place, habitat, weather context, confidence, and ethical notes.",
-      "whoItHelps": "Anyone building careful observation habits for personal learning and optional future citizen science.",
-      "futurePlanned": "Photo attachment, Darwin Core export UI, and opt-in anonymous county-level contribution.",
-      "educationalValue": "Date, place, habitat, weather, notes, confidence, and privacy — designed to support WOS-aligned evidence over time.",
+      "mission": "A private life list and field notebook for what you encounter outdoors.",
+      "whatItDoes": "Record date, place, habitat, weather context, confidence, and notes on this device.",
+      "whoItHelps": "Anyone building careful observation habits for personal learning.",
+      "futurePlanned": "",
+      "educationalValue": "Honest notes beat false certainty — unidentified encounters are welcome.",
       "href": "apps/fieldry/",
       "status": "live",
-      "statusLabel": "Local MVP",
+      "statusLabel": "Available",
       "featured": false
     },
     {
       "slug": "waypoint-scenes",
       "name": "Waypoint Scenes",
-      "mission": "The photography and visual-observation side of Waypoint Studio — observe an image carefully, understand what works, and improve deliberately.",
-      "whatItDoes": "Hosts Photo Coach for browser-based image critique and will host Living Scenes for gentle motion studies. Field evidence, not performance.",
-      "whoItHelps": "Outdoor photographers who want honest feedback and visual observation tools after time outside.",
-      "futurePlanned": "Living Scenes — atmosphere, parallax depth, and cinematic motion from still photographs.",
-      "educationalValue": "Treat each frame as evidence from a place. Photo Coach is available now; Living Scenes is planned development.",
+      "mission": "Photography tools for looking carefully after time outside.",
+      "whatItDoes": "Photo Coach reviews visual qualities in your browser. Scene Builder adds quiet atmosphere to still frames.",
+      "whoItHelps": "Outdoor photographers who want calm feedback, not competition.",
+      "futurePlanned": "",
+      "educationalValue": "Treat each frame as evidence from a place. Start with Photo Coach today.",
       "href": "apps/scenes/",
       "status": "live",
-      "statusLabel": "Active product",
+      "statusLabel": "Available",
       "featured": true
     },
     {
       "slug": "photo-coach",
       "name": "Photo Coach",
-      "mission": "The first tool in Waypoint Scenes — upload, grade, and improve with honest Demo Analysis.",
-      "whatItDoes": "Upload JPG, PNG, or WebP for browser-based critique: letter grade, score breakdown, EXIF read locally, recent sessions, and optional dashboard field context.",
-      "whoItHelps": "Photographers who want structured feedback without cloud upload or exaggerated AI claims.",
-      "futurePlanned": "Vision API integration when ready — same coaching structure, upgraded analysis engine.",
-      "educationalValue": "Demo Analysis uses image pixels and field context in your browser. Clearly labeled heuristic coaching, not cloud AI.",
+      "mission": "Upload a photograph, get a clear grade, and improve with on-device analysis.",
+      "whatItDoes": "Upload JPG, PNG, or WebP for a letter grade, score breakdown, local EXIF read, and recent sessions.",
+      "whoItHelps": "Photographers who want structured feedback without uploading to the cloud.",
+      "futurePlanned": "",
+      "educationalValue": "On-device analysis uses image pixels and optional field context in your browser — labeled clearly, not cloud AI.",
       "href": "apps/photo-coach/",
       "status": "live",
       "statusLabel": "Available now",
@@ -536,39 +536,31 @@
   "contentTracks": [
     {
       "slug": "shed-hunting",
-      "name": "Shed Hunting",
-      "track": "Winter wildlife & deer ecology",
-      "note": "Future seasonal learning track — not a standalone product.",
+      "name": "Sheds",
+      "track": "Wildlife sign & seasonality",
+      "note": "Antler shed hunting and cervid ecology.",
       "href": "apps/shed-hunting/"
     },
     {
       "slug": "steepleaf",
       "name": "Steepleaf",
-      "track": "Botany & phenology",
-      "note": "Merging into ForageCast Learn — botanical plates and phenology calendars.",
+      "track": "Tea & botanical craft",
+      "note": "Botanical plates and phenology calendars.",
       "href": "apps/steepleaf/"
     },
     {
       "slug": "signalterrain",
       "name": "SignalTerrain",
-      "track": "Map, navigation & earth science modules",
-      "note": "Shared platform modules — not a separate app.",
+      "track": "Maps & terrain",
+      "note": "Navigation and earth science tools.",
       "href": "apps/signalterrain/"
     },
     {
       "slug": "savant-sommelier",
       "name": "Savant Sommelier",
-      "track": "Landscape, geology & terroir editorial",
-      "note": "Occasional editorial essays — not a product door.",
+      "track": "Landscape & terroir",
+      "note": "Essays on place, geology, and flavor.",
       "href": "apps/savant-sommelier/"
-    },
-    {
-      "slug": "terrainbound",
-      "name": "Terrainbound",
-      "track": "Retired as standalone product",
-      "note": "Route journaling → Fieldry. Trail conditions → Dashboard. Field skills absorbed into Home and Learn.",
-      "href": "apps/terrainbound/",
-      "retired": true
     }
   ],
   "catalog": {

@@ -1,28 +1,24 @@
 {
   "name": "Savant Sommelier",
-  "eyebrow": "Occasional editorial",
-  "mission": "Landscape, geology, agriculture, and terroir as ecology writing — occasional essays, not a product door.",
-  "status": "preview",
-  "statusLabel": "Editorial track — not a product",
-  "portfolioStatus": "content-track",
-  "portfolioNote": "Savant Sommelier becomes occasional editorial on the regional dashboard — terroir as ecology, not a standalone tasting-room app.",
+  "eyebrow": "Landscape & terroir",
+  "mission": "Terroir as ecology, geology, and weather — landscape literacy without pretension.",
+  "status": "ready",
+  "statusLabel": "Ready to explore",
+  "portfolioStatus": "foundation",
+  "portfolioNote": "Premium essays connecting place, geology, and flavor.",
+  "strategicRole": "Help people read a landscape before they read a label.",
   "learnToday": [
-    "How slope, soil, and climate shape both forest communities and cultivated landscapes",
+    "How slope, soil, and climate shape forest and cultivated landscapes",
     "Reading a landscape before reading a label — attention without pretension",
     "Water, stewardship, and native habitat at the edge of working land",
-    "Why this content supports learning but does not warrant a separate product"
+    "Connecting geology notes to what a place can grow"
   ],
-  "comingSoon": [
-    "Occasional research briefs and photo essays on the dashboard",
-    "Cross-links to geology and ecology lessons in ForageCast",
-    "Fieldry sensory field notes template (optional)",
-    "No cellar management, pairing AI, or commerce features"
-  ],
+  "comingSoon": [],
   "preview": {
     "title": "The tasting room overlook",
-    "placeholderLabel": "Landscape · placeholder",
+    "placeholderLabel": "Landscape",
     "placeholderHint": "Slope · watershed · season · stewardship",
-    "description": "The glass can hold the landscape — as an essay, not an app. Useful ideas are preserved; public investment stays on the core platform."
+    "description": "The glass can hold the landscape — careful writing about place, geology, and flavor."
   },
   "homeLink": "../../#experiences"
 }

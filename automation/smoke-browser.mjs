@@ -188,7 +188,7 @@ async function testPage(client, page) {
     hasHourly: document.querySelectorAll('.swk-hour').length >= 1,
     hasEngineBadge: /engine|healthy|degraded|stale|offline/i.test((document.getElementById('swk-health-badge') || {}).textContent || ''),
     hasModules: document.querySelectorAll('.swk-module').length >= 1,
-    hasSynthwaveBrand: /waypoint live engine/i.test(text),
+    hasSynthwaveBrand: /waypoint studio/i.test(text),
     banned: ['coming soon','assignment','homework','lesson','educational'].filter((w) => text.includes(w)),
     bodyLen: text.length
   };

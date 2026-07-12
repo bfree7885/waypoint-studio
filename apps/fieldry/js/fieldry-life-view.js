@@ -101,8 +101,8 @@
         '<p class="fld-life-count" role="status">' + list.length + " subject" + (list.length === 1 ? "" : "s") + "</p>" +
         (list.length
           ? '<div class="fld-life-grid">' + list.map(renderEntry).join("") + "</div>"
-          : '<div class="fld-empty"><p class="fld-empty__title">No subjects yet</p>' +
-            '<p class="fld-empty__text">Record an observation to start your life list. Unknown species are welcome.</p>' +
+          : '<div class="fld-empty"><p class="fld-empty__title">Start your life list</p>' +
+            '<p class="fld-empty__text">Record an encounter to begin. Unknown species are welcome — you can identify them later.</p>' +
             '<a class="wds-btn wds-btn--primary" href="#/new">Record an observation</a></div>') +
       "</section>"
     );
