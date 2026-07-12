@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Fieldry — private digital field notebook aligned with the Waypoint Observation Standard. Record structured environmental observations locally. No accounts. No cloud.">
-  <title>Fieldry — Field Notebook · Waypoint Studio</title>
+  <meta name="description" content="Fieldry — a private life list for observing the natural world. Record encounters, build your collection, and learn without competition.">
+  <title>Fieldry — Life List · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -13,22 +13,24 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <header class="wds-topbar">
-      <div class="wds-topbar__inner">
-        <a class="wds-brand" href="../../">
-          <span class="wds-brand__mark" aria-hidden="true"></span>
-          <span class="wds-brand__name">Waypoint Studio</span>
-        </a>
-        <nav class="ws-topnav" aria-label="Fieldry">
-          <a href="../../">Dashboard</a>
-          <a href="../foragecast/">ForageCast</a>
-          <a href="../scenes/">Scenes</a>
-          <a href="#/" aria-current="page">Fieldry</a>
-          <a href="#/new">New observation</a>
-        </nav>
-      </div>
-    </header>
+  <div class="wds-app" data-wds-platform-shell data-product="fieldry" data-product-name="Fieldry" data-shell-depth="1">
+    <div data-wds-platform-nav data-shell-depth="1">
+      <header class="wds-topbar">
+        <div class="wds-topbar__inner">
+          <a class="wds-brand" href="../../">
+            <span class="wds-brand__mark" aria-hidden="true"></span>
+            <span class="wds-brand__name">Waypoint Studio</span>
+          </a>
+          <nav class="ws-topnav" aria-label="Fieldry">
+            <a href="../../">Dashboard</a>
+            <a href="#/" aria-current="page">Fieldry</a>
+            <a href="#/new">Record</a>
+            <a href="#/life">Life list</a>
+            <a href="#/history">History</a>
+          </nav>
+        </div>
+      </header>
+    </div>
 
     <div id="wds-location-prompt"></div>
 
@@ -36,26 +38,40 @@
       <div id="fieldry-app" aria-busy="true">
         <section class="fld-hero" aria-label="Loading">
           <p class="wds-eyebrow">Fieldry</p>
-          <p class="fld-hero__lead">Opening your field notebook…</p>
+          <p class="fld-hero__lead">Opening your life list…</p>
         </section>
       </div>
     </main>
 
-    <footer class="wds-footer">
-      <p>Fieldry · Private local records · WOS · <a href="../../#how-waypoint-works">How Waypoint works</a></p>
-    </footer>
+    <div data-wds-platform-footer data-shell-depth="1">
+      <footer class="wds-footer">
+        <p>Fieldry · Private life list · WOS · <a href="../../#how-waypoint-works">How Waypoint works</a></p>
+      </footer>
+    </div>
   </div>
 
   <script src="../../design-system/js/wds-platform.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-catalog.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-shell.js" defer></script>
+  <script src="../../design-system/js/observations/wds-wos-extensions.js" defer></script>
   <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
+  <script src="../../design-system/js/knowledge/wds-knowledge-core.js" defer></script>
+  <script src="../../design-system/js/knowledge/wds-knowledge-search.js" defer></script>
+  <script src="../../design-system/js/knowledge/wds-knowledge-relationships.js" defer></script>
   <script src="js/fieldry-util.js" defer></script>
   <script src="js/fieldry-life-list.js" defer></script>
+  <script src="js/fieldry-achievements.js" defer></script>
+  <script src="js/fieldry-stats.js" defer></script>
   <script src="js/fieldry-boot.js" defer></script>
   <script src="js/fieldry-storage.js" defer></script>
   <script src="js/fieldry-export.js" defer></script>
   <script src="js/fieldry-dashboard.js" defer></script>
+  <script src="js/fieldry-home.js" defer></script>
+  <script src="js/fieldry-browse.js" defer></script>
+  <script src="js/fieldry-life-view.js" defer></script>
+  <script src="js/fieldry-stats-view.js" defer></script>
+  <script src="js/fieldry-knowledge-view.js" defer></script>
   <script src="js/fieldry-list.js" defer></script>
   <script src="js/fieldry-detail.js" defer></script>
   <script src="js/fieldry-form.js" defer></script>

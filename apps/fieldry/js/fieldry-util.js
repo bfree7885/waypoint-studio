@@ -54,16 +54,60 @@
     return timeStr;
   }
 
+  function locationPrecision(obs) {
+    return (obs.location && obs.location.privacy && obs.location.privacy.precision) || "county";
+  }
+
+  function precisionLabel(precision) {
+    var labels = {
+      exact: "Exact",
+      obfuscated: "Approximate",
+      county: "Regional",
+      hidden: "Hidden"
+    };
+    return labels[precision] || precision || "Regional";
+  }
+
+  /**
+   * User-safe location display — never expose exact coordinates when
+   * privacy/precision settings prohibit them.
+   */
   function formatLocation(obs) {
     var loc = obs.location || {};
+    var precision = locationPrecision(obs);
     var parts = [];
+    if (precision === "hidden") {
+      return "Location hidden";
+    }
     if (loc.county) parts.push(loc.county + " Co.");
     if (loc.stateCode) parts.push(loc.stateCode);
     else if (loc.state) parts.push(loc.state);
-    if (loc.latitude != null && loc.longitude != null) {
+    if (precision === "exact" && loc.latitude != null && loc.longitude != null) {
       parts.push(Number(loc.latitude).toFixed(4) + "°, " + Number(loc.longitude).toFixed(4) + "°");
+    } else if (precision === "obfuscated" && loc.latitude != null && loc.longitude != null) {
+      parts.push("~" + Number(loc.latitude).toFixed(2) + "°, ~" + Number(loc.longitude).toFixed(2) + "°");
     }
+    // county / regional: place names only — no coordinates
     return parts.length ? parts.join(" · ") : "Location not recorded";
+  }
+
+  function privacyLabel(obs) {
+    var ext = (obs.extensions && obs.extensions.fieldry) ||
+      (obs.meta && obs.meta.fieldry) || {};
+    var level = ext.privacyLevel || "private";
+    var labels = {
+      private: "Private",
+      shared: "Shared",
+      public: "Public",
+      anonymized: "Anonymized"
+    };
+    return labels[level] || level;
+  }
+
+  function categoryLabel(obs) {
+    var Life = global.WaypointFieldryLifeList;
+    if (!Life) return "Other";
+    return Life.categoryLabel(Life.getCategory(obs));
   }
 
   function observationType(obs) {
@@ -123,6 +167,10 @@
     formatDate: formatDate,
     formatTime: formatTime,
     formatLocation: formatLocation,
+    locationPrecision: locationPrecision,
+    precisionLabel: precisionLabel,
+    privacyLabel: privacyLabel,
+    categoryLabel: categoryLabel,
     observationType: observationType,
     displayTitle: displayTitle,
     confidenceLabel: confidenceLabel,

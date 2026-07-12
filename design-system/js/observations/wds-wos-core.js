@@ -350,6 +350,16 @@
       mergeDefined(obs.privacy, raw.privacy);
     }
 
+    if (raw.extensions && typeof raw.extensions === "object") {
+      obs.extensions = {};
+      Object.keys(raw.extensions).forEach(function (appId) {
+        var payload = raw.extensions[appId];
+        if (payload && typeof payload === "object") {
+          obs.extensions[appId] = Object.assign({}, payload);
+        }
+      });
+    }
+
     obs.revisions = Array.isArray(raw.revisions) ? raw.revisions.slice() : [];
 
     return obs;

@@ -1,7 +1,7 @@
 # Waypoint Studio — Unified Platform Foundation
 
 **Status:** Active architecture  
-**Last updated:** Platform foundation sprint
+**Last updated:** Fieldry Life List MVP sprint
 
 This document describes the shared infrastructure that every Waypoint Studio application builds on.
 
@@ -116,7 +116,9 @@ Applications query shared knowledge (and WSKB for species detail) instead of mai
 
 ## See also
 
+- [FIELDRY-LIFE-LIST-MVP.md](FIELDRY-LIFE-LIST-MVP.md)  
 - [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md)  
 - [ROADMAP.md](ROADMAP.md)  
 - [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md)  
+- [WAYPOINT-KNOWLEDGE-PLATFORM.md](WAYPOINT-KNOWLEDGE-PLATFORM.md)  
 - [WAYPOINT-STUDIO-CONSTITUTION.md](WAYPOINT-STUDIO-CONSTITUTION.md)

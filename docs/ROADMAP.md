@@ -1,6 +1,6 @@
 # Waypoint Studio — Unified Roadmap
 
-**Last updated:** Platform foundation sprint  
+**Last updated:** Fieldry Life List MVP sprint  
 **Principle:** Shared systems first. One cohesive platform. Core instruments ship publicly; additional products grow from real foundations.
 
 > **Portfolio:** See [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md), [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).
@@ -13,7 +13,7 @@
 |----------|---------|--------|
 | 1 | **Regional Dashboard** | Live — Pike County Preview |
 | 2 | **ForageCast** | Live — seasonal / habitat lab |
-| 3 | **Fieldry** | Live MVP — WOS notebook + life-list categories |
+| 3 | **Fieldry** | Live MVP — capture → WOS → life list → stats/achievements |
 | 4 | **Waypoint Scenes** | Live — Photo Coach + Profile + coaching memory |
 
 ## Product foundations (architecture-ready)
@@ -43,11 +43,12 @@
 
 ## Phase next — deepen each product
 
-1. Fieldry life-list UI + category capture
+1. Fieldry media attach + sensitive-species auto-obscuring
 2. Sheds personal finds UI (private coordinates)
 3. ForageCast daily recommendation package
 4. Photo Coach collections UX
 5. SignalTerrain receiver management UI
+6. Expand Knowledge sample packs beyond representative demos
 
 ---
 
