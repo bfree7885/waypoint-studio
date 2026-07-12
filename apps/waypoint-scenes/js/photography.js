@@ -107,7 +107,7 @@
 
     state.heroMount.innerHTML =
       '<section class="photo-hero">' +
-        '<button type="button" class="photo-hero-hit wds-gallery__hit" data-photo-id="' + photo.id + '" data-item-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
+        '<button type="button" class="photo-hero-hit wds-gallery__hit" data-photo-id="' + escapeHtml(photo.id) + '" data-item-id="' + escapeHtml(photo.id) + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
           '<img class="photo-hero-img" src="' + escapeHtml(photo.image) + '" alt="' + escapeHtml(photo.title) + '">' +
           '<div class="photo-hero-scrim" aria-hidden="true"></div>' +
           '<div class="photo-hero-inner">' +
@@ -121,8 +121,8 @@
           "</div>" +
         "</button>" +
         '<div class="photo-hero-actions">' +
-          '<button type="button" class="btn btn-secondary btn-sm" data-action="living-scene" data-photo-id="' + photo.id + '">' + escapeHtml(labels.living) + "</button>" +
-          '<button type="button" class="btn btn-ghost btn-sm" data-action="parallax" data-photo-id="' + photo.id + '">' + escapeHtml(labels.parallax) + "</button>" +
+          '<button type="button" class="btn btn-secondary btn-sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
+          '<button type="button" class="btn btn-ghost btn-sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
         "</div>" +
       "</section>";
   }
@@ -130,8 +130,8 @@
   function photoCardHtml(photo, index) {
     var sizeClass = masonryClass(index);
     return (
-      '<article class="wds-gallery__item photo-card ' + sizeClass + '" data-photo-id="' + photo.id + '">' +
-        '<button type="button" class="photo-card-hit wds-gallery__hit" data-photo-id="' + photo.id + '" data-item-id="' + photo.id + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
+      '<article class="wds-gallery__item photo-card ' + sizeClass + '" data-photo-id="' + escapeHtml(photo.id) + '">' +
+        '<button type="button" class="photo-card-hit wds-gallery__hit" data-photo-id="' + escapeHtml(photo.id) + '" data-item-id="' + escapeHtml(photo.id) + '" aria-label="View ' + escapeHtml(photo.title) + '">' +
           '<div class="photo-card-frame">' +
             '<img class="photo-card-img wds-gallery__img" src="' + escapeHtml(photo.image) + '" alt="" loading="lazy">' +
             '<div class="photo-card-shade" aria-hidden="true"></div>' +
@@ -295,8 +295,8 @@
             fieldPanel +
             tagsHtml +
             '<div class="photo-modal-actions">' +
-              '<button type="button" class="btn btn-primary btn-sm" data-action="living-scene" data-photo-id="' + photo.id + '">' + escapeHtml(labels.living) + "</button>" +
-              '<button type="button" class="btn btn-secondary btn-sm" data-action="parallax" data-photo-id="' + photo.id + '">' + escapeHtml(labels.parallax) + "</button>" +
+              '<button type="button" class="btn btn-primary btn-sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
+              '<button type="button" class="btn btn-secondary btn-sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
             "</div>" +
           "</aside>" +
         "</div>" +

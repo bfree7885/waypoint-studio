@@ -189,7 +189,8 @@
   }
 
   global.WDS = global.WDS || {};
-  global.WDS.knowledge = {
+  var existingKnowledge = global.WDS.knowledge || {};
+  global.WDS.knowledge = Object.assign({}, existingKnowledge, {
     VERSION: VERSION,
     SCHEMA_ID: SCHEMA_ID,
     configure: configure,
@@ -205,5 +206,17 @@
     indexEntries: indexEntries,
     resolveSpeciesDetail: resolveSpeciesDetail,
     _cache: function () { return recordCache; }
-  };
+  });
+  // Re-attach satellites if they loaded earlier and exposed reattach hooks
+  if (global.WDS.knowledgeSearch && global.WDS.knowledgeSearch.search) {
+    global.WDS.knowledge.search = global.WDS.knowledgeSearch.search;
+  }
+  if (global.WDS.knowledgeRelationships) {
+    if (global.WDS.knowledgeRelationships.related) {
+      global.WDS.knowledge.related = global.WDS.knowledgeRelationships.related;
+    }
+    if (global.WDS.knowledgeRelationships.path) {
+      global.WDS.knowledge.path = global.WDS.knowledgeRelationships.path;
+    }
+  }
 })(typeof window !== "undefined" ? window : global);

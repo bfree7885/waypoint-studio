@@ -116,6 +116,8 @@ Applications query shared knowledge (and WSKB for species detail) instead of mai
 
 ## See also
 
+- [PLATFORM-AUDIT-2026-07.md](PLATFORM-AUDIT-2026-07.md)  
+- [STORAGE-INVENTORY.md](STORAGE-INVENTORY.md)  
 - [FIELDRY-LIFE-LIST-MVP.md](FIELDRY-LIFE-LIST-MVP.md)  
 - [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md)  
 - [ROADMAP.md](ROADMAP.md)  

@@ -37,6 +37,24 @@ jobs:
       - name: Test persistent profile migration
         run: node automation/test-profile-migration.mjs http://127.0.0.1:8080
 
+      - name: Platform foundation tests
+        run: node automation/test-platform-foundation.mjs
+
+      - name: Knowledge Platform tests
+        run: node automation/test-knowledge-platform.mjs
+
+      - name: Fieldry MVP tests
+        run: node automation/test-fieldry-mvp.mjs
+
+      - name: Platform hardening tests
+        run: node automation/test-platform-hardening.mjs
+
+      - name: Photographer profile tests
+        run: node automation/test-photographer-profile.mjs
+
+      - name: Personalized coaching tests
+        run: node automation/test-personalized-coaching.mjs
+
       - name: Syntax-check live engine
         run: node --check scripts/waypoint-live-engine.mjs
 

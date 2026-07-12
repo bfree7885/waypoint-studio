@@ -64,6 +64,7 @@
     "species/wds-wskb-core.js",
     "species/wds-wskb-render.js",
     "observations/wds-wos-core.js",
+    "observations/wds-wos-extensions.js",
     "wds-app-boot.js"
   ].forEach(function (file) {
     var s = document.createElement("script");

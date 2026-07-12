@@ -1,6 +1,7 @@
 /**
  * Waypoint Outdoor Intelligence Platform — location resolution
  * Delegates to WDS.regionalIntelligence.engine when available.
+ * Does not silently substitute Pike County / engine defaults.
  */
 (function (global) {
   "use strict";
@@ -9,6 +10,19 @@
   if (!OIP || !OIP.model) return;
 
   var M = OIP.model;
+
+  function unavailableLocation() {
+    return {
+      source: "unavailable",
+      lat: null,
+      lng: null,
+      displayTitle: "Location unavailable",
+      placeLabel: "Location unavailable",
+      unavailable: true,
+      isFallbackLocation: false,
+      timestamp: Date.now()
+    };
+  }
 
   function resolveLocation(request) {
     var RI = global.WDS && global.WDS.regionalIntelligence;
@@ -30,22 +44,25 @@
         M.devLog("resolveLocation: using WDS.location state", loc.source);
         return Promise.resolve(loc);
       }
+      if (loc && loc.unavailable) {
+        return Promise.resolve(loc);
+      }
     }
 
-    var base = request.contentEngineBase || "design-system/content-engine/";
-    if (global.WDS && global.WDS.location && global.WDS.location.loadIndex) {
+    if (request.allowDefaultLocation === true && global.WDS && global.WDS.location && global.WDS.location.loadIndex) {
+      var base = request.contentEngineBase || "design-system/content-engine/";
       return global.WDS.location.loadIndex(base).then(function (index) {
         var fallback = global.WDS.location.defaultState(index);
-        M.devLog("resolveLocation: fallback via regions index", fallback.name);
+        fallback.isFallbackLocation = true;
+        M.devLog("resolveLocation: explicit default", fallback.name);
         return fallback;
       }).catch(function () {
-        M.devLog("resolveLocation: index load failed — engine default");
-        return M.buildFallbackLocationState();
+        return unavailableLocation();
       });
     }
 
-    M.devLog("resolveLocation: WDS.location unavailable — engine default");
-    return Promise.resolve(M.buildFallbackLocationState());
+    M.devLog("resolveLocation: unavailable (no silent default)");
+    return Promise.resolve(unavailableLocation());
   }
 
   function isFiniteCoord(n) {
@@ -56,6 +73,7 @@
 
   OIP.location = {
     resolve: resolveLocation,
-    fallbackState: M.buildFallbackLocationState
+    fallbackState: M.buildFallbackLocationState,
+    unavailableLocation: unavailableLocation
   };
 })(window);

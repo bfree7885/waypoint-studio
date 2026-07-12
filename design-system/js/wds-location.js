@@ -84,9 +84,9 @@
 
   function isKnownTestCoords(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return false;
-    if (isEnginePublishPoint(lat, lng)) return true;
-    if (lat >= 37 && lat <= 40 && lng <= -94 && lng >= -102) return true;
-    return false;
+    // Only reject the known engine publish point (US geographic center),
+    // never an entire state bounding box — real Kansas users must keep caches.
+    return isEnginePublishPoint(lat, lng);
   }
 
   function publishDiagnostics(diag) {

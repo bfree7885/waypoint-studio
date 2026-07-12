@@ -4,6 +4,14 @@
 (function () {
   "use strict";
 
+  function escapeHtml(str) {
+    return String(str == null ? "" : str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
   function getParam(name) {
     var params = new URLSearchParams(window.location.search);
     return params.get(name);
@@ -26,7 +34,7 @@
 
     WDS.wskb.loadRecord(id).then(function (record) {
       if (!record || !WDS.wskbRender) {
-        mount.innerHTML = "<p class=\"wskb-missing\">Species profile not found: " + id + "</p>";
+        mount.innerHTML = "<p class=\"wskb-missing\">Species profile not found: " + escapeHtml(id) + "</p>";
         mount.removeAttribute("aria-busy");
         return;
       }

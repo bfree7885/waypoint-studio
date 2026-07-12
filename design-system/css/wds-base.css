@@ -255,3 +255,14 @@ a:hover {
   outline: 2px solid var(--wds-focus);
   outline-offset: 2px;
 }
+
+/* Shared touch targets — improve keyboard/touch usability across apps */
+.wds-btn,
+.ws-topnav a,
+.wds-location-prompt__actions .wds-btn {
+  min-height: 44px;
+}
+
+.wds-btn--sm {
+  min-height: 36px;
+}

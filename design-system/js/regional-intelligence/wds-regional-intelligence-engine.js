@@ -298,29 +298,36 @@
         devLog("resolveLocation: WDS.location state", loc.source);
         return Promise.resolve(loc);
       }
+      if (loc && loc.unavailable) {
+        return Promise.resolve(loc);
+      }
     }
 
-    return loadRegionsIndex(base).then(function (index) {
-      if (global.WDS && global.WDS.location && global.WDS.location.defaultState) {
-        var fallback = global.WDS.location.defaultState(index);
-        devLog("resolveLocation: index default", fallback.name);
-        return fallback;
-      }
-      var state = buildFallbackLocationState(index);
-      devLog("resolveLocation: engine default", state && state.name);
-      return state;
-    }).catch(function (err) {
-      devLog("resolveLocation failed", err && err.message);
-      var minimal = buildFallbackLocationState(null);
-      if (minimal) return minimal;
-      return regionToLocationState({
-        id: "unknown",
-        name: "Unknown",
-        state: "",
-        stateCode: "",
-        lat: 0,
-        lng: 0
-      }, "fallback");
+    // Explicit opt-in only — never silently adopt Pike / engine default as the user location.
+    if (request.allowDefaultLocation === true) {
+      return loadRegionsIndex(base).then(function (index) {
+        if (global.WDS && global.WDS.location && global.WDS.location.defaultState) {
+          var fallback = global.WDS.location.defaultState(index);
+          fallback.isFallbackLocation = true;
+          devLog("resolveLocation: explicit default", fallback.name);
+          return fallback;
+        }
+        var state = buildFallbackLocationState(index);
+        if (state) state.isFallbackLocation = true;
+        return state;
+      });
+    }
+
+    devLog("resolveLocation: unavailable (no silent default)");
+    return Promise.resolve({
+      source: "unavailable",
+      lat: null,
+      lng: null,
+      displayTitle: "Location unavailable",
+      placeLabel: "Location unavailable",
+      unavailable: true,
+      isFallbackLocation: false,
+      timestamp: Date.now()
     });
   }
 
@@ -648,7 +655,8 @@
     return get(lastRequest);
   }
 
-  if (global.WDS && global.WDS.location && global.WDS.location.onChange) {
+  if (global.WDS && global.WDS.location && global.WDS.location.onChange && !global.__wdsRiEngineLocBound) {
+    global.__wdsRiEngineLocBound = true;
     global.WDS.location.onChange(function () {
       if (lastRequest) refresh();
     });

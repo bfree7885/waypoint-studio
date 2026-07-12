@@ -453,18 +453,18 @@
         return pkg;
       });
     }).catch(function (err) {
-      M.devLog("get failed — minimal fallback", err && err.message);
+      M.devLog("get failed — unavailable package", err && err.message);
       providerTelemetry.push({
         provider: "oip",
         status: "error",
         message: err && err.message ? err.message : "get failed",
         at: new Date().toISOString()
       });
-      var fallback = M.buildFallbackLocationState();
-      if (!fallback) return Promise.reject(err);
-      var pkg = M.normalizePackage(S.mergeLayers(S.fromLocationState(fallback)));
-      pkg.legacy = S.toLegacyV1(pkg);
-      pkg.meta = pkg.meta || {};
+      // Do not silently substitute Pike County (or any default region) as the user's location.
+      var pkg = M.emptyPackage();
+      pkg.meta.unavailable = true;
+      pkg.meta.isFallbackLocation = false;
+      pkg.meta.error = err && err.message ? String(err.message) : "oip-get-failed";
       pkg.meta.providerTelemetry = providerTelemetry.slice();
       pkg.meta.hydratedAt = new Date().toISOString();
       pkg.meta.blockStatus = {
@@ -474,6 +474,9 @@
         elevation: "unavailable",
         usgsWater: "unavailable"
       };
+      pkg.location.source = "unavailable";
+      pkg.location.latitude = null;
+      pkg.location.longitude = null;
       lastPackage = pkg;
       notifyChange(pkg);
       return pkg;
@@ -518,7 +521,8 @@
     return get(lastRequest);
   }
 
-  if (global.WDS && global.WDS.location && global.WDS.location.onChange) {
+  if (global.WDS && global.WDS.location && global.WDS.location.onChange && !OIP._locationBound) {
+    OIP._locationBound = true;
     global.WDS.location.onChange(function () {
       if (lastRequest) refresh();
     });

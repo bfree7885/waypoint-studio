@@ -465,7 +465,9 @@
   }
 
   global.WDS = global.WDS || {};
-  global.WDS.observations = {
+  var existingObs = global.WDS.observations || {};
+  var preservedExtensions = existingObs.extensions;
+  global.WDS.observations = Object.assign({}, existingObs, {
     VERSION: VERSION,
     SCHEMA_ID: SCHEMA_ID,
     CONFIDENCE: CONFIDENCE,
@@ -485,5 +487,8 @@
     toDarwinCore: toDarwinCore,
     contextFromPlatform: contextFromPlatform,
     weatherSnapshotFromPackage: weatherSnapshotFromPackage
-  };
+  });
+  if (preservedExtensions && !global.WDS.observations.extensions) {
+    global.WDS.observations.extensions = preservedExtensions;
+  }
 })(window);

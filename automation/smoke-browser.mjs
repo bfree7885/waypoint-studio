@@ -15,9 +15,18 @@ const PAGES = [
   { name: "kiosk", path: "/kiosk.html", waitMs: 18000 },
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
+  { name: "foragecast", path: "/apps/foragecast/", waitMs: 10000 },
+  { name: "fieldry", path: "/apps/fieldry/", waitMs: 10000 },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", waitMs: 8000 },
   { name: "scenes", path: "/apps/scenes/", waitMs: 3000 },
-  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 8000 }
+  { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 8000 },
+  { name: "photo-coach-profile", path: "/apps/photo-coach/profile/", waitMs: 6000 },
+  { name: "sheds", path: "/apps/shed-hunting/", waitMs: 4000 },
+  { name: "steepleaf", path: "/apps/steepleaf/", waitMs: 4000 },
+  { name: "signalterrain", path: "/apps/signalterrain/", waitMs: 4000 },
+  { name: "savant", path: "/apps/savant-sommelier/", waitMs: 4000 },
+  { name: "terrainbound-redirect", path: "/apps/terrainbound/", waitMs: 3000 },
+  { name: "species-profile", path: "/design-system/species/profile.html", waitMs: 4000 }
 ];
 
 function fetchJson(url) {
