@@ -1,13 +1,17 @@
-name: Smoke tests
+name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  smoke:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,26 +20,47 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Generate build metadata
-        run: node scripts/generate-build-info.mjs
+      - name: Inject local build metadata for tests
+        run: node scripts/inject-build-metadata.mjs
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          WAYPOINT_BUILD_SOURCE: github-actions
 
-      - name: Install smoke test dependency
+      - name: Install smoke dependency
         run: npm install ws@8.21.0 --no-save
 
       - name: Install Chrome
+        id: chrome
         uses: browser-actions/setup-chrome@v1
 
       - name: Start static server
-        run: python3 -m http.server 8080 &
-      
-      - name: Wait for server
-        run: sleep 2
+        run: |
+          python3 -m http.server 8080 > /tmp/waypoint-http.log 2>&1 &
+          echo $! > /tmp/waypoint-http.pid
+
+      - name: Wait for server readiness
+        run: node automation/wait-for-http.mjs http://127.0.0.1:8080/ 30000
 
       - name: Run headless smoke tests
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          WAYPOINT_SMOKE_ARTIFACTS: automation/artifacts/ci-smoke
         run: node automation/smoke-browser.mjs http://127.0.0.1:8080
 
-      - name: Test persistent profile migration
-        run: node automation/test-profile-migration.mjs http://127.0.0.1:8080
+      - name: Upload smoke artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-artifacts
+          path: |
+            automation/artifacts/
+            /tmp/waypoint-http.log
+          if-no-files-found: ignore
+
+      - name: Mobile layout
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node automation/mobile-layout.mjs http://127.0.0.1:8080
 
       - name: Platform foundation tests
         run: node automation/test-platform-foundation.mjs
@@ -55,6 +80,9 @@ jobs:
       - name: Personalized coaching tests
         run: node automation/test-personalized-coaching.mjs
 
+      - name: Persistent profile migration
+        run: node automation/test-profile-migration.mjs http://127.0.0.1:8080
+
       - name: Syntax-check live engine
         run: node --check scripts/waypoint-live-engine.mjs
 
@@ -69,3 +97,8 @@ jobs:
 
       - name: Validate location-sensitive modules
         run: node scripts/validate-location-sensitive.mjs
+
+      - name: Stop static server
+        if: always()
+        run: |
+          if [ -f /tmp/waypoint-http.pid ]; then kill "$(cat /tmp/waypoint-http.pid)" || true; fi

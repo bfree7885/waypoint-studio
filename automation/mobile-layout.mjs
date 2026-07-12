@@ -17,10 +17,10 @@ const VIEWPORTS = [
 ];
 const PAGES = [
   { name: "studio-home", path: "/", waitMs: 4000 },
-  { name: "dashboard", path: "/apps/dashboard/", waitMs: 18000 },
-  { name: "kiosk", path: "/kiosk.html", waitMs: 5000 },
+  { name: "dashboard", path: "/apps/dashboard/", waitMs: 12000 },
+  { name: "kiosk", path: "/kiosk.html", waitMs: 8000 },
   { name: "status", path: "/status.html", waitMs: 4000 },
-  { name: "scenes", path: "/apps/scenes/", waitMs: 3000 },
+  { name: "scenes", path: "/apps/scenes/", waitMs: 4000 },
   { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 8000 }
 ];
 

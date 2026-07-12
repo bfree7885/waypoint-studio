@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="waypoint-build" content="8cc57e5">
+  <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Waypoint Studio Debug</title>
 </head>
@@ -10,9 +10,9 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: 83ff72e
-2) Build date/time: 2026-07-12T20:00:27.784Z
-3) Active page title: Waypoint Studio — Outdoor Dashboard
+1) Current deployed commit hash: d3b3bca
+2) Build date/time: 2026-07-12T21:30:42.084Z
+3) Active page title: Waypoint Studio
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
 5) Live weather loaded: yes
@@ -22,13 +22,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: HEALTHY
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-12T20:00:01.744Z
+Snapshot captured at: 2026-07-12T21:30:01.217Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;83ff72e&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-12T20:00:27.784Z&quot;,
-  &quot;activePageTitle&quot;: &quot;Waypoint Studio — Outdoor Dashboard&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-12T20:00:01.744Z&quot;,
+  &quot;commitHash&quot;: &quot;d3b3bca&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-12T21:30:42.084Z&quot;,
+  &quot;activePageTitle&quot;: &quot;Waypoint Studio&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-12T21:30:01.217Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -86,8 +86,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "83ff72e";
-  var FALLBACK_BUILD = "2026-07-12T20:00:27.784Z";
+  var FALLBACK_COMMIT = "d3b3bca";
+  var FALLBACK_BUILD = "2026-07-12T21:30:42.084Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -157,7 +157,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"83ff72e","buildTime":"2026-07-12T20:00:27.784Z","activePageTitle":"Waypoint Studio — Outdoor Dashboard","capturedAt":"2026-07-12T20:00:01.744Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":true},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"d3b3bca","buildTime":"2026-07-12T21:30:42.084Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-07-12T21:30:01.217Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":true},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
