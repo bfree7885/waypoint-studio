@@ -172,6 +172,18 @@
     setInterval(publishDebugSnapshot, 5000);
   }
 
+  function scrollToDashboardHash() {
+    var h = String(window.location.hash || "").replace(/^#/, "");
+    if (!h) return;
+    var el = document.getElementById(h);
+    if (!el) return;
+    try {
+      el.scrollIntoView({ block: "start", behavior: "smooth" });
+    } catch (e) {
+      el.scrollIntoView(true);
+    }
+  }
+
   function startDashboard(loc) {
     if (!window.WDS || !WDS.contentEngine) return;
     WDS.contentEngine.init({
@@ -185,6 +197,7 @@
         startDashboard(newLoc);
       }
     }).then(function () {
+      scrollToDashboardHash();
       if (WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast) {
         var pkg = WDS.outdoorIntelligence.getLast();
         if (WDS.locationDebug && WDS.locationDebug.mount) {
@@ -224,10 +237,16 @@
     }
   }
 
+  var BOOT_DEADLINE = Date.now() + 20000;
+
   function boot() {
     if (!window.WDS || !WDS.location || !WDS.contentEngine ||
         !WDS.outdoorIntelligence || typeof WDS.outdoorIntelligence.get !== "function" ||
         !WDS.weather || typeof WDS.weather.getForecast !== "function") {
+      if (Date.now() >= BOOT_DEADLINE) {
+        showBootError();
+        return;
+      }
       requestAnimationFrame(boot);
       return;
     }

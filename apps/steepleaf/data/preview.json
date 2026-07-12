@@ -1,24 +1,24 @@
 {
   "name": "Steepleaf",
-  "eyebrow": "Tea & botanical craft",
-  "mission": "Botanical plates, habitat keys, and phenology through the year — taught the way a good field guide teaches.",
-  "status": "ready",
-  "statusLabel": "Ready to explore",
+  "eyebrow": "Tea discovery",
+  "mission": "A refined tea companion — catalog your leaves, journal your brews, and notice flavor without social ranking.",
+  "status": "foundation",
+  "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Refined botanical learning for tea makers, plant people, and careful observers.",
-  "strategicRole": "Help people learn plants with illustrations, habitat notes, and respect for rare species.",
+  "portfolioNote": "Personal tea catalog and brew journal — private by default.",
+  "strategicRole": "Help people brew with attention: leaf, water, time, and quiet tasting notes.",
   "learnToday": [
-    "How to read a botanical plate: leaf arrangement, margin, venation, and habitat",
-    "Phenology observation without collecting rare plants — photograph, don't poach",
-    "Connecting understory plants to canopy trees on north vs south slopes",
-    "Why Latin names are precision tools, not trivia"
+    "Recording origin, type, and tasting words for teas you keep",
+    "Brew journal fields that stay useful: leaf, water, time, temperature",
+    "Why personal taste beats influencer rankings",
+    "Keeping brew notes private on this device"
   ],
   "comingSoon": [],
   "preview": {
-    "title": "The herbarium page",
-    "placeholderLabel": "Botanical plate",
-    "placeholderHint": "Leaf · flower · fruit · habitat sketch",
-    "description": "Every leaf has a story. Steepleaf is a quiet botanical companion for careful plant study."
+    "title": "The steeping desk",
+    "placeholderLabel": "Tea notes",
+    "placeholderHint": "Leaf · water · time · taste",
+    "description": "Catalog, brew, and notice flavor — without social ranking."
   },
-  "homeLink": "../../#experiences"
+  "homeLink": "../../"
 }

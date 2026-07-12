@@ -431,6 +431,29 @@ html.was-launcher-open {
   color: var(--wds-accent, #3d5a40);
 }
 
+.was-home__status,
+.was-launcher__status {
+  display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-text-secondary, #4a4740);
+  border: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.12));
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
+
+.was-home__error {
+  padding: 1rem 0 2rem;
+}
+
+.was-home__error a {
+  color: var(--wds-accent, #3d5a40);
+}
+
 /* Scene Builder secondary actions (not app navigation) */
 .was-builder-bar {
   display: flex;

@@ -15,6 +15,8 @@
     }
   })();
 
+  var BOOT_DEADLINE = Date.now() + 4000;
+
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
@@ -23,19 +25,39 @@
       .replace(/"/g, "&quot;");
   }
 
+  function statusLabel(status) {
+    if (status === "foundation") return "Foundation";
+    if (status === "planned") return "Planned";
+    return "";
+  }
+
+  function renderFallback(mount) {
+    mount.innerHTML =
+      '<div class="was-home__error" role="alert">' +
+        "<p>Applications could not load. Check your connection and try again.</p>" +
+        '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
+        '<p class="wds-caption"><a href="apps/dashboard/">Open Dashboard</a> · ' +
+        '<a href="apps/fieldry/">Fieldry</a> · <a href="apps/foragecast/">ForageCast</a> · ' +
+        '<a href="apps/scenes/">Scenes</a></p>' +
+      "</div>";
+    mount.removeAttribute("aria-busy");
+  }
+
   function render() {
     var mount = document.getElementById("was-home-apps");
     var Nav = global.WDS && global.WDS.appNav;
-    if (!mount || !Nav) return;
+    if (!mount || !Nav) return false;
     var groups = Nav.appsByCategory();
     mount.innerHTML = groups.map(function (g) {
       var cards = g.apps.map(function (app) {
         var href = Nav.resolveRoute(app.route, 0);
+        var chip = statusLabel(app.status);
         return (
           '<a class="was-home__card" href="' + esc(href) + '">' +
             "<strong>" + esc(app.title) + "</strong>" +
+            (chip ? '<span class="was-home__status">' + esc(chip) + "</span>" : "") +
             "<span>" + esc(app.description || "") + "</span>" +
-            "<em>Open</em>" +
+            "<em>" + (app.status === "foundation" ? "Explore" : "Open") + "</em>" +
           "</a>"
         );
       }).join("");
@@ -47,11 +69,17 @@
       );
     }).join("");
     mount.removeAttribute("aria-busy");
+    return true;
   }
 
   function boot() {
-    if (global.WDS && global.WDS.appNav) render();
-    else setTimeout(boot, 20);
+    if (render()) return;
+    if (Date.now() >= BOOT_DEADLINE) {
+      var mount = document.getElementById("was-home-apps");
+      if (mount) renderFallback(mount);
+      return;
+    }
+    setTimeout(boot, 40);
   }
 
   if (document.readyState === "loading") {

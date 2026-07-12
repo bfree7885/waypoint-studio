@@ -1,16 +1,16 @@
 {
   "name": "Savant Sommelier",
-  "eyebrow": "Landscape & terroir",
-  "mission": "Terroir as ecology, geology, and weather — landscape literacy without pretension.",
-  "status": "ready",
-  "statusLabel": "Ready to explore",
+  "eyebrow": "Vineyard intelligence",
+  "mission": "Vineyard intelligence — terrain, climate, and wine landscape literacy without pretension.",
+  "status": "foundation",
+  "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Premium essays connecting place, geology, and flavor.",
+  "portfolioNote": "Place, geology, and climate literacy for careful drinkers and growers.",
   "strategicRole": "Help people read a landscape before they read a label.",
   "learnToday": [
-    "How slope, soil, and climate shape forest and cultivated landscapes",
+    "How slope, soil, and climate shape cultivated landscapes",
     "Reading a landscape before reading a label — attention without pretension",
-    "Water, stewardship, and native habitat at the edge of working land",
+    "Water, stewardship, and habitat at the edge of working land",
     "Connecting geology notes to what a place can grow"
   ],
   "comingSoon": [],
@@ -18,7 +18,7 @@
     "title": "The tasting room overlook",
     "placeholderLabel": "Landscape",
     "placeholderHint": "Slope · watershed · season · stewardship",
-    "description": "The glass can hold the landscape — careful writing about place, geology, and flavor."
+    "description": "Terrain, climate, and place — careful literacy without pretension."
   },
-  "homeLink": "../../#experiences"
+  "homeLink": "../../"
 }

@@ -68,8 +68,8 @@
           "href": "#wdb-section-safety"
         },
         {
-          "id": "river",
-          "label": "River",
+          "id": "water",
+          "label": "Water",
           "href": "#wdb-section-water"
         },
         {
@@ -148,7 +148,7 @@
       ],
       "category": "outdoor",
       "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
-      "status": "live",
+      "status": "foundation",
       "features": [
         {
           "id": "overview",
@@ -265,8 +265,8 @@
         "/apps/steepleaf"
       ],
       "category": "outdoor",
-      "description": "Tea and botanical craft \u2014 plates, phenology, and careful plant study.",
-      "status": "live",
+      "description": "Tea discovery \u2014 catalog, brew journal, and sensory notes.",
+      "status": "foundation",
       "features": [
         {
           "id": "overview",
@@ -285,8 +285,8 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Maps, terrain, and reliable navigation literacy.",
-      "status": "live",
+      "description": "Radio situational awareness \u2014 receivers, incidents, and mapping.",
+      "status": "foundation",
       "features": [
         {
           "id": "overview",
@@ -305,8 +305,8 @@
         "/apps/savant-sommelier"
       ],
       "category": "lifestyle",
-      "description": "Landscape and terroir \u2014 place, geology, and flavor.",
-      "status": "live",
+      "description": "Vineyard intelligence \u2014 terrain, climate, and wine landscape literacy.",
+      "status": "foundation",
       "features": [
         {
           "id": "overview",
@@ -317,4 +317,4 @@
     }
   ]
 };
-})(typeof window !== "undefined" ? window : global);
+})(typeof window !== "undefined" ? window : globalThis);

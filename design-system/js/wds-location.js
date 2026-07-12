@@ -948,6 +948,47 @@
         fail("Location not found — try Maine, Colorado, Orange County NY, or Pike County PA.");
       }
     });
+
+    (function trapLocationFocus() {
+      var dialog = mount.querySelector(".wds-location-prompt");
+      if (!dialog) return;
+      var selector =
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+      function nodes() {
+        return Array.prototype.slice.call(dialog.querySelectorAll(selector)).filter(function (el) {
+          return el.offsetParent !== null || el === document.activeElement;
+        });
+      }
+      var first = nodes()[0];
+      if (first) first.focus();
+      function onKey(e) {
+        if (!mount.contains(dialog) || !mount.innerHTML) {
+          document.removeEventListener("keydown", onKey, true);
+          return;
+        }
+        if (e.key !== "Tab") return;
+        var list = nodes();
+        if (!list.length) return;
+        var a = list[0];
+        var z = list[list.length - 1];
+        if (e.shiftKey && document.activeElement === a) {
+          e.preventDefault();
+          z.focus();
+        } else if (!e.shiftKey && document.activeElement === z) {
+          e.preventDefault();
+          a.focus();
+        } else if (!dialog.contains(document.activeElement)) {
+          e.preventDefault();
+          (e.shiftKey ? z : a).focus();
+        }
+      }
+      document.addEventListener("keydown", onKey, true);
+      var prevFinish = finish;
+      finish = function (state) {
+        document.removeEventListener("keydown", onKey, true);
+        prevFinish(state);
+      };
+    })();
   }
 
   function bootstrap(options) {

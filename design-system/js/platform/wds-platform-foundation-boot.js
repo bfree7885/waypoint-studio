@@ -14,19 +14,20 @@
       })
       .then(function (cfg) {
         window.WDS.platformFoundation.mount(mount, cfg);
-        if (window.WDS.platformShell) {
-          window.WDS.platformShell.mount({
-            currentId: cfg.productId || document.documentElement.getAttribute("data-product"),
+        if (window.WDS.appShell && window.WDS.appShell.mount) {
+          window.WDS.appShell.mount({
+            appId: cfg.productId || document.documentElement.getAttribute("data-product"),
             productName: cfg.title,
             depth: 1
           });
         }
       })
-      .catch(function (err) {
+      .catch(function () {
         mount.innerHTML =
-          '<p class="wds-body">Foundation page could not load. ' +
-          String(err && err.message ? err.message : err) +
-          "</p>";
+          '<div class="wds-body" role="alert">' +
+            "<p>This foundation page could not load. Check your connection and try again.</p>" +
+            '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
+          "</div>";
         mount.removeAttribute("aria-busy");
       });
   }

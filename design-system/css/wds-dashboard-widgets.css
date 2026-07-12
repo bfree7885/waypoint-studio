@@ -867,7 +867,7 @@
 #outdoor-dashboard,
 .wdb-section,
 .wdb-anchor {
-  scroll-margin-top: calc(var(--wds-topbar-h) + 0.75rem);
+  scroll-margin-top: calc(var(--wds-topbar-h, 3.25rem) + 3.5rem);
 }
 
 .wdb-dashboard-enter {

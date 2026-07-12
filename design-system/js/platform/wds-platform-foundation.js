@@ -15,9 +15,10 @@
 
   function statusLabel(status) {
     if (status === "live") return "Available now";
-    if (status === "foundation" || status === "ready") return "Ready to explore";
+    if (status === "foundation") return "Foundation";
+    if (status === "ready") return "In progress";
     if (status === "planned" || status === "next") return "Coming later";
-    return "Ready to explore";
+    return "Foundation";
   }
 
   function renderModules(modules) {
@@ -65,15 +66,27 @@
     );
   }
 
+  function routeHref(path) {
+    if (!path || path === "/") return "#main";
+    if (path.charAt(0) === "#") return path;
+    if (path.indexOf("http") === 0 || path.indexOf("/") === 0) return path;
+    return path;
+  }
+
   function renderRoutes(routes) {
     var ready = (routes || []).filter(function (r) { return r.ready; });
     if (!ready.length) return "";
     var items = ready
       .map(function (r) {
+        var href = routeHref(r.path);
         return (
-          "<li><strong>" +
+          "<li>" +
+          '<a class="wpf-route" href="' +
+          esc(href) +
+          '"><strong>' +
           esc(r.label) +
-          '</strong> <span class="wpf-pill">open</span></li>'
+          "</strong></a>" +
+          "</li>"
         );
       })
       .join("");

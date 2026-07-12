@@ -322,16 +322,21 @@
         })
       : "";
 
+    var Nav = global.WDS && global.WDS.appNav;
+    var depth = Nav && Nav.depthFromPath ? Nav.depthFromPath() : 1;
+    function fieldHref(route) {
+      return Nav && Nav.resolveRoute ? Nav.resolveRoute(route, depth) : ("../" + String(route || "").replace(/^apps\//, ""));
+    }
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
         '<h1 class="wds-sr-only" id="wod-title">Outdoor dashboard</h1>' +
         '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
         '<nav class="wod__links" id="field-tools" aria-label="Field tools">' +
-          '<a class="wod__link" href="apps/foragecast/">ForageCast</a>' +
-          '<a class="wod__link" href="apps/fieldry/">Fieldry</a>' +
-          '<a class="wod__link" href="apps/scenes/">Scenes</a>' +
-          '<a class="wod__link" href="apps/photo-coach/">Photo Coach</a>' +
-          '<a class="wod__link" href="design-system/species/profile.html?id=morchella-americana">Species</a>' +
+          '<a class="wod__link" href="' + fieldHref("apps/foragecast/") + '">ForageCast</a>' +
+          '<a class="wod__link" href="' + fieldHref("apps/fieldry/") + '">Fieldry</a>' +
+          '<a class="wod__link" href="' + fieldHref("apps/scenes/") + '">Scenes</a>' +
+          '<a class="wod__link" href="' + fieldHref("apps/photo-coach/") + '">Photo Coach</a>' +
+          '<a class="wod__link" href="' + fieldHref("design-system/species/profile.html?id=morchella-americana") + '">Species</a>' +
         "</nav>" +
       "</section>"
     );

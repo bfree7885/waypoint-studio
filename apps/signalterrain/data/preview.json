@@ -1,24 +1,24 @@
 {
   "name": "SignalTerrain",
-  "eyebrow": "Maps & terrain",
-  "mission": "Maps, contours, sky, and the ground beneath your boots — navigation and terrain literacy for outdoor students.",
-  "status": "ready",
-  "statusLabel": "Ready to explore",
+  "eyebrow": "Radio awareness",
+  "mission": "Clear radio situational awareness — receivers, timelines, maps, and audio kept orderly and private.",
+  "status": "foundation",
+  "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Technical, reliable terrain and navigation tools for careful travelers.",
-  "strategicRole": "Help people read contour, aspect, drainage, and horizon with humility.",
+  "portfolioNote": "Receivers and incident timelines for careful listeners — no engagement metrics.",
+  "strategicRole": "Help people keep receiver and incident context clear without noise.",
   "learnToday": [
-    "How contour lines describe drainage and aspect",
-    "Reading a terrain map as guidance, not a guarantee",
-    "Bearing, turnaround planning, and humility before summit fever",
-    "Connecting geology notes to what you see underfoot"
+    "How a private receiver registry stays modular",
+    "Reading an incident timeline with source confidence",
+    "Keeping audio libraries local first",
+    "Why shared receivers must stay opt-in"
   ],
   "comingSoon": [],
   "preview": {
-    "title": "The observatory deck",
-    "placeholderLabel": "Terrain schematic",
-    "placeholderHint": "Aspect · drainage · horizon · sky",
-    "description": "Horizon, contour, and signal reading for people who want reliable navigation literacy."
+    "title": "Receiver deck",
+    "placeholderLabel": "Signal schematic",
+    "placeholderHint": "Receivers · incidents · audio · map",
+    "description": "Receivers, timelines, and private audio for people who need clarity over noise."
   },
-  "homeLink": "../../#experiences"
+  "homeLink": "../../"
 }

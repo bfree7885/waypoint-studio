@@ -34,9 +34,10 @@
     }).map(function (d) { return d.id; });
   }
 
-  function renderToggle(checked, id) {
+  function renderToggle(checked, id, title) {
+    var label = title ? "Show " + title : "Show widget";
     return (
-      '<label class="wdb-switch" aria-label="Show widget">' +
+      '<label class="wdb-switch" aria-label="' + escapeHtml(label) + '">' +
         '<input type="checkbox" class="wdb-switch__input" data-widget-visible="' + escapeHtml(id) + '"' +
           (checked ? " checked" : "") + ">" +
         '<span class="wdb-switch__track"><span class="wdb-switch__thumb"></span></span>' +
@@ -68,7 +69,7 @@
           ? '<select class="wdb-settings__group-select" data-widget-group="' + escapeHtml(def.id) +
               '" aria-label="Assign group">' + groupOpts + "</select>"
           : "") +
-        renderToggle(visible, def.id) +
+        renderToggle(visible, def.id, def.title) +
       "</li>"
     );
   }

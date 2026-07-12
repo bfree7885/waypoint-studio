@@ -6,6 +6,44 @@
   "use strict";
 
   var launcherOpen = false;
+  var launcherFocusHandler = null;
+  var FOCUSABLE =
+    'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
+
+  function focusables(root) {
+    if (!root) return [];
+    return Array.prototype.slice.call(root.querySelectorAll(FOCUSABLE)).filter(function (el) {
+      return !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true" &&
+        el.offsetParent !== null;
+    });
+  }
+
+  function trapFocus(panel) {
+    releaseFocusTrap();
+    if (!panel) return;
+    launcherFocusHandler = function (e) {
+      if (!launcherOpen || e.key !== "Tab") return;
+      var nodes = focusables(panel);
+      if (!nodes.length) return;
+      var first = nodes[0];
+      var last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", launcherFocusHandler, true);
+  }
+
+  function releaseFocusTrap() {
+    if (launcherFocusHandler) {
+      document.removeEventListener("keydown", launcherFocusHandler, true);
+      launcherFocusHandler = null;
+    }
+  }
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -32,12 +70,18 @@
       var cards = g.apps.map(function (app) {
         var href = NavApi.resolveRoute(app.route, depth);
         var current = app.id === activeId;
+        var status = app.status || "live";
+        var statusChip = "";
+        if (status === "foundation") statusChip = '<span class="was-launcher__status">Foundation</span>';
+        else if (status === "planned") statusChip = '<span class="was-launcher__status">Planned</span>';
+        else if (status !== "live") statusChip = '<span class="was-launcher__status">' + esc(status) + "</span>";
         return (
           '<a class="was-launcher__app' + (current ? " is-current" : "") + '" href="' + esc(href) + '"' +
             (current ? ' aria-current="page"' : "") + ">" +
             iconMark(app.icon || app.id) +
             '<span class="was-launcher__app-copy">' +
               "<strong>" + esc(app.shortTitle || app.title) + "</strong>" +
+              statusChip +
               "<span>" + esc(app.description || "") + "</span>" +
             "</span>" +
           "</a>"
@@ -151,6 +195,7 @@
     launcherOpen = !!open;
     var root = document.getElementById("was-launcher");
     var btn = document.getElementById("was-apps-btn");
+    var panel = root && root.querySelector(".was-launcher__panel");
     if (root) {
       if (launcherOpen) root.removeAttribute("hidden");
       else root.setAttribute("hidden", "hidden");
@@ -158,10 +203,12 @@
     if (btn) btn.setAttribute("aria-expanded", launcherOpen ? "true" : "false");
     document.documentElement.classList.toggle("was-launcher-open", launcherOpen);
     if (launcherOpen) {
-      var closeBtn = root && root.querySelector(".was-launcher__close");
+      trapFocus(panel);
+      var closeBtn = panel && panel.querySelector(".was-launcher__close");
       if (closeBtn) closeBtn.focus();
-    } else if (btn) {
-      btn.focus();
+    } else {
+      releaseFocusTrap();
+      if (btn) btn.focus();
     }
   }
 
