@@ -13,26 +13,9 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app" data-wds-platform-shell data-product="fieldry" data-product-name="Fieldry" data-shell-depth="1">
-    <div data-wds-platform-nav data-shell-depth="1">
-      <header class="wds-topbar">
-        <div class="wds-topbar__inner">
-          <a class="wds-brand" href="../../">
-            <span class="wds-brand__mark" aria-hidden="true"></span>
-            <span class="wds-brand__name">Waypoint Studio</span>
-          </a>
-          <nav class="ws-topnav" aria-label="Fieldry">
-            <a href="../../">Dashboard</a>
-            <a href="#/" aria-current="page">Fieldry</a>
-            <a href="#/new">Record</a>
-            <a href="#/life">Life list</a>
-            <a href="#/history">History</a>
-            <a href="#/stats">Stats</a>
-            <a href="#/browse">Categories</a>
-          </nav>
-        </div>
-      </header>
-    </div>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="fieldry" data-product-name="Fieldry" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
 
     <div id="wds-location-prompt"></div>
 
@@ -45,17 +28,15 @@
       </div>
     </main>
 
-    <div data-wds-platform-footer data-shell-depth="1">
-      <footer class="wds-footer">
-        <p>Fieldry · Private life list · <a href="../../#how-waypoint-works">How Waypoint works</a></p>
-      </footer>
-    </div>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
 
   <script src="../../design-system/js/wds-platform.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-catalog.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-stores.js" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-shell.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/observations/wds-wos-extensions.js" defer></script>
   <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
   <script src="../../design-system/js/knowledge/wds-knowledge-core.js" defer></script>

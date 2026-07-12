@@ -15,19 +15,9 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <header class="wds-topbar">
-      <div class="wds-topbar__inner">
-        <a class="wds-brand" href="../../">
-          <span class="wds-brand__mark" aria-hidden="true"></span>
-          <span class="wds-brand__name">Waypoint Studio</span>
-        </a>
-        <nav class="ws-topnav" aria-label="ForageCast">
-          <a href="index.html">Home</a>
-          <a href="season-table.html" aria-current="page">Season table</a>
-        </nav>
-      </div>
-    </header>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="foragecast" data-product-name="ForageCast" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
 
     <div id="wds-location-prompt"></div>
 
@@ -47,15 +37,11 @@
       </div>
     </main>
 
-    <footer class="wds-footer">
-      <details class="wce-methodology wce-methodology--footer">
-        <summary>How Waypoint works</summary>
-        <div class="wce-methodology__body">
-          <p class="wds-body">Internal references for contributors — not required for visitors. Documentation lives in the repository <code>docs/</code> folder.</p>
-        </div>
-      </details>
-    </footer>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/wds-map-view.js" defer></script>
   <script src="../../design-system/js/wds-platform.js" defer></script>
   <script src="js/foragecast-model.js" defer></script>

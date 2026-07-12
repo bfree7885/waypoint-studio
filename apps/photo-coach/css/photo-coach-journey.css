@@ -15,10 +15,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--wds-space-2) var(--wds-space-4);
+  max-width: var(--wds-max-content);
+  margin: 0 auto;
+  padding: 0.65rem clamp(1rem, 3vw, 2rem);
   font-size: var(--wds-text-xs);
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.06));
 }
 
 .pc-nav a {

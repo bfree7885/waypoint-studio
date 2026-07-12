@@ -16,21 +16,14 @@
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to studio</a>
-  <div class="app" id="app">
-    <header class="topbar">
-      <div class="topbar-inner">
-        <a class="brand" href="../scenes/">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <span class="brand-name">Waypoint Scenes</span>
-        </a>
-        <nav class="topbar-nav" aria-label="Studio">
-          <a class="btn btn-ghost btn-sm" href="../../#outdoor-dashboard">Dashboard</a>
-          <a class="btn btn-ghost btn-sm" href="../photo-coach/">Photo Coach</a>
-          <button type="button" class="btn btn-ghost btn-sm" id="btn-coach-nav">Coach mode</button>
-          <button type="button" class="btn btn-ghost btn-sm" id="btn-upload-nav">Scene Builder</button>
-        </nav>
-      </div>
-    </header>
+  <div class="app was-shell" id="app" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <div class="was-builder-bar" aria-label="Scene Builder actions">
+      <button type="button" class="btn btn-ghost btn-sm" id="btn-coach-nav">Coach mode</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="btn-upload-nav">Scene Builder</button>
+    </div>
 
     <section class="hero" id="hero">
       <div class="hero-glow" aria-hidden="true"></div>
@@ -369,11 +362,12 @@
     </main>
     </div>
 
-    <footer class="site-footer">
-      <p>Bring Nature to Life</p>
-    </footer>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
 
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/wds-core.js"></script>
   <script src="../../design-system/js/wds-tabs.js"></script>
   <script src="../../design-system/js/wds-upload.js"></script>

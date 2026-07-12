@@ -33,14 +33,26 @@
   var PRODUCTS = [
     {
       id: "studio",
+      name: "Waypoint Studio",
+      shortName: "Studio",
+      tier: "core",
+      status: "live",
+      description: "Studio home — open every Waypoint application from one place.",
+      pathFromApps: "../../",
+      pathFromRoot: "./",
+      dataProduct: "studio-home",
+      navPriority: 5
+    },
+    {
+      id: "dashboard",
       name: "Dashboard",
       shortName: "Dashboard",
       tier: "core",
       status: "live",
       description: "Regional outdoor intelligence — weather, light, trails, and stewardship.",
-      pathFromApps: "../../",
-      pathFromRoot: "./",
-      dataProduct: "scenes",
+      pathFromApps: "../dashboard/",
+      pathFromRoot: "apps/dashboard/",
+      dataProduct: "dashboard",
       navPriority: 10
     },
     {
@@ -170,6 +182,9 @@
     if (!product) return "#";
     if (product.id === "studio") {
       return depth === 0 ? "./" : depth === 1 ? "../../" : "../../../";
+    }
+    if (product.id === "dashboard") {
+      return depth === 0 ? "apps/dashboard/" : depth === 1 ? "../dashboard/" : "../../dashboard/";
     }
     return depth === 0 ? product.pathFromRoot : product.pathFromApps;
   }

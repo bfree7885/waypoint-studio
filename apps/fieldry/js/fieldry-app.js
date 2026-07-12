@@ -187,7 +187,11 @@
     var route = parseRoute();
     mountEl.setAttribute("aria-busy", "false");
     setDocumentTitle(route);
-    updateNavCurrent(route);
+    if (global.WDS && global.WDS.appShell && global.WDS.appShell.updateLocalCurrent) {
+      global.WDS.appShell.updateLocalCurrent();
+    } else {
+      updateNavCurrent(route);
+    }
     if (route.view === "new") renderNew();
     else if (route.view === "edit") renderEdit(route.id);
     else if (route.view === "detail") renderDetail(route.id);
@@ -225,18 +229,13 @@
       global.FieldryStorage.migrateAll(false);
     }
 
-    if (global.WDS && global.WDS.platformShell && global.WDS.platformShell.mount) {
+    if (global.WDS && global.WDS.appShell && global.WDS.appShell.updateLocalCurrent) {
+      /* App shell owns chrome; keep hash feature state in sync */
+    } else if (global.WDS && global.WDS.platformShell && global.WDS.platformShell.mount) {
       global.WDS.platformShell.mount({
         currentId: "fieldry",
         productName: "Fieldry",
-        depth: 1,
-        extraLinks: [
-          { id: "fld-new", label: "Record", href: "#/new" },
-          { id: "fld-life", label: "Life list", href: "#/life" },
-          { id: "fld-history", label: "History", href: "#/history" },
-          { id: "fld-stats", label: "Stats", href: "#/stats" },
-          { id: "fld-browse", label: "Categories", href: "#/browse" }
-        ]
+        depth: 1
       });
     }
 

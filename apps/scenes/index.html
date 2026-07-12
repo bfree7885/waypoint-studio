@@ -13,23 +13,9 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <header class="wds-topbar">
-      <div class="wds-topbar__inner">
-        <a class="wds-brand" href="../../">
-          <span class="wds-brand__mark" aria-hidden="true"></span>
-          <span class="wds-brand__name">Waypoint Studio</span>
-        </a>
-        <nav class="ws-topnav" aria-label="Waypoint Scenes">
-          <a href="../../">Dashboard</a>
-          <a href="../foragecast/">ForageCast</a>
-          <a href="../fieldry/">Fieldry</a>
-          <a href="./" aria-current="page">Scenes</a>
-          <a href="../photo-coach/">Photo Coach</a>
-          <a href="../photo-coach/profile/">Profile</a>
-        </nav>
-      </div>
-    </header>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
 
     <main id="main" class="scenes-page">
       <header class="scenes-hero">
@@ -68,12 +54,13 @@
         </article>
       </div>
 
-      <p class="scenes-context">Need outdoor conditions first? <a href="../../">Open the dashboard</a>. Recording what you saw? Try <a href="../fieldry/">Fieldry</a>.</p>
+      <p class="scenes-context">Need outdoor conditions first? <a href="../dashboard/">Open the dashboard</a>. Recording what you saw? Try <a href="../fieldry/">Fieldry</a>.</p>
     </main>
 
-    <footer class="wds-footer">
-      <p>Waypoint Scenes · Photography · <a href="../../#how-waypoint-works">How Waypoint works</a></p>
-    </footer>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
 </body>
 </html>

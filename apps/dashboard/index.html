@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-product="dashboard">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="Dashboard — weather, light, trails, and outdoor conditions for your region.">
+  <title>Dashboard — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-home.css">
+  <link rel="stylesheet" href="../../design-system/css/wds-app-shell.css">
+  <link rel="stylesheet" href="../../css/home-dashboard.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="dashboard" data-product-name="Dashboard" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <div id="wds-location-prompt"></div>
+
+    <main id="main">
+      <div id="wds-content-engine" data-wds-region="us-national" aria-busy="true" aria-live="polite">
+        <div class="wdb-page-loading" role="status">
+          <div class="wdb-page-loading__skeleton" aria-hidden="true">
+            <div class="wdb-skel wdb-skel--line wdb-skel--title"></div>
+            <div class="wdb-skel wdb-skel--line wdb-skel--sub"></div>
+            <div class="wdb-skel wdb-skel--card wdb-skel--hero"></div>
+            <div class="wdb-skel wdb-skel--row">
+              <div class="wdb-skel wdb-skel--chip"></div>
+              <div class="wdb-skel wdb-skel--chip"></div>
+              <div class="wdb-skel wdb-skel--chip"></div>
+            </div>
+            <div class="wdb-skel wdb-skel--card"></div>
+            <div class="wdb-skel wdb-skel--card"></div>
+          </div>
+          <p class="wdb-page-loading__text">Loading your outdoor dashboard…</p>
+        </div>
+      </div>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="1"></div>
+  </div>
+  <script src="../../design-system/js/wds-build.js"></script>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
+  <script src="../../design-system/js/wds.js" defer></script>
+  <script src="js/home-boot.js" defer></script>
+</body>
+</html>

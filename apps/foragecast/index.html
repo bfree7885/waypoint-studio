@@ -14,23 +14,9 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <header class="wds-topbar">
-      <div class="wds-topbar__inner">
-        <a class="wds-brand" href="../../">
-          <span class="wds-brand__mark" aria-hidden="true"></span>
-          <span class="wds-brand__name">Waypoint Studio</span>
-        </a>
-        <nav class="ws-topnav" aria-label="ForageCast sections">
-          <a href="../../">Dashboard</a>
-          <a href="../fieldry/">Fieldry</a>
-          <a href="../scenes/">Scenes</a>
-          <a href="./" aria-current="page">ForageCast</a>
-          <a href="season-table.html">Season table</a>
-          <a href="#learn">Learn</a>
-        </nav>
-      </div>
-    </header>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="foragecast" data-product-name="ForageCast" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
 
     <div id="wds-location-prompt"></div>
 
@@ -43,10 +29,11 @@
       </div>
     </main>
 
-    <footer class="wds-footer">
-      <p>ForageCast · <a href="#how-waypoint-works">How Waypoint works</a></p>
-    </footer>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
   <script src="../../design-system/js/species/wds-wskb-render.js" defer></script>
   <script src="../../design-system/js/wds-species-spotlight.js" defer></script>

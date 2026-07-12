@@ -1,0 +1,192 @@
+/**
+ * Waypoint Studio — App navigation resolver
+ * Reads WDS.APP_NAV_CONFIG and resolves active app, features, and hrefs by depth.
+ */
+(function (global) {
+  "use strict";
+
+  function config() {
+    return (global.WDS && global.WDS.APP_NAV_CONFIG) || { apps: [], categories: [], brand: { name: "Waypoint Studio", homeRoute: "./" } };
+  }
+
+  function pathname() {
+    try {
+      return String(global.location && global.location.pathname || "").replace(/\\/g, "/");
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function hash() {
+    try {
+      return String(global.location && global.location.hash || "");
+    } catch (e) {
+      return "";
+    }
+  }
+
+  function depthFromPath(path) {
+    path = path || pathname();
+    var m = path.match(/\/apps\/([^/]+)\/(.+)/);
+    if (m && m[2] && m[2] !== "" && m[2] !== "index.html") {
+      // nested under an app, e.g. photo-coach/profile/
+      var rest = m[2].replace(/\/$/, "");
+      if (rest.indexOf("/") >= 0 || /profile|guide/.test(rest)) return 2;
+    }
+    if (/\/apps\//.test(path)) return 1;
+    return 0;
+  }
+
+  function prefixes(depth) {
+    depth = depth == null ? depthFromPath() : depth;
+    if (depth <= 0) return { root: "./", apps: "apps/" };
+    if (depth === 1) return { root: "../../", apps: "../" };
+    return { root: "../../../", apps: "../../" };
+  }
+
+  function resolveRoute(route, depth) {
+    if (!route) return "#";
+    if (route.charAt(0) === "#" || route.indexOf("http") === 0) return route;
+    var p = prefixes(depth);
+    if (route.indexOf("apps/") === 0) {
+      return p.root + route;
+    }
+    return p.root + route.replace(/^\.\//, "");
+  }
+
+  function matchesPattern(pattern, path, h) {
+    if (!pattern) return false;
+    var hay = path + (h || "");
+    if (pattern.charAt(0) === "#" || pattern.indexOf("#") === 0) {
+      return (h || "").indexOf(pattern.replace(/^#/, "#")) === 0 || (h || "") === pattern;
+    }
+    try {
+      if (pattern.indexOf("$") >= 0 || pattern.indexOf("?") >= 0) {
+        return new RegExp(pattern, "i").test(hay) || new RegExp(pattern, "i").test(path);
+      }
+    } catch (e) { /* fall through */ }
+    return hay.indexOf(pattern) >= 0 || path.indexOf(pattern) >= 0;
+  }
+
+  function listApps() {
+    return (config().apps || []).slice();
+  }
+
+  function listCategories() {
+    return (config().categories || []).slice();
+  }
+
+  function appsByCategory() {
+    var cats = listCategories();
+    var apps = listApps();
+    return cats.map(function (cat) {
+      return {
+        id: cat.id,
+        label: cat.label,
+        apps: apps.filter(function (a) { return a.category === cat.id; })
+      };
+    }).filter(function (g) { return g.apps.length > 0; });
+  }
+
+  function byId(id) {
+    var apps = listApps();
+    for (var i = 0; i < apps.length; i += 1) {
+      if (apps[i].id === id) return apps[i];
+    }
+    return null;
+  }
+
+  function detectApp(path, h) {
+    path = path || pathname();
+    h = h == null ? hash() : h;
+    var apps = listApps();
+    var best = null;
+    var bestScore = -1;
+    apps.forEach(function (app) {
+      (app.match || []).forEach(function (pat) {
+        if (matchesPattern(pat, path, h)) {
+          var score = String(pat).length;
+          if (score > bestScore) {
+            bestScore = score;
+            best = app;
+          }
+        }
+      });
+    });
+    return best;
+  }
+
+  function detectFeature(app, path, h) {
+    if (!app || !app.features) return null;
+    path = path || pathname();
+    h = h == null ? hash() : h;
+    var best = null;
+    var bestScore = -1;
+    app.features.forEach(function (feat) {
+      var patterns = feat.match || [];
+      if (feat.hash) patterns = patterns.concat([feat.hash]);
+      if (!patterns.length && feat.href && feat.href.indexOf("#") >= 0) {
+        patterns = [feat.href.slice(feat.href.indexOf("#"))];
+      }
+      if (!patterns.length) {
+        // default overview when path ends at app root
+        var routeTail = (app.route || "").replace(/\/$/, "");
+        if (path.replace(/\/$/, "").slice(-routeTail.length) === routeTail.replace(/^apps\//, "") ||
+            path.indexOf(routeTail) >= 0 && !/\/[^/]+\/.+\//.test(path.split("/apps/")[1] || "")) {
+          if (!best) best = feat;
+        }
+        return;
+      }
+      patterns.forEach(function (pat) {
+        if (matchesPattern(pat, path, h)) {
+          var score = String(pat).length + (feat.hash && h.indexOf(feat.hash) === 0 ? 50 : 0);
+          if (score > bestScore) {
+            bestScore = score;
+            best = feat;
+          }
+        }
+      });
+    });
+    if (!best && app.features.length) best = app.features[0];
+    return best;
+  }
+
+  function featureHref(feat, depth, app) {
+    if (!feat) return "#";
+    if (feat.hash) {
+      var current = detectApp();
+      if (current && app && current.id === app.id) return feat.hash;
+      var base = resolveRoute(app.route, depth).replace(/\/?$/, "/");
+      return base + feat.hash.replace(/^\//, "");
+    }
+    if (feat.href && feat.href.charAt(0) === "#") return feat.href;
+    return resolveRoute(feat.href || (app && app.route) || "#", depth);
+  }
+
+  function brandHome(depth) {
+    return prefixes(depth).root;
+  }
+
+  function studioHomeHref(depth) {
+    return brandHome(depth);
+  }
+
+  global.WDS = global.WDS || {};
+  global.WDS.appNav = {
+    config: config,
+    listApps: listApps,
+    listCategories: listCategories,
+    appsByCategory: appsByCategory,
+    byId: byId,
+    detectApp: detectApp,
+    detectFeature: detectFeature,
+    resolveRoute: resolveRoute,
+    featureHref: featureHref,
+    brandHome: brandHome,
+    studioHomeHref: studioHomeHref,
+    depthFromPath: depthFromPath,
+    prefixes: prefixes,
+    pathname: pathname,
+    hash: hash
+  };
+})(typeof window !== "undefined" ? window : global);

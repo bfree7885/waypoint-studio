@@ -11,7 +11,9 @@ const BASE = process.argv[2] || "http://127.0.0.1:8080";
 const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
 const PORT = 9223;
 const PAGES = [
-  { name: "homepage", path: "/", waitMs: 20000 },
+  { name: "studio-home", path: "/", waitMs: 4000 },
+  { name: "dashboard", path: "/apps/dashboard/", waitMs: 20000 },
+  { name: "dashboard-redirect", path: "/dashboard.html", waitMs: 3000 },
   { name: "kiosk", path: "/kiosk.html", waitMs: 18000 },
   { name: "status", path: "/status.html", waitMs: 3000 },
   { name: "debug", path: "/debug.html", waitMs: 3000 },
@@ -143,7 +145,7 @@ async function testPage(client, page) {
   }
 
   await client.send("Page.navigate", { url: BASE + page.path });
-  if (page.name === "homepage") {
+  if (page.name === "dashboard") {
     await delay(2500);
     // Production: location should already bootstrap without prompt.
     await client.send("Runtime.evaluate", {
@@ -203,6 +205,10 @@ async function testPage(client, page) {
       return {
         title: document.title,
         hasMain: !!document.querySelector('#main, main, .ws-app'),
+        hasAppShell: !!document.querySelector('[data-was-global], .was-global'),
+        hasAppsLauncher: !!document.querySelector('#was-apps-btn, .was-apps-btn'),
+        hasStudioHome: !!document.querySelector('.was-home, #was-home-apps'),
+        studioAppCards: document.querySelectorAll('.was-home__card').length,
         hasDashboard: !!document.querySelector('#outdoor-dashboard'),
         hasBriefingDoc: !!document.querySelector('.wdb-doc'),
         hasMorning: !!document.querySelector('.wdb-morning'),
@@ -243,8 +249,10 @@ async function testPage(client, page) {
           return pkg && pkg.daylight ? pkg.daylight.locationContextId : null;
         })(),
         hasCoach: !!document.querySelector('.mode-coach, #coach-dashboard, #coach-drop-zone'),
-        hasScenesNav: !!document.querySelector('a[href*="apps/scenes"]'),
-        hasPhotoCoachNav: !!document.querySelector('a[href*="apps/photo-coach"]'),
+        hasScenesNav: !!document.querySelector('a[href*="apps/scenes"], a[href*="../scenes"]'),
+        hasPhotoCoachNav: !!document.querySelector('a[href*="apps/photo-coach"], a[href*="../photo-coach"], a[href*="photo-coach"]'),
+        hasLocalNav: !!document.querySelector('.was-local__nav'),
+        currentPath: location.pathname,
         hasOutdoorContext: !!document.querySelector('.coach-outdoor-context'),
         bodyLen: document.body ? document.body.innerText.length : 0
       };
@@ -293,35 +301,59 @@ async function main() {
     if (r.warnings.length) {
       console.log("Warnings:", r.warnings.slice(0, 5).join(" | "));
     }
-    if (r.name === "homepage" && !r.checks.hasDashboard) {
+    if (r.name === "studio-home" && !r.checks.hasStudioHome) {
+      failed = true;
+      console.log("FAIL: Studio home directory missing");
+    }
+    if (r.name === "studio-home" && (r.checks.studioAppCards || 0) < 6) {
+      failed = true;
+      console.log("FAIL: Studio home should list applications, got " + r.checks.studioAppCards);
+    }
+    if (r.name === "studio-home" && !r.checks.hasAppsLauncher) {
+      failed = true;
+      console.log("FAIL: Apps launcher missing on Studio home");
+    }
+    if (r.name === "studio-home" && r.checks.hasDashboard) {
+      failed = true;
+      console.log("FAIL: Dashboard content must not render on Studio home");
+    }
+    if (r.name === "dashboard-redirect") {
+      const landed = /\/apps\/dashboard\//.test(r.checks.currentPath || "");
+      const hasLink = /dashboard/i.test(r.checks.title || "") || (r.checks.bodyLen || 0) > 0;
+      if (!landed && !hasLink) {
+        failed = true;
+        console.log("FAIL: dashboard.html redirect broken");
+      }
+    }
+    if (r.name === "dashboard" && !r.checks.hasDashboard) {
       failed = true;
       console.log("FAIL: outdoor-dashboard not rendered after location bootstrap");
     }
-    if (r.name === "homepage" && !r.checks.hasBriefingDoc) {
+    if (r.name === "dashboard" && !r.checks.hasBriefingDoc) {
       failed = true;
       console.log("FAIL: operational briefing document missing");
     }
-    if (r.name === "homepage" && r.checks.noticeCount < 8) {
+    if (r.name === "dashboard" && r.checks.noticeCount < 8) {
       failed = true;
       console.log("FAIL: expected ≥8 operational blocks, got " + r.checks.noticeCount);
     }
-    if (r.name === "homepage" && !r.checks.hydrated) {
+    if (r.name === "dashboard" && !r.checks.hydrated) {
       failed = true;
       console.log("FAIL: OIP did not hydrate in first load cycle");
     }
-    if (r.name === "homepage" && (r.checks.busyCount || 0) > 0) {
+    if (r.name === "dashboard" && (r.checks.busyCount || 0) > 0) {
       failed = true;
       console.log("FAIL: dashboard still has aria-busy mounts (" + r.checks.busyCount + ")");
     }
-    if (r.name === "homepage" && (r.checks.missionCards || 0) > 0) {
+    if (r.name === "dashboard" && (r.checks.missionCards || 0) > 0) {
       failed = true;
       console.log("FAIL: mission cards must not appear on production dashboard");
     }
-    if (r.name === "homepage" && (r.checks.eduBadgeEdu || 0) > 0) {
+    if (r.name === "dashboard" && (r.checks.eduBadgeEdu || 0) > 0) {
       failed = true;
       console.log("FAIL: educational fallback badges still present");
     }
-    if (r.name === "homepage" && Array.isArray(r.checks.noticeTrusts)) {
+    if (r.name === "dashboard" && Array.isArray(r.checks.noticeTrusts)) {
       const bad = r.checks.noticeTrusts.filter((t) => !/^(Live|Estimated|Unavailable)$/i.test(t));
       if (bad.length) {
         failed = true;
@@ -329,32 +361,40 @@ async function main() {
       }
     }
     const required = ["current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "readiness"];
-    if (r.name === "homepage" && Array.isArray(r.checks.noticeDomains)) {
+    if (r.name === "dashboard" && Array.isArray(r.checks.noticeDomains)) {
       const missing = required.filter((d) => !(r.checks.noticeDomains || []).includes(d));
       if (missing.length) {
         failed = true;
         console.log("FAIL: missing operational domains: " + missing.join(", "));
       }
     }
-    if (r.name === "homepage" && !r.checks.hasLiveUpdated) {
+    if (r.name === "dashboard" && !r.checks.hasLiveUpdated) {
       failed = true;
       console.log("FAIL: Last updated timestamp missing on dashboard");
     }
-    if (r.name === "homepage" && r.checks.hasKansasRiverLeak) {
+    if (r.name === "dashboard" && r.checks.hasKansasRiverLeak) {
       failed = true;
       console.log("FAIL: Kansas river gauge text leaked into user dashboard");
     }
-    if (r.name === "homepage" && r.checks.sunriseText === "1:34 AM") {
+    if (r.name === "dashboard" && r.checks.sunriseText === "1:34 AM") {
       failed = true;
       console.log("FAIL: sunrise regression time 1:34 AM rendered");
     }
-    if (r.name === "homepage" && r.checks.sunsetText === "4:33 PM") {
+    if (r.name === "dashboard" && r.checks.sunsetText === "4:33 PM") {
       failed = true;
       console.log("FAIL: sunset regression time 4:33 PM rendered");
     }
-    if (r.name === "homepage" && r.checks.liveFeedSource && r.checks.liveFeedSource !== "user-oip") {
+    if (r.name === "dashboard" && r.checks.liveFeedSource && r.checks.liveFeedSource !== "user-oip") {
       failed = true;
       console.log("FAIL: dashboard conditions source is not user-oip");
+    }
+    if ((r.name === "dashboard" || r.name === "scenes" || r.name === "fieldry") && !r.checks.hasAppShell) {
+      failed = true;
+      console.log("FAIL: App Shell missing on " + r.name);
+    }
+    if ((r.name === "dashboard" || r.name === "scenes" || r.name === "fieldry") && !r.checks.hasLocalNav) {
+      failed = true;
+      console.log("FAIL: local app navigation missing on " + r.name);
     }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
@@ -376,9 +416,9 @@ async function main() {
       failed = true;
       console.log("FAIL: Photo Coach page appears blank");
     }
-    if (r.name === "homepage" && !r.checks.hasScenesNav) {
+    if (r.name === "studio-home" && !r.checks.hasScenesNav && (r.checks.studioAppCards || 0) < 1) {
       failed = true;
-      console.log("FAIL: Scenes link missing from homepage navigation");
+      console.log("FAIL: Scenes unreachable from Studio home");
     }
     if (r.name === "status" && !/live engine/i.test(r.checks.title || "")) {
       failed = true;

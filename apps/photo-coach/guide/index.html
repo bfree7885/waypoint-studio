@@ -13,24 +13,19 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <header class="wds-topbar pc-topbar">
-      <div class="wds-topbar__inner">
-        <a class="wds-brand" href="../../../">
-          <span class="wds-brand__mark" aria-hidden="true"></span>
-          <span class="wds-brand__name">Waypoint Studio</span>
-        </a>
-        <nav class="pc-nav" aria-label="Photo Coach sections">
-          <a href="#conditions">Conditions</a>
-          <a href="#opportunities">Opportunities</a>
-          <a href="#coach">Coach</a>
-          <a href="#checklist">Checklist</a>
-          <a href="#editing">Editing</a>
-          <a href="#gear">Gear</a>
-          <a href="#progress">Progress</a>
-        </nav>
-      </div>
-    </header>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <nav class="pc-nav" aria-label="Field guide sections">
+      <a href="#conditions">Conditions</a>
+      <a href="#opportunities">Opportunities</a>
+      <a href="#coach">Coach</a>
+      <a href="#checklist">Checklist</a>
+      <a href="#editing">Editing</a>
+      <a href="#gear">Gear</a>
+      <a href="#progress">Progress</a>
+    </nav>
 
     <div id="wds-location-prompt"></div>
     <div id="pc-location-bar" class="pc-location-bar" hidden></div>
@@ -44,11 +39,12 @@
       </div>
     </main>
 
-    <footer class="wds-footer">
-      <p>Photo Coach Journey · <a href="../../../#how-waypoint-works">How Waypoint works</a> · <a href="../">Critique tool</a></p>
-    </footer>
+    <div data-wds-app-footer data-shell-depth="2"></div>
   </div>
 
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../../design-system/js/wds-platform.js" defer></script>
   <script src="../../../design-system/js/weather/wds-sky-dashboard-intel.js" defer></script>
   <script src="../../../design-system/js/wds-ecosystem-bridge.js" defer></script>

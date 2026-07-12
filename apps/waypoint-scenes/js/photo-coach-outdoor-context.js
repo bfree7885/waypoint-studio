@@ -66,7 +66,7 @@
       return (
         '<div class="coach-outdoor-context coach-outdoor-context--empty">' +
           '<h3 class="coach-outdoor-context__title">Field conditions</h3>' +
-          '<p class="muted">Optional. Photo Coach works on its own. If you have recently opened the <a href="../../">outdoor dashboard</a> with your location, weather and light context can appear here to enrich coaching — it is never required.</p>' +
+          '<p class="muted">Optional. Photo Coach works on its own. If you have recently opened the <a href="../dashboard/">Dashboard</a> with your location, weather and light context can appear here to enrich coaching — it is never required.</p>' +
         "</div>"
       );
     }

@@ -13,18 +13,21 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app" data-wds-platform-shell data-product="shed-hunting" data-product-name="Sheds" data-shell-depth="1">
-    <div data-wds-platform-nav data-shell-depth="1"></div>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="shed-hunting" data-product-name="Sheds" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="wpf-page">
       <div id="wds-foundation-mount" aria-busy="true" data-foundation-src="data/foundation.json">
         <p class="wds-body">Opening Sheds…</p>
       </div>
     </main>
-    <div data-wds-platform-footer data-shell-depth="1"></div>
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
   <script src="../../design-system/js/platform/wds-platform-catalog.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-stores.js" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-shell.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-foundation.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-foundation-boot.js" defer></script>
   <script src="js/sheds-models.js" defer></script>

@@ -57,6 +57,9 @@ function run() {
 
   load("design-system/js/platform/wds-platform-catalog.js");
   load("design-system/js/platform/wds-platform-stores.js");
+  load("design-system/js/platform/wds-app-nav-config.js");
+  load("design-system/js/platform/wds-app-nav.js");
+  load("design-system/js/platform/wds-app-shell.js");
   load("design-system/js/platform/wds-platform-shell.js");
   load("design-system/js/platform/wds-platform-foundation.js");
   load("design-system/js/platform/wds-platform-future-data.js");
@@ -72,10 +75,18 @@ function run() {
   assert("catalog has core products", Cat.list({ coreOnly: true }).length >= 4);
   assert("catalog has foundations", Cat.list({ tier: "foundation" }).length >= 4);
   assert("resolve sheds href", /shed-hunting/.test(Cat.resolveHref(Cat.byId("sheds"), 1)));
+  assert("resolve studio home", Cat.resolveHref(Cat.byId("studio"), 0) === "./");
+  assert("resolve dashboard app", /apps\/dashboard/.test(Cat.resolveHref(Cat.byId("dashboard"), 0)));
 
-  const topbar = global.WDS.platformShell.renderTopbar({ depth: 1, currentId: "fieldry" });
-  assert("shell topbar renders", /ws-topnav/.test(topbar) && /Fieldry/.test(topbar));
-  assert("shell marks current", /aria-current="page"/.test(topbar));
+  const Nav = global.WDS.appNav;
+  assert("nav config has apps", Nav.listApps().length >= 8);
+  assert("nav categories", Nav.appsByCategory().length >= 4);
+
+  const topbar = global.WDS.appShell.renderGlobalHeader({ depth: 1, app: Nav.byId("fieldry") });
+  assert("shell apps launcher control", /was-apps-btn/.test(topbar) && /Applications/.test(topbar));
+  const local = global.WDS.appShell.renderLocalNav({ depth: 1, app: Nav.byId("fieldry"), feature: Nav.byId("fieldry").features[0] });
+  assert("shell local nav", /was-local__nav/.test(local) && /Fieldry/.test(local));
+  assert("shell marks current feature", /aria-current="page"/.test(local));
 
   const profile = global.WDS.platform.Profile.load();
   assert("profile private default", profile.privacy.visibility === "private");
