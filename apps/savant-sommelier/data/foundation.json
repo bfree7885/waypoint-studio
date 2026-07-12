@@ -1,0 +1,31 @@
+{
+  "productId": "savant-sommelier",
+  "title": "Savant Sommelier",
+  "eyebrow": "Waypoint Studio · Savant Sommelier",
+  "status": "foundation",
+  "lead": "Vineyard intelligence — terrain, climate, soils, and wine landscape literacy without pretension or popularity contests.",
+  "mission": "Help people understand where vines can thrive and how landscape shapes wine, with GIS-ready architecture and honest confidence labels.",
+  "principles": [
+    "Landscape literacy over lifestyle branding",
+    "Soil, slope, aspect, and climate as first-class evidence",
+    "No influencer scores or competitive tasting boards",
+    "Property data privacy by default"
+  ],
+  "modules": [
+    { "title": "Property explorer", "status": "foundation", "description": "Parcel-oriented exploration shell with privacy controls." },
+    { "title": "Vineyard suitability", "status": "planned", "description": "Multi-factor suitability scoring architecture." },
+    { "title": "Soil & geology", "status": "planned", "description": "Layer hooks for soil and geologic context." },
+    { "title": "Terrain · slope · aspect", "status": "planned", "description": "DEM-derived terrain attributes via shared map modules." },
+    { "title": "Climate & hardiness", "status": "planned", "description": "Climate normals and hardiness zone overlays." },
+    { "title": "Grape variety recommendations", "status": "planned", "description": "Explainable variety suggestions tied to site factors." },
+    { "title": "Winery & wine catalog", "status": "foundation", "description": "Local catalog models for wineries, wines, and varietals." },
+    { "title": "Mapping", "status": "planned", "description": "Shared WDS map chrome for vineyard geography." }
+  ],
+  "routes": [
+    { "path": "/", "label": "Foundation home", "ready": true },
+    { "path": "/explore/", "label": "Property explorer", "ready": false },
+    { "path": "/wineries/", "label": "Winery explorer", "ready": false },
+    { "path": "/wines/", "label": "Wine catalog", "ready": false }
+  ],
+  "dataModel": "PropertySite, Winery, Wine, and Varietal models. Future GIS export remains disabled in WDS.futureData until intentionally enabled."
+}

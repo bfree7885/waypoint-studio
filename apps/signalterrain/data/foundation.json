@@ -1,0 +1,31 @@
+{
+  "productId": "signalterrain",
+  "title": "SignalTerrain",
+  "eyebrow": "Waypoint Studio · SignalTerrain",
+  "status": "foundation",
+  "lead": "AI-ready radio situational awareness — receivers, incident timelines, mapping, and audio architecture built for clarity over noise.",
+  "mission": "Help operators and curious listeners understand what is happening on the air with trustworthy timelines, maps, and private libraries.",
+  "principles": [
+    "Situational clarity over engagement metrics",
+    "Local-first audio libraries",
+    "Plugin architecture for receivers and sources",
+    "Community receivers are opt-in and privacy-aware"
+  ],
+  "modules": [
+    { "title": "Receiver management", "status": "foundation", "description": "Receiver registry with location privacy and capability metadata." },
+    { "title": "Incident timeline", "status": "foundation", "description": "Structured incident events with confidence and provenance." },
+    { "title": "Search architecture", "status": "planned", "description": "Search across incidents, audio, and transcriptions." },
+    { "title": "Mapping", "status": "planned", "description": "Shared WDS map module for receiver and incident geography." },
+    { "title": "Audio library", "status": "planned", "description": "Local audio asset index with retention controls." },
+    { "title": "Transcription architecture", "status": "planned", "description": "Pluggable transcription pipeline — AI output clearly labeled." },
+    { "title": "Plugin architecture", "status": "foundation", "description": "Extension points for receivers, parsers, and exporters." },
+    { "title": "Community receiver framework", "status": "planned", "description": "Opt-in shared receivers with anonymization options." }
+  ],
+  "routes": [
+    { "path": "/", "label": "Foundation home", "ready": true },
+    { "path": "/receivers/", "label": "Receivers", "ready": false },
+    { "path": "/incidents/", "label": "Incident timeline", "ready": false },
+    { "path": "/audio/", "label": "Audio library", "ready": false }
+  ],
+  "dataModel": "Receiver, Incident, and AudioAsset models are local-first. Future sync remains disabled in WDS.futureData."
+}

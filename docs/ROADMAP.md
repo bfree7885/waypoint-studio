@@ -1,9 +1,9 @@
 # Waypoint Studio — Unified Roadmap
 
-**Last updated:** Strategic refactor pass  
-**Principle:** One regional laboratory with four instruments. Shared systems first. Pike County Preview before national scale.
+**Last updated:** Platform foundation sprint  
+**Principle:** Shared systems first. One cohesive platform. Core instruments ship publicly; additional products grow from real foundations.
 
-> **Portfolio:** See [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md) and [PRODUCT-PORTFOLIO-AUDIT.md](PRODUCT-PORTFOLIO-AUDIT.md). Former eight-app roadmap is retired.
+> **Portfolio:** See [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md), [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).
 
 ---
 
@@ -12,62 +12,52 @@
 | Priority | Surface | Status |
 |----------|---------|--------|
 | 1 | **Regional Dashboard** | Live — Pike County Preview |
-| 2 | **ForageCast** | Live preview — flagship app |
-| 3 | **Fieldry** | Preview — WOS capture next |
-| 4 | **Waypoint Scenes** | Live — freeze scope at v0.1.0 |
+| 2 | **ForageCast** | Live — seasonal / habitat lab |
+| 3 | **Fieldry** | Live MVP — WOS notebook + life-list categories |
+| 4 | **Waypoint Scenes** | Live — Photo Coach + Profile + coaching memory |
 
-## Postponed / absorbed
+## Product foundations (architecture-ready)
 
-| Concept | Status |
+| Product | Status |
 |---------|--------|
-| Shed Hunting | Content track |
-| Steepleaf | ForageCast botany track |
-| SignalTerrain | Shared map module |
-| Savant Sommelier | Editorial only |
-| Terrainbound | Retired |
+| Sheds | Foundation landing + Find/Species models |
+| Steepleaf | Foundation landing + Tea/Brew models |
+| SignalTerrain | Foundation landing + Receiver/Incident models |
+| Savant Sommelier | Foundation landing + Site/Winery/Wine models |
+| Terrainbound | Retired → Fieldry / Dashboard |
 
 ---
 
-## Ecosystem maturity (weighted)
-
-| Layer | Maturity | Focus |
-|-------|----------|-------|
-| WDS + OIP | 85% | Polish, performance, Pike honesty |
-| WEF / Education | 80% | Progressive dashboard path |
-| ForageCast | 35% | Habitat copy, species depth |
-| Fieldry | 10% | WOS local capture MVP |
-| Waypoint Scenes | 78% | Ship v0.1.0, freeze |
-| Content tracks | Concept | No new app shells |
-
----
-
-## Phase 0 — Now (platform focus)
+## Phase now — platform cohesion
 
 | # | Work |
 |---|------|
-| 1 | Pike County Preview labels site-wide |
-| 2 | Four-instrument public portfolio |
-| 3 | Fieldry WOS capture MVP (local only) |
-| 4 | Dashboard: render teachersNotebook / weekend investigation |
-| 5 | Scenes v0.1.0 ship |
+| 1 | Shared platform kernel (catalog, shell, stores) |
+| 2 | WOS extensions + privacy levels |
+| 3 | Foundation landings for long-term products |
+| 4 | Consistent nav across core instruments |
+| 5 | Future data platform stubs (disabled) |
 
 ---
 
-## Phase 1 — Observation moat
+## Phase next — deepen each product
 
-1. Fieldry structured capture + export  
-2. Optional anonymous county-level contribution (opt-in)  
-3. Second honest county bundle (not clone of Pike narrative)  
-
----
-
-## Do not do until Phase 1 ships
-
-- Accounts and cloud sync  
-- National marketing  
-- New standalone app shells  
-- ML identification or harvest gamification  
+1. Fieldry life-list UI + category capture
+2. Sheds personal finds UI (private coordinates)
+3. ForageCast daily recommendation package
+4. Photo Coach collections UX
+5. SignalTerrain receiver management UI
 
 ---
 
-*See [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) for foundation layers.*
+## Do not do yet
+
+- Marketplace
+- Cloud sync / accounts (architecture reserved only)
+- Engagement metrics, followers, leaderboards
+- Enabling `WDS.futureData` without product + legal review
+- Faking AI capabilities
+
+---
+
+*See [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) and [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md).*

@@ -1,0 +1,59 @@
+{
+  "productId": "sheds",
+  "title": "Sheds",
+  "eyebrow": "Waypoint Studio · Sheds",
+  "status": "foundation",
+  "lead": "A calm, worldwide platform for antler shed hunting — species knowledge, personal finds, seasonal forecasts, and ethics without trophy culture.",
+  "mission": "Help shed hunters observe sign, understand cervid ecology, record private finds, and plan ethical outings across all antler-shedding species.",
+  "principles": [
+    "No leaderboards, find rankings, or trophy competition",
+    "Exact find coordinates stay private by default",
+    "Support White-tailed Deer, Mule Deer, Elk, Moose, Caribou, Red Deer, Fallow, Roe, Sika, and other cervids",
+    "Encourage empty-handed miles as valuable field evidence"
+  ],
+  "modules": [
+    {
+      "title": "Species browser",
+      "status": "foundation",
+      "description": "Cervid species profiles: shed timing, habitat, and regional notes."
+    },
+    {
+      "title": "Personal finds ledger",
+      "status": "foundation",
+      "description": "Private WOS-aligned find records with media, notes, and privacy controls."
+    },
+    {
+      "title": "Heat map architecture",
+      "status": "planned",
+      "description": "Aggregated, obfuscated seasonal intensity — never public pin-drops of finds."
+    },
+    {
+      "title": "Forecast architecture",
+      "status": "planned",
+      "description": "Weather, snow, and phenology signals for shed likelihood by region."
+    },
+    {
+      "title": "Regulations framework",
+      "status": "planned",
+      "description": "Jurisdiction-aware guidance with clear provenance labels."
+    },
+    {
+      "title": "Trail camera integration",
+      "status": "planned",
+      "description": "Import architecture for camera evidence linked to private observations."
+    },
+    {
+      "title": "AI prediction framework",
+      "status": "planned",
+      "description": "Future model hooks — clearly labeled, never presented as certainty."
+    }
+  ],
+  "routes": [
+    { "path": "/", "label": "Foundation home", "ready": true },
+    { "path": "/species/", "label": "Species browser", "ready": false },
+    { "path": "/finds/", "label": "Personal finds", "ready": false },
+    { "path": "/map/", "label": "Heat map (obfuscated)", "ready": false },
+    { "path": "/forecast/", "label": "Seasonal forecast", "ready": false }
+  ],
+  "dataModel": "Local Sheds models (FindRecord, SpeciesProfile, ForecastPackage) extend the shared Waypoint Observation Standard via namespaced extensions. Privacy levels: private, shared, public, anonymized."
+}

@@ -3,8 +3,9 @@
   "description": "Waypoint Studio product registry — core instruments, content tracks, and shared modules.",
   "portfolio": {
     "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
-    "contentTracks": ["shed-hunting", "steepleaf", "savant-sommelier"],
-    "modules": ["signalterrain"],
+    "foundations": ["shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"],
+    "contentTracks": [],
+    "modules": [],
     "retired": ["terrainbound"]
   },
   "contentFiles": {

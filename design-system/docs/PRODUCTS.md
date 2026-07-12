@@ -46,19 +46,24 @@ Defaults in `:root` match **Waypoint Scenes** (sage + hearth).
 **Key patterns:** Forms, sidebar inspectors, export/share.
 
 ### Steepleaf (`steepleaf`)
-**Domain:** Botany, plant identification, habitat.  
-**Voice:** Curious naturalist, precise but welcoming.  
-**Key patterns:** Species heroes, tags, lesson steps, search across taxa.
+**Domain:** Tea discovery — catalog, brew journal, flavor notes.  
+**Voice:** Curious, sensory, unhurried.  
+**Key patterns:** Tea pages, brew journal, private collections, calm recommendations.
 
 ### Savant Sommelier (`savant-sommelier`)
-**Domain:** Wine, terroir, tasting notes.  
-**Voice:** Refined, sensory, unhurried.  
-**Key patterns:** Collection pages, cards, educational content blocks.
+**Domain:** Vineyard intelligence, terroir, tasting notes.  
+**Voice:** Refined, sensory, landscape-literate.  
+**Key patterns:** Property explorer foundations, wine catalog, terrain context.
 
 ### SignalTerrain (`signalterrain`)
-**Domain:** Terrain analysis, signals, coordinates.  
+**Domain:** Radio situational awareness.  
 **Voice:** Clear, technical, horizon-focused.  
-**Key patterns:** Map chrome, mono coords, data-dense sidebars.
+**Key patterns:** Receiver registry, incident timeline, map chrome.
+
+### Shed Hunting / Sheds (`shed-hunting`)
+**Domain:** Antler sheds, cervid ecology, private finds.  
+**Voice:** Quiet pursuit, reward in patience.  
+**Key patterns:** Species browser, private find ledger, ethics-first forecasts.
 
 ### Terrainbound (`terrainbound`)
 **Domain:** Endurance, routes, terrain challenges.  

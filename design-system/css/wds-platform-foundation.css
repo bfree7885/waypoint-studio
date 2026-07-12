@@ -1,0 +1,123 @@
+/**
+ * Waypoint Studio — platform foundation landing styles
+ * Calm, professional product foundations shared across apps.
+ */
+
+.wpf-page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem) 4rem;
+}
+
+.wpf-hero {
+  margin-bottom: 2rem;
+}
+
+.wpf-hero h1 {
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(2rem, 5vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.wpf-lead {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.82));
+  max-width: 40rem;
+  margin: 0;
+}
+
+.wpf-status {
+  display: inline-block;
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wds-accent, #c8f055);
+}
+
+.wpf-cta {
+  margin-top: 1.25rem;
+}
+
+.wpf-section {
+  margin: 0 0 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--wds-border, rgba(255, 255, 255, 0.14));
+}
+
+.wpf-section h2 {
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: 1.55rem;
+  font-weight: 500;
+  margin: 0 0 0.65rem;
+}
+
+.wpf-section p {
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.82));
+  line-height: 1.55;
+}
+
+.wpf-principles,
+.wpf-routes,
+.wpf-modules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wpf-principles li,
+.wpf-routes li {
+  padding: 0.45rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.82));
+}
+
+.wpf-modules li {
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wpf-modules strong {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--wds-text, #f4f1ea);
+}
+
+.wpf-module-status {
+  font-size: 0.75rem;
+  color: var(--wds-text-tertiary, rgba(244, 241, 234, 0.68));
+}
+
+.wpf-modules p {
+  margin: 0.35rem 0 0;
+  font-size: 0.95rem;
+}
+
+.wpf-pill {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--wds-accent, #c8f055);
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  color: var(--wds-accent, #c8f055);
+}
+
+.wpf-section--note p {
+  font-size: 0.9rem;
+  color: var(--wds-text-tertiary, rgba(244, 241, 234, 0.68));
+}
+
+.wpf-routes code {
+  font-size: 0.85rem;
+  color: var(--wds-accent, #c8f055);
+}
+
+.ws-topnav a[aria-current="page"] {
+  color: var(--wds-accent, #c8f055);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
