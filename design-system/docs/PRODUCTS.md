@@ -26,9 +26,12 @@ Defaults in `:root` match **Waypoint Scenes** (sage + hearth).
 ## Product personalities
 
 ### Waypoint Scenes (`scenes`)
-**Domain:** Living photographs, parallax depth, field education, export.  
+**Domain:** One photography platform — coaching, beyond-human vision, living atmospheres, scene building, and lifelong profile.  
 **Voice:** Homecoming after a shoot — "Unpack a frame", "Let the day breathe."  
-**Key patterns:** Hero upload, workspace tabs, export stage, field guide lessons.
+**Key patterns:** Product landing with five experience cards, module introductions, deep links to live tools.
+
+Platform shell: `apps/scenes/` (landing + module pages + engine interfaces).  
+Live tools remain at `apps/photo-coach/`, `apps/hidden-landscapes/`, `apps/waypoint-scenes/`, and `apps/animal-vision/`.
 
 **Hidden Landscapes** (`hidden-landscapes`, under Scenes) — scaffold for seeing beyond human vision (IR, UV, polarization, species, night). Education through beauty. Local-first ImageSets; no capture/render pipelines yet.
 

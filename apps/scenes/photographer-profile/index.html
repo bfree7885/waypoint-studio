@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="module" data-scenes-experience="photographer-profile">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photographer Profile — a lifelong companion for your style, strengths, themes, and growth. Part of Waypoint Scenes.">
+  <title>Photographer Profile — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="scenes-page">
+      <header class="scenes-module-hero">
+        <p class="wds-eyebrow"><a href="../">Waypoint Scenes</a> · Photographer Profile</p>
+        <div class="scenes-module-hero__visual">
+          <img src="../assets/media/hero.jpg" alt="" loading="eager" decoding="async" style="object-position:center 70%">
+          <span class="scenes-card__shade scenes-card__shade--ink"></span>
+        </div>
+        <span class="scenes-card__status">Available now</span>
+        <h1>Photographer Profile</h1>
+        <p class="scenes-hero__lead">Your profile grows from real coaching sessions — subjects you return to, light you prefer, strengths that show up again and again. It is private, evidence-based, and never a scoreboard.</p>
+        <p class="scenes-module-engine">Engine interface: <code>ProfileEngine</code> (scaffold only — live profile remains available)</p>
+        <p class="scenes-hero__actions">
+          <a class="wds-btn wds-btn--primary" href="../../photo-coach/profile/">Open Photographer Profile</a>
+          <a class="wds-btn wds-btn--ghost" href="../">Back to Waypoint Scenes</a>
+        </p>
+      </header>
+
+      <nav class="scenes-module-nav" aria-label="Other Waypoint Scenes experiences">
+        <ul>
+          <li><a href="../photo-coach/">Photo Coach</a></li>
+          <li><a href="../hidden-landscapes/">Hidden Landscapes</a></li>
+          <li><a href="../living-scenes/">Living Scenes</a></li>
+          <li><a href="../scene-builder/">Scene Builder</a></li>
+          <li><a href="../photographer-profile/" aria-current="page">Profile</a></li>
+        </ul>
+      </nav>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../js/engines/profile-engine.js" defer></script>
+  <script src="../js/engines/registry.js" defer></script>
+</body>
+</html>

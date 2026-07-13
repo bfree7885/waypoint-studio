@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-product="scenes">
+<html lang="en" data-product="scenes" data-scenes-page="landing">
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Scenes — photography tools for looking carefully after time outside. Photo Coach, Animal Vision, Hidden Landscapes, and Photographer Profile.">
-  <title>Waypoint Scenes — Photography &amp; Visual Observation</title>
+  <meta name="description" content="Waypoint Scenes — one photography platform with Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.">
+  <title>Waypoint Scenes — Photography Platform · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,65 +19,94 @@
     <div data-wds-app-local data-shell-depth="1"></div>
 
     <main id="main" class="scenes-page">
-      <header class="scenes-hero">
+      <header class="scenes-hero scenes-hero--platform">
         <p class="wds-eyebrow">Waypoint Scenes</p>
-        <h1 class="scenes-hero__title">See your photographs more clearly</h1>
-        <p class="scenes-hero__lead">Quiet tools for photographers who want careful feedback after time outside — grade what works, notice what to improve, and keep a private record of how you shoot.</p>
-        <p class="scenes-hero__actions">
-          <a class="wds-btn wds-btn--primary" href="../photo-coach/">Open Photo Coach</a>
-          <a class="wds-btn wds-btn--ghost" href="../photo-coach/profile/">View your profile</a>
-        </p>
+        <h1 class="scenes-hero__title">One photography platform. Five ways to see more.</h1>
+        <p class="scenes-hero__lead">Waypoint Scenes brings coaching, invisible-spectrum literacy, living atmospheres, educational scene building, and a lifelong photographer profile into one calm product.</p>
+        <p class="scenes-hero__unity" role="note">Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile are five experiences inside one product.</p>
       </header>
 
-      <div class="scenes-features">
-        <article class="scenes-feature scenes-feature--live">
-          <span class="scenes-feature__status">Available now</span>
-          <h2 class="scenes-feature__title">Photo Coach</h2>
-          <p class="scenes-feature__desc">Upload a photograph and get structured feedback: overall grade, what is working, what could improve, and a suggested next edit. Analysis runs in your browser.</p>
-          <p class="scenes-feature__note">JPG, PNG, WebP · up to 20 MB · recent sessions stay in this browser</p>
-          <a class="wds-btn wds-btn--primary scenes-feature__cta" href="../photo-coach/">Open Photo Coach</a>
+      <section class="scenes-card-grid" aria-label="Waypoint Scenes experiences">
+        <article class="scenes-card scenes-card--live">
+          <a class="scenes-card__media" href="photo-coach/" tabindex="-1" aria-hidden="true">
+            <img src="assets/media/hero.jpg" alt="" loading="eager" decoding="async" style="object-position:center 40%">
+            <span class="scenes-card__shade scenes-card__shade--warm"></span>
+          </a>
+          <div class="scenes-card__body">
+            <span class="scenes-card__status">Available now</span>
+            <h2 class="scenes-card__title"><a href="photo-coach/">Photo Coach</a></h2>
+            <p class="scenes-card__summary">Learn from every photograph through careful critique and long-term coaching.</p>
+            <a class="wds-btn wds-btn--primary wds-btn--sm scenes-card__cta" href="photo-coach/">Explore</a>
+          </div>
         </article>
 
-        <article class="scenes-feature scenes-feature--live">
-          <span class="scenes-feature__status">Available now</span>
-          <h2 class="scenes-feature__title">Animal Vision</h2>
-          <p class="scenes-feature__desc">Explore research-informed educational interpretations of how deer, honeybees, and box turtles may perceive the same scene. Approximate visual translations — never exact animal experience.</p>
-          <p class="scenes-feature__note">Processed locally · your photographs are never uploaded</p>
-          <a class="wds-btn wds-btn--secondary scenes-feature__cta" href="../animal-vision/">Open Animal Vision</a>
+        <article class="scenes-card scenes-card--scaffold">
+          <a class="scenes-card__media" href="hidden-landscapes/" tabindex="-1" aria-hidden="true">
+            <img src="assets/media/mist-valley.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 55%">
+            <span class="scenes-card__shade scenes-card__shade--cool"></span>
+          </a>
+          <div class="scenes-card__body">
+            <span class="scenes-card__status">In progress</span>
+            <h2 class="scenes-card__title"><a href="hidden-landscapes/">Hidden Landscapes</a></h2>
+            <p class="scenes-card__summary">Discover the invisible worlds of nature through infrared, ultraviolet, full spectrum, polarized light, animal vision, and scientific visualization.</p>
+            <a class="wds-btn wds-btn--ghost wds-btn--sm scenes-card__cta" href="hidden-landscapes/">Explore</a>
+          </div>
         </article>
 
-        <article class="scenes-feature scenes-feature--planned">
-          <span class="scenes-feature__status">Scaffold</span>
-          <h2 class="scenes-feature__title">Hidden Landscapes</h2>
-          <p class="scenes-feature__desc">A long-term framework for seeing nature beyond human vision — infrared, ultraviolet, polarization, species vision, night, and seasonal change. Education through beauty.</p>
-          <p class="scenes-feature__note">Architecture only · ImageSets and rendering pipelines come later</p>
-          <a class="wds-btn wds-btn--ghost scenes-feature__cta" href="../hidden-landscapes/">Open Hidden Landscapes</a>
+        <article class="scenes-card scenes-card--planned">
+          <a class="scenes-card__media" href="living-scenes/" tabindex="-1" aria-hidden="true">
+            <img src="assets/media/mist-valley.jpg" alt="" loading="lazy" decoding="async" style="object-position:30% 60%">
+            <span class="scenes-card__shade scenes-card__shade--mist"></span>
+          </a>
+          <div class="scenes-card__body">
+            <span class="scenes-card__status">Coming next</span>
+            <h2 class="scenes-card__title"><a href="living-scenes/">Living Scenes</a></h2>
+            <p class="scenes-card__summary">Transform still photographs into immersive experiences with motion, weather, seasonal change, and environmental effects.</p>
+            <a class="wds-btn wds-btn--ghost wds-btn--sm scenes-card__cta" href="living-scenes/">Explore</a>
+          </div>
         </article>
 
-        <article class="scenes-feature scenes-feature--live">
-          <span class="scenes-feature__status">Available now</span>
-          <h2 class="scenes-feature__title">Photographer Profile</h2>
-          <p class="scenes-feature__desc">A private summary of your tendencies across analyzed work — subjects, light, strengths, and coaching themes. Built from your evidence, not from competition.</p>
-          <p class="scenes-feature__note">Updates as you analyze · stored in this browser only</p>
-          <a class="wds-btn wds-btn--secondary scenes-feature__cta" href="../photo-coach/profile/">Open Profile</a>
+        <article class="scenes-card scenes-card--live">
+          <a class="scenes-card__media" href="scene-builder/" tabindex="-1" aria-hidden="true">
+            <img src="assets/media/hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:70% 45%">
+            <span class="scenes-card__shade scenes-card__shade--forest"></span>
+          </a>
+          <div class="scenes-card__body">
+            <span class="scenes-card__status">Available now</span>
+            <h2 class="scenes-card__title"><a href="scene-builder/">Scene Builder</a></h2>
+            <p class="scenes-card__summary">Build interactive educational and storytelling scenes from photographs.</p>
+            <a class="wds-btn wds-btn--primary wds-btn--sm scenes-card__cta" href="scene-builder/">Explore</a>
+          </div>
         </article>
 
-        <article class="scenes-feature scenes-feature--live">
-          <span class="scenes-feature__status">Available now</span>
-          <h2 class="scenes-feature__title">Scene Builder</h2>
-          <p class="scenes-feature__desc">Add quiet atmosphere to a still photograph — fog, light, and depth. Export a finished frame when you are ready.</p>
-          <p class="scenes-feature__note">Works with Photo Coach sessions or a fresh upload</p>
-          <a class="wds-btn wds-btn--ghost scenes-feature__cta" href="../waypoint-scenes/">Open Scene Builder</a>
+        <article class="scenes-card scenes-card--live">
+          <a class="scenes-card__media" href="photographer-profile/" tabindex="-1" aria-hidden="true">
+            <img src="assets/media/hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%">
+            <span class="scenes-card__shade scenes-card__shade--ink"></span>
+          </a>
+          <div class="scenes-card__body">
+            <span class="scenes-card__status">Available now</span>
+            <h2 class="scenes-card__title"><a href="photographer-profile/">Photographer Profile</a></h2>
+            <p class="scenes-card__summary">A lifelong companion that learns your style, strengths, recurring themes, favorite subjects, and growth over time.</p>
+            <a class="wds-btn wds-btn--primary wds-btn--sm scenes-card__cta" href="photographer-profile/">Explore</a>
+          </div>
         </article>
-      </div>
+      </section>
 
-      <p class="scenes-context">Need outdoor conditions first? <a href="../dashboard/">Open the dashboard</a>. Recording what you saw? Try <a href="../fieldry/">Fieldry</a>.</p>
+      <p class="scenes-context">Need outdoor conditions first? <a href="../dashboard/">Open the Dashboard</a>. Recording what you saw? Try <a href="../fieldry/">Fieldry</a>.</p>
     </main>
 
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="js/engines/scene-engine.js" defer></script>
+  <script src="js/engines/vision-engine.js" defer></script>
+  <script src="js/engines/coach-engine.js" defer></script>
+  <script src="js/engines/profile-engine.js" defer></script>
+  <script src="js/engines/animation-engine.js" defer></script>
+  <script src="js/engines/registry.js" defer></script>
 </body>
 </html>

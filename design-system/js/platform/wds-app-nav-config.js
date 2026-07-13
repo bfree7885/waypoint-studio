@@ -93,7 +93,7 @@
         "/apps/hidden-landscapes"
       ],
       "category": "photography",
-      "description": "Photography tools for careful looking \u2014 coach, animal vision, Hidden Landscapes, profile, and scene builder.",
+      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.",
       "status": "live",
       "features": [
         {
@@ -108,44 +108,46 @@
         {
           "id": "photo-coach",
           "label": "Photo Coach",
-          "href": "apps/photo-coach/",
+          "href": "apps/scenes/photo-coach/",
           "match": [
-            "/apps/photo-coach/?$"
-          ]
-        },
-        {
-          "id": "animal-vision",
-          "label": "Animal Vision",
-          "href": "apps/animal-vision/",
-          "match": [
-            "/apps/animal-vision/?$",
-            "/apps/animal-vision/index"
+            "/apps/scenes/photo-coach",
+            "/apps/photo-coach/?$",
+            "/apps/photo-coach/index"
           ]
         },
         {
           "id": "hidden-landscapes",
           "label": "Hidden Landscapes",
-          "href": "apps/hidden-landscapes/",
+          "href": "apps/scenes/hidden-landscapes/",
           "match": [
-            "/apps/hidden-landscapes/?$",
-            "/apps/hidden-landscapes/index",
-            "/apps/hidden-landscapes/gallery",
-            "/apps/hidden-landscapes/learn"
+            "/apps/scenes/hidden-landscapes",
+            "/apps/hidden-landscapes",
+            "/apps/animal-vision"
           ]
         },
         {
-          "id": "builder",
-          "label": "Scene Builder",
-          "href": "apps/waypoint-scenes/",
+          "id": "living-scenes",
+          "label": "Living Scenes",
+          "href": "apps/scenes/living-scenes/",
           "match": [
+            "/apps/scenes/living-scenes"
+          ]
+        },
+        {
+          "id": "scene-builder",
+          "label": "Scene Builder",
+          "href": "apps/scenes/scene-builder/",
+          "match": [
+            "/apps/scenes/scene-builder",
             "/apps/waypoint-scenes"
           ]
         },
         {
-          "id": "profile",
+          "id": "photographer-profile",
           "label": "Profile",
-          "href": "apps/photo-coach/profile/",
+          "href": "apps/scenes/photographer-profile/",
           "match": [
+            "/apps/scenes/photographer-profile",
             "/apps/photo-coach/profile"
           ]
         },

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="module" data-scenes-experience="scene-builder">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Scene Builder — build interactive educational and storytelling scenes from photographs. Part of Waypoint Scenes.">
+  <title>Scene Builder — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="scenes-page">
+      <header class="scenes-module-hero">
+        <p class="wds-eyebrow"><a href="../">Waypoint Scenes</a> · Scene Builder</p>
+        <div class="scenes-module-hero__visual">
+          <img src="../assets/media/hero.jpg" alt="" loading="eager" decoding="async" style="object-position:70% 45%">
+          <span class="scenes-card__shade scenes-card__shade--forest"></span>
+        </div>
+        <span class="scenes-card__status">Available now</span>
+        <h1>Scene Builder</h1>
+        <p class="scenes-hero__lead">Compose depth, atmosphere, and narrative layers on a still photograph. Export a finished frame or prepare material for teaching and field stories. Scene Builder is the working studio surface for SceneEngine.</p>
+        <p class="scenes-module-engine">Engine interface: <code>SceneEngine</code> (scaffold only — live builder remains available)</p>
+        <p class="scenes-hero__actions">
+          <a class="wds-btn wds-btn--primary" href="../../waypoint-scenes/">Open Scene Builder</a>
+          <a class="wds-btn wds-btn--ghost" href="../">Back to Waypoint Scenes</a>
+        </p>
+      </header>
+
+      <nav class="scenes-module-nav" aria-label="Other Waypoint Scenes experiences">
+        <ul>
+          <li><a href="../photo-coach/">Photo Coach</a></li>
+          <li><a href="../hidden-landscapes/">Hidden Landscapes</a></li>
+          <li><a href="../living-scenes/">Living Scenes</a></li>
+          <li><a href="../scene-builder/" aria-current="page">Scene Builder</a></li>
+          <li><a href="../photographer-profile/">Profile</a></li>
+        </ul>
+      </nav>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../js/engines/scene-engine.js" defer></script>
+  <script src="../js/engines/registry.js" defer></script>
+</body>
+</html>
