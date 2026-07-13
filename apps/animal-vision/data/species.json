@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "disclaimer": "Animal Vision is a research-informed educational visualization. Animal perception is far more complex than can be reproduced on a human display.",
+  "privacyNote": "Processed locally. Your photographs are never uploaded.",
+  "species": [
+    {
+      "id": "white-tailed-deer",
+      "commonName": "White-tailed Deer",
+      "scientificName": "Odocoileus virginianus",
+      "habitat": "Woodland edges, fields, and cover where escape routes matter.",
+      "visionSummary": "Dichromatic vision with muted red–green separation, stronger relative blue sensitivity, broad peripheral awareness, and excellent motion detection — with lower fine-detail resolution than typical human vision.",
+      "colorSensitivity": {
+        "summary": "Two cone types; red and green are poorly distinguished; blues remain relatively useful.",
+        "notes": [
+          "Red and green hues are compressed toward a more muted palette.",
+          "Blue wavelengths are gently emphasized relative to warm reds."
+        ]
+      },
+      "fieldOfView": {
+        "summary": "Wide peripheral awareness suited to scanning cover and escape routes.",
+        "degreesApprox": 300,
+        "notes": "A mild soft periphery suggests breadth of awareness without claiming a true panoramic recreation."
+      },
+      "motionSensitivity": "High — motion often matters more than fine static detail.",
+      "visualAcuity": "Lower fine-detail resolution than humans; softens high-frequency texture slightly.",
+      "transform": {
+        "id": "deer-dichromatic",
+        "maxEdge": 1600,
+        "params": {
+          "redGreenMix": 0.55,
+          "blueBoost": 1.12,
+          "saturation": 0.72,
+          "detailSoftness": 0.35,
+          "peripheralSoftness": 0.22,
+          "contrast": 1.04
+        }
+      },
+      "educationalNotes": [
+        "This interpretation compresses red–green differences to suggest dichromatic woodland vision.",
+        "Fine detail is softened because deer acuity is generally coarser than human foveal vision.",
+        "A soft periphery hints at wide awareness; it is not a measured field-of-view simulation.",
+        "Motion sensitivity cannot be shown in a still photograph."
+      ],
+      "cannotRepresent": [
+        "Exact cone spectral sensitivities",
+        "True panoramic field of view on a flat display",
+        "Motion detection over time",
+        "Any claim of “seeing as a deer sees”"
+      ],
+      "photographyInspiration": [
+        "View through woodland cover",
+        "Broad escape routes",
+        "Low eye-level perspective",
+        "Movement over detail"
+      ],
+      "filenameSlug": "deer"
+    },
+    {
+      "id": "honeybee",
+      "commonName": "Honeybee",
+      "scientificName": "Apis mellifera",
+      "habitat": "Flower-rich meadows, gardens, and woodland edges.",
+      "visionSummary": "Trichromatic vision shifted toward ultraviolet and blue-green, with reduced usefulness of deep reds. Compound eyes cannot be accurately reproduced on a camera image.",
+      "colorSensitivity": {
+        "summary": "UV-sensitive in life; ordinary photographs contain no ultraviolet channel.",
+        "notes": [
+          "This mode is a UV-inspired educational interpretation — not recovered UV data.",
+          "Reds are reduced; blues and violets are emphasized to suggest a shifted floral palette."
+        ]
+      },
+      "fieldOfView": {
+        "summary": "Compound-eye mosaics are not simulated; that would invent structure the photo does not contain.",
+        "degreesApprox": null,
+        "notes": "We avoid hexagonal overlays that invent optical artifacts."
+      },
+      "motionSensitivity": "High for floral approach cues; still frames cannot convey flicker fusion.",
+      "visualAcuity": "Different spatial sampling than vertebrate eyes; we keep the photograph intact and only remap tone and color.",
+      "transform": {
+        "id": "honeybee-uv-inspired",
+        "maxEdge": 1600,
+        "params": {
+          "redAttenuate": 0.45,
+          "blueBoost": 1.28,
+          "violetLift": 0.18,
+          "saturation": 0.9,
+          "edgeEmphasis": 0.2,
+          "contrast": 1.06,
+          "labelOverlay": true
+        }
+      },
+      "educationalNotes": [
+        "Labeled UV-inspired because camera RGB has no ultraviolet channel to recover.",
+        "Red attenuation and blue emphasis suggest a floral world shifted away from human reds.",
+        "Subtle edge emphasis hints at pattern detection on petals — not compound-eye facets.",
+        "Never treat this as an actual UV photograph."
+      ],
+      "cannotRepresent": [
+        "True ultraviolet reflectance",
+        "Compound-eye mosaic geometry",
+        "Polarization vision",
+        "Temporal resolution of bee vision"
+      ],
+      "photographyInspiration": [
+        "Flower approach",
+        "Landing paths",
+        "Repeating floral patterns",
+        "Close observation"
+      ],
+      "filenameSlug": "honeybee"
+    },
+    {
+      "id": "eastern-box-turtle",
+      "commonName": "Eastern Box Turtle",
+      "scientificName": "Terrapene carolina",
+      "habitat": "Forest floor — leaf litter, moss, logs, and damp microhabitats.",
+      "visionSummary": "Comparatively rich color vision for a reptile, experienced from an extremely low viewing height with emphasis on nearby textures and warm forest-floor relationships.",
+      "colorSensitivity": {
+        "summary": "Warm, earthy color relationships with useful discrimination among greens, browns, and soft reds of leaf litter.",
+        "notes": [
+          "Warm midtones are gently lifted.",
+          "Local texture contrast is enhanced for moss, leaves, and bark."
+        ]
+      },
+      "fieldOfView": {
+        "summary": "Ground-level framing matters more than panoramic width.",
+        "degreesApprox": null,
+        "notes": "The transform emphasizes near-field texture rather than inventing a new camera angle."
+      },
+      "motionSensitivity": "Slow exploratory movement; still images favor texture over chase cues.",
+      "visualAcuity": "Nearby detail is prioritized; distant haze is slightly softened.",
+      "transform": {
+        "id": "box-turtle-forest-floor",
+        "maxEdge": 1600,
+        "params": {
+          "warmth": 0.12,
+          "greenLift": 1.06,
+          "localContrast": 0.28,
+          "nearFieldSharpen": 0.22,
+          "distanceSoftness": 0.18,
+          "saturation": 1.05,
+          "contrast": 1.08
+        }
+      },
+      "educationalNotes": [
+        "Warmth and local contrast suggest forest-floor reading of leaves, moss, and logs.",
+        "Near-field sharpening emphasizes textures a low observer might attend to.",
+        "Distant softness hints at focus on nearby ground — not a measured depth of field.",
+        "True eye height would require a different photograph; we do not invent a new camera position."
+      ],
+      "cannotRepresent": [
+        "Actual turtle eye height unless the photo was already made that way",
+        "Exact spectral sensitivities",
+        "Chemosensory or tactile cues that accompany exploration",
+        "Subjective experience"
+      ],
+      "photographyInspiration": [
+        "Mushrooms",
+        "Moss",
+        "Fallen leaves",
+        "Logs",
+        "Small plants",
+        "Puddles",
+        "Low-angle woodland scenes"
+      ],
+      "filenameSlug": "box-turtle"
+    }
+  ]
+}

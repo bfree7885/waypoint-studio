@@ -81,10 +81,11 @@
       "match": [
         "/apps/scenes",
         "/apps/photo-coach",
-        "/apps/waypoint-scenes"
+        "/apps/waypoint-scenes",
+        "/apps/animal-vision"
       ],
       "category": "photography",
-      "description": "Photography tools for careful looking \u2014 coach, profile, and scene builder.",
+      "description": "Photography tools for careful looking \u2014 coach, animal vision, profile, and scene builder.",
       "status": "live",
       "features": [
         {
@@ -102,6 +103,15 @@
           "href": "apps/photo-coach/",
           "match": [
             "/apps/photo-coach/?$"
+          ]
+        },
+        {
+          "id": "animal-vision",
+          "label": "Animal Vision",
+          "href": "apps/animal-vision/",
+          "match": [
+            "/apps/animal-vision/?$",
+            "/apps/animal-vision/index"
           ]
         },
         {

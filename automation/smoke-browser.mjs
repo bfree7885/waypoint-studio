@@ -33,6 +33,7 @@ const PAGES = [
   { name: "dashboard-redirect", path: "/dashboard.html", ready: "dashboard" },
   { name: "scenes", path: "/apps/scenes/", ready: "shell" },
   { name: "photo-coach", path: "/apps/photo-coach/", ready: "coach" },
+  { name: "animal-vision", path: "/apps/animal-vision/", ready: "shell" },
   { name: "kiosk", path: "/kiosk.html", ready: "kiosk", live: true },
   { name: "status", path: "/status.html", ready: "status" },
   { name: "debug", path: "/debug.html", ready: "debug" },

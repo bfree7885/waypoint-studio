@@ -71,6 +71,9 @@ jobs:
       - name: Fieldry MVP tests
         run: node automation/test-fieldry-mvp.mjs
 
+      - name: Animal Vision tests
+        run: node automation/test-animal-vision.mjs
+
       - name: Platform hardening tests
         run: node automation/test-platform-hardening.mjs
 

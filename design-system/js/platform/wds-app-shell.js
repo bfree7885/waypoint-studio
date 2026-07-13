@@ -301,6 +301,7 @@
     var map = {
       scenes: "scenes",
       "photo-coach": "scenes",
+      "animal-vision": "scenes",
       foragecast: "foragecast",
       fieldry: "fieldry",
       "shed-hunting": "sheds",
