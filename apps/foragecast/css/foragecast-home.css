@@ -471,3 +471,112 @@
   color: var(--wds-text-tertiary);
   max-width: 24ch;
 }
+
+.fc-hero__mission {
+  margin: var(--wds-space-4) auto 0;
+  max-width: 36rem;
+  font-size: var(--wds-text-sm);
+  letter-spacing: 0.02em;
+  color: var(--wds-text-tertiary);
+}
+
+.fc-pillar-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  padding: 0.85rem clamp(1.25rem, 4vw, 2rem);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--wds-border-subtle);
+  -webkit-overflow-scrolling: touch;
+}
+
+.fc-pillar-strip__link {
+  flex: 0 0 auto;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--wds-border-subtle);
+  color: var(--wds-text);
+  white-space: nowrap;
+}
+
+.fc-pillar-strip__link:hover,
+.fc-pillar-strip__link:focus-visible {
+  border-color: var(--wds-accent);
+  outline: none;
+}
+
+.fc-today__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.fc-today__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg);
+  background: var(--wds-surface);
+}
+
+.fc-today__rank {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--wds-accent-dim, rgba(61, 90, 64, 0.12));
+  color: var(--wds-accent);
+}
+
+.fc-today__title {
+  margin: 0 0 0.35rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.fc-today__why {
+  margin: 0 0 0.45rem;
+  color: var(--wds-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.fc-today__meta {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.fc-pill {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--wds-text-tertiary);
+}
+
+.fc-today__link {
+  margin-left: 0.5rem;
+  color: var(--wds-accent);
+}
+
+.fc-today__setup {
+  margin: var(--wds-space-5) 0 0;
+}
+
+.fc-today__note {
+  margin: var(--wds-space-4) 0 0;
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-tertiary);
+}

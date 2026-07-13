@@ -177,16 +177,64 @@
         "/apps/foragecast"
       ],
       "category": "outdoor",
-      "description": "Seasonal timing and habitat context for careful foragers.",
+      "description": "Seasonal land companion \u2014 what to find and what to do today across foraging, orchard, garden, and land care.",
       "status": "live",
       "features": [
         {
-          "id": "overview",
-          "label": "Overview",
+          "id": "today",
+          "label": "Today",
           "href": "apps/foragecast/",
           "match": [
             "/apps/foragecast/?$",
             "/apps/foragecast/index"
+          ]
+        },
+        {
+          "id": "foraging",
+          "label": "Foraging",
+          "href": "apps/foragecast/foraging.html",
+          "match": [
+            "foraging.html"
+          ]
+        },
+        {
+          "id": "orchard",
+          "label": "Orchard",
+          "href": "apps/foragecast/pillar.html?id=orchard",
+          "match": [
+            "pillar.html\\?id=orchard"
+          ]
+        },
+        {
+          "id": "garden",
+          "label": "Garden",
+          "href": "apps/foragecast/pillar.html?id=garden",
+          "match": [
+            "pillar.html\\?id=garden"
+          ]
+        },
+        {
+          "id": "food-forest",
+          "label": "Food forest",
+          "href": "apps/foragecast/pillar.html?id=food-forest",
+          "match": [
+            "food-forest"
+          ]
+        },
+        {
+          "id": "permaculture",
+          "label": "Permaculture",
+          "href": "apps/foragecast/pillar.html?id=permaculture",
+          "match": [
+            "permaculture"
+          ]
+        },
+        {
+          "id": "property",
+          "label": "Property",
+          "href": "apps/foragecast/property.html",
+          "match": [
+            "property.html"
           ]
         },
         {
@@ -195,14 +243,6 @@
           "href": "apps/foragecast/season-table.html",
           "match": [
             "season-table"
-          ]
-        },
-        {
-          "id": "learn",
-          "label": "Learn",
-          "href": "apps/foragecast/#learn",
-          "match": [
-            "#learn"
           ]
         }
       ]

@@ -1,0 +1,124 @@
+/**
+ * ForageCast — property + pillar pages
+ */
+
+.fc-land-page {
+  padding-bottom: 3rem;
+}
+
+.fc-land-hero {
+  padding: var(--wds-space-10) clamp(1.25rem, 4vw, 2rem) var(--wds-space-6);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.fc-land-hero h1 {
+  font-family: var(--wds-font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.fc-land-lead {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--wds-text-secondary);
+  line-height: 1.55;
+}
+
+.fc-land-section {
+  padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle);
+}
+
+.fc-land-section h2 {
+  font-family: var(--wds-font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+
+.fc-land-note {
+  padding: 1rem clamp(1.25rem, 4vw, 2rem);
+  color: var(--wds-text-secondary);
+  font-size: 0.95rem;
+}
+
+.fc-property-form {
+  padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem);
+  display: grid;
+  gap: 1.25rem;
+  max-width: 44rem;
+}
+
+.fc-property-form fieldset {
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: 0.85rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+.fc-property-form legend {
+  padding: 0 0.35rem;
+  font-weight: 600;
+}
+
+.fc-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.fc-field input,
+.fc-field textarea {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--wds-border);
+  background: var(--wds-surface, #fff);
+}
+
+.fc-check-grid {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .fc-check-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fc-check {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  padding: 0.35rem 0;
+  cursor: pointer;
+}
+
+.fc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fc-save-status {
+  min-height: 1.25rem;
+  color: var(--wds-text-secondary);
+  margin: 0;
+}
+
+.fc-action-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  line-height: 1.5;
+  color: var(--wds-text-secondary);
+}
+
+.fc-action-list li + li {
+  margin-top: 0.65rem;
+}
+
+.fc-action-list strong {
+  color: var(--wds-text);
+}

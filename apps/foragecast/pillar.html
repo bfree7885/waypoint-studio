@@ -4,48 +4,33 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ForageCast — seasonal land companion. What can I find today? What should I do today? Foraging, orchard, garden, food forest, and permaculture guidance. Private by default.">
-  <title>ForageCast — What should I do today?</title>
+  <meta name="description" content="ForageCast land pillar — orchard, garden, food forest, or permaculture guidance matched to your property.">
+  <title>Land care — ForageCast</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="css/foragecast-home.css">
-  <link rel="stylesheet" href="css/foragecast-heat.css">
+  <link rel="stylesheet" href="css/foragecast-land.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app was-shell" data-wds-app-shell data-product="foragecast" data-product-name="ForageCast" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
-
     <div id="wds-location-prompt"></div>
-
-    <main id="main" class="fc-page">
-      <div id="foragecast-home" aria-busy="true">
-        <section class="fc-hero" aria-label="Loading">
-          <p class="wds-eyebrow">ForageCast</p>
-          <p class="fc-hero__lead">Opening the field guide…</p>
-        </section>
-      </div>
+    <main id="main" class="fc-page fc-land-page">
+      <div id="fc-pillar-mount" aria-busy="true"><p class="wds-body">Loading pillar…</p></div>
     </main>
-
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
-  <script src="../../design-system/js/species/wds-wskb-render.js" defer></script>
-  <script src="../../design-system/js/wds-species-spotlight.js" defer></script>
-  <script src="../../design-system/js/wds-map-view.js" defer></script>
   <script src="../../design-system/js/wds-platform.js?v=local" defer></script>
-  <script src="js/foragecast-model.js" defer></script>
-  <script src="js/foragecast-heat.js" defer></script>
-  <script src="js/foragecast-location.js" defer></script>
   <script src="js/foragecast-boot.js" defer></script>
   <script src="js/foragecast-profile.js" defer></script>
   <script src="js/foragecast-today.js" defer></script>
-  <script src="js/foragecast-home.js" defer></script>
+  <script src="js/foragecast-land.js" defer></script>
 </body>
 </html>

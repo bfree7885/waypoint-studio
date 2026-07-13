@@ -61,7 +61,7 @@
       shortName: "ForageCast",
       tier: "core",
       status: "live",
-      description: "Seasonal guidance from place, weather, and phenology.",
+      description: "Seasonal land companion — foraging, orchard, garden, and today’s action plan.",
       pathFromApps: "../foragecast/",
       pathFromRoot: "apps/foragecast/",
       dataProduct: "foragecast",

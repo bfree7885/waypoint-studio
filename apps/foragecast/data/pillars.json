@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "mission": "Understand the season. Care for your land. Harvest at the right time.",
+  "equation": "Location × Weather × Season × Property × User Intent = Today's Action Plan",
+  "pillars": [
+    {
+      "id": "today",
+      "label": "Today",
+      "title": "What should I do today?",
+      "summary": "Clear, ranked actions for this place and this weather — not an article feed.",
+      "href": "apps/foragecast/"
+    },
+    {
+      "id": "foraging",
+      "label": "Foraging",
+      "title": "Wild foraging",
+      "summary": "Mushrooms, berries, nuts, wild edibles, and medicinals with seasonal habitat context.",
+      "href": "apps/foragecast/foraging.html",
+      "topics": ["Mushrooms", "Berries", "Nuts", "Wild edible plants", "Medicinals", "Habitat guidance"]
+    },
+    {
+      "id": "orchard",
+      "label": "Orchard",
+      "title": "Orchard care",
+      "summary": "Thinning, pruning, harvest windows, irrigation, pest watch, frost, and pollination.",
+      "href": "apps/foragecast/pillar.html?id=orchard",
+      "topics": ["Thinning", "Summer pruning", "Harvest timing", "Irrigation", "Pest monitoring", "Frost warnings", "Pollination"]
+    },
+    {
+      "id": "garden",
+      "label": "Garden",
+      "title": "Garden beds",
+      "summary": "Succession planting, watering, mulch, fertility windows, harvest, and pest pressure.",
+      "href": "apps/foragecast/pillar.html?id=garden",
+      "topics": ["Succession crops", "Water", "Mulch", "Fertilizing windows", "Harvest timing", "Pest pressure"]
+    },
+    {
+      "id": "food-forest",
+      "label": "Food forest",
+      "title": "Food forest",
+      "summary": "Guilds, mulching, dynamic accumulators, companions, pollinators, and perennial care.",
+      "href": "apps/foragecast/pillar.html?id=food-forest",
+      "topics": ["Tree guilds", "Mulching", "Dynamic accumulators", "Companions", "Pollinator support", "Perennials"]
+    },
+    {
+      "id": "permaculture",
+      "label": "Permaculture",
+      "title": "Permaculture & land care",
+      "summary": "Soil building, compost, rainwater, cover crops, wildlife habitat, and ecosystem notes.",
+      "href": "apps/foragecast/pillar.html?id=permaculture",
+      "topics": ["Soil building", "Compost timing", "Rainwater", "Cover crops", "Wildlife habitat", "Observations"]
+    }
+  ],
+  "propertyFeatures": [
+    { "id": "apple-trees", "label": "Apple trees", "pillars": ["orchard"] },
+    { "id": "pear-trees", "label": "Pear trees", "pillars": ["orchard"] },
+    { "id": "peach-trees", "label": "Peach trees", "pillars": ["orchard"] },
+    { "id": "cherry-trees", "label": "Cherry trees", "pillars": ["orchard"] },
+    { "id": "blueberries", "label": "Blueberries", "pillars": ["orchard", "garden", "food-forest"] },
+    { "id": "hazelnuts", "label": "Hazelnuts", "pillars": ["orchard", "food-forest"] },
+    { "id": "pawpaws", "label": "Pawpaws", "pillars": ["orchard", "food-forest"] },
+    { "id": "maple-trees", "label": "Maple trees", "pillars": ["orchard", "permaculture"] },
+    { "id": "vegetable-garden", "label": "Vegetable garden", "pillars": ["garden"] },
+    { "id": "mushroom-logs", "label": "Mushroom logs", "pillars": ["foraging", "garden"] },
+    { "id": "beehives", "label": "Beehives", "pillars": ["permaculture", "orchard"] },
+    { "id": "compost", "label": "Compost", "pillars": ["permaculture", "garden"] },
+    { "id": "pond", "label": "Pond", "pillars": ["permaculture"] },
+    { "id": "chickens", "label": "Chickens", "pillars": ["permaculture"] },
+    { "id": "native-meadow", "label": "Native meadow", "pillars": ["permaculture", "food-forest"] },
+    { "id": "food-forest", "label": "Food forest", "pillars": ["food-forest"] },
+    { "id": "wild-edges", "label": "Wild edges / woodlot", "pillars": ["foraging"] }
+  ],
+  "intents": [
+    { "id": "forage", "label": "Forage", "pillars": ["foraging"] },
+    { "id": "grow-food", "label": "Grow food", "pillars": ["garden", "orchard", "food-forest"] },
+    { "id": "orchard-management", "label": "Orchard management", "pillars": ["orchard"] },
+    { "id": "permaculture", "label": "Permaculture", "pillars": ["permaculture", "food-forest"] },
+    { "id": "wildlife-habitat", "label": "Wildlife habitat", "pillars": ["permaculture", "food-forest"] },
+    { "id": "homesteading", "label": "Homesteading", "pillars": ["garden", "orchard", "permaculture"] },
+    { "id": "native-plants", "label": "Native plants", "pillars": ["permaculture", "food-forest"] },
+    { "id": "herbal-medicine", "label": "Herbal medicine", "pillars": ["foraging", "garden"] },
+    { "id": "seed-saving", "label": "Seed saving", "pillars": ["garden"] }
+  ],
+  "futureSignals": [
+    "Soil moisture sensors",
+    "Growing degree days",
+    "Property-specific frost history"
+  ]
+}

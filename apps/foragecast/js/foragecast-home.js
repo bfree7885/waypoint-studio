@@ -33,17 +33,70 @@
     var defaultNote = loc && loc.isDefault && window.WDS && WDS.location
       ? '<p class="fc-location-bar__status">' + escapeHtml(WDS.location.formatStatusLine(loc)) + "</p>"
       : "";
+    var mission = (data._todayPlan && data._todayPlan.mission) ||
+      "Understand the season. Care for your land. Harvest at the right time.";
 
     return (
       '<section class="fc-hero" aria-labelledby="fc-hero-title">' +
-        '<p class="wds-eyebrow">ForageCast · ' + escapeHtml(regionLabel) + "</p>" +
+        '<p class="wds-eyebrow">ForageCast · seasonal land companion · ' + escapeHtml(regionLabel) + "</p>" +
         defaultNote +
         '<h1 class="fc-hero__question" id="fc-hero-title">' + escapeHtml(data.hero.question) + "</h1>" +
         '<p class="fc-hero__lead">' + escapeHtml(data.hero.lead) + "</p>" +
-        '<div style="margin-top: var(--wds-space-6); max-width: 14rem; margin-inline: auto;">' +
-          mediaSlot("Field guide illustration · placeholder", "Mushroom & leaf sketch") +
-        "</div>" +
+        '<p class="fc-hero__mission">' + escapeHtml(mission) + "</p>" +
       "</section>"
+    );
+  }
+
+  function renderToday(data) {
+    var plan = data._todayPlan;
+    if (!plan) return "";
+    var actions = (plan.actions || []).map(function (a, idx) {
+      return (
+        '<li class="fc-today__item">' +
+          '<span class="fc-today__rank" aria-hidden="true">' + (idx + 1) + "</span>" +
+          '<div class="fc-today__body">' +
+            '<p class="fc-today__title">' + escapeHtml(a.title) + "</p>" +
+            '<p class="fc-today__why">' + escapeHtml(a.why) + "</p>" +
+            '<p class="fc-today__meta">' +
+              '<span class="fc-pill">' + escapeHtml(a.pillar) + "</span>" +
+              (a.href ? ' <a class="fc-today__link" href="' + escapeHtml(a.href) + '">Open</a>' : "") +
+            "</p>" +
+          "</div>" +
+        "</li>"
+      );
+    }).join("");
+
+    var setup = !plan.configured
+      ? '<p class="fc-today__setup"><a class="wds-btn wds-btn--secondary wds-btn--sm" href="property.html">Set up your property profile</a></p>'
+      : '<p class="fc-today__setup"><a href="property.html">Edit property &amp; goals</a></p>';
+
+    return (
+      '<section class="fc-section fc-today" id="today" aria-labelledby="fc-today-title">' +
+        '<p class="fc-section__eyebrow">Today · actionable guidance</p>' +
+        '<h2 class="fc-section__title" id="fc-today-title">What should I do today?</h2>' +
+        '<p class="fc-section__lead">Synthesized from your region, weather, season, property features, and goals — not a feed of articles.</p>' +
+        '<ol class="fc-today__list">' + actions + "</ol>" +
+        setup +
+        '<p class="fc-today__note" role="note">Educational guidance only. Confirm every plant and mushroom yourself. Private by default — property details stay in this browser.</p>' +
+      "</section>"
+    );
+  }
+
+  function renderPillarStrip() {
+    var pillars = [
+      { href: "#today", label: "Today" },
+      { href: "foraging.html", label: "Foraging" },
+      { href: "pillar.html?id=orchard", label: "Orchard" },
+      { href: "pillar.html?id=garden", label: "Garden" },
+      { href: "pillar.html?id=food-forest", label: "Food forest" },
+      { href: "pillar.html?id=permaculture", label: "Permaculture" },
+      { href: "property.html", label: "Property" }
+    ];
+    var links = pillars.map(function (p) {
+      return '<a class="fc-pillar-strip__link" href="' + escapeHtml(p.href) + '">' + escapeHtml(p.label) + "</a>";
+    }).join("");
+    return (
+      '<nav class="fc-pillar-strip" aria-label="ForageCast pillars">' + links + "</nav>"
     );
   }
 
@@ -339,10 +392,14 @@
   function renderPage(data) {
     return (
       renderHero(data) +
+      renderPillarStrip() +
+      renderToday(data) +
       renderRegionalStatus(data) +
+      '<div id="foraging">' +
       renderThisWeek(data) +
       renderSpotlight(data) +
       renderPrediction(data) +
+      "</div>" +
       renderLessons(data) +
       renderVideo(data) +
       renderFieldNotes(data) +
@@ -450,9 +507,18 @@
 
         homeHeatState.selectedZoneId = data._heatSnapshot && data._heatSnapshot.topZoneId;
 
+        if (window.ForageCastToday && window.ForageCastProfile) {
+          data._todayPlan = ForageCastToday.buildPlan({
+            property: ForageCastProfile.loadProperty(),
+            intent: ForageCastProfile.loadIntent(),
+            platform: platform,
+            homeData: data
+          });
+        }
+
         mount.innerHTML = renderPage(data);
         mount.removeAttribute("aria-busy");
-        document.title = "ForageCast — " + data.hero.question;
+        document.title = "ForageCast — What should I do today?";
         if (window.ForageCastBoot) {
           ForageCastBoot.bindRegionChange(mount, function () {
             loadHome(window.WDS && WDS.location ? WDS.location.getState() : null);
@@ -460,12 +526,16 @@
         }
         bindMapViews(loc);
         bindHeatZoneEvents(data);
+        if (location.hash === "#today" || location.hash === "#foraging") {
+          var target = document.getElementById(location.hash.slice(1));
+          if (target && target.scrollIntoView) target.scrollIntoView({ block: "start" });
+        }
         });
       })
       .catch(function (err) {
         mount.innerHTML =
-          '<section class="fc-section"><p class="wds-body">Could not load field guide content. ' +
-          escapeHtml(err.message) + "</p></section>";
+          '<section class="fc-section" role="alert"><p class="wds-body">Could not load ForageCast. Check your connection and try again.</p>' +
+          '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p></section>';
         mount.removeAttribute("aria-busy");
       });
   }

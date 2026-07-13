@@ -74,6 +74,9 @@ jobs:
       - name: Animal Vision tests
         run: node automation/test-animal-vision.mjs
 
+      - name: ForageCast land companion tests
+        run: node automation/test-foragecast-land.mjs
+
       - name: Platform hardening tests
         run: node automation/test-platform-hardening.mjs
 
