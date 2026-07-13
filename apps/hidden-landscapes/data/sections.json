@@ -1,0 +1,87 @@
+{
+  "version": "0.1.0",
+  "product": "hidden-landscapes",
+  "mission": "Reveal the invisible worlds that exist all around us.",
+  "tagline": "Education through beauty.",
+  "privacyNote": "Local-first where practical. Photographs and notes stay on this device unless you enable sync later.",
+  "sections": [
+    {
+      "id": "what-is",
+      "title": "What is Hidden Landscapes?",
+      "eyebrow": "Mission",
+      "body": "Hidden Landscapes is a Waypoint Studio framework for helping people see nature beyond normal human vision — infrared, ultraviolet, polarized light, animal vision, and more. It is not a filter gallery. It is education through beauty."
+    },
+    {
+      "id": "ways-of-seeing",
+      "title": "Different Ways Nature Can Be Seen",
+      "eyebrow": "Overview",
+      "body": "Every landscape holds more than the eye alone can register. These modes organize how Hidden Landscapes will teach, compare, and explain those other views."
+    },
+    {
+      "id": "technology",
+      "title": "Technology",
+      "eyebrow": "Tools",
+      "body": "Cameras, lenses, filters, and conversion systems that open wavelengths and light behaviors outside everyday photography.",
+      "visionModeIds": ["infrared", "full-spectrum", "ultraviolet", "polarization", "night"]
+    },
+    {
+      "id": "species-vision",
+      "title": "Species Vision",
+      "eyebrow": "Animal perception",
+      "body": "Research-informed educational simulations of how other species may perceive a scene. Approximate translations — never exact animal experience.",
+      "visionModeIds": ["species-vision"],
+      "relatedApp": "../animal-vision/"
+    },
+    {
+      "id": "infrared",
+      "title": "Infrared",
+      "eyebrow": "Beyond red",
+      "body": "Near-infrared photography reveals foliage, heat-adjacent reflectance, and atmospheric depth that human vision barely notices.",
+      "visionModeIds": ["infrared"]
+    },
+    {
+      "id": "full-spectrum",
+      "title": "Full Spectrum",
+      "eyebrow": "Broad capture",
+      "body": "Sensors and optics that admit a wider band of wavelengths, then interpret that signal into images we can study.",
+      "visionModeIds": ["full-spectrum"]
+    },
+    {
+      "id": "ultraviolet",
+      "title": "Ultraviolet",
+      "eyebrow": "Shorter than violet",
+      "body": "UV-sensitive capture and false-color renderings that uncover patterns invisible under ordinary daylight photography.",
+      "visionModeIds": ["ultraviolet"]
+    },
+    {
+      "id": "polarization",
+      "title": "Polarization",
+      "eyebrow": "Ordered light",
+      "body": "Polarizing filters and analysis that quiet glare, deepen skies, and expose surface structure in water, leaves, and stone.",
+      "visionModeIds": ["polarization"]
+    },
+    {
+      "id": "night",
+      "title": "Night",
+      "eyebrow": "Low light",
+      "body": "Night vision and low-light techniques that keep form and atmosphere when the sun is gone.",
+      "visionModeIds": ["night"]
+    },
+    {
+      "id": "gallery",
+      "title": "Gallery",
+      "eyebrow": "Placeholder",
+      "body": "Image sets comparing human vision with infrared, UV, full spectrum, and species simulations will live here.",
+      "href": "gallery.html",
+      "status": "placeholder"
+    },
+    {
+      "id": "learn",
+      "title": "Learn",
+      "eyebrow": "Placeholder",
+      "body": "Scientific explanations, field notes, and guided lessons for each way of seeing.",
+      "href": "learn.html",
+      "status": "placeholder"
+    }
+  ]
+}

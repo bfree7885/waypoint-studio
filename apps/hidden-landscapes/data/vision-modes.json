@@ -1,0 +1,91 @@
+{
+  "version": "0.1.0",
+  "modes": [
+    {
+      "id": "human",
+      "label": "Human Vision",
+      "shortLabel": "Human",
+      "category": "baseline",
+      "summary": "Approximate trichromatic daylight vision — the reference for every comparison.",
+      "wavelengthIds": ["visible"],
+      "status": "planned"
+    },
+    {
+      "id": "infrared",
+      "label": "Infrared Photography",
+      "shortLabel": "Infrared",
+      "category": "spectrum",
+      "summary": "Near-infrared reflectance and IR-pass capture beyond the red edge of human sight.",
+      "wavelengthIds": ["nir"],
+      "status": "planned"
+    },
+    {
+      "id": "full-spectrum",
+      "label": "Full Spectrum Photography",
+      "shortLabel": "Full spectrum",
+      "category": "spectrum",
+      "summary": "Broad-band capture across UV, visible, and near-IR with intentional filtering and rendering.",
+      "wavelengthIds": ["uv-a", "visible", "nir"],
+      "status": "planned"
+    },
+    {
+      "id": "ultraviolet",
+      "label": "Ultraviolet Photography",
+      "shortLabel": "Ultraviolet",
+      "category": "spectrum",
+      "summary": "UV-reflected and UV-induced fluorescence views that rearrange plant and mineral appearance.",
+      "wavelengthIds": ["uv-a"],
+      "status": "planned"
+    },
+    {
+      "id": "polarization",
+      "label": "Polarized Light",
+      "shortLabel": "Polarization",
+      "category": "optics",
+      "summary": "Linear and circular polarization to manage glare and reveal surface orientation.",
+      "wavelengthIds": ["visible"],
+      "status": "planned"
+    },
+    {
+      "id": "species-vision",
+      "label": "Animal Vision Simulation",
+      "shortLabel": "Species",
+      "category": "biology",
+      "summary": "Educational simulations grounded in published spectral sensitivity research.",
+      "relatedApp": "../animal-vision/",
+      "status": "scaffold"
+    },
+    {
+      "id": "macro",
+      "label": "Macro Worlds",
+      "shortLabel": "Macro",
+      "category": "scale",
+      "summary": "Close-scale landscapes where texture, dew, and micro-habitats become the subject.",
+      "status": "planned"
+    },
+    {
+      "id": "night",
+      "label": "Night Vision / Low Light",
+      "shortLabel": "Night",
+      "category": "light",
+      "summary": "Long exposure, amplified, and near-dark capture strategies for nocturnal scenes.",
+      "status": "planned"
+    },
+    {
+      "id": "seasonal",
+      "label": "Seasonal Transformations",
+      "shortLabel": "Seasonal",
+      "category": "time",
+      "summary": "The same place across seasons — phenology as a visual curriculum.",
+      "status": "planned"
+    },
+    {
+      "id": "weather",
+      "label": "Weather Transformations",
+      "shortLabel": "Weather",
+      "category": "time",
+      "summary": "Fog, rain, snow, and storm light as teachers of atmosphere and reflectance.",
+      "status": "planned"
+    }
+  ]
+}

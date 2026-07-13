@@ -1,0 +1,206 @@
+/* Hidden Landscapes — scaffold layout (mobile first) */
+
+.hl-page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.5rem) 3.5rem;
+}
+
+.hl-hero {
+  margin-bottom: 1.75rem;
+}
+
+.hl-hero--compact {
+  margin-bottom: 1.25rem;
+}
+
+.hl-hero h1 {
+  font-family: var(--wds-font-display);
+  font-size: clamp(2rem, 6vw, 2.65rem);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0.4rem 0 0.85rem;
+  letter-spacing: -0.01em;
+}
+
+.hl-hero__mission {
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.15rem, 3vw, 1.35rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--wds-text-primary);
+  margin: 0 0 0.65rem;
+  max-width: 28rem;
+}
+
+.hl-hero__lead {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--wds-text-secondary);
+  margin: 0;
+  max-width: 34rem;
+}
+
+.hl-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+}
+
+.hl-toc {
+  margin: 0 0 2rem;
+  padding: 0.9rem 0 0;
+  border-top: 1px solid var(--wds-border);
+}
+
+.hl-toc__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-secondary);
+  margin: 0 0 0.65rem;
+}
+
+.hl-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.85rem;
+}
+
+.hl-toc a {
+  color: var(--wds-accent);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.hl-toc a:hover,
+.hl-toc a:focus-visible {
+  text-decoration: underline;
+}
+
+.hl-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.hl-section h2 {
+  font-family: var(--wds-font-display);
+  font-size: clamp(1.45rem, 3.5vw, 1.75rem);
+  font-weight: 500;
+  margin: 0.35rem 0 0.65rem;
+  line-height: 1.2;
+}
+
+.hl-section__body {
+  margin: 0;
+  line-height: 1.55;
+  color: var(--wds-text-secondary);
+}
+
+.hl-mode-chips {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.hl-chip {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--wds-border);
+  border-radius: var(--wds-radius-sm);
+  color: var(--wds-text-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  background: var(--wds-surface);
+}
+
+.hl-chip:hover,
+.hl-chip:focus-visible {
+  border-color: var(--wds-accent);
+  color: var(--wds-accent);
+}
+
+.hl-ways {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+@media (min-width: 640px) {
+  .hl-page {
+    max-width: 48rem;
+  }
+
+  .hl-ways {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hl-way {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--wds-border);
+}
+
+.hl-way h3 {
+  font-family: var(--wds-font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.hl-way p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--wds-text-secondary);
+}
+
+.hl-way__cat,
+.hl-way__status {
+  font-size: 0.68rem !important;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wds-text-secondary);
+}
+
+.hl-way__status {
+  margin-top: 0.45rem !important;
+  opacity: 0.85;
+}
+
+.hl-related {
+  margin: 0.9rem 0 0;
+}
+
+.hl-stats {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--wds-text-secondary);
+  line-height: 1.55;
+}
+
+.hl-privacy,
+.hl-todo {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--wds-text-secondary);
+}
+
+.hl-todo {
+  opacity: 0.8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+}

@@ -30,6 +30,8 @@ Defaults in `:root` match **Waypoint Scenes** (sage + hearth).
 **Voice:** Homecoming after a shoot — "Unpack a frame", "Let the day breathe."  
 **Key patterns:** Hero upload, workspace tabs, export stage, field guide lessons.
 
+**Hidden Landscapes** (`hidden-landscapes`, under Scenes) — scaffold for seeing beyond human vision (IR, UV, polarization, species, night). Education through beauty. Local-first ImageSets; no capture/render pipelines yet.
+
 ### ForageCast (`foragecast`)
 **Domain:** Foraging seasons, weather, species timing.  
 **Voice:** Patient, seasonal, grounded in place.  

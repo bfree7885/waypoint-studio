@@ -82,10 +82,11 @@
         "/apps/scenes",
         "/apps/photo-coach",
         "/apps/waypoint-scenes",
-        "/apps/animal-vision"
+        "/apps/animal-vision",
+        "/apps/hidden-landscapes"
       ],
       "category": "photography",
-      "description": "Photography tools for careful looking \u2014 coach, animal vision, profile, and scene builder.",
+      "description": "Photography tools for careful looking \u2014 coach, animal vision, Hidden Landscapes, profile, and scene builder.",
       "status": "live",
       "features": [
         {
@@ -112,6 +113,17 @@
           "match": [
             "/apps/animal-vision/?$",
             "/apps/animal-vision/index"
+          ]
+        },
+        {
+          "id": "hidden-landscapes",
+          "label": "Hidden Landscapes",
+          "href": "apps/hidden-landscapes/",
+          "match": [
+            "/apps/hidden-landscapes/?$",
+            "/apps/hidden-landscapes/index",
+            "/apps/hidden-landscapes/gallery",
+            "/apps/hidden-landscapes/learn"
           ]
         },
         {

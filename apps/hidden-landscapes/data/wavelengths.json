@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0",
+  "bands": [
+    {
+      "id": "uv-c",
+      "label": "UV-C",
+      "rangeNm": [100, 280],
+      "notes": "Scaffold only — rarely used in field photography curricula."
+    },
+    {
+      "id": "uv-b",
+      "label": "UV-B",
+      "rangeNm": [280, 315],
+      "notes": "Scaffold only."
+    },
+    {
+      "id": "uv-a",
+      "label": "UV-A",
+      "rangeNm": [315, 400],
+      "notes": "Primary band for educational UV reflectance photography."
+    },
+    {
+      "id": "visible",
+      "label": "Visible",
+      "rangeNm": [400, 700],
+      "notes": "Human baseline reference."
+    },
+    {
+      "id": "nir",
+      "label": "Near-infrared",
+      "rangeNm": [700, 1100],
+      "notes": "Common IR photography window for converted cameras and IR-pass filters."
+    },
+    {
+      "id": "swir",
+      "label": "Short-wave infrared",
+      "rangeNm": [1100, 3000],
+      "notes": "Scaffold — specialized sensors; future expansion."
+    }
+  ]
+}

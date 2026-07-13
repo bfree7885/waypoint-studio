@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "systems": [
+    {
+      "id": "stock-dslr",
+      "label": "Stock digital camera",
+      "kind": "camera",
+      "spectrum": "visible-biased",
+      "notes": "Factory IR/UV blocking filter in place. Baseline human-comparable capture."
+    },
+    {
+      "id": "full-spectrum-converted",
+      "label": "Full-spectrum converted body",
+      "kind": "camera",
+      "spectrum": "full-spectrum",
+      "notes": "Hot mirror removed or replaced. Requires intentional filtration for each VisionMode."
+    },
+    {
+      "id": "ir-converted",
+      "label": "Infrared-converted body",
+      "kind": "camera",
+      "spectrum": "infrared",
+      "notes": "Internal IR-pass conversion. Scaffold entry."
+    },
+    {
+      "id": "uv-capable-lens",
+      "label": "UV-capable lens",
+      "kind": "lens",
+      "spectrum": "ultraviolet",
+      "notes": "Placeholder — quartz / specialized glass notes TBD."
+    },
+    {
+      "id": "macro-optics",
+      "label": "Macro optics",
+      "kind": "lens",
+      "spectrum": "visible",
+      "notes": "Placeholder for Macro Worlds ImageSets."
+    }
+  ]
+}

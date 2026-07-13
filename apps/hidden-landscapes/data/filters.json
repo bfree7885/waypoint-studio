@@ -1,0 +1,43 @@
+{
+  "version": "0.1.0",
+  "filters": [
+    {
+      "id": "ir-pass-720",
+      "label": "IR-pass ~720 nm",
+      "kind": "infrared-pass",
+      "cutoffNm": 720,
+      "notes": "Placeholder catalog entry for future ImageSet gear metadata."
+    },
+    {
+      "id": "ir-pass-850",
+      "label": "IR-pass ~850 nm",
+      "kind": "infrared-pass",
+      "cutoffNm": 850,
+      "notes": "Placeholder."
+    },
+    {
+      "id": "uv-pass",
+      "label": "UV-pass",
+      "kind": "ultraviolet-pass",
+      "notes": "Placeholder — pair with UV-capable optics and illumination notes."
+    },
+    {
+      "id": "uv-ir-cut",
+      "label": "UV/IR cut",
+      "kind": "blocking",
+      "notes": "Restores approximate human-visible response on full-spectrum bodies."
+    },
+    {
+      "id": "linear-polarizer",
+      "label": "Linear polarizer",
+      "kind": "polarizer",
+      "notes": "Placeholder."
+    },
+    {
+      "id": "circular-polarizer",
+      "label": "Circular polarizer",
+      "kind": "polarizer",
+      "notes": "Placeholder."
+    }
+  ]
+}

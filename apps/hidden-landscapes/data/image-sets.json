@@ -1,0 +1,45 @@
+{
+  "version": "0.1.0",
+  "note": "Empty catalog — ImageSets are the core comparison unit. Add entries when capture and rendering pipelines exist.",
+  "imageSets": [
+    {
+      "id": "example-ridge-hollow",
+      "title": "Example ImageSet (scaffold)",
+      "status": "placeholder",
+      "locationLabel": "",
+      "gps": {
+        "lat": null,
+        "lon": null,
+        "accuracyM": null,
+        "privacy": "local-only"
+      },
+      "capturedAt": null,
+      "weather": {
+        "summary": null,
+        "tempC": null,
+        "conditions": null,
+        "notes": null
+      },
+      "gear": {
+        "cameraSystemId": null,
+        "lens": null,
+        "filterIds": [],
+        "notes": null
+      },
+      "frames": {
+        "human": null,
+        "infrared": null,
+        "ultraviolet": null,
+        "fullSpectrum": null,
+        "speciesSimulations": []
+      },
+      "scientificExplanation": null,
+      "photographyNotes": null,
+      "todos": [
+        "TODO(ai-analysis): attach local analysis results for each frame without uploading bytes.",
+        "TODO(rendering): generate species simulation frames via Animal Vision / future HL renderer.",
+        "TODO(compare-ui): side-by-side / slider / mode toggle for VisionMode frames."
+      ]
+    }
+  ]
+}

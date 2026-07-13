@@ -105,6 +105,19 @@
       navPriority: 45
     },
     {
+      id: "hidden-landscapes",
+      name: "Hidden Landscapes",
+      shortName: "Hidden Landscapes",
+      tier: "core",
+      status: "scaffold",
+      description: "See nature beyond human vision — infrared, UV, polarization, species vision, and more.",
+      pathFromApps: "../hidden-landscapes/",
+      pathFromRoot: "apps/hidden-landscapes/",
+      dataProduct: "hidden-landscapes",
+      parent: "scenes",
+      navPriority: 47
+    },
+    {
       id: "sheds",
       slug: "shed-hunting",
       name: "Sheds",

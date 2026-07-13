@@ -302,6 +302,7 @@
       scenes: "scenes",
       "photo-coach": "scenes",
       "animal-vision": "scenes",
+      "hidden-landscapes": "scenes",
       foragecast: "foragecast",
       fieldry: "fieldry",
       "shed-hunting": "sheds",

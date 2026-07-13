@@ -1,0 +1,38 @@
+{
+  "version": "0.1.0",
+  "note": "Scaffold species records for Species Vision ImageSets. Prefer linking Animal Vision research configs when implementing.",
+  "species": [
+    {
+      "id": "human",
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "visionSummary": "Trichromatic baseline for comparisons.",
+      "relatedAnimalVisionId": null,
+      "status": "baseline"
+    },
+    {
+      "id": "white-tailed-deer",
+      "commonName": "White-tailed deer",
+      "scientificName": "Odocoileus virginianus",
+      "visionSummary": "Dichromatic ungulate vision — educational simulation via Animal Vision.",
+      "relatedAnimalVisionId": "white-tailed-deer",
+      "status": "scaffold"
+    },
+    {
+      "id": "honeybee",
+      "commonName": "Honeybee",
+      "scientificName": "Apis mellifera",
+      "visionSummary": "UV-sensitive trichromacy — educational simulation via Animal Vision.",
+      "relatedAnimalVisionId": "honeybee",
+      "status": "scaffold"
+    },
+    {
+      "id": "box-turtle",
+      "commonName": "Box turtle",
+      "scientificName": "Terrapene carolina",
+      "visionSummary": "Tetrachromatic reptile vision — educational simulation via Animal Vision.",
+      "relatedAnimalVisionId": "box-turtle",
+      "status": "scaffold"
+    }
+  ]
+}
