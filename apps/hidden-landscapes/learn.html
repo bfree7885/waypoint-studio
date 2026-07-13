@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hidden Landscapes Learn — placeholder for scientific explanations and photography notes.">
+  <meta name="description" content="Learn — short notes on spectral photography and creative simulation inside Hidden Landscapes.">
   <title>Learn — Hidden Landscapes · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +19,32 @@
     <div data-wds-app-local data-shell-depth="1"></div>
 
     <main id="main" class="hl-page">
-      <div id="hl-page-mount" aria-busy="true">
-        <p class="wds-body">Opening Learn…</p>
+      <header class="hl-hero">
+        <p class="wds-eyebrow"><a class="hl-product-link" href="./">Hidden Landscapes</a> · Learn</p>
+        <h1>A little context</h1>
+        <p class="hl-hero__lead">Short notes on spectral photography and why this studio’s modes are creative simulations. The full Studio experience includes these beside your photograph.</p>
+        <p class="scenes-hero__actions" style="margin-top:1.25rem">
+          <a class="wds-btn wds-btn--primary" href="./">Open Studio</a>
+          <a class="wds-btn wds-btn--ghost" href="../scenes/">Waypoint Scenes</a>
+        </p>
+      </header>
+      <div class="hl-edu-grid" id="hl-education-static">
+        <article class="hl-edu-card">
+          <h3>What full-spectrum photography is</h3>
+          <p>A full-spectrum camera records a wider band of light than a stock digital camera — often by removing the internal filter that blocks ultraviolet and near-infrared. Photographers then choose external filters to decide which wavelengths reach the sensor.</p>
+        </article>
+        <article class="hl-edu-card">
+          <h3>Artistic transformation vs spectral capture</h3>
+          <p>This studio remaps the colors already in your photograph. Spectral capture records different light at the moment of exposure. Both can inspire wonder; only specialized capture measures the invisible bands themselves.</p>
+        </article>
+        <article class="hl-edu-card">
+          <h3>Why vegetation often looks bright in near-infrared</h3>
+          <p>Healthy leaves reflect a large share of near-infrared light. In true IR photography that reflectance can turn canopies luminous — an optical property of plants, not a fantasy color effect.</p>
+        </article>
+        <article class="hl-edu-card">
+          <h3>Why animal vision cannot be recreated from ordinary RGB alone</h3>
+          <p>Other animals may sense different wavelengths or process detail differently. An RGB file does not contain those missing signals, so reconstructions stay approximate and educational.</p>
+        </article>
       </div>
     </main>
 
@@ -30,9 +54,5 @@
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="js/hl-models.js" defer></script>
-  <script src="js/hl-store.js" defer></script>
-  <script src="js/hl-home.js" defer></script>
-  <script src="js/hl-boot.js" defer></script>
 </body>
 </html>

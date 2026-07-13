@@ -1,0 +1,200 @@
+{
+  "version": "1.0.0",
+  "product": "hidden-landscapes",
+  "honesty": {
+    "summary": "These previews are creative interpretations of ordinary RGB photographs. They are not genuine infrared, ultraviolet, full-spectrum, thermal, or species-accurate vision.",
+    "categories": [
+      {
+        "id": "original-capture",
+        "label": "Original capture",
+        "meaning": "The photograph as recorded by a typical camera in human-visible light."
+      },
+      {
+        "id": "creative-simulation",
+        "label": "Creative simulation",
+        "meaning": "An artistic false-color interpretation inspired by spectral photography — not a scientific measurement."
+      },
+      {
+        "id": "research-informed-approximation",
+        "label": "Research-informed approximation",
+        "meaning": "An educational reconstruction guided by published research, still limited by RGB source data."
+      },
+      {
+        "id": "specialized-capture-required",
+        "label": "Specialized capture required",
+        "meaning": "Real results need converted cameras, filters, or other dedicated capture equipment."
+      }
+    ]
+  },
+  "education": [
+    {
+      "id": "full-spectrum",
+      "title": "What full-spectrum photography is",
+      "body": "A full-spectrum camera records a wider band of light than a stock digital camera — often by removing the internal filter that blocks ultraviolet and near-infrared. Photographers then choose external filters to decide which wavelengths reach the sensor."
+    },
+    {
+      "id": "converted-camera",
+      "title": "Why a converted camera may be required",
+      "body": "Most cameras intentionally reject near-infrared and ultraviolet so everyday photos look natural. Capturing those bands usually means a converted body, specialized filters, and careful white balance — not a software filter on a phone JPEG."
+    },
+    {
+      "id": "filters",
+      "title": "The role of wavelength filters",
+      "body": "Filters pass some wavelengths and block others. An IR-pass filter, for example, lets near-infrared through while cutting visible light, which is why foliage and sky can separate so strongly in true IR landscapes."
+    },
+    {
+      "id": "vegetation-nir",
+      "title": "Why vegetation often looks bright in near-infrared",
+      "body": "Healthy leaves reflect a large share of near-infrared light. In true IR photography that reflectance can turn canopies luminous — an optical property of plants, not a fantasy color effect."
+    },
+    {
+      "id": "false-color",
+      "title": "Why false color is used",
+      "body": "Sensors and displays still present results as red, green, and blue. False color maps invisible or rearranged channels into colors we can see, so differences become readable — beautiful, but interpretive."
+    },
+    {
+      "id": "animal-vision",
+      "title": "Why animal vision cannot be recreated from ordinary RGB alone",
+      "body": "Other animals may sense different wavelengths, have different photoreceptor counts, or process motion and detail differently. An RGB file does not contain those missing signals, so reconstructions stay approximate and educational."
+    },
+    {
+      "id": "art-vs-capture",
+      "title": "Artistic transformation vs spectral capture",
+      "body": "This studio remaps the colors already in your photograph. Spectral capture records different light at the moment of exposure. Both can inspire wonder; only specialized capture measures the invisible bands themselves."
+    }
+  ],
+  "transformations": [
+    {
+      "id": "original",
+      "name": "Original",
+      "shortDescription": "Unmodified human-visible RGB photograph.",
+      "longDescription": "Your photograph as the camera recorded it in ordinary visible light — the reference for every comparison in this studio.",
+      "category": "baseline",
+      "accuracyType": "original-capture",
+      "requiresSpecialCapture": false,
+      "defaultIntensity": 1,
+      "processingParameters": {},
+      "futureEngineId": "VisionEngine.visible",
+      "educationalNotes": "This is the source frame. All creative modes begin again from this original so switching modes does not stack quality loss."
+    },
+    {
+      "id": "infrared-dream",
+      "name": "Infrared Dream",
+      "shortDescription": "Pale, glowing foliage with surreal separation from sky.",
+      "longDescription": "An artistic false-color interpretation inspired by near-infrared landscapes — luminous vegetation and dreamlike sky contrast. Not genuine IR capture.",
+      "category": "creative-false-color",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": true,
+      "defaultIntensity": 0.85,
+      "processingParameters": {
+        "vegLift": 1.35,
+        "skyDeepen": 1.2,
+        "warmCast": 0.22,
+        "glow": 0.18
+      },
+      "futureEngineId": "VisionEngine.nearInfrared",
+      "educationalNotes": "Real near-infrared brightness in foliage comes from leaf reflectance recorded with IR-capable gear. This mode only remaps visible RGB greens and blues for a similar mood."
+    },
+    {
+      "id": "crimson-canopy",
+      "name": "Crimson Canopy",
+      "shortDescription": "Red and magenta foliage against cyan–violet skies.",
+      "longDescription": "A bold false-color reading that pushes leafy tones toward crimson and magenta while skies lean cyan and violet — evocative of classic IR false-color prints, not a spectral measurement.",
+      "category": "creative-false-color",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": true,
+      "defaultIntensity": 0.8,
+      "processingParameters": {
+        "magentaPush": 1.15,
+        "skyCyan": 1.1,
+        "contrast": 1.12
+      },
+      "futureEngineId": "VisionEngine.falseColorInfrared",
+      "educationalNotes": "Traditional false-color IR assigns invisible channels to display colors. Here we invent a related palette from visible data alone."
+    },
+    {
+      "id": "violet-wilds",
+      "name": "Violet Wilds",
+      "shortDescription": "Purple and violet vegetation with luminous landscape tones.",
+      "longDescription": "A violet-forward creative interpretation that turns canopies and meadows into purple wilds while keeping the underlying landscape structure readable.",
+      "category": "creative-false-color",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": false,
+      "defaultIntensity": 0.82,
+      "processingParameters": {
+        "violetBias": 0.7,
+        "lumaLift": 1.08,
+        "sat": 1.2
+      },
+      "futureEngineId": "VisionEngine.creativePalette",
+      "educationalNotes": "Purely artistic. Useful for noticing vegetation structure and edges without claiming ultraviolet capture."
+    },
+    {
+      "id": "ghost-forest",
+      "name": "Ghost Forest",
+      "shortDescription": "White or silver foliage with dark water, earth, and sky.",
+      "longDescription": "Silvered canopies and darkened ground — a quiet ghost-forest mood inspired by high-key infrared woodlands. Creative simulation only.",
+      "category": "creative-false-color",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": true,
+      "defaultIntensity": 0.88,
+      "processingParameters": {
+        "silverLift": 1.45,
+        "groundDarken": 0.72,
+        "skyDarken": 0.8
+      },
+      "futureEngineId": "VisionEngine.nearInfraredMonoAdjacent",
+      "educationalNotes": "True IR woodlands can look pale because leaves reflect NIR strongly. This preview brightens green-dominant pixels and quiets the rest."
+    },
+    {
+      "id": "electric-meadow",
+      "name": "Electric Meadow",
+      "shortDescription": "Cyan, pink, violet, and yellow energy for fields and edges.",
+      "longDescription": "A high-energy creative palette designed for meadows, field edges, and open woodland — vivid, surreal, and openly artistic.",
+      "category": "creative-false-color",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": false,
+      "defaultIntensity": 0.78,
+      "processingParameters": {
+        "energy": 1.25,
+        "split": 0.55
+      },
+      "futureEngineId": "VisionEngine.creativePalette",
+      "educationalNotes": "Made for exploration and beauty. Not a wavelength reconstruction."
+    },
+    {
+      "id": "nocturnal-world",
+      "name": "Nocturnal World",
+      "shortDescription": "Stylized low-light mood — creative, not species-accurate.",
+      "longDescription": "A dim, blue-green nocturnal atmosphere inspired by night looking. This is a creative simulation, not a reconstruction of any animal’s vision and not night-vision hardware.",
+      "category": "creative-low-light",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": false,
+      "defaultIntensity": 0.75,
+      "processingParameters": {
+        "dim": 0.55,
+        "tealCast": 0.35,
+        "soft": 0.2
+      },
+      "futureEngineId": "VisionEngine.nightCreative",
+      "educationalNotes": "Nocturnal animals and night-vision devices work from different light and sensors. This mode only restyles your daytime RGB file."
+    },
+    {
+      "id": "mono-infrared-study",
+      "name": "Monochrome Infrared Study",
+      "shortDescription": "Black-and-white treatment inspired by traditional NIR landscapes.",
+      "longDescription": "A monochrome study that brightens vegetation-like tones and deepens skies — reminiscent of classic near-infrared landscape prints, produced here as an artistic remapping of RGB.",
+      "category": "creative-monochrome",
+      "accuracyType": "creative-simulation",
+      "requiresSpecialCapture": true,
+      "defaultIntensity": 0.9,
+      "processingParameters": {
+        "vegWeight": 1.4,
+        "skyWeight": 0.55,
+        "contrast": 1.18
+      },
+      "futureEngineId": "VisionEngine.nearInfraredMono",
+      "educationalNotes": "Traditional IR black-and-white depends on NIR exposure and filtration. This study approximates the look from visible light only."
+    }
+  ]
+}

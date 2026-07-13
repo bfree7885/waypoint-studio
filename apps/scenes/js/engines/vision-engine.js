@@ -1,38 +1,58 @@
 /**
- * VisionEngine — interface scaffold
+ * VisionEngine — shared Scenes interface
  *
- * Owns beyond-human vision modes: infrared, ultraviolet, full spectrum,
- * polarization, night, and species simulations for Hidden Landscapes.
+ * Prototype implementation lives in Hidden Landscapes Studio:
+ * apps/hidden-landscapes/js/hl-vision-engine.js
  *
- * TODO: register VisionMode pipelines (local rendering only by default)
- * TODO: integrate Animal Vision transforms as a SpeciesVision provider
- * TODO: accept ImageSet frames without uploading bytes
- * TODO(ai-analysis): optional on-device explanations per mode
+ * Responsibilities:
+ * - loadImage()
+ * - renderOriginal()
+ * - applyTransformation()
+ * - updateIntensity()
+ * - reset()
+ * - exportImage()
+ * - dispose()
+ *
+ * Creative RGB simulations are not genuine spectral capture.
  */
 (function (global) {
   "use strict";
 
   var VisionEngine = {
     id: "VisionEngine",
-    version: "0.0.0",
-    status: "interface-only",
+    version: "1.0.0",
+    status: "delegated",
+    note: "Use HiddenLandscapesVision.createVisionEngine({ catalog }) in the Hidden Landscapes Studio.",
 
     listModes: function () {
-      // TODO: load from Hidden Landscapes vision-modes catalog
       return Promise.resolve([]);
     },
 
-    /** @returns {Promise<object>} rendered frame metadata + local blob ref */
-    renderMode: function (/* imageRef, modeId, options */) {
-      // TODO: dispatch to mode-specific renderer
-      return Promise.reject(new Error("VisionEngine.renderMode is not implemented."));
+    loadImage: function () {
+      return Promise.reject(new Error("VisionEngine.loadImage — open Hidden Landscapes Studio."));
     },
 
-    /** @returns {Promise<object>} */
-    simulateSpecies: function (/* imageRef, speciesId */) {
-      // TODO: delegate to Animal Vision / future HL renderer
-      return Promise.reject(new Error("VisionEngine.simulateSpecies is not implemented."));
-    }
+    renderOriginal: function () {
+      throw new Error("VisionEngine.renderOriginal — open Hidden Landscapes Studio.");
+    },
+
+    applyTransformation: function () {
+      return Promise.reject(new Error("VisionEngine.applyTransformation — open Hidden Landscapes Studio."));
+    },
+
+    updateIntensity: function () {
+      return Promise.reject(new Error("VisionEngine.updateIntensity — open Hidden Landscapes Studio."));
+    },
+
+    reset: function () {
+      return Promise.resolve();
+    },
+
+    exportImage: function () {
+      return Promise.reject(new Error("VisionEngine.exportImage — open Hidden Landscapes Studio."));
+    },
+
+    dispose: function () {}
   };
 
   global.WaypointScenesEngines = global.WaypointScenesEngines || {};

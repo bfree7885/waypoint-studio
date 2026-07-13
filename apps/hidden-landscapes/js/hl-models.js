@@ -25,10 +25,17 @@
 
   function emptyFrames() {
     return {
+      visibleImage: null,
       human: null,
+      infraredImage: null,
       infrared: null,
+      ultravioletImage: null,
       ultraviolet: null,
+      fullSpectrumImage: null,
       fullSpectrum: null,
+      polarizedImage: null,
+      nightImage: null,
+      animalVisionRenders: [],
       /** @type {Array<{ speciesId: string, frame: object|null }>} */
       speciesSimulations: []
     };
@@ -109,26 +116,46 @@
       id: partial.id || "imageset-" + Date.now().toString(36),
       title: partial.title || "Untitled ImageSet",
       status: partial.status || "draft",
-      locationLabel: partial.locationLabel || "",
+      locationLabel: partial.locationLabel || partial.location || "",
+      location: partial.location || partial.locationLabel || "",
       gps: Object.assign(emptyGps(), partial.gps || {}),
-      capturedAt: partial.capturedAt || null,
+      capturedAt: partial.capturedAt || partial.captureDate || null,
+      captureDate: partial.captureDate || partial.capturedAt || null,
       weather: Object.assign(emptyWeather(), partial.weather || {}),
+      season: partial.season || null,
+      phenology: partial.phenology || null,
+      camera: partial.camera || null,
+      lens: partial.lens || null,
+      filter: partial.filter || null,
+      wavelengthRange: partial.wavelengthRange || null,
+      exposureSettings: partial.exposureSettings || null,
       gear: Object.assign(emptyGear(), partial.gear || {}, {
         filterIds: Array.isArray((partial.gear || {}).filterIds)
           ? partial.gear.filterIds.slice()
           : []
       }),
       frames: {
-        human: frames.human || null,
-        infrared: frames.infrared || null,
-        ultraviolet: frames.ultraviolet || null,
-        fullSpectrum: frames.fullSpectrum || null,
+        visibleImage: frames.visibleImage || frames.human || null,
+        human: frames.human || frames.visibleImage || null,
+        infraredImage: frames.infraredImage || frames.infrared || null,
+        infrared: frames.infrared || frames.infraredImage || null,
+        ultravioletImage: frames.ultravioletImage || frames.ultraviolet || null,
+        ultraviolet: frames.ultraviolet || frames.ultravioletImage || null,
+        fullSpectrumImage: frames.fullSpectrumImage || frames.fullSpectrum || null,
+        fullSpectrum: frames.fullSpectrum || frames.fullSpectrumImage || null,
+        polarizedImage: frames.polarizedImage || null,
+        nightImage: frames.nightImage || null,
+        animalVisionRenders: Array.isArray(frames.animalVisionRenders)
+          ? frames.animalVisionRenders.slice()
+          : [],
         speciesSimulations: Array.isArray(frames.speciesSimulations)
           ? frames.speciesSimulations.slice()
           : []
       },
-      scientificExplanation: partial.scientificExplanation || null,
-      photographyNotes: partial.photographyNotes || null,
+      scientificNotes: partial.scientificNotes || partial.scientificExplanation || null,
+      scientificExplanation: partial.scientificExplanation || partial.scientificNotes || null,
+      photographerNotes: partial.photographerNotes || partial.photographyNotes || null,
+      photographyNotes: partial.photographyNotes || partial.photographerNotes || null,
       /**
        * Local media refs only (blob ids / IndexedDB keys). Never remote URLs by default.
        * TODO(ai-analysis): store analysis artifacts beside frames without uploading bytes.

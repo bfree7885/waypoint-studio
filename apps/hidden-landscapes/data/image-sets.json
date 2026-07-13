@@ -1,24 +1,33 @@
 {
-  "version": "0.1.0",
-  "note": "Empty catalog — ImageSets are the core comparison unit. Add entries when capture and rendering pipelines exist.",
+  "version": "1.1.0",
+  "note": "ImageSet model for future specialized captures. Do not fabricate metadata. Creative studio previews are not stored as spectral frames.",
   "imageSets": [
     {
       "id": "example-ridge-hollow",
       "title": "Example ImageSet (scaffold)",
       "status": "placeholder",
+      "location": "",
       "locationLabel": "",
-      "gps": {
-        "lat": null,
-        "lon": null,
-        "accuracyM": null,
-        "privacy": "local-only"
-      },
+      "captureDate": null,
       "capturedAt": null,
+      "season": null,
+      "phenology": null,
       "weather": {
         "summary": null,
         "tempC": null,
         "conditions": null,
         "notes": null
+      },
+      "camera": null,
+      "lens": null,
+      "filter": null,
+      "wavelengthRange": null,
+      "exposureSettings": null,
+      "gps": {
+        "lat": null,
+        "lon": null,
+        "accuracyM": null,
+        "privacy": "local-only"
       },
       "gear": {
         "cameraSystemId": null,
@@ -27,18 +36,21 @@
         "notes": null
       },
       "frames": {
-        "human": null,
-        "infrared": null,
-        "ultraviolet": null,
-        "fullSpectrum": null,
+        "visibleImage": null,
+        "infraredImage": null,
+        "ultravioletImage": null,
+        "fullSpectrumImage": null,
+        "polarizedImage": null,
+        "nightImage": null,
+        "animalVisionRenders": [],
         "speciesSimulations": []
       },
-      "scientificExplanation": null,
-      "photographyNotes": null,
+      "scientificNotes": null,
+      "photographerNotes": null,
       "todos": [
-        "TODO(ai-analysis): attach local analysis results for each frame without uploading bytes.",
-        "TODO(rendering): generate species simulation frames via Animal Vision / future HL renderer.",
-        "TODO(compare-ui): side-by-side / slider / mode toggle for VisionMode frames."
+        "TODO: attach converted-camera frames when available.",
+        "TODO: never invent wavelength metadata.",
+        "TODO(ai-analysis): local explanations only."
       ]
     }
   ]

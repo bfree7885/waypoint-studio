@@ -526,6 +526,10 @@ async function main() {
       failed = true;
       console.log("FAIL: Photo Coach incomplete");
     }
+    if (r.name === "hidden-landscapes" && (r.checks.bodyLen < 100 || !/Hidden Landscapes/i.test(r.checks.title || ""))) {
+      failed = true;
+      console.log("FAIL: Hidden Landscapes studio incomplete");
+    }
     if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
       failed = true;
       console.log("FAIL: waypoint-scenes blank");

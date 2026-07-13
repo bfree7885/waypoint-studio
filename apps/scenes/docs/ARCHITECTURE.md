@@ -7,7 +7,7 @@ Waypoint Scenes is one product with five experiences. Working tools remain in th
 | Module | Purpose | Live tool today |
 |--------|---------|-----------------|
 | **Photo Coach** | Critique and long-term coaching from each photograph | `/apps/photo-coach/` |
-| **Hidden Landscapes** | Beyond-human vision literacy (IR, UV, full spectrum, polarization, species) | `/apps/hidden-landscapes/` (+ Animal Vision) |
+| **Hidden Landscapes** | Beyond-human vision literacy + local creative studio | `/apps/hidden-landscapes/` (+ Animal Vision) |
 | **Living Scenes** | Motion, weather, seasonal, and environmental immersion from stills | Scaffold module only |
 | **Scene Builder** | Interactive educational / storytelling scenes from photographs | `/apps/waypoint-scenes/` |
 | **Photographer Profile** | Lifelong private companion for style, strengths, themes, growth | `/apps/photo-coach/profile/` |
@@ -53,17 +53,27 @@ Future shared contracts (documented; not fully implemented):
 - **LivingTimeline** — effect ids + keyframes → AnimationEngine
 - **PhotographerProfile** — aggregated evidence → ProfileEngine
 
-## Engine interfaces (scaffold only)
+## Engine interfaces
 
-| Engine | Responsibility |
-|--------|----------------|
-| `SceneEngine` | Scene graph, educational layers, export |
-| `VisionEngine` | Spectrum / species rendering for Hidden Landscapes |
-| `CoachEngine` | Critique facade over Photo Coach (no rewrite) |
-| `ProfileEngine` | Lifelong profile ingest + growth summaries |
-| `AnimationEngine` | Living Scenes motion / weather / season effects |
+| Engine | Responsibility | Status |
+|--------|----------------|--------|
+| `SceneEngine` | Scene graph, educational layers, export | Interface only |
+| `VisionEngine` | Creative transformations + future spectral ImageSets | **Prototype in Hidden Landscapes Studio** |
+| `CoachEngine` | Critique facade over Photo Coach (no rewrite) | Interface only |
+| `ProfileEngine` | Lifelong profile ingest + growth summaries | Interface only |
+| `AnimationEngine` | Living Scenes motion / weather / season effects | Interface only |
 
-All engines currently reject or return empty stubs with `TODO` markers. No experimental implementations.
+### Hidden Landscapes VisionEngine prototype
+
+Live at `/apps/hidden-landscapes/`. Canvas 2D, local-only.
+
+- Transformation registry: `apps/hidden-landscapes/data/transformations.json`
+- Processors: `hl-transforms.js` (separate from UI)
+- Factory: `HiddenLandscapesVision.createVisionEngine`
+- Honesty: creative simulations ≠ genuine IR/UV/full-spectrum/thermal/animal vision
+- Future: real `ImageSet` frames from converted cameras and filters
+
+Shared stub remains in `apps/scenes/js/engines/vision-engine.js` for registry completeness.
 
 ## How modules communicate
 
