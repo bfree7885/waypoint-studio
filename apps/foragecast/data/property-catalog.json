@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "privacyNote": "Private by default. Property details and photos stay on this device unless you enable cloud sync later.",
+  "usdaZones": [
+    "1a", "1b", "2a", "2b", "3a", "3b", "4a", "4b", "5a", "5b",
+    "6a", "6b", "7a", "7b", "8a", "8b", "9a", "9b", "10a", "10b", "11a", "11b", "12a", "12b", "13a", "13b"
+  ],
+  "goals": [
+    { "id": "forage", "label": "Foraging" },
+    { "id": "orchard-management", "label": "Orchard" },
+    { "id": "grow-food", "label": "Gardening" },
+    { "id": "homesteading", "label": "Homesteading" },
+    { "id": "wildlife-habitat", "label": "Wildlife" },
+    { "id": "permaculture", "label": "Permaculture" },
+    { "id": "native-plants", "label": "Native habitat" },
+    { "id": "education", "label": "Education" },
+    { "id": "photography", "label": "Photography" },
+    { "id": "herbal-medicine", "label": "Herbal medicine" },
+    { "id": "seed-saving", "label": "Seed saving" }
+  ],
+  "landTypes": [
+    { "id": "woodland", "label": "Woodland", "feature": "wild-edges" },
+    { "id": "open-field", "label": "Open field" },
+    { "id": "meadow", "label": "Meadow", "feature": "native-meadow" },
+    { "id": "wetland", "label": "Wetland" },
+    { "id": "creek", "label": "Creek", "feature": "pond" },
+    { "id": "pond", "label": "Pond", "feature": "pond" },
+    { "id": "river-frontage", "label": "River frontage" },
+    { "id": "steep-slopes", "label": "Steep slopes" },
+    { "id": "forest-edge", "label": "Forest edge", "feature": "wild-edges" },
+    { "id": "young-forest", "label": "Young forest", "feature": "wild-edges" },
+    { "id": "mature-forest", "label": "Mature forest", "feature": "wild-edges" },
+    { "id": "agricultural-field", "label": "Agricultural field" },
+    { "id": "backyard", "label": "Backyard" },
+    { "id": "food-forest", "label": "Food forest", "feature": "food-forest" },
+    { "id": "pasture", "label": "Pasture" }
+  ],
+  "orchardSpecies": [
+    { "id": "apple", "label": "Apple", "feature": "apple-trees" },
+    { "id": "pear", "label": "Pear", "feature": "pear-trees" },
+    { "id": "peach", "label": "Peach", "feature": "peach-trees" },
+    { "id": "cherry", "label": "Cherry", "feature": "cherry-trees" },
+    { "id": "plum", "label": "Plum", "feature": "apple-trees" },
+    { "id": "persimmon", "label": "Persimmon" },
+    { "id": "pawpaw", "label": "Pawpaw", "feature": "pawpaws" },
+    { "id": "chestnut", "label": "Chestnut" },
+    { "id": "walnut", "label": "Walnut" },
+    { "id": "hazelnut", "label": "Hazelnut", "feature": "hazelnuts" },
+    { "id": "mulberry", "label": "Mulberry" },
+    { "id": "fig", "label": "Fig" },
+    { "id": "maple", "label": "Maple", "feature": "maple-trees" }
+  ],
+  "berries": [
+    { "id": "blueberries", "label": "Blueberries", "feature": "blueberries" },
+    { "id": "blackberries", "label": "Blackberries" },
+    { "id": "raspberries", "label": "Raspberries" },
+    { "id": "elderberries", "label": "Elderberries" },
+    { "id": "serviceberries", "label": "Serviceberries" }
+  ],
+  "gardenTypes": [
+    { "id": "raised-beds", "label": "Raised beds", "feature": "vegetable-garden" },
+    { "id": "traditional-rows", "label": "Traditional rows", "feature": "vegetable-garden" },
+    { "id": "containers", "label": "Containers", "feature": "vegetable-garden" },
+    { "id": "greenhouse", "label": "Greenhouse", "feature": "vegetable-garden" },
+    { "id": "high-tunnel", "label": "High tunnel", "feature": "vegetable-garden" },
+    { "id": "cold-frame", "label": "Cold frame", "feature": "vegetable-garden" },
+    { "id": "vegetable-garden", "label": "Vegetable garden", "feature": "vegetable-garden" }
+  ],
+  "wildlife": [
+    { "id": "bird-houses", "label": "Bird houses" },
+    { "id": "bat-houses", "label": "Bat houses" },
+    { "id": "bee-hotels", "label": "Bee hotels" },
+    { "id": "pollinator-gardens", "label": "Pollinator gardens", "feature": "native-meadow" },
+    { "id": "brush-piles", "label": "Brush piles" },
+    { "id": "snags", "label": "Snags" },
+    { "id": "nest-boxes", "label": "Nest boxes" }
+  ],
+  "water": [
+    { "id": "pond", "label": "Pond", "feature": "pond" },
+    { "id": "creek", "label": "Creek" },
+    { "id": "spring", "label": "Spring" },
+    { "id": "rain-barrels", "label": "Rain barrels" },
+    { "id": "swales", "label": "Swales" },
+    { "id": "seasonal-wetland", "label": "Seasonal wetland" },
+    { "id": "stream", "label": "Stream" }
+  ],
+  "infrastructure": [
+    { "id": "compost", "label": "Compost piles", "feature": "compost" },
+    { "id": "leaf-mold", "label": "Leaf mold" },
+    { "id": "wood-chip-piles", "label": "Wood chip piles" },
+    { "id": "mushroom-logs", "label": "Mushroom logs", "feature": "mushroom-logs" },
+    { "id": "hugelkultur", "label": "Hugelkultur beds" },
+    { "id": "cold-storage", "label": "Cold storage" },
+    { "id": "chicken-coop", "label": "Chicken coop", "feature": "chickens" },
+    { "id": "apiary", "label": "Apiary / beehives", "feature": "beehives" }
+  ],
+  "photoCategories": [
+    { "id": "entire-property", "label": "Entire property" },
+    { "id": "garden", "label": "Garden" },
+    { "id": "orchard", "label": "Orchard" },
+    { "id": "food-forest", "label": "Food forest" },
+    { "id": "special-habitat", "label": "Special habitat" }
+  ],
+  "treeAges": [
+    { "id": "new", "label": "Newly planted" },
+    { "id": "young", "label": "Young (1–5 years)" },
+    { "id": "established", "label": "Established (5–15 years)" },
+    { "id": "mature", "label": "Mature (15+ years)" },
+    { "id": "unknown", "label": "Not sure" }
+  ]
+}

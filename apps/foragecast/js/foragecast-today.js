@@ -386,7 +386,7 @@
         features: [],
         title: "Tell ForageCast what grows on your land.",
         why: "Today’s plan only recommends actions for features you actually have.",
-        href: "property.html",
+        href: "property-setup.html",
         priority: 50
       });
       add({
@@ -407,6 +407,12 @@
     options = options || {};
     var property = options.property || (global.ForageCastProfile && ForageCastProfile.loadProperty()) || { features: [] };
     var intent = options.intent || (global.ForageCastProfile && ForageCastProfile.loadIntent()) || { priorities: ["forage"] };
+    if (global.ForageCastProfile && ForageCastProfile.deriveFeatures) {
+      property.features = ForageCastProfile.deriveFeatures(property);
+    }
+    if ((!intent.priorities || !intent.priorities.length) && property.goals && property.goals.length) {
+      intent = { priorities: property.goals.slice() };
+    }
     var platform = options.platform || null;
     var homeData = options.homeData || null;
     var now = options.now || new Date();
@@ -418,7 +424,9 @@
     else if (calendarSeason && /winter/i.test(calendarSeason)) season = "winter";
 
     var features = property.features || [];
-    var configured = features.length > 0;
+    var configured = global.ForageCastProfile && ForageCastProfile.isConfigured
+      ? ForageCastProfile.isConfigured(property)
+      : features.length > 0;
     var wx = weatherSignals(platform, homeData);
     var raw = templates({
       season: season,

@@ -39,6 +39,7 @@ const PAGES = [
   { name: "debug", path: "/debug.html", ready: "debug" },
   { name: "foragecast", path: "/apps/foragecast/", ready: "shell" },
   { name: "foragecast-property", path: "/apps/foragecast/property.html", ready: "shell" },
+  { name: "foragecast-setup", path: "/apps/foragecast/property-setup.html", ready: "shell" },
   { name: "fieldry", path: "/apps/fieldry/", ready: "shell" },
   { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", ready: "any" },
   { name: "photo-coach-profile", path: "/apps/photo-coach/profile/", ready: "shell" },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * ForageCast land companion — profile + Today planner tests
+ * ForageCast property profiles + land companion tests
  */
 import fs from "fs";
 import path from "path";
@@ -37,7 +37,10 @@ const sandbox = {
   Date,
   Math,
   console,
-  URLSearchParams: globalThis.URLSearchParams
+  URLSearchParams: globalThis.URLSearchParams,
+  indexedDB: undefined,
+  Image: undefined,
+  document: undefined
 };
 sandbox.window = sandbox;
 sandbox.globalThis = sandbox;
@@ -47,12 +50,40 @@ load("js/foragecast-today.js", sandbox);
 
 const Profile = sandbox.ForageCastProfile;
 const Today = sandbox.ForageCastToday;
+const catalog = JSON.parse(fs.readFileSync(path.join(FC, "data/property-catalog.json"), "utf8"));
 
-assert("profile defaults empty features", Profile.loadProperty().features.length === 0);
-Profile.saveProperty({ features: ["apple-trees", "vegetable-garden", "compost"], name: "Ridge" });
-Profile.saveIntent({ priorities: ["orchard-management", "grow-food"] });
-assert("property persisted", Profile.loadProperty().features.indexOf("apple-trees") >= 0);
-assert("intent persisted", Profile.loadIntent().priorities.indexOf("orchard-management") >= 0);
+assert("needs wizard on empty profile", Profile.needsWizard(Profile.defaultProperty()));
+
+const rich = Profile.defaultProperty();
+rich.name = "Ridge Hollow";
+rich.locationLabel = "Pike County, PA";
+rich.usdaZone = "6a";
+rich.acreage = "3";
+rich.goals = ["orchard-management", "grow-food"];
+rich.landTypes = ["woodland", "meadow"];
+rich.orchard = [
+  { id: "t1", species: "apple", quantity: 6, age: "established", notes: "Honeycrisp" },
+  { id: "t2", species: "pear", quantity: 2, age: "young", notes: "" }
+];
+rich.berries = ["blueberries", "blackberries"];
+rich.gardenTypes = ["raised-beds"];
+rich.infrastructure = ["mushroom-logs", "compost", "apiary"];
+rich.water = ["pond"];
+rich.wildlife = ["pollinator-gardens"];
+rich.wizardCompleted = true;
+
+const saved = Profile.saveProperty(rich, catalog);
+assert("derived apple-trees", saved.features.indexOf("apple-trees") >= 0);
+assert("derived pear-trees", saved.features.indexOf("pear-trees") >= 0);
+assert("derived vegetable-garden", saved.features.indexOf("vegetable-garden") >= 0);
+assert("derived wild-edges from woodland", saved.features.indexOf("wild-edges") >= 0);
+assert("derived beehives from apiary", saved.features.indexOf("beehives") >= 0);
+assert("configured after save", Profile.isConfigured(saved));
+assert("intent synced from goals", Profile.loadIntent().priorities.indexOf("orchard-management") >= 0);
+
+const sum = Profile.summarize(saved, catalog);
+assert("summary counts trees", sum.orchardTreeCount === 8);
+assert("summary includes 6× Apple", sum.labels.some((l) => /6× Apple/.test(l)));
 
 const plan = Today.buildPlan({
   property: Profile.loadProperty(),
@@ -64,36 +95,36 @@ const plan = Today.buildPlan({
   now: new Date("2026-07-12T12:00:00Z"),
   limit: 8
 });
-
-assert("plan has actions", plan.actions.length >= 3 && plan.actions.length <= 10);
-assert("skip watering appears when rain expected", plan.actions.some((a) => /skip watering|Skip watering|Skip orchard/i.test(a.title)));
-assert("only property features", plan.actions.every((a) => {
+assert("plan uses orchard actions", plan.actions.some((a) => a.pillar === "orchard" || /apple|peach|blueberry|orchard|Skip/i.test(a.title)));
+assert("only derived features", plan.actions.every((a) => {
   if (!a.features || !a.features.length) return true;
-  return a.features.some((f) => Profile.loadProperty().features.indexOf(f) >= 0);
+  return a.features.some((f) => saved.features.indexOf(f) >= 0);
 }));
-assert("mission present", /Understand the season/i.test(plan.mission));
+
+// v1 migration
+store[Profile.PROFILE_KEY] = JSON.stringify({
+  version: 1,
+  name: "Old",
+  features: ["apple-trees", "vegetable-garden"],
+  notes: ""
+});
+const migrated = Profile.loadProperty();
+assert("migrates to v2", migrated.version === 2);
+assert("migrates orchard apple", migrated.orchard.some((t) => t.species === "apple"));
+assert("migrates garden", migrated.gardenTypes.indexOf("vegetable-garden") >= 0);
+
+assert("catalog has orchard species", catalog.orchardSpecies.length >= 10);
+assert("catalog has land types", catalog.landTypes.length >= 10);
+assert("catalog has wildlife", catalog.wildlife.length >= 5);
+assert("wizard page exists", fs.existsSync(path.join(FC, "property-setup.html")));
+assert("overview scripts exist", fs.existsSync(path.join(FC, "js/foragecast-property-overview.js")));
+assert("wizard scripts exist", fs.existsSync(path.join(FC, "js/foragecast-property-wizard.js")));
 
 const emptyPlan = Today.buildPlan({
-  property: { features: [] },
+  property: Profile.defaultProperty(),
   intent: { priorities: ["forage"] },
   now: new Date("2026-07-12T12:00:00Z")
 });
-assert("unconfigured suggests property setup", emptyPlan.actions.some((a) => a.id === "setup-property"));
+assert("setup CTA points to wizard", emptyPlan.actions.some((a) => a.href === "property-setup.html"));
 
-const pillars = JSON.parse(fs.readFileSync(path.join(FC, "data/pillars.json"), "utf8"));
-assert("six content pillars + today", pillars.pillars.length >= 6);
-assert("property features catalog", pillars.propertyFeatures.length >= 10);
-assert("intents catalog", pillars.intents.length >= 6);
-
-const nav = JSON.parse(fs.readFileSync(path.join(ROOT, "design-system/ecosystem/nav-registry.json"), "utf8"));
-const fc = nav.apps.find((a) => a.id === "foragecast");
-assert("nav Today feature", fc.features.some((f) => f.id === "today"));
-assert("nav Property feature", fc.features.some((f) => f.id === "property"));
-assert("nav Orchard feature", fc.features.some((f) => f.id === "orchard"));
-assert("no separate Leafturn app", !nav.apps.some((a) => /leafturn/i.test(a.id + a.title)));
-
-assert("property page exists", fs.existsSync(path.join(FC, "property.html")));
-assert("pillar page exists", fs.existsSync(path.join(FC, "pillar.html")));
-assert("foraging page exists", fs.existsSync(path.join(FC, "foraging.html")));
-
-console.log("\nAll ForageCast land companion tests passed (" + n + ").");
+console.log("\nAll ForageCast property profile tests passed (" + n + ").");

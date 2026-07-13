@@ -67,8 +67,8 @@
     }).join("");
 
     var setup = !plan.configured
-      ? '<p class="fc-today__setup"><a class="wds-btn wds-btn--secondary wds-btn--sm" href="property.html">Set up your property profile</a></p>'
-      : '<p class="fc-today__setup"><a href="property.html">Edit property &amp; goals</a></p>';
+      ? '<p class="fc-today__setup"><a class="wds-btn wds-btn--secondary wds-btn--sm" href="property-setup.html">Set up your property profile</a></p>'
+      : '<p class="fc-today__setup"><a href="property.html">Property overview</a> · <a href="property-setup.html">Edit profile</a></p>';
 
     return (
       '<section class="fc-section fc-today" id="today" aria-labelledby="fc-today-title">' +

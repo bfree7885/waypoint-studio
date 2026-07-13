@@ -183,7 +183,7 @@
   };
 
   function boot() {
-    if (document.getElementById("fc-property-mount")) mountProperty();
+    // Property overview / wizard have dedicated modules.
     if (document.getElementById("fc-pillar-mount")) mountPillar();
     if (document.getElementById("fc-foraging-mount")) mountForaging();
   }

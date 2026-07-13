@@ -33,11 +33,15 @@ Catalog: `data/pillars.json`.
 
 | Module | Role |
 |--------|------|
-| `foragecast-profile.js` | Property features + intent priorities (`localStorage`) |
+| `foragecast-profile.js` | Property v2 inventory + derived features + local photos |
+| `foragecast-property-wizard.js` | Skippable first-run / edit setup |
+| `foragecast-property-overview.js` | Property Overview dashboard |
 | `foragecast-today.js` | Deterministic action planner |
-| `foragecast-land.js` | Property editor + pillar pages |
+| `foragecast-land.js` | Pillar pages |
 | `foragecast-home.js` | Today-first home |
 | Existing model/heat/boot | Unchanged foraging intelligence |
+
+See also `docs/PROPERTY-PROFILES.md`.
 
 No remote model calls. Guidance is synthesized locally from OIP weather/calendar when available, plus property/intent.
 

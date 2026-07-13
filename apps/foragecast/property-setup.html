@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ForageCast property overview — season, today’s priorities, harvests, risks, and opportunities tailored to your land. Private by default.">
-  <title>Property — ForageCast</title>
+  <meta name="description" content="ForageCast property setup wizard — name your land, add orchard trees, garden, water, wildlife, and optional photos. Skippable. Private by default.">
+  <title>Property setup — ForageCast</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,19 +18,15 @@
   <div class="wds-app was-shell" data-wds-app-shell data-product="foragecast" data-product-name="ForageCast" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
-    <div id="wds-location-prompt"></div>
     <main id="main" class="fc-page fc-land-page">
-      <div id="fc-property-mount" aria-busy="true"><p class="wds-body">Loading property overview…</p></div>
+      <div id="fc-wizard-mount" aria-busy="true"><p class="wds-body">Opening property setup…</p></div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../design-system/js/wds-platform.js?v=local" defer></script>
-  <script src="js/foragecast-boot.js" defer></script>
   <script src="js/foragecast-profile.js" defer></script>
-  <script src="js/foragecast-today.js" defer></script>
-  <script src="js/foragecast-property-overview.js" defer></script>
+  <script src="js/foragecast-property-wizard.js" defer></script>
 </body>
 </html>
