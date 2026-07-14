@@ -267,7 +267,8 @@
       portfolioSessionId: meta.portfolioSessionId || null,
       thumbnail: meta.thumbnail || null,
       legacyImageId: meta.legacyImageId || null,
-      engineVersion: critique.version || null
+      engineVersion: critique.version || null,
+      selectionLabel: meta.selectionLabel || null
     });
   }
 

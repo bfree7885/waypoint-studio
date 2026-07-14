@@ -103,7 +103,9 @@
       engineVersion: null,
       // Profile learning controls (do not delete original critique)
       excludeFromProfile: false,
-      userCorrections: emptyUserCorrections()
+      userCorrections: emptyUserCorrections(),
+      /** Private Shoot Review labels: keep | maybe | reject | favorite | null */
+      selectionLabel: null
     }, overrides);
   }
 

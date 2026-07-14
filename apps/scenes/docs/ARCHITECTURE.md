@@ -2,7 +2,9 @@
 
 Waypoint Scenes is one product with five experiences. Working tools remain in their current app paths; `apps/scenes/` is the modular platform shell, navigation home, and future engine boundary.
 
-**Foundation milestone (Work Block 1):** polished Scenes landing, Shared navigation, Photo Coach preserved at its stable path, Hidden Landscapes Studio V0.1, and restrained product previews for Living Scenes, Scene Builder, and Photographer Profile. Status labels use Available / Experimental / Preview / Future experience — not a roadmap checklist.
+**Foundation milestone (Work Block 1):** polished Scenes landing, shared navigation, Photo Coach preserved at its stable path, Hidden Landscapes Studio V0.1, and restrained product previews for Living Scenes, Scene Builder, and Photographer Profile. Status labels use Available / Experimental / Preview / Future experience — not a roadmap checklist.
+
+**Shoot Review (Work Block 3):** Photo Coach at `/apps/photo-coach/` now reviews a full session (queue, Shoot Summary, grouping, private Keep/Maybe/Reject/Favorite labels, best-of categories, session stats). See `apps/photo-coach/docs/SHOOT-REVIEW.md`. Importer handoff is interface-only via `WaypointPhotoCoachImporterBridge`.
 
 ## Modules
 

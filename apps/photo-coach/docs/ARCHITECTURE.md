@@ -1,12 +1,23 @@
 # Waypoint Photo Coach — Architecture
 
-Phase 1 foundation for a long-horizon outdoor photography learning instrument.
+The live critique and **Shoot Review** product lives at `/apps/photo-coach/`
+(scripts under `apps/waypoint-scenes/js/photo-coach*.js`).
+
+- Session / queue / summary: [`SHOOT-REVIEW.md`](./SHOOT-REVIEW.md)
+- Photographer Profile companion: [`PHOTOGRAPHER-PROFILE.md`](./PHOTOGRAPHER-PROFILE.md)
+
+---
+
+## Legacy field-guide journey (still present)
+
+Phase 1 foundation for a long-horizon outdoor photography learning instrument under `guide/`.
 
 ## Purpose
 
 Photo Coach helps a beginner photographer learn to **see** — not chase social metrics. It combines live outdoor intelligence with curated field guidance for composition, editing philosophy, gear, and quiet progress tracking.
 
-This is separate from **Waypoint Scenes** (`apps/waypoint-scenes/`), which focuses on upload, critique demo, and scene animation. Photo Coach is the **journey instrument**; Scenes remains the **creative studio**.
+The **critique + Shoot Review** surface is the primary photography coaching tool inside Waypoint Scenes. The guide journey remains a complementary learning path.
+
 
 ## Folder structure
 

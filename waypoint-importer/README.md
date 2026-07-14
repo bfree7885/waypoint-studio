@@ -74,6 +74,10 @@ All photos from the same capture date share the same folder. Folders are created
 6. Use **Open Local Folder** or **Open Google Drive Folder**.  
 7. **Analyze in Photo Coach** is a placeholder for a future handoff.
 
+   Browser-side contract (not wired in the desktop app yet): `WaypointPhotoCoachImporterBridge`
+   in `apps/waypoint-scenes/js/photo-coach-importer-bridge.js` — validate/stage a session
+   payload (`protocolVersion` 1.0.0). See `apps/photo-coach/docs/SHOOT-REVIEW.md`.
+
 ## Layout
 
 ```

@@ -1,17 +1,18 @@
 /**
- * Photo Coach v2 — Shoot sessions, structured analysis storage, Shoot Summary.
- * Architecture foundation for future photographer profiles, style/niche detection,
- * progress tracking, personalized coaching, and community matching.
- * Does not implement those features yet — only storage + summary.
+ * Photo Coach v2 — Shoot Review
+ * Session shoot storage, queue-friendly image records, Shoot Summary,
+ * grouping hooks, private selection labels, session insights & stats.
+ * Photographer Profile consumes structured summaryHints — no cloud share.
  */
 (function (global) {
   "use strict";
 
-  var SCHEMA_VERSION = "1.0.0";
+  var SCHEMA_VERSION = "2.0.0";
   var STORAGE_KEY = "waypoint-photo-coach-shoots-v1";
   var MAX_SHOOTS = 12;
   var MAX_IMAGES = 20;
   var THUMB_MAX = 120;
+  var SELECTION_LABELS = ["keep", "maybe", "reject", "favorite"];
 
   function clamp(n, a, b) {
     return Math.max(a, Math.min(b, n));
@@ -158,10 +159,17 @@
       updatedAt: new Date().toISOString(),
       status: "pending",
       outdoorContext: options.outdoorContext || null,
+      source: options.source || "photo-coach",
+      title: options.title || null,
       images: [],
+      groups: [],
       summary: null,
-      // Future hooks (unused for now)
+      analysisStartedAt: null,
+      analysisFinishedAt: null,
+      analysisDurationMs: null,
+      // Future Photographer Profile / Importer hooks
       profileLink: null,
+      importerHandoffId: options.importerHandoffId || null,
       communityMatchReady: false
     };
   }
@@ -171,6 +179,9 @@
       id: id("img"),
       fileName: file && file.name ? file.name : "photo.jpg",
       fileSize: file && file.size != null ? file.size : null,
+      fileFingerprint: file
+        ? [file.name || "", file.size != null ? file.size : "", file.lastModified != null ? file.lastModified : ""].join("::")
+        : null,
       status: "pending",
       error: null,
       analyzedAt: null,
@@ -178,8 +189,422 @@
       portfolioSessionId: null,
       analysis: null,
       critique: null,
-      exif: null
+      exif: null,
+      /** Private organizational label: keep | maybe | reject | favorite | null */
+      selectionLabel: null,
+      groupId: null
     };
+  }
+
+  function normalizeSelectionLabel(label) {
+    if (!label) return null;
+    var v = String(label).toLowerCase();
+    return SELECTION_LABELS.indexOf(v) >= 0 ? v : null;
+  }
+
+  function setImageSelection(shoot, imageId, label) {
+    if (!shoot || !shoot.images) return false;
+    var next = normalizeSelectionLabel(label);
+    var found = false;
+    shoot.images.forEach(function (img) {
+      if (img.id === imageId) {
+        img.selectionLabel = next;
+        found = true;
+      }
+    });
+    if (found) shoot.updatedAt = new Date().toISOString();
+    return found;
+  }
+
+  function breakdownScore(img, categoryNeedle) {
+    var rows = (img.analysis && img.analysis.scoreBreakdown) || [];
+    var needle = String(categoryNeedle || "").toLowerCase();
+    for (var i = 0; i < rows.length; i++) {
+      var cat = String(rows[i].category || "").toLowerCase();
+      if (cat.indexOf(needle) >= 0 && rows[i].score != null) return rows[i].score;
+    }
+    return null;
+  }
+
+  function hasStrength(img, re) {
+    return ((img.analysis && img.analysis.strengths) || []).some(function (s) {
+      return re.test(String(s.title || "") + " " + String(s.detail || s.why || ""));
+    });
+  }
+
+  function genreLabel(img) {
+    var g = img.analysis && img.analysis.genre;
+    if (!g || g.uncertain || !g.label) return null;
+    return g.label;
+  }
+
+  function pickBest(done, scoreFn, reasonFn) {
+    var best = null;
+    var bestScore = -1;
+    done.forEach(function (img) {
+      var sc = scoreFn(img);
+      if (sc == null || sc < 0) return;
+      if (sc > bestScore) {
+        bestScore = sc;
+        best = img;
+      }
+    });
+    if (!best || bestScore < 55) return null;
+    return {
+      imageId: best.id,
+      fileName: best.fileName,
+      thumbnail: best.thumbnail,
+      score: best.analysis && best.analysis.overallScore,
+      letter: best.analysis && best.analysis.overallGrade && best.analysis.overallGrade.letter,
+      why: reasonFn(best, bestScore)
+    };
+  }
+
+  function buildBestOfSession(done) {
+    var categories = [];
+    function push(id, title, pick) {
+      if (!pick) return;
+      categories.push({ id: id, title: title, pick: pick });
+    }
+
+    push("composition", "Best Composition", pickBest(done, function (img) {
+      return breakdownScore(img, "composition");
+    }, function (img, sc) {
+      return "Strongest composition read in this session (" + Math.round(sc) + ").";
+    }));
+
+    push("storytelling", "Best Storytelling", pickBest(done, function (img) {
+      var base = breakdownScore(img, "story") != null
+        ? breakdownScore(img, "story")
+        : breakdownScore(img, "artistic");
+      if (base == null) base = (img.analysis && img.analysis.overallScore) || 0;
+      if (hasStrength(img, /story|moment|gesture|narrative|emotion/i)) base += 6;
+      return base;
+    }, function () {
+      return "A frame that appears to carry a clearer sense of moment or story.";
+    }));
+
+    push("wildlife", "Best Wildlife", pickBest(done.filter(function (img) {
+      var g = (genreLabel(img) || "").toLowerCase();
+      return /wildlife|bird|animal|mammal/.test(g) || hasStrength(img, /wildlife|subject isolation|animal/i);
+    }), function (img) {
+      return img.analysis.overallScore;
+    }, function () {
+      return "Strongest wildlife-oriented frame among those the session identified.";
+    }));
+
+    push("landscape", "Best Landscape", pickBest(done.filter(function (img) {
+      var g = (genreLabel(img) || "").toLowerCase();
+      return /landscape|scenic|vista/.test(g) || hasStrength(img, /landscape|depth|horizon/i);
+    }), function (img) {
+      return img.analysis.overallScore;
+    }, function () {
+      return "Strongest landscape-oriented frame in this set.";
+    }));
+
+    push("nature-detail", "Best Nature Detail", pickBest(done.filter(function (img) {
+      var g = (genreLabel(img) || "").toLowerCase();
+      return /macro|plant|fungi|detail|flora|close/.test(g) || hasStrength(img, /detail|texture|macro|pattern/i);
+    }), function (img) {
+      return breakdownScore(img, "detail") != null
+        ? breakdownScore(img, "detail")
+        : img.analysis.overallScore;
+    }, function () {
+      return "A closer look that reads as intentional nature detail.";
+    }));
+
+    push("color", "Best Color", pickBest(done, function (img) {
+      var sat = img.analysis.styleSignals && img.analysis.styleSignals.saturation;
+      var artistic = breakdownScore(img, "color");
+      if (artistic == null) artistic = breakdownScore(img, "artistic");
+      var base = artistic != null ? artistic : (img.analysis.overallScore || 0);
+      if (sat != null) base += Math.min(8, sat * 12);
+      return base;
+    }, function () {
+      return "Color and tone appear especially cohesive in this frame.";
+    }));
+
+    push("creative", "Most Creative", pickBest(done, function (img) {
+      var base = breakdownScore(img, "creative");
+      if (base == null) base = breakdownScore(img, "artistic");
+      if (base == null) return hasStrength(img, /unusual|creative|abstract|experiment/i)
+        ? (img.analysis.overallScore || 0) + 4
+        : null;
+      return base;
+    }, function () {
+      return "A more experimental or unexpected reading within the session.";
+    }));
+
+    var sorted = done.slice().sort(function (a, b) {
+      return ((a.analysis && a.analysis.overallScore) || 0) - ((b.analysis && b.analysis.overallScore) || 0);
+    });
+    if (sorted.length >= 3) {
+      var improved = sorted[sorted.length - 1];
+      var early = sorted[0];
+      if (((improved.analysis.overallScore || 0) - (early.analysis.overallScore || 0)) >= 8) {
+        push("improved", "Most Improved", {
+          imageId: improved.id,
+          fileName: improved.fileName,
+          thumbnail: improved.thumbnail,
+          score: improved.analysis.overallScore,
+          letter: improved.analysis.overallGrade && improved.analysis.overallGrade.letter,
+          why: "Later frames in this ranking look stronger than the weaker end of the set — a gentle signal of warming up, not a score race."
+        });
+      }
+    }
+
+    push("interesting", "Most Interesting", pickBest(done, function (img) {
+      var g = genreLabel(img);
+      var rareBoost = g ? 2 : 0;
+      return (img.analysis.overallScore || 0) + rareBoost + (hasStrength(img, /light|moment|isolation|pattern/i) ? 3 : 0);
+    }, function () {
+      return "Worth another look — curiosity over perfection.";
+    }));
+
+    // Deduplicate picks so one photo isn't every category when evidence is thin
+    var used = Object.create(null);
+    return categories.filter(function (cat) {
+      if (!cat.pick || used[cat.pick.imageId]) return false;
+      used[cat.pick.imageId] = true;
+      return true;
+    });
+  }
+
+  function buildSessionInsights(done, shootScore, techNotes) {
+    var insights = [];
+    var genreVotes = {};
+    done.forEach(function (img) {
+      var g = genreLabel(img);
+      if (!g) return;
+      genreVotes[g] = (genreVotes[g] || 0) + 1;
+    });
+    var genreRank = Object.keys(genreVotes).sort(function (a, b) {
+      return genreVotes[b] - genreVotes[a];
+    });
+    if (genreRank.length && genreVotes[genreRank[0]] >= 2) {
+      insights.push({
+        id: "genre-focus",
+        text: "You consistently photographed " + genreRank[0].toLowerCase() + " scenes in this session."
+      });
+    }
+
+    (techNotes || []).forEach(function (n, idx) {
+      if (/Exposure stays relatively consistent/i.test(n)) {
+        insights.push({ id: "exposure-consistent", text: "Exposure appears more consistent across this session." });
+      } else if (/White-balance|color temperature feels cohesive/i.test(n)) {
+        insights.push({ id: "wb-cohesive", text: "Color temperature feels fairly cohesive from frame to frame." });
+      } else if (/Sharpness is fairly steady/i.test(n)) {
+        insights.push({ id: "sharp-steady", text: "Sharpness looks fairly steady across the set." });
+      } else if (idx === 0 && insights.length < 4) {
+        insights.push({ id: "tech-" + idx, text: n });
+      }
+    });
+
+    var soft = 0;
+    done.forEach(function (img) {
+      var st = img.analysis.styleSignals || {};
+      if (st.contrast != null && st.contrast < 42) soft++;
+      if (st.brightness != null && st.brightness > 45 && st.brightness < 70 && st.contrast != null && st.contrast < 48) soft++;
+    });
+    if (soft >= Math.max(2, Math.ceil(done.length * 0.45))) {
+      insights.push({
+        id: "soft-light",
+        text: "Many photographs appear to have been made in softer light."
+      });
+    }
+
+    var compScores = done.map(function (img) { return breakdownScore(img, "composition"); }).filter(function (n) { return n != null; });
+    if (compScores.length >= 3 && stddev(compScores) >= 12) {
+      insights.push({
+        id: "composition-experiment",
+        text: "Composition scores vary notably — you may have experimented with framing more than usual in this set."
+      });
+    }
+
+    if (shootScore && shootScore.keeperCount >= 2) {
+      insights.push({
+        id: "keepers",
+        text: "Several frames look technically and compositionally solid enough to keep for a closer edit."
+      });
+    }
+
+    // Cautious de-dupe by text
+    var seen = Object.create(null);
+    return insights.filter(function (row) {
+      if (seen[row.text]) return false;
+      seen[row.text] = true;
+      return true;
+    }).slice(0, 6);
+  }
+
+  function buildSessionStats(done) {
+    var buckets = {
+      landscape: 0,
+      wildlife: 0,
+      plants: 0,
+      fungi: 0,
+      water: 0,
+      macro: 0,
+      other: 0
+    };
+    var focals = [];
+    var landscapeOrient = 0;
+    var portraitOrient = 0;
+    var hours = [];
+
+    done.forEach(function (img) {
+      var g = (genreLabel(img) || "").toLowerCase();
+      var matched = false;
+      if (/landscape|scenic/.test(g)) { buckets.landscape++; matched = true; }
+      if (/wildlife|bird|animal/.test(g)) { buckets.wildlife++; matched = true; }
+      if (/plant|flora|flower|leaf|forest|woodland/.test(g)) { buckets.plants++; matched = true; }
+      if (/fungi|mushroom/.test(g)) { buckets.fungi++; matched = true; }
+      if (/water|river|lake|cascade|ocean/.test(g)) { buckets.water++; matched = true; }
+      if (/macro|detail|close/.test(g)) { buckets.macro++; matched = true; }
+      if (!matched) buckets.other++;
+
+      var st = img.analysis.styleSignals || {};
+      if (st.orientation === "portrait") portraitOrient++;
+      else landscapeOrient++;
+
+      var fl = img.exif && img.exif.focalLengthMm;
+      if (fl != null && isFinite(Number(fl))) focals.push(Number(fl));
+
+      var raw = img.exif && (img.exif.dateTimeOriginal || img.exif.dateTime);
+      if (raw) {
+        var m = String(raw).match(/\s(\d{2}):/);
+        if (m) hours.push(Number(m[1]));
+      }
+    });
+
+    var n = done.length || 1;
+    function pct(c) { return Math.round((c / n) * 100); }
+
+    var timeOfDay = null;
+    if (hours.length) {
+      var avgH = hours.reduce(function (a, b) { return a + b; }, 0) / hours.length;
+      if (avgH < 8) timeOfDay = "early morning";
+      else if (avgH < 11) timeOfDay = "morning";
+      else if (avgH < 15) timeOfDay = "midday";
+      else if (avgH < 18) timeOfDay = "afternoon";
+      else timeOfDay = "evening";
+    }
+
+    return {
+      counts: buckets,
+      percentages: {
+        landscape: pct(buckets.landscape),
+        wildlife: pct(buckets.wildlife),
+        plants: pct(buckets.plants),
+        fungi: pct(buckets.fungi),
+        water: pct(buckets.water),
+        macro: pct(buckets.macro),
+        other: pct(buckets.other)
+      },
+      averageFocalLengthMm: focals.length
+        ? Math.round(focals.reduce(function (a, b) { return a + b; }, 0) / focals.length)
+        : null,
+      orientation: {
+        landscape: landscapeOrient,
+        portrait: portraitOrient,
+        landscapeRatio: Math.round((landscapeOrient / n) * 100)
+      },
+      timeOfDay: timeOfDay,
+      sampleSize: done.length
+    };
+  }
+
+  function buildEditingSuggestions(done) {
+    var tally = {};
+    function bump(id, title, detail) {
+      if (!tally[id]) tally[id] = { id: id, title: title, detail: detail, count: 0, examples: [] };
+      tally[id].count++;
+    }
+
+    done.forEach(function (img) {
+      var st = img.analysis.styleSignals || {};
+      var critique = img.critique || {};
+      var edit = critique.editIntelligence || {};
+
+      if (st.highlightClip != null && st.highlightClip > 0.08) {
+        bump("highlights", "Recover highlights", "A few frames show bright areas that may benefit from a gentle highlight recovery.");
+      }
+      if (st.shadowClip != null && st.shadowClip > 0.1) {
+        bump("shadows", "Open shadows", "Shadow areas look dense in places — a small lift may reveal quieter detail.");
+      }
+      if (st.brightness != null && st.brightness < 38) {
+        bump("exposure-up", "Slight exposure adjustment", "Some frames read dark overall; a modest exposure lift may help.");
+      } else if (st.brightness != null && st.brightness > 78) {
+        bump("exposure-down", "Slight exposure adjustment", "Some frames read bright overall; a small exposure pull may help.");
+      }
+      if (critique.suggestedCrop && critique.suggestedCrop.reasoning) {
+        bump("crop", "Crop recommendation", "Similar crop considerations appear more than once — check edges and subject placement together.");
+      }
+      if ((img.analysis.improvements || []).some(function (imp) {
+        return /distract|clutter|background|clean/i.test(String(imp.issue || "") + " " + String(imp.category || ""));
+      })) {
+        bump("distractions", "Reduce distractions", "Background or edge clutter shows up in multiple frames.");
+      }
+      if ((img.analysis.improvements || []).some(function (imp) {
+        return /white.?balance|color.?cast|temperature/i.test(String(imp.issue || ""));
+      }) || (st.warmth != null && (st.warmth > 0.55 || st.warmth < 0.2))) {
+        bump("wb", "Improve white balance", "Color temperature shifts between frames — a shared WB pass may unify the set.");
+      }
+      if (edit && edit.primaryMove && /impossible|cannot|raw only/i.test(String(edit.primaryMove))) {
+        /* skip impossible */
+      }
+    });
+
+    return Object.keys(tally)
+      .map(function (k) { return tally[k]; })
+      .filter(function (row) { return row.count >= 1; })
+      .sort(function (a, b) { return b.count - a.count; })
+      .slice(0, 6);
+  }
+
+  function collectGear(done) {
+    var cameras = {};
+    var lenses = {};
+    done.forEach(function (img) {
+      var ex = img.exif || {};
+      var cam = [ex.make, ex.model].filter(Boolean).join(" ").trim();
+      if (cam) cameras[cam] = (cameras[cam] || 0) + 1;
+      var lens = ex.lensModel || ex.lens || null;
+      if (lens) lenses[lens] = (lenses[lens] || 0) + 1;
+      else if (ex.focalLengthMm != null) {
+        var fl = Math.round(Number(ex.focalLengthMm)) + "mm";
+        lenses[fl] = (lenses[fl] || 0) + 1;
+      }
+    });
+    function topKey(map) {
+      return Object.keys(map).sort(function (a, b) { return map[b] - map[a]; })[0] || null;
+    }
+    return { camera: topKey(cameras), lens: topKey(lenses) };
+  }
+
+  function sessionDateLabel(shoot, done) {
+    var raw = null;
+    for (var i = 0; i < done.length; i++) {
+      var ex = done[i].exif || {};
+      if (ex.dateTimeOriginal || ex.dateTime) {
+        raw = ex.dateTimeOriginal || ex.dateTime;
+        break;
+      }
+    }
+    if (raw) {
+      var normalized = String(raw).replace(/^(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3");
+      var d = new Date(normalized);
+      if (!isNaN(d.getTime())) {
+        return d.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      }
+    }
+    if (shoot && shoot.createdAt) {
+      var d2 = new Date(shoot.createdAt);
+      if (!isNaN(d2.getTime())) {
+        return d2.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      }
+    }
+    return "Today’s session";
   }
 
   function stddev(values) {
@@ -399,11 +824,64 @@
       };
     }).sort(function (a, b) { return b.count - a.count; });
 
+    var groups = [];
+    if (global.WaypointPhotoCoachGrouping && global.WaypointPhotoCoachGrouping.groupImages) {
+      groups = global.WaypointPhotoCoachGrouping.groupImages(shoot.images);
+      var byId = Object.create(null);
+      done.forEach(function (img) { byId[img.id] = img; });
+      groups.forEach(function (g) {
+        (g.imageIds || []).forEach(function (iid) {
+          if (byId[iid]) byId[iid].groupId = g.id;
+        });
+      });
+      shoot.groups = groups;
+    }
+
+    var needsAnother = ranked.filter(function (img) {
+      return (img.analysis.overallScore || 0) < 68 ||
+        ((img.analysis.improvements || []).length >= 2);
+    }).slice(0, 5).map(function (img) {
+      var issue = (img.analysis.improvements && img.analysis.improvements[0])
+        ? img.analysis.improvements[0].issue
+        : "Worth another attempt with one clear change.";
+      return {
+        imageId: img.id,
+        fileName: img.fileName,
+        thumbnail: img.thumbnail,
+        why: issue
+      };
+    });
+
+    var interestingSubjects = dominantGenres.slice(0, 4).map(function (g) {
+      return { label: g.label, count: g.count };
+    });
+
+    var favorite = done.filter(function (img) { return img.selectionLabel === "favorite"; })[0]
+      || (strongest[0] ? done.filter(function (img) { return img.id === strongest[0].imageId; })[0] : null);
+
+    var gear = collectGear(done);
+    var insights = buildSessionInsights(done, shootScore, techNotes);
+    var stats = buildSessionStats(done);
+    var bestOf = buildBestOfSession(done);
+    var edits = buildEditingSuggestions(done);
+    var durationMs = shoot.analysisDurationMs;
+    if (durationMs == null && shoot.analysisStartedAt && shoot.analysisFinishedAt) {
+      durationMs = Math.max(0, new Date(shoot.analysisFinishedAt) - new Date(shoot.analysisStartedAt));
+    }
+
+    var labelCounts = { keep: 0, maybe: 0, reject: 0, favorite: 0, unlabeled: 0 };
+    (shoot.images || []).forEach(function (img) {
+      if (img.selectionLabel && labelCounts[img.selectionLabel] != null) labelCounts[img.selectionLabel]++;
+      else labelCounts.unset++;
+    });
+
     return {
       schemaVersion: SCHEMA_VERSION,
       builtAt: new Date().toISOString(),
+      sessionDateLabel: sessionDateLabel(shoot, done),
       imageCount: done.length,
       failedCount: (shoot.images || []).filter(function (i) { return i.status === "error"; }).length,
+      skippedCount: (shoot.images || []).filter(function (i) { return i.status === "skipped"; }).length,
       overallShootScore: shootScore.score,
       letter: letterFromScore(shootScore.score),
       scoreDetail: shootScore,
@@ -421,6 +899,42 @@
         }
       },
       nextOutingFocus: nextFocus,
+      sessionInsights: insights,
+      sessionStats: stats,
+      bestOfSession: bestOf,
+      editingSuggestions: edits,
+      imagesNeedingAnotherAttempt: needsAnother,
+      interestingSubjects: interestingSubjects,
+      favoriteImage: favorite
+        ? {
+            imageId: favorite.id,
+            fileName: favorite.fileName,
+            thumbnail: favorite.thumbnail,
+            selectionLabel: favorite.selectionLabel || null
+          }
+        : null,
+      gear: gear,
+      analysisDurationMs: durationMs,
+      labelCounts: labelCounts,
+      groupCount: groups.length,
+      weatherPlaceholder: {
+        status: "future",
+        note: "Weather context for the session will sit here when outdoor intelligence is linked to the shoot."
+      },
+      locations: (function () {
+        var locs = [];
+        done.forEach(function (img) {
+          var ex = img.exif || {};
+          if (ex.gpsLatitude != null && ex.gpsLongitude != null) {
+            locs.push({
+              lat: ex.gpsLatitude,
+              lon: ex.gpsLongitude,
+              imageId: img.id
+            });
+          }
+        });
+        return locs;
+      })(),
       // Future: Photographer Profiles / style / niche / matching
       profileHints: {
         dominantGenres: dominantGenres,
@@ -430,7 +944,8 @@
           warmth.length ? { key: "warmth", mean: Math.round((warmth.reduce(function (a, b) { return a + b; }, 0) / warmth.length) * 100) / 100 } : null
         ].filter(Boolean),
         skillSignals: commonStrengths.slice(0, 3).map(function (s) { return s.title; }),
-        growthSignals: recurring.slice(0, 3).map(function (r) { return r.issue; })
+        growthSignals: recurring.slice(0, 3).map(function (r) { return r.issue; }),
+        sessionStats: stats
       }
     };
   }
@@ -476,7 +991,13 @@
           ? "…"
           : img.status === "error"
             ? "!"
-            : String(idx + 1);
+            : img.status === "skipped"
+              ? "–"
+              : String(idx + 1);
+      var sel = img.selectionLabel
+        ? '<span class="pc-filmstrip__sel pc-filmstrip__sel--' + escapeHtml(img.selectionLabel) + '" title="' +
+          escapeHtml(img.selectionLabel) + '">' + escapeHtml(img.selectionLabel.charAt(0).toUpperCase()) + "</span>"
+        : "";
       var thumb = img.thumbnail
         ? '<img src="' + escapeHtml(img.thumbnail) + '" alt="" class="pc-filmstrip__thumb">'
         : '<span class="pc-filmstrip__placeholder" aria-hidden="true"></span>';
@@ -485,51 +1006,171 @@
         (img.status === "done" ? " is-done" : "") +
         (img.status === "analyzing" ? " is-analyzing" : "") +
         (img.status === "error" ? " is-error" : "") +
+        (img.selectionLabel ? " is-labeled is-labeled--" + escapeHtml(img.selectionLabel) : "") +
         '" data-image-id="' + escapeHtml(img.id) + '"' +
-        ' aria-label="' + escapeHtml(img.fileName) + " — " + escapeHtml(img.status) + '"' +
+        ' aria-label="' + escapeHtml(img.fileName) + " — " + escapeHtml(img.status) +
+        (img.selectionLabel ? " — " + escapeHtml(img.selectionLabel) : "") + '"' +
         (img.status !== "done" && img.status !== "error" ? " disabled" : "") + ">" +
-        thumb +
+        thumb + sel +
         '<span class="pc-filmstrip__grade">' + escapeHtml(label) + "</span>" +
       "</button>";
     }).join("");
 
     return '<div class="pc-filmstrip" role="list" aria-label="Shoot photos">' +
       '<div class="pc-filmstrip__meta">' +
-        "<strong>Shoot</strong> · " + done + " / " + total + " analyzed" +
+        "<strong>Today’s shoot</strong> · " + done + " / " + total + " analyzed" +
       "</div>" +
       '<div class="pc-filmstrip__track">' + items + "</div>" +
     "</div>";
   }
 
+  function renderGroupsHtml(shoot) {
+    var groups = shoot && shoot.groups ? shoot.groups : [];
+    if (!groups.length) return "";
+    var byId = Object.create(null);
+    (shoot.images || []).forEach(function (img) { byId[img.id] = img; });
+    return '<div class="pc-shoot-groups" aria-label="Similar photograph groups">' +
+      '<h3 class="pc-shoot-summary__h">Similar frames</h3>' +
+      '<p class="pc-shoot-summary__lede">Grouped for easier review. Nothing is deleted.</p>' +
+      groups.map(function (g) {
+        var open = !g.collapsed;
+        var thumbs = (g.imageIds || []).map(function (iid) {
+          var img = byId[iid];
+          if (!img) return "";
+          return '<button type="button" class="pc-group__thumb' +
+            (img.selectionLabel === "reject" ? " is-reject" : "") +
+            '" data-image-id="' + escapeHtml(iid) + '" aria-label="Open ' + escapeHtml(img.fileName) + '">' +
+            (img.thumbnail
+              ? '<img src="' + escapeHtml(img.thumbnail) + '" alt="">'
+              : '<span></span>') +
+            "</button>";
+        }).join("");
+        return '<details class="pc-group" data-group-id="' + escapeHtml(g.id) + '"' +
+          (open ? " open" : "") + ">" +
+          "<summary>" + escapeHtml(g.label) + "</summary>" +
+          '<div class="pc-group__track">' + thumbs + "</div>" +
+          "</details>";
+      }).join("") +
+    "</div>";
+  }
+
+  function renderSelectionControlsHtml(imageId, currentLabel) {
+    var labels = [
+      { id: "keep", title: "Keep" },
+      { id: "maybe", title: "Maybe" },
+      { id: "reject", title: "Reject" },
+      { id: "favorite", title: "Favorite" }
+    ];
+    return '<div class="pc-selection" role="group" aria-label="Private photo labels">' +
+      '<p class="pc-selection__title">Private labels</p>' +
+      '<div class="pc-selection__row">' +
+      labels.map(function (lab) {
+        var pressed = currentLabel === lab.id;
+        return '<button type="button" class="pc-selection__btn' + (pressed ? " is-active" : "") +
+          '" data-selection="' + lab.id + '" data-image-id="' + escapeHtml(imageId) +
+          '" aria-pressed="' + pressed + '">' + escapeHtml(lab.title) + "</button>";
+      }).join("") +
+      (currentLabel
+        ? '<button type="button" class="pc-selection__btn pc-selection__btn--clear" data-selection="" data-image-id="' +
+          escapeHtml(imageId) + '">Clear</button>'
+        : "") +
+      "</div>" +
+      '<p class="pc-selection__note">Private to this browser. No scores or public sharing.</p>' +
+    "</div>";
+  }
+
+  function formatDuration(ms) {
+    if (ms == null || !isFinite(ms)) return null;
+    var sec = Math.round(ms / 1000);
+    if (sec < 60) return sec + "s";
+    var min = Math.floor(sec / 60);
+    var rem = sec % 60;
+    return min + "m " + rem + "s";
+  }
+
   function renderSummaryHtml(summary, shoot) {
     if (!summary) return "";
+    var duration = formatDuration(summary.analysisDurationMs);
+    var gearBits = [];
+    if (summary.gear && summary.gear.camera) gearBits.push(summary.gear.camera);
+    if (summary.gear && summary.gear.lens) gearBits.push(summary.gear.lens);
+
+    var meta =
+      '<ul class="pc-shoot-summary__meta">' +
+        "<li><strong>When</strong> " + escapeHtml(summary.sessionDateLabel || "This session") + "</li>" +
+        "<li><strong>Photographs</strong> " + escapeHtml(String(summary.imageCount || 0)) +
+          (summary.failedCount ? " · " + summary.failedCount + " could not be analyzed" : "") + "</li>" +
+        (gearBits.length ? "<li><strong>Gear</strong> " + escapeHtml(gearBits.join(" · ")) + "</li>" : "") +
+        (duration ? "<li><strong>Analysis time</strong> " + escapeHtml(duration) + "</li>" : "") +
+        (summary.locations && summary.locations.length
+          ? "<li><strong>Locations</strong> " + summary.locations.length + " GPS-tagged frame" +
+            (summary.locations.length === 1 ? "" : "s") + "</li>"
+          : "<li><strong>Locations</strong> Not available in this set</li>") +
+        "<li><strong>Weather</strong> " + escapeHtml((summary.weatherPlaceholder && summary.weatherPlaceholder.note) || "Future") + "</li>" +
+      "</ul>";
+
+    var insights = (summary.sessionInsights || []).map(function (row) {
+      return "<li>" + escapeHtml(row.text) + "</li>";
+    }).join("") || "<li>Not enough repeated patterns to speak confidently yet.</li>";
+
     var strongest = (summary.strongestImages || []).map(function (img) {
       return '<li class="pc-shoot-summary__strong">' +
         (img.thumbnail
           ? '<img src="' + escapeHtml(img.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">'
           : "") +
-        '<div><strong>' + escapeHtml(img.letter || "—") + " · " + escapeHtml(String(img.score || "—")) +
-        "</strong> " + escapeHtml(img.fileName) +
+        '<div><strong>' + escapeHtml(img.fileName) + "</strong>" +
         '<p class="pc-shoot-summary__why">' + escapeHtml(img.why) + "</p>" +
         '<button type="button" class="pc-shoot-summary__open" data-image-id="' + escapeHtml(img.imageId) +
-        '">View analysis</button></div></li>';
+        '">View photograph</button></div></li>';
     }).join("");
 
-    var strengths = (summary.commonStrengths || []).map(function (s) {
-      return "<li><strong>" + escapeHtml(s.title) + "</strong> · " + s.count +
-        " frame" + (s.count === 1 ? "" : "s") + "</li>";
-    }).join("") || "<li>No repeated strengths detected yet.</li>";
+    var bestOf = (summary.bestOfSession || []).map(function (cat) {
+      var p = cat.pick || {};
+      return '<li class="pc-bestof__item">' +
+        (p.thumbnail ? '<img src="' + escapeHtml(p.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">' : "") +
+        "<div><strong>" + escapeHtml(cat.title) + "</strong>" +
+        "<p>" + escapeHtml(p.fileName || "") + "</p>" +
+        '<p class="pc-shoot-summary__why">' + escapeHtml(p.why || "") + "</p>" +
+        (p.imageId
+          ? '<button type="button" class="pc-shoot-summary__open" data-image-id="' + escapeHtml(p.imageId) +
+            '">View photograph</button>'
+          : "") +
+        "</div></li>";
+    }).join("") || "<li>Not enough variety to suggest multiple categories yet.</li>";
 
-    var recurring = (summary.recurringImprovements || []).map(function (r) {
-      return "<li><strong>" + escapeHtml(r.issue) + "</strong> · " + r.count +
-        " frame" + (r.count === 1 ? "" : "s") + "</li>";
-    }).join("") || "<li>No recurring issues stood out.</li>";
+    var edits = (summary.editingSuggestions || []).map(function (e) {
+      return "<li><strong>" + escapeHtml(e.title) + "</strong> · seen in " + e.count +
+        " frame" + (e.count === 1 ? "" : "s") +
+        "<p class=\"pc-shoot-summary__why\">" + escapeHtml(e.detail) + "</p></li>";
+    }).join("") || "<li>No shared edit theme stood out yet.</li>";
 
-    var tech = (summary.technicalConsistency.notes || []).map(function (n) {
-      return "<li>" + escapeHtml(n) + "</li>";
-    }).join("");
+    var retry = (summary.imagesNeedingAnotherAttempt || []).map(function (img) {
+      return "<li>" + escapeHtml(img.fileName) + " — " + escapeHtml(img.why) + "</li>";
+    }).join("") || "<li>Nothing urgently asks for another attempt.</li>";
 
-    var focus = summary.nextOutingFocus || {};
+    var stats = summary.sessionStats || {};
+    var pct = stats.percentages || {};
+    var statsHtml =
+      '<ul class="pc-session-stats" aria-label="Session subject mix">' +
+        "<li>Landscape " + (pct.landscape || 0) + "%</li>" +
+        "<li>Wildlife " + (pct.wildlife || 0) + "%</li>" +
+        "<li>Plants " + (pct.plants || 0) + "%</li>" +
+        "<li>Fungi " + (pct.fungi || 0) + "%</li>" +
+        "<li>Water " + (pct.water || 0) + "%</li>" +
+        "<li>Macro " + (pct.macro || 0) + "%</li>" +
+        (stats.averageFocalLengthMm != null
+          ? "<li>Avg focal length ~" + stats.averageFocalLengthMm + "mm</li>"
+          : "") +
+        (stats.orientation
+          ? "<li>Orientation " + stats.orientation.landscapeRatio + "% horizontal</li>"
+          : "") +
+        (stats.timeOfDay ? "<li>Time of day · " + escapeHtml(stats.timeOfDay) + "</li>" : "") +
+      "</ul>";
+
+    var subjects = (summary.interestingSubjects || []).map(function (s) {
+      return "<li>" + escapeHtml(s.label) + " · " + s.count + "</li>";
+    }).join("") || "<li>Subjects stayed lightly labeled — that’s okay.</li>";
+
     var outing = summary.personalizedOuting || null;
     var outingHtml = "";
     if (outing) {
@@ -543,62 +1184,132 @@
             "<li>" + escapeHtml(outing.optionalExperiment || "") + "</li>" +
             "<li>" + escapeHtml(outing.subjectOrCondition || "") + "</li>" +
           "</ul>" +
-          (outing.wasRepeated
-            ? '<p class="coach-muted">This continues an ongoing focus — not a brand-new theme.</p>'
+        "</div>";
+    }
+
+    var focus = summary.nextOutingFocus || {};
+    var favoriteHtml = "";
+    if (summary.favoriteImage) {
+      favoriteHtml =
+        '<div class="pc-shoot-summary__favorite">' +
+          "<h3 class=\"pc-shoot-summary__h\">Favorite</h3>" +
+          (summary.favoriteImage.thumbnail
+            ? '<img src="' + escapeHtml(summary.favoriteImage.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">'
             : "") +
+          "<p>" + escapeHtml(summary.favoriteImage.fileName) +
+          (summary.favoriteImage.selectionLabel === "favorite"
+            ? " · marked by you"
+            : " · strongest early candidate") +
+          "</p>" +
+          '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
+            escapeHtml(summary.favoriteImage.imageId) + '">View photograph</button>' +
         "</div>";
     }
 
     return '<section class="pc-shoot-summary coach-card" aria-labelledby="pc-shoot-summary-title">' +
       '<div class="pc-shoot-summary__head">' +
-        '<h2 class="coach-card__title" id="pc-shoot-summary-title">Shoot Summary</h2>' +
-        '<span class="coach-trust coach-trust--demo">On-device analysis</span>' +
+        '<h2 class="coach-card__title" id="pc-shoot-summary-title">How did today’s shoot go?</h2>' +
+        '<span class="coach-trust coach-trust--demo">On-device · private</span>' +
       "</div>" +
-      '<div class="pc-shoot-summary__score">' +
+      '<p class="pc-shoot-summary__lede">One session, read as a whole — not a contest between single frames.</p>' +
+      meta +
+      '<div class="pc-shoot-summary__score pc-shoot-summary__score--quiet">' +
         '<span class="pc-shoot-summary__letter">' + escapeHtml(summary.letter) + "</span>" +
-        '<span class="pc-shoot-summary__num">' + escapeHtml(String(summary.overallShootScore)) +
-          '<span class="pc-preview__max">/100</span></span>' +
-        '<p class="pc-shoot-summary__score-note">Shoot score blends keepers, median quality, and consistency — not a plain average.</p>' +
+        '<p class="pc-shoot-summary__score-note">Session read ' +
+          escapeHtml(String(summary.overallShootScore)) +
+          "/100 — blends keepers, median quality, and consistency. Guidance only.</p>" +
+      "</div>" +
+      favoriteHtml +
+      '<div class="pc-shoot-summary__block">' +
+        '<h3 class="pc-shoot-summary__h">Session observations</h3>' +
+        "<ul>" + insights + "</ul>" +
       "</div>" +
       '<div class="pc-shoot-summary__grid">' +
-        '<div><h3 class="pc-shoot-summary__h">Strongest images</h3><ul class="pc-shoot-summary__strong-list">' +
+        '<div><h3 class="pc-shoot-summary__h">Strongest compositions</h3><ul class="pc-shoot-summary__strong-list">' +
           strongest + "</ul></div>" +
-        "<div><h3 class=\"pc-shoot-summary__h\">Common strengths</h3><ul>" + strengths + "</ul></div>" +
-        "<div><h3 class=\"pc-shoot-summary__h\">Recurring improvements</h3><ul>" + recurring + "</ul></div>" +
-        '<div><h3 class="pc-shoot-summary__h">Technical consistency · ' +
-          escapeHtml(String(summary.technicalConsistency.score)) + "/100</h3><ul>" + tech + "</ul></div>" +
+        "<div><h3 class=\"pc-shoot-summary__h\">Interesting subjects</h3><ul>" + subjects + "</ul></div>" +
+        "<div><h3 class=\"pc-shoot-summary__h\">Worth another attempt</h3><ul>" + retry + "</ul></div>" +
+        '<div><h3 class="pc-shoot-summary__h">Technical notes</h3><ul>' +
+          (summary.technicalConsistency.notes || []).map(function (n) {
+            return "<li>" + escapeHtml(n) + "</li>";
+          }).join("") +
+        "</ul></div>" +
       "</div>" +
+      '<div class="pc-shoot-summary__block">' +
+        '<h3 class="pc-shoot-summary__h">Best of session</h3>' +
+        '<p class="pc-shoot-summary__lede">Several kinds of success — not one winner.</p>' +
+        '<ul class="pc-bestof">' + bestOf + "</ul>" +
+      "</div>" +
+      '<div class="pc-shoot-summary__block">' +
+        '<h3 class="pc-shoot-summary__h">Editing suggestions for the set</h3>' +
+        "<ul>" + edits + "</ul>" +
+      "</div>" +
+      '<div class="pc-shoot-summary__block">' +
+        '<h3 class="pc-shoot-summary__h">Session mix</h3>' +
+        statsHtml +
+      "</div>" +
+      renderGroupsHtml(shoot) +
       outingHtml +
       '<div class="pc-shoot-summary__focus">' +
-        "<h3 class=\"pc-shoot-summary__h\">Suggested focus for next outing</h3>" +
+        "<h3 class=\"pc-shoot-summary__h\">A quiet focus for next time</h3>" +
         "<p><strong>" + escapeHtml(focus.title || "") + "</strong></p>" +
         "<p>" + escapeHtml(focus.why || "") + "</p>" +
         "<p>" + escapeHtml(focus.practice || "") + "</p>" +
       "</div>" +
-      '<p class="coach-muted">Stored as structured JSON in this browser — foundation for progress and profile coaching.</p>' +
+      '<p class="coach-muted">Stored privately in this browser — ready for future Photographer Profile learning.</p>' +
     "</section>";
   }
 
-  function renderProgressHtml(current, total, fileName) {
+  function renderProgressHtml(state) {
+    state = state || {};
+    var current = state.index != null ? state.index + (state.status === "complete" ? 0 : 1) : 1;
+    if (state.status === "complete") current = state.total;
+    var total = state.total || 1;
+    var fileName = state.currentFileName || "";
+    var remaining = state.remaining != null ? state.remaining : Math.max(0, total - (state.index || 0));
+    var eta = null;
+    if (global.WaypointPhotoCoachQueue && global.WaypointPhotoCoachQueue.formatEta) {
+      eta = global.WaypointPhotoCoachQueue.formatEta(state.estimatedMsRemaining);
+    }
+    var pct = clamp(round(((state.index || 0) / Math.max(total, 1)) * 100), 0, 100);
+    if (state.status === "complete") pct = 100;
+
     return '<div class="pc-batch-progress" role="status" aria-live="polite">' +
-      '<p class="pc-batch-progress__title">Analyzing shoot…</p>' +
-      '<p class="coach-muted">' + current + " of " + total +
-      (fileName ? " · " + escapeHtml(fileName) : "") + "</p>" +
+      '<p class="pc-batch-progress__title">' +
+        (state.status === "cancelling" || state.status === "cancelled"
+          ? "Stopping analysis…"
+          : "Reviewing today’s shoot…") +
+      "</p>" +
+      '<p class="coach-muted">Photograph ' + Math.min(current, total) + " of " + total +
+      (fileName ? " · " + escapeHtml(fileName) : "") +
+      (remaining > 0 ? " · " + remaining + " remaining" : "") +
+      (eta ? " · " + escapeHtml(eta) + " left" : "") +
+      "</p>" +
       '<div class="pc-batch-progress__bar" aria-hidden="true">' +
-        '<div class="pc-batch-progress__fill" style="width:' +
-          clamp(round((current / Math.max(total, 1)) * 100), 0, 100) + '%"></div>' +
-      "</div></div>";
+        '<div class="pc-batch-progress__fill" style="width:' + pct + '%"></div>' +
+      "</div>" +
+      (state.status === "running" || state.status === "cancelling"
+        ? '<button type="button" class="btn btn-secondary pc-batch-progress__cancel" id="pc-queue-cancel">Cancel remaining</button>'
+        : "") +
+    "</div>";
   }
 
   global.WaypointPhotoCoachShoot = {
     SCHEMA_VERSION: SCHEMA_VERSION,
     MAX_IMAGES: MAX_IMAGES,
     MAX_SHOOTS: MAX_SHOOTS,
+    SELECTION_LABELS: SELECTION_LABELS,
     createShoot: createShoot,
     createImageRecord: createImageRecord,
     toStructuredAnalysis: toStructuredAnalysis,
     buildSummary: buildSummary,
     computeShootScore: computeShootScore,
+    buildBestOfSession: buildBestOfSession,
+    buildSessionInsights: buildSessionInsights,
+    buildSessionStats: buildSessionStats,
+    buildEditingSuggestions: buildEditingSuggestions,
+    setImageSelection: setImageSelection,
+    normalizeSelectionLabel: normalizeSelectionLabel,
     makeThumbnail: makeThumbnail,
     persistShoot: persistShoot,
     saveShoot: persistShoot,
@@ -607,6 +1318,8 @@
     deleteShoot: deleteShoot,
     renderFilmstripHtml: renderFilmstripHtml,
     renderSummaryHtml: renderSummaryHtml,
-    renderProgressHtml: renderProgressHtml
+    renderProgressHtml: renderProgressHtml,
+    renderSelectionControlsHtml: renderSelectionControlsHtml,
+    renderGroupsHtml: renderGroupsHtml
   };
 })(window);

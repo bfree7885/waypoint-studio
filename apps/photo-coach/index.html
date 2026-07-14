@@ -28,19 +28,19 @@
             <span class="pc-product-sep" aria-hidden="true">·</span>
             Photo Coach
           </p>
-          <h1 class="coach-hero__title pc-hero__title">Upload. Understand. Improve.</h1>
-          <p class="coach-hero__lead">Photo Coach reviews the visual qualities of your images — one photo or a full shoot of up to 20 — and suggests deliberate ways to improve.</p>
+          <h1 class="coach-hero__title pc-hero__title">How did today’s shoot go?</h1>
+          <p class="coach-hero__lead">Photo Coach reviews a photograph — or a whole outing of up to 20 — then helps you see patterns, label keepers privately, and decide what to try next.</p>
         </header>
 
         <p class="pc-trust" role="note">
-          Analysis runs in your browser. Guidance only — not a professional review.
+          Analysis runs in your browser. Guidance only — private labels never leave this device.
         </p>
 
         <details class="pc-disclosure">
-          <summary>How analysis works</summary>
+          <summary>How shoot review works</summary>
           <div class="pc-disclosure__body">
-            <p>On-device analysis samples brightness, contrast, sharpness estimates, color, and clipping from your image. Upload one photo or a shoot of up to 20; each image is coached, then summarized.</p>
-            <p>Images stay on your device. JPG, PNG, WebP · up to 20 MB each.</p>
+            <p>Upload one photo or a session of up to 20. Each image is analyzed on-device, then the shoot is summarized: strengths, subjects, similar frames, and quiet editing themes.</p>
+            <p>Mark frames Keep, Maybe, Reject, or Favorite for yourself. No public scores or sharing. JPG, PNG, WebP · up to 20 MB each.</p>
           </div>
         </details>
 
@@ -51,10 +51,11 @@
           <aside class="coach-col coach-col--left pc-upload-col" aria-label="Upload photos">
             <div class="coach-drop-zone" id="coach-drop-zone" tabindex="0" role="button" aria-label="Upload photos: drop, click to browse, or paste with Control V. Up to 20 images.">
               <div class="coach-empty" id="coach-empty">
-                <p class="coach-empty__title">Drop photos here</p>
+                <p class="coach-empty__title">Drop today’s photos here</p>
                 <p class="coach-empty__text">1–20 images · click to browse · paste with Ctrl+V</p>
                 <p class="coach-empty__formats">JPG, PNG, WebP · max 20 MB each</p>
                 <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photos</button>
+                <button type="button" class="btn btn-secondary" id="btn-coach-folder" style="margin-top:0.5rem">Choose folder</button>
               </div>
               <div class="coach-preview-frame" id="coach-preview-frame" hidden>
                 <img id="coach-preview-img" class="coach-preview-img" alt="" hidden>
@@ -64,6 +65,7 @@
             <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload more</button>
             <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
             <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
+            <input type="file" id="coach-folder-input" accept="image/jpeg,image/png,image/webp" multiple webkitdirectory directory hidden>
             <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
           </aside>
 
@@ -137,6 +139,9 @@
   <script src="../waypoint-scenes/js/photo-coach-profile-engine.js"></script>
   <script src="../waypoint-scenes/js/photo-coach-personalized.js"></script>
   <script src="../waypoint-scenes/js/photo-coach-repository.js"></script>
+  <script src="../waypoint-scenes/js/photo-coach-queue.js"></script>
+  <script src="../waypoint-scenes/js/photo-coach-grouping.js"></script>
+  <script src="../waypoint-scenes/js/photo-coach-importer-bridge.js"></script>
   <script src="../waypoint-scenes/js/photo-coach-shoot.js"></script>
   <script src="../waypoint-scenes/js/photo-coach-profile.js"></script>
   <script src="../waypoint-scenes/js/photo-coach-skills.js"></script>
