@@ -78,7 +78,7 @@
       "status": "live",
       "statusLabel": "Available now",
       "summary": "A lifelong companion that learns your style, strengths, recurring themes, favorite subjects, and growth over time.",
-      "description": "Your profile grows from real coaching sessions — subjects you return to, light you prefer, strengths that show up again and again. It is private, evidence-based, and never a scoreboard.",
+      "description": "Your profile grows from real Photo Coach sessions — subjects you return to, light you prefer, strengths that show up again and again, project ideas rooted in your history. Private, evidence-based, never a scoreboard.",
       "modulePath": "photographer-profile/",
       "toolHref": "../../photo-coach/profile/",
       "toolLabel": "Open Photographer Profile",

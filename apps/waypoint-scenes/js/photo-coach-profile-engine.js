@@ -8,7 +8,7 @@
 (function (global) {
   "use strict";
 
-  var COMPUTATION_VERSION = "1.0.0";
+  var COMPUTATION_VERSION = "2.0.0";
 
   function round1(n) {
     return Math.round(n * 10) / 10;
@@ -447,6 +447,376 @@
     };
   }
 
+  function seasonFromTs(ts) {
+    if (ts == null) return null;
+    var m = new Date(ts).getUTCMonth();
+    if (m === 11 || m <= 1) return "Winter";
+    if (m <= 4) return "Spring";
+    if (m <= 7) return "Summer";
+    return "Autumn";
+  }
+
+  function timeOfDayFromTs(ts) {
+    if (ts == null) return null;
+    var h = new Date(ts).getUTCHours();
+    if (h < 7) return "Pre-dawn / night";
+    if (h < 10) return "Morning";
+    if (h < 14) return "Midday";
+    if (h < 18) return "Afternoon";
+    if (h < 21) return "Golden hour / evening";
+    return "Night";
+  }
+
+  function locationLabel(photo) {
+    var loc = photo && photo.location;
+    if (!loc || typeof loc !== "object") return null;
+    var parts = [loc.label, loc.city, loc.county, loc.state, loc.country].filter(Boolean);
+    if (!parts.length) return null;
+    return normalizeLabel(parts[0]);
+  }
+
+  function buildObservations(subjects, lighting, compositions, niches, lenses, seasons, tier) {
+    if (tier.id === "not_enough") {
+      return [
+        "Not enough analyzed work yet to describe lasting patterns. Keep exploring — the profile grows gently with each Photo Coach session."
+      ];
+    }
+    var out = [];
+    var topSub = subjects[0];
+    if (topSub && topSub.supportingPhotos >= 3) {
+      out.push("It appears you often photograph " + topSub.label.toLowerCase() + ".");
+    }
+    if (lighting[0] && lighting[0].supportingPhotos >= 3) {
+      out.push("You may enjoy " + lighting[0].label.toLowerCase() + " light.");
+    }
+    if (compositions[0] && /foreground|environmental|subject/i.test(compositions[0].label)) {
+      out.push("One emerging pattern: " + compositions[0].label.toLowerCase() + ".");
+    }
+    if (niches[0] && niches[0].claimStrength !== "experimental") {
+      out.push("This seems to be developing toward " + niches[0].label.toLowerCase() + " as a familiar place to look.");
+    }
+    if (lenses[0] && /telephoto|macro/i.test(lenses[0].label || "")) {
+      out.push("It appears medium-to-long glass or close-focus work shows up often when EXIF is present.");
+    }
+    if (seasons.length >= 2) {
+      out.push("You may enjoy working across more than one season — seasonal coverage is beginning to show.");
+    } else if (seasons[0]) {
+      out.push("Much of the dated work so far gathers in " + seasons[0].label.toLowerCase() + " — an open invitation to explore other seasons when you wish.");
+    }
+    var people = (subjects || []).some(function (s) { return /people|portrait|human/i.test(s.label); });
+    if (!people && subjects.length) {
+      out.push("You rarely photograph people in this body of work — nature and place seem to hold the curiosity.");
+    }
+    if (!out.length) {
+      out.push("Patterns are still forming. Curiosity is welcome even when the profile stays quiet.");
+    }
+    return out.slice(0, 8);
+  }
+
+  function buildPhotographyDna(subjects, lighting, color, compositions, framing, mood, focal, tier, eligibleCount) {
+    var subjectLabels = (subjects || []).slice(0, 5).map(function (s) { return s.label; });
+    var joined = subjectLabels.join(" ").toLowerCase();
+    var wild = /wildlife|bird|deer|mammal/.test(joined);
+    var land = /landscape|sky|mountain|river|lake|field/.test(joined);
+    var macro = /mushroom|macro|fungi|insect|detail|moss/.test(joined);
+    var wood = /wood|forest|tree|canopy/.test(joined);
+    var balance = "Still taking shape";
+    if (wild && land) balance = "Attention shared between wildlife and wider landscapes";
+    else if (wild) balance = "Wildlife interest appears stronger than broad landscapes so far";
+    else if (land || wood) balance = "Place and landscape seem to lead";
+    else if (macro) balance = "Close looking and fine detail appear prominent";
+
+    var minimal = (framing[0] && /clean|tight|simplified/i.test(framing[0].label)) ||
+      (compositions[0] && /simplified|subject-centered/i.test(compositions[0].label));
+    var complex = framing[0] && /complex|layered|environmental/i.test(framing[0].label);
+
+    var curiosityFamilyCount = subjectLabels.length;
+    var curiosityLabel =
+      eligibleCount < 10
+        ? "Curiosity is just beginning to leave footprints"
+        : curiosityFamilyCount >= 4
+          ? "Curiosity spans several subject families"
+          : curiosityFamilyCount >= 2
+            ? "Curiosity is deepening within a few subject families"
+            : "Curiosity is concentrating — a focused looking is taking shape";
+
+    return {
+      subjects: subjectLabels,
+      visualThemes: (mood || []).slice(0, 3).map(function (m) { return m.label; }),
+      preferredLighting: (lighting || []).slice(0, 3).map(function (l) { return l.label; }),
+      movement: (focal[0] && /telephoto/i.test(focal[0].label))
+        ? "Compressed or distant vantage points appear often when focal length is known"
+        : "Observational distance still varies — a healthy range for learning",
+      colorPreferences: (color || []).slice(0, 3).map(function (c) { return c.label; }),
+      landscapeWildlifeBalance: balance,
+      macroInterest: macro
+        ? "Macro and close detail show recurring interest"
+        : "Macro interest has not stood out yet — or may still be ahead",
+      minimalismVersusComplexity: minimal
+        ? "A lean toward simplified backgrounds and clear subjects"
+        : complex
+          ? "A lean toward layered, environmental frames"
+          : "Between simplicity and complexity — still exploring",
+      environmentalStorytelling: (compositions[0] && /environmental/i.test(compositions[0].label))
+        ? "Environmental storytelling appears in how scenes are built"
+        : "Storytelling style is still emerging",
+      curiosityBreadth: {
+        familyCount: curiosityFamilyCount,
+        label: curiosityLabel
+      },
+      observationThemes: (subjects || []).slice(0, 4).map(function (s) { return s.label; }),
+      natureConnection: wood || land || wild || macro
+        ? "Nature and outdoor looking seem to be a steady through-line"
+        : "Connection themes will clarify as more outdoor work arrives",
+      evidenceTier: tier.label,
+      summary:
+        tier.id === "not_enough"
+          ? "Photography DNA waits for a fuller body of analyzed work. No rush."
+          : "Descriptive tendencies only — not a grade, brand, or fixed identity. " +
+            (subjectLabels[0]
+              ? "It appears " + subjectLabels[0].toLowerCase() + " sits near the center of attention."
+              : "Looking patterns are beginning to gather.")
+    };
+  }
+
+  function buildProjects(subjects, lighting, seasons, mood, observations) {
+    var projects = [];
+    var blob = (subjects || [])
+      .map(function (s) { return s.label; })
+      .concat((lighting || []).map(function (l) { return l.label; }))
+      .concat((mood || []).map(function (m) { return m.label; }))
+      .join(" ")
+      .toLowerCase();
+
+    function add(id, title, reason, source) {
+      projects.push({
+        id: id,
+        title: title,
+        reason: reason,
+        sourceSubjects: source || [],
+        status: "suggested",
+        createdAt: new Date().toISOString()
+      });
+    }
+
+    if (/wood|forest|tree|canopy/.test(blob)) {
+      add(
+        "forest-seasons",
+        "Photograph every season in one forest",
+        "Woodland scenes appear often — returning to one place across seasons could deepen that looking.",
+        ["Woodland"]
+      );
+      add(
+        "tree-portraits",
+        "Tree portraits",
+        "Trees already seem familiar friends in your frames.",
+        ["Trees"]
+      );
+    }
+    if (/mushroom|fungi|macro/.test(blob)) {
+      add(
+        "white-mushrooms-rain",
+        "White mushrooms after rain",
+        "Close natural detail shows up in your history — weather and fungi are a natural invitation.",
+        ["Mushrooms"]
+      );
+    }
+    if (/soft|overcast|diffused|shade|fog|mist/.test(blob)) {
+      add(
+        "morning-fog",
+        "Morning fog collection",
+        "Soft or atmospheric light already seems welcome in your work.",
+        ["Soft light"]
+      );
+    }
+    if (/bird|wildlife/.test(blob)) {
+      add(
+        "bird-behavior",
+        "Bird behavior journal",
+        "Wildlife interest appears present — a quiet journal of behavior could fit.",
+        ["Wildlife"]
+      );
+    }
+    if (/river|water|reflection|lake/.test(blob)) {
+      add(
+        "river-reflections",
+        "River reflections",
+        "Water and place already appear in your looking.",
+        ["Water"]
+      );
+    }
+    if (/autumn|fall|canopy/.test(blob) || (seasons[0] && /autumn/i.test(seasons[0].label))) {
+      add(
+        "autumn-canopy",
+        "Autumn canopy",
+        "Seasonal color and canopy moods may already be part of your rhythm.",
+        ["Autumn"]
+      );
+    }
+    if (/quiet|calm|soft|contemplative|moody/.test(blob)) {
+      add(
+        "night-forests",
+        "Night forests",
+        "Quiet atmospheres seem familiar — night forests are a patient next step when you are ready.",
+        ["Quiet light"]
+      );
+    }
+    add(
+      "hidden-landscapes",
+      "Hidden Landscapes opportunities",
+      "Beyond-visible looking in Waypoint Scenes can extend the curiosity already in your nature work — as creative simulation, clearly labeled.",
+      []
+    );
+
+    // Prefer projects tied to observed history; keep Hidden Landscapes last as platform bridge
+    var tied = projects.filter(function (p) { return p.id !== "hidden-landscapes"; });
+    var bridge = projects.filter(function (p) { return p.id === "hidden-landscapes"; });
+    return tied.slice(0, 6).concat(bridge.slice(0, 1));
+  }
+
+  function buildConfidenceTimeline(eligiblePhotos) {
+    var buckets = {};
+    (eligiblePhotos || []).forEach(function (p) {
+      var ts = parseTs(p.analyzedAt || p.captureDateTime);
+      if (ts == null) return;
+      var d = new Date(ts);
+      var mo = d.getUTCMonth() + 1;
+      var key = d.getUTCFullYear() + "-" + (mo < 10 ? "0" : "") + mo;
+      if (!buckets[key]) buckets[key] = { id: key, label: key, photoCount: 0 };
+      buckets[key].photoCount += 1;
+    });
+    return Object.keys(buckets)
+      .sort()
+      .map(function (k) {
+        var b = buckets[k];
+        return {
+          id: b.id,
+          label: b.label,
+          photoCount: b.photoCount,
+          detail:
+            b.photoCount === 1
+              ? "One analyzed frame this month — a quiet beginning."
+              : b.photoCount + " analyzed frames this month — consistency is a form of curiosity."
+        };
+      });
+  }
+
+  function buildJourney(evidence, subjects, growth) {
+    var ev = evidence || {};
+    var n = ev.eligiblePhotoCount || 0;
+    var stage =
+      n < 10 ? "Beginning" : n < 30 ? "Finding patterns" : n < 100 ? "Deepening" : "Long looking";
+    return {
+      stage: stage,
+      summary:
+        n === 0
+          ? "Your photography journey in Waypoint Scenes begins the first time you analyze a photograph in Photo Coach."
+          : "So far, " +
+            n +
+            " eligible photograph" +
+            (n === 1 ? "" : "s") +
+            " are teaching the profile how you see. " +
+            (subjects[0] ? "Attention often returns to " + subjects[0].label.toLowerCase() + "." : ""),
+      photoCount: n,
+      shootCount: ev.eligibleShootCount || 0,
+      dateRange: ev.dateRange || null,
+      growthHint: (growth && growth.summary) || null
+    };
+  }
+
+  function buildGoals(subjects, opportunities, lighting) {
+    var goals = [];
+    if (subjects[0]) {
+      goals.push({
+        id: "continue-" + normalizeKey(subjects[0].label),
+        label: "Keep exploring " + subjects[0].label.toLowerCase(),
+        kind: "curiosity"
+      });
+    }
+    if (opportunities[0]) {
+      goals.push({
+        id: "practice-" + normalizeKey(opportunities[0].label),
+        label: "Practice gently: " + opportunities[0].label,
+        kind: "growth"
+      });
+    }
+    if (lighting[0]) {
+      goals.push({
+        id: "light-" + normalizeKey(lighting[0].label),
+        label: "Notice " + lighting[0].label.toLowerCase() + " when it appears",
+        kind: "attention"
+      });
+    }
+    if (!goals.length) {
+      goals.push({
+        id: "analyze-more",
+        label: "Analyze a few more photographs when you are ready",
+        kind: "beginning"
+      });
+    }
+    return goals.slice(0, 5);
+  }
+
+  function buildMilestones(eligibleCount, subjects, growth) {
+    var m = [];
+    if (eligibleCount >= 1) {
+      m.push({
+        id: "first-analysis",
+        label: "First analysis joined the profile",
+        detail: "Learning begins with a single careful look.",
+        at: null
+      });
+    }
+    if (eligibleCount >= 10) {
+      m.push({
+        id: "early-body",
+        label: "A small body of work is in place",
+        detail: "Early tendencies can be named with care.",
+        at: null
+      });
+    }
+    if (subjects[0] && subjects[0].supportingPhotos >= 5) {
+      m.push({
+        id: "subject-repeat",
+        label: "A favorite subject is repeating",
+        detail: "It appears " + subjects[0].label.toLowerCase() + " keeps drawing your eye.",
+        at: null
+      });
+    }
+    if (growth && growth.trends && growth.trends.some(function (t) { return t.direction === "improving"; })) {
+      m.push({
+        id: "growth-signal",
+        label: "A growth trend is visible",
+        detail: "Recent work shows encouraging change — not a score, a direction.",
+        at: null
+      });
+    }
+    return m;
+  }
+
+  function buildCuriosityInsights(observations, projects, dna) {
+    var insights = (observations || []).slice(0, 4).map(function (text, i) {
+      return { id: "obs-" + i, text: text, theme: "observation", kind: "observation" };
+    });
+    if (dna && dna.curiosityBreadth) {
+      insights.push({
+        id: "curiosity-breadth",
+        text: dna.curiosityBreadth.label + ".",
+        theme: "curiosity",
+        kind: "curiosity"
+      });
+    }
+    if (projects[0]) {
+      insights.push({
+        id: "project-nudge",
+        text: "You may enjoy a quiet project: " + projects[0].title + ".",
+        theme: "project",
+        kind: "suggestion"
+      });
+    }
+    return insights.slice(0, 8);
+  }
+
   /**
    * @param {Array} photos
    * @param {Array} shoots
@@ -499,6 +869,11 @@
     var compositionEntries = [];
     var strengthEntries = [];
     var coachingEntries = [];
+    var locationEntries = [];
+    var seasonEntries = [];
+    var timeEntries = [];
+    var lensEntries = [];
+    var exposureEntries = [];
 
     weighted.forEach(function (row) {
       var photo = row.photo;
@@ -545,6 +920,66 @@
         focalEntries.push({
           key: normalizeKey(focal),
           label: focal,
+          weight: w,
+          photoUuid: photo.uuid,
+          shootId: shootId,
+          isExperiment: isExp
+        });
+      }
+
+      var lens = photo.camera && photo.camera.lens ? normalizeLabel(photo.camera.lens) : null;
+      if (lens) {
+        lensEntries.push({
+          key: normalizeKey(lens),
+          label: lens,
+          weight: w,
+          photoUuid: photo.uuid,
+          shootId: shootId,
+          isExperiment: isExp
+        });
+      }
+
+      var loc = locationLabel(photo);
+      if (loc) {
+        locationEntries.push({
+          key: normalizeKey(loc),
+          label: loc,
+          weight: w,
+          photoUuid: photo.uuid,
+          shootId: shootId,
+          isExperiment: isExp
+        });
+      }
+
+      var ts = parseTs(photo.captureDateTime || photo.analyzedAt);
+      var season = seasonFromTs(ts);
+      if (season) {
+        seasonEntries.push({
+          key: normalizeKey(season),
+          label: season,
+          weight: w,
+          photoUuid: photo.uuid,
+          shootId: shootId,
+          isExperiment: isExp
+        });
+      }
+      var tod = timeOfDayFromTs(ts);
+      if (tod) {
+        timeEntries.push({
+          key: normalizeKey(tod),
+          label: tod,
+          weight: w,
+          photoUuid: photo.uuid,
+          shootId: shootId,
+          isExperiment: isExp
+        });
+      }
+
+      if (photo.exposureQuality) {
+        var eq = normalizeLabel(photo.exposureQuality);
+        exposureEntries.push({
+          key: normalizeKey(eq),
+          label: eq,
           weight: w,
           photoUuid: photo.uuid,
           shootId: shootId,
@@ -668,7 +1103,12 @@
     var likelyNiches = topWithConfidence(nicheEntries, 5);
     var favoriteLighting = topWithConfidence(lightingEntries, 5);
     var favoriteFocalLengths = topWithConfidence(focalEntries, 5);
+    var favoriteLenses = topWithConfidence(lensEntries, 5);
+    var favoriteLocations = topWithConfidence(locationEntries, 5);
+    var favoriteSeasons = topWithConfidence(seasonEntries, 4);
+    var favoriteTimeOfDay = topWithConfidence(timeEntries, 5);
     var typicalCompositions = topWithConfidence(compositionEntries, 5);
+    var exposureTendencies = topWithConfidence(exposureEntries, 4);
     var strengths = topWithConfidence(strengthEntries, 6);
     var recurringCoachingThemes = topWithConfidence(coachingEntries, 5);
     var mood = topWithConfidence(moodEntries, 4);
@@ -731,33 +1171,97 @@
     else if (tier.id === "not_enough") overallConfidence = 0;
     else overallConfidence = Math.round(tier.maxClaimStrength * 40);
 
+    var evidence = {
+      photoCount: photos.length,
+      shootCount: shoots.length,
+      eligiblePhotoCount: eligiblePhotoCount,
+      eligibleShootCount: eligibleShootCount,
+      dateRange: { start: dateStart, end: dateEnd },
+      confidenceTier: tier.id,
+      confidenceLabel: tier.label,
+      lastProfileUpdate: new Date().toISOString()
+    };
+
+    var photographyDna = buildPhotographyDna(
+      preferredSubjects,
+      favoriteLighting,
+      color,
+      typicalCompositions,
+      framing,
+      mood,
+      favoriteFocalLengths,
+      tier,
+      eligiblePhotoCount
+    );
+    var observations = buildObservations(
+      preferredSubjects,
+      favoriteLighting,
+      typicalCompositions,
+      likelyNiches,
+      favoriteLenses,
+      favoriteSeasons,
+      tier
+    );
+    var projects = buildProjects(
+      preferredSubjects,
+      favoriteLighting,
+      favoriteSeasons,
+      mood,
+      observations
+    );
+    var confidenceTimeline = buildConfidenceTimeline(eligible);
+    var photographyJourney = buildJourney(evidence, preferredSubjects, recentGrowth);
+    var goals = buildGoals(preferredSubjects, recurringCoachingThemes, favoriteLighting);
+    var learningMilestones = buildMilestones(eligiblePhotoCount, preferredSubjects, recentGrowth);
+    var curiosityInsights = buildCuriosityInsights(observations, projects, photographyDna);
+
+    // Soft editing tendencies from color language when present — never invent processing history
+    var editingTendencies = color.slice(0, 3).map(function (c) {
+      return Object.assign({}, c, {
+        note: "Inferred from color language in analyses — not raw editing software history."
+      });
+    });
+
     return {
       computationVersion: COMPUTATION_VERSION,
       computedAt: new Date().toISOString(),
       preferredSubjects: preferredSubjects,
+      favoriteSubjects: preferredSubjects,
+      favoriteLocations: favoriteLocations,
+      favoriteSeasons: favoriteSeasons,
+      favoriteTimeOfDay: favoriteTimeOfDay,
+      favoriteLenses: favoriteLenses,
+      favoriteConditions: favoriteLighting,
       emergingNiche: emergingNiche,
       likelyNiches: likelyNiches,
       visualStyle: visualStyle,
       strengths: strengths,
+      growthOpportunities: recurringCoachingThemes,
       recurringCoachingThemes: recurringCoachingThemes,
       favoriteLighting: favoriteLighting,
       favoriteFocalLengths: favoriteFocalLengths,
       typicalCompositions: typicalCompositions,
+      compositionTendencies: typicalCompositions,
+      exposureTendencies: exposureTendencies,
+      colorTendencies: color,
+      editingTendencies: editingTendencies,
+      moodTendencies: mood,
       recentImprovements: recentGrowth.trends || [],
       growthTimeline: recentGrowth.trends || [],
+      photographyTrends: recentGrowth.trends || [],
       currentDirection: currentDirection,
       recentGrowth: recentGrowth,
+      recentProgress: recentGrowth,
       confidenceScore: overallConfidence,
-      evidence: {
-        photoCount: photos.length,
-        shootCount: shoots.length,
-        eligiblePhotoCount: eligiblePhotoCount,
-        eligibleShootCount: eligibleShootCount,
-        dateRange: { start: dateStart, end: dateEnd },
-        confidenceTier: tier.id,
-        confidenceLabel: tier.label,
-        lastProfileUpdate: new Date().toISOString()
-      },
+      confidenceTimeline: confidenceTimeline,
+      photographyDna: photographyDna,
+      photographyJourney: photographyJourney,
+      observations: observations,
+      projects: projects,
+      curiosityInsights: curiosityInsights,
+      learningMilestones: learningMilestones,
+      goals: goals,
+      evidence: evidence,
       photoCount: photos.length,
       shootCount: shoots.length
     };

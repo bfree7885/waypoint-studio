@@ -2,18 +2,19 @@
  * Waypoint Scenes / Photo Coach — growth data models.
  *
  * Entities:
- *   PhotoRecord         — one analyzed photograph (structured)
+ *   PhotoRecord         — one analyzed photograph (structured) / PhotoObservation source
  *   Shoot               — one import / batch analysis session
  *   PhotographerProfile — living profile computed from eligible work
+ *   Supporting shapes   — PhotographyTrend, PhotographyProject, Favorite*, LearningMilestone, CuriosityInsight
  */
 (function (global) {
   "use strict";
 
   var PHOTO_SCHEMA = "2.1.0";
   var SHOOT_SCHEMA = "2.1.0";
-  var PROFILE_SCHEMA = "1.1.0";
+  var PROFILE_SCHEMA = "2.0.0";
   var COACHING_SCHEMA = "1.0.0";
-  var COMPUTATION_VERSION = "1.0.0";
+  var COMPUTATION_VERSION = "2.0.0";
 
   function uuid() {
     if (global.crypto && typeof global.crypto.randomUUID === "function") {
@@ -155,18 +156,39 @@
         shareEnabled: false
       },
       preferredSubjects: [],
+      favoriteSubjects: [],
+      favoriteLocations: [],
+      favoriteSeasons: [],
+      favoriteTimeOfDay: [],
+      favoriteLenses: [],
+      favoriteLighting: [],
+      favoriteFocalLengths: [],
+      favoriteConditions: [],
       emergingNiche: null,
       likelyNiches: [],
       visualStyle: null,
       strengths: [],
+      growthOpportunities: [],
       recurringCoachingThemes: [],
       growthTimeline: [],
-      favoriteLighting: [],
-      favoriteFocalLengths: [],
+      photographyTrends: [],
+      compositionTendencies: [],
+      exposureTendencies: [],
+      colorTendencies: [],
+      editingTendencies: [],
+      moodTendencies: [],
       typicalCompositions: [],
       recentImprovements: [],
+      recentProgress: null,
       confidenceScore: null,
+      confidenceTimeline: [],
       currentDirection: null,
+      photographyJourney: null,
+      photographyDna: null,
+      observations: [],
+      projects: [],
+      curiosityInsights: [],
+      learningMilestones: [],
       evidence: null,
       photoCount: 0,
       shootCount: 0,
@@ -176,9 +198,41 @@
       computationVersion: null,
       displayName: null,
       experienceLevel: "developing",
-      goals: ["composition", "lighting"],
+      goals: [],
       focusAreas: [],
       completedAssignments: []
+    }, overrides);
+  }
+
+  function createPhotographyProject(overrides) {
+    overrides = overrides || {};
+    return Object.assign({
+      id: null,
+      title: null,
+      reason: null,
+      sourceSubjects: [],
+      status: "suggested",
+      createdAt: null
+    }, overrides);
+  }
+
+  function createCuriosityInsight(overrides) {
+    overrides = overrides || {};
+    return Object.assign({
+      id: null,
+      text: null,
+      theme: null,
+      kind: "observation"
+    }, overrides);
+  }
+
+  function createLearningMilestone(overrides) {
+    overrides = overrides || {};
+    return Object.assign({
+      id: null,
+      label: null,
+      detail: null,
+      at: null
     }, overrides);
   }
 
@@ -217,6 +271,32 @@
     if (!Array.isArray(profile.likelyNiches)) profile.likelyNiches = [];
     if (profile.currentDirection === undefined) profile.currentDirection = null;
     if (profile.evidence === undefined) profile.evidence = null;
+    if (!Array.isArray(profile.favoriteSubjects)) profile.favoriteSubjects = profile.preferredSubjects || [];
+    if (!Array.isArray(profile.favoriteLocations)) profile.favoriteLocations = [];
+    if (!Array.isArray(profile.favoriteSeasons)) profile.favoriteSeasons = [];
+    if (!Array.isArray(profile.favoriteTimeOfDay)) profile.favoriteTimeOfDay = [];
+    if (!Array.isArray(profile.favoriteLenses)) profile.favoriteLenses = [];
+    if (!Array.isArray(profile.favoriteConditions)) profile.favoriteConditions = [];
+    if (!Array.isArray(profile.observations)) profile.observations = [];
+    if (!Array.isArray(profile.projects)) profile.projects = [];
+    if (!Array.isArray(profile.curiosityInsights)) profile.curiosityInsights = [];
+    if (!Array.isArray(profile.learningMilestones)) profile.learningMilestones = [];
+    if (!Array.isArray(profile.confidenceTimeline)) profile.confidenceTimeline = [];
+    if (!Array.isArray(profile.photographyTrends)) profile.photographyTrends = [];
+    if (!Array.isArray(profile.compositionTendencies)) {
+      profile.compositionTendencies = profile.typicalCompositions || [];
+    }
+    if (!Array.isArray(profile.growthOpportunities)) {
+      profile.growthOpportunities = profile.recurringCoachingThemes || [];
+    }
+    if (!Array.isArray(profile.moodTendencies)) profile.moodTendencies = [];
+    if (!Array.isArray(profile.colorTendencies)) profile.colorTendencies = [];
+    if (!Array.isArray(profile.exposureTendencies)) profile.exposureTendencies = [];
+    if (!Array.isArray(profile.editingTendencies)) profile.editingTendencies = [];
+    if (profile.photographyDna === undefined) profile.photographyDna = null;
+    if (profile.photographyJourney === undefined) profile.photographyJourney = null;
+    if (profile.recentProgress === undefined) profile.recentProgress = null;
+    if (!Array.isArray(profile.goals)) profile.goals = [];
     profile.schemaVersion = PROFILE_SCHEMA;
     return profile;
   }
@@ -297,6 +377,9 @@
     createPhotoRecord: createPhotoRecord,
     createShoot: createShoot,
     createPhotographerProfile: createPhotographerProfile,
+    createPhotographyProject: createPhotographyProject,
+    createCuriosityInsight: createCuriosityInsight,
+    createLearningMilestone: createLearningMilestone,
     createCoachingRecord: createCoachingRecord,
     createCoachingPreferences: createCoachingPreferences,
     migratePhotoRecord: migratePhotoRecord,

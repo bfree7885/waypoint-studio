@@ -1,37 +1,68 @@
 /**
- * ProfileEngine — interface scaffold
+ * ProfileEngine — Scenes bridge to Photographer Profile (Photo Coach growth store)
  *
- * Owns lifelong photographer profile state: style signals, strengths,
- * themes, subjects, and growth over coaching history.
- *
- * TODO: read evidence from CoachEngine sessions (local store)
- * TODO: keep profile private by default
- * TODO(ai-analysis): longitudinal insights without competitive scoring
+ * Live computation: WaypointPhotoCoachProfileEngine + WaypointPhotoCoachRepository
+ * Privacy: local-first localStorage; no upload; future sync must be opt-in
  */
 (function (global) {
   "use strict";
 
+  function repo() {
+    return global.WaypointPhotoCoachRepository || null;
+  }
+
+  function engine() {
+    return global.WaypointPhotoCoachProfileEngine || null;
+  }
+
   var ProfileEngine = {
     id: "ProfileEngine",
-    version: "0.0.0",
-    status: "interface-only",
+    version: "2.0.0",
+    status: "live-bridge",
 
     /** @returns {Promise<object|null>} */
     getProfile: function () {
-      // TODO: load from Photographer Profile local store
-      return Promise.resolve(null);
+      var R = repo();
+      if (!R || !R.ProfileRepository) return Promise.resolve(null);
+      return Promise.resolve(R.ProfileRepository.load());
     },
 
-    /** @returns {Promise<object>} */
-    ingestSession: function (/* sessionSummary */) {
-      // TODO: update profile from a coaching session summary
-      return Promise.reject(new Error("ProfileEngine.ingestSession is not implemented."));
+    /**
+     * Prefer repository ingest + recalculate from Photo Coach analyses.
+     * @returns {Promise<object>}
+     */
+    ingestSession: function (sessionSummary) {
+      var R = repo();
+      if (!R) {
+        return Promise.reject(new Error("ProfileEngine.ingestSession — Photo Coach repository not loaded."));
+      }
+      // Session summaries are ingested by Photo Coach analyze paths already.
+      // This API allows future callers to trigger a recalculation.
+      void sessionSummary;
+      var profile = R.ProfileRepository.recalculate();
+      return Promise.resolve(profile);
     },
 
     /** @returns {Promise<object>} */
     summarizeGrowth: function (/* range */) {
-      // TODO: return growth themes for UI
-      return Promise.reject(new Error("ProfileEngine.summarizeGrowth is not implemented."));
+      return ProfileEngine.getProfile().then(function (profile) {
+        if (!profile) {
+          return { available: false, summary: "No profile yet.", trends: [] };
+        }
+        return profile.recentGrowth || profile.recentProgress || {
+          available: false,
+          summary: "Growth trends will appear as shoots accumulate.",
+          trends: []
+        };
+      });
+    },
+
+    compute: function (photos, shoots) {
+      var Eng = engine();
+      if (!Eng) {
+        return Promise.reject(new Error("ProfileEngine.compute — ProfileEngine core not loaded."));
+      }
+      return Promise.resolve(Eng.compute(photos || [], shoots || []));
     }
   };
 

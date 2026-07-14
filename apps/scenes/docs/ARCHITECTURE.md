@@ -60,8 +60,21 @@ Future shared contracts (documented; not fully implemented):
 | `SceneEngine` | Scene graph, educational layers, export | Interface only |
 | `VisionEngine` | Creative transformations + future spectral ImageSets | **Prototype in Hidden Landscapes Studio** |
 | `CoachEngine` | Critique facade over Photo Coach (no rewrite) | Interface only |
-| `ProfileEngine` | Lifelong profile ingest + growth summaries | Interface only |
+| `ProfileEngine` | Lifelong photographer companion from analyses | **Live via Photo Coach growth store** |
 | `AnimationEngine` | Living Scenes motion / weather / season effects | Interface only |
+
+### Photographer Profile / ProfileEngine
+
+Live at `/apps/photo-coach/profile/`. Local-first (`localStorage` growth keys).
+
+- **Learning pipeline:** Photo Coach analysis → `PhotoRecord` / `Shoot` → `ProfileRepository.recalculate()` → `WaypointPhotoCoachProfileEngine.compute()`
+- **Outputs:** Photography DNA, gentle observations, favorites (subjects, locations, seasons, time, lenses, light), growth trends, project suggestions rooted in history, curiosity insights, confidence timeline
+- **Principles:** No likes, followers, rankings, or grades in the companion voice. Soft language (“It appears…”, “You may enjoy…”). Never fabricate missing location/season/EXIF data.
+- **Privacy:** Private by default; no cloud upload; future sync must be opt-in
+- **Future AI:** on-device or opted-in narrative summaries over the same local evidence model
+- **Community:** any future sharing is opt-in and separate from the private companion
+
+Scenes bridge: `apps/scenes/js/engines/profile-engine.js` delegates to the Photo Coach repository when scripts are co-loaded.
 
 ### Hidden Landscapes VisionEngine prototype
 

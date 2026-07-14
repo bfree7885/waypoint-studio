@@ -38,6 +38,16 @@
       exposureQuality: "balanced",
       colorCharacteristics: opts.color,
       dominantMood: opts.mood,
+      location: opts.location || {
+        label: null,
+        city: null,
+        county: null,
+        state: null,
+        country: null,
+        lat: null,
+        lng: null,
+        source: null
+      },
       camera: {
         make: "Sony",
         model: "A7IV",
@@ -124,6 +134,16 @@
         focal: 90,
         color: "green, brown · muted · cool bias",
         mood: "quiet woodland mood",
+        location: {
+          label: "Ridge Hollow woods",
+          city: null,
+          county: "Pike",
+          state: "PA",
+          country: "US",
+          lat: null,
+          lng: null,
+          source: "demo"
+        },
         strengths: ["Natural color", "Attentive looking"],
         improvements: ["Busy background", "Crop tighter"],
         letter: "B-"

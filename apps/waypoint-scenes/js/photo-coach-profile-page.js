@@ -424,6 +424,183 @@
     );
   }
 
+  function softList(items, emptyText) {
+    items = items || [];
+    if (!items.length) {
+      return '<p class="pp-empty">' + esc(emptyText) + "</p>";
+    }
+    return (
+      '<ul class="pp-soft-list">' +
+      items
+        .map(function (item) {
+          var label = typeof item === "string" ? item : item.label;
+          var note = typeof item === "string" ? "" : item.note;
+          return (
+            "<li><strong>" +
+            esc(label) +
+            "</strong>" +
+            (item && item.supportingPhotos != null
+              ? '<span class="pp-muted"> · seen across ' +
+                esc(item.supportingPhotos) +
+                " photo" +
+                (item.supportingPhotos === 1 ? "" : "s") +
+                "</span>"
+              : "") +
+            (note ? '<p class="pp-note">' + esc(note) + "</p>" : "") +
+            "</li>"
+          );
+        })
+        .join("") +
+      "</ul>"
+    );
+  }
+
+  function renderDna(dna) {
+    if (!dna) {
+      return '<p class="pp-empty">Photography DNA will form as eligible analyses accumulate.</p>';
+    }
+    function line(title, value) {
+      if (!value || (Array.isArray(value) && !value.length)) {
+        return (
+          '<div class="pp-dna-row"><dt>' +
+          esc(title) +
+          '</dt><dd class="pp-muted">Still forming</dd></div>'
+        );
+      }
+      var text = Array.isArray(value) ? value.join(" · ") : String(value);
+      return (
+        '<div class="pp-dna-row"><dt>' + esc(title) + "</dt><dd>" + esc(text) + "</dd></div>"
+      );
+    }
+    return (
+      '<p class="pp-lede">' +
+      esc(dna.summary || "") +
+      "</p>" +
+      '<dl class="pp-dna">' +
+      line("Subjects", dna.subjects) +
+      line("Visual themes", dna.visualThemes) +
+      line("Preferred lighting", dna.preferredLighting) +
+      line("Movement / distance", dna.movement) +
+      line("Color preferences", dna.colorPreferences) +
+      line("Landscape ↔ wildlife", dna.landscapeWildlifeBalance) +
+      line("Macro interest", dna.macroInterest) +
+      line("Minimalism ↔ complexity", dna.minimalismVersusComplexity) +
+      line("Environmental storytelling", dna.environmentalStorytelling) +
+      line(
+        "Curiosity",
+        dna.curiosityBreadth && dna.curiosityBreadth.label
+          ? dna.curiosityBreadth.label
+          : null
+      ) +
+      line("Observation themes", dna.observationThemes) +
+      line("Nature connection", dna.natureConnection) +
+      "</dl>"
+    );
+  }
+
+  function renderProjects(projects) {
+    projects = projects || [];
+    if (!projects.length) {
+      return '<p class="pp-empty">Project ideas appear once recurring interests are visible in your history.</p>';
+    }
+    return (
+      '<ul class="pp-project-list">' +
+      projects
+        .map(function (p) {
+          return (
+            "<li>" +
+            "<strong>" +
+            esc(p.title) +
+            "</strong>" +
+            "<p>" +
+            esc(p.reason) +
+            "</p>" +
+            (p.id === "hidden-landscapes"
+              ? '<p><a class="pp-inline-link" href="../../hidden-landscapes/">Open Hidden Landscapes</a></p>'
+              : "") +
+            "</li>"
+          );
+        })
+        .join("") +
+      "</ul>"
+    );
+  }
+
+  function renderObservations(list) {
+    list = list || [];
+    if (!list.length) {
+      return '<p class="pp-empty">Gentle observations will appear as patterns repeat.</p>';
+    }
+    return (
+      '<ul class="pp-observe-list">' +
+      list.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
+      "</ul>"
+    );
+  }
+
+  function renderTimeline(items) {
+    items = items || [];
+    if (!items.length) {
+      return '<p class="pp-empty">A confidence timeline fills in as monthly looking accumulates.</p>';
+    }
+    return (
+      '<ol class="pp-timeline">' +
+      items
+        .map(function (b) {
+          return (
+            "<li><strong>" +
+            esc(b.label) +
+            "</strong><p class=\"pp-muted\">" +
+            esc(b.detail) +
+            "</p></li>"
+          );
+        })
+        .join("") +
+      "</ol>"
+    );
+  }
+
+  function renderToc() {
+    var links = [
+      ["pp-overview", "Overview"],
+      ["pp-journey", "Photography Journey"],
+      ["pp-dna", "Photography DNA"],
+      ["pp-observations", "Patterns"],
+      ["pp-strengths", "Strengths"],
+      ["pp-growth-opp", "Growth Opportunities"],
+      ["pp-subjects", "Favorite Subjects"],
+      ["pp-locations", "Favorite Locations"],
+      ["pp-seasons", "Favorite Seasons"],
+      ["pp-tod", "Favorite Time of Day"],
+      ["pp-lenses", "Favorite Lenses"],
+      ["pp-focal", "Favorite Focal Lengths"],
+      ["pp-light", "Favorite Lighting"],
+      ["pp-edit", "Editing Tendencies"],
+      ["pp-comp", "Composition Tendencies"],
+      ["pp-exp", "Exposure Tendencies"],
+      ["pp-color", "Color Tendencies"],
+      ["pp-mood", "Mood"],
+      ["pp-confidence", "Confidence Timeline"],
+      ["pp-projects", "Projects"],
+      ["pp-progress", "Recent Progress"],
+      ["pp-goals", "Goals"],
+      ["pp-curiosity", "Curiosity Suggestions"],
+      ["pp-your-coaching", "Your Coaching"],
+      ["pp-evidence", "Evidence"],
+      ["pp-manage", "Manage learning"]
+    ];
+    return (
+      '<nav class="pp-toc" aria-label="Profile sections">' +
+      "<ul>" +
+      links
+        .map(function (pair) {
+          return '<li><a href="#' + pair[0] + '">' + esc(pair[1]) + "</a></li>";
+        })
+        .join("") +
+      "</ul></nav>"
+    );
+  }
+
   function renderProfile() {
     var Repo = global.WaypointPhotoCoachRepository;
     var mount = $("pp-mount");
@@ -435,74 +612,209 @@
     }
 
     var direction = profile.currentDirection || {};
+    var journey = profile.photographyJourney || {};
     var html = "";
 
     html +=
-      '<p class="pp-privacy" role="note">Private by default · stored in this browser only · not a ranking or public identity</p>';
+      '<p class="pp-privacy" role="note">Private lifelong companion · stored in this browser only · no followers, likes, rankings, or public identity</p>';
+
+    html += renderToc();
 
     html +=
-      '<section class="pp-section" aria-labelledby="pp-direction">' +
-      '<h2 id="pp-direction">Current Direction</h2>' +
+      '<section class="pp-section" id="pp-overview" aria-labelledby="pp-overview-title">' +
+      '<h2 id="pp-overview-title">Overview</h2>' +
       '<p class="pp-direction-summary">' +
-      esc(direction.summary || "Analyze photos in Photo Coach to begin a living profile.") +
+      esc(direction.summary || "Analyze photographs in Photo Coach to begin a living profile.") +
       "</p>" +
-      (direction.confidencePercent != null
-        ? evidenceLine(direction) + claimBadge(direction)
-        : "") +
+      renderObservations((profile.observations || []).slice(0, 3)) +
       "</section>";
 
     html +=
-      '<section class="pp-section pp-section--coaching" aria-labelledby="pp-your-coaching">' +
-      '<h2 id="pp-your-coaching">Your Coaching</h2>' +
+      '<section class="pp-section" id="pp-journey" aria-labelledby="pp-journey-title">' +
+      '<h2 id="pp-journey-title">Photography Journey</h2>' +
+      '<p class="pp-lede"><strong>' +
+      esc(journey.stage || "Beginning") +
+      "</strong> — " +
+      esc(journey.summary || "Your journey starts with the first careful analysis.") +
+      "</p></section>";
+
+    html +=
+      '<section class="pp-section" id="pp-dna" aria-labelledby="pp-dna-title">' +
+      '<h2 id="pp-dna-title">Photography DNA</h2>' +
+      '<p class="pp-lede">Descriptive — not evaluative. A sketch of how you seem to see.</p>' +
+      renderDna(profile.photographyDna) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-observations" aria-labelledby="pp-observations-title">' +
+      '<h2 id="pp-observations-title">Emerging patterns</h2>' +
+      '<p class="pp-lede">Spoken gently. Never certain.</p>' +
+      renderObservations(profile.observations) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-strengths" aria-labelledby="pp-strengths-title">' +
+      '<h2 id="pp-strengths-title">Strengths</h2>' +
+      '<p class="pp-lede">What consistently shows care in your eligible work.</p>' +
+      softList(profile.strengths, "Strengths will appear as patterns repeat.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-growth-opp" aria-labelledby="pp-growth-opp-title">' +
+      '<h2 id="pp-growth-opp-title">Growth Opportunities</h2>' +
+      '<p class="pp-lede">Invitations to practice — never a report card.</p>' +
+      softList(
+        profile.growthOpportunities || profile.recurringCoachingThemes,
+        "Growth invitations appear as themes recur."
+      ) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-subjects" aria-labelledby="pp-subjects-title">' +
+      '<h2 id="pp-subjects-title">Favorite Subjects</h2>' +
+      softList(profile.favoriteSubjects || profile.preferredSubjects, "Subjects will gather as you analyze.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-locations" aria-labelledby="pp-locations-title">' +
+      '<h2 id="pp-locations-title">Favorite Locations</h2>' +
+      softList(
+        profile.favoriteLocations,
+        "Locations appear when photographs carry place information. Nothing is invented."
+      ) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-seasons" aria-labelledby="pp-seasons-title">' +
+      '<h2 id="pp-seasons-title">Favorite Seasons</h2>' +
+      softList(profile.favoriteSeasons, "Seasons appear from capture dates when available.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-tod" aria-labelledby="pp-tod-title">' +
+      '<h2 id="pp-tod-title">Favorite Time of Day</h2>' +
+      softList(profile.favoriteTimeOfDay, "Time-of-day tendencies need capture timestamps.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-lenses" aria-labelledby="pp-lenses-title">' +
+      '<h2 id="pp-lenses-title">Favorite Lenses</h2>' +
+      softList(profile.favoriteLenses, "Lens favorites need EXIF lens names.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-focal" aria-labelledby="pp-focal-title">' +
+      '<h2 id="pp-focal-title">Favorite Focal Lengths</h2>' +
+      softList(profile.favoriteFocalLengths, "Focal-length habits need EXIF focal length.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-light" aria-labelledby="pp-light-title">' +
+      '<h2 id="pp-light-title">Favorite Lighting</h2>' +
+      softList(profile.favoriteLighting, "Lighting tendencies form from analysis signals.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-edit" aria-labelledby="pp-edit-title">' +
+      '<h2 id="pp-edit-title">Editing Tendencies</h2>' +
+      '<p class="pp-lede">Inferred only from color language in analyses — not from private editing software.</p>' +
+      softList(profile.editingTendencies, "Editing tendencies stay empty until color language repeats.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-comp" aria-labelledby="pp-comp-title">' +
+      '<h2 id="pp-comp-title">Composition Tendencies</h2>' +
+      softList(profile.compositionTendencies || profile.typicalCompositions, "Composition habits will emerge.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-exp" aria-labelledby="pp-exp-title">' +
+      '<h2 id="pp-exp-title">Exposure Tendencies</h2>' +
+      softList(profile.exposureTendencies, "Exposure habits need exposure-quality signals.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-color" aria-labelledby="pp-color-title">' +
+      '<h2 id="pp-color-title">Color Tendencies</h2>' +
+      softList(profile.colorTendencies || (profile.visualStyle && profile.visualStyle.color), "Color language will collect over time.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-mood" aria-labelledby="pp-mood-title">' +
+      '<h2 id="pp-mood-title">Mood</h2>' +
+      softList(profile.moodTendencies || (profile.visualStyle && profile.visualStyle.mood), "Mood tendencies form from dominant mood signals.") +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-confidence" aria-labelledby="pp-confidence-title">' +
+      '<h2 id="pp-confidence-title">Confidence Timeline</h2>' +
+      '<p class="pp-lede">Consistency of looking over months — not performance rankings.</p>' +
+      renderTimeline(profile.confidenceTimeline) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-projects" aria-labelledby="pp-projects-title">' +
+      '<h2 id="pp-projects-title">Projects</h2>' +
+      '<p class="pp-lede">Suggestions rooted in your history — not random prompts.</p>' +
+      renderProjects(profile.projects) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-progress" aria-labelledby="pp-progress-title">' +
+      '<h2 id="pp-progress-title">Recent Progress</h2>' +
+      renderGrowth(profile) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-goals" aria-labelledby="pp-goals-title">' +
+      '<h2 id="pp-goals-title">Goals</h2>' +
+      softList(
+        (profile.goals || []).map(function (g) {
+          return typeof g === "string" ? { label: g } : g;
+        }),
+        "Goals appear once a little history exists."
+      ) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section" id="pp-curiosity" aria-labelledby="pp-curiosity-title">' +
+      '<h2 id="pp-curiosity-title">Curiosity Suggestions</h2>' +
+      renderObservations(
+        (profile.curiosityInsights || []).map(function (c) {
+          return c.text || c;
+        })
+      ) +
+      "</section>";
+
+    html +=
+      '<section class="pp-section pp-section--coaching" id="pp-your-coaching" aria-labelledby="pp-your-coaching-title">' +
+      '<h2 id="pp-your-coaching-title">Your Coaching</h2>' +
       '<p class="pp-lede">An ongoing relationship with your work — not an isolated grade.</p>' +
       renderYourCoaching(profile) +
       "</section>";
 
     html +=
-      '<section class="pp-section" aria-labelledby="pp-niches">' +
-      '<h2 id="pp-niches">Likely Niches</h2>' +
-      '<p class="pp-lede">Ranked by weighted evidence — not a competition.</p>' +
-      renderList(profile.likelyNiches, "No niche tendencies yet.") +
-      "</section>";
-
-    html +=
-      '<section class="pp-section" aria-labelledby="pp-style">' +
-      '<h2 id="pp-style">Visual Style</h2>' +
+      '<section class="pp-section" id="pp-style" aria-labelledby="pp-style-title">' +
+      '<h2 id="pp-style-title">Visual Style (detail)</h2>' +
       renderStyle(profile.visualStyle) +
       "</section>";
 
     html +=
-      '<section class="pp-section" aria-labelledby="pp-strengths">' +
-      '<h2 id="pp-strengths">Strengths</h2>' +
-      '<p class="pp-lede">Areas that consistently show up across eligible work.</p>' +
-      renderList(profile.strengths, "Strengths will appear as patterns repeat.") +
+      '<section class="pp-section" id="pp-niches" aria-labelledby="pp-niches-title">' +
+      '<h2 id="pp-niches-title">Likely Niches</h2>' +
+      '<p class="pp-lede">Weighted by your own evidence — never against other photographers.</p>' +
+      renderList(profile.likelyNiches, "No niche tendencies yet.") +
       "</section>";
 
     html +=
-      '<section class="pp-section" aria-labelledby="pp-coaching">' +
-      '<h2 id="pp-coaching">Coaching Themes</h2>' +
-      '<p class="pp-lede">Recurring opportunities — framed as practice, not grades.</p>' +
-      renderList(
-        profile.recurringCoachingThemes,
-        "Coaching themes will appear as improvements recur."
-      ) +
-      "</section>";
-
-    html +=
-      '<section class="pp-section" aria-labelledby="pp-growth">' +
-      '<h2 id="pp-growth">Recent Growth</h2>' +
-      renderGrowth(profile) +
-      "</section>";
-
-    html +=
-      '<section class="pp-section" aria-labelledby="pp-evidence">' +
-      '<h2 id="pp-evidence">Evidence</h2>' +
+      '<section class="pp-section" id="pp-evidence" aria-labelledby="pp-evidence-title">' +
+      '<h2 id="pp-evidence-title">Evidence</h2>' +
       renderEvidence(profile) +
       "</section>";
 
     html +=
-      '<section class="pp-section" aria-labelledby="pp-manage">' +
-      '<h2 id="pp-manage">Manage learning</h2>' +
+      '<section class="pp-section" id="pp-manage" aria-labelledby="pp-manage-title">' +
+      '<h2 id="pp-manage-title">Manage learning</h2>' +
       renderControls() +
       "</section>";
 

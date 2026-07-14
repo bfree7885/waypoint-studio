@@ -279,6 +279,53 @@ function run() {
     JSON.stringify(empty.privacy)
   );
 
+  // ——— Companion intelligence (Photography DNA, projects, soft observations) ———
+  Demo.seedDemoProfile({ replace: true });
+  const companion = Repo.ProfileRepository.recalculate();
+  assert("has photographyDna", !!(companion.photographyDna && companion.photographyDna.summary));
+  assert(
+    "dna not evaluative grade language",
+    !/letter grade|ranked #|follower/i.test(companion.photographyDna.summary || "")
+  );
+  assert("has observations", Array.isArray(companion.observations) && companion.observations.length > 0);
+  assert(
+    "observation soft language",
+    companion.observations.some((o) => /appears|may enjoy|emerging|seems/i.test(o)),
+    companion.observations[0]
+  );
+  assert("has projects from history", Array.isArray(companion.projects) && companion.projects.length > 0);
+  assert(
+    "forest project from woodland history",
+    companion.projects.some((p) => /forest|tree|season/i.test(p.title)),
+    JSON.stringify(companion.projects.map((p) => p.title))
+  );
+  assert(
+    "favorite subjects populated",
+    (companion.favoriteSubjects || companion.preferredSubjects || []).length > 0
+  );
+  assert(
+    "favorite locations from demo",
+    (companion.favoriteLocations || []).some((l) => /ridge hollow/i.test(l.label)),
+    JSON.stringify(companion.favoriteLocations)
+  );
+  assert("favorite seasons", (companion.favoriteSeasons || []).length > 0);
+  assert("favorite lenses", (companion.favoriteLenses || []).length > 0);
+  assert("confidence timeline", Array.isArray(companion.confidenceTimeline));
+  assert("photography journey", !!(companion.photographyJourney && companion.photographyJourney.stage));
+  assert("curiosity insights", (companion.curiosityInsights || []).length > 0);
+  assert("goals suggested", (companion.goals || []).length > 0);
+  assert("schema 2.0", companion.schemaVersion === "2.0.0" || M.PROFILE_SCHEMA === "2.0.0");
+
+  // Empty companion remains gentle
+  localStorage.setItem(Repo.PHOTO_KEY, "[]");
+  localStorage.setItem(Repo.SHOOT_KEY, "[]");
+  const emptyCompanion = Repo.ProfileRepository.recalculate();
+  assert(
+    "empty dna patient",
+    emptyCompanion.photographyDna && /wait|begin|rush|enough/i.test(emptyCompanion.photographyDna.summary || ""),
+    emptyCompanion.photographyDna && emptyCompanion.photographyDna.summary
+  );
+
   // ——— Schema migration ———
   const legacyPhoto = {
     uuid: "legacy-1",
