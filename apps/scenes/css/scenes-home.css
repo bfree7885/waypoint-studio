@@ -152,14 +152,21 @@
   color: var(--wds-accent);
 }
 
-.scenes-card--scaffold .scenes-card__status {
+.scenes-card--experimental .scenes-card__status {
+  background: color-mix(in srgb, var(--wds-accent) 14%, transparent);
+  color: var(--wds-text-primary);
+}
+
+.scenes-card--preview .scenes-card__status {
   background: var(--wds-inset);
   color: var(--wds-text-secondary);
 }
 
-.scenes-card--planned .scenes-card__status {
+.scenes-card--future .scenes-card__status,
+.scenes-card--planned .scenes-card__status,
+.scenes-card--scaffold .scenes-card__status {
   background: var(--wds-inset);
-  color: var(--wds-text-tertiary);
+  color: var(--wds-text-tertiary, var(--wds-text-secondary));
 }
 
 .scenes-card__title {

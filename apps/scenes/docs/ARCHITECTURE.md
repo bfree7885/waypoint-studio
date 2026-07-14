@@ -2,15 +2,17 @@
 
 Waypoint Scenes is one product with five experiences. Working tools remain in their current app paths; `apps/scenes/` is the modular platform shell, navigation home, and future engine boundary.
 
+**Foundation milestone (Work Block 1):** polished Scenes landing, Shared navigation, Photo Coach preserved at its stable path, Hidden Landscapes Studio V0.1, and restrained product previews for Living Scenes, Scene Builder, and Photographer Profile. Status labels use Available / Experimental / Preview / Future experience — not a roadmap checklist.
+
 ## Modules
 
-| Module | Purpose | Live tool today |
-|--------|---------|-----------------|
-| **Photo Coach** | Critique and long-term coaching from each photograph | `/apps/photo-coach/` |
-| **Hidden Landscapes** | Beyond-human vision literacy + local creative studio | `/apps/hidden-landscapes/` (+ Animal Vision) |
-| **Living Scenes** | Motion, weather, seasonal, and environmental immersion from stills | Scaffold module only |
-| **Scene Builder** | Interactive educational / storytelling scenes from photographs | `/apps/waypoint-scenes/` |
-| **Photographer Profile** | Lifelong private companion for style, strengths, themes, growth | `/apps/photo-coach/profile/` |
+| Module | Purpose | Status on platform | Live tool today |
+|--------|---------|--------------------|-----------------|
+| **Photo Coach** | Critique and long-term coaching from each photograph | Available | `/apps/photo-coach/` |
+| **Hidden Landscapes** | Creative landscape interpretations + spectral literacy | Experimental | `/apps/hidden-landscapes/` |
+| **Living Scenes** | Subtle motion and atmosphere on stills | Future experience | Preview page only |
+| **Scene Builder** | Interactive photographic environments and stories | Preview | `/apps/waypoint-scenes/` (early studio) |
+| **Photographer Profile** | Private lifelong companion for how you see | Preview | `/apps/photo-coach/profile/` (early companion) |
 
 Platform routes live under `/apps/scenes/<module>/`. They introduce the experience, link back to the Scenes home, and deep-link to working tools without relocating Photo Coach code.
 

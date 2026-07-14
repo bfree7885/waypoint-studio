@@ -68,8 +68,16 @@ catalog.transformations.forEach((t) => {
 });
 
 assert(
-  "creative modes not labeled original-capture",
-  catalog.transformations.filter((t) => t.id !== "original").every((t) => t.accuracyType !== "original-capture")
+  "creative modes not labeled visible-light-original",
+  catalog.transformations.filter((t) => t.id !== "original").every((t) => t.accuracyType !== "visible-light-original")
+);
+assert(
+  "original is visible-light-original",
+  catalog.transformations.find((t) => t.id === "original").accuracyType === "visible-light-original"
+);
+assert(
+  "mono mode display name",
+  catalog.transformations.find((t) => t.id === "mono-infrared-study").name === "Monochrome Infrared"
 );
 
 function sampleImage(w, h) {
@@ -119,5 +127,9 @@ const engineSrc = fs.readFileSync(path.join(HL, "js/hl-vision-engine.js"), "utf8
 assert("engine has loadImage", /loadImage\s*:/.test(engineSrc));
 assert("engine has applyTransformation", /applyTransformation\s*:/.test(engineSrc));
 assert("engine has exportImage", /exportImage\s*:/.test(engineSrc));
+assert(
+  "drawSourceToOriginal does not wipe result canvas",
+  /Never touch resultCanvas/.test(engineSrc) && /ensureCanvasSize\(state\.originalCanvas/.test(engineSrc)
+);
 
 console.log("\nAll Hidden Landscapes tests passed (" + n + ").");

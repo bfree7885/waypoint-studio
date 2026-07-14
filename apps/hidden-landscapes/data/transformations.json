@@ -5,14 +5,14 @@
     "summary": "These previews are creative interpretations of ordinary RGB photographs. They are not genuine infrared, ultraviolet, full-spectrum, thermal, or species-accurate vision.",
     "categories": [
       {
-        "id": "original-capture",
-        "label": "Original capture",
+        "id": "visible-light-original",
+        "label": "Visible-light original",
         "meaning": "The photograph as recorded by a typical camera in human-visible light."
       },
       {
-        "id": "creative-simulation",
-        "label": "Creative simulation",
-        "meaning": "An artistic false-color interpretation inspired by spectral photography — not a scientific measurement."
+        "id": "creative-false-color",
+        "label": "Creative false-color interpretation",
+        "meaning": "An artistic remapping inspired by spectral photography — not a scientific measurement."
       },
       {
         "id": "research-informed-approximation",
@@ -70,7 +70,7 @@
       "shortDescription": "Unmodified human-visible RGB photograph.",
       "longDescription": "Your photograph as the camera recorded it in ordinary visible light — the reference for every comparison in this studio.",
       "category": "baseline",
-      "accuracyType": "original-capture",
+      "accuracyType": "visible-light-original",
       "requiresSpecialCapture": false,
       "defaultIntensity": 1,
       "processingParameters": {},
@@ -83,7 +83,7 @@
       "shortDescription": "Pale, glowing foliage with surreal separation from sky.",
       "longDescription": "An artistic false-color interpretation inspired by near-infrared landscapes — luminous vegetation and dreamlike sky contrast. Not genuine IR capture.",
       "category": "creative-false-color",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": true,
       "defaultIntensity": 0.85,
       "processingParameters": {
@@ -101,7 +101,7 @@
       "shortDescription": "Red and magenta foliage against cyan–violet skies.",
       "longDescription": "A bold false-color reading that pushes leafy tones toward crimson and magenta while skies lean cyan and violet — evocative of classic IR false-color prints, not a spectral measurement.",
       "category": "creative-false-color",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": true,
       "defaultIntensity": 0.8,
       "processingParameters": {
@@ -118,7 +118,7 @@
       "shortDescription": "Purple and violet vegetation with luminous landscape tones.",
       "longDescription": "A violet-forward creative interpretation that turns canopies and meadows into purple wilds while keeping the underlying landscape structure readable.",
       "category": "creative-false-color",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": false,
       "defaultIntensity": 0.82,
       "processingParameters": {
@@ -135,7 +135,7 @@
       "shortDescription": "White or silver foliage with dark water, earth, and sky.",
       "longDescription": "Silvered canopies and darkened ground — a quiet ghost-forest mood inspired by high-key infrared woodlands. Creative simulation only.",
       "category": "creative-false-color",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": true,
       "defaultIntensity": 0.88,
       "processingParameters": {
@@ -152,7 +152,7 @@
       "shortDescription": "Cyan, pink, violet, and yellow energy for fields and edges.",
       "longDescription": "A high-energy creative palette designed for meadows, field edges, and open woodland — vivid, surreal, and openly artistic.",
       "category": "creative-false-color",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": false,
       "defaultIntensity": 0.78,
       "processingParameters": {
@@ -168,7 +168,7 @@
       "shortDescription": "Stylized low-light mood — creative, not species-accurate.",
       "longDescription": "A dim, blue-green nocturnal atmosphere inspired by night looking. This is a creative simulation, not a reconstruction of any animal’s vision and not night-vision hardware.",
       "category": "creative-low-light",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": false,
       "defaultIntensity": 0.75,
       "processingParameters": {
@@ -181,11 +181,11 @@
     },
     {
       "id": "mono-infrared-study",
-      "name": "Monochrome Infrared Study",
+      "name": "Monochrome Infrared",
       "shortDescription": "Black-and-white treatment inspired by traditional NIR landscapes.",
-      "longDescription": "A monochrome study that brightens vegetation-like tones and deepens skies — reminiscent of classic near-infrared landscape prints, produced here as an artistic remapping of RGB.",
+      "longDescription": "A monochrome treatment that brightens vegetation-like tones and deepens skies — reminiscent of classic near-infrared landscape prints, produced here as an artistic remapping of RGB.",
       "category": "creative-monochrome",
-      "accuracyType": "creative-simulation",
+      "accuracyType": "creative-false-color",
       "requiresSpecialCapture": true,
       "defaultIntensity": 0.9,
       "processingParameters": {

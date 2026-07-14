@@ -21,6 +21,9 @@
 
   function statusClass(status) {
     if (status === "live") return "scenes-card--live";
+    if (status === "experimental") return "scenes-card--experimental";
+    if (status === "preview") return "scenes-card--preview";
+    if (status === "future") return "scenes-card--future";
     if (status === "scaffold") return "scenes-card--scaffold";
     return "scenes-card--planned";
   }

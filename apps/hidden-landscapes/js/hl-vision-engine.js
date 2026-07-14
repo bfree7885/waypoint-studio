@@ -11,7 +11,7 @@
 
   var MAX_PROCESS_EDGE = 1600;
   var MAX_FILE_BYTES = 28 * 1024 * 1024;
-  var ACCEPTED = /^image\/(jpeg|jpg|png|webp|gif|bmp|heic|heif)$/i;
+  var ACCEPTED = /^image\/(jpeg|jpg|png|webp|gif|bmp)$/i;
 
   function VisionEngineError(code, message) {
     var err = new Error(message);
@@ -42,18 +42,28 @@
       processing: false
     };
 
+    function ensureCanvasSize(canvas, w, h) {
+      if (!canvas) return null;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+      }
+      return canvas;
+    }
+
     function ensureCanvases(w, h) {
       if (!state.originalCanvas) state.originalCanvas = document.createElement("canvas");
       if (!state.resultCanvas) state.resultCanvas = document.createElement("canvas");
-      state.originalCanvas.width = w;
-      state.originalCanvas.height = h;
-      state.resultCanvas.width = w;
-      state.resultCanvas.height = h;
+      // Only resize when dimensions change — assigning width/height clears pixels.
+      ensureCanvasSize(state.originalCanvas, w, h);
+      ensureCanvasSize(state.resultCanvas, w, h);
     }
 
     function drawSourceToOriginal() {
       if (!state.sourceData) return;
-      ensureCanvases(state.sourceData.width, state.sourceData.height);
+      if (!state.originalCanvas) state.originalCanvas = document.createElement("canvas");
+      // Never touch resultCanvas here; resizing it would wipe the latest transform.
+      ensureCanvasSize(state.originalCanvas, state.sourceData.width, state.sourceData.height);
       var ctx = state.originalCanvas.getContext("2d", { willReadFrequently: true });
       ctx.putImageData(
         new ImageData(new Uint8ClampedArray(state.sourceData.data), state.sourceData.width, state.sourceData.height),
@@ -69,11 +79,11 @@
         return Promise.reject(VisionEngineError("too-large", "Image is too large to process in the browser (max about 28 MB)."));
       }
       var type = file.type || "";
-      if (type && !ACCEPTED.test(type) && type !== "image/heic" && type !== "image/heif") {
-        // Some browsers omit type for HEIC; still try decode and fail clearly.
+      if (type && !ACCEPTED.test(type)) {
         if (type.indexOf("image/") !== 0) {
-          return Promise.reject(VisionEngineError("unsupported", "Unsupported format. Try JPEG, PNG, or WebP."));
+          return Promise.reject(VisionEngineError("unsupported", "Unsupported format. Try JPEG or PNG."));
         }
+        // Unknown image/* types: attempt decode; fail clearly if the browser cannot read them.
       }
 
       return new Promise(function (resolve, reject) {
@@ -118,7 +128,7 @@
         };
         img.onerror = function () {
           URL.revokeObjectURL(url);
-          reject(VisionEngineError("unsupported", "Could not decode this image. HEIF/HEIC may need conversion to JPEG or PNG."));
+          reject(VisionEngineError("unsupported", "Could not decode this image. Convert to JPEG or PNG and try again."));
         };
         img.src = url;
       });
@@ -292,9 +302,11 @@
       version: "1.0.0",
       status: "prototype",
       loadImage: loadImage,
+      createProcessingSource: loadImage,
       renderOriginal: renderOriginal,
       applyTransformation: applyTransformation,
       updateIntensity: updateIntensity,
+      renderComparison: getState,
       reset: reset,
       exportImage: exportImage,
       dispose: dispose,
