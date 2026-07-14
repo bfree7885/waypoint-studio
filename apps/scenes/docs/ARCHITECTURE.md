@@ -6,6 +6,8 @@ Waypoint Scenes is one product with five experiences. Working tools remain in th
 
 **Shoot Review (Work Block 3):** Photo Coach at `/apps/photo-coach/` now reviews a full session (queue, Shoot Summary, grouping, private Keep/Maybe/Reject/Favorite labels, best-of categories, session stats). See `apps/photo-coach/docs/SHOOT-REVIEW.md`. Importer handoff is interface-only via `WaypointPhotoCoachImporterBridge`.
 
+**Photo Library (Work Block 4):** Shared local catalog at `/apps/photo-library/` — `PhotoLibraryEngine`, IndexedDB originals, collections/search/filters, and `?libraryId=` handoff into Photo Coach / Hidden Landscapes. See `apps/photo-library/docs/PHOTO-LIBRARY.md`.
+
 ## Modules
 
 | Module | Purpose | Status on platform | Live tool today |

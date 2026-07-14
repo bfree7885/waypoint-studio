@@ -56,10 +56,15 @@
 | `waypoint-photo-coaching-prefs-v1` | personalized coaching | Prefs | **Current** |
 | `waypoint-photo-coach-journey-v1` | Photo Coach UI | Progress | **Current** |
 | `waypoint-photo-coach-profile-v1` | legacy coach | Profile | **Legacy** — retained; do not delete without migration |
-| `waypoint-photo-coach-sessions-v1` | legacy coach | Sessions | **Legacy** |
-| `waypoint-photo-coach-shoots-v1` | legacy coach | Shoots | **Legacy** |
+| `waypoint-photo-coach-sessions-v1` | legacy coach | Sessions | **Legacy** (still written by Shoot Review UI) |
+| `waypoint-photo-coach-shoots-v1` | legacy coach | Shoots | **Legacy** (still written by Shoot Review UI) |
+| `waypoint-photo-library-index-v1` | photo-library | LibraryImage[] | **Current** — browser Photo Library SoT metadata |
+| `waypoint-photo-library-collections-v1` | photo-library | Collection[] | **Current** |
+| `waypoint-photo-library-meta-v1` | photo-library | migration meta | **Current** |
 
-Photo Coach intentionally retains parallel legacy + growth families until a dedicated migration sprint consolidates them without data loss.
+IndexedDB: `waypoint-photo-library-media-v1` (store `media`) holds original image blobs for the Photo Library. Separate from ForageCast property photos.
+
+Photo Coach intentionally retains parallel legacy + growth families until a dedicated migration sprint consolidates them without data loss. Library migration is **additive** (copies thumbs/metadata into the library index; does not delete coach keys).
 
 ## Product foundations
 

@@ -11,6 +11,7 @@
   var currentSessionId = null;
   var currentShoot = null;
   var currentImageId = null;
+  var currentLibraryId = null;
   var batchBusy = false;
   var currentQueue = null;
   var objectUrls = [];
@@ -803,6 +804,27 @@
                     imageRec.analysis.profileContribution.photoUuid = record.uuid;
                   }
                 }
+                if (currentLibraryId && global.WaypointPhotoLibraryEngine) {
+                  try {
+                    var lib = global.WaypointPhotoLibraryEngine.get();
+                    if (lib && lib.linkPhotoCoachResult) {
+                      lib.linkPhotoCoachResult(currentLibraryId, {
+                        analysisStatus: "analyzed",
+                        photoRecordId: record.uuid,
+                        portfolioSessionId: imageRec.portfolioSessionId || null,
+                        shootId: currentShoot ? currentShoot.id : null,
+                        shootImageId: imageRec.id,
+                        analyzedAt: critique.analyzedAt || new Date().toISOString(),
+                        letterGrade: critique.overallGrade && critique.overallGrade.letter,
+                        overallScore: critique.overallScore,
+                        selectionLabel: imageRec.selectionLabel || null,
+                        subjectHints: (critique.genre && critique.genre.label && !critique.genre.uncertain)
+                          ? [critique.genre.label]
+                          : []
+                      });
+                    }
+                  } catch (libErr) { /* library optional */ }
+                }
               }
             }
             return { file: file, url: url, imageRec: imageRec, critique: critique, exif: exif };
@@ -1183,6 +1205,25 @@
     var Bridge = global.WaypointPhotoCoachImporterBridge;
     if (Bridge && Bridge.peekHandoff && Bridge.peekHandoff()) {
       console.info("[Photo Coach] Importer handoff is staged. Ingest is not auto-started yet.");
+    }
+
+    // Photo Library deep-link: /apps/photo-coach/?libraryId=
+    var LibClient = global.WaypointPhotoLibraryClient;
+    if (LibClient && LibClient.resolveLibraryFile) {
+      LibClient.resolveLibraryFile().then(function (pack) {
+        if (!pack || !pack.file) return;
+        handleFiles([pack.file]);
+        if (pack.image && pack.id && global.WaypointPhotoLibraryEngine) {
+          try {
+            var eng = global.WaypointPhotoLibraryEngine.get();
+            if (eng && eng.markHiddenLandscapes) {
+              /* no-op for coach */
+            }
+            // Remember for write-back after analysis
+            currentLibraryId = pack.id;
+          } catch (e) { /* ignore */ }
+        }
+      }).catch(function () { /* ignore missing library */ });
     }
   }
 

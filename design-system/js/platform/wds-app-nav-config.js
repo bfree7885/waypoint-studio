@@ -90,10 +90,11 @@
         "/apps/photo-coach",
         "/apps/waypoint-scenes",
         "/apps/animal-vision",
-        "/apps/hidden-landscapes"
+        "/apps/hidden-landscapes",
+        "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.",
+      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
       "status": "live",
       "features": [
         {
@@ -103,6 +104,15 @@
           "match": [
             "/apps/scenes/?$",
             "/apps/scenes/index"
+          ]
+        },
+        {
+          "id": "photo-library",
+          "label": "Library",
+          "href": "apps/scenes/photo-library/",
+          "match": [
+            "/apps/scenes/photo-library",
+            "/apps/photo-library"
           ]
         },
         {

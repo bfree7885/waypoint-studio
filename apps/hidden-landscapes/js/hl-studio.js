@@ -310,6 +310,21 @@
         });
         root.removeAttribute("aria-busy");
         setStatus("Upload a landscape photograph to begin. Processing stays on this device.");
+
+        // Photo Library deep-link
+        var LibClient = global.WaypointPhotoLibraryClient;
+        if (LibClient && LibClient.resolveLibraryFile) {
+          LibClient.resolveLibraryFile().then(function (pack) {
+            if (pack && pack.file) {
+              onFile(pack.file);
+              if (pack.id && global.WaypointPhotoLibraryEngine) {
+                try {
+                  global.WaypointPhotoLibraryEngine.get().markHiddenLandscapes(pack.id, true);
+                } catch (e) { /* optional */ }
+              }
+            }
+          }).catch(function () { /* ignore */ });
+        }
       })
       .catch(function () {
         root.innerHTML = '<p class="wds-body" role="alert">Could not load Hidden Landscapes transformations.</p>';

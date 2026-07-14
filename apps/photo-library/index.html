@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-product="photo-library">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Photo Library — local-first catalog and knowledge base for every photograph in Waypoint Scenes.">
+  <title>Photo Library — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="css/photo-library.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to library</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <main id="main" class="pl-page">
+      <header class="pl-hero">
+        <p class="wds-eyebrow">
+          <a href="../scenes/">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          Photo Library
+        </p>
+        <h1 class="pl-hero__title">Your photographs, once.</h1>
+        <p class="pl-hero__lead">
+          A quiet local catalog — the shared home for Photo Coach, Hidden Landscapes, and what comes next.
+          Search, collect, and open a frame into a tool without uploading it again.
+        </p>
+        <p class="pl-trust" role="note">Stored on this device. No cloud sync. No public sharing.</p>
+      </header>
+
+      <div class="pl-toolbar" id="pl-toolbar">
+        <button type="button" class="wds-btn wds-btn--primary" id="pl-import">Import photographs</button>
+        <button type="button" class="wds-btn wds-btn--ghost" data-pl-view="grid" aria-pressed="true">Grid</button>
+        <button type="button" class="wds-btn wds-btn--ghost" data-pl-view="list" aria-pressed="false">List</button>
+        <button type="button" class="wds-btn wds-btn--ghost" id="pl-selection-mode" aria-pressed="false">Select</button>
+        <label class="wds-sr-only" for="pl-search">Search library</label>
+        <input class="pl-search" id="pl-search" type="search" placeholder="Search filename, tags, camera, notes…" autocomplete="off">
+        <label class="wds-sr-only" for="pl-sort">Sort</label>
+        <select class="pl-sort" id="pl-sort" aria-label="Sort photographs">
+          <option value="import-desc">Newest import</option>
+          <option value="import-asc">Oldest import</option>
+          <option value="capture-desc">Newest capture</option>
+          <option value="capture-asc">Oldest capture</option>
+          <option value="name">Filename</option>
+          <option value="rating">Rating</option>
+        </select>
+        <span class="pl-count" id="pl-count" aria-live="polite"></span>
+      </div>
+
+      <div class="pl-chip-row" id="pl-collections" aria-label="Collections"></div>
+      <div class="pl-chip-row" id="pl-filters" aria-label="Filters"></div>
+
+      <p class="pl-status" id="pl-status" role="status" hidden></p>
+      <div class="pl-drop" id="pl-drop" tabindex="0" role="region" aria-label="Drop photographs to import">
+        Drop photographs here to add them to the library · JPG, PNG, WebP
+      </div>
+
+      <div class="pl-layout">
+        <section aria-label="Photographs">
+          <div id="pl-empty" class="pl-empty" hidden>
+            <p>No photographs match yet.</p>
+            <p>Import a few frames, or open Photo Coach — past analyses can appear here after the first visit.</p>
+          </div>
+          <div id="pl-grid" class="pl-results pl-results--grid"></div>
+        </section>
+        <aside class="pl-detail" id="pl-detail" aria-label="Photograph details">
+          <div class="pl-detail__empty"><p>Select a photograph to see details.</p></div>
+        </aside>
+      </div>
+
+      <input type="file" id="pl-file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="1"></div>
+  </div>
+
+  <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="js/pl-models.js" defer></script>
+  <script src="js/pl-store.js" defer></script>
+  <script src="js/pl-engine.js" defer></script>
+  <script src="js/pl-ui.js" defer></script>
+  <script src="js/pl-boot.js" defer></script>
+</body>
+</html>
