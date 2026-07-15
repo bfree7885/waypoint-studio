@@ -109,6 +109,18 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Architectural Lessons
 
+### 2026-07-14 — Relative search priority ≠ probability of finds
+
+- **Context:** Sheds field map v0.1 heat surface
+- **Category:** Architecture (secondary: Product, Scientific Integrity)
+- **Lesson:** Field guidance layers must be labeled as relative search priority
+  with explainable inputs and coverage — never as “chance of an antler here.”
+  Missing land cover must read Unavailable, not invented habitat.
+- **Evidence:** `apps/shed-hunting/js/sheds-likelihood-model.js`;
+  `docs/SESSION-SHEDS-MAP-V0.1.md`
+- **Prevention:** Product copy review + model explanation assertions in
+  `automation/test-sheds-map.mjs`
+
 ### 2026-07-14 — Author `display` overrides HTML `hidden`
 
 - **Context:** Scene Builder appeared permanently dimmed; compare mount was

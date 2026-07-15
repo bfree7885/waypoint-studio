@@ -1,0 +1,370 @@
+/* Sheds Field Map — outdoor-first mobile UI */
+
+:root {
+  --sheds-bg: #0c1628;
+  --sheds-surface: #112038;
+  --sheds-text: #e4eaf4;
+  --sheds-muted: rgba(228, 234, 244, 0.72);
+  --sheds-accent: #c8f055;
+  --sheds-border: rgba(155, 143, 217, 0.22);
+  --sheds-danger: #f0b8b0;
+  --sheds-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --sheds-safe-top: env(safe-area-inset-top, 0px);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--sheds-bg);
+  color: var(--sheds-text);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.sheds-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100dvh;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.sheds-top {
+  flex: 0 0 auto;
+  padding: calc(0.55rem + var(--sheds-safe-top)) 0.75rem 0.55rem;
+  background: rgba(8, 15, 28, 0.94);
+  border-bottom: 1px solid var(--sheds-border);
+  z-index: 500;
+}
+
+.sheds-top__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sheds-brand {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.sheds-brand span {
+  display: block;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.7rem;
+  color: var(--sheds-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sheds-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+  align-items: center;
+}
+
+.sheds-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--sheds-border);
+  background: var(--sheds-surface);
+  font-size: 0.75rem;
+  color: var(--sheds-muted);
+}
+
+.sheds-pill[data-state="available"],
+.sheds-pill[data-level="strong"] {
+  border-color: rgba(200, 240, 85, 0.45);
+  color: var(--sheds-accent);
+}
+
+.sheds-pill[data-state="denied"],
+.sheds-pill[data-state="unavailable"],
+.sheds-pill[data-state="timeout"],
+.sheds-pill[data-level="limited"] {
+  border-color: rgba(240, 184, 176, 0.4);
+  color: var(--sheds-danger);
+}
+
+#sheds-map-shell {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+#sheds-map {
+  width: 100%;
+  height: 100%;
+  background: #1a283c;
+}
+
+.sheds-toolbar {
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: calc(0.65rem + var(--sheds-safe-bottom));
+  z-index: 450;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  pointer-events: none;
+}
+
+.sheds-toolbar > * {
+  pointer-events: auto;
+}
+
+.sheds-btn {
+  appearance: none;
+  border: 1px solid var(--sheds-border);
+  background: rgba(17, 32, 56, 0.94);
+  color: var(--sheds-text);
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0.55rem 0.95rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 550;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.sheds-btn:focus-visible {
+  outline: 2px solid var(--sheds-accent);
+  outline-offset: 2px;
+}
+
+.sheds-btn--primary {
+  background: var(--sheds-accent);
+  color: #080f1c;
+  border-color: transparent;
+}
+
+.sheds-btn--ghost {
+  background: rgba(8, 15, 28, 0.82);
+}
+
+.sheds-legend {
+  flex: 1 1 100%;
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.45rem 0.65rem;
+  border-radius: 12px;
+  background: rgba(8, 15, 28, 0.88);
+  border: 1px solid var(--sheds-border);
+  font-size: 0.72rem;
+  color: var(--sheds-muted);
+}
+
+.sheds-swatch {
+  width: 1.1rem;
+  height: 0.7rem;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.sheds-swatch--low { background: rgba(90, 120, 150, 0.7); }
+.sheds-swatch--mid { background: rgba(180, 140, 60, 0.8); }
+.sheds-swatch--high {
+  background: rgba(80, 140, 70, 0.9);
+  background-image: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.35) 40%, rgba(255,255,255,0.35) 50%, transparent 50%);
+}
+
+.sheds-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheds-sheet.is-open {
+  display: flex;
+}
+
+.sheds-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 8, 18, 0.55);
+}
+
+.sheds-sheet__panel {
+  position: relative;
+  width: min(100%, 34rem);
+  max-height: min(82vh, 720px);
+  overflow: auto;
+  background: var(--sheds-surface);
+  border: 1px solid var(--sheds-border);
+  border-radius: 18px 18px 0 0;
+  padding: 1rem 1rem calc(1rem + var(--sheds-safe-bottom));
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.45);
+}
+
+.reduced-motion .sheds-sheet__panel {
+  transition: none;
+}
+
+.sheds-sheet__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.45rem;
+  margin: 0 0 0.35rem;
+}
+
+.sheds-sheet__lede {
+  margin: 0 0 0.85rem;
+  color: var(--sheds-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.sheds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.sheds-field label {
+  font-size: 0.8rem;
+  color: var(--sheds-muted);
+}
+
+.sheds-field input,
+.sheds-field select,
+.sheds-field textarea {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--sheds-border);
+  background: #0a1220;
+  color: var(--sheds-text);
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+.sheds-field textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.sheds-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sheds-error {
+  color: var(--sheds-danger);
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.sheds-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+.sheds-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+@media (max-width: 420px) {
+  .sheds-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sheds-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.sheds-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #080f1c;
+  border: 2px solid #0a1220;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.sheds-marker--shed { background: #c8f055; border-radius: 50%; }
+.sheds-marker--deer { background: #b0a6eb; }
+.sheds-marker--sign { background: #e4c56d; }
+.sheds-marker--trail { background: #7eb6ff; border-radius: 4px; }
+.sheds-marker--bed { background: #8fbf7a; }
+.sheds-marker--feed { background: #e6a15c; }
+.sheds-marker--fence { background: #d9d2c5; }
+.sheds-marker--winter { background: #9ec9e8; }
+.sheds-marker--search { background: #888; color: #fff; }
+.sheds-marker--access { background: #f0b8b0; }
+.sheds-marker--note { background: #cfc6e8; }
+.sheds-marker--other { background: #aeb6c2; }
+
+.sheds-home-link {
+  color: var(--sheds-muted);
+  font-size: 0.8rem;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sheds-home-link:focus-visible {
+  outline: 2px solid var(--sheds-accent);
+}
+
+.sheds-note {
+  font-size: 0.78rem;
+  color: var(--sheds-muted);
+  line-height: 1.4;
+  margin: 0.5rem 0 0;
+}
+
+.sheds-tech {
+  margin-top: 0.75rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: #0a1220;
+  font-size: 0.7rem;
+  overflow: auto;
+  max-height: 8rem;
+  color: var(--sheds-muted);
+}
+
+.leaflet-control-attribution {
+  max-width: min(92vw, 28rem);
+  font-size: 0.65rem !important;
+}
+
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: none !important;
+}
+
+.leaflet-control-zoom a {
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  font-size: 18px !important;
+}

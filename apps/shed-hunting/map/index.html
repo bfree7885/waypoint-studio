@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-product="shed-hunting">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Sheds field map — private observations and relative shed search priority for whitetail. Guidance, not certainty.">
+  <meta name="theme-color" content="#0c1628">
+  <title>Field Map — Sheds — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzPCf9xURh5NIHhHtvSEvxUtUM=" crossorigin="">
+  <link rel="stylesheet" href="../css/sheds-map.css">
+</head>
+<body>
+  <a class="wds-skip" href="#sheds-map">Skip to map</a>
+  <div class="sheds-app">
+    <header class="sheds-top">
+      <div class="sheds-top__row">
+        <h1 class="sheds-brand">Sheds <span>Field map · Whitetail · Private</span></h1>
+        <a class="sheds-home-link" href="../">Home</a>
+      </div>
+      <div class="sheds-status-row" aria-live="polite">
+        <span class="sheds-pill" id="loc-status" data-state="finding">Finding location…</span>
+        <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
+        <span class="sheds-pill" id="obs-count">0 private observations</span>
+      </div>
+      <p class="sheds-note" id="model-note">Map shell ready. Search-priority surface loads for the visible area when you zoom in — never a map of antlers.</p>
+    </header>
+
+    <div id="sheds-map-shell" aria-busy="true">
+      <div id="sheds-map" role="application" aria-label="Interactive topographic field map"></div>
+      <div class="sheds-toolbar">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-locate">Locate me</button>
+        <button type="button" class="sheds-btn" id="btn-controls">Likelihood controls</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-explain">Explain center</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-ethics">Ethics</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-export">Export JSON</button>
+        <div class="sheds-legend" aria-label="Search priority legend">
+          <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i> Lower</span>
+          <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i> Moderate</span>
+          <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i> Higher (+ hatch)</span>
+          <span>Tap map to add · long-press/right-click to explain</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Observation sheet -->
+  <div class="sheds-sheet" id="sheet-obs" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="obs-form-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="obs-form-title">Add observation</h2>
+      <p class="sheds-sheet__lede">Private to this device. Coordinates are not uploaded.</p>
+      <form id="obs-form">
+        <input type="hidden" id="obs-id" value="">
+        <input type="hidden" id="obs-mode" value="create">
+        <div class="sheds-field">
+          <label for="obs-type">Observation type</label>
+          <select id="obs-type" required></select>
+        </div>
+        <div class="sheds-field">
+          <label for="obs-note">Note (optional)</label>
+          <textarea id="obs-note" maxlength="800" placeholder="Sign, access, habitat…"></textarea>
+        </div>
+        <div class="sheds-grid-2">
+          <div class="sheds-field">
+            <label for="obs-confidence">Confidence</label>
+            <select id="obs-confidence">
+              <option value="uncertain">Uncertain</option>
+              <option value="probable">Probable</option>
+              <option value="confirmed">Confirmed</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="obs-quantity">Quantity (optional)</label>
+            <input id="obs-quantity" type="number" min="0" step="1" inputmode="numeric">
+          </div>
+        </div>
+        <div id="sheds-extra" hidden>
+          <p class="sheds-sheet__lede">Shed details (whitetail) — optional</p>
+          <div class="sheds-grid-2">
+            <div class="sheds-field">
+              <label for="shed-side">Side</label>
+              <select id="shed-side">
+                <option value="unknown">Unknown</option>
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+            </div>
+            <div class="sheds-field">
+              <label for="shed-freshness">Freshness</label>
+              <select id="shed-freshness">
+                <option value="unknown">Unknown</option>
+                <option value="fresh">Fresh</option>
+                <option value="weathered">Weathered</option>
+                <option value="old">Old</option>
+              </select>
+            </div>
+            <div class="sheds-field">
+              <label for="shed-count">Antlers</label>
+              <input id="shed-count" type="number" min="1" max="2" value="1">
+            </div>
+            <label class="sheds-check"><input type="checkbox" id="shed-collected"> Collected (vs left in place)</label>
+          </div>
+        </div>
+        <p class="sheds-error" id="obs-error" hidden></p>
+        <div class="sheds-actions">
+          <button type="submit" class="sheds-btn sheds-btn--primary">Save</button>
+          <button type="button" class="sheds-btn" data-close-sheet>Cancel</button>
+          <button type="button" class="sheds-btn" id="obs-delete" hidden>Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Controls sheet -->
+  <div class="sheds-sheet" id="sheet-controls" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="controls-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="controls-title">Search-priority controls</h2>
+      <p class="sheds-sheet__lede">Adjust influences for the relative surface. This is guidance for where to walk — not a probability of antlers.</p>
+      <p class="sheds-note" id="inputs-summary"></p>
+      <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show heat / priority overlay</label>
+      <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
+      <div class="sheds-field">
+        <label for="heat-opacity">Overlay opacity</label>
+        <input id="heat-opacity" type="range" min="0.15" max="0.85" step="0.05" value="0.55">
+      </div>
+      <div class="sheds-field">
+        <label for="obs-filter">Filter observations</label>
+        <select id="obs-filter"></select>
+      </div>
+      <h3 class="sheds-sheet__lede">Influence weights</h3>
+      <div class="sheds-grid-2">
+        <div class="sheds-field"><label for="w-season">Season timing</label>
+          <select id="w-season" data-weight="season"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-slope">Slope</label>
+          <select id="w-slope" data-weight="slope"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-aspect">Aspect / sun</label>
+          <select id="w-aspect" data-weight="aspect"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-feeding">Feeding proximity</label>
+          <select id="w-feeding" data-weight="feeding"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-bedding">Bedding / cover</label>
+          <select id="w-bedding" data-weight="bedding"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-edges">Habitat edges</label>
+          <select id="w-edges" data-weight="edges"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-corridors">Travel corridors</label>
+          <select id="w-corridors" data-weight="corridors"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-deerSign">Deer sign</label>
+          <select id="w-deerSign" data-weight="deerSign"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-fences">Fence crossings</label>
+          <select id="w-fences" data-weight="fences"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-search">Prior search coverage</label>
+          <select id="w-search" data-weight="searchHistory"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-snow">Snow / recent conditions</label>
+          <select id="w-snow" data-weight="snow"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+      </div>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-reset-weights">Reset balanced defaults</button>
+        <button type="button" class="sheds-btn" data-close-sheet>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explain sheet -->
+  <div class="sheds-sheet" id="sheet-explain" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="explain-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="explain-title">Why this area?</h2>
+      <p class="sheds-sheet__lede" id="explain-body"></p>
+      <details>
+        <summary>Technical breakdown</summary>
+        <pre class="sheds-tech" id="explain-tech"></pre>
+      </details>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn" data-close-sheet>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ethics sheet -->
+  <div class="sheds-sheet" id="sheet-ethics" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ethics-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="ethics-title">Field ethics &amp; honesty</h2>
+      <ul class="sheds-sheet__lede">
+        <li>You are responsible for property access and local regulations — this map does not grant legal access.</li>
+        <li>Shed seasons and rules vary; check your jurisdiction.</li>
+        <li>Do not chase, harass, or displace wintering deer.</li>
+        <li>Approach bedding and winter concentration notes respectfully.</li>
+        <li>Observations stay private on this device by default.</li>
+        <li>The colored surface is relative search priority for whitetail — never “there is an antler here.”</li>
+      </ul>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="ethics-ack">Understood</button>
+        <button type="button" class="sheds-btn" data-close-sheet>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../js/sheds-observation-store.js"></script>
+  <script src="../js/sheds-likelihood-model.js"></script>
+  <script src="../js/sheds-heat-layer.js"></script>
+  <script src="../js/sheds-map-app.js"></script>
+</body>
+</html>
