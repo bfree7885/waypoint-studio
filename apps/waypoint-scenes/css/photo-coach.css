@@ -893,6 +893,11 @@
   padding: 1rem;
 }
 
+/* Author display:flex overrides UA [hidden]; force closed mounts off-screen. */
+.coach-compare-mount[hidden] {
+  display: none !important;
+}
+
 .coach-compare {
   width: min(960px, 100%);
   max-height: 90vh;

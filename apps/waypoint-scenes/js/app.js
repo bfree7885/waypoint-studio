@@ -748,6 +748,13 @@
     if (coach) coach.hidden = mode !== "coach";
     if (builder) builder.hidden = mode !== "builder";
     if (els.hero) els.hero.hidden = mode === "builder" && (imageLoaded || parallaxImageLoaded);
+    // Dismiss Photo Coach overlays so Scene Builder is never left under a scrim.
+    if (window.WaypointPhotoCoachCompare && window.WaypointPhotoCoachCompare.close) {
+      window.WaypointPhotoCoachCompare.close();
+    }
+    if (window.WaypointPhotography && window.WaypointPhotography.closeDetail) {
+      window.WaypointPhotography.closeDetail();
+    }
   }
 
   function bindProductModes() {

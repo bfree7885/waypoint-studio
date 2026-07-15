@@ -1,5 +1,5 @@
 /**
- * ForageCast prediction model — local placeholder logic
+ * ForageCast prediction model — local illustrative index (not a live forecast)
  */
 (function (global) {
   "use strict";
@@ -53,7 +53,7 @@
     if (spread > 0.35) return { level: "low", label: "Low confidence", reason: "Factors disagree — ground truth matters more than the model this week." };
     if (score >= 0.55 && spread < 0.2) return { level: "high", label: "Moderate confidence", reason: "Season and moisture mostly agree — still verify outdoors." };
     if (score < 0.35) return { level: "moderate", label: "Moderate confidence", reason: "Weaker index suggests limited alignment — local microclimates can still surprise." };
-    return { level: "moderate", label: "Moderate confidence", reason: "Placeholder model — treat as a reading guide, not a forecast." };
+    return { level: "moderate", label: "Moderate confidence", reason: "Illustrative local index — treat as a reading guide, not a forecast." };
   }
 
   function computeFactorBreakdown(species, zone, conditions) {

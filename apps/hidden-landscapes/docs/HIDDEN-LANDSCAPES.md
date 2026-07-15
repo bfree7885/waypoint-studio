@@ -68,7 +68,6 @@ apps/hidden-landscapes/
   js/hl-transforms.js        # Pixel processors
   js/hl-vision-engine.js     # Local processing lifecycle
   js/hl-studio.js            # UI
-  js/hl-models.js            # ImageSet + catalog factories
   docs/HIDDEN-LANDSCAPES.md
 ```
 

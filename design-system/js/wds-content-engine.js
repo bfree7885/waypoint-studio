@@ -947,6 +947,9 @@
     if (!platform) return "";
     var userIso = platform.meta && platform.meta.hydratedAt;
     var userStamped = userIso ? formatLiveUpdated(platform) : null;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var trust = Rel && Rel.classifyPackageTrust ? Rel.classifyPackageTrust(platform) : null;
+    var age = Rel && Rel.ageLabel ? Rel.ageLabel(userIso) : null;
     var engineCtx = platform.engineContext;
     var engineStatus = platform.meta && platform.meta.engineStatus;
     var engineIso = engineCtx && engineCtx.engine && engineCtx.engine.updatedAt;
@@ -954,7 +957,26 @@
       ? formatLiveUpdated({ meta: { hydratedAt: engineIso }, timezone: platform.timezone })
       : null;
     var html = "";
-    if (userStamped) {
+    if (trust === "offline") {
+      html +=
+        '<p class="wdb-live-updated wdb-live-updated--offline" data-wds-live-updated data-trust="offline" role="status">' +
+          '<span class="wdb-live-updated__label">Offline</span> ' +
+          escapeHtml(age || "No live providers available on this connection.") +
+        "</p>";
+    } else if (trust === "cached") {
+      html +=
+        '<p class="wdb-live-updated wdb-live-updated--cached" data-wds-live-updated data-trust="cached" role="status">' +
+          '<span class="wdb-live-updated__label">Using cached conditions</span> ' +
+          escapeHtml(age || (userStamped ? "Last updated " + userStamped : "Last known package on this device.")) +
+        "</p>";
+    } else if (trust === "partial") {
+      html +=
+        '<p class="wdb-live-updated wdb-live-updated--partial" data-wds-live-updated data-trust="partial" role="status">' +
+          '<span class="wdb-live-updated__label">Partial success</span> ' +
+          "Some providers responded; others timed out or failed." +
+          (userStamped ? " · " + escapeHtml(userStamped) : "") +
+        "</p>";
+    } else if (userStamped) {
       html +=
         '<p class="wdb-live-updated" data-wds-live-updated data-source="user-oip">' +
           '<span class="wdb-live-updated__label">Your conditions updated</span> ' +
@@ -974,6 +996,34 @@
     return html;
   }
 
+  function wireLatePlatformHydration(mount, loc, base, data) {
+    if (!mount || mount._wdbOipWired || !global.document) return;
+    mount._wdbOipWired = true;
+    global.document.addEventListener("wds:outdoor-intelligence-change", function (e) {
+      var pkg = e.detail;
+      if (!pkg || !mount.isConnected) return;
+      var DE = global.WDS && global.WDS.dashboardEngine;
+      var opts = mount._wdbMountOpts || {
+        location: loc,
+        bundle: data,
+        platform: pkg,
+        package: pkg.weatherRef
+      };
+      opts.platform = pkg;
+      opts.package = pkg.weatherRef;
+      opts.intelligence = pkg.legacy || opts.intelligence;
+      mount._wdbMountOpts = opts;
+      // Late trail (and similar) hydrate without blanking the dashboard.
+      var trailStatus = pkg.meta && pkg.meta.blockStatus
+        ? pkg.meta.blockStatus.trailConditions
+        : null;
+      if (trailStatus && trailStatus !== mount._wdbTrailStatus && DE && DE.refreshWidget) {
+        mount._wdbTrailStatus = trailStatus;
+        DE.refreshWidget(mount, "trail-dashboard", opts);
+      }
+    });
+  }
+
   function mountDashboardWidgets(mount, loc, base, data, platform) {
     var weatherHints = data.thisWeekOutdoors && data.thisWeekOutdoors.weather;
     var intel = (platform && platform.legacy) || data.regionalIntelligence || null;
@@ -988,6 +1038,7 @@
     var DE = global.WDS && global.WDS.dashboardEngine;
     if (DE) {
       mount._wdbMountOpts = mountOpts;
+      wireLatePlatformHydration(mount, loc, base, data);
       DE.bindInteractions(mount);
       DE.bindSettings(mount, function () {
         DE.refreshDashboard(mount, Object.assign({}, mountOpts, {
@@ -1104,22 +1155,21 @@
       if (loc && global.WDS && global.WDS.location) {
         data = global.WDS.location.applyToBundle(data, loc);
       }
-      return ensureWskbPreload(data, base, loc).then(function () {
-        return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
-          data = applyPlatformToData(data, platform);
-          return renderIntoMount(mount, data, loc, base, options, platform);
-        }).catch(function () {
-          data = applyPlatformToData(data, null);
-          return renderIntoMount(mount, data, loc, base, options, null);
-        });
+
+      // Progressive first paint: shell + grid with per-card Loading states.
+      // Live providers hydrate afterward and remount independently.
+      var shellData = applyPlatformToData(data, null);
+      renderIntoMount(mount, shellData, loc, base, options, null);
+
+      // WSKB preload must not block the dashboard grid.
+      ensureWskbPreload(data, base, loc).catch(function () { /* non-blocking */ });
+
+      return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
+        data = applyPlatformToData(data, platform);
+        return renderIntoMount(mount, data, loc, base, options, platform);
       }).catch(function () {
-        return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
-          data = applyPlatformToData(data, platform);
-          return renderIntoMount(mount, data, loc, base, options, platform);
-        }).catch(function () {
-          data = applyPlatformToData(data, null);
-          return renderIntoMount(mount, data, loc, base, options, null);
-        });
+        // Shell already painted; keep Loading/Unavailable card terminals.
+        return data;
       });
     });
   }

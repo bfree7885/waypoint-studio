@@ -76,7 +76,7 @@
       html += card("Fog probability", sky.fogPotential.headline, sky.fogPotential.detail, sky.fogPotential.level, "Derived · OIP");
       html += card("Cloud forecast", sky.cloudCover.headline, sky.cloudCover.detail, sky.cloudCover.level, "Derived · OIP");
       html += card("Night photography", sky.nightPhotography.headline, sky.nightPhotography.detail, sky.nightPhotography.level, "Derived · OIP");
-      html += card("Milky Way", sky.milkyWay.headline, sky.milkyWay.detail, sky.milkyWay.level, "Not yet available");
+      html += card("Milky Way", sky.milkyWay.headline, sky.milkyWay.detail, sky.milkyWay.level, "Estimated later");
     }
 
     if (cur) {

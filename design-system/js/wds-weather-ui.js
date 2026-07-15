@@ -238,6 +238,17 @@
     if (!card) return;
     var tag = card.querySelector(".wdb-widget__tag");
     if (!tag) return;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var mapped = state;
+    if (state === "unavailable") mapped = "provider-unavailable";
+    if (state === "educational") mapped = "estimated";
+    if (state === "editorial") mapped = "editorial";
+    if (Rel && Rel.tagFor) {
+      var info = Rel.tagFor(mapped === "editorial" ? "editorial" : mapped);
+      tag.textContent = info.label;
+      tag.className = "wdb-widget__tag " + info.className;
+      return;
+    }
     if (state === "live") {
       tag.textContent = "Live";
       tag.className = "wdb-widget__tag wdb-widget__tag--live";
@@ -245,22 +256,71 @@
     }
     if (state === "loading") {
       tag.textContent = "Loading";
-      tag.className = "wdb-widget__tag wdb-widget__tag--preview";
+      tag.className = "wdb-widget__tag wdb-widget__tag--loading";
       return;
     }
     if (state === "unavailable") {
-      tag.textContent = "Unavailable";
+      tag.textContent = "Provider Unavailable";
       tag.className = "wdb-widget__tag wdb-widget__tag--unavailable";
       return;
     }
     if (state === "educational") {
       tag.textContent = "Estimated";
-      tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
+      tag.className = "wdb-widget__tag wdb-widget__tag--estimated";
       return;
     }
     if (state === "editorial") {
       tag.textContent = "Regional";
       tag.className = "wdb-widget__tag wdb-widget__tag--editorial";
+    }
+  }
+
+  function updateDashCardTag(root, cardId, state) {
+    updateWidgetTag(root, cardId, state);
+    if (!root || !cardId) return;
+    var card = root.querySelector("#dashboard-" + cardId);
+    if (!card) return;
+    var tag = card.querySelector(".wce-dash-card__tag");
+    if (!tag) return;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var mapped = state;
+    if (state === "unavailable") mapped = "provider-unavailable";
+    if (state === "educational") mapped = "estimated";
+    if (Rel && Rel.tagFor) {
+      var info = Rel.tagFor(mapped === "editorial" ? "editorial" : mapped);
+      tag.textContent = info.label;
+      var dashClass = "wce-dash-card__tag";
+      if (mapped === "live") dashClass += " wce-dash-card__tag--live";
+      else if (mapped === "loading") dashClass += " wce-dash-card__tag--soon";
+      else if (mapped === "editorial") dashClass += " wce-dash-card__tag--regional";
+      else if (mapped === "estimated" || mapped === "educational") dashClass += " wce-dash-card__tag--regional";
+      else dashClass += " wce-dash-card__tag--unavailable";
+      tag.className = dashClass;
+      return;
+    }
+    if (state === "live") {
+      tag.textContent = "Live";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--live";
+      return;
+    }
+    if (state === "loading") {
+      tag.textContent = "Loading";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--soon";
+      return;
+    }
+    if (state === "unavailable") {
+      tag.textContent = "Provider Unavailable";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--unavailable";
+      return;
+    }
+    if (state === "educational") {
+      tag.textContent = "Estimated";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--regional";
+      return;
+    }
+    if (state === "editorial") {
+      tag.textContent = "Regional";
+      tag.className = "wce-dash-card__tag wce-dash-card__tag--regional";
     }
   }
 

@@ -1278,8 +1278,25 @@
 .wdb-widget__tag--live { color: var(--wds-lime); }
 .wdb-widget__tag--editorial { color: var(--wds-warm); }
 .wdb-widget__tag--preview { color: var(--wds-text-tertiary); }
+.wdb-widget__tag--loading { color: var(--wds-text-tertiary); }
 .wdb-widget__tag--local { color: var(--wds-accent); }
 .wdb-widget__tag--unavailable { color: #e07070; }
+.wdb-widget__tag--partial {
+  color: #d4a017;
+  background: rgba(212, 160, 23, 0.12);
+}
+.wdb-widget__tag--cached {
+  color: var(--wds-accent);
+  background: rgba(100, 160, 220, 0.14);
+}
+.wdb-widget__tag--offline {
+  color: #c45c26;
+  background: rgba(196, 92, 38, 0.12);
+}
+.wdb-widget__tag--error {
+  color: #e07070;
+  background: rgba(224, 112, 112, 0.12);
+}
 
 .wdb-widget__highlight-row {
   display: flex;

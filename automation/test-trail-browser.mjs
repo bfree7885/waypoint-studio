@@ -98,7 +98,8 @@ async function main() {
   await send("Network.enable");
   await send("Network.setCacheDisabled", { cacheDisabled: true });
   await send("Page.addScriptToEvaluateOnNewDocument", { source: seedScript });
-  await send("Page.navigate", { url: BASE.replace(/\/$/, "") + "/" });
+  // Dashboard owns outdoor-dashboard; studio home no longer embeds the trail widget.
+  await send("Page.navigate", { url: BASE.replace(/\/$/, "") + "/apps/dashboard/" });
   await delay(90000);
 
   const { result: direct } = await send("Runtime.evaluate", {

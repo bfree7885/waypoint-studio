@@ -156,6 +156,14 @@
   color: var(--wds-text-secondary);
 }
 
+.wdb-page-loading__detail {
+  margin: 0.35rem 0 0;
+  text-align: center;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-muted);
+  max-width: 28rem;
+}
+
 .wdb-boot-error {
   max-width: 28rem;
   margin: clamp(2rem, 8vw, 4rem) auto;

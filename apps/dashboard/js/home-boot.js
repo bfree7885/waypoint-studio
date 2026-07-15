@@ -184,8 +184,19 @@
     }
   }
 
+  function isSafeEarlyLocation(loc) {
+    if (!loc) return false;
+    var lat = Number(loc.lat);
+    var lng = Number(loc.lng);
+    if (!isFinite(lat) || !isFinite(lng)) return false;
+    if (loc.source === "unavailable") return false;
+    if (WDS.location.isLegacyDefault && WDS.location.isLegacyDefault(loc)) return false;
+    if (WDS.location.isEnginePublishPoint && WDS.location.isEnginePublishPoint(lat, lng)) return false;
+    return true;
+  }
+
   function startDashboard(loc) {
-    if (!window.WDS || !WDS.contentEngine) return;
+    if (!window.WDS || !WDS.contentEngine || !loc) return;
     WDS.contentEngine.init({
       base: ENGINE_BASE,
       mount: document.getElementById("wds-content-engine"),
@@ -262,6 +273,11 @@
     if (WDS.ecosystemBridge && WDS.ecosystemBridge.bindOip) {
       WDS.ecosystemBridge.bindOip();
     }
+    // Progressive: paint with a safe stored location while geolocation finishes.
+    var earlyLoc = WDS.location.readStored ? WDS.location.readStored() : null;
+    if (isSafeEarlyLocation(earlyLoc)) {
+      startDashboard(earlyLoc);
+    }
     WDS.location.bootstrap({
       base: ENGINE_BASE,
       promptMount: document.getElementById("wds-location-prompt")
@@ -269,8 +285,12 @@
       if (WDS.runtimeMigration && WDS.runtimeMigration.onModulesReady) {
         WDS.runtimeMigration.onModulesReady();
       }
-      startDashboard(loc);
+      startDashboard(loc || earlyLoc);
     }).catch(function () {
+      if (isSafeEarlyLocation(earlyLoc)) {
+        startDashboard(earlyLoc);
+        return;
+      }
       showBootError();
     });
   }

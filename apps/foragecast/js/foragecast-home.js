@@ -330,9 +330,9 @@
         '<p class="fc-section__eyebrow">Featured video</p>' +
         '<h2 class="fc-section__title" id="fc-video-title">' + escapeHtml(v.title) + "</h2>" +
         '<div class="ws-video-feature">' +
-          '<div class="ws-video-feature__thumb" role="img" aria-label="Video placeholder">' +
+          '<div class="ws-video-feature__thumb" role="img" aria-label="Featured educational video coming later">' +
             '<span class="ws-video-feature__play" aria-hidden="true">▶</span>' +
-            '<span class="ws-media-slot__label">' + escapeHtml(v.durationMinutes) + " min · educational video · placeholder</span>" +
+            '<span class="ws-media-slot__label">' + escapeHtml(v.durationMinutes) + " min · educational video · preview slot</span>" +
           "</div>" +
           '<div class="ws-video-feature__body">' +
             '<p class="wds-body">' + escapeHtml(v.summary) + "</p>" +

@@ -204,7 +204,7 @@
       '<section class="fc-factors-panel" aria-labelledby="fc-factors-title">' +
         '<h3 id="fc-factors-title">Model factors · educational index</h3>' +
         '<p class="wds-body" style="margin:0 0 var(--wds-space-4); font-size:var(--wds-text-sm); color:var(--wds-text-secondary);">' +
-          "Weighted inputs for this species in " + escapeHtml(regionName) + ". Placeholder values from local JSON — not live weather." +
+          "Weighted inputs for this species in " + escapeHtml(regionName) + ". Sample values from local JSON — not live weather." +
         "</p>" +
         '<div class="fc-factor-bars">' + rows + "</div>" +
       "</section>"

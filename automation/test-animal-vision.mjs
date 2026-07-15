@@ -115,7 +115,11 @@ assert("local processing modules referenced", /animal-vision-transforms\.js/.tes
 
 const nav = JSON.parse(fs.readFileSync(path.join(ROOT, "design-system/ecosystem/nav-registry.json"), "utf8"));
 const scenes = nav.apps.find((a) => a.id === "scenes");
-assert("nav has animal-vision feature", scenes.features.some((f) => f.id === "animal-vision"));
+const hlFeature = scenes.features.find((f) => f.id === "hidden-landscapes");
+assert(
+  "nav groups animal-vision under Hidden Landscapes",
+  !!(hlFeature && hlFeature.match && hlFeature.match.includes("/apps/animal-vision"))
+);
 assert("nav match includes animal-vision", scenes.match.includes("/apps/animal-vision"));
 
 console.log("\nAll Animal Vision tests passed (" + passed + ").");

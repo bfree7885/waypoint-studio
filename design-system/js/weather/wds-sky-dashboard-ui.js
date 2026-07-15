@@ -269,10 +269,31 @@
     if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "loading");
 
     var req = WUISvc && WUISvc.buildRequest ? WUISvc.buildRequest(options) : options;
-    return W().getForecast(req).then(finish).catch(function () {
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var forecastPromise = W().getForecast(req);
+    var raced = Rel && Rel.raceForecast
+      ? Rel.raceForecast(forecastPromise)
+      : Promise.resolve(forecastPromise).catch(function () { return null; });
+
+    return raced.then(function (pkg) {
+      if (pkg) return finish(pkg);
+      var offline = Rel && !Rel.isOnline();
+      el.innerHTML = renderError(
+        offline ? "Sky data offline" : "Sky data temporarily unavailable",
+        offline
+          ? "You appear to be offline. Cached sun and moon data will appear when previously loaded."
+          : "Weather provider timed out or did not respond. Retry this block.",
+        kind === "photography-dashboard" ? "photography" : "astronomy"
+      );
+      el.removeAttribute("aria-busy");
+      if (WUISvc && widgetId) {
+        WUISvc.updateDashCardTag(root, widgetId, offline ? "offline" : "provider-unavailable");
+      }
+      return null;
+    }).catch(function () {
       el.innerHTML = renderError("Could not load live sky data", null, kind === "photography-dashboard" ? "photography" : "astronomy");
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "educational");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "error");
       return null;
     });
   }

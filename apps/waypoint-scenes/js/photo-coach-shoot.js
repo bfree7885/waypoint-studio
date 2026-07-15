@@ -1106,7 +1106,7 @@
           ? "<li><strong>Locations</strong> " + summary.locations.length + " GPS-tagged frame" +
             (summary.locations.length === 1 ? "" : "s") + "</li>"
           : "<li><strong>Locations</strong> Not available in this set</li>") +
-        "<li><strong>Weather</strong> " + escapeHtml((summary.weatherPlaceholder && summary.weatherPlaceholder.note) || "Future") + "</li>" +
+        "<li><strong>Weather</strong> " + escapeHtml((summary.weatherPlaceholder && summary.weatherPlaceholder.note) || "Weather context links when outdoor intelligence is available for the shoot.") + "</li>" +
       "</ul>";
 
     var insights = (summary.sessionInsights || []).map(function (row) {

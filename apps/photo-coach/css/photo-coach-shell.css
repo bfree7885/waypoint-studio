@@ -602,6 +602,10 @@
   display: none !important;
 }
 
+.coach-compare-mount[hidden] {
+  display: none !important;
+}
+
 .pc-shell .coach-field-mount,
 .pc-shell .coach-history-mount,
 .pc-shell .coach-notes-mount,

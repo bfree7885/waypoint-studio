@@ -169,6 +169,7 @@
     "milky-way": "astronomy",
     aurora: "astronomy",
     "planet-visibility": "astronomy",
+    "visible-planets": "astronomy",
     "iss-passes": "astronomy",
     "meteor-showers": "astronomy",
     "dark-sky-rating": "astronomy",
@@ -181,8 +182,11 @@
     "uv-index": "safety",
     "conservation-news": "conservation",
     "volunteer-events": "conservation",
+    "volunteer-opportunities": "conservation",
     "invasive-watch": "conservation",
-    "restoration-projects": "conservation"
+    "invasive-species-alerts": "conservation",
+    "restoration-projects": "conservation",
+    "habitat-projects": "conservation"
   };
 
   function escapeHtml(str) {
@@ -214,23 +218,75 @@
     return CATEGORY_TOPICS[category] || category || "weather";
   }
 
+  function Rel() {
+    return global.WDS && global.WDS.dashboardReliability;
+  }
+
+  function opsBadge(state) {
+    var R = Rel();
+    if (R && R.tagFor) return R.tagFor(state).label;
+    if (state === "loading") return "Loading";
+    if (state === "offline") return "Offline";
+    if (state === "cached") return "Cached";
+    if (state === "partial") return "Partial";
+    if (state === "error") return "Error";
+    return "Provider Unavailable";
+  }
+
+  function opsWhy(title, state, options) {
+    var R = Rel();
+    options = options || {};
+    if (state === "loading") {
+      return R && R.waitingCopy
+        ? R.waitingCopy(options.mountKind)
+        : "Waiting for outdoor data…";
+    }
+    if (R && R.unavailableCopy) {
+      return R.unavailableCopy(options.mountKind, { state: state });
+    }
+    if (state === "offline") return "You appear to be offline.";
+    if (state === "cached") return "Showing the last known conditions from this device.";
+    return "Provider temporarily unavailable for " + title + ".";
+  }
+
+  function opsNote(state, options) {
+    options = options || {};
+    if (state === "loading") {
+      return "This block hydrates independently and will settle to Live, Partial, Cached, Offline, or Provider Unavailable.";
+    }
+    if (state === "offline") {
+      return "Reconnect to refresh live providers. Other dashboard blocks continue when offline caches exist.";
+    }
+    if (state === "cached") {
+      var age = Rel() && Rel().ageLabel ? Rel().ageLabel(options.updatedAt) : null;
+      return (age ? age + ". " : "") + "Values may be out of date until a live provider responds.";
+    }
+    if (state === "partial") {
+      return "Some providers succeeded; others timed out or failed. Retry individual blocks or wait for the next refresh.";
+    }
+    if (state === "error") {
+      return "A hard error occurred for this provider. Retry this block — other blocks are unaffected.";
+    }
+    return "Upstream provider did not return usable data in this load cycle. Other dashboard blocks continue to render.";
+  }
+
   function render(topicKey, options) {
     options = options || {};
     var topic = resolveTopic(topicKey);
     var title = topic && topic.title ? topic.title : "Outdoor data";
-    var loading = !!options.pendingLive;
+    var R = Rel();
+    var state = R && R.resolveOperationalState
+      ? R.resolveOperationalState(options)
+      : (options.pendingLive ? "loading" : "provider-unavailable");
+    var loading = state === "loading";
     return (
-      '<div class="wdb-edu-fallback wdb-edu-fallback--ops" role="region" aria-label="' + escapeHtml(title) + ' — operational status" aria-busy="' + (loading ? "true" : "false") + '">' +
-        '<span class="wdb-edu-fallback__badge">' + (loading ? "Loading" : "Unavailable") + "</span>" +
+      '<div class="wdb-edu-fallback wdb-edu-fallback--ops" data-ops-state="' + escapeHtml(state) + '" role="region" aria-label="' + escapeHtml(title) + ' — operational status" aria-busy="' + (loading ? "true" : "false") + '">' +
+        '<span class="wdb-edu-fallback__badge">' + escapeHtml(opsBadge(state)) + "</span>" +
         '<p class="wdb-edu-fallback__why"><strong>' + escapeHtml(title) + ':</strong> ' +
-          (loading
-            ? "Resolving live provider for this block…"
-            : "Data currently unavailable") +
+          escapeHtml(opsWhy(title, state, options)) +
         "</p>" +
         '<p class="wdb-edu-fallback__live-note">' +
-          (loading
-            ? "This block hydrates independently and will settle to Live, Estimated, or Unavailable."
-            : "Upstream provider did not return usable data in this load cycle. Other dashboard blocks continue to render.") +
+          escapeHtml(opsNote(state, options)) +
         "</p>" +
       "</div>"
     );
@@ -239,12 +295,18 @@
   function renderPending(topicKey, options) {
     options = options || {};
     options.pendingLive = true;
+    options.state = "loading";
     return render(topicKey, options);
   }
 
   function renderUnavailable(topicKey, options) {
     options = options || {};
     options.pendingLive = false;
+    if (!options.state) {
+      var R = Rel();
+      if (R && !R.isOnline()) options.state = "offline";
+      else options.state = "provider-unavailable";
+    }
     return render(topicKey, options);
   }
 
@@ -252,24 +314,35 @@
     options = options || {};
     var topic = topicForWidget(options.widgetId, topicKey);
     topic = topicKey && TOPICS[topicKey] ? topicKey : topic;
+    var R = Rel();
+    var state = R && R.resolveOperationalState
+      ? R.resolveOperationalState(options)
+      : (options.pendingLive ? "loading" : "provider-unavailable");
+    var tag = R && R.tagFor ? R.tagFor(state) : {
+      label: state === "loading" ? "Loading" : "Provider Unavailable",
+      className: state === "loading" ? "wdb-widget__tag--loading" : "wdb-widget__tag--unavailable"
+    };
     return {
-      status: options.pendingLive ? "loading" : "unavailable",
-      tag: options.pendingLive
-        ? { label: "Loading", className: "wdb-widget__tag--editorial" }
-        : { label: "Unavailable", className: "wdb-widget__tag--unavailable" },
+      status: state === "loading" ? "loading" : "unavailable",
+      tag: tag,
       summary: options.summary || resolveTopic(topic).title,
       educationalTopic: topic,
       educationalHtml: render(topic, options),
-      body: options.pendingLive ? "Resolving live provider…" : "Data currently unavailable"
+      body: opsWhy(resolveTopic(topic).title, state, options),
+      opsState: state
     };
   }
 
   function mountHtml(mountKind, options) {
+    options = options || {};
+    options.mountKind = mountKind;
     return renderPending(topicForMount(mountKind), options);
   }
 
   function tagEducational() {
-    return { label: "Unavailable", className: "wdb-widget__tag--unavailable" };
+    var R = Rel();
+    if (R && R.tagFor) return R.tagFor("provider-unavailable");
+    return { label: "Provider Unavailable", className: "wdb-widget__tag--unavailable" };
   }
 
   global.WDS = global.WDS || {};

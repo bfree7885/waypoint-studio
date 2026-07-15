@@ -148,14 +148,34 @@
     }
   }
 
+  function Rel() {
+    return global.WDS && global.WDS.dashboardReliability;
+  }
+
   function tagFromSource(source) {
+    var R = Rel();
+    if (R && R.tagFor) {
+      if (source === "unavailable") return R.tagFor("provider-unavailable");
+      if (source === "placeholder") return R.tagFor("estimated");
+      if (source === "success") return R.tagFor("live");
+      if (TAGS_SOURCE_OK(source)) return R.tagFor(source);
+    }
     if (source === "live") return { label: "Live", className: "wdb-widget__tag--live" };
+    if (source === "loading") return { label: "Loading", className: "wdb-widget__tag--loading" };
     if (source === "estimated") return { label: "Estimated", className: "wdb-widget__tag--estimated" };
-    if (source === "unavailable") return { label: "Not yet available", className: "wdb-widget__tag--unavailable" };
+    if (source === "unavailable") return { label: "Provider Unavailable", className: "wdb-widget__tag--unavailable" };
     if (source === "placeholder") return { label: "Estimated", className: "wdb-widget__tag--estimated" };
     if (source === "local") return { label: "Local", className: "wdb-widget__tag--local" };
-    if (source === "editorial") return { label: "Editorial", className: "wdb-widget__tag--editorial" };
+    if (source === "editorial") return { label: "Regional", className: "wdb-widget__tag--editorial" };
+    if (source === "partial") return { label: "Partial", className: "wdb-widget__tag--partial" };
+    if (source === "cached") return { label: "Cached", className: "wdb-widget__tag--cached" };
+    if (source === "offline") return { label: "Offline", className: "wdb-widget__tag--offline" };
+    if (source === "error") return { label: "Error", className: "wdb-widget__tag--error" };
     return { label: "Estimated", className: "wdb-widget__tag--estimated" };
+  }
+
+  function TAGS_SOURCE_OK(source) {
+    return /^(live|loading|estimated|partial|cached|offline|error|local|editorial|provider-unavailable)$/.test(String(source || ""));
   }
 
   function tagFromSlice(slice) {
@@ -174,20 +194,24 @@
   }
 
   function liveMount(kind, summary) {
+    var R = Rel();
+    var waiting = R && R.waitingCopy ? R.waitingCopy(kind) : "Waiting for outdoor data…";
     return {
       status: "loading",
       mountKind: kind,
-      tag: tagFromSource("live"),
-      summary: summary || "Loading live data…"
+      tag: tagFromSource("loading"),
+      summary: summary || waiting
     };
   }
 
   function intelMount(kind, summary) {
+    var R = Rel();
+    var waiting = R && R.waitingCopy ? R.waitingCopy(kind) : "Waiting for outdoor data…";
     return {
       status: "loading",
       mountKind: kind,
-      tag: { label: "Loading", className: "wdb-widget__tag--editorial" },
-      summary: summary || "Loading outdoor intelligence…"
+      tag: tagFromSource("loading"),
+      summary: summary || waiting
     };
   }
 
@@ -208,9 +232,9 @@
     var topic = EF && EF.topicFromCategory ? EF.topicFromCategory(category) : "weather";
     var data = {
       status: "unavailable",
-      tag: tagFromSource("unavailable"),
-      summary: summary || "Data currently unavailable",
-      body: detail || "Data currently unavailable"
+      tag: tagFromSource("provider-unavailable"),
+      summary: summary || "Provider temporarily unavailable",
+      body: detail || "Provider temporarily unavailable"
     };
     if (EF && EF.widgetData) {
       var edu = EF.widgetData(topic, { summary: summary, widgetId: category, pendingLive: false });

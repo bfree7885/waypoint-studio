@@ -32,7 +32,6 @@ apps/scenes/
   photographer-profile/      # module landing → live profile
   data/experiences.json      # shared experience catalog
   css/scenes-home.css
-  js/scenes-platform.js      # optional catalog helpers (experiences.json)
   js/engines/                # interface-only engines
   assets/media/              # shared photography for the platform UI
   docs/ARCHITECTURE.md

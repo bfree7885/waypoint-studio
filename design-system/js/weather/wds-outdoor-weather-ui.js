@@ -123,23 +123,28 @@
     return "";
   }
 
-  function eduPanel(pending) {
+  function eduPanel(pending, opts) {
     var EF = global.WDS && global.WDS.educationalFallback;
-    return EF ? (pending ? EF.renderPending("weather") : EF.render("weather")) : "";
+    if (!EF) return "";
+    opts = opts || {};
+    opts.mountKind = "outdoor-weather";
+    if (pending) return EF.renderPending("weather", opts);
+    return EF.renderUnavailable("weather", opts);
   }
 
   function renderLoading() {
     return eduPanel(true) || (
-      '<div class="wow wow--loading" aria-busy="true" aria-label="Loading outdoor weather">' +
-        '<p class="wow__loading-text">Loading live outdoor conditions…</p>' +
+      '<div class="wow wow--loading" aria-busy="true" aria-label="Waiting for weather provider">' +
+        '<p class="wow__loading-text">Waiting for weather provider…</p>' +
       "</div>"
     );
   }
 
-  function renderError(detail) {
-    return eduPanel(false) || (
+  function renderError(detail, opts) {
+    opts = opts || {};
+    return eduPanel(false, opts) || (
       '<div class="wow wow--error" role="alert">' +
-        '<p class="wow__error-title">Outdoor weather unavailable</p>' +
+        '<p class="wow__error-title">Weather temporarily unavailable</p>' +
         '<p class="wow__error-detail">' +
           escapeHtml(detail || "We could not load live forecast data. Check your connection or try again. We never show invented weather.") +
         "</p>" +
@@ -318,28 +323,50 @@
         null;
     }
 
-    function finish(pkg) {
+    function finish(pkg, reason) {
+      var Rel = global.WDS && global.WDS.dashboardReliability;
+      var platform = options.platform ||
+        (options.intelligence && options.intelligence.outdoorIntelligence) || null;
+      var trust = platform && Rel && Rel.classifyPackageTrust
+        ? Rel.classifyPackageTrust(platform)
+        : null;
+
       if (isLive(pkg)) {
         el.innerHTML = render(pkg, options.platform);
         el.removeAttribute("aria-busy");
         if (WUISvc && widgetId) {
-          WUISvc.updateDashCardTag(root, widgetId, "live");
+          var liveState = trust === "partial" ? "partial" : (trust === "cached" ? "cached" : "live");
+          WUISvc.updateDashCardTag(root, widgetId, liveState);
           var sum = summaryFromPackage(pkg);
           if (sum && WUISvc.updateWidgetSummary) WUISvc.updateWidgetSummary(root, widgetId, sum);
         }
         return pkg;
       }
-      var platform = options.platform ||
-        (options.intelligence && options.intelligence.outdoorIntelligence) || null;
       if (platform && platform.weather && platform.weather.status === "editorial") {
         el.innerHTML = renderEditorial(platform);
         el.removeAttribute("aria-busy");
         if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "editorial");
         return null;
       }
-      el.innerHTML = renderError();
+      var failState = "provider-unavailable";
+      if (Rel && !Rel.isOnline()) failState = "offline";
+      else if (reason === "timeout") failState = "provider-unavailable";
+      else if (reason === "error") failState = "error";
+      else if (trust === "offline") failState = "offline";
+      else if (trust === "cached") failState = "cached";
+      el.innerHTML = renderError(
+        failState === "offline"
+          ? "You appear to be offline. Weather will refresh when connection returns."
+          : (reason === "timeout"
+            ? "Weather provider timed out. Retry this block or wait for the next refresh."
+            : null),
+        {
+          state: failState,
+          updatedAt: platform && platform.meta && platform.meta.hydratedAt
+        }
+      );
       el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "unavailable");
+      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, failState);
       return null;
     }
 
@@ -351,7 +378,7 @@
       return Promise.resolve(finish(null));
     }
     if (!weatherApi || typeof weatherApi.getForecast !== "function") {
-      return Promise.resolve(finish(null));
+      return Promise.resolve(finish(null, "error"));
     }
 
     el.setAttribute("aria-busy", "true");
@@ -363,28 +390,39 @@
     try {
       forecastPromise = weatherApi.getForecast(req);
     } catch (err) {
-      return Promise.resolve(finish(null));
+      return Promise.resolve(finish(null, "error"));
+    }
+    var RelRace = global.WDS && global.WDS.dashboardReliability;
+    var race = RelRace && RelRace.raceForecast
+      ? RelRace.raceForecast(forecastPromise)
+      : null;
+    if (race) {
+      return race.then(function (pkg) {
+        return finish(pkg, pkg ? null : "timeout");
+      });
     }
     var timed = new Promise(function (resolve) {
       var settled = false;
       var timer = setTimeout(function () {
         if (settled) return;
         settled = true;
-        resolve(null);
+        resolve({ pkg: null, reason: "timeout" });
       }, 8000);
       Promise.resolve(forecastPromise).then(function (pkg) {
         if (settled) return;
         settled = true;
         clearTimeout(timer);
-        resolve(pkg);
+        resolve({ pkg: pkg, reason: null });
       }).catch(function () {
         if (settled) return;
         settled = true;
         clearTimeout(timer);
-        resolve(null);
+        resolve({ pkg: null, reason: "error" });
       });
     });
-    return timed.then(finish);
+    return timed.then(function (result) {
+      return finish(result.pkg, result.reason);
+    });
   }
 
   global.WDS = global.WDS || {};

@@ -56,21 +56,38 @@
     );
   }
 
+  function close(container) {
+    var el = container || document.getElementById("coach-compare-mount");
+    if (!el) return;
+    el.innerHTML = "";
+    el.hidden = true;
+    el.setAttribute("aria-hidden", "true");
+  }
+
   function mount(container, sessionA, sessionB) {
     if (!container) return;
     container.innerHTML = renderCompare(sessionA, sessionB);
     container.hidden = false;
-    var close = container.querySelector(".coach-compare__close");
-    if (close) {
-      close.onclick = function () {
-        container.innerHTML = "";
-        container.hidden = true;
+    container.removeAttribute("aria-hidden");
+    var closeBtn = container.querySelector(".coach-compare__close");
+    if (closeBtn) {
+      closeBtn.onclick = function () {
+        close(container);
       };
+    }
+    if (!container._compareEscBound) {
+      container._compareEscBound = true;
+      document.addEventListener("keydown", function (ev) {
+        if (ev.key === "Escape" && container && !container.hidden) {
+          close(container);
+        }
+      });
     }
   }
 
   global.WaypointPhotoCoachCompare = {
     mount: mount,
+    close: close,
     renderCompare: renderCompare
   };
 })(window);

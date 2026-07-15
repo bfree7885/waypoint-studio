@@ -267,6 +267,7 @@
   function mountWidgets(root, options) {
     if (!root) return Promise.resolve();
     options = options || {};
+    var Rel = global.WDS && global.WDS.dashboardReliability;
     var weatherOpts = {
       location: options.location,
       hints: options.hints,
@@ -290,7 +291,13 @@
         platform: options.platform
       })));
     }
-    return Promise.all(jobs).then(function () {
+    var deadline = Rel && Rel.MOUNT_JOB_DEADLINE_MS != null ? Rel.MOUNT_JOB_DEADLINE_MS : 12000;
+    var guarded = jobs.map(function (job) {
+      return Rel && Rel.withDeadline ? Rel.withDeadline(job, deadline) : Promise.resolve(job).then(function (v) {
+        return { ok: true, value: v };
+      });
+    });
+    return Promise.all(guarded).then(function () {
       var BP = global.WDS && global.WDS.briefingPackage;
       if (BP && BP.refresh) {
         BP.refresh(root, {
@@ -299,49 +306,112 @@
           bundle: options.bundle
         });
       }
+      applyPlatformTrustBadges(root, options.platform);
+    }).finally(function () {
+      settleStaleMounts(root, options);
     });
+  }
+
+  function applyPlatformTrustBadges(root, platform) {
+    if (!root || !platform || !platform.meta) return;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    if (!Rel || !Rel.classifyPackageTrust) return;
+    var trust = Rel.classifyPackageTrust(platform);
+    if (trust !== "partial" && trust !== "cached" && trust !== "offline") return;
+    var WUI = global.WDS && global.WDS.weatherUI;
+    if (!WUI || !WUI.updateWidgetTag) return;
+    var nodes = root.querySelectorAll("[data-widget-id] .wdb-widget__tag--live");
+    for (var i = 0; i < nodes.length; i++) {
+      var article = nodes[i].closest("[data-widget-id]");
+      if (!article) continue;
+      WUI.updateWidgetTag(root, article.getAttribute("data-widget-id"), trust);
+    }
+  }
+
+  /** After mount jobs finish, never leave widgets stuck on Loading. */
+  function settleStaleMounts(root, options) {
+    var EF = global.WDS && global.WDS.educationalFallback;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    if (!root || !EF || !EF.renderUnavailable) return;
+    var state = "provider-unavailable";
+    if (Rel && !Rel.isOnline()) state = "offline";
+    else if (options && options.platform && Rel && Rel.classifyPackageTrust) {
+      var trust = Rel.classifyPackageTrust(options.platform);
+      if (trust === "offline" || trust === "cached") state = trust;
+    }
+    var mounts = root.querySelectorAll("[data-wds-weather-mount][aria-busy='true']");
+    for (var i = 0; i < mounts.length; i++) {
+      var mount = mounts[i];
+      var kind = mount.getAttribute("data-wds-weather-mount") || "";
+      var topic = EF.topicForMount ? EF.topicForMount(kind) : "weather";
+      var updatedAt = options && options.platform && options.platform.meta
+        ? options.platform.meta.hydratedAt
+        : null;
+      mount.innerHTML = EF.renderUnavailable(topic, {
+        state: state,
+        mountKind: kind,
+        updatedAt: updatedAt
+      });
+      mount.removeAttribute("aria-busy");
+      var article = mount.closest("[data-widget-id]");
+      if (article) {
+        var tag = article.querySelector(".wdb-widget__tag");
+        if (tag) {
+          var info = Rel && Rel.tagFor ? Rel.tagFor(state) : {
+            label: "Provider Unavailable",
+            className: "wdb-widget__tag--unavailable"
+          };
+          tag.textContent = info.label;
+          tag.className = "wdb-widget__tag " + info.className;
+        }
+      }
+    }
   }
 
   function refreshWidget(root, widgetId, options) {
     if (!root || !widgetId) return Promise.resolve();
+    options = options || {};
     var article = root.querySelector('[data-widget-id="' + widgetId + '"]');
     if (!article) return Promise.resolve();
     var mount = article.querySelector("[data-wds-weather-mount]");
+    var job = Promise.resolve();
     if (mount) {
       var kind = mount.getAttribute("data-wds-weather-mount");
       if (kind === "outdoor-weather" && global.WDS.outdoorWeatherUI && global.WDS.outdoorWeatherUI.mount) {
-        return global.WDS.outdoorWeatherUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "sun-moon-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountSunMoon) {
-        return global.WDS.skyDashboardUI.mountSunMoon(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "photography-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountPhotography) {
-        return global.WDS.skyDashboardUI.mountPhotography(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "wildlife-dashboard" && global.WDS.wildlifeDashboardUI && global.WDS.wildlifeDashboardUI.mount) {
-        return global.WDS.wildlifeDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "trail-dashboard" && global.WDS.trailDashboardUI && global.WDS.trailDashboardUI.mount) {
-        return global.WDS.trailDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "water-dashboard" && global.WDS.waterDashboardUI && global.WDS.waterDashboardUI.mount) {
-        return global.WDS.waterDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "flora-dashboard" && global.WDS.floraDashboardUI && global.WDS.floraDashboardUI.mount) {
-        return global.WDS.floraDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "foraging-dashboard" && global.WDS.foragingDashboardUI && global.WDS.foragingDashboardUI.mount) {
-        return global.WDS.foragingDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (kind === "safety-dashboard" && global.WDS.safetyDashboardUI && global.WDS.safetyDashboardUI.mount) {
-        return global.WDS.safetyDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
-      }
-      if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
+        job = global.WDS.outdoorWeatherUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "sun-moon-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountSunMoon) {
+        job = global.WDS.skyDashboardUI.mountSunMoon(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "photography-dashboard" && global.WDS.skyDashboardUI && global.WDS.skyDashboardUI.mountPhotography) {
+        job = global.WDS.skyDashboardUI.mountPhotography(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "wildlife-dashboard" && global.WDS.wildlifeDashboardUI && global.WDS.wildlifeDashboardUI.mount) {
+        job = global.WDS.wildlifeDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "trail-dashboard" && global.WDS.trailDashboardUI && global.WDS.trailDashboardUI.mount) {
+        job = global.WDS.trailDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "water-dashboard" && global.WDS.waterDashboardUI && global.WDS.waterDashboardUI.mount) {
+        job = global.WDS.waterDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "flora-dashboard" && global.WDS.floraDashboardUI && global.WDS.floraDashboardUI.mount) {
+        job = global.WDS.floraDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "foraging-dashboard" && global.WDS.foragingDashboardUI && global.WDS.foragingDashboardUI.mount) {
+        job = global.WDS.foragingDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (kind === "safety-dashboard" && global.WDS.safetyDashboardUI && global.WDS.safetyDashboardUI.mount) {
+        job = global.WDS.safetyDashboardUI.mount(mount, Object.assign({}, options, { root: article }));
+      } else if (global.WDS && global.WDS.weatherUI && global.WDS.weatherUI.mountAll) {
         var weatherOpts = Object.assign({}, options, { root: article });
-        return global.WDS.weatherUI.mountAll(article, weatherOpts);
+        job = global.WDS.weatherUI.mountAll(article, weatherOpts);
+      } else {
+        job = refreshDashboard(root, options);
       }
+    } else {
+      job = refreshDashboard(root, options);
     }
-    return refreshDashboard(root, options);
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var deadline = Rel && Rel.MOUNT_JOB_DEADLINE_MS != null ? Rel.MOUNT_JOB_DEADLINE_MS : 12000;
+    var guarded = Rel && Rel.withDeadline ? Rel.withDeadline(job, deadline) : Promise.resolve(job).then(function (v) {
+      return { ok: true, value: v };
+    });
+    return guarded.finally(function () {
+      settleStaleMounts(article, options);
+    });
   }
 
   function bindInteractions(root) {
@@ -433,6 +503,7 @@
     refreshGrid: refreshGrid,
     refreshDashboard: refreshDashboard,
     refreshWidget: refreshWidget,
+    settleStaleMounts: settleStaleMounts,
     buildContext: buildContext
   };
 })(window);

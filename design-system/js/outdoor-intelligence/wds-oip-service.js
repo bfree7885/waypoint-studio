@@ -338,6 +338,14 @@
       trailConditions: trailPkg && trailPkg.status === "live" ? "live" :
         (trailPkg && trailPkg.status === "empty" ? "empty" : "unavailable")
     };
+    if (trailPkg && trailPkg.meta) {
+      if (trailPkg.meta.cached || trailPkg.meta.stale) {
+        pkg.meta.fromCache = true;
+        pkg.meta.stale = !!trailPkg.meta.stale;
+      }
+    }
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(pkg);
     lastPackage = pkg;
     M.devLog("get complete", pkg.region.label, pkg.location.source, pkg.weather.status);
     var RI = global.WDS && global.WDS.researchIntegrity;
@@ -348,6 +356,43 @@
     return pkg;
   }
 
+  function applyTrailSlice(pkg, trailPkg) {
+    if (!pkg || !pkg.meta) return pkg;
+    pkg.trailConditions = trailPkg || null;
+    if (!pkg.meta.blockStatus) pkg.meta.blockStatus = {};
+    if (!pkg.meta.moduleSources) pkg.meta.moduleSources = {};
+    if (!pkg.meta.sources) pkg.meta.sources = {};
+    if (trailPkg && trailPkg.status === "live") {
+      pkg.meta.blockStatus.trailConditions = "live";
+      pkg.meta.moduleSources.trailConditions = "openstreetmap-overpass (user)";
+      pkg.meta.sources.trailConditions = trailPkg.provider || "openstreetmap-overpass";
+    } else if (trailPkg && trailPkg.status === "empty") {
+      pkg.meta.blockStatus.trailConditions = "empty";
+      pkg.meta.moduleSources.trailConditions = "openstreetmap-empty (user)";
+      pkg.meta.sources.trailConditions = trailPkg.provider || "openstreetmap-overpass";
+    } else {
+      pkg.meta.blockStatus.trailConditions = "unavailable";
+      pkg.meta.moduleSources.trailConditions = "unavailable";
+      pkg.meta.sources.trailConditions = "none";
+    }
+    if (trailPkg && trailPkg.meta && (trailPkg.meta.cached || trailPkg.meta.stale)) {
+      pkg.meta.fromCache = true;
+      pkg.meta.stale = !!trailPkg.meta.stale;
+    }
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(pkg);
+    return pkg;
+  }
+
+  function scheduleTrailEnrichment(req, core, generation) {
+    settleProvider(resolveTrails(req, core), "trailConditions", 75000).then(function (trailPkg) {
+      if (generation !== activeGeneration || !lastPackage) return;
+      applyTrailSlice(lastPackage, trailPkg);
+      M.devLog("trails late hydrate", trailPkg && trailPkg.status);
+      notifyChange(lastPackage);
+    });
+  }
+
   function enrichFromEngine(core, req, generation) {
     var national = req.location && (req.location.useNationalFallback || req.location.contentMode === "national-educational");
     var regionId = (core.meta && core.meta.contentBundleId) ||
@@ -355,73 +400,54 @@
       req.regionId;
 
     providerTelemetry = [];
+    // Trails stay off the critical Promise.all so weather/AQ/alerts can paint first.
     return Promise.all([
       settleProvider(resolveWeather(req, intelForWeather(core)), "weather"),
       settleProvider(resolveAlerts(req, core), "alerts"),
       settleProvider(resolveAirQuality(req, core), "airQuality"),
       settleProvider(resolveElevation(req, core), "elevation"),
-      settleProvider(resolveUsgsWater(req, core), "usgsWater"),
-      settleProvider(resolveTrails(req, core), "trailConditions", 75000)
+      settleProvider(resolveUsgsWater(req, core), "usgsWater")
     ]).then(function (parts) {
       var weatherPkg = parts[0];
       var alertsPkg = parts[1];
       var airQualityPkg = parts[2];
       var elevationPkg = parts[3];
       var usgsWaterPkg = parts[4];
-      var trailPkg = parts[5];
+      var trailPkg = null;
+
+      function finalizeAndSchedule(pkgBase) {
+        var pkg = finalizePlatformPackage(
+          pkgBase,
+          weatherPkg,
+          alertsPkg,
+          airQualityPkg,
+          elevationPkg,
+          usgsWaterPkg,
+          trailPkg,
+          req,
+          generation
+        );
+        if (pkg) scheduleTrailEnrichment(req, core, generation);
+        return pkg;
+      }
+
       if (national) {
         var UN = global.WDS && global.WDS.usNational;
         var layer = UN && UN.buildPlatformLayer ? UN.buildPlatformLayer(req.location) : {};
-        return finalizePlatformPackage(
-          M.normalizePackage(S.mergeLayers(core, layer)),
-          weatherPkg,
-          alertsPkg,
-          airQualityPkg,
-          elevationPkg,
-          usgsWaterPkg,
-          trailPkg,
-          req,
-          generation
-        );
+        return finalizeAndSchedule(M.normalizePackage(S.mergeLayers(core, layer)));
       }
       if (req.bundle) {
-        return finalizePlatformPackage(
-          M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(req.bundle))),
-          weatherPkg,
-          alertsPkg,
-          airQualityPkg,
-          elevationPkg,
-          usgsWaterPkg,
-          trailPkg,
-          req,
-          generation
+        return finalizeAndSchedule(
+          M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(req.bundle)))
         );
       }
       return loadBundle(regionId, req.contentEngineBase).then(function (bundle) {
-        return finalizePlatformPackage(
-          M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(bundle))),
-          weatherPkg,
-          alertsPkg,
-          airQualityPkg,
-          elevationPkg,
-          usgsWaterPkg,
-          trailPkg,
-          req,
-          generation
+        return finalizeAndSchedule(
+          M.normalizePackage(S.mergeLayers(core, S.fromPlatformExtensions(bundle)))
         );
       }).catch(function (err) {
         M.devLog("platform extensions failed — engine core only", err && err.message);
-        return finalizePlatformPackage(
-          M.normalizePackage(core),
-          weatherPkg,
-          alertsPkg,
-          airQualityPkg,
-          elevationPkg,
-          usgsWaterPkg,
-          trailPkg,
-          req,
-          generation
-        );
+        return finalizeAndSchedule(M.normalizePackage(core));
       });
     });
   }
@@ -431,6 +457,42 @@
     lastRequest = req;
     activeGeneration += 1;
     var generation = activeGeneration;
+    var Rel = global.WDS && global.WDS.dashboardReliability;
+    var online = Rel && Rel.isOnline ? Rel.isOnline() : true;
+
+    if (!online && lastPackage) {
+      var cached = M.normalizePackage(lastPackage);
+      cached.meta = cached.meta || {};
+      cached.meta.fromCache = true;
+      cached.meta.stale = true;
+      cached.meta.connectivity = "offline";
+      cached.meta.trust = "cached";
+      if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(cached);
+      M.devLog("offline — returning cached package");
+      notifyChange(cached);
+      return Promise.resolve(cached);
+    }
+    if (!online && !lastPackage) {
+      var empty = M.emptyPackage();
+      empty.meta.unavailable = true;
+      empty.meta.connectivity = "offline";
+      empty.meta.trust = "offline";
+      empty.meta.error = "offline-no-cache";
+      empty.meta.hydratedAt = new Date().toISOString();
+      empty.meta.blockStatus = {
+        weather: "unavailable",
+        alerts: "unavailable",
+        airQuality: "unavailable",
+        elevation: "unavailable",
+        usgsWater: "unavailable",
+        trailConditions: "unavailable"
+      };
+      empty.location.source = "unavailable";
+      if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(empty);
+      notifyChange(empty);
+      return Promise.resolve(empty);
+    }
+
     if (global.WDS && global.WDS.locationContext && global.WDS.locationContext.invalidateCaches) {
       if (req.location && req.location.refreshReason === "user-change") {
         global.WDS.locationContext.invalidateCaches();
@@ -444,10 +506,14 @@
       return enrichFromEngine(core, req, generation).then(function (pkg) {
         if (!pkg && lastPackage) {
           var stale = M.normalizePackage(lastPackage);
+          stale.meta = stale.meta || {};
+          stale.meta.fromCache = true;
+          stale.meta.stale = true;
           var PG = global.WDS && global.WDS.platformGuard;
           if (PG && PG.sanitizeUserPlatform) {
             stale = PG.sanitizeUserPlatform(stale, req.location);
           }
+          if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(stale);
           return stale;
         }
         return pkg;
@@ -460,6 +526,17 @@
         message: err && err.message ? err.message : "get failed",
         at: new Date().toISOString()
       });
+      if (lastPackage) {
+        var failedCache = M.normalizePackage(lastPackage);
+        failedCache.meta = failedCache.meta || {};
+        failedCache.meta.fromCache = true;
+        failedCache.meta.stale = true;
+        failedCache.meta.trust = "cached";
+        failedCache.meta.lastError = err && err.message ? String(err.message) : "oip-get-failed";
+        if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(failedCache);
+        notifyChange(failedCache);
+        return failedCache;
+      }
       // Do not silently substitute Pike County (or any default region) as the user's location.
       var pkg = M.emptyPackage();
       pkg.meta.unavailable = true;
@@ -477,6 +554,7 @@
       pkg.location.source = "unavailable";
       pkg.location.latitude = null;
       pkg.location.longitude = null;
+      if (Rel && Rel.applyConnectivityMeta) Rel.applyConnectivityMeta(pkg);
       lastPackage = pkg;
       notifyChange(pkg);
       return pkg;
