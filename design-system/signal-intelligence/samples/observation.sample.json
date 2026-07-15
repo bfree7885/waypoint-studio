@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "schema": "https://waypoint.studio/schemas/signal-intelligence/observation/v0.1",
+    "engineVersion": "0.1.0",
+    "status": "sample",
+    "createdAt": "2026-07-15T00:00:00.000Z",
+    "updatedAt": "2026-07-15T00:00:00.000Z",
+    "aiAssisted": false,
+    "disclaimer": "Educational sample only. Not a live advisory, outage, or spectrum detection."
+  },
+  "id": "sio_sample-space-weather-hf",
+  "domain": "infrastructure-intelligence",
+  "category": "infra.space-weather",
+  "taxonomyId": "infra.space-weather",
+  "source": {
+    "kind": "educational-example",
+    "label": "Educational space-weather vignette",
+    "url": null,
+    "accessedAt": null,
+    "reliability": "unknown"
+  },
+  "timestamp": {
+    "observedAt": "2026-07-15T12:00:00.000Z",
+    "reportedAt": null,
+    "windowStart": null,
+    "windowEnd": null
+  },
+  "location": {
+    "label": "Mid-latitude HF listeners (sample)",
+    "regionHint": "global-educational",
+    "precision": "region",
+    "notes": "Composite teaching example — no site claim."
+  },
+  "severity": "notice",
+  "attention": {
+    "level": "learn",
+    "focus": "Possible HF radio impacts during elevated space weather",
+    "whyItMatters": "Geomagnetic activity can change HF propagation — useful for amateur radio literacy and receiver expectations.",
+    "whatChanged": "Sample narrative: conditions may be more disturbed than a quiet-week baseline.",
+    "calmGuidance": "If you operate HF, expect variable paths; keep notes. No need for emergency framing from this sample alone."
+  },
+  "summary": "Elevated space weather may affect HF radio conditions for careful listeners.",
+  "explanation": "Space weather couples the Sun–Earth environment to ionospheric behavior. For Signal Intelligence, the educational goal is to notice when radio openings or closures might relate to geomagnetic conditions — and to cross-link Outdoor Intelligence later — without inventing outages or panic.",
+  "confidence": {
+    "level": "speculative",
+    "evidenceQuality": "unknown",
+    "freshness": "unknown",
+    "sourceReliability": "unknown",
+    "rationale": "Sample vignette with no live bulletin attached; ceiling forced to speculative.",
+    "score": null
+  },
+  "threatContext": {
+    "phase": "seasonal-trends",
+    "patternNote": "Solar and geomagnetic activity wax and wane; treat any single day as provisional without a cited bulletin.",
+    "seasonHint": "Solar-cycle dependent — not a calendar season alone."
+  },
+  "evidence": [
+    {
+      "text": "Illustrative link between space weather and HF propagation used in teaching packs.",
+      "quality": "secondary",
+      "url": null
+    }
+  ],
+  "relatedObservationIds": [],
+  "historicalComparison": {
+    "summary": "Quiet-week baselines often show steadier HF night openings than disturbed periods — teaching contrast only.",
+    "baselinePeriod": "illustrative quiet week",
+    "direction": "unknown"
+  },
+  "unknowns": [
+    "No live Kp/Ap or flare class attached to this sample.",
+    "Regional path effects are not modeled here."
+  ],
+  "conflicts": [],
+  "attentionHints": ["radio-propagation"],
+  "consumers": ["signalterrain", "scenes", "outdoor-intelligence", "education"],
+  "legalEthicsNotes": "Receive and transmit only within your license and local law."
+}

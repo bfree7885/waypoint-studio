@@ -1,5 +1,5 @@
 {
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Waypoint Studio product registry — core instruments, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
@@ -62,22 +62,35 @@
     "signal-intelligence": {
       "id": "signal-intelligence",
       "name": "Signal Intelligence",
-      "status": "planned",
-      "purpose": "Observe invisible environments: RF spectrum awareness and educational cyber situational awareness — not an enterprise SOC.",
+      "status": "architecture",
+      "version": "0.1.0",
+      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions — not an enterprise SOC.",
+      "designNotes": "v0.1 observation schema, taxonomy (RF/cyber/infrastructure), confidence, threat-context phases, and adaptive attention only. No dashboards, live APIs, monitoring, SDR UI, or cybersecurity tools.",
+      "package": "design-system/signal-intelligence/",
       "capabilityGroups": {
         "rf-intelligence": {
           "label": "RF Intelligence",
           "status": "foundation-partial",
-          "examples": ["SDR", "NOAA", "Amateur Radio", "ADS-B", "AIS", "Satellites", "Spectrum Monitoring", "Signal Logging"]
+          "examples": ["SDR", "NOAA", "Amateur Radio", "ADS-B", "AIS", "Satellites", "Spectrum Monitoring", "Signal Logging", "Propagation"]
         },
         "cyber-intelligence": {
           "label": "Cyber Intelligence",
           "status": "planned",
-          "examples": ["CVE tracking", "Zero-day monitoring", "Threat campaigns", "Ransomware activity", "Vulnerability prioritization", "Vendor advisories", "Patch recommendations", "ISP outages", "DNS incidents", "BGP disruptions", "Security awareness dashboard"]
+          "examples": ["CVE tracking", "Zero-day monitoring", "Threat campaigns", "Ransomware activity", "Vulnerability prioritization", "Vendor advisories", "Patch recommendations", "ISP outages", "DNS incidents", "BGP disruptions"]
+        },
+        "infrastructure-intelligence": {
+          "label": "Infrastructure Intelligence",
+          "status": "planned",
+          "examples": ["Internet outages", "Cloud provider status", "CDN disruptions", "GPS interference", "Space weather impacts", "Cellular network issues"]
         }
       },
-      "plannedConsumers": ["signalterrain"],
-      "docs": "docs/PLATFORM-ENGINES.md"
+      "plannedConsumers": ["signalterrain", "studio", "scenes", "education"],
+      "docs": [
+        "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
+        "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
+        "docs/PLATFORM-ENGINES.md",
+        "docs/SIGNALTERRAIN_PLAYBOOK.md"
+      ]
     }
   },
   "contentFiles": {
@@ -138,7 +151,7 @@
       "photographyLayout": "gallery-grid",
       "citizenScience": { "enabled": true, "optIn": true },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["landscape-interpretation"],
+      "plannedSharedEngines": ["landscape-interpretation", "signal-intelligence"],
       "sharedEngines": ["outdoor-intelligence", "species-knowledge", "phenology", "mapping-observation"]
     },
     "scenes": {
@@ -168,7 +181,7 @@
       "citizenScience": { "enabled": true, "optIn": true },
       "contentEngineRegion": "pike-county-pa",
       "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages",
-      "plannedSharedEngines": ["landscape-interpretation"],
+      "plannedSharedEngines": ["landscape-interpretation", "signal-intelligence"],
       "sharedEngines": ["photo-intelligence", "outdoor-intelligence"]
     },
     "foragecast": {
@@ -342,7 +355,7 @@
     "signalterrain": {
       "slug": "signalterrain",
       "portfolioTier": "module",
-      "portfolioRole": "Observatory for invisible environments — Signal Intelligence home (RF foundation; Cyber planned)",
+      "portfolioRole": "Observatory for invisible environments — Signal Intelligence home (engine architecture v0.1)",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
       "hero": "Observe what you cannot see",
@@ -368,7 +381,7 @@
       "citizenScience": { "enabled": true, "optIn": true },
       "contentEngineRegion": "pike-county-pa",
       "plannedSharedEngines": ["signal-intelligence"],
-      "sharedEngines": ["mapping-observation", "signal-intelligence"]
+      "sharedEngines": ["mapping-observation"]
     },
     "terrainbound": {
       "slug": "terrainbound",

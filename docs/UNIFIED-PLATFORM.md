@@ -30,7 +30,7 @@ The platform is designed around curiosity, learning, and calm craft — not popu
 |---------|------|----------------|
 | Sheds | `apps/shed-hunting/` | FindRecord, cervid species catalog |
 | Steepleaf | `apps/steepleaf/` | TeaEntry, BrewSession |
-| SignalTerrain | `apps/signalterrain/` | Receiver, Incident — home for **Signal Intelligence** (RF now; Cyber planned) |
+| SignalTerrain | `apps/signalterrain/` | Receiver, Incident — home for **Signal Intelligence** (architecture v0.1) |
 | Savant Sommelier | `apps/savant-sommelier/` | PropertySite, Winery, Wine |
 
 These are **real foundations** (landing, modules, data models, routes) — not finished products and not disposable stubs.
@@ -44,7 +44,7 @@ See [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md). Registry: `sharedEngines` in `de
 | Engine | Status | Primary future consumers |
 |--------|--------|--------------------------|
 | Landscape Interpretation | Architecture v0.1 (schemas/rules; no runtime UI) | Dashboard, Fieldry, ForageCast, Sheds, Scenes, Education |
-| Signal Intelligence (RF + Cyber) | Planned capability frame | SignalTerrain |
+| Signal Intelligence (RF + Cyber + Infrastructure) | Architecture v0.1 (schemas; no runtime UI) | SignalTerrain (+ Dashboard/Scenes later) |
 
 No runtime engines or placeholder UIs are implied by this section.
 

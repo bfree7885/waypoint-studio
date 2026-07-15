@@ -41,8 +41,17 @@
     {
       "id": "signal-intelligence",
       "label": "Signal Intelligence",
-      "description": "Planned shared framing for RF and educational cyber situational awareness (SignalTerrain home). Categories reserved for future packs — no fabricated threat content.",
-      "categories": ["rf-intelligence", "cyber-intelligence", "spectrum", "advisories", "infrastructure-incidents"]
+      "description": "Shared engine architecture v0.1: educational RF, cyber, and infrastructure situational awareness (SignalTerrain home). Schemas in design-system/signal-intelligence/ — no live monitoring or SOC tooling.",
+      "categories": [
+        "rf-intelligence",
+        "cyber-intelligence",
+        "infrastructure-intelligence",
+        "spectrum",
+        "advisories",
+        "infrastructure-incidents",
+        "propagation",
+        "space-weather"
+      ]
     },
     {
       "id": "landscape-interpretation",

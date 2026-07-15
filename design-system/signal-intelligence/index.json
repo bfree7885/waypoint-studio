@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "schemaObservation": "https://waypoint.studio/schemas/signal-intelligence/observation/v0.1",
+    "status": "architecture",
+    "runtime": "none",
+    "updatedAt": "2026-07-15",
+    "missionQuestions": [
+      "What is happening?",
+      "Why does it matter?",
+      "What should I pay attention to?",
+      "What has changed?",
+      "How confident are we?"
+    ],
+    "docs": [
+      "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
+      "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
+      "docs/PLATFORM-ENGINES.md",
+      "docs/SIGNALTERRAIN_PLAYBOOK.md"
+    ]
+  },
+  "package": {
+    "id": "signal-intelligence",
+    "label": "Signal Intelligence Engine",
+    "path": "design-system/signal-intelligence/"
+  },
+  "artifacts": {
+    "observationSchema": "schema-v0.1.json",
+    "taxonomy": "taxonomy.json",
+    "confidence": "confidence.json",
+    "threatContext": "threat-context.json",
+    "attention": "attention.json",
+    "sampleObservation": "samples/observation.sample.json"
+  },
+  "primaryHome": "signalterrain",
+  "plannedConsumers": ["signalterrain", "studio", "scenes", "outdoor-intelligence", "landscape-interpretation", "education"],
+  "notInScopeV01": [
+    "Dashboards",
+    "Live APIs",
+    "Monitoring services",
+    "SDR interfaces",
+    "Cybersecurity / SOC tooling",
+    "Penetration testing",
+    "Exploit PoCs"
+  ]
+}

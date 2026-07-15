@@ -8,7 +8,9 @@ for radio-frequency observation and, in the future, calm educational cyber
 situational awareness. It is not an enterprise SOC, not a surveillance product,
 and not a rumor feed.
 
-See also: [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) (Signal Intelligence engine).
+See also: [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) ·
+[SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md)
+(Signal Intelligence Engine v0.1 — schemas only).
 
 Complements: Engineering, Product Standards, UI/UX, QA, Performance,
 Accessibility, Security, Release, and Lessons Learned playbooks.

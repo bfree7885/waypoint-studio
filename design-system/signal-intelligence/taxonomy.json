@@ -1,0 +1,104 @@
+{
+  "version": "0.1.0",
+  "schema": "https://waypoint.studio/schemas/signal-intelligence/taxonomy/v0.1",
+  "updatedAt": "2026-07-15",
+  "purpose": "Controlled vocabulary for educational Signal Intelligence observations. Terms label awareness topics — not attack techniques and not SOC ticket types.",
+  "languageNotes": [
+    "Prefer calm situational language: notice, advisory, disruption, elevated activity.",
+    "Avoid alarmist headlines and gamified 'threat scores'.",
+    "Public-safety RF topics require local legal compliance reminders.",
+    "Cyber terms describe awareness (patch, backup, advisory) — never exploitation guidance."
+  ],
+  "domains": [
+    {
+      "id": "rf-intelligence",
+      "label": "Radio Frequency Intelligence",
+      "description": "Observing radio and spectrum environments with private receivers, schedules, and honest logs.",
+      "categories": [
+        {
+          "id": "rf.sdr-monitoring",
+          "label": "SDR monitoring",
+          "notes": "Receiver activity literacy — not interception of protected communications."
+        },
+        {
+          "id": "rf.noaa-weather-radio",
+          "label": "NOAA Weather Radio",
+          "notes": "Broadcast weather alerts and routine voice."
+        },
+        {
+          "id": "rf.amateur-radio",
+          "label": "Amateur radio",
+          "notes": "Ham bands, nets, propagation openings — licensed operation culture."
+        },
+        {
+          "id": "rf.marine-ais",
+          "label": "Marine AIS",
+          "notes": "Vessel awareness where reception and law allow."
+        },
+        {
+          "id": "rf.ads-b-aircraft",
+          "label": "ADS-B aircraft",
+          "notes": "Aircraft situational display for education — privacy-aware mapping."
+        },
+        {
+          "id": "rf.satellite-reception",
+          "label": "Satellite reception",
+          "notes": "Weather/amateur satellites and passes."
+        },
+        {
+          "id": "rf.broadcast-stations",
+          "label": "Broadcast stations",
+          "notes": "AM/FM/TV and related band awareness."
+        },
+        {
+          "id": "rf.public-safety",
+          "label": "Public safety (where legal)",
+          "notes": "Only where local law allows; never encourage illegal monitoring."
+        },
+        {
+          "id": "rf.frequency-activity",
+          "label": "Frequency activity",
+          "notes": "Busy/quiet band patterns without decoding private content."
+        },
+        {
+          "id": "rf.signal-propagation",
+          "label": "Signal propagation",
+          "notes": "Skip, ducting, solar/geomagnetic effects on HF/VHF."
+        }
+      ]
+    },
+    {
+      "id": "cyber-intelligence",
+      "label": "Cyber Intelligence",
+      "description": "Educational awareness for individuals, hobbyists, homelabs, and small organizations — not an enterprise SOC.",
+      "categories": [
+        { "id": "cyber.cve", "label": "CVEs", "notes": "Named vulnerability literacy with citations." },
+        { "id": "cyber.zero-day", "label": "Zero-day vulnerabilities", "notes": "Awareness only; no PoC packaging." },
+        { "id": "cyber.active-exploitation", "label": "Active exploitation", "notes": "Cited reports that something is being exploited in the wild — awareness." },
+        { "id": "cyber.vendor-advisory", "label": "Vendor advisories", "notes": "Official vendor guidance." },
+        { "id": "cyber.ransomware-campaign", "label": "Ransomware campaigns", "notes": "Campaign literacy and backup hygiene reminders." },
+        { "id": "cyber.malware-trends", "label": "Malware trends", "notes": "High-level trends, not reverse-engineering kits." },
+        { "id": "cyber.phishing-activity", "label": "Phishing activity", "notes": "Recognizing themes; no targeting lists." },
+        { "id": "cyber.isp-outage", "label": "ISP outages", "notes": "Connectivity awareness." },
+        { "id": "cyber.dns-disruption", "label": "DNS disruptions", "notes": "Resolver/zone incident awareness." },
+        { "id": "cyber.bgp-incident", "label": "BGP incidents", "notes": "Routing anomalies at educational depth." },
+        { "id": "cyber.certificate-issue", "label": "Certificate issues", "notes": "TLS trust problems users might notice." },
+        { "id": "cyber.major-software-release", "label": "Major software releases", "notes": "Version awareness with change caution." },
+        { "id": "cyber.patch-availability", "label": "Patch availability", "notes": "Calm reminders to update — not panic countdown." }
+      ]
+    },
+    {
+      "id": "infrastructure-intelligence",
+      "label": "Infrastructure Intelligence",
+      "description": "Broader digital and physical support systems that affect connectivity, navigation, and RF.",
+      "categories": [
+        { "id": "infra.internet-outage", "label": "Internet outages", "notes": "Regional or provider-scale connectivity." },
+        { "id": "infra.cloud-provider-status", "label": "Cloud provider status", "notes": "Public status pages — not insider ops." },
+        { "id": "infra.cdn-disruption", "label": "CDN disruptions", "notes": "Content delivery incidents affecting many sites." },
+        { "id": "infra.gps-interference", "label": "GPS interference", "notes": "Navigation reliability awareness." },
+        { "id": "infra.space-weather", "label": "Space weather impacts", "notes": "Solar/geomagnetic effects on RF and some services." },
+        { "id": "infra.cellular-network", "label": "Cellular network issues", "notes": "Carrier or area service problems." }
+      ]
+    }
+  ]
+}

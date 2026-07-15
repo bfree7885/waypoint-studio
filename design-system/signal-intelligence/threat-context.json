@@ -1,0 +1,39 @@
+{
+  "version": "0.1.0",
+  "schema": "https://waypoint.studio/schemas/signal-intelligence/threat-context/v0.1",
+  "updatedAt": "2026-07-15",
+  "purpose": "Separate time phases of awareness so SignalTerrain never mixes historical rumor with current conditions.",
+  "note": "threatContext is an educational timeline framing — not a threat-actor dossier.",
+  "phases": [
+    {
+      "id": "current-conditions",
+      "label": "Current conditions",
+      "description": "What appears active or in effect now within freshness windows.",
+      "consumerRule": "May lead a calm digest when confidence ≥ moderate."
+    },
+    {
+      "id": "emerging-conditions",
+      "label": "Emerging conditions",
+      "description": "Early or incomplete signals worth watching — emphasize unknowns.",
+      "consumerRule": "Prefer glance/learn attention; avoid alarming headlines."
+    },
+    {
+      "id": "resolved-events",
+      "label": "Resolved events",
+      "description": "Closed outages, ended events, or archived advisories with clear end state.",
+      "consumerRule": "Useful for learning; do not keep in 'active' urgency."
+    },
+    {
+      "id": "historical-patterns",
+      "label": "Historical patterns",
+      "description": "Comparable past periods for contrast (e.g. prior HF openings, prior vendor advisory cadence).",
+      "consumerRule": "Always label as pattern, not prophecy."
+    },
+    {
+      "id": "seasonal-trends",
+      "label": "Seasonal trends",
+      "description": "Recurring seasonality (summer thunderstorm QRN, winter HF paths, holiday phishing themes).",
+      "consumerRule": "Educational calendars — not predictive certainty."
+    }
+  ]
+}

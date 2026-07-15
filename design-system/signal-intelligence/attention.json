@@ -1,0 +1,94 @@
+{
+  "version": "0.1.0",
+  "schema": "https://waypoint.studio/schemas/signal-intelligence/attention/v0.1",
+  "updatedAt": "2026-07-15",
+  "purpose": "Shift educational attention without alarmism. Raises visibility of calm guidance topics — never auto-starts scanners, never opens attack tools.",
+  "philosophy": [
+    "Awareness over anxiety",
+    "Amplify understanding and hygiene, not urgency theater",
+    "Attention decays when conditions resolve",
+    "Users can mute focus areas"
+  ],
+  "attentionLevels": [
+    {
+      "id": "background",
+      "label": "Background",
+      "meaning": "Logged for completeness; no surface promote."
+    },
+    {
+      "id": "glance",
+      "label": "Glance",
+      "meaning": "Brief mention in a digest."
+    },
+    {
+      "id": "learn",
+      "label": "Learn",
+      "meaning": "Invite a short explanation."
+    },
+    {
+      "id": "act-calmly",
+      "label": "Act calmly",
+      "meaning": "Suggest a safe educational action (update, backup check, retune receiver)."
+    },
+    {
+      "id": "monitor",
+      "label": "Monitor",
+      "meaning": "Watch window is open; continue logging — not 'hunt'."
+    }
+  ],
+  "focusAreas": [
+    {
+      "id": "browser-hygiene",
+      "label": "Browser-related visibility",
+      "exampleTrigger": "Major browser zero-days or high-severity browser advisories (cited).",
+      "calmActions": ["Check browser update availability", "Prefer official vendor notes"],
+      "raisesAttentionTo": ["learn", "act-calmly"]
+    },
+    {
+      "id": "navigation-reliability",
+      "label": "Navigation reliability",
+      "exampleTrigger": "Reports of GPS interference or GNSS degradation.",
+      "calmActions": ["Prefer redundant navigation when traveling", "Note regional caution without panic"],
+      "raisesAttentionTo": ["glance", "learn"]
+    },
+    {
+      "id": "radio-propagation",
+      "label": "Radio impacts",
+      "exampleTrigger": "Severe space weather or unusual HF/VHF conditions.",
+      "calmActions": ["Highlight possible radio impacts", "Link Outdoor Intelligence / space-weather context when available"],
+      "raisesAttentionTo": ["glance", "learn", "monitor"]
+    },
+    {
+      "id": "backup-hygiene",
+      "label": "Backup reminders",
+      "exampleTrigger": "Elevated ransomware campaign literacy notes.",
+      "calmActions": ["Remind offline/local backup checks", "Avoid alarmist countdown UI"],
+      "raisesAttentionTo": ["learn", "act-calmly"]
+    },
+    {
+      "id": "connectivity-awareness",
+      "label": "Connectivity awareness",
+      "exampleTrigger": "ISP, DNS, CDN, or cloud status disruptions.",
+      "calmActions": ["Cite public status pages", "Distinguish local vs regional"],
+      "raisesAttentionTo": ["glance", "learn"]
+    },
+    {
+      "id": "listening-legality",
+      "label": "Legal listening reminders",
+      "exampleTrigger": "Public-safety or restricted-band topics.",
+      "calmActions": ["Show compliance reminders", "Decline guidance that violates local law"],
+      "raisesAttentionTo": ["learn"]
+    }
+  ],
+  "rulesOfTone": [
+    "No red flashing SOC aesthetics for educational digests",
+    "Pair every elevated severity with calmGuidance",
+    "Conflicting sources lower confidence and attention, they do not raise drama",
+    "Resolved events lower focus area weights"
+  ],
+  "futureEvaluatorShape": {
+    "note": "Not implemented in v0.1",
+    "inputs": ["observations[]", "userFocusPreferences", "mutes"],
+    "outputs": ["activeFocusAreas[]", "suggestedAttentionLevel", "digestOrderingHints"]
+  }
+}

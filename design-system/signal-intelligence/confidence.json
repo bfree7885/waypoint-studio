@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "schema": "https://waypoint.studio/schemas/signal-intelligence/confidence/v0.1",
+  "updatedAt": "2026-07-15",
+  "purpose": "Confidence describes support for an awareness statement — never exploitability score, never 'percentage chance you are compromised'.",
+  "guidingQuestions": [
+    "What is happening?",
+    "Why does it matter?",
+    "What should I pay attention to?",
+    "What has changed?",
+    "How confident are we?"
+  ],
+  "levels": [
+    {
+      "id": "high",
+      "label": "High",
+      "uiVerb": "Well supported",
+      "meaning": "Cited primary sources agree; freshness is adequate."
+    },
+    {
+      "id": "moderate",
+      "label": "Moderate",
+      "uiVerb": "Plausible",
+      "meaning": "Credible sources present; some gaps or delay remain."
+    },
+    {
+      "id": "low",
+      "label": "Low",
+      "uiVerb": "Uncertain",
+      "meaning": "Thin corroboration; frame as a question to watch."
+    },
+    {
+      "id": "speculative",
+      "label": "Speculative",
+      "uiVerb": "Hypothesis",
+      "meaning": "Educational hypothesis — do not treat as verified incident."
+    },
+    {
+      "id": "insufficient",
+      "label": "Insufficient",
+      "uiVerb": "Not enough to say",
+      "meaning": "Do not invent traffic, CVEs, or outages."
+    }
+  ],
+  "dimensions": {
+    "evidenceQuality": ["strong", "adequate", "thin", "rumor", "unknown"],
+    "freshness": ["live-window", "hours", "days", "stale", "unknown"],
+    "sourceReliability": ["high", "moderate", "low", "unknown"]
+  },
+  "requiredHonesty": [
+    "unknowns (min 1)",
+    "confidence.rationale",
+    "conflicts when sources disagree",
+    "never present rumor as fact",
+    "never fabricate signals, incidents, or advisories"
+  ],
+  "alignment": {
+    "researchIntegrity": "docs/RESEARCH-INTEGRITY.md",
+    "signalTerrainPlaybook": "docs/SIGNALTERRAIN_PLAYBOOK.md",
+    "landscapeConfidence": "Similar level names; different mission (signals vs landscapes)"
+  }
+}
