@@ -14,54 +14,88 @@
   <link rel="stylesheet" href="../css/sheds-map.css">
 </head>
 <body>
-  <a class="wds-skip" href="#sheds-map">Skip to map</a>
+  <a class="sheds-skip" href="#sheds-map">Skip to map</a>
   <div class="sheds-app">
-    <header class="sheds-top">
+    <header class="sheds-top" role="banner">
       <div class="sheds-top__row">
-        <h1 class="sheds-brand">Sheds <span>Field intelligence · Whitetail · Private</span></h1>
-        <a class="sheds-home-link" href="../">Home</a>
+        <h1 class="sheds-brand">Sheds <span>Field · Whitetail · On-device</span></h1>
+        <div class="sheds-top__links">
+          <button type="button" class="sheds-icon-btn" id="btn-status" aria-expanded="false" aria-controls="status-panel" title="Status details">Status</button>
+          <a class="sheds-home-link" href="../">Home</a>
+        </div>
       </div>
-      <div class="sheds-status-row" aria-live="polite">
-        <span class="sheds-pill" id="loc-status" data-state="finding">Finding location…</span>
+      <div class="sheds-status-compact" aria-live="polite">
+        <span class="sheds-pill sheds-pill--compact" id="loc-status" data-state="neutral">Tap Locate me</span>
+        <span class="sheds-pill sheds-pill--compact" id="session-pill" data-state="manual">Not tracking</span>
+      </div>
+      <div class="sheds-status-panel" id="status-panel" hidden>
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
-        <span class="sheds-pill" id="session-pill" data-state="manual">No active session</span>
         <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
+        <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; map tile providers still see approximate map requests.</p>
       </div>
-      <section class="sheds-plan" id="plan-card" aria-live="polite">
-        <h2 class="sheds-plan__title" id="plan-title">Search planner</h2>
-        <p class="sheds-plan__body" id="plan-body">Zoom in to receive a suggested next search area.</p>
-        <p class="sheds-plan__why" id="plan-why"></p>
-        <p class="sheds-plan__meta" id="plan-meta"></p>
-        <div class="sheds-plan__actions">
-          <button type="button" class="sheds-btn sheds-btn--primary" id="btn-goto-plan">Go to suggestion</button>
-          <button type="button" class="sheds-btn" id="btn-mark-partial">Mark partial</button>
-          <button type="button" class="sheds-btn" id="btn-mark-thorough">Mark thorough</button>
-          <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit later</button>
-        </div>
-        <label class="sheds-plan__note-label" for="session-note">Session note (saved when you stop track)</label>
-        <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional field note">
-      </section>
-      <p class="sheds-note" id="model-note">Whitetail Biological Model v1.0 — relative search guidance with documented evidence and uncertainty. Never a map of antlers.</p>
     </header>
 
     <div id="sheds-map-shell" aria-busy="true">
-      <div id="sheds-map" role="application" aria-label="Interactive topographic field map"></div>
-      <div class="sheds-toolbar">
+      <div class="sheds-map-canvas">
+        <div id="sheds-map" role="application" aria-label="Interactive topographic field map" tabindex="-1"></div>
+      </div>
+
+      <aside class="sheds-suggest" id="plan-card" aria-live="polite" data-expanded="false">
+        <button type="button" class="sheds-suggest__summary" id="btn-toggle-plan" aria-expanded="false" aria-controls="plan-details">
+          <span class="sheds-suggest__kicker" id="plan-title">Suggested search</span>
+          <span class="sheds-suggest__glance" id="plan-glance">Zoom in for a next area</span>
+          <span class="sheds-suggest__chev" aria-hidden="true">▾</span>
+        </button>
+        <div class="sheds-suggest__details" id="plan-details" hidden>
+          <p class="sheds-plan__body" id="plan-body">Zoom in and locate yourself (or pan to your land) to get a next-area suggestion.</p>
+          <p class="sheds-plan__meta" id="plan-meta"></p>
+          <details class="sheds-plan__why-wrap">
+            <summary>Why this area?</summary>
+            <p class="sheds-plan__why" id="plan-why"></p>
+          </details>
+          <div class="sheds-plan__actions">
+            <button type="button" class="sheds-btn sheds-btn--primary" id="btn-goto-plan">Go there</button>
+            <button type="button" class="sheds-btn" id="btn-mark-partial">Partial</button>
+            <button type="button" class="sheds-btn" id="btn-mark-thorough">Thorough</button>
+            <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit</button>
+          </div>
+          <label class="sheds-plan__note-label" for="session-note">Session note (saved when you stop track)</label>
+          <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional field note">
+        </div>
+      </aside>
+
+      <div class="sheds-toolbar" role="toolbar" aria-label="Field actions">
         <button type="button" class="sheds-btn sheds-btn--primary" id="btn-locate">Locate me</button>
         <button type="button" class="sheds-btn sheds-btn--primary" id="btn-track" aria-pressed="false">Start track</button>
-        <button type="button" class="sheds-btn" id="btn-controls">Controls</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-explain">Explain</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-history">History</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-validate">Validate</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-ethics">Ethics</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-export">Export</button>
+        <button type="button" class="sheds-btn" id="btn-add-obs">Add note</button>
+        <button type="button" class="sheds-btn" id="btn-more" aria-expanded="false" aria-controls="sheet-tools">More</button>
         <div class="sheds-legend" aria-label="Search priority legend">
           <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i> Lower</span>
           <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i> Moderate</span>
           <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i> Higher</span>
-          <span>Tap map to add · suggest next area above</span>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools menu (secondary actions) -->
+  <div class="sheds-sheet" id="sheet-tools" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tools-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel sheds-sheet__panel--tools">
+      <h2 class="sheds-sheet__title" id="tools-title">Field tools</h2>
+      <p class="sheds-sheet__lede">Map and model controls, records, and stewardship. Primary actions stay on the map.</p>
+      <div class="sheds-tools-grid">
+        <button type="button" class="sheds-btn" id="btn-controls">Map &amp; model</button>
+        <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
+        <button type="button" class="sheds-btn" id="btn-history">History</button>
+        <button type="button" class="sheds-btn" id="btn-validate">Validate</button>
+        <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
+        <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
+        <button type="button" class="sheds-btn" id="btn-recenter" hidden>Recenter on me</button>
+      </div>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Close</button>
       </div>
     </div>
   </div>
@@ -71,7 +105,7 @@
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="obs-form-title">Add observation</h2>
-      <p class="sheds-sheet__lede">Private to this device. Coordinates are not uploaded.</p>
+      <p class="sheds-sheet__lede">Private to this device. Coordinates are not uploaded by Sheds. Map tiles still leave provider request traces.</p>
       <form id="obs-form">
         <input type="hidden" id="obs-id" value="">
         <input type="hidden" id="obs-mode" value="create">
@@ -138,7 +172,7 @@
   <div class="sheds-sheet" id="sheet-controls" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="controls-title">
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel">
-      <h2 class="sheds-sheet__title" id="controls-title">Search-priority controls</h2>
+      <h2 class="sheds-sheet__title" id="controls-title">Map &amp; model</h2>
       <p class="sheds-sheet__lede">Adjust influences for the relative surface. This is guidance for where to walk — not a probability of antlers.</p>
       <p class="sheds-note" id="inputs-summary"></p>
       <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show heat / priority overlay</label>
@@ -166,8 +200,8 @@
         <label for="obs-filter">Filter observations</label>
         <select id="obs-filter"></select>
       </div>
-      <h3 class="sheds-sheet__lede">Biological influence weights (v1.0)</h3>
-      <p class="sheds-note">Weights are user preferences. They do not invent data. See docs/BIOLOGICAL_MODEL.md.</p>
+      <h3 class="sheds-sheet__lede">Biological influence weights (v1.1)</h3>
+      <p class="sheds-note">Weights are user preferences. They do not invent data. See docs/BIOLOGICAL_MODEL.md. Land cover is unavailable.</p>
       <div class="sheds-grid-2">
         <div class="sheds-field"><label for="w-season">Season timing</label>
           <select id="w-season" data-weight="season"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
@@ -309,13 +343,14 @@
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="ethics-title">Field ethics &amp; honesty</h2>
-      <ul class="sheds-sheet__lede">
-        <li>You are responsible for property access and local regulations — this map does not grant legal access.</li>
-        <li>Shed seasons and rules vary; check your jurisdiction.</li>
-        <li>Do not chase, harass, or displace wintering deer.</li>
-        <li>Approach bedding and winter concentration notes respectfully.</li>
-        <li>Observations stay private on this device by default.</li>
-        <li>The colored surface is relative search priority for whitetail — never “there is an antler here.”</li>
+      <ul class="sheds-ethics-list">
+        <li><strong>Property &amp; law.</strong> This map does not grant legal access. Confirm permission and local shed seasons.</li>
+        <li><strong>Wildlife.</strong> Do not chase, harass, or displace wintering deer. Approach bedding notes carefully.</li>
+        <li><strong>Habitat.</strong> Avoid trampling sensitive areas; leave no trash; respect closures.</li>
+        <li><strong>Privacy.</strong> Observations, tracks, and validations stay in this browser’s storage. Export creates a file you control.</li>
+        <li><strong>Map providers.</strong> Tile requests (OSM / OpenTopoMap) and optional Open-Meteo elevation/weather reveal approximate location to those services.</li>
+        <li><strong>Model honesty.</strong> The colored surface is relative search priority for whitetail — never “there is an antler here.”</li>
+        <li><strong>Sensitive places.</strong> Do not publish precise private or protected locations from this tool.</li>
       </ul>
       <div class="sheds-actions">
         <button type="button" class="sheds-btn sheds-btn--primary" id="ethics-ack">Understood</button>

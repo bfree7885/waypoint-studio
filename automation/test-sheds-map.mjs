@@ -198,6 +198,13 @@ const html = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html")
 assert("leaflet css present", /leaflet@1\.9\.4/.test(html));
 assert("opentopo attribution path ready", /OpenTopoMap|opentopomap/.test(appSrc) || /OpenTopoMap/.test(html));
 assert("ethics sheet present", /Field ethics/.test(html));
+assert("map-first tools sheet", /id="sheet-tools"/.test(html));
+assert("map-first more button", /id="btn-more"/.test(html));
+assert("map-first suggest glance", /id="plan-glance"/.test(html));
+assert("skip link uses sheds-skip", /class="sheds-skip"/.test(html) && !/class="wds-skip"/.test(html));
+assert("closeAllSheets includes validate", /sheetValidate/.test(appSrc) && /sheetTools/.test(appSrc));
+assert("followUser pan away pattern", /followUser/.test(appSrc) && /dragstart/.test(appSrc));
+assert("click debounce for obs", /lastClickAt/.test(appSrc));
 
 if (failures.length) {
   console.error("\nSheds map tests failed (" + failures.length + ").");

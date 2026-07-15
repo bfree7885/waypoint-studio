@@ -232,6 +232,10 @@ assert("coverage mark controls", /btn-mark-partial/.test(html) && /btn-mark-thor
 const css = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/css/sheds-map.css"), "utf8");
 assert("reduced-motion css", /prefers-reduced-motion/.test(css));
 assert("mobile toolbar safe area", /safe-area-inset-bottom/.test(css));
+assert("skip link visually hidden until focus", /\.sheds-skip/.test(css) && /translateY\(-160%\)/.test(css));
+assert("suggest dock above toolbar", /\.sheds-suggest/.test(css) && /--sheds-toolbar-h/.test(css));
+assert("tools sheet present", /id="sheet-tools"/.test(html));
+assert("primary add note control", /id="btn-add-obs"/.test(html));
 
 if (failures.length) {
   console.error("\nSheds planner tests failed (" + failures.length + ").");

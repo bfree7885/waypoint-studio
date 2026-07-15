@@ -1,0 +1,17 @@
+{
+  "mapHeight": 585,
+  "topHeight": 96,
+  "toolHeight": 91,
+  "toolTop": 753,
+  "toolBottom": 844,
+  "suggestBottom": 753,
+  "suggestPresent": true,
+  "toolsSheet": true,
+  "mapShare": 0.693,
+  "pageScrollWidth": 390,
+  "clientWidth": 390,
+  "skipTransform": "matrix(1, 0, 0, 1, 0, -60.15)",
+  "ethicsList": true,
+  "moreBtn": true,
+  "suggestToolbarOverlapPx": 0
+}

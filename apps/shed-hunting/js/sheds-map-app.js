@@ -21,7 +21,7 @@
   var SPECIES_LABEL = "Whitetail deer";
 
   var state = {
-    locationStatus: "finding",
+    locationStatus: "idle",
     userLatLng: null,
     watchId: null,
     prefs: null,
@@ -37,7 +37,11 @@
     lastPlan: null,
     lastGrid: null,
     lastPerf: {},
-    offlineForced: false
+    offlineForced: false,
+    followUser: true,
+    planExpanded: false,
+    lastClickAt: 0,
+    lastFocusEl: null
   };
 
   var els = {};
@@ -49,19 +53,36 @@
   function setLocStatus(code, detail) {
     state.locationStatus = code;
     var label = {
-      finding: "Finding location…",
-      available: "Current location available",
-      denied: "Location permission denied",
+      idle: "Tap Locate me",
+      finding: "Finding…",
+      available: "Located",
+      denied: "Location denied",
       unavailable: "Location unavailable",
       timeout: "Location timed out",
-      last: "Using last map position",
-      manual: "Manual exploration mode",
-      neutral: "Neutral starting view (not your location)"
+      last: "Saved map view",
+      manual: "Exploring manually",
+      neutral: "Overview (not your location)"
     }[code] || code;
     if (els.locStatus) {
-      els.locStatus.textContent = detail ? label + " — " + detail : label;
+      els.locStatus.textContent = detail ? label + " · " + detail : label;
       els.locStatus.dataset.state = code;
+      els.locStatus.title = detail ? label + " — " + detail : label;
     }
+    syncRecenterBtn();
+  }
+
+  function syncRecenterBtn() {
+    var btn = $("btn-recenter");
+    if (!btn) return;
+    var show = !!(state.userLatLng && !state.followUser);
+    btn.hidden = !show;
+  }
+
+  function invalidateMapSize() {
+    if (!map) return;
+    setTimeout(function () {
+      try { map.invalidateSize({ animate: false }); } catch (e) { /* */ }
+    }, 120);
   }
 
   function initMap() {
@@ -107,6 +128,11 @@
       setLocStatus("neutral");
     }
 
+    map.on("dragstart", function () {
+      state.followUser = false;
+      syncRecenterBtn();
+    });
+
     map.on("moveend", function () {
       Store.saveMapView({
         lat: map.getCenter().lat,
@@ -118,12 +144,23 @@
 
     map.on("click", function (e) {
       if (document.querySelector(".sheds-sheet.is-open")) return;
+      var now = Date.now();
+      if (now - state.lastClickAt < 450) return;
+      state.lastClickAt = now;
       openNewObservation(e.latlng);
     });
 
     map.whenReady(function () {
       document.getElementById("sheds-map-shell").removeAttribute("aria-busy");
       scheduleRecompute(200);
+      invalidateMapSize();
+      setTimeout(invalidateMapSize, 400);
+      setTimeout(invalidateMapSize, 1200);
+    });
+
+    window.addEventListener("resize", invalidateMapSize);
+    window.addEventListener("orientationchange", function () {
+      setTimeout(invalidateMapSize, 250);
     });
   }
 
@@ -416,23 +453,47 @@
     drawPlanOnMap(plan);
   }
 
+  function setPlanExpanded(open) {
+    state.planExpanded = !!open;
+    if (!els.planCard) return;
+    els.planCard.dataset.expanded = state.planExpanded ? "true" : "false";
+    if (els.planDetails) els.planDetails.hidden = !state.planExpanded;
+    if (els.btnTogglePlan) {
+      els.btnTogglePlan.setAttribute("aria-expanded", state.planExpanded ? "true" : "false");
+    }
+    invalidateMapSize();
+  }
+
   function renderPlanCard(plan) {
     if (!els.planCard) return;
+    var glance = els.planGlance || els.planBody;
     if (!plan || !plan.ok || !plan.recommendation) {
-      els.planTitle.textContent = "Search planner";
-      els.planBody.textContent = (plan && plan.reason) || "Zoom in and allow location (or explore) to get a next-area suggestion.";
-      els.planWhy.textContent = "";
-      els.planMeta.textContent = "";
+      if (els.planTitle) els.planTitle.textContent = "Suggested search";
+      var empty = (plan && plan.reason) || "Zoom in (≥9) and locate or pan to your land.";
+      if (glance) glance.textContent = empty;
+      if (els.planBody) els.planBody.textContent = empty;
+      if (els.planWhy) els.planWhy.textContent = "";
+      if (els.planMeta) els.planMeta.textContent = "";
+      els.planCard.setAttribute("aria-label", "No suggestion yet. " + empty);
       return;
     }
     var r = plan.recommendation;
-    els.planTitle.textContent = "Suggested next search";
-    els.planBody.textContent = r.walkingHint + " Priority band: " + r.band + ".";
-    els.planWhy.textContent = r.explanation;
+    if (els.planTitle) els.planTitle.textContent = "Suggested next search";
+    var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
+    var dir = r.bearingLabel || "";
+    var glanceText = [dir, dist, "band " + r.band, "~" + r.suggestedRadiusM + " m area"]
+      .filter(Boolean)
+      .join(" · ");
+    if (glance) glance.textContent = glanceText || r.walkingHint;
+    if (els.planBody) {
+      els.planBody.textContent = (r.walkingHint || glanceText) +
+        " Priority: " + r.band + " (relative guidance, not certainty).";
+    }
+    if (els.planWhy) els.planWhy.textContent = r.explanation || "";
     var meta = [];
-    if (r.bearingLabel) meta.push("Direction " + r.bearingLabel);
-    if (r.distanceM != null) meta.push(Planner.formatDistance(r.distanceM));
-    meta.push("Radius ~" + r.suggestedRadiusM + " m");
+    if (dir) meta.push("Direction " + dir);
+    if (dist) meta.push(dist);
+    meta.push("Search area ~" + r.suggestedRadiusM + " m");
     if (plan.coverage) {
       meta.push(plan.coverage.searchedPercentLabel);
       var thoroughShare = plan.coverage.cellsInView
@@ -440,12 +501,13 @@
         : 0;
       meta.push("~" + thoroughShare + "% marked thorough in view");
     }
-    meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
-    els.planMeta.textContent = meta.join(" · ");
+    if (plan.remainingHighCount != null) {
+      meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
+    }
+    if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Suggested next search: " + els.planBody.textContent + " Why: " + r.explanation +
-        " Details: " + els.planMeta.textContent
+      "Suggested next search: " + glanceText + ". " + (r.explanation || "")
     );
   }
 
@@ -620,7 +682,9 @@
         userMarker.setLatLng(ll);
       }
       if (opts.center !== false) {
+        state.followUser = true;
         map.setView(ll, Math.max(map.getZoom(), 13));
+        syncRecenterBtn();
       }
       fetchWeatherSoft(ll.lat, ll.lng).then(function (w) {
         state.weather = w;
@@ -637,21 +701,48 @@
 
   /* —— Sheets —— */
   function openSheet(el) {
+    if (!el) return;
+    state.lastFocusEl = document.activeElement;
+    closeAllSheets({ except: el });
     el.classList.add("is-open");
     el.setAttribute("aria-hidden", "false");
     var focusable = el.querySelector("button, [href], input, select, textarea");
     if (focusable) focusable.focus();
+    if (els.btnMore) els.btnMore.setAttribute("aria-expanded", el === els.sheetTools ? "true" : "false");
+    invalidateMapSize();
   }
 
   function closeSheet(el) {
+    if (!el) return;
     el.classList.remove("is-open");
     el.setAttribute("aria-hidden", "true");
+    if (els.btnMore && el === els.sheetTools) els.btnMore.setAttribute("aria-expanded", "false");
+    if (state.lastFocusEl && typeof state.lastFocusEl.focus === "function") {
+      try { state.lastFocusEl.focus(); } catch (e) { /* */ }
+    }
+    invalidateMapSize();
   }
 
-  function closeAllSheets() {
-    [els.sheetObs, els.sheetControls, els.sheetExplain, els.sheetEthics, els.sheetHistory].forEach(function (s) {
-      if (s) closeSheet(s);
+  function closeAllSheets(opts) {
+    opts = opts || {};
+    [
+      els.sheetObs,
+      els.sheetControls,
+      els.sheetExplain,
+      els.sheetEthics,
+      els.sheetHistory,
+      els.sheetValidate,
+      els.sheetTools
+    ].forEach(function (s) {
+      if (s && s !== opts.except) closeSheetQuiet(s);
     });
+    if (els.btnMore && !opts.except) els.btnMore.setAttribute("aria-expanded", "false");
+  }
+
+  function closeSheetQuiet(el) {
+    if (!el) return;
+    el.classList.remove("is-open");
+    el.setAttribute("aria-hidden", "true");
   }
 
   function openNewObservation(latlng) {
@@ -966,6 +1057,44 @@
         else startTracking();
       });
     }
+    els.btnMore = $("btn-more");
+    if (els.btnMore) {
+      els.btnMore.addEventListener("click", function () {
+        openSheet(els.sheetTools);
+      });
+    }
+    if ($("btn-add-obs")) {
+      $("btn-add-obs").addEventListener("click", function () {
+        var ll = state.userLatLng || (map && map.getCenter());
+        if (ll) openNewObservation(ll);
+      });
+    }
+    if ($("btn-status")) {
+      $("btn-status").addEventListener("click", function () {
+        var panel = $("status-panel");
+        if (!panel) return;
+        var open = panel.hasAttribute("hidden");
+        if (open) panel.removeAttribute("hidden");
+        else panel.setAttribute("hidden", "");
+        $("btn-status").setAttribute("aria-expanded", open ? "true" : "false");
+        invalidateMapSize();
+      });
+    }
+    if ($("btn-toggle-plan")) {
+      els.btnTogglePlan = $("btn-toggle-plan");
+      els.btnTogglePlan.addEventListener("click", function () {
+        setPlanExpanded(!state.planExpanded);
+      });
+    }
+    if ($("btn-recenter")) {
+      $("btn-recenter").addEventListener("click", function () {
+        if (!state.userLatLng || !map) return;
+        state.followUser = true;
+        map.setView(state.userLatLng, Math.max(map.getZoom(), 13));
+        syncRecenterBtn();
+        closeAllSheets();
+      });
+    }
     $("btn-controls").addEventListener("click", function () {
       syncControlsForm();
       openSheet(els.sheetControls);
@@ -994,7 +1123,10 @@
       $("btn-goto-plan").addEventListener("click", function () {
         if (state.lastPlan && state.lastPlan.recommendation) {
           var r = state.lastPlan.recommendation;
+          state.followUser = false;
           map.setView([r.lat, r.lng], Math.max(map.getZoom(), 14));
+          syncRecenterBtn();
+          setPlanExpanded(false);
         }
       });
     }
@@ -1008,7 +1140,10 @@
         sessions: Sessions ? Sessions.exportBundle() : null,
         validations: Validation ? Validation.list() : [],
         modelPrefs: state.prefs,
-        modelStamp: modelStamp()
+        modelStamp: modelStamp(),
+        privacyNote:
+          "Observations, sessions, and validations were stored on-device. " +
+          "Tile/weather providers may have received approximate map/request location during use."
       };
       var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
       var a = document.createElement("a");
@@ -1016,6 +1151,7 @@
       a.download = "sheds-field-private.json";
       a.click();
       URL.revokeObjectURL(a.href);
+      closeAllSheets();
     });
 
     document.querySelectorAll("[data-close-sheet]").forEach(function (btn) {
@@ -1201,12 +1337,17 @@
     els.planBody = $("plan-body");
     els.planWhy = $("plan-why");
     els.planMeta = $("plan-meta");
+    els.planGlance = $("plan-glance");
+    els.planDetails = $("plan-details");
+    els.btnTogglePlan = $("btn-toggle-plan");
     els.sheetObs = $("sheet-obs");
     els.sheetControls = $("sheet-controls");
     els.sheetExplain = $("sheet-explain");
     els.sheetEthics = $("sheet-ethics");
     els.sheetHistory = $("sheet-history");
     els.sheetValidate = $("sheet-validate");
+    els.sheetTools = $("sheet-tools");
+    els.btnMore = $("btn-more");
     els.historyBody = $("history-body");
     els.obsForm = $("obs-form");
     els.obsId = $("obs-id");
@@ -1249,8 +1390,12 @@
         els.sessionPill.dataset.state = "available";
       }
       if (els.btnTrack) els.btnTrack.textContent = "Resume track";
+    } else if (els.sessionPill) {
+      els.sessionPill.textContent = "Not tracking";
+      els.sessionPill.dataset.state = "manual";
     }
     locateUser({ center: !Store.loadMapView() });
+    setPlanExpanded(false);
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
 
