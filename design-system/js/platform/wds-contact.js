@@ -5,9 +5,11 @@
 (function (global) {
   "use strict";
 
+  var DEFAULT_MAIL = "contact@waypointstudio.org";
   var DEFAULT_CONFIG_PATH = "design-system/ecosystem/contact-config.json";
   var RATE_KEY = "waypoint-contact-rate-v1";
   var DRAFT_KEY = "waypoint-contact-draft-v1";
+  var MAX_SUBJECT = 200;
 
   var state = {
     config: null,
@@ -17,6 +19,18 @@
 
   function $(id) {
     return document.getElementById(id);
+  }
+
+  function sanitizeLine(s) {
+    return String(s == null ? "" : s).replace(/[\r\n\x00]+/g, " ").trim();
+  }
+
+  function sanitizeMultiline(s) {
+    return String(s == null ? "" : s).replace(/\x00/g, "").trim();
+  }
+
+  function mailbox(cfg) {
+    return (cfg && cfg.developer && cfg.developer.email) || DEFAULT_MAIL;
   }
 
   function esc(s) {
@@ -131,10 +145,14 @@
     if (!payload.category) {
       errors.push({ field: "category", message: "Choose a category." });
     }
-    if (!payload.subject || String(payload.subject).trim().length < 3) {
+    var subject = sanitizeLine(payload.subject);
+    if (!subject || subject.length < 3) {
       errors.push({ field: "subject", message: "Add a short subject." });
     }
-    var msg = String(payload.message || "").trim();
+    if (subject.length > MAX_SUBJECT) {
+      errors.push({ field: "subject", message: "Subject is too long (max " + MAX_SUBJECT + " characters)." });
+    }
+    var msg = sanitizeMultiline(payload.message);
     var minM = spam.minMessageLength || 10;
     var maxM = spam.maxMessageLength || 8000;
     if (msg.length < minM) {
@@ -157,7 +175,10 @@
       errors.push({ field: "rate", message: "Too many messages from this browser recently. Please try again later." });
     }
     if (!navigator.onLine) {
-      errors.push({ field: "offline", message: "You appear offline. Reconnect and try again, or email contact@waypoint.studio directly." });
+      errors.push({
+        field: "offline",
+        message: "You appear offline. Reconnect and try again, or email " + mailbox(cfg) + " directly."
+      });
     }
     return errors;
   }
@@ -173,36 +194,41 @@
   }
 
   function buildDeliveryBody(payload, cfg, ctx) {
-    var subject = "[Waypoint] " + categoryLabel(cfg, payload.category) + ": " + payload.subject;
+    var subjectClean = sanitizeLine(payload.subject).slice(0, MAX_SUBJECT);
+    var subject = "[Waypoint] " + categoryLabel(cfg, payload.category) + ": " + subjectClean;
+    var submittedAt = new Date().toISOString();
     var lines = [
       "Category: " + categoryLabel(cfg, payload.category),
       "App: " + (payload.app ? appLabel(cfg, payload.app) : "(none)"),
-      "From: " + (payload.name || "(no name)") + " <" + payload.email + ">",
+      "From: " + (sanitizeLine(payload.name) || "(no name)") + " <" + sanitizeLine(payload.email) + ">",
+      "Submitted (UTC): " + submittedAt,
       "",
-      payload.message,
+      sanitizeMultiline(payload.message),
       "",
       "— Context —",
-      "Page: " + (ctx.pageUrl || ""),
-      "Build: " + (ctx.build || ""),
-      "Viewport: " + (ctx.viewport || ""),
-      "Platform: " + (ctx.platform || ""),
-      "Language: " + (ctx.language || ""),
-      "Timezone: " + (ctx.timezone || ""),
-      "User-Agent: " + (ctx.userAgent || ""),
+      "Source page: " + sanitizeLine(ctx.pagePath || ctx.pageUrl || ""),
+      "Production URL: " + sanitizeLine(ctx.pageUrl || ""),
+      "Build: " + sanitizeLine(ctx.build || ""),
+      "Viewport: " + sanitizeLine(ctx.viewport || ""),
+      "Platform: " + sanitizeLine(ctx.platform || ""),
+      "Language: " + sanitizeLine(ctx.language || ""),
+      "Timezone: " + sanitizeLine(ctx.timezone || ""),
+      "Browser: " + sanitizeLine(ctx.userAgent || ""),
       "Include tech details: " + (payload.includeTech ? "yes" : "no")
     ];
     return {
       _subject: subject,
       _template: "table",
       _captcha: "false",
-      email: payload.email,
-      name: payload.name || "",
+      _honey: "",
+      email: sanitizeLine(payload.email),
+      name: sanitizeLine(payload.name) || "",
       message: lines.join("\n"),
       category: payload.category,
       app: payload.app || "",
-      subject: payload.subject,
-      replyto: payload.email,
-      _replyto: payload.email
+      subject: subjectClean,
+      replyto: sanitizeLine(payload.email),
+      _replyto: sanitizeLine(payload.email)
     };
   }
 
@@ -236,10 +262,17 @@
         err.permanent = res.status >= 400 && res.status < 500 && res.status !== 429;
         throw err;
       }
+      // FormSubmit often returns HTTP 200 with success:"false" for provider rejection
+      var success = data && data.success;
+      if (success === false || success === "false") {
+        var reject = new Error((data && (data.message || data.error)) || "Delivery was rejected by the email provider.");
+        reject.provider = true;
+        throw reject;
+      }
       return { ok: true, data: data };
     } catch (e) {
       if (e && e.name === "AbortError") {
-        var t = new Error("The request timed out. Please try again, or email contact@waypoint.studio.");
+        var t = new Error("The request timed out. Please try again, or email " + mailbox(cfg) + ".");
         t.timeout = true;
         throw t;
       }
@@ -368,6 +401,24 @@
     var responseEl = $("wcs-response-time");
     if (responseEl && cfg.developer) responseEl.textContent = cfg.developer.responseTime;
 
+    // Persist drafts on input so refresh / failed send keeps typed content
+    ["input", "change"].forEach(function (evt) {
+      form.addEventListener(evt, function () {
+        try {
+          var p = readForm(form, cfg);
+          sessionStorage.setItem(DRAFT_KEY, JSON.stringify({
+            name: p.name,
+            email: p.email,
+            category: p.category,
+            subject: p.subject,
+            message: p.message,
+            app: p.app,
+            includeTech: p.includeTech ? "1" : ""
+          }));
+        } catch (e) { /* */ }
+      });
+    });
+
     form.addEventListener("submit", async function (ev) {
       ev.preventDefault();
       if (state.submitting) return;
@@ -421,14 +472,27 @@
         showStatus(
           status,
           "ok",
-          "Message sent. I’ll reply to " + payload.email + " as soon as I can. Thank you for writing."
+          "Message accepted for delivery to the Waypoint Studio inbox. I’ll reply to " +
+            payload.email + " as soon as I can. Thank you for writing."
         );
         if (status) status.focus();
       } catch (err) {
         var msg = (err && err.message) || "Something went wrong sending the message.";
         if (err && err.timeout) msg = err.message;
-        msg += " You can also email " + ((cfg.developer && cfg.developer.email) || "contact@waypoint.studio") + " directly.";
+        msg += " You can also email " + mailbox(cfg) + " directly.";
         showStatus(status, "err", msg);
+        // Preserve form contents after recoverable failure (do not reset)
+        try {
+          sessionStorage.setItem(DRAFT_KEY, JSON.stringify({
+            name: payload.name,
+            email: payload.email,
+            category: payload.category,
+            subject: payload.subject,
+            message: payload.message,
+            app: payload.app,
+            includeTech: payload.includeTech ? "1" : ""
+          }));
+        } catch (e2) { /* */ }
       } finally {
         state.submitting = false;
         if (submitBtn) {
@@ -487,8 +551,14 @@
       readRate: readRate,
       writeRate: writeRate,
       RATE_KEY: RATE_KEY,
+      DRAFT_KEY: DRAFT_KEY,
+      MAX_SUBJECT: MAX_SUBJECT,
+      DEFAULT_MAIL: DEFAULT_MAIL,
+      sanitizeLine: sanitizeLine,
+      sanitizeMultiline: sanitizeMultiline,
       buildDeliveryBody: buildDeliveryBody,
-      parseQuery: parseQuery
+      parseQuery: parseQuery,
+      mailbox: mailbox
     }
   };
 

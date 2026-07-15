@@ -1,17 +1,19 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "updatedAt": "2026-07-15",
+  "productionSite": "https://waypointstudio.org",
   "developer": {
     "name": "Bryan",
     "studio": "Waypoint Studio",
-    "email": "contact@waypoint.studio",
+    "email": "contact@waypointstudio.org",
+    "mailboxHost": "Namecheap Private Email",
     "responseTime": "Usually within a few days. Often sooner."
   },
   "delivery": {
     "provider": "formsubmit",
-    "endpoint": "https://formsubmit.co/ajax/contact@waypoint.studio",
+    "endpoint": "https://formsubmit.co/ajax/contact@waypointstudio.org",
     "overrideEndpoint": null,
-    "notes": "First live submission requires inbox confirmation from FormSubmit. After activation, AJAX posts deliver to contact@waypoint.studio. Set overrideEndpoint for Formspree/Web3Forms if preferred."
+    "notes": "Production recipient is contact@waypointstudio.org (Namecheap Private Email). First live FormSubmit submission requires inbox activation. After activation, AJAX posts deliver to that mailbox. Set overrideEndpoint for Formspree/Web3Forms if preferred. Schema namespace URIs using waypoint.studio are unrelated identifier URLs, not mailboxes."
   },
   "categories": [
     { "id": "general", "label": "General Question" },
@@ -26,11 +28,14 @@
     { "id": "other", "label": "Other" }
   ],
   "apps": [
-    { "id": "studio", "label": "Dashboard / Studio" },
+    { "id": "studio", "label": "Studio home" },
+    { "id": "dashboard", "label": "Dashboard" },
     { "id": "scenes", "label": "Waypoint Scenes" },
     { "id": "photo-coach", "label": "Photo Coach" },
+    { "id": "scene-builder", "label": "Scene Builder" },
     { "id": "foragecast", "label": "ForageCast" },
     { "id": "fieldry", "label": "Fieldry" },
+    { "id": "sheds", "label": "Sheds" },
     { "id": "shed-hunting", "label": "Sheds" },
     { "id": "steepleaf", "label": "Steepleaf" },
     { "id": "signalterrain", "label": "SignalTerrain" },
@@ -58,7 +63,7 @@
       "Payment data",
       "Social graph or follower lists"
     ],
-    "retention": "Messages are email. They are not stored as a public database on waypointstudio.org. Provider logs may exist per FormSubmit policy."
+    "retention": "Messages become email in contact@waypointstudio.org (Namecheap Private Email) via FormSubmit. They are not stored as a public database on waypointstudio.org. FormSubmit and mailbox provider logs may exist per their policies. Retention of inbox mail is under the owner’s email account controls."
   },
   "futureHooks": [
     "knowledge-base",

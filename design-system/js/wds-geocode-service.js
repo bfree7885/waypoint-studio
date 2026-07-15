@@ -4,7 +4,7 @@
 (function (global) {
   "use strict";
 
-  var DEFAULT_UA = "(waypoint.studio, contact@waypoint.studio)";
+  var DEFAULT_UA = "(waypointstudio.org, contact@waypointstudio.org)";
   var CACHE_TTL_MS = 24 * 60 * 60 * 1000;
   var cache = Object.create(null);
 

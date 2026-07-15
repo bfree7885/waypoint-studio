@@ -298,7 +298,7 @@
         method: "GET",
         headers: {
           "Accept": "application/json",
-          "User-Agent": "WaypointStudio/1.0 (trail-conditions; contact@waypoint.studio)"
+          "User-Agent": "WaypointStudio/1.0 (trail-conditions; contact@waypointstudio.org)"
         }
       }),
       REQUEST_TIMEOUT_MS

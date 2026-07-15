@@ -1,6 +1,6 @@
 # Waypoint Studio — Contact & Support Platform v1
 
-**Status:** Implemented (static site + FormSubmit delivery)  
+**Status:** Locally corrected to `contact@waypointstudio.org` (Namecheap Private Email). Production Pages still serving prior mailbox until this pass is deployed. FormSubmit activation for the `.org` mailbox not yet end-to-end verified.  
 **Do not confuse with a ticketing system.** One shared contact surface for the studio.
 
 ---
@@ -20,7 +20,7 @@ Apps / footer deep links
  contact.html  ←── wds-contact.js  ←── contact-config.json
         │
         ▼
- FormSubmit AJAX ──► contact@waypoint.studio
+ FormSubmit AJAX ──► contact@waypointstudio.org
 ```
 
 | Piece | Path |
@@ -38,11 +38,11 @@ Apps / footer deep links
 ## Email flow
 
 1. User submits the form after validation + consent.
-2. Client POSTs JSON to FormSubmit (`https://formsubmit.co/ajax/contact@waypoint.studio`).
+2. Client POSTs JSON to FormSubmit (`https://formsubmit.co/ajax/contact@waypointstudio.org`).
 3. Developer receives email with category, app, message, and optional tech context.
 4. Failure/timeout surfaces a calm error and mailto fallback.
 
-**Owner activation:** The first live FormSubmit delivery requires confirming the activation email once in the `contact@waypoint.studio` inbox.
+**Owner activation:** The first live FormSubmit delivery requires confirming the activation email once in the `contact@waypointstudio.org` inbox.
 
 Override: set `delivery.overrideEndpoint` in config for Formspree/Web3Forms if preferred.
 
