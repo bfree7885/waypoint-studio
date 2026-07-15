@@ -263,39 +263,14 @@
     if (options.platform && options.platform.daylight && options.platform.daylight.sunrise && !kind.includes("photography")) {
       return Promise.resolve(finish(existing));
     }
-
+    if (options.platform && options.platform.meta && options.platform.meta.hydratedAt) {
+      return Promise.resolve(finish(null));
+    }
+    // Progressive shell: wait for OIP — do not race a second forecast fetch.
     el.setAttribute("aria-busy", "true");
     el.innerHTML = renderLoading(kind);
     if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "loading");
-
-    var req = WUISvc && WUISvc.buildRequest ? WUISvc.buildRequest(options) : options;
-    var Rel = global.WDS && global.WDS.dashboardReliability;
-    var forecastPromise = W().getForecast(req);
-    var raced = Rel && Rel.raceForecast
-      ? Rel.raceForecast(forecastPromise)
-      : Promise.resolve(forecastPromise).catch(function () { return null; });
-
-    return raced.then(function (pkg) {
-      if (pkg) return finish(pkg);
-      var offline = Rel && !Rel.isOnline();
-      el.innerHTML = renderError(
-        offline ? "Sky data offline" : "Sky data temporarily unavailable",
-        offline
-          ? "You appear to be offline. Cached sun and moon data will appear when previously loaded."
-          : "Weather provider timed out or did not respond. Retry this block.",
-        kind === "photography-dashboard" ? "photography" : "astronomy"
-      );
-      el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) {
-        WUISvc.updateDashCardTag(root, widgetId, offline ? "offline" : "provider-unavailable");
-      }
-      return null;
-    }).catch(function () {
-      el.innerHTML = renderError("Could not load live sky data", null, kind === "photography-dashboard" ? "photography" : "astronomy");
-      el.removeAttribute("aria-busy");
-      if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "error");
-      return null;
-    });
+    return Promise.resolve(null);
   }
 
   function mountSunMoon(el, options) {

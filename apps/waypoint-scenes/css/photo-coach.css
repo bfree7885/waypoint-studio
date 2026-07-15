@@ -95,6 +95,11 @@
   min-width: 0;
 }
 
+/* display:flex beats UA [hidden] on every viewport — not only mobile. */
+.coach-col--right[hidden] {
+  display: none !important;
+}
+
 .coach-col--left {
   position: sticky;
   top: 1rem;
@@ -962,10 +967,6 @@
 
   .coach-col--left {
     position: static;
-  }
-
-  .coach-col--right[hidden] {
-    display: none !important;
   }
 
   .coach-grade-meta {

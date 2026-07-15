@@ -9,7 +9,7 @@
   var FORECAST_MOUNT_TIMEOUT_MS = 8000;
 
   var TAGS = {
-    loading: { label: "Loading", className: "wdb-widget__tag--loading" },
+    loading: { label: "Updating", className: "wdb-widget__tag--loading" },
     live: { label: "Live", className: "wdb-widget__tag--live" },
     partial: { label: "Partial", className: "wdb-widget__tag--partial" },
     cached: { label: "Cached", className: "wdb-widget__tag--cached" },

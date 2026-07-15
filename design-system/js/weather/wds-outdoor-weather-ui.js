@@ -4,7 +4,6 @@
 (function (global) {
   "use strict";
 
-  var W = function () { return global.WDS && global.WDS.weather; };
   var WUI = function () { return global.WDS && global.WDS.weatherUI; };
   var Intel = function () { return global.WDS && global.WDS.outdoorWeatherIntel; };
 
@@ -311,7 +310,6 @@
     var WUISvc = WUI();
     var root = options.root || el.closest("#main") || document;
     var widgetId = el.closest("[data-widget-id]") && el.closest("[data-widget-id]").getAttribute("data-widget-id");
-    var weatherApi = W();
 
     function isLive(pkg) {
       return !!(pkg && pkg.meta && !pkg.meta.isPlaceholder);
@@ -377,52 +375,11 @@
     if (options.platform && options.platform.meta && options.platform.meta.hydratedAt) {
       return Promise.resolve(finish(null));
     }
-    if (!weatherApi || typeof weatherApi.getForecast !== "function") {
-      return Promise.resolve(finish(null, "error"));
-    }
-
+    // Progressive shell: OIP owns provider fetches — stay Loading until hydrate remounts.
     el.setAttribute("aria-busy", "true");
     el.innerHTML = renderLoading();
     if (WUISvc && widgetId) WUISvc.updateDashCardTag(root, widgetId, "loading");
-
-    var req = WUISvc && WUISvc.buildRequest ? WUISvc.buildRequest(options) : options;
-    var forecastPromise;
-    try {
-      forecastPromise = weatherApi.getForecast(req);
-    } catch (err) {
-      return Promise.resolve(finish(null, "error"));
-    }
-    var RelRace = global.WDS && global.WDS.dashboardReliability;
-    var race = RelRace && RelRace.raceForecast
-      ? RelRace.raceForecast(forecastPromise)
-      : null;
-    if (race) {
-      return race.then(function (pkg) {
-        return finish(pkg, pkg ? null : "timeout");
-      });
-    }
-    var timed = new Promise(function (resolve) {
-      var settled = false;
-      var timer = setTimeout(function () {
-        if (settled) return;
-        settled = true;
-        resolve({ pkg: null, reason: "timeout" });
-      }, 8000);
-      Promise.resolve(forecastPromise).then(function (pkg) {
-        if (settled) return;
-        settled = true;
-        clearTimeout(timer);
-        resolve({ pkg: pkg, reason: null });
-      }).catch(function () {
-        if (settled) return;
-        settled = true;
-        clearTimeout(timer);
-        resolve({ pkg: null, reason: "error" });
-      });
-    });
-    return timed.then(function (result) {
-      return finish(result.pkg, result.reason);
-    });
+    return Promise.resolve(null);
   }
 
   global.WDS = global.WDS || {};

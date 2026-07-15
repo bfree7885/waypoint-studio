@@ -225,7 +225,7 @@
   function opsBadge(state) {
     var R = Rel();
     if (R && R.tagFor) return R.tagFor(state).label;
-    if (state === "loading") return "Loading";
+    if (state === "loading") return "Updating";
     if (state === "offline") return "Offline";
     if (state === "cached") return "Cached";
     if (state === "partial") return "Partial";
@@ -252,7 +252,7 @@
   function opsNote(state, options) {
     options = options || {};
     if (state === "loading") {
-      return "This block hydrates independently and will settle to Live, Partial, Cached, Offline, or Provider Unavailable.";
+      return "Updating local conditions for this block…";
     }
     if (state === "offline") {
       return "Reconnect to refresh live providers. Other dashboard blocks continue when offline caches exist.";
@@ -319,7 +319,7 @@
       ? R.resolveOperationalState(options)
       : (options.pendingLive ? "loading" : "provider-unavailable");
     var tag = R && R.tagFor ? R.tagFor(state) : {
-      label: state === "loading" ? "Loading" : "Provider Unavailable",
+      label: state === "loading" ? "Updating" : "Provider Unavailable",
       className: state === "loading" ? "wdb-widget__tag--loading" : "wdb-widget__tag--unavailable"
     };
     return {

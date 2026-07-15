@@ -993,6 +993,10 @@
   padding: var(--wds-space-4);
 }
 
+.wds-modal[hidden] {
+  display: none !important;
+}
+
 .wds-modal__backdrop {
   position: absolute;
   inset: 0;

@@ -33,7 +33,7 @@ Providers (current): Open‑Meteo weather/AQ, NWS alerts, USGS water, Overpass t
 
 | State | Tag | When |
 |-------|-----|------|
-| Loading | Loading | Mount in progress; waiting copy is provider-specific |
+| Loading | Updating | Mount in progress; waiting copy is provider-specific |
 | Success | Live | Provider returned usable live data |
 | Partial Success | Partial | Package `blockStatus` mixes live + unavailable |
 | Cached | Cached | Offline with `lastPackage`, stale trail cache, or failed refresh with prior package |
@@ -160,10 +160,14 @@ Also re-checked: trail unit suite + browser smoke (PASS).
 
 As of the Scene Builder + perceived-performance stabilization block:
 
-1. Content engine paints the dashboard **grid with Loading cards** immediately after region load, before OIP completes.
+1. Content engine paints the dashboard **grid with Updating cards** immediately after region load, before OIP completes.
 2. Trails are **split off** the critical `Promise.all` and merge later via `notifyChange`.
-3. Safe `readStored()` locations (non–engine-publish-point) can start the dashboard while geolocation finishes.
+3. Safe `readStored()` locations (non–engine-publish-point) can start the dashboard while geolocation finishes; cold start uses a national provisional shell (no Kansas invent).
 4. WSKB preload no longer gates first paint.
+5. OIP arrival uses **in-place hydrate** (`hydrateDashboardInPlace`) instead of wiping the grid.
+6. Shell mounts do **not** call Open-Meteo / `OIP.get` until the platform package exists.
+7. `settleStaleMounts` waits for `meta.hydratedAt` so Loading is not prematurely Unavailable.
+8. See also `docs/SESSION-STABILIZATION-2026-07-14.md`.
 
 ---
 

@@ -34,7 +34,7 @@ function load(rel, sandbox) {
 function makeDom(busyMounts) {
   const tags = [];
   const mounts = (busyMounts || []).map(function (kind) {
-    const tag = { textContent: "Loading", className: "wdb-widget__tag wdb-widget__tag--loading" };
+    const tag = { textContent: "Updating", className: "wdb-widget__tag wdb-widget__tag--loading" };
     tags.push(tag);
     const mount = {
       _busy: "true",
@@ -99,7 +99,7 @@ load("design-system/js/dashboard/wds-dashboard-reliability.js", sandbox);
 const Rel = sandbox.WDS.dashboardReliability;
 assert("reliability module loaded", !!(Rel && Rel.tagFor));
 
-assert("tag loading", Rel.tagFor("loading").label === "Loading");
+assert("tag loading", Rel.tagFor("loading").label === "Updating");
 assert("tag live", Rel.tagFor("live").label === "Live");
 assert("tag partial", Rel.tagFor("partial").label === "Partial");
 assert("tag cached", Rel.tagFor("cached").label === "Cached");
@@ -175,12 +175,12 @@ assert("cached badge", /Cached/.test(cachedHtml));
 load("design-system/js/dashboard/wds-dashboard-widget-data.js", sandbox);
 const WD = sandbox.WDS.dashboardWidgetData;
 const liveMount = WD.liveMount("outdoor-weather");
-assert("liveMount uses Loading tag", liveMount.tag.label === "Loading");
+assert("liveMount uses Updating tag", liveMount.tag.label === "Updating");
 assert("liveMount not Live", liveMount.tag.label !== "Live");
 assert("liveMount waiting summary", /weather provider/i.test(liveMount.summary));
 
 const intelMount = WD.intelMount("trail-dashboard");
-assert("intelMount Loading tag", intelMount.tag.label === "Loading");
+assert("intelMount Updating tag", intelMount.tag.label === "Updating");
 
 assert(
   "unavailable tag wording",

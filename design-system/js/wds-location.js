@@ -876,6 +876,9 @@
       return;
     }
     var defaultLabel = getDefaultLabel(index);
+    try {
+      mount.removeAttribute("hidden");
+    } catch (e) { /* noop */ }
     mount.innerHTML =
       '<div class="wds-location-prompt" role="dialog" aria-labelledby="wds-loc-title" aria-modal="true">' +
         '<div class="wds-location-prompt__card">' +
@@ -912,6 +915,9 @@
     function finish(state) {
       saveState(state).then(function (saved) {
         mount.innerHTML = "";
+        try {
+          mount.setAttribute("hidden", "hidden");
+        } catch (e) { /* noop */ }
         onComplete(saved);
       });
     }

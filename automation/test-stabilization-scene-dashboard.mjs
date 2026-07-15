@@ -67,13 +67,49 @@ assert(
 );
 assert("WSKB preload non-blocking", /ensureWskbPreload\(data,\s*base,\s*loc\)\.catch/.test(engine));
 assert("late trail refresh wired", /wireLatePlatformHydration/.test(engine));
+assert("in-place hydrate after OIP", /function hydrateDashboardInPlace/.test(engine));
+assert("init coalescing by coords key", /activeInit/.test(engine) && /function coordsKey/.test(engine));
+assert("region change invalidates ready shell", /data-wdb-init-key/.test(engine));
 
 const boot = fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8");
 assert("early stored location start", /isSafeEarlyLocation/.test(boot) && /readStored/.test(boot));
 assert("kansas/engine point blocked for early paint", /isEnginePublishPoint/.test(boot));
+assert("cold provisional shell location", /function provisionalShellLocation/.test(boot));
 
 const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("honest location loading copy", /Finding your location/.test(dashHtml));
+assert("no duplicate app-nav script tags", !/wds-app-nav\.js/.test(dashHtml));
+assert("no page-level aria-live on content engine", !/id="wds-content-engine"[^>]*aria-live/.test(dashHtml));
+
+const locCss = fs.readFileSync(path.join(ROOT, "design-system/css/wds-content-engine.css"), "utf8");
+assert(
+  "location prompt mount hidden rule",
+  /#wds-location-prompt\[hidden\]/.test(locCss) &&
+    /\.wds-location-prompt\[hidden\]\s*\{[^}]*display:\s*none\s*!important/s.test(locCss)
+);
+
+const modalCss = fs.readFileSync(path.join(ROOT, "design-system/css/wds-components.css"), "utf8");
+assert(
+  "modal hidden rule",
+  /\.wds-modal\[hidden\]\s*\{[^}]*display:\s*none\s*!important/s.test(modalCss)
+);
+
+assert(
+  "coach-col--right hidden rule present",
+  /\.coach-col--right\[hidden\]\s*\{[^}]*display:\s*none\s*!important/s.test(css)
+);
+
+const outdoorWx = fs.readFileSync(path.join(ROOT, "design-system/js/weather/wds-outdoor-weather-ui.js"), "utf8");
+assert(
+  "outdoor weather waits for OIP on progressive shell",
+  /Progressive shell/.test(outdoorWx) && !/getForecast\(/.test(outdoorWx)
+);
+
+const settleSrc = fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-engine.js"), "utf8");
+assert(
+  "settleStaleMounts gated on hydratedAt",
+  /function settleStaleMounts[\s\S]*hydratedAt/s.test(settleSrc)
+);
 
 // Runtime: compare close clears mount + hidden
 const sandbox = {

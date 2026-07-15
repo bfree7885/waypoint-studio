@@ -1024,6 +1024,83 @@
     });
   }
 
+  function updateBannerNodes(mount, platform) {
+    if (!mount) return;
+    var html = renderLiveUpdatedBanner(platform);
+    var existing = Array.prototype.slice.call(
+      mount.querySelectorAll("[data-wds-live-updated], [data-wds-engine-health]")
+    );
+    if (!html) {
+      existing.forEach(function (el) { el.remove(); });
+      return;
+    }
+    var wrap = document.createElement("div");
+    wrap.innerHTML = html;
+    var anchor = mount.querySelector(".wdb-briefing") || mount.firstElementChild;
+    if (!anchor) {
+      while (wrap.firstChild) mount.appendChild(wrap.firstChild);
+      return;
+    }
+    existing.forEach(function (el) { el.remove(); });
+    var insertAfter = anchor;
+    while (wrap.firstChild) {
+      var node = wrap.firstChild;
+      insertAfter.insertAdjacentElement("afterend", node);
+      insertAfter = node;
+    }
+  }
+
+  function hydrateDashboardInPlace(mount, data, loc, base, options, platform) {
+    var Briefing = global.WDS && global.WDS.dashboardBriefing;
+    var DE = global.WDS && global.WDS.dashboardEngine;
+    if (!mount.querySelector("[data-wds-dashboard-root]") || !DE || !DE.refreshDashboard) {
+      return renderIntoMount(mount, data, loc, base, options, platform);
+    }
+    if (platform && platform.location && platform.location.elevationMeters != null && loc) {
+      loc.elevationMeters = platform.location.elevationMeters;
+      loc.elevation = platform.location.elevation || loc.elevation;
+    }
+    if (Briefing && Briefing.render) {
+      var header = mount.querySelector("header.wdb-briefing");
+      if (header) {
+        var wrap = document.createElement("div");
+        wrap.innerHTML = Briefing.render(loc, platform);
+        var next = wrap.firstElementChild;
+        if (next) header.replaceWith(next);
+        if (Briefing.bind) {
+          Briefing.bind(mount, loc, {
+            base: base,
+            platform: platform,
+            onLocationChange: options && options.onLocationChange
+          });
+        }
+      }
+    }
+    updateBannerNodes(mount, platform);
+    if (loc && loc.displayTitle) {
+      document.title = "Outdoor Dashboard · " + loc.displayTitle + " — Waypoint Studio";
+    } else if (loc && loc.name) {
+      document.title = "Outdoor Dashboard · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";
+    }
+    mount.removeAttribute("aria-busy");
+    mount.classList.add("wdb-content-ready");
+    var weatherHints = data.thisWeekOutdoors && data.thisWeekOutdoors.weather;
+    var intel = (platform && platform.legacy) || data.regionalIntelligence || null;
+    var mountOpts = {
+      location: loc,
+      hints: weatherHints,
+      bundle: data,
+      intelligence: intel,
+      platform: platform,
+      package: platform && platform.weatherRef
+    };
+    mount._wdbMountOpts = mountOpts;
+    wireLatePlatformHydration(mount, loc, base, data);
+    return DE.refreshDashboard(mount, mountOpts).then(function () {
+      return data;
+    });
+  }
+
   function mountDashboardWidgets(mount, loc, base, data, platform) {
     var weatherHints = data.thisWeekOutdoors && data.thisWeekOutdoors.weather;
     var intel = (platform && platform.legacy) || data.regionalIntelligence || null;
@@ -1040,13 +1117,15 @@
       mount._wdbMountOpts = mountOpts;
       wireLatePlatformHydration(mount, loc, base, data);
       DE.bindInteractions(mount);
-      DE.bindSettings(mount, function () {
-        DE.refreshDashboard(mount, Object.assign({}, mountOpts, {
-          platform: platform,
-          bundle: data,
-          settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
-        }));
-      });
+      if (!mount._wdbSettingsBound) {
+        mount._wdbSettingsBound = true;
+        DE.bindSettings(mount, function () {
+          var opts = mount._wdbMountOpts || mountOpts;
+          DE.refreshDashboard(mount, Object.assign({}, opts, {
+            settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
+          }));
+        });
+      }
       DE.mountWidgets(mount, mountOpts).then(function () {
         var BP = global.WDS && global.WDS.briefingPackage;
         if (BP && BP.bind) BP.bind(mount, mountOpts);
@@ -1128,6 +1207,16 @@
     return KB.preloadFromBundle(data);
   }
 
+  var activeInit = null;
+
+  function coordsKey(loc) {
+    if (!loc) return "";
+    var lat = Number(loc.lat);
+    var lng = Number(loc.lng);
+    if (!isFinite(lat) || !isFinite(lng)) return String(loc.regionId || loc.contentBundle || "");
+    return lat.toFixed(3) + "," + lng.toFixed(3);
+  }
+
   function init(options) {
     options = options || {};
     var base = resolveEngineBase(options);
@@ -1149,29 +1238,50 @@
     var mount = options.mount || document.getElementById("wds-content-engine");
     if (!mount) return Promise.reject(new Error("WDS.contentEngine: no mount element"));
 
-    mount.setAttribute("aria-busy", "true");
+    var key = regionId + "|" + coordsKey(loc);
+    if (activeInit && activeInit.key === key && activeInit.promise) {
+      return activeInit.promise;
+    }
 
-    return loadRegion(regionId, base).then(function (data) {
+    // Location/region change: force a fresh shell so hydrate is not applied to the wrong grid.
+    var prevKey = mount.getAttribute("data-wdb-init-key");
+    if (prevKey && prevKey !== key) {
+      mount.classList.remove("wdb-content-ready");
+    }
+    mount.setAttribute("data-wdb-init-key", key);
+
+    // Keep page-level busy only until the progressive shell exists.
+    if (!mount.classList.contains("wdb-content-ready")) {
+      mount.setAttribute("aria-busy", "true");
+    }
+
+    var run = loadRegion(regionId, base).then(function (data) {
       if (loc && global.WDS && global.WDS.location) {
         data = global.WDS.location.applyToBundle(data, loc);
       }
 
       // Progressive first paint: shell + grid with per-card Loading states.
-      // Live providers hydrate afterward and remount independently.
       var shellData = applyPlatformToData(data, null);
-      renderIntoMount(mount, shellData, loc, base, options, null);
+      if (!mount.classList.contains("wdb-content-ready")) {
+        renderIntoMount(mount, shellData, loc, base, options, null);
+      }
 
       // WSKB preload must not block the dashboard grid.
       ensureWskbPreload(data, base, loc).catch(function () { /* non-blocking */ });
 
       return fetchOutdoorIntelligence(loc, base, data).then(function (platform) {
         data = applyPlatformToData(data, platform);
-        return renderIntoMount(mount, data, loc, base, options, platform);
+        return hydrateDashboardInPlace(mount, data, loc, base, options, platform);
       }).catch(function () {
-        // Shell already painted; keep Loading/Unavailable card terminals.
+        // Shell already painted; keep Loading card terminals until the next refresh.
         return data;
       });
+    }).finally(function () {
+      if (activeInit && activeInit.key === key) activeInit = null;
     });
+
+    activeInit = { key: key, promise: run };
+    return run;
   }
 
   global.WDS = global.WDS || {};

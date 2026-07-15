@@ -1026,6 +1026,13 @@
   backdrop-filter: blur(6px);
 }
 
+/* Author display:flex overrides UA [hidden] — same pattern as compare-mount.
+   Cover both the #mount (receives hidden on dismiss) and the inner dialog. */
+#wds-location-prompt[hidden],
+.wds-location-prompt[hidden] {
+  display: none !important;
+}
+
 .wds-location-prompt__card {
   width: 100%;
   max-width: 28rem;

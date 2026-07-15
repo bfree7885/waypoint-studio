@@ -702,6 +702,13 @@
     if (options.platform && options.platform.meta && options.platform.meta.hydratedAt) {
       return Promise.resolve(finish(null));
     }
+    // Progressive shell: wait for OIP hydrate — avoid duplicate Open-Meteo requests.
+    if (!options.allowDirectFetch) {
+      el.setAttribute("aria-busy", "true");
+      el.innerHTML = renderLoading(kind);
+      if (cardId) updateDashCardTag(root, cardId, "loading");
+      return Promise.resolve(null);
+    }
     if (!W || typeof W.getForecast !== "function") {
       return Promise.resolve(finish(null));
     }

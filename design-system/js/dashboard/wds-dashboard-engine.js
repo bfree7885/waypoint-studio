@@ -333,6 +333,10 @@
     var EF = global.WDS && global.WDS.educationalFallback;
     var Rel = global.WDS && global.WDS.dashboardReliability;
     if (!root || !EF || !EF.renderUnavailable) return;
+    // Progressive shell: do not promote Loading → Unavailable before OIP arrives.
+    if (!options || !options.platform || !(options.platform.meta && options.platform.meta.hydratedAt)) {
+      return;
+    }
     var state = "provider-unavailable";
     if (Rel && !Rel.isOnline()) state = "offline";
     else if (options && options.platform && Rel && Rel.classifyPackageTrust) {
@@ -415,7 +419,8 @@
   }
 
   function bindInteractions(root) {
-    if (!root) return;
+    if (!root || root._wdbInteractionsBound) return;
+    root._wdbInteractionsBound = true;
     root.addEventListener("click", function (e) {
       var refreshBtn = e.target.closest("[data-widget-refresh]");
       if (refreshBtn) {

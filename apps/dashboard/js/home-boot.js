@@ -195,6 +195,20 @@
     return true;
   }
 
+  /** Cold start shell: national region without inventing Kansas/engine coords. */
+  function provisionalShellLocation() {
+    return {
+      contentBundle: "us-national",
+      useNationalFallback: true,
+      contentMode: "national-educational",
+      name: "United States",
+      displayTitle: "Finding your location…",
+      source: "pending",
+      lat: null,
+      lng: null
+    };
+  }
+
   function startDashboard(loc) {
     if (!window.WDS || !WDS.contentEngine || !loc) return;
     WDS.contentEngine.init({
@@ -273,10 +287,12 @@
     if (WDS.ecosystemBridge && WDS.ecosystemBridge.bindOip) {
       WDS.ecosystemBridge.bindOip();
     }
-    // Progressive: paint with a safe stored location while geolocation finishes.
+    // Progressive: paint immediately — stored coords when safe, else national shell.
     var earlyLoc = WDS.location.readStored ? WDS.location.readStored() : null;
     if (isSafeEarlyLocation(earlyLoc)) {
       startDashboard(earlyLoc);
+    } else {
+      startDashboard(provisionalShellLocation());
     }
     WDS.location.bootstrap({
       base: ENGINE_BASE,
@@ -285,13 +301,18 @@
       if (WDS.runtimeMigration && WDS.runtimeMigration.onModulesReady) {
         WDS.runtimeMigration.onModulesReady();
       }
-      startDashboard(loc || earlyLoc);
+      if (loc) startDashboard(loc);
+      else if (isSafeEarlyLocation(earlyLoc)) startDashboard(earlyLoc);
     }).catch(function () {
       if (isSafeEarlyLocation(earlyLoc)) {
         startDashboard(earlyLoc);
         return;
       }
-      showBootError();
+      // Keep provisional national shell; only surface hard error when mount is empty.
+      var mount = document.getElementById("wds-content-engine");
+      if (!mount || !mount.classList.contains("wdb-content-ready")) {
+        showBootError();
+      }
     });
   }
 

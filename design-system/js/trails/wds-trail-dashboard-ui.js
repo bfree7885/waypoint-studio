@@ -349,28 +349,11 @@
       return Promise.resolve(finish(platform));
     }
 
+    // Progressive shell: never call OIP.get here — it races content-engine hydrate.
     el.setAttribute("aria-busy", "true");
     el.innerHTML = renderLoading();
     if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "loading");
-
-    var OIP = global.WDS && global.WDS.outdoorIntelligence;
-    if (!OIP || !OIP.get) {
-      el.innerHTML = renderError("Location required", "Outdoor intelligence unavailable.");
-      el.removeAttribute("aria-busy");
-      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
-      return Promise.resolve(null);
-    }
-
-    return OIP.get({
-      location: options.location,
-      contentEngineBase: options.base || "design-system/content-engine/",
-      includeWeather: true
-    }).then(finish).catch(function () {
-      el.innerHTML = renderError("Trail conditions unavailable");
-      el.removeAttribute("aria-busy");
-      if (WUI && widgetId) WUI.updateDashCardTag(root, widgetId, "educational");
-      return null;
-    });
+    return Promise.resolve(null);
   }
 
   function mountAll(root, options) {
