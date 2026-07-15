@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Sheds field map — private observations and relative shed search priority for whitetail. Guidance, not certainty.">
+  <meta name="description" content="Sheds field intelligence — private observations, search coverage, and suggested next search areas for whitetail. Guidance, not certainty.">
   <meta name="theme-color" content="#0c1628">
-  <title>Field Map — Sheds — Waypoint Studio</title>
+  <title>Field Intelligence — Sheds — Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,30 +18,47 @@
   <div class="sheds-app">
     <header class="sheds-top">
       <div class="sheds-top__row">
-        <h1 class="sheds-brand">Sheds <span>Field map · Whitetail · Private</span></h1>
+        <h1 class="sheds-brand">Sheds <span>Field intelligence · Whitetail · Private</span></h1>
         <a class="sheds-home-link" href="../">Home</a>
       </div>
       <div class="sheds-status-row" aria-live="polite">
         <span class="sheds-pill" id="loc-status" data-state="finding">Finding location…</span>
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
+        <span class="sheds-pill" id="session-pill" data-state="manual">No active session</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
       </div>
-      <p class="sheds-note" id="model-note">Map shell ready. Search-priority surface loads for the visible area when you zoom in — never a map of antlers.</p>
+      <section class="sheds-plan" id="plan-card" aria-live="polite">
+        <h2 class="sheds-plan__title" id="plan-title">Search planner</h2>
+        <p class="sheds-plan__body" id="plan-body">Zoom in to receive a suggested next search area.</p>
+        <p class="sheds-plan__why" id="plan-why"></p>
+        <p class="sheds-plan__meta" id="plan-meta"></p>
+        <div class="sheds-plan__actions">
+          <button type="button" class="sheds-btn sheds-btn--primary" id="btn-goto-plan">Go to suggestion</button>
+          <button type="button" class="sheds-btn" id="btn-mark-partial">Mark partial</button>
+          <button type="button" class="sheds-btn" id="btn-mark-thorough">Mark thorough</button>
+          <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit later</button>
+        </div>
+        <label class="sheds-plan__note-label" for="session-note">Session note (saved when you stop track)</label>
+        <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional field note">
+      </section>
+      <p class="sheds-note" id="model-note">Map shell ready. Suggestions are relative search guidance — never a map of antlers.</p>
     </header>
 
     <div id="sheds-map-shell" aria-busy="true">
       <div id="sheds-map" role="application" aria-label="Interactive topographic field map"></div>
       <div class="sheds-toolbar">
         <button type="button" class="sheds-btn sheds-btn--primary" id="btn-locate">Locate me</button>
-        <button type="button" class="sheds-btn" id="btn-controls">Likelihood controls</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-explain">Explain center</button>
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-track" aria-pressed="false">Start track</button>
+        <button type="button" class="sheds-btn" id="btn-controls">Controls</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-explain">Explain</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-history">History</button>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-ethics">Ethics</button>
-        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-export">Export JSON</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-export">Export</button>
         <div class="sheds-legend" aria-label="Search priority legend">
           <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i> Lower</span>
           <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i> Moderate</span>
-          <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i> Higher (+ hatch)</span>
-          <span>Tap map to add · long-press/right-click to explain</span>
+          <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i> Higher</span>
+          <span>Tap map to add · suggest next area above</span>
         </div>
       </div>
     </div>
@@ -124,6 +141,8 @@
       <p class="sheds-note" id="inputs-summary"></p>
       <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show heat / priority overlay</label>
       <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
+      <label class="sheds-check"><input type="checkbox" id="coverage-visible" checked> Show search-coverage marks</label>
+      <label class="sheds-check"><input type="checkbox" id="confidence-overlay"> Confidence hatch (limited inputs)</label>
       <div class="sheds-field">
         <label for="heat-opacity">Overlay opacity</label>
         <input id="heat-opacity" type="range" min="0.15" max="0.85" step="0.05" value="0.55">
@@ -170,10 +189,24 @@
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="explain-title">Why this area?</h2>
       <p class="sheds-sheet__lede" id="explain-body"></p>
+      <p class="sheds-note" id="explain-breakdown"></p>
       <details>
         <summary>Technical breakdown</summary>
         <pre class="sheds-tech" id="explain-tech"></pre>
       </details>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn" data-close-sheet>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- History sheet -->
+  <div class="sheds-sheet" id="sheet-history" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="history-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="history-title">Search history</h2>
+      <p class="sheds-sheet__lede">Private sessions and cumulative effort on this device. Past search does not prove an area is empty.</p>
+      <pre class="sheds-tech" id="history-body" style="max-height:50vh;white-space:pre-wrap;"></pre>
       <div class="sheds-actions">
         <button type="button" class="sheds-btn" data-close-sheet>Close</button>
       </div>
@@ -202,7 +235,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="../js/sheds-observation-store.js"></script>
+  <script src="../js/sheds-session-store.js"></script>
   <script src="../js/sheds-likelihood-model.js"></script>
+  <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>

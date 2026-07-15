@@ -116,8 +116,11 @@
       deerSign: 0,
       fences: 0,
       searchPenalty: 0,
+      shedBoost: 0,
+      beddingCluster: 0,
       reasons: []
     };
+    var beddingNearby = 0;
     var i;
     for (i = 0; i < observations.length; i++) {
       var o = observations[i];
@@ -130,6 +133,7 @@
       } else if (t === "bedding_area" || t === "winter_concentration") {
         var b = kernel(d, 800) * weightOf(prefs, "bedding");
         if (b > parts.bedding) parts.bedding = b;
+        if (d < 350) beddingNearby += 1;
       } else if (t === "trail_crossing") {
         var c = kernel(d, 700) * weightOf(prefs, "corridors");
         if (c > parts.corridors) parts.corridors = c;
@@ -137,8 +141,16 @@
         var fc = kernel(d, 550) * weightOf(prefs, "fences");
         if (fc > parts.fences) parts.fences = fc;
       } else if (t === "deer_sign" || t === "deer_seen") {
-        var s = kernel(d, 1000) * weightOf(prefs, "deerSign") * (t === "deer_seen" ? 0.85 : 1);
+        var freshness = 1;
+        // Prefer fresher notes when confidence is confirmed
+        if (o.confidence === "confirmed") freshness = 1.12;
+        if (o.confidence === "uncertain") freshness = 0.9;
+        var s = kernel(d, 1000) * weightOf(prefs, "deerSign") * (t === "deer_seen" ? 0.85 : 1) * freshness;
         if (s > parts.deerSign) parts.deerSign = s;
+      } else if (t === "shed_found") {
+        // Local interest increase — never a guarantee of additional sheds
+        var sb = kernel(d, 650) * 0.55;
+        if (sb > parts.shedBoost) parts.shedBoost = sb;
       } else if (t === "search_completed") {
         var p = kernel(d, 450) * weightOf(prefs, "searchHistory");
         if (p > parts.searchPenalty) parts.searchPenalty = p;
@@ -146,6 +158,10 @@
         var e = kernel(d, 700) * weightOf(prefs, "edges") * 0.55;
         if (e > parts.corridors) parts.corridors = Math.max(parts.corridors, e);
       }
+    }
+    if (beddingNearby >= 2) {
+      parts.beddingCluster = clamp(0.15 * (beddingNearby - 1), 0, 0.35);
+      parts.bedding = clamp(parts.bedding + parts.beddingCluster, 0, 1.2);
     }
     return parts;
   }
@@ -190,19 +206,28 @@
     }
 
     var base =
-      0.28 * season.score * wSeason +
-      0.16 * slope.score * weightOf(prefs, "slope") +
-      0.12 * aspect.score * weightOf(prefs, "aspect") +
-      0.10 * edgeScore * weightOf(prefs, "edges") +
-      0.12 * obs.feeding +
+      0.26 * season.score * wSeason +
+      0.15 * slope.score * weightOf(prefs, "slope") +
+      0.11 * aspect.score * weightOf(prefs, "aspect") +
+      0.09 * edgeScore * weightOf(prefs, "edges") +
+      0.11 * obs.feeding +
       0.10 * obs.bedding +
       0.08 * obs.corridors +
       0.07 * obs.deerSign +
-      0.06 * obs.fences;
+      0.06 * obs.fences +
+      0.05 * obs.shedBoost;
 
     var searchW = weightOf(prefs, "searchHistory");
     var afterSearch = base * (1 - 0.55 * obs.searchPenalty * (searchW > 0 ? 1 : 0));
     afterSearch *= (weightOf(prefs, "snow") > 0 ? snowFactor : 1);
+
+    // Coverage marks from sessions (partial/thorough) — reduce planner priority only
+    var coverageFactor = 1;
+    var coverageLevel = opts.coverageLevel || null;
+    if (opts.coverageFactor != null && isFinite(opts.coverageFactor)) {
+      coverageFactor = clamp(opts.coverageFactor, 0.2, 1.15);
+    }
+    afterSearch *= coverageFactor;
 
     var priority = clamp(afterSearch, 0, 1.35);
     // Normalize soft ceiling
@@ -232,16 +257,30 @@
         corridors: obs.corridors,
         deerSign: obs.deerSign,
         fences: obs.fences,
+        shedBoost: obs.shedBoost,
         searchPenalty: obs.searchPenalty,
-        snowFactor: snowFactor
+        snowFactor: snowFactor,
+        coverageFactor: coverageFactor
       },
       labels: {
         seasonPhase: season.phase,
         slope: slope.label,
-        aspect: aspect.label
+        aspect: aspect.label,
+        coverageLevel: coverageLevel
       },
       sources: inputs,
-      seasonNote: season.note
+      seasonNote: season.note,
+      contributionBreakdown: [
+        { key: "season", label: "Season timing", value: season.score * wSeason },
+        { key: "slope", label: "Slope", value: slope.score * weightOf(prefs, "slope") },
+        { key: "aspect", label: "Aspect / sun", value: aspect.score * weightOf(prefs, "aspect") },
+        { key: "feeding", label: "Feeding notes", value: obs.feeding },
+        { key: "bedding", label: "Bedding / cover", value: obs.bedding },
+        { key: "sign", label: "Deer sign", value: obs.deerSign },
+        { key: "sheds", label: "Prior shed finds nearby", value: obs.shedBoost },
+        { key: "search", label: "Search-history reduction", value: obs.searchPenalty },
+        { key: "coverage", label: "Coverage mark factor", value: coverageFactor }
+      ]
     };
   }
 
@@ -260,7 +299,11 @@
     if (result.parts.corridors > 0.25) reasons.push("near travel / corridor notes");
     if (result.parts.fences > 0.2) reasons.push("near a fence-crossing note");
     if (result.parts.deerSign > 0.25) reasons.push("near recent deer sign or sightings");
+    if (result.parts.shedBoost > 0.15) reasons.push("near a prior shed find (raises interest, not a guarantee)");
     if (result.parts.searchPenalty > 0.25) reasons.push("reduced because of nearby “search completed” notes");
+    if (result.parts.coverageFactor != null && result.parts.coverageFactor < 0.9) {
+      reasons.push("reduced by on-map search coverage marks");
+    }
     if (result.labels.aspect && result.sources.terrain === "map-derived") {
       reasons.push(result.labels.aspect + " terrain (" + result.labels.slope + " slope)");
     }
@@ -299,6 +342,8 @@
     var cells = [];
     var r;
     var c;
+    var Sessions = context.sessions || global.WaypointShedsSessions;
+    var covMap = Sessions && Sessions.coverageMap ? Sessions.coverageMap() : null;
     var coverageProbe = {
       season: "seasonal-rule",
       terrain: elev ? "map-derived" : "unavailable",
@@ -314,6 +359,15 @@
         var terrain = elev
           ? slopeAspectAt(elev, r, c, rows, cols, cellM)
           : { slope: null, aspect: null, source: "unavailable" };
+        var covLevel = null;
+        var covFactor = 1;
+        if (covMap && Sessions && Sessions.cellKey) {
+          var hit = covMap[Sessions.cellKey(lat, lng)];
+          if (hit) {
+            covLevel = hit.level;
+            covFactor = Sessions.coveragePenaltyFactor(hit.level);
+          }
+        }
         var scored = scoreCell({
           lat: lat,
           lng: lng,
@@ -322,7 +376,9 @@
           observations: context.observations,
           terrain: terrain,
           weather: context.weather,
-          edgeHint: context.edgeHint
+          edgeHint: context.edgeHint,
+          coverageLevel: covLevel,
+          coverageFactor: covFactor
         });
         cells.push({
           row: r,
@@ -331,6 +387,7 @@
           lng: lng,
           priority: scored.priority,
           band: scored.band,
+          coverageLevel: covLevel,
           result: scored
         });
       }

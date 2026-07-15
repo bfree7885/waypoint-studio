@@ -109,6 +109,19 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Architectural Lessons
 
+### 2026-07-15 — Search coverage reduces priority, never empties habitat
+
+- **Context:** Sheds field intelligence v0.2 planner + coverage marks
+- **Category:** Product (secondary: Scientific Integrity, Architecture)
+- **Lesson:** Marking ground “thoroughly searched” may demote it for next-area
+  planning, but product language and model factors must never imply the area
+  contains no sheds. Coverage is effort memory, not detection certainty.
+- **Evidence:** `apps/shed-hunting/js/sheds-search-planner.js`;
+  `apps/shed-hunting/js/sheds-session-store.js`;
+  `docs/SESSION-SHEDS-MAP-V0.2.md`
+- **Prevention:** Planner disclaimers + explanation assertions in
+  `automation/test-sheds-planner.mjs`
+
 ### 2026-07-14 — Relative search priority ≠ probability of finds
 
 - **Context:** Sheds field map v0.1 heat surface

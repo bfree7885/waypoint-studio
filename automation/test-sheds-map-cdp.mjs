@@ -101,6 +101,11 @@ async function main() {
         loc: (document.getElementById("loc-status") || {}).textContent,
         store: !!(window.WaypointShedsObservations && WaypointShedsObservations.list),
         model: !!(window.WaypointShedsLikelihood && WaypointShedsLikelihood.buildGrid),
+        sessions: !!(window.WaypointShedsSessions && WaypointShedsSessions.startSession),
+        planner: !!(window.WaypointShedsPlanner && WaypointShedsPlanner.plan),
+        planCard: !!document.getElementById("plan-card"),
+        trackBtn: !!document.getElementById("btn-track"),
+        historySheet: !!document.getElementById("sheet-history"),
         leafMap: !!(window.L && document.querySelector(".leaflet-container")),
         kansas: /39\\.8283|-98\\.5795/.test(document.body.innerText)
       };
@@ -114,7 +119,8 @@ async function main() {
   proc.kill("SIGTERM");
   server.close();
 
-  const ok = v.hasLeaflet && v.leafMap && v.store && v.model && !v.kansas;
+  const ok = v.hasLeaflet && v.leafMap && v.store && v.model &&
+    v.sessions && v.planner && v.planCard && v.trackBtn && v.historySheet && !v.kansas;
   if (!ok) {
     console.error("SHEDS MAP CDP: FAIL");
     process.exit(1);

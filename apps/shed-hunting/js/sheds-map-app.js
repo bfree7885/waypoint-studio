@@ -1,5 +1,5 @@
 /**
- * Sheds Field Map — interactive topo map, observations, search-priority heat (v0.1).
+ * Sheds Field Map — topo map, observations, heat, search planner (v0.2).
  */
 (function () {
   "use strict";
@@ -7,6 +7,8 @@
   var Store = window.WaypointShedsObservations;
   var Model = window.WaypointShedsLikelihood;
   var Heat = window.WaypointShedsHeat;
+  var Sessions = window.WaypointShedsSessions;
+  var Planner = window.WaypointShedsPlanner;
 
   var NEUTRAL = { lat: 45.2, lng: -93.5, zoom: 4 }; // labeled neutral — not “you”
   var GRID_ROWS = 18;
@@ -23,11 +25,15 @@
     elevKey: "",
     weather: null,
     recomputeTimer: null,
-    firstEthicsShown: false
+    firstEthicsShown: false,
+    tracking: false,
+    activeSessionId: null,
+    lastPlan: null
   };
 
   var els = {};
   var map, heatLayer, userMarker, obsLayer, clickLatLng;
+  var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
 
   function $(id) { return document.getElementById(id); }
 
@@ -78,6 +84,9 @@
     ).addTo(map);
 
     obsLayer = L.layerGroup().addTo(map);
+    coverageLayer = L.layerGroup().addTo(map);
+    trackLayer = L.layerGroup().addTo(map);
+    planLayer = L.layerGroup().addTo(map);
     heatLayer = Heat.createHeatLayer(map, { opacity: 0.55 });
 
     var saved = Store.loadMapView();
@@ -99,7 +108,7 @@
     });
 
     map.on("click", function (e) {
-      if (els.sheetObs.classList.contains("is-open") || els.sheetControls.classList.contains("is-open")) return;
+      if (document.querySelector(".sheds-sheet.is-open")) return;
       openNewObservation(e.latlng);
     });
 
@@ -234,18 +243,20 @@
   }
 
   function recomputeHeat() {
-    if (!map || !Model || !state.prefs.heatVisible) {
-      if (heatLayer) heatLayer.setHeatVisible(false);
-      return;
+    if (!map || !Model) return;
+    if (heatLayer) {
+      heatLayer.setHeatVisible(!!state.prefs.heatVisible);
+      heatLayer.setHeatOpacity(state.prefs.opacity);
     }
-    heatLayer.setHeatVisible(true);
-    heatLayer.setHeatOpacity(state.prefs.opacity);
     var bounds = map.getBounds();
     // Avoid huge areas at low zoom — limit extent
     if (map.getZoom() < 9) {
       setModelCoverageNote("Zoom in to compute a local search-priority surface.");
-      heatLayer.setGrid({ cells: [], bounds: { west: 0, east: 0, south: 0, north: 0 }, rows: 0, cols: 0 });
+      if (heatLayer) {
+        heatLayer.setGrid({ cells: [], bounds: { west: 0, east: 0, south: 0, north: 0 }, rows: 0, cols: 0 });
+      }
       updateCoverageUi({ level: "limited", label: "Limited input coverage — zoom for local analysis" });
+      updatePlanner(null);
       return;
     }
 
@@ -263,16 +274,210 @@
         prefs: state.prefs,
         observations: observations,
         elevations: elev,
-        weather: state.weather
+        weather: state.weather,
+        sessions: Sessions
       });
       heatLayer.setGrid(grid);
+      if (heatLayer.setShowConfidence) {
+        heatLayer.setShowConfidence(!!state.prefs.showConfidence);
+      }
       updateCoverageUi(grid.coverage);
       setModelCoverageNote(
         grid.disclaimer + " ~" + grid.cellMetersApprox + " m cells. Elevation: " +
         (elev ? "sampled (Open-Meteo)" : "unavailable") + "."
       );
       updateActiveInputsSummary(grid);
+      refreshCoverageMarks();
+      updatePlanner(grid);
     });
+  }
+
+  function refreshCoverageMarks() {
+    if (!coverageLayer || !Sessions) return;
+    coverageLayer.clearLayers();
+    if (state.prefs && state.prefs.coverageVisible === false) return;
+    Sessions.listCoverage().forEach(function (c) {
+      var color = c.level === "thorough" ? "#888888"
+        : c.level === "revisit" ? "#c8f055" : "#9b8fd9";
+      var circle = L.circleMarker([c.lat, c.lng], {
+        radius: c.level === "thorough" ? 7 : 5,
+        color: "#0a1220",
+        weight: 1,
+        fillColor: color,
+        fillOpacity: 0.55
+      });
+      circle.bindTooltip("Search mark: " + c.level, { direction: "top" });
+      coverageLayer.addLayer(circle);
+    });
+  }
+
+  function updatePlanner(grid) {
+    if (!Planner || !els.planCard) return;
+    var plan = Planner.plan({
+      grid: grid,
+      userLatLng: state.userLatLng ? { lat: state.userLatLng.lat, lng: state.userLatLng.lng } : {
+        lat: map.getCenter().lat,
+        lng: map.getCenter().lng
+      },
+      sessions: Sessions,
+      observations: Store.list(),
+      model: Model
+    });
+    state.lastPlan = plan;
+    renderPlanCard(plan);
+    drawPlanOnMap(plan);
+  }
+
+  function renderPlanCard(plan) {
+    if (!els.planCard) return;
+    if (!plan || !plan.ok || !plan.recommendation) {
+      els.planTitle.textContent = "Search planner";
+      els.planBody.textContent = (plan && plan.reason) || "Zoom in and allow location (or explore) to get a next-area suggestion.";
+      els.planWhy.textContent = "";
+      els.planMeta.textContent = "";
+      return;
+    }
+    var r = plan.recommendation;
+    els.planTitle.textContent = "Suggested next search";
+    els.planBody.textContent = r.walkingHint + " Priority band: " + r.band + ".";
+    els.planWhy.textContent = r.explanation;
+    var meta = [];
+    if (r.bearingLabel) meta.push("Direction " + r.bearingLabel);
+    if (r.distanceM != null) meta.push(Planner.formatDistance(r.distanceM));
+    meta.push("Radius ~" + r.suggestedRadiusM + " m");
+    if (plan.coverage) {
+      meta.push(plan.coverage.searchedPercentLabel);
+      var thoroughShare = plan.coverage.cellsInView
+        ? Math.round((plan.coverage.thoroughCells / plan.coverage.cellsInView) * 100)
+        : 0;
+      meta.push("~" + thoroughShare + "% marked thorough in view");
+    }
+    meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
+    els.planMeta.textContent = meta.join(" · ");
+    els.planCard.setAttribute(
+      "aria-label",
+      "Suggested next search: " + els.planBody.textContent + " Why: " + r.explanation +
+        " Details: " + els.planMeta.textContent
+    );
+  }
+
+  function drawPlanOnMap(plan) {
+    if (!planLayer) return;
+    planLayer.clearLayers();
+    recMarker = null;
+    if (!plan || !plan.recommendation) return;
+    var r = plan.recommendation;
+    recMarker = L.circle([r.lat, r.lng], {
+      radius: r.suggestedRadiusM,
+      color: "#c8f055",
+      weight: 2,
+      fillColor: "#c8f055",
+      fillOpacity: 0.12
+    }).addTo(planLayer);
+    L.circleMarker([r.lat, r.lng], {
+      radius: 7,
+      color: "#080f1c",
+      weight: 2,
+      fillColor: "#c8f055",
+      fillOpacity: 1
+    }).bindTooltip("Suggested next search", { permanent: false }).addTo(planLayer);
+    if (state.userLatLng) {
+      L.polyline([
+        [state.userLatLng.lat, state.userLatLng.lng],
+        [r.lat, r.lng]
+      ], { color: "#c8f055", weight: 2, dashArray: "6 8", opacity: 0.85 }).addTo(planLayer);
+    }
+  }
+
+  function redrawTrack(session) {
+    if (!trackLayer) return;
+    trackLayer.clearLayers();
+    trackLine = null;
+    if (!session || !session.path || session.path.length < 2) return;
+    var latlngs = session.path.map(function (p) { return [p.lat, p.lng]; });
+    trackLine = L.polyline(latlngs, { color: "#7eb6ff", weight: 4, opacity: 0.85 }).addTo(trackLayer);
+  }
+
+  function startTracking() {
+    if (!Sessions || !navigator.geolocation) {
+      setLocStatus("unavailable", "cannot track without geolocation");
+      return;
+    }
+    var session = Sessions.startSession({
+      speciesId: Store.SPECIES_WHITETAIL,
+      weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null
+    });
+    state.activeSessionId = session.id;
+    state.tracking = true;
+    redrawTrack(session);
+    if (els.btnTrack) {
+      els.btnTrack.textContent = "Stop track";
+      els.btnTrack.setAttribute("aria-pressed", "true");
+    }
+    if (els.sessionPill) {
+      els.sessionPill.textContent = "Session active · " + Math.round(session.distanceM || 0) + " m";
+      els.sessionPill.dataset.state = "available";
+    }
+    if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
+    state.watchId = navigator.geolocation.watchPosition(function (pos) {
+      var lat = pos.coords.latitude;
+      var lng = pos.coords.longitude;
+      state.userLatLng = L.latLng(lat, lng);
+      setLocStatus("available", "tracking");
+      if (!userMarker) {
+        userMarker = L.circleMarker(state.userLatLng, {
+          radius: 8, color: "#1a1a1a", weight: 2, fillColor: "#c8f055", fillOpacity: 0.95
+        }).addTo(map);
+      } else userMarker.setLatLng(state.userLatLng);
+      var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
+      redrawTrack(updated);
+      if (els.sessionPill && updated) {
+        els.sessionPill.textContent = "Tracking · " + Math.round(updated.distanceM || 0) + " m";
+      }
+      scheduleRecompute(800);
+    }, function (err) {
+      if (err && err.code === 1) setLocStatus("denied", "tracking stopped");
+      else setLocStatus("unavailable", "tracking error");
+    }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 });
+  }
+
+  function stopTracking() {
+    if (state.watchId != null && navigator.geolocation) {
+      navigator.geolocation.clearWatch(state.watchId);
+      state.watchId = null;
+    }
+    state.tracking = false;
+    if (state.activeSessionId && Sessions) {
+      var noteEl = $("session-note");
+      Sessions.endSession(state.activeSessionId, {
+        notes: noteEl ? String(noteEl.value || "").trim() : "",
+        weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null
+      });
+      if (noteEl) noteEl.value = "";
+    }
+    state.activeSessionId = null;
+    if (els.btnTrack) {
+      els.btnTrack.textContent = "Start track";
+      els.btnTrack.setAttribute("aria-pressed", "false");
+    }
+    if (els.sessionPill) {
+      els.sessionPill.textContent = "No active session";
+      els.sessionPill.dataset.state = "manual";
+    }
+    scheduleRecompute(200);
+  }
+
+  function markCoverageAtUser(level) {
+    var ll = state.userLatLng || (map && map.getCenter());
+    if (!ll || !Sessions) return;
+    var lat = typeof ll.lat === "function" ? ll.lat() : ll.lat;
+    var lng = typeof ll.lng === "function" ? ll.lng() : ll.lng;
+    Sessions.markCoverage(lat, lng, level, {
+      sessionId: state.activeSessionId,
+      source: "user"
+    });
+    refreshCoverageMarks();
+    scheduleRecompute(100);
   }
 
   function updateCoverageUi(coverage) {
@@ -349,7 +554,7 @@
   }
 
   function closeAllSheets() {
-    [els.sheetObs, els.sheetControls, els.sheetExplain, els.sheetEthics].forEach(function (s) {
+    [els.sheetObs, els.sheetControls, els.sheetExplain, els.sheetEthics, els.sheetHistory].forEach(function (s) {
       if (s) closeSheet(s);
     });
   }
@@ -422,8 +627,23 @@
       return;
     }
     $("obs-error").hidden = true;
+    if (mode !== "edit" && Sessions) {
+      var sess = Sessions.getActiveSession() || (state.tracking ? null : null);
+      if (state.activeSessionId) {
+        Sessions.attachObservation(state.activeSessionId, result.observation.id, type);
+      } else if (sess) {
+        Sessions.attachObservation(sess.id, result.observation.id, type);
+      }
+      if (type === "search_completed") {
+        Sessions.markCoverage(clickLatLng.lat, clickLatLng.lng, "thorough", {
+          sessionId: state.activeSessionId,
+          source: "observation"
+        });
+      }
+    }
     closeSheet(els.sheetObs);
     refreshObservations();
+    refreshCoverageMarks();
     scheduleRecompute(100);
   }
 
@@ -442,14 +662,22 @@
     var text;
     if (!cell || !cell.result) {
       text = "No local search-priority cell here. Zoom in with the heat map on to analyze the visible area.";
+      if (els.explainBreakdown) els.explainBreakdown.textContent = "";
     } else {
       text = Model.explain(cell.result, { coverage: heatLayer.getGrid() && heatLayer.getGrid().coverage });
+      if (els.explainBreakdown && cell.result.contributionBreakdown) {
+        els.explainBreakdown.textContent = cell.result.contributionBreakdown.map(function (row) {
+          return row.label + ": " + (Math.round(row.value * 100) / 100);
+        }).join(" · ");
+      }
       if (els.explainTech) {
         els.explainTech.textContent = JSON.stringify({
           band: cell.band,
           priority: Math.round(cell.priority * 100) / 100,
+          coverageLevel: cell.coverageLevel || null,
           parts: cell.result.parts,
-          sources: cell.result.sources
+          sources: cell.result.sources,
+          contributionBreakdown: cell.result.contributionBreakdown
         }, null, 2);
       }
     }
@@ -457,8 +685,44 @@
     openSheet(els.sheetExplain);
   }
 
+  function renderHistory() {
+    if (!els.historyBody || !Sessions) return;
+    var hist = Sessions.summarizeHistory(Store.list());
+    var sessions = Sessions.listSessions().slice(0, 12);
+    var lines = [];
+    lines.push("Sessions: " + hist.sessionCount + " · Distance logged: " +
+      Math.round(hist.totalDistanceM) + " m · Sheds logged in sessions: " + hist.totalShedsFound);
+    lines.push("Coverage cells marked: " + hist.coverageCells + " (thorough: " + hist.thoroughCells + ")");
+    lines.push("");
+    lines.push("Recent sessions:");
+    sessions.forEach(function (s) {
+      var mins = Math.round((s.durationMs || 0) / 60000);
+      lines.push("• " + String(s.startedAt).slice(0, 16).replace("T", " ") +
+        " — " + (s.status || "?") + ", " + Math.round(s.distanceM || 0) + " m, " +
+        mins + " min, obs " + (s.observationIds || []).length + ", sheds " + (s.shedsFound || 0));
+    });
+    lines.push("");
+    lines.push("Observations by day:");
+    hist.days.slice(0, 10).forEach(function (d) {
+      lines.push("• " + d.date + ": " + d.count + " notes (" + d.sheds + " shed finds)");
+    });
+    if (state.lastPlan && state.lastPlan.remainingHighCount != null) {
+      lines.push("");
+      lines.push("Revisit suggestion: " + state.lastPlan.remainingHighCount +
+        " higher-priority pockets in view are not marked thoroughly searched.");
+    }
+    els.historyBody.textContent = lines.join("\n");
+  }
+
   function bindControls() {
     $("btn-locate").addEventListener("click", function () { locateUser({ center: true }); });
+    els.btnTrack = $("btn-track");
+    if (els.btnTrack) {
+      els.btnTrack.addEventListener("click", function () {
+        if (state.tracking) stopTracking();
+        else startTracking();
+      });
+    }
     $("btn-controls").addEventListener("click", function () {
       syncControlsForm();
       openSheet(els.sheetControls);
@@ -467,11 +731,33 @@
     $("btn-explain").addEventListener("click", function () {
       openExplain(map.getCenter());
     });
+    if ($("btn-history")) {
+      $("btn-history").addEventListener("click", function () {
+        renderHistory();
+        openSheet(els.sheetHistory);
+      });
+    }
+    if ($("btn-goto-plan")) {
+      $("btn-goto-plan").addEventListener("click", function () {
+        if (state.lastPlan && state.lastPlan.recommendation) {
+          var r = state.lastPlan.recommendation;
+          map.setView([r.lat, r.lng], Math.max(map.getZoom(), 14));
+        }
+      });
+    }
+    ["partial", "thorough", "revisit"].forEach(function (level) {
+      var btn = $("btn-mark-" + level);
+      if (btn) btn.addEventListener("click", function () { markCoverageAtUser(level); });
+    });
     $("btn-export").addEventListener("click", function () {
-      var blob = new Blob([JSON.stringify(Store.exportJson(), null, 2)], { type: "application/json" });
+      var payload = {
+        observations: Store.exportJson(),
+        sessions: Sessions ? Sessions.exportBundle() : null
+      };
+      var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
       var a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = "sheds-observations-private.json";
+      a.download = "sheds-field-private.json";
       a.click();
       URL.revokeObjectURL(a.href);
     });
@@ -507,6 +793,20 @@
       Store.saveModelPrefs(state.prefs);
       if (heatLayer) heatLayer.setHeatOpacity(state.prefs.opacity);
     });
+    if ($("confidence-overlay")) {
+      $("confidence-overlay").addEventListener("change", function () {
+        state.prefs.showConfidence = $("confidence-overlay").checked;
+        Store.saveModelPrefs(state.prefs);
+        if (heatLayer && heatLayer.setShowConfidence) heatLayer.setShowConfidence(state.prefs.showConfidence);
+      });
+    }
+    if ($("coverage-visible")) {
+      $("coverage-visible").addEventListener("change", function () {
+        state.prefs.coverageVisible = $("coverage-visible").checked;
+        Store.saveModelPrefs(state.prefs);
+        refreshCoverageMarks();
+      });
+    }
 
     document.querySelectorAll("[data-weight]").forEach(function (sel) {
       sel.addEventListener("change", function () {
@@ -540,6 +840,8 @@
     $("heat-visible").checked = state.prefs.heatVisible;
     $("obs-visible").checked = state.prefs.obsVisible;
     $("heat-opacity").value = state.prefs.opacity;
+    if ($("confidence-overlay")) $("confidence-overlay").checked = !!state.prefs.showConfidence;
+    if ($("coverage-visible")) $("coverage-visible").checked = state.prefs.coverageVisible !== false;
     Object.keys(state.prefs.weights).forEach(function (k) {
       var el = document.querySelector('[data-weight="' + k + '"]');
       if (el) el.value = state.prefs.weights[k];
@@ -567,37 +869,60 @@
   }
 
   function boot() {
-    if (!window.L || !Store || !Model || !Heat) {
+    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner) {
       requestAnimationFrame(boot);
       return;
     }
     els.locStatus = $("loc-status");
     els.obsCount = $("obs-count");
     els.coverage = $("coverage-pill");
+    els.sessionPill = $("session-pill");
     els.modelNote = $("model-note");
     els.inputsSummary = $("inputs-summary");
+    els.planCard = $("plan-card");
+    els.planTitle = $("plan-title");
+    els.planBody = $("plan-body");
+    els.planWhy = $("plan-why");
+    els.planMeta = $("plan-meta");
     els.sheetObs = $("sheet-obs");
     els.sheetControls = $("sheet-controls");
     els.sheetExplain = $("sheet-explain");
     els.sheetEthics = $("sheet-ethics");
+    els.sheetHistory = $("sheet-history");
+    els.historyBody = $("history-body");
     els.obsForm = $("obs-form");
     els.obsId = $("obs-id");
     els.obsMode = $("obs-mode");
     els.explainBody = $("explain-body");
     els.explainTech = $("explain-tech");
+    els.explainBreakdown = $("explain-breakdown");
 
     state.prefs = Store.loadModelPrefs();
+    if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
+    if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
     fillTypeSelects();
     initMap();
     bindControls();
     syncControlsForm();
     refreshObservations();
+    refreshCoverageMarks();
+    var active = Sessions.getActiveSession();
+    if (active) {
+      state.activeSessionId = active.id;
+      redrawTrack(active);
+      if (els.sessionPill) {
+        els.sessionPill.textContent = "Resume ready · " + Math.round(active.distanceM || 0) + " m";
+        els.sessionPill.dataset.state = "available";
+      }
+      if (els.btnTrack) els.btnTrack.textContent = "Resume track";
+    }
     locateUser({ center: !Store.loadMapView() });
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
 
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("reduced-motion");
+      if (heatLayer && heatLayer.setSmooth) heatLayer.setSmooth(false);
     }
   }
 

@@ -1,5 +1,6 @@
 /**
- * Sheds — Leaflet canvas heat / priority grid overlay.
+ * Sheds — Leaflet canvas heat / priority grid overlay (v0.2).
+ * Smooth filled cells + optional confidence crosshatch when input coverage is limited.
  */
 (function (global) {
   "use strict";
@@ -16,6 +17,8 @@
       this._grid = null;
       this._heatVisible = true;
       this._hostMap = null;
+      this._showConfidence = false;
+      this._smooth = true;
     },
 
     onAdd: function (map) {
@@ -36,11 +39,36 @@
       return tile;
     },
 
-    _colorFor: function (priority) {
+    _colorFor: function (priority, alphaBoost) {
       var p = Math.max(0, Math.min(1, priority));
-      if (p < 0.45) return "rgba(90, 120, 150, " + (0.12 + p * 0.25) + ")";
-      if (p < 0.72) return "rgba(180, 140, 60, " + (0.22 + (p - 0.45) * 0.5) + ")";
-      return "rgba(80, 140, 70, " + (0.35 + (p - 0.72) * 0.55) + ")";
+      var aMul = alphaBoost != null ? alphaBoost : 1;
+      if (p < 0.45) return "rgba(90, 120, 150, " + ((0.10 + p * 0.28) * aMul) + ")";
+      if (p < 0.72) return "rgba(180, 140, 60, " + ((0.20 + (p - 0.45) * 0.55) * aMul) + ")";
+      return "rgba(80, 140, 70, " + ((0.32 + (p - 0.72) * 0.6) * aMul) + ")";
+    },
+
+    _cellAt: function (row, col) {
+      var grid = this._grid;
+      if (!grid || row < 0 || col < 0 || row >= grid.rows || col >= grid.cols) return null;
+      return grid.cells[row * grid.cols + col];
+    },
+
+    _samplePriority: function (rowF, colF) {
+      var r0 = Math.floor(rowF);
+      var c0 = Math.floor(colF);
+      var fr = rowF - r0;
+      var fc = colF - c0;
+      var a = this._cellAt(r0, c0);
+      var b = this._cellAt(r0, c0 + 1);
+      var c = this._cellAt(r0 + 1, c0);
+      var d = this._cellAt(r0 + 1, c0 + 1);
+      var pa = a ? a.priority : 0;
+      var pb = b ? b.priority : pa;
+      var pc = c ? c.priority : pa;
+      var pd = d ? d.priority : pb;
+      var top = pa + (pb - pa) * fc;
+      var bot = pc + (pd - pc) * fc;
+      return top + (bot - top) * fr;
     },
 
     _paintTile: function (tile, coords) {
@@ -56,19 +84,47 @@
       var tileY = coords.y * 256;
       var cellW = (se.x - nw.x) / grid.cols;
       var cellH = (se.y - nw.y) / grid.rows;
+      var limited = grid.coverage && grid.coverage.level === "limited";
       var i;
-      for (i = 0; i < grid.cells.length; i++) {
-        var cell = grid.cells[i];
-        var x = nw.x + cell.col * cellW - tileX;
-        var y = nw.y + cell.row * cellH - tileY;
-        if (x > 256 || y > 256 || x + cellW < 0 || y + cellH < 0) continue;
-        ctx.fillStyle = this._colorFor(cell.priority);
-        ctx.fillRect(x, y, Math.ceil(cellW) + 1, Math.ceil(cellH) + 1);
-        if (cell.band === "higher") {
-          ctx.strokeStyle = "rgba(255,255,255,0.2)";
+
+      if (this._smooth && cellW > 4 && cellH > 4) {
+        var step = Math.max(2, Math.min(8, Math.floor(Math.min(cellW, cellH) / 3)));
+        for (var y = 0; y < 256; y += step) {
+          for (var x = 0; x < 256; x += step) {
+            var gx = (tileX + x + step / 2 - nw.x) / cellW;
+            var gy = (tileY + y + step / 2 - nw.y) / cellH;
+            if (gx < -1 || gy < -1 || gx > grid.cols || gy > grid.rows) continue;
+            var p = this._samplePriority(gy, gx);
+            ctx.fillStyle = this._colorFor(p, 1);
+            ctx.fillRect(x, y, step + 1, step + 1);
+          }
+        }
+      } else {
+        for (i = 0; i < grid.cells.length; i++) {
+          var cell = grid.cells[i];
+          var x0 = nw.x + cell.col * cellW - tileX;
+          var y0 = nw.y + cell.row * cellH - tileY;
+          if (x0 > 256 || y0 > 256 || x0 + cellW < 0 || y0 + cellH < 0) continue;
+          ctx.fillStyle = this._colorFor(cell.priority);
+          ctx.fillRect(x0, y0, Math.ceil(cellW) + 1, Math.ceil(cellH) + 1);
+          if (cell.band === "higher") {
+            ctx.strokeStyle = "rgba(255,255,255,0.2)";
+            ctx.beginPath();
+            ctx.moveTo(x0, y0 + cellH);
+            ctx.lineTo(x0 + cellW, y0);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Confidence overlay: hatch when coverage limited or user enabled
+      if (this._showConfidence || limited) {
+        ctx.strokeStyle = "rgba(228,234,244,0.08)";
+        ctx.lineWidth = 1;
+        for (var hx = -256; hx < 512; hx += 10) {
           ctx.beginPath();
-          ctx.moveTo(x, y + cellH);
-          ctx.lineTo(x + cellW, y);
+          ctx.moveTo(hx, 0);
+          ctx.lineTo(hx + 256, 256);
           ctx.stroke();
         }
       }
@@ -99,6 +155,16 @@
 
     setHeatOpacity: function (op) {
       this.setOpacity(op);
+    },
+
+    setShowConfidence: function (v) {
+      this._showConfidence = !!v;
+      this.redraw();
+    },
+
+    setSmooth: function (v) {
+      this._smooth = !!v;
+      this.redraw();
     },
 
     nearestCell: function (latlng) {

@@ -214,6 +214,8 @@
       schemaVersion: 1,
       heatVisible: true,
       obsVisible: true,
+      coverageVisible: true,
+      showConfidence: false,
       opacity: 0.55,
       weights: {
         season: "balanced",
@@ -241,6 +243,8 @@
         schemaVersion: 1,
         heatVisible: parsed.heatVisible !== false,
         obsVisible: parsed.obsVisible !== false,
+        coverageVisible: parsed.coverageVisible !== false,
+        showConfidence: !!parsed.showConfidence,
         opacity: typeof parsed.opacity === "number" ? parsed.opacity : 0.55,
         weights: Object.assign({}, base.weights, parsed.weights || {})
       };
