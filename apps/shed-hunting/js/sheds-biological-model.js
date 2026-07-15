@@ -1,19 +1,16 @@
 /**
- * Sheds — Whitetail Biological Model v1.0
+ * Sheds — Whitetail Biological Model v1.1 (map-integrated)
  *
- * Translates documented Odocoileus virginianus winter / casting ecology into
- * transparent, modular search-priority scores. NOT machine learning.
- * NOT a probability of finding an antler.
+ * Authoritative transparent scorer for field heat / planner.
+ * NOT machine learning. NOT a probability of finding an antler.
  *
- * Every factor declares: rationale, evidence refs, confidence, data kind, and
- * a hard contribution share so no single input can silently dominate.
- *
- * See docs/BIOLOGICAL_MODEL.md for the literature synthesis.
+ * See docs/BIOLOGICAL_MODEL.md
  */
 (function (global) {
   "use strict";
 
-  var MODEL_VERSION = "1.0.0";
+  var MODEL_VERSION = "1.1.0";
+  var FACTOR_CONFIG_VERSION = "1.1.0";
   var SPECIES_ID = "odocoileus-virginianus";
 
   var WEIGHT_SCALE = {
@@ -21,6 +18,36 @@
     low: 0.45,
     balanced: 1,
     strong: 1.65
+  };
+
+  /** Documented spatial influence (meters) and recency half-lives (days). */
+  var INFLUENCE = {
+    feeding_area: { radiusM: 900, halfLifeDays: 45 },
+    bedding_area: { radiusM: 800, halfLifeDays: 60 },
+    winter_concentration: { radiusM: 1100, halfLifeDays: 75 },
+    trail_crossing: { radiusM: 700, halfLifeDays: 90 },
+    fence_crossing: { radiusM: 550, halfLifeDays: 120 },
+    deer_sign: { radiusM: 1000, halfLifeDays: 21 },
+    deer_seen: { radiusM: 1000, halfLifeDays: 14 },
+    shed_found: { radiusM: 650, halfLifeDays: 180 },
+    search_completed: { radiusM: 450, halfLifeDays: 30 },
+    habitat_note: { radiusM: 700, halfLifeDays: 90 },
+    hunting_pressure: { radiusM: 800, halfLifeDays: 45 },
+    hiking_pressure: { radiusM: 800, halfLifeDays: 45 },
+    human_disturbance: { radiusM: 800, halfLifeDays: 45 },
+    access_issue: { radiusM: 500, halfLifeDays: 120 },
+    /** Diminishing returns for N stacked contributions of same type: 1, 0.55, 0.30, … */
+    diminish: [1, 0.55, 0.3, 0.18, 0.1]
+  };
+
+  var SEASON_PHASES = {
+    pre_shed: { id: "pre_shed", label: "Pre-shed", scoreBias: 0.55 },
+    early_shed: { id: "early_shed", label: "Early shed", scoreBias: 0.78 },
+    peak_shed: { id: "peak_shed", label: "Peak shed", scoreBias: 1 },
+    late_shed: { id: "late_shed", label: "Late shed", scoreBias: 0.82 },
+    post_shed: { id: "post_shed", label: "Post-shed", scoreBias: 0.4 },
+    outside: { id: "outside", label: "Outside primary shed season", scoreBias: 0.18 },
+    unknown: { id: "unknown", label: "Unknown or insufficient context", scoreBias: 0.45 }
   };
 
   /**
@@ -333,10 +360,76 @@
     return (1 - t) * (1 - t);
   }
 
-  /** Latitude-aware casting window. Soft heuristic; documented uncertainty. */
-  function seasonProfile(date, lat) {
+  function broadRegion(lat) {
+    if (typeof lat !== "number" || !isFinite(lat)) return "unknown";
+    if (lat < 0) return "southern_hemisphere";
+    if (lat >= 48) return "far_north";
+    if (lat >= 45) return "northern";
+    if (lat >= 38) return "midwest";
+    if (lat >= 30) return "south";
+    return "gulf_subtropical";
+  }
+
+  function regionalContext(lat, lng, date) {
     date = date || new Date();
-    var month = date.getMonth() + 1;
+    return {
+      latitude: lat,
+      longitude: lng,
+      broadRegion: broadRegion(lat),
+      dateIso: date.toISOString(),
+      dataFreshness: "as_of_score_time"
+    };
+  }
+
+  function ageDays(obs, now) {
+    now = now || Date.now();
+    var raw = obs.observedAt || obs.updatedAt || obs.createdAt;
+    if (!raw) return 0;
+    var t = Date.parse(raw);
+    if (!isFinite(t)) return 0;
+    return Math.max(0, (now - t) / 86400000);
+  }
+
+  function recencyDecay(obs, halfLifeDays, now) {
+    var age = ageDays(obs, now);
+    if (!halfLifeDays || halfLifeDays <= 0) return 1;
+    return Math.exp(-age / halfLifeDays);
+  }
+
+  function confidenceMul(obs) {
+    if (!obs) return 1;
+    if (obs.confidence === "confirmed") return 1.12;
+    if (obs.confidence === "uncertain") return 0.88;
+    return 1;
+  }
+
+  function shedFreshnessMul(obs) {
+    var f = obs && obs.details && obs.details.freshness;
+    if (f === "fresh") return 1.08;
+    if (f === "weathered") return 0.9;
+    if (f === "old") return 0.75;
+    return 1;
+  }
+
+  /** Combine ranked kernel hits with documented diminishing returns. */
+  function diminishStack(values) {
+    values = (values || []).slice().sort(function (a, b) { return b - a; });
+    var total = 0;
+    var i;
+    for (i = 0; i < values.length; i++) {
+      var mul = INFLUENCE.diminish[i] != null ? INFLUENCE.diminish[i] : 0.05;
+      total += values[i] * mul;
+    }
+    return clamp(total, 0, 1.25);
+  }
+
+  /**
+   * Latitude-aware casting window with explicit seasonal phases.
+   * Override via prefs.seasonPhaseOverride (not presented as established fact).
+   */
+  function seasonProfile(date, lat, prefs) {
+    date = date || new Date();
+    prefs = prefs || {};
     var doy = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
       Date.UTC(date.getFullYear(), 0, 0)) / 86400000);
     var northern = !(typeof lat === "number" && lat < 0);
@@ -346,31 +439,66 @@
       peakCenter = 220;
       windowHalf = 55;
     } else if (typeof lat === "number") {
-      // Approx peaks: Gulf ~ late Jan (doy 25), Midwest ~ mid-Feb (45), Upper Midwest/Canada ~ early Mar (70+)
       peakCenter = clamp(20 + (lat - 30) * 2.2, 25, 85);
       windowHalf = lat > 45 ? 28 : lat > 38 ? 35 : 42;
     } else {
       peakCenter = 55;
       windowHalf = 35;
     }
+
     var dist = Math.min(
       Math.abs(doy - peakCenter),
       Math.abs(doy - peakCenter + 365),
       Math.abs(doy - peakCenter - 365)
     );
-    var seasonScore = clamp(1 - dist / (windowHalf * 2.1), 0.1, 1);
-    var phase = "post-shed / off-peak";
-    if (dist <= windowHalf * 0.45) phase = "peak-shed";
-    else if (dist <= windowHalf) phase = "shoulder (pre-/post-peak)";
-    else if (northern && (month === 12 || month <= 4) && doy < peakCenter) phase = "pre-shed";
-    else if (northern && month >= 2 && month <= 5 && doy > peakCenter) phase = "post-shed";
+    var before = northern
+      ? ((doy - peakCenter + 365) % 365) > 182
+      : false;
+    // Signed days from peak (negative = before peak)
+    var signed = doy - peakCenter;
+    if (signed > 182) signed -= 365;
+    if (signed < -182) signed += 365;
+
+    var phaseId = "outside";
+    if (dist <= windowHalf * 0.35) phaseId = "peak_shed";
+    else if (signed < 0 && dist <= windowHalf * 0.7) phaseId = "early_shed";
+    else if (signed > 0 && dist <= windowHalf * 0.7) phaseId = "late_shed";
+    else if (signed < 0 && dist <= windowHalf * 1.35) phaseId = "pre_shed";
+    else if (signed > 0 && dist <= windowHalf * 1.5) phaseId = "post_shed";
+    else if (typeof lat !== "number") phaseId = "unknown";
+
+    var override = prefs.seasonPhaseOverride;
+    var overridden = false;
+    if (override && SEASON_PHASES[override]) {
+      phaseId = override;
+      overridden = true;
+    }
+    var meta = SEASON_PHASES[phaseId] || SEASON_PHASES.unknown;
+    var autoScore = clamp(1 - dist / (windowHalf * 2.1), 0.1, 1);
+    var seasonScore = overridden
+      ? clamp(0.25 + 0.75 * meta.scoreBias, 0.12, 1)
+      : clamp(autoScore * (0.55 + 0.45 * meta.scoreBias), 0.1, 1);
+
+    var supportLine = seasonScore >= 0.72
+      ? "Seasonal timing currently supports higher search priority."
+      : seasonScore >= 0.45
+        ? "Seasonal timing currently supports moderate search priority."
+        : phaseId === "pre_shed" || phaseId === "early_shed"
+          ? "This area may be early for typical regional shedding."
+          : "Seasonal timing currently supports lower search priority.";
+
     return {
       score: seasonScore,
-      phase: phase,
+      phase: meta.label,
+      phaseId: phaseId,
       peakDoy: Math.round(peakCenter),
       windowHalfDays: Math.round(windowHalf),
-      source: "ecological_assumption",
-      note: "Casting timing varies by animal, nutrition, age, dominance, and weather. Latitude shifts the regional window; this is not a forecast that sheds are on the ground."
+      overridden: overridden,
+      region: broadRegion(lat),
+      supportLine: supportLine,
+      source: overridden ? "user_preference_override" : "ecological_assumption",
+      note: "Timing varies by animal, age, health, nutrition, weather, and local conditions. Date alone cannot predict exact antler drop. " +
+        (overridden ? "Season phase was user-adjusted and is not established fact." : "")
     };
   }
 
@@ -421,8 +549,22 @@
     };
   }
 
-  function observationSignals(lat, lng, observations, prefs) {
+  function observationSignals(lat, lng, observations, prefs, nowMs) {
     observations = observations || [];
+    nowMs = nowMs || Date.now();
+    var buckets = {
+      feeding: [],
+      bedding: [],
+      thermal: [],
+      corridors: [],
+      deerSign: [],
+      fences: [],
+      searchPenalty: [],
+      shedBoost: [],
+      humanPressure: [],
+      edgeNote: [],
+      access: []
+    };
     var out = {
       feeding: 0,
       bedding: 0,
@@ -434,8 +576,10 @@
       shedBoost: 0,
       humanPressure: 0,
       edgeNote: 0,
+      accessPenalty: 0,
       beddingCluster: 0,
-      obsCountNearby: 0
+      obsCountNearby: 0,
+      nearby: []
     };
     var beddingNearby = 0;
     var i;
@@ -443,46 +587,89 @@
       var o = observations[i];
       if (!o || !o.location) continue;
       var d = haversineM(lat, lng, o.location.lat, o.location.lng);
-      if (d < 1200) out.obsCountNearby += 1;
+      if (d < 1200) {
+        out.obsCountNearby += 1;
+        if (d < 500) {
+          out.nearby.push({
+            id: o.id,
+            type: o.type,
+            distanceM: Math.round(d),
+            confidence: o.confidence || "probable",
+            ageDays: Math.round(ageDays(o, nowMs) * 10) / 10
+          });
+        }
+      }
       var t = o.type;
+      var inf = INFLUENCE[t];
+      if (!inf) continue;
+      var k = kernel(d, inf.radiusM) * recencyDecay(o, inf.halfLifeDays, nowMs) * confidenceMul(o);
       if (t === "feeding_area") {
-        out.feeding = Math.max(out.feeding, kernel(d, 900) * weightOf(prefs, "feeding"));
+        buckets.feeding.push(k * weightOf(prefs, "feeding"));
       } else if (t === "bedding_area") {
-        out.bedding = Math.max(out.bedding, kernel(d, 800) * weightOf(prefs, "bedding"));
+        buckets.bedding.push(k * weightOf(prefs, "bedding"));
         if (d < 350) beddingNearby += 1;
       } else if (t === "winter_concentration") {
-        out.thermal = Math.max(out.thermal, kernel(d, 1100) * weightOf(prefs, "thermalCover"));
-        out.bedding = Math.max(out.bedding, kernel(d, 900) * 0.55 * weightOf(prefs, "bedding"));
+        buckets.thermal.push(k * weightOf(prefs, "thermalCover"));
+        buckets.bedding.push(k * 0.55 * weightOf(prefs, "bedding"));
         if (d < 400) beddingNearby += 1;
       } else if (t === "trail_crossing") {
-        out.corridors = Math.max(out.corridors, kernel(d, 700) * weightOf(prefs, "corridors"));
+        buckets.corridors.push(k * weightOf(prefs, "corridors"));
       } else if (t === "fence_crossing") {
-        out.fences = Math.max(out.fences, kernel(d, 550) * weightOf(prefs, "fences"));
+        buckets.fences.push(k * weightOf(prefs, "fences"));
       } else if (t === "deer_sign" || t === "deer_seen") {
-        var freshness = o.confidence === "confirmed" ? 1.12 : o.confidence === "uncertain" ? 0.9 : 1;
-        out.deerSign = Math.max(
-          out.deerSign,
-          kernel(d, 1000) * weightOf(prefs, "deerSign") * (t === "deer_seen" ? 0.85 : 1) * freshness
-        );
+        buckets.deerSign.push(k * weightOf(prefs, "deerSign") * (t === "deer_seen" ? 0.85 : 1));
       } else if (t === "shed_found") {
-        out.shedBoost = Math.max(out.shedBoost, kernel(d, 650) * 0.55 * weightOf(prefs, "shedFinds"));
+        // Interest only — hard soft-cap later via base share + MAX_FACTOR_FRACTION
+        buckets.shedBoost.push(k * 0.55 * weightOf(prefs, "shedFinds") * shedFreshnessMul(o));
       } else if (t === "search_completed") {
-        out.searchPenalty = Math.max(out.searchPenalty, kernel(d, 450) * weightOf(prefs, "searchHistory"));
+        buckets.searchPenalty.push(k * weightOf(prefs, "searchHistory"));
       } else if (t === "habitat_note") {
-        out.edgeNote = Math.max(out.edgeNote, kernel(d, 700) * weightOf(prefs, "edges") * 0.55);
+        buckets.edgeNote.push(k * weightOf(prefs, "edges") * 0.55);
       } else if (t === "hunting_pressure" || t === "hiking_pressure" || t === "human_disturbance") {
-        var press = kernel(d, 800) * weightOf(prefs, "humanPressure");
-        if (t === "hunting_pressure") press *= 1.15;
-        out.humanPressure = Math.max(out.humanPressure, press);
+        buckets.humanPressure.push(k * weightOf(prefs, "humanPressure") * (t === "hunting_pressure" ? 1.15 : 1));
       } else if (t === "access_issue") {
-        out.humanPressure = Math.max(out.humanPressure, kernel(d, 500) * 0.35 * weightOf(prefs, "humanPressure"));
+        buckets.access.push(k);
+        buckets.humanPressure.push(k * 0.35 * weightOf(prefs, "humanPressure"));
       }
     }
+    out.feeding = diminishStack(buckets.feeding);
+    out.bedding = diminishStack(buckets.bedding);
+    out.thermal = diminishStack(buckets.thermal);
+    out.corridors = diminishStack(buckets.corridors);
+    out.deerSign = diminishStack(buckets.deerSign);
+    out.fences = diminishStack(buckets.fences);
+    out.searchPenalty = diminishStack(buckets.searchPenalty);
+    out.shedBoost = diminishStack(buckets.shedBoost);
+    out.humanPressure = diminishStack(buckets.humanPressure);
+    out.edgeNote = diminishStack(buckets.edgeNote);
+    out.accessPenalty = diminishStack(buckets.access);
     if (beddingNearby >= 2) {
-      out.beddingCluster = clamp(0.15 * (beddingNearby - 1), 0, 0.35);
-      out.bedding = clamp(out.bedding + out.beddingCluster, 0, 1.25);
+      out.beddingCluster = clamp(0.12 * (beddingNearby - 1), 0, 0.28);
+      out.bedding = clamp(out.bedding + out.beddingCluster, 0, 1.2);
     }
+    out.nearby.sort(function (a, b) { return a.distanceM - b.distanceM; });
+    out.nearby = out.nearby.slice(0, 6);
     return out;
+  }
+
+  /** Optional coarse land-cover category — never invent; unavailable → null. */
+  function habitatFromLandCover(category) {
+    if (!category || category === "unknown") {
+      return { score: 0.5, available: false, label: "land cover unavailable", category: "unknown" };
+    }
+    var map = {
+      dense_cover: { score: 0.78, label: "dense cover" },
+      forest: { score: 0.72, label: "forest" },
+      shrub: { score: 0.7, label: "shrub / early succession" },
+      edge: { score: 0.8, label: "edge / transition" },
+      agriculture: { score: 0.62, label: "agricultural" },
+      open_field: { score: 0.48, label: "open field" },
+      wetland: { score: 0.55, label: "wetland" },
+      developed: { score: 0.22, label: "developed" }
+    };
+    var hit = map[category];
+    if (!hit) return { score: 0.5, available: false, label: "land cover unavailable", category: "unknown" };
+    return { score: hit.score, available: true, label: hit.label, category: category, dataKind: "inferred" };
   }
 
   function weatherModifiers(weather, prefs) {
@@ -632,38 +819,104 @@
         : "Lower modeled search priority";
     lines.push(bandLabel + " under Whitetail Biological Model v" + MODEL_VERSION + ".");
 
-    var tops = (result.factors || []).slice().sort(function (a, b) {
-      return b.contribution - a.contribution;
-    }).filter(function (f) {
-      return f.weightScale > 0 && f.available && f.score > 0.45;
-    }).slice(0, 4);
-
-    if (tops.length) {
-      var bits = tops.map(function (f) {
-        return f.labelDetail || f.label;
-      });
-      lines.push("Priority reflects alignment of: " + bits.join("; ") + ".");
-      lines.push("Biological reasoning: " + tops[0].rationale);
-    } else {
-      lines.push("Few strong local observations; score leans on seasonal timing and available terrain assumptions.");
+    if (result.influences && result.influences.positive && result.influences.positive.length) {
+      lines.push("Primary positive influences: " + result.influences.positive.map(function (x) {
+        return x.label;
+      }).join("; ") + ".");
     }
-
-    if (result.labels && result.labels.seasonPhase) {
-      lines.push("Seasonal phase heuristic: “" + result.labels.seasonPhase + "” (latitude-aware casting window).");
+    if (result.influences && result.influences.limiting && result.influences.limiting.length) {
+      lines.push("Primary limiting influences: " + result.influences.limiting.map(function (x) {
+        return x.label;
+      }).join("; ") + ".");
+    }
+    if (result.seasonContext && result.seasonContext.supportLine) {
+      lines.push(result.seasonContext.supportLine);
+      lines.push(result.seasonContext.note || "Timing varies by animal, age, health, nutrition, weather, and local conditions.");
+    }
+    if (result.nearbyObservations && result.nearbyObservations.length) {
+      lines.push("Nearby observations: " + result.nearbyObservations.slice(0, 3).map(function (n) {
+        return n.type + " (~" + n.distanceM + " m, age ~" + n.ageDays + " d)";
+      }).join("; ") + ".");
+    }
+    if (result.parts && result.parts.searchPenalty > 0.2) {
+      lines.push("Priority is reduced slightly because nearby search-completed notes reduce revisit urgency — not biological emptiness.");
+    }
+    if (result.parts && result.parts.coverageFactor < 0.95) {
+      lines.push("Search-coverage marks also temper ranking for already-walked ground.");
     }
     if (result.confidence) {
       lines.push(
-        "Confidence (not probability) — biological " + result.confidence.biological +
-        ", environmental data " + result.confidence.environmentalData +
-        ", observation density " + result.confidence.observationDensity +
-        ", overall guidance " + result.confidence.overallRecommendation + "."
+        "Data-coverage confidence (not find probability) — overall guidance " +
+        result.confidence.overallRecommendation +
+        " (biological " + result.confidence.biological +
+        ", environmental " + result.confidence.environmentalData +
+        ", observations " + result.confidence.observationDensity + ")."
       );
     }
     if (result.taxonomy && result.taxonomy.uncertainty && result.taxonomy.uncertainty.length) {
-      lines.push("Uncertainty: " + result.taxonomy.uncertainty.slice(0, 3).join(" "));
+      lines.push("Unavailable or uncertain: " + result.taxonomy.uncertainty.slice(0, 3).join(" "));
     }
     lines.push("This is relative search guidance for whitetail shed walking — not a map of antlers.");
     return lines.join(" ");
+  }
+
+  function deriveInfluences(factors, parts) {
+    var positive = [];
+    var limiting = [];
+    (factors || []).forEach(function (f) {
+      if (!f || f.weightScale <= 0) return;
+      if (f.available && f.score >= 0.62) {
+        positive.push({
+          id: f.id,
+          label: f.labelDetail || f.label,
+          direction: "positive",
+          strength: Math.round(f.contribution * 1000) / 1000,
+          sourceCategory: f.dataKind,
+          confidence: f.biologicalConfidence
+        });
+      } else if (f.available && f.score <= 0.35) {
+        limiting.push({
+          id: f.id,
+          label: f.labelDetail || f.label,
+          direction: "limiting",
+          strength: Math.round((0.5 - f.score) * 1000) / 1000,
+          sourceCategory: f.dataKind,
+          confidence: f.biologicalConfidence
+        });
+      } else if (!f.available) {
+        limiting.push({
+          id: f.id,
+          label: f.label + " unavailable",
+          direction: "limiting",
+          strength: 0.1,
+          sourceCategory: "unavailable",
+          confidence: f.biologicalConfidence
+        });
+      }
+    });
+    positive.sort(function (a, b) { return b.strength - a.strength; });
+    limiting.sort(function (a, b) { return b.strength - a.strength; });
+    if (parts && parts.searchPenalty > 0.2) {
+      limiting.unshift({
+        id: "search_history",
+        label: "nearby search-completed notes",
+        direction: "limiting",
+        strength: parts.searchPenalty,
+        sourceCategory: "observed",
+        confidence: 0.55
+      });
+    }
+    if (parts && parts.coverageFactor < 0.9) {
+      limiting.unshift({
+        id: "coverage_marks",
+        label: "on-map search coverage marks",
+        direction: "limiting",
+        strength: 1 - parts.coverageFactor,
+        sourceCategory: "user_preference",
+        confidence: 0.5
+      });
+    }
+    return { positive: positive.slice(0, 4), limiting: limiting.slice(0, 4) };
   }
 
   /**
@@ -674,17 +927,22 @@
     var prefs = opts.prefs || { weights: {} };
     var lat = opts.lat;
     var lng = opts.lng;
-    var season = seasonProfile(opts.date, lat);
+    var season = seasonProfile(opts.date, lat, prefs);
+    var region = regionalContext(lat, lng, opts.date);
     var terrain = opts.terrain || { slope: null, aspect: null, source: "unavailable" };
     var slope = slopePreferenceScore(terrain.slope);
     var aspect = aspectPreferenceScore(terrain.aspect, lat);
     var form = terrainFormScore(terrain.morphology);
-    var obs = observationSignals(lat, lng, opts.observations, prefs);
+    var obs = observationSignals(lat, lng, opts.observations, prefs, opts.nowMs);
     var wx = weatherModifiers(opts.weather, prefs);
+    var habitatLc = habitatFromLandCover(opts.landCoverCategory);
 
     var edgeScore = 0.5;
     var edgeAvail = false;
-    if (typeof opts.edgeHint === "number") {
+    if (habitatLc.available) {
+      edgeScore = habitatLc.score;
+      edgeAvail = true;
+    } else if (typeof opts.edgeHint === "number") {
       edgeScore = clamp(opts.edgeHint, 0, 1);
       edgeAvail = true;
     } else if (obs.edgeNote > 0) {
@@ -697,7 +955,6 @@
       : (obs.bedding > 0.35 ? clamp(obs.bedding * 0.55, 0, 0.7) : 0.5);
     var thermalAvail = obs.thermal > 0 || obs.bedding > 0.35;
 
-    // Human pressure: high score means MORE pressure → invert for search attractiveness
     var humanAttract = obs.humanPressure > 0
       ? clamp(1 - obs.humanPressure, 0.15, 1)
       : 0.5;
@@ -708,7 +965,7 @@
         weightScale: weightOf(prefs, "season"),
         available: true,
         labelDetail: season.phase,
-        dataKind: "ecological_assumption"
+        dataKind: season.overridden ? "user_preference" : "ecological_assumption"
       }),
       buildFactorEntry("slope", slope.score, {
         weightScale: weightOf(prefs, "slope"),
@@ -733,35 +990,36 @@
         dataKind: thermalAvail ? "observed" : "inferred"
       }),
       buildFactorEntry("feeding", obs.feeding, {
-        weightScale: 1,
-        available: obs.feeding > 0,
+        weightScale: weightOf(prefs, "feeding"),
+        available: obs.feeding > 0.02,
         dataKind: "observed"
       }),
       buildFactorEntry("bedding", obs.bedding, {
-        weightScale: 1,
-        available: obs.bedding > 0,
+        weightScale: weightOf(prefs, "bedding"),
+        available: obs.bedding > 0.02,
         dataKind: "observed"
       }),
       buildFactorEntry("edge_transition", edgeScore, {
         weightScale: weightOf(prefs, "edges"),
         available: edgeAvail,
-        dataKind: edgeAvail ? (opts.edgeHint != null ? "inferred" : "observed") : "inferred"
+        labelDetail: habitatLc.available ? habitatLc.label : null,
+        dataKind: edgeAvail ? (habitatLc.available || opts.edgeHint != null ? "inferred" : "observed") : "inferred"
       }),
       buildFactorEntry("corridors", obs.corridors, {
-        weightScale: 1,
-        available: obs.corridors > 0
+        weightScale: weightOf(prefs, "corridors"),
+        available: obs.corridors > 0.02
       }),
       buildFactorEntry("fence_crossing", obs.fences, {
-        weightScale: 1,
-        available: obs.fences > 0
+        weightScale: weightOf(prefs, "fences"),
+        available: obs.fences > 0.02
       }),
       buildFactorEntry("deer_sign", obs.deerSign, {
-        weightScale: 1,
-        available: obs.deerSign > 0
+        weightScale: weightOf(prefs, "deerSign"),
+        available: obs.deerSign > 0.02
       }),
       buildFactorEntry("shed_find_interest", obs.shedBoost, {
-        weightScale: 1,
-        available: obs.shedBoost > 0
+        weightScale: weightOf(prefs, "shedFinds"),
+        available: obs.shedBoost > 0.02
       }),
       buildFactorEntry("human_pressure", humanAttract, {
         weightScale: weightOf(prefs, "humanPressure"),
@@ -776,6 +1034,9 @@
     var additive = 0;
     factors.forEach(function (f) { additive += f.contribution; });
 
+    // Biological suitability before search-history / coverage / access adjustments
+    var biologicalSuitability = clamp(additive / 0.85, 0, 1);
+
     var searchW = weightOf(prefs, "searchHistory");
     var searchPenalty = obs.searchPenalty;
     var afterSearch = additive * (1 - 0.55 * searchPenalty * (searchW > 0 ? 1 : 0));
@@ -783,9 +1044,7 @@
     var wxMul = 1;
     if (weightOf(prefs, "snow") > 0) {
       wxMul = wx.snowFactor * wx.coldFactor * wx.windFactor;
-      // Deep snow without observed winter cover: do not invent yards — slight damp only
       if ((wx.snowMm || 0) > 15 && !thermalAvail) wxMul *= 0.92;
-      // Deep snow + observed winter concentration: modest concentration preference
       if ((wx.snowMm || 0) > 15 && obs.thermal > 0.25) wxMul *= 1.06;
     }
     afterSearch *= wxMul;
@@ -797,6 +1056,10 @@
     }
     afterSearch *= coverageFactor;
 
+    // Practical access adjustment — multiplicative, separate from biology
+    var accessFactor = obs.accessPenalty > 0 ? clamp(1 - 0.35 * obs.accessPenalty, 0.55, 1) : 1;
+    afterSearch *= accessFactor;
+
     var priority = clamp(afterSearch / 0.85, 0, 1);
 
     var band = "lower";
@@ -807,12 +1070,8 @@
     var weatherAvail = wx.source !== "unavailable";
     var uncertaintyNotes = wx.notes.slice();
     if (aspect.disagreementNote) uncertaintyNotes.push(aspect.disagreementNote);
-    uncertaintyNotes.push("Land-cover polygons are not loaded in v1.0.");
-
-    var confidence = confidenceBundle(
-      factors, opts, obs, terrainAvailable, weatherAvail, edgeAvail
-    );
-    var taxonomy = taxonomyFrom(factors, uncertaintyNotes);
+    if (!habitatLc.available) uncertaintyNotes.push("Land-cover / habitat polygons are not loaded; edge influence stays generalized.");
+    if (season.overridden) uncertaintyNotes.push("Season phase override is a user preference, not established timing fact.");
 
     var parts = {
       season: season.score * weightOf(prefs, "season"),
@@ -829,29 +1088,67 @@
       humanPressure: obs.humanPressure,
       searchPenalty: searchPenalty,
       snowFactor: wx.snowFactor,
-      coverageFactor: coverageFactor
+      coverageFactor: coverageFactor,
+      accessFactor: accessFactor,
+      biologicalSuitability: biologicalSuitability
     };
+
+    var influences = deriveInfluences(factors, parts);
+    var confidence = confidenceBundle(
+      factors, opts, obs, terrainAvailable, weatherAvail, edgeAvail
+    );
+    var taxonomy = taxonomyFrom(factors, uncertaintyNotes);
+
+    var inputMode = "limited-data";
+    if (terrainAvailable && weatherAvail && edgeAvail && (opts.observations || []).length) inputMode = "full-available";
+    else if (terrainAvailable && (opts.observations || []).length) inputMode = "terrain-and-observations";
+    else if ((opts.observations || []).length) inputMode = "local-observations-only";
+    else if (terrainAvailable) inputMode = "season-and-terrain-only";
+    if (opts.offlineForced) inputMode = "offline";
 
     var result = {
       modelVersion: MODEL_VERSION,
+      factorConfigVersion: FACTOR_CONFIG_VERSION,
       speciesId: SPECIES_ID,
       priority: priority,
+      biologicalSuitability: biologicalSuitability,
       band: band,
       factors: factors,
       parts: parts,
+      influences: influences,
+      nearbyObservations: obs.nearby,
+      seasonContext: {
+        phaseId: season.phaseId,
+        phase: season.phase,
+        supportLine: season.supportLine,
+        note: season.note,
+        overridden: season.overridden,
+        region: season.region
+      },
+      regionalContext: region,
+      activePreset: prefs.activePreset || "balanced",
+      inputMode: inputMode,
       labels: {
         seasonPhase: season.phase,
         slope: slope.label,
         aspect: aspect.label,
         terrainForm: form.label,
-        coverageLevel: coverageLevel
+        coverageLevel: coverageLevel,
+        landCover: habitatLc.label
       },
       sources: {
         season: season.source,
         terrain: terrain.source || "unavailable",
         observations: (opts.observations && opts.observations.length) ? "user-observation" : "unavailable",
         weather: wx.source,
-        landCover: edgeAvail ? (opts.edgeHint != null ? "estimated" : "user-observation") : "unavailable"
+        landCover: habitatLc.available ? "provider-or-hint" : "unavailable"
+      },
+      terrainMeta: {
+        source: terrain.source || "unavailable",
+        method: terrain.source === "map-derived" ? "finite-difference slope/aspect + 3x3 morphology hints" : "none",
+        resolution: opts.cellMetersApprox ? ("~" + opts.cellMetersApprox + " m cells") : "viewport grid",
+        liveOrCached: opts.terrainCacheState || "unknown",
+        limitations: "Morphology hints are coarse elevation-neighborhood proxies, not surveyed landforms."
       },
       seasonNote: season.note,
       confidence: confidence,
@@ -862,6 +1159,7 @@
           key: f.id,
           label: f.label,
           value: Math.round(f.contribution * 1000) / 1000,
+          direction: f.score >= 0.55 ? "positive" : f.score <= 0.4 ? "limiting" : "neutral",
           dataKind: f.dataKind,
           evidenceIds: f.evidenceIds
         };
@@ -873,9 +1171,10 @@
           "regional_peak_doy_offset",
           "per_factor_bias_from_confirmed_finds",
           "season_validation_pass_fail",
-          "user_weight_profiles_by_region"
+          "user_weight_profiles_by_region",
+          "field_validation_evidence_v1"
         ],
-        note: "Hooks only — no learning implemented in v1.0."
+        note: "Hooks only — no learning implemented in v1.1."
       }
     };
     result.explanation = explainBiological(result);
@@ -945,20 +1244,29 @@
 
   global.WaypointShedsBiological = {
     MODEL_VERSION: MODEL_VERSION,
+    FACTOR_CONFIG_VERSION: FACTOR_CONFIG_VERSION,
     SPECIES_ID: SPECIES_ID,
     WEIGHT_SCALE: WEIGHT_SCALE,
     BASE_SHARE: BASE_SHARE,
     MAX_FACTOR_FRACTION: MAX_FACTOR_FRACTION,
+    INFLUENCE: INFLUENCE,
+    SEASON_PHASES: SEASON_PHASES,
     EVIDENCE: EVIDENCE,
     FACTOR_CATALOG: FACTOR_CATALOG,
     listFactors: listFactors,
     getEvidence: getEvidence,
     seasonProfile: seasonProfile,
+    regionalContext: regionalContext,
+    broadRegion: broadRegion,
+    habitatFromLandCover: habitatFromLandCover,
     scoreCell: scoreCell,
     explain: explainBiological,
+    deriveInfluences: deriveInfluences,
     terrainMorphologyAt: terrainMorphologyAt,
     haversineM: haversineM,
     weightOf: weightOf,
-    observationSignals: observationSignals
+    observationSignals: observationSignals,
+    diminishStack: diminishStack,
+    recencyDecay: recencyDecay
   };
 })(typeof window !== "undefined" ? window : globalThis);

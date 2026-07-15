@@ -175,8 +175,13 @@
           terrain: terrain,
           weather: context.weather,
           edgeHint: context.edgeHint,
+          landCoverCategory: context.landCoverCategory,
           coverageLevel: covLevel,
-          coverageFactor: covFactor
+          coverageFactor: covFactor,
+          offlineForced: context.offlineForced,
+          terrainCacheState: context.terrainCacheState,
+          cellMetersApprox: Math.round(cellM),
+          nowMs: context.nowMs
         });
         cells.push({
           row: r,
@@ -184,6 +189,7 @@
           lat: lat,
           lng: lng,
           priority: scored.priority,
+          biologicalSuitability: scored.biologicalSuitability,
           band: scored.band,
           coverageLevel: covLevel,
           result: scored
@@ -200,7 +206,9 @@
       cells: cells,
       speciesId: "odocoileus-virginianus",
       modelVersion: B ? B.MODEL_VERSION : null,
-      disclaimer: "Relative search priority from Whitetail Biological Model v1.0 for the visible area only. Not a probability of finding sheds."
+      disclaimer: "Relative search priority from Whitetail Biological Model v" +
+        (B ? B.MODEL_VERSION : "?") +
+        " for the visible area only. Not a probability of finding sheds."
     };
   }
 

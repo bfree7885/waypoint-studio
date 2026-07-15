@@ -6,13 +6,18 @@
 
   var Store = window.WaypointShedsObservations;
   var Model = window.WaypointShedsLikelihood;
+  var Bio = window.WaypointShedsBiological;
   var Heat = window.WaypointShedsHeat;
   var Sessions = window.WaypointShedsSessions;
   var Planner = window.WaypointShedsPlanner;
+  var Presets = window.WaypointShedsPresets;
+  var Validation = window.WaypointShedsValidation;
 
   var NEUTRAL = { lat: 45.2, lng: -93.5, zoom: 4 }; // labeled neutral — not “you”
   var GRID_ROWS = 18;
   var GRID_COLS = 18;
+  var COARSE_ROWS = 10;
+  var COARSE_COLS = 10;
   var SPECIES_LABEL = "Whitetail deer";
 
   var state = {
@@ -25,10 +30,14 @@
     elevKey: "",
     weather: null,
     recomputeTimer: null,
+    recomputeGen: 0,
     firstEthicsShown: false,
     tracking: false,
     activeSessionId: null,
-    lastPlan: null
+    lastPlan: null,
+    lastGrid: null,
+    lastPerf: {},
+    offlineForced: false
   };
 
   var els = {};
@@ -252,14 +261,79 @@
     }).catch(function () { return null; });
   }
 
+  function modelStamp() {
+    var center = map ? map.getCenter() : null;
+    var lat = state.userLatLng ? state.userLatLng.lat : (center && center.lat);
+    var region = Bio && Bio.regionalContext
+      ? Bio.regionalContext(lat, center && center.lng, new Date())
+      : null;
+    return {
+      modelVersion: Bio ? Bio.MODEL_VERSION : null,
+      factorConfigVersion: Bio ? Bio.FACTOR_CONFIG_VERSION : null,
+      activePreset: state.prefs && state.prefs.activePreset,
+      regionalContext: region,
+      dataCoverageSummary: state.lastGrid && state.lastGrid.coverage
+        ? state.lastGrid.coverage.label
+        : null,
+      inputDataTimestamp: new Date().toISOString()
+    };
+  }
+
+  function updateSeasonPill() {
+    if (!els.seasonPill || !Bio) return;
+    var center = map ? map.getCenter() : null;
+    var lat = state.userLatLng ? state.userLatLng.lat : (center && center.lat) || 44;
+    var season = Bio.seasonProfile(new Date(), lat, state.prefs || {});
+    els.seasonPill.textContent = season.phase + (season.overridden ? " (adjusted)" : "");
+    els.seasonPill.title = season.supportLine + " " + season.note;
+    els.seasonPill.dataset.phase = season.phaseId;
+  }
+
+  function applyGridToUi(grid, meta) {
+    meta = meta || {};
+    state.lastGrid = grid;
+    if (heatLayer) {
+      heatLayer.setGrid(grid);
+      if (heatLayer.setShowConfidence) heatLayer.setShowConfidence(!!state.prefs.showConfidence);
+    }
+    updateCoverageUi(grid.coverage);
+    var mode = grid.cells[0] && grid.cells[0].result && grid.cells[0].result.inputMode;
+    setModelCoverageNote(
+      (meta.label || "Biological model v" + (Bio && Bio.MODEL_VERSION)) +
+      " — " + grid.disclaimer +
+      " Cells ~" + grid.cellMetersApprox + " m." +
+      (mode ? " Input mode: " + mode + "." : "") +
+      (meta.elevNote ? " " + meta.elevNote : "")
+    );
+    updateActiveInputsSummary(grid);
+    refreshCoverageMarks();
+    updatePlanner(grid);
+    updateSeasonPill();
+  }
+
+  function buildContext(elev, rows, cols, cacheState) {
+    return {
+      date: new Date(),
+      prefs: state.prefs,
+      observations: Store.list(),
+      elevations: elev,
+      weather: state.offlineForced ? null : state.weather,
+      sessions: Sessions,
+      offlineForced: !!state.offlineForced,
+      terrainCacheState: cacheState || (elev ? "cached-or-live" : "unavailable"),
+      cellMetersApprox: null
+    };
+  }
+
   function recomputeHeat() {
     if (!map || !Model) return;
+    var gen = ++state.recomputeGen;
+    var t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
     if (heatLayer) {
       heatLayer.setHeatVisible(!!state.prefs.heatVisible);
       heatLayer.setHeatOpacity(state.prefs.opacity);
     }
     var bounds = map.getBounds();
-    // Avoid huge areas at low zoom — limit extent
     if (map.getZoom() < 9) {
       setModelCoverageNote("Zoom in to compute a local search-priority surface.");
       if (heatLayer) {
@@ -270,35 +344,39 @@
       return;
     }
 
-    var observations = Store.list();
-    var center = map.getCenter();
+    // Coarse first pass — local observations + season, no elevation wait
+    try {
+      var coarse = Model.buildGrid(bounds, COARSE_ROWS, COARSE_COLS, buildContext(null, COARSE_ROWS, COARSE_COLS, "unavailable"));
+      if (gen !== state.recomputeGen) return;
+      applyGridToUi(coarse, {
+        label: "Coarse heat (limited terrain)",
+        elevNote: "Refining with elevation when available…"
+      });
+      state.lastPerf.coarseMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
+    } catch (e) {
+      console.error("sheds coarse heat", e);
+    }
 
+    var center = map.getCenter();
     Promise.all([
-      fetchElevations(bounds),
-      state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng)
+      state.offlineForced ? Promise.resolve(null) : fetchElevations(bounds),
+      state.offlineForced ? Promise.resolve(null)
+        : (state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng))
     ]).then(function (pair) {
+      if (gen !== state.recomputeGen) return;
       var elev = pair[0];
       if (pair[1]) state.weather = pair[1];
-      var grid = Model.buildGrid(bounds, GRID_ROWS, GRID_COLS, {
-        date: new Date(),
-        prefs: state.prefs,
-        observations: observations,
-        elevations: elev,
-        weather: state.weather,
-        sessions: Sessions
+      var t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+      var grid = Model.buildGrid(bounds, GRID_ROWS, GRID_COLS, buildContext(elev, GRID_ROWS, GRID_COLS, elev ? "live-or-cached" : "unavailable"));
+      if (gen !== state.recomputeGen) return;
+      applyGridToUi(grid, {
+        label: "Refined biological heat",
+        elevNote: "Elevation: " + (elev ? "sampled (Open-Meteo)" : "unavailable") + "."
       });
-      heatLayer.setGrid(grid);
-      if (heatLayer.setShowConfidence) {
-        heatLayer.setShowConfidence(!!state.prefs.showConfidence);
-      }
-      updateCoverageUi(grid.coverage);
-      setModelCoverageNote(
-        grid.disclaimer + " ~" + grid.cellMetersApprox + " m cells. Elevation: " +
-        (elev ? "sampled (Open-Meteo)" : "unavailable") + "."
-      );
-      updateActiveInputsSummary(grid);
-      refreshCoverageMarks();
-      updatePlanner(grid);
+      state.lastPerf.refineMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t1;
+      state.lastPerf.totalMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
+    }).catch(function (err) {
+      console.error("sheds refine heat", err);
     });
   }
 
@@ -413,9 +491,16 @@
       setLocStatus("unavailable", "cannot track without geolocation");
       return;
     }
+    var stamp = modelStamp();
     var session = Sessions.startSession({
       speciesId: Store.SPECIES_WHITETAIL,
-      weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null
+      weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null,
+      modelVersion: stamp.modelVersion,
+      factorConfigVersion: stamp.factorConfigVersion,
+      activePreset: stamp.activePreset,
+      regionalContext: stamp.regionalContext,
+      dataCoverageSummary: stamp.dataCoverageSummary,
+      inputDataTimestamp: stamp.inputDataTimestamp
     });
     state.activeSessionId = session.id;
     state.tracking = true;
@@ -668,51 +753,178 @@
   }
 
   function openExplain(latlng) {
+    var t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
     var cell = heatLayer && heatLayer.nearestCell(latlng);
     var text;
+    state.lastExplainLatLng = latlng;
     if (!cell || !cell.result) {
       text = "No local search-priority cell here. Zoom in with the heat map on to analyze the visible area.";
       if (els.explainBreakdown) els.explainBreakdown.textContent = "";
       if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
+      if (els.explainCompare) els.explainCompare.textContent = "";
     } else {
       text = Model.explain(cell.result, { coverage: heatLayer.getGrid() && heatLayer.getGrid().coverage });
       if (els.explainBreakdown && cell.result.contributionBreakdown) {
         els.explainBreakdown.textContent = cell.result.contributionBreakdown.map(function (row) {
           return row.label + ": " + (Math.round(row.value * 1000) / 1000) +
+            (row.direction ? " (" + row.direction + ")" : "") +
             (row.dataKind ? " [" + row.dataKind + "]" : "");
         }).join(" · ");
       }
       if (els.explainTaxonomy && cell.result.taxonomy) {
         var tax = cell.result.taxonomy;
         var conf = cell.result.confidence || {};
+        var inf = cell.result.influences || {};
         els.explainTaxonomy.textContent = [
+          "Relative priority: " + cell.band + " (score " + (Math.round(cell.priority * 100) / 100) + " — relative model score, not probability)",
+          "Biological suitability (before search/coverage): " +
+            (cell.result.biologicalSuitability != null ? Math.round(cell.result.biologicalSuitability * 100) / 100 : "—"),
+          "Positive: " + ((inf.positive || []).map(function (x) { return x.label; }).join("; ") || "none strong"),
+          "Limiting: " + ((inf.limiting || []).map(function (x) { return x.label; }).join("; ") || "none strong"),
+          "Season: " + ((cell.result.seasonContext && cell.result.seasonContext.phase) || "—"),
           "Observed: " + (tax.observed.join("; ") || "none in range"),
           "Inferred: " + (tax.inferred.join("; ") || "none"),
-          "Ecological assumptions: " + (tax.ecologicalAssumptions.join("; ") || "none"),
-          "User preferences: " + (tax.userPreferences.join("; ") || "default weights"),
+          "Assumptions: " + (tax.ecologicalAssumptions.join("; ") || "none"),
+          "Preferences: " + (tax.userPreferences.join("; ") || "default weights"),
+          "Nearby obs: " + ((cell.result.nearbyObservations || []).map(function (n) {
+            return n.type + " " + n.distanceM + "m";
+          }).join("; ") || "none"),
           "Confidence (not probability): bio " + conf.biological +
             " · env " + conf.environmentalData +
             " · obs " + conf.observationDensity +
-            " · overall " + conf.overallRecommendation
+            " · overall " + conf.overallRecommendation,
+          "Model " + cell.result.modelVersion + " / config " + cell.result.factorConfigVersion +
+            " / preset " + (cell.result.activePreset || "balanced") +
+            " / mode " + (cell.result.inputMode || "?")
         ].join("\n");
       }
+      if (els.explainCompare) {
+        els.explainCompare.textContent = state.prefs.compareMode
+          ? renderCompareSnippet(cell)
+          : (state.prefs.diagnosticMode
+            ? ("Diagnostic on. Perf coarse/refine ms: " +
+              Math.round(state.lastPerf.coarseMs || 0) + "/" +
+              Math.round(state.lastPerf.refineMs || 0))
+            : "");
+      }
       if (els.explainTech) {
-        els.explainTech.textContent = JSON.stringify({
+        var techPayload = {
           modelVersion: cell.result.modelVersion,
+          factorConfigVersion: cell.result.factorConfigVersion,
           band: cell.band,
           priority: Math.round(cell.priority * 100) / 100,
+          biologicalSuitability: cell.result.biologicalSuitability,
           coverageLevel: cell.coverageLevel || null,
+          influences: cell.result.influences,
           confidence: cell.result.confidence,
           taxonomy: cell.result.taxonomy,
+          terrainMeta: cell.result.terrainMeta,
           parts: cell.result.parts,
           sources: cell.result.sources,
           contributionBreakdown: cell.result.contributionBreakdown,
           calibration: cell.result.calibration
-        }, null, 2);
+        };
+        if (!state.prefs.diagnosticMode) {
+          delete techPayload.parts;
+          delete techPayload.calibration;
+        }
+        els.explainTech.textContent = JSON.stringify(techPayload, null, 2);
+      }
+      if ($("btn-validate-here")) {
+        $("btn-validate-here").onclick = function () {
+          closeSheet(els.sheetExplain);
+          openValidationAt(latlng, cell);
+        };
       }
     }
     els.explainBody.textContent = text;
+    els.explainBody.setAttribute("aria-live", "polite");
+    state.lastPerf.explainMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
     openSheet(els.sheetExplain);
+  }
+
+  function renderCompareSnippet(cell) {
+    if (!Bio || !cell || !cell.result) return "";
+    var balancedPrefs = Store.defaultModelPrefs();
+    var base = Bio.scoreCell({
+      lat: cell.lat,
+      lng: cell.lng,
+      date: new Date(),
+      prefs: balancedPrefs,
+      observations: Store.list(),
+      terrain: { slope: null, aspect: null, source: "unavailable", morphology: { source: "unavailable" } },
+      weather: state.weather,
+      coverageLevel: cell.coverageLevel,
+      coverageFactor: cell.result.parts && cell.result.parts.coverageFactor
+    });
+    var delta = Math.round((cell.priority - base.priority) * 1000) / 1000;
+    var changed = [];
+    (cell.result.factors || []).forEach(function (f) {
+      var bf = null;
+      var i;
+      for (i = 0; i < (base.factors || []).length; i++) {
+        if (base.factors[i].id === f.id) { bf = base.factors[i]; break; }
+      }
+      if (!bf) return;
+      if (Math.abs(f.contribution - bf.contribution) > 0.01) {
+        changed.push(f.label + " Δ" + (Math.round((f.contribution - bf.contribution) * 1000) / 1000));
+      }
+    });
+    return "Compare vs balanced baseline at this cell: Δpriority " + delta +
+      ". Drivers: " + (changed.slice(0, 5).join("; ") || "near baseline") +
+      ". (Transparency tool — not a competitive ranking.)";
+  }
+
+  function openValidationAt(latlng, cell) {
+    if (!els.sheetValidate) return;
+    $("val-lat").value = latlng.lat;
+    $("val-lng").value = latlng.lng;
+    $("val-error").hidden = true;
+    $("val-error").textContent = "";
+    if (cell && cell.result) {
+      $("val-model-hint").textContent =
+        "Snapshot will store model " + cell.result.modelVersion +
+        ", band " + cell.band +
+        ", relative score " + (Math.round(cell.priority * 100) / 100) +
+        ". A no-shed result does not prove the model wrong.";
+    }
+    openSheet(els.sheetValidate);
+  }
+
+  function saveValidation(ev) {
+    ev.preventDefault();
+    if (!Validation) return;
+    var stamp = modelStamp();
+    var cell = heatLayer && heatLayer.nearestCell({
+      lat: Number($("val-lat").value),
+      lng: Number($("val-lng").value)
+    });
+    var result = Validation.create({
+      lat: Number($("val-lat").value),
+      lng: Number($("val-lng").value),
+      appearedPromising: $("val-promising").value,
+      deerSignEncountered: $("val-sign").checked,
+      beddingOrFeedingEvidence: $("val-bedfeed").checked,
+      accessOrObstacleNotes: $("val-access").value,
+      shedOutcome: $("val-shed").value,
+      searchEffort: $("val-effort").value,
+      confidence: $("val-confidence").value,
+      notes: $("val-notes").value,
+      modelVersion: stamp.modelVersion,
+      factorConfigVersion: stamp.factorConfigVersion,
+      activePreset: stamp.activePreset,
+      regionalContext: stamp.regionalContext,
+      dataCoverageSummary: stamp.dataCoverageSummary,
+      inputTimestamp: stamp.inputDataTimestamp,
+      cellPriority: cell ? cell.priority : null,
+      cellBand: cell ? cell.band : null
+    });
+    if (!result.ok) {
+      $("val-error").hidden = false;
+      $("val-error").textContent = result.error || "Could not save.";
+      return;
+    }
+    closeSheet(els.sheetValidate);
   }
 
   function renderHistory() {
@@ -729,7 +941,8 @@
       var mins = Math.round((s.durationMs || 0) / 60000);
       lines.push("• " + String(s.startedAt).slice(0, 16).replace("T", " ") +
         " — " + (s.status || "?") + ", " + Math.round(s.distanceM || 0) + " m, " +
-        mins + " min, obs " + (s.observationIds || []).length + ", sheds " + (s.shedsFound || 0));
+        mins + " min, obs " + (s.observationIds || []).length + ", sheds " + (s.shedsFound || 0) +
+        (s.modelVersion ? (", model " + s.modelVersion) : ""));
     });
     lines.push("");
     lines.push("Observations by day:");
@@ -767,6 +980,16 @@
         openSheet(els.sheetHistory);
       });
     }
+    if ($("btn-validate")) {
+      $("btn-validate").addEventListener("click", function () {
+        var ll = state.userLatLng || map.getCenter();
+        var cell = heatLayer && heatLayer.nearestCell(ll);
+        openValidationAt(ll, cell);
+      });
+    }
+    if ($("val-form")) {
+      $("val-form").addEventListener("submit", saveValidation);
+    }
     if ($("btn-goto-plan")) {
       $("btn-goto-plan").addEventListener("click", function () {
         if (state.lastPlan && state.lastPlan.recommendation) {
@@ -782,7 +1005,10 @@
     $("btn-export").addEventListener("click", function () {
       var payload = {
         observations: Store.exportJson(),
-        sessions: Sessions ? Sessions.exportBundle() : null
+        sessions: Sessions ? Sessions.exportBundle() : null,
+        validations: Validation ? Validation.list() : [],
+        modelPrefs: state.prefs,
+        modelStamp: modelStamp()
       };
       var blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
       var a = document.createElement("a");
@@ -837,17 +1063,65 @@
         refreshCoverageMarks();
       });
     }
+    if ($("diagnostic-mode")) {
+      $("diagnostic-mode").addEventListener("change", function () {
+        state.prefs.diagnosticMode = $("diagnostic-mode").checked;
+        Store.saveModelPrefs(state.prefs);
+      });
+    }
+    if ($("compare-mode")) {
+      $("compare-mode").addEventListener("change", function () {
+        state.prefs.compareMode = $("compare-mode").checked;
+        Store.saveModelPrefs(state.prefs);
+      });
+    }
+    if ($("offline-forced")) {
+      $("offline-forced").addEventListener("change", function () {
+        state.offlineForced = $("offline-forced").checked;
+        scheduleRecompute(80);
+      });
+    }
+    if ($("model-preset") && Presets) {
+      $("model-preset").addEventListener("change", function () {
+        var before = state.prefs;
+        state.prefs = Presets.applyPreset(state.prefs, $("model-preset").value);
+        Store.saveModelPrefs(state.prefs);
+        syncControlsForm();
+        var changed = Presets.changedWeightKeys(before, state.prefs);
+        if ($("preset-hint")) {
+          var p = Presets.getPreset(state.prefs.activePreset);
+          $("preset-hint").textContent = p.summary +
+            (changed.length ? " Changed: " + changed.join(", ") + "." : "") +
+            " Presets explore emphasis — they are not universal truth.";
+        }
+        scheduleRecompute(120);
+      });
+    }
+    if ($("season-override") && Bio) {
+      $("season-override").addEventListener("change", function () {
+        var v = $("season-override").value;
+        state.prefs.seasonPhaseOverride = v === "auto" ? null : v;
+        if (state.prefs.activePreset === "balanced") {
+          /* keep */
+        }
+        Store.saveModelPrefs(state.prefs);
+        updateSeasonPill();
+        scheduleRecompute(120);
+      });
+    }
 
     document.querySelectorAll("[data-weight]").forEach(function (sel) {
       sel.addEventListener("change", function () {
         state.prefs.weights[sel.getAttribute("data-weight")] = sel.value;
+        state.prefs.activePreset = "custom";
+        if ($("model-preset")) $("model-preset").value = "balanced";
         Store.saveModelPrefs(state.prefs);
         scheduleRecompute(120);
       });
     });
 
     $("btn-reset-weights").addEventListener("click", function () {
-      state.prefs = Store.defaultModelPrefs();
+      state.prefs = Presets ? Presets.applyPreset(null, "balanced") : Store.defaultModelPrefs();
       Store.saveModelPrefs(state.prefs);
       syncControlsForm();
       scheduleRecompute(50);
@@ -872,6 +1146,18 @@
     $("heat-opacity").value = state.prefs.opacity;
     if ($("confidence-overlay")) $("confidence-overlay").checked = !!state.prefs.showConfidence;
     if ($("coverage-visible")) $("coverage-visible").checked = state.prefs.coverageVisible !== false;
+    if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
+    if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
+    if ($("offline-forced")) $("offline-forced").checked = !!state.offlineForced;
+    if ($("model-preset") && Presets) {
+      var pid = state.prefs.activePreset || "balanced";
+      if (!Presets.PRESETS[pid]) pid = "balanced";
+      $("model-preset").value = pid;
+      if ($("preset-hint")) $("preset-hint").textContent = Presets.getPreset(pid).summary;
+    }
+    if ($("season-override")) {
+      $("season-override").value = state.prefs.seasonPhaseOverride || "auto";
+    }
     Object.keys(state.prefs.weights).forEach(function (k) {
       var el = document.querySelector('[data-weight="' + k + '"]');
       if (el) el.value = state.prefs.weights[k];
@@ -899,7 +1185,7 @@
   }
 
   function boot() {
-    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !window.WaypointShedsBiological) {
+    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !Bio || !Presets || !Validation) {
       requestAnimationFrame(boot);
       return;
     }
@@ -907,6 +1193,7 @@
     els.obsCount = $("obs-count");
     els.coverage = $("coverage-pill");
     els.sessionPill = $("session-pill");
+    els.seasonPill = $("season-pill");
     els.modelNote = $("model-note");
     els.inputsSummary = $("inputs-summary");
     els.planCard = $("plan-card");
@@ -919,6 +1206,7 @@
     els.sheetExplain = $("sheet-explain");
     els.sheetEthics = $("sheet-ethics");
     els.sheetHistory = $("sheet-history");
+    els.sheetValidate = $("sheet-validate");
     els.historyBody = $("history-body");
     els.obsForm = $("obs-form");
     els.obsId = $("obs-id");
@@ -927,22 +1215,37 @@
     els.explainTech = $("explain-tech");
     els.explainBreakdown = $("explain-breakdown");
     els.explainTaxonomy = $("explain-taxonomy");
+    els.explainCompare = $("explain-compare");
 
     state.prefs = Store.loadModelPrefs();
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
     if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
     fillTypeSelects();
+    if ($("model-preset") && Presets) {
+      $("model-preset").innerHTML = Presets.listPresets().map(function (p) {
+        return "<option value=\"" + p.id + "\">" + p.label + "</option>";
+      }).join("") + "<option value=\"balanced\">Custom (edit weights)</option>";
+    }
+    if ($("season-override") && Bio) {
+      var opts = "<option value=\"auto\">Automatic from date + latitude</option>";
+      Object.keys(Bio.SEASON_PHASES).forEach(function (id) {
+        opts += "<option value=\"" + id + "\">" + Bio.SEASON_PHASES[id].label + " (manual)</option>";
+      });
+      $("season-override").innerHTML = opts;
+    }
     initMap();
     bindControls();
     syncControlsForm();
     refreshObservations();
     refreshCoverageMarks();
+    updateSeasonPill();
     var active = Sessions.getActiveSession();
     if (active) {
       state.activeSessionId = active.id;
       redrawTrack(active);
       if (els.sessionPill) {
-        els.sessionPill.textContent = "Resume ready · " + Math.round(active.distanceM || 0) + " m";
+        var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
+        els.sessionPill.textContent = "Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver;
         els.sessionPill.dataset.state = "available";
       }
       if (els.btnTrack) els.btnTrack.textContent = "Resume track";

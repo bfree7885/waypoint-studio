@@ -109,6 +109,17 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Architectural Lessons
 
+### 2026-07-15 — Do not apply coverage penalties twice
+
+- **Context:** Biological Model Integration v1.1 planner audit
+- **Category:** Architecture (secondary: Correctness)
+- **Lesson:** When `scoreCell` already multiplies session coverage into
+  `priority`, the planner must not multiply `coveragePenaltyFactor` again.
+  Double application silently skews next-area ranking away from the heat map.
+- **Evidence:** `apps/shed-hunting/js/sheds-search-planner.js`;
+  `docs/BIOLOGICAL_MODEL.md` (v1.1 pipeline)
+- **Prevention:** Integration test for thorough marks; comment at plan() score path.
+
 ### 2026-07-15 — Document disagreement; never invent habitat layers
 
 - **Context:** Whitetail Biological Model v1.0 research → scoring

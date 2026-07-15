@@ -54,19 +54,17 @@
 
     var covMap = Sessions && Sessions.coverageMap ? Sessions.coverageMap() : Object.create(null);
     var scored = grid.cells.map(function (cell) {
-      var level = null;
-      if (Sessions && Sessions.cellKey) {
+      var level = cell.coverageLevel || null;
+      if (!level && Sessions && Sessions.cellKey) {
         var hit = covMap[Sessions.cellKey(cell.lat, cell.lng)];
         level = hit ? hit.level : null;
       }
-      var factor = Sessions && Sessions.coveragePenaltyFactor
-        ? Sessions.coveragePenaltyFactor(level)
-        : 1;
-      // Revisit boosts planner attraction slightly without inventing finds
-      var plannerScore = cell.priority * factor;
+      // Coverage already applied inside Biological.scoreCell via coverageFactor.
+      // Do NOT multiply coverage again here (v1.1 — retired double application).
+      var plannerScore = cell.priority;
+      if (level === "revisit") plannerScore *= 1.05;
       if (user && Model && Model.haversineM) {
         var dist = Model.haversineM(user.lat, user.lng, cell.lat, cell.lng);
-        // Prefer reachable areas roughly 80–500m away over immediate standing cell
         var distBias = 1;
         if (dist < 40) distBias = 0.55;
         else if (dist < 120) distBias = 0.85;

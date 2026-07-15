@@ -100,6 +100,12 @@
       shedsFound: 0,
       notes: meta.notes || "",
       weatherSummary: meta.weatherSummary || null,
+      modelVersion: meta.modelVersion || null,
+      factorConfigVersion: meta.factorConfigVersion || null,
+      activePreset: meta.activePreset || null,
+      regionalContext: meta.regionalContext || null,
+      dataCoverageSummary: meta.dataCoverageSummary || null,
+      inputDataTimestamp: meta.inputDataTimestamp || now,
       createdAt: now,
       updatedAt: now
     };

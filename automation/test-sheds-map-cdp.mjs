@@ -88,7 +88,7 @@ async function main() {
   await send("Page.enable");
   await send("Runtime.enable");
   await send("Page.navigate", { url: "http://127.0.0.1:" + PORT + "/apps/shed-hunting/map/" });
-  await delay(5000);
+  await delay(8000);
 
   const { result } = await send("Runtime.evaluate", {
     expression: `(() => {
@@ -104,6 +104,11 @@ async function main() {
         sessions: !!(window.WaypointShedsSessions && WaypointShedsSessions.startSession),
         planner: !!(window.WaypointShedsPlanner && WaypointShedsPlanner.plan),
         biological: !!(window.WaypointShedsBiological && WaypointShedsBiological.MODEL_VERSION),
+        modelVersion: window.WaypointShedsBiological && WaypointShedsBiological.MODEL_VERSION,
+        presets: !!(window.WaypointShedsPresets && WaypointShedsPresets.applyPreset),
+        validation: !!(window.WaypointShedsValidation && WaypointShedsValidation.create),
+        seasonPill: !!document.getElementById("season-pill"),
+        validateSheet: !!document.getElementById("sheet-validate"),
         planCard: !!document.getElementById("plan-card"),
         trackBtn: !!document.getElementById("btn-track"),
         historySheet: !!document.getElementById("sheet-history"),
@@ -121,7 +126,9 @@ async function main() {
   server.close();
 
   const ok = v.hasLeaflet && v.leafMap && v.store && v.model &&
-    v.sessions && v.planner && v.biological && v.planCard && v.trackBtn && v.historySheet && !v.kansas;
+    v.sessions && v.planner && v.biological && v.presets && v.validation &&
+    v.seasonPill && v.validateSheet && v.planCard && v.trackBtn && v.historySheet &&
+    v.modelVersion === "1.1.0" && !v.kansas;
   if (!ok) {
     console.error("SHEDS MAP CDP: FAIL");
     process.exit(1);

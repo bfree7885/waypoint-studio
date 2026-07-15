@@ -25,6 +25,7 @@
         <span class="sheds-pill" id="loc-status" data-state="finding">Finding location…</span>
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
         <span class="sheds-pill" id="session-pill" data-state="manual">No active session</span>
+        <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
       </div>
       <section class="sheds-plan" id="plan-card" aria-live="polite">
@@ -52,6 +53,7 @@
         <button type="button" class="sheds-btn" id="btn-controls">Controls</button>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-explain">Explain</button>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-history">History</button>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-validate">Validate</button>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-ethics">Ethics</button>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-export">Export</button>
         <div class="sheds-legend" aria-label="Search priority legend">
@@ -143,6 +145,19 @@
       <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
       <label class="sheds-check"><input type="checkbox" id="coverage-visible" checked> Show search-coverage marks</label>
       <label class="sheds-check"><input type="checkbox" id="confidence-overlay"> Confidence hatch (limited inputs)</label>
+      <label class="sheds-check"><input type="checkbox" id="diagnostic-mode"> Diagnostic factor inspector</label>
+      <label class="sheds-check"><input type="checkbox" id="compare-mode"> Compare vs balanced baseline</label>
+      <label class="sheds-check"><input type="checkbox" id="offline-forced"> Force limited-data / offline scoring</label>
+      <div class="sheds-field">
+        <label for="model-preset">Model preset (emphasis only)</label>
+        <select id="model-preset"></select>
+        <p class="sheds-note" id="preset-hint"></p>
+      </div>
+      <div class="sheds-field">
+        <label for="season-override">Seasonal phase</label>
+        <select id="season-override"></select>
+        <p class="sheds-note">Manual override is a preference, not established antler-drop fact.</p>
+      </div>
       <div class="sheds-field">
         <label for="heat-opacity">Overlay opacity</label>
         <input id="heat-opacity" type="range" min="0.15" max="0.85" step="0.05" value="0.55">
@@ -199,14 +214,80 @@
       <h2 class="sheds-sheet__title" id="explain-title">Why this area?</h2>
       <p class="sheds-sheet__lede" id="explain-body"></p>
       <p class="sheds-note" id="explain-breakdown"></p>
-      <pre class="sheds-tech" id="explain-taxonomy" style="max-height:10rem;white-space:pre-wrap;" aria-label="Observation, inference, assumption, and confidence taxonomy"></pre>
+      <pre class="sheds-tech" id="explain-taxonomy" style="max-height:12rem;white-space:pre-wrap;" aria-label="Factor taxonomy and confidence"></pre>
+      <p class="sheds-note" id="explain-compare"></p>
       <details>
         <summary>Technical breakdown</summary>
         <pre class="sheds-tech" id="explain-tech"></pre>
       </details>
       <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-validate-here">Record field validation</button>
         <button type="button" class="sheds-btn" data-close-sheet>Close</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Field validation -->
+  <div class="sheds-sheet" id="sheet-validate" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="validate-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="validate-title">Field validation</h2>
+      <p class="sheds-sheet__lede">Evidence for later refinement — not automatic biological truth. A “no shed” result does not prove the model wrong.</p>
+      <p class="sheds-note" id="val-model-hint"></p>
+      <form id="val-form">
+        <input type="hidden" id="val-lat">
+        <input type="hidden" id="val-lng">
+        <div class="sheds-field">
+          <label for="val-promising">Did the area appear promising?</label>
+          <select id="val-promising">
+            <option value="unknown">Unknown</option>
+            <option value="yes">Yes</option>
+            <option value="mixed">Mixed</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <label class="sheds-check"><input type="checkbox" id="val-sign"> Deer sign encountered</label>
+        <label class="sheds-check"><input type="checkbox" id="val-bedfeed"> Bedding or feeding evidence</label>
+        <div class="sheds-field">
+          <label for="val-access">Obstacles / access notes</label>
+          <input id="val-access" type="text" maxlength="400" autocomplete="off">
+        </div>
+        <div class="sheds-grid-2">
+          <div class="sheds-field">
+            <label for="val-shed">Shed outcome</label>
+            <select id="val-shed">
+              <option value="not_found">Not found</option>
+              <option value="found">Found</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="val-effort">Search effort</label>
+            <select id="val-effort">
+              <option value="light">Light</option>
+              <option value="partial" selected>Partial</option>
+              <option value="thorough">Thorough</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="val-confidence">Confidence in this note</label>
+            <select id="val-confidence">
+              <option value="uncertain">Uncertain</option>
+              <option value="probable" selected>Probable</option>
+              <option value="confirmed">Confirmed</option>
+            </select>
+          </div>
+        </div>
+        <div class="sheds-field">
+          <label for="val-notes">Notes (optional)</label>
+          <textarea id="val-notes" maxlength="800" rows="3"></textarea>
+        </div>
+        <p class="sheds-error" id="val-error" hidden></p>
+        <div class="sheds-actions">
+          <button type="submit" class="sheds-btn sheds-btn--primary">Save validation</button>
+          <button type="button" class="sheds-btn" data-close-sheet>Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -246,7 +327,9 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-session-store.js"></script>
+  <script src="../js/sheds-validation-store.js"></script>
   <script src="../js/sheds-biological-model.js"></script>
+  <script src="../js/sheds-model-presets.js"></script>
   <script src="../js/sheds-likelihood-model.js"></script>
   <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
