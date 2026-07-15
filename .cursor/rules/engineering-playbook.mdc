@@ -1,0 +1,53 @@
+---
+description: Waypoint Studio Engineering Playbook — session workflow, quality gates, commit rules
+alwaysApply: true
+---
+
+# Engineering Playbook (agent contract)
+
+Canonical detail: `docs/ENGINEERING-PLAYBOOK.md`. Append **Lessons Learned** there after each work block.
+
+## Mission
+
+Leave the codebase more reliable, maintainable, fast, accessible, documented, and tested.
+
+## Non-negotiables
+
+- Privacy first; local-first when practical; never fabricate data.
+- Honest loading states; progressive enhancement; shared design system.
+- Simplicity over cleverness; smallest correct fix first.
+- **Never commit or push unless the owner explicitly asks.**
+
+## Workflow (every block)
+
+Investigate → root cause → fix → architecture only if justified → tests → UX /
+a11y / perf review → similar-defect sweep → docs → final report.
+
+Operate through: Senior, UX, Performance, Accessibility, QA, Reliability,
+Security, Documentation.
+
+## Quality gates before claiming done
+
+Root cause named · regression covered · relevant tests pass · no new console
+errors · desktop/mobile considered · a11y + perf reviewed · docs updated.
+
+## Architecture / UX / perf
+
+Prefer progressive rendering, independent modules, graceful degradation.
+Render shell immediately; no blocking on all providers; avoid duplicate
+requests and layout thrash. Fail gracefully — never appear frozen.
+
+## Reliability pattern
+
+One defect ⇒ search the codebase for the same pattern (e.g. `[hidden]` vs
+`display:flex`, progressive mounts that refetch, premature settle).
+
+## Final report
+
+Objective, root causes, improvements, tests, risks, recommendations, session
+start/end if observable, runtime or **unavailable**.
+
+## Dirty tree
+
+Do not stage unrelated noise (`data/*`, generated status/debug, importer
+desktop, local audit PDF scripts) unless the owner requests it.

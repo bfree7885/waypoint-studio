@@ -1,7 +1,8 @@
 # Session Report — Scene Builder Dimming & Dashboard Progressive Performance
 
 **Date:** 2026-07-14  
-**Commit status:** **Not committed. Not pushed.** Owner review required.
+**Commit status:** Shipped as `bccb8d4` (first pass) and `1a2d851` (hydrate/overlay harden).  
+**Playbook:** Lessons appended in `docs/ENGINEERING-PLAYBOOK.md`.
 
 ---
 
