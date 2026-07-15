@@ -224,7 +224,7 @@
     if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
     var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat.toFixed(4) +
       "&longitude=" + lng.toFixed(4) +
-      "&daily=snowfall_sum&timezone=auto&forecast_days=3";
+      "&daily=snowfall_sum&current=temperature_2m,wind_speed_10m&timezone=auto&forecast_days=3";
     return fetch(url, { credentials: "omit" }).then(function (res) {
       if (!res.ok) throw new Error("wx");
       return res.json();
@@ -238,7 +238,17 @@
       if (snow > 25) influence = 0.7;
       else if (snow > 8) influence = 0.88;
       else if (snow > 0.5) influence = 1.05;
-      return { snowInfluence: influence, snowMm: snow, source: "weather-provider" };
+      var tempC = data.current && typeof data.current.temperature_2m === "number"
+        ? data.current.temperature_2m : null;
+      var windSpeedMs = data.current && typeof data.current.wind_speed_10m === "number"
+        ? data.current.wind_speed_10m : null;
+      return {
+        snowInfluence: influence,
+        snowMm: snow,
+        tempC: tempC,
+        windSpeedMs: windSpeedMs,
+        source: "weather-provider"
+      };
     }).catch(function () { return null; });
   }
 
@@ -663,21 +673,41 @@
     if (!cell || !cell.result) {
       text = "No local search-priority cell here. Zoom in with the heat map on to analyze the visible area.";
       if (els.explainBreakdown) els.explainBreakdown.textContent = "";
+      if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
     } else {
       text = Model.explain(cell.result, { coverage: heatLayer.getGrid() && heatLayer.getGrid().coverage });
       if (els.explainBreakdown && cell.result.contributionBreakdown) {
         els.explainBreakdown.textContent = cell.result.contributionBreakdown.map(function (row) {
-          return row.label + ": " + (Math.round(row.value * 100) / 100);
+          return row.label + ": " + (Math.round(row.value * 1000) / 1000) +
+            (row.dataKind ? " [" + row.dataKind + "]" : "");
         }).join(" · ");
+      }
+      if (els.explainTaxonomy && cell.result.taxonomy) {
+        var tax = cell.result.taxonomy;
+        var conf = cell.result.confidence || {};
+        els.explainTaxonomy.textContent = [
+          "Observed: " + (tax.observed.join("; ") || "none in range"),
+          "Inferred: " + (tax.inferred.join("; ") || "none"),
+          "Ecological assumptions: " + (tax.ecologicalAssumptions.join("; ") || "none"),
+          "User preferences: " + (tax.userPreferences.join("; ") || "default weights"),
+          "Confidence (not probability): bio " + conf.biological +
+            " · env " + conf.environmentalData +
+            " · obs " + conf.observationDensity +
+            " · overall " + conf.overallRecommendation
+        ].join("\n");
       }
       if (els.explainTech) {
         els.explainTech.textContent = JSON.stringify({
+          modelVersion: cell.result.modelVersion,
           band: cell.band,
           priority: Math.round(cell.priority * 100) / 100,
           coverageLevel: cell.coverageLevel || null,
+          confidence: cell.result.confidence,
+          taxonomy: cell.result.taxonomy,
           parts: cell.result.parts,
           sources: cell.result.sources,
-          contributionBreakdown: cell.result.contributionBreakdown
+          contributionBreakdown: cell.result.contributionBreakdown,
+          calibration: cell.result.calibration
         }, null, 2);
       }
     }
@@ -869,7 +899,7 @@
   }
 
   function boot() {
-    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner) {
+    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !window.WaypointShedsBiological) {
       requestAnimationFrame(boot);
       return;
     }
@@ -896,6 +926,7 @@
     els.explainBody = $("explain-body");
     els.explainTech = $("explain-tech");
     els.explainBreakdown = $("explain-breakdown");
+    els.explainTaxonomy = $("explain-taxonomy");
 
     state.prefs = Store.loadModelPrefs();
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;

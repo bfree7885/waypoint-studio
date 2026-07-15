@@ -41,7 +41,7 @@
         <label class="sheds-plan__note-label" for="session-note">Session note (saved when you stop track)</label>
         <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional field note">
       </section>
-      <p class="sheds-note" id="model-note">Map shell ready. Suggestions are relative search guidance — never a map of antlers.</p>
+      <p class="sheds-note" id="model-note">Whitetail Biological Model v1.0 — relative search guidance with documented evidence and uncertainty. Never a map of antlers.</p>
     </header>
 
     <div id="sheds-map-shell" aria-busy="true">
@@ -151,7 +151,8 @@
         <label for="obs-filter">Filter observations</label>
         <select id="obs-filter"></select>
       </div>
-      <h3 class="sheds-sheet__lede">Influence weights</h3>
+      <h3 class="sheds-sheet__lede">Biological influence weights (v1.0)</h3>
+      <p class="sheds-note">Weights are user preferences. They do not invent data. See docs/BIOLOGICAL_MODEL.md.</p>
       <div class="sheds-grid-2">
         <div class="sheds-field"><label for="w-season">Season timing</label>
           <select id="w-season" data-weight="season"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
@@ -159,6 +160,10 @@
           <select id="w-slope" data-weight="slope"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
         <div class="sheds-field"><label for="w-aspect">Aspect / sun</label>
           <select id="w-aspect" data-weight="aspect"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-terrainForm">Terrain microforms</label>
+          <select id="w-terrainForm" data-weight="terrainForm"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-thermalCover">Thermal / winter cover</label>
+          <select id="w-thermalCover" data-weight="thermalCover"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
         <div class="sheds-field"><label for="w-feeding">Feeding proximity</label>
           <select id="w-feeding" data-weight="feeding"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
         <div class="sheds-field"><label for="w-bedding">Bedding / cover</label>
@@ -171,9 +176,13 @@
           <select id="w-deerSign" data-weight="deerSign"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
         <div class="sheds-field"><label for="w-fences">Fence crossings</label>
           <select id="w-fences" data-weight="fences"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-shedFinds">Prior shed finds</label>
+          <select id="w-shedFinds" data-weight="shedFinds"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
+        <div class="sheds-field"><label for="w-humanPressure">Human pressure</label>
+          <select id="w-humanPressure" data-weight="humanPressure"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
         <div class="sheds-field"><label for="w-search">Prior search coverage</label>
           <select id="w-search" data-weight="searchHistory"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
-        <div class="sheds-field"><label for="w-snow">Snow / recent conditions</label>
+        <div class="sheds-field"><label for="w-snow">Snow / cold / wind</label>
           <select id="w-snow" data-weight="snow"><option value="off">Off</option><option value="low">Low</option><option value="balanced" selected>Balanced</option><option value="strong">Strong</option></select></div>
       </div>
       <div class="sheds-actions">
@@ -190,6 +199,7 @@
       <h2 class="sheds-sheet__title" id="explain-title">Why this area?</h2>
       <p class="sheds-sheet__lede" id="explain-body"></p>
       <p class="sheds-note" id="explain-breakdown"></p>
+      <pre class="sheds-tech" id="explain-taxonomy" style="max-height:10rem;white-space:pre-wrap;" aria-label="Observation, inference, assumption, and confidence taxonomy"></pre>
       <details>
         <summary>Technical breakdown</summary>
         <pre class="sheds-tech" id="explain-tech"></pre>
@@ -236,6 +246,7 @@
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-session-store.js"></script>
+  <script src="../js/sheds-biological-model.js"></script>
   <script src="../js/sheds-likelihood-model.js"></script>
   <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>

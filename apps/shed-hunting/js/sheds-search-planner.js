@@ -184,13 +184,22 @@
       return ["Limited model detail for this suggestion."];
     }
     var r = primary.cell.result;
+    if (r.explanation) {
+      // Prefer biological narrative; keep short for the card.
+      var bioLines = String(r.explanation).split(". ").filter(Boolean).map(function (s) {
+        return /[.!?]$/.test(s) ? s : s + ".";
+      });
+      why = bioLines.slice(0, 3);
+    }
     var p = r.parts || {};
     if (p.bedding > 0.25) why.push("Influenced by nearby bedding or winter-cover observations.");
+    if (p.thermal > 0.25) why.push("Influenced by winter/thermal cover or concentration notes.");
     if (p.feeding > 0.25) why.push("Influenced by nearby feeding-area notes.");
     if (p.deerSign > 0.25) why.push("Influenced by nearby deer sign or sightings.");
     if (p.fences > 0.2) why.push("Influenced by fence-crossing notes (travel pinch).");
     if (p.corridors > 0.25) why.push("Influenced by trail or corridor notes.");
     if (p.shedBoost > 0.15) why.push("Nearby prior shed finds raise local interest without guaranteeing more finds.");
+    if (p.humanPressure > 0.2) why.push("Recorded human disturbance reduced attractiveness of the most pressured pocket.");
     if (r.labels && r.labels.seasonPhase) {
       why.push("Seasonal timing heuristic is currently “" + r.labels.seasonPhase + "”.");
     }
@@ -204,12 +213,24 @@
     if (p.searchPenalty > 0.25) {
       why.push("Reduced due to nearby “search completed” observations.");
     }
+    if (r.confidence && r.confidence.overallRecommendation != null) {
+      why.push("Overall guidance confidence " + r.confidence.overallRecommendation +
+        " (not find probability).");
+    }
     if (r.sources && r.sources.landCover === "unavailable") {
       why.push("Limited confidence because habitat / land-cover data is incomplete.");
     }
     if (r.sources && r.sources.terrain === "unavailable") {
       why.push("Terrain slope/aspect samples are unavailable for this view.");
     }
+    // Dedupe while preserving order
+    var seen = Object.create(null);
+    why = why.filter(function (line) {
+      var k = line.slice(0, 80);
+      if (seen[k]) return false;
+      seen[k] = 1;
+      return true;
+    }).slice(0, 6);
     if (!why.length) {
       why.push("Chosen mainly from season and terrain settings among higher remaining cells.");
     }

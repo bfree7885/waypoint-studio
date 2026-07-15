@@ -109,6 +109,19 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Architectural Lessons
 
+### 2026-07-15 — Document disagreement; never invent habitat layers
+
+- **Context:** Whitetail Biological Model v1.0 research → scoring
+- **Category:** Scientific Integrity (secondary: Architecture)
+- **Lesson:** When literature conflicts (e.g., south-facing winter beds vs
+  Montana north-aspect selection), encode a soft default and surface the
+  disagreement in evidence/uncertainty — do not hide it. Missing land cover
+  must stay Unavailable, not fake conifer yards.
+- **Evidence:** `apps/shed-hunting/js/sheds-biological-model.js` (E14);
+  `docs/BIOLOGICAL_MODEL.md`
+- **Prevention:** Factor catalog requires rationale + evidenceIds; biological
+  tests assert disagreement text and rising uncertainty when inputs vanish.
+
 ### 2026-07-15 — Search coverage reduces priority, never empties habitat
 
 - **Context:** Sheds field intelligence v0.2 planner + coverage marks

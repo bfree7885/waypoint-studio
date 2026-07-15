@@ -103,6 +103,7 @@ async function main() {
         model: !!(window.WaypointShedsLikelihood && WaypointShedsLikelihood.buildGrid),
         sessions: !!(window.WaypointShedsSessions && WaypointShedsSessions.startSession),
         planner: !!(window.WaypointShedsPlanner && WaypointShedsPlanner.plan),
+        biological: !!(window.WaypointShedsBiological && WaypointShedsBiological.MODEL_VERSION),
         planCard: !!document.getElementById("plan-card"),
         trackBtn: !!document.getElementById("btn-track"),
         historySheet: !!document.getElementById("sheet-history"),
@@ -120,7 +121,7 @@ async function main() {
   server.close();
 
   const ok = v.hasLeaflet && v.leafMap && v.store && v.model &&
-    v.sessions && v.planner && v.planCard && v.trackBtn && v.historySheet && !v.kansas;
+    v.sessions && v.planner && v.biological && v.planCard && v.trackBtn && v.historySheet && !v.kansas;
   if (!ok) {
     console.error("SHEDS MAP CDP: FAIL");
     process.exit(1);

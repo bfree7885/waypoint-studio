@@ -42,6 +42,7 @@ function load(rel) {
   const files = [
     "apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
+    "apps/shed-hunting/js/sheds-biological-model.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js",
     "apps/shed-hunting/js/sheds-search-planner.js"
   ];
@@ -179,6 +180,7 @@ function loadWith(seed) {
   sandbox.globalThis = sandbox;
   ["apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
+    "apps/shed-hunting/js/sheds-biological-model.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js",
     "apps/shed-hunting/js/sheds-search-planner.js"].forEach((f) => {
     vm.runInNewContext(fs.readFileSync(path.join(ROOT, f), "utf8"), sandbox);
