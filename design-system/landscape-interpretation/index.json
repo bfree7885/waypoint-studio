@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "schemaResult": "https://waypoint.studio/schemas/landscape-interpretation/v0.1",
+    "schemaRules": "https://waypoint.studio/schemas/landscape-interpretation/rules/v0.1",
+    "status": "architecture",
+    "runtime": "none",
+    "updatedAt": "2026-07-15",
+    "question": "Why does this place look the way it does?",
+    "docs": [
+      "docs/LANDSCAPE-INTERPRETATION-ENGINE.md",
+      "docs/LANDSCAPE-INTERPRETATION-INTEGRATIONS.md",
+      "docs/PLATFORM-ENGINES.md"
+    ]
+  },
+  "package": {
+    "id": "landscape-interpretation",
+    "label": "Landscape Interpretation Engine",
+    "path": "design-system/landscape-interpretation/"
+  },
+  "artifacts": {
+    "resultSchema": "schema-v0.1.json",
+    "taxonomy": "taxonomy.json",
+    "confidence": "confidence.json",
+    "ruleSchema": "rules/schema-v0.1.json",
+    "sampleRulePack": "rules/samples/northeast-land-use.sample.json",
+    "sampleResult": "samples/interpretation-result.sample.json"
+  },
+  "plannedConsumers": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes", "education"],
+  "notInScopeV01": [
+    "User-facing UI",
+    "Map layers",
+    "AI chat",
+    "Live GIS evaluation",
+    "Species identification"
+  ]
+}

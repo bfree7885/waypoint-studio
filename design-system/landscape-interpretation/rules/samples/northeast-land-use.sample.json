@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "packId": "lie-rules-sample-northeast-land-use",
+    "version": "0.1.0",
+    "title": "Sample Northeast land-use reading rules",
+    "status": "sample",
+    "regionalScope": ["northeastern-us", "global-educational"],
+    "authors": ["Waypoint Studio"],
+    "updatedAt": "2026-07-15",
+    "limitations": "Educational samples only. Not evaluated against live GIS. Stone walls alone never prove pasture. Regional geology and settlement patterns differ."
+  },
+  "rules": [
+    {
+      "id": "lie_ag_abandonment_walls_fence",
+      "title": "Agricultural abandonment after pasture cues",
+      "category": "land-use-history",
+      "priority": 70,
+      "if": {
+        "plainLanguage": "If stone walls are present and fence remnants or even-aged tree lines along walls are present…",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "stone-wall-present",
+            "description": "Stone wall present"
+          },
+          {
+            "op": "tagAny",
+            "tags": ["barbed-wire-or-fence-remnant", "even-aged-tree-line"],
+            "description": "Fence remnant or even-aged wall tree line"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "land-use.former-pasture",
+        "label": "Former pasture",
+        "statementTemplate": "This landscape may have regenerated after agricultural abandonment, with stone walls and fence-line trees consistent with historic pasture.",
+        "plainLanguage": "…this landscape may have regenerated after agricultural abandonment; stone walls likely relate to historic pasture enclosure."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Stone walls used as enclosure rather than only property theater",
+        "Fence metal or parallel wall-line of same-age trees"
+      ],
+      "alternatives": [
+        "Walls may mark hay-field or woodlot boundaries without grazing.",
+        "Trees may be planting or tree-lines for wind, not pasture regeneration.",
+        "Later logging may mimic even-aged cohorts along edges."
+      ],
+      "fieldChecks": [
+        "Follow the wall continuity — pasture walls often enclose shapes, not only straight property lines.",
+        "Look for wire staples in older trees along the wall.",
+        "Compare understory: thorny or browse-resistant shrubs sometimes linger after grazing."
+      ],
+      "limitations": "Without historic maps or aerials, keep confidence at or below moderate. Do not assert ownership or legal history.",
+      "ethicsNotes": "Do not dismantle walls or remove artifacts.",
+      "consumers": ["studio", "fieldry", "shed-hunting", "scenes", "education"]
+    },
+    {
+      "id": "lie_stone_wall_boundary_only",
+      "title": "Stone wall as historic boundary cue",
+      "category": "land-use-history",
+      "priority": 40,
+      "if": {
+        "plainLanguage": "If a stone wall is present without stronger pasture corroboration…",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "stone-wall-present",
+            "description": "Stone wall present"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "land-use.stone-wall-boundary",
+        "label": "Stone wall boundary",
+        "statementTemplate": "These stone walls likely indicate a historic boundary — pasture, woodlot, or property division — but wall presence alone does not specify the land use.",
+        "plainLanguage": "…these stone walls likely indicate a historic boundary; look further before naming pasture."
+      },
+      "confidenceCeiling": "low",
+      "evidenceHints": ["Presence of dry-laid or rubble stone alignment"],
+      "alternatives": [
+        "Former pasture (needs fence, vegetation, or map corroboration).",
+        "Woodlot boundary or ornamental landscape feature.",
+        "Relocated stone from field clearing without enclosure intent."
+      ],
+      "fieldChecks": [
+        "Note wall construction style and height.",
+        "Search nearby for cellar holes, lilacs, or orchard spacing.",
+        "Ask whether the wall closes a shape or only runs a ridge line."
+      ],
+      "limitations": "This rule teaches humility: walls are evidence of people, not a finished story.",
+      "consumers": ["studio", "fieldry", "scenes", "education"]
+    },
+    {
+      "id": "lie_early_succession_after_opening",
+      "title": "Early succession after opening",
+      "category": "forest-development",
+      "priority": 55,
+      "if": {
+        "plainLanguage": "If dense young stems and open-meadow or shrub signals co-occur…",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "dense-young-stems",
+            "description": "Dense young stems"
+          },
+          {
+            "op": "tagAny",
+            "tags": ["open-meadow-forbs", "shrub-thicket", "abrupt-cover-edge"],
+            "description": "Open meadow, shrub thicket, or abrupt edge"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "forest.early-succession",
+        "label": "Early succession",
+        "statementTemplate": "Structure here is consistent with early succession after an opening — field abandonment, blowdown, cut, or beaver meadow dynamics may all apply.",
+        "plainLanguage": "…this area may be early succession regenerating after an opening."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "High stem density of pioneer species",
+        "Residual open ground or shrub structure"
+      ],
+      "alternatives": [
+        "Managed early-seral habitat (mowing/cutting regime).",
+        "Plantation or seedling release not related to agriculture.",
+        "Persistent shrubland community, not transitional forest."
+      ],
+      "fieldChecks": [
+        "Estimate stem diameters and canopy height.",
+        "Look for stumps vs pasture walls vs beaver cuttings.",
+        "Note invasive shrubs that stall succession."
+      ],
+      "limitations": "Successional labels are relative to local climate and seed sources.",
+      "consumers": ["foragecast", "fieldry", "shed-hunting", "education"]
+    },
+    {
+      "id": "lie_beaver_influence",
+      "title": "Beaver influence on wet meadows",
+      "category": "water-processes",
+      "priority": 75,
+      "if": {
+        "plainLanguage": "If beaver sign is present with seasonal water or drowned timber cues…",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "beaver-sign",
+            "description": "Beaver sign"
+          }
+        ],
+        "any": [
+          {
+            "op": "tag",
+            "tag": "seasonal-standing-water",
+            "description": "Seasonal standing water"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "water.beaver-influence",
+        "label": "Beaver influence",
+        "statementTemplate": "Wetland and meadow patterning here may reflect beaver influence — dams and water-table changes that create and abandon open habitat over decades.",
+        "plainLanguage": "…beaver activity may help explain wet openings and drowned timber."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": ["Cuttings, dams, lodges, drowned standing timber"],
+      "alternatives": [
+        "Human impoundment or road-related ponding.",
+        "Seasonal wetland without beaver.",
+        "Historic mill pond remnant."
+      ],
+      "fieldChecks": [
+        "Search upstream for dam materials and fresh cuttings.",
+        "Note lodge presence and bank dens.",
+        "Compare current water level marks on trees."
+      ],
+      "limitations": "Beaver systems cycle; absence of a dam today does not erase recent influence.",
+      "ethicsNotes": "Observe without destroying lodges or dams; follow local wildlife rules.",
+      "consumers": ["fieldry", "foragecast", "scenes", "education"]
+    }
+  ]
+}

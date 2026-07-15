@@ -43,7 +43,7 @@ See [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md). Registry: `sharedEngines` in `de
 
 | Engine | Status | Primary future consumers |
 |--------|--------|--------------------------|
-| Landscape Interpretation | Planned | Dashboard, Fieldry, ForageCast, Sheds, Scenes |
+| Landscape Interpretation | Architecture v0.1 (schemas/rules; no runtime UI) | Dashboard, Fieldry, ForageCast, Sheds, Scenes, Education |
 | Signal Intelligence (RF + Cyber) | Planned capability frame | SignalTerrain |
 
 No runtime engines or placeholder UIs are implied by this section.

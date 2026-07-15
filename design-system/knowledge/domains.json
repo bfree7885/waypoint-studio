@@ -47,8 +47,21 @@
     {
       "id": "landscape-interpretation",
       "label": "Landscape Interpretation",
-      "description": "Planned shared capability: why a landscape looks the way it does — succession, geology, soils, water, and land-use history. Documentation only until real sources exist.",
-      "categories": ["succession", "geology", "soils", "watersheds", "historic-land-use", "wetlands", "habitat-transitions"]
+      "description": "Shared engine architecture v0.1: why a landscape looks the way it does. Schemas and sample rules in design-system/landscape-interpretation/ — no runtime UI.",
+      "categories": [
+        "land-use-history",
+        "forest-development",
+        "water-processes",
+        "geological-processes",
+        "habitat-structure",
+        "succession",
+        "geology",
+        "soils",
+        "watersheds",
+        "historic-land-use",
+        "wetlands",
+        "habitat-transitions"
+      ]
     },
     {
       "id": "outdoor-intelligence",

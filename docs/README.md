@@ -6,6 +6,9 @@
 | [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md) | Core platform focus — four instruments |
 | [WAYPOINT-THEORY-OF-CHANGE.md](WAYPOINT-THEORY-OF-CHANGE.md) | Learn → observe → contribute cycle |
 | [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) | OIP, WOS, WEF, ethics — foundations |
+| [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) | Shared intelligence engines map |
+| [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) | Landscape Interpretation Engine v0.1 — schemas & philosophy |
+| [LANDSCAPE-INTERPRETATION-INTEGRATIONS.md](LANDSCAPE-INTERPRETATION-INTEGRATIONS.md) | How apps will consume landscape stories |
 | [WAYPOINT-STUDIO-CONSTITUTION.md](WAYPOINT-STUDIO-CONSTITUTION.md) | Supreme law — mission, privacy, feature test |
 | [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md) | WOS — canonical observation schema for all products |
 | [RESEARCH-INTEGRITY.md](RESEARCH-INTEGRITY.md) | Trust UI — provenance, confidence, citations, disclaimers |

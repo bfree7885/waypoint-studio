@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "schema": "https://waypoint.studio/schemas/landscape-interpretation/v0.1",
+    "engineVersion": "0.1.0",
+    "status": "sample",
+    "languageMode": "teach",
+    "createdAt": "2026-07-15T00:00:00.000Z",
+    "updatedAt": "2026-07-15T00:00:00.000Z",
+    "rulePackIds": ["lie-rules-sample-northeast-land-use"],
+    "dataCoverage": {
+      "userObservations": true,
+      "remoteLayers": false,
+      "historicImagery": false,
+      "notes": "Educational sample — not a real site evaluation."
+    },
+    "aiAssisted": false,
+    "disclaimer": "Sample landscape story for architecture review. Interpretations are provisional hypotheses, not verified land history."
+  },
+  "place": {
+    "id": null,
+    "label": "Educational hillside transect (sample)",
+    "regionHint": "northeastern-us",
+    "notes": "Composite teaching place — no parcel claim."
+  },
+  "question": "Why does this place look the way it does?",
+  "observations": [
+    {
+      "id": "obs_wall-segment",
+      "tag": "stone-wall-present",
+      "description": "Dry-laid stone wall running along the contour for roughly one field length.",
+      "sourceKind": "educational-example",
+      "confidence": "high",
+      "provenanceNote": "Sample observation for rule transparency demos."
+    },
+    {
+      "id": "obs_fence-staple",
+      "tag": "barbed-wire-or-fence-remnant",
+      "description": "Short length of rusted wire caught in a wall-line maple.",
+      "sourceKind": "educational-example",
+      "confidence": "moderate"
+    },
+    {
+      "id": "obs_young-stems",
+      "tag": "dense-young-stems",
+      "description": "Dense saplings and poles inside the wall enclosure.",
+      "sourceKind": "educational-example",
+      "confidence": "moderate"
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "ix_former-pasture-sample",
+      "taxonomyId": "land-use.former-pasture",
+      "category": "land-use-history",
+      "label": "Former pasture",
+      "statement": "This landscape may have regenerated after agricultural abandonment, with stone walls and fence-line trees consistent with historic pasture.",
+      "confidence": {
+        "level": "moderate",
+        "score": null,
+        "rationale": "Walls plus fence remnant support pasture enclosure; no historic aerial confirmation, so ceiling stays moderate.",
+        "ceilingFromRules": "moderate"
+      },
+      "supportingEvidence": [
+        {
+          "text": "Contour-following stone wall suggests enclosure geometry.",
+          "observationId": "obs_wall-segment",
+          "ruleId": "lie_ag_abandonment_walls_fence"
+        },
+        {
+          "text": "Wire remnant in wall-line tree.",
+          "observationId": "obs_fence-staple",
+          "ruleId": "lie_ag_abandonment_walls_fence"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "text": "Walls may mark a hay field or woodlot edge without grazing.",
+          "taxonomyId": "land-use.former-hay-field"
+        },
+        {
+          "text": "Even-aged stem density may reflect later cutting rather than post-pasture succession.",
+          "taxonomyId": "land-use.logging-history"
+        }
+      ],
+      "suggestedFieldObservations": [
+        {
+          "prompt": "Walk the wall: does it close a shape or only follow a ridge?",
+          "whyItHelps": "Closed shapes more often enclose pasture; ridge walls may be property lines.",
+          "seasonHint": "Leaf-off months make walls easier to follow."
+        },
+        {
+          "prompt": "Search for cellar holes, lilac clumps, or orchard spacing nearby.",
+          "whyItHelps": "Homestead and orchard cues refine the land-use story."
+        }
+      ],
+      "ruleIds": ["lie_ag_abandonment_walls_fence"],
+      "consumers": ["studio", "fieldry", "shed-hunting", "scenes", "education"]
+    },
+    {
+      "id": "ix_early-succession-sample",
+      "taxonomyId": "forest.early-succession",
+      "category": "forest-development",
+      "label": "Early succession",
+      "statement": "Structure inside the walls is consistent with early-to-mid woody succession after an opening — abandonment is one plausible driver among several.",
+      "confidence": {
+        "level": "low",
+        "score": null,
+        "rationale": "Stem density suggests young forest structure, but cause of the opening is underdetermined without further evidence.",
+        "ceilingFromRules": "moderate"
+      },
+      "supportingEvidence": [
+        {
+          "text": "Dense young stems inside the enclosure.",
+          "observationId": "obs_young-stems",
+          "ruleId": "lie_early_succession_after_opening"
+        }
+      ],
+      "alternativeExplanations": [
+        {
+          "text": "Managed early-seral habitat (mowing or cutting regime).",
+          "taxonomyId": null
+        },
+        {
+          "text": "Plantation or release cutting unrelated to agriculture.",
+          "taxonomyId": "land-use.logging-history"
+        }
+      ],
+      "suggestedFieldObservations": [
+        {
+          "prompt": "Note dominant species and stem diameters at breast height.",
+          "whyItHelps": "Species and size classes separate plantation, sprout hardwood, and pioneering brush."
+        }
+      ],
+      "ruleIds": ["lie_early_succession_after_opening"],
+      "consumers": ["foragecast", "fieldry", "education"]
+    }
+  ],
+  "narrative": {
+    "summary": "A contour stone wall with wire remnants suggests people once enclosed this hillside, possibly for pasture. Dense young stems inside the walls are consistent with regeneration after an opening. Historic aerials would raise or lower confidence; until then, treat both ideas as field hypotheses.",
+    "interpretationIds": ["ix_former-pasture-sample", "ix_early-succession-sample"],
+    "confidenceCeiling": "low"
+  }
+}

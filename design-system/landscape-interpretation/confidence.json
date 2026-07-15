@@ -1,0 +1,66 @@
+{
+  "version": "0.1.0",
+  "schema": "https://waypoint.studio/schemas/landscape-interpretation/confidence/v0.1",
+  "updatedAt": "2026-07-15",
+  "purpose": "Confidence is about support for an interpretation, never probability that a land-use event occurred or that an antler/forage will be found.",
+  "levels": [
+    {
+      "id": "high",
+      "label": "High",
+      "uiVerb": "Well supported",
+      "meaning": "Multiple independent lines of evidence agree; alternatives are weaker.",
+      "consumerRule": "May lead a summary only with alternatives still visible on expand."
+    },
+    {
+      "id": "moderate",
+      "label": "Moderate",
+      "uiVerb": "Plausible",
+      "meaning": "Evidence points this way; competing stories remain reasonable.",
+      "consumerRule": "Default ceiling for most field-rule matches without historic imagery."
+    },
+    {
+      "id": "low",
+      "label": "Low",
+      "uiVerb": "Possible",
+      "meaning": "Thin or ambiguous support; useful for teaching questions.",
+      "consumerRule": "Lead with suggested observations, not the label."
+    },
+    {
+      "id": "speculative",
+      "label": "Speculative",
+      "uiVerb": "Hypothesis",
+      "meaning": "Educational hypothesis pending more looking or data.",
+      "consumerRule": "Must use hedging; never map as a certified layer."
+    },
+    {
+      "id": "insufficient",
+      "label": "Insufficient",
+      "uiVerb": "Not enough to say",
+      "meaning": "Do not invent a landscape story from noise.",
+      "consumerRule": "Surface as Unavailable / keep learning prompts only."
+    }
+  ],
+  "requiredFieldsPerInterpretation": [
+    "observation linkage or explicit educational-example source",
+    "interpretation statement with hedging",
+    "confidence.level + confidence.rationale",
+    "supportingEvidence (may be empty only if status=sample and labeled)",
+    "alternativeExplanations (min 1)",
+    "suggestedFieldObservations (min 1)"
+  ],
+  "separationContract": {
+    "observation": "What was seen, measured, or cited — no causal claim required.",
+    "interpretation": "Why it might look that way — always provisional.",
+    "never": [
+      "Promote uncertain interpretations as facts",
+      "Hide alternatives to appear authoritative",
+      "Use percentage certainty in user-facing copy",
+      "Confuse species ID with landscape process"
+    ]
+  },
+  "alignment": {
+    "researchIntegrity": "docs/RESEARCH-INTEGRITY.md",
+    "wosConfidence": "certain|likely|possible|uncertain map loosely to high|moderate|low|speculative — do not auto-equate without review",
+    "oieTrust": "Prefer Estimated / Educational labels until verified sources exist"
+  }
+}

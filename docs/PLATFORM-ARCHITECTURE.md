@@ -58,6 +58,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 |-------|----------|---------|
 | **Platform kernel** | `design-system/js/platform/` | Shared chrome, profile, collections, foundation UI |
 | **Shared engines (vision)** | `docs/PLATFORM-ENGINES.md` · registry `sharedEngines` | Long-term capability map; planned ≠ shipped |
+| **Landscape Interpretation** | `design-system/landscape-interpretation/` · [docs](LANDSCAPE-INTERPRETATION-ENGINE.md) | Architecture v0.1: schemas, taxonomy, confidence, sample rules — no UI/runtime |
 | **Knowledge Platform** | `design-system/knowledge/`, `design-system/js/knowledge/` | Shared reference knowledge, search, relationships |
 | **Outdoor Intelligence Platform** | `design-system/js/outdoor-intelligence/` | Canonical regional package for dashboard and apps |
 | **Regional Intelligence Engine** | `design-system/js/regional-intelligence/` | County profiles, phenology, species slices |
@@ -84,6 +85,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 ## See also
 
 - [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) — shared engine map (Landscape Interpretation, Signal Intelligence)
+- [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) — Landscape Interpretation v0.1
 - [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 - [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md)
 - [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md)

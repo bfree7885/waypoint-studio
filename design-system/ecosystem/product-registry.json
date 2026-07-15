@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Waypoint Studio product registry — core instruments, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
@@ -47,11 +47,17 @@
     "landscape-interpretation": {
       "id": "landscape-interpretation",
       "name": "Landscape Interpretation",
-      "status": "planned",
+      "status": "architecture",
+      "version": "0.1.0",
       "purpose": "Help people understand why a landscape looks the way it does — ecology, geology, succession, and land-use history.",
-      "designNotes": "Documentation only until a real data path exists. No fake layers or invented history.",
-      "plannedConsumers": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes"],
-      "docs": "docs/PLATFORM-ENGINES.md"
+      "designNotes": "v0.1 schemas, taxonomy, confidence model, and sample rules only. No UI, maps, AI chat, or live evaluator. No fake layers or invented history.",
+      "package": "design-system/landscape-interpretation/",
+      "plannedConsumers": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes", "education"],
+      "docs": [
+        "docs/LANDSCAPE-INTERPRETATION-ENGINE.md",
+        "docs/LANDSCAPE-INTERPRETATION-INTEGRATIONS.md",
+        "docs/PLATFORM-ENGINES.md"
+      ]
     },
     "signal-intelligence": {
       "id": "signal-intelligence",

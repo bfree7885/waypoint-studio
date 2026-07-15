@@ -2,7 +2,7 @@
 
 **Status:** Architectural vision (planned capabilities)  
 **Last updated:** 2026-07-15  
-**Do not confuse with shipped features.** Engines listed as *planned* have no runtime implementation unless noted elsewhere.
+**Do not confuse with shipped features.** Engines listed as *planned* have no runtime implementation unless noted elsewhere. Landscape Interpretation v0.1 adds **schemas and docs only** under `design-system/landscape-interpretation/` — still not a product UI.
 
 Waypoint Studio grows as a set of **shared intelligence engines** that applications can eventually query. Engines are not standalone consumer apps. They are reusable capabilities that keep products honest, consistent, and free of duplicated domain logic.
 
@@ -27,30 +27,32 @@ Waypoint Studio grows as a set of **shared intelligence engines** that applicati
 | Phenology / Regional Intelligence | Active foundation | Seasonal timing and regional slices |
 | Mapping / Observation Platform (WOS) | Active foundation | Places, notes, research-grade observations |
 | Photo Intelligence | Active / evolving | Careful looking, craft feedback, visual scenes |
-| **Landscape Interpretation** | **Planned** | Why a landscape looks the way it does |
+| **Landscape Interpretation** | **Architecture v0.1** (no runtime) | Why a landscape looks the way it does |
 | **Signal Intelligence** | **Planned** (home: SignalTerrain) | Reading RF and cyber environments calmly |
 
 Exact boundaries may shift; this list is the account of intent.
 
 ---
 
-## Landscape Interpretation (planned)
+## Landscape Interpretation (architecture v0.1)
 
 ### Purpose
 
 Help people understand **why a place looks the way it does** — ecology, geology, water, succession, and land-use history — so Fieldry notes, Sheds walks, ForageCast seasons, Dashboard context, and Scenes photographs gain deeper place literacy.
 
+### Package
+
+| Artifact | Path |
+|----------|------|
+| Engine doc | [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) |
+| Integrations | [LANDSCAPE-INTERPRETATION-INTEGRATIONS.md](LANDSCAPE-INTERPRETATION-INTEGRATIONS.md) |
+| Schemas / taxonomy / rules | `design-system/landscape-interpretation/` |
+
+**No UI, maps, AI chat, or live evaluator.** Sample rule packs are educational contracts only.
+
 ### Future users
 
 Naturalists, photographers, foragers, shed hunters, educators, and anyone trying to read habitat transitions with humility.
-
-### Possible future inputs (none wired yet)
-
-Historical aerials · historic maps · topography · geology · soils · watersheds · forest succession · old farm fields · stone walls · logging history · glaciation · wetlands · habitat edges
-
-### Example insight vocabulary (illustrative only)
-
-Former pasture · old orchard · historic logging · beaver influence · floodplain · young forest · mature forest · successional habitat · ancient shoreline · glacial deposit
 
 ### Planned relationships
 
@@ -62,7 +64,7 @@ Former pasture · old orchard · historic logging · beaver influence · floodpl
 | Sheds | Winter cover / edge / land-history context |
 | Waypoint Scenes | Photographing and understanding place |
 
-**No UI, layers, or APIs are shipped for this engine in this documentation step.**
+See the integrations doc for consumer rules and honesty checklists.
 
 ---
 
@@ -121,5 +123,6 @@ Registry keys live in `design-system/ecosystem/product-registry.json` under `sha
 
 - [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md)
 - [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
+- [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md)
 - [SIGNALTERRAIN_PLAYBOOK.md](SIGNALTERRAIN_PLAYBOOK.md)
 - [WAYPOINT-KNOWLEDGE-PLATFORM.md](WAYPOINT-KNOWLEDGE-PLATFORM.md)

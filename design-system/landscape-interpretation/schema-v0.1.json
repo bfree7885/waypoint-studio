@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/landscape-interpretation/v0.1",
+  "title": "Waypoint Landscape Interpretation Engine — Result v0.1",
+  "description": "Reusable reasoning result that explains why a place looks the way it does. Separates observations from interpretations. Never implies GIS analysis completeness or species ID. Runtime evaluation is not shipped in v0.1 — this schema defines the contract.",
+  "type": "object",
+  "required": ["meta", "observations", "interpretations"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "engineVersion", "status", "languageMode"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/landscape-interpretation/v0.1"
+        },
+        "engineVersion": {
+          "type": "string",
+          "pattern": "^0\\.1\\.\\d+$",
+          "description": "Landscape Interpretation Engine package version."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "sample", "evaluated", "archived"],
+          "description": "draft/sample = documentation examples; evaluated = produced by a future evaluator."
+        },
+        "languageMode": {
+          "type": "string",
+          "enum": ["explain", "teach", "summarize"],
+          "description": "Tone intent for consuming apps. explain is default."
+        },
+        "createdAt": { "type": ["string", "null"], "format": "date-time" },
+        "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "rulePackIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rule packs considered (even if none matched)."
+        },
+        "dataCoverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "userObservations": { "type": "boolean" },
+            "remoteLayers": { "type": "boolean" },
+            "historicImagery": { "type": "boolean" },
+            "notes": { "type": "string", "maxLength": 512 }
+          }
+        },
+        "aiAssisted": {
+          "type": "boolean",
+          "description": "Must be true if any generative model contributed text. Default false for rule-only paths."
+        },
+        "disclaimer": {
+          "type": "string",
+          "maxLength": 1024,
+          "description": "Required short honesty line for consumers."
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional place context. Coordinates are allowed but not required for offline teaching packs.",
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "label": { "type": ["string", "null"], "maxLength": 256 },
+        "regionHint": {
+          "type": ["string", "null"],
+          "description": "Coarse region (e.g. northeastern-us) — not a cadastral claim."
+        },
+        "notes": { "type": ["string", "null"], "maxLength": 2048 }
+      }
+    },
+    "question": {
+      "type": "string",
+      "const": "Why does this place look the way it does?",
+      "description": "Canonical mission question — optional to include for clarity."
+    },
+    "observations": {
+      "type": "array",
+      "description": "What was noticed or recorded. Must not be silently rewritten as conclusions.",
+      "items": { "$ref": "#/$defs/observation" }
+    },
+    "interpretations": {
+      "type": "array",
+      "description": "Provisional stories about process and history. Always reversible; never facts.",
+      "items": { "$ref": "#/$defs/interpretation" }
+    },
+    "narrative": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "Optional short composed story for Dashboard / education. Must cite interpretation ids.",
+      "properties": {
+        "summary": { "type": "string", "maxLength": 1200 },
+        "interpretationIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidenceCeiling": {
+          "$ref": "#/$defs/confidenceLevel",
+          "description": "Must not exceed the weakest cited interpretation."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "confidenceLevel": {
+      "type": "string",
+      "enum": ["high", "moderate", "low", "speculative", "insufficient"],
+      "description": "high = strong multi-source support; speculative = teachable guess; insufficient = do not surface as a story."
+    },
+    "observation": {
+      "type": "object",
+      "required": ["id", "description", "sourceKind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^obs_[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "tag": {
+          "type": ["string", "null"],
+          "description": "Optional controlled tag used by rules (see taxonomy observationTags)."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 1024,
+          "description": "Plain observation language. Avoid causal verbs like 'was pasture'."
+        },
+        "sourceKind": {
+          "type": "string",
+          "enum": [
+            "user-field",
+            "user-photo-note",
+            "wos-observation",
+            "historic-map-hint",
+            "historic-aerial-hint",
+            "dem-derived",
+            "geology-layer",
+            "soils-layer",
+            "land-cover-layer",
+            "hydrography-layer",
+            "community",
+            "educational-example",
+            "unknown"
+          ]
+        },
+        "capturedAt": { "type": ["string", "null"], "format": "date-time" },
+        "confidence": { "$ref": "#/$defs/confidenceLevel" },
+        "provenanceNote": { "type": ["string", "null"], "maxLength": 512 }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "required": [
+        "id",
+        "taxonomyId",
+        "category",
+        "label",
+        "statement",
+        "confidence",
+        "supportingEvidence",
+        "alternativeExplanations",
+        "suggestedFieldObservations"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^ix_[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "taxonomyId": {
+          "type": "string",
+          "description": "Stable id from taxonomy.json (e.g. land-use.former-pasture)."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "land-use-history",
+            "forest-development",
+            "water-processes",
+            "geological-processes",
+            "habitat-structure"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 128,
+          "description": "Human label matching taxonomy (e.g. Former pasture)."
+        },
+        "statement": {
+          "type": "string",
+          "maxLength": 1200,
+          "description": "Interpretive story using hedging language (may, suggests, consistent with)."
+        },
+        "confidence": {
+          "type": "object",
+          "required": ["level", "rationale"],
+          "additionalProperties": false,
+          "properties": {
+            "level": { "$ref": "#/$defs/confidenceLevel" },
+            "score": {
+              "type": ["number", "null"],
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Optional internal score. UI should prefer level labels, not decimals."
+            },
+            "rationale": {
+              "type": "string",
+              "maxLength": 800,
+              "description": "Why this level — short and teachable."
+            },
+            "ceilingFromRules": {
+              "$ref": "#/$defs/confidenceLevel",
+              "description": "Max confidence the matched rules allow."
+            }
+          }
+        },
+        "supportingEvidence": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": { "type": "string", "maxLength": 512 },
+              "observationId": { "type": ["string", "null"] },
+              "ruleId": { "type": ["string", "null"] },
+              "sourceKind": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "alternativeExplanations": {
+          "type": "array",
+          "minItems": 1,
+          "description": "At least one alternative keeps certainty honest.",
+          "items": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": {
+              "text": { "type": "string", "maxLength": 512 },
+              "taxonomyId": {
+                "type": ["string", "null"],
+                "description": "Optional competing taxonomy id."
+              }
+            }
+          }
+        },
+        "suggestedFieldObservations": {
+          "type": "array",
+          "minItems": 1,
+          "description": "What to look for next — teaches observation.",
+          "items": {
+            "type": "object",
+            "required": ["prompt"],
+            "additionalProperties": false,
+            "properties": {
+              "prompt": { "type": "string", "maxLength": 400 },
+              "whyItHelps": { "type": ["string", "null"], "maxLength": 400 },
+              "seasonHint": { "type": ["string", "null"], "maxLength": 128 }
+            }
+          }
+        },
+        "ruleIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Transparent rule ids that contributed."
+        },
+        "consumers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes", "education", "shared"]
+          },
+          "description": "Optional hints for which apps may surface this interpretation."
+        }
+      }
+    }
+  }
+}

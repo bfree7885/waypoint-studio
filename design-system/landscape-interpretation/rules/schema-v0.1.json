@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/landscape-interpretation/rules/v0.1",
+  "title": "Landscape Interpretation — Rule Pack v0.1",
+  "description": "Modular, transparent if→then rules. Human-readable. Evaluators may be added later without changing rule authoring. AI may assist drafting but must not silently invent matched evidence.",
+  "type": "object",
+  "required": ["meta", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["packId", "version", "title", "status", "regionalScope"],
+      "additionalProperties": false,
+      "properties": {
+        "packId": {
+          "type": "string",
+          "pattern": "^lie-rules-[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "version": { "type": "string", "pattern": "^0\\.1\\.\\d+$" },
+        "title": { "type": "string", "maxLength": 200 },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "sample", "reviewed", "deprecated"]
+        },
+        "regionalScope": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "e.g. northeastern-us, global-educational. Rules must declare scope."
+        },
+        "authors": { "type": "array", "items": { "type": "string" } },
+        "updatedAt": { "type": "string", "format": "date" },
+        "limitations": { "type": "string", "maxLength": 2000 }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/rule" }
+    }
+  },
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "required": ["op"],
+      "additionalProperties": false,
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            "tag",
+            "tagAll",
+            "tagAny",
+            "minTagCount",
+            "sourceKindPresent",
+            "placeRegion",
+            "always",
+            "futureDataHint"
+          ],
+          "description": "futureDataHint is documentation-only until layers exist."
+        },
+        "tag": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "count": { "type": "integer", "minimum": 1 },
+        "sourceKind": { "type": "string" },
+        "region": { "type": "string" },
+        "hint": {
+          "type": "string",
+          "description": "Human note for future DEM/soils/historic aerial predicates."
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Plain-language IF clause for transparency UIs."
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "category",
+        "if",
+        "then",
+        "confidenceCeiling",
+        "alternatives",
+        "fieldChecks",
+        "limitations"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^lie_[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "title": { "type": "string", "maxLength": 200 },
+        "category": {
+          "type": "string",
+          "enum": [
+            "land-use-history",
+            "forest-development",
+            "water-processes",
+            "geological-processes",
+            "habitat-structure"
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Higher wins when multiple rules fire for same taxonomy term; consumers still keep alternatives."
+        },
+        "if": {
+          "type": "object",
+          "required": ["all"],
+          "additionalProperties": false,
+          "properties": {
+            "all": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/condition" }
+            },
+            "any": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/condition" }
+            },
+            "plainLanguage": {
+              "type": "string",
+              "maxLength": 600,
+              "description": "Readable IF summary, e.g. If stone walls and fence remnants…"
+            }
+          }
+        },
+        "then": {
+          "type": "object",
+          "required": ["taxonomyId", "statementTemplate"],
+          "additionalProperties": false,
+          "properties": {
+            "taxonomyId": { "type": "string" },
+            "label": { "type": "string" },
+            "statementTemplate": {
+              "type": "string",
+              "maxLength": 1200,
+              "description": "Use hedging. Placeholders like {{placeLabel}} optional."
+            },
+            "plainLanguage": {
+              "type": "string",
+              "maxLength": 600,
+              "description": "Readable THEN summary for transparency UIs."
+            }
+          }
+        },
+        "confidenceCeiling": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "speculative"]
+        },
+        "evidenceHints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "How matching observations should be phrased as support."
+        },
+        "alternatives": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "fieldChecks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "limitations": { "type": "string", "maxLength": 1200 },
+        "ethicsNotes": {
+          "type": ["string", "null"],
+          "description": "e.g. do not disturb cellar holes; mining sites may be hazardous."
+        },
+        "consumers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes", "education", "shared"]
+          }
+        }
+      }
+    }
+  }
+}
