@@ -23,6 +23,14 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 └───────────────────────────────┬──────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼──────────────────────────────────┐
+│  Shared intelligence engines (see PLATFORM-ENGINES.md)           │
+│  Active: Outdoor Intelligence · Species Knowledge · Phenology    │
+│           Photo Intelligence · Mapping / Observation (WOS)       │
+│  Planned: Landscape Interpretation · Signal Intelligence         │
+│           (RF + Cyber — SignalTerrain home)                      │
+└───────────────────────────────┬──────────────────────────────────┘
+                                │
+┌───────────────────────────────▼──────────────────────────────────┐
 │  Outdoor Intelligence Platform (OIP)                             │
 │  WDS.outdoorIntelligence.get() — regional package                │
 └───────────────────────────────┬──────────────────────────────────┘
@@ -49,6 +57,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 | Layer | Location | Purpose |
 |-------|----------|---------|
 | **Platform kernel** | `design-system/js/platform/` | Shared chrome, profile, collections, foundation UI |
+| **Shared engines (vision)** | `docs/PLATFORM-ENGINES.md` · registry `sharedEngines` | Long-term capability map; planned ≠ shipped |
 | **Knowledge Platform** | `design-system/knowledge/`, `design-system/js/knowledge/` | Shared reference knowledge, search, relationships |
 | **Outdoor Intelligence Platform** | `design-system/js/outdoor-intelligence/` | Canonical regional package for dashboard and apps |
 | **Regional Intelligence Engine** | `design-system/js/regional-intelligence/` | County profiles, phenology, species slices |
@@ -68,11 +77,13 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 - AI-generated metadata must be explicitly labeled
 - Future data features stay disabled until intentionally enabled
 - Private by default across observations, finds, brews, and sites
+- **Planned engines** must not be presented as available features in product UI
 
 ---
 
 ## See also
 
+- [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) — shared engine map (Landscape Interpretation, Signal Intelligence)
 - [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 - [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md)
 - [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md)

@@ -1,9 +1,14 @@
-# Waypoint Studio SignalTerrain Playbook v1.0
+# Waypoint Studio SignalTerrain Playbook v1.1
 
-> Product standards for radio situational awareness and private signal logging.
+> Product standards for observing invisible environments — RF situational
+> awareness today, educational cyber awareness later — with privacy and clarity.
 
-SignalTerrain helps people understand radio environments—receivers, timelines,
-maps, and private audio—with clarity, integrity, and privacy.
+SignalTerrain is the studio home for **Signal Intelligence**: a platform framing
+for radio-frequency observation and, in the future, calm educational cyber
+situational awareness. It is not an enterprise SOC, not a surveillance product,
+and not a rumor feed.
+
+See also: [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) (Signal Intelligence engine).
 
 Complements: Engineering, Product Standards, UI/UX, QA, Performance,
 Accessibility, Security, Release, and Lessons Learned playbooks.
@@ -12,12 +17,31 @@ Accessibility, Security, Release, and Lessons Learned playbooks.
 
 # Product Mission
 
-Help people **observe and understand** radio terrain and incidents through
-trustworthy logs and geographic context—prioritizing clarity over engagement.
+Help people **observe and understand invisible environments** through
+trustworthy logs, geographic context, and honest confidence labeling —
+prioritizing clarity over engagement.
 
-SignalTerrain is a situational awareness and learning tool. It is not a social
-scanner feed, not a rumor amplifier, and not a surveillance product aimed at
-people.
+## Capability groups
+
+### RF Intelligence (foundation direction)
+
+Radio and spectrum situational awareness. Examples of topics the product may
+eventually support when real sources exist: SDR, NOAA broadcasts, amateur
+radio, ADS-B, AIS, satellites, spectrum monitoring, and private signal logging.
+
+Today’s foundations emphasize receivers, incident timelines, maps, and private
+audio — without inventing traffic that was not observed.
+
+### Cyber Intelligence (planned)
+
+Educational situational awareness for individuals, hobbyists, homelabs, and
+small organizations. Future topics may include CVE and advisory digests,
+campaign literacy, ransomware awareness notes, vulnerability prioritization
+hints, vendor advisories, patch reminders, and infrastructure incidents
+(ISP outages, DNS, BGP).
+
+**Planned only.** Do not ship placeholder threat dashboards. Do not imply
+protective guarantees. Do not present open-web rumor as verified intelligence.
 
 ------------------------------------------------------------------------
 
@@ -27,6 +51,7 @@ people.
 - Emergency-minded community volunteers documenting conditions responsibly
 - Researchers and hobbyists analyzing signal environments
 - Teams maintaining private receiver inventories and incident notes
+- (Later) Homelab and small-org learners who want calmer cyber awareness
 
 ------------------------------------------------------------------------
 
@@ -39,7 +64,9 @@ people.
 5. **Geographic context without doxxing**—precision follows need and consent.
 6. **Clarity over engagement**—no viral clip incentives.
 7. **Legal/ethical listening**—encourage compliance with local regulations.
-8. **Never fabricate signals, incidents, or transcripts.**
+8. **Never fabricate signals, incidents, transcripts, or cyber events.**
+9. **Cyber ≠ SOC**—educational awareness only; no false shield claims.
+10. **Planned work stays labeled Planned** until real data paths exist.
 
 ------------------------------------------------------------------------
 
@@ -51,6 +78,7 @@ people.
 - Empty states guide adding a receiver or first log without gamification
 - Assisted transcripts visually distinct from human-confirmed text
 - Incident notes support calm operational language—not sensational headlines
+- Any future cyber surfaces use the same calm voice and Unavailable honesty
 
 ------------------------------------------------------------------------
 
@@ -63,9 +91,10 @@ people.
 | Map/geocode failure | Log remains; geo marked unavailable |
 | Offline | Local logs accessible; sync (if any) clearly pending |
 | Permission denied (mic/files) | Plain recovery guidance |
+| Planned cyber source missing | Explicit Unavailable / Planned — never fake CVEs |
 
 Anti-patterns: auto-sharing audio; certainty on low-confidence decode; silent
-clock skew corruption without notice.
+clock skew corruption without notice; invented threat feeds.
 
 ------------------------------------------------------------------------
 
@@ -74,7 +103,7 @@ clock skew corruption without notice.
 - Assist transcription, classification, or summarization with explicit labels
 - Preserve original audio/log as source of truth
 - Communicate confidence; invite human confirmation for operational use
-- Do not invent callsigns, locations, or events to fill gaps
+- Do not invent callsigns, locations, events, or vulnerabilities to fill gaps
 - Avoid sensational narrative style in summaries
 
 ------------------------------------------------------------------------
@@ -86,6 +115,7 @@ clock skew corruption without notice.
 - Privacy flags travel with exports
 - Analysis outputs reference inputs; unsupported claims stay out
 - Receiver metadata distinguishes public club info from private home nodes
+- Future cyber records must cite provenance or stay Unavailable
 
 ------------------------------------------------------------------------
 
@@ -100,39 +130,19 @@ clock skew corruption without notice.
 
 ------------------------------------------------------------------------
 
-# Performance Expectations
+# Testing Expectations
 
-- Logs remain interactive as history grows (virtualize/paginate)
-- Audio decode/transcript assist must not freeze timeline scrolling
-- Map layers progressive; list-first works without tiles
-- Startup shows shell and recent logs before heavy analysis
-
-------------------------------------------------------------------------
-
-# Release Quality Gates
-
-- [ ] No default public exposure of private audio/locations
-- [ ] Assisted vs confirmed labeling intact
-- [ ] Log save/reload integrity verified for touched flows
-- [ ] Fabrication impossible on failed decode paths
-- [ ] Privacy precision controls honored on maps
-- [ ] Mobile review of timeline usable
-- [ ] Accessibility smoke on playback + transcript reading
-- [ ] Security: untrusted log imports handled safely
+- Logging round-trips preserve timestamps and privacy flags
+- Assisted vs confirmed transcripts remain distinguishable in DOM and exports
+- Map failures do not drop the underlying incident
+- No auto-upload of private audio in default configurations
+- Planned modules must not claim Ready in foundation JSON
 
 ------------------------------------------------------------------------
 
-# Future Extensibility
+# Related platform framing
 
-SignalTerrain may grow richer receiver management, analysis tools, or careful
-sharing circles. Extensions must preserve logging integrity and privacy-first
-defaults.
-
-Avoid prescribing SDR stacks; preserve trustworthy timeline semantics.
-
-------------------------------------------------------------------------
-
-# Versioning
-
-**SignalTerrain Playbook v1.0.** Living product handbook. Update when privacy,
-sharing, or transcript-confidence rules change.
+Signal Intelligence is a **shared engine** documented in
+`docs/PLATFORM-ENGINES.md` and `product-registry.json` → `sharedEngines`.
+SignalTerrain is the UI home. Do not add a separate Cyber product to navigation
+until real capabilities ship.

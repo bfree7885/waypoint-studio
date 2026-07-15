@@ -35,8 +35,20 @@
     {
       "id": "signalterrain",
       "label": "SignalTerrain",
-      "description": "Radio services, bands, modulation, agencies, equipment, terminology.",
+      "description": "Radio services, bands, modulation, agencies, equipment, terminology — RF intelligence knowledge for SignalTerrain.",
       "categories": ["radio-services", "frequency-bands", "modulation", "agencies", "equipment", "terminology"]
+    },
+    {
+      "id": "signal-intelligence",
+      "label": "Signal Intelligence",
+      "description": "Planned shared framing for RF and educational cyber situational awareness (SignalTerrain home). Categories reserved for future packs — no fabricated threat content.",
+      "categories": ["rf-intelligence", "cyber-intelligence", "spectrum", "advisories", "infrastructure-incidents"]
+    },
+    {
+      "id": "landscape-interpretation",
+      "label": "Landscape Interpretation",
+      "description": "Planned shared capability: why a landscape looks the way it does — succession, geology, soils, water, and land-use history. Documentation only until real sources exist.",
+      "categories": ["succession", "geology", "soils", "watersheds", "historic-land-use", "wetlands", "habitat-transitions"]
     },
     {
       "id": "outdoor-intelligence",

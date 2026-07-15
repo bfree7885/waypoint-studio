@@ -45,6 +45,8 @@ Domain packs add fields under `extensions` **without** changing the core schema.
 | steepleaf | tea varieties, cultivars, regions, processing, flavor, brewing |
 | savant-sommelier | grapes, regions, soils, geology, climate, rootstocks, wineries, styles |
 | signalterrain | radio services, bands, modulation, agencies, equipment, terminology |
+| signal-intelligence | planned RF/cyber framing categories (no fabricated threat packs) |
+| landscape-interpretation | planned succession / geology / historic land-use categories |
 | outdoor-intelligence | weather, AQI, UV, astronomy, photography terms |
 | scenes | photography / light concepts (shared with OI) |
 | shared | cross-cutting ecology / habitat concepts |

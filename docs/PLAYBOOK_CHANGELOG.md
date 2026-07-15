@@ -298,6 +298,25 @@ chronological commit order.
 - **Commit:** recorded on publish of this file to `main`
 - **Follow-up work:** Append entries when minors/majors land; avoid patch noise.
 
+### 2026-07-15 — SignalTerrain Playbook v1.1 expands to Signal Intelligence
+
+- **Version:** SignalTerrain Playbook v1.1
+- **Playbooks affected:** `docs/SIGNALTERRAIN_PLAYBOOK.md`; architecture /
+  registry vision in `docs/PLATFORM-ENGINES.md`
+- **Categories:** Product Philosophy, Documentation, Scientific Integrity
+- **Summary:** Reframed SignalTerrain as the home for Signal Intelligence with
+  RF Intelligence (foundation direction) and Cyber Intelligence (planned
+  educational awareness — explicitly not an enterprise SOC). Tightened honesty
+  rules against fabricating cyber events or shipping placeholder threat UIs.
+- **Reason for change:** Platform expansion required capability IA without
+  advertising unfinished products.
+- **Lessons incorporated:** Planned ≠ Available honesty already in Product
+  Standards / Constitution.
+- **Potential impact:** SignalTerrain copy and foundation JSON must label Cyber
+  as Planned; no new nav products for engines.
+- **Follow-up work:** Implement RF/Cyber only when real data paths exist.
+- **Commit:** _(pending owner)_
+
 ------------------------------------------------------------------------
 
 # Lessons Integration

@@ -1,15 +1,29 @@
 {
   "productId": "signalterrain",
   "title": "SignalTerrain",
-  "eyebrow": "Waypoint Studio · SignalTerrain",
+  "eyebrow": "Waypoint Studio · Signal Intelligence",
   "status": "foundation",
-  "lead": "Clear radio situational awareness — receivers, timelines, maps, and audio kept orderly and private.",
-  "mission": "For operators and careful listeners who need trustworthy timelines and maps without noise.",
+  "lead": "A calm observatory for invisible environments — radio situational awareness with private receivers, timelines, and maps. Educational cyber awareness is planned later, not available yet.",
+  "mission": "Help operators, listeners, and careful learners observe RF environments without noise, rumor, or surveillance culture.",
   "principles": [
     "Clarity over engagement metrics",
     "Audio libraries stay local first",
     "Receivers and sources stay modular",
-    "Shared receivers are opt-in and privacy-aware"
+    "Shared receivers are opt-in and privacy-aware",
+    "Never fabricate signals, incidents, or threat claims",
+    "Cyber tools, when built, stay educational — not an enterprise SOC"
+  ],
+  "capabilityGroups": [
+    {
+      "title": "RF Intelligence",
+      "status": "foundation",
+      "description": "Radio and spectrum awareness: receivers, logging, timelines, and geographic context. Future RF topics may include SDR, NOAA, amateur radio, ADS-B, AIS, satellites, and spectrum monitoring — only when honestly available."
+    },
+    {
+      "title": "Cyber Intelligence",
+      "status": "planned",
+      "description": "Planned educational situational awareness for individuals and homelabs (advisories, outages, vulnerability literacy). Not shipped. Not a security operations center."
+    }
   ],
   "modules": [
     { "title": "Receiver management", "status": "foundation", "description": "Keep a private registry of receivers, locations, and capabilities." },
@@ -19,7 +33,8 @@
     { "title": "Audio library", "status": "planned", "description": "Local audio with retention you control." },
     { "title": "Transcription", "status": "planned", "description": "Optional transcripts — labeled clearly when assisted." },
     { "title": "Extensions", "status": "foundation", "description": "Room for receivers, parsers, and exporters without locking you in." },
-    { "title": "Community receivers", "status": "planned", "description": "Opt-in shared receivers with anonymization options." }
+    { "title": "Community receivers", "status": "planned", "description": "Opt-in shared receivers with anonymization options." },
+    { "title": "Cyber awareness view", "status": "planned", "description": "Future educational digest of advisories and infrastructure incidents — documentation only until built." }
   ],
   "routes": [
     { "path": "/", "label": "SignalTerrain home", "ready": true },
@@ -27,5 +42,5 @@
     { "path": "/incidents/", "label": "Incident timeline", "ready": false },
     { "path": "/audio/", "label": "Audio library", "ready": false }
   ],
-  "dataModel": "Receivers, incidents, and audio stay on your device first. Nothing syncs until you choose a path that earns trust."
+  "dataModel": "Receivers, incidents, and audio stay on your device first. Nothing syncs until you choose a path that earns trust. Planned cyber surfaces must not invent events."
 }

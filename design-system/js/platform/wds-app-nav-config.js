@@ -359,7 +359,7 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Radio situational awareness \u2014 receivers, incidents, and mapping.",
+      "description": "Observatory for invisible environments \u2014 RF foundations; educational cyber awareness planned.",
       "status": "foundation",
       "features": [
         {

@@ -1,17 +1,18 @@
 {
   "name": "SignalTerrain",
-  "eyebrow": "Radio awareness",
-  "mission": "Clear radio situational awareness — receivers, timelines, maps, and audio kept orderly and private.",
+  "eyebrow": "Signal Intelligence",
+  "mission": "A calm observatory for invisible environments — RF situational awareness today; educational cyber awareness planned later.",
   "status": "foundation",
   "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Receivers and incident timelines for careful listeners — no engagement metrics.",
-  "strategicRole": "Help people keep receiver and incident context clear without noise.",
+  "portfolioNote": "Receivers and incident timelines for careful listeners — no engagement metrics. Cyber awareness is planned, not available.",
+  "strategicRole": "Help people observe RF environments clearly; eventually host educational Signal Intelligence (RF + Cyber).",
   "learnToday": [
     "How a private receiver registry stays modular",
     "Reading an incident timeline with source confidence",
     "Keeping audio libraries local first",
-    "Why shared receivers must stay opt-in"
+    "Why shared receivers must stay opt-in",
+    "How RF and planned Cyber awareness stay educational, not SOC tools"
   ],
   "comingSoon": [],
   "preview": {

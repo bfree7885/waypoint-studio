@@ -30,12 +30,23 @@ The platform is designed around curiosity, learning, and calm craft — not popu
 |---------|------|----------------|
 | Sheds | `apps/shed-hunting/` | FindRecord, cervid species catalog |
 | Steepleaf | `apps/steepleaf/` | TeaEntry, BrewSession |
-| SignalTerrain | `apps/signalterrain/` | Receiver, Incident |
+| SignalTerrain | `apps/signalterrain/` | Receiver, Incident — home for **Signal Intelligence** (RF now; Cyber planned) |
 | Savant Sommelier | `apps/savant-sommelier/` | PropertySite, Winery, Wine |
 
 These are **real foundations** (landing, modules, data models, routes) — not finished products and not disposable stubs.
 
 Terrainbound is **retired** and redirects to Fieldry / Dashboard.
+
+### Planned shared engines (documentation only)
+
+See [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md). Registry: `sharedEngines` in `design-system/ecosystem/product-registry.json`.
+
+| Engine | Status | Primary future consumers |
+|--------|--------|--------------------------|
+| Landscape Interpretation | Planned | Dashboard, Fieldry, ForageCast, Sheds, Scenes |
+| Signal Intelligence (RF + Cyber) | Planned capability frame | SignalTerrain |
+
+No runtime engines or placeholder UIs are implied by this section.
 
 ---
 

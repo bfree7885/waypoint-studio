@@ -1,12 +1,78 @@
 {
-  "version": "1.1.0",
-  "description": "Waypoint Studio product registry — core instruments, content tracks, and shared modules.",
+  "version": "1.2.0",
+  "description": "Waypoint Studio product registry — core instruments, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
     "foundations": ["shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"],
     "contentTracks": [],
     "modules": [],
     "retired": ["terrainbound"]
+  },
+  "sharedEngines": {
+    "outdoor-intelligence": {
+      "id": "outdoor-intelligence",
+      "name": "Outdoor Intelligence",
+      "status": "active",
+      "purpose": "Regional weather, light, trails, and stewardship context for calm outdoor decisions.",
+      "consumers": ["studio", "scenes", "fieldry", "foragecast"]
+    },
+    "species-knowledge": {
+      "id": "species-knowledge",
+      "name": "Species Knowledge",
+      "status": "active",
+      "purpose": "Shared species and habitat literacy (WSKB).",
+      "consumers": ["fieldry", "foragecast", "shed-hunting", "studio"]
+    },
+    "phenology": {
+      "id": "phenology",
+      "name": "Phenology",
+      "status": "active",
+      "purpose": "Seasonal timing and regional life-cycle slices.",
+      "consumers": ["foragecast", "studio", "fieldry"]
+    },
+    "photo-intelligence": {
+      "id": "photo-intelligence",
+      "name": "Photo Intelligence",
+      "status": "active",
+      "purpose": "Careful looking, craft feedback, and visual observation.",
+      "consumers": ["scenes", "photo-coach"]
+    },
+    "mapping-observation": {
+      "id": "mapping-observation",
+      "name": "Mapping & Observation Platform",
+      "status": "active",
+      "purpose": "Places, maps, and research-grade observations (WOS).",
+      "consumers": ["fieldry", "shed-hunting", "studio", "signalterrain"]
+    },
+    "landscape-interpretation": {
+      "id": "landscape-interpretation",
+      "name": "Landscape Interpretation",
+      "status": "planned",
+      "purpose": "Help people understand why a landscape looks the way it does — ecology, geology, succession, and land-use history.",
+      "designNotes": "Documentation only until a real data path exists. No fake layers or invented history.",
+      "plannedConsumers": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes"],
+      "docs": "docs/PLATFORM-ENGINES.md"
+    },
+    "signal-intelligence": {
+      "id": "signal-intelligence",
+      "name": "Signal Intelligence",
+      "status": "planned",
+      "purpose": "Observe invisible environments: RF spectrum awareness and educational cyber situational awareness — not an enterprise SOC.",
+      "capabilityGroups": {
+        "rf-intelligence": {
+          "label": "RF Intelligence",
+          "status": "foundation-partial",
+          "examples": ["SDR", "NOAA", "Amateur Radio", "ADS-B", "AIS", "Satellites", "Spectrum Monitoring", "Signal Logging"]
+        },
+        "cyber-intelligence": {
+          "label": "Cyber Intelligence",
+          "status": "planned",
+          "examples": ["CVE tracking", "Zero-day monitoring", "Threat campaigns", "Ransomware activity", "Vulnerability prioritization", "Vendor advisories", "Patch recommendations", "ISP outages", "DNS incidents", "BGP disruptions", "Security awareness dashboard"]
+        }
+      },
+      "plannedConsumers": ["signalterrain"],
+      "docs": "docs/PLATFORM-ENGINES.md"
+    }
   },
   "contentFiles": {
     "articles": "content/articles.json",
@@ -65,7 +131,9 @@
       ],
       "photographyLayout": "gallery-grid",
       "citizenScience": { "enabled": true, "optIn": true },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "plannedSharedEngines": ["landscape-interpretation"],
+      "sharedEngines": ["outdoor-intelligence", "species-knowledge", "phenology", "mapping-observation"]
     },
     "scenes": {
       "slug": "scenes",
@@ -93,7 +161,9 @@
       "photographyLayout": "darkroom-featured",
       "citizenScience": { "enabled": true, "optIn": true },
       "contentEngineRegion": "pike-county-pa",
-      "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages"
+      "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages",
+      "plannedSharedEngines": ["landscape-interpretation"],
+      "sharedEngines": ["photo-intelligence", "outdoor-intelligence"]
     },
     "foragecast": {
       "slug": "foragecast",
@@ -120,7 +190,9 @@
       "fieldGuideTemplates": ["species", "habitat", "ecosystem", "outdoor-challenge", "seasonal-journal", "field-investigation"],
       "photographyLayout": "species-plate",
       "citizenScience": { "enabled": true, "optIn": true },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "plannedSharedEngines": ["landscape-interpretation"],
+      "sharedEngines": ["species-knowledge", "phenology", "outdoor-intelligence"]
     },
     "fieldry": {
       "slug": "fieldry",
@@ -147,7 +219,9 @@
       "fieldGuideTemplates": ["seasonal-journal", "field-investigation", "equipment", "photography", "research-brief"],
       "photographyLayout": "journal-evidence",
       "citizenScience": { "enabled": true, "optIn": true },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "plannedSharedEngines": ["landscape-interpretation"],
+      "sharedEngines": ["species-knowledge", "mapping-observation", "outdoor-intelligence"]
     },
     "photo-coach": {
       "slug": "photo-coach",
@@ -200,7 +274,9 @@
       "fieldGuideTemplates": ["species", "habitat", "geology", "field-investigation", "outdoor-challenge", "equipment"],
       "photographyLayout": "sign-evidence",
       "citizenScience": { "enabled": true, "optIn": true },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "plannedSharedEngines": ["landscape-interpretation"],
+      "sharedEngines": ["species-knowledge", "mapping-observation"]
     },
     "steepleaf": {
       "slug": "steepleaf",
@@ -260,15 +336,16 @@
     "signalterrain": {
       "slug": "signalterrain",
       "portfolioTier": "module",
-      "portfolioRole": "Shared map, navigation, and earth science modules",
+      "portfolioRole": "Observatory for invisible environments — Signal Intelligence home (RF foundation; Cyber planned)",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
-      "hero": "The observatory deck",
-      "eyebrow": "Maps & terrain",
-      "lead": "Maps, contours, sky, and the ground beneath your boots — navigation and terrain literacy for students of the outdoors.",
-      "description": "Horizon, coordinates, geology, and astronomy.",
+      "hero": "Observe what you cannot see",
+      "eyebrow": "Signal Intelligence",
+      "lead": "A calm observatory for invisible environments — radio and spectrum awareness today, with room later for educational cyber situational awareness. Clarity and privacy over noise.",
+      "description": "SignalTerrain is the studio home for Signal Intelligence: RF listening and logging foundations now; educational cyber awareness planned — not an enterprise SOC.",
       "studioHref": "../../",
-      "toolHref": null,
+      "toolHref": "apps/signalterrain/",
+      "toolLabel": "Open SignalTerrain",
       "contentDomains": ["geology", "weather", "field-skills", "habitat"],
       "homepageSections": [
         "featured-photograph",
@@ -283,7 +360,9 @@
       "fieldGuideTemplates": ["geology", "weather", "equipment", "habitat", "field-investigation", "research-brief"],
       "photographyLayout": "map-horizon",
       "citizenScience": { "enabled": true, "optIn": true },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "plannedSharedEngines": ["signal-intelligence"],
+      "sharedEngines": ["mapping-observation", "signal-intelligence"]
     },
     "terrainbound": {
       "slug": "terrainbound",

@@ -6,7 +6,7 @@ Central inheritance for all products — no duplicated homepage or FGDS markup.
 
 | File | Purpose |
 |------|---------|
-| [`product-registry.json`](product-registry.json) | Per-product sections, templates, domains |
+| [`product-registry.json`](product-registry.json) | Per-product sections, templates, domains, **sharedEngines** (planned + active) |
 | [`product-home-shell.html`](product-home-shell.html) | Copy-paste thin HTML for new apps |
 | [`../js/wds-ecosystem.js`](../js/wds-ecosystem.js) | Renders shared home from registry + content |
 | [`../scripts/write-product-shells.py`](../scripts/write-product-shells.py) | Regenerate placeholder app `index.html` files |
