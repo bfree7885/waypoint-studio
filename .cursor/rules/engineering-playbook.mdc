@@ -5,7 +5,9 @@ alwaysApply: true
 
 # Engineering Playbook (agent contract)
 
-Canonical detail: `docs/ENGINEERING-PLAYBOOK.md`. Append **Lessons Learned** there after each work block.
+Canonical detail: `docs/ENGINEERING-PLAYBOOK.md`. Product philosophy:
+`docs/PRODUCT_STANDARDS.md`. Append **Lessons Learned** to the playbook after
+each work block.
 
 ## Mission
 

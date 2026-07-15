@@ -3,6 +3,9 @@
 Canonical session operating model for agents and humans. A concise Cursor rule
 mirrors the hard gates in `.cursor/rules/engineering-playbook.mdc`.
 
+Product philosophy (trust, privacy, education, AI honesty) lives in
+`docs/PRODUCT_STANDARDS.md` and `.cursor/rules/product-standards.mdc`.
+
 ---
 
 ## Mission

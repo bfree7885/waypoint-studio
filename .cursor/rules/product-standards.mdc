@@ -1,0 +1,39 @@
+---
+description: Waypoint Studio Product Standards — trust, privacy, UX, education, AI honesty
+alwaysApply: true
+---
+
+# Product Standards (agent contract)
+
+Canonical detail: `docs/PRODUCT_STANDARDS.md`. Engineering process:
+`docs/ENGINEERING-PLAYBOOK.md`.
+
+## Mission
+
+**Observe. Understand. Create. Share.** Deepen curiosity—do not replace it.
+
+## Feel
+
+Calm, trustworthy, honest, welcoming, curious, encouraging, thoughtful.
+No urgency hacks, artificial scarcity, or engagement farming.
+
+## Non-negotiables
+
+- Trust is the product — facts vs estimates vs placeholders must be clear.
+- Never fabricate data; honest loading and honest errors.
+- Privacy first; local-first when practical; transparent permissions.
+- Honest AI — coach/explain, never fake certainty.
+- Accessibility and responsive layouts by default; progressive enhancement.
+- Education via observation/coaching — not homework, grades, or quizzes.
+- Outdoor ethics and scientific integrity.
+
+## Decision tie-break
+
+Prefer trust, clarity, learning, curiosity, kindness, privacy, accessibility,
+scientific honesty, long-term maintainability.
+
+## Product quality bar
+
+Every change should improve at least one of: trust, clarity, reliability,
+accessibility, performance, maintainability, scientific integrity. Features
+must simplify or clearly add value—not noise.
