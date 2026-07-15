@@ -176,6 +176,12 @@
     );
   }
 
+  function studioPageHref(home, page) {
+    home = home || "./";
+    if (home === "./" || home === "." || home === "") return page;
+    return String(home).replace(/\/?$/, "/") + page;
+  }
+
   function renderFooter(options) {
     options = options || {};
     var NavApi = Nav();
@@ -183,10 +189,25 @@
     var app = options.app || (NavApi ? NavApi.detectApp() : null);
     var productName = (app && app.title) || options.productName || "Waypoint Studio";
     var home = NavApi ? NavApi.studioHomeHref(depth) : "../../";
+    var productSlug = (app && app.id) || options.product || "";
+    var contactBug = studioPageHref(home, "contact.html") +
+      "?category=bug&includeTech=1" +
+      (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
+    var contactFeature = studioPageHref(home, "contact.html") +
+      "?category=feature" +
+      (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
     return (
       '<footer class="was-footer wds-footer">' +
         "<p>" + esc(productName) + " · Private by default · " +
         '<a href="' + esc(home) + '">Waypoint Studio</a></p>' +
+        '<p class="was-footer__links">' +
+          '<a href="' + esc(studioPageHref(home, "contact.html")) + '">Contact</a>' +
+          '<a href="' + esc(studioPageHref(home, "support.html")) + '">Support</a>' +
+          '<a href="' + esc(contactBug) + '">Report bug</a>' +
+          '<a href="' + esc(contactFeature) + '">Request feature</a>' +
+          '<a href="' + esc(studioPageHref(home, "about.html")) + '">About</a>' +
+          '<a href="' + esc(studioPageHref(home, "privacy.html")) + '">Privacy</a>' +
+        "</p>" +
       "</footer>"
     );
   }

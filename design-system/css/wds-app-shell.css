@@ -267,6 +267,28 @@
   margin-top: auto;
 }
 
+.was-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.was-footer__links a {
+  color: var(--wds-text-secondary, #4a4740);
+  text-decoration: none;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.was-footer__links a:hover,
+.was-footer__links a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
 /* Desktop launcher = dropdown panel under Apps button */
 @media (min-width: 900px) {
   .was-launcher__backdrop {

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Waypoint Studio privacy — what stays on your device, what third parties may see, and what we do not collect.">
+  <title>Privacy — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system/css/wds.css">
+  <link rel="stylesheet" href="design-system/css/wds-app-shell.css?v=local">
+  <link rel="stylesheet" href="design-system/css/wds-contact.css?v=local">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+
+    <main id="main" class="wcs-page">
+      <header class="wcs-hero">
+        <p class="wds-eyebrow">Waypoint Studio</p>
+        <h1>Privacy</h1>
+        <p>Private by default — and honest when it isn’t absolute. This page describes what the site actually does today, not marketing promises.</p>
+      </header>
+
+      <section class="wcs-section" aria-labelledby="private-title">
+        <h2 id="private-title">What stays on your device</h2>
+        <ul>
+          <li>Field observations, Sheds sessions, validations, and similar product records in browser local storage (unless you export them).</li>
+          <li>Preferences such as map view, model weights, and ethics acknowledgements for specific apps.</li>
+          <li>Draft contact details kept briefly in session storage when you jump from an app into the contact form.</li>
+        </ul>
+        <p>Clearing site data in your browser removes local records. Exports you download are files you control.</p>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="network-title">
+        <h2 id="network-title">What third parties may see</h2>
+        <ul>
+          <li><strong>Map tiles</strong> (OpenStreetMap, OpenTopoMap, and similar) — approximate map area when you view maps.</li>
+          <li><strong>Weather / elevation providers</strong> (for example Open-Meteo, when a tool requests them) — approximate coordinates for the request.</li>
+          <li><strong>Other provider APIs</strong> used by Outdoor Intelligence modules (weather, alerts, trails) — request metadata and User-Agent identifying Waypoint Studio.</li>
+          <li><strong>Contact delivery</strong> — FormSubmit receives the message you submit and delivers it to <a href="mailto:contact@waypoint.studio">contact@waypoint.studio</a>. Their infrastructure may log delivery metadata per their policies.</li>
+          <li><strong>GitHub Pages / CDN hosting</strong> — standard web server logs (IP, user agent, requested URLs) as with most static sites.</li>
+        </ul>
+        <p>We do not operate an advertising network or sell personal observation databases.</p>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact form data</h2>
+        <ul>
+          <li>Collected: email, optional name, category, subject, message, optional app selection, optional browser/viewport details you allow.</li>
+          <li>Not collected by this form: passwords, payment data, automatic GPS from the form itself.</li>
+          <li>Please do not paste precise sensitive locations or private observation dumps into a public support email unless necessary.</li>
+        </ul>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="not-title">
+        <h2 id="not-title">What we do not claim</h2>
+        <ul>
+          <li>We do not claim “zero network transmission” while maps and weather run.</li>
+          <li>We do not claim messages are end-to-end encrypted through FormSubmit.</li>
+          <li>We do not claim to be a HIPAA, SOC2, or enterprise compliance product.</li>
+          <li>Citizen science or shared layers, if enabled later, will be opt-in and labeled — they are not the default today for most field notes.</li>
+        </ul>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="rights-title">
+        <h2 id="rights-title">Your choices</h2>
+        <ul>
+          <li>Deny location permission and explore manually.</li>
+          <li>Omit tech details on the contact form.</li>
+          <li>Export and delete local data via browser controls or in-app export/delete where provided.</li>
+          <li>Email <a href="mailto:contact@waypoint.studio">contact@waypoint.studio</a> for privacy questions.</li>
+        </ul>
+      </section>
+
+      <section class="wcs-section">
+        <p class="wcs-meta">Aligned with the Privacy Philosophy in the Waypoint Studio Constitution. Updated 2026-07-15.</p>
+      </section>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="0"></div>
+  </div>
+
+  <script src="design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+</body>
+</html>

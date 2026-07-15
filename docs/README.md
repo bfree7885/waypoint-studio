@@ -11,6 +11,7 @@
 | [LANDSCAPE-INTERPRETATION-INTEGRATIONS.md](LANDSCAPE-INTERPRETATION-INTEGRATIONS.md) | How apps will consume landscape stories |
 | [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) | Signal Intelligence Engine v0.1 — awareness schemas |
 | [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | How SignalTerrain and peers will consume SI |
+| [CONTACT-SUPPORT-PLATFORM.md](CONTACT-SUPPORT-PLATFORM.md) | Contact & Support platform — forms, delivery, privacy honesty |
 | [WAYPOINT-STUDIO-CONSTITUTION.md](WAYPOINT-STUDIO-CONSTITUTION.md) | Supreme law — mission, privacy, feature test |
 | [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md) | WOS — canonical observation schema for all products |
 | [RESEARCH-INTEGRITY.md](RESEARCH-INTEGRITY.md) | Trust UI — provenance, confidence, citations, disclaimers |

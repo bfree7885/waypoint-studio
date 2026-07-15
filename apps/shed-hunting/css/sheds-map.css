@@ -492,6 +492,10 @@ html, body {
 .sheds-tools-grid .sheds-btn {
   box-shadow: none;
   justify-content: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  text-align: center;
 }
 
 .reduced-motion .sheds-sheet__panel,

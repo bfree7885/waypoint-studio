@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-15",
+  "developer": {
+    "name": "Bryan",
+    "studio": "Waypoint Studio",
+    "email": "contact@waypoint.studio",
+    "responseTime": "Usually within a few days. Often sooner."
+  },
+  "delivery": {
+    "provider": "formsubmit",
+    "endpoint": "https://formsubmit.co/ajax/contact@waypoint.studio",
+    "overrideEndpoint": null,
+    "notes": "First live submission requires inbox confirmation from FormSubmit. After activation, AJAX posts deliver to contact@waypoint.studio. Set overrideEndpoint for Formspree/Web3Forms if preferred."
+  },
+  "categories": [
+    { "id": "general", "label": "General Question" },
+    { "id": "bug", "label": "Bug Report" },
+    { "id": "feature", "label": "Feature Request" },
+    { "id": "scientific", "label": "Scientific Correction" },
+    { "id": "data", "label": "Data Issue" },
+    { "id": "accessibility", "label": "Accessibility" },
+    { "id": "privacy", "label": "Privacy" },
+    { "id": "partnership", "label": "Partnership" },
+    { "id": "media", "label": "Media" },
+    { "id": "other", "label": "Other" }
+  ],
+  "apps": [
+    { "id": "studio", "label": "Dashboard / Studio" },
+    { "id": "scenes", "label": "Waypoint Scenes" },
+    { "id": "photo-coach", "label": "Photo Coach" },
+    { "id": "foragecast", "label": "ForageCast" },
+    { "id": "fieldry", "label": "Fieldry" },
+    { "id": "shed-hunting", "label": "Sheds" },
+    { "id": "steepleaf", "label": "Steepleaf" },
+    { "id": "signalterrain", "label": "SignalTerrain" },
+    { "id": "savant-sommelier", "label": "Savant Sommelier" },
+    { "id": "other", "label": "Other / not sure" }
+  ],
+  "spam": {
+    "honeypotField": "company_website",
+    "minSecondsOnPage": 3,
+    "maxSubmissionsPerHour": 3,
+    "minMessageLength": 10,
+    "maxMessageLength": 8000
+  },
+  "privacy": {
+    "collected": [
+      "Email address you provide",
+      "Optional name",
+      "Category, subject, and message",
+      "Optional app and technical context (browser, viewport, build) when included",
+      "Server-side delivery metadata from the email provider"
+    ],
+    "notCollectedByDefault": [
+      "Precise GPS from the contact form",
+      "Account passwords",
+      "Payment data",
+      "Social graph or follower lists"
+    ],
+    "retention": "Messages are email. They are not stored as a public database on waypointstudio.org. Provider logs may exist per FormSubmit policy."
+  },
+  "futureHooks": [
+    "knowledge-base",
+    "issue-tracker",
+    "feature-voting",
+    "beta-program",
+    "research-collaboration",
+    "community-feedback"
+  ],
+  "pages": {
+    "contact": "/contact.html",
+    "support": "/support.html",
+    "about": "/about.html",
+    "privacy": "/privacy.html"
+  }
+}
