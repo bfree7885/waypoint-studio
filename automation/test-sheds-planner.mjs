@@ -233,7 +233,8 @@ const css = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/css/sheds-map.css
 assert("reduced-motion css", /prefers-reduced-motion/.test(css));
 assert("mobile toolbar safe area", /safe-area-inset-bottom/.test(css));
 assert("skip link visually hidden until focus", /\.sheds-skip/.test(css) && /translateY\(-160%\)/.test(css));
-assert("suggest dock above toolbar", /\.sheds-suggest/.test(css) && /--sheds-toolbar-h/.test(css));
+assert("suggest floating bottom sheet", /\.sheds-suggest/.test(css) && /sheds-sheet-field|sheet-peek|--sheds-sheet-peek/.test(css));
+assert("fab rail field controls", /\.sheds-fab-rail/.test(css));
 assert("tools sheet present", /id="sheet-tools"/.test(html));
 assert("primary add note control", /id="btn-add-obs"/.test(html));
 

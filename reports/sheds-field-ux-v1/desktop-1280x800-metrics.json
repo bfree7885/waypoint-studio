@@ -1,0 +1,16 @@
+{
+  "label": "desktop-1280x800",
+  "mapHeight": 800,
+  "mapWidth": 1280,
+  "mapShare": 1,
+  "hudHeight": 55,
+  "fabBottom": 694,
+  "suggestTop": 694,
+  "suggestBottom": 788,
+  "pageScrollWidth": 1280,
+  "clientWidth": 1280,
+  "toolsSheet": true,
+  "moreBtn": true,
+  "layersBtn": true,
+  "overflowX": false
+}

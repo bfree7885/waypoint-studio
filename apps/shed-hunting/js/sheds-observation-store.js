@@ -221,7 +221,7 @@
       showConfidence: false,
       diagnosticMode: false,
       compareMode: false,
-      opacity: 0.55,
+      opacity: 0.42,
       activePreset: "balanced",
       seasonPhaseOverride: null,
       weights: {
@@ -258,7 +258,7 @@
         showConfidence: !!parsed.showConfidence,
         diagnosticMode: !!parsed.diagnosticMode,
         compareMode: !!parsed.compareMode,
-        opacity: typeof parsed.opacity === "number" ? parsed.opacity : 0.55,
+        opacity: typeof parsed.opacity === "number" ? parsed.opacity : 0.42,
         activePreset: parsed.activePreset || "balanced",
         seasonPhaseOverride: parsed.seasonPhaseOverride || null,
         weights: Object.assign({}, base.weights, parsed.weights || {})

@@ -1,0 +1,16 @@
+{
+  "label": "iphone-390x844",
+  "mapHeight": 844,
+  "mapWidth": 390,
+  "mapShare": 1,
+  "hudHeight": 55,
+  "fabBottom": 742,
+  "suggestTop": 755,
+  "suggestBottom": 844,
+  "pageScrollWidth": 390,
+  "clientWidth": 390,
+  "toolsSheet": true,
+  "moreBtn": true,
+  "layersBtn": true,
+  "overflowX": false
+}

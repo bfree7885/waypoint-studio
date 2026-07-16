@@ -1,5 +1,6 @@
 /**
- * Sheds Field Map — topo map, observations, heat, search planner (v0.2).
+ * Sheds Field Map — full-screen field experience (V1).
+ * Map-first outdoor shell: floating controls, bottom sheet, GPS focus.
  */
 (function () {
   "use strict";
@@ -13,16 +14,19 @@
   var Presets = window.WaypointShedsPresets;
   var Validation = window.WaypointShedsValidation;
 
-  var NEUTRAL = { lat: 45.2, lng: -93.5, zoom: 4 }; // labeled neutral — not “you”
+  var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
   var GRID_COLS = 18;
   var COARSE_ROWS = 10;
   var COARSE_COLS = 10;
   var SPECIES_LABEL = "Whitetail deer";
+  var DEFAULT_HEAT_OPACITY = 0.42;
 
   var state = {
     locationStatus: "idle",
     userLatLng: null,
+    accuracyM: null,
+    headingDeg: null,
     watchId: null,
     prefs: null,
     filterTypes: null,
@@ -45,7 +49,7 @@
   };
 
   var els = {};
-  var map, heatLayer, userMarker, obsLayer, clickLatLng;
+  var map, heatLayer, userMarker, accuracyCircle, headingLine, obsLayer, clickLatLng;
   var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
 
   function $(id) { return document.getElementById(id); }
@@ -53,7 +57,7 @@
   function setLocStatus(code, detail) {
     state.locationStatus = code;
     var label = {
-      idle: "Tap Locate me",
+      idle: "Tap Locate",
       finding: "Finding…",
       available: "Located",
       denied: "Location denied",
@@ -68,6 +72,12 @@
       els.locStatus.dataset.state = code;
       els.locStatus.title = detail ? label + " — " + detail : label;
     }
+    var dot = $("nav-dot");
+    if (dot) {
+      var dotState = state.tracking ? "tracking" : code;
+      dot.dataset.state = dotState;
+    }
+    updateNavMeta();
     syncRecenterBtn();
   }
 
@@ -78,11 +88,156 @@
     btn.hidden = !show;
   }
 
+  function setFabLabel(btn, label) {
+    if (!btn) return;
+    var span = btn.querySelector(".sheds-fab__label");
+    if (span) span.textContent = label;
+    else btn.textContent = label;
+    btn.setAttribute("aria-label", label);
+    btn.title = label;
+  }
+
+  function confidenceStars(coverage, band) {
+    var level = (coverage && coverage.level) || "limited";
+    var n = level === "strong" ? 4 : level === "moderate" ? 3 : 2;
+    if (band === "higher") n = Math.min(5, n + 1);
+    if (band === "lower") n = Math.max(1, n - 1);
+    var out = "";
+    for (var i = 0; i < 5; i++) out += i < n ? "★" : "☆";
+    return out;
+  }
+
+  function updateNavMeta() {
+    var meta = $("nav-meta");
+    var accEl = $("nav-accuracy");
+    var headEl = $("nav-heading");
+    var targetEl = $("nav-to-target");
+    if (!meta) return;
+    var bits = 0;
+    if (accEl) {
+      if (state.accuracyM != null && isFinite(state.accuracyM)) {
+        accEl.textContent = "±" + Math.round(state.accuracyM) + " m";
+        bits++;
+      } else accEl.textContent = "";
+    }
+    if (headEl) {
+      if (state.headingDeg != null && isFinite(state.headingDeg)) {
+        var dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+        var ix = Math.round(((state.headingDeg % 360) / 45)) % 8;
+        headEl.textContent = dirs[ix] + " " + Math.round(state.headingDeg) + "°";
+        bits++;
+      } else headEl.textContent = "";
+    }
+    if (targetEl) {
+      var plan = state.lastPlan && state.lastPlan.recommendation;
+      if (plan && state.userLatLng && Planner && Planner.formatDistance) {
+        var dist = plan.distanceM;
+        if (dist == null && typeof L !== "undefined") {
+          dist = state.userLatLng.distanceTo(L.latLng(plan.lat, plan.lng));
+        }
+        var dir = plan.bearingLabel || "";
+        targetEl.textContent = dist != null
+          ? ("Target " + (dir ? dir + " · " : "") + Planner.formatDistance(dist))
+          : "";
+        if (targetEl.textContent) bits++;
+      } else targetEl.textContent = "";
+    }
+    meta.hidden = bits === 0;
+  }
+
+  function upsertUserMarker(ll, accuracyM, headingDeg) {
+    if (!map || !ll) return;
+    if (!userMarker) {
+      userMarker = L.circleMarker(ll, {
+        radius: 9,
+        color: "#0a1410",
+        weight: 2,
+        fillColor: "#d4e85a",
+        fillOpacity: 0.98,
+        className: "sheds-user-pulse"
+      }).addTo(map);
+      userMarker.bindTooltip("You (approximate)", { direction: "top" });
+    } else {
+      userMarker.setLatLng(ll);
+    }
+    if (accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM < 5000) {
+      if (!accuracyCircle) {
+        accuracyCircle = L.circle(ll, {
+          radius: accuracyM,
+          color: "#7eb6ff",
+          weight: 1,
+          fillColor: "#7eb6ff",
+          fillOpacity: 0.12,
+          interactive: false
+        }).addTo(map);
+      } else {
+        accuracyCircle.setLatLng(ll);
+        accuracyCircle.setRadius(accuracyM);
+      }
+    }
+    if (headingLine) {
+      map.removeLayer(headingLine);
+      headingLine = null;
+    }
+    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng) {
+      var rad = (headingDeg * Math.PI) / 180;
+      var len = 0.00045;
+      var tip = L.latLng(
+        ll.lat + Math.cos(rad) * len,
+        ll.lng + (Math.sin(rad) * len) / Math.cos((ll.lat * Math.PI) / 180)
+      );
+      headingLine = L.polyline([ll, tip], {
+        color: "#d4e85a",
+        weight: 3,
+        opacity: 0.9,
+        interactive: false
+      }).addTo(map);
+    }
+  }
+
+  function setMapLoading(done) {
+    var el = $("map-loading");
+    var shell = $("sheds-map-shell");
+    if (el) {
+      if (done) {
+        el.classList.add("is-done");
+        el.setAttribute("hidden", "");
+      } else {
+        el.classList.remove("is-done");
+        el.removeAttribute("hidden");
+      }
+    }
+    if (shell) shell.setAttribute("aria-busy", done ? "false" : "true");
+  }
+
+  function syncOfflineBanner() {
+    var el = $("map-offline");
+    if (!el) return;
+    if (navigator.onLine === false) el.removeAttribute("hidden");
+    else el.setAttribute("hidden", "");
+  }
+
   function invalidateMapSize() {
     if (!map) return;
     setTimeout(function () {
       try { map.invalidateSize({ animate: false }); } catch (e) { /* */ }
-    }, 120);
+    }, 40);
+    setTimeout(function () {
+      try { map.invalidateSize({ animate: false }); } catch (e) { /* */ }
+    }, 220);
+  }
+
+  function forceMapLayout(opts) {
+    if (!map) return;
+    opts = opts || {};
+    try {
+      map.invalidateSize({ animate: false, pan: false });
+      if (opts.resetView) {
+        var c = map.getCenter();
+        var z = map.getZoom();
+        if (c) map.setView(c, z, { animate: false });
+      }
+    } catch (e) { /* */ }
   }
 
   function initMap() {
@@ -90,13 +245,17 @@
       zoomControl: false,
       attributionControl: true,
       maxZoom: 17,
-      minZoom: 3
+      minZoom: 3,
+      fadeAnimation: false,
+      zoomAnimation: !!(window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     });
     L.control.zoom({ position: "bottomright" }).addTo(map);
 
     var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
+      attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
+      updateWhenIdle: false,
+      keepBuffer: 3
     });
     var topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
       maxZoom: 17,
@@ -104,29 +263,53 @@
         "Map data: &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, " +
         "<a href=\"http://viewfinderpanoramas.org\">SRTM</a> | " +
         "Map style: &copy; <a href=\"https://opentopomap.org\">OpenTopoMap</a> " +
-        "(<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>)"
+        "(<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>)",
+      updateWhenIdle: false,
+      keepBuffer: 2
     });
-    topo.addTo(map);
+    // OSM fills reliably at overview; switch to Topo via Layers for field contours
+    osm.addTo(map);
     L.control.layers(
-      { "Topographic (OpenTopoMap)": topo, "Street (OSM)": osm },
+      { "Street (reliable)": osm, "Topographic (OpenTopoMap)": topo },
       null,
       { position: "topright", collapsed: true }
     ).addTo(map);
+
+    var firstTile = false;
+    osm.on("load", function () {
+      if (!firstTile) {
+        firstTile = true;
+        setMapLoading(true);
+        forceMapLayout();
+      }
+    });
 
     obsLayer = L.layerGroup().addTo(map);
     coverageLayer = L.layerGroup().addTo(map);
     trackLayer = L.layerGroup().addTo(map);
     planLayer = L.layerGroup().addTo(map);
-    heatLayer = Heat.createHeatLayer(map, { opacity: 0.55 });
 
     var saved = Store.loadMapView();
-    if (saved) {
-      map.setView([saved.lat, saved.lng], saved.zoom);
-      setLocStatus("last", "saved view");
-    } else {
-      map.setView([NEUTRAL.lat, NEUTRAL.lng], NEUTRAL.zoom);
-      setLocStatus("neutral");
-    }
+    var start = saved
+      ? [saved.lat, saved.lng, saved.zoom]
+      : [NEUTRAL.lat, NEUTRAL.lng, NEUTRAL.zoom];
+    // Size sync BEFORE first view so tile pixel origin matches the full-screen shell
+    map.invalidateSize({ animate: false });
+    map.setView([start[0], start[1]], start[2], { animate: false });
+    if (saved) setLocStatus("last", "saved view");
+    else setLocStatus("neutral");
+
+    // Heat layer is created lazily on first recompute so basemap tiles win the first paint
+    heatLayer = null;
+
+    map.whenReady(function () {
+      forceMapLayout({ resetView: true });
+      invalidateMapSize();
+    });
+    [100, 400, 1000].forEach(function (ms) {
+      setTimeout(function () { forceMapLayout(); }, ms);
+    });
+    setTimeout(function () { forceMapLayout({ resetView: true }); setMapLoading(true); }, 1800);
 
     map.on("dragstart", function () {
       state.followUser = false;
@@ -158,9 +341,13 @@
       setTimeout(invalidateMapSize, 1200);
     });
 
-    window.addEventListener("resize", invalidateMapSize);
+    window.addEventListener("resize", function () {
+      forceMapLayout();
+      invalidateMapSize();
+    });
     window.addEventListener("orientationchange", function () {
-      setTimeout(invalidateMapSize, 250);
+      setTimeout(forceMapLayout, 200);
+      invalidateMapSize();
     });
   }
 
@@ -329,6 +516,7 @@
   function applyGridToUi(grid, meta) {
     meta = meta || {};
     state.lastGrid = grid;
+    ensureHeatLayer();
     if (heatLayer) {
       heatLayer.setGrid(grid);
       if (heatLayer.setShowConfidence) heatLayer.setShowConfidence(!!state.prefs.showConfidence);
@@ -461,30 +649,58 @@
     if (els.btnTogglePlan) {
       els.btnTogglePlan.setAttribute("aria-expanded", state.planExpanded ? "true" : "false");
     }
+    document.documentElement.classList.toggle("sheds-sheet-open", state.planExpanded);
     invalidateMapSize();
   }
 
   function renderPlanCard(plan) {
     if (!els.planCard) return;
     var glance = els.planGlance || els.planBody;
+    var stars = $("plan-stars");
+    var stats = $("plan-stats");
     if (!plan || !plan.ok || !plan.recommendation) {
-      if (els.planTitle) els.planTitle.textContent = "Suggested search";
+      if (els.planTitle) els.planTitle.textContent = "Today’s Search";
       var empty = (plan && plan.reason) || "Zoom in (≥9) and locate or pan to your land.";
       if (glance) glance.textContent = empty;
-      if (els.planBody) els.planBody.textContent = empty;
+      if (els.planBody) els.planBody.textContent = "Pan and zoom to your land, then tap Locate. The priority surface builds locally for the visible area.";
       if (els.planWhy) els.planWhy.textContent = "";
       if (els.planMeta) els.planMeta.textContent = "";
+      if (stars) {
+        stars.textContent = "☆☆☆☆☆";
+        stars.setAttribute("aria-label", "Confidence unavailable");
+      }
+      if (stats) stats.hidden = true;
+      var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
+      if (actions) actions.hidden = true;
+      var whyWrap = document.querySelector(".sheds-plan__why-wrap");
+      if (whyWrap) whyWrap.hidden = true;
       els.planCard.setAttribute("aria-label", "No suggestion yet. " + empty);
+      updateNavMeta();
       return;
     }
+    var actionsOn = $("plan-actions") || document.querySelector(".sheds-plan__actions");
+    if (actionsOn) actionsOn.hidden = false;
+    var whyOn = document.querySelector(".sheds-plan__why-wrap");
+    if (whyOn) whyOn.hidden = false;
     var r = plan.recommendation;
-    if (els.planTitle) els.planTitle.textContent = "Suggested next search";
+    if (els.planTitle) els.planTitle.textContent = "Today’s Search";
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
-    var glanceText = [dir, dist, "band " + r.band, "~" + r.suggestedRadiusM + " m area"]
-      .filter(Boolean)
-      .join(" · ");
-    if (glance) glance.textContent = glanceText || r.walkingHint;
+    var glanceText = [dir, dist].filter(Boolean).join(" · ");
+    if (!glanceText) glanceText = r.walkingHint || ("band " + r.band);
+    if (glance) glance.textContent = glanceText;
+    if (stars) {
+      var starStr = confidenceStars(plan.coverage || (state.lastGrid && state.lastGrid.coverage), r.band);
+      stars.textContent = starStr;
+      stars.setAttribute("aria-label", "Confidence " + starStr.replace(/☆/g, "").length + " of 5");
+    }
+    if (stats) {
+      stats.hidden = false;
+      if ($("plan-stat-dir")) $("plan-stat-dir").textContent = dir || "—";
+      if ($("plan-stat-dist")) $("plan-stat-dist").textContent = dist || "—";
+      if ($("plan-stat-area")) $("plan-stat-area").textContent = "~" + r.suggestedRadiusM + " m";
+      if ($("plan-stat-band")) $("plan-stat-band").textContent = r.band || "—";
+    }
     if (els.planBody) {
       els.planBody.textContent = (r.walkingHint || glanceText) +
         " Priority: " + r.band + " (relative guidance, not certainty).";
@@ -494,6 +710,12 @@
     if (dir) meta.push("Direction " + dir);
     if (dist) meta.push(dist);
     meta.push("Search area ~" + r.suggestedRadiusM + " m");
+    if (state.weather) {
+      if (state.weather.snowMm != null) meta.push("Snow context ~" + state.weather.snowMm + " mm");
+      if (state.weather.windSpeedMs != null) {
+        meta.push("Wind ~" + Math.round(state.weather.windSpeedMs * 3.6) + " kph");
+      }
+    }
     if (plan.coverage) {
       meta.push(plan.coverage.searchedPercentLabel);
       var thoroughShare = plan.coverage.cellsInView
@@ -507,8 +729,9 @@
     if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Suggested next search: " + glanceText + ". " + (r.explanation || "")
+      "Today’s search: " + glanceText + ". " + (r.explanation || "")
     );
+    updateNavMeta();
   }
 
   function drawPlanOnMap(plan) {
@@ -519,23 +742,23 @@
     var r = plan.recommendation;
     recMarker = L.circle([r.lat, r.lng], {
       radius: r.suggestedRadiusM,
-      color: "#c8f055",
+      color: "#d4e85a",
       weight: 2,
-      fillColor: "#c8f055",
-      fillOpacity: 0.12
+      fillColor: "#d4e85a",
+      fillOpacity: 0.1
     }).addTo(planLayer);
     L.circleMarker([r.lat, r.lng], {
       radius: 7,
-      color: "#080f1c",
+      color: "#0a1410",
       weight: 2,
-      fillColor: "#c8f055",
+      fillColor: "#d4e85a",
       fillOpacity: 1
     }).bindTooltip("Suggested next search", { permanent: false }).addTo(planLayer);
     if (state.userLatLng) {
       L.polyline([
         [state.userLatLng.lat, state.userLatLng.lng],
         [r.lat, r.lng]
-      ], { color: "#c8f055", weight: 2, dashArray: "6 8", opacity: 0.85 }).addTo(planLayer);
+      ], { color: "#d4e85a", weight: 2, dashArray: "6 8", opacity: 0.85 }).addTo(planLayer);
     }
   }
 
@@ -568,24 +791,24 @@
     state.tracking = true;
     redrawTrack(session);
     if (els.btnTrack) {
-      els.btnTrack.textContent = "Stop track";
+      setFabLabel(els.btnTrack, "Stop");
       els.btnTrack.setAttribute("aria-pressed", "true");
     }
     if (els.sessionPill) {
-      els.sessionPill.textContent = "Session active · " + Math.round(session.distanceM || 0) + " m";
+      els.sessionPill.textContent = "Tracking · " + Math.round(session.distanceM || 0) + " m";
       els.sessionPill.dataset.state = "available";
     }
+    var navDot = $("nav-dot");
+    if (navDot) navDot.dataset.state = "tracking";
     if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
     state.watchId = navigator.geolocation.watchPosition(function (pos) {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
       state.userLatLng = L.latLng(lat, lng);
+      state.accuracyM = pos.coords.accuracy;
+      if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
       setLocStatus("available", "tracking");
-      if (!userMarker) {
-        userMarker = L.circleMarker(state.userLatLng, {
-          radius: 8, color: "#1a1a1a", weight: 2, fillColor: "#c8f055", fillOpacity: 0.95
-        }).addTo(map);
-      } else userMarker.setLatLng(state.userLatLng);
+      upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
       if (els.sessionPill && updated) {
@@ -614,11 +837,11 @@
     }
     state.activeSessionId = null;
     if (els.btnTrack) {
-      els.btnTrack.textContent = "Start track";
+      setFabLabel(els.btnTrack, "Track");
       els.btnTrack.setAttribute("aria-pressed", "false");
     }
     if (els.sessionPill) {
-      els.sessionPill.textContent = "No active session";
+      els.sessionPill.textContent = "Not tracking";
       els.sessionPill.dataset.state = "manual";
     }
     scheduleRecompute(200);
@@ -635,6 +858,17 @@
     });
     refreshCoverageMarks();
     scheduleRecompute(100);
+  }
+
+  function ensureHeatLayer() {
+    if (heatLayer || !map || !Heat) return heatLayer;
+    heatLayer = Heat.createHeatLayer(map, {
+      opacity: (state.prefs && state.prefs.opacity != null) ? state.prefs.opacity : DEFAULT_HEAT_OPACITY
+    });
+    if (state.prefs && heatLayer.setShowConfidence) {
+      heatLayer.setShowConfidence(!!state.prefs.showConfidence);
+    }
+    return heatLayer;
   }
 
   function updateCoverageUi(coverage) {
@@ -668,22 +902,13 @@
     navigator.geolocation.getCurrentPosition(function (pos) {
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
       state.userLatLng = ll;
-      setLocStatus("available");
-      if (!userMarker) {
-        userMarker = L.circleMarker(ll, {
-          radius: 8,
-          color: "#1a1a1a",
-          weight: 2,
-          fillColor: "#c8f055",
-          fillOpacity: 0.95
-        }).addTo(map);
-        userMarker.bindTooltip("You (approximate)", { direction: "top" });
-      } else {
-        userMarker.setLatLng(ll);
-      }
+      state.accuracyM = pos.coords.accuracy;
+      if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
+      setLocStatus("available", state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "");
+      upsertUserMarker(ll, state.accuracyM, state.headingDeg);
       if (opts.center !== false) {
         state.followUser = true;
-        map.setView(ll, Math.max(map.getZoom(), 13));
+        map.setView(ll, Math.max(map.getZoom(), 13), { animate: !document.documentElement.classList.contains("reduced-motion") });
         syncRecenterBtn();
       }
       fetchWeatherSoft(ll.lat, ll.lng).then(function (w) {
@@ -693,7 +918,7 @@
       scheduleRecompute(100);
     }, function (err) {
       if (err && err.code === 1) setLocStatus("denied", "map stays usable — explore manually");
-      else if (err && err.code === 3) setLocStatus("timeout", "try Locate me again");
+      else if (err && err.code === 3) setLocStatus("timeout", "try Locate again");
       else setLocStatus("unavailable");
       if (!Store.loadMapView()) setLocStatus(state.locationStatus === "denied" ? "denied" : "manual");
     }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
@@ -1063,6 +1288,12 @@
         openSheet(els.sheetTools);
       });
     }
+    if ($("btn-layers")) {
+      $("btn-layers").addEventListener("click", function () {
+        syncControlsForm();
+        openSheet(els.sheetControls);
+      });
+    }
     if ($("btn-add-obs")) {
       $("btn-add-obs").addEventListener("click", function () {
         var ll = state.userLatLng || (map && map.getCenter());
@@ -1184,6 +1415,9 @@
       state.prefs.opacity = Number($("heat-opacity").value);
       Store.saveModelPrefs(state.prefs);
       if (heatLayer) heatLayer.setHeatOpacity(state.prefs.opacity);
+      if ($("heat-opacity-val")) {
+        $("heat-opacity-val").textContent = Math.round(state.prefs.opacity * 100) + "%";
+      }
     });
     if ($("confidence-overlay")) {
       $("confidence-overlay").addEventListener("change", function () {
@@ -1280,6 +1514,9 @@
     $("heat-visible").checked = state.prefs.heatVisible;
     $("obs-visible").checked = state.prefs.obsVisible;
     $("heat-opacity").value = state.prefs.opacity;
+    if ($("heat-opacity-val")) {
+      $("heat-opacity-val").textContent = Math.round(Number(state.prefs.opacity) * 100) + "%";
+    }
     if ($("confidence-overlay")) $("confidence-overlay").checked = !!state.prefs.showConfidence;
     if ($("coverage-visible")) $("coverage-visible").checked = state.prefs.coverageVisible !== false;
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
@@ -1361,6 +1598,7 @@
     state.prefs = Store.loadModelPrefs();
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
     if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
+    if (state.prefs.opacity == null) state.prefs.opacity = DEFAULT_HEAT_OPACITY;
     fillTypeSelects();
     if ($("model-preset") && Presets) {
       $("model-preset").innerHTML = Presets.listPresets().map(function (p) {
@@ -1389,7 +1627,7 @@
         els.sessionPill.textContent = "Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver;
         els.sessionPill.dataset.state = "available";
       }
-      if (els.btnTrack) els.btnTrack.textContent = "Resume track";
+      if (els.btnTrack) setFabLabel(els.btnTrack, "Resume");
     } else if (els.sessionPill) {
       els.sessionPill.textContent = "Not tracking";
       els.sessionPill.dataset.state = "manual";
@@ -1398,6 +1636,9 @@
     setPlanExpanded(false);
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
+    syncOfflineBanner();
+    window.addEventListener("online", syncOfflineBanner);
+    window.addEventListener("offline", syncOfflineBanner);
 
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("reduced-motion");

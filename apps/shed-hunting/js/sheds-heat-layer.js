@@ -42,9 +42,10 @@
     _colorFor: function (priority, alphaBoost) {
       var p = Math.max(0, Math.min(1, priority));
       var aMul = alphaBoost != null ? alphaBoost : 1;
-      if (p < 0.45) return "rgba(90, 120, 150, " + ((0.10 + p * 0.28) * aMul) + ")";
-      if (p < 0.72) return "rgba(180, 140, 60, " + ((0.20 + (p - 0.45) * 0.55) * aMul) + ")";
-      return "rgba(80, 140, 70, " + ((0.32 + (p - 0.72) * 0.6) * aMul) + ")";
+      // Soft translucent washes so topo contours stay readable underneath
+      if (p < 0.45) return "rgba(70, 120, 105, " + ((0.06 + p * 0.18) * aMul) + ")";
+      if (p < 0.72) return "rgba(190, 150, 55, " + ((0.10 + (p - 0.45) * 0.35) * aMul) + ")";
+      return "rgba(75, 145, 70, " + ((0.16 + (p - 0.72) * 0.38) * aMul) + ")";
     },
 
     _cellAt: function (row, col) {
@@ -108,7 +109,7 @@
           ctx.fillStyle = this._colorFor(cell.priority);
           ctx.fillRect(x0, y0, Math.ceil(cellW) + 1, Math.ceil(cellH) + 1);
           if (cell.band === "higher") {
-            ctx.strokeStyle = "rgba(255,255,255,0.2)";
+            ctx.strokeStyle = "rgba(255,255,255,0.08)";
             ctx.beginPath();
             ctx.moveTo(x0, y0 + cellH);
             ctx.lineTo(x0 + cellW, y0);
