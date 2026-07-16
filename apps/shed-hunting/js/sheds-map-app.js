@@ -57,18 +57,22 @@
   function setLocStatus(code, detail) {
     state.locationStatus = code;
     var label = {
-      idle: "Tap Locate",
-      finding: "Finding…",
-      available: "Located",
-      denied: "Location denied",
+      idle: "You · tap to place",
+      finding: "Finding you…",
+      available: "You are here",
+      denied: "Location off — explore the map",
       unavailable: "Location unavailable",
-      timeout: "Location timed out",
-      last: "Saved map view",
-      manual: "Exploring manually",
-      neutral: "Overview (not your location)"
+      timeout: "Try locating again",
+      last: "Saved view",
+      manual: "Exploring the map",
+      neutral: "You · tap to place"
     }[code] || code;
     if (els.locStatus) {
-      els.locStatus.textContent = detail ? label + " · " + detail : label;
+      var text = label;
+      if (code === "available" && detail && detail.indexOf("±") === 0) text = "You are here · " + detail;
+      else if (code === "available" && detail === "tracking") text = "You are here · tracking";
+      else if (detail && code !== "available") text = label;
+      els.locStatus.textContent = text;
       els.locStatus.dataset.state = code;
       els.locStatus.title = detail ? label + " — " + detail : label;
     }
@@ -92,19 +96,45 @@
     if (!btn) return;
     var span = btn.querySelector(".sheds-fab__label");
     if (span) span.textContent = label;
-    else btn.textContent = label;
     btn.setAttribute("aria-label", label);
     btn.title = label;
   }
 
-  function confidenceStars(coverage, band) {
+  function syncSessionPill(text, show) {
+    if (!els.sessionPill) return;
+    if (text != null) els.sessionPill.textContent = text;
+    if (show) {
+      els.sessionPill.hidden = false;
+      els.sessionPill.removeAttribute("hidden");
+    } else {
+      els.sessionPill.hidden = true;
+      els.sessionPill.setAttribute("hidden", "");
+    }
+  }
+
+  function confidencePhrase(coverage, band) {
     var level = (coverage && coverage.level) || "limited";
-    var n = level === "strong" ? 4 : level === "moderate" ? 3 : 2;
-    if (band === "higher") n = Math.min(5, n + 1);
-    if (band === "lower") n = Math.max(1, n - 1);
-    var out = "";
-    for (var i = 0; i < 5; i++) out += i < n ? "★" : "☆";
-    return out;
+    if (level === "strong" && band === "higher") return "Stronger relative confidence";
+    if (level === "strong") return "Solid relative confidence";
+    if (level === "moderate" && band === "higher") return "Worth considering";
+    if (level === "moderate") return "Moderate confidence";
+    if (band === "higher") return "Limited inputs — still worth a look";
+    return "Limited inputs — walk carefully";
+  }
+
+  function dayQualityLine(coverage, band) {
+    var level = (coverage && coverage.level) || "limited";
+    if (level === "strong" && (band === "higher" || band === "moderate")) return "Looking favorable nearby";
+    if (level === "moderate") return "Worth searching nearby";
+    if (band === "higher") return "A place worth considering";
+    return "Guidance with limited inputs";
+  }
+
+  function syncHeatLegend() {
+    var legend = $("heat-legend");
+    if (!legend) return;
+    var on = !!(state.prefs && state.prefs.heatVisible !== false && state.lastGrid);
+    legend.hidden = !on;
   }
 
   function updateNavMeta() {
@@ -137,7 +167,7 @@
         }
         var dir = plan.bearingLabel || "";
         targetEl.textContent = dist != null
-          ? ("Target " + (dir ? dir + " · " : "") + Planner.formatDistance(dist))
+          ? ((dir ? dir + " · " : "") + Planner.formatDistance(dist))
           : "";
         if (targetEl.textContent) bits++;
       } else targetEl.textContent = "";
@@ -534,6 +564,7 @@
     refreshCoverageMarks();
     updatePlanner(grid);
     updateSeasonPill();
+    syncHeatLegend();
   }
 
   function buildContext(elev, rows, cols, cacheState) {
@@ -656,18 +687,26 @@
   function renderPlanCard(plan) {
     if (!els.planCard) return;
     var glance = els.planGlance || els.planBody;
-    var stars = $("plan-stars");
+    var conf = $("plan-stars");
     var stats = $("plan-stats");
     if (!plan || !plan.ok || !plan.recommendation) {
-      if (els.planTitle) els.planTitle.textContent = "Today’s Search";
-      var empty = (plan && plan.reason) || "Zoom in (≥9) and locate or pan to your land.";
+      els.planCard.dataset.hasPlan = "false";
+      if (els.planTitle) els.planTitle.textContent = "Start here";
+      var empty = "Find yourself on the map";
+      if (plan && plan.reason) {
+        if (/zoom/i.test(plan.reason)) empty = "Zoom in on your land";
+        else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
+      }
       if (glance) glance.textContent = empty;
-      if (els.planBody) els.planBody.textContent = "Pan and zoom to your land, then tap Locate. The priority surface builds locally for the visible area.";
+      if (els.planBody) {
+        els.planBody.textContent =
+          "Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee of antlers.";
+      }
       if (els.planWhy) els.planWhy.textContent = "";
       if (els.planMeta) els.planMeta.textContent = "";
-      if (stars) {
-        stars.textContent = "☆☆☆☆☆";
-        stars.setAttribute("aria-label", "Confidence unavailable");
+      if (conf) {
+        conf.textContent = "We’ll suggest where to look";
+        conf.setAttribute("aria-label", "No recommendation yet");
       }
       if (stats) stats.hidden = true;
       var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
@@ -676,23 +715,26 @@
       if (whyWrap) whyWrap.hidden = true;
       els.planCard.setAttribute("aria-label", "No suggestion yet. " + empty);
       updateNavMeta();
+      syncHeatLegend();
       return;
     }
+    els.planCard.dataset.hasPlan = "true";
     var actionsOn = $("plan-actions") || document.querySelector(".sheds-plan__actions");
     if (actionsOn) actionsOn.hidden = false;
     var whyOn = document.querySelector(".sheds-plan__why-wrap");
     if (whyOn) whyOn.hidden = false;
     var r = plan.recommendation;
-    if (els.planTitle) els.planTitle.textContent = "Today’s Search";
+    var coverage = plan.coverage || (state.lastGrid && state.lastGrid.coverage);
+    if (els.planTitle) els.planTitle.textContent = dayQualityLine(coverage, r.band);
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
     var glanceText = [dir, dist].filter(Boolean).join(" · ");
-    if (!glanceText) glanceText = r.walkingHint || ("band " + r.band);
+    if (!glanceText) glanceText = r.walkingHint || "Nearby pocket";
     if (glance) glance.textContent = glanceText;
-    if (stars) {
-      var starStr = confidenceStars(plan.coverage || (state.lastGrid && state.lastGrid.coverage), r.band);
-      stars.textContent = starStr;
-      stars.setAttribute("aria-label", "Confidence " + starStr.replace(/☆/g, "").length + " of 5");
+    if (conf) {
+      var phrase = confidencePhrase(coverage, r.band);
+      conf.textContent = phrase;
+      conf.setAttribute("aria-label", phrase);
     }
     if (stats) {
       stats.hidden = false;
@@ -702,14 +744,18 @@
       if ($("plan-stat-band")) $("plan-stat-band").textContent = r.band || "—";
     }
     if (els.planBody) {
-      els.planBody.textContent = (r.walkingHint || glanceText) +
-        " Priority: " + r.band + " (relative guidance, not certainty).";
+      var walk = r.walkingHint || glanceText;
+      els.planBody.textContent =
+        walk +
+        ". Relative priority: " +
+        (r.band || "mixed") +
+        ". This is walk guidance — not a claim that antlers are present.";
     }
     if (els.planWhy) els.planWhy.textContent = r.explanation || "";
     var meta = [];
-    if (dir) meta.push("Direction " + dir);
+    if (dir) meta.push(dir);
     if (dist) meta.push(dist);
-    meta.push("Search area ~" + r.suggestedRadiusM + " m");
+    meta.push("Search ~" + r.suggestedRadiusM + " m");
     if (state.weather) {
       if (state.weather.snowMm != null) meta.push("Snow context ~" + state.weather.snowMm + " mm");
       if (state.weather.windSpeedMs != null) {
@@ -729,9 +775,10 @@
     if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Today’s search: " + glanceText + ". " + (r.explanation || "")
+      "Suggested place: " + glanceText + ". " + (r.explanation || "")
     );
     updateNavMeta();
+    syncHeatLegend();
   }
 
   function drawPlanOnMap(plan) {
@@ -745,20 +792,23 @@
       color: "#d4e85a",
       weight: 2,
       fillColor: "#d4e85a",
-      fillOpacity: 0.1
+      fillOpacity: 0.12,
+      className: "sheds-target-ring"
     }).addTo(planLayer);
-    L.circleMarker([r.lat, r.lng], {
-      radius: 7,
+    var marker = L.circleMarker([r.lat, r.lng], {
+      radius: 8,
       color: "#0a1410",
       weight: 2,
       fillColor: "#d4e85a",
-      fillOpacity: 1
-    }).bindTooltip("Suggested next search", { permanent: false }).addTo(planLayer);
+      fillOpacity: 1,
+      className: "sheds-target-dot"
+    }).bindTooltip("Suggested next search", { permanent: false });
+    marker.addTo(planLayer);
     if (state.userLatLng) {
       L.polyline([
         [state.userLatLng.lat, state.userLatLng.lng],
         [r.lat, r.lng]
-      ], { color: "#d4e85a", weight: 2, dashArray: "6 8", opacity: 0.85 }).addTo(planLayer);
+      ], { color: "#d4e85a", weight: 2, dashArray: "5 10", opacity: 0.75 }).addTo(planLayer);
     }
   }
 
@@ -791,13 +841,11 @@
     state.tracking = true;
     redrawTrack(session);
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Stop");
+      setFabLabel(els.btnTrack, "Stop track");
       els.btnTrack.setAttribute("aria-pressed", "true");
     }
-    if (els.sessionPill) {
-      els.sessionPill.textContent = "Tracking · " + Math.round(session.distanceM || 0) + " m";
-      els.sessionPill.dataset.state = "available";
-    }
+    syncSessionPill("Tracking · " + Math.round(session.distanceM || 0) + " m", true);
+    if (els.sessionPill) els.sessionPill.dataset.state = "available";
     var navDot = $("nav-dot");
     if (navDot) navDot.dataset.state = "tracking";
     if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
@@ -811,9 +859,7 @@
       upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
-      if (els.sessionPill && updated) {
-        els.sessionPill.textContent = "Tracking · " + Math.round(updated.distanceM || 0) + " m";
-      }
+      if (updated) syncSessionPill("Tracking · " + Math.round(updated.distanceM || 0) + " m", true);
       scheduleRecompute(800);
     }, function (err) {
       if (err && err.code === 1) setLocStatus("denied", "tracking stopped");
@@ -837,13 +883,10 @@
     }
     state.activeSessionId = null;
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Track");
+      setFabLabel(els.btnTrack, "Start track");
       els.btnTrack.setAttribute("aria-pressed", "false");
     }
-    if (els.sessionPill) {
-      els.sessionPill.textContent = "Not tracking";
-      els.sessionPill.dataset.state = "manual";
-    }
+    syncSessionPill("", false);
     scheduleRecompute(200);
   }
 
@@ -1275,6 +1318,9 @@
 
   function bindControls() {
     $("btn-locate").addEventListener("click", function () { locateUser({ center: true }); });
+    if ($("btn-here-chip")) {
+      $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true }); });
+    }
     els.btnTrack = $("btn-track");
     if (els.btnTrack) {
       els.btnTrack.addEventListener("click", function () {
@@ -1290,12 +1336,14 @@
     }
     if ($("btn-layers")) {
       $("btn-layers").addEventListener("click", function () {
+        closeSheet(els.sheetTools);
         syncControlsForm();
         openSheet(els.sheetControls);
       });
     }
     if ($("btn-add-obs")) {
       $("btn-add-obs").addEventListener("click", function () {
+        closeSheet(els.sheetTools);
         var ll = state.userLatLng || (map && map.getCenter());
         if (ll) openNewObservation(ll);
       });
@@ -1327,6 +1375,7 @@
       });
     }
     $("btn-controls").addEventListener("click", function () {
+      closeSheet(els.sheetTools);
       syncControlsForm();
       openSheet(els.sheetControls);
     });
@@ -1403,7 +1452,9 @@
 
     $("heat-visible").addEventListener("change", function () {
       state.prefs.heatVisible = $("heat-visible").checked;
+      if (heatLayer) heatLayer.setHeatVisible(!!state.prefs.heatVisible);
       Store.saveModelPrefs(state.prefs);
+      syncHeatLegend();
       scheduleRecompute(50);
     });
     $("obs-visible").addEventListener("change", function () {
@@ -1622,18 +1673,16 @@
     if (active) {
       state.activeSessionId = active.id;
       redrawTrack(active);
-      if (els.sessionPill) {
-        var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
-        els.sessionPill.textContent = "Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver;
-        els.sessionPill.dataset.state = "available";
-      }
-      if (els.btnTrack) setFabLabel(els.btnTrack, "Resume");
-    } else if (els.sessionPill) {
-      els.sessionPill.textContent = "Not tracking";
-      els.sessionPill.dataset.state = "manual";
+      var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
+      syncSessionPill("Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver, true);
+      if (els.sessionPill) els.sessionPill.dataset.state = "available";
+      if (els.btnTrack) setFabLabel(els.btnTrack, "Resume track");
+    } else {
+      syncSessionPill("", false);
     }
     locateUser({ center: !Store.loadMapView() });
     setPlanExpanded(false);
+    syncHeatLegend();
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
     syncOfflineBanner();

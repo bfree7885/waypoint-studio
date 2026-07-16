@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Sheds field UX — static structure + optional CDP mobile metrics/screenshots.
+ * Sheds field UX — Experience Redesign V1 structure + optional CDP screenshots.
  * Run: node automation/test-sheds-field-ux.mjs
- * CDP (requires Chrome): SHEDS_CDP=1 node automation/test-sheds-field-ux.mjs
+ * CDP: SHEDS_CDP=1 node automation/test-sheds-field-ux.mjs
  */
 import fs from "fs";
 import path from "path";
@@ -10,13 +10,14 @@ import { fileURLToPath } from "url";
 import { spawn } from "child_process";
 import http from "http";
 import { createServer } from "http";
-import { readFileSync, statSync, mkdirSync, writeFileSync } from "fs";
+import { readFileSync, statSync, mkdirSync, writeFileSync, copyFileSync } from "fs";
 import { setTimeout as delay } from "timers/promises";
 import { extname, join, normalize } from "path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const ART = path.join(ROOT, "reports", "sheds-field-ux-v1");
+const REDESIGN = path.join(ROOT, "reports", "sheds-experience-redesign-v1");
 let passed = 0;
 const failures = [];
 
@@ -38,15 +39,18 @@ assert("full-screen map shell absolute", /#sheds-map-shell[\s\S]*position:\s*abs
 assert("floating FAB rail", /sheds-fab-rail/.test(html) && /sheds-fab-rail/.test(css));
 assert("bottom sheet field class", /sheds-sheet-field/.test(html) && /sheds-sheet-field/.test(css));
 assert("plan card is floating suggest", /class="[^"]*sheds-suggest/.test(html) && /id="plan-card"/.test(html));
-assert("today search copy", /Today.?s Search/.test(html));
-assert("plan stars confidence", /id="plan-stars"/.test(html));
-assert("nav HUD present", /sheds-nav-hud/.test(html) && /id="nav-hud"/.test(html));
+assert("story sheet copy", /Start here/.test(html) && /sheds-story/.test(html));
+assert("plain-language confidence", /id="plan-stars"/.test(html) && /We’ll suggest where to look|We.ll suggest where to look/.test(html));
+assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
-assert("primary field FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-add-obs/.test(html) && /btn-more/.test(html) && /btn-layers/.test(html));
-assert("secondary tools not in FAB rail", (() => {
-  const m = html.match(/<div class="sheds-fab-rail"[\s\S]*?<\/div>/);
-  return m ? !/btn-ethics|btn-export|btn-history|btn-validate/.test(m[0]) : false;
+assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
+assert("layers and notes moved to tools", (() => {
+  const fab = html.match(/<div class="sheds-fab-rail"[\s\S]*?<\/div>/);
+  const tools = html.match(/id="sheet-tools"[\s\S]*?<\/div>\s*<\/div>/);
+  if (!fab || !tools) return false;
+  return !/btn-layers|btn-add-obs/.test(fab[0]) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
 })());
+assert("legend deferred until heat", /id="heat-legend"/.test(html) && /hidden/.test(html.match(/id="heat-legend"[^>]*/)[0]));
 assert("ethics mentions tile providers", /Map providers|OpenTopoMap|tile/i.test(html));
 assert("privacy honesty on obs sheet", /Map tiles still leave provider/i.test(html));
 assert("safe-area respected", /safe-area-inset-bottom/.test(css) && /safe-area-inset-top/.test(css));
@@ -59,12 +63,18 @@ assert("map loading state", /map-loading/.test(html) && /setMapLoading/.test(app
 assert("offline banner", /map-offline/.test(html) && /syncOfflineBanner/.test(app));
 assert("soft heat layer polish", /\.sheds-heat-layer/.test(css) && /pointer-events:\s*none/.test(css));
 assert("reduced motion respected", /prefers-reduced-motion/.test(css));
+assert("confidence phrase helper", /confidencePhrase/.test(app) && /dayQualityLine/.test(app));
+assert("no empty star glyphs in empty plan", !/☆☆☆☆☆/.test(app));
+assert("field design system doc", fs.existsSync(path.join(ROOT, "docs/WAYPOINT-FIELD-DESIGN-SYSTEM.md")));
+assert("redesign rationale doc", fs.existsSync(path.join(ROOT, "docs/SHEDS-EXPERIENCE-REDESIGN-V1.md")));
+assert("autonomy show on map", /Show on map/.test(html));
 
 async function runCdp() {
   const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
   const DBG = 9293;
   const PORT = 8093;
   mkdirSync(ART, { recursive: true });
+  mkdirSync(path.join(REDESIGN, "after"), { recursive: true });
 
   function contentType(file) {
     return ({
@@ -143,6 +153,8 @@ async function runCdp() {
         const fab = document.querySelector(".sheds-fab-rail");
         const suggest = document.getElementById("plan-card");
         const hud = document.querySelector(".sheds-hud-top");
+        const here = document.querySelector(".sheds-here");
+        const fabBtns = fab ? fab.querySelectorAll(".sheds-fab:not([hidden])").length : 0;
         const mr = map ? map.getBoundingClientRect() : null;
         const fr = fab ? fab.getBoundingClientRect() : null;
         const srRect = suggest ? suggest.getBoundingClientRect() : null;
@@ -155,6 +167,9 @@ async function runCdp() {
           mapWidth: mr ? Math.round(mr.width) : 0,
           mapShare: mr && vh ? +(mr.height / vh).toFixed(3) : 0,
           hudHeight: hr ? Math.round(hr.height) : 0,
+          fabCount: fabBtns,
+          hasHere: !!here,
+          storyGlance: (document.getElementById("plan-glance") || {}).textContent || "",
           fabBottom: fr ? Math.round(fr.bottom) : 0,
           suggestTop: srRect ? Math.round(srRect.top) : 0,
           suggestBottom: srRect ? Math.round(srRect.bottom) : 0,
@@ -162,7 +177,7 @@ async function runCdp() {
           clientWidth: document.documentElement.clientWidth,
           toolsSheet: !!document.getElementById("sheet-tools"),
           moreBtn: !!document.getElementById("btn-more"),
-          layersBtn: !!document.getElementById("btn-layers"),
+          layersInTools: !!document.querySelector("#sheet-tools #btn-layers"),
           overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth + 2
         };
       })()`,
@@ -201,13 +216,17 @@ async function runCdp() {
 
   assert("map owns vast majority of viewport", mPhone.mapShare >= 0.85);
   assert("hud is minimal", mPhone.hudHeight > 0 && mPhone.hudHeight < 80);
+  assert("lean fab rail", mPhone.fabCount <= 4);
+  assert("presence chip present", mPhone.hasHere);
   assert("no horizontal overflow phone", !mPhone.overflowX);
-  assert("tools sheet wired", mPhone.toolsSheet && mPhone.moreBtn && mPhone.layersBtn);
+  assert("tools sheet wired", mPhone.toolsSheet && mPhone.moreBtn && mPhone.layersInTools);
   assert("sheet peeks above bottom", mPhone.suggestTop > 0 && mPhone.suggestBottom >= mPhone.mapHeight - 4);
 
   async function shot(name) {
     const shotRes = await send("Page.captureScreenshot", { format: "png" });
-    writeFileSync(path.join(ART, name + ".png"), Buffer.from(shotRes.data, "base64"));
+    const buf = Buffer.from(shotRes.data, "base64");
+    writeFileSync(path.join(ART, name + ".png"), buf);
+    writeFileSync(path.join(REDESIGN, "after", name + ".png"), buf);
   }
 
   await shot("01-fresh-load-phone");
@@ -253,22 +272,40 @@ async function runCdp() {
   await shot("05-desktop");
 
   writeFileSync(path.join(ART, "README.md"), [
-    "# Sheds Field Experience V1 — evidence",
+    "# Sheds Field UX — Experience Redesign V1 evidence",
     "",
     "Generated by `SHEDS_CDP=1 node automation/test-sheds-field-ux.mjs`.",
     "",
-    "- `01-fresh-load-phone.png` — iPhone-like 390×844 full-screen map",
-    "- `02-tools-sheet.png` — More menu",
-    "- `03-sheet-expanded.png` — Expanded Today’s Search sheet",
-    "- `04-android.png` — 412×915",
-    "- `05-desktop.png` — 1280×800",
-    "- `*-metrics.json` — map share / overflow"
+    "- `01-fresh-load-phone.png`",
+    "- `02-tools-sheet.png`",
+    "- `03-sheet-expanded.png`",
+    "- `04-android.png`",
+    "- `05-desktop.png`",
+    "- `*-metrics.json`"
+  ].join("\n"));
+
+  writeFileSync(path.join(REDESIGN, "README.md"), [
+    "# Sheds Experience Redesign V1 — evidence",
+    "",
+    "## Before (prior Field Experience V1)",
+    "- `before/01-fresh-load-phone.png`",
+    "- `before/03-sheet-expanded.png`",
+    "- `before/05-desktop.png`",
+    "",
+    "## After (Experience Redesign V1)",
+    "- `after/01-fresh-load-phone.png`",
+    "- `after/02-tools-sheet.png`",
+    "- `after/03-sheet-expanded.png`",
+    "- `after/04-android.png`",
+    "- `after/05-desktop.png`",
+    "",
+    "See `docs/SHEDS-EXPERIENCE-REDESIGN-V1.md` and `docs/WAYPOINT-FIELD-DESIGN-SYSTEM.md`."
   ].join("\n"));
 
   ws.close();
   proc.kill("SIGTERM");
   server.close();
-  console.log("Artifacts written to", ART);
+  console.log("Artifacts written to", ART, "and", REDESIGN);
 }
 
 async function main() {

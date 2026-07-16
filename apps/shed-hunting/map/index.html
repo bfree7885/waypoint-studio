@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a1410">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Field Intelligence — Sheds — Waypoint Studio</title>
+  <title>Sheds — Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
@@ -23,37 +23,38 @@
         <div id="sheds-map" role="application" aria-label="Interactive topographic field map" tabindex="-1"></div>
         <div class="sheds-map-loading" id="map-loading" aria-live="polite">
           <div class="sheds-map-loading__pulse" aria-hidden="true"></div>
-          <p class="sheds-map-loading__text">Loading terrain…</p>
+          <p class="sheds-map-loading__text">Reading the land…</p>
         </div>
         <div class="sheds-map-offline" id="map-offline" hidden role="status">
           You’re offline. Cached tiles may still show; heat and weather need a connection.
         </div>
       </div>
 
-      <!-- Minimal floating brand -->
+      <!-- Immediate: brand + quiet status -->
       <header class="sheds-hud-top" role="banner">
         <a class="sheds-hud-brand" href="../" title="Sheds home">
+          <span class="sheds-hud-brand__mark" aria-hidden="true"></span>
           <span class="sheds-hud-brand__name">Sheds</span>
-          <span class="sheds-hud-brand__meta">Field</span>
         </a>
-        <button type="button" class="sheds-hud-chip" id="btn-status" aria-expanded="false" aria-controls="status-panel" title="Status details">Info</button>
+        <button type="button" class="sheds-hud-chip" id="btn-status" aria-expanded="false" aria-controls="status-panel" title="Season and model context" aria-label="Context">
+          <span class="sheds-hud-chip__glyph" aria-hidden="true">i</span>
+        </button>
       </header>
 
-      <!-- GPS / navigation focus -->
-      <div class="sheds-nav-hud" id="nav-hud" aria-live="polite">
-        <div class="sheds-nav-hud__row">
+      <!-- You are here — one calm presence -->
+      <div class="sheds-here" id="nav-hud" aria-live="polite">
+        <button type="button" class="sheds-here__chip" id="btn-here-chip" title="Locate me">
           <span class="sheds-nav-dot" id="nav-dot" data-state="idle" aria-hidden="true"></span>
-          <span class="sheds-pill sheds-pill--compact" id="loc-status" data-state="neutral">Tap Locate</span>
-          <span class="sheds-pill sheds-pill--compact" id="session-pill" data-state="manual">Not tracking</span>
-        </div>
-        <div class="sheds-nav-hud__meta" id="nav-meta" hidden>
+          <span class="sheds-here__label" id="loc-status" data-state="neutral">You · tap to place</span>
+        </button>
+        <span class="sheds-here__track" id="session-pill" data-state="manual" hidden>Tracking</span>
+        <div class="sheds-here__meta" id="nav-meta" hidden>
           <span id="nav-accuracy"></span>
           <span id="nav-heading"></span>
           <span id="nav-to-target"></span>
         </div>
       </div>
 
-      <!-- Status drawer (collapsed by default) -->
       <div class="sheds-status-panel" id="status-panel" hidden>
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
         <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
@@ -61,86 +62,77 @@
         <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; map tile providers still see approximate map requests.</p>
       </div>
 
-      <!-- Floating field controls -->
+      <!-- Intention: place yourself, then tools. Everything else is Later. -->
       <div class="sheds-fab-rail" role="toolbar" aria-label="Field actions">
         <button type="button" class="sheds-fab sheds-fab--primary" id="btn-locate" title="Locate me" aria-label="Locate me">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          <span class="sheds-fab__label">Locate</span>
-        </button>
-        <button type="button" class="sheds-fab" id="btn-track" aria-pressed="false" title="Start track" aria-label="Start track">
-          <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c2-6 6-10 8-10s6 4 8 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="6" r="2" fill="currentColor"/></svg>
-          <span class="sheds-fab__label">Track</span>
-        </button>
-        <button type="button" class="sheds-fab" id="btn-layers" title="Layers" aria-label="Map layers and model" aria-controls="sheet-controls">
-          <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 5-9 5-9-5 9-5zm0 7l9 5-9 5-9-5 9-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          <span class="sheds-fab__label">Layers</span>
-        </button>
-        <button type="button" class="sheds-fab" id="btn-add-obs" title="Add note" aria-label="Add observation note">
-          <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-          <span class="sheds-fab__label">Notes</span>
         </button>
         <button type="button" class="sheds-fab" id="btn-recenter" hidden title="Recenter on me" aria-label="Recenter on me">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-          <span class="sheds-fab__label">Center</span>
         </button>
-        <button type="button" class="sheds-fab" id="btn-more" aria-expanded="false" aria-controls="sheet-tools" title="More tools" aria-label="More tools">
+        <button type="button" class="sheds-fab" id="btn-track" aria-pressed="false" title="Start track" aria-label="Start track">
+          <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c2-6 6-10 8-10s6 4 8 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="6" r="2" fill="currentColor"/></svg>
+        </button>
+        <button type="button" class="sheds-fab" id="btn-more" aria-expanded="false" aria-controls="sheet-tools" title="Tools" aria-label="Tools">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18" cy="12" r="1.8" fill="currentColor"/></svg>
-          <span class="sheds-fab__label">More</span>
         </button>
       </div>
 
-      <div class="sheds-legend-float" aria-label="Search priority legend">
+      <!-- Legend: Later — revealed only when heat is active -->
+      <div class="sheds-legend-float" id="heat-legend" hidden aria-label="Search priority legend">
         <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i>Lower</span>
         <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i>Mod</span>
         <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i>Higher</span>
       </div>
 
-      <!-- Floating bottom sheet: Today's Search -->
-      <aside class="sheds-sheet-field sheds-suggest" id="plan-card" aria-live="polite" data-expanded="false">
+      <!-- Conversation: today → where → why -->
+      <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" aria-live="polite" data-expanded="false" data-has-plan="false">
         <div class="sheds-sheet-field__grab" aria-hidden="true"></div>
         <button type="button" class="sheds-suggest__summary" id="btn-toggle-plan" aria-expanded="false" aria-controls="plan-details">
-          <span class="sheds-suggest__kicker" id="plan-title">Today’s Search</span>
-          <span class="sheds-suggest__stars" id="plan-stars" aria-label="Confidence">☆☆☆☆☆</span>
-          <span class="sheds-suggest__glance" id="plan-glance">Zoom in for a next area</span>
+          <span class="sheds-suggest__kicker" id="plan-title">Start here</span>
+          <span class="sheds-suggest__glance" id="plan-glance">Find yourself on the map</span>
+          <span class="sheds-suggest__conf" id="plan-stars" aria-label="Confidence">We’ll suggest where to look</span>
           <span class="sheds-suggest__chev" aria-hidden="true"></span>
         </button>
         <div class="sheds-suggest__details" id="plan-details" hidden>
           <div class="sheds-plan__stats" id="plan-stats" hidden>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Direction</span><span id="plan-stat-dir">—</span></div>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Distance</span><span id="plan-stat-dist">—</span></div>
-            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Area</span><span id="plan-stat-area">—</span></div>
-            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Band</span><span id="plan-stat-band">—</span></div>
+            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Search radius</span><span id="plan-stat-area">—</span></div>
+            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Priority</span><span id="plan-stat-band">—</span></div>
           </div>
-          <p class="sheds-plan__body" id="plan-body">Zoom in and locate yourself (or pan to your land) to get a next-area suggestion.</p>
+          <p class="sheds-plan__body" id="plan-body">Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee.</p>
           <p class="sheds-plan__meta" id="plan-meta"></p>
           <details class="sheds-plan__why-wrap">
-            <summary>Why this area?</summary>
+            <summary>Why this may matter</summary>
             <p class="sheds-plan__why" id="plan-why"></p>
             <p class="sheds-plan__meta" id="plan-knowledge-link">
-              <a href="../../knowledge.html">Why this may matter — optional reading</a>
+              <a href="../../knowledge.html">Optional reading — Waypoint Knowledge</a>
             </p>
           </details>
           <div class="sheds-plan__actions" id="plan-actions" hidden>
-            <button type="button" class="sheds-btn sheds-btn--primary" id="btn-goto-plan">Go there</button>
-            <button type="button" class="sheds-btn" id="btn-mark-partial">Partial</button>
-            <button type="button" class="sheds-btn" id="btn-mark-thorough">Thorough</button>
-            <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit</button>
+            <button type="button" class="sheds-btn sheds-btn--primary" id="btn-goto-plan">Show on map</button>
+            <button type="button" class="sheds-btn" id="btn-mark-partial">Mark partial</button>
+            <button type="button" class="sheds-btn" id="btn-mark-thorough">Mark thorough</button>
+            <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit later</button>
           </div>
-          <label class="sheds-plan__note-label" for="session-note">Session note (saved when you stop track)</label>
-          <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional field note">
+          <label class="sheds-plan__note-label" for="session-note">Field note (saved when you stop tracking)</label>
+          <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional — only if useful">
         </div>
       </aside>
     </div>
   </div>
 
-  <!-- Tools menu (secondary actions) -->
+  <!-- Tools — Later: everything that is not locate / track / next place -->
   <div class="sheds-sheet" id="sheet-tools" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tools-title">
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel sheds-sheet__panel--tools">
-      <h2 class="sheds-sheet__title" id="tools-title">Field tools</h2>
-      <p class="sheds-sheet__lede">Map and model controls, records, and stewardship. Primary actions stay on the map.</p>
+      <h2 class="sheds-sheet__title" id="tools-title">Tools</h2>
+      <p class="sheds-sheet__lede">Notes, map layers, and records stay out of the way until you need them.</p>
       <div class="sheds-tools-grid">
-        <button type="button" class="sheds-btn" id="btn-controls">Map &amp; model</button>
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-add-obs">Add note</button>
+        <button type="button" class="sheds-btn" id="btn-layers" aria-controls="sheet-controls">Map &amp; layers</button>
+        <button type="button" class="sheds-btn" id="btn-controls">Model weights</button>
         <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
         <button type="button" class="sheds-btn" id="btn-history">History</button>
         <button type="button" class="sheds-btn" id="btn-validate">Validate</button>
@@ -151,7 +143,7 @@
         <a class="sheds-btn" href="../../support.html">Support</a>
       </div>
       <div class="sheds-actions">
-        <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Close</button>
+        <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Done</button>
       </div>
     </div>
   </div>
