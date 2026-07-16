@@ -605,7 +605,7 @@
           '<div class="ws-video-feature__body">' +
             '<h3 class="wds-display-md ws-video-feature__title" id="wce-vid-title">' + escapeHtml(v.title) + "</h3>" +
             '<p class="wds-body">' + escapeHtml(v.summary) + "</p>" +
-            (v.outdoorChallenge ? '<p class="ws-video-feature__assignment"><strong>After watching:</strong> ' + escapeHtml(v.outdoorChallenge) + "</p>" : "") +
+            (v.outdoorChallenge ? '<p class="ws-video-feature__assignment"><strong>Worth noticing outdoors:</strong> ' + escapeHtml(v.outdoorChallenge) + "</p>" : "") +
           "</div>" +
         "</article>" +
       "</section>"

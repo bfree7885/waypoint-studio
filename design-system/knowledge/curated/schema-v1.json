@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/knowledge/curated/v1",
+  "title": "Waypoint Knowledge — Curated Research Entry",
+  "description": "Curated research and published-source companion entries. Distinct from entity knowledge (species/concepts). Never invent researchers, journals, findings, or URLs.",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "sourceName",
+    "sourceType",
+    "summary",
+    "products",
+    "reviewStatus",
+    "dateReviewed"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^wk_[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Stable curated entry id. Format: wk_ + slug."
+    },
+    "title": { "type": "string", "maxLength": 300 },
+    "subtitle": { "type": ["string", "null"], "maxLength": 400 },
+    "sourceName": { "type": "string", "maxLength": 240 },
+    "sourceType": {
+      "type": "string",
+      "enum": [
+        "peer-reviewed",
+        "government",
+        "university-extension",
+        "scientific-organization",
+        "professional-association",
+        "technical-report",
+        "field-guide",
+        "long-form-journalism",
+        "book",
+        "primary-advisory",
+        "standard",
+        "demonstration"
+      ]
+    },
+    "authors": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "publicationName": { "type": ["string", "null"] },
+    "publicationDate": {
+      "type": ["string", "null"],
+      "description": "ISO date or year string when exact day unknown."
+    },
+    "originalUrl": {
+      "type": ["string", "null"],
+      "description": "Link to original source when available. Null for demo-only fixtures."
+    },
+    "accessType": {
+      "type": "string",
+      "enum": ["open", "registration", "paywalled", "print", "unknown", "demo-only"]
+    },
+    "peerReviewed": { "type": ["boolean", "null"] },
+    "topics": { "type": "array", "items": { "type": "string" } },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "sheds",
+          "fieldry",
+          "foragecast",
+          "steepleaf",
+          "savant-sommelier",
+          "signalterrain",
+          "dashboard",
+          "scenes",
+          "photo-coach",
+          "hidden-landscapes",
+          "shared"
+        ]
+      }
+    },
+    "locations": { "type": "array", "items": { "type": "string" } },
+    "species": { "type": "array", "items": { "type": "string" } },
+    "summary": {
+      "type": "string",
+      "maxLength": 1200,
+      "description": "Faithful Source Summary — what the original source reports."
+    },
+    "keyFindings": { "type": "array", "items": { "type": "string", "maxLength": 400 } },
+    "whyItMatters": { "type": ["string", "null"], "maxLength": 800 },
+    "waypointAnalysis": {
+      "type": ["string", "null"],
+      "maxLength": 2000,
+      "description": "Waypoint Studio interpretation — never present as part of the original research."
+    },
+    "limitations": { "type": ["string", "null"], "maxLength": 1200 },
+    "practicalContext": { "type": ["string", "null"], "maxLength": 1200 },
+    "relatedEntries": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^wk_" }
+    },
+    "relatedEntityIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional links into entity WKP ids (kn_*)."
+    },
+    "contextualHooks": {
+      "type": "array",
+      "description": "Structural hooks for future condition→knowledge connections.",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "product": { "type": "string" },
+          "conditionHint": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "citation": { "type": ["string", "null"] },
+    "dateReviewed": { "type": "string" },
+    "reviewStatus": {
+      "type": "string",
+      "enum": ["verified", "editorial-draft", "demonstration", "archived", "needs-review"]
+    },
+    "featured": { "type": "boolean" },
+    "readingMinutes": { "type": ["integer", "null"], "minimum": 1, "maximum": 120 },
+    "cardKind": {
+      "type": "string",
+      "enum": ["research", "field-report", "analysis", "advisory", "guide"],
+      "default": "research"
+    }
+  }
+}

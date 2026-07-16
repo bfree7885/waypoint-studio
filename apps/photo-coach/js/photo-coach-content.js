@@ -121,7 +121,7 @@
       id: "depth",
       title: "Depth",
       summary: "Depth is the feeling of space — created by overlap, focus falloff, haze, and scale cues.",
-      why: "Cameras flatten the world. You must rebuild depth with layers, focus, and atmosphere.",
+      why: "Cameras flatten the world. Depth often comes from rebuilding space with layers, focus, and atmosphere.",
       field: "Use f/8–f/11 on landscapes; include near and far objects that overlap. Mist adds natural depth.",
       diagram: "depth"
     },

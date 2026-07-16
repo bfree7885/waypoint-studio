@@ -179,7 +179,7 @@ Full machine-readable specs: [`design-system/content-engine/content-types.json`]
 | **Maps / diagrams** | Schoolyard map template |
 | **Related lessons** | WEF alignment |
 | **Related tools** | Fieldry export |
-| **Outdoor challenge** | Lab assignment |
+| **Outdoor challenge** | Optional noticing prompt — never homework |
 | **Citizen science** | Class opt-in with permission |
 | **Subscription value** | Educator tier: standards + printables |
 

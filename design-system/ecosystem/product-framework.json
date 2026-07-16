@@ -1,0 +1,189 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-15",
+  "id": "waypoint-product-framework",
+  "mission": {
+    "headline": "Observe clearly. Understand deeply. Choose your own direction.",
+    "summary": "Waypoint Studio helps people observe what is happening, understand why it matters, and choose their own direction. It does not assign tasks, homework, streaks, or obligations.",
+    "studioCycle": ["Observe", "Understand", "Create", "Share"],
+    "studioCycleNote": "Create and Share remain part of the broader studio identity, especially central to Waypoint Scenes. They are not required behaviors in every app.",
+    "userAutonomy": [
+      "A user may simply read, observe, or leave.",
+      "No required steps, progress stages, assignments, or onboarding gates.",
+      "Direction labels describe support, not commands.",
+      "Safety-critical guidance may remain clear and direct."
+    ]
+  },
+  "sharedStages": {
+    "observe": {
+      "label": "Observe",
+      "meaning": "Help the user see what is happening — conditions, maps, forecasts, signals, photographs, personal notes, history, alerts, and measurements."
+    },
+    "understand": {
+      "label": "Understand",
+      "meaning": "Help the user understand why it matters — research, field guides, plain-language summaries, evidence limits, and practical interpretation."
+    }
+  },
+  "tone": {
+    "prefer": [
+      "Consider",
+      "Explore",
+      "You may want to",
+      "Conditions currently favor",
+      "Evidence suggests",
+      "One possible interpretation",
+      "Worth watching",
+      "Useful context",
+      "Available when helpful",
+      "Your decision",
+      "Suggested direction",
+      "Why it may matter"
+    ],
+    "avoidUnlessSafetyOrTechnical": [
+      "Complete",
+      "Assignment",
+      "Task",
+      "Lesson",
+      "Homework",
+      "Challenge",
+      "Goal",
+      "Streak",
+      "Progress",
+      "You should",
+      "You need to",
+      "Must",
+      "Start now",
+      "Take action",
+      "Finish",
+      "Achievement",
+      "Recommended activity",
+      "Daily task"
+    ]
+  },
+  "products": [
+    {
+      "id": "sheds",
+      "name": "Sheds",
+      "observe": "Terrain, seasonality, private sign notes, coverage, and relative search priority.",
+      "understand": "Cervid biology, winter habitat, ethics, and research that explains why certain places may matter.",
+      "direction": { "label": "Search", "description": "Support deciding where, when, and whether to search — never requiring entry onto unsafe, closed, restricted, or private land." },
+      "knowledgeCategories": ["cervid-biology", "antler-growth-casting", "bedding", "winter-habitat", "migration", "terrain-use", "browse", "wildlife-management", "ethical-searching", "regulations", "habitat-conservation"],
+      "exampleSources": ["university extension wildlife notes", "state wildlife agency guidance", "peer-reviewed cervid ecology"],
+      "ctaExamples": ["Why this area may matter", "Related reading", "Open ethics"],
+      "prohibitedPressure": ["Go find sheds now", "Complete today’s search", "Maintain a streak"]
+    },
+    {
+      "id": "fieldry",
+      "name": "Fieldry",
+      "observe": "Encounters, locations, timing, and personal field notes.",
+      "understand": "Ecology, taxonomy, phenology, identification context, and conservation framing.",
+      "direction": { "label": "Record", "description": "Support noticing and preserving observations. Logging is never required." },
+      "knowledgeCategories": ["ecology", "taxonomy", "phenology", "identification", "invasive-species", "habitat", "conservation", "citizen-science", "observation-methods"],
+      "exampleSources": ["field guides", "extension service ID sheets", "peer-reviewed ecology"],
+      "ctaExamples": ["Why this species may matter", "Related habitat reading"],
+      "prohibitedPressure": ["Log everything today", "Complete your life list", "Earn the next badge"]
+    },
+    {
+      "id": "foragecast",
+      "name": "ForageCast",
+      "observe": "Seasonal land conditions across foraging, orchard, garden, and stewardship contexts.",
+      "understand": "Fungal and plant ecology, phenology, weather relationships, and safety limits.",
+      "direction": { "label": "Explore", "description": "Offer practical seasonal direction while preserving choice. Food-safety warnings stay direct and prominent." },
+      "knowledgeCategories": ["fungal-ecology", "plant-ecology", "phenology", "forest-succession", "weather-relationships", "orchard-care", "permaculture", "food-forests", "soil", "land-stewardship", "toxicology"],
+      "exampleSources": ["mycology references", "extension foraging safety", "soil and phenology research"],
+      "ctaExamples": ["Why rain timing may matter", "Safety note", "Related host-tree reading"],
+      "prohibitedPressure": ["Forage today", "Finish the season checklist"]
+    },
+    {
+      "id": "steepleaf",
+      "name": "Steepleaf",
+      "observe": "Leaf, liquor, aroma, water, and preparation context.",
+      "understand": "Tea botany, processing, terroir, water chemistry, and sensory research.",
+      "direction": { "label": "Brew", "description": "An invitation to understand preparation — not a prescribed ritual." },
+      "knowledgeCategories": ["tea-botany", "processing", "terroir", "water-chemistry", "brewing-science", "sensory-research", "cultural-history"],
+      "exampleSources": ["tea science reviews", "water chemistry primers", "cultural histories"],
+      "ctaExamples": ["Why water temperature may matter", "Related processing note"],
+      "prohibitedPressure": ["Brew exactly this way", "Complete the tasting ritual"]
+    },
+    {
+      "id": "savant-sommelier",
+      "name": "Savant Sommelier",
+      "observe": "Region, grape, climate, and sensory notes.",
+      "understand": "Viticulture, fermentation, terroir, sensory science, and climate context.",
+      "direction": { "label": "Taste", "description": "Support tasting literacy without treating preferences as objective rankings." },
+      "knowledgeCategories": ["viticulture", "fermentation", "terroir", "sensory-science", "regional-history", "climate-impacts", "food-pairing"],
+      "exampleSources": ["viticulture reviews", "sensory science summaries", "regional climate notes"],
+      "ctaExamples": ["Why climate may shape this vintage", "Related terroir reading"],
+      "prohibitedPressure": ["Rank this wine", "Complete your cellar goals"]
+    },
+    {
+      "id": "signalterrain",
+      "name": "SignalTerrain",
+      "observe": "Spectrum context, advisories, outages, and environmental radio conditions.",
+      "understand": "Radio science, propagation, space weather, infrastructure awareness, and defensive cyber literacy.",
+      "direction": { "label": "Monitor", "description": "Awareness and interpretation only — defensive, educational, lawful, and non-operational." },
+      "knowledgeCategories": ["radio-science", "spectrum-policy", "sdr", "propagation", "space-weather", "communications-infrastructure", "cyber-advisories", "gps-interference", "outages"],
+      "exampleSources": ["official advisories", "space-weather bulletins", "standards documentation"],
+      "ctaExamples": ["Official advisory", "Background reading", "What remains uncertain"],
+      "prohibitedPressure": ["Exploit this", "Attack systems", "Act on unverified threats"]
+    },
+    {
+      "id": "dashboard",
+      "name": "Outdoor Intelligence Dashboard",
+      "observe": "Weather, air, light, trails, safety, and seasonal change.",
+      "understand": "Weather science, hydrology, air quality, fire conditions, and outdoor safety context.",
+      "direction": { "label": "Plan", "description": "Inform decisions without telling users they must go outside." },
+      "knowledgeCategories": ["weather-science", "hydrology", "air-quality", "fire-conditions", "outdoor-safety", "seasonal-change", "trail-conditions", "climate-patterns", "photography-conditions"],
+      "exampleSources": ["NWS guidance", "air-quality agencies", "trail condition reports"],
+      "ctaExamples": ["Why this alert matters", "Related safety reading"],
+      "prohibitedPressure": ["Go outside now", "Complete today’s outing"]
+    },
+    {
+      "id": "scenes",
+      "name": "Waypoint Scenes",
+      "observe": "Light, subject, place, and photographic conditions.",
+      "understand": "Perception, composition, camera science, ecology, and visualization ethics.",
+      "direction": { "label": "Create", "description": "Optional, personal, exploratory making — free from competition. Create belongs naturally here." },
+      "knowledgeCategories": ["visual-perception", "composition", "color-theory", "camera-science", "animal-vision", "spectral-imaging", "scientific-visualization", "ecology", "art-history", "nature-photography"],
+      "exampleSources": ["perception research", "camera science primers", "ecology of light"],
+      "ctaExamples": ["Why separation may help", "Related perception reading"],
+      "prohibitedPressure": ["Post today", "Beat yesterday’s score", "Maintain a creative streak"]
+    },
+    {
+      "id": "photo-coach",
+      "name": "Photo Coach",
+      "observe": "A photograph and what is visible in it.",
+      "understand": "Composition, perception psychology, technique, and storytelling context.",
+      "direction": { "label": "Refine", "description": "Coaching suggestions — not grading-based obligations. Lower scores are not framed as failure." },
+      "knowledgeCategories": ["composition-research", "perception-psychology", "camera-technique", "visual-storytelling", "exposure", "focus", "editing", "subject-behavior", "photographer-development"],
+      "exampleSources": ["perception psychology summaries", "composition research", "technique references"],
+      "ctaExamples": ["Why this cue may matter", "Try noticing next time"],
+      "prohibitedPressure": ["Fix this now", "Complete the assignment", "Raise your score"]
+    },
+    {
+      "id": "hidden-landscapes",
+      "name": "Hidden Landscapes",
+      "observe": "Ordinary scenes under alternate spectral or temporal views.",
+      "understand": "Nonhuman vision, infrared/UV, polarization, and visualization ethics.",
+      "direction": { "label": "Reveal", "description": "Help uncover landscape aspects that ordinary human vision misses." },
+      "knowledgeCategories": ["nonhuman-vision", "spectral-imaging", "infrared", "ultraviolet", "animal-visual-systems", "polarization", "night-vision", "temporal-comparison", "visualization-ethics"],
+      "exampleSources": ["animal vision research", "spectral imaging primers", "ethics of scientific visualization"],
+      "ctaExamples": ["What this view may show", "Related vision research"],
+      "prohibitedPressure": ["Unlock all modes", "Complete the reveal checklist"]
+    }
+  ],
+  "knowledgeLayer": {
+    "name": "Waypoint Knowledge",
+    "role": "Curated research and published-source companion — not a news feed, not a chatbot.",
+    "configPath": "design-system/knowledge/curated/",
+    "schemaPath": "design-system/knowledge/curated/schema-v1.json",
+    "relatedEntityPlatform": "design-system/knowledge/ (entity WKP)"
+  },
+  "pages": {
+    "framework": "/docs/WAYPOINT-PRODUCT-FRAMEWORK.md",
+    "knowledge": "/docs/WAYPOINT-KNOWLEDGE.md",
+    "editorial": "/docs/EDITORIAL-STANDARDS.md",
+    "publicAbout": "/about.html",
+    "knowledgeDemo": "/knowledge.html"
+  }
+}

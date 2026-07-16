@@ -1,0 +1,288 @@
+/* Waypoint Knowledge — curated research cards */
+
+.wk-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.wk-card {
+  border: 1px solid rgba(40, 55, 48, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 1.1rem 1.15rem 1.15rem;
+  max-width: 42rem;
+  box-shadow: 0 10px 28px rgba(20, 30, 24, 0.06);
+}
+
+.wk-card--demo {
+  border-style: dashed;
+}
+
+.wk-card__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(30, 45, 38, 0.62);
+  font-weight: 600;
+}
+
+.wk-card__status {
+  color: rgba(30, 45, 38, 0.78);
+}
+
+.wk-card[data-review-status="demonstration"] .wk-card__status {
+  color: #8a5a12;
+}
+
+.wk-card__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", "Source Serif 4", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 550;
+  line-height: 1.25;
+  color: #142018;
+}
+
+.wk-card__subtitle {
+  margin: 0.35rem 0 0;
+  color: rgba(20, 32, 24, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.wk-card__meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(20, 32, 24, 0.58);
+  line-height: 1.35;
+}
+
+.wk-card__summary,
+.wk-card__analysis {
+  margin-top: 0.9rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+}
+
+.wk-card__summary {
+  background: rgba(236, 242, 238, 0.9);
+  border: 1px solid rgba(40, 70, 55, 0.1);
+}
+
+.wk-card__analysis {
+  background: rgba(245, 240, 230, 0.95);
+  border: 1px solid rgba(140, 110, 50, 0.18);
+}
+
+.wk-card__summary-title,
+.wk-card__analysis-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(20, 32, 24, 0.7);
+}
+
+.wk-card__summary p,
+.wk-card__analysis p,
+.wk-card__why,
+.wk-card__limits {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1a281f;
+}
+
+.wk-card__analysis p + p,
+.wk-card__why,
+.wk-card__limits {
+  margin-top: 0.55rem;
+}
+
+.wk-card__analysis-note {
+  font-size: 0.8rem !important;
+  color: rgba(20, 32, 24, 0.62) !important;
+}
+
+.wk-card__findings {
+  margin: 0.75rem 0 0;
+  padding-left: 1.15rem;
+  color: #1a281f;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.wk-card__findings li {
+  margin-bottom: 0.35rem;
+}
+
+.wk-card__actions {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.wk-card__source-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f4d38;
+}
+
+.wk-card__source-link--none {
+  color: rgba(20, 32, 24, 0.55);
+  font-weight: 500;
+}
+
+.wk-card__toggle {
+  appearance: none;
+  margin-top: 0.75rem;
+  border: 1px solid rgba(40, 55, 48, 0.2);
+  background: transparent;
+  border-radius: 999px;
+  min-height: 40px;
+  padding: 0.35rem 0.9rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #1a281f;
+}
+
+.wk-card__toggle:focus-visible {
+  outline: 2px solid #2f6b4f;
+  outline-offset: 2px;
+}
+
+.wk-empty {
+  color: rgba(20, 32, 24, 0.65);
+  font-size: 0.95rem;
+}
+
+.wk-framework {
+  display: grid;
+  gap: 1rem;
+}
+
+.wk-framework__stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.wk-framework__stage {
+  border: 1px solid rgba(40, 55, 48, 0.14);
+  border-radius: 12px;
+  padding: 0.85rem 0.9rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.wk-framework__stage h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.wk-framework__stage p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(20, 32, 24, 0.75);
+}
+
+.wk-framework__note {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(20, 32, 24, 0.7);
+  line-height: 1.45;
+}
+
+.wk-product-map {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.65rem;
+}
+
+.wk-product-map__item {
+  border: 1px solid rgba(40, 55, 48, 0.12);
+  border-radius: 10px;
+  padding: 0.7rem 0.75rem;
+  background: rgba(248, 250, 247, 0.9);
+}
+
+.wk-product-map__item strong {
+  display: block;
+  font-size: 0.92rem;
+  margin-bottom: 0.2rem;
+}
+
+.wk-product-map__item span {
+  font-size: 0.78rem;
+  color: rgba(20, 32, 24, 0.65);
+  line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+  .wk-framework__stages {
+    grid-template-columns: 1fr;
+  }
+
+  .wk-card {
+    max-width: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .wk-card {
+    background: rgba(18, 28, 22, 0.92);
+    border-color: rgba(180, 200, 180, 0.16);
+    box-shadow: none;
+  }
+
+  .wk-card__title,
+  .wk-card__summary p,
+  .wk-card__analysis p,
+  .wk-card__why,
+  .wk-card__limits,
+  .wk-card__findings,
+  .wk-card__toggle {
+    color: #e8f0ea;
+  }
+
+  .wk-card__subtitle,
+  .wk-card__meta,
+  .wk-card__eyebrow {
+    color: rgba(232, 240, 234, 0.65);
+  }
+
+  .wk-card__summary {
+    background: rgba(30, 48, 38, 0.85);
+    border-color: rgba(180, 200, 180, 0.12);
+  }
+
+  .wk-card__analysis {
+    background: rgba(48, 40, 24, 0.75);
+    border-color: rgba(210, 180, 100, 0.2);
+  }
+
+  .wk-card__source-link {
+    color: #b7d9c4;
+  }
+
+  .wk-framework__stage,
+  .wk-product-map__item {
+    background: rgba(18, 28, 22, 0.88);
+    border-color: rgba(180, 200, 180, 0.14);
+    color: #e8f0ea;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wk-card,
+  .wk-card__toggle {
+    transition: none;
+  }
+}

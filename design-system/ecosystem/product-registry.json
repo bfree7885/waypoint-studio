@@ -9,6 +9,22 @@
     "retired": ["terrainbound"]
   },
   "sharedEngines": {
+    "product-framework": {
+      "id": "product-framework",
+      "name": "Product Framework",
+      "status": "active",
+      "purpose": "Observe → Understand → domain-specific direction with user autonomy.",
+      "config": "ecosystem/product-framework.json",
+      "consumers": ["studio", "scenes", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier", "photo-coach"]
+    },
+    "waypoint-knowledge-curated": {
+      "id": "waypoint-knowledge-curated",
+      "name": "Waypoint Knowledge (curated research)",
+      "status": "foundation",
+      "purpose": "Curated research companion cards — Source Summary distinct from Waypoint Analysis.",
+      "config": "knowledge/curated/",
+      "consumers": ["studio", "shed-hunting", "scenes", "photo-coach", "fieldry", "foragecast", "signalterrain"]
+    },
     "outdoor-intelligence": {
       "id": "outdoor-intelligence",
       "name": "Outdoor Intelligence",

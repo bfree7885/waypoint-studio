@@ -118,9 +118,9 @@ related: [
 
 ### Challenge (`challenge`)
 
-**Purpose:** One concrete assignment — field, studio, or tasting.
+**Purpose:** One optional noticing prompt — field, studio, or tasting. Never homework, never required.
 
-**Format:** `body` (single task) or `steps` (multi-part).
+**Format:** `body` (single prompt) or `steps` (multi-part suggestions).
 
 ---
 

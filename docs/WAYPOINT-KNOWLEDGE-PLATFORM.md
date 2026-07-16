@@ -10,6 +10,8 @@ It is **not** an AI chatbot.
 It is **not** a marketplace.  
 Applications **query** this platform instead of copying reference data.
 
+**Curated research companion (Waypoint Knowledge cards):** see `docs/WAYPOINT-KNOWLEDGE.md` and `design-system/knowledge/curated/`. Entity WKP and curated research are complementary layers.
+
 ---
 
 ## Architecture

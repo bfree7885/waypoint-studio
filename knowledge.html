@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Waypoint Knowledge — curated research and trusted sources that help you observe, understand, and choose your own direction.">
+  <title>Waypoint Knowledge — Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system/css/wds.css">
+  <link rel="stylesheet" href="design-system/css/wds-app-shell.css?v=local">
+  <link rel="stylesheet" href="design-system/css/wds-contact.css?v=local">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+
+    <main id="main" class="wcs-page wcs-page--wide">
+      <header class="wcs-hero">
+        <p class="wds-eyebrow">Waypoint Knowledge</p>
+        <h1>Observe. Understand. Choose your direction.</h1>
+        <p>A curated research companion — not a news feed, not homework, not a streak. Read when it helps. Leave when it doesn’t.</p>
+      </header>
+
+      <section class="wcs-section" aria-labelledby="framework-title">
+        <h2 id="framework-title">Shared product framework</h2>
+        <div class="wk-framework" id="framework-root" aria-busy="true">
+          <p class="wk-framework__note">Loading framework…</p>
+        </div>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="cards-title">
+        <h2 id="cards-title">Demonstration reading</h2>
+        <p>These cards are <strong>demonstration fixtures</strong>. They show Source Summary versus Waypoint Analysis. They are not verified published research.</p>
+        <div id="knowledge-cards" aria-live="polite"></div>
+      </section>
+
+      <section class="wcs-section" aria-labelledby="autonomy-title">
+        <h2 id="autonomy-title">Your autonomy</h2>
+        <ul>
+          <li>No required lessons, tasks, or daily assignments.</li>
+          <li>No likes, rankings, comments, or reading streaks.</li>
+          <li>Original sources remain available when legally and technically possible.</li>
+          <li>Safety warnings stay clear and direct when needed.</li>
+        </ul>
+        <p><a href="about.html">About Waypoint Studio</a> · See also documentation in <code>docs/WAYPOINT-PRODUCT-FRAMEWORK.md</code></p>
+      </section>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="0"></div>
+  </div>
+
+  <script src="design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="design-system/js/knowledge/wds-knowledge-curated.js?v=local" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+      function esc(s) {
+        return String(s == null ? "" : s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      var frameworkRoot = document.getElementById("framework-root");
+      var cardsRoot = document.getElementById("knowledge-cards");
+      try {
+        var fwRes = await fetch("design-system/ecosystem/product-framework.json", { cache: "no-store" });
+        var fw = await fwRes.json();
+        var stages = fw.sharedStages;
+        var products = fw.products || [];
+        var productParam = new URLSearchParams(location.search).get("product");
+        frameworkRoot.innerHTML =
+          "<p class=\"wk-framework__note\">" + esc(fw.mission && fw.mission.headline ? fw.mission.headline : "") + "</p>" +
+          "<div class=\"wk-framework__stages\">" +
+          "<div class=\"wk-framework__stage\"><h3>Observe</h3><p>" + esc(stages.observe.meaning) + "</p></div>" +
+          "<div class=\"wk-framework__stage\"><h3>Understand</h3><p>" + esc(stages.understand.meaning) + "</p></div>" +
+          "<div class=\"wk-framework__stage\"><h3>Domain direction</h3><p>Each app offers a third kind of support — Search, Record, Explore, Brew, Taste, Monitor, Plan, Create, Refine, or Reveal — without requiring action.</p></div>" +
+          "</div>" +
+          "<div class=\"wk-product-map\" style=\"margin-top:1rem\">" +
+          products.map(function (p) {
+            return "<div class=\"wk-product-map__item\"><strong>" + esc(p.name) + "</strong><span>Observe → Understand → <em>" + esc(p.direction.label) + "</em></span></div>";
+          }).join("") +
+          "</div>";
+        frameworkRoot.removeAttribute("aria-busy");
+
+        var bundle = await WDS.knowledgeCurated.loadDemo();
+        var entries = productParam
+          ? WDS.knowledgeCurated.filterByProduct(bundle, productParam)
+          : (bundle.entries || []).filter(function (e) { return e.featured; });
+        if (!entries.length) entries = (bundle.entries || []).slice(0, 4);
+        cardsRoot.innerHTML = WDS.knowledgeCurated.renderList(entries, { compact: true });
+        WDS.knowledgeCurated.bindToggles(cardsRoot);
+      } catch (err) {
+        frameworkRoot.innerHTML = "<p class=\"wk-framework__note\">Could not load the product framework.</p>";
+        cardsRoot.innerHTML = "<p class=\"wk-empty\">Could not load demonstration knowledge cards.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
