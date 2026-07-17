@@ -13,7 +13,7 @@
   }
 
   function skippedSection(reason) {
-    return { skipped: true, skipReason: reason || "Not applicable for this lesson." };
+    return { skipped: true, skipReason: reason || "Not applicable for this guide note." };
   }
 
   function futureQuiz(message) {

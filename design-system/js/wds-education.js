@@ -34,9 +34,9 @@
     mistakes: "Common mistakes",
     ethics: "Ethics",
     safety: "Safety",
-    related: "Related lessons",
-    challenge: "Challenge",
-    quiz: "Quiz"
+    related: "Related reading",
+    challenge: "Worth noticing",
+    quiz: "Optional reflection"
   };
 
   /** Section CSS modifiers for visual language. */
@@ -425,7 +425,7 @@
       return (
         "<section class=\"wef-section wef-section--quiz is-future\" aria-labelledby=\"wef-quiz-future\">" +
           "<h5 class=\"wef-section-label\" id=\"wef-quiz-future\">" + escapeHtml(SECTION_LABELS.quiz) + "</h5>" +
-          "<p class=\"wef-quiz-future\">" + escapeHtml(quiz.futureMessage || "Quiz questions are not available yet — revisit after your next outing.") + "</p>" +
+          "<p class=\"wef-quiz-future\">" + escapeHtml(quiz.futureMessage || "Optional reflection prompts may appear here later — never required.") + "</p>" +
         "</section>"
       );
     }

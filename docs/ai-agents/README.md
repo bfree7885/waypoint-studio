@@ -13,7 +13,8 @@ This folder defines focused AI roles for building **Waypoint Studio** products i
 Before making suggestions or writing code, **every agent** must read and obey:
 
 1. **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** — supreme law  
-2. **[`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md)** — educational philosophy and learning cycle
+2. **[`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md)** — educational philosophy and learning cycle  
+3. **[`WAYPOINT-VOICE.md`](../WAYPOINT-VOICE.md)** · **[`WAYPOINT-AI-GUIDE.md`](../WAYPOINT-AI-GUIDE.md)** · **[`WAYPOINT-GUIDE-EXPERIENCE.md`](../WAYPOINT-GUIDE-EXPERIENCE.md)** — how guidance speaks and how information is presented (never teacher/grader)
 
 ### Reject
 
@@ -108,7 +109,7 @@ Calm, natural, not gaming UI. Constitution-compliant.
 
 ### Education Editor
 ```
-@.ai-agents/education-editor.md — Write a WEF lesson that ends with a field exercise outdoors. 
+@.ai-agents/education-editor.md — Write a WEF topic that ends with an optional outdoor noticing invitation. 
 Peterson Field Guide tone. Obey Constitution.
 ```
 

@@ -89,12 +89,12 @@
     return (
       '<section class="pc-section" id="checklist" aria-labelledby="pc-check-title">' +
         '<header class="pc-section__head">' +
-          '<p class="wds-eyebrow">Field checklist</p>' +
+          '<p class="wds-eyebrow">Before you shoot</p>' +
           '<h2 class="pc-section__title" id="pc-check-title">Before you press the shutter</h2>' +
           '<p class="pc-section__lead">A quiet pause — not a test. Ask these questions; let the scene answer.</p>' +
         "</header>" +
         '<ul class="pc-checklist">' + lis + "</ul>" +
-        '<p style="margin-top:1.5rem"><button type="button" class="pc-btn" id="pc-field-session">I went out today</button></p>' +
+        '<p style="margin-top:1.5rem"><button type="button" class="pc-btn" id="pc-field-session">Note an outing (optional)</button></p>' +
       "</section>"
     );
   }
@@ -158,17 +158,17 @@
     return (
       '<section class="pc-section" id="progress" aria-labelledby="pc-prog-title">' +
         '<header class="pc-section__head">' +
-          '<p class="wds-eyebrow">My progress</p>' +
-          '<h2 class="pc-section__title" id="pc-prog-title">Growth, not scores</h2>' +
-          '<p class="pc-section__lead">A private record on this device — no badges, streaks, or leaderboards.</p>' +
+          '<p class="wds-eyebrow">On this device</p>' +
+          '<h2 class="pc-section__title" id="pc-prog-title">A private record — not a score</h2>' +
+          '<p class="pc-section__lead">Optional notes on this device — no badges, streaks, or leaderboards.</p>' +
         "</header>" +
         '<div class="pc-progress-stats">' +
-          '<div class="pc-stat"><p class="pc-stat__value">' + s.conceptsStudied + '</p><p class="pc-stat__label">Concepts studied</p></div>' +
-          '<div class="pc-stat"><p class="pc-stat__value">' + s.conceptsViewed + '</p><p class="pc-stat__label">Concepts viewed</p></div>' +
-          '<div class="pc-stat"><p class="pc-stat__value">' + s.fieldSessions + '</p><p class="pc-stat__label">Field sessions</p></div>' +
+          '<div class="pc-stat"><p class="pc-stat__value">' + s.conceptsStudied + '</p><p class="pc-stat__label">Concepts explored</p></div>' +
+          '<div class="pc-stat"><p class="pc-stat__value">' + s.conceptsViewed + '</p><p class="pc-stat__label">Concepts opened</p></div>' +
+          '<div class="pc-stat"><p class="pc-stat__value">' + s.fieldSessions + '</p><p class="pc-stat__label">Outings noted</p></div>' +
           '<div class="pc-stat"><p class="pc-stat__value">' + s.visitCount + '</p><p class="pc-stat__label">Visits</p></div>' +
         '</div>' +
-        '<p class="pc-progress-note">Future sprints will add favorite images, places photographed, species, and conditions — all optional and local-first.</p>' +
+        '<p class="pc-progress-note">Future visits may remember favorite images, places, species, and conditions — all optional and local-first.</p>' +
       "</section>"
     );
   }

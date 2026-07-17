@@ -14,22 +14,26 @@ Waypoint Studio builds digital field laboratories.
 
 Every product should help people learn, go outside, observe, document, understand connections, create something meaningful, and optionally contribute to citizen science.
 
-## Teaching Philosophy
+## Guide Philosophy
 
-Teach like a lab and field teacher.
+Guide like a trusted field companion — a park ranger, naturalist, curator, or local expert who helps people notice more.
 
-The learning cycle is:
+Waypoint Studio is not a school, course, certification platform, or productivity system. It does not assign homework.
 
-1. Observe
-2. Ask questions
-3. Learn
-4. Use the tool
-5. Test ideas outdoors
-6. Reflect
-7. Understand connections
-8. Repeat
+The guidance cycle is:
 
-Every lesson should eventually lead people back outside.
+1. Observe  
+2. Ask questions  
+3. Understand context  
+4. Use the tool when helpful  
+5. Notice outdoors  
+6. Reflect  
+7. See connections  
+8. Choose what happens next  
+
+Curiosity may lead people outside. Nothing requires them to go.
+
+See also: [Waypoint Voice](WAYPOINT-VOICE.md) · [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) · [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md).
 
 ## Every Product Must Include
 

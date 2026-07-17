@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Card — WDS Pattern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+  <style>
+    .pattern-wrap { max-width: 42rem; margin: 0 auto; padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem); }
+    .pattern-wrap + .pattern-wrap { border-top: 1px solid var(--wds-border-subtle); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to pattern</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="reference.html">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Guide Card</span>
+        </a>
+      </div>
+    </header>
+
+    <section class="wds-hero is-compact">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Presentation pattern</p>
+        <h1 class="wds-display-xl">Guide Card</h1>
+        <p class="wds-lead">What we’re seeing · Why it matters · Worth noticing · If you’re curious. No grades. No homework.</p>
+      </div>
+    </section>
+
+    <main id="main">
+      <div class="pattern-wrap">
+        <p class="wds-caption" style="margin-bottom: var(--wds-space-6);">Static markup example</p>
+        <article class="wds-guide-card" data-wds-guide-card>
+          <section class="wds-guide-card__section" data-guide-beat="noticing">
+            <p class="wds-guide-card__eyebrow">Worth noticing</p>
+            <h3 class="wds-guide-card__title">South-facing slopes are warming more quickly today because overnight temperatures stayed above freezing.</h3>
+          </section>
+          <section class="wds-guide-card__section" data-guide-beat="why">
+            <p class="wds-guide-card__eyebrow">Why it matters</p>
+            <p class="wds-guide-card__body">Earlier warming often increases wildlife movement in these areas during late winter.</p>
+          </section>
+          <section class="wds-guide-card__section" data-guide-beat="curious">
+            <p class="wds-guide-card__eyebrow">If you're curious</p>
+            <ul class="wds-guide-card__list">
+              <li><span>Research on winter bedding behavior</span></li>
+              <li><span>Terrain explanation</span></li>
+              <li><span>Recent observations nearby</span></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+
+      <div class="pattern-wrap">
+        <p class="wds-caption" style="margin-bottom: var(--wds-space-6);">Rendered via <code>WDS.guideCard.render()</code></p>
+        <div id="guide-card-mount"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/guide/wds-guide-card.js"></script>
+  <script>
+    document.getElementById("guide-card-mount").innerHTML = WDS.guideCard.render({
+      seeing: "Overnight lows stayed above freezing across the valley floor.",
+      why: "Relative warmth on south aspects can change where animals rest and travel before midday.",
+      noticing: "South-facing slopes often hold less residual snow than the surrounding forest after a mild night.",
+      uncertainty: "Interpretation based on temperature and aspect — not a guarantee of wildlife presence.",
+      curious: [
+        { label: "Research on winter bedding behavior" },
+        { label: "Terrain explanation" },
+        { label: "Recent observations nearby" }
+      ],
+      inset: true
+    });
+  </script>
+</body>
+</html>

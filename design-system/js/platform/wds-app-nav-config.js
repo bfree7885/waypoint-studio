@@ -359,7 +359,7 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Observatory for invisible environments \u2014 RF foundations; educational cyber awareness planned.",
+      "description": "Observatory for invisible environments \u2014 RF foundations; interpretive cyber awareness planned.",
       "status": "foundation",
       "features": [
         {

@@ -2,7 +2,7 @@
 
 **Status:** Active foundation  
 **Config:** `design-system/ecosystem/product-framework.json`  
-**Related:** Constitution · Product Standards · Waypoint Method · Waypoint Knowledge · Editorial Standards
+**Related:** Constitution · Product Standards · Waypoint Method · Waypoint Voice · Waypoint Knowledge · Editorial Standards
 
 ---
 
@@ -66,7 +66,7 @@ Prefer: consider, explore, conditions currently favor, evidence suggests, one po
 
 Avoid unless safety/technical: must, homework, assignment, streak, complete today’s task, take action now.
 
-Encoded in `product-framework.json` → `tone`.
+Encoded in `product-framework.json` → `tone`. Full editorial voice: [Waypoint Voice](WAYPOINT-VOICE.md).
 
 ---
 

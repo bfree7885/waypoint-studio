@@ -228,7 +228,7 @@
         "</p>" +
         '<ul class="fc-explain-why">' + why + "</ul>" +
         '<div class="fc-explain-links">' +
-          '<span><strong>Read next:</strong> ' + escapeHtml(lesson.title || "Species 101") + " (homepage)</span>" +
+          '<span><strong>Read next:</strong> ' + escapeHtml(lesson.title || "Species guide") + " (homepage)</span>" +
           '<span><strong>Weekend:</strong> see Test the Prediction below</span>' +
         "</div>" +
       "</section>"

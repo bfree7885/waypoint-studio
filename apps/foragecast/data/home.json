@@ -9,7 +9,7 @@
     "bioregion": "Northeastern Pennsylvania · Pocono Plateau · Delaware River Highlands"
   },
   "hero": {
-    "question": "What should I do today?",
+    "question": "What’s worth noticing today?",
     "lead": "ForageCast is your seasonal land companion — wild foraging, orchard, garden, food forest, and permaculture guidance for this place and this weather. Private by default. Educational estimates, not guarantees."
   },
   "regionalStatus": {
@@ -117,7 +117,7 @@
   "featuredVideo": {
     "title": "How to read forest moisture before you hunt mushrooms",
     "durationMinutes": 6,
-    "summary": "Slope, litter, and smell before species names. Ends with a weekend assignment on two aspects of one hill."
+    "summary": "Slope, litter, and smell before species names. Ends with an optional weekend noticing prompt on two aspects of one hill."
   },
   "fieldNotesPrompt": {
     "title": "Your field notes — private by default",

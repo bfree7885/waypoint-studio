@@ -180,15 +180,20 @@ Every product **Learn** section uses WEF. Every long-form guide uses FGDS. Every
 ## What we do not do
 
 - Gamification, streaks, or leaderboards for learning  
-- Definition-first lessons with no outdoor assignment  
+- Definition-first lessons with no outdoor noticing invitation  
 - Phenology or harvest claims without integrity labels  
 - Mandatory accounts to read educational content  
 - Rewriting all legacy copy in one pass  
+- Homework theater, certification paths, or obligatory assignments  
+
+Voice: [Waypoint Voice](WAYPOINT-VOICE.md). Product AI interactions: [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md).
 
 ---
 
 ## See also
 
+- [Waypoint Voice](WAYPOINT-VOICE.md)
+- [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md)
 - [Waypoint Method](WAYPOINT-METHOD.md)
 - [Field Guide Standards](FIELD-GUIDE-STANDARDS.md)
 - [Content Engine](WAYPOINT-CONTENT-ENGINE.md)

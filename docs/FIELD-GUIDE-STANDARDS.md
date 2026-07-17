@@ -54,7 +54,7 @@ Every product may use these eleven canonical templates. Copy the HTML from `desi
 | Photography Guide | `photography-guide.html` | Technique as field documentation |
 | Equipment Guide | `equipment-guide.html` | Modest kit — observation enablers |
 | Research Brief | `research-brief.html` | Plain-language science summaries |
-| Outdoor Challenge | `outdoor-challenge.html` | Weekly / seasonal investigations |
+| Worth noticing outdoors | `outdoor-challenge.html` | Weekly / seasonal invitations (legacy filename) |
 | Seasonal Journal | `seasonal-journal.html` | Phenology and field season pages |
 | Field Investigation | `field-investigation.html` | Structured outdoor lab |
 
@@ -140,15 +140,16 @@ Reusable blocks for ecosystem and product home pages live in `design-system/home
 | Component | Class prefix | Purpose |
 |-----------|--------------|---------|
 | Featured Photograph | `.ws-featured-photo` | Gallery-forward hero |
-| Today's Lesson | `.ws-content-card` | One learning-cycle prompt |
+| Worth noticing today | `.ws-content-card` | One noticing prompt |
 | Seasonal Highlight | `.ws-seasonal` | Phenology / weather banner |
 | Field Guide Spotlight | `.ws-spotlight` | Plate + quick ID |
 | Recent News | `.ws-card-grid` | Seasonal dispatches |
-| Featured Video | `.ws-video-feature` | Curated instruction |
-| Outdoor Challenge | `.ws-challenge-block` | No leaderboard |
+| Featured Video | `.ws-video-feature` | Curated field video |
+| Worth noticing outdoors | `.ws-challenge-block` | Optional invitation — no leaderboard |
 | Explore Nearby | `.ws-nearby-list` | Privacy-respecting places |
 | Latest Research | `.ws-research-card` | Plain-language brief |
 | Featured Tool | `.ws-tool-card` | Workshop entry — not the whole product |
+| Guide Card | `.wds-guide-card` | Seeing → noticing → why → curious |
 
 Reference: `design-system/homepage/index.html`
 

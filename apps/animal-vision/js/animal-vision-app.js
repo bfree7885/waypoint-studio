@@ -81,7 +81,7 @@
       return "<li>" + esc(n) + "</li>";
     }).join("");
     var beeNote = species.id === "honeybee"
-      ? '<p class="av-callout" role="note"><strong>UV-inspired educational interpretation.</strong> Ordinary photographs contain no ultraviolet channel — nothing UV is recovered from your file.</p>'
+      ? '<p class="av-callout" role="note"><strong>UV-inspired interpretive view.</strong> Ordinary photographs contain no ultraviolet channel — nothing UV is recovered from your file.</p>'
       : "";
 
     host.innerHTML =

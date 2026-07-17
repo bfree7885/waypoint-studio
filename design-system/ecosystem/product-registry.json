@@ -53,6 +53,25 @@
       "purpose": "Careful looking, craft feedback, and visual observation.",
       "consumers": ["scenes", "photo-coach"]
     },
+    "waypoint-ai-guide": {
+      "id": "waypoint-ai-guide",
+      "name": "Waypoint AI Guide",
+      "status": "active",
+      "purpose": "Park-ranger product-AI voice: notice, explain, invite — never teach, grade, or assign.",
+      "package": "design-system/js/ai/wds-ai-guide.js",
+      "docs": ["docs/WAYPOINT-AI-GUIDE.md"],
+      "consumers": ["studio", "scenes", "photo-coach", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"]
+    },
+    "waypoint-guide-experience": {
+      "id": "waypoint-guide-experience",
+      "name": "Waypoint Guide Experience",
+      "status": "active",
+      "purpose": "Present information as a trusted field guide: what we're seeing, why it matters, worth noticing, if you're curious.",
+      "package": "design-system/js/guide/wds-guide-card.js",
+      "css": "design-system/css/wds-guide-experience.css",
+      "docs": ["docs/WAYPOINT-GUIDE-EXPERIENCE.md"],
+      "consumers": ["studio", "scenes", "photo-coach", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier", "dashboard"]
+    },
     "mapping-observation": {
       "id": "mapping-observation",
       "name": "Mapping & Observation Platform",
@@ -198,7 +217,7 @@
       "contentEngineRegion": "pike-county-pa",
       "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages",
       "plannedSharedEngines": ["landscape-interpretation", "signal-intelligence"],
-      "sharedEngines": ["photo-intelligence", "outdoor-intelligence"]
+      "sharedEngines": ["photo-intelligence", "outdoor-intelligence", "waypoint-ai-guide", "waypoint-guide-experience"]
     },
     "foragecast": {
       "slug": "foragecast",
@@ -264,10 +283,10 @@
       "portfolioRole": "First tool in Waypoint Scenes — image critique",
       "dataProduct": "photo-coach",
       "name": "Photo Coach",
-      "hero": "Upload. Grade. Improve.",
+      "hero": "Upload. Notice. Understand.",
       "eyebrow": "Waypoint Scenes · Photo Coach",
-      "lead": "Upload a photograph for on-device analysis — letter grade, strengths, and clear next steps. Part of Waypoint Scenes.",
-      "description": "Photograph coaching in your browser — strengths, grades, and deliberate improvements.",
+      "lead": "Upload a photograph for on-device analysis — a relative reading, strengths, and optional next noticing. Part of Waypoint Scenes.",
+      "description": "Photograph coaching in your browser — careful looking, clear signals, and invitations — never grades of you.",
       "studioHref": "../../",
       "toolHref": "apps/photo-coach/",
       "toolLabel": "Open Photo Coach",
@@ -282,7 +301,8 @@
       "fieldGuideTemplates": ["photography", "equipment", "weather", "habitat", "seasonal-journal"],
       "photographyLayout": "gallery-grid",
       "citizenScience": { "enabled": false, "optIn": false },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": "pike-county-pa",
+      "sharedEngines": ["photo-intelligence", "waypoint-ai-guide", "waypoint-guide-experience"]
     },
     "shed-hunting": {
       "slug": "shed-hunting",

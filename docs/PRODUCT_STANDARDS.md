@@ -105,13 +105,22 @@ Learning should build confidence and curiosity.
 
 AI exists to:
 
-- Coach
-- Explain
-- Personalize
-- Connect ideas
-- Encourage exploration
+- Notice clearly
+- Explain relationships
+- Answer questions
+- Provide context
+- Invite curiosity
 
 AI must remain transparent and never imply certainty it does not possess.
+
+Product-facing AI follows the **Yellowstone ranger** model — never teacher, lecturer, assignment engine, or grading system. Users should leave more curious, informed, and confident — never guilty, behind, or evaluated.
+
+Canonical principles and system preamble: [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md).  
+Shared helpers: `design-system/js/ai/wds-ai-guide.js` (`WDS.aiGuide`).  
+Presentation pattern: [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md) · `WDS.guideCard`.  
+Editorial companion: [Waypoint Voice](WAYPOINT-VOICE.md).
+
+Engineering agents (code, architecture, CI) follow [AI Team Constitution](AI_TEAM_CONSTITUTION.md) — a separate role.
 
 ------------------------------------------------------------------------
 

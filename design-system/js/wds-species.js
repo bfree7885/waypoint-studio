@@ -84,7 +84,7 @@
     if (species.related && species.related.length) {
       html += (
         '<section class="wef-section wef-section--related">' +
-          '<h3 class="wef-section-label">Related lessons</h3>' +
+          '<h3 class="wef-section-label">Related reading</h3>' +
           '<div class="wef-related-links">' +
           species.related.map(function (ref) {
             var id = typeof ref === "string" ? ref : ref.id;

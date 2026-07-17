@@ -333,7 +333,7 @@ Cross-link to sister products when the connection crosses domains (e.g. ForageCa
 
 ### A system of invitations — not gamification
 
-Challenges are **assignments to notice**, not streaks, points, or leaderboards. They honor the Constitution: no engagement bait.
+Challenges are **invitations to notice**, not assignments, streaks, points, or leaderboards. They honor the Constitution and [Waypoint Voice](WAYPOINT-VOICE.md): no engagement bait, no obligatory homework.
 
 | Cadence | Purpose | Example |
 |---------|---------|---------|
@@ -345,13 +345,13 @@ Challenges are **assignments to notice**, not streaks, points, or leaderboards. 
 **Challenge structure:**
 
 ```
-CHALLENGE: [Name]
+INVITATION: [Name]
 Cadence: Daily | Weekly | Monthly | Seasonal
 Observe: [What to notice]
-Investigate: [Optional lesson link]
-Document: [Field Note or photo evidence]
+Investigate: [Optional context link]
+Document: [Field Note or photo — optional]
 Connect: [One connection question]
-Reflect: [One sentence prompt]
+Reflect: [One sentence prompt — optional]
 Share: [Optional — private default]
 ```
 

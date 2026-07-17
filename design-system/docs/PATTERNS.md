@@ -298,6 +298,31 @@ Legacy Scenes content (`steps`, `fieldExercise`, `reflection`, `challenge`) pass
 
 Use `WDS.core.trapFocus(dialog)` on open.
 
+## Guide Card
+
+Quiet field-note presentation for major observations. See [`guide-card.html`](../patterns/guide-card.html) and `docs/WAYPOINT-GUIDE-EXPERIENCE.md`.
+
+```html
+<article class="wds-guide-card">
+  <section class="wds-guide-card__section">
+    <p class="wds-guide-card__eyebrow">Worth noticing</p>
+    <h3 class="wds-guide-card__title">South-facing slopes warm earlier after a mild night.</h3>
+  </section>
+  <section class="wds-guide-card__section">
+    <p class="wds-guide-card__eyebrow">Why it matters</p>
+    <p class="wds-guide-card__body">Earlier warmth can change where animals rest before midday.</p>
+  </section>
+  <section class="wds-guide-card__section">
+    <p class="wds-guide-card__eyebrow">If you're curious</p>
+    <ul class="wds-guide-card__list">
+      <li><span>Terrain explanation</span></li>
+    </ul>
+  </section>
+</article>
+```
+
+Or: `WDS.guideCard.render({ seeing, noticing, why, curious, uncertainty, safety, inset })`
+
 ## Iconography
 
 - **Style:** 1.5px stroke, rounded caps, 24×24 viewBox

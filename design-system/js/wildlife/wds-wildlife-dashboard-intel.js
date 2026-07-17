@@ -451,7 +451,7 @@
       "migration", "🕊", "Migration",
       "Live migration feed not yet available",
       "eBird migration timing and density maps will appear when the provider connects.",
-      "Use dawn listening and local checklists until live data arrives — educational guidance only.",
+      "Use dawn listening and local birding notes until live data arrives — interpretive guidance only.",
       "educational", "low"
     );
   }

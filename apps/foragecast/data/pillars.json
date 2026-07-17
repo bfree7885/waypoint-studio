@@ -6,7 +6,7 @@
     {
       "id": "today",
       "label": "Today",
-      "title": "What should I do today?",
+      "title": "What’s worth noticing today?",
       "summary": "Clear, ranked actions for this place and this weather — not an article feed.",
       "href": "apps/foragecast/"
     },

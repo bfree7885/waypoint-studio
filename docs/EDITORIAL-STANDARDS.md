@@ -86,11 +86,13 @@ For intelligence-adjacent products (e.g. SignalTerrain):
 
 ## 7. Product language
 
-Follow `product-framework.json` tone rules.
+Follow [Waypoint Voice](WAYPOINT-VOICE.md), [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md), and `product-framework.json` tone rules.
+
+Present major information as: what we’re seeing → why it matters → worth noticing → if you’re curious.
 
 Safety-critical warnings (toxicity, legal access, wildlife disturbance, cyber offense boundaries) stay direct.
 
-School-like pressure (“complete”, “homework”, “streak”, “you must”) does not belong in product-facing coaching.
+School-like pressure (“complete”, “homework”, “streak”, “you must”) does not belong in product-facing guidance.
 
 ---
 

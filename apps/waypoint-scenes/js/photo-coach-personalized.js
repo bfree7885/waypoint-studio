@@ -592,33 +592,35 @@
 
     var experiment =
       direction && /woodland/i.test(direction)
-        ? "Try one extra frame from a lower angle before moving on."
+        ? "If you're curious, try one extra frame from a lower angle before moving on."
         : direction && /wildlife/i.test(direction)
-          ? "Try one frame that waits for a quieter edge behind the subject."
-          : "Try one deliberate experiment — a new angle or waiting an extra breath — without forcing it to match past work.";
+          ? "If you're curious, try one frame that waits for a quieter edge behind the subject."
+          : "If you're curious, try one gentle experiment — a new angle or waiting an extra breath — without forcing it to match past work.";
 
     var subjectLine = direction
-      ? "Conditions that fit your emerging " +
+      ? "Conditions that often fit an emerging " +
         direction.toLowerCase() +
         " direction: soft light and uncluttered backgrounds."
       : "Follow whatever subject still pulls your eye — style can keep evolving.";
 
     var practiceLine = practiceTheme
-      ? "On your next walk, keep an eye on " +
+      ? "On a later walk, you may want to keep an eye on " +
         practiceTheme.label.toLowerCase() +
         (practiceTheme.issue ? " (" + softenIssue(practiceTheme.issue) + ")" : "") +
-        "."
+        " — only if it still feels interesting."
       : "Keep looking with the same patience you already bring.";
 
-    var continueLine = "Continue: " + strength + ".";
+    var continueLine = "Worth keeping: " + strength + ".";
     var paragraph = [
       direction
-        ? "On your next " +
+        ? "If you take another " +
           (/woodland/i.test(direction) ? "woodland walk" : direction.toLowerCase() + " outing") +
-          ", keep looking for small subjects in soft light."
-        : "On your next outing, keep looking for subjects that already feel like yours.",
+          ", you may notice small subjects in soft light again."
+        : "If you head out again, follow subjects that already feel like yours.",
       practiceTheme
-        ? "Give " + practiceTheme.label.toLowerCase() + " one quiet try — a light focus, not a checklist."
+        ? "You may also want to give " +
+          practiceTheme.label.toLowerCase() +
+          " one quiet look — curiosity, not a checklist."
         : "",
       experiment
     ]

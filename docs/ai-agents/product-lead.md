@@ -8,9 +8,11 @@ Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUD
 
 **Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
 
-**Every recommendation must support:** learning, outdoor exploration, observation, education, field guide style, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
+**Every recommendation must support:** curiosity, outdoor exploration, observation, field-guide noticing, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
 
 If the Constitution conflicts with a feature plan — **the Constitution wins.**
+
+Also follow [`WAYPOINT-VOICE.md`](../WAYPOINT-VOICE.md) and [`WAYPOINT-AI-GUIDE.md`](../WAYPOINT-AI-GUIDE.md) for product language — never school, never grades of people, never assignments.
 
 ---
 

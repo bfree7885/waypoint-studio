@@ -22,7 +22,7 @@
 
   function disclaimer() {
     return (cache && cache.disclaimer) ||
-      "Animal Vision is a research-informed educational visualization. Animal perception is far more complex than can be reproduced on a human display.";
+      "Animal Vision is a research-informed interpretive visualization. Animal perception is far more complex than can be reproduced on a human display.";
   }
 
   function privacyNote() {

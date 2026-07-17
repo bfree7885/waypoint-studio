@@ -82,7 +82,7 @@
             '<div class="fc-today__body"><p class="fc-today__title">' + esc(a.title) + "</p>" +
             '<p class="fc-today__why">' + esc(a.why) + "</p></div></li>"
         );
-      }).join("") || "<li>Add property details to unlock tailored priorities.</li>";
+      }).join("") || "<li>Add property details when helpful — priorities can reflect your land more closely.</li>";
 
       var risks = [];
       if (wx.frostRisk) risks.push("Frost risk overnight — protect tender bloom if still open.");

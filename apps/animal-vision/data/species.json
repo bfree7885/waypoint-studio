@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "disclaimer": "Animal Vision is a research-informed educational visualization. Animal perception is far more complex than can be reproduced on a human display.",
+  "disclaimer": "Animal Vision is a research-informed interpretive visualization. Animal perception is far more complex than can be reproduced on a human display.",
   "privacyNote": "Processed locally. Your photographs are never uploaded.",
   "species": [
     {
@@ -64,7 +64,7 @@
       "colorSensitivity": {
         "summary": "UV-sensitive in life; ordinary photographs contain no ultraviolet channel.",
         "notes": [
-          "This mode is a UV-inspired educational interpretation — not recovered UV data.",
+          "This mode is a UV-inspired interpretive view — not recovered UV data.",
           "Reds are reduced; blues and violets are emphasized to suggest a shifted floral palette."
         ]
       },

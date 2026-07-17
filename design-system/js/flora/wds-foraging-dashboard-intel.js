@@ -230,7 +230,7 @@
       });
     }
     if (sw && sw.outdoorChallenge) {
-      notes.push("Field challenge: " + sw.outdoorChallenge);
+      notes.push("Worth noticing: " + sw.outdoorChallenge);
     }
     notes.push("Cut fungi at soil line; leave young specimens.");
     notes.push("Never share exact harvest coordinates publicly.");
@@ -240,7 +240,7 @@
       "educational-notes", "📖", "Field Notes",
       notes.length > 2 ? "ready" : "ready",
       "Observation over collection",
-      "Foraging intelligence teaches timing and habitat literacy — not guaranteed yields.",
+      "Foraging intelligence offers timing and habitat literacy — not guaranteed yields.",
       ETHICS_LEAD,
       "editorial", "educationalNotes",
       notes.slice(0, 5).map(function (n) {

@@ -148,7 +148,7 @@ function run() {
         preferences: Repo.PreferencesRepository.load()
       }
     );
-  assert("outing has strength", /continue/i.test(plan.continueStrength), plan.continueStrength);
+  assert("outing has strength", /worth keeping|continue/i.test(plan.continueStrength), plan.continueStrength);
   assert("outing has practice", !!plan.practiceSkill);
   assert("outing has experiment", !!plan.optionalExperiment);
   assert("outing has subject/condition", !!plan.subjectOrCondition);

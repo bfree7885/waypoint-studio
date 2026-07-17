@@ -87,9 +87,11 @@
     if (item.durationMinutes) meta = '<span class="ws-content-card__meta">~' + item.durationMinutes + " min</span>";
     if (item.dateline) meta = '<span class="ws-content-card__meta">' + escapeHtml(item.dateline) + "</span>";
     if (item.cadence) meta = '<span class="ws-content-card__meta">' + escapeHtml(item.cadence) + "</span>";
+    var typeLabel = item.type || item.guideType || "Content";
+    if (/^lesson$/i.test(String(typeLabel))) typeLabel = "Guide note";
     return (
       '<article class="' + cls + '">' +
-        '<span class="ws-content-card__type">' + escapeHtml(item.type || item.guideType || "Content") + "</span>" +
+        '<span class="ws-content-card__type">' + escapeHtml(typeLabel) + "</span>" +
         '<h3 class="ws-content-card__title">' + escapeHtml(item.title) + "</h3>" +
         '<p class="ws-content-card__desc">' + escapeHtml(item.summary) + "</p>" +
         meta +
@@ -123,11 +125,13 @@
   }
 
   function sectionTodaysLesson(lesson) {
-    if (!lesson) lesson = { title: "Before you name anything", summary: "Three minutes outside. List what you hear, what the light is doing, and one question you cannot answer yet.", type: "Lesson", durationMinutes: 12 };
+    if (!lesson) lesson = { title: "Before you name anything", summary: "Three minutes outside. List what you hear, what the light is doing, and one question you cannot answer yet.", type: "Guide note", durationMinutes: 12 };
+    var display = Object.assign({}, lesson);
+    if (/^lesson$/i.test(String(display.type || ""))) display.type = "Guide note";
     return (
       '<section class="ws-block" id="todays-lesson" aria-labelledby="wds-tl-title">' +
-        blockHead("Learn", "Today's lesson", "One prompt from the Waypoint Learning Cycle — observe before you read.") +
-        contentCard(lesson) +
+        blockHead("Understand", "Worth noticing today", "One prompt — notice before you read.") +
+        contentCard(display) +
       "</section>"
     );
   }
@@ -205,17 +209,17 @@
     if (!challenge) challenge = { title: "The thirty-minute repeat", summary: "Same place, same compass bearing — notice what changed between visits.", cadence: "weekly" };
     return (
       '<section class="ws-block" id="outdoor-challenge" aria-labelledby="wds-ch-title">' +
-        blockHead("Investigate", "Outdoor challenge", "No leaderboard. No posting required.") +
+        blockHead("Explore", "Worth noticing outdoors", "No leaderboard. No posting required. Entirely optional.") +
         '<article class="ws-challenge-block">' +
-          '<p class="wds-eyebrow">' + escapeHtml(challenge.cadence === "weekly" ? "Weekly field challenge" : (challenge.cadence || "Weekly field challenge")) + "</p>" +
+          '<p class="wds-eyebrow">' + escapeHtml(challenge.cadence === "weekly" ? "Weekly invitation" : (challenge.cadence || "Invitation")) + "</p>" +
           '<h3 class="wds-display-md" style="margin:0 0 var(--wds-space-2);">' + escapeHtml(challenge.title) + "</h3>" +
           '<p class="wds-body">' + escapeHtml(challenge.summary) + "</p>" +
-          '<ol class="ws-challenge-block__steps">' +
-            "<li>Observe first — weather, light, three species or signs.</li>" +
-            "<li>Document with one consistent photograph bearing or journal entry.</li>" +
-            "<li>Reflect in four sentences. Schedule your return visit.</li>" +
-          "</ol>" +
-          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(templateUrl("outdoor-challenge")) + '">FGDS outdoor challenge template →</a></p>' +
+          '<ul class="ws-challenge-block__steps">' +
+            "<li>Worth noticing first — weather, light, three species or signs.</li>" +
+            "<li>If you're curious, document with one consistent photograph bearing or journal note.</li>" +
+            "<li>Reflect in a few sentences when you want to. Return when curiosity returns.</li>" +
+          "</ul>" +
+          '<p class="wds-caption" style="margin-top:var(--wds-space-4);"><a href="' + escapeHtml(templateUrl("outdoor-challenge")) + '">FGDS outdoor invitation template →</a></p>' +
         "</article>" +
       "</section>"
     );
@@ -227,7 +231,7 @@
         blockHead("Places", "Explore nearby", "Habitat suggestions — location privacy respected by default.") +
         '<ul class="ws-nearby-list">' +
           '<li><span class="ws-nearby-list__distance">nearby</span><div class="ws-nearby-list__body"><strong>Riparian loop · placeholder</strong>Listen for birds; compare bank vegetation zones.</div></li>' +
-          '<li><span class="ws-nearby-list__distance">local</span><div class="ws-nearby-list__body"><strong>North slope stand · placeholder</strong>Repeat photography bearing from today\'s lesson.</div></li>' +
+          '<li><span class="ws-nearby-list__distance">local</span><div class="ws-nearby-list__body"><strong>North slope stand · placeholder</strong>Repeat photography bearing from today’s guide note.</div></li>' +
         "</ul>" +
       "</section>"
     );

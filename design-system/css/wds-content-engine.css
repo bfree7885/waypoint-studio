@@ -1626,6 +1626,7 @@
   color: var(--wds-text-muted);
 }
 
+.ws-video-feature__noticing,
 .ws-video-feature__assignment {
   margin-top: var(--wds-space-3);
   font-size: var(--wds-text-sm);

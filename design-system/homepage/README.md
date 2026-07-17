@@ -10,12 +10,12 @@ Reusable sections for Waypoint Studio ecosystem and product home pages.
 | Component | Description |
 |-----------|-------------|
 | Featured Photograph | Wide evidence frame + caption |
-| Today's Lesson | Single lesson card from learning cycle |
+| Worth noticing today | Single noticing prompt (legacy id: `todays-lesson`) |
 | Seasonal Highlight | Phenology / weather banner |
 | Field Guide Spotlight | Plate + species or topic feature |
 | Recent News | Card grid of seasonal dispatches |
 | Featured Video | 16:9 thumbnail + description (no autoplay) |
-| Outdoor Challenge | Investigation steps — no leaderboard |
+| Worth noticing outdoors | Optional outdoor invitation — no leaderboard (legacy id: `outdoor-challenge`) |
 | Explore Nearby | Place list with distance |
 | Latest Research | Plain-language research brief |
 | Featured Tool | Workshop entry card |

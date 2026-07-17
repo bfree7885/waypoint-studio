@@ -1,5 +1,5 @@
 /**
- * Photo Coach — Upload. Grade. Improve. Bring it to Life.
+ * Photo Coach — Upload. Notice. Understand. Bring it to Life.
  */
 (function (global) {
   "use strict";
@@ -285,7 +285,7 @@
   function renderSessionNotes() {
     return '<div class="coach-card coach-card--notes" id="coach-session-notes-card">' +
       '<label class="coach-card__title" for="coach-session-notes">Session notes</label>' +
-      '<textarea id="coach-session-notes" class="coach-session-notes" rows="3" placeholder="What you learned, what to try next…"></textarea>' +
+      '<textarea id="coach-session-notes" class="coach-session-notes" rows="3" placeholder="What you noticed, what you might try later…"></textarea>' +
       '<p class="coach-muted">Saved with this session in your portfolio.</p></div>';
   }
 
@@ -312,8 +312,8 @@
   function renderGradeCard(c) {
     var g = c.overallGrade || {};
     var badge = c.isDemo || c.isSample
-      ? '<span class="coach-trust coach-trust--demo">On-device analysis</span>'
-      : '<span class="coach-trust coach-trust--live">AI Analysis</span>';
+      ? '<span class="coach-trust coach-trust--demo">On-device field note</span>'
+      : '<span class="coach-trust coach-trust--live">Field reading</span>';
     var genre = c.genre && !c.genre.uncertain && c.genre.confidence >= 0.58
       ? '<p class="coach-genre">Likely genre: <strong>' + escapeHtml(c.genre.label) + "</strong></p>"
       : (c.coaching && c.coaching.uncertainNote
@@ -321,12 +321,12 @@
         : "");
     return '<section class="coach-grade-card" aria-labelledby="coach-grade-title">' +
       '<div class="coach-grade-card__head">' +
-        '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall grade</h2>' + badge +
+        '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall reading</h2>' + badge +
       "</div>" +
       '<div class="coach-grade-card__score">' +
-        '<span class="coach-grade-letter" aria-label="Letter grade">' + escapeHtml(g.letter || "—") + "</span>" +
+        '<span class="coach-grade-letter" aria-label="Relative reading">' + escapeHtml(g.letter || "—") + "</span>" +
         '<span class="coach-grade-num">' + escapeHtml(String(g.score != null ? g.score : c.overallScore || "—")) +
-          '<span class="coach-grade-max">/100</span></span>' +
+          '<span class="coach-grade-max">/100 relative</span></span>' +
       "</div>" +
       genre +
       '<p class="coach-grade-summary">' + escapeHtml(c.narrativeSummary || g.summary || "") + "</p>" +
@@ -335,8 +335,9 @@
         "<div><dt>Print</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
         "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "On-device signals") + "</dd></div>" +
       "</dl>" +
+      '<p class="coach-engine-note" role="note">A relative field reading of this image — not a grade of you as a photographer.</p>' +
       (c.engineStatus === "disconnected"
-        ? '<p class="coach-engine-note" role="status">On-device analysis — guidance from image characteristics, not a cloud AI review.</p>'
+        ? '<p class="coach-engine-note" role="status">On-device analysis — guidance from image characteristics, not a cloud review.</p>'
         : "") +
     "</section>";
   }
@@ -371,7 +372,7 @@
             '<summary><span class="coach-photo-breakdown__cat">' + escapeHtml(r.category) + "</span>" +
             '<span class="coach-photo-breakdown__score">' + escapeHtml(String(r.score)) + "</span></summary>" +
             '<p class="coach-photo-breakdown__reason">' + escapeHtml(r.reason) + "</p>" +
-            '<p class="coach-photo-breakdown__teach"><strong>Teaching note:</strong> ' + escapeHtml(r.teachingNote) + "</p>" +
+            '<p class="coach-photo-breakdown__teach"><strong>Guide note:</strong> ' + escapeHtml(r.teachingNote) + "</p>" +
           "</details></li>";
       }).join("") + "</ul></section>";
   }
@@ -379,17 +380,27 @@
   function renderLearning(c) {
     var lc = c.learningConcept;
     if (!lc) return "";
+    var Guide = global.WDS && global.WDS.guideCard;
+    if (Guide && Guide.render) {
+      return Guide.render({
+        why: lc.lesson,
+        noticing: lc.title,
+        curious: lc.practice ? [lc.practice] : [],
+        inset: true,
+        id: "coach-learn"
+      });
+    }
     return '<section class="coach-card coach-card--learn" aria-labelledby="coach-learn-title">' +
-      '<h3 class="coach-card__title" id="coach-learn-title">Learn today: ' + escapeHtml(lc.title) + "</h3>" +
+      '<h3 class="coach-card__title" id="coach-learn-title">Worth noticing: ' + escapeHtml(lc.title) + "</h3>" +
       '<p>' + escapeHtml(lc.lesson) + "</p>" +
-      '<p class="coach-muted"><strong>Practice:</strong> ' + escapeHtml(lc.practice) + "</p></section>";
+      '<p class="coach-muted"><strong>Worth trying:</strong> ' + escapeHtml(lc.practice) + "</p></section>";
   }
 
   function renderBreakdown(c) {
     var rows = c.scoreBreakdown || [];
     if (!rows.length) return "";
     return '<section class="coach-card" aria-labelledby="coach-breakdown-title">' +
-      '<h3 class="coach-card__title" id="coach-breakdown-title">Score breakdown</h3>' +
+      '<h3 class="coach-card__title" id="coach-breakdown-title">What stands out</h3>' +
       '<ul class="coach-breakdown">' + rows.map(function (r) {
         return '<li class="coach-breakdown__row">' +
           '<div class="coach-breakdown__head">' +
@@ -426,21 +437,21 @@
     var list = c.improvements || [];
     if (!list.length) {
       return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
-        '<h3 class="coach-card__title" id="coach-improve-title">What could improve</h3>' +
-        '<p class="coach-muted">No high-confidence issue stood out from browser signals. Refine gently rather than stacking edits.</p></section>';
+        '<h3 class="coach-card__title" id="coach-improve-title">Worth considering</h3>' +
+        '<p class="coach-muted">Nothing loud stood out from browser signals. Refine gently if you want — no obligation to edit.</p></section>';
     }
     return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
-      '<h3 class="coach-card__title" id="coach-improve-title">What could improve</h3>' +
+      '<h3 class="coach-card__title" id="coach-improve-title">Worth considering</h3>' +
       '<ul class="coach-coach-cards">' + list.map(function (s, idx) {
         var badge = s.priority === "primary" || idx === 0
-          ? '<span class="coach-priority-badge">Improve first</span>'
-          : '<span class="coach-priority-badge coach-priority-badge--secondary">Secondary</span>';
+          ? '<span class="coach-priority-badge">Worth noticing first</span>'
+          : '<span class="coach-priority-badge coach-priority-badge--secondary">Also interesting</span>';
         return '<li class="coach-coach-card coach-coach-card--grow' +
           (s.priority === "primary" || idx === 0 ? " coach-coach-card--primary" : "") + '">' +
           '<h4>' + escapeHtml(s.issue) + " " + badge + "</h4>" +
-          '<p><strong>Why it matters:</strong> ' + escapeHtml(s.whyItMatters) + "</p>" +
-          '<p><strong>What to do:</strong> ' + escapeHtml(s.whatToDo) + "</p>" +
-          '<p><strong>Expected:</strong> ' + escapeHtml(s.expectedImprovement) + "</p>" +
+          '<p><strong>Why it may matter:</strong> ' + escapeHtml(s.whyItMatters) + "</p>" +
+          '<p><strong>If you\'re curious:</strong> ' + escapeHtml(s.whatToDo) + "</p>" +
+          '<p><strong>What you might see:</strong> ' + escapeHtml(s.expectedImprovement) + "</p>" +
         "</li>";
       }).join("") + "</ul></section>";
   }
@@ -454,7 +465,7 @@
         "</div>"
       : "";
     return '<section class="coach-card coach-card--crop" aria-labelledby="coach-crop-title">' +
-      '<h3 class="coach-card__title" id="coach-crop-title">Crop recommendation</h3>' +
+      '<h3 class="coach-card__title" id="coach-crop-title">Crop idea (optional)</h3>' +
       '<div class="coach-crop-preview">' + overlay +
         '<span class="coach-crop-ratio">' + escapeHtml(crop.aspectRatio) + "</span>" +
       "</div>" +
@@ -492,9 +503,20 @@
   }
 
   function renderChallenge(c) {
+    var tip = c.nextShootChallenge || c.fieldAssignment || "";
+    if (!tip) return "";
+    var Guide = global.WDS && global.WDS.guideCard;
+    if (Guide && Guide.render) {
+      return Guide.render({
+        noticing: tip,
+        why: "An optional noticing idea for another walk — only if it still interests you.",
+        inset: true,
+        id: "coach-challenge"
+      });
+    }
     return '<section class="coach-card coach-card--accent" aria-labelledby="coach-challenge-title">' +
-      '<h3 class="coach-card__title" id="coach-challenge-title">Next field challenge</h3>' +
-      '<p>' + escapeHtml(c.nextShootChallenge || c.fieldAssignment || "—") + "</p></section>";
+      '<h3 class="coach-card__title" id="coach-challenge-title">Worth noticing next</h3>' +
+      '<p>' + escapeHtml(tip) + "</p></section>";
   }
 
   function renderNextAction(c) {
@@ -504,13 +526,23 @@
       ? c.editIntelligence.adjustments.filter(function (a) { return a.priority === "primary"; })[0] ||
         c.editIntelligence.adjustments[0]
       : null;
-    var title = first ? first.whatToDo : (edits ? "Try: " + edits.label + " → " + edits.suggestedValue : "");
+    var title = first ? first.whatToDo : (edits ? edits.label + " → " + edits.suggestedValue : "");
     var why = first
       ? (first.expectedImprovement || first.whyItMatters || "")
       : (edits ? (edits.expectedImprovement || edits.reason || "") : "");
     if (!title) return "";
+    var Guide = global.WDS && global.WDS.guideCard;
+    if (Guide && Guide.render) {
+      return Guide.render({
+        noticing: title,
+        why: why || "One optional change worth considering — your original file is unchanged.",
+        curious: why ? ["Your original file stays unchanged."] : [],
+        inset: true,
+        id: "coach-next"
+      });
+    }
     return '<section class="coach-card coach-next-action" aria-labelledby="coach-next-title">' +
-      '<h3 class="coach-card__title" id="coach-next-title">Suggested next edit</h3>' +
+      '<h3 class="coach-card__title" id="coach-next-title">If you\'re curious</h3>' +
       '<p>' + escapeHtml(title) + "</p>" +
       (why ? '<p class="coach-next-action__why"><strong>Why that may help:</strong> ' + escapeHtml(why) + "</p>" : "") +
       '<p class="coach-muted">Suggestions only — your original file is unchanged.</p>' +

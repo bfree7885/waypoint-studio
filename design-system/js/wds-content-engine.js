@@ -462,7 +462,7 @@
           '<h3 class="wce-field-note__title">' + escapeHtml(n.title) + "</h3>" +
           '<p class="wce-field-note__body">' + escapeHtml(n.body) + "</p>" +
           (facts ? '<ul class="wce-field-note__facts">' + facts + "</ul>" : "") +
-          (n.tryThis ? '<p class="wce-field-note__try"><span class="wce-field-note__try-label">Try this</span>' + escapeHtml(n.tryThis) + "</p>" : "") +
+          (n.tryThis ? '<p class="wce-field-note__try"><span class="wce-field-note__try-label">If you\'re curious</span>' + escapeHtml(n.tryThis) + "</p>" : "") +
         "</article>"
       );
     }).join("");
@@ -605,7 +605,7 @@
           '<div class="ws-video-feature__body">' +
             '<h3 class="wds-display-md ws-video-feature__title" id="wce-vid-title">' + escapeHtml(v.title) + "</h3>" +
             '<p class="wds-body">' + escapeHtml(v.summary) + "</p>" +
-            (v.outdoorChallenge ? '<p class="ws-video-feature__assignment"><strong>Worth noticing outdoors:</strong> ' + escapeHtml(v.outdoorChallenge) + "</p>" : "") +
+            (v.outdoorChallenge ? '<p class="ws-video-feature__noticing"><strong>Worth noticing outdoors:</strong> ' + escapeHtml(v.outdoorChallenge) + "</p>" : "") +
           "</div>" +
         "</article>" +
       "</section>"

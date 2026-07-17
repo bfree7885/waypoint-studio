@@ -350,9 +350,9 @@
     var outingHtml = outingRec
       ? "<p>" + esc(outingRec.recommendation) + "</p>" +
         (outingRec.wasRepeated
-          ? '<p class="pp-muted">Continues an ongoing focus rather than a new assignment.</p>'
+          ? '<p class="pp-muted">Continues an ongoing focus rather than a new prompt.</p>'
           : "")
-      : '<p class="pp-empty">Finish a multi-photo shoot to receive a short next-outing suggestion.</p>';
+      : '<p class="pp-empty">After a multi-photo shoot, a short next-outing suggestion may appear here.</p>';
 
     var historyHtml = recent.length
       ? '<ul class="pp-control-list">' +

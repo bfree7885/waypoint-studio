@@ -149,6 +149,9 @@ Avoid unless safety/technical: must · homework · streak · complete today’s 
 
 Safety, legality, and wildlife ethics stay clear and direct.
 
+Full editorial voice: [Waypoint Voice](WAYPOINT-VOICE.md).  
+Information presentation: [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md) · Guide Cards (`WDS.guideCard`).
+
 ---
 
 ## Components to share next

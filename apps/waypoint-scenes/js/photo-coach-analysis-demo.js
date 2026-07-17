@@ -1008,64 +1008,95 @@
   function buildNarrative(signals, exif, outdoor, overall, genre, prioritized) {
     var parts = [];
     var genreLabel = genre && !genre.uncertain ? genre.label.toLowerCase() : signals.orientation + " outdoor";
-    parts.push("This " + genreLabel + " frame");
+    var G = global.WDS && global.WDS.aiGuide;
+    parts.push("I noticed a " + genreLabel + " frame");
     if (signals.megapixels) parts.push("(" + signals.megapixels + " MP)");
-    parts.push("reads as a " + (overall >= 78 ? "confident keeper" : overall >= 68 ? "solid field capture" : "learning exposure"));
+    parts.push(
+      "that reads as " +
+        (overall >= 78
+          ? "a confident keeper"
+          : overall >= 68
+            ? "a solid field capture"
+            : "an exploratory frame — still interesting to study")
+    );
     if (prioritized.topStrengths[0]) {
       parts.push("— strongest signal: " + prioritized.topStrengths[0].title.toLowerCase() + ".");
     } else {
       parts.push(".");
     }
     if (prioritized.primary) {
-      parts.push("Improve first: " + prioritized.primary.issue.toLowerCase() + ".");
+      parts.push(
+        "Worth noticing first: " +
+          prioritized.primary.issue.toLowerCase() +
+          ". Here's why it may matter for this image."
+      );
     } else {
-      parts.push("No high-confidence flaw stood out — refine gently rather than over-editing.");
+      parts.push("Nothing loud stood out as a flaw — refine gently if you want, rather than over-editing.");
     }
     if (outdoor && outdoor.daylight && outdoor.daylight.goldenHour) {
-      parts.push("Field context places this near golden hour — lean into that light.");
+      parts.push("Field context places this near golden hour — that light may be worth leaning into.");
     }
     if (exif && exif.focalLengthMm) {
-      parts.push("At " + exif.focalLengthMm + "mm, lens choice shaped compression and background separation.");
+      parts.push(
+        "At " +
+          exif.focalLengthMm +
+          "mm, lens choice likely shaped compression and background separation."
+      );
     }
-    return parts.join(" ");
+    parts.push("You decide what, if anything, to try next.");
+    var text = parts.join(" ");
+    return G && G.softenOutput ? G.softenOutput(text) : text;
   }
 
   function buildLearningConcept(signals, outdoor, prioritized, genre) {
+    var G = global.WDS && global.WDS.aiGuide;
+    var concept;
     if (prioritized.primary) {
-      return {
+      concept = {
         title: prioritized.primary.category,
         lesson: prioritized.primary.whyItMatters,
         practice: prioritized.primary.whatToDo
       };
-    }
-    if (genre && !genre.uncertain) {
-      return {
+    } else if (genre && !genre.uncertain) {
+      concept = {
         title: genre.label + " priorities",
-        lesson: "In " + genre.label.toLowerCase() + " work, viewers decide in seconds whether the subject is clear. Protect that clarity before decorative edits.",
-        practice: "Squint at the image — if the subject disappears, simplify."
+        lesson:
+          "In " +
+          genre.label.toLowerCase() +
+          " work, viewers often decide in seconds whether the subject is clear. Protecting that clarity usually matters more than decorative edits.",
+        practice: "If you're curious, squint at the image — if the subject disappears, simplify."
+      };
+    } else {
+      concept = {
+        title: "Visual weight",
+        lesson:
+          "Bright, sharp, and warm areas carry weight. It can help when the heaviest area matches your intended subject.",
+        practice: "If you're curious, squint at the image — what shape remains? That is often the true composition."
       };
     }
-    return {
-      title: "Visual weight",
-      lesson: "Bright, sharp, and warm areas carry weight. Make sure the heaviest area is your intended subject.",
-      practice: "Squint at the image — what shape remains? That is your true composition."
-    };
+    if (G) {
+      if (concept.lesson && G.softenOutput) concept.lesson = G.softenOutput(concept.lesson);
+      if (concept.practice && G.invite) concept.practice = G.invite(concept.practice);
+    }
+    return concept;
   }
 
   function buildChallenge(signals, outdoor, genre, prioritized) {
+    var G = global.WDS && global.WDS.aiGuide;
+    var tip;
     if (prioritized.primary && prioritized.primary.category === "Subject emphasis") {
-      return "Re-shoot with a simpler background within 50 steps — same subject, fewer competing edges.";
+      tip = "try a simpler background within about 50 steps — same subject, fewer competing edges.";
+    } else if (outdoor && outdoor.daylight && outdoor.daylight.goldenHour) {
+      tip =
+        "return in golden hour and make two frames of the same subject with the sun beside you, then behind you — compare shadow direction.";
+    } else if (genre && genre.label === "Landscape") {
+      tip = "make another frame from about half your current height with one deliberate foreground anchor.";
+    } else if (signals.contrast < 32) {
+      tip = "wait for clearer air or softer directional light and remake the frame without changing position.";
+    } else {
+      tip = "isolate one subject against the simplest background you can find within about 50 steps.";
     }
-    if (outdoor && outdoor.daylight && outdoor.daylight.goldenHour) {
-      return "Return in golden hour and shoot the same subject with the sun beside you, then behind you — compare shadow direction.";
-    }
-    if (genre && genre.label === "Landscape") {
-      return "Re-shoot from half your current height with one deliberate foreground anchor.";
-    }
-    if (signals.contrast < 32) {
-      return "Wait for clearer air or softer directional light and reshoot without changing position.";
-    }
-    return "Isolate one subject against the simplest background you can find within 50 steps.";
+    return G && G.invite ? G.invite(tip) : "If you're curious, " + tip;
   }
 
   function buildSceneSuggestion(signals, outdoor, overall) {

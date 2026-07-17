@@ -73,7 +73,7 @@
     return (
       '<section class="fc-section fc-today" id="today" aria-labelledby="fc-today-title">' +
         '<p class="fc-section__eyebrow">Today · actionable guidance</p>' +
-        '<h2 class="fc-section__title" id="fc-today-title">What should I do today?</h2>' +
+        '<h2 class="fc-section__title" id="fc-today-title">What’s worth noticing today?</h2>' +
         '<p class="fc-section__lead">Synthesized from your region, weather, season, property features, and goals — not a feed of articles.</p>' +
         '<ol class="fc-today__list">' + actions + "</ol>" +
         setup +
@@ -316,8 +316,8 @@
     return (
       '<section class="fc-section" id="learn" aria-labelledby="fc-learn-title">' +
         '<p class="fc-section__eyebrow">Learn</p>' +
-        '<h2 class="fc-section__title" id="fc-learn-title">Three lessons before you walk</h2>' +
-        '<p class="fc-section__lead">Conditions matter as much as species names. Study during the week; test your reading on the ground this weekend.</p>' +
+        '<h2 class="fc-section__title" id="fc-learn-title">Three things worth reading before you walk</h2>' +
+        '<p class="fc-section__lead">Conditions matter as much as species names. Read when it helps; notice on the ground when you go.</p>' +
         '<div class="fc-lesson-grid">' + cards + "</div>" +
       "</section>"
     );
@@ -364,7 +364,7 @@
         '<details class="wce-methodology">' +
           '<summary class="wce-methodology__summary" id="fc-how-title">How Waypoint works</summary>' +
           '<div class="wce-methodology__body">' +
-            '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm lessons, and private-by-default observations. ' +
+            '<p class="wds-body">Waypoint Studio is a regional field-guide studio — outdoor knowledge, calm interpretation, and private-by-default observations. ' +
             "The references below are for contributors and builders.</p>" +
             '<p class="wds-caption">No accounts, no feeds, no scoreboards. ' +
             "Contributor documentation lives in the repository <code>docs/</code> folder.</p>" +
@@ -518,7 +518,7 @@
 
         mount.innerHTML = renderPage(data);
         mount.removeAttribute("aria-busy");
-        document.title = "ForageCast — What should I do today?";
+        document.title = "ForageCast — What’s worth noticing today?";
         if (window.ForageCastBoot) {
           ForageCastBoot.bindRegionChange(mount, function () {
             loadHome(window.WDS && WDS.location ? WDS.location.getState() : null);

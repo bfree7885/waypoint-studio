@@ -699,7 +699,7 @@ def generate_content():
         "The one-square-meter biodiversity lesson",
         "Tracking seasonal leaf-out with a fixed compass bearing",
         "What research briefs owe field teachers",
-        "Building a classroom herbarium without over-collecting",
+        "Building a field herbarium without over-collecting",
         "Night sky preservation and trailhead lighting choices",
         "When citizen datasets help — and when they harm",
         "Returning to the same place until it feels like kin",

@@ -1,0 +1,108 @@
+/**
+ * Waypoint Guide Experience — quiet field-note presentation.
+ * @see docs/WAYPOINT-GUIDE-EXPERIENCE.md
+ */
+
+.wds-guide-card {
+  --wds-guide-rule: color-mix(in srgb, var(--wds-border-subtle) 85%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-5);
+  padding: var(--wds-space-5) 0;
+  border-top: 1px solid var(--wds-guide-rule);
+  border-bottom: 1px solid var(--wds-guide-rule);
+  max-width: 40rem;
+}
+
+.wds-guide-card--inset {
+  padding: var(--wds-space-5);
+  border: 1px solid var(--wds-guide-rule);
+  border-radius: var(--wds-radius-md);
+  background: color-mix(in srgb, var(--wds-surface-raised, var(--wds-navy-800)) 55%, transparent);
+}
+
+.wds-guide-card__eyebrow {
+  margin: 0 0 var(--wds-space-2);
+  font-size: var(--wds-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wds-text-secondary);
+  font-weight: 500;
+}
+
+.wds-guide-card__section {
+  margin: 0;
+}
+
+.wds-guide-card__title {
+  margin: 0 0 var(--wds-space-2);
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: var(--wds-text-xl, 1.35rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--wds-text-primary);
+}
+
+.wds-guide-card__body {
+  margin: 0;
+  font-size: var(--wds-text-sm);
+  line-height: 1.55;
+  color: var(--wds-text-secondary);
+}
+
+.wds-guide-card__body--lead {
+  font-size: var(--wds-text-base, 1rem);
+  color: var(--wds-text-primary);
+}
+
+.wds-guide-card__list {
+  margin: var(--wds-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-2);
+}
+
+.wds-guide-card__list a,
+.wds-guide-card__list span {
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-secondary);
+  text-decoration: none;
+}
+
+.wds-guide-card__list a:hover,
+.wds-guide-card__list a:focus-visible {
+  color: var(--wds-text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.wds-guide-card__uncertainty {
+  margin: var(--wds-space-2) 0 0;
+  font-size: var(--wds-text-xs);
+  color: var(--wds-text-secondary);
+  font-style: italic;
+}
+
+.wds-guide-card__safety {
+  margin: 0;
+  padding: var(--wds-space-3) 0 0;
+  border-top: 1px solid var(--wds-guide-rule);
+  font-size: var(--wds-text-sm);
+  color: var(--wds-text-primary);
+  font-weight: 500;
+}
+
+/* Stack of guide beats without full card chrome */
+.wds-guide-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-6);
+  max-width: 42rem;
+}
+
+.wds-guide-stack__beat + .wds-guide-stack__beat {
+  padding-top: var(--wds-space-5);
+  border-top: 1px solid var(--wds-guide-rule);
+}

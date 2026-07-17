@@ -125,7 +125,7 @@
           lines.map(function (l) { return "<li>" + escapeHtml(l) + "</li>"; }).join("") +
         "</ul>" +
         (ctx.challenge
-          ? '<p class="coach-outdoor-context__challenge"><strong>Today\'s mission:</strong> ' + escapeHtml(ctx.challenge) + "</p>"
+          ? '<p class="coach-outdoor-context__challenge"><strong>Worth noticing today:</strong> ' + escapeHtml(ctx.challenge) + "</p>"
           : "") +
         (ctx.critiquePrep
           ? '<p class="coach-outdoor-context__prep muted">Critique context: ' +
