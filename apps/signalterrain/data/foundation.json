@@ -3,17 +3,20 @@
   "title": "SignalTerrain",
   "eyebrow": "Waypoint Studio · Understand the world's signals",
   "status": "foundation",
-  "lead": "A calm intelligence platform for observing, understanding, and connecting signals across radio, cybersecurity awareness, infrastructure, and research — not an SDR gadget drawer, not a cyber dashboard, not a SIEM.",
-  "mission": "Help people observe, understand, and connect signals from the modern world so they leave knowing more than when they arrived.",
+  "lead": "A coherent intelligence platform for observing, understanding, and connecting signals — Unified Intelligence Objects, living knowledge graph, and calm summaries. Not a news feed, not a SIEM, not IDS/IPS.",
+  "mission": "Help people answer what changed, why it matters, who is affected, and what should happen next.",
   "principles": [
+    "Four questions: what changed, why it matters, who is affected, what should happen next",
     "Evidence, context, and historical perspective over fear or hype",
     "Everything important becomes a topic that evolves",
     "Everything is connected — the living knowledge graph accumulates",
-    "Relationships connect workspaces — RF, cyber, infrastructure, research",
+    "Events normalize into Unified Intelligence Objects",
+    "Recommendations guide — they never auto-execute",
+    "Relationships connect workspaces — RF, cyber, infrastructure, research, geopolitical",
     "Transparency: confidence, unknowns, sources, Waypoint Analysis",
     "Audio, receivers, and precise locations stay local first",
     "Never fabricate signals, incidents, or threat claims",
-    "Educational cyber awareness only — not scanning, offense, or a SOC",
+    "Educational cyber awareness only — not scanning, offense, SOC, IDS, or IPS",
     "Not another RSS reader — curated understanding over endless feeds"
   ],
   "capabilityGroups": [
@@ -39,6 +42,16 @@
     }
   ],
   "modules": [
+    {
+      "title": "Intelligence Core",
+      "status": "foundation",
+      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces — architecture first, no IDS/IPS."
+    },
+    {
+      "title": "Intelligence Summary",
+      "status": "live",
+      "description": "Concise daily intelligence prototype — summarizes sample events, does not scroll feeds."
+    },
     {
       "title": "Living knowledge graph",
       "status": "live",
@@ -97,6 +110,7 @@
   ],
   "routes": [
     { "path": "/", "label": "SignalTerrain home", "ready": true },
+    { "path": "summary.html", "label": "Intelligence summary", "ready": true },
     { "path": "topics.html", "label": "Topics", "ready": true },
     { "path": "graph.html", "label": "Knowledge graph", "ready": true },
     { "path": "/receivers/", "label": "Receivers", "ready": false },

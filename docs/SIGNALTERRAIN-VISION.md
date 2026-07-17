@@ -102,14 +102,19 @@ No sensationalism.
 | [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md) | Relationship engine |
 | [SIGNALTERRAIN-EDITORIAL-STANDARDS.md](SIGNALTERRAIN-EDITORIAL-STANDARDS.md) | SignalTerrain editorial rules |
 | [SIGNALTERRAIN_PLAYBOOK.md](SIGNALTERRAIN_PLAYBOOK.md) | Product standards |
+| [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) | Intelligence Core — four questions, UIO |
+| [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 (IDS/IPS late) |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Shared SI platform vision |
 
 **Naming note:** Studio-wide [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) and [EDITORIAL-STANDARDS.md](EDITORIAL-STANDARDS.md) remain the studio canon. SignalTerrain-specific architecture and editorial live in the `SIGNALTERRAIN-*` docs above (this work block’s deliverables without overwriting studio files).
 
-Demo: `apps/signalterrain/topics.html` · Graph: `apps/signalterrain/graph.html`.  
-Package: `design-system/signalterrain/`.
+Demo: `apps/signalterrain/topics.html` · Graph: `apps/signalterrain/graph.html` · Summary: `apps/signalterrain/summary.html`.  
+Package: `design-system/signalterrain/` · Intelligence Core: `design-system/signalterrain/intelligence/`.
 
-Living graph docs: [KNOWLEDGE-GRAPH.md](KNOWLEDGE-GRAPH.md) · [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) · [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) · [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md).
+Living graph docs: [KNOWLEDGE-GRAPH.md](KNOWLEDGE-GRAPH.md) · [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) · [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) · [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md).  
+Intelligence Core: [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) · [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md).
+
+UIOs are **time-bound intelligence events**. Topics are **durable entities**. Correlation links both. See [Intelligence Core](SIGNALTERRAIN-INTELLIGENCE-CORE.md).
 
 ---
 

@@ -801,6 +801,10 @@
         "docs/RELATIONSHIP-TYPES.md",
         "docs/TOPIC-LIFECYCLE.md",
         "docs/RESEARCH-INTEGRATION.md",
+        "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md",
+        "docs/SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md",
+        "docs/SIGNALTERRAIN-CORRELATION-ENGINE.md",
+        "docs/SIGNALTERRAIN-RECOMMENDATIONS.md",
         "docs/SIGNALTERRAIN_PLAYBOOK.md"
       ],
       "plannedSharedEngines": [],

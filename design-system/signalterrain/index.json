@@ -15,13 +15,17 @@
       "docs/RELATIONSHIP-TYPES.md",
       "docs/TOPIC-LIFECYCLE.md",
       "docs/RESEARCH-INTEGRATION.md",
+      "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md",
+      "docs/SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md",
+      "docs/SIGNALTERRAIN-CORRELATION-ENGINE.md",
+      "docs/SIGNALTERRAIN-RECOMMENDATIONS.md",
       "docs/SIGNALTERRAIN_PLAYBOOK.md",
       "docs/SIGNAL-INTELLIGENCE-VISION.md"
     ]
   },
   "package": {
     "id": "signalterrain-foundation",
-    "label": "SignalTerrain Foundation + Living Knowledge Graph",
+    "label": "SignalTerrain Foundation + Living Knowledge Graph + Intelligence Core",
     "path": "design-system/signalterrain/"
   },
   "artifacts": {
@@ -32,11 +36,14 @@
     "platformSystems": "platform-systems.json",
     "demoGraph": "samples/demo-graph.json",
     "livingGraph": "samples/living-graph.json",
+    "intelligenceCore": "intelligence/",
     "topicsRuntime": "../js/signalterrain/wds-signalterrain-topics.js",
     "graphRuntime": "../js/signalterrain/wds-signalterrain-graph.js",
+    "summaryRuntime": "../js/signalterrain/wds-signalterrain-summary.js",
     "css": "../css/wds-signalterrain-foundation.css",
     "topicsSurface": "../../apps/signalterrain/topics.html",
-    "graphSurface": "../../apps/signalterrain/graph.html"
+    "graphSurface": "../../apps/signalterrain/graph.html",
+    "summarySurface": "../../apps/signalterrain/summary.html"
   },
   "inherits": [
     "signal-intelligence",

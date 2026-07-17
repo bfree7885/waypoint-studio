@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/provider/v0.1",
+  "title": "SignalTerrain Intelligence Provider Interface v0.1",
+  "description": "Contract for future ingestion providers. No live connectors in V0.1 — declare shape only.",
+  "type": "object",
+  "required": [
+    "id",
+    "label",
+    "domain",
+    "status",
+    "capabilities",
+    "honesty",
+    "normalizeContract"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^prov_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "label": { "type": "string", "maxLength": 200 },
+    "domain": {
+      "type": "string",
+      "enum": ["cyber", "infrastructure", "geopolitical", "radio", "cross"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["designed", "stub", "preview", "active", "retired"]
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "advisory-ingest",
+          "vulnerability-catalog",
+          "status-page",
+          "space-weather",
+          "receiver-log-normalize",
+          "editorial-bundle",
+          "correlation-hints"
+        ]
+      }
+    },
+    "honesty": {
+      "type": "object",
+      "required": ["neverFabricate", "labelSamples", "noExploitPayloads"],
+      "additionalProperties": false,
+      "properties": {
+        "neverFabricate": { "type": "boolean", "const": true },
+        "labelSamples": { "type": "boolean", "const": true },
+        "noExploitPayloads": { "type": "boolean", "const": true },
+        "notes": { "type": "string", "maxLength": 800 }
+      }
+    },
+    "normalizeContract": {
+      "type": "object",
+      "required": ["input", "output"],
+      "additionalProperties": false,
+      "properties": {
+        "input": {
+          "type": "string",
+          "description": "Description of accepted raw payload kinds."
+        },
+        "output": {
+          "type": "string",
+          "const": "uio[]"
+        },
+        "mapsToSchema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+        }
+      }
+    },
+    "freshnessExpectation": {
+      "type": "string",
+      "enum": ["live-window", "hours", "days", "manual", "unknown"]
+    },
+    "catalogSourceIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional links into signal-intelligence sources-catalog.json."
+    }
+  }
+}

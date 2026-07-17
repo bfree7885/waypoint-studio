@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-17",
+    "disclaimer": "Sample recommendations only. Never auto-execute."
+  },
+  "recommendations": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/recommendation/v0.1",
+        "status": "sample",
+        "disclaimer": "Defensive guidance sample — human decides."
+      },
+      "id": "rec_sample-apply-patch",
+      "title": "Apply Contoso OS patches when available (sample)",
+      "why": "Sample exploitation reports and vendor patches elevate the value of timely updates for Contoso OS demo systems.",
+      "who": ["Homelab operators", "Small-org IT", "Contoso OS admins (demo)"],
+      "priority": "high",
+      "evidence": [
+        {
+          "text": "Sample vendor patch event uio_sample-vendor-patch",
+          "url": null
+        },
+        {
+          "text": "Sample active exploitation note uio_sample-active-exploitation",
+          "url": null
+        }
+      ],
+      "action": "Review the vendor bulletin, apply available patches in a tested window, and verify backups beforehand. No automatic execution.",
+      "expectedDuration": "1–4 hours depending on estate size (demo framing)",
+      "dependencies": ["Access to vendor updates", "Backup verification"],
+      "confidence": "speculative",
+      "unknowns": ["No real inventory mapping.", "Fictional vendor."],
+      "relatedUioIds": [
+        "uio_sample-vendor-patch",
+        "uio_sample-active-exploitation",
+        "uio_sample-new-cve"
+      ],
+      "relatedTopicIds": ["st_cve-sample-2024-0001", "st_vendor-sample-contoso"],
+      "expiresAt": null,
+      "autoExecute": false
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/recommendation/v0.1",
+        "status": "sample",
+        "disclaimer": "Backup hygiene sample."
+      },
+      "id": "rec_sample-backup-verify",
+      "title": "Verify offline backups (healthcare theme sample)",
+      "why": "Ransomware themes targeting healthcare make backup integrity a calm priority — whether or not this sample campaign is real.",
+      "who": ["Healthcare IT (demo audience)", "Operators responsible for restore drills"],
+      "priority": "moderate",
+      "evidence": [
+        {
+          "text": "Sample ransomware healthcare UIO",
+          "url": null
+        }
+      ],
+      "action": "Confirm recent backups completed, that restore has been tested, and that at least one copy is offline or immutable where your practice allows.",
+      "expectedDuration": "30–90 minutes for a restore check (demo)",
+      "dependencies": ["Backup system access"],
+      "confidence": "moderate",
+      "unknowns": ["No environment-specific assessment."],
+      "relatedUioIds": ["uio_sample-ransomware-healthcare"],
+      "relatedTopicIds": ["st_mitigation-sample-patch-hygiene"],
+      "expiresAt": null,
+      "autoExecute": false
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/recommendation/v0.1",
+        "status": "sample",
+        "disclaimer": "Phishing hygiene sample."
+      },
+      "id": "rec_sample-phishing-hygiene",
+      "title": "Expect geopolitical lure themes in email (sample)",
+      "why": "Sample intelligence notes phishing themes that borrow current-event language.",
+      "who": ["All users", "Mail administrators"],
+      "priority": "low",
+      "evidence": [
+        {
+          "text": "Sample phishing theme UIO",
+          "url": null
+        }
+      ],
+      "action": "Slow down on unexpected attachments and credential prompts; verify unusual requests out-of-band. No offensive analysis required.",
+      "expectedDuration": "Ongoing awareness",
+      "dependencies": [],
+      "confidence": "speculative",
+      "unknowns": ["No measured campaign volume."],
+      "relatedUioIds": ["uio_sample-phishing-geo-theme"],
+      "relatedTopicIds": [],
+      "expiresAt": null,
+      "autoExecute": false
+    }
+  ]
+}

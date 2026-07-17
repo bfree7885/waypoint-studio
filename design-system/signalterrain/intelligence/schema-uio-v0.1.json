@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/uio/v0.1",
+  "title": "SignalTerrain Unified Intelligence Object v0.1",
+  "description": "Normalized intelligence event for SignalTerrain. Answers what changed, why it matters, who is affected. Not a news article, SOC alert, or exploit record. Collectors are not shipped in V0.1.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "title",
+    "summary",
+    "domain",
+    "category",
+    "confidence",
+    "severity",
+    "source",
+    "firstSeen",
+    "updated",
+    "whyItMatters",
+    "unknowns"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["sample", "draft", "active", "expired", "archived"]
+        },
+        "providerId": { "type": ["string", "null"] },
+        "aiAssisted": { "type": "boolean" },
+        "disclaimer": { "type": "string", "maxLength": 1024 }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^uio_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": { "type": "string", "maxLength": 200 },
+    "summary": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "What changed — one calm paragraph."
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["cyber", "infrastructure", "geopolitical", "radio"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Domain-specific category id (e.g. cyber.kev, infra.cloud-outage)."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low", "speculative", "insufficient"]
+    },
+    "trustLabel": {
+      "type": "string",
+      "enum": ["very-high", "high", "moderate", "limited", "preliminary", "unknown"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "notice", "elevated", "high", "critical"],
+      "description": "Attention urgency — not CVSS theater."
+    },
+    "source": {
+      "type": "object",
+      "required": ["label", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string", "maxLength": 256 },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "government-advisory",
+            "vendor-advisory",
+            "vulnerability-catalog",
+            "status-page",
+            "space-weather-bulletin",
+            "receiver-log",
+            "editorial-curation",
+            "educational-sample",
+            "osint-curated",
+            "other"
+          ]
+        },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "retrievedAt": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string", "maxLength": 256 },
+          "url": { "type": ["string", "null"], "format": "uri" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 64 }
+    },
+    "affectedSystems": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 200 }
+    },
+    "industries": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 128 }
+    },
+    "geographicScope": {
+      "type": ["string", "null"],
+      "maxLength": 256
+    },
+    "firstSeen": { "type": "string", "format": "date-time" },
+    "updated": { "type": "string", "format": "date-time" },
+    "expiration": { "type": ["string", "null"], "format": "date-time" },
+    "whyItMatters": { "type": "string", "maxLength": 1200 },
+    "unknowns": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "maxLength": 400 }
+    },
+    "relatedEventIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^uio_" }
+    },
+    "topicIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^st_" }
+    },
+    "recommendationIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^rec_" }
+    },
+    "correlationPatternIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

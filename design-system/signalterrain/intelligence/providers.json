@@ -1,0 +1,107 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Designed provider stubs for Intelligence Core V0.1 — no live connectors.",
+  "providers": [
+    {
+      "id": "prov_editorial-bundle",
+      "label": "Editorial curated bundle",
+      "domain": "cross",
+      "status": "designed",
+      "capabilities": ["editorial-bundle", "correlation-hints"],
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Human-curated JSON bundles for digests and demos."
+      },
+      "normalizeContract": {
+        "input": "Curated JSON bundle of draft UIO records",
+        "output": "uio[]",
+        "mapsToSchema": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+      },
+      "freshnessExpectation": "manual",
+      "catalogSourceIds": []
+    },
+    {
+      "id": "prov_cisa-advisory",
+      "label": "CISA advisories (future)",
+      "domain": "cyber",
+      "status": "designed",
+      "capabilities": ["advisory-ingest"],
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Read-only cited advisories when connector ships."
+      },
+      "normalizeContract": {
+        "input": "Cited advisory documents / feeds",
+        "output": "uio[]",
+        "mapsToSchema": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+      },
+      "freshnessExpectation": "hours",
+      "catalogSourceIds": ["cisa", "government-advisories"]
+    },
+    {
+      "id": "prov_nvd-catalog",
+      "label": "NVD vulnerability catalog (future)",
+      "domain": "cyber",
+      "status": "designed",
+      "capabilities": ["vulnerability-catalog"],
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "CVE metadata only — never attach exploit code."
+      },
+      "normalizeContract": {
+        "input": "CVE catalog records",
+        "output": "uio[]",
+        "mapsToSchema": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+      },
+      "freshnessExpectation": "hours",
+      "catalogSourceIds": ["nvd"]
+    },
+    {
+      "id": "prov_cloud-status",
+      "label": "Cloud status pages (future)",
+      "domain": "infrastructure",
+      "status": "designed",
+      "capabilities": ["status-page"],
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Public status pages only."
+      },
+      "normalizeContract": {
+        "input": "Public provider status payloads",
+        "output": "uio[]",
+        "mapsToSchema": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+      },
+      "freshnessExpectation": "live-window",
+      "catalogSourceIds": ["cloud-status-pages"]
+    },
+    {
+      "id": "prov_noaa-space-weather",
+      "label": "NOAA space weather (future)",
+      "domain": "radio",
+      "status": "designed",
+      "capabilities": ["space-weather"],
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Preferred early connector — lower misuse risk."
+      },
+      "normalizeContract": {
+        "input": "Space-weather bulletins",
+        "output": "uio[]",
+        "mapsToSchema": "https://waypoint.studio/schemas/signalterrain/uio/v0.1"
+      },
+      "freshnessExpectation": "hours",
+      "catalogSourceIds": ["noaa-space-weather"]
+    }
+  ]
+}

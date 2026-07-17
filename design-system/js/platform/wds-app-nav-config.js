@@ -376,6 +376,11 @@
           "id": "graph",
           "label": "Knowledge graph",
           "href": "apps/signalterrain/graph.html"
+        },
+        {
+          "id": "summary",
+          "label": "Intelligence summary",
+          "href": "apps/signalterrain/summary.html"
         }
       ]
     },

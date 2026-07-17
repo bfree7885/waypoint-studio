@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "asOf": "2026-07-17",
+    "title": "Intelligence Summary",
+    "subtitle": "Today — concise intelligence, not a feed",
+    "disclaimer": "Educational prototype summary built from sample UIOs. Not live intelligence."
+  },
+  "fourQuestions": [
+    "What changed?",
+    "Why does it matter?",
+    "Who is affected?",
+    "What should happen next?"
+  ],
+  "bullets": [
+    {
+      "text": "Active ransomware campaign themes targeting healthcare.",
+      "uioId": "uio_sample-ransomware-healthcare",
+      "domain": "cyber"
+    },
+    {
+      "text": "Vendor released critical patches (sample Contoso).",
+      "uioId": "uio_sample-vendor-patch",
+      "domain": "cyber"
+    },
+    {
+      "text": "Maritime disruption affecting commercial shipping.",
+      "uioId": "uio_sample-maritime-disruption",
+      "domain": "geopolitical"
+    },
+    {
+      "text": "New government advisory published (sample).",
+      "uioId": "uio_sample-cisa-alert",
+      "domain": "cyber"
+    },
+    {
+      "text": "Increased phishing activity themes using current geopolitical events.",
+      "uioId": "uio_sample-phishing-geo-theme",
+      "domain": "cyber"
+    }
+  ],
+  "nextActions": [
+    "rec_sample-apply-patch",
+    "rec_sample-backup-verify",
+    "rec_sample-phishing-hygiene"
+  ],
+  "correlationHighlights": [
+    "pattern_vuln_exploit_patch",
+    "pattern_geo_shipping_cyber"
+  ]
+}

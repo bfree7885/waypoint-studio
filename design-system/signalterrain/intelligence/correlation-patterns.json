@@ -1,0 +1,67 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Correlation pattern library for Intelligence Core V0.1. Educational chains — not autonomous attribution.",
+  "docs": ["docs/SIGNALTERRAIN-CORRELATION-ENGINE.md"],
+  "patterns": [
+    {
+      "id": "pattern_geo_shipping_cyber",
+      "label": "Geopolitical → maritime → advisory → CVE",
+      "domainPath": ["geopolitical", "infrastructure", "cyber"],
+      "steps": [
+        "geo.military-conflict",
+        "geo.maritime-disruption",
+        "infra.communications-disruption",
+        "cyber.cisa-alert",
+        "cyber.cve"
+      ],
+      "exampleChain": [
+        "uio_sample-geo-conflict",
+        "uio_sample-maritime-disruption",
+        "uio_sample-cisa-alert",
+        "uio_sample-related-cve"
+      ],
+      "confidenceCeiling": "speculative",
+      "editorialGate": true,
+      "answers": ["What changed?", "Why does it matter?", "Who is affected?"]
+    },
+    {
+      "id": "pattern_vuln_exploit_patch",
+      "label": "Vulnerability → exploitation → patch → mitigation",
+      "domainPath": ["cyber"],
+      "steps": [
+        "cyber.cve",
+        "cyber.active-exploitation",
+        "cyber.vendor-advisory",
+        "mitigation"
+      ],
+      "exampleChain": [
+        "uio_sample-new-cve",
+        "uio_sample-active-exploitation",
+        "uio_sample-vendor-patch",
+        "rec_sample-apply-patch"
+      ],
+      "confidenceCeiling": "moderate",
+      "editorialGate": true,
+      "answers": [
+        "What changed?",
+        "Why does it matter?",
+        "Who is affected?",
+        "What should happen next?"
+      ]
+    },
+    {
+      "id": "pattern_spacewx_radio",
+      "label": "Space weather → radio / communications",
+      "domainPath": ["infrastructure", "radio"],
+      "steps": ["infra.space-weather", "radio.amateur", "radio.receiver-log"],
+      "exampleChain": [
+        "uio_sample-space-weather",
+        "st_freq-146-52-fm"
+      ],
+      "confidenceCeiling": "moderate",
+      "editorialGate": false,
+      "answers": ["What changed?", "Why does it matter?", "Who is affected?"]
+    }
+  ]
+}

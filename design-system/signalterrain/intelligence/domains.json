@@ -1,0 +1,79 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Intelligence domains for SignalTerrain Core. Structured events — not news articles.",
+  "fourQuestions": [
+    "What changed?",
+    "Why does it matter?",
+    "Who is affected?",
+    "What should happen next?"
+  ],
+  "domains": [
+    {
+      "id": "cyber",
+      "label": "Cyber Intelligence",
+      "status": "architecture",
+      "categories": [
+        "cyber.cve",
+        "cyber.kev",
+        "cyber.vendor-advisory",
+        "cyber.malware",
+        "cyber.ransomware",
+        "cyber.threat-actor",
+        "cyber.cisa-alert",
+        "cyber.active-exploitation"
+      ],
+      "notGoals": ["Scanning", "Offensive tooling", "SIEM replacement"]
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure Intelligence",
+      "status": "blueprint",
+      "categories": [
+        "infra.internet-outage",
+        "infra.cloud-outage",
+        "infra.power-outage",
+        "infra.communications-disruption",
+        "infra.space-weather"
+      ],
+      "notGoals": ["NOC replacement", "Fake outage invention"]
+    },
+    {
+      "id": "geopolitical",
+      "label": "Geopolitical Intelligence",
+      "status": "blueprint",
+      "categories": [
+        "geo.military-conflict",
+        "geo.maritime-disruption",
+        "geo.sanctions",
+        "geo.supply-chain",
+        "geo.international-incident"
+      ],
+      "notGoals": [
+        "Partisan news",
+        "Op-ed product",
+        "Speculation as fact"
+      ],
+      "notes": "Structured intelligence events only — separate reporting from interpretation."
+    },
+    {
+      "id": "radio",
+      "label": "Radio Intelligence",
+      "status": "blueprint",
+      "categories": [
+        "radio.sdr-observation",
+        "radio.receiver-log",
+        "radio.noaa",
+        "radio.aviation",
+        "radio.marine",
+        "radio.amateur",
+        "radio.ais",
+        "radio.ads-b"
+      ],
+      "notGoals": [
+        "Illegal monitoring encouragement",
+        "Advanced demodulator product identity"
+      ]
+    }
+  ]
+}

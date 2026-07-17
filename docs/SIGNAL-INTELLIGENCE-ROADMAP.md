@@ -29,6 +29,8 @@ People open SignalTerrain (and later Dashboard glances) and leave more aware —
 | **V3** | Module depth | Expand honest modules one at a time (radio conditions, cloud status, …) | Per-module |
 | **Later** | Broader source mesh | NVD/CISA/status pages/BGP/outage providers as designed — only when editorial capacity exists | Gradual |
 
+**Also see:** SignalTerrain [Intelligence Core roadmap](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) (UIO → correlation → relevance → inventory → passive IDS → recommendations → bounded IPS).
+
 ---
 
 ## V1 deliverables (this work block)

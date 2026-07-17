@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-17",
+    "tagline": "What changed? Why does it matter? Who is affected? What should happen next?",
+    "docs": [
+      "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md",
+      "docs/SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md",
+      "docs/SIGNALTERRAIN-CORRELATION-ENGINE.md",
+      "docs/SIGNALTERRAIN-RECOMMENDATIONS.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-intelligence-core",
+    "label": "SignalTerrain Intelligence Core",
+    "path": "design-system/signalterrain/intelligence/"
+  },
+  "artifacts": {
+    "uioSchema": "schema-uio-v0.1.json",
+    "recommendationSchema": "schema-recommendation-v0.1.json",
+    "providerSchema": "schema-provider-v0.1.json",
+    "domains": "domains.json",
+    "providers": "providers.json",
+    "correlationPatterns": "correlation-patterns.json",
+    "uioSample": "samples/uio-bundle.sample.json",
+    "recommendationSample": "samples/recommendations.sample.json",
+    "summarySample": "samples/intelligence-summary.sample.json",
+    "summaryRuntime": "../../js/signalterrain/wds-signalterrain-summary.js",
+    "summarySurface": "../../../apps/signalterrain/summary.html"
+  },
+  "inherits": [
+    "signalterrain-foundation",
+    "signal-intelligence",
+    "waypoint-trust"
+  ],
+  "notInScopeV01": [
+    "Live ingestion connectors",
+    "IDS",
+    "IPS",
+    "Automatic remediation",
+    "News feed product",
+    "Offensive tooling"
+  ]
+}

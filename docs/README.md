@@ -19,6 +19,10 @@
 | [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) | Canonical relationship type catalog |
 | [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) | How topics are born, evolve, and gain confidence |
 | [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md) | Research enriches topics instead of living apart |
+| [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) | Intelligence Core V0.1 — four questions, UIO, architecture |
+| [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
+| [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
+| [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
 | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
 | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |

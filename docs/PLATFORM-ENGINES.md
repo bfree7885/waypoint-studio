@@ -126,8 +126,9 @@ Examples for future work: internet/cloud/CDN status · GPS interference · space
 | Artifact | Path |
 |----------|------|
 | SignalTerrain foundation | `design-system/signalterrain/` |
-| Vision / topic / relationship docs | [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) et al. |
-| Topics demo | `apps/signalterrain/topics.html` |
+| Intelligence Core V0.1 | `design-system/signalterrain/intelligence/` |
+| Vision / topic / relationship / core docs | [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) · [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) |
+| Topics / graph / summary demos | `apps/signalterrain/{topics,graph,summary}.html` |
 
 ---
 

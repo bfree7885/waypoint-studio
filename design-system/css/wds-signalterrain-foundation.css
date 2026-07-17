@@ -410,3 +410,106 @@
   padding: 0.75rem 1rem 1rem;
   margin-bottom: 1rem;
 }
+
+/* Intelligence Summary prototype */
+.st-summary-questions ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--st-muted);
+}
+
+.st-summary-questions h2 {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+  margin: 0 0 0.45rem;
+}
+
+.st-summary-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.05fr) minmax(280px, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .st-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.st-summary-today {
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  padding: 1rem 1.1rem 1.25rem;
+}
+
+.st-summary-today h2 {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+  margin: 1rem 0 0.5rem;
+}
+
+.st-summary-today h2:first-child {
+  margin-top: 0;
+}
+
+.st-summary-bullets,
+.st-summary-recs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.st-summary-bullets li,
+.st-summary-recs li {
+  padding: 0.45rem 0;
+  border-top: 1px solid var(--st-line);
+}
+
+.st-summary-bullets li:first-child,
+.st-summary-recs li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.st-summary-bullet {
+  font: inherit;
+  text-align: left;
+  border: 0;
+  background: none;
+  padding: 0.15rem 0;
+  cursor: pointer;
+  color: var(--st-ink);
+  line-height: 1.4;
+}
+
+.st-summary-bullet.is-selected {
+  box-shadow: inset 3px 0 0 var(--st-accent);
+  padding-left: 0.55rem;
+}
+
+.st-domain {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+  margin-right: 0.35rem;
+}
+
+.st-summary-foot {
+  margin-top: 1.25rem;
+}
+
+.st-summary-foot a {
+  color: var(--st-muted);
+}

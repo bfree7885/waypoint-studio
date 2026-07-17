@@ -32,6 +32,13 @@
       "job": "Expand neighbors, filter, search, and read living timelines."
     },
     {
+      "id": "summary",
+      "label": "Intelligence summary",
+      "path": "/summary.html",
+      "status": "foundation",
+      "job": "Concise daily intelligence — not a news feed."
+    },
+    {
       "id": "watch",
       "label": "Watch",
       "path": "/watch/",

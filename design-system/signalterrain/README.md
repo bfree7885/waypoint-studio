@@ -7,6 +7,7 @@ Canonical docs:
 
 - [SIGNALTERRAIN-VISION.md](../../docs/SIGNALTERRAIN-VISION.md)
 - [KNOWLEDGE-GRAPH.md](../../docs/KNOWLEDGE-GRAPH.md)
+- [SIGNALTERRAIN-INTELLIGENCE-CORE.md](../../docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md)
 - [RELATIONSHIP-TYPES.md](../../docs/RELATIONSHIP-TYPES.md)
 - [TOPIC-LIFECYCLE.md](../../docs/TOPIC-LIFECYCLE.md)
 - [RESEARCH-INTEGRATION.md](../../docs/RESEARCH-INTEGRATION.md)
@@ -29,8 +30,11 @@ Canonical docs:
 | Living knowledge graph | `samples/living-graph.json` |
 | Topics runtime | `../js/signalterrain/wds-signalterrain-topics.js` |
 | Graph runtime | `../js/signalterrain/wds-signalterrain-graph.js` |
+| Summary runtime | `../js/signalterrain/wds-signalterrain-summary.js` |
 | Topics UI | `../../apps/signalterrain/topics.html` |
 | Graph explorer | `../../apps/signalterrain/graph.html` |
+| Intelligence Summary | `../../apps/signalterrain/summary.html` |
+| Intelligence Core | `intelligence/` |
 
 ## Developer rules
 
@@ -45,7 +49,7 @@ Canonical docs:
 
 ## Demo path
 
-1. Open `apps/signalterrain/graph.html`  
-2. Start on the sample CVE  
-3. Expand neighbors through vendor → advisory → research → actor → history → mitigation → technology → future  
-4. Filter relationship types / confidence; search the graph; read the living timeline
+1. Open `apps/signalterrain/summary.html` — concise Intelligence Summary  
+2. Open `apps/signalterrain/graph.html` — expand the CVE correlation neighborhood  
+3. Open `apps/signalterrain/topics.html` — durable topic detail  
+4. Read `docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md` for the four questions and UIO architecture
