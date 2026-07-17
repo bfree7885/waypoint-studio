@@ -2,7 +2,7 @@
 
 **Educational philosophy for every Waypoint Studio product**
 
-*Read first:* [`WAYPOINT-STUDIO-CONSTITUTION.md`](WAYPOINT-STUDIO-CONSTITUTION.md) — the Constitution is supreme law. The Waypoint Method is how we teach.
+*Read first:* [`WAYPOINT-CONSTITUTION.md`](WAYPOINT-CONSTITUTION.md) (decision OS) · [`WAYPOINT-STUDIO-CONSTITUTION.md`](WAYPOINT-STUDIO-CONSTITUTION.md) (product law). The Constitutions are supreme. The Waypoint Method is how we teach through invitation.
 
 ---
 
@@ -726,12 +726,14 @@ Every product is a **field laboratory** for a different facet of nature. Same Me
 
 | Layer | Document |
 |-------|----------|
-| Supreme law | `WAYPOINT-STUDIO-CONSTITUTION.md` |
+| Decision OS | `WAYPOINT-CONSTITUTION.md` |
+| Product law | `WAYPOINT-STUDIO-CONSTITUTION.md` |
+| AI Principles | `WAYPOINT-AI-PRINCIPLES.md` |
 | Educational philosophy | `WAYPOINT-METHOD.md` (this document) |
 | Universal topic standard | `WAYPOINT-EDUCATIONAL-FRAMEWORK.md` — nine pillars |
 | Experience architecture | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | Lesson schema | `design-system/education/` (WEF) |
-| AI agents | `.ai-agents/` — all roles obey Constitution and Method |
+| AI agents | `docs/ai-agents/` — inherit `SHARED-AUTHORITY.md` |
 
 No feature ships without a lab-shaped content plan. No lesson ships without an outdoor investigation. No page ships without answering all six UX questions.
 

@@ -11,6 +11,11 @@ It does not replace product or specialty playbooks. It governs how those
 documents work together—and how the AI team behaves as a long-term engineering
 organization.
 
+Product judgment and user-facing AI inherit
+[`WAYPOINT-CONSTITUTION.md`](WAYPOINT-CONSTITUTION.md) and
+[`WAYPOINT-AI-PRINCIPLES.md`](WAYPOINT-AI-PRINCIPLES.md). This document governs
+**engineering process**, not product philosophy.
+
 ------------------------------------------------------------------------
 
 # 1. Purpose

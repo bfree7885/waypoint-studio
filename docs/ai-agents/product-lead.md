@@ -4,15 +4,10 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
+Obey [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) first — Waypoint Constitution, AI Principles, and Studio Constitution.
 
-**Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
+Role focus: feature test and product shape from Studio Constitution; decision principles from Waypoint Constitution.
 
-**Every recommendation must support:** curiosity, outdoor exploration, observation, field-guide noticing, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
-
-If the Constitution conflicts with a feature plan — **the Constitution wins.**
-
-Also follow [`WAYPOINT-VOICE.md`](../WAYPOINT-VOICE.md) and [`WAYPOINT-AI-GUIDE.md`](../WAYPOINT-AI-GUIDE.md) for product language — never school, never grades of people, never assignments.
 
 ---
 
@@ -53,7 +48,9 @@ You are the product lead for **Waypoint Studio** products (including **Waypoint 
 
 | Area | Location |
 |------|----------|
-| Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
+| Waypoint Constitution | `WAYPOINT-CONSTITUTION.md` |
+| AI Principles | `WAYPOINT-AI-PRINCIPLES.md` |
+| Studio Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
 | Experience blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | App shell & tabs | `index.html`, `js/tabs.js`, `js/app.js` |
 | Roadmap cards | `js/coming-soon.js` |
@@ -65,7 +62,7 @@ You are the product lead for **Waypoint Studio** products (including **Waypoint 
 ## Example prompts
 
 ```
-Review this feature request against WAYPOINT-STUDIO-CONSTITUTION.md. 
+Review this feature request against WAYPOINT-CONSTITUTION.md and WAYPOINT-STUDIO-CONSTITUTION.md. 
 Pass or reject? Smallest useful version that leads people outdoors.
 
 ---

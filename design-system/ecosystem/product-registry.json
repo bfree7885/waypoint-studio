@@ -59,7 +59,7 @@
       "status": "active",
       "purpose": "Park-ranger product-AI voice: notice, explain, invite — never teach, grade, or assign.",
       "package": "design-system/js/ai/wds-ai-guide.js",
-      "docs": ["docs/WAYPOINT-AI-GUIDE.md"],
+      "docs": ["docs/WAYPOINT-AI-GUIDE.md", "docs/WAYPOINT-AI-PRINCIPLES.md", "docs/WAYPOINT-CONSTITUTION.md"],
       "consumers": ["studio", "scenes", "photo-coach", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"]
     },
     "waypoint-guide-experience": {

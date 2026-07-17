@@ -4,13 +4,8 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
+Obey [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) first — Waypoint Constitution, AI Principles, and Studio Constitution.
 
-**Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
-
-**Every recommendation must support:** learning, outdoor exploration, observation, education, field guide style, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
-
-If a passing feature violates the Constitution — **fail it.**
 
 ---
 

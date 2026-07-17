@@ -37,6 +37,7 @@ function run() {
   assert("aiGuide attached", !!(G && G.version));
   assert("systemPreamble mentions ranger", /ranger/i.test(G.systemPreamble()));
   assert("systemPreamble rejects grading", /not a teacher|grading system/i.test(G.systemPreamble()));
+  assert("systemPreamble inherits constitution", /Constitution|AI Principles/i.test(G.systemPreamble()));
   assert(
     "buildSystemPrompt appends product instructions",
     G.buildSystemPrompt("Product tip.").indexOf("Product tip.") > 0

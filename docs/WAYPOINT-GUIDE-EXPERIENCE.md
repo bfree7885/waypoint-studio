@@ -222,6 +222,8 @@ If any answer is no, revise.
 
 ## Related documents
 
+- [Waypoint Constitution](WAYPOINT-CONSTITUTION.md)  
+- [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)  
 - [Waypoint Voice](WAYPOINT-VOICE.md)  
 - [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md)  
 - [Waypoint Product Framework](WAYPOINT-PRODUCT-FRAMEWORK.md)  

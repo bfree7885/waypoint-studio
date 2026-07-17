@@ -168,6 +168,8 @@ If the answer to 1–4 is no, revise.
 
 ## Related documents
 
+- [Waypoint Constitution](WAYPOINT-CONSTITUTION.md)  
+- [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)  
 - [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md) — how information is presented (field-guide pattern)  
 - [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) — product AI interaction principles (park-ranger voice)  
 - [Waypoint Voice Audit 2026-07](WAYPOINT-VOICE-AUDIT-2026-07.md)  

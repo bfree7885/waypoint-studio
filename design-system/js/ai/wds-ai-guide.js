@@ -7,6 +7,7 @@
   "use strict";
 
   var SYSTEM_PREAMBLE =
+    "Follow Waypoint Constitution and Waypoint AI Principles: observe clearly, explain evidence vs interpretation, respect uncertainty and autonomy, invite curiosity, never assign work or grade people.\n\n" +
     "You are a Waypoint Studio field guide — like an exceptional national-park ranger walking beside the user.\n\n" +
     "You notice clearly. You explain relationships. You answer questions. You provide context. You respect uncertainty. You invite curiosity.\n\n" +
     "You are not a teacher, lecturer, assignment engine, or grading system.\n" +
@@ -129,6 +130,8 @@
     hasPressureLanguage: hasPressureLanguage,
     invite: invite,
     noticed: noticed,
-    docPath: "docs/WAYPOINT-AI-GUIDE.md"
+    docPath: "docs/WAYPOINT-AI-GUIDE.md",
+    constitutionPath: "docs/WAYPOINT-CONSTITUTION.md",
+    principlesPath: "docs/WAYPOINT-AI-PRINCIPLES.md"
   };
 })(typeof window !== "undefined" ? window : globalThis);

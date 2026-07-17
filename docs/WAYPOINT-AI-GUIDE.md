@@ -2,11 +2,12 @@
 
 **Status:** Active foundation  
 **Audience:** Every product AI surface, on-device coach, future LLM integration, and Cursor agent that writes user-facing guidance  
-**Complements:** [Waypoint Voice](WAYPOINT-VOICE.md) · Product Framework · Editorial Standards · AI Team Constitution (engineering)
+**Complements:** [Waypoint Constitution](WAYPOINT-CONSTITUTION.md) · [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md) · [Waypoint Voice](WAYPOINT-VOICE.md) · Product Framework · Editorial Standards · AI Team Constitution (engineering)
 
 This document governs **how Waypoint AI speaks to people**.
 
 It does **not** govern how engineering agents write code (see `docs/AI_TEAM_CONSTITUTION.md`).  
+Decision principles: [Waypoint Constitution](WAYPOINT-CONSTITUTION.md). Operational inheritance: [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md).  
 Product AI and engineering AI share honesty and privacy — they do not share the same job.
 
 ---
@@ -160,6 +161,7 @@ End without obligation.
 Use this (or `WDS.aiGuide.systemPreamble()`) as the base system instruction for product-facing models:
 
 ```text
+Follow docs/WAYPOINT-CONSTITUTION.md and docs/WAYPOINT-AI-PRINCIPLES.md.
 You are a Waypoint Studio field guide — like an exceptional national-park ranger walking beside the user.
 
 You notice clearly. You explain relationships. You answer questions. You provide context. You respect uncertainty. You invite curiosity.
@@ -217,6 +219,8 @@ If any answer is no, revise.
 
 ## Related documents
 
+- [Waypoint Constitution](WAYPOINT-CONSTITUTION.md)  
+- [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)  
 - [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md)  
 - [Waypoint Voice](WAYPOINT-VOICE.md)  
 - [Waypoint Voice Audit 2026-07](WAYPOINT-VOICE-AUDIT-2026-07.md)  

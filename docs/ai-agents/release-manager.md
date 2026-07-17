@@ -4,13 +4,8 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
+Obey [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) first — Waypoint Constitution, AI Principles, and Studio Constitution.
 
-**Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, or technology for technology's sake.
-
-**Every recommendation must support:** learning, outdoor exploration, observation, education, field guide style, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
-
-Release notes and README copy must reflect the Constitution — not feature laundry lists alone.
 
 ---
 
@@ -31,7 +26,7 @@ You prepare **Waypoint Studio** products for commits and releases — clear mess
 - Summarize **why** (mission impact) not just **what** in commit messages
 - Keep commits focused — one concern per commit when possible
 - Update root `README.md` when user-facing behavior changes
-- Ensure `docs/ai-agents/` and `docs/WAYPOINT-STUDIO-CONSTITUTION.md` stay discoverable
+- Ensure `docs/ai-agents/SHARED-AUTHORITY.md`, `docs/WAYPOINT-CONSTITUTION.md`, and `docs/WAYPOINT-STUDIO-CONSTITUTION.md` stay discoverable
 - Warn about secrets (`.env`, keys) before commit
 - Release notes mention Learn, Gallery, and field experience — not only Tools
 
@@ -40,7 +35,7 @@ You prepare **Waypoint Studio** products for commits and releases — clear mess
 1. Constitution compliance review (Product Lead or QA tone pass)
 2. QA pass (see `qa-tester.md`)
 3. README accurate — run command, mission, primary rooms/tabs
-4. `docs/WAYPOINT-STUDIO-CONSTITUTION.md` linked from README and `docs/ai-agents/README.md`
+4. `docs/WAYPOINT-CONSTITUTION.md` and `docs/ai-agents/SHARED-AUTHORITY.md` linked from README and `docs/ai-agents/README.md`
 5. No debug logs or broken hidden tabs
 6. Gallery assets and field notes documented
 7. Changelog / release notes drafted (Observe. Understand. Create. Share.)
@@ -83,7 +78,7 @@ Mention Gallery, Field Guide, and Tools.
 
 ---
 
-Update README to link WAYPOINT-STUDIO-CONSTITUTION.md and design-system blueprint.
+Update README to link WAYPOINT-CONSTITUTION.md, SHARED-AUTHORITY.md, and design-system blueprint.
 
 ---
 

@@ -1,5 +1,11 @@
 # Waypoint Studio Constitution
 
+**Complements:** [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md) (shared decision OS) · [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)
+
+This document is **product law**: mission, rooms, privacy, feature test, and visual character.
+
+Decision principles that govern every AI interaction and recommendation live in [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md). Both apply. On judgment, autonomy, evidence, attention, and ethics, the Waypoint Constitution leads. On product shape and privacy defaults, this document leads.
+
 ## Mission
 
 Observe. Understand. Create. Share.
@@ -33,7 +39,7 @@ The guidance cycle is:
 
 Curiosity may lead people outside. Nothing requires them to go.
 
-See also: [Waypoint Voice](WAYPOINT-VOICE.md) · [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) · [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md).
+See also: [Waypoint Constitution](WAYPOINT-CONSTITUTION.md) · [Waypoint Voice](WAYPOINT-VOICE.md) · [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) · [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md).
 
 ## Every Product Must Include
 
@@ -174,6 +180,6 @@ Also evaluate against the [Waypoint Outdoor Ethics Standard](WAYPOINT-OUTDOOR-ET
 
 ## Final Rule
 
-This Constitution is the highest authority for Waypoint Studio.
+Together with [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md), this document is highest authority for Waypoint Studio products.
 
-If future designs, AI suggestions, product plans, or features conflict with this document, this document wins.
+If future designs, AI suggestions, product plans, or features conflict with these Constitutions, **the Constitutions win**.

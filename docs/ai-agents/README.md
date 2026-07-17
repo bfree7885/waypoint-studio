@@ -4,17 +4,21 @@
 
 This folder defines focused AI roles for building **Waypoint Studio** products inside Cursor. Copy an agent file into context (`@.ai-agents/product-lead.md`) or paste its example prompt to stay on mission.
 
-**Waypoint Scenes** is the current runnable app: Living Scene, Parallax, Collections, Field Guide, and Export — plain HTML/CSS/JS, no build step. All agents serve the wider Waypoint Studio ecosystem defined in [`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md), [`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md), and [`ECOSYSTEM-BLUEPRINT.md`](../ECOSYSTEM-BLUEPRINT.md).
+**Every agent inherits** [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) → [Waypoint Constitution](../WAYPOINT-CONSTITUTION.md) · [AI Principles](../WAYPOINT-AI-PRINCIPLES.md) · [Studio Constitution](../WAYPOINT-STUDIO-CONSTITUTION.md).
+
+**Waypoint Scenes** is the current runnable app: Living Scene, Parallax, Collections, Field Guide, and Export — plain HTML/CSS/JS, no build step. Ecosystem context: [`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md), [`ECOSYSTEM-BLUEPRINT.md`](../ECOSYSTEM-BLUEPRINT.md).
 
 ---
 
 ## Supreme authority — read first
 
-Before making suggestions or writing code, **every agent** must read and obey:
+Before making suggestions or writing code, **every agent** must obey:
 
-1. **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** — supreme law  
-2. **[`WAYPOINT-METHOD.md`](../WAYPOINT-METHOD.md)** — educational philosophy and learning cycle  
-3. **[`WAYPOINT-VOICE.md`](../WAYPOINT-VOICE.md)** · **[`WAYPOINT-AI-GUIDE.md`](../WAYPOINT-AI-GUIDE.md)** · **[`WAYPOINT-GUIDE-EXPERIENCE.md`](../WAYPOINT-GUIDE-EXPERIENCE.md)** — how guidance speaks and how information is presented (never teacher/grader)
+1. **[`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md)** — inheritance entry point  
+2. **[`WAYPOINT-CONSTITUTION.md`](../WAYPOINT-CONSTITUTION.md)** — shared decision OS (ten principles)  
+3. **[`WAYPOINT-AI-PRINCIPLES.md`](../WAYPOINT-AI-PRINCIPLES.md)** — product AI behavior  
+4. **[`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)** — product shape, privacy, feature test  
+5. As needed: Voice · AI Guide · Guide Experience · Method · Outdoor Ethics  
 
 ### Reject
 
@@ -23,23 +27,21 @@ Ideas that make Waypoint Studio feel like:
 - social media
 - a startup dashboard
 - enterprise software
+- a classroom or grading system
+- an engagement / addiction product
 - technology for technology's sake
 
 ### Every recommendation must support
 
-- learning
-- outdoor exploration
-- observation
-- education
-- field guide style
-- photography
-- diagrams or visuals where useful
-- field notes
-- videos, news, and articles where appropriate
+- curiosity and observation
+- outdoor exploration (optional, never forced)
+- field-guide style noticing
+- photography and visuals where useful
+- field notes, news, and articles where appropriate
 - optional citizen science
 - the mission: **Observe. Understand. Create. Share.**
 
-### Feature test (from the Constitution)
+### Feature test
 
 Before proposing any feature, ask: Does this help someone observe, understand, create, share, spend more time outdoors, learn something meaningful, or understand connections in nature? If not, do not build it yet.
 
@@ -47,7 +49,7 @@ Before proposing any feature, ask: Does this help someone observe, understand, c
 
 Every Waypoint Studio product must include, in some form: **Home · Learn · Gallery · Field Notes · News · Videos · Tools**. The tool is important; it is not the whole product.
 
-If the Constitution conflicts with a design, AI suggestion, or product plan — **the Constitution wins**.
+If a suggestion conflicts with the Constitutions — **the Constitutions win**.
 
 ---
 
@@ -59,7 +61,7 @@ If the Constitution conflicts with a design, AI suggestion, or product plan — 
 | **Frontend Designer** | [frontend-designer.md](./frontend-designer.md) | Field-guide aesthetic, photography-first UI, warm cabin tone |
 | **Frontend Engineer** | [frontend-engineer.md](./frontend-engineer.md) | HTML/CSS/JS implementation — seven rooms, not dashboard widgets |
 | **Motion Engineer** | [motion-engineer.md](./motion-engineer.md) | Calm natural motion — atmosphere, not gimmicks |
-| **Education Editor** | [education-editor.md](./education-editor.md) | Learn content, WEF lessons, outdoor field exercises |
+| **Education Editor** | [education-editor.md](./education-editor.md) | Learn content, WEF topics, optional outdoor noticing |
 | **QA Tester** | [qa-tester.md](./qa-tester.md) | Manual test plans; verify mission and Constitution compliance |
 | **Release Manager** | [release-manager.md](./release-manager.md) | Commits, release notes, launch checklist |
 
@@ -139,7 +141,7 @@ Verify      →  QA Tester checklist + Constitution compliance before launch
 
 ### Day-to-day loop
 
-1. **Read** [`WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md)
+1. **Read** [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) (Constitutions + AI Principles)
 2. **Run locally**
    ```bash
    python3 -m http.server 8080
@@ -171,7 +173,10 @@ Verify      →  QA Tester checklist + Constitution compliance before launch
 | Gallery | `js/photography.js`, `js/photography-data.js`, `assets/Images/` |
 | Learn | `js/learn-content.js`, `js/learn.js`, `#tab-learn` |
 | Tools / Export | `js/export.js`, `#tab-export` |
-| Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
+| Constitution (decision OS) | `docs/WAYPOINT-CONSTITUTION.md` |
+| AI Principles | `docs/WAYPOINT-AI-PRINCIPLES.md` |
+| Studio Constitution | `docs/WAYPOINT-STUDIO-CONSTITUTION.md` |
+| Shared agent authority | `docs/ai-agents/SHARED-AUTHORITY.md` |
 | Waypoint Method | `WAYPOINT-METHOD.md` |
 | Experience blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 

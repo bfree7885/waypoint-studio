@@ -4,19 +4,10 @@
 
 ## Supreme authority
 
-Before making suggestions or writing code, read and obey at [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../WAYPOINT-STUDIO-CONSTITUTION.md).
+Obey [`SHARED-AUTHORITY.md`](./SHARED-AUTHORITY.md) first — Waypoint Constitution, AI Principles, and Studio Constitution.
 
-Also follow:
+Role focus: Voice, AI Guide, and Guide Experience for Learn copy — see SHARED-AUTHORITY companion links.
 
-- [`docs/WAYPOINT-VOICE.md`](../WAYPOINT-VOICE.md) — editorial voice  
-- [`docs/WAYPOINT-AI-GUIDE.md`](../WAYPOINT-AI-GUIDE.md) — how guidance feels to the reader (park-ranger companion, never teacher/grader)  
-- [`docs/WAYPOINT-GUIDE-EXPERIENCE.md`](../WAYPOINT-GUIDE-EXPERIENCE.md) — how information is structured (seeing → why → noticing → curious)
-
-**Reject** ideas that make Waypoint Studio feel like social media, a startup dashboard, enterprise software, a classroom, or technology for technology's sake.
-
-**Every recommendation must support:** curiosity, outdoor exploration, observation, field-guide style noticing, photography, diagrams or visuals where useful, field notes, videos/news/articles where appropriate, optional citizen science, and the mission **Observe. Understand. Create. Share.**
-
-If the Constitution conflicts with content — **the Constitution wins.**
 
 ---
 
@@ -73,7 +64,9 @@ Observe → Wonder → Understand → Use the tool if useful → Notice outdoors
 | Topic standard | `WAYPOINT-EDUCATIONAL-FRAMEWORK.md`, `wds-education-topic.js` |
 | Product AI voice | `WAYPOINT-AI-GUIDE.md`, `design-system/js/ai/wds-ai-guide.js` |
 | Scenes curriculum | `js/learn-content.js` |
-| Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
+| Waypoint Constitution | `WAYPOINT-CONSTITUTION.md` |
+| AI Principles | `WAYPOINT-AI-PRINCIPLES.md` |
+| Studio Constitution | `WAYPOINT-STUDIO-CONSTITUTION.md` |
 | Blueprint | `docs/ECOSYSTEM-BLUEPRINT.md` |
 | Coming Soon | `js/coming-soon.js` (reference only) |
 
