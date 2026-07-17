@@ -9,6 +9,12 @@
 | [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) | Shared intelligence engines map |
 | [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) | Landscape Interpretation Engine v0.1 — schemas & philosophy |
 | [LANDSCAPE-INTERPRETATION-INTEGRATIONS.md](LANDSCAPE-INTERPRETATION-INTEGRATIONS.md) | How apps will consume landscape stories |
+| [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) | SignalTerrain product identity — understand the world's signals |
+| [SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md](SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md) | Workspaces, shared systems, topic platform |
+| [SIGNALTERRAIN-TOPIC-MODEL.md](SIGNALTERRAIN-TOPIC-MODEL.md) | Topic schema & knowledge structure |
+| [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md) | Relationship engine |
+| [SIGNALTERRAIN-EDITORIAL-STANDARDS.md](SIGNALTERRAIN-EDITORIAL-STANDARDS.md) | SignalTerrain editorial rules (extends studio standards) |
+| [SIGNALTERRAIN_PLAYBOOK.md](SIGNALTERRAIN_PLAYBOOK.md) | SignalTerrain product playbook |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
 | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
 | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |

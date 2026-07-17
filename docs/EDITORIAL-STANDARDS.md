@@ -68,18 +68,21 @@ Full process: [Waypoint Editorial Standards](WAYPOINT-EDITORIAL-STANDARDS.md).
 
 ## 5. Political / geopolitical / cyber material
 
-For intelligence-adjacent products (e.g. SignalTerrain):
+For intelligence-adjacent products (e.g. SignalTerrain), see also
+[SIGNALTERRAIN-EDITORIAL-STANDARDS.md](SIGNALTERRAIN-EDITORIAL-STANDARDS.md).
 
-- Separate reporting from interpretation  
-- Cite originals  
-- Represent uncertainty  
-- Avoid partisan framing  
-- Do not present speculation as fact  
-- Include competing credible interpretations when evidence is disputed  
-- Make dates and freshness prominent  
-- Distinguish event reporting, analysis, and scenario assessment  
-- Avoid fear-based language  
-- Remain defensive, educational, lawful, and non-operational  
+- Separate reporting from interpretation
+- Cite originals
+- Represent uncertainty
+- Avoid partisan framing
+- Do not present speculation as fact
+- Include competing credible interpretations when evidence is disputed
+- Make dates and freshness prominent
+- Distinguish event reporting, analysis, and scenario assessment
+- Avoid fear-based language
+- Remain defensive, educational, lawful, and non-operational
+- Do not present open-web rumor as verified intelligence
+- Never ship exploit PoCs or attack procedures in product surfaces
 
 ---
 

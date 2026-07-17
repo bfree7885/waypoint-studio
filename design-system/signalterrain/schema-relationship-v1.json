@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/relationship/v1",
+  "title": "SignalTerrain Relationship Edge v1",
+  "description": "Typed edge between SignalTerrain topics. Awareness connections only — never exploit procedures.",
+  "type": "object",
+  "required": ["id", "from", "to", "type", "label", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^str_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "from": {
+      "type": "string",
+      "pattern": "^st_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "to": {
+      "type": "string",
+      "pattern": "^st_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "type": { "type": "string" },
+    "label": { "type": "string", "maxLength": 200 },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low", "speculative"]
+    },
+    "notes": { "type": ["string", "null"], "maxLength": 600 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string", "maxLength": 256 },
+          "url": { "type": ["string", "null"], "format": "uri" }
+        }
+      }
+    }
+  }
+}

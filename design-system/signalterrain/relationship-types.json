@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Typed relationships for SignalTerrain topics. Connect naturally; never force denseness or attribution theater.",
+  "types": [
+    {
+      "id": "related-to",
+      "label": "Related to",
+      "description": "General useful association."
+    },
+    {
+      "id": "affects",
+      "label": "Affects",
+      "description": "A condition or event impacts another topic."
+    },
+    {
+      "id": "exploits-or-involves",
+      "label": "Involves (literacy)",
+      "description": "Campaign or actor literacy link to a vulnerability topic. Never stores exploit steps."
+    },
+    {
+      "id": "advises-on",
+      "label": "Advises on",
+      "description": "Advisory or guidance about a topic."
+    },
+    {
+      "id": "observed-on",
+      "label": "Observed on",
+      "description": "Frequency or signal context association."
+    },
+    {
+      "id": "documents",
+      "label": "Documents",
+      "description": "Paper, RFC, or standard documents a topic."
+    },
+    {
+      "id": "operates",
+      "label": "Operates",
+      "description": "Organization or actor operates a capability — awareness framing."
+    },
+    {
+      "id": "uses-protocol",
+      "label": "Uses protocol",
+      "description": "System or service uses a protocol."
+    },
+    {
+      "id": "depends-on",
+      "label": "Depends on",
+      "description": "Infrastructure or technical dependency."
+    },
+    {
+      "id": "located-in",
+      "label": "Located in",
+      "description": "Geographic or jurisdictional framing."
+    },
+    {
+      "id": "part-of",
+      "label": "Part of",
+      "description": "Component or membership."
+    },
+    {
+      "id": "see-also",
+      "label": "See also",
+      "description": "Editorial cross-reference."
+    },
+    {
+      "id": "historically-related",
+      "label": "Historically related",
+      "description": "Past connection useful for context."
+    },
+    {
+      "id": "watch-with",
+      "label": "Watch with",
+      "description": "Calm co-monitoring suggestion."
+    }
+  ]
+}

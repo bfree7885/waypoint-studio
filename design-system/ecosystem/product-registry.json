@@ -750,13 +750,13 @@
     "signalterrain": {
       "slug": "signalterrain",
       "portfolioTier": "module",
-      "portfolioRole": "Observatory for invisible environments \u2014 Signal Intelligence home (engine architecture v0.1)",
+      "portfolioRole": "Intelligence platform home \u2014 understand the world's signals (topic foundation)",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
-      "hero": "Observe what you cannot see",
+      "hero": "Understand the world's signals",
       "eyebrow": "Signal Intelligence",
-      "lead": "A calm observatory for invisible environments \u2014 radio and spectrum awareness today, with room later for educational cyber situational awareness. Clarity and privacy over noise.",
-      "description": "SignalTerrain is the studio home for Signal Intelligence: RF listening and logging foundations now; educational cyber awareness planned \u2014 not an enterprise SOC.",
+      "lead": "Observe, understand, and connect signals across radio, cybersecurity awareness, infrastructure, and research. Evidence and calm analysis over fear, hype, or endless feeds.",
+      "description": "SignalTerrain is the studio home for Signal Intelligence: a shared topic and relationship foundation for RF, cyber literacy, infrastructure, and research \u2014 not a scanner, SIEM, or RSS reader.",
       "studioHref": "../../",
       "toolHref": "apps/signalterrain/",
       "toolLabel": "Open SignalTerrain",
@@ -790,10 +790,18 @@
         "optIn": true
       },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": [
-        "signal-intelligence"
+      "package": "design-system/signalterrain/",
+      "docs": [
+        "docs/SIGNALTERRAIN-VISION.md",
+        "docs/SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md",
+        "docs/SIGNALTERRAIN-TOPIC-MODEL.md",
+        "docs/SIGNALTERRAIN-RELATIONSHIP-MODEL.md",
+        "docs/SIGNALTERRAIN-EDITORIAL-STANDARDS.md",
+        "docs/SIGNALTERRAIN_PLAYBOOK.md"
       ],
+      "plannedSharedEngines": [],
       "sharedEngines": [
+        "signal-intelligence",
         "mapping-observation",
         "waypoint-knowledge-curated",
         "worth-noticing",

@@ -18,6 +18,13 @@
       "job": "Answer what changed and what is stable at a glance."
     },
     {
+      "id": "topics",
+      "label": "Topics",
+      "path": "/topics.html",
+      "status": "foundation",
+      "job": "Browse the shared topic graph and relationships (sample demo)."
+    },
+    {
       "id": "watch",
       "label": "Watch",
       "path": "/watch/",

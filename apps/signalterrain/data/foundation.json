@@ -1,46 +1,100 @@
 {
   "productId": "signalterrain",
   "title": "SignalTerrain",
-  "eyebrow": "Waypoint Studio · Signal Intelligence",
+  "eyebrow": "Waypoint Studio · Understand the world's signals",
   "status": "foundation",
-  "lead": "A calm observatory for invisible environments — radio situational awareness with private receivers, timelines, and maps. Home for Signal Intelligence Foundation V1 (architecture). Educational cyber awareness is planned later, not available yet.",
-  "mission": "Help operators, listeners, and careful learners observe RF environments without noise, rumor, or surveillance culture — guide like a park ranger, not a SOC.",
+  "lead": "A calm intelligence platform for observing, understanding, and connecting signals across radio, cybersecurity awareness, infrastructure, and research — not an SDR gadget drawer, not a cyber dashboard, not a SIEM.",
+  "mission": "Help people observe, understand, and connect signals from the modern world so they leave knowing more than when they arrived.",
   "principles": [
-    "Clarity over engagement metrics",
-    "Audio libraries stay local first",
-    "Receivers and sources stay modular",
-    "Shared receivers are opt-in and privacy-aware",
+    "Evidence, context, and historical perspective over fear or hype",
+    "Everything important becomes a topic that evolves",
+    "Relationships connect workspaces — RF, cyber, infrastructure, research",
+    "Transparency: confidence, unknowns, sources, Waypoint Analysis",
+    "Audio, receivers, and precise locations stay local first",
     "Never fabricate signals, incidents, or threat claims",
-    "Cyber tools, when built, stay educational — not an enterprise SOC"
+    "Educational cyber awareness only — not scanning, offense, or a SOC",
+    "Not another RSS reader — curated understanding over endless feeds"
   ],
   "capabilityGroups": [
     {
-      "title": "RF Intelligence",
+      "title": "RF",
       "status": "foundation",
-      "description": "Radio and spectrum awareness: receivers, logging, timelines, and geographic context. Future RF topics may include SDR, NOAA, amateur radio, ADS-B, AIS, satellites, and spectrum monitoring — only when honestly available."
+      "description": "Receivers, frequencies, propagation, logging, audio, and signal catalogs — literacy and private tools, not advanced intercept suites."
     },
     {
-      "title": "Cyber Intelligence",
-      "status": "planned",
-      "description": "Planned educational situational awareness for individuals and homelabs (advisories, outages, vulnerability literacy). Not shipped. Not a security operations center."
+      "title": "Cyber",
+      "status": "foundation",
+      "description": "Vulnerabilities, advisories, campaigns, and defensive knowledge as topics — awareness only. Not a scanner or SIEM."
+    },
+    {
+      "title": "Infrastructure",
+      "status": "blueprint",
+      "description": "Routing, cloud, communications, GPS, and disruptions as awareness topics when cited sources exist."
+    },
+    {
+      "title": "Research",
+      "status": "foundation",
+      "description": "Papers, standards, RFCs, government publications, and Waypoint knowledge linked into the topic graph."
     }
   ],
   "modules": [
-    { "title": "Receiver management", "status": "foundation", "description": "Keep a private registry of receivers, locations, and capabilities." },
-    { "title": "Incident timeline", "status": "foundation", "description": "Structured events with confidence and clear source notes." },
-    { "title": "Search", "status": "planned", "description": "Find incidents, audio, and transcripts in one place." },
-    { "title": "Mapping", "status": "planned", "description": "See receivers and incidents in geographic context." },
-    { "title": "Audio library", "status": "planned", "description": "Local audio with retention you control." },
-    { "title": "Transcription", "status": "planned", "description": "Optional transcripts — labeled clearly when assisted." },
-    { "title": "Extensions", "status": "foundation", "description": "Room for receivers, parsers, and exporters without locking you in." },
-    { "title": "Community receivers", "status": "planned", "description": "Opt-in shared receivers with anonymization options." },
-    { "title": "Cyber awareness view", "status": "planned", "description": "Future educational digest of advisories and infrastructure incidents — documentation only until built." }
+    {
+      "title": "Topic foundation",
+      "status": "foundation",
+      "description": "Shared topic model with overview, analysis, confidence, unknowns, and relationships across workspaces."
+    },
+    {
+      "title": "Relationship engine",
+      "status": "foundation",
+      "description": "Typed connections between technologies, advisories, frequencies, research, and more."
+    },
+    {
+      "title": "Sample topic graph",
+      "status": "live",
+      "description": "Educational demo: sample CVE, actor, advisory, frequency, propagation, and research paper."
+    },
+    {
+      "title": "Receiver management",
+      "status": "foundation",
+      "description": "Keep a private registry of receivers, locations, and capabilities."
+    },
+    {
+      "title": "Incident timeline",
+      "status": "foundation",
+      "description": "Structured events with confidence and clear source notes."
+    },
+    {
+      "title": "Shared platform systems",
+      "status": "foundation",
+      "description": "Contracts for collections, bookmarks, notes, tags, import/export, and future sync — local-first."
+    },
+    {
+      "title": "Search",
+      "status": "planned",
+      "description": "Find topics, incidents, audio, and transcripts in one place."
+    },
+    {
+      "title": "Mapping",
+      "status": "planned",
+      "description": "See receivers and incidents in geographic context."
+    },
+    {
+      "title": "Audio library",
+      "status": "planned",
+      "description": "Local audio with retention you control."
+    },
+    {
+      "title": "Watch & Library",
+      "status": "planned",
+      "description": "Calm attention lists and workspace library filters."
+    }
   ],
   "routes": [
     { "path": "/", "label": "SignalTerrain home", "ready": true },
+    { "path": "topics.html", "label": "Topics (foundation demo)", "ready": true },
     { "path": "/receivers/", "label": "Receivers", "ready": false },
     { "path": "/incidents/", "label": "Incident timeline", "ready": false },
     { "path": "/audio/", "label": "Audio library", "ready": false }
   ],
-  "dataModel": "Receivers, incidents, and audio stay on your device first. Nothing syncs until you choose a path that earns trust. Planned cyber surfaces must not invent events."
+  "dataModel": "Topics and relationships are the shared foundation. Receivers, incidents, notes, and audio stay on your device first. Nothing syncs until you choose a path that earns trust. Samples are labeled samples — never presented as live intelligence."
 }

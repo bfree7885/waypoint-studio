@@ -119,7 +119,15 @@ Examples for future work: internet/cloud/CDN status · GPS interference · space
 | Outdoor Intelligence | Weather / space-weather cross-links |
 | Landscape Interpretation | Terrain literacy for propagation teaching |
 
-**Cyber and expanded RF/infrastructure services remain architecture-only until real data paths exist — do not advertise them as available.**
+**Cyber and expanded RF/infrastructure services remain architecture-only until real data paths exist — do not advertise them as available.** Topic foundation demo (`apps/signalterrain/topics.html`) uses labeled samples only.
+
+### Product package
+
+| Artifact | Path |
+|----------|------|
+| SignalTerrain foundation | `design-system/signalterrain/` |
+| Vision / topic / relationship docs | [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) et al. |
+| Topics demo | `apps/signalterrain/topics.html` |
 
 ---
 

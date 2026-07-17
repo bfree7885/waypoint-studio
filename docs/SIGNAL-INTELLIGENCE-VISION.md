@@ -203,7 +203,8 @@ Design language: `design-system/signal-intelligence/design-language.json`.
 | [Integrations](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | Consumer contracts |
 | [SignalTerrain Playbook](SIGNALTERRAIN_PLAYBOOK.md) | Product home standards |
 
-Package: `design-system/signal-intelligence/`.
+Package: `design-system/signal-intelligence/`.  
+Product home package: `design-system/signalterrain/` · [SignalTerrain Vision](SIGNALTERRAIN-VISION.md).
 
 ---
 

@@ -359,13 +359,18 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Observatory for invisible environments \u2014 RF foundations; interpretive cyber awareness planned.",
+      "description": "Understand the world's signals — topic foundation across RF, cyber awareness, infrastructure, and research.",
       "status": "foundation",
       "features": [
         {
           "id": "overview",
           "label": "Overview",
           "href": "apps/signalterrain/"
+        },
+        {
+          "id": "topics",
+          "label": "Topics",
+          "href": "apps/signalterrain/topics.html"
         }
       ]
     },

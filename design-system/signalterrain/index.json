@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "foundation",
+    "runtime": "demo",
+    "updatedAt": "2026-07-16",
+    "tagline": "Understand the world's signals.",
+    "docs": [
+      "docs/SIGNALTERRAIN-VISION.md",
+      "docs/SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md",
+      "docs/SIGNALTERRAIN-TOPIC-MODEL.md",
+      "docs/SIGNALTERRAIN-RELATIONSHIP-MODEL.md",
+      "docs/SIGNALTERRAIN-EDITORIAL-STANDARDS.md",
+      "docs/SIGNALTERRAIN_PLAYBOOK.md",
+      "docs/SIGNAL-INTELLIGENCE-VISION.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-foundation",
+    "label": "SignalTerrain Foundation",
+    "path": "design-system/signalterrain/"
+  },
+  "artifacts": {
+    "topicSchema": "schema-topic-v1.json",
+    "relationshipSchema": "schema-relationship-v1.json",
+    "relationshipTypes": "relationship-types.json",
+    "workspaces": "workspaces.json",
+    "platformSystems": "platform-systems.json",
+    "demoGraph": "samples/demo-graph.json",
+    "runtime": "../js/signalterrain/wds-signalterrain-topics.js",
+    "css": "../css/wds-signalterrain-foundation.css",
+    "demoSurface": "../../apps/signalterrain/topics.html"
+  },
+  "inherits": [
+    "signal-intelligence",
+    "waypoint-trust",
+    "waypoint-knowledge-curated",
+    "worth-noticing"
+  ],
+  "notInScope": [
+    "Advanced RF demodulator suites",
+    "Vulnerability scanning",
+    "Packet capture product",
+    "Offensive security",
+    "SIEM",
+    "RSS-reader product identity",
+    "Fake live threat feeds"
+  ]
+}

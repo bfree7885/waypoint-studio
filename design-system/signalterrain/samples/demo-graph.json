@@ -1,0 +1,480 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "sample",
+    "updatedAt": "2026-07-16",
+    "disclaimer": "Educational demonstration graph only. Not live intelligence, not a real CVE attribution, not a live advisory feed."
+  },
+  "topics": [
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional sample CVE identifier for architecture demo only."
+      },
+      "id": "st_cve-sample-2024-0001",
+      "workspace": "cyber",
+      "kind": "vulnerability",
+      "title": "Sample CVE-2024-0001 (demo)",
+      "summary": "Educational placeholder vulnerability used to show topic structure and relationships.",
+      "overview": "This topic demonstrates how a vulnerability entry should look in SignalTerrain: overview, confidence, unknowns, sources, and links to advisories and research — without any exploit content.",
+      "historicalContext": "In a real topic, this section would summarize when the issue was disclosed and how understanding changed over time.",
+      "timeline": [
+        {
+          "at": "2024-01-15",
+          "text": "Sample disclosure window (fictional).",
+          "sourceLabel": "Demo timeline"
+        },
+        {
+          "at": "2024-01-20",
+          "text": "Sample vendor guidance published (fictional).",
+          "sourceLabel": "Demo timeline"
+        }
+      ],
+      "primarySources": [
+        {
+          "label": "Demo primary citation (not a live NVD record)",
+          "url": null,
+          "kind": "other",
+          "accessedAt": null
+        }
+      ],
+      "governmentRefs": [
+        {
+          "label": "See linked sample government advisory topic",
+          "url": null,
+          "kind": "government",
+          "accessedAt": null
+        }
+      ],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": [
+        "This identifier is fictional and labeled sample.",
+        "Foundation demos must not invent live exploitability claims."
+      ],
+      "unknowns": [
+        "No real CVE record is attached.",
+        "No product inventory mapping exists in this demo."
+      ],
+      "watchFor": [
+        "When a real advisory is attached, verify patch availability from the vendor — calmly."
+      ],
+      "confidence": {
+        "level": "speculative",
+        "trustLabel": "preliminary",
+        "rationale": "Educational sample with no live catalog binding."
+      },
+      "verification": {
+        "status": "educational-sample",
+        "lastVerifiedAt": null,
+        "limitations": "Not a real vulnerability record."
+      },
+      "waypointAnalysis": {
+        "text": "Use vulnerability topics to teach structure and calm patch awareness — never to package exploits. Connect advisories and research so users see context before deciding what matters for them.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "vulnerability", "cyber"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional threat-actor label for architecture demo only."
+      },
+      "id": "st_actor-sample-northline",
+      "workspace": "cyber",
+      "kind": "threat-actor",
+      "title": "Sample actor: Northline (demo)",
+      "summary": "Fictional actor name used only to demonstrate literacy topics and cautious relationship edges.",
+      "overview": "Threat-actor topics in SignalTerrain are for educational context — how public reporting describes campaigns — not for speculative attribution games or offensive research kits.",
+      "historicalContext": "Real actor topics would summarize public naming history and disputes about attribution.",
+      "timeline": [
+        {
+          "at": "2023-06",
+          "text": "Sample first public mention window (fictional).",
+          "sourceLabel": "Demo"
+        }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": [
+        "This actor name is fictional.",
+        "No real attribution claim is made."
+      ],
+      "unknowns": [
+        "No verified real-world identity.",
+        "No confirmed victim set — intentionally omitted."
+      ],
+      "watchFor": [
+        "Prefer primary government or vendor naming before amplifying third-hand labels."
+      ],
+      "confidence": {
+        "level": "insufficient",
+        "trustLabel": "unknown",
+        "rationale": "Demo entity only."
+      },
+      "verification": {
+        "status": "educational-sample",
+        "lastVerifiedAt": null,
+        "limitations": "Fictional."
+      },
+      "waypointAnalysis": {
+        "text": "Actor topics should stay thin, cited, and humble. A speculative link to a sample CVE here shows relationship shape — not evidence of a real campaign.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "threat-actor", "cyber"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Sample government advisory structure — not a live CISA alert."
+      },
+      "id": "st_advisory-sample-gov-001",
+      "workspace": "cyber",
+      "kind": "advisory",
+      "title": "Sample government advisory GOV-DEMO-001",
+      "summary": "Educational advisory topic showing how official guidance attaches to vulnerabilities.",
+      "overview": "Government advisory topics should lead with what the agency published, when, and what actions are recommended for defenders — without rephrasing into panic.",
+      "historicalContext": "Advisories often revise; timeline entries should capture supersessions.",
+      "timeline": [
+        {
+          "at": "2024-01-18",
+          "text": "Sample advisory issued (fictional).",
+          "sourceLabel": "Demo"
+        }
+      ],
+      "primarySources": [
+        {
+          "label": "Demo advisory citation",
+          "url": null,
+          "kind": "government",
+          "accessedAt": null
+        }
+      ],
+      "governmentRefs": [
+        {
+          "label": "Placeholder agency reference",
+          "url": null,
+          "kind": "government",
+          "accessedAt": null
+        }
+      ],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": [
+        "Structured as an educational advisory topic.",
+        "Links to the sample CVE to demonstrate advises-on."
+      ],
+      "unknowns": [
+        "No live agency URL is attached in this demo."
+      ],
+      "watchFor": [
+        "Patch and mitigation notes from the vendor when a real advisory is present."
+      ],
+      "confidence": {
+        "level": "speculative",
+        "trustLabel": "preliminary",
+        "rationale": "Sample only."
+      },
+      "verification": {
+        "status": "educational-sample",
+        "lastVerifiedAt": null,
+        "limitations": "Not a real advisory."
+      },
+      "waypointAnalysis": {
+        "text": "Advisories are primary anchors. Waypoint Perspective should help readers see what changed and what remains uncertain — not invent urgency.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "advisory", "government"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Public amateur-radio calling frequency used as a factual frequency topic example."
+      },
+      "id": "st_freq-146-52-fm",
+      "workspace": "rf",
+      "kind": "frequency",
+      "title": "146.520 MHz FM (2 m national simplex calling)",
+      "summary": "Widely recognized North American amateur radio FM simplex calling frequency on 2 meters.",
+      "overview": "146.520 MHz is commonly used as a national FM simplex calling frequency in the amateur 2-meter band. SignalTerrain frequency topics capture purpose, band context, and listening notes — not private traffic content.",
+      "historicalContext": "Calling frequencies exist to help operators find each other; local practice varies. Always follow license rules and band plans.",
+      "timeline": [],
+      "primarySources": [
+        {
+          "label": "Amateur band-plan practice (general knowledge)",
+          "url": null,
+          "kind": "technical",
+          "accessedAt": null
+        }
+      ],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": [
+        "Frequency: 146.520 MHz.",
+        "Mode context: FM voice simplex calling (amateur)."
+      ],
+      "unknowns": [
+        "Local activity level is not measured in this foundation demo.",
+        "Repeater vs simplex etiquette varies by region."
+      ],
+      "watchFor": [
+        "Propagation and local net schedules that change usefulness of a calling frequency."
+      ],
+      "confidence": {
+        "level": "high",
+        "trustLabel": "high",
+        "rationale": "Well-established amateur radio calling-frequency practice."
+      },
+      "verification": {
+        "status": "corroborated",
+        "lastVerifiedAt": "2026-07-16T00:00:00.000Z",
+        "limitations": "Not a substitute for your local band plan or license conditions."
+      },
+      "waypointAnalysis": {
+        "text": "Frequency topics should stay practical and lawful. Pair them with propagation context so listeners understand why a quiet night might be conditions — not a broken radio.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "amateur-radio", "vhf", "frequency"],
+      "relatedKnowledgeIds": ["kn_vhf-band"],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Educational propagation vignette — not a live forecast product."
+      },
+      "id": "st_prop-hf-sample-disturbed",
+      "workspace": "rf",
+      "kind": "propagation",
+      "title": "Sample HF propagation note (disturbed)",
+      "summary": "Educational note that elevated space weather can disturb HF paths for amateur and shortwave listeners.",
+      "overview": "Propagation topics explain how ionospheric conditions change what operators hear. This sample describes a disturbed HF window in plain language and links to space-weather awareness — without fabricating a live NOAA product.",
+      "historicalContext": "Operators have long compared quiet and disturbed days; modern digests should cite space-weather bulletins when available.",
+      "timeline": [
+        {
+          "at": "sample-window",
+          "text": "Illustrative disturbed period for demo graph.",
+          "sourceLabel": "Demo"
+        }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": [
+        "Geomagnetic activity can alter HF propagation.",
+        "This record is a teaching sample, not a forecast."
+      ],
+      "unknowns": [
+        "No live Kp index attached.",
+        "No specific circuit (A→B) measurement."
+      ],
+      "watchFor": [
+        "Official space-weather bulletins when connectors exist.",
+        "VHF openings that sometimes accompany unsettled conditions."
+      ],
+      "confidence": {
+        "level": "speculative",
+        "trustLabel": "preliminary",
+        "rationale": "No live bulletin bound to this sample."
+      },
+      "verification": {
+        "status": "educational-sample",
+        "lastVerifiedAt": null,
+        "limitations": "Not a forecast."
+      },
+      "waypointAnalysis": {
+        "text": "Propagation notes belong beside frequency topics. The goal is expectation-setting for listeners — calm, specific, and honest about what was not measured.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "propagation", "hf", "space-weather"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": ["sio_sample-space-weather-hf-card"]
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-16T00:00:00.000Z",
+        "updatedAt": "2026-07-16T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Sample research-paper topic structure — fictional citation."
+      },
+      "id": "st_paper-sample-ionosphere-hf",
+      "workspace": "research",
+      "kind": "research-paper",
+      "title": "Sample paper: Ionospheric effects on HF (demo)",
+      "summary": "Placeholder research topic showing how papers document propagation and connect to RF practice.",
+      "overview": "Research topics hold citation metadata, abstracts-in-brief, and links into operational topics such as propagation — keeping Source Summary distinct from Waypoint Analysis.",
+      "historicalContext": "Ionospheric research underpins much of HF prediction literacy.",
+      "timeline": [],
+      "primarySources": [
+        {
+          "label": "Demo paper citation (fictional title)",
+          "url": null,
+          "kind": "research",
+          "accessedAt": null
+        }
+      ],
+      "governmentRefs": [],
+      "research": [
+        {
+          "label": "Demo paper citation (fictional title)",
+          "url": null,
+          "kind": "research",
+          "accessedAt": null
+        }
+      ],
+      "technicalDocs": [],
+      "knownFacts": [
+        "Presented as a sample research topic only."
+      ],
+      "unknowns": [
+        "No real DOI attached."
+      ],
+      "watchFor": [
+        "Peer-review status and replication notes on real papers."
+      ],
+      "confidence": {
+        "level": "speculative",
+        "trustLabel": "preliminary",
+        "rationale": "Fictional citation for graph demo."
+      },
+      "verification": {
+        "status": "educational-sample",
+        "lastVerifiedAt": null,
+        "limitations": "Not a real paper."
+      },
+      "waypointAnalysis": {
+        "text": "Research topics should make it easy to move from a paper into the operational topics it informs — here, HF propagation — without pretending the demo citation is real.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "research", "hf"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    }
+  ],
+  "edges": [
+    {
+      "id": "str_advisory-cve",
+      "from": "st_advisory-sample-gov-001",
+      "to": "st_cve-sample-2024-0001",
+      "type": "advises-on",
+      "label": "Sample advisory addresses sample CVE",
+      "confidence": "speculative",
+      "notes": "Educational edge only.",
+      "sources": []
+    },
+    {
+      "id": "str_actor-cve",
+      "from": "st_actor-sample-northline",
+      "to": "st_cve-sample-2024-0001",
+      "type": "exploits-or-involves",
+      "label": "Sample literacy link (not real attribution)",
+      "confidence": "speculative",
+      "notes": "Demonstrates relationship type; no real campaign claim.",
+      "sources": []
+    },
+    {
+      "id": "str_prop-freq",
+      "from": "st_prop-hf-sample-disturbed",
+      "to": "st_freq-146-52-fm",
+      "type": "affects",
+      "label": "Disturbed conditions can change what listeners hear (context)",
+      "confidence": "low",
+      "notes": "VHF FM calling is less HF-dependent; edge shows cross-band awareness linking — labeled low confidence on purpose.",
+      "sources": []
+    },
+    {
+      "id": "str_freq-prop-watch",
+      "from": "st_freq-146-52-fm",
+      "to": "st_prop-hf-sample-disturbed",
+      "type": "watch-with",
+      "label": "Watch propagation notes alongside frequency topics",
+      "confidence": "moderate",
+      "notes": "Product habit: frequencies + conditions together.",
+      "sources": []
+    },
+    {
+      "id": "str_paper-prop",
+      "from": "st_paper-sample-ionosphere-hf",
+      "to": "st_prop-hf-sample-disturbed",
+      "type": "documents",
+      "label": "Sample paper documents propagation literacy",
+      "confidence": "speculative",
+      "notes": "Fictional paper → sample propagation topic.",
+      "sources": []
+    },
+    {
+      "id": "str_advisory-actor",
+      "from": "st_advisory-sample-gov-001",
+      "to": "st_actor-sample-northline",
+      "type": "see-also",
+      "label": "See also sample actor topic (structure only)",
+      "confidence": "speculative",
+      "notes": "Shows cross-linking without asserting real association.",
+      "sources": []
+    },
+    {
+      "id": "str_cve-paper",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_paper-sample-ionosphere-hf",
+      "type": "related-to",
+      "label": "Cross-workspace demo link (cyber ↔ research)",
+      "confidence": "speculative",
+      "notes": "Intentionally weak on purpose — proves workspaces share one graph.",
+      "sources": []
+    },
+    {
+      "id": "str_prop-observed",
+      "from": "st_prop-hf-sample-disturbed",
+      "to": "st_freq-146-52-fm",
+      "type": "observed-on",
+      "label": "Operators may still check local VHF while HF is disturbed",
+      "confidence": "low",
+      "notes": "Practical listening habit, not a measurement claim.",
+      "sources": []
+    }
+  ]
+}

@@ -53,7 +53,7 @@ Engines compose. Signal Intelligence is not a standalone top-level product besid
 | **Attention** | Calm focus without alarmism | Contracts (`attention.json`) |
 | **Trust** | Evidence Card + confidence labels | Inherit Trust Framework |
 | **Knowledge** | Perspective + related reading | Inherit Knowledge Platform |
-| **Surfaces** | Nav, dashboard wireframe, SignalTerrain shell | Blueprint + foundation shell |
+| **Surfaces** | Nav, dashboard wireframe, SignalTerrain shell + topics demo | Blueprint + foundation demo |
 | **AI** | Optional assist with disclosure | Responsibilities defined; no new AI system |
 
 ---

@@ -1,0 +1,104 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Reusable SignalTerrain platform systems. Contracts for future UI — local-first privacy defaults.",
+  "systems": [
+    {
+      "id": "topics",
+      "label": "Topics",
+      "status": "foundation",
+      "description": "Canonical evolving entities across workspaces."
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "status": "blueprint",
+      "description": "Curated sets of topics and signals."
+    },
+    {
+      "id": "bookmarks",
+      "label": "Bookmarks",
+      "status": "blueprint",
+      "description": "Personal saved topics."
+    },
+    {
+      "id": "saved-searches",
+      "label": "Saved searches",
+      "status": "blueprint",
+      "description": "Reusable query presets."
+    },
+    {
+      "id": "timeline",
+      "label": "Timeline",
+      "status": "foundation",
+      "description": "Chronology on a topic or collection."
+    },
+    {
+      "id": "knowledge-relationships",
+      "label": "Knowledge relationships",
+      "status": "foundation",
+      "description": "Links to curated knowledge and research."
+    },
+    {
+      "id": "source-management",
+      "label": "Source management",
+      "status": "foundation",
+      "description": "Citations and verification status."
+    },
+    {
+      "id": "notes",
+      "label": "Notes",
+      "status": "blueprint",
+      "description": "User private notes — local-first."
+    },
+    {
+      "id": "attachments",
+      "label": "Attachments",
+      "status": "blueprint",
+      "description": "Local files and audio references."
+    },
+    {
+      "id": "tags",
+      "label": "Tags",
+      "status": "foundation",
+      "description": "Lightweight labels on topics."
+    },
+    {
+      "id": "cross-references",
+      "label": "Cross references",
+      "status": "foundation",
+      "description": "Explicit see-also beyond graph edges."
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "status": "blueprint",
+      "description": "Find topics, notes, and collections."
+    },
+    {
+      "id": "import",
+      "label": "Import",
+      "status": "blueprint",
+      "description": "Portable bundle import."
+    },
+    {
+      "id": "export",
+      "label": "Export",
+      "status": "blueprint",
+      "description": "Portable bundle export."
+    },
+    {
+      "id": "synchronization",
+      "label": "Future synchronization",
+      "status": "blueprint",
+      "description": "Opt-in sync only when trust is earned."
+    }
+  ],
+  "privacyDefaults": {
+    "notes": "local",
+    "attachments": "local",
+    "receivers": "local",
+    "preciseLocation": "opt-in",
+    "sync": "off-until-chosen"
+  }
+}

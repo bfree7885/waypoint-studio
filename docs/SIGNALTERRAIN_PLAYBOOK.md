@@ -1,18 +1,17 @@
-# Waypoint Studio SignalTerrain Playbook v1.1
+# Waypoint Studio SignalTerrain Playbook v1.2
 
-> Product standards for observing invisible environments — RF situational
-> awareness today, educational cyber awareness later — with privacy and clarity.
+> Product standards for understanding the world's signals — RF, educational cyber
+> awareness, infrastructure, and research — on one topic foundation.
 
-SignalTerrain is the studio home for **Signal Intelligence**: a platform framing
-for radio-frequency observation and, in the future, calm educational cyber
-situational awareness. It is not an enterprise SOC, not a surveillance product,
-and not a rumor feed.
+SignalTerrain is the studio home for **Signal Intelligence**: observe, understand,
+and connect signals with evidence, context, and calm analysis. It is not an
+enterprise SOC, not a scanner, not a surveillance product, and not a rumor feed.
 
-See also: [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) ·
+See also: [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) ·
+[SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md](SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md) ·
+[PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) ·
 [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) ·
-[SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) ·
-[SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md)
-(Signal Intelligence Foundation V1 — architecture & schemas only).
+[SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md).
 
 Complements: Engineering, Product Standards, UI/UX, QA, Performance,
 Accessibility, Security, Release, and Lessons Learned playbooks.

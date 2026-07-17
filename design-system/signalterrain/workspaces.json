@@ -1,0 +1,84 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "SignalTerrain workspace lenses over the shared topic graph.",
+  "workspaces": [
+    {
+      "id": "rf",
+      "label": "RF",
+      "status": "foundation",
+      "description": "Radio and spectrum awareness — receivers, frequencies, propagation, logging, audio, transcripts, catalogs.",
+      "capabilities": [
+        "Software Defined Radio literacy",
+        "Receiver management",
+        "Frequency database",
+        "Propagation",
+        "Logging",
+        "Audio",
+        "Transcripts",
+        "Signal catalog"
+      ],
+      "notGoals": [
+        "Advanced demodulator suites as product identity",
+        "Packet capture product",
+        "Illegal monitoring encouragement"
+      ]
+    },
+    {
+      "id": "cyber",
+      "label": "Cyber",
+      "status": "foundation",
+      "description": "Educational cyber situational awareness — advisories, vulnerabilities, defensive knowledge.",
+      "capabilities": [
+        "Vulnerabilities",
+        "Threat intelligence literacy",
+        "Threat actors (awareness)",
+        "Malware families (awareness)",
+        "Government advisories",
+        "Vendor guidance",
+        "Security research",
+        "Defensive knowledge"
+      ],
+      "notGoals": [
+        "Vulnerability scanning",
+        "Offensive security",
+        "SIEM replacement",
+        "Exploit PoCs"
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure",
+      "status": "blueprint",
+      "description": "Routing, cloud, communications, power, cellular, GPS, and service disruptions as awareness topics.",
+      "capabilities": [
+        "Internet routing",
+        "Cloud providers",
+        "Communications",
+        "Power",
+        "Cellular",
+        "GPS",
+        "Critical infrastructure",
+        "Service disruptions"
+      ],
+      "notGoals": ["NOC / SIEM replacement", "Fake outage invention"]
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "status": "foundation",
+      "description": "Papers, standards, RFCs, government publications, and Waypoint knowledge depth.",
+      "capabilities": [
+        "Academic papers",
+        "Technical documentation",
+        "RFCs",
+        "Standards",
+        "Conference presentations",
+        "Government publications",
+        "Historical documents",
+        "Waypoint knowledge"
+      ],
+      "notGoals": ["Uncurated web mirror", "Paywall bypass"]
+    }
+  ]
+}

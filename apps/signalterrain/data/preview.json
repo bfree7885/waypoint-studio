@@ -1,25 +1,25 @@
 {
   "name": "SignalTerrain",
   "eyebrow": "Signal Intelligence",
-  "mission": "A calm observatory for invisible environments — RF situational awareness today; educational cyber awareness planned later.",
+  "mission": "Understand the world's signals — observe, connect, and explain radio, cyber awareness, infrastructure, and research on one topic foundation.",
   "status": "foundation",
   "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Receivers and incident timelines for careful listeners — no engagement metrics. Cyber awareness is planned, not available.",
-  "strategicRole": "Help people observe RF environments clearly; eventually host educational Signal Intelligence (RF + Cyber).",
+  "portfolioNote": "Topic and relationship foundation with sample graph. Receivers stay private. Not a scanner, SIEM, or RSS reader.",
+  "strategicRole": "Product home for Signal Intelligence — shared topics across RF, cyber literacy, infrastructure, and research.",
   "learnToday": [
+    "How everything becomes a topic that evolves",
+    "How relationships connect CVE, advisory, frequency, and research samples",
+    "Why confidence and unknowns stay visible",
     "How a private receiver registry stays modular",
-    "Reading an incident timeline with source confidence",
-    "Keeping audio libraries local first",
-    "Why shared receivers must stay opt-in",
-    "How RF and planned Cyber awareness stay educational, not SOC tools"
+    "Why SignalTerrain is not a SOC or news river"
   ],
   "comingSoon": [],
   "preview": {
-    "title": "Receiver deck",
-    "placeholderLabel": "Signal schematic",
-    "placeholderHint": "Receivers · incidents · audio · map",
-    "description": "Receivers, timelines, and private audio for people who need clarity over noise."
+    "title": "Topic graph",
+    "placeholderLabel": "Signals connected",
+    "placeholderHint": "Topics · relationships · workspaces",
+    "description": "A calm foundation for understanding signals — evidence, context, and connections."
   },
   "homeLink": "../../"
 }

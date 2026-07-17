@@ -1,0 +1,218 @@
+/* SignalTerrain foundation — topics demo (quiet, editorial) */
+.st-page {
+  --st-bg: #f2efe8;
+  --st-ink: #1a1916;
+  --st-muted: #5a564e;
+  --st-line: #d2ccc0;
+  --st-panel: #faf8f3;
+  --st-accent: #3a5348;
+  --st-focus: #6b5a32;
+  background:
+    radial-gradient(1000px 520px at 0% -10%, #e4ebe6 0%, transparent 55%),
+    radial-gradient(800px 480px at 100% 0%, #ebe6dc 0%, transparent 50%),
+    var(--st-bg);
+  color: var(--st-ink);
+  min-height: 70vh;
+}
+
+.st-demo {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.st-demo-header h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.st-lead {
+  margin: 0;
+  color: var(--st-muted);
+  max-width: 36rem;
+  font-size: 1.05rem;
+}
+
+.st-badge,
+.st-disclaimer {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: var(--st-muted);
+  border: 1px solid var(--st-line);
+  padding: 0.5rem 0.65rem;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.st-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.25rem 0 1rem;
+}
+
+.st-filter {
+  font: inherit;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  border: 1px solid var(--st-line);
+  background: transparent;
+  color: var(--st-muted);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.st-filter.is-active {
+  color: var(--st-ink);
+  border-color: var(--st-accent);
+  background: var(--st-panel);
+}
+
+.st-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.95fr) minmax(280px, 1.2fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .st-demo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.st-topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.st-topic-card {
+  text-align: left;
+  font: inherit;
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.st-topic-card:hover,
+.st-topic-card:focus-visible {
+  border-color: var(--st-accent);
+  outline: none;
+}
+
+.st-topic-card.is-selected {
+  border-color: var(--st-accent);
+  box-shadow: inset 3px 0 0 var(--st-accent);
+}
+
+.st-topic-workspace {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+}
+
+.st-topic-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.st-topic-summary {
+  font-size: 0.9rem;
+  color: var(--st-muted);
+}
+
+.st-topic-meta {
+  font-size: 0.75rem;
+  color: var(--st-muted);
+}
+
+.st-topic-detail {
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  padding: 1.1rem 1.2rem 1.35rem;
+  min-height: 20rem;
+}
+
+.st-detail-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+}
+
+.st-detail h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.65rem;
+  margin: 0 0 0.5rem;
+}
+
+.st-detail h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 1.15rem 0 0.4rem;
+  color: var(--st-focus);
+}
+
+.st-detail-summary {
+  color: var(--st-muted);
+  margin: 0 0 0.75rem;
+}
+
+.st-detail-meta,
+.st-empty,
+.st-loading,
+.st-error {
+  font-size: 0.85rem;
+  color: var(--st-muted);
+}
+
+.st-rel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.st-rel-list li {
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--st-line);
+}
+
+.st-rel-link {
+  font: inherit;
+  border: 0;
+  background: none;
+  color: var(--st-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  text-align: left;
+}
+
+.st-rel-type {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--st-muted);
+  margin-top: 0.15rem;
+}
+
+.st-back {
+  display: inline-block;
+  margin: 1rem 1.25rem 0;
+  font-size: 0.85rem;
+  color: var(--st-muted);
+}
