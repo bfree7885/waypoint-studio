@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/worth-noticing/v1",
+  "title": "Waypoint Worth Noticing Observation",
+  "description": "Calm, context-aware observation for any Waypoint product. Not a notification, streak, tip-of-the-day, or engagement prompt.",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "observation",
+    "whyItMatters",
+    "products",
+    "reviewStatus"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^wn_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "title": { "type": "string", "maxLength": 160 },
+    "observation": {
+      "type": "string",
+      "maxLength": 800,
+      "description": "What we're seeing — conditions or change, before strong conclusions."
+    },
+    "whyItMatters": {
+      "type": "string",
+      "maxLength": 800,
+      "description": "Context and relationships — interpretation, clearly framed."
+    },
+    "confidence": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confidenceLabel": {
+      "type": ["string", "null"],
+      "enum": ["high", "moderate", "low", "uncertain", null]
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 300 }
+    },
+    "relatedResearch": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^wk_" }
+    },
+    "deeperReading": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label"],
+        "properties": {
+          "label": { "type": "string" },
+          "href": { "type": ["string", "null"] },
+          "hookId": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "expiresAt": {
+      "type": ["string", "null"],
+      "description": "ISO timestamp after which this observation should not surface."
+    },
+    "products": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "sheds",
+          "fieldry",
+          "foragecast",
+          "steepleaf",
+          "savant-sommelier",
+          "signalterrain",
+          "dashboard",
+          "scenes",
+          "photo-coach",
+          "hidden-landscapes",
+          "shared"
+        ]
+      }
+    },
+    "topics": { "type": "array", "items": { "type": "string" } },
+    "locationRelevance": {
+      "type": "string",
+      "enum": ["none", "regional", "local", "precise"],
+      "default": "none"
+    },
+    "sources": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "presentation": {
+      "type": "string",
+      "enum": [
+        "worth-noticing",
+        "interesting-today",
+        "current-conditions",
+        "recent-research",
+        "something-changed",
+        "background",
+        "context"
+      ],
+      "default": "worth-noticing"
+    },
+    "signals": {
+      "type": "object",
+      "description": "Optional machine-readable conditions that justified this candidate.",
+      "additionalProperties": true
+    },
+    "reviewStatus": {
+      "type": "string",
+      "enum": ["verified", "editorial-draft", "demonstration", "archived", "rule-generated"]
+    },
+    "qualityScore": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Optional precomputed quality; runtime may recompute."
+    }
+  }
+}

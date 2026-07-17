@@ -1,0 +1,44 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "description": "Generation rules map context signals → observation candidates. Prefer silence when signals are missing.",
+  "rules": [
+    {
+      "id": "rule-sheds-thaw-nights",
+      "products": ["sheds"],
+      "requiresAny": ["nightsAboveFreezing"],
+      "minNightsAboveFreezing": 2,
+      "observationId": "wn_demo-sheds-thaw-nights",
+      "specificityBoost": 0.15
+    },
+    {
+      "id": "rule-photo-overcast",
+      "products": ["photo-coach", "scenes"],
+      "requiresAny": ["isDiffuse", "skyOvercast"],
+      "observationId": "wn_demo-photo-overcast",
+      "specificityBoost": 0.2
+    },
+    {
+      "id": "rule-fieldry-milkweed",
+      "products": ["fieldry"],
+      "requiresAny": ["phenologyTag"],
+      "phenologyTag": "milkweed-growth",
+      "observationId": "wn_demo-fieldry-milkweed",
+      "specificityBoost": 0.1
+    },
+    {
+      "id": "rule-signal-solar",
+      "products": ["signalterrain"],
+      "requiresAny": ["solarActivityUp"],
+      "observationId": "wn_demo-signal-solar",
+      "specificityBoost": 0.15
+    },
+    {
+      "id": "rule-forage-rain-gap",
+      "products": ["foragecast"],
+      "requiresAll": ["recentRain"],
+      "observationId": "wn_demo-forage-rain-gap",
+      "specificityBoost": 0.1
+    }
+  ]
+}

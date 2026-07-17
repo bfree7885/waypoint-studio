@@ -12,6 +12,7 @@
 | [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) | Signal Intelligence Engine v0.1 — awareness schemas |
 | [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | How SignalTerrain and peers will consume SI |
 | [CONTACT-SUPPORT-PLATFORM.md](CONTACT-SUPPORT-PLATFORM.md) | Contact & Support platform — forms, delivery, privacy honesty |
+| [WAYPOINT-OBSERVATION-ENGINE.md](WAYPOINT-OBSERVATION-ENGINE.md) | Worth Noticing Engine V1 — calm context-aware observations |
 | [WAYPOINT-KNOWLEDGE-PLATFORM.md](WAYPOINT-KNOWLEDGE-PLATFORM.md) | Curated Knowledge Platform V1 — field library architecture |
 | [WAYPOINT-KNOWLEDGE.md](WAYPOINT-KNOWLEDGE.md) | Curated research layer overview |
 | [WAYPOINT-EDITORIAL-STANDARDS.md](WAYPOINT-EDITORIAL-STANDARDS.md) | How sources are selected, summarized, corrected, archived |

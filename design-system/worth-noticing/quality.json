@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "description": "Quality gates for Worth Noticing Engine. Silence beats filler.",
+  "minimumScore": 0.55,
+  "hardFailPatterns": [
+    "tip of the day",
+    "daily challenge",
+    "homework",
+    "assignment",
+    "you must",
+    "you're behind",
+    "you are behind",
+    "streak",
+    "don't miss",
+    "do not miss",
+    "complete this",
+    "required reading",
+    "next lesson",
+    "achievement unlocked"
+  ],
+  "weights": {
+    "specificity": 0.25,
+    "evidence": 0.2,
+    "uncertainty": 0.15,
+    "autonomy": 0.2,
+    "productFit": 0.1,
+    "freshness": 0.1
+  },
+  "editorial": {
+    "preferSilence": true,
+    "maxSurfacePerSession": 1,
+    "dismissibleRequired": true,
+    "neverCountMissed": true
+  }
+}

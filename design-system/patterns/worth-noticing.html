@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worth Noticing — WDS Pattern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+  <style>
+    .pattern-wrap { max-width: 40rem; margin: 0 auto; padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to pattern</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="guide-card.html">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Worth Noticing</span>
+        </a>
+      </div>
+    </header>
+    <section class="wds-hero is-compact">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Observation engine</p>
+        <h1 class="wds-display-xl">Worth noticing</h1>
+        <p class="wds-lead">Calm context cues — never tips of the day, never notifications. Silence when nothing meaningful exists.</p>
+      </div>
+    </section>
+    <main id="main" class="pattern-wrap">
+      <div id="wn-mount" aria-live="polite"></div>
+      <p class="wds-caption" id="wn-note" style="margin-top:1rem"></p>
+    </main>
+  </div>
+  <script src="../js/guide/wds-guide-card.js"></script>
+  <script src="../js/worth-noticing/wds-worth-noticing.js"></script>
+  <script>
+    (async function () {
+      var mount = document.getElementById("wn-mount");
+      var note = document.getElementById("wn-note");
+      var bundle = await WDS.worthNoticing.loadSamples("../worth-noticing/samples/demo-observations.json");
+      var rulesBundle = await WDS.worthNoticing.loadRules("../worth-noticing/rules/generation-rules.json");
+      var quality = await WDS.worthNoticing.loadQuality("../worth-noticing/quality.json");
+      var ctx = { product: "sheds", signals: { nightsAboveFreezing: 3, aspect: "south" } };
+      var picked = WDS.worthNoticing.selectFromRules(bundle.observations, rulesBundle.rules, ctx, quality);
+      var filler = bundle.observations.find(function (o) { return o.id === "wn_demo-generic-filler"; });
+      var fillerScore = WDS.worthNoticing.score(filler, { product: "shared" }, quality);
+      if (picked) {
+        mount.innerHTML = WDS.worthNoticing.render(picked.observation, { dismissible: true, useGuideCard: true });
+        WDS.worthNoticing.bindDismiss(mount);
+        note.textContent = "Selected for Sheds thaw context · score " + picked.result.score +
+          ". Filler tip-of-the-day score " + fillerScore.score + " (rejected: " + fillerScore.reasons.join(", ") + ").";
+      } else {
+        mount.innerHTML = "<p class=\"wds-body\">Nothing worth noticing for this context — silence is correct.</p>";
+      }
+    })();
+  </script>
+</body>
+</html>

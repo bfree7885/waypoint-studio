@@ -27,6 +27,7 @@ Waypoint Studio grows as a set of **shared intelligence engines** that applicati
 | Phenology / Regional Intelligence | Active foundation | Seasonal timing and regional slices |
 | Mapping / Observation Platform (WOS) | Active foundation | Places, notes, research-grade observations |
 | Photo Intelligence | Active / evolving | Careful looking, craft feedback, visual scenes |
+| **Worth Noticing** | **Active foundation** | Calm context-aware observations — never notifications |
 | **Landscape Interpretation** | **Architecture v0.1** (no runtime) | Why a landscape looks the way it does |
 | **Signal Intelligence** | **Architecture v0.1** (no runtime) | Reading RF and cyber environments calmly |
 

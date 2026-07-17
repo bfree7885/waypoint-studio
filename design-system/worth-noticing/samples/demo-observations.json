@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "note": "Demonstration observations and rule templates. reviewStatus=demonstration means fixture content — not live sensing.",
+  "observations": [
+    {
+      "id": "wn_demo-sheds-thaw-nights",
+      "title": "Mild nights and south aspects",
+      "observation": "Several nights remained above freezing. South-facing slopes may warm earlier than shaded forest today.",
+      "whyItMatters": "Winter deer movement often shifts as relative warmth returns to exposed aspects — worth considering when you walk, not a promise of finds.",
+      "confidence": 0.62,
+      "confidenceLabel": "moderate",
+      "evidence": [
+        "Multi-night air temperatures above freezing (demo signal)",
+        "Aspect-related microclimate pattern common in temperate winters"
+      ],
+      "relatedResearch": ["wk_demo-south-aspect-winter-cover"],
+      "deeperReading": [
+        { "label": "Habitat research", "href": "knowledge.html?product=sheds", "hookId": "sheds-south-aspect" }
+      ],
+      "expiresAt": null,
+      "products": ["sheds"],
+      "topics": ["winter-habitat", "terrain-use", "weather"],
+      "locationRelevance": "regional",
+      "sources": ["Waypoint demonstration fixture"],
+      "presentation": "worth-noticing",
+      "signals": { "nightsAboveFreezing": 3, "aspect": "south" },
+      "reviewStatus": "demonstration"
+    },
+    {
+      "id": "wn_demo-photo-overcast",
+      "title": "Soft woodland light",
+      "observation": "Today's overcast conditions naturally reduce harsh shadows.",
+      "whyItMatters": "Diffuse light often improves readable detail in woodland photography — if you're curious, compare one frame under cloud to a memory of hard sun.",
+      "confidence": 0.7,
+      "confidenceLabel": "moderate",
+      "evidence": ["Sky condition: overcast / diffuse (demo signal)"],
+      "relatedResearch": ["wk_demo-composition-visual-weight"],
+      "deeperReading": [
+        { "label": "Composition & lighting", "href": "knowledge.html?product=photo-coach" }
+      ],
+      "expiresAt": null,
+      "products": ["photo-coach", "scenes"],
+      "topics": ["photography-conditions", "composition", "light"],
+      "locationRelevance": "none",
+      "sources": ["Waypoint demonstration fixture"],
+      "presentation": "current-conditions",
+      "signals": { "sky": "overcast", "isDiffuse": true },
+      "reviewStatus": "demonstration"
+    },
+    {
+      "id": "wn_demo-fieldry-milkweed",
+      "title": "Milkweed growth stage",
+      "observation": "Milkweed is entering an important growth stage in many temperate regions this season.",
+      "whyItMatters": "This timing affects several insect species that depend on milkweed — a quiet phenology cue, not a checklist.",
+      "confidence": 0.55,
+      "confidenceLabel": "uncertain",
+      "evidence": ["Seasonal phenology window (demo)", "Host-plant relationship with specialist insects"],
+      "relatedResearch": [],
+      "deeperReading": [
+        { "label": "Phenology & plant ecology", "href": "knowledge.html?product=fieldry" }
+      ],
+      "expiresAt": null,
+      "products": ["fieldry"],
+      "topics": ["phenology", "plant-ecology", "insects"],
+      "locationRelevance": "regional",
+      "sources": ["Waypoint demonstration fixture"],
+      "presentation": "interesting-today",
+      "signals": { "season": "summer", "phenologyTag": "milkweed-growth" },
+      "reviewStatus": "demonstration"
+    },
+    {
+      "id": "wn_demo-signal-solar",
+      "title": "Solar activity overnight",
+      "observation": "Solar activity increased overnight relative to the prior quiet period (demonstration signal).",
+      "whyItMatters": "HF propagation may differ from yesterday — awareness only, not operational instruction.",
+      "confidence": 0.58,
+      "confidenceLabel": "moderate",
+      "evidence": ["Elevated solar activity index (demo)", "Known coupling between solar conditions and HF paths"],
+      "relatedResearch": [],
+      "deeperReading": [
+        { "label": "Space weather & propagation", "href": "knowledge.html?product=signalterrain" }
+      ],
+      "expiresAt": null,
+      "products": ["signalterrain"],
+      "topics": ["space-weather", "propagation", "radio-science"],
+      "locationRelevance": "none",
+      "sources": ["Waypoint demonstration fixture"],
+      "presentation": "something-changed",
+      "signals": { "solarActivityUp": true },
+      "reviewStatus": "demonstration"
+    },
+    {
+      "id": "wn_demo-forage-rain-gap",
+      "title": "Rain timing and canopy light",
+      "observation": "Recent rain plus opening canopy gaps can rearrange understory moisture and light together.",
+      "whyItMatters": "Fungal and plant responses are relative to conditions — never a harvest guarantee. Food safety and access stay separate and direct.",
+      "confidence": 0.5,
+      "confidenceLabel": "uncertain",
+      "evidence": ["Recent precipitation (demo)", "Gap-light succession pattern"],
+      "relatedResearch": ["wk_demo-forest-succession-light"],
+      "deeperReading": [
+        { "label": "Forest succession", "href": "knowledge.html?product=foragecast" }
+      ],
+      "expiresAt": null,
+      "products": ["foragecast"],
+      "topics": ["fungal-ecology", "forest-succession", "weather"],
+      "locationRelevance": "regional",
+      "sources": ["Waypoint demonstration fixture"],
+      "presentation": "context",
+      "signals": { "recentRain": true, "canopyGap": true },
+      "reviewStatus": "demonstration"
+    },
+    {
+      "id": "wn_demo-generic-filler",
+      "title": "Tip of the day",
+      "observation": "You must go outside and complete today's assignment.",
+      "whyItMatters": "Streaks keep you coming back.",
+      "confidence": 0.9,
+      "confidenceLabel": "high",
+      "evidence": [],
+      "relatedResearch": [],
+      "deeperReading": [],
+      "expiresAt": null,
+      "products": ["shared"],
+      "topics": ["filler"],
+      "locationRelevance": "none",
+      "sources": [],
+      "presentation": "worth-noticing",
+      "signals": {},
+      "reviewStatus": "demonstration"
+    }
+  ]
+}

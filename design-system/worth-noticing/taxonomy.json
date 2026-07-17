@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "presentationLabels": {
+    "worth-noticing": "Worth noticing",
+    "interesting-today": "Interesting today",
+    "current-conditions": "Current conditions",
+    "recent-research": "Recent research",
+    "something-changed": "Something changed",
+    "background": "Background",
+    "context": "Context"
+  },
+  "avoidLabels": [
+    "Tip of the day",
+    "Daily challenge",
+    "Today's homework",
+    "Lesson",
+    "Exercise",
+    "Practice",
+    "Achievement"
+  ],
+  "inputDomains": [
+    "weather",
+    "season",
+    "location",
+    "phenology",
+    "research",
+    "user-observations",
+    "historical-observations",
+    "wildlife",
+    "photography-conditions",
+    "environmental-change",
+    "astronomy",
+    "radio",
+    "cyber",
+    "geopolitical",
+    "species-activity"
+  ]
+}

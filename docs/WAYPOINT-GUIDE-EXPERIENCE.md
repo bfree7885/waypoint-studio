@@ -2,7 +2,7 @@
 
 **Status:** Active foundation  
 **Audience:** Every Waypoint Studio product surface, editorial, and product-facing AI  
-**Complements:** [Waypoint Voice](WAYPOINT-VOICE.md) · [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) · Product Framework · Field Design System · Editorial Standards
+**Complements:** [Waypoint Voice](WAYPOINT-VOICE.md) · [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) · [Worth Noticing Engine](WAYPOINT-OBSERVATION-ENGINE.md) · Product Framework · Field Design System · Editorial Standards
 
 This document governs **how information is presented**.
 
@@ -224,6 +224,7 @@ If any answer is no, revise.
 
 - [Waypoint Constitution](WAYPOINT-CONSTITUTION.md)  
 - [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)  
+- [Worth Noticing Engine](WAYPOINT-OBSERVATION-ENGINE.md)  
 - [Waypoint Voice](WAYPOINT-VOICE.md)  
 - [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md)  
 - [Waypoint Product Framework](WAYPOINT-PRODUCT-FRAMEWORK.md)  

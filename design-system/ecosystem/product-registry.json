@@ -251,6 +251,29 @@
         "docs/PLATFORM-ENGINES.md",
         "docs/SIGNALTERRAIN_PLAYBOOK.md"
       ]
+    },
+    "worth-noticing": {
+      "id": "worth-noticing",
+      "name": "Worth Noticing Engine",
+      "status": "active",
+      "purpose": "Calm context-aware observations across products \u2014 never notifications, streaks, or engagement bait. Silence when nothing meaningful exists.",
+      "package": "design-system/js/worth-noticing/wds-worth-noticing.js",
+      "css": "design-system/css/wds-worth-noticing.css",
+      "config": "worth-noticing/",
+      "docs": [
+        "docs/WAYPOINT-OBSERVATION-ENGINE.md"
+      ],
+      "consumers": [
+        "studio",
+        "scenes",
+        "photo-coach",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "signalterrain",
+        "dashboard",
+        "hidden-landscapes"
+      ]
     }
   },
   "contentFiles": {
@@ -340,7 +363,8 @@
         "species-knowledge",
         "phenology",
         "mapping-observation",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "scenes": {
@@ -395,7 +419,8 @@
         "outdoor-intelligence",
         "waypoint-ai-guide",
         "waypoint-guide-experience",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "foragecast": {
@@ -447,7 +472,8 @@
         "species-knowledge",
         "phenology",
         "outdoor-intelligence",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "fieldry": {
@@ -497,7 +523,8 @@
         "species-knowledge",
         "mapping-observation",
         "outdoor-intelligence",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "photo-coach": {
@@ -544,7 +571,8 @@
         "photo-intelligence",
         "waypoint-ai-guide",
         "waypoint-guide-experience",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "shed-hunting": {
@@ -595,7 +623,8 @@
       "sharedEngines": [
         "species-knowledge",
         "mapping-observation",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "steepleaf": {
@@ -731,7 +760,8 @@
       ],
       "sharedEngines": [
         "mapping-observation",
-        "waypoint-knowledge-curated"
+        "waypoint-knowledge-curated",
+        "worth-noticing"
       ]
     },
     "terrainbound": {

@@ -1197,6 +1197,27 @@
     });
   }
 
+  function primeWorthNoticing() {
+    var WN = global.WDS && global.WDS.worthNoticing;
+    if (!WN || !WN.loadSamples || WN.getLibrary()) return;
+    var base = "../../design-system/worth-noticing/";
+    Promise.all([
+      WN.loadSamples(base + "samples/demo-observations.json"),
+      WN.loadRules(base + "rules/generation-rules.json"),
+      WN.loadQuality(base + "quality.json")
+    ])
+      .then(function (parts) {
+        WN.prime(parts[0].observations || [], parts[1], parts[2]);
+        if (els.fieldMount) {
+          els.fieldMount.innerHTML = renderFieldInsights(null);
+          if (WN.bindDismiss) WN.bindDismiss(els.fieldMount);
+        }
+      })
+      .catch(function () {
+        /* optional — silence is correct if samples unavailable */
+      });
+  }
+
   function init() {
     els.fileInput = $("coach-file-input");
     els.folderInput = $("coach-folder-input");
@@ -1222,6 +1243,7 @@
     els.summaryMount = $("coach-shoot-summary-mount");
 
     bindUpload();
+    primeWorthNoticing();
     if (els.fieldMount) {
       els.fieldMount.innerHTML = renderFieldInsights(null);
     }

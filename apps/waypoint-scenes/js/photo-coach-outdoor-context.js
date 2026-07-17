@@ -60,6 +60,18 @@
     }
   }
 
+  function worthNoticingBlock(ctx) {
+    var WN = global.WDS && global.WDS.worthNoticing;
+    if (!WN || !WN.selectForOutdoorContext) return "";
+    var picked = WN.selectForOutdoorContext(ctx, "photo-coach");
+    if (!picked || !picked.observation) return "";
+    return (
+      '<div class="coach-outdoor-context__wn">' +
+      WN.render(picked.observation, { dismissible: true, useGuideCard: false }) +
+      "</div>"
+    );
+  }
+
   function render(ctx) {
     ctx = ctx || loadContext();
     if (!ctx) {
@@ -127,6 +139,7 @@
         (ctx.challenge
           ? '<p class="coach-outdoor-context__challenge"><strong>Worth noticing today:</strong> ' + escapeHtml(ctx.challenge) + "</p>"
           : "") +
+        worthNoticingBlock(ctx) +
         (ctx.critiquePrep
           ? '<p class="coach-outdoor-context__prep muted">Critique context: ' +
               escapeHtml([
