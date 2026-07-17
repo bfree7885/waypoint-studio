@@ -1,122 +1,228 @@
-# Waypoint Knowledge Platform (WKP)
+# Waypoint Knowledge Platform V1
 
-**Status:** Foundation  
-**Schema:** `https://waypoint.studio/schemas/knowledge/v1`  
-**Runtime:** `WDS.knowledge` · `WDS.knowledgeSearch` · `WDS.knowledgeRelationships`
+**Status:** Active foundation  
+**Tagline:** The best information, thoughtfully organized.  
+**Audience:** Every Waypoint Studio product, editors, and future AI that surfaces reading  
 
-This is the structured knowledge backbone for Waypoint Studio.
+This is the curated knowledge operating layer for Waypoint Studio.
 
-It is **not** an AI chatbot.  
-It is **not** a marketplace.  
-Applications **query** this platform instead of copying reference data.
+It is **not** a generic news feed.  
+It is **not** a scraper.  
+It is **not** an AI that summarizes random articles.  
+It is **not** a chatbot.
 
-**Curated research companion (Waypoint Knowledge cards):** see `docs/WAYPOINT-KNOWLEDGE.md` and `design-system/knowledge/curated/`. Entity WKP and curated research are complementary layers.
-
----
-
-## Architecture
-
-```
-Apps (Fieldry, ForageCast, Sheds, Steepleaf, Savant, SignalTerrain, OI, Scenes)
-        │
-        ▼
-WDS.knowledge  ── search ── relationships
-        │
-        ├─ knowledge/index.json          (catalog)
-        ├─ knowledge/domains.json        (domain registry)
-        ├─ knowledge/relationships.json  (typed graph)
-        ├─ knowledge/samples|records     (entry bodies)
-        └─ WSKB (species detail when wskbId is set)
-```
-
-### Core entry fields
-
-id · kind · domains · categories · names (common, scientific, aliases) · description · taxonomy · geography · seasonal · media · references · citations · tags · search metadata · related · versioning via `meta` · `extensions[<domain>]` · optional `wskbId`
-
-Domain packs add fields under `extensions` **without** changing the core schema.
+It is a **modern digital field library**: quality over quantity, depth over speed, understanding over engagement.
 
 ---
 
-## Domains
+## Mission
 
-| Domain | Typical categories |
-|--------|--------------------|
-| fieldry | plants, trees, mammals, birds, reptiles, amphibians, fish, insects, butterflies, dragonflies, mushrooms, lichens, rocks, minerals, clouds, weather |
-| foragecast | edible/medicinal plants, mushrooms, berries, nuts, habitats, phenology |
-| sheds | cervids, antler biology, habitats, sign, regulations |
-| steepleaf | tea varieties, cultivars, regions, processing, flavor, brewing |
-| savant-sommelier | grapes, regions, soils, geology, climate, rootstocks, wineries, styles |
-| signalterrain | radio services, bands, modulation, agencies, equipment, terminology |
-| signal-intelligence | planned RF/cyber framing categories (no fabricated threat packs) |
-| landscape-interpretation | planned succession / geology / historic land-use categories |
-| outdoor-intelligence | weather, AQI, UV, astronomy, photography terms |
-| scenes | photography / light concepts (shared with OI) |
-| shared | cross-cutting ecology / habitat concepts |
+Every Waypoint app should become a trusted place to understand its subject — not because it has the most content, but because it has the **best** content.
+
+Users should think:
+
+> “I trust that if Waypoint highlights something, it’s worth my time.”
 
 ---
 
-## Runtime API
+## Philosophy
+
+Waypoint is a guide.
+
+Guides do not overwhelm people with hundreds of links.  
+They point out what matters.  
+Explain why.  
+Provide context.  
+Respect uncertainty.  
+Encourage curiosity.
+
+Reading supports observation. It never interrupts field work.  
+Entry points use Guide Experience language: *Why this matters · Worth noticing · Related research · Background · If you’re curious* — never *Next lesson · Required reading · Complete this*.
+
+See: [Waypoint Constitution](WAYPOINT-CONSTITUTION.md) · [Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md) · [Waypoint Voice](WAYPOINT-VOICE.md).
+
+---
+
+## Two complementary layers
+
+| Layer | Purpose | Path |
+|-------|---------|------|
+| **Curated research** | Papers, reports, guides, advisories as calm reading cards | `design-system/knowledge/curated/` |
+| **Entity knowledge** | Species, habitats, concepts apps can query (`kn_*`) | `design-system/knowledge/` |
+
+Do not conflate them. Curated cards may *link* to entity ids via `relatedEntityIds`.
+
+Primary curated overview (shorter): [Waypoint Knowledge](WAYPOINT-KNOWLEDGE.md).  
+Editorial process: [Waypoint Editorial Standards](WAYPOINT-EDITORIAL-STANDARDS.md).
+
+---
+
+## Knowledge entry model
+
+Schema: `design-system/knowledge/curated/schema-v1.json`  
+Ids: `wk_*`
+
+| Field | Role |
+|-------|------|
+| title | Clear, specific title |
+| sourceName / sourceType | Who published it; category from taxonomy |
+| publicationDate | ISO date or year |
+| authors | Named contributors |
+| topics | Subject tags (prefer product `knowledgeCategories`) |
+| products | Which apps this supports |
+| summary | **Source Summary** — what the publication says |
+| keyFindings | Bullet findings from the source |
+| whyItMatters | Field / product relevance |
+| waypointAnalysis | **Waypoint Perspective** (stored field; UI label = Perspective) |
+| limitations | Uncertainty, scope, conflicts |
+| relatedEntries / relatedEntityIds | Related curated + entity knowledge |
+| originalUrl | Link to the original |
+| reviewStatus | `verified` · `editorial-draft` · `demonstration` · `archived` · `needs-review` |
+| contextualHooks | Optional product hooks for “Why this may matter” |
+
+### Never blur these layers
+
+| Layer | Meaning |
+|-------|---------|
+| **Source Summary** | What the publication says |
+| **Waypoint Perspective** | Why it matters for this app, field use, and where uncertainty remains |
+| **Limitations** | What we do not know or cannot claim |
+
+Demonstration fixtures must use `reviewStatus: "demonstration"` and must never be presented as verified research.
+
+---
+
+## Source taxonomy
+
+Canonical list: `design-system/knowledge/curated/taxonomy.json`
+
+| Category | Typical use |
+|----------|-------------|
+| Research | Peer-reviewed primary work |
+| Review Article | Scholarly synthesis |
+| Field Guide | Identification / field practice |
+| Government | Agency reports, advisories, regulations |
+| University | Extension and academic outreach |
+| Professional Organization | Professional society guidance |
+| Technical Standard | Specs and standards documents |
+| Book | Long-form references |
+| Case Study | Situated investigations |
+| Historical Reference | Historical primary/secondary material |
+| Expert Commentary | Named expert interpretation (labeled) |
+| Editorial | Waypoint editorial (rare; clearly labeled) |
+| Demonstration | Fixture only — never verified |
+
+Mapped to schema `sourceType` values for storage.
+
+---
+
+## Reading experience
+
+- Calm, editorial, readable (~42rem measure)  
+- Intentionally selected entries — no endless scroll feed  
+- No algorithmic ranking, breaking-news theater, likes, or streaks  
+- Progressive disclosure on compact cards  
+- Original source link when available  
+
+UI:
+
+- CSS: `design-system/css/wds-knowledge.css`  
+- JS: `design-system/js/knowledge/wds-knowledge-curated.js` → `WDS.knowledgeCurated`  
+- Demo / library page: `knowledge.html`
+
+---
+
+## Product integration strategy
+
+Knowledge **supports**; it never interrupts.
+
+### Entry points (preferred labels)
+
+- Why this matters  
+- Worth noticing  
+- Related research  
+- Background  
+- If you’re curious  
+
+### Runtime helpers
 
 ```js
-WDS.knowledge.configure({ base: "../../design-system/knowledge/" });
-await WDS.knowledge.preloadDemo();
-const entry = await WDS.knowledge.get("kn_chanterelle");
-const hits = await WDS.knowledge.search("oak", { domain: "sheds" });
-const graph = await WDS.knowledge.related("kn_white-oak");
-const chain = await WDS.knowledge.path("kn_white-oak", "kn_deer-shed-cycle");
+const bundle = await WDS.knowledgeCurated.loadDemo();
+const sheds = WDS.knowledgeCurated.filterByProduct(bundle, "sheds");
+const hooked = WDS.knowledgeCurated.byHook(bundle, "sheds-south-aspect");
+mount.innerHTML = WDS.knowledgeCurated.renderRelatedReading(bundle, {
+  product: "sheds",
+  hookId: "sheds-south-aspect",
+  heading: "If you're curious",
+  compact: true
+});
+WDS.knowledgeCurated.bindToggles(mount);
 ```
 
-Search supports text, taxonomy/scientific/common/aliases, tags, categories, kind, domain, and light geographic filters (`region`, `country`).
+### Per-product topics (examples)
+
+| Product | Example categories |
+|---------|-------------------|
+| Sheds | Habitat, deer biology, wildlife management, terrain, forest ecology |
+| Fieldry | Taxonomy, phenology, ecology, conservation, ID, citizen science |
+| ForageCast | Fungi, plants, succession, permaculture, orchards, weather ecology |
+| Photo Coach / Scenes | Composition, perception, camera science, animal vision, IR/UV |
+| SignalTerrain | Spectrum, cybersecurity literacy, space weather, infrastructure |
+
+Full lists: `product-framework.json` → `knowledgeCategories`.
+
+### Registry
+
+`sharedEngines.waypoint-knowledge-curated` — consumers include studio, sheds, scenes, photo-coach, fieldry, foragecast, signalterrain.
+
+Apps should load `wds-knowledge-curated.js` only when showing reading — not on every map paint.
 
 ---
 
-## Relationships
+## Future vision (same model)
 
-Typed edges in `relationships.json`, for example:
+Architecture must grow without schema breakage toward:
 
-`White oak → produces → Acorn → feeds → White-tailed deer → associated-with → Antler shed cycle`
+- Saved articles · personal notes · collections  
+- Cross-product related reading · research timelines · topic pages  
+- Expert interviews · books · papers · government advisories  
 
-`Chanterelle → appears-after → Post-rainfall fruiting` (ForageCast phenology signal)
-
----
-
-## How to add a new knowledge domain
-
-1. Register the domain in `knowledge/domains.json` (id, label, categories).
-2. Add the domain id to the schema enum in `schema-v1.json` if it is new.
-3. Create entries with `domains: ["your-domain"]` and optional `extensions.your-domain`.
-4. Add relationship edges if concepts connect to existing entries.
-5. Point the app at `WDS.knowledge.search({ domain: "your-domain" })`.
-6. Do **not** fork a parallel knowledge store inside the app.
-
-### Species rule
-
-If a species already exists in WSKB, create a knowledge entry with `wskbId` and keep the long-form education body in WSKB. Do not duplicate the species essay.
+Add fields under optional extensions later; do not invent a second competing model.
 
 ---
 
-## Sample data honesty
+## Entity knowledge API (complement)
 
-`samples/demo-bundle.json` contains **representative sample records** to prove the architecture. It is not a complete production encyclopedia. Provenance is labeled `sample` or `educational`.
+```js
+WDS.knowledge.configure({ base: "design-system/knowledge/" });
+await WDS.knowledge.preloadDemo();
+await WDS.knowledge.get("kn_chanterelle");
+await WDS.knowledge.search("oak", { domain: "sheds" });
+```
 
----
-
-## Files
-
-| Path | Role |
-|------|------|
-| `design-system/knowledge/schema-v1.json` | Entry schema |
-| `design-system/knowledge/domains.json` | Domain registry |
-| `design-system/knowledge/index.json` | Master catalog |
-| `design-system/knowledge/relationships.json` | Graph |
-| `design-system/knowledge/samples/demo-bundle.json` | Demo records |
-| `design-system/js/knowledge/*.js` | Runtime |
-| `docs/WAYPOINT-KNOWLEDGE-PLATFORM.md` | This document |
+Details: historical entity sections remain valid; curated reading is the V1 user-facing library experience.
 
 ---
 
-## See also
+## Success criteria
 
-- [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
-- [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md)
-- Species KB: `design-system/species/README.md`
+Users should leave thinking:
+
+- “I learned something valuable.”  
+- “I understand this subject better.”  
+- “I’m glad someone already found the important information.”  
+- “I want to come back because I trust the curation — not because the app is trying to keep me scrolling.”
+
+Build for years without sacrificing quality or Waypoint philosophy.
+
+---
+
+## Related documents
+
+- [Waypoint Knowledge](WAYPOINT-KNOWLEDGE.md)  
+- [Waypoint Editorial Standards](WAYPOINT-EDITORIAL-STANDARDS.md)  
+- [Editorial Standards](EDITORIAL-STANDARDS.md) (general)  
+- [Research Integrity](RESEARCH-INTEGRITY.md)  
+- [Product Framework](WAYPOINT-PRODUCT-FRAMEWORK.md)  
+- [Waypoint Constitution](WAYPOINT-CONSTITUTION.md)  
+- [Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md)  

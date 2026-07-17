@@ -92,7 +92,11 @@
     "waypointAnalysis": {
       "type": ["string", "null"],
       "maxLength": 2000,
-      "description": "Waypoint Studio interpretation — never present as part of the original research."
+      "description": "Waypoint Perspective — Studio interpretation for field/app use. UI label is 'Waypoint Perspective'. Never present as part of the original research."
+    },
+    "category": {
+      "type": ["string", "null"],
+      "description": "Optional taxonomy category id from curated/taxonomy.json (e.g. research, government, field-guide)."
     },
     "limitations": { "type": ["string", "null"], "maxLength": 1200 },
     "practicalContext": { "type": ["string", "null"], "maxLength": 1200 },
@@ -129,7 +133,7 @@
     "readingMinutes": { "type": ["integer", "null"], "minimum": 1, "maximum": 120 },
     "cardKind": {
       "type": "string",
-      "enum": ["research", "field-report", "analysis", "advisory", "guide"],
+      "enum": ["research", "field-report", "analysis", "advisory", "guide", "review", "standard", "commentary"],
       "default": "research"
     }
   }

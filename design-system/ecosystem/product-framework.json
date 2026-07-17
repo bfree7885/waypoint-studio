@@ -188,8 +188,10 @@
   "pages": {
     "framework": "/docs/WAYPOINT-PRODUCT-FRAMEWORK.md",
     "voice": "/docs/WAYPOINT-VOICE.md",
-    "knowledge": "/docs/WAYPOINT-KNOWLEDGE.md",
-    "editorial": "/docs/EDITORIAL-STANDARDS.md",
+    "knowledge": "/docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
+    "knowledgeShort": "/docs/WAYPOINT-KNOWLEDGE.md",
+    "editorial": "/docs/WAYPOINT-EDITORIAL-STANDARDS.md",
+    "editorialGeneral": "/docs/EDITORIAL-STANDARDS.md",
     "publicAbout": "/about.html",
     "knowledgeDemo": "/knowledge.html"
   }

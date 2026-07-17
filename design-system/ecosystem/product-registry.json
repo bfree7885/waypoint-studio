@@ -1,66 +1,133 @@
 {
   "version": "1.2.2",
-  "description": "Waypoint Studio product registry — core instruments, content tracks, shared modules, and planned shared engines.",
+  "description": "Waypoint Studio product registry \u2014 core instruments, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
-    "core": ["studio", "foragecast", "fieldry", "scenes", "photo-coach"],
-    "foundations": ["shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"],
+    "core": [
+      "studio",
+      "foragecast",
+      "fieldry",
+      "scenes",
+      "photo-coach"
+    ],
+    "foundations": [
+      "shed-hunting",
+      "steepleaf",
+      "signalterrain",
+      "savant-sommelier"
+    ],
     "contentTracks": [],
     "modules": [],
-    "retired": ["terrainbound"]
+    "retired": [
+      "terrainbound"
+    ]
   },
   "sharedEngines": {
     "product-framework": {
       "id": "product-framework",
       "name": "Product Framework",
       "status": "active",
-      "purpose": "Observe → Understand → domain-specific direction with user autonomy.",
+      "purpose": "Observe \u2192 Understand \u2192 domain-specific direction with user autonomy.",
       "config": "ecosystem/product-framework.json",
-      "consumers": ["studio", "scenes", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier", "photo-coach"]
+      "consumers": [
+        "studio",
+        "scenes",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "steepleaf",
+        "signalterrain",
+        "savant-sommelier",
+        "photo-coach"
+      ]
     },
     "waypoint-knowledge-curated": {
       "id": "waypoint-knowledge-curated",
       "name": "Waypoint Knowledge (curated research)",
-      "status": "foundation",
-      "purpose": "Curated research companion cards — Source Summary distinct from Waypoint Analysis.",
+      "status": "active",
+      "purpose": "Curated field library \u2014 Source Summary distinct from Waypoint Perspective. Quality over quantity.",
       "config": "knowledge/curated/",
-      "consumers": ["studio", "shed-hunting", "scenes", "photo-coach", "fieldry", "foragecast", "signalterrain"]
+      "docs": [
+        "docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
+        "docs/WAYPOINT-KNOWLEDGE.md",
+        "docs/WAYPOINT-EDITORIAL-STANDARDS.md"
+      ],
+      "consumers": [
+        "studio",
+        "shed-hunting",
+        "scenes",
+        "photo-coach",
+        "fieldry",
+        "foragecast",
+        "signalterrain"
+      ]
     },
     "outdoor-intelligence": {
       "id": "outdoor-intelligence",
       "name": "Outdoor Intelligence",
       "status": "active",
       "purpose": "Regional weather, light, trails, and stewardship context for calm outdoor decisions.",
-      "consumers": ["studio", "scenes", "fieldry", "foragecast"]
+      "consumers": [
+        "studio",
+        "scenes",
+        "fieldry",
+        "foragecast"
+      ]
     },
     "species-knowledge": {
       "id": "species-knowledge",
       "name": "Species Knowledge",
       "status": "active",
       "purpose": "Shared species and habitat literacy (WSKB).",
-      "consumers": ["fieldry", "foragecast", "shed-hunting", "studio"]
+      "consumers": [
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "studio"
+      ]
     },
     "phenology": {
       "id": "phenology",
       "name": "Phenology",
       "status": "active",
       "purpose": "Seasonal timing and regional life-cycle slices.",
-      "consumers": ["foragecast", "studio", "fieldry"]
+      "consumers": [
+        "foragecast",
+        "studio",
+        "fieldry"
+      ]
     },
     "photo-intelligence": {
       "id": "photo-intelligence",
       "name": "Photo Intelligence",
       "status": "active",
       "purpose": "Careful looking, craft feedback, and visual observation.",
-      "consumers": ["scenes", "photo-coach"]
+      "consumers": [
+        "scenes",
+        "photo-coach"
+      ]
     },
     "waypoint-ai-guide": {
       "id": "waypoint-ai-guide",
       "name": "Waypoint AI Guide",
       "status": "active",
-      "purpose": "Park-ranger product-AI voice: notice, explain, invite — never teach, grade, or assign.",
+      "purpose": "Park-ranger product-AI voice: notice, explain, invite \u2014 never teach, grade, or assign.",
       "package": "design-system/js/ai/wds-ai-guide.js",
-      "docs": ["docs/WAYPOINT-AI-GUIDE.md", "docs/WAYPOINT-AI-PRINCIPLES.md", "docs/WAYPOINT-CONSTITUTION.md"],
-      "consumers": ["studio", "scenes", "photo-coach", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier"]
+      "docs": [
+        "docs/WAYPOINT-AI-GUIDE.md",
+        "docs/WAYPOINT-AI-PRINCIPLES.md",
+        "docs/WAYPOINT-CONSTITUTION.md"
+      ],
+      "consumers": [
+        "studio",
+        "scenes",
+        "photo-coach",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "steepleaf",
+        "signalterrain",
+        "savant-sommelier"
+      ]
     },
     "waypoint-guide-experience": {
       "id": "waypoint-guide-experience",
@@ -69,25 +136,50 @@
       "purpose": "Present information as a trusted field guide: what we're seeing, why it matters, worth noticing, if you're curious.",
       "package": "design-system/js/guide/wds-guide-card.js",
       "css": "design-system/css/wds-guide-experience.css",
-      "docs": ["docs/WAYPOINT-GUIDE-EXPERIENCE.md"],
-      "consumers": ["studio", "scenes", "photo-coach", "fieldry", "foragecast", "shed-hunting", "steepleaf", "signalterrain", "savant-sommelier", "dashboard"]
+      "docs": [
+        "docs/WAYPOINT-GUIDE-EXPERIENCE.md"
+      ],
+      "consumers": [
+        "studio",
+        "scenes",
+        "photo-coach",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "steepleaf",
+        "signalterrain",
+        "savant-sommelier",
+        "dashboard"
+      ]
     },
     "mapping-observation": {
       "id": "mapping-observation",
       "name": "Mapping & Observation Platform",
       "status": "active",
       "purpose": "Places, maps, and research-grade observations (WOS).",
-      "consumers": ["fieldry", "shed-hunting", "studio", "signalterrain"]
+      "consumers": [
+        "fieldry",
+        "shed-hunting",
+        "studio",
+        "signalterrain"
+      ]
     },
     "landscape-interpretation": {
       "id": "landscape-interpretation",
       "name": "Landscape Interpretation",
       "status": "architecture",
       "version": "0.1.0",
-      "purpose": "Help people understand why a landscape looks the way it does — ecology, geology, succession, and land-use history.",
+      "purpose": "Help people understand why a landscape looks the way it does \u2014 ecology, geology, succession, and land-use history.",
       "designNotes": "v0.1 schemas, taxonomy, confidence model, and sample rules only. No UI, maps, AI chat, or live evaluator. No fake layers or invented history.",
       "package": "design-system/landscape-interpretation/",
-      "plannedConsumers": ["studio", "fieldry", "foragecast", "shed-hunting", "scenes", "education"],
+      "plannedConsumers": [
+        "studio",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "scenes",
+        "education"
+      ],
       "docs": [
         "docs/LANDSCAPE-INTERPRETATION-ENGINE.md",
         "docs/LANDSCAPE-INTERPRETATION-INTEGRATIONS.md",
@@ -99,27 +191,60 @@
       "name": "Signal Intelligence",
       "status": "architecture",
       "version": "0.1.0",
-      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions — not an enterprise SOC.",
+      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions \u2014 not an enterprise SOC.",
       "designNotes": "v0.1 observation schema, taxonomy (RF/cyber/infrastructure), confidence, threat-context phases, and adaptive attention only. No dashboards, live APIs, monitoring, SDR UI, or cybersecurity tools.",
       "package": "design-system/signal-intelligence/",
       "capabilityGroups": {
         "rf-intelligence": {
           "label": "RF Intelligence",
           "status": "foundation-partial",
-          "examples": ["SDR", "NOAA", "Amateur Radio", "ADS-B", "AIS", "Satellites", "Spectrum Monitoring", "Signal Logging", "Propagation"]
+          "examples": [
+            "SDR",
+            "NOAA",
+            "Amateur Radio",
+            "ADS-B",
+            "AIS",
+            "Satellites",
+            "Spectrum Monitoring",
+            "Signal Logging",
+            "Propagation"
+          ]
         },
         "cyber-intelligence": {
           "label": "Cyber Intelligence",
           "status": "planned",
-          "examples": ["CVE tracking", "Zero-day monitoring", "Threat campaigns", "Ransomware activity", "Vulnerability prioritization", "Vendor advisories", "Patch recommendations", "ISP outages", "DNS incidents", "BGP disruptions"]
+          "examples": [
+            "CVE tracking",
+            "Zero-day monitoring",
+            "Threat campaigns",
+            "Ransomware activity",
+            "Vulnerability prioritization",
+            "Vendor advisories",
+            "Patch recommendations",
+            "ISP outages",
+            "DNS incidents",
+            "BGP disruptions"
+          ]
         },
         "infrastructure-intelligence": {
           "label": "Infrastructure Intelligence",
           "status": "planned",
-          "examples": ["Internet outages", "Cloud provider status", "CDN disruptions", "GPS interference", "Space weather impacts", "Cellular network issues"]
+          "examples": [
+            "Internet outages",
+            "Cloud provider status",
+            "CDN disruptions",
+            "GPS interference",
+            "Space weather impacts",
+            "Cellular network issues"
+          ]
         }
       },
-      "plannedConsumers": ["signalterrain", "studio", "scenes", "education"],
+      "plannedConsumers": [
+        "signalterrain",
+        "studio",
+        "scenes",
+        "education"
+      ],
       "docs": [
         "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
         "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
@@ -158,12 +283,21 @@
       "name": "Waypoint Studio",
       "hero": "Waypoint Studio",
       "eyebrow": "Outdoor tools for careful observers",
-      "lead": "Weather, seasons, field notes, and photographs — calm software for people who spend time outside.",
+      "lead": "Weather, seasons, field notes, and photographs \u2014 calm software for people who spend time outside.",
       "description": "Outdoor tools for naturalists, photographers, and careful observers.",
       "studioHref": "/",
       "toolHref": "apps/scenes/",
       "toolLabel": "Waypoint Scenes",
-      "contentDomains": ["species", "habitat", "ecology", "weather", "geology", "photography", "field-skills", "conservation"],
+      "contentDomains": [
+        "species",
+        "habitat",
+        "ecology",
+        "weather",
+        "geology",
+        "photography",
+        "field-skills",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -179,15 +313,35 @@
         "citizen-science"
       ],
       "fieldGuideTemplates": [
-        "species", "habitat", "ecosystem", "weather", "geology",
-        "photography", "equipment", "research-brief", "outdoor-challenge",
-        "seasonal-journal", "field-investigation"
+        "species",
+        "habitat",
+        "ecosystem",
+        "weather",
+        "geology",
+        "photography",
+        "equipment",
+        "research-brief",
+        "outdoor-challenge",
+        "seasonal-journal",
+        "field-investigation"
       ],
       "photographyLayout": "gallery-grid",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["landscape-interpretation", "signal-intelligence"],
-      "sharedEngines": ["outdoor-intelligence", "species-knowledge", "phenology", "mapping-observation"]
+      "plannedSharedEngines": [
+        "landscape-interpretation",
+        "signal-intelligence"
+      ],
+      "sharedEngines": [
+        "outdoor-intelligence",
+        "species-knowledge",
+        "phenology",
+        "mapping-observation",
+        "waypoint-knowledge-curated"
+      ]
     },
     "scenes": {
       "slug": "scenes",
@@ -198,11 +352,17 @@
       "hero": "Observe, understand, improve",
       "eyebrow": "Photography & visual observation",
       "lead": "Waypoint Scenes helps photographers observe an image more carefully, understand what is working, and make deliberate improvements.",
-      "description": "Photography tools for careful looking — Photo Coach and Profile available now.",
+      "description": "Photography tools for careful looking \u2014 Photo Coach and Profile available now.",
       "studioHref": "../../",
       "toolHref": "apps/scenes/",
       "toolLabel": "Open studio",
-      "contentDomains": ["photography", "weather", "habitat", "conservation", "field-skills"],
+      "contentDomains": [
+        "photography",
+        "weather",
+        "habitat",
+        "conservation",
+        "field-skills"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -211,13 +371,32 @@
         "outdoor-challenge",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["photography", "weather", "habitat", "species", "field-investigation", "outdoor-challenge"],
+      "fieldGuideTemplates": [
+        "photography",
+        "weather",
+        "habitat",
+        "species",
+        "field-investigation",
+        "outdoor-challenge"
+      ],
       "photographyLayout": "darkroom-featured",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
       "inheritsVia": "design-system/css/wds.css + apps/waypoint-scenes workspace; shared FGDS for Learn/Gallery editorial pages",
-      "plannedSharedEngines": ["landscape-interpretation", "signal-intelligence"],
-      "sharedEngines": ["photo-intelligence", "outdoor-intelligence", "waypoint-ai-guide", "waypoint-guide-experience"]
+      "plannedSharedEngines": [
+        "landscape-interpretation",
+        "signal-intelligence"
+      ],
+      "sharedEngines": [
+        "photo-intelligence",
+        "outdoor-intelligence",
+        "waypoint-ai-guide",
+        "waypoint-guide-experience",
+        "waypoint-knowledge-curated"
+      ]
     },
     "foragecast": {
       "slug": "foragecast",
@@ -228,10 +407,16 @@
       "hero": "Read the land's calendar",
       "eyebrow": "Seasons & habitat",
       "lead": "Species, habitats, and timing for careful foragers. Learn first; harvest only with understanding.",
-      "description": "Learn when and where life offers itself — field-guide lessons, maps, and patient observation.",
+      "description": "Learn when and where life offers itself \u2014 field-guide lessons, maps, and patient observation.",
       "studioHref": "../../",
       "toolHref": null,
-      "contentDomains": ["species", "habitat", "ecology", "conservation", "field-skills"],
+      "contentDomains": [
+        "species",
+        "habitat",
+        "ecology",
+        "conservation",
+        "field-skills"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -241,12 +426,29 @@
         "outdoor-challenge",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["species", "habitat", "ecosystem", "outdoor-challenge", "seasonal-journal", "field-investigation"],
+      "fieldGuideTemplates": [
+        "species",
+        "habitat",
+        "ecosystem",
+        "outdoor-challenge",
+        "seasonal-journal",
+        "field-investigation"
+      ],
       "photographyLayout": "species-plate",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["landscape-interpretation"],
-      "sharedEngines": ["species-knowledge", "phenology", "outdoor-intelligence"]
+      "plannedSharedEngines": [
+        "landscape-interpretation"
+      ],
+      "sharedEngines": [
+        "species-knowledge",
+        "phenology",
+        "outdoor-intelligence",
+        "waypoint-knowledge-curated"
+      ]
     },
     "fieldry": {
       "slug": "fieldry",
@@ -256,11 +458,16 @@
       "name": "Fieldry",
       "hero": "Record what you encounter",
       "eyebrow": "Life list & field notes",
-      "lead": "A private place to record encounters, build a life list, and keep careful notes — without competition.",
-      "description": "Your journal on the trail — meant to send you back outside.",
+      "lead": "A private place to record encounters, build a life list, and keep careful notes \u2014 without competition.",
+      "description": "Your journal on the trail \u2014 meant to send you back outside.",
       "studioHref": "../../",
       "toolHref": "apps/fieldry/",
-      "contentDomains": ["field-skills", "photography", "weather", "conservation"],
+      "contentDomains": [
+        "field-skills",
+        "photography",
+        "weather",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -270,27 +477,49 @@
         "latest-research",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["seasonal-journal", "field-investigation", "equipment", "photography", "research-brief"],
+      "fieldGuideTemplates": [
+        "seasonal-journal",
+        "field-investigation",
+        "equipment",
+        "photography",
+        "research-brief"
+      ],
       "photographyLayout": "journal-evidence",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["landscape-interpretation"],
-      "sharedEngines": ["species-knowledge", "mapping-observation", "outdoor-intelligence"]
+      "plannedSharedEngines": [
+        "landscape-interpretation"
+      ],
+      "sharedEngines": [
+        "species-knowledge",
+        "mapping-observation",
+        "outdoor-intelligence",
+        "waypoint-knowledge-curated"
+      ]
     },
     "photo-coach": {
       "slug": "photo-coach",
       "portfolioTier": "core",
-      "portfolioRole": "First tool in Waypoint Scenes — image critique",
+      "portfolioRole": "First tool in Waypoint Scenes \u2014 image critique",
       "dataProduct": "photo-coach",
       "name": "Photo Coach",
       "hero": "Upload. Notice. Understand.",
-      "eyebrow": "Waypoint Scenes · Photo Coach",
-      "lead": "Upload a photograph for on-device analysis — a relative reading, strengths, and optional next noticing. Part of Waypoint Scenes.",
-      "description": "Photograph coaching in your browser — careful looking, clear signals, and invitations — never grades of you.",
+      "eyebrow": "Waypoint Scenes \u00b7 Photo Coach",
+      "lead": "Upload a photograph for on-device analysis \u2014 a relative reading, strengths, and optional next noticing. Part of Waypoint Scenes.",
+      "description": "Photograph coaching in your browser \u2014 careful looking, clear signals, and invitations \u2014 never grades of you.",
       "studioHref": "../../",
       "toolHref": "apps/photo-coach/",
       "toolLabel": "Open Photo Coach",
-      "contentDomains": ["photography", "weather", "habitat", "field-skills", "conservation"],
+      "contentDomains": [
+        "photography",
+        "weather",
+        "habitat",
+        "field-skills",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "seasonal-highlight",
@@ -298,11 +527,25 @@
         "outdoor-challenge",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["photography", "equipment", "weather", "habitat", "seasonal-journal"],
+      "fieldGuideTemplates": [
+        "photography",
+        "equipment",
+        "weather",
+        "habitat",
+        "seasonal-journal"
+      ],
       "photographyLayout": "gallery-grid",
-      "citizenScience": { "enabled": false, "optIn": false },
+      "citizenScience": {
+        "enabled": false,
+        "optIn": false
+      },
       "contentEngineRegion": "pike-county-pa",
-      "sharedEngines": ["photo-intelligence", "waypoint-ai-guide", "waypoint-guide-experience"]
+      "sharedEngines": [
+        "photo-intelligence",
+        "waypoint-ai-guide",
+        "waypoint-guide-experience",
+        "waypoint-knowledge-curated"
+      ]
     },
     "shed-hunting": {
       "slug": "shed-hunting",
@@ -312,11 +555,17 @@
       "name": "Shed Hunting",
       "hero": "The porch journal",
       "eyebrow": "Wildlife sign & seasonality",
-      "lead": "Reading sign, slope, and patience. Miles walked with empty hands still count — wildlife ethics without trophy culture.",
+      "lead": "Reading sign, slope, and patience. Miles walked with empty hands still count \u2014 wildlife ethics without trophy culture.",
       "description": "Patience, sign, slope, and the ethics of the quiet search.",
       "studioHref": "../../",
       "toolHref": null,
-      "contentDomains": ["species", "habitat", "geology", "field-skills", "conservation"],
+      "contentDomains": [
+        "species",
+        "habitat",
+        "geology",
+        "field-skills",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -326,26 +575,47 @@
         "explore-nearby",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["species", "habitat", "geology", "field-investigation", "outdoor-challenge", "equipment"],
+      "fieldGuideTemplates": [
+        "species",
+        "habitat",
+        "geology",
+        "field-investigation",
+        "outdoor-challenge",
+        "equipment"
+      ],
       "photographyLayout": "sign-evidence",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["landscape-interpretation"],
-      "sharedEngines": ["species-knowledge", "mapping-observation"]
+      "plannedSharedEngines": [
+        "landscape-interpretation"
+      ],
+      "sharedEngines": [
+        "species-knowledge",
+        "mapping-observation",
+        "waypoint-knowledge-curated"
+      ]
     },
     "steepleaf": {
       "slug": "steepleaf",
       "portfolioTier": "content-track",
-      "portfolioRole": "Botany and phenology — merging into ForageCast",
+      "portfolioRole": "Botany and phenology \u2014 merging into ForageCast",
       "dataProduct": "steepleaf",
       "name": "Steepleaf",
       "hero": "The herbarium cabinet",
       "eyebrow": "Tea & botanical craft",
-      "lead": "Botanical plates, habitat keys, and phenology through the year — taught the way a good field guide teaches.",
+      "lead": "Botanical plates, habitat keys, and phenology through the year \u2014 taught the way a good field guide teaches.",
       "description": "Botany with illustrations, species pages, and respect for rare plants.",
       "studioHref": "../../",
       "toolHref": null,
-      "contentDomains": ["species", "habitat", "ecology", "conservation"],
+      "contentDomains": [
+        "species",
+        "habitat",
+        "ecology",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -356,9 +626,19 @@
         "outdoor-challenge",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["species", "habitat", "ecosystem", "seasonal-journal", "field-investigation", "research-brief"],
+      "fieldGuideTemplates": [
+        "species",
+        "habitat",
+        "ecosystem",
+        "seasonal-journal",
+        "field-investigation",
+        "research-brief"
+      ],
       "photographyLayout": "species-plate",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa"
     },
     "savant-sommelier": {
@@ -369,11 +649,16 @@
       "name": "Savant Sommelier",
       "hero": "The tasting room",
       "eyebrow": "Landscape & terroir",
-      "lead": "Terroir as ecology, geology, and weather in a glass — landscape literacy without pretension.",
+      "lead": "Terroir as ecology, geology, and weather in a glass \u2014 landscape literacy without pretension.",
       "description": "Connect landscape to flavor with attention and respect for place.",
       "studioHref": "../../",
       "toolHref": null,
-      "contentDomains": ["ecology", "geology", "weather", "habitat"],
+      "contentDomains": [
+        "ecology",
+        "geology",
+        "weather",
+        "habitat"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -383,25 +668,40 @@
         "field-guide-spotlight",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["ecosystem", "geology", "weather", "habitat", "research-brief", "photography"],
+      "fieldGuideTemplates": [
+        "ecosystem",
+        "geology",
+        "weather",
+        "habitat",
+        "research-brief",
+        "photography"
+      ],
       "photographyLayout": "terroir-landscape",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa"
     },
     "signalterrain": {
       "slug": "signalterrain",
       "portfolioTier": "module",
-      "portfolioRole": "Observatory for invisible environments — Signal Intelligence home (engine architecture v0.1)",
+      "portfolioRole": "Observatory for invisible environments \u2014 Signal Intelligence home (engine architecture v0.1)",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
       "hero": "Observe what you cannot see",
       "eyebrow": "Signal Intelligence",
-      "lead": "A calm observatory for invisible environments — radio and spectrum awareness today, with room later for educational cyber situational awareness. Clarity and privacy over noise.",
-      "description": "SignalTerrain is the studio home for Signal Intelligence: RF listening and logging foundations now; educational cyber awareness planned — not an enterprise SOC.",
+      "lead": "A calm observatory for invisible environments \u2014 radio and spectrum awareness today, with room later for educational cyber situational awareness. Clarity and privacy over noise.",
+      "description": "SignalTerrain is the studio home for Signal Intelligence: RF listening and logging foundations now; educational cyber awareness planned \u2014 not an enterprise SOC.",
       "studioHref": "../../",
       "toolHref": "apps/signalterrain/",
       "toolLabel": "Open SignalTerrain",
-      "contentDomains": ["geology", "weather", "field-skills", "habitat"],
+      "contentDomains": [
+        "geology",
+        "weather",
+        "field-skills",
+        "habitat"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -412,26 +712,46 @@
         "outdoor-challenge",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["geology", "weather", "equipment", "habitat", "field-investigation", "research-brief"],
+      "fieldGuideTemplates": [
+        "geology",
+        "weather",
+        "equipment",
+        "habitat",
+        "field-investigation",
+        "research-brief"
+      ],
       "photographyLayout": "map-horizon",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa",
-      "plannedSharedEngines": ["signal-intelligence"],
-      "sharedEngines": ["mapping-observation"]
+      "plannedSharedEngines": [
+        "signal-intelligence"
+      ],
+      "sharedEngines": [
+        "mapping-observation",
+        "waypoint-knowledge-curated"
+      ]
     },
     "terrainbound": {
       "slug": "terrainbound",
       "portfolioTier": "retired",
-      "portfolioRole": "Retired — skills absorbed into Fieldry and Dashboard",
+      "portfolioRole": "Retired \u2014 skills absorbed into Fieldry and Dashboard",
       "dataProduct": "terrainbound",
       "name": "Terrainbound",
       "hero": "The long trail shelter",
       "eyebrow": "Endurance trails",
-      "lead": "Routes, weather windows, turnaround ethics, and journals that honor turning back — endurance with humility.",
-      "description": "The long day — weather, humility, and conservation on the path.",
+      "lead": "Routes, weather windows, turnaround ethics, and journals that honor turning back \u2014 endurance with humility.",
+      "description": "The long day \u2014 weather, humility, and conservation on the path.",
       "studioHref": "../../",
       "toolHref": null,
-      "contentDomains": ["weather", "geology", "field-skills", "conservation"],
+      "contentDomains": [
+        "weather",
+        "geology",
+        "field-skills",
+        "conservation"
+      ],
       "homepageSections": [
         "featured-photograph",
         "todays-lesson",
@@ -442,9 +762,19 @@
         "featured-tool",
         "citizen-science"
       ],
-      "fieldGuideTemplates": ["weather", "geology", "equipment", "outdoor-challenge", "seasonal-journal", "field-investigation"],
+      "fieldGuideTemplates": [
+        "weather",
+        "geology",
+        "equipment",
+        "outdoor-challenge",
+        "seasonal-journal",
+        "field-investigation"
+      ],
       "photographyLayout": "trail-evidence",
-      "citizenScience": { "enabled": true, "optIn": true },
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
       "contentEngineRegion": "pike-county-pa"
     }
   }

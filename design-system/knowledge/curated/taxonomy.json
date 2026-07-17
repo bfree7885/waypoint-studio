@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "description": "Curated Knowledge Platform source categories and card kinds. Quality over quantity.",
+  "sourceCategories": [
+    {
+      "id": "research",
+      "label": "Research",
+      "sourceTypes": ["peer-reviewed"],
+      "description": "Peer-reviewed primary research."
+    },
+    {
+      "id": "review-article",
+      "label": "Review Article",
+      "sourceTypes": ["peer-reviewed"],
+      "description": "Scholarly synthesis of a research area."
+    },
+    {
+      "id": "field-guide",
+      "label": "Field Guide",
+      "sourceTypes": ["field-guide"],
+      "description": "Identification and field practice references."
+    },
+    {
+      "id": "government",
+      "label": "Government",
+      "sourceTypes": ["government", "primary-advisory"],
+      "description": "Agency reports, advisories, and regulations."
+    },
+    {
+      "id": "university",
+      "label": "University",
+      "sourceTypes": ["university-extension"],
+      "description": "University and extension publications."
+    },
+    {
+      "id": "professional-organization",
+      "label": "Professional Organization",
+      "sourceTypes": ["scientific-organization", "professional-association"],
+      "description": "Professional society guidance."
+    },
+    {
+      "id": "technical-standard",
+      "label": "Technical Standard",
+      "sourceTypes": ["standard", "technical-report"],
+      "description": "Standards and technical specifications."
+    },
+    {
+      "id": "book",
+      "label": "Book",
+      "sourceTypes": ["book"],
+      "description": "Long-form published references."
+    },
+    {
+      "id": "case-study",
+      "label": "Case Study",
+      "sourceTypes": ["technical-report", "peer-reviewed"],
+      "description": "Situated investigations with clear scope."
+    },
+    {
+      "id": "historical-reference",
+      "label": "Historical Reference",
+      "sourceTypes": ["book", "long-form-journalism"],
+      "description": "Historical primary or secondary material still useful for context."
+    },
+    {
+      "id": "expert-commentary",
+      "label": "Expert Commentary",
+      "sourceTypes": ["long-form-journalism", "technical-report"],
+      "description": "Named expert interpretation — must be labeled as commentary."
+    },
+    {
+      "id": "editorial",
+      "label": "Editorial",
+      "sourceTypes": ["demonstration"],
+      "description": "Rare Waypoint editorial framing — never disguised as external research."
+    },
+    {
+      "id": "demonstration",
+      "label": "Demonstration",
+      "sourceTypes": ["demonstration"],
+      "description": "Fixture content for architecture and UI. Never verified research."
+    }
+  ],
+  "cardKinds": [
+    { "id": "research", "label": "Research" },
+    { "id": "field-report", "label": "Field report" },
+    { "id": "analysis", "label": "Perspective" },
+    { "id": "advisory", "label": "Advisory" },
+    { "id": "guide", "label": "Field guide" },
+    { "id": "review", "label": "Review" },
+    { "id": "standard", "label": "Standard" },
+    { "id": "commentary", "label": "Commentary" }
+  ],
+  "ctaLabels": [
+    "Why this matters",
+    "Worth noticing",
+    "Related research",
+    "Background",
+    "If you're curious"
+  ],
+  "prohibitedCtaLabels": [
+    "Next lesson",
+    "Required reading",
+    "Complete this",
+    "Assignment",
+    "Homework"
+  ],
+  "reviewStatuses": [
+    "verified",
+    "editorial-draft",
+    "demonstration",
+    "archived",
+    "needs-review"
+  ]
+}

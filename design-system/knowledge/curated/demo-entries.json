@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-07-15",
-  "layer": "Waypoint Knowledge",
-  "note": "Demonstration curated entries for architecture and UI. reviewStatus=demonstration means fixture content — not verified published research. Do not present these as real papers.",
+  "updatedAt": "2026-07-16",
+  "layer": "Waypoint Knowledge Platform",
+  "note": "Demonstration curated entries for architecture and UI. reviewStatus=demonstration means fixture content \u2014 not verified published research. Do not present these as real papers. See docs/WAYPOINT-KNOWLEDGE-PLATFORM.md.",
   "entries": [
     {
       "id": "wk_demo-south-aspect-winter-cover",
@@ -10,28 +10,45 @@
       "subtitle": "How aspect may relate to thermal relief and browse access in cold months",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
-      "publicationName": "Demonstration only — not a journal",
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
+      "publicationName": "Demonstration only \u2014 not a journal",
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["winter-habitat", "terrain-use", "cervid-biology"],
-      "products": ["sheds"],
-      "locations": ["temperate-north-america"],
-      "species": ["Odocoileus virginianus"],
+      "topics": [
+        "winter-habitat",
+        "terrain-use",
+        "cervid-biology"
+      ],
+      "products": [
+        "sheds"
+      ],
+      "locations": [
+        "temperate-north-america"
+      ],
+      "species": [
+        "Odocoileus virginianus"
+      ],
       "summary": "This demonstration summary describes a common field pattern discussed in wildlife ecology: in cold seasons, sun-exposed slopes can offer relatively warmer microclimates and different snow conditions than shaded aspects. Real research varies by region, snowpack, and land cover.",
       "keyFindings": [
         "Aspect can change local temperature and snow persistence.",
         "Thermal relief alone does not locate antlers.",
         "Regional vegetation and human pressure often matter as much as slope aspect."
       ],
-      "whyItMatters": "When Sheds highlights a south-facing pocket, this kind of context helps explain why the suggestion may be worth considering — not why a find is guaranteed.",
+      "whyItMatters": "When Sheds highlights a south-facing pocket, this kind of context helps explain why the suggestion may be worth considering \u2014 not why a find is guaranteed.",
       "waypointAnalysis": "Waypoint treats aspect as one relative influence among many. A south-facing suggestion is guidance for walking attention, not a claim that antlers are present. Always confirm legal access and avoid disturbing wintering animals.",
       "limitations": "Demonstration fixture. No specific study, sample size, or locality is claimed. Local land cover and snow conditions can reverse simple aspect expectations.",
-      "practicalContext": "Use as background reading beside a map suggestion labeled “Why this area may matter.”",
-      "relatedEntries": ["wk_demo-ethical-search-boundaries"],
-      "relatedEntityIds": ["kn_odocoileus-virginianus", "kn_deer-shed-cycle"],
+      "practicalContext": "Use as background reading beside a map suggestion labeled \u201cWhy this area may matter.\u201d",
+      "relatedEntries": [
+        "wk_demo-ethical-search-boundaries"
+      ],
+      "relatedEntityIds": [
+        "kn_odocoileus-virginianus",
+        "kn_deer-shed-cycle"
+      ],
       "contextualHooks": [
         {
           "id": "sheds-south-aspect",
@@ -45,7 +62,8 @@
       "reviewStatus": "demonstration",
       "featured": true,
       "readingMinutes": 4,
-      "cardKind": "research"
+      "cardKind": "research",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-ethical-search-boundaries",
@@ -53,16 +71,26 @@
       "subtitle": "Boundaries that matter more than any map color",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["ethical-searching", "regulations", "wildlife-management"],
-      "products": ["sheds"],
+      "topics": [
+        "ethical-searching",
+        "regulations",
+        "wildlife-management"
+      ],
+      "products": [
+        "sheds"
+      ],
       "locations": [],
-      "species": ["Odocoileus virginianus"],
+      "species": [
+        "Odocoileus virginianus"
+      ],
       "summary": "This demonstration entry restates stewardship principles: maps do not grant access; wintering wildlife should not be harassed; closed and private lands remain off-limits regardless of modeled priority.",
       "keyFindings": [
         "Legal access is independent of biological plausibility.",
@@ -73,7 +101,9 @@
       "waypointAnalysis": "In Sheds, ethics sheets and honest model language are first-class. Knowledge cards reinforce autonomy: you decide whether searching makes sense today.",
       "limitations": "Demonstration principles only. Local regulations and seasons must be checked with primary authorities.",
       "practicalContext": "Pair with the Sheds ethics sheet and any search suggestion.",
-      "relatedEntries": ["wk_demo-south-aspect-winter-cover"],
+      "relatedEntries": [
+        "wk_demo-south-aspect-winter-cover"
+      ],
       "relatedEntityIds": [],
       "contextualHooks": [
         {
@@ -88,35 +118,47 @@
       "reviewStatus": "demonstration",
       "featured": false,
       "readingMinutes": 3,
-      "cardKind": "guide"
+      "cardKind": "guide",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-figure-ground-separation",
-      "title": "Figure–ground separation in careful looking (demonstration)",
+      "title": "Figure\u2013ground separation in careful looking (demonstration)",
       "subtitle": "Why subject separation can improve readable photographs",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["composition-research", "visual-perception", "camera-technique"],
-      "products": ["photo-coach", "scenes"],
+      "topics": [
+        "composition-research",
+        "visual-perception",
+        "camera-technique"
+      ],
+      "products": [
+        "photo-coach",
+        "scenes"
+      ],
       "locations": [],
       "species": [],
-      "summary": "This demonstration summarizes a familiar idea from visual perception and photographic craft: when a subject shares similar tone, color, or texture with its background, viewers may struggle to separate figure from ground. Lighting, viewpoint, and timing can change that relationship without requiring a “better score.”",
+      "summary": "This demonstration summarizes a familiar idea from visual perception and photographic craft: when a subject shares similar tone, color, or texture with its background, viewers may struggle to separate figure from ground. Lighting, viewpoint, and timing can change that relationship without requiring a \u201cbetter score.\u201d",
       "keyFindings": [
         "Separation is a perceptual relationship, not a moral grade.",
         "Edge contrast and depth cues often help readability.",
         "Coaching should invite noticing, not shame."
       ],
-      "whyItMatters": "Photo Coach may mention subject separation as something worth noticing — not as a failed assignment.",
+      "whyItMatters": "Photo Coach may mention subject separation as something worth noticing \u2014 not as a failed assignment.",
       "waypointAnalysis": "Waypoint frames Refine as optional coaching. A lower relative score is information about the current image, not a personal failure or required redo.",
       "limitations": "Demonstration only. Real perception literature is broader and context-dependent.",
-      "practicalContext": "Attach as “Why this cue may matter” beside a composition note.",
-      "relatedEntries": ["wk_demo-create-without-competition"],
+      "practicalContext": "Attach as \u201cWhy this cue may matter\u201d beside a composition note.",
+      "relatedEntries": [
+        "wk_demo-create-without-competition"
+      ],
       "relatedEntityIds": [],
       "contextualHooks": [
         {
@@ -131,7 +173,8 @@
       "reviewStatus": "demonstration",
       "featured": true,
       "readingMinutes": 3,
-      "cardKind": "analysis"
+      "cardKind": "analysis",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-create-without-competition",
@@ -139,27 +182,38 @@
       "subtitle": "Why Scenes treats making as optional and personal",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["nature-photography", "photographer-development"],
-      "products": ["scenes", "photo-coach", "hidden-landscapes"],
+      "topics": [
+        "nature-photography",
+        "photographer-development"
+      ],
+      "products": [
+        "scenes",
+        "photo-coach",
+        "hidden-landscapes"
+      ],
       "locations": [],
       "species": [],
-      "summary": "This demonstration entry states Waypoint’s product stance: Create belongs naturally to Scenes and related visual tools, but creating is never mandatory. Observation alone is a complete use of the studio.",
+      "summary": "This demonstration entry states Waypoint\u2019s product stance: Create belongs naturally to Scenes and related visual tools, but creating is never mandatory. Observation alone is a complete use of the studio.",
       "keyFindings": [
         "Create is domain-specific support, not a universal duty.",
         "No streaks, rankings, or posting obligations.",
         "Share remains optional and intentional."
       ],
       "whyItMatters": "Preserves user autonomy across photography products.",
-      "waypointAnalysis": "The studio cycle Observe · Understand · Create · Share describes possibilities. Product third stages (Create, Refine, Reveal) describe support types — not homework.",
+      "waypointAnalysis": "The studio cycle Observe \u00b7 Understand \u00b7 Create \u00b7 Share describes possibilities. Product third stages (Create, Refine, Reveal) describe support types \u2014 not homework.",
       "limitations": "Editorial stance document, not empirical research.",
       "practicalContext": "Useful on About and Scenes knowledge panels.",
-      "relatedEntries": ["wk_demo-figure-ground-separation"],
+      "relatedEntries": [
+        "wk_demo-figure-ground-separation"
+      ],
       "relatedEntityIds": [],
       "contextualHooks": [],
       "citation": "Waypoint Studio demonstration fixture (2026).",
@@ -167,7 +221,8 @@
       "reviewStatus": "demonstration",
       "featured": false,
       "readingMinutes": 2,
-      "cardKind": "guide"
+      "cardKind": "guide",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-soil-temp-morel-timing",
@@ -175,16 +230,30 @@
       "subtitle": "Why calendar date alone is a weak foraging cue",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["fungal-ecology", "phenology", "weather-relationships", "toxicology"],
-      "products": ["foragecast", "fieldry"],
-      "locations": ["temperate-north-america"],
-      "species": ["Morchella americana"],
+      "topics": [
+        "fungal-ecology",
+        "phenology",
+        "weather-relationships",
+        "toxicology"
+      ],
+      "products": [
+        "foragecast",
+        "fieldry"
+      ],
+      "locations": [
+        "temperate-north-america"
+      ],
+      "species": [
+        "Morchella americana"
+      ],
       "summary": "This demonstration explains a widely taught foraging caution: fruiting of many spring fungi relates more to soil temperature and recent moisture than to a fixed calendar week. Identification safety remains separate and non-negotiable.",
       "keyFindings": [
         "Phenology cues beat calendar superstition.",
@@ -192,11 +261,15 @@
         "Never eat anything you cannot identify with certainty."
       ],
       "whyItMatters": "ForageCast Explore direction can point at conditions without telling someone they must harvest.",
-      "waypointAnalysis": "Food-safety language stays direct. Seasonal suggestion language stays optional: conditions may favor looking — you decide whether to explore.",
+      "waypointAnalysis": "Food-safety language stays direct. Seasonal suggestion language stays optional: conditions may favor looking \u2014 you decide whether to explore.",
       "limitations": "Demonstration fixture. Not a substitute for local expert guidance or verified field guides.",
-      "practicalContext": "Link from a mushroom-season panel as “Why rain timing may matter.”",
-      "relatedEntries": ["wk_demo-observation-without-obligation"],
-      "relatedEntityIds": ["kn_morchella-americana"],
+      "practicalContext": "Link from a mushroom-season panel as \u201cWhy rain timing may matter.\u201d",
+      "relatedEntries": [
+        "wk_demo-observation-without-obligation"
+      ],
+      "relatedEntityIds": [
+        "kn_morchella-americana"
+      ],
       "contextualHooks": [
         {
           "id": "foragecast-rain-timing",
@@ -210,35 +283,46 @@
       "reviewStatus": "demonstration",
       "featured": true,
       "readingMinutes": 4,
-      "cardKind": "field-report"
+      "cardKind": "field-report",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-observation-without-obligation",
       "title": "Noticing without required logging (demonstration)",
-      "subtitle": "Record is support for Fieldry — never a duty",
+      "subtitle": "Record is support for Fieldry \u2014 never a duty",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["observation-methods", "citizen-science", "ecology"],
-      "products": ["fieldry"],
+      "topics": [
+        "observation-methods",
+        "citizen-science",
+        "ecology"
+      ],
+      "products": [
+        "fieldry"
+      ],
       "locations": [],
       "species": [],
-      "summary": "This demonstration clarifies that Fieldry’s Record stage exists to help people preserve notices they choose to keep. Walking away without logging is always valid.",
+      "summary": "This demonstration clarifies that Fieldry\u2019s Record stage exists to help people preserve notices they choose to keep. Walking away without logging is always valid.",
       "keyFindings": [
         "Observation apps should reduce friction, not invent quotas.",
         "Personal records stay private by default in Waypoint field tools.",
         "Citizen-science contribution, if offered later, must be opt-in."
       ],
       "whyItMatters": "Protects autonomy and avoids school-like pressure.",
-      "waypointAnalysis": "Achievements in Fieldry, if present, are calm discovery markers — not streaks or rankings.",
+      "waypointAnalysis": "Achievements in Fieldry, if present, are calm discovery markers \u2014 not streaks or rankings.",
       "limitations": "Editorial stance, not a study.",
       "practicalContext": "About Fieldry / empty-state companion copy.",
-      "relatedEntries": ["wk_demo-soil-temp-morel-timing"],
+      "relatedEntries": [
+        "wk_demo-soil-temp-morel-timing"
+      ],
       "relatedEntityIds": [],
       "contextualHooks": [],
       "citation": "Waypoint Studio demonstration fixture (2026).",
@@ -246,7 +330,8 @@
       "reviewStatus": "demonstration",
       "featured": false,
       "readingMinutes": 2,
-      "cardKind": "guide"
+      "cardKind": "guide",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-space-weather-awareness",
@@ -254,26 +339,37 @@
       "subtitle": "Awareness without operational exploitation",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["space-weather", "propagation", "radio-science"],
-      "products": ["signalterrain", "dashboard"],
-      "locations": ["global"],
+      "topics": [
+        "space-weather",
+        "propagation",
+        "radio-science"
+      ],
+      "products": [
+        "signalterrain",
+        "dashboard"
+      ],
+      "locations": [
+        "global"
+      ],
       "species": [],
       "summary": "This demonstration describes how space-weather context can help people interpret radio or GNSS anomalies at a high level. It does not provide offensive guidance, exploit instructions, or unverified threat claims.",
       "keyFindings": [
         "Official advisories outrank informal speculation.",
         "Propagation effects are probabilistic and location-dependent.",
-        "Monitor means awareness — not intervention."
+        "Monitor means awareness \u2014 not intervention."
       ],
-      "whyItMatters": "SignalTerrain’s Monitor stage should stay defensive, educational, and lawful.",
+      "whyItMatters": "SignalTerrain\u2019s Monitor stage should stay defensive, educational, and lawful.",
       "waypointAnalysis": "Separate event reporting from Waypoint interpretation. Prefer primary advisories. Label uncertainty. Never invent incidents.",
       "limitations": "Demonstration framing only. Consult primary space-weather and spectrum authorities for operational decisions.",
-      "practicalContext": "Attach beside an alert card as “Background reading.”",
+      "practicalContext": "Attach beside an alert card as \u201cBackground reading.\u201d",
       "relatedEntries": [],
       "relatedEntityIds": [],
       "contextualHooks": [
@@ -289,7 +385,8 @@
       "reviewStatus": "demonstration",
       "featured": true,
       "readingMinutes": 3,
-      "cardKind": "advisory"
+      "cardKind": "advisory",
+      "category": "demonstration"
     },
     {
       "id": "wk_demo-gps-interference-literacy",
@@ -297,14 +394,22 @@
       "subtitle": "Recognize disruption language without fear theater",
       "sourceName": "Waypoint Studio Demonstration Fixture",
       "sourceType": "demonstration",
-      "authors": ["Waypoint Studio Editorial (demo)"],
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
       "publicationName": null,
       "publicationDate": "2026",
       "originalUrl": null,
       "accessType": "demo-only",
       "peerReviewed": null,
-      "topics": ["gps-interference", "communications-infrastructure", "cyber-advisories"],
-      "products": ["signalterrain"],
+      "topics": [
+        "gps-interference",
+        "communications-infrastructure",
+        "cyber-advisories"
+      ],
+      "products": [
+        "signalterrain"
+      ],
       "locations": [],
       "species": [],
       "summary": "This demonstration outlines calm literacy: GNSS disruption reports should cite primary sources, date freshness, and uncertainty. Civilian tools should educate, not escalate.",
@@ -315,9 +420,11 @@
       ],
       "whyItMatters": "Keeps Monitor ethical and non-operational.",
       "waypointAnalysis": "Waypoint Analysis must stay clearly labeled and never pretend to be an official advisory.",
-      "limitations": "Demo literacy note — not an incident report.",
+      "limitations": "Demo literacy note \u2014 not an incident report.",
       "practicalContext": "Pair with official links when a real advisory exists.",
-      "relatedEntries": ["wk_demo-space-weather-awareness"],
+      "relatedEntries": [
+        "wk_demo-space-weather-awareness"
+      ],
       "relatedEntityIds": [],
       "contextualHooks": [],
       "citation": "Waypoint Studio demonstration fixture (2026).",
@@ -325,7 +432,118 @@
       "reviewStatus": "demonstration",
       "featured": false,
       "readingMinutes": 3,
-      "cardKind": "analysis"
+      "cardKind": "analysis",
+      "category": "demonstration"
+    },
+    {
+      "id": "wk_demo-forest-succession-light",
+      "title": "Light gaps and understory change (demonstration)",
+      "subtitle": "Why canopy openings can rearrange what fruits when",
+      "sourceName": "Waypoint Studio Demonstration Fixture",
+      "sourceType": "demonstration",
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
+      "publicationName": "Demonstration only \u2014 not a journal",
+      "publicationDate": "2026",
+      "originalUrl": null,
+      "accessType": "demo-only",
+      "peerReviewed": null,
+      "topics": [
+        "forest-succession",
+        "plant-ecology",
+        "phenology"
+      ],
+      "products": [
+        "foragecast",
+        "fieldry"
+      ],
+      "locations": [
+        "temperate-forests"
+      ],
+      "species": [],
+      "summary": "This demonstration summary describes a familiar ecology pattern: when canopy gaps open, light, moisture, and competition shift. Those shifts can change which plants and fungi are favored in following seasons. Real succession pathways depend on seed banks, soils, and disturbance history.",
+      "keyFindings": [
+        "Canopy gaps alter microclimate and understory competition.",
+        "Phenology timing can shift after disturbance without guaranteeing abundance.",
+        "Local species pools determine what actually appears."
+      ],
+      "whyItMatters": "ForageCast seasonal reading is about conditions and ecology \u2014 not a promise that a gap means a harvest.",
+      "waypointAnalysis": "Waypoint treats succession notes as background for noticing. Food-safety and legal access remain separate, direct requirements. Curiosity is enough; collecting is never required.",
+      "limitations": "Demonstration fixture. No site-specific inventory or yield claim is made.",
+      "practicalContext": "Pair with rain-timing or host-tree reading when a user opens If you're curious from seasonal context.",
+      "relatedEntries": [],
+      "relatedEntityIds": [],
+      "contextualHooks": [
+        {
+          "id": "foragecast-succession",
+          "label": "Why canopy gaps may matter",
+          "product": "foragecast",
+          "conditionHint": "seasonal-background"
+        }
+      ],
+      "citation": "Waypoint Studio demonstration fixture (2026). Not a citable scientific source.",
+      "dateReviewed": "2026-07-16",
+      "reviewStatus": "demonstration",
+      "featured": false,
+      "readingMinutes": 4,
+      "cardKind": "research",
+      "category": "demonstration"
+    },
+    {
+      "id": "wk_demo-composition-visual-weight",
+      "title": "Visual weight and where the eye rests (demonstration)",
+      "subtitle": "Brightness, sharpness, and warmth as quiet composition cues",
+      "sourceName": "Waypoint Studio Demonstration Fixture",
+      "sourceType": "demonstration",
+      "authors": [
+        "Waypoint Studio Editorial (demo)"
+      ],
+      "publicationName": null,
+      "publicationDate": "2026",
+      "originalUrl": null,
+      "accessType": "demo-only",
+      "peerReviewed": null,
+      "topics": [
+        "composition-research",
+        "visual-perception",
+        "visual-storytelling"
+      ],
+      "products": [
+        "photo-coach",
+        "scenes"
+      ],
+      "locations": [],
+      "species": [],
+      "summary": "This demonstration entry restates a common perception idea: brighter, sharper, and warmer areas often carry more visual weight. Careful photographers notice whether that weight aligns with the intended subject.",
+      "keyFindings": [
+        "Visual weight is relational within a frame.",
+        "Squinting can reveal the dominant shape quickly.",
+        "There is no single correct photograph."
+      ],
+      "whyItMatters": "Photo Coach may mention weight and separation as something worth noticing \u2014 never as a grade of the photographer.",
+      "waypointAnalysis": "Waypoint uses composition research as invitation. Relative readings describe signals in an image, not artistic worth. Style remains the photographer's.",
+      "limitations": "Demonstration fixture. Perception research is nuanced; culture and genre change expectations.",
+      "practicalContext": "Surface under If you're curious beside a composition cue.",
+      "relatedEntries": [
+        "wk_demo-figure-ground-separation"
+      ],
+      "relatedEntityIds": [],
+      "contextualHooks": [
+        {
+          "id": "photo-coach-visual-weight",
+          "label": "Why visual weight may matter",
+          "product": "photo-coach",
+          "conditionHint": "composition-cue"
+        }
+      ],
+      "citation": "Waypoint Studio demonstration fixture (2026).",
+      "dateReviewed": "2026-07-16",
+      "reviewStatus": "demonstration",
+      "featured": true,
+      "readingMinutes": 3,
+      "cardKind": "research",
+      "category": "demonstration"
     }
   ]
 }

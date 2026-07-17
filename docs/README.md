@@ -12,6 +12,9 @@
 | [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) | Signal Intelligence Engine v0.1 — awareness schemas |
 | [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | How SignalTerrain and peers will consume SI |
 | [CONTACT-SUPPORT-PLATFORM.md](CONTACT-SUPPORT-PLATFORM.md) | Contact & Support platform — forms, delivery, privacy honesty |
+| [WAYPOINT-KNOWLEDGE-PLATFORM.md](WAYPOINT-KNOWLEDGE-PLATFORM.md) | Curated Knowledge Platform V1 — field library architecture |
+| [WAYPOINT-KNOWLEDGE.md](WAYPOINT-KNOWLEDGE.md) | Curated research layer overview |
+| [WAYPOINT-EDITORIAL-STANDARDS.md](WAYPOINT-EDITORIAL-STANDARDS.md) | How sources are selected, summarized, corrected, archived |
 | [WAYPOINT-CONSTITUTION.md](WAYPOINT-CONSTITUTION.md) | Shared decision OS — ten principles for every product & AI interaction |
 | [WAYPOINT-AI-PRINCIPLES.md](WAYPOINT-AI-PRINCIPLES.md) | How product AI inherits and applies the Constitution |
 | [WAYPOINT-STUDIO-CONSTITUTION.md](WAYPOINT-STUDIO-CONSTITUTION.md) | Product law — mission, privacy, feature test, rooms |

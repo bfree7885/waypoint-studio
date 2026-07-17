@@ -5,6 +5,9 @@
 
 These standards govern curated knowledge, public explanations, and interpretive copy.
 
+**Curated knowledge depth (selection, corrections, conflicting evidence, AI assistance):**  
+[Waypoint Editorial Standards](WAYPOINT-EDITORIAL-STANDARDS.md) · [Knowledge Platform V1](WAYPOINT-KNOWLEDGE-PLATFORM.md)
+
 ---
 
 ## 1. Source quality
@@ -28,10 +31,12 @@ Every curated entry must distinguish:
 | Layer | Meaning |
 |-------|---------|
 | **Source Summary** | What the original source reports |
-| **Waypoint Analysis** | What Waypoint Studio concludes or connects |
+| **Waypoint Perspective** | What Waypoint Studio concludes or connects for field/app use |
 | **Limitations** | What remains uncertain or out of scope |
 
-Never present Waypoint Analysis as part of the original research.
+Never present Waypoint Perspective as part of the original research.
+
+(Stored field name remains `waypointAnalysis` for compatibility; UI label is Perspective.)
 
 ---
 
@@ -45,6 +50,8 @@ Process expectations:
 - Replace or flag broken links  
 - Record `dateReviewed`  
 - Archive outdated guidance with `reviewStatus: archived`
+
+Full process: [Waypoint Editorial Standards](WAYPOINT-EDITORIAL-STANDARDS.md).
 
 ---
 
@@ -93,6 +100,8 @@ Present major information as: what we’re seeing → why it matters → worth n
 Safety-critical warnings (toxicity, legal access, wildlife disturbance, cyber offense boundaries) stay direct.
 
 School-like pressure (“complete”, “homework”, “streak”, “you must”) does not belong in product-facing guidance.
+
+Knowledge CTAs prefer: Why this matters · Worth noticing · Related research · Background · If you’re curious.
 
 ---
 

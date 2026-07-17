@@ -60,7 +60,15 @@ const schema = JSON.parse(
 assert("curated schema id pattern", /wk_/.test(schema.properties.id.pattern));
 assert("summary required", schema.required.includes("summary"));
 assert("waypointAnalysis field", !!schema.properties.waypointAnalysis);
-assert("reviewStatus enum has demonstration", schema.properties.reviewStatus.enum.includes("demonstration"));
+assert("category field", !!schema.properties.category);
+assert("cardKind includes review", schema.properties.cardKind.enum.includes("review"));
+
+const taxonomy = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "design-system/knowledge/curated/taxonomy.json"), "utf8")
+);
+assert("taxonomy has source categories", taxonomy.sourceCategories.length >= 10);
+assert("taxonomy CTA prefer curious", taxonomy.ctaLabels.includes("If you're curious"));
+assert("taxonomy bans required reading", taxonomy.prohibitedCtaLabels.includes("Required reading"));
 
 const demo = JSON.parse(
   fs.readFileSync(path.join(ROOT, "design-system/knowledge/curated/demo-entries.json"), "utf8")
@@ -95,9 +103,15 @@ assert(
   demo.entries.some((e) => (e.contextualHooks || []).length > 0)
 );
 
-["docs/WAYPOINT-PRODUCT-FRAMEWORK.md", "docs/WAYPOINT-KNOWLEDGE.md", "docs/EDITORIAL-STANDARDS.md"].forEach((p) => {
+["docs/WAYPOINT-PRODUCT-FRAMEWORK.md", "docs/WAYPOINT-KNOWLEDGE.md", "docs/WAYPOINT-KNOWLEDGE-PLATFORM.md", "docs/WAYPOINT-EDITORIAL-STANDARDS.md", "docs/EDITORIAL-STANDARDS.md"].forEach((p) => {
   assert(p + " exists", fs.existsSync(path.join(ROOT, p)));
 });
+assert(
+  "platform doc has curation mission",
+  /best information|thoughtfully organized/i.test(
+    fs.readFileSync(path.join(ROOT, "docs/WAYPOINT-KNOWLEDGE-PLATFORM.md"), "utf8")
+  )
+);
 
 const about = fs.readFileSync(path.join(ROOT, "about.html"), "utf8");
 assert("about autonomy messaging", /Choose their own direction|choose their own direction/i.test(about));
@@ -135,7 +149,15 @@ const K = sandbox.WDS.knowledgeCurated;
 assert("renderer exported", !!(K && K.renderCard && K.renderList));
 const html = K.renderCard(demo.entries[0], { compact: true });
 assert("card has source summary label", /Source Summary/.test(html));
-assert("card has waypoint analysis label", /Waypoint Analysis/.test(html));
+assert("card has waypoint perspective label", /Waypoint Perspective/.test(html));
+assert("card has source summary", /Source Summary/.test(html));
+assert("related reading helper", typeof K.renderRelatedReading === "function");
+const related = K.renderRelatedReading(demo, {
+  product: "sheds",
+  hookId: "sheds-south-aspect",
+  compact: true
+});
+assert("related reading renders for sheds hook", /wk-related-reading|wk-card/.test(related));
 assert("card marks demo status", /Demonstration/.test(html));
 assert("analysis note present", /not part of the original source/i.test(html));
 
@@ -325,7 +347,7 @@ async function runCdp() {
       "- `01-framework-mobile.png` — shared Observe / Understand / direction stages",
       "- `02-knowledge-card-expanded.png` — knowledge card on mobile",
       "- `03-framework-desktop.png` — product third-stage map",
-      "- `04-summary-vs-analysis.png` — Source Summary vs Waypoint Analysis",
+      "- `04-summary-vs-analysis.png` — Source Summary vs Waypoint Perspective",
       "- `05-about-framework.png` — public messaging",
       "- `06-sheds-direction-link.png` — optional Understand entry on Sheds plan"
     ].join("\n")

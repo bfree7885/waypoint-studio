@@ -21,8 +21,8 @@
     <main id="main" class="wcs-page wcs-page--wide">
       <header class="wcs-hero">
         <p class="wds-eyebrow">Waypoint Knowledge</p>
-        <h1>Observe. Understand. Choose your direction.</h1>
-        <p>A curated research companion — not a news feed, not a course, not a streak. Read when it helps. Leave when it doesn’t.</p>
+        <h1>The best information, thoughtfully organized.</h1>
+        <p>A curated field library — not a news feed, not a course, not a streak. Source Summary stays distinct from Waypoint Perspective. Read when it helps. Leave when it doesn’t.</p>
       </header>
 
       <section class="wcs-section" aria-labelledby="framework-title">
@@ -33,8 +33,9 @@
       </section>
 
       <section class="wcs-section" aria-labelledby="cards-title">
-        <h2 id="cards-title">Demonstration reading</h2>
-        <p>These cards are <strong>demonstration fixtures</strong>. They show Source Summary versus Waypoint Analysis. They are not verified published research.</p>
+        <h2 id="cards-title">Curated reading</h2>
+        <p>These cards are <strong>demonstration fixtures</strong>. They show Source Summary versus Waypoint Perspective. They are not verified published research.</p>
+        <div class="wk-filter" id="knowledge-filter" role="group" aria-label="Filter by product"></div>
         <div id="knowledge-cards" aria-live="polite"></div>
       </section>
 
@@ -46,7 +47,7 @@
           <li>Original sources remain available when legally and technically possible.</li>
           <li>Safety warnings stay clear and direct when needed.</li>
         </ul>
-        <p><a href="about.html">About Waypoint Studio</a> · See also documentation in <code>docs/WAYPOINT-PRODUCT-FRAMEWORK.md</code></p>
+        <p><a href="about.html">About Waypoint Studio</a> · <a href="docs/WAYPOINT-KNOWLEDGE-PLATFORM.md">Knowledge Platform</a> · <a href="docs/WAYPOINT-EDITORIAL-STANDARDS.md">Editorial Standards</a></p>
       </section>
     </main>
 
@@ -89,12 +90,40 @@
         frameworkRoot.removeAttribute("aria-busy");
 
         var bundle = await WDS.knowledgeCurated.loadDemo();
-        var entries = productParam
-          ? WDS.knowledgeCurated.filterByProduct(bundle, productParam)
-          : (bundle.entries || []).filter(function (e) { return e.featured; });
-        if (!entries.length) entries = (bundle.entries || []).slice(0, 4);
-        cardsRoot.innerHTML = WDS.knowledgeCurated.renderList(entries, { compact: true });
-        WDS.knowledgeCurated.bindToggles(cardsRoot);
+        var filterRoot = document.getElementById("knowledge-filter");
+        var productIds = ["", "sheds", "fieldry", "foragecast", "photo-coach", "scenes", "signalterrain"];
+        var labels = { "": "Featured", sheds: "Sheds", fieldry: "Fieldry", foragecast: "ForageCast", "photo-coach": "Photo Coach", scenes: "Scenes", signalterrain: "SignalTerrain" };
+
+        function renderCards(productId) {
+          var entries;
+          if (!productId) {
+            entries = (bundle.entries || []).filter(function (e) { return e.featured; });
+            if (!entries.length) entries = (bundle.entries || []).slice(0, 4);
+          } else {
+            entries = WDS.knowledgeCurated.filterByProduct(bundle, productId);
+          }
+          cardsRoot.innerHTML = WDS.knowledgeCurated.renderList(entries, { compact: true, bundle: bundle });
+          WDS.knowledgeCurated.bindToggles(cardsRoot);
+          filterRoot.querySelectorAll(".wk-filter__btn").forEach(function (btn) {
+            btn.classList.toggle("is-active", btn.getAttribute("data-product") === (productId || ""));
+          });
+        }
+
+        filterRoot.innerHTML = productIds.map(function (id) {
+          return "<button type=\"button\" class=\"wk-filter__btn\" data-product=\"" + esc(id) + "\">" + esc(labels[id]) + "</button>";
+        }).join("");
+        filterRoot.addEventListener("click", function (ev) {
+          var btn = ev.target.closest(".wk-filter__btn");
+          if (!btn) return;
+          var id = btn.getAttribute("data-product") || "";
+          var url = new URL(location.href);
+          if (id) url.searchParams.set("product", id);
+          else url.searchParams.delete("product");
+          history.replaceState({}, "", url);
+          renderCards(id);
+        });
+
+        renderCards(productParam || "");
       } catch (err) {
         frameworkRoot.innerHTML = "<p class=\"wk-framework__note\">Could not load the product framework.</p>";
         cardsRoot.innerHTML = "<p class=\"wk-empty\">Could not load demonstration knowledge cards.</p>";
