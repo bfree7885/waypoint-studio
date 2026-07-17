@@ -2,7 +2,10 @@
 
 **Version 1.0.0**
 
-Waypoint Studio’s Research Integrity framework is the shared trust layer for every product surface. It makes provenance, confidence, and uncertainty visible without adding visual noise.
+Waypoint Studio’s Research Integrity framework is the shared **runtime** trust layer for every product surface. It makes provenance, confidence, and uncertainty visible without adding visual noise.
+
+**Product-facing Trust & Transparency Framework (philosophy + Evidence Card):**  
+[WAYPOINT-TRUST-FRAMEWORK.md](WAYPOINT-TRUST-FRAMEWORK.md) · [Evidence Model](WAYPOINT-EVIDENCE-MODEL.md) · [Confidence System](WAYPOINT-CONFIDENCE-SYSTEM.md)
 
 Works alongside:
 
@@ -14,11 +17,12 @@ Works alongside:
 
 ## Design principles
 
-1. **One footnote beats five badges** — Prefer `renderFootnote()` over stacking chips.
+1. **One footnote beats five badges** — Prefer `renderFootnote()` over stacking chips. Use `WDS.evidenceCard` when a full explanation is needed.
 2. **Show uncertainty when it matters** — Hide `not_recorded` / `not_assessed` / `unverified` unless context requires it.
 3. **Distinguish content types** — Editorial, prediction, observation, verified, live, and preview are never interchangeable.
 4. **Calm typography** — Small caps badges, muted footnotes, no alert banners.
 5. **Machine + human** — Same integrity context powers UI and future export validators.
+6. **Prefer labels over fake percentages** — See [Confidence System](WAYPOINT-CONFIDENCE-SYSTEM.md).
 
 ---
 

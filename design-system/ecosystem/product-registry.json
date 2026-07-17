@@ -274,6 +274,31 @@
         "dashboard",
         "hidden-landscapes"
       ]
+    },
+    "waypoint-trust": {
+      "id": "waypoint-trust",
+      "name": "Trust & Transparency",
+      "status": "active",
+      "purpose": "Explainable recommendations \u2014 evidence, confidence labels, sources, and uncertainty. No fake precision.",
+      "package": "design-system/js/trust/wds-evidence-card.js",
+      "css": "design-system/css/wds-evidence-card.css",
+      "config": "trust/",
+      "docs": [
+        "docs/WAYPOINT-TRUST-FRAMEWORK.md",
+        "docs/WAYPOINT-EVIDENCE-MODEL.md",
+        "docs/WAYPOINT-CONFIDENCE-SYSTEM.md",
+        "docs/RESEARCH-INTEGRITY.md"
+      ],
+      "consumers": [
+        "studio",
+        "scenes",
+        "photo-coach",
+        "fieldry",
+        "foragecast",
+        "shed-hunting",
+        "signalterrain",
+        "dashboard"
+      ]
     }
   },
   "contentFiles": {
@@ -364,7 +389,8 @@
         "phenology",
         "mapping-observation",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "scenes": {
@@ -420,7 +446,8 @@
         "waypoint-ai-guide",
         "waypoint-guide-experience",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "foragecast": {
@@ -473,7 +500,8 @@
         "phenology",
         "outdoor-intelligence",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "fieldry": {
@@ -524,7 +552,8 @@
         "mapping-observation",
         "outdoor-intelligence",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "photo-coach": {
@@ -572,7 +601,8 @@
         "waypoint-ai-guide",
         "waypoint-guide-experience",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "shed-hunting": {
@@ -624,7 +654,8 @@
         "species-knowledge",
         "mapping-observation",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "steepleaf": {
@@ -761,7 +792,8 @@
       "sharedEngines": [
         "mapping-observation",
         "waypoint-knowledge-curated",
-        "worth-noticing"
+        "worth-noticing",
+        "waypoint-trust"
       ]
     },
     "terrainbound": {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidence Card — WDS Pattern</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+  <style>
+    .pattern-wrap { max-width: 40rem; margin: 0 auto; padding: var(--wds-space-8) clamp(1.25rem, 4vw, 2rem); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to pattern</a>
+  <div class="wds-app">
+    <header class="wds-topbar">
+      <div class="wds-topbar__inner">
+        <a class="wds-brand" href="worth-noticing.html">
+          <span class="wds-brand__mark" aria-hidden="true"></span>
+          <span class="wds-brand__name">Evidence Card</span>
+        </a>
+      </div>
+    </header>
+    <section class="wds-hero is-compact">
+      <div class="wds-hero__hearth" aria-hidden="true"></div>
+      <div class="wds-hero__inner">
+        <p class="wds-eyebrow">Trust &amp; transparency</p>
+        <h1 class="wds-display-xl">Evidence Card</h1>
+        <p class="wds-lead">Show what was observed, what supports it, how confident we are, and where uncertainty remains — without fake precision.</p>
+      </div>
+    </section>
+    <main id="main" class="pattern-wrap">
+      <div id="wte-mount"></div>
+    </main>
+  </div>
+  <script src="../js/trust/wds-evidence-card.js"></script>
+  <script>
+    document.getElementById("wte-mount").innerHTML = WDS.evidenceCard.render({
+      title: "Today’s search context",
+      claim: "South-facing pockets may warm earlier after several mild nights.",
+      confidence: "moderate",
+      confidenceNote: "Not a probability of finds.",
+      epistemicKind: "prediction",
+      basedOn: [
+        "Last 72 hours of weather (demonstration)",
+        "Terrain orientation",
+        "Winter habitat research (demonstration)",
+        "Deer biology context"
+      ],
+      uncertainty: [
+        "Few recent local observations",
+        "Wind forecast may change"
+      ],
+      sources: [
+        { label: "Waypoint demonstration fixture — not a live agency brief", kind: "unknown" }
+      ],
+      whyItMatters: "Relative warmth can shift winter movement patterns — you decide whether searching makes sense.",
+      relatedResearch: ["wk_demo-south-aspect-winter-cover"],
+      lastUpdated: "2026-07-16",
+      reviewStatus: "demonstration",
+      products: ["sheds"]
+    });
+  </script>
+</body>
+</html>

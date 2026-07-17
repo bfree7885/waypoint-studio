@@ -1,0 +1,143 @@
+/**
+ * Evidence Card — calm explainability surface.
+ * @see docs/WAYPOINT-EVIDENCE-MODEL.md
+ */
+
+.wte-card {
+  --wte-rule: color-mix(in srgb, var(--wds-border-subtle, rgba(40, 55, 48, 0.16)) 90%, transparent);
+  max-width: 36rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--wte-rule);
+  border-bottom: 1px solid var(--wte-rule);
+  color: var(--wds-text-primary, #142018);
+}
+
+.wte-card--demo {
+  border-style: dashed;
+}
+
+.wte-card__demo {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #8a5a12;
+}
+
+.wte-card__title {
+  margin: 0;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.wte-card__epistemic {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(30, 45, 38, 0.62);
+  font-weight: 600;
+}
+
+.wte-card__claim {
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--wds-text-secondary, #1a281f);
+}
+
+.wte-card__confidence {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+}
+
+.wte-card__confidence-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(30, 45, 38, 0.62);
+  margin-right: 0.35rem;
+}
+
+.wte-card__confidence-note {
+  color: rgba(20, 32, 24, 0.65);
+  font-size: 0.88rem;
+}
+
+.wte-card__section {
+  margin-top: 0.9rem;
+}
+
+.wte-card__section-title {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(30, 45, 38, 0.62);
+}
+
+.wte-card__section ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.wte-card__section p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.wte-card__based li::marker {
+  content: "✓ ";
+  color: #2f6b4f;
+}
+
+.wte-card__uncertainty li::marker {
+  content: "• ";
+}
+
+.wte-card__kind {
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(30, 45, 38, 0.55);
+}
+
+.wte-card__products,
+.wte-card__updated {
+  margin: 0.85rem 0 0;
+  font-size: 0.82rem;
+  color: rgba(20, 32, 24, 0.62);
+}
+
+.wte-card__sources a {
+  color: #1f4d38;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wte-card__title,
+  .wte-card__claim,
+  .wte-card__section {
+    color: #e8f0ea;
+  }
+
+  .wte-card__section-title,
+  .wte-card__confidence-label,
+  .wte-card__epistemic {
+    color: rgba(232, 240, 234, 0.62);
+  }
+
+  .wte-card__sources a {
+    color: #b7d9c4;
+  }
+}

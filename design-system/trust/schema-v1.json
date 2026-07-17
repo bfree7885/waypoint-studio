@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/trust/evidence-card/v1",
+  "title": "Waypoint Evidence Card",
+  "description": "Explainable recommendation or knowledge claim — transparency without engagement theater.",
+  "type": "object",
+  "required": ["title", "claim"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": ["string", "null"] },
+    "title": { "type": "string", "maxLength": 160 },
+    "claim": { "type": "string", "maxLength": 800 },
+    "confidence": {
+      "type": ["string", "null"],
+      "enum": ["very-high", "high", "moderate", "limited", "preliminary", "unknown", null]
+    },
+    "confidenceNote": { "type": ["string", "null"], "maxLength": 400 },
+    "basedOn": { "type": "array", "items": { "type": "string", "maxLength": 240 } },
+    "uncertainty": { "type": "array", "items": { "type": "string", "maxLength": 240 } },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label"],
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": ["string", "null"] },
+          "kind": {
+            "type": ["string", "null"],
+            "enum": [
+              "observed-data",
+              "prediction",
+              "research",
+              "historical-record",
+              "editorial-interpretation",
+              "ai-synthesis",
+              "user-observation",
+              "government",
+              "professional-organization",
+              "unknown",
+              null
+            ]
+          },
+          "accessedAt": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "whyItMatters": { "type": ["string", "null"], "maxLength": 800 },
+    "relatedResearch": { "type": "array", "items": { "type": "string" } },
+    "lastUpdated": { "type": ["string", "null"] },
+    "reviewStatus": {
+      "type": ["string", "null"],
+      "enum": ["verified", "editorial-draft", "demonstration", "archived", "needs-review", null]
+    },
+    "editorialOwner": { "type": ["string", "null"] },
+    "evidenceQuality": {
+      "type": ["string", "null"],
+      "enum": ["excellent", "good", "fair", "poor", "none", "not_assessed", null]
+    },
+    "verificationStatus": { "type": ["string", "null"] },
+    "epistemicKind": {
+      "type": ["string", "null"],
+      "enum": [
+        "observed-data",
+        "prediction",
+        "research",
+        "historical-record",
+        "editorial-interpretation",
+        "ai-synthesis",
+        "user-observation",
+        "government",
+        "professional-organization",
+        "unknown",
+        null
+      ]
+    },
+    "products": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "primarySourceCount": { "type": ["integer", "null"], "minimum": 0 }
+  }
+}

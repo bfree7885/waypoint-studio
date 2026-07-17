@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "description": "Shared confidence terminology and crosswalks. Prefer labels over fake percentages.",
+  "recommendationLevels": [
+    {
+      "id": "very-high",
+      "label": "Very High",
+      "meaning": "Multiple independent, high-quality lines agree; alternatives are weak."
+    },
+    {
+      "id": "high",
+      "label": "High",
+      "meaning": "Well supported; remaining doubt is limited."
+    },
+    {
+      "id": "moderate",
+      "label": "Moderate",
+      "meaning": "Plausible; competing explanations remain reasonable."
+    },
+    {
+      "id": "limited",
+      "label": "Limited",
+      "meaning": "Thin or single-thread support."
+    },
+    {
+      "id": "preliminary",
+      "label": "Preliminary",
+      "meaning": "Early signal; conditions or data still changing."
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "meaning": "Not enough to say."
+    }
+  ],
+  "wosLevels": ["certain", "likely", "possible", "uncertain", "not_recorded"],
+  "engineCrosswalk": {
+    "high": "high",
+    "moderate": "moderate",
+    "low": "limited",
+    "speculative": "preliminary",
+    "insufficient": "unknown"
+  },
+  "worthNoticingCrosswalk": {
+    "high": "high",
+    "moderate": "moderate",
+    "low": "limited",
+    "uncertain": "preliminary"
+  },
+  "wosToRecommendation": {
+    "certain": "high",
+    "likely": "moderate",
+    "possible": "limited",
+    "uncertain": "preliminary",
+    "not_recorded": "unknown"
+  },
+  "rules": {
+    "preferLabelsOverPercentages": true,
+    "neverImplyFindProbability": true,
+    "unknownBetterThanInflatedHigh": true
+  }
+}
