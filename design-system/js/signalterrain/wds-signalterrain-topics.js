@@ -26,7 +26,7 @@
   }
 
   function load(url) {
-    url = url || "../../design-system/signalterrain/samples/demo-graph.json";
+    url = url || "../../design-system/signalterrain/samples/living-graph.json";
     return fetch(url, { credentials: "same-origin" })
       .then(function (r) {
         if (!r.ok) throw new Error("Could not load topic graph (" + r.status + ")");

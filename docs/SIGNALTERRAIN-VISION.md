@@ -106,8 +106,10 @@ No sensationalism.
 
 **Naming note:** Studio-wide [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) and [EDITORIAL-STANDARDS.md](EDITORIAL-STANDARDS.md) remain the studio canon. SignalTerrain-specific architecture and editorial live in the `SIGNALTERRAIN-*` docs above (this work block’s deliverables without overwriting studio files).
 
-Package: `design-system/signalterrain/`.  
-Demo: `apps/signalterrain/topics.html`.
+Demo: `apps/signalterrain/topics.html` · Graph: `apps/signalterrain/graph.html`.  
+Package: `design-system/signalterrain/`.
+
+Living graph docs: [KNOWLEDGE-GRAPH.md](KNOWLEDGE-GRAPH.md) · [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) · [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) · [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md).
 
 ---
 

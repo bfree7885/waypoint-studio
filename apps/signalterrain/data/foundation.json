@@ -8,6 +8,7 @@
   "principles": [
     "Evidence, context, and historical perspective over fear or hype",
     "Everything important becomes a topic that evolves",
+    "Everything is connected — the living knowledge graph accumulates",
     "Relationships connect workspaces — RF, cyber, infrastructure, research",
     "Transparency: confidence, unknowns, sources, Waypoint Analysis",
     "Audio, receivers, and precise locations stay local first",
@@ -39,6 +40,11 @@
   ],
   "modules": [
     {
+      "title": "Living knowledge graph",
+      "status": "live",
+      "description": "Explore connected topics with expand/collapse, filters, search, and living timelines."
+    },
+    {
       "title": "Topic foundation",
       "status": "foundation",
       "description": "Shared topic model with overview, analysis, confidence, unknowns, and relationships across workspaces."
@@ -46,12 +52,12 @@
     {
       "title": "Relationship engine",
       "status": "foundation",
-      "description": "Typed connections between technologies, advisories, frequencies, research, and more."
+      "description": "Typed connections — affects, targets, mitigates, documented_in, and more — with confidence labels."
     },
     {
       "title": "Sample topic graph",
       "status": "live",
-      "description": "Educational demo: sample CVE, actor, advisory, frequency, propagation, and research paper."
+      "description": "Educational chain: CVE → vendor → advisory → research → actor → history → mitigation → technology → future."
     },
     {
       "title": "Receiver management",
@@ -91,7 +97,8 @@
   ],
   "routes": [
     { "path": "/", "label": "SignalTerrain home", "ready": true },
-    { "path": "topics.html", "label": "Topics (foundation demo)", "ready": true },
+    { "path": "topics.html", "label": "Topics", "ready": true },
+    { "path": "graph.html", "label": "Knowledge graph", "ready": true },
     { "path": "/receivers/", "label": "Receivers", "ready": false },
     { "path": "/incidents/", "label": "Incident timeline", "ready": false },
     { "path": "/audio/", "label": "Audio library", "ready": false }

@@ -797,6 +797,10 @@
         "docs/SIGNALTERRAIN-TOPIC-MODEL.md",
         "docs/SIGNALTERRAIN-RELATIONSHIP-MODEL.md",
         "docs/SIGNALTERRAIN-EDITORIAL-STANDARDS.md",
+        "docs/KNOWLEDGE-GRAPH.md",
+        "docs/RELATIONSHIP-TYPES.md",
+        "docs/TOPIC-LIFECYCLE.md",
+        "docs/RESEARCH-INTEGRATION.md",
         "docs/SIGNALTERRAIN_PLAYBOOK.md"
       ],
       "plannedSharedEngines": [],

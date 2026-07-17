@@ -1,0 +1,692 @@
+{
+  "meta": {
+    "version": "2.0.0",
+    "status": "sample",
+    "updatedAt": "2026-07-17",
+    "graph": "living-knowledge",
+    "disclaimer": "Educational living-graph demonstration only. Fictional CVE, vendor, actor, and advisory identifiers. Not live intelligence."
+  },
+  "topics": [
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional sample CVE for living-graph demo."
+      },
+      "id": "st_cve-sample-2024-0001",
+      "workspace": "cyber",
+      "kind": "vulnerability",
+      "title": "Sample CVE-2024-0001 (demo)",
+      "summary": "Educational vulnerability topic — hub of the sample knowledge chain.",
+      "overview": "This CVE topic shows how a vulnerability accumulates disclosure, vendor response, advisories, research, and mitigations instead of living as a one-off article.",
+      "historicalContext": "In a real topic, disclosure culture and prior related flaws would appear here.",
+      "technicalExplanation": "Sample framing only: a memory-handling flaw in a demo OS component — described for literacy, never with exploit steps.",
+      "timeline": [
+        { "at": "2024-01-10", "kind": "discovery", "text": "Sample researcher discovery window (fictional).", "sourceLabel": "Demo" },
+        { "at": "2024-01-15", "kind": "disclosure", "text": "Sample coordinated disclosure (fictional).", "sourceLabel": "Demo" },
+        { "at": "2024-01-20", "kind": "patch", "text": "Sample vendor patch available (fictional).", "sourceLabel": "Demo" },
+        { "at": "2024-01-22", "kind": "advisory", "text": "Sample government advisory references this CVE (fictional).", "sourceLabel": "Demo" },
+        { "at": "2024-02-01", "kind": "research", "text": "Sample analysis paper published (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [{ "label": "Demo CVE record (fictional)", "url": null, "kind": "other", "accessedAt": null }],
+      "governmentRefs": [{ "label": "Linked sample government advisory", "url": null, "kind": "government", "accessedAt": null }],
+      "research": [{ "label": "Sample analysis paper", "url": null, "kind": "research", "accessedAt": null }],
+      "technicalDocs": [{ "label": "Sample vendor bulletin", "url": null, "kind": "vendor", "accessedAt": null }],
+      "knownFacts": [
+        "Identifier is fictional and labeled sample.",
+        "Demo chain links vendor, advisory, research, actor literacy, history, mitigation, and future tech."
+      ],
+      "unknowns": ["No real NVD binding.", "No product inventory mapping in this demo."],
+      "watchFor": ["Real advisories should update timeline and confidence in place."],
+      "questionsWorthInvestigating": [
+        "Which related historical incidents share the same failure class?",
+        "What mitigations apply when patching is delayed?"
+      ],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "Educational sample." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Not a real CVE." },
+      "waypointAnalysis": {
+        "text": "Treat the CVE as a hub: follow vendor → advisory → research → history → mitigation → future hardening. Do not stop at the headline identifier.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "cve", "living-graph"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional vendor Contoso for demo only."
+      },
+      "id": "st_vendor-sample-contoso",
+      "workspace": "cyber",
+      "kind": "vendor",
+      "title": "Sample vendor: Contoso (demo)",
+      "summary": "Fictional vendor used to show published_by / patched_by relationships.",
+      "overview": "Vendor topics hold products, advisories, and patch habits — durable homes for recurring events.",
+      "historicalContext": "Real vendor topics accumulate years of advisories without resetting.",
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2024-01-20", "kind": "patch", "text": "Sample patch release for CVE-2024-0001 (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Fictional vendor name for architecture demo."],
+      "unknowns": ["No real corporate identity."],
+      "watchFor": ["Future sample advisories should attach here, not spawn orphan articles."],
+      "questionsWorthInvestigating": ["How does Contoso’s patch cadence compare across product lines? (demo question)"],
+      "confidence": { "level": "insufficient", "trustLabel": "unknown", "rationale": "Fictional entity." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Fictional." },
+      "waypointAnalysis": {
+        "text": "Vendors are gravity wells in the graph: events land on the vendor and product topics so history compounds.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "vendor"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional product Contoso OS."
+      },
+      "id": "st_product-sample-contoso-os",
+      "workspace": "cyber",
+      "kind": "product",
+      "title": "Sample product: Contoso OS (demo)",
+      "summary": "Fictional OS product affected by the sample CVE.",
+      "overview": "Product topics collect CVEs, patches, and mitigations over time.",
+      "historicalContext": null,
+      "technicalExplanation": "Demo desktop/server OS used only to illustrate depends_on / affects edges.",
+      "timeline": [
+        { "at": "2024-01-15", "kind": "disclosure", "text": "Sample CVE disclosed against Contoso OS (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Fictional product."],
+      "unknowns": ["No version matrix in this demo."],
+      "watchFor": [],
+      "questionsWorthInvestigating": [],
+      "confidence": { "level": "insufficient", "trustLabel": "unknown", "rationale": "Fictional." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Fictional." },
+      "waypointAnalysis": {
+        "text": "Keep product pages as the long-lived home; attach CVEs rather than rewriting the product as news.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "product", "software"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Sample government advisory — not a live alert."
+      },
+      "id": "st_advisory-sample-gov-001",
+      "workspace": "cyber",
+      "kind": "advisory",
+      "title": "Sample government advisory GOV-DEMO-001",
+      "summary": "Educational advisory that references the sample CVE and Contoso guidance.",
+      "overview": "Advisories should cite what agencies published and link into existing CVE and vendor topics.",
+      "historicalContext": "Advisories revise; timeline captures supersessions.",
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2024-01-22", "kind": "advisory", "text": "Sample advisory issued (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [{ "label": "Demo advisory citation", "url": null, "kind": "government", "accessedAt": null }],
+      "governmentRefs": [{ "label": "Placeholder agency", "url": null, "kind": "government", "accessedAt": null }],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Educational advisory structure."],
+      "unknowns": ["No live agency URL."],
+      "watchFor": ["Superseding advisories should use supersedes edges."],
+      "questionsWorthInvestigating": ["Which mitigations does the advisory prioritize when patching lags?"],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "Sample." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Not real." },
+      "waypointAnalysis": {
+        "text": "Government advisories are primary anchors — connect them inward to CVEs and outward to mitigations.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "advisory"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional research paper topic."
+      },
+      "id": "st_paper-sample-vuln-class",
+      "workspace": "research",
+      "kind": "research-paper",
+      "title": "Sample paper: Memory-safety failure classes (demo)",
+      "summary": "Placeholder paper documenting the sample vulnerability class and mitigations.",
+      "overview": "Research topics enrich CVEs and technologies through documented_in / references edges.",
+      "historicalContext": "Failure-class papers often outlive individual CVEs.",
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2024-02-01", "kind": "research", "text": "Sample paper published (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [{ "label": "Demo paper (fictional)", "url": null, "kind": "research", "accessedAt": null }],
+      "governmentRefs": [],
+      "research": [{ "label": "Demo paper (fictional)", "url": null, "kind": "research", "accessedAt": null }],
+      "technicalDocs": [],
+      "knownFacts": ["Fictional citation for graph demo."],
+      "unknowns": ["No DOI."],
+      "watchFor": [],
+      "questionsWorthInvestigating": ["Which standards cite the same failure class?"],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "Fictional paper." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Fictional." },
+      "waypointAnalysis": {
+        "text": "Attach research to the CVE and to the broader technology topic so readers climb from incident to class.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "research"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional threat actor — literacy only."
+      },
+      "id": "st_actor-sample-northline",
+      "workspace": "cyber",
+      "kind": "threat-actor",
+      "title": "Sample actor: Northline (demo)",
+      "summary": "Fictional actor for cautious targets / associated_with edges.",
+      "overview": "Actor topics stay thin, cited, and humble — educational context, not entertainment dossiers.",
+      "historicalContext": "Public naming disputes would be recorded here on real topics.",
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2022-08", "kind": "incident", "text": "Sample historical campaign window (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Fictional name.", "No real attribution claim."],
+      "unknowns": ["No verified identity.", "Link to sample CVE is speculative literacy only."],
+      "watchFor": ["Prefer primary naming before amplifying third-hand labels."],
+      "questionsWorthInvestigating": ["Which historical incidents are actually corroborated for this label? (none in demo)"],
+      "confidence": { "level": "insufficient", "trustLabel": "unknown", "rationale": "Demo entity." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Fictional." },
+      "waypointAnalysis": {
+        "text": "Keep actor edges speculative unless sources are primary. The graph should teach caution, not certainty theater.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "threat-actor"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Fictional historical incident."
+      },
+      "id": "st_incident-sample-2022-wave",
+      "workspace": "cyber",
+      "kind": "historical-incident",
+      "title": "Sample historical incident: 2022 wave (demo)",
+      "summary": "Fictional past incident used to give the CVE class historical perspective.",
+      "overview": "Historical incident topics prevent current events from feeling unprecedented without evidence.",
+      "historicalContext": "Demonstrates linking present CVEs to prior waves of similar issues.",
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2022-08-12", "kind": "incident", "text": "Sample incident window opens (fictional).", "sourceLabel": "Demo" },
+        { "at": "2022-09-01", "kind": "mitigation", "text": "Sample industry mitigations circulated (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Fictional incident for demo chronology."],
+      "unknowns": ["No real victims or malware families attached."],
+      "watchFor": [],
+      "questionsWorthInvestigating": ["What mitigations from 2022 still apply to Contoso OS? (demo)"],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "Sample history." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Fictional." },
+      "waypointAnalysis": {
+        "text": "History topics give Perspective its backbone — pattern without panic.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "history"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Defensive mitigation topic — no offensive content."
+      },
+      "id": "st_mitigation-sample-patch-hygiene",
+      "workspace": "cyber",
+      "kind": "mitigation",
+      "title": "Sample mitigation: Patch & backup hygiene (demo)",
+      "summary": "Calm defensive guidance linked from advisory and CVE topics.",
+      "overview": "Mitigation topics hold reusable defensive practices — patch cadence, backups, least privilege reminders — without operational attack detail.",
+      "historicalContext": null,
+      "technicalExplanation": "Educational reminders only: apply vendor patches when available; keep tested backups; reduce unnecessary exposure.",
+      "timeline": [
+        { "at": "2024-01-22", "kind": "mitigation", "text": "Sample advisory points readers to hygiene guidance (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Defensive framing only."],
+      "unknowns": ["Environment-specific applicability not assessed."],
+      "watchFor": [],
+      "questionsWorthInvestigating": ["Which product versions remain unpatched in a real inventory? (out of scope here)"],
+      "confidence": { "level": "moderate", "trustLabel": "moderate", "rationale": "General hygiene guidance is well established; binding to sample CVE is demo-only." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Sample linkage." },
+      "waypointAnalysis": {
+        "text": "Mitigations should feel actionable and calm — the opposite of a fear score.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "mitigation", "defensive"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Technology class topic."
+      },
+      "id": "st_tech-sample-memory-safety",
+      "workspace": "research",
+      "kind": "technology",
+      "title": "Sample technology: Memory safety (demo)",
+      "summary": "Broader technology topic related to the sample vulnerability class.",
+      "overview": "Technology topics outlive individual CVEs and host standards, research, and future developments.",
+      "historicalContext": "Memory-safety discussions span decades of engineering practice.",
+      "technicalExplanation": "High-level literacy: languages and tooling that reduce entire classes of memory errors.",
+      "timeline": [
+        { "at": "historical", "kind": "historical", "text": "Long-running engineering conversation (summary placeholder).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Presented as a demo technology class."],
+      "unknowns": ["No specific language comparison in this sample."],
+      "watchFor": ["Standards and migration programs attach here over time."],
+      "questionsWorthInvestigating": ["Which Contoso OS components are candidates for memory-safe rewrites? (demo)"],
+      "confidence": { "level": "moderate", "trustLabel": "moderate", "rationale": "Class is real; sample links are educational." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Demo framing." },
+      "waypointAnalysis": {
+        "text": "Climbing from a CVE to a technology class is how understanding compounds.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "technology"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Future-development watch topic."
+      },
+      "id": "st_future-sample-memory-safe-migration",
+      "workspace": "research",
+      "kind": "future-development",
+      "title": "Sample future: Memory-safe migration programs (demo)",
+      "summary": "Watch item for long-term hardening related to the technology class.",
+      "overview": "Future-development topics capture what to watch — not predictions sold as fact.",
+      "historicalContext": null,
+      "technicalExplanation": null,
+      "timeline": [
+        { "at": "2024-03", "kind": "development", "text": "Sample industry migration talk track (fictional).", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Watch topic only."],
+      "unknowns": ["No committed Contoso roadmap in this demo."],
+      "watchFor": ["Standards, funding programs, and vendor roadmaps when real sources exist."],
+      "questionsWorthInvestigating": ["What measurable milestones would indicate serious migration progress?"],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "Forward-looking sample." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Not a forecast." },
+      "waypointAnalysis": {
+        "text": "Future nodes keep curiosity open without pretending certainty.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "future", "watch"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Public amateur calling frequency — factual RF node in the living graph."
+      },
+      "id": "st_freq-146-52-fm",
+      "workspace": "rf",
+      "kind": "frequency",
+      "title": "146.520 MHz FM (2 m national simplex calling)",
+      "summary": "Amateur FM simplex calling frequency — shows cross-domain graph reach.",
+      "overview": "RF nodes belong in the same graph as cyber and research so space weather and communications context can connect later.",
+      "historicalContext": "Calling frequencies help operators find each other; follow local band plans and license rules.",
+      "technicalExplanation": "146.520 MHz FM voice simplex calling on 2 meters (North American practice).",
+      "timeline": [],
+      "primarySources": [{ "label": "Amateur band-plan practice", "url": null, "kind": "technical", "accessedAt": null }],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Frequency 146.520 MHz.", "Amateur FM simplex calling context."],
+      "unknowns": ["Local activity not measured here."],
+      "watchFor": ["Propagation and net schedules."],
+      "questionsWorthInvestigating": ["How do space-weather events change HF vs VHF listening expectations?"],
+      "confidence": { "level": "high", "trustLabel": "high", "rationale": "Established amateur practice." },
+      "verification": { "status": "corroborated", "lastVerifiedAt": "2026-07-17T00:00:00.000Z", "limitations": "Not a legal opinion." },
+      "waypointAnalysis": {
+        "text": "Keeping RF in the living graph prevents SignalTerrain from splitting into disconnected tools.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "rf", "frequency"],
+      "relatedKnowledgeIds": ["kn_vhf-band"],
+      "signalCardIds": []
+    },
+    {
+      "meta": {
+        "version": "1.0.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/topic/v1",
+        "status": "sample",
+        "createdAt": "2026-07-17T00:00:00.000Z",
+        "updatedAt": "2026-07-17T00:00:00.000Z",
+        "aiAssisted": false,
+        "disclaimer": "Educational space-weather event sample."
+      },
+      "id": "st_spacewx-sample-disturbed",
+      "workspace": "infrastructure",
+      "kind": "space-weather-event",
+      "title": "Sample space-weather window (disturbed)",
+      "summary": "Educational disturbed window that can interrupt HF communications expectations.",
+      "overview": "Space-weather event topics attach to propagation and communications — current conditions enrich enduring topics.",
+      "historicalContext": null,
+      "technicalExplanation": "Geomagnetic activity can alter ionospheric HF paths.",
+      "timeline": [
+        { "at": "sample-window", "kind": "other", "text": "Illustrative disturbed period.", "sourceLabel": "Demo" }
+      ],
+      "primarySources": [],
+      "governmentRefs": [],
+      "research": [],
+      "technicalDocs": [],
+      "knownFacts": ["Teaching sample — no live NOAA product bound."],
+      "unknowns": ["No live Kp attached."],
+      "watchFor": ["Official bulletins when connectors exist."],
+      "questionsWorthInvestigating": ["Which HF routes were actually measured during a real event?"],
+      "confidence": { "level": "speculative", "trustLabel": "preliminary", "rationale": "No live bulletin." },
+      "verification": { "status": "educational-sample", "lastVerifiedAt": null, "limitations": "Not a forecast." },
+      "waypointAnalysis": {
+        "text": "Event nodes should attach to frequency and technology topics — not replace them.",
+        "editorialStatus": "sample",
+        "authorLabel": "Waypoint editorial (sample)"
+      },
+      "tags": ["demo", "space-weather"],
+      "relatedKnowledgeIds": [],
+      "signalCardIds": ["sio_sample-space-weather-hf-card"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "str_cve-affects-product",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_product-sample-contoso-os",
+      "type": "affects",
+      "label": "Sample CVE affects Contoso OS (demo)",
+      "confidence": "speculative",
+      "notes": "Educational.",
+      "sources": []
+    },
+    {
+      "id": "str_product-depends-vendor",
+      "from": "st_product-sample-contoso-os",
+      "to": "st_vendor-sample-contoso",
+      "type": "depends_on",
+      "label": "Product published by Contoso",
+      "confidence": "speculative",
+      "notes": "Fictional vendor link.",
+      "sources": []
+    },
+    {
+      "id": "str_cve-patched-by-vendor",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_vendor-sample-contoso",
+      "type": "patched_by",
+      "label": "Sample patch published by Contoso",
+      "confidence": "speculative",
+      "notes": "Defensive framing.",
+      "sources": []
+    },
+    {
+      "id": "str_advisory-references-cve",
+      "from": "st_advisory-sample-gov-001",
+      "to": "st_cve-sample-2024-0001",
+      "type": "references",
+      "label": "Advisory references sample CVE",
+      "confidence": "speculative",
+      "notes": "Educational.",
+      "sources": []
+    },
+    {
+      "id": "str_advisory-published-by",
+      "from": "st_advisory-sample-gov-001",
+      "to": "st_vendor-sample-contoso",
+      "type": "related_to",
+      "label": "Advisory also points readers at vendor guidance",
+      "confidence": "low",
+      "notes": "Demo convenience link.",
+      "sources": []
+    },
+    {
+      "id": "str_cve-documented-in-paper",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_paper-sample-vuln-class",
+      "type": "documented_in",
+      "label": "CVE class discussed in sample paper",
+      "confidence": "speculative",
+      "notes": "Fictional paper.",
+      "sources": []
+    },
+    {
+      "id": "str_paper-published-by",
+      "from": "st_paper-sample-vuln-class",
+      "to": "st_vendor-sample-contoso",
+      "type": "published_by",
+      "label": "Demo authorship placeholder (not real)",
+      "confidence": "speculative",
+      "notes": "Shows published_by type only.",
+      "sources": []
+    },
+    {
+      "id": "str_actor-targets-cve",
+      "from": "st_actor-sample-northline",
+      "to": "st_cve-sample-2024-0001",
+      "type": "targets",
+      "label": "Sample literacy link — not real attribution",
+      "confidence": "speculative",
+      "notes": "Editorial gate type; educational only.",
+      "sources": []
+    },
+    {
+      "id": "str_actor-associated-incident",
+      "from": "st_actor-sample-northline",
+      "to": "st_incident-sample-2022-wave",
+      "type": "associated_with",
+      "label": "Sample actor associated with historical wave (fictional)",
+      "confidence": "speculative",
+      "notes": "Cautious association.",
+      "sources": []
+    },
+    {
+      "id": "str_incident-related-cve-class",
+      "from": "st_incident-sample-2022-wave",
+      "to": "st_cve-sample-2024-0001",
+      "type": "related_to",
+      "label": "Historical wave informs reading of present CVE class",
+      "confidence": "low",
+      "notes": "Pattern literacy, not sameness claim.",
+      "sources": []
+    },
+    {
+      "id": "str_mitigation-mitigates-cve",
+      "from": "st_mitigation-sample-patch-hygiene",
+      "to": "st_cve-sample-2024-0001",
+      "type": "mitigates",
+      "label": "Patch hygiene mitigates exposure (demo)",
+      "confidence": "moderate",
+      "notes": "Defensive.",
+      "sources": []
+    },
+    {
+      "id": "str_advisory-mitigates",
+      "from": "st_advisory-sample-gov-001",
+      "to": "st_mitigation-sample-patch-hygiene",
+      "type": "references",
+      "label": "Advisory points to mitigation guidance",
+      "confidence": "speculative",
+      "notes": "Educational.",
+      "sources": []
+    },
+    {
+      "id": "str_paper-references-tech",
+      "from": "st_paper-sample-vuln-class",
+      "to": "st_tech-sample-memory-safety",
+      "type": "references",
+      "label": "Paper references memory-safety technology class",
+      "confidence": "speculative",
+      "notes": "Educational.",
+      "sources": []
+    },
+    {
+      "id": "str_cve-related-tech",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_tech-sample-memory-safety",
+      "type": "related_to",
+      "label": "CVE sits in memory-safety failure class",
+      "confidence": "low",
+      "notes": "Class literacy.",
+      "sources": []
+    },
+    {
+      "id": "str_future-supports-tech",
+      "from": "st_future-sample-memory-safe-migration",
+      "to": "st_tech-sample-memory-safety",
+      "type": "supports",
+      "label": "Migration programs support memory-safety goals",
+      "confidence": "speculative",
+      "notes": "Watch item.",
+      "sources": []
+    },
+    {
+      "id": "str_tech-related-future",
+      "from": "st_tech-sample-memory-safety",
+      "to": "st_future-sample-memory-safe-migration",
+      "type": "related_to",
+      "label": "Watch future migration programs",
+      "confidence": "moderate",
+      "notes": "Product habit.",
+      "sources": []
+    },
+    {
+      "id": "str_spacewx-interrupts",
+      "from": "st_spacewx-sample-disturbed",
+      "to": "st_freq-146-52-fm",
+      "type": "interrupts",
+      "label": "Disturbed space weather can change listening expectations (context)",
+      "confidence": "low",
+      "notes": "VHF less HF-dependent; low confidence on purpose.",
+      "sources": []
+    },
+    {
+      "id": "str_freq-observed-with-spacewx",
+      "from": "st_freq-146-52-fm",
+      "to": "st_spacewx-sample-disturbed",
+      "type": "observed_with",
+      "label": "Operators may still check local VHF during disturbed windows",
+      "confidence": "low",
+      "notes": "Co-occurrence habit.",
+      "sources": []
+    },
+    {
+      "id": "str_cve-conflicts-placeholder",
+      "from": "st_cve-sample-2024-0001",
+      "to": "st_actor-sample-northline",
+      "type": "conflicts_with",
+      "label": "Demo: public naming vs thin evidence (teach conflicts)",
+      "confidence": "speculative",
+      "notes": "Shows conflicts_with type — not a real dispute record.",
+      "sources": []
+    }
+  ]
+}

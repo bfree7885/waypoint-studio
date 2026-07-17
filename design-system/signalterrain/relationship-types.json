@@ -1,77 +1,45 @@
 {
-  "version": "1.0.0",
-  "updatedAt": "2026-07-16",
-  "purpose": "Typed relationships for SignalTerrain topics. Connect naturally; never force denseness or attribution theater.",
+  "version": "2.0.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Typed relationships for the SignalTerrain living knowledge graph. Connect naturally; never force denseness or attribution theater.",
+  "docs": ["docs/RELATIONSHIP-TYPES.md", "docs/KNOWLEDGE-GRAPH.md"],
   "types": [
-    {
-      "id": "related-to",
-      "label": "Related to",
-      "description": "General useful association."
-    },
-    {
-      "id": "affects",
-      "label": "Affects",
-      "description": "A condition or event impacts another topic."
-    },
-    {
-      "id": "exploits-or-involves",
-      "label": "Involves (literacy)",
-      "description": "Campaign or actor literacy link to a vulnerability topic. Never stores exploit steps."
-    },
-    {
-      "id": "advises-on",
-      "label": "Advises on",
-      "description": "Advisory or guidance about a topic."
-    },
-    {
-      "id": "observed-on",
-      "label": "Observed on",
-      "description": "Frequency or signal context association."
-    },
-    {
-      "id": "documents",
-      "label": "Documents",
-      "description": "Paper, RFC, or standard documents a topic."
-    },
-    {
-      "id": "operates",
-      "label": "Operates",
-      "description": "Organization or actor operates a capability — awareness framing."
-    },
-    {
-      "id": "uses-protocol",
-      "label": "Uses protocol",
-      "description": "System or service uses a protocol."
-    },
-    {
-      "id": "depends-on",
-      "label": "Depends on",
-      "description": "Infrastructure or technical dependency."
-    },
-    {
-      "id": "located-in",
-      "label": "Located in",
-      "description": "Geographic or jurisdictional framing."
-    },
-    {
-      "id": "part-of",
-      "label": "Part of",
-      "description": "Component or membership."
-    },
-    {
-      "id": "see-also",
-      "label": "See also",
-      "description": "Editorial cross-reference."
-    },
-    {
-      "id": "historically-related",
-      "label": "Historically related",
-      "description": "Past connection useful for context."
-    },
-    {
-      "id": "watch-with",
-      "label": "Watch with",
-      "description": "Calm co-monitoring suggestion."
-    }
-  ]
+    { "id": "affects", "label": "Affects", "description": "A condition or event impacts another topic." },
+    { "id": "uses", "label": "Uses", "description": "Subject uses an object (technology, protocol, product)." },
+    { "id": "targets", "label": "Targets (literacy)", "description": "Actor or campaign literacy link to a product or CVE. Never stores exploit steps." },
+    { "id": "references", "label": "References", "description": "Cites or points to another topic." },
+    { "id": "published_by", "label": "Published by", "description": "Paper or advisory published by an organization." },
+    { "id": "patched_by", "label": "Patched by", "description": "Fix published by a vendor — defensive framing." },
+    { "id": "related_to", "label": "Related to", "description": "General useful association — use sparingly." },
+    { "id": "depends_on", "label": "Depends on", "description": "Technical or operational dependency." },
+    { "id": "replaces", "label": "Replaces", "description": "Newer topic replaces an older one." },
+    { "id": "supersedes", "label": "Supersedes", "description": "Formal supersession (advisory, standard)." },
+    { "id": "detects", "label": "Detects", "description": "Guidance detects a condition — not a scanner product." },
+    { "id": "mitigates", "label": "Mitigates", "description": "Guidance or control reduces risk." },
+    { "id": "documented_in", "label": "Documented in", "description": "Topic is documented in a paper, RFC, or standard." },
+    { "id": "discovered_by", "label": "Discovered by", "description": "Discovery credit." },
+    { "id": "reported_by", "label": "Reported by", "description": "Report attribution." },
+    { "id": "associated_with", "label": "Associated with", "description": "Cautious association when precision is limited." },
+    { "id": "communicates_over", "label": "Communicates over", "description": "System communicates over a medium, protocol, or frequency." },
+    { "id": "interrupts", "label": "Interrupts", "description": "Event interrupts a service or medium." },
+    { "id": "caused_by", "label": "Caused by", "description": "Effect linked to a cause — require sources when strong." },
+    { "id": "supports", "label": "Supports", "description": "Evidence or capability supports a claim or topic." },
+    { "id": "conflicts_with", "label": "Conflicts with", "description": "Sources or claims disagree." },
+    { "id": "observed_with", "label": "Observed with", "description": "Co-occurrence worth noting — not forced causality." }
+  ],
+  "aliases": {
+    "related-to": "related_to",
+    "see-also": "related_to",
+    "advises-on": "references",
+    "documents": "documented_in",
+    "exploits-or-involves": "targets",
+    "uses-protocol": "uses",
+    "observed-on": "observed_with",
+    "watch-with": "related_to",
+    "historically-related": "related_to",
+    "operates": "associated_with",
+    "part-of": "depends_on",
+    "located-in": "associated_with"
+  },
+  "editorialGates": ["targets", "caused_by", "associated_with"]
 }

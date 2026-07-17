@@ -1,25 +1,25 @@
 {
   "name": "SignalTerrain",
   "eyebrow": "Signal Intelligence",
-  "mission": "Understand the world's signals — observe, connect, and explain radio, cyber awareness, infrastructure, and research on one topic foundation.",
+  "mission": "Understand the world's signals — a living knowledge graph where topics connect across radio, cyber awareness, infrastructure, and research.",
   "status": "foundation",
   "statusLabel": "Foundation",
   "portfolioStatus": "foundation",
-  "portfolioNote": "Topic and relationship foundation with sample graph. Receivers stay private. Not a scanner, SIEM, or RSS reader.",
-  "strategicRole": "Product home for Signal Intelligence — shared topics across RF, cyber literacy, infrastructure, and research.",
+  "portfolioNote": "Living knowledge graph with sample CVE→vendor→advisory→research chain. Not a scanner, SIEM, or RSS reader.",
+  "strategicRole": "Product home for Signal Intelligence — interconnected topics that accumulate over time.",
   "learnToday": [
-    "How everything becomes a topic that evolves",
-    "How relationships connect CVE, advisory, frequency, and research samples",
-    "Why confidence and unknowns stay visible",
-    "How a private receiver registry stays modular",
+    "How a CVE connects to vendor, advisory, research, history, and mitigation",
+    "How to expand neighbors without overwhelm",
+    "Why current events attach to existing topics",
+    "How confidence and unknowns stay visible",
     "Why SignalTerrain is not a SOC or news river"
   ],
   "comingSoon": [],
   "preview": {
-    "title": "Topic graph",
-    "placeholderLabel": "Signals connected",
-    "placeholderHint": "Topics · relationships · workspaces",
-    "description": "A calm foundation for understanding signals — evidence, context, and connections."
+    "title": "Living knowledge graph",
+    "placeholderLabel": "Everything is connected",
+    "placeholderHint": "Expand · filter · timeline · search",
+    "description": "Start on one topic and discover how the pieces fit together."
   },
   "homeLink": "../../"
 }

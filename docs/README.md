@@ -15,6 +15,10 @@
 | [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md) | Relationship engine |
 | [SIGNALTERRAIN-EDITORIAL-STANDARDS.md](SIGNALTERRAIN-EDITORIAL-STANDARDS.md) | SignalTerrain editorial rules (extends studio standards) |
 | [SIGNALTERRAIN_PLAYBOOK.md](SIGNALTERRAIN_PLAYBOOK.md) | SignalTerrain product playbook |
+| [KNOWLEDGE-GRAPH.md](KNOWLEDGE-GRAPH.md) | SignalTerrain living knowledge graph — everything is connected |
+| [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) | Canonical relationship type catalog |
+| [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) | How topics are born, evolve, and gain confidence |
+| [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md) | Research enriches topics instead of living apart |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
 | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
 | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |

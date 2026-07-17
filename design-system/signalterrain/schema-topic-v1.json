@@ -61,10 +61,28 @@
         "agency",
         "research-paper",
         "standard",
+        "rfc",
         "provider",
         "infrastructure",
         "campaign",
         "organization",
+        "company",
+        "vendor",
+        "country",
+        "technology",
+        "software",
+        "product",
+        "cloud-provider",
+        "internet-event",
+        "communications-event",
+        "power-event",
+        "weather-event",
+        "space-weather-event",
+        "conference-presentation",
+        "mitigation",
+        "historical-incident",
+        "future-development",
+        "person",
         "signal-system",
         "other"
       ]
@@ -73,6 +91,7 @@
     "summary": { "type": "string", "maxLength": 400 },
     "overview": { "type": "string", "maxLength": 4000 },
     "historicalContext": { "type": ["string", "null"], "maxLength": 4000 },
+    "technicalExplanation": { "type": ["string", "null"], "maxLength": 4000 },
     "timeline": {
       "type": "array",
       "items": {
@@ -82,6 +101,21 @@
         "properties": {
           "at": { "type": "string" },
           "text": { "type": "string", "maxLength": 600 },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "discovery",
+              "disclosure",
+              "patch",
+              "advisory",
+              "research",
+              "incident",
+              "mitigation",
+              "historical",
+              "development",
+              "other"
+            ]
+          },
           "sourceLabel": { "type": ["string", "null"] }
         }
       }
@@ -112,6 +146,10 @@
       "items": { "type": "string", "maxLength": 400 }
     },
     "watchFor": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 400 }
+    },
+    "questionsWorthInvestigating": {
       "type": "array",
       "items": { "type": "string", "maxLength": 400 }
     },

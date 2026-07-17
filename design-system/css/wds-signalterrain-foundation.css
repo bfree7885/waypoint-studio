@@ -216,3 +216,197 @@
   font-size: 0.85rem;
   color: var(--st-muted);
 }
+
+/* Living knowledge graph explorer */
+.st-explorer-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.st-search-label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--st-muted);
+}
+
+.st-search {
+  font: inherit;
+  min-width: min(100%, 18rem);
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  color: var(--st-ink);
+}
+
+.st-filter-block span {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+  margin-bottom: 0.35rem;
+}
+
+.st-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.st-chip {
+  font: inherit;
+  font-size: 0.72rem;
+  border: 1px solid var(--st-line);
+  background: transparent;
+  color: var(--st-muted);
+  padding: 0.28rem 0.55rem;
+  cursor: pointer;
+}
+
+.st-chip.is-active {
+  border-color: var(--st-accent);
+  color: var(--st-ink);
+  background: var(--st-panel);
+}
+
+.st-explorer-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(280px, 1.15fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .st-explorer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.st-graph-panel {
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.st-graph-panel h2,
+.st-search-results h2 {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--st-accent);
+  margin: 0.85rem 0 0.45rem;
+}
+
+.st-graph-panel h2:first-child {
+  margin-top: 0;
+}
+
+.st-graph-nodes,
+.st-graph-edges,
+.st-search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.st-graph-nodes li,
+.st-graph-edges li,
+.st-search-results li {
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--st-line);
+}
+
+.st-graph-nodes li:first-child,
+.st-graph-edges li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.st-graph-nodes li.is-focus {
+  box-shadow: inset 3px 0 0 var(--st-accent);
+  padding-left: 0.55rem;
+}
+
+.st-node-title {
+  font: inherit;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.1rem;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--st-ink);
+}
+
+.st-node-actions {
+  margin-top: 0.25rem;
+}
+
+.st-node-actions button,
+.st-graph-edges button,
+.st-search-results button {
+  font: inherit;
+  font-size: 0.78rem;
+  border: 1px solid var(--st-line);
+  background: transparent;
+  color: var(--st-muted);
+  padding: 0.2rem 0.45rem;
+  cursor: pointer;
+}
+
+.st-muted {
+  color: var(--st-muted);
+  font-size: 0.78rem;
+}
+
+.st-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.st-timeline li {
+  padding: 0.5rem 0 0.5rem 0.75rem;
+  border-left: 2px solid var(--st-line);
+  margin-left: 0.2rem;
+}
+
+.st-timeline-at {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--st-focus);
+}
+
+.st-timeline-text {
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.st-timeline-src {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--st-muted);
+}
+
+.st-analysis h3 {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 1.1rem 0 0.35rem;
+  color: var(--st-focus);
+}
+
+.st-search-results {
+  border: 1px solid var(--st-line);
+  background: var(--st-panel);
+  padding: 0.75rem 1rem 1rem;
+  margin-bottom: 1rem;
+}

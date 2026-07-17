@@ -1,11 +1,15 @@
 # SignalTerrain Foundation (package)
 
-**Version:** 1.0.0 · **Runtime:** topic demo helpers (`WDS.signalTerrainTopics`)  
-**Tagline:** Understand the world's signals.
+**Version:** 2.0.0 · **Runtime:** topics + living knowledge graph explorers  
+**Tagline:** Understand the world's signals. · Everything is connected.
 
 Canonical docs:
 
 - [SIGNALTERRAIN-VISION.md](../../docs/SIGNALTERRAIN-VISION.md)
+- [KNOWLEDGE-GRAPH.md](../../docs/KNOWLEDGE-GRAPH.md)
+- [RELATIONSHIP-TYPES.md](../../docs/RELATIONSHIP-TYPES.md)
+- [TOPIC-LIFECYCLE.md](../../docs/TOPIC-LIFECYCLE.md)
+- [RESEARCH-INTEGRATION.md](../../docs/RESEARCH-INTEGRATION.md)
 - [SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md](../../docs/SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md)
 - [SIGNALTERRAIN-TOPIC-MODEL.md](../../docs/SIGNALTERRAIN-TOPIC-MODEL.md)
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](../../docs/SIGNALTERRAIN-RELATIONSHIP-MODEL.md)
@@ -18,12 +22,15 @@ Canonical docs:
 | Manifest | `index.json` |
 | Topic schema | `schema-topic-v1.json` |
 | Relationship schema | `schema-relationship-v1.json` |
-| Relationship types | `relationship-types.json` |
+| Relationship types v2 | `relationship-types.json` |
 | Workspaces | `workspaces.json` |
 | Platform systems | `platform-systems.json` |
-| Demo graph | `samples/demo-graph.json` |
-| Runtime | `../js/signalterrain/wds-signalterrain-topics.js` |
-| Demo UI | `../../apps/signalterrain/topics.html` |
+| Foundation demo graph | `samples/demo-graph.json` |
+| Living knowledge graph | `samples/living-graph.json` |
+| Topics runtime | `../js/signalterrain/wds-signalterrain-topics.js` |
+| Graph runtime | `../js/signalterrain/wds-signalterrain-graph.js` |
+| Topics UI | `../../apps/signalterrain/topics.html` |
+| Graph explorer | `../../apps/signalterrain/graph.html` |
 
 ## Developer rules
 
@@ -33,8 +40,12 @@ Canonical docs:
 4. Relationship edges must not encode attack procedures.  
 5. Perspective stays labeled (`waypointAnalysis`).  
 6. Unknowns are required on topics.  
-7. SignalTerrain remains the UI home for Signal Intelligence — no parallel Cyber nav product.
+7. Current events attach to existing topics.  
+8. SignalTerrain remains the UI home for Signal Intelligence — no parallel Cyber nav product.
 
-## Demo
+## Demo path
 
-Open `apps/signalterrain/topics.html` to browse the sample graph (CVE, actor, advisory, frequency, propagation, research paper) and follow relationship edges across workspaces.
+1. Open `apps/signalterrain/graph.html`  
+2. Start on the sample CVE  
+3. Expand neighbors through vendor → advisory → research → actor → history → mitigation → technology → future  
+4. Filter relationship types / confidence; search the graph; read the living timeline

@@ -25,6 +25,13 @@
       "job": "Browse the shared topic graph and relationships (sample demo)."
     },
     {
+      "id": "graph",
+      "label": "Knowledge graph",
+      "path": "/graph.html",
+      "status": "foundation",
+      "job": "Expand neighbors, filter, search, and read living timelines."
+    },
+    {
       "id": "watch",
       "label": "Watch",
       "path": "/watch/",

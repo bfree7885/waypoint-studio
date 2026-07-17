@@ -59,8 +59,13 @@ ok(systems.systems?.length >= 12, "platform systems catalog");
 ok(systems.privacyDefaults?.sync === "off-until-chosen", "sync opt-in default");
 
 const types = readJson("relationship-types.json");
-ok(types.types?.some((t) => t.id === "advises-on"), "advises-on type");
-ok(types.types?.some((t) => t.id === "exploits-or-involves"), "literacy involves type");
+ok(types.types?.some((t) => t.id === "references" || t.id === "advises-on"), "references/advises type");
+ok(
+  types.types?.some((t) => t.id === "targets") || types.types?.some((t) => t.id === "exploits-or-involves"),
+  "targets/literacy involves type"
+);
+ok(types.aliases?.["advises-on"] === "references" || types.types?.some((t) => t.id === "advises-on"), "advises alias or type");
+ok(types.aliases?.["exploits-or-involves"] === "targets" || types.types?.some((t) => t.id === "exploits-or-involves"), "involves alias or type");
 
 const graph = readJson("samples/demo-graph.json");
 ok(graph.meta?.status === "sample", "graph labeled sample");

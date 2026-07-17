@@ -371,6 +371,11 @@
           "id": "topics",
           "label": "Topics",
           "href": "apps/signalterrain/topics.html"
+        },
+        {
+          "id": "graph",
+          "label": "Knowledge graph",
+          "href": "apps/signalterrain/graph.html"
         }
       ]
     },

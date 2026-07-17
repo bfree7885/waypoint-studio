@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SignalTerrain Topics — foundation demonstration of the shared topic and relationship model.">
-  <title>Topics — SignalTerrain</title>
+  <meta name="description" content="SignalTerrain Knowledge Graph — explore connected topics, timelines, and research.">
+  <title>Knowledge Graph — SignalTerrain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,8 +21,8 @@
     <main id="main" class="wpf-page st-page">
       <a class="st-back" href="./">← SignalTerrain overview</a>
       ·
-      <a class="st-back" href="graph.html">Knowledge graph</a>
-      <div id="st-topics-mount" aria-busy="true"></div>
+      <a class="st-back" href="topics.html">Topics</a>
+      <div id="st-graph-mount" aria-busy="true"></div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -31,14 +31,14 @@
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../design-system/js/signalterrain/wds-signalterrain-topics.js" defer></script>
+  <script src="../../design-system/js/signalterrain/wds-signalterrain-graph.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (window.WDS && WDS.appShell) {
         WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 1 });
       }
-      if (window.WDS && WDS.signalTerrainTopics) {
-        WDS.signalTerrainTopics.mountDemo(document.getElementById("st-topics-mount"));
+      if (window.WDS && WDS.signalTerrainGraph) {
+        WDS.signalTerrainGraph.mountExplorer(document.getElementById("st-graph-mount"));
       }
     });
   </script>

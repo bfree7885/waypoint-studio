@@ -34,26 +34,13 @@ Optional: link outward to Knowledge (`wk_*`) or Signal Cards via topic fields ra
 
 ---
 
-## Relationship types (initial)
+## Relationship types (living graph)
 
-| Type | Intent |
-|------|--------|
-| `related-to` | General association |
-| `affects` | Condition or event impacts another topic |
-| `exploits-or-involves` | Literacy only — vulnerability/campaign association (**never** exploit instructions) |
-| `advises-on` | Advisory or guidance about a topic |
-| `observed-on` | Frequency / signal observed in a context |
-| `documents` | Paper or standard documents a topic |
-| `operates` | Org / actor operates capability (awareness) |
-| `uses-protocol` | System uses a protocol |
-| `depends-on` | Infrastructure or tech dependency |
-| `located-in` | Geographic or jurisdictional framing |
-| `part-of` | Membership / component |
-| `see-also` | Editorial cross-reference |
-| `historically-related` | Past connection still useful for context |
-| `watch-with` | Calm co-monitoring suggestion |
+Canonical catalog: [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md) · `relationship-types.json` v2.
 
-Full list and notes: `relationship-types.json`.
+Includes `affects`, `uses`, `targets`, `references`, `published_by`, `patched_by`, `related_to`, `depends_on`, `replaces`, `supersedes`, `detects`, `mitigates`, `documented_in`, `discovered_by`, `reported_by`, `associated_with`, `communicates_over`, `interrupts`, `caused_by`, `supports`, `conflicts_with`, `observed_with`.
+
+Foundation aliases (`advises-on`, `exploits-or-involves`, …) resolve to the canonical set.
 
 ---
 
