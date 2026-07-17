@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Initial design language for Signal Intelligence surfaces — observatory / ranger briefing, not SOC or Hollywood.",
+  "metaphor": "Calm observatory and park-ranger briefing for invisible environments",
+  "antiMetaphor": [
+    "Security operations center wall",
+    "Hacker terminal / matrix rain",
+    "Hollywood cyber HUD",
+    "News ticker / clickbait river"
+  ],
+  "principles": [
+    "Informed, never overwhelmed",
+    "Severity is labeled language, not neon theater",
+    "One composition per view — especially Overview",
+    "Signal Card is the interaction container; avoid card nests",
+    "Motion signals update, not alarm",
+    "Empty and stable states are features"
+  ],
+  "typography": {
+    "voice": "Editorial analytical",
+    "hierarchy": "Brand/product quiet; signal summary clear; metadata secondary",
+    "avoid": ["Comic urgency", "All-caps threat banners", "Mono-only console look as default"]
+  },
+  "color": {
+    "direction": "Quiet neutrals with restrained accent for focus — not purple glow, not blood-red walls",
+    "severity": {
+      "info": "neutral text",
+      "notice": "subtle accent",
+      "elevated": "clear label + calmGuidance required",
+      "high": "strong label still without siren chrome",
+      "critical": "rare; maximum honesty and calmGuidance"
+    },
+    "confidence": "Use Trust recommendation labels; never decorative percentages"
+  },
+  "layout": {
+    "overview": "Four-panel intelligence dashboard — Changed / Important / Attention / Stable",
+    "detail": "Single Signal Card column with expandable Evidence",
+    "library": "Grouped module index — filter, do not infinite-scroll news",
+    "densityBudget": "Prefer one calm desktop viewport; stack panels on small screens"
+  },
+  "motion": {
+    "panelUpdate": "Slow fade or crossfade",
+    "attentionEnter": "Soft highlight settle — no pulse sirens",
+    "forbidden": ["Flashing severity", "Countdown panic", "Confetti on incidents"]
+  },
+  "chrome": {
+    "prefer": ["Hairline separators", "Generous quiet space", "Plain source links"],
+    "avoid": ["Radar sweeps", "Hex grids as identity", "Skull / hooded logos", "Green-on-black default theme"]
+  },
+  "copy": {
+    "prefer": ["Notice", "Advisory", "Disruption", "Elevated activity", "Worth watching"],
+    "avoid": ["Breached!!!", "You are under attack", "Threat score 97", "Trending exploits"]
+  },
+  "cssTokensSuggested": {
+    "--si-bg": "quiet paper or soft slate — product-theme aligned",
+    "--si-ink": "high-legibility neutral",
+    "--si-accent": "single restrained focus accent",
+    "--si-stable": "muted positive-quiet (not neon green)",
+    "--si-attention": "amber-adjacent label color used sparingly"
+  },
+  "pattern": "design-system/patterns/signal-intelligence-dashboard.html"
+}

@@ -59,7 +59,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 | **Platform kernel** | `design-system/js/platform/` | Shared chrome, profile, collections, foundation UI |
 | **Shared engines (vision)** | `docs/PLATFORM-ENGINES.md` · registry `sharedEngines` | Long-term capability map; planned ≠ shipped |
 | **Landscape Interpretation** | `design-system/landscape-interpretation/` · [docs](LANDSCAPE-INTERPRETATION-ENGINE.md) | Architecture v0.1: schemas, taxonomy, confidence, sample rules — no UI/runtime |
-| **Signal Intelligence** | `design-system/signal-intelligence/` · [docs](SIGNAL-INTELLIGENCE-ENGINE.md) | Architecture v0.1: observation schema, taxonomy, confidence, attention — no UI/APIs |
+| **Signal Intelligence** | `design-system/signal-intelligence/` · [Vision](SIGNAL-INTELLIGENCE-VISION.md) · [Engine](SIGNAL-INTELLIGENCE-ENGINE.md) | Foundation V1 architecture: Signal Card, modules, nav, dashboard wireframe — no live UI/APIs |
 | **Knowledge Platform** | `design-system/knowledge/`, `design-system/js/knowledge/` | Shared reference knowledge, search, relationships |
 | **Outdoor Intelligence Platform** | `design-system/js/outdoor-intelligence/` | Canonical regional package for dashboard and apps |
 | **Regional Intelligence Engine** | `design-system/js/regional-intelligence/` | County profiles, phenology, species slices |
@@ -87,7 +87,8 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 
 - [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) — shared engine map (Landscape Interpretation, Signal Intelligence)
 - [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) — Landscape Interpretation v0.1
-- [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) — Signal Intelligence v0.1
+- [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) — Signal Intelligence Foundation V1
+- [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) — Signal Intelligence engine contracts
 - [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 - [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md)
 - [WAYPOINT-OBSERVATION-STANDARD.md](WAYPOINT-OBSERVATION-STANDARD.md)

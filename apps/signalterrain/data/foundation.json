@@ -3,8 +3,8 @@
   "title": "SignalTerrain",
   "eyebrow": "Waypoint Studio · Signal Intelligence",
   "status": "foundation",
-  "lead": "A calm observatory for invisible environments — radio situational awareness with private receivers, timelines, and maps. Educational cyber awareness is planned later, not available yet.",
-  "mission": "Help operators, listeners, and careful learners observe RF environments without noise, rumor, or surveillance culture.",
+  "lead": "A calm observatory for invisible environments — radio situational awareness with private receivers, timelines, and maps. Home for Signal Intelligence Foundation V1 (architecture). Educational cyber awareness is planned later, not available yet.",
+  "mission": "Help operators, listeners, and careful learners observe RF environments without noise, rumor, or surveillance culture — guide like a park ranger, not a SOC.",
   "principles": [
     "Clarity over engagement metrics",
     "Audio libraries stay local first",

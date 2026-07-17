@@ -9,8 +9,10 @@ situational awareness. It is not an enterprise SOC, not a surveillance product,
 and not a rumor feed.
 
 See also: [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) ·
+[SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) ·
+[SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) ·
 [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md)
-(Signal Intelligence Engine v0.1 — schemas only).
+(Signal Intelligence Foundation V1 — architecture & schemas only).
 
 Complements: Engineering, Product Standards, UI/UX, QA, Performance,
 Accessibility, Security, Release, and Lessons Learned playbooks.

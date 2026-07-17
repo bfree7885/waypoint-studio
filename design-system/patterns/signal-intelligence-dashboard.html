@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signal Intelligence Dashboard — wireframe</title>
+  <style>
+    :root {
+      --si-bg: #f3f1ec;
+      --si-ink: #1c1b19;
+      --si-muted: #5c5852;
+      --si-line: #d4cfc4;
+      --si-panel: #faf8f4;
+      --si-accent: #3d5a4c;
+      --si-attention: #8a6a32;
+      --si-stable: #4a5d52;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #e7ebe6 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, #ebe6dc 0%, transparent 50%),
+        var(--si-bg);
+      color: var(--si-ink);
+      line-height: 1.45;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+    header { margin-bottom: 1.75rem; }
+    .eyebrow {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--si-muted);
+      margin: 0 0 0.35rem;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 600;
+      margin: 0 0 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .lead { margin: 0; max-width: 36rem; color: var(--si-muted); font-size: 1.05rem; }
+    .badge {
+      display: inline-block;
+      margin-top: 0.85rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--si-line);
+      padding: 0.25rem 0.55rem;
+      color: var(--si-muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    section.panel {
+      background: var(--si-panel);
+      border: 1px solid var(--si-line);
+      padding: 1rem 1.1rem 1.15rem;
+      min-height: 12rem;
+    }
+    section.panel h2 {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin: 0 0 0.65rem;
+      color: var(--si-accent);
+      font-weight: 600;
+    }
+    section.panel.attention h2 { color: var(--si-attention); }
+    section.panel.stable h2 { color: var(--si-stable); }
+    .job {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: var(--si-muted);
+      margin: 0 0 0.85rem;
+    }
+    ul.signals { list-style: none; margin: 0; padding: 0; }
+    ul.signals li {
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--si-line);
+    }
+    ul.signals li:first-child { border-top: 0; padding-top: 0; }
+    .summary { margin: 0 0 0.25rem; font-size: 1rem; }
+    .meta {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.75rem;
+      color: var(--si-muted);
+    }
+    .meta strong { color: var(--si-ink); font-weight: 600; }
+    footer.note {
+      margin-top: 1.5rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: var(--si-muted);
+      max-width: 40rem;
+    }
+    nav.ia {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin: 0 0 1.5rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-size: 0.85rem;
+    }
+    nav.ia span {
+      color: var(--si-muted);
+      border-bottom: 1px solid transparent;
+    }
+    nav.ia span[aria-current="page"] {
+      color: var(--si-ink);
+      border-bottom-color: var(--si-accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">SignalTerrain · Signal Intelligence</p>
+      <h1>Overview</h1>
+      <p class="lead">What changed. What matters. What to watch. What is quiet.</p>
+      <span class="badge">Wireframe · Foundation V1 · No live feeds</span>
+    </header>
+
+    <nav class="ia" aria-label="Intelligence IA (blueprint)">
+      <span aria-current="page">Overview</span>
+      <span>Watch · Planned</span>
+      <span>Library · Planned</span>
+      <span>About &amp; Limits · Planned</span>
+    </nav>
+
+    <div class="grid">
+      <section class="panel" aria-labelledby="changed">
+        <h2 id="changed">Changed today</h2>
+        <p class="job">Deltas only — not a news river.</p>
+        <ul class="signals">
+          <li>
+            <p class="summary">HF conditions may be more disturbed than last week’s quiet baseline.</p>
+            <p class="meta"><strong>Confidence:</strong> Preliminary · Module: Space Weather · Sample</p>
+          </li>
+          <li>
+            <p class="summary"><em>Empty slot preferred over invented CVE.</em></p>
+            <p class="meta">No additional verified changes in this wireframe.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel" aria-labelledby="important">
+        <h2 id="important">Currently important</h2>
+        <p class="job">Small set. Confidence always visible.</p>
+        <ul class="signals">
+          <li>
+            <p class="summary">Nothing elevated beyond sample space-weather context.</p>
+            <p class="meta"><strong>Honesty:</strong> Important panel may be short.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel attention" aria-labelledby="attention">
+        <h2 id="attention">Deserves attention</h2>
+        <p class="job">Watch list — learn / act calmly / monitor.</p>
+        <ul class="signals">
+          <li>
+            <p class="summary">If you operate HF, expect variable paths; keep notes.</p>
+            <p class="meta"><strong>Attention:</strong> Learn · Calm guidance present</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel stable" aria-labelledby="stable">
+        <h2 id="stable">Stable</h2>
+        <p class="job">Explicit quiet reduces anxiety.</p>
+        <ul class="signals">
+          <li>
+            <p class="summary">No cited cloud-provider incidents in this educational wireframe.</p>
+            <p class="meta"><strong>Status:</strong> Stable (sample)</p>
+          </li>
+          <li>
+            <p class="summary">Receiver inventory private and local — unchanged.</p>
+            <p class="meta">SignalTerrain foundation</p>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <footer class="note">
+      Pattern only. Not production UI. Does not connect to scanners, SOCs, or live threat feeds.
+      See <code>docs/SIGNAL-INTELLIGENCE-ARCHITECTURE.md</code> and
+      <code>design-system/signal-intelligence/design-language.json</code>.
+    </footer>
+  </div>
+</body>
+</html>

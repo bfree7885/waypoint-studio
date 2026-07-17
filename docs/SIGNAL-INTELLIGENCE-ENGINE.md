@@ -1,8 +1,16 @@
-# Signal Intelligence Engine v0.1
+# Signal Intelligence Engine
 
-**Status:** Architecture / schemas (no dashboards, APIs, monitoring, SDR UI, or cyber tools)  
+**Status:** Architecture / schemas (Foundation V1 blueprint; observation contract from v0.1)  
 **Package:** `design-system/signal-intelligence/`  
-**Primary product home:** SignalTerrain
+**Primary product home:** SignalTerrain  
+
+**Product vision:** [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md)  
+**Architecture:** [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md)  
+**Roadmap:** [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md)
+
+This document remains the **engine contract** detail (observation, taxonomy, confidence, attention, ethics). Foundation V1 adds product-family vision, modules, Signal Card, nav, dashboard wireframe, and sources catalog — still **no** dashboards wired to live feeds, APIs, monitoring, SDR UI, or cyber tools.
+
+---
 
 ## Mission
 
@@ -17,26 +25,30 @@ The engine should make it possible to answer:
 | What should I pay attention to? | `attention.focus` + adaptive attention model |
 | What has changed? | `attention.whatChanged` + `historicalComparison` |
 | How confident are we? | `confidence` + `unknowns` + `conflicts` |
+| How trustworthy / verified? | Signal Card `verification` + Trust labels |
+| What should I understand before deciding? | `waypointPerspective` + related knowledge |
 
 ---
 
 ## Purpose
 
-Unify **RF**, **cyber**, and **infrastructure** awareness under one educational observation contract that SignalTerrain (and later peers) can share.
+Unify **RF**, **cyber**, and **infrastructure** awareness under one educational observation / Signal Card contract that SignalTerrain (and later peers) can share.
 
 ---
 
-## Scope (v0.1)
+## Scope
 
 | In scope | Out of scope (non-goals) |
 |----------|---------------------------|
-| Observation schema | Live API connections |
-| Domain taxonomy | Monitoring services |
-| Confidence framework | SDR interfaces / demodulator UI |
-| Threat-context phases | Enterprise SOC / SIEM |
-| Adaptive attention model | Penetration testing / exploit kits |
-| Integration contracts | Placeholder threat dashboards |
-| Ethics & privacy philosophy | Surveillance of people |
+| Observation schema (v0.1) | Live API connections |
+| Signal Card schema (v1) | Monitoring services / scanners |
+| Domain taxonomy | SDR interfaces / demodulator UI |
+| Confidence framework | Enterprise SOC / SIEM |
+| Threat-context phases | Penetration testing / exploit kits |
+| Adaptive attention model | Placeholder threat dashboards |
+| Modules / nav / sources catalogs | Fabricated incidents |
+| Integration contracts | Surveillance of people |
+| Ethics & privacy philosophy | Hacking tutorials / PoCs |
 
 ---
 
@@ -46,12 +58,13 @@ Unify **RF**, **cyber**, and **infrastructure** awareness under one educational 
 Sources (future: user logs, cited advisories, status pages)
         │
         ▼
- Signal Intelligence Observation (schema-v0.1)
-   ├── domain / category / taxonomy
+ Observation (schema-v0.1) ──► Signal Card (schema-v1)
+   ├── domain / category / taxonomy / moduleId
    ├── severity + attention (calm)
-   ├── confidence dimensions
+   ├── confidence dimensions (+ Trust label)
    ├── threatContext phase
-   ├── evidence · related · historicalComparison
+   ├── evidence · verification · related · historicalComparison
+   ├── waypointPerspective · relatedKnowledgeIds
    └── unknowns · conflicts
         │
         ├── Adaptive attention (weights / focus areas)
@@ -71,14 +84,15 @@ Engines compose; they are not standalone nav apps. Signal Intelligence remains a
 2. **Cyber Intelligence** — CVEs, advisories, campaign literacy, outages (ISP/DNS/BGP), certificates, releases, patch awareness  
 3. **Infrastructure Intelligence** — internet/cloud/CDN status, GPS interference, space weather, cellular issues  
 
-Full vocabulary: `design-system/signal-intelligence/taxonomy.json`.
+Full vocabulary: `design-system/signal-intelligence/taxonomy.json`.  
+Modules: `modules.json`.
 
-### Observation
+### Observation & Signal Card
 
-Canonical schema:  
-`https://waypoint.studio/schemas/signal-intelligence/observation/v0.1`
+- Observation: `https://waypoint.studio/schemas/signal-intelligence/observation/v0.1`  
+- Signal Card: `https://waypoint.studio/schemas/signal-intelligence/signal-card/v1`
 
-Required honesty fields include confidence block, evidence list, threat-context phase, and **at least one unknown**.
+Required honesty fields include confidence block, evidence list, threat-context phase, verification (v1), Waypoint Perspective (v1), and **at least one unknown**.
 
 ### Threat context
 
@@ -87,22 +101,25 @@ Phases: current · emerging · resolved · historical patterns · seasonal trend
 
 ### Adaptive attention
 
-Focus areas (browser hygiene, navigation reliability, radio impacts, backup reminders, connectivity, legal listening) raise educational visibility when matching observations appear. Tone rules forbid SOS-style alarmism (`attention.json`).
+Focus areas raise educational visibility when matching observations appear. Tone rules forbid SOS-style alarmism (`attention.json`).
 
 ### Confidence
 
 Levels align with Landscape Interpretation naming (`high` → `insufficient`) but measure **support for an awareness claim**, with separate dimensions for evidence quality, freshness, and source reliability (`confidence.json`).
+
+UI should prefer platform Trust recommendation labels via `design-system/trust/confidence-map.json` (`engineCrosswalk`).
 
 ---
 
 ## Design philosophy
 
 - Awareness, not anxiety  
-- Explain and teach; do not score fear  
+- Guide and explain; do not score fear  
 - Educational for individuals, hobbyists, homelabs, small orgs  
 - **Not** a penetration testing platform  
 - **Not** a hacking toolkit  
 - **Not** an enterprise SOC  
+- **Not** a vulnerability scanner  
 
 ---
 
@@ -130,22 +147,25 @@ Aligns with the Waypoint Constitution privacy philosophy and SignalTerrain Playb
 
 ## Limitations
 
-- v0.1 is contracts only — no collectors.  
-- Sample observation is educational, with speculative confidence.  
+- Foundation V1 is contracts + wireframes — no collectors.  
+- Sample observation / Signal Card are educational, with speculative / preliminary confidence.  
 - Taxonomy breadth exceeds any implemented source.  
 - Public-safety RF categories are placeholders for legal-aware curriculum, not a receive mandate.
 
 ---
 
-## Roadmap (documentation intent)
+## Roadmap
+
+See [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md). Short form:
 
 | Phase | Goal |
 |-------|------|
-| **v0.1** | Schemas, taxonomy, confidence, attention, threat context (**this**) |
-| v0.2 | Offline digest builder from **user-supplied** or curated JSON bundles (still no live monitor) |
-| v0.3 | SignalTerrain foundation bridge (receivers/incidents → observation shape) |
-| v0.4 | Optional cited advisory ingest with provenance — cyber educational digests |
-| v1.0 | Thin SignalTerrain surfaces with confidence, unknowns, and calm attention always visible |
+| **v0.1** | Schemas, taxonomy, confidence, attention, threat context |
+| **V1** | Vision, architecture, modules, Signal Card, nav, dashboard wireframe, sources catalog |
+| V1.1 | SignalTerrain foundation bridge (receivers/incidents → Signal Card) |
+| V1.2 | Offline digest from curated JSON bundles |
+| V2 | Narrow cited advisory path with provenance |
+| V2.1 | Four-panel dashboard with real cards |
 
 ---
 
@@ -159,5 +179,7 @@ See [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md).
 
 - [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md)  
 - [SIGNALTERRAIN_PLAYBOOK.md](SIGNALTERRAIN_PLAYBOOK.md)  
+- [WAYPOINT-TRUST-FRAMEWORK.md](WAYPOINT-TRUST-FRAMEWORK.md)  
+- [WAYPOINT-KNOWLEDGE-PLATFORM.md](WAYPOINT-KNOWLEDGE-PLATFORM.md)  
 - [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md)  
 - Package README: `design-system/signal-intelligence/README.md`

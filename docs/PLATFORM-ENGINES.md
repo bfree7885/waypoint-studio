@@ -29,7 +29,7 @@ Waypoint Studio grows as a set of **shared intelligence engines** that applicati
 | Photo Intelligence | Active / evolving | Careful looking, craft feedback, visual scenes |
 | **Worth Noticing** | **Active foundation** | Calm context-aware observations — never notifications |
 | **Landscape Interpretation** | **Architecture v0.1** (no runtime) | Why a landscape looks the way it does |
-| **Signal Intelligence** | **Architecture v0.1** (no runtime) | Reading RF and cyber environments calmly |
+| **Signal Intelligence** | **Foundation V1 architecture** (no runtime) | Reading RF, cyber, and infrastructure environments calmly |
 
 Exact boundaries may shift; this list is the account of intent.
 
@@ -69,11 +69,11 @@ See the integrations doc for consumer rules and honesty checklists.
 
 ---
 
-## Signal Intelligence (architecture v0.1 / SignalTerrain home)
+## Signal Intelligence (Foundation V1 architecture / SignalTerrain home)
 
 ### Purpose
 
-Help people observe **invisible environments** — radio-frequency space and everyday cyber situational awareness — with clarity, privacy, and education.
+Help people observe **invisible environments** — radio-frequency space, everyday cyber situational awareness, and infrastructure / space-weather conditions — with clarity, privacy, and education.
 
 SignalTerrain is the primary product home. Signal Intelligence is the shared capability framing (RF + Cyber + Infrastructure), not a second navigable product.
 
@@ -81,11 +81,15 @@ SignalTerrain is the primary product home. Signal Intelligence is the shared cap
 
 | Artifact | Path |
 |----------|------|
+| Vision | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) |
+| Architecture | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) |
+| Roadmap | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) |
 | Engine doc | [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) |
 | Integrations | [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) |
-| Schemas / taxonomy / attention | `design-system/signal-intelligence/` |
+| Schemas / modules / nav / design language | `design-system/signal-intelligence/` |
+| Dashboard wireframe | `design-system/patterns/signal-intelligence-dashboard.html` |
 
-**No dashboards, live APIs, monitoring services, SDR interfaces, or cybersecurity tools.** Sample observation is educational only.
+**No live ingestion, production dashboard wiring, scanners, SOC tools, SDR interfaces, or exploit content.** Samples and wireframes are educational / blueprint only.
 
 ### Capability groups
 
@@ -127,7 +131,7 @@ Shared engines (query / compose)
         ├── Outdoor Intelligence ──► Dashboard, kiosk, apps
         ├── Species Knowledge ──► Fieldry, ForageCast, Sheds, …
         ├── Landscape Interpretation (v0.1 arch) ──► Dashboard, Fieldry, ForageCast, Sheds, Scenes
-        ├── Signal Intelligence (v0.1 arch) ──► SignalTerrain (+ peers later)
+        ├── Signal Intelligence (Foundation V1 arch) ──► SignalTerrain (+ peers later)
         ├── Photo Intelligence ──► Scenes / Photo Coach
         └── Observation / Mapping ──► Fieldry and field apps
 ```

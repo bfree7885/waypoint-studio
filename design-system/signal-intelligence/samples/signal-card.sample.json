@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "schema": "https://waypoint.studio/schemas/signal-intelligence/signal-card/v1",
+    "engineVersion": "1.0.0",
+    "observationSchema": "https://waypoint.studio/schemas/signal-intelligence/observation/v0.1",
+    "status": "sample",
+    "createdAt": "2026-07-16T00:00:00.000Z",
+    "updatedAt": "2026-07-16T00:00:00.000Z",
+    "aiAssisted": false,
+    "disclaimer": "Educational Signal Card sample only. Not a live advisory, outage, or spectrum detection."
+  },
+  "id": "sio_sample-space-weather-hf-card",
+  "moduleId": "space-weather",
+  "domain": "infrastructure-intelligence",
+  "category": "infra.space-weather",
+  "taxonomyId": "infra.space-weather",
+  "source": {
+    "kind": "educational-example",
+    "label": "Educational space-weather vignette",
+    "url": null,
+    "catalogSourceId": "noaa-space-weather",
+    "accessedAt": null,
+    "reliability": "unknown"
+  },
+  "timestamp": {
+    "observedAt": "2026-07-16T12:00:00.000Z",
+    "reportedAt": null,
+    "windowStart": null,
+    "windowEnd": null
+  },
+  "location": {
+    "label": "Mid-latitude HF listeners (sample)",
+    "regionHint": "global-educational",
+    "precision": "region",
+    "notes": "Teaching example — no site claim."
+  },
+  "severity": "notice",
+  "attention": {
+    "level": "learn",
+    "focus": "Possible HF radio impacts during elevated space weather",
+    "whyItMatters": "Geomagnetic activity can change HF propagation — useful for amateur radio literacy and receiver expectations.",
+    "whatChanged": "Sample narrative: conditions may be more disturbed than a quiet-week baseline.",
+    "calmGuidance": "If you operate HF, expect variable paths; keep notes. No emergency framing from this sample alone."
+  },
+  "summary": "Elevated space weather may affect HF radio conditions for careful listeners.",
+  "explanation": "Space weather couples the Sun–Earth environment to ionospheric behavior. Signal Intelligence helps listeners notice when openings or closures might relate to geomagnetic conditions — without inventing outages or panic.",
+  "confidence": {
+    "level": "speculative",
+    "evidenceQuality": "unknown",
+    "freshness": "unknown",
+    "sourceReliability": "unknown",
+    "rationale": "Sample vignette with no live bulletin attached; ceiling forced to speculative.",
+    "score": null
+  },
+  "trustConfidenceLabel": "preliminary",
+  "threatContext": {
+    "phase": "current-conditions",
+    "patternNote": "Sample current-window framing.",
+    "seasonHint": null
+  },
+  "evidence": [
+    {
+      "text": "No live bulletin attached — educational structure only.",
+      "quality": "unknown",
+      "url": null
+    }
+  ],
+  "verification": {
+    "status": "educational-sample",
+    "lastVerifiedAt": null,
+    "limitations": "Not tied to a real NOAA product in this sample."
+  },
+  "waypointPerspective": {
+    "text": "Treat space weather as context for radio expectations, not as a reason to panic. When a real bulletin is attached later, keep the same calm structure: what changed, why it matters for listeners, and what remains unknown.",
+    "editorialStatus": "sample",
+    "authorLabel": "Waypoint editorial (sample)"
+  },
+  "relatedKnowledgeIds": [],
+  "relatedObservationIds": ["sio_sample-space-weather-hf"],
+  "historicalComparison": {
+    "summary": "Sample only — no measured baseline.",
+    "baselinePeriod": null,
+    "direction": "unknown"
+  },
+  "unknowns": [
+    "No live Kp/Ap or flare data attached.",
+    "Regional HF impact not measured for a specific path."
+  ],
+  "conflicts": [],
+  "dashboardHints": {
+    "changedToday": true,
+    "currentlyImportant": false,
+    "deservesAttention": true,
+    "stableSignal": false
+  },
+  "attentionHints": ["radio-impacts"],
+  "consumers": ["signalterrain", "education"],
+  "legalEthicsNotes": null
+}

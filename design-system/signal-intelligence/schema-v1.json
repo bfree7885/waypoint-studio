@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signal-intelligence/signal-card/v1",
+  "title": "Waypoint Signal Intelligence — Signal Card v1",
+  "description": "User-facing intelligence unit: what happened, why it matters, evidence, confidence, sources, Waypoint Perspective, and unknowns. Extends the v0.1 observation contract. Not a SOC alert, exploit, or live monitor feed. Collectors are not shipped in Foundation V1.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "moduleId",
+    "domain",
+    "category",
+    "summary",
+    "explanation",
+    "severity",
+    "attention",
+    "confidence",
+    "threatContext",
+    "evidence",
+    "unknowns",
+    "verification",
+    "waypointPerspective"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "engineVersion", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "1.0.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signal-intelligence/signal-card/v1"
+        },
+        "engineVersion": {
+          "type": "string",
+          "pattern": "^1\\.\\d+\\.\\d+$"
+        },
+        "observationSchema": {
+          "type": "string",
+          "description": "Optional link to underlying observation schema id.",
+          "const": "https://waypoint.studio/schemas/signal-intelligence/observation/v0.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "sample", "recorded", "archived"]
+        },
+        "createdAt": { "type": ["string", "null"], "format": "date-time" },
+        "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "aiAssisted": { "type": "boolean" },
+        "disclaimer": { "type": "string", "maxLength": 1024 }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^sio_[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Stable Signal Intelligence Observation / Signal Card id."
+    },
+    "moduleId": {
+      "type": "string",
+      "description": "Module id from modules.json (e.g. space-weather)."
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["rf-intelligence", "cyber-intelligence", "infrastructure-intelligence"]
+    },
+    "category": { "type": "string" },
+    "taxonomyId": { "type": ["string", "null"] },
+    "source": {
+      "type": "object",
+      "required": ["kind", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "user-receiver-log",
+            "user-note",
+            "official-advisory",
+            "vendor-advisory",
+            "public-outage-status",
+            "educational-curation",
+            "educational-example",
+            "community-opt-in",
+            "space-weather-bulletin",
+            "broadcast-schedule",
+            "government-advisory",
+            "vulnerability-catalog",
+            "academic",
+            "osint-curated",
+            "unknown"
+          ]
+        },
+        "label": { "type": "string", "maxLength": 256 },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "catalogSourceId": {
+          "type": ["string", "null"],
+          "description": "Optional id from sources-catalog.json."
+        },
+        "accessedAt": { "type": ["string", "null"], "format": "date-time" },
+        "reliability": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "unknown"]
+        }
+      }
+    },
+    "timestamp": {
+      "type": "object",
+      "required": ["observedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "observedAt": { "type": "string", "format": "date-time" },
+        "reportedAt": { "type": ["string", "null"], "format": "date-time" },
+        "windowStart": { "type": ["string", "null"], "format": "date-time" },
+        "windowEnd": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "location": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": ["string", "null"], "maxLength": 256 },
+        "regionHint": { "type": ["string", "null"] },
+        "precision": {
+          "type": "string",
+          "enum": ["none", "region", "grid", "coordinates-coarse", "coordinates-precise"]
+        },
+        "notes": { "type": ["string", "null"], "maxLength": 512 }
+      }
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "notice", "elevated", "high", "critical"]
+    },
+    "attention": {
+      "type": "object",
+      "required": ["level", "focus"],
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["background", "glance", "learn", "act-calmly", "monitor"]
+        },
+        "focus": { "type": "string", "maxLength": 256 },
+        "whyItMatters": { "type": "string", "maxLength": 800 },
+        "whatChanged": { "type": ["string", "null"], "maxLength": 800 },
+        "calmGuidance": { "type": ["string", "null"], "maxLength": 800 }
+      }
+    },
+    "summary": { "type": "string", "maxLength": 400 },
+    "explanation": { "type": "string", "maxLength": 2400 },
+    "confidence": { "$ref": "#/$defs/confidenceBlock" },
+    "trustConfidenceLabel": {
+      "type": "string",
+      "enum": ["very-high", "high", "moderate", "limited", "preliminary", "unknown"],
+      "description": "Platform Trust recommendation label (crosswalk from confidence.level)."
+    },
+    "threatContext": {
+      "type": "object",
+      "required": ["phase"],
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "current-conditions",
+            "emerging-conditions",
+            "resolved-events",
+            "historical-patterns",
+            "seasonal-trends"
+          ]
+        },
+        "patternNote": { "type": ["string", "null"], "maxLength": 600 },
+        "seasonHint": { "type": ["string", "null"], "maxLength": 256 }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "text": { "type": "string", "maxLength": 600 },
+          "quality": {
+            "type": "string",
+            "enum": ["primary", "corroborating", "secondary", "anecdotal", "unknown"]
+          },
+          "url": { "type": ["string", "null"], "format": "uri" }
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified-primary",
+            "corroborated",
+            "single-source",
+            "unverified",
+            "disputed",
+            "educational-sample"
+          ]
+        },
+        "lastVerifiedAt": { "type": ["string", "null"], "format": "date-time" },
+        "limitations": { "type": ["string", "null"], "maxLength": 800 }
+      }
+    },
+    "waypointPerspective": {
+      "type": "object",
+      "required": ["text", "editorialStatus"],
+      "additionalProperties": false,
+      "description": "Labeled Waypoint editorial judgment — never silently merge with source summary.",
+      "properties": {
+        "text": { "type": "string", "maxLength": 1600 },
+        "editorialStatus": {
+          "type": "string",
+          "enum": ["draft", "reviewed", "sample", "not-applicable"]
+        },
+        "authorLabel": { "type": ["string", "null"], "maxLength": 128 }
+      }
+    },
+    "relatedKnowledgeIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^wk_" },
+      "description": "Curated Knowledge entry ids."
+    },
+    "relatedObservationIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "historicalComparison": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string", "maxLength": 800 },
+        "baselinePeriod": { "type": ["string", "null"], "maxLength": 128 },
+        "direction": {
+          "type": "string",
+          "enum": ["higher", "lower", "similar", "unknown", "not-applicable"]
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "maxLength": 400 }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text"],
+        "additionalProperties": false,
+        "properties": {
+          "text": { "type": "string", "maxLength": 600 },
+          "sourceLabel": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "dashboardHints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "changedToday": { "type": "boolean" },
+        "currentlyImportant": { "type": "boolean" },
+        "deservesAttention": { "type": "boolean" },
+        "stableSignal": {
+          "type": "boolean",
+          "description": "When true, eligible for Stable panel (quiet confirmation)."
+        }
+      }
+    },
+    "attentionHints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "consumers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "signalterrain",
+          "studio",
+          "scenes",
+          "outdoor-intelligence",
+          "landscape-interpretation",
+          "education",
+          "shared"
+        ]
+      }
+    },
+    "legalEthicsNotes": { "type": ["string", "null"], "maxLength": 800 }
+  },
+  "$defs": {
+    "confidenceBlock": {
+      "type": "object",
+      "required": ["level", "evidenceQuality", "freshness", "sourceReliability", "rationale"],
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "speculative", "insufficient"]
+        },
+        "evidenceQuality": {
+          "type": "string",
+          "enum": ["strong", "adequate", "thin", "rumor", "unknown"]
+        },
+        "freshness": {
+          "type": "string",
+          "enum": ["live-window", "hours", "days", "stale", "unknown"]
+        },
+        "sourceReliability": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "unknown"]
+        },
+        "rationale": { "type": "string", "maxLength": 800 },
+        "score": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Optional internal. Prefer labels in UI."
+        }
+      }
+    }
+  }
+}

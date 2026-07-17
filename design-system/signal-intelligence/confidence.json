@@ -1,14 +1,14 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "schema": "https://waypoint.studio/schemas/signal-intelligence/confidence/v0.1",
-  "updatedAt": "2026-07-15",
-  "purpose": "Confidence describes support for an awareness statement — never exploitability score, never 'percentage chance you are compromised'.",
+  "updatedAt": "2026-07-16",
+  "purpose": "Confidence describes support for an awareness statement — never exploitability score, never 'percentage chance you are compromised'. Prefer Trust recommendation labels in UI.",
   "guidingQuestions": [
-    "What is happening?",
-    "Why does it matter?",
-    "What should I pay attention to?",
-    "What has changed?",
-    "How confident are we?"
+    "What is happening right now?",
+    "What changed?",
+    "Why should I care?",
+    "How trustworthy is this information?",
+    "What should I understand before making a decision?"
   ],
   "levels": [
     {
@@ -56,7 +56,11 @@
   ],
   "alignment": {
     "researchIntegrity": "docs/RESEARCH-INTEGRITY.md",
+    "trustFramework": "docs/WAYPOINT-TRUST-FRAMEWORK.md",
+    "confidenceSystem": "docs/WAYPOINT-CONFIDENCE-SYSTEM.md",
+    "trustCrosswalk": "design-system/trust/confidence-map.json#engineCrosswalk",
     "signalTerrainPlaybook": "docs/SIGNALTERRAIN_PLAYBOOK.md",
     "landscapeConfidence": "Similar level names; different mission (signals vs landscapes)"
-  }
+  },
+  "uiRule": "Prefer Trust labels (Very High → Unknown) via engineCrosswalk; never decorative percentages."
 }

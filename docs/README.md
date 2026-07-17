@@ -9,7 +9,10 @@
 | [PLATFORM-ENGINES.md](PLATFORM-ENGINES.md) | Shared intelligence engines map |
 | [LANDSCAPE-INTERPRETATION-ENGINE.md](LANDSCAPE-INTERPRETATION-ENGINE.md) | Landscape Interpretation Engine v0.1 — schemas & philosophy |
 | [LANDSCAPE-INTERPRETATION-INTEGRATIONS.md](LANDSCAPE-INTERPRETATION-INTEGRATIONS.md) | How apps will consume landscape stories |
-| [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) | Signal Intelligence Engine v0.1 — awareness schemas |
+| [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
+| [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
+| [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |
+| [SIGNAL-INTELLIGENCE-ENGINE.md](SIGNAL-INTELLIGENCE-ENGINE.md) | Signal Intelligence engine contracts — observation & Signal Card |
 | [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | How SignalTerrain and peers will consume SI |
 | [CONTACT-SUPPORT-PLATFORM.md](CONTACT-SUPPORT-PLATFORM.md) | Contact & Support platform — forms, delivery, privacy honesty |
 | [WAYPOINT-TRUST-FRAMEWORK.md](WAYPOINT-TRUST-FRAMEWORK.md) | Trust & Transparency V1 — explainable recommendations |

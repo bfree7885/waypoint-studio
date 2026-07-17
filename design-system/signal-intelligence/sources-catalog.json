@@ -1,0 +1,133 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Future data-source classes for Signal Intelligence. Catalog only — no connectors, scrapers, or live ingestion in Foundation V1.",
+  "onboardingGates": [
+    "Named here with verification expectations",
+    "Editorial owner assigned",
+    "Mapped to Signal Card fields",
+    "Failure modes defined (stale / missing / conflict)",
+    "No exploit payload storage",
+    "Playbook + Research Integrity review"
+  ],
+  "sources": [
+    {
+      "id": "cisa",
+      "label": "CISA",
+      "kind": "government-advisory",
+      "domains": ["cyber"],
+      "verificationExpectation": "primary",
+      "status": "designed",
+      "notes": "Advisories and known-exploited catalog literacy — citations only."
+    },
+    {
+      "id": "nvd",
+      "label": "NVD",
+      "kind": "vulnerability-catalog",
+      "domains": ["cyber"],
+      "verificationExpectation": "primary",
+      "status": "designed",
+      "notes": "CVE metadata for awareness — never attach exploit code."
+    },
+    {
+      "id": "mitre",
+      "label": "MITRE",
+      "kind": "research-framework",
+      "domains": ["cyber"],
+      "verificationExpectation": "primary",
+      "status": "designed",
+      "notes": "ATT&CK / CVE framing for literacy — not attack playbooks."
+    },
+    {
+      "id": "us-cert",
+      "label": "US-CERT",
+      "kind": "government-advisory",
+      "domains": ["cyber"],
+      "verificationExpectation": "primary",
+      "status": "designed"
+    },
+    {
+      "id": "nist",
+      "label": "NIST",
+      "kind": "standards-research",
+      "domains": ["cyber"],
+      "verificationExpectation": "primary",
+      "status": "designed"
+    },
+    {
+      "id": "noaa-space-weather",
+      "label": "NOAA Space Weather",
+      "kind": "space-weather-bulletin",
+      "domains": ["infrastructure", "rf"],
+      "verificationExpectation": "primary",
+      "status": "designed",
+      "preferredEarlyConnector": true,
+      "notes": "Strong fit for Wave A; lower misuse risk than exploit feeds."
+    },
+    {
+      "id": "cloud-status-pages",
+      "label": "Cloud provider status pages",
+      "kind": "public-outage-status",
+      "domains": ["infrastructure"],
+      "verificationExpectation": "primary",
+      "status": "designed",
+      "preferredEarlyConnector": true
+    },
+    {
+      "id": "bgp-incident-feeds",
+      "label": "BGP incident feeds",
+      "kind": "routing-awareness",
+      "domains": ["cyber", "infrastructure"],
+      "verificationExpectation": "corroborating",
+      "status": "designed",
+      "notes": "Educational routing anomalies — not hijack tooling."
+    },
+    {
+      "id": "internet-outage-providers",
+      "label": "Internet outage providers",
+      "kind": "public-outage-status",
+      "domains": ["cyber", "infrastructure"],
+      "verificationExpectation": "corroborating",
+      "status": "designed"
+    },
+    {
+      "id": "open-source-intelligence",
+      "label": "Open-source intelligence",
+      "kind": "osint-curated",
+      "domains": ["cyber", "infrastructure", "cross-cutting"],
+      "verificationExpectation": "secondary",
+      "status": "designed",
+      "notes": "Strict curation; rumor ceiling = speculative / insufficient."
+    },
+    {
+      "id": "government-advisories",
+      "label": "Government advisories",
+      "kind": "government-advisory",
+      "domains": ["cyber", "infrastructure"],
+      "verificationExpectation": "primary",
+      "status": "designed"
+    },
+    {
+      "id": "professional-organizations",
+      "label": "Professional organizations",
+      "kind": "professional-guidance",
+      "domains": ["cyber", "rf"],
+      "verificationExpectation": "corroborating",
+      "status": "designed"
+    },
+    {
+      "id": "academic-research",
+      "label": "Academic research",
+      "kind": "academic",
+      "domains": ["cross-cutting"],
+      "verificationExpectation": "corroborating",
+      "status": "designed"
+    }
+  ],
+  "notSources": [
+    "Exploit marketplaces",
+    "Credential dumps",
+    "Malware samples as product features",
+    "Unattributed social panic threads as primary evidence"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Intelligence information architecture inside SignalTerrain (and later Dashboard glances). Not a second Studio nav product.",
+  "productHome": "signalterrain",
+  "rules": [
+    "Do not add a parallel Cyber product to Studio primary nav.",
+    "Planned routes stay labeled Planned.",
+    "About / Limits is first-class.",
+    "Empty states prefer honesty over fake density."
+  ],
+  "primaryNav": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "path": "/",
+      "status": "foundation",
+      "job": "Answer what changed and what is stable at a glance."
+    },
+    {
+      "id": "watch",
+      "label": "Watch",
+      "path": "/watch/",
+      "status": "planned",
+      "job": "Items that deserve attention — calm list, not alarm queue."
+    },
+    {
+      "id": "library",
+      "label": "Library",
+      "path": "/library/",
+      "status": "planned",
+      "job": "Browse modules by domain without a news feed."
+    },
+    {
+      "id": "about-limits",
+      "label": "About & Limits",
+      "path": "/about/",
+      "status": "planned",
+      "job": "What this product is and is not."
+    }
+  ],
+  "libraryGroups": [
+    {
+      "id": "radio-spectrum",
+      "label": "Radio & spectrum",
+      "moduleIds": ["radio-conditions", "space-weather"]
+    },
+    {
+      "id": "digital-cyber",
+      "label": "Digital & cyber awareness",
+      "moduleIds": [
+        "threat-landscape",
+        "major-vulnerabilities",
+        "active-exploitation",
+        "ransomware",
+        "technology-news"
+      ]
+    },
+    {
+      "id": "infrastructure-space",
+      "label": "Infrastructure & space",
+      "moduleIds": [
+        "infrastructure",
+        "cloud-status",
+        "internet-health",
+        "gps-integrity",
+        "communications",
+        "space-weather"
+      ]
+    },
+    {
+      "id": "research-knowledge",
+      "label": "Research & knowledge",
+      "moduleIds": ["research", "knowledge-library"]
+    }
+  ],
+  "detailRoute": {
+    "id": "signal-card",
+    "label": "Signal",
+    "pathPattern": "/signal/:id",
+    "status": "planned",
+    "job": "Full Signal Card — evidence, confidence, perspective, sources."
+  },
+  "legacyFoundationRoutes": [
+    { "path": "/receivers/", "label": "Receivers", "status": "planned" },
+    { "path": "/incidents/", "label": "Incident timeline", "status": "planned" },
+    { "path": "/audio/", "label": "Audio library", "status": "planned" }
+  ],
+  "studioNavPolicy": {
+    "signalterrainCategory": "intelligence",
+    "forbidSeparateCyberProduct": true,
+    "dashboardGlance": "future — ambient SI notes with provenance only"
+  }
+}

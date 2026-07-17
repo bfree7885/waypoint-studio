@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-16",
+  "purpose": "Independent Signal Intelligence modules. Architecture catalog only — status blueprint/planned until real surfaces exist.",
+  "rules": [
+    "Modules ship independently; do not block Wave A on Wave D.",
+    "Never invent events to fill a module.",
+    "Literacy and awareness only — no exploitation guidance.",
+    "Planned modules stay labeled Planned in UI."
+  ],
+  "modules": [
+    {
+      "id": "threat-landscape",
+      "label": "Threat Landscape",
+      "domain": "cyber",
+      "status": "blueprint",
+      "wave": "D",
+      "questions": ["What is happening right now?", "Why should I care?"],
+      "dashboardSlot": "important",
+      "signalKinds": ["cyber.active-exploitation", "cyber.ransomware-campaign", "cyber.malware-trends"],
+      "notGoals": ["Threat hunting console", "Actor dossiers as entertainment"]
+    },
+    {
+      "id": "major-vulnerabilities",
+      "label": "Major Vulnerabilities",
+      "domain": "cyber",
+      "status": "blueprint",
+      "wave": "C",
+      "questions": ["What changed?", "How trustworthy is this information?"],
+      "dashboardSlot": "changed",
+      "signalKinds": ["cyber.cve", "cyber.zero-day", "cyber.vendor-advisory"],
+      "notGoals": ["Scanner", "Exploit PoCs", "CVSS theater without citations"]
+    },
+    {
+      "id": "active-exploitation",
+      "label": "Active Exploitation",
+      "domain": "cyber",
+      "status": "blueprint",
+      "wave": "D",
+      "questions": ["What is happening right now?", "What should I understand before making a decision?"],
+      "dashboardSlot": "attention",
+      "signalKinds": ["cyber.active-exploitation"],
+      "notGoals": ["Attack reproduction", "Victim targeting lists"]
+    },
+    {
+      "id": "ransomware",
+      "label": "Ransomware",
+      "domain": "cyber",
+      "status": "blueprint",
+      "wave": "D",
+      "questions": ["Why should I care?", "What should I understand before making a decision?"],
+      "dashboardSlot": "attention",
+      "signalKinds": ["cyber.ransomware-campaign"],
+      "notGoals": ["Negotiator tooling", "Leak-site aggregation as spectacle"]
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure",
+      "domain": "infrastructure",
+      "status": "blueprint",
+      "wave": "B",
+      "questions": ["What is happening right now?", "What changed?"],
+      "dashboardSlot": "important",
+      "signalKinds": ["infra.internet-outage", "infra.cdn-disruption", "infra.cellular-network"],
+      "notGoals": ["NOC replacement"]
+    },
+    {
+      "id": "cloud-status",
+      "label": "Cloud Status",
+      "domain": "infrastructure",
+      "status": "blueprint",
+      "wave": "B",
+      "questions": ["What is happening right now?", "How trustworthy is this information?"],
+      "dashboardSlot": "changed",
+      "signalKinds": ["infra.cloud-provider-status"],
+      "notGoals": ["Insider cloud ops", "Scraped rumor as status"]
+    },
+    {
+      "id": "internet-health",
+      "label": "Internet Health",
+      "domain": "cyber",
+      "status": "blueprint",
+      "wave": "B",
+      "questions": ["What changed?", "What is stable?"],
+      "dashboardSlot": "stable",
+      "signalKinds": ["cyber.isp-outage", "cyber.dns-disruption", "cyber.bgp-incident"],
+      "notGoals": ["BGP hijack toolkit"]
+    },
+    {
+      "id": "space-weather",
+      "label": "Space Weather",
+      "domain": "infrastructure",
+      "status": "blueprint",
+      "wave": "A",
+      "questions": ["What is happening right now?", "Why should I care?"],
+      "dashboardSlot": "important",
+      "signalKinds": ["infra.space-weather"],
+      "notGoals": ["Astrology", "Uncited solar panic"]
+    },
+    {
+      "id": "radio-conditions",
+      "label": "Radio Conditions",
+      "domain": "rf",
+      "status": "foundation",
+      "wave": "A",
+      "questions": ["What changed?", "What should I pay attention to?"],
+      "dashboardSlot": "changed",
+      "signalKinds": ["rf.signal-propagation", "rf.frequency-activity", "rf.amateur-radio", "rf.noaa-weather-radio"],
+      "notGoals": ["Illegal monitoring encouragement", "Fake live waterfall"]
+    },
+    {
+      "id": "gps-integrity",
+      "label": "GPS Integrity",
+      "domain": "infrastructure",
+      "status": "blueprint",
+      "wave": "B",
+      "questions": ["What is happening right now?", "Why should I care?"],
+      "dashboardSlot": "attention",
+      "signalKinds": ["infra.gps-interference"],
+      "notGoals": ["Jamming instructions"]
+    },
+    {
+      "id": "communications",
+      "label": "Communications",
+      "domain": "cross-cutting",
+      "status": "blueprint",
+      "wave": "E",
+      "questions": ["What is happening right now?", "What changed?"],
+      "dashboardSlot": "important",
+      "signalKinds": ["infra.cellular-network", "rf.broadcast-stations"],
+      "notGoals": ["Intercept tooling"]
+    },
+    {
+      "id": "technology-news",
+      "label": "Technology News",
+      "domain": "cross-cutting",
+      "status": "blueprint",
+      "wave": "C",
+      "questions": ["What changed?", "Why should I care?"],
+      "dashboardSlot": "changed",
+      "signalKinds": ["cyber.major-software-release", "cyber.patch-availability"],
+      "notGoals": ["Clickbait river", "Engagement ranking"]
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "domain": "cross-cutting",
+      "status": "blueprint",
+      "wave": "C",
+      "questions": ["How trustworthy is this information?", "What should I understand before making a decision?"],
+      "dashboardSlot": null,
+      "signalKinds": [],
+      "notGoals": ["Paywalled dump without citation ethics"]
+    },
+    {
+      "id": "knowledge-library",
+      "label": "Knowledge Library",
+      "domain": "cross-cutting",
+      "status": "foundation",
+      "wave": "A",
+      "questions": ["What should I understand before making a decision?"],
+      "dashboardSlot": null,
+      "signalKinds": [],
+      "notGoals": ["Uncurated web mirror"]
+    }
+  ]
+}

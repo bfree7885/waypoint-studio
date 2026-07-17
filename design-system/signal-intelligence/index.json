@@ -1,18 +1,23 @@
 {
   "meta": {
-    "version": "0.1.0",
+    "version": "1.0.0",
     "schemaObservation": "https://waypoint.studio/schemas/signal-intelligence/observation/v0.1",
+    "schemaSignalCard": "https://waypoint.studio/schemas/signal-intelligence/signal-card/v1",
     "status": "architecture",
+    "foundation": "V1",
     "runtime": "none",
-    "updatedAt": "2026-07-15",
+    "updatedAt": "2026-07-16",
     "missionQuestions": [
-      "What is happening?",
-      "Why does it matter?",
-      "What should I pay attention to?",
-      "What has changed?",
-      "How confident are we?"
+      "What is happening right now?",
+      "What changed?",
+      "Why should I care?",
+      "How trustworthy is this information?",
+      "What should I understand before making a decision?"
     ],
     "docs": [
+      "docs/SIGNAL-INTELLIGENCE-VISION.md",
+      "docs/SIGNAL-INTELLIGENCE-ARCHITECTURE.md",
+      "docs/SIGNAL-INTELLIGENCE-ROADMAP.md",
       "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
       "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
       "docs/PLATFORM-ENGINES.md",
@@ -21,26 +26,50 @@
   },
   "package": {
     "id": "signal-intelligence",
-    "label": "Signal Intelligence Engine",
+    "label": "Signal Intelligence Foundation",
     "path": "design-system/signal-intelligence/"
   },
   "artifacts": {
     "observationSchema": "schema-v0.1.json",
+    "signalCardSchema": "schema-v1.json",
     "taxonomy": "taxonomy.json",
     "confidence": "confidence.json",
     "threatContext": "threat-context.json",
     "attention": "attention.json",
-    "sampleObservation": "samples/observation.sample.json"
+    "modules": "modules.json",
+    "navigation": "navigation.json",
+    "sourcesCatalog": "sources-catalog.json",
+    "designLanguage": "design-language.json",
+    "sampleObservation": "samples/observation.sample.json",
+    "sampleSignalCard": "samples/signal-card.sample.json",
+    "dashboardWireframe": "../patterns/signal-intelligence-dashboard.html"
   },
   "primaryHome": "signalterrain",
-  "plannedConsumers": ["signalterrain", "studio", "scenes", "outdoor-intelligence", "landscape-interpretation", "education"],
-  "notInScopeV01": [
-    "Dashboards",
-    "Live APIs",
-    "Monitoring services",
-    "SDR interfaces",
-    "Cybersecurity / SOC tooling",
+  "plannedConsumers": [
+    "signalterrain",
+    "studio",
+    "scenes",
+    "outdoor-intelligence",
+    "landscape-interpretation",
+    "education"
+  ],
+  "inherits": [
+    "waypoint-trust",
+    "waypoint-knowledge-curated",
+    "worth-noticing",
+    "waypoint-constitution"
+  ],
+  "notInScopeV1": [
+    "Live ingestion / collectors",
+    "Production dashboard wiring",
+    "Vulnerability scanning",
     "Penetration testing",
-    "Exploit PoCs"
+    "Exploit PoCs",
+    "Malware analysis tooling",
+    "Credential testing",
+    "Attack simulation",
+    "Enterprise SOC / SIEM",
+    "Fake live spectrum or threat heatmaps",
+    "Parallel Cyber nav product"
   ]
 }

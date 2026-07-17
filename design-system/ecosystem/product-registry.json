@@ -190,10 +190,20 @@
       "id": "signal-intelligence",
       "name": "Signal Intelligence",
       "status": "architecture",
-      "version": "0.1.0",
-      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions \u2014 not an enterprise SOC.",
-      "designNotes": "v0.1 observation schema, taxonomy (RF/cyber/infrastructure), confidence, threat-context phases, and adaptive attention only. No dashboards, live APIs, monitoring, SDR UI, or cybersecurity tools.",
+      "version": "1.0.0",
+      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions \u2014 not an enterprise SOC, scanner, or offensive security tool.",
+      "designNotes": "Foundation V1: vision/architecture/roadmap, modules, Signal Card schema, nav IA, sources catalog, design language, dashboard wireframe. Observation v0.1 retained. No live ingestion, production dashboard, scanning, SDR UI, or SOC tools.",
       "package": "design-system/signal-intelligence/",
+      "config": "signal-intelligence/",
+      "docs": [
+        "docs/SIGNAL-INTELLIGENCE-VISION.md",
+        "docs/SIGNAL-INTELLIGENCE-ARCHITECTURE.md",
+        "docs/SIGNAL-INTELLIGENCE-ROADMAP.md",
+        "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
+        "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
+        "docs/SIGNALTERRAIN_PLAYBOOK.md",
+        "docs/PLATFORM-ENGINES.md"
+      ],
       "capabilityGroups": {
         "rf-intelligence": {
           "label": "RF Intelligence",
@@ -244,12 +254,6 @@
         "studio",
         "scenes",
         "education"
-      ],
-      "docs": [
-        "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
-        "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
-        "docs/PLATFORM-ENGINES.md",
-        "docs/SIGNALTERRAIN_PLAYBOOK.md"
       ]
     },
     "worth-noticing": {
