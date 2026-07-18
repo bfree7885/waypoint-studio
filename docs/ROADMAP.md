@@ -1,9 +1,10 @@
 # Waypoint Studio — Unified Roadmap
 
-**Last updated:** Fieldry Life List MVP sprint  
+**Last updated:** 2026-07-18 (SignalTerrain master engineering roadmap linked)  
 **Principle:** Shared systems first. One cohesive platform. Core instruments ship publicly; additional products grow from real foundations.
 
-> **Portfolio:** See [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md), [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).
+> **Portfolio:** See [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md), [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).  
+> **SignalTerrain engineering:** Milestone work is governed by [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) — not ad-hoc feature lists.
 
 ---
 
@@ -22,7 +23,7 @@
 |---------|--------|
 | Sheds | Foundation landing + Find/Species models |
 | Steepleaf | Foundation landing + Tea/Brew models |
-| SignalTerrain | Foundation landing + Receiver/Incident models |
+| SignalTerrain | Cyber awareness stack + Operations Workspace V1; see [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) |
 | Savant Sommelier | Foundation landing + Site/Winery/Wine models |
 | Terrainbound | Retired → Fieldry / Dashboard |
 
@@ -38,6 +39,7 @@
 | 4 | Consistent nav across core instruments |
 | 5 | Future data platform stubs (disabled) |
 | 6 | **Knowledge Platform** — shared schema, search, relationships |
+| 7 | **SignalTerrain** — execute milestones in [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) (next: live cited intelligence) |
 
 ---
 
@@ -47,7 +49,7 @@
 2. Sheds personal finds UI (private coordinates)
 3. ForageCast daily recommendation package
 4. Photo Coach collections UX
-5. SignalTerrain receiver management UI
+5. SignalTerrain — Milestone 2 live intelligence + close Milestone 1 test/docs gaps ([SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md))
 6. Expand Knowledge sample packs beyond representative demos
 
 ---
@@ -59,6 +61,7 @@
 - Engagement metrics, followers, leaderboards
 - Enabling `WDS.futureData` without product + legal review
 - Faking AI capabilities
+- SignalTerrain SIEM/SOC/offensive tooling (permanent non-goal)
 
 ---
 

@@ -147,7 +147,8 @@ wds-signalterrain-util.js
         ├── cyber-graph.js ──► explorer / knowledge / advisor / cyber.js
         ├── cyber-priority.js ──► brief / advisor / cyber.js
         ├── inventory.js ──► advisor
-        ├── research.js ──► explorer / knowledge
+        ├── research.js ──► explorer / knowledge / workspace
+        ├── cyber-workspace.js ──► workspace.html
         └── cyber-ingest.js (+ connectors) ──► brief / ingest-health
 ```
 
@@ -167,20 +168,33 @@ Review set (owner gate — not auto-committed):
 - [ACCESSIBILITY-REVIEW.md](ACCESSIBILITY-REVIEW.md)  
 - [PLATFORM-HARDENING.md](PLATFORM-HARDENING.md)  
 
-Hardening already applied in-tree (pending owner commit approval): shared util, graph entity invariant, ingest escaping, shared cyber nav CSS, aligned peer links.
+Hardening applied: shared util, graph entity invariant, ingest escaping, shared cyber nav CSS, aligned peer links. Follow-ups tracked in [PLATFORM-HARDENING.md](PLATFORM-HARDENING.md) and [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md).
 
 ---
 
 ## Future roadmap (product)
 
-1. Deepen topic UI (full knowledge structure sections)  
-2. Bridge receivers/incidents → topics / Signal Cards  
-3. Workspace Library filters  
-4. Four-panel Overview when real digests exist  
-5. Narrow cited sources (prefer space weather / status pages first)  
-6. Execute platform hardening roadmap (fonts/CSP, chunked intelligence, brief generation, a11y focus)
+**Authoritative sequencing:** [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) (milestones 1–12). Living summary: [SIGNALTERRAIN-ARCHITECTURE.md](SIGNALTERRAIN-ARCHITECTURE.md).
+
+Near-term highlights:
+
+1. Close Milestone 1 exit gaps (tests, chrome/util convergence)  
+2. Milestone 2 — narrow cited live sources (provenance + cache + health)  
+3. Deepen personalization / knowledge / visual exploration per roadmap  
+4. Platform hardening follow-ups (fonts/CSP, chunked intelligence, a11y focus)  
 
 See also [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md).
+
+---
+
+## Living architecture documents
+
+| Doc | Role |
+|-----|------|
+| [SIGNALTERRAIN-ARCHITECTURE.md](SIGNALTERRAIN-ARCHITECTURE.md) | Synchronized architecture summary |
+| [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) | Master engineering milestones |
+| [DECISIONS.md](DECISIONS.md) | Architecture decision records |
+| [CHANGELOG-ARCHITECTURE.md](CHANGELOG-ARCHITECTURE.md) | Architecture change log |
 
 ---
 
@@ -196,5 +210,9 @@ See also [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md).
 - [SIGNALTERRAIN-TOPIC-MODEL.md](SIGNALTERRAIN-TOPIC-MODEL.md)  
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
 - [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md)  
+- [SIGNALTERRAIN-ARCHITECTURE.md](SIGNALTERRAIN-ARCHITECTURE.md)  
+- [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md)  
+- [DECISIONS.md](DECISIONS.md)  
+- [CHANGELOG-ARCHITECTURE.md](CHANGELOG-ARCHITECTURE.md)  
 - [ARCHITECTURE-REVIEW.md](ARCHITECTURE-REVIEW.md)  
 - [PLATFORM-HARDENING.md](PLATFORM-HARDENING.md)
