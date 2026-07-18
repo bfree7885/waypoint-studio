@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_security-news-curated",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "articles": [
+      {
+        "headline": "Public reporting on MOVEit Transfer exploitation (sample pointer)",
+        "published": "2023-06-01",
+        "url": null,
+        "relatedCves": [
+          "CVE-2023-34362"
+        ],
+        "summary": "Educational pointer to public reporting — not a live news scrape."
+      }
+    ],
+    "retrievedAt": "2026-07-18T18:00:00Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_cisa-gov",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "feed": "cisa-mock",
+    "pulledAt": "2026-07-18T18:00:00Z",
+    "advisories": [
+      {
+        "id": "AA21-356A",
+        "title": "Mitigating Log4Shell and Other Log4j-Related Vulnerabilities",
+        "published": "2021-12-22",
+        "cves": [
+          "CVE-2021-44228"
+        ],
+        "url": "https://www.cisa.gov/",
+        "severity": "critical",
+        "products": [
+          "Apache Log4j 2"
+        ]
+      },
+      {
+        "id": "KEV-CVE-2021-44228",
+        "title": "KEV: CVE-2021-44228",
+        "published": "2021-12-10",
+        "cves": [
+          "CVE-2021-44228"
+        ],
+        "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+        "knownExploited": true,
+        "severity": "critical"
+      }
+    ]
+  }
+}

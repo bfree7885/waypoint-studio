@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/change-event/v0.1",
+  "title": "Cyber Ingest Change Event v0.1",
+  "description": "Meaningful change between updates. History is append-only — never overwrite prior snapshots.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "subjectId",
+    "detectedAt",
+    "changeType",
+    "summary",
+    "before",
+    "after",
+    "provenance"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/cyber/change-event/v0.1"
+        },
+        "status": { "type": "string", "enum": ["sample", "draft", "active"] }
+      }
+    },
+    "id": { "type": "string", "pattern": "^chg_[a-z0-9-]+$" },
+    "subjectId": { "type": "string" },
+    "detectedAt": { "type": "string" },
+    "changeType": {
+      "type": "string",
+      "enum": [
+        "new-mitigation",
+        "severity-revised",
+        "exploitation-confirmed",
+        "patch-released",
+        "vendor-statement-updated",
+        "affected-products-added",
+        "references-added",
+        "other"
+      ]
+    },
+    "summary": { "type": "string", "maxLength": 600 },
+    "before": { "type": ["object", "null"] },
+    "after": { "type": ["object", "null"] },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://waypoint.studio/schemas/signalterrain/cyber/provenance/v0.1" }
+    }
+  }
+}

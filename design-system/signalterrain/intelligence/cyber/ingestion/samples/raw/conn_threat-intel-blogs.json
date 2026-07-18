@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_threat-intel-blogs",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "posts": [
+      {
+        "title": "Technical overview of EternalBlue-era SMB risk (literacy sample)",
+        "published": "2017-05-20",
+        "url": null,
+        "relatedCves": [
+          "CVE-2017-0144"
+        ],
+        "confidenceHint": "limited"
+      }
+    ],
+    "at": "2026-07-18T18:00:00Z"
+  }
+}

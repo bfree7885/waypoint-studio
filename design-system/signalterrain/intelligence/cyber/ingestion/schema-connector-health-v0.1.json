@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/connector-health/v0.1",
+  "title": "Cyber Connector Health v0.1",
+  "description": "Diagnostics for development and maintenance — not a public marketing surface.",
+  "type": "object",
+  "required": [
+    "connectorId",
+    "status",
+    "lastUpdate",
+    "failureCount",
+    "cacheAgeHours",
+    "trustLevel",
+    "objectsIngested",
+    "objectsNormalized",
+    "objectsRejected"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "connectorId": { "type": "string" },
+    "name": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["healthy", "degraded", "failing", "idle", "mock", "unknown"]
+    },
+    "lastUpdate": { "type": ["string", "null"] },
+    "averageLatencyMs": { "type": ["number", "null"] },
+    "failureCount": { "type": "number", "minimum": 0 },
+    "cacheAgeHours": { "type": ["number", "null"] },
+    "trustLevel": {
+      "type": "string",
+      "enum": ["very-high", "high", "moderate", "limited", "experimental"]
+    },
+    "objectsIngested": { "type": "number", "minimum": 0 },
+    "objectsNormalized": { "type": "number", "minimum": 0 },
+    "objectsRejected": { "type": "number", "minimum": 0 },
+    "notes": { "type": "string", "maxLength": 400 }
+  }
+}

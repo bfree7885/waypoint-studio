@@ -80,6 +80,8 @@ Storage principle: **local-first**.
 | Ransomware tracking | `ransomware-family`, `threat-campaign` |
 | Security news | `timeline-event` + UIO — curated, not endless feed UI |
 
+**Pipeline:** See [CYBER-INGESTION-ARCHITECTURE.md](CYBER-INGESTION-ARCHITECTURE.md). Connectors emit `normalized-record[]` with provenance; dedupe preserves attribution before `cy_*` attach.
+
 Providers remain designed interfaces until explicitly activated.
 
 ---

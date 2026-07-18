@@ -386,6 +386,11 @@
           "id": "cyber",
           "label": "Cyber Awareness",
           "href": "apps/signalterrain/cyber/"
+        },
+        {
+          "id": "cyber-ingest-health",
+          "label": "Cyber ingest (internal)",
+          "href": "apps/signalterrain/cyber/ingest-health.html"
         }
       ]
     },

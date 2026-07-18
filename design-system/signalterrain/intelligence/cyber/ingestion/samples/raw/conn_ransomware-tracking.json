@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_ransomware-tracking",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "reports": [
+      {
+        "family": "WannaCry",
+        "firstSeenPublic": "2017-05",
+        "summary": "Global ransomware worm activity widely reported in May 2017.",
+        "relatedCves": [
+          "CVE-2017-0144"
+        ],
+        "industries": [
+          "healthcare",
+          "software"
+        ]
+      }
+    ],
+    "at": "2026-07-18T18:00:00Z"
+  }
+}

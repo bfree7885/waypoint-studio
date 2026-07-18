@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_academic-cyber",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "papers": [
+      {
+        "title": "Sample academic citation placeholder for vulnerability disclosure research",
+        "year": "2014",
+        "doi": null,
+        "topics": [
+          "Heartbleed",
+          "CVE-2014-0160"
+        ],
+        "note": "Placeholder — replace with real DOI when curated."
+      }
+    ],
+    "at": "2026-07-18T18:00:00Z"
+  }
+}

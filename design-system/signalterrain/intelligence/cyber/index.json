@@ -40,7 +40,8 @@
     "graphRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-graph.js",
     "priorityRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-priority.js",
     "uiRuntime": "../../../js/signalterrain/wds-signalterrain-cyber.js",
-    "uiSurface": "../../../../apps/signalterrain/cyber/"
+    "uiSurface": "../../../../apps/signalterrain/cyber/",
+    "ingestion": "ingestion/"
   },
   "notInScopeV01": [
     "IDS",

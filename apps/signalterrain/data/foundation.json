@@ -97,6 +97,7 @@
     { "path": "/", "label": "SignalTerrain home", "ready": true },
     { "path": "summary.html", "label": "Intelligence summary", "ready": true },
     { "path": "cyber/", "label": "Cyber Awareness", "ready": true },
+    { "path": "cyber/ingest-health.html", "label": "Cyber ingest health (internal)", "ready": true },
     { "path": "topics.html", "label": "Topics", "ready": true },
     { "path": "graph.html", "label": "Knowledge graph", "ready": true },
     { "path": "/receivers/", "label": "Receivers", "ready": false },

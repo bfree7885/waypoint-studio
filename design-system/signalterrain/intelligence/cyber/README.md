@@ -20,4 +20,5 @@ Extends SignalTerrain Intelligence Core. Not IDS, SIEM, scanner, or offense.
 3. Known Facts / Likely / Possible / Unknown stay separate.  
 4. Samples stay labeled sample.  
 5. No exploit payloads or PoCs.  
-6. Research workspace is shared with RF (`../research/`).
+6. Research workspace is shared with RF (`../research/`).  
+7. Ingestion pipeline lives at `ingestion/` — independent connectors, mock in V0.1.

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/cache-entry/v0.1",
+  "title": "Cyber Ingest Cache Entry v0.1",
+  "description": "Local-first per-connector cache entry with expiration and honest timestamps.",
+  "type": "object",
+  "required": [
+    "connectorId",
+    "cachedAt",
+    "expiresAt",
+    "payloadKind",
+    "objectCount",
+    "ok"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "connectorId": { "type": "string", "pattern": "^conn_" },
+    "cachedAt": { "type": "string" },
+    "expiresAt": { "type": "string" },
+    "payloadKind": {
+      "type": "string",
+      "enum": ["raw", "normalized", "merged"]
+    },
+    "objectCount": { "type": "number", "minimum": 0 },
+    "ok": { "type": "boolean" },
+    "errorMessage": { "type": ["string", "null"], "maxLength": 400 },
+    "latencyMs": { "type": ["number", "null"], "minimum": 0 },
+    "contentHash": { "type": ["string", "null"] },
+    "storageKey": { "type": "string", "maxLength": 200 }
+  }
+}

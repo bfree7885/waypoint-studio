@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_patch-bulletins",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "bulletins": [
+      {
+        "id": "PATCH-MS17-010",
+        "title": "Apply MS17-010",
+        "released": "2017-03-14",
+        "cves": [
+          "CVE-2017-0144"
+        ],
+        "vendor": "Microsoft",
+        "products": [
+          "Windows"
+        ]
+      }
+    ],
+    "at": "2026-07-18T18:00:00Z"
+  }
+}

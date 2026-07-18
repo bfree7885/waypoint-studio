@@ -1,0 +1,308 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Independently replaceable cyber connectors. Architecture first — mock/stub implementations in V0.1. No connector knows about another.",
+  "connectors": [
+    {
+      "id": "conn_security-advisories-curated",
+      "providerId": "prov_editorial-bundle",
+      "name": "Curated security advisories",
+      "category": "security-advisory",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "high",
+      "refreshInterval": { "value": 12, "unit": "hours" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["advisory", "threat-update"],
+      "rateLimits": { "requestsPerHour": null, "notes": "Local mock — no network." },
+      "attribution": {
+        "label": "Waypoint curated advisory samples",
+        "url": null,
+        "licenseHint": "Educational samples; attribute underlying public sources when live."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Mock returns fixture JSON only."
+      },
+      "normalizeContract": {
+        "input": "Advisory-shaped JSON fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 12, "offlineUseful": true },
+      "docs": "Mock connector for general security advisories."
+    },
+    {
+      "id": "conn_vendor-microsoft-msrc",
+      "providerId": null,
+      "name": "Vendor advisories — Microsoft MSRC (scaffold)",
+      "category": "vendor-advisory",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "very-high",
+      "refreshInterval": { "value": 6, "unit": "hours" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["advisory", "patch", "cve"],
+      "rateLimits": { "requestsPerHour": 30, "notes": "Designed limit for a future live connector." },
+      "attribution": {
+        "label": "Microsoft Security Response Center",
+        "url": "https://msrc.microsoft.com/",
+        "licenseHint": "Respect Microsoft terms; cite MSRC when publishing derived summaries."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true
+      },
+      "normalizeContract": {
+        "input": "Vendor advisory fixture (MSRC-shaped sample)",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 6, "offlineUseful": true },
+      "docs": "Vendor advisory scaffold — Microsoft as first example."
+    },
+    {
+      "id": "conn_nvd-cve",
+      "providerId": "prov_nvd-catalog",
+      "name": "Vulnerability databases — NVD (scaffold)",
+      "category": "vulnerability-database",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "very-high",
+      "refreshInterval": { "value": 6, "unit": "hours" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["cve", "vulnerability"],
+      "rateLimits": { "requestsPerHour": 50, "notes": "Future live connector must honor NVD rate limits." },
+      "attribution": {
+        "label": "NIST National Vulnerability Database",
+        "url": "https://nvd.nist.gov/",
+        "licenseHint": "Public CVE metadata; cite NVD/CVE."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "CVE metadata only — never attach exploit code."
+      },
+      "normalizeContract": {
+        "input": "CVE catalog fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 6, "offlineUseful": true },
+      "docs": "Vulnerability database scaffold."
+    },
+    {
+      "id": "conn_cisa-gov",
+      "providerId": "prov_cisa-advisory",
+      "name": "Government cybersecurity advisories — CISA (scaffold)",
+      "category": "government-advisory",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "very-high",
+      "refreshInterval": { "value": 4, "unit": "hours" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["advisory", "kev", "threat-update"],
+      "rateLimits": { "requestsPerHour": 40, "notes": "Designed for future read-only pulls." },
+      "attribution": {
+        "label": "CISA",
+        "url": "https://www.cisa.gov/",
+        "licenseHint": "U.S. government works; cite CISA."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true
+      },
+      "normalizeContract": {
+        "input": "CISA advisory / KEV-shaped fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 4, "offlineUseful": true },
+      "docs": "Government advisory scaffold."
+    },
+    {
+      "id": "conn_security-news-curated",
+      "providerId": "prov_editorial-bundle",
+      "name": "Security news (curated, not a feed product)",
+      "category": "security-news",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "moderate",
+      "refreshInterval": { "value": 1, "unit": "days" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["news-item", "research-item"],
+      "rateLimits": { "requestsPerHour": null, "notes": "Curated samples only in V0.1." },
+      "attribution": {
+        "label": "Curated public reporting pointers",
+        "url": null,
+        "licenseHint": "Cite original publishers; do not scrape indiscriminately."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "News becomes structured research/threat updates — not an endless feed UI."
+      },
+      "normalizeContract": {
+        "input": "News-item fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 24, "offlineUseful": true },
+      "docs": "Security news as structured items."
+    },
+    {
+      "id": "conn_ransomware-tracking",
+      "providerId": null,
+      "name": "Ransomware tracking (scaffold)",
+      "category": "ransomware-tracking",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "moderate",
+      "refreshInterval": { "value": 1, "unit": "days" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["ransomware-report", "threat-update"],
+      "rateLimits": { "requestsPerHour": 10, "notes": "Future sources must be carefully curated." },
+      "attribution": {
+        "label": "Public ransomware awareness summaries",
+        "url": null,
+        "licenseHint": "Cite originating trackers/authorities; no victim doxxing."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true
+      },
+      "normalizeContract": {
+        "input": "Ransomware report fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 24, "offlineUseful": true },
+      "docs": "Ransomware tracking scaffold — awareness only."
+    },
+    {
+      "id": "conn_patch-bulletins",
+      "providerId": null,
+      "name": "Patch bulletins (scaffold)",
+      "category": "patch-bulletin",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "high",
+      "refreshInterval": { "value": 1, "unit": "days" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["patch", "advisory"],
+      "rateLimits": { "requestsPerHour": 20, "notes": "Vendor patch calendars / bulletins." },
+      "attribution": {
+        "label": "Vendor patch bulletins",
+        "url": null,
+        "licenseHint": "Cite vendor bulletin URLs."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true
+      },
+      "normalizeContract": {
+        "input": "Patch bulletin fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 24, "offlineUseful": true },
+      "docs": "Patch bulletin scaffold."
+    },
+    {
+      "id": "conn_threat-intel-blogs",
+      "providerId": null,
+      "name": "Threat intelligence blogs (scaffold)",
+      "category": "threat-intel-blog",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "limited",
+      "refreshInterval": { "value": 2, "unit": "days" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["research-item", "threat-update"],
+      "rateLimits": { "requestsPerHour": 10, "notes": "Editorial selection required; not bulk scraping." },
+      "attribution": {
+        "label": "Selected public technical blogs",
+        "url": null,
+        "licenseHint": "Cite authors; prefer primary technical write-ups."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true,
+        "notes": "Lower reliability until human review — confidence must stay honest."
+      },
+      "normalizeContract": {
+        "input": "Blog/research fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 48, "offlineUseful": true },
+      "docs": "Threat intel blog scaffold."
+    },
+    {
+      "id": "conn_academic-cyber",
+      "providerId": null,
+      "name": "Academic cybersecurity publications (scaffold)",
+      "category": "academic-publication",
+      "version": "0.1.0",
+      "status": "mock",
+      "reliability": "high",
+      "refreshInterval": { "value": 7, "unit": "days" },
+      "lastSuccessfulUpdate": null,
+      "lastFailure": null,
+      "supportedDataTypes": ["research-item"],
+      "rateLimits": { "requestsPerHour": 5, "notes": "Manual/curated academic ingest." },
+      "attribution": {
+        "label": "Academic / preprint citations",
+        "url": null,
+        "licenseHint": "Cite DOI/authors; respect publisher licenses."
+      },
+      "honesty": {
+        "neverFabricate": true,
+        "labelSamples": true,
+        "noExploitPayloads": true
+      },
+      "normalizeContract": {
+        "input": "Academic citation fixture",
+        "output": "normalized-record[]",
+        "mapsToSchemas": [
+          "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        ]
+      },
+      "cachePolicy": { "ttlHours": 168, "offlineUseful": true },
+      "docs": "Academic publication scaffold."
+    }
+  ]
+}

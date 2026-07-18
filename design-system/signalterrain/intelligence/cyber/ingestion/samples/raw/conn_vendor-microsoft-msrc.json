@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_vendor-microsoft-msrc",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "vendor": "Microsoft",
+    "retrieved": "2026-07-18T18:00:00Z",
+    "updates": [
+      {
+        "id": "MS17-010",
+        "title": "Security Update for Microsoft Windows SMB Server",
+        "releaseDate": "2017-03-14",
+        "cveNumbers": [
+          "CVE-2017-0144"
+        ],
+        "severity": "Critical",
+        "productFamily": "Windows",
+        "url": "https://msrc.microsoft.com/"
+      }
+    ]
+  }
+}

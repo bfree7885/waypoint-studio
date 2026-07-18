@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1",
+  "title": "Cyber Normalized Ingest Record v0.1",
+  "description": "Provider-agnostic normalized record. No provider-specific fields beyond provenance. Maps toward cy_* entities and/or UIOs.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "recordType",
+    "title",
+    "summary",
+    "publishedAt",
+    "retrievedAt",
+    "severity",
+    "confidence",
+    "references",
+    "products",
+    "vendors",
+    "industries",
+    "regions",
+    "citations",
+    "provenance",
+    "identityKeys"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/cyber/normalized-record/v0.1"
+        },
+        "status": { "type": "string", "enum": ["sample", "draft", "active", "rejected"] },
+        "rejectionReason": { "type": ["string", "null"], "maxLength": 400 }
+      }
+    },
+    "id": { "type": "string", "pattern": "^nir_[a-z0-9-]+$" },
+    "recordType": {
+      "type": "string",
+      "enum": [
+        "shared-advisory",
+        "shared-vulnerability",
+        "research-item",
+        "threat-update",
+        "patch-bulletin",
+        "ransomware-report"
+      ]
+    },
+    "title": { "type": "string", "maxLength": 300 },
+    "summary": { "type": "string", "maxLength": 1200 },
+    "publishedAt": { "type": ["string", "null"] },
+    "retrievedAt": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "notice", "elevated", "high", "critical", "unknown"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low", "speculative", "insufficient"]
+    },
+    "cveIds": { "type": "array", "items": { "type": "string", "pattern": "^CVE-[0-9]{4}-[0-9]+$" } },
+    "advisoryIds": { "type": "array", "items": { "type": "string", "maxLength": 120 } },
+    "references": { "type": "array", "items": { "type": "string", "maxLength": 2048 } },
+    "products": { "type": "array", "items": { "type": "string", "maxLength": 200 } },
+    "vendors": { "type": "array", "items": { "type": "string", "maxLength": 120 } },
+    "industries": { "type": "array", "items": { "type": "string", "maxLength": 80 } },
+    "regions": { "type": "array", "items": { "type": "string", "maxLength": 80 } },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "kind": { "type": "string" },
+          "url": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "https://waypoint.studio/schemas/signalterrain/cyber/provenance/v0.1" }
+    },
+    "identityKeys": {
+      "type": "object",
+      "description": "Stable keys used for deduplication — never delete provenance when merging.",
+      "additionalProperties": false,
+      "properties": {
+        "primary": { "type": "string", "maxLength": 200 },
+        "cveIds": { "type": "array", "items": { "type": "string" } },
+        "advisoryIds": { "type": "array", "items": { "type": "string" } },
+        "vendorKeys": { "type": "array", "items": { "type": "string" } },
+        "titleFingerprint": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "verified": { "type": "boolean" },
+    "targetEntityKind": {
+      "type": ["string", "null"],
+      "description": "Optional hint toward cy_* kind after graph attach"
+    },
+    "rawSnapshotId": { "type": ["string", "null"] }
+  }
+}

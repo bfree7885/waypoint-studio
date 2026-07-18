@@ -24,6 +24,10 @@
 | [CYBER-GRAPH-ARCHITECTURE.md](CYBER-GRAPH-ARCHITECTURE.md) | Cyber relationship traversal engine |
 | [CYBER-PRIORITY-ENGINE.md](CYBER-PRIORITY-ENGINE.md) | Transparent cyber priority scoring |
 | [CYBER-DATA-MODEL.md](CYBER-DATA-MODEL.md) | Cyber schemas, samples, future ingestion map |
+| [CYBER-INGESTION-ARCHITECTURE.md](CYBER-INGESTION-ARCHITECTURE.md) | Cyber ingest pipeline — independent connectors |
+| [CYBER-NORMALIZATION.md](CYBER-NORMALIZATION.md) | Provider → shared record normalization |
+| [CYBER-PROVENANCE.md](CYBER-PROVENANCE.md) | Attribution, dedupe, change detection |
+| [CYBER-CACHE.md](CYBER-CACHE.md) | Local-first per-connector cache |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |

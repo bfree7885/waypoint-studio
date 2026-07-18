@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/provenance/v0.1",
+  "title": "Cyber Ingest Provenance v0.1",
+  "description": "Where information came from, when retrieved, and verification state. Confidence stays separate from severity.",
+  "type": "object",
+  "required": [
+    "connectorId",
+    "retrievedAt",
+    "sourceLabel",
+    "verified"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "connectorId": { "type": "string", "pattern": "^conn_" },
+    "retrievedAt": { "type": "string" },
+    "sourceLabel": { "type": "string", "maxLength": 200 },
+    "sourceUrl": { "type": ["string", "null"], "maxLength": 2048 },
+    "sourceRecordId": { "type": ["string", "null"], "maxLength": 200 },
+    "verified": { "type": "boolean" },
+    "verificationNote": { "type": ["string", "null"], "maxLength": 400 },
+    "contentHash": { "type": ["string", "null"], "maxLength": 128 },
+    "reliability": {
+      "type": "string",
+      "enum": ["very-high", "high", "moderate", "limited", "experimental"]
+    }
+  }
+}

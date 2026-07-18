@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-18",
+    "tagline": "Trustworthy ingestion — not maximum collection",
+    "docs": [
+      "docs/CYBER-INGESTION-ARCHITECTURE.md",
+      "docs/CYBER-NORMALIZATION.md",
+      "docs/CYBER-PROVENANCE.md",
+      "docs/CYBER-CACHE.md",
+      "docs/CYBER-INTELLIGENCE-MODEL.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-cyber-ingestion",
+    "label": "Cyber Intelligence Ingestion Pipeline",
+    "path": "design-system/signalterrain/intelligence/cyber/ingestion/",
+    "healthSurface": "apps/signalterrain/cyber/ingest-health.html"
+  },
+  "inherits": [
+    "signalterrain-cyber-awareness",
+    "signalterrain-intelligence-core",
+    "waypoint-trust"
+  ],
+  "principles": [
+    "Independently replaceable connectors",
+    "Independently testable connectors",
+    "Independently trusted connectors",
+    "Independently cached connectors",
+    "Independently documented connectors",
+    "No source knows about any other source",
+    "Normalized shared models only after the connector boundary",
+    "Never lose attribution",
+    "Never overwrite history",
+    "Local-first cache with honest last-updated messaging"
+  ],
+  "artifacts": {
+    "connectorSchema": "schema-connector-v0.1.json",
+    "normalizedSchema": "schema-normalized-record-v0.1.json",
+    "provenanceSchema": "schema-provenance-v0.1.json",
+    "changeSchema": "schema-change-event-v0.1.json",
+    "cacheSchema": "schema-cache-entry-v0.1.json",
+    "healthSchema": "schema-connector-health-v0.1.json",
+    "connectors": "connectors.json",
+    "frameworkRuntime": "../../../../js/signalterrain/wds-signalterrain-cyber-ingest.js",
+    "connectorsRuntime": "../../../../js/signalterrain/wds-signalterrain-cyber-connectors.js"
+  },
+  "notInScopeV01": [
+    "Live network harvesting at scale",
+    "Automatic remediation",
+    "Cross-connector coupling",
+    "Exploit payload ingestion",
+    "SIEM replacement",
+    "IDS/IPS"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "status": "sample",
+    "connectorId": "conn_security-advisories-curated",
+    "disclaimer": "Mock raw fixture — not live data."
+  },
+  "payload": {
+    "kind": "curated-advisories",
+    "at": "2026-07-18T18:00:00Z",
+    "records": [
+      {
+        "title": "Log4Shell emergency advisory (curated sample)",
+        "date": "2021-12-10",
+        "cves": [
+          "CVE-2021-44228"
+        ],
+        "severity": "critical",
+        "vendors": [
+          "Apache"
+        ],
+        "products": [
+          "Log4j 2"
+        ],
+        "url": "https://logging.apache.org/log4j/"
+      }
+    ]
+  }
+}

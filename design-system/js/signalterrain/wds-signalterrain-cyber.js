@@ -294,6 +294,7 @@
         "<li>No live feeds in V0.1</li>" +
         "<li>No automatic remediation</li>" +
         "<li>Samples remain labeled sample</li>" +
+        '<li><a href="ingest-health.html">Ingest health (internal diagnostics)</a></li>' +
         "</ul>"
       );
     }
