@@ -26,5 +26,7 @@
     { "path": "/journal/", "label": "Brew journal", "ready": false },
     { "path": "/collections/", "label": "Collections", "ready": false }
   ],
-  "dataModel": "Your catalog and brew journal stay on this device. There is no marketplace and no public tasting board."
+  "dataModel": "Your catalog and brew journal stay on this device. There is no marketplace and no public tasting board.",
+  "privacyPhilosophy": "Brew notes stay private. There is no marketplace and no public tasting board.",
+  "futureDirection": "Personal ratings, brew timers, and gentle taste neighbors — still without social graphs."
 }

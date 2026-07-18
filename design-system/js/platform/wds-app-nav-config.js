@@ -359,7 +359,7 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Understand the world's signals — topic foundation across RF, cyber awareness, infrastructure, and research.",
+      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
       "status": "foundation",
       "features": [
         {

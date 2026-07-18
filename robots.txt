@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+Disallow: /debug.html
+Disallow: /status.html
+Disallow: /kiosk.html
+Disallow: /data/
+Disallow: /automation/
+Disallow: /scripts/
+Disallow: /engineering/
+Disallow: /waypoint-importer/
+
+Sitemap: https://waypointstudio.org/sitemap.xml

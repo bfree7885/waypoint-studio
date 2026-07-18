@@ -27,5 +27,7 @@
     { "path": "/wineries/", "label": "Winery explorer", "ready": false },
     { "path": "/wines/", "label": "Wine catalog", "ready": false }
   ],
-  "dataModel": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought."
+  "dataModel": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought.",
+  "privacyPhilosophy": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought.",
+  "futureDirection": "Suitability, soil, climate overlays, and variety guidance with honest confidence labels — landscape literacy over lifestyle branding."
 }

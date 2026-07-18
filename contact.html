@@ -5,7 +5,14 @@
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Contact Waypoint Studio — ask a question, report a bug, request a feature, or share a scientific correction.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/contact.html">
+  <meta property="og:title" content="Contact — Waypoint Studio">
+  <meta property="og:description" content="A quiet way to reach the person building these tools.">
+  <meta property="og:url" content="https://waypointstudio.org/contact.html">
+  <meta property="og:image" content="https://waypointstudio.org/assets/images/hero.jpg">
   <title>Contact — Waypoint Studio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -40,6 +47,9 @@
         <p>Required: email, category, subject, and message. Name and app are optional. Attachments are not supported yet — link to a file host if needed.</p>
 
         <form id="wcs-contact-form" class="wcs-form" novalidate data-wcs-config="design-system/ecosystem/contact-config.json">
+          <noscript>
+            <p class="wcs-status" role="status">JavaScript is off. Email <a href="mailto:contact@waypointstudio.org">contact@waypointstudio.org</a> directly with your category, subject, and message.</p>
+          </noscript>
           <div class="wds-field">
             <label class="wds-label" for="name">Name <span class="wcs-optional">(optional)</span></label>
             <input class="wds-input" id="name" name="name" type="text" maxlength="120" autocomplete="name">

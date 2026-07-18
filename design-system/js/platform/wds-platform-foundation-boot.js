@@ -23,6 +23,11 @@
         }
       })
       .catch(function () {
+        // Keep static HTML already in the page (progressive enhancement).
+        if (mount.querySelector(".wpf-hero, h1")) {
+          mount.removeAttribute("aria-busy");
+          return;
+        }
         mount.innerHTML =
           '<div class="wds-body" role="alert">' +
             "<p>This foundation page could not load. Check your connection and try again.</p>" +

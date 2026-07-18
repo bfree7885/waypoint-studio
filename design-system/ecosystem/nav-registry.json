@@ -352,13 +352,28 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Observatory for invisible environments \u2014 RF foundations; educational cyber awareness planned.",
+      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
       "status": "foundation",
       "features": [
         {
           "id": "overview",
           "label": "Overview",
           "href": "apps/signalterrain/"
+        },
+        {
+          "id": "topics",
+          "label": "Topics",
+          "href": "apps/signalterrain/topics.html"
+        },
+        {
+          "id": "graph",
+          "label": "Knowledge graph",
+          "href": "apps/signalterrain/graph.html"
+        },
+        {
+          "id": "summary",
+          "label": "Intelligence summary",
+          "href": "apps/signalterrain/summary.html"
         }
       ]
     },

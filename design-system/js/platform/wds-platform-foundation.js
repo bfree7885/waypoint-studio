@@ -18,7 +18,85 @@
     if (status === "foundation") return "Foundation";
     if (status === "ready") return "In progress";
     if (status === "planned" || status === "next") return "Coming later";
+    if (status === "blueprint") return "Blueprint";
     return "Foundation";
+  }
+
+  function renderListSection(id, title, items) {
+    items = (items || []).filter(Boolean);
+    if (!items.length) return "";
+    return (
+      '<section class="wpf-section" aria-labelledby="' +
+      esc(id) +
+      '">' +
+      "<h2 id=\"" +
+      esc(id) +
+      '">' +
+      esc(title) +
+      "</h2>" +
+      "<ul class=\"wpf-principles\">" +
+      items.map(function (p) {
+        return "<li>" + esc(p) + "</li>";
+      }).join("") +
+      "</ul>" +
+      "</section>"
+    );
+  }
+
+  function renderParagraphSection(id, title, text) {
+    if (!text) return "";
+    return (
+      '<section class="wpf-section" aria-labelledby="' +
+      esc(id) +
+      '">' +
+      "<h2 id=\"" +
+      esc(id) +
+      '">' +
+      esc(title) +
+      "</h2>" +
+      "<p>" +
+      esc(text) +
+      "</p>" +
+      "</section>"
+    );
+  }
+
+  function renderCapabilityGroups(groups) {
+    groups = groups || [];
+    if (!groups.length) return "";
+    return (
+      '<section class="wpf-section" aria-labelledby="wpf-areas">' +
+        '<h2 id="wpf-areas">Major areas</h2>' +
+        '<ul class="wpf-modules">' +
+        groups
+          .map(function (g) {
+            return (
+              "<li>" +
+              "<strong>" +
+              esc(g.title) +
+              "</strong>" +
+              '<span class="wpf-module-status">' +
+              esc(statusLabel(g.status || "foundation")) +
+              "</span>" +
+              "<p>" +
+              esc(g.description || "") +
+              "</p>" +
+              (g.items && g.items.length
+                ? "<ul class=\"wpf-principles\">" +
+                  g.items
+                    .map(function (item) {
+                      return "<li>" + esc(item) + "</li>";
+                    })
+                    .join("") +
+                  "</ul>"
+                : "") +
+              "</li>"
+            );
+          })
+          .join("") +
+        "</ul>" +
+      "</section>"
+    );
   }
 
   function renderModules(modules) {
@@ -125,21 +203,16 @@
             "</a></p>"
           : "") +
       "</header>" +
-      (config.mission
-        ? '<section class="wpf-section"><h2>Who it is for</h2><p>' +
-          esc(config.mission) +
-          "</p></section>"
-        : "") +
+      renderParagraphSection("wpf-who", "Who it helps", config.mission) +
+      renderListSection("wpf-problems", "Problems it helps with", config.problems) +
+      renderCapabilityGroups(config.capabilityGroups) +
       renderPrinciples(config.principles) +
       renderModules(config.modules) +
       renderRoutes(config.routes) +
-      (config.dataModel
-        ? '<section class="wpf-section" aria-labelledby="wpf-data"><h2 id="wpf-data">Your data</h2><p>' +
-          esc(config.dataModel) +
-          "</p></section>"
-        : "") +
+      renderParagraphSection("wpf-privacy", "Privacy philosophy", config.privacyPhilosophy || config.dataModel) +
+      renderParagraphSection("wpf-future", "Future direction", config.futureDirection) +
       '<section class="wpf-section wpf-section--note">' +
-        "<p>Private by default. Calm tools for careful outdoor work.</p>" +
+        "<p>Private by default. Calm tools for careful observers.</p>" +
       "</section>"
     );
   }

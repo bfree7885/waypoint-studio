@@ -3,49 +3,64 @@
   "title": "SignalTerrain",
   "eyebrow": "Waypoint Studio · Understand the world's signals",
   "status": "foundation",
-  "lead": "A coherent intelligence platform for observing, understanding, and connecting signals — Unified Intelligence Objects, living knowledge graph, and calm summaries. Not a news feed, not a SIEM, not IDS/IPS.",
-  "mission": "Help people answer what changed, why it matters, who is affected, and what should happen next.",
+  "lead": "SignalTerrain helps people observe and understand invisible environments — radio spectrum and educational cyber awareness — with evidence, context, and calm summaries. Not a news feed, not a SIEM, not offensive security.",
+  "mission": "People who want to understand what changed in the radio environment or the public cyber landscape, why it matters, who may be affected, and what defensive next steps are worth considering — without hype, fear, or attack tooling.",
+  "problems": [
+    "Radio and RF conditions are hard to follow without literacy and private logging tools",
+    "Public cyber news is noisy; people need topics, history, and defensive guidance — not exploit kits",
+    "Infrastructure and research signals lack a calm place to connect evidence over time"
+  ],
+  "cta": {
+    "href": "summary.html",
+    "label": "Open intelligence summary"
+  },
+  "capabilityGroups": [
+    {
+      "title": "Radio & Spectrum Intelligence",
+      "status": "foundation",
+      "description": "Observe and learn the RF environment with private tools and educational framing.",
+      "items": [
+        "SDR and receiver literacy",
+        "Receivers and private registries",
+        "Propagation awareness",
+        "Monitoring and RF observations",
+        "Signal catalogs and logging"
+      ]
+    },
+    {
+      "title": "Cyber Awareness",
+      "status": "foundation",
+      "description": "Educational defensive awareness only — topics, advisories, and guidance. Not scanning, penetration testing, offense, SOC, IDS, or IPS.",
+      "items": [
+        "Ransomware campaigns as awareness topics",
+        "Zero-day and exploited vulnerability context",
+        "Major attacks and outages when sources exist",
+        "Advisories and defensive guidance",
+        "Changing threat priorities with confidence labels"
+      ]
+    },
+    {
+      "title": "Infrastructure & Research",
+      "status": "blueprint",
+      "description": "Routing, cloud, communications, GPS disruptions, papers, standards, and Waypoint knowledge linked into the topic graph when cited sources exist."
+    }
+  ],
   "principles": [
     "Four questions: what changed, why it matters, who is affected, what should happen next",
     "Evidence, context, and historical perspective over fear or hype",
     "Everything important becomes a topic that evolves",
-    "Everything is connected — the living knowledge graph accumulates",
+    "The living knowledge graph accumulates connections over time",
     "Events normalize into Unified Intelligence Objects",
     "Recommendations guide — they never auto-execute",
-    "Relationships connect workspaces — RF, cyber, infrastructure, research, geopolitical",
-    "Transparency: confidence, unknowns, sources, Waypoint Analysis",
-    "Audio, receivers, and precise locations stay local first",
-    "Never fabricate signals, incidents, or threat claims",
     "Educational cyber awareness only — not scanning, offense, SOC, IDS, or IPS",
-    "Not another RSS reader — curated understanding over endless feeds"
-  ],
-  "capabilityGroups": [
-    {
-      "title": "RF",
-      "status": "foundation",
-      "description": "Receivers, frequencies, propagation, logging, audio, and signal catalogs — literacy and private tools, not advanced intercept suites."
-    },
-    {
-      "title": "Cyber",
-      "status": "foundation",
-      "description": "Vulnerabilities, advisories, campaigns, and defensive knowledge as topics — awareness only. Not a scanner or SIEM."
-    },
-    {
-      "title": "Infrastructure",
-      "status": "blueprint",
-      "description": "Routing, cloud, communications, GPS, and disruptions as awareness topics when cited sources exist."
-    },
-    {
-      "title": "Research",
-      "status": "foundation",
-      "description": "Papers, standards, RFCs, government publications, and Waypoint knowledge linked into the topic graph."
-    }
+    "Audio, receivers, and precise locations stay local first",
+    "Never fabricate signals, incidents, or threat claims"
   ],
   "modules": [
     {
       "title": "Intelligence Core",
       "status": "foundation",
-      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces — architecture first, no IDS/IPS."
+      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces — architecture first."
     },
     {
       "title": "Intelligence Summary",
@@ -60,17 +75,7 @@
     {
       "title": "Topic foundation",
       "status": "foundation",
-      "description": "Shared topic model with overview, analysis, confidence, unknowns, and relationships across workspaces."
-    },
-    {
-      "title": "Relationship engine",
-      "status": "foundation",
-      "description": "Typed connections — affects, targets, mitigates, documented_in, and more — with confidence labels."
-    },
-    {
-      "title": "Sample topic graph",
-      "status": "live",
-      "description": "Educational chain: CVE → vendor → advisory → research → actor → history → mitigation → technology → future."
+      "description": "Shared topic model with overview, analysis, confidence, unknowns, and relationships."
     },
     {
       "title": "Receiver management",
@@ -81,31 +86,6 @@
       "title": "Incident timeline",
       "status": "foundation",
       "description": "Structured events with confidence and clear source notes."
-    },
-    {
-      "title": "Shared platform systems",
-      "status": "foundation",
-      "description": "Contracts for collections, bookmarks, notes, tags, import/export, and future sync — local-first."
-    },
-    {
-      "title": "Search",
-      "status": "planned",
-      "description": "Find topics, incidents, audio, and transcripts in one place."
-    },
-    {
-      "title": "Mapping",
-      "status": "planned",
-      "description": "See receivers and incidents in geographic context."
-    },
-    {
-      "title": "Audio library",
-      "status": "planned",
-      "description": "Local audio with retention you control."
-    },
-    {
-      "title": "Watch & Library",
-      "status": "planned",
-      "description": "Calm attention lists and workspace library filters."
     }
   ],
   "routes": [
@@ -117,5 +97,6 @@
     { "path": "/incidents/", "label": "Incident timeline", "ready": false },
     { "path": "/audio/", "label": "Audio library", "ready": false }
   ],
-  "dataModel": "Topics and relationships are the shared foundation. Receivers, incidents, notes, and audio stay on your device first. Nothing syncs until you choose a path that earns trust. Samples are labeled samples — never presented as live intelligence."
+  "privacyPhilosophy": "Receivers, audio, notes, and precise locations stay on your device first. Samples are labeled samples — never presented as live intelligence. Nothing syncs until a path earns trust.",
+  "futureDirection": "Deeper RF observation tools, richer defensive cyber topic coverage, infrastructure awareness when sources exist, and carefully bounded future phases that remain educational — never offensive."
 }

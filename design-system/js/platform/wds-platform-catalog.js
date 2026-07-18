@@ -148,7 +148,7 @@
       shortName: "SignalTerrain",
       tier: "foundation",
       status: "foundation",
-      description: "Radio situational awareness — receivers, incidents, and mapping.",
+      description: "Radio & Spectrum Intelligence and educational Cyber Awareness.",
       pathFromApps: "../signalterrain/",
       pathFromRoot: "apps/signalterrain/",
       dataProduct: "signalterrain",

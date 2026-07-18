@@ -1,0 +1,17 @@
+{
+  "name": "Waypoint Studio",
+  "short_name": "Waypoint",
+  "description": "Observe. Understand. Create. Share. Calm tools for careful observers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a2420",
+  "theme_color": "#1a2420",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

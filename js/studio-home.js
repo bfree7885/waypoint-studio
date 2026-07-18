@@ -38,7 +38,8 @@
         '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
         '<p class="wds-caption"><a href="apps/dashboard/">Open Dashboard</a> · ' +
         '<a href="apps/fieldry/">Fieldry</a> · <a href="apps/foragecast/">ForageCast</a> · ' +
-        '<a href="apps/scenes/">Scenes</a></p>' +
+        '<a href="apps/scenes/">Scenes</a> · <a href="apps/signalterrain/">SignalTerrain</a> · ' +
+        '<a href="apps/waypoint-volunteer/">Volunteer</a></p>' +
       "</div>";
     mount.removeAttribute("aria-busy");
   }

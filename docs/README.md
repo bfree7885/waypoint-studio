@@ -25,6 +25,9 @@
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |
 | [WAYPOINT-VOLUNTEER.md](WAYPOINT-VOLUNTEER.md) | Waypoint Volunteer foundation — what good can I do today? |
 | [WAYPOINT-VOLUNTEER-INTEGRATIONS.md](WAYPOINT-VOLUNTEER-INTEGRATIONS.md) | Today Outside + Fieldry/Scenes/ForageCast/SignalTerrain bridges |
+| [PUBLIC-SITE-AUDIT.md](PUBLIC-SITE-AUDIT.md) | Public website issue inventory (severity, repro, fix) |
+| [PUBLIC-PLATFORM-RECONCILIATION.md](PUBLIC-PLATFORM-RECONCILIATION.md) | Public representation of each platform |
+| [PUBLIC-QA.md](PUBLIC-QA.md) | Final public walkthrough QA |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
 | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
 | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |
