@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "status": "architecture-only",
+  "updatedAt": "2026-07-18",
+  "purpose": "Future defensive planning sandbox. Design now — do not fully implement unsupported predictions.",
+  "principles": [
+    "Simulations rearrange known inventory + known intelligence — they do not invent outcomes",
+    "Every simulated delta must list assumptions and unknowns",
+    "No offensive simulation",
+    "No guaranteed risk reduction claims",
+    "Outputs remain educational guidance objects (rec_*), never auto-execute"
+  ],
+  "questions": [
+    {
+      "id": "sim_patch_today",
+      "prompt": "What changes if I patch today?",
+      "inputs": ["inventoryItemId", "patchEntityId"],
+      "plannedEffects": ["Remove or downgrade exposures linked via fixes", "Update posture patch-readiness", "Emit what-changed: new mitigations"]
+    },
+    {
+      "id": "sim_disable_software",
+      "prompt": "What changes if I disable this software?",
+      "inputs": ["inventoryItemId"],
+      "plannedEffects": ["Mark inventory offline", "Re-run exposure without that product", "List residual risks from related stack"]
+    },
+    {
+      "id": "sim_migrate_browser",
+      "prompt": "What changes if I migrate browsers?",
+      "inputs": ["fromItemId", "toItemId"],
+      "plannedEffects": ["Swap inventory tags", "Recompute browser-hygiene posture", "Preserve uncertainty about extensions"]
+    },
+    {
+      "id": "sim_replace_firewall",
+      "prompt": "What changes if I replace this firewall?",
+      "inputs": ["fromItemId", "toItemId"],
+      "plannedEffects": ["Network visibility / remote-access posture deltas", "Require manual confirmation of rule parity unknowns"]
+    }
+  ],
+  "apiSketch": {
+    "method": "simulateDefensiveChange(scenarioId, inputs, { graph, inventory, profile })",
+    "returns": {
+      "status": "architecture-stub",
+      "assumptions": [],
+      "unknowns": [],
+      "projectedExposures": [],
+      "projectedRecommendations": [],
+      "confidence": "insufficient"
+    }
+  },
+  "expansionPoints": [
+    "Deterministic inventory mutators",
+    "Diff against live advisor snapshot",
+    "Human review gate before saving simulated inventory as real"
+  ]
+}

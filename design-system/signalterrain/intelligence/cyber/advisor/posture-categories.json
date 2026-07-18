@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "categories": [
+    { "id": "patch-readiness", "label": "Patch readiness", "order": 1 },
+    { "id": "backup-confidence", "label": "Backup confidence", "order": 2 },
+    { "id": "identity-protection", "label": "Identity protection", "order": 3 },
+    { "id": "browser-hygiene", "label": "Browser hygiene", "order": 4 },
+    { "id": "endpoint-protection", "label": "Endpoint protection", "order": 5 },
+    { "id": "network-visibility", "label": "Network visibility", "order": 6 },
+    { "id": "remote-access", "label": "Remote access", "order": 7 },
+    { "id": "cloud-security", "label": "Cloud security", "order": 8 },
+    { "id": "configuration-health", "label": "Configuration health", "order": 9 }
+  ]
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Adaptive Cyber Defense Advisor — what should I do differently today? Educational, defensive, explainable.">
+  <title>Adaptive Defense Advisor — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-advisor { max-width: 48rem; }
+    .st-advisor-panel { margin: 0 0 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--st-line,#d2ccc0); }
+    .st-advisor-panel h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 1.45rem; }
+    .st-x-env { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0.75rem 0 1rem; }
+    .st-x-check { font-size: 0.9rem; color: var(--st-muted,#5a564e); }
+    .st-cyber-list { list-style: none; padding: 0; }
+    .st-cyber-list li { padding: 0.75rem 0; border-top: 1px solid var(--st-line,#d2ccc0); }
+    #st-adv-sim-out { white-space: pre-wrap; font-size: 0.8rem; max-height: 14rem; overflow: auto; }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p>
+        <a class="st-back" href="./">← Cyber Awareness</a>
+        ·
+        <a class="st-back" href="brief.html">Daily brief</a>
+        ·
+        <a class="st-back" href="explorer.html">Explorer</a>
+      </p>
+      <noscript>
+        <section>
+          <h1>Adaptive Cyber Defense Advisor</h1>
+          <p>Helps answer “What should I do differently today?” using your security profile and inventory against the shared intelligence graph. Educational and defensive only. Enable JavaScript to open the advisor.</p>
+        </section>
+      </noscript>
+      <div id="st-advisor-mount" aria-busy="true">
+        <p class="st-loading">Opening Adaptive Defense Advisor…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-priority.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-inventory.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-advisor.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.signalTerrainCyberAdvisor) {
+        WDS.signalTerrainCyberAdvisor.mountAdvisor(document.getElementById("st-advisor-mount"), {
+          base: "../../../design-system/signalterrain/intelligence/cyber/",
+          advisorBase: "../../../design-system/signalterrain/intelligence/cyber/advisor/"
+        });
+      }
+    });
+  </script>
+</body>
+</html>

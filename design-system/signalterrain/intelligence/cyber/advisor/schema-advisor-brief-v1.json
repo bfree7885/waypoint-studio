@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/advisor-brief/v1",
+  "title": "Personalized daily advisor brief V1",
+  "type": "object",
+  "required": ["id", "generatedAt", "season", "changes", "actions", "safeToIgnore", "learning", "estimatedReviewMinutes"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^adb_" },
+    "generatedAt": { "type": "string" },
+    "season": { "type": "object" },
+    "changes": { "type": "array", "maxItems": 3 },
+    "actions": { "type": "array", "maxItems": 3 },
+    "safeToIgnore": { "type": "array" },
+    "learning": { "type": "object" },
+    "estimatedReviewMinutes": { "type": "number" },
+    "whatChanged": { "type": "object" },
+    "posture": { "type": "array" },
+    "recommendations": { "type": "array" },
+    "exposures": { "type": "array" }
+  }
+}

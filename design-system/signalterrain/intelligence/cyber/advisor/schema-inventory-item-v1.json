@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/inventory-item/v1",
+  "title": "Technology inventory item V1",
+  "type": "object",
+  "required": ["id", "category", "name", "updatedAt"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^inv_" },
+    "category": {
+      "type": "string",
+      "enum": [
+        "operating-system",
+        "browser",
+        "programming-language",
+        "database",
+        "virtualization",
+        "container",
+        "router",
+        "firewall",
+        "nas",
+        "cloud-provider",
+        "developer-tool",
+        "application",
+        "framework",
+        "other"
+      ]
+    },
+    "name": { "type": "string" },
+    "version": { "type": ["string", "null"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "importance": { "type": "string", "enum": ["low", "normal", "high"] },
+    "criticality": { "type": "string", "enum": ["low", "moderate", "high", "critical"] },
+    "linkedEntityId": {
+      "type": ["string", "null"],
+      "description": "Optional cy_* product entity for graph join"
+    },
+    "discovery": {
+      "type": "string",
+      "enum": ["manual", "future-automated", "imported"],
+      "description": "V1 is manual; automated discovery is a future expansion"
+    },
+    "ownerNotes": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  }
+}

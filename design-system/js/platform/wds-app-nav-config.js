@@ -398,6 +398,11 @@
           "href": "apps/signalterrain/cyber/explorer.html"
         },
         {
+          "id": "cyber-advisor",
+          "label": "Adaptive defense advisor",
+          "href": "apps/signalterrain/cyber/advisor.html"
+        },
+        {
           "id": "cyber-ingest-health",
           "label": "Cyber ingest (internal)",
           "href": "apps/signalterrain/cyber/ingest-health.html"

@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "sample",
+    "profileHint": "home-user + windows-workstation",
+    "updatedAt": "2026-07-18T12:00:00Z"
+  },
+  "items": [
+    {
+      "id": "inv_windows",
+      "category": "operating-system",
+      "name": "Windows workstation",
+      "version": "sample",
+      "tags": ["windows", "desktop"],
+      "importance": "high",
+      "criticality": "high",
+      "linkedEntityId": "cy_software-windows-smb",
+      "discovery": "manual",
+      "ownerNotes": "Linked to SMBv1 teaching sample — may not reflect real SMBv1 use.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_browser-home",
+      "category": "browser",
+      "name": "Browser",
+      "version": null,
+      "tags": ["browser"],
+      "importance": "high",
+      "criticality": "moderate",
+      "linkedEntityId": null,
+      "discovery": "manual",
+      "ownerNotes": "",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "sample",
+    "profileHint": "developer + home-lab + linux-desktop",
+    "updatedAt": "2026-07-18T12:00:00Z"
+  },
+  "items": [
+    {
+      "id": "inv_linux-desktop",
+      "category": "operating-system",
+      "name": "Linux desktop",
+      "version": "sample",
+      "tags": ["linux", "desktop"],
+      "importance": "high",
+      "criticality": "high",
+      "linkedEntityId": null,
+      "discovery": "manual",
+      "ownerNotes": "Daily driver.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_openssl",
+      "category": "application",
+      "name": "OpenSSL",
+      "version": "sample-legacy-aware",
+      "tags": ["linux", "openssl", "library"],
+      "importance": "high",
+      "criticality": "critical",
+      "linkedEntityId": "cy_software-openssl",
+      "discovery": "manual",
+      "ownerNotes": "Linked to teaching sample for Heartbleed literacy.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_log4j",
+      "category": "framework",
+      "name": "Apache Log4j 2",
+      "version": "sample",
+      "tags": ["java", "framework", "logging"],
+      "importance": "high",
+      "criticality": "high",
+      "linkedEntityId": "cy_software-log4j",
+      "discovery": "manual",
+      "ownerNotes": "Present in a lab service.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_browser",
+      "category": "browser",
+      "name": "Firefox",
+      "version": null,
+      "tags": ["browser"],
+      "importance": "normal",
+      "criticality": "moderate",
+      "linkedEntityId": null,
+      "discovery": "manual",
+      "ownerNotes": "",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_docker",
+      "category": "container",
+      "name": "Docker",
+      "version": null,
+      "tags": ["container", "linux"],
+      "importance": "normal",
+      "criticality": "moderate",
+      "linkedEntityId": null,
+      "discovery": "manual",
+      "ownerNotes": "Home lab containers.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    },
+    {
+      "id": "inv_nas",
+      "category": "nas",
+      "name": "Home NAS",
+      "version": null,
+      "tags": ["nas", "backup"],
+      "importance": "high",
+      "criticality": "high",
+      "linkedEntityId": null,
+      "discovery": "manual",
+      "ownerNotes": "Backup target.",
+      "updatedAt": "2026-07-18T12:00:00Z"
+    }
+  ]
+}

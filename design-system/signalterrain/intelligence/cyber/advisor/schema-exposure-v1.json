@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/exposure/v1",
+  "title": "Exposure analysis record V1",
+  "type": "object",
+  "required": ["id", "inventoryItemId", "intelligenceId", "match", "explanation"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^exp_" },
+    "inventoryItemId": { "type": "string" },
+    "intelligenceId": { "type": "string" },
+    "match": {
+      "type": "object",
+      "required": ["status", "method", "confidence"],
+      "properties": {
+        "status": { "type": "string", "enum": ["matched", "possible", "unlikely", "unknown"] },
+        "method": { "type": "string" },
+        "confidence": { "type": "string" }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "required": ["mattersBecause", "probablyDoesNotAffectBecause", "assumptions", "missing"],
+      "properties": {
+        "mattersBecause": { "type": "array", "items": { "type": "string" } },
+        "probablyDoesNotAffectBecause": { "type": "array", "items": { "type": "string" } },
+        "assumptions": { "type": "array", "items": { "type": "string" } },
+        "missing": { "type": "array", "items": { "type": "string" } },
+        "facts": { "type": "array", "items": { "type": "string" } },
+        "inferences": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

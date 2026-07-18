@@ -37,6 +37,12 @@
 | [CYBER-TIMELINE.md](CYBER-TIMELINE.md) | Timeline explorer & filters |
 | [CYBER-MAP.md](CYBER-MAP.md) | Coarse geographic awareness map |
 | [CYBER-EXPLORER-COMPLETION-REPORT.md](CYBER-EXPLORER-COMPLETION-REPORT.md) | Work Block 5 completion / owner QA |
+| [ADAPTIVE-DEFENSE-ADVISOR.md](ADAPTIVE-DEFENSE-ADVISOR.md) | Adaptive Cyber Defense Advisor V1.0 |
+| [SECURITY-PROFILES.md](SECURITY-PROFILES.md) | Security environment profiles |
+| [EXPOSURE-ANALYSIS.md](EXPOSURE-ANALYSIS.md) | Inventory × intelligence exposure reasoning |
+| [CYBER-SEASONS.md](CYBER-SEASONS.md) | Educational cyber landscape seasons |
+| [REASONING-ENGINE.md](REASONING-ENGINE.md) | Advisor decision paths & assumptions |
+| [ADAPTIVE-DEFENSE-ADVISOR-COMPLETION-REPORT.md](ADAPTIVE-DEFENSE-ADVISOR-COMPLETION-REPORT.md) | Work Block 6 completion / owner QA |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |

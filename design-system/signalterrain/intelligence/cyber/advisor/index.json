@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-18",
+    "tagline": "What should I do differently today?",
+    "docs": [
+      "docs/ADAPTIVE-DEFENSE-ADVISOR.md",
+      "docs/SECURITY-PROFILES.md",
+      "docs/EXPOSURE-ANALYSIS.md",
+      "docs/CYBER-SEASONS.md",
+      "docs/REASONING-ENGINE.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-adaptive-defense-advisor",
+    "label": "Adaptive Cyber Defense Advisor",
+    "path": "design-system/signalterrain/intelligence/cyber/advisor/",
+    "uiSurface": "apps/signalterrain/cyber/advisor.html"
+  },
+  "inherits": [
+    "signalterrain-cyber-awareness",
+    "signalterrain-cyber-graph",
+    "signalterrain-cyber-priority",
+    "signalterrain-recommendation",
+    "signalterrain-research-workspace",
+    "signalterrain-inventory",
+    "waypoint-trust"
+  ],
+  "philosophy": [
+    "Reduce noise — not every event needs attention",
+    "Experienced-analyst tone — calm, precise, honest",
+    "Never invent confidence",
+    "Never recommend offensive actions",
+    "Facts and inferences stay labeled separately",
+    "Reuse shared graph, priority, recommendation, and inventory services"
+  ],
+  "artifacts": {
+    "profiles": "security-profiles.json",
+    "posture": "posture-categories.json",
+    "seasons": "cyber-seasons.json",
+    "simulation": "simulation-architecture.json",
+    "profileSchema": "schema-security-profile-v1.json",
+    "inventorySchema": "schema-inventory-item-v1.json",
+    "exposureSchema": "schema-exposure-v1.json",
+    "advisorBriefSchema": "schema-advisor-brief-v1.json",
+    "runtime": "../../../../js/signalterrain/wds-signalterrain-cyber-advisor.js",
+    "inventoryRuntime": "../../../../js/signalterrain/wds-signalterrain-inventory.js"
+  },
+  "consumes": {
+    "graph": "../samples/cyber-intelligence.sample.json",
+    "priority": "../priority-factors.json",
+    "recommendationSchema": "../../schema-recommendation-v0.1.json",
+    "research": "../../../../js/signalterrain/wds-signalterrain-research.js"
+  },
+  "notInScopeV1": [
+    "Automatic remediation",
+    "Offensive guidance or exploit instructions",
+    "Attack simulation",
+    "Hidden scoring",
+    "Fully implemented what-if simulation (architecture only)",
+    "Live automated discovery agents"
+  ]
+}

@@ -18,6 +18,11 @@
       "docs/CYBER-GRAPH-UI.md",
       "docs/CYBER-TIMELINE.md",
       "docs/CYBER-MAP.md",
+      "docs/ADAPTIVE-DEFENSE-ADVISOR.md",
+      "docs/SECURITY-PROFILES.md",
+      "docs/EXPOSURE-ANALYSIS.md",
+      "docs/CYBER-SEASONS.md",
+      "docs/REASONING-ENGINE.md",
       "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md"
     ]
   },
@@ -55,7 +60,11 @@
     "explorer": "explorer/",
     "explorerRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-explorer.js",
     "explorerSurface": "../../../../apps/signalterrain/cyber/explorer.html",
-    "researchRuntime": "../../../js/signalterrain/wds-signalterrain-research.js"
+    "researchRuntime": "../../../js/signalterrain/wds-signalterrain-research.js",
+    "advisor": "advisor/",
+    "advisorRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-advisor.js",
+    "advisorSurface": "../../../../apps/signalterrain/cyber/advisor.html",
+    "inventoryRuntime": "../../../js/signalterrain/wds-signalterrain-inventory.js"
   },
   "notInScopeV01": [
     "IDS",

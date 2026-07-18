@@ -20,7 +20,12 @@
       "docs/CYBER-EXPLORER.md",
       "docs/CYBER-GRAPH-UI.md",
       "docs/CYBER-TIMELINE.md",
-      "docs/CYBER-MAP.md"
+      "docs/CYBER-MAP.md",
+      "docs/ADAPTIVE-DEFENSE-ADVISOR.md",
+      "docs/SECURITY-PROFILES.md",
+      "docs/EXPOSURE-ANALYSIS.md",
+      "docs/CYBER-SEASONS.md",
+      "docs/REASONING-ENGINE.md"
     ]
   },
   "package": {

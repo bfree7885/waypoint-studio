@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Editable security environment profiles. Users may select multiple. Profiles influence emphasis — inventory and intelligence remain the factual inputs.",
+  "riskTolerance": ["cautious", "balanced", "accepting"],
+  "environments": [
+    { "id": "home-user", "label": "Home user", "group": "personal", "defaultRisk": "balanced" },
+    { "id": "power-user", "label": "Power user", "group": "personal", "defaultRisk": "balanced" },
+    { "id": "developer", "label": "Developer", "group": "workstation", "defaultRisk": "balanced" },
+    { "id": "photographer", "label": "Photographer", "group": "workstation", "defaultRisk": "cautious" },
+    { "id": "research-workstation", "label": "Research workstation", "group": "workstation", "defaultRisk": "cautious" },
+    { "id": "linux-desktop", "label": "Linux desktop", "group": "os", "defaultRisk": "balanced" },
+    { "id": "windows-workstation", "label": "Windows workstation", "group": "os", "defaultRisk": "balanced" },
+    { "id": "mac-workstation", "label": "Mac workstation", "group": "os", "defaultRisk": "balanced" },
+    { "id": "home-lab", "label": "Home lab", "group": "lab", "defaultRisk": "accepting" },
+    { "id": "small-business", "label": "Small business", "group": "org", "defaultRisk": "cautious" },
+    { "id": "school", "label": "School", "group": "org", "defaultRisk": "cautious" },
+    { "id": "non-profit", "label": "Non-profit", "group": "org", "defaultRisk": "cautious" },
+    { "id": "cloud-workloads", "label": "Cloud workloads", "group": "infra", "defaultRisk": "balanced" },
+    { "id": "virtualization", "label": "Virtualization", "group": "infra", "defaultRisk": "balanced" },
+    { "id": "nas", "label": "NAS", "group": "infra", "defaultRisk": "cautious" },
+    { "id": "containers", "label": "Containers", "group": "infra", "defaultRisk": "balanced" },
+    { "id": "servers", "label": "Servers", "group": "infra", "defaultRisk": "cautious" },
+    { "id": "networking", "label": "Networking", "group": "infra", "defaultRisk": "balanced" }
+  ],
+  "emphasisHints": {
+    "developer": { "kinds": { "cve": 1.3, "patch": 1.2 }, "tags": ["language", "framework", "database"] },
+    "home-lab": { "kinds": { "patch": 1.3, "affected-software": 1.2 }, "tags": ["virtualization", "nas", "container"] },
+    "small-business": { "kinds": { "ransomware-family": 1.4, "vendor-advisory": 1.3 }, "tags": ["endpoint", "backup"] },
+    "linux-desktop": { "tags": ["linux", "openssl", "browser"] },
+    "windows-workstation": { "tags": ["windows", "browser", "office"] },
+    "cloud-workloads": { "tags": ["cloud", "container", "identity"] },
+    "nas": { "tags": ["nas", "backup"] },
+    "containers": { "tags": ["container", "linux"] }
+  }
+}

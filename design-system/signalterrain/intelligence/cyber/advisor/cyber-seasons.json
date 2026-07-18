@@ -1,0 +1,56 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Educational landscape seasons — describe what kind of period we appear to be in. Not prediction.",
+  "seasons": [
+    {
+      "id": "season_ransomware",
+      "label": "Major ransomware activity",
+      "signals": ["ransomware-family", "threat-campaign"],
+      "postureFocus": ["backup-confidence", "patch-readiness", "remote-access"],
+      "explanation": "Public reporting and sample campaigns emphasize disruptive ransomware themes. Preparedness centers on backups, patching, and remote-access hygiene."
+    },
+    {
+      "id": "season_supply_chain",
+      "label": "Supply chain campaigns",
+      "signals": ["solarwinds", "supply", "orion"],
+      "postureFocus": ["configuration-health", "endpoint-protection", "identity-protection"],
+      "explanation": "Teaching cases highlight trust in update channels and vendor software. Inventory clarity matters more than volume of alerts."
+    },
+    {
+      "id": "season_patch_tuesday",
+      "label": "Patch Tuesday / vendor patch window",
+      "signals": ["patch", "vendor-advisory"],
+      "postureFocus": ["patch-readiness", "configuration-health"],
+      "explanation": "A calmer operational season for reviewing vendor updates against your inventory — not an emergency siren."
+    },
+    {
+      "id": "season_cloud_outage",
+      "label": "Large cloud outages",
+      "signals": ["cloud", "outage", "availability"],
+      "postureFocus": ["cloud-security", "backup-confidence"],
+      "explanation": "When public cloud availability dominates headlines, cyber vulnerability volume may be quiet. Resilience and dependency literacy matter."
+    },
+    {
+      "id": "season_identity",
+      "label": "Identity-focused attacks",
+      "signals": ["identity", "credential", "phishing"],
+      "postureFocus": ["identity-protection", "remote-access"],
+      "explanation": "Educational focus on account takeover and phishing themes. MFA and recovery paths outweigh exotic exploit chatter."
+    },
+    {
+      "id": "season_browser",
+      "label": "Critical browser vulnerabilities",
+      "signals": ["browser", "chrome", "firefox", "safari"],
+      "postureFocus": ["browser-hygiene", "endpoint-protection"],
+      "explanation": "When browser components dominate disclosures, update cadence and extension hygiene become the calm priority."
+    },
+    {
+      "id": "season_quiet",
+      "label": "Quieter window",
+      "signals": [],
+      "postureFocus": ["patch-readiness", "backup-confidence", "browser-hygiene"],
+      "explanation": "No dominant theme asserted from sample signals. Ordinary hygiene still matters — quiet is not complacency."
+    }
+  ]
+}

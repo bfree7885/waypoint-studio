@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/security-profile/v1",
+  "title": "Security profile V1",
+  "type": "object",
+  "required": ["id", "environments", "riskTolerance", "updatedAt"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^spf_" },
+    "label": { "type": "string" },
+    "environments": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Multiple environment ids from security-profiles.json"
+    },
+    "riskTolerance": { "type": "string", "enum": ["cautious", "balanced", "accepting"] },
+    "industry": { "type": "string" },
+    "region": { "type": "string" },
+    "notes": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  }
+}
