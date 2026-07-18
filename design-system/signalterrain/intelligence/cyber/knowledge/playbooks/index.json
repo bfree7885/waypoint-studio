@@ -1,0 +1,378 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Defensive playbooks only. No attack guidance. No exploit steps."
+  },
+  "playbooks": [
+    {
+      "id": "pb_patch-management",
+      "title": "Patch management",
+      "purpose": "Reduce known defect exposure with calm, inventory-aware updates.",
+      "whenToUse": "Ongoing hygiene; after vendor advisories; during patch-window seasons.",
+      "prerequisites": ["Basic inventory of systems and apps", "Ability to test critical updates"],
+      "practices": [
+        "Maintain an inventory of OS and high-value applications",
+        "Prefer vendor-supported update channels",
+        "Test on non-critical systems when stakes are high",
+        "Verify backups before risky updates",
+        "Record what was applied and when"
+      ],
+      "commonMistakes": [
+        "Patching without inventory (unknown residual risk)",
+        "Ignoring library dependencies inside apps",
+        "Treating every CVE as equally urgent"
+      ],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_concept-patching" },
+        { "refType": "article", "refId": "enc_cve-eternalblue" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [{ "label": "Vendor patch literacy via shared graph", "kind": "internal" }],
+      "relatedSubjectIds": ["cy_patch-ms17-010", "cy_patch-log4j"],
+      "relatedArticleIds": ["enc_concept-patching"],
+      "tags": ["patch", "hygiene"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_browser-hardening",
+      "title": "Browser hardening",
+      "purpose": "Keep the browser a calm, updated client with a smaller trust surface.",
+      "whenToUse": "Daily workstations; browser vulnerability seasons.",
+      "prerequisites": ["Ability to update the browser", "Extension inventory awareness"],
+      "practices": [
+        "Enable automatic security updates",
+        "Review extensions quarterly",
+        "Separate profiles for sensitive accounts when practical",
+        "Prefer HTTPS and careful download habits"
+      ],
+      "commonMistakes": [
+        "Running outdated browsers for niche sites",
+        "Granting extensions broad permissions without review"
+      ],
+      "additionalReading": [{ "refType": "article", "refId": "enc_browser" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_browser"],
+      "tags": ["browser"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_identity-protection",
+      "title": "Identity protection",
+      "purpose": "Protect account takeover paths with MFA and recovery hygiene.",
+      "whenToUse": "All users; identity-focused seasons; remote work.",
+      "prerequisites": ["Access to account security settings"],
+      "practices": [
+        "Enable MFA on email and critical services",
+        "Prefer phishing-resistant methods when available",
+        "Protect recovery codes offline",
+        "Review app passwords and sessions periodically"
+      ],
+      "commonMistakes": [
+        "SMS-only MFA as the only factor when better options exist",
+        "Storing recovery codes in the same inbox"
+      ],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_concept-authentication" },
+        { "refType": "article", "refId": "enc_concept-identity" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [{ "label": "CISA MFA guidance (general)", "kind": "government", "url": "https://www.cisa.gov/" }],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-authentication"],
+      "tags": ["identity", "mfa"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_mfa",
+      "title": "Multi-factor authentication",
+      "purpose": "Add a second factor so password theft alone is not enough.",
+      "whenToUse": "Any account that protects email, money, or admin access.",
+      "prerequisites": ["Authenticator app or hardware key preferred"],
+      "practices": [
+        "Start with email and password manager vaults",
+        "Enroll a backup factor",
+        "Document recovery steps for household/team"
+      ],
+      "commonMistakes": ["Disabling MFA after a lockout instead of fixing recovery"],
+      "additionalReading": [{ "refType": "article", "refId": "enc_concept-authentication" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-authentication"],
+      "tags": ["mfa"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_backup-strategies",
+      "title": "Backup strategies",
+      "purpose": "Ensure restore works before you need it.",
+      "whenToUse": "Always; especially ransomware-awareness seasons.",
+      "prerequisites": ["Storage for offline or immutable copies when practical"],
+      "practices": [
+        "Follow a 3-2-1 style approach appropriate to your scale",
+        "Test restores on a schedule",
+        "Keep at least one copy offline or immutable if feasible",
+        "Document restore owners and RTO goals calmly"
+      ],
+      "commonMistakes": [
+        "Only cloud sync without versioning",
+        "Never testing restore"
+      ],
+      "additionalReading": [{ "refType": "article", "refId": "enc_concept-backups" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-backups", "enc_ransomware-wannacry"],
+      "tags": ["backup", "resilience"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_linux-workstation",
+      "title": "Linux workstation security",
+      "purpose": "Keep a Linux daily driver updated and least-privileged.",
+      "whenToUse": "Linux desktops and developer machines.",
+      "prerequisites": ["Package manager access"],
+      "practices": [
+        "Apply distro security updates regularly",
+        "Avoid unnecessary root/daily sudo habits",
+        "Keep browsers and crypto libraries current",
+        "Inventory important packages (e.g., OpenSSL consumers)"
+      ],
+      "commonMistakes": ["Disabling updates for convenience", "Running services bound to all interfaces unintentionally"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_os-linux" },
+        { "refType": "article", "refId": "enc_cve-heartbleed" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": ["cy_software-openssl"],
+      "relatedArticleIds": ["enc_os-linux"],
+      "tags": ["linux"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_windows-workstation",
+      "title": "Windows workstation security",
+      "purpose": "Apply platform patches and reduce legacy exposure.",
+      "whenToUse": "Windows desktops and small-business PCs.",
+      "prerequisites": ["Admin rights for updates"],
+      "practices": [
+        "Keep Windows Update enabled for security patches",
+        "Retire SMBv1 where still present",
+        "Use standard user accounts for daily work",
+        "Enable MFA on Microsoft/cloud accounts"
+      ],
+      "commonMistakes": ["Deferring cumulative updates indefinitely", "Exposing file shares broadly"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_cve-eternalblue" },
+        { "refType": "article", "refId": "enc_ransomware-wannacry" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": ["cy_software-windows-smb", "cy_patch-ms17-010"],
+      "relatedArticleIds": ["enc_cve-eternalblue"],
+      "tags": ["windows"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_macos-security",
+      "title": "macOS security",
+      "purpose": "Keep macOS updated with sensible privacy and account hygiene.",
+      "whenToUse": "Mac workstations.",
+      "prerequisites": ["Apple ID recovery plan"],
+      "practices": [
+        "Install security updates promptly",
+        "Review Privacy & Security settings",
+        "Prefer App Store or known publishers",
+        "Enable FileVault when appropriate"
+      ],
+      "commonMistakes": ["Ignoring Gatekeeper prompts habitually"],
+      "additionalReading": [{ "refType": "article", "refId": "enc_browser" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": [],
+      "tags": ["macos"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_small-business",
+      "title": "Small business cybersecurity",
+      "purpose": "Prioritize high-leverage defensive basics for small teams.",
+      "whenToUse": "Orgs without a full-time security team.",
+      "prerequisites": ["Named owner for updates and backups"],
+      "practices": [
+        "Inventory devices and cloud apps",
+        "MFA on email and finance",
+        "Tested backups",
+        "Vendor patch cadence for servers and VPN",
+        "Phishing awareness without shame culture"
+      ],
+      "commonMistakes": ["Buying tools before basics", "Single admin with no backup operator"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_standard-cis" },
+        { "refType": "playbook", "refId": "pb_backup-strategies" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_framework-nist"],
+      "tags": ["small-business"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_remote-work",
+      "title": "Remote work security",
+      "purpose": "Protect home-office access paths without drama.",
+      "whenToUse": "Hybrid and remote staff.",
+      "prerequisites": ["VPN or zero-trust access as provided by your org"],
+      "practices": [
+        "MFA on remote access",
+        "Keep home routers updated",
+        "Separate work browser profile",
+        "Avoid untrusted public Wi‑Fi for admin tasks"
+      ],
+      "commonMistakes": ["Using personal cloud sync for regulated work data without policy"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_concept-networking" },
+        { "refType": "playbook", "refId": "pb_identity-protection" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-networking"],
+      "tags": ["remote"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_cloud-security",
+      "title": "Cloud security basics",
+      "purpose": "Honor shared responsibility with identity and configuration hygiene.",
+      "whenToUse": "Any cloud workloads or SaaS-heavy org.",
+      "prerequisites": ["Admin access to cloud identity console"],
+      "practices": [
+        "Enforce MFA on cloud admins",
+        "Least privilege roles",
+        "Turn on basic audit logs",
+        "Review public storage exposures periodically"
+      ],
+      "commonMistakes": ["Assuming the provider patches your misconfigurations"],
+      "additionalReading": [{ "refType": "article", "refId": "enc_cloud-security" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_cloud-security"],
+      "tags": ["cloud"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_home-lab",
+      "title": "Home lab security",
+      "purpose": "Experiment safely without exposing the household network.",
+      "whenToUse": "Homelab and virtualization hobbyists.",
+      "prerequisites": ["Segmented lab network preferred"],
+      "practices": [
+        "Isolate lab VLANs from personal devices",
+        "Inventory containers and images",
+        "Patch hypervisors",
+        "Back up critical lab configs"
+      ],
+      "commonMistakes": ["Port-forwarding experimental services to the internet"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_virtualization" },
+        { "refType": "article", "refId": "enc_containers" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_virtualization"],
+      "tags": ["homelab"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_developer-security",
+      "title": "Developer security",
+      "purpose": "Reduce dependency and secrets risk in software delivery.",
+      "whenToUse": "Developers and small product teams.",
+      "prerequisites": ["Access to dependency manifests"],
+      "practices": [
+        "Know major libraries in production (e.g., logging stacks)",
+        "Pin versions and review advisories",
+        "Keep secrets out of repos",
+        "Use MFA on source hosts"
+      ],
+      "commonMistakes": ["Assuming frameworks auto-heal transitive CVEs"],
+      "additionalReading": [
+        { "refType": "article", "refId": "enc_cve-log4shell" },
+        { "refType": "article", "refId": "enc_dev-tools" }
+      ],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": ["cy_software-log4j", "cy_cve-2021-44228"],
+      "relatedArticleIds": ["enc_concept-dependency-risk"],
+      "tags": ["developers"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_network-security",
+      "title": "Network security awareness",
+      "purpose": "Reduce unnecessary exposure and understand blast radius.",
+      "whenToUse": "Homes, labs, and small offices.",
+      "prerequisites": ["Router admin access"],
+      "practices": [
+        "Change default router credentials",
+        "Keep firmware updated",
+        "Disable unused remote admin",
+        "Segment IoT when practical"
+      ],
+      "commonMistakes": ["UPnP surprises on sensitive hosts"],
+      "additionalReading": [{ "refType": "article", "refId": "enc_concept-networking" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-networking"],
+      "tags": ["network"],
+      "forbidOffense": true
+    },
+    {
+      "id": "pb_cyber-hygiene",
+      "title": "Cyber hygiene",
+      "purpose": "Daily/weekly habits that compound into preparedness.",
+      "whenToUse": "Everyone — quieter seasons included.",
+      "prerequisites": ["Willingness to spend small regular time"],
+      "practices": [
+        "Update devices weekly",
+        "Check backup status monthly",
+        "Review account MFA quarterly",
+        "Bookmark trusted vendor/government guidance"
+      ],
+      "commonMistakes": ["Only acting during headline panic"],
+      "additionalReading": [{ "refType": "article", "refId": "enc_concept-patching" }],
+      "version": "0.1.0",
+      "versionHistory": [{ "version": "0.1.0", "at": "2026-07-18", "note": "Initial sample" }],
+      "references": [],
+      "relatedSubjectIds": [],
+      "relatedArticleIds": ["enc_concept-patching"],
+      "tags": ["hygiene"],
+      "forbidOffense": true
+    }
+  ]
+}

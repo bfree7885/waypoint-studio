@@ -23,6 +23,11 @@
       "docs/EXPOSURE-ANALYSIS.md",
       "docs/CYBER-SEASONS.md",
       "docs/REASONING-ENGINE.md",
+      "docs/KNOWLEDGE-PLATFORM.md",
+      "docs/CYBER-ENCYCLOPEDIA.md",
+      "docs/PLAYBOOKS.md",
+      "docs/INCIDENT-LIBRARY.md",
+      "docs/LEARNING-PATHS.md",
       "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md"
     ]
   },
@@ -64,7 +69,10 @@
     "advisor": "advisor/",
     "advisorRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-advisor.js",
     "advisorSurface": "../../../../apps/signalterrain/cyber/advisor.html",
-    "inventoryRuntime": "../../../js/signalterrain/wds-signalterrain-inventory.js"
+    "inventoryRuntime": "../../../js/signalterrain/wds-signalterrain-inventory.js",
+    "knowledge": "knowledge/",
+    "knowledgeRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-knowledge.js",
+    "knowledgeSurface": "../../../../apps/signalterrain/cyber/knowledge.html"
   },
   "notInScopeV01": [
     "IDS",

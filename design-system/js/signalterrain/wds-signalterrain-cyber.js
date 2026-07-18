@@ -171,6 +171,7 @@
         '<p><a href="brief.html">Open today’s Daily Cyber Brief</a> — calm attention, transparent why.</p>' +
         '<p><a href="explorer.html">Open Cyber Intelligence Explorer</a> — relationships, timeline, map.</p>' +
         '<p><a href="advisor.html">Open Adaptive Defense Advisor</a> — what should I do differently today?</p>' +
+        '<p><a href="knowledge.html">Open Defensive Knowledge</a> — encyclopedia, playbooks, learning paths.</p>' +
         "<p>Entity counts: " +
         esc(JSON.stringify(kinds)) +
         "</p>" +
@@ -300,6 +301,7 @@
         '<li><a href="brief.html">Daily cyber brief</a></li>' +
         '<li><a href="explorer.html">Cyber intelligence explorer</a></li>' +
         '<li><a href="advisor.html">Adaptive defense advisor</a></li>' +
+        '<li><a href="knowledge.html">Defensive knowledge</a></li>' +
         '<li><a href="ingest-health.html">Ingest health (internal diagnostics)</a></li>' +
         "</ul>"
       );

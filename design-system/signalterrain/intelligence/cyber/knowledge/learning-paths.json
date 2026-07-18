@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Guided learning tracks — curiosity paths, not graded certification. Steps reference encyclopedia, playbooks, incidents, and shared cy_* entities."
+  },
+  "paths": [
+    {
+      "id": "lp_fundamentals",
+      "title": "Cybersecurity Fundamentals",
+      "summary": "Core literacy: patching, identity, backups, and how to read an advisory.",
+      "estimatedHours": 4,
+      "difficulty": "intro",
+      "prerequisites": [],
+      "steps": [
+        { "title": "Patching as practice", "refType": "article", "refId": "enc_concept-patching", "minutes": 20 },
+        { "title": "Authentication & MFA", "refType": "article", "refId": "enc_concept-authentication", "minutes": 25 },
+        { "title": "Backups", "refType": "article", "refId": "enc_concept-backups", "minutes": 20 },
+        { "title": "Cyber hygiene playbook", "refType": "playbook", "refId": "pb_cyber-hygiene", "minutes": 30 },
+        { "title": "Heartbleed teaching case", "refType": "incident", "refId": "inc_heartbleed-2014", "minutes": 35 }
+      ],
+      "tags": ["fundamentals"]
+    },
+    {
+      "id": "lp_linux-security",
+      "title": "Linux Security",
+      "summary": "Workstation hygiene and OpenSSL-era lessons for Linux users.",
+      "estimatedHours": 3,
+      "difficulty": "intro",
+      "prerequisites": ["Basic Linux desktop familiarity"],
+      "steps": [
+        { "title": "Linux literacy", "refType": "article", "refId": "enc_os-linux", "minutes": 20 },
+        { "title": "Linux workstation playbook", "refType": "playbook", "refId": "pb_linux-workstation", "minutes": 35 },
+        { "title": "Encryption basics", "refType": "article", "refId": "enc_concept-encryption", "minutes": 25 },
+        { "title": "Heartbleed article", "refType": "article", "refId": "enc_cve-heartbleed", "minutes": 30 },
+        { "title": "OpenSSL entity in graph", "refType": "entity", "refId": "cy_software-openssl", "minutes": 15 }
+      ],
+      "tags": ["linux"]
+    },
+    {
+      "id": "lp_developer-security",
+      "title": "Developer Security",
+      "summary": "Dependencies, Log4Shell literacy, and defensive delivery habits.",
+      "estimatedHours": 5,
+      "difficulty": "intermediate",
+      "prerequisites": ["Can read a dependency manifest"],
+      "steps": [
+        { "title": "Dependency risk", "refType": "article", "refId": "enc_concept-dependency-risk", "minutes": 25 },
+        { "title": "Log4Shell encyclopedia", "refType": "article", "refId": "enc_cve-log4shell", "minutes": 35 },
+        { "title": "Developer playbook", "refType": "playbook", "refId": "pb_developer-security", "minutes": 40 },
+        { "title": "Log4Shell incident", "refType": "incident", "refId": "inc_log4shell-2021", "minutes": 30 },
+        { "title": "Dev tools hygiene", "refType": "article", "refId": "enc_dev-tools", "minutes": 20 }
+      ],
+      "tags": ["developers"]
+    },
+    {
+      "id": "lp_network-security",
+      "title": "Network Security",
+      "summary": "Exposure literacy and small-network defensive habits.",
+      "estimatedHours": 3,
+      "difficulty": "intro",
+      "prerequisites": [],
+      "steps": [
+        { "title": "Network exposure", "refType": "article", "refId": "enc_concept-networking", "minutes": 20 },
+        { "title": "Network playbook", "refType": "playbook", "refId": "pb_network-security", "minutes": 30 },
+        { "title": "EternalBlue literacy", "refType": "article", "refId": "enc_cve-eternalblue", "minutes": 30 },
+        { "title": "WannaCry incident", "refType": "incident", "refId": "inc_wannacry-2017", "minutes": 30 }
+      ],
+      "tags": ["network"]
+    },
+    {
+      "id": "lp_cloud-security",
+      "title": "Cloud Security",
+      "summary": "Shared responsibility, identity, and outage-season resilience.",
+      "estimatedHours": 3.5,
+      "difficulty": "intermediate",
+      "prerequisites": ["lp_fundamentals recommended"],
+      "steps": [
+        { "title": "Cloud fundamentals", "refType": "article", "refId": "enc_cloud-security", "minutes": 25 },
+        { "title": "Cloud playbook", "refType": "playbook", "refId": "pb_cloud-security", "minutes": 35 },
+        { "title": "Identity", "refType": "article", "refId": "enc_concept-identity", "minutes": 20 },
+        { "title": "Outage awareness incident", "refType": "incident", "refId": "inc_cloud-outage-awareness", "minutes": 20 }
+      ],
+      "tags": ["cloud"]
+    },
+    {
+      "id": "lp_identity",
+      "title": "Identity",
+      "summary": "MFA, account recovery, and identity-season preparedness.",
+      "estimatedHours": 2.5,
+      "difficulty": "intro",
+      "prerequisites": [],
+      "steps": [
+        { "title": "Identity concept", "refType": "article", "refId": "enc_concept-identity", "minutes": 20 },
+        { "title": "Authentication", "refType": "article", "refId": "enc_concept-authentication", "minutes": 25 },
+        { "title": "MFA playbook", "refType": "playbook", "refId": "pb_mfa", "minutes": 25 },
+        { "title": "Identity protection playbook", "refType": "playbook", "refId": "pb_identity-protection", "minutes": 30 }
+      ],
+      "tags": ["identity"]
+    },
+    {
+      "id": "lp_incident-response-awareness",
+      "title": "Incident Response Awareness",
+      "summary": "Learn from history — preparedness without offensive playbooks.",
+      "estimatedHours": 4,
+      "difficulty": "intermediate",
+      "prerequisites": ["lp_fundamentals"],
+      "steps": [
+        { "title": "NotPetya lessons", "refType": "incident", "refId": "inc_notpetya-2017", "minutes": 35 },
+        { "title": "SolarWinds literacy", "refType": "incident", "refId": "inc_solarwinds-2020", "minutes": 35 },
+        { "title": "Supply-chain concept", "refType": "article", "refId": "enc_concept-supply-chain", "minutes": 25 },
+        { "title": "Backup playbook", "refType": "playbook", "refId": "pb_backup-strategies", "minutes": 30 }
+      ],
+      "tags": ["incident-response", "awareness"]
+    },
+    {
+      "id": "lp_cyber-hygiene",
+      "title": "Cyber Hygiene",
+      "summary": "Small recurring practices that compound.",
+      "estimatedHours": 2,
+      "difficulty": "intro",
+      "prerequisites": [],
+      "steps": [
+        { "title": "Hygiene playbook", "refType": "playbook", "refId": "pb_cyber-hygiene", "minutes": 25 },
+        { "title": "Browser hardening", "refType": "playbook", "refId": "pb_browser-hardening", "minutes": 25 },
+        { "title": "Patch concept", "refType": "article", "refId": "enc_concept-patching", "minutes": 20 },
+        { "title": "Backups", "refType": "playbook", "refId": "pb_backup-strategies", "minutes": 30 }
+      ],
+      "tags": ["hygiene"]
+    }
+  ]
+}

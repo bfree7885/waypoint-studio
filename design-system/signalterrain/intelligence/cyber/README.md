@@ -24,6 +24,11 @@ Extends SignalTerrain Intelligence Core. Not IDS, SIEM, scanner, or offense.
 - [EXPOSURE-ANALYSIS.md](../../../../docs/EXPOSURE-ANALYSIS.md)
 - [CYBER-SEASONS.md](../../../../docs/CYBER-SEASONS.md)
 - [REASONING-ENGINE.md](../../../../docs/REASONING-ENGINE.md)
+- [KNOWLEDGE-PLATFORM.md](../../../../docs/KNOWLEDGE-PLATFORM.md)
+- [CYBER-ENCYCLOPEDIA.md](../../../../docs/CYBER-ENCYCLOPEDIA.md)
+- [PLAYBOOKS.md](../../../../docs/PLAYBOOKS.md)
+- [INCIDENT-LIBRARY.md](../../../../docs/INCIDENT-LIBRARY.md)
+- [LEARNING-PATHS.md](../../../../docs/LEARNING-PATHS.md)
 
 ## Rules
 
@@ -36,4 +41,5 @@ Extends SignalTerrain Intelligence Core. Not IDS, SIEM, scanner, or offense.
 7. Ingestion pipeline lives at `ingestion/` — independent connectors, mock in V0.1.  
 8. Daily briefing lives at `briefing/` — calm attention, transparent why.  
 9. Intelligence explorer lives at `explorer/` — relationships, timeline, coarse map; reuses shared graph.  
-10. Adaptive advisor lives at `advisor/` — profile + inventory → explainable defensive actions.
+10. Adaptive advisor lives at `advisor/` — profile + inventory → explainable defensive actions.  
+11. Defensive knowledge lives at `knowledge/` — encyclopedia/playbooks/incidents linked to shared graph.

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/learning-path/v0.1",
+  "title": "Learning path V0.1",
+  "type": "object",
+  "required": ["id", "title", "steps", "estimatedHours", "difficulty"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^lp_" },
+    "title": { "type": "string" },
+    "summary": { "type": "string" },
+    "estimatedHours": { "type": "number" },
+    "difficulty": { "type": "string", "enum": ["intro", "intermediate", "advanced"] },
+    "prerequisites": { "type": "array", "items": { "type": "string" } },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "refType", "refId"],
+        "properties": {
+          "title": { "type": "string" },
+          "refType": { "type": "string", "enum": ["article", "playbook", "incident", "entity"] },
+          "refId": { "type": "string" },
+          "minutes": { "type": "number" }
+        }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

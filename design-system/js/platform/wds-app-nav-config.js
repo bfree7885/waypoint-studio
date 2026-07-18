@@ -403,6 +403,11 @@
           "href": "apps/signalterrain/cyber/advisor.html"
         },
         {
+          "id": "cyber-knowledge",
+          "label": "Defensive knowledge",
+          "href": "apps/signalterrain/cyber/knowledge.html"
+        },
+        {
           "id": "cyber-ingest-health",
           "label": "Cyber ingest (internal)",
           "href": "apps/signalterrain/cyber/ingest-health.html"

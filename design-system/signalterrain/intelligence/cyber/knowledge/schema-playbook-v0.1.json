@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/playbook/v0.1",
+  "title": "Defensive playbook V0.1",
+  "type": "object",
+  "required": ["id", "title", "purpose", "whenToUse", "practices", "version"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^pb_" },
+    "title": { "type": "string" },
+    "purpose": { "type": "string" },
+    "whenToUse": { "type": "string" },
+    "prerequisites": { "type": "array", "items": { "type": "string" } },
+    "practices": { "type": "array", "items": { "type": "string" } },
+    "commonMistakes": { "type": "array", "items": { "type": "string" } },
+    "additionalReading": { "type": "array" },
+    "version": { "type": "string" },
+    "versionHistory": { "type": "array" },
+    "references": { "type": "array" },
+    "relatedSubjectIds": { "type": "array", "items": { "type": "string" } },
+    "relatedArticleIds": { "type": "array", "items": { "type": "string" } },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "forbidOffense": { "type": "boolean", "const": true }
+  }
+}

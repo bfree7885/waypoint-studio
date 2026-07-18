@@ -43,6 +43,12 @@
 | [CYBER-SEASONS.md](CYBER-SEASONS.md) | Educational cyber landscape seasons |
 | [REASONING-ENGINE.md](REASONING-ENGINE.md) | Advisor decision paths & assumptions |
 | [ADAPTIVE-DEFENSE-ADVISOR-COMPLETION-REPORT.md](ADAPTIVE-DEFENSE-ADVISOR-COMPLETION-REPORT.md) | Work Block 6 completion / owner QA |
+| [KNOWLEDGE-PLATFORM.md](KNOWLEDGE-PLATFORM.md) | Defensive Knowledge Platform overview |
+| [CYBER-ENCYCLOPEDIA.md](CYBER-ENCYCLOPEDIA.md) | Encyclopedia article model |
+| [PLAYBOOKS.md](PLAYBOOKS.md) | Defensive playbooks |
+| [INCIDENT-LIBRARY.md](INCIDENT-LIBRARY.md) | Historical incident records |
+| [LEARNING-PATHS.md](LEARNING-PATHS.md) | Guided learning tracks |
+| [KNOWLEDGE-PLATFORM-COMPLETION-REPORT.md](KNOWLEDGE-PLATFORM-COMPLETION-REPORT.md) | Work Block 7 completion / owner QA |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |

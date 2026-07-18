@@ -25,7 +25,12 @@
       "docs/SECURITY-PROFILES.md",
       "docs/EXPOSURE-ANALYSIS.md",
       "docs/CYBER-SEASONS.md",
-      "docs/REASONING-ENGINE.md"
+      "docs/REASONING-ENGINE.md",
+      "docs/KNOWLEDGE-PLATFORM.md",
+      "docs/CYBER-ENCYCLOPEDIA.md",
+      "docs/PLAYBOOKS.md",
+      "docs/INCIDENT-LIBRARY.md",
+      "docs/LEARNING-PATHS.md"
     ]
   },
   "package": {

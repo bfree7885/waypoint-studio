@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Historical incident literacy. Educational summaries only. SubjectIds reference shared cy_* entities — no duplicate campaign models."
+  },
+  "incidents": [
+    {
+      "id": "inc_wannacry-2017",
+      "title": "WannaCry ransomware wave (2017)",
+      "kind": "ransomware-campaign",
+      "background": "A widely reported ransomware event associated in public literacy with EternalBlue-era Windows SMB exposure.",
+      "timeline": [
+        { "at": "2017-03", "text": "MS17-010 patch available" },
+        { "at": "2017-05", "text": "Global public awareness window" }
+      ],
+      "affectedTechnologies": ["Windows (SMBv1 pathways)", "Unpatched hosts"],
+      "lessonsLearned": [
+        "Deferred platform patches create shared risk",
+        "Network exposure amplifies wormable defects",
+        "Backups and segmentation limit blast radius"
+      ],
+      "mitigations": ["Apply MS17-010-class patches", "Disable SMBv1 where appropriate", "Verify backups"],
+      "longTermImpact": "Became a lasting teaching case for patch latency and ransomware preparedness.",
+      "relatedIncidentIds": ["inc_notpetya-2017"],
+      "subjectIds": ["cy_ransomware-wannacry", "cy_cve-2017-0144", "cy_te-wannacry", "cy_patch-ms17-010"],
+      "relatedPlaybookIds": ["pb_windows-workstation", "pb_backup-strategies", "pb_patch-management"],
+      "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+    },
+    {
+      "id": "inc_notpetya-2017",
+      "title": "NotPetya disruption (2017)",
+      "kind": "ransomware-campaign",
+      "background": "A destructive event often discussed alongside EternalBlue-era exposure — educational continental awareness, not precise victim mapping.",
+      "timeline": [{ "at": "2017-06", "text": "Public disruption narratives" }],
+      "affectedTechnologies": ["Windows estates", "Enterprise networks"],
+      "lessonsLearned": [
+        "Not all ‘ransomware’ is primarily for ransom",
+        "Recovery planning matters as much as prevention",
+        "Trusted internal propagation paths can be abused"
+      ],
+      "mitigations": ["Patching", "Segmentation", "Offline backups", "Privileged access hygiene"],
+      "longTermImpact": "Strengthened global conversation about destructive malware vs crimeware.",
+      "relatedIncidentIds": ["inc_wannacry-2017"],
+      "subjectIds": ["cy_campaign-notpetya", "cy_te-notpetya", "cy_cve-2017-0144"],
+      "relatedPlaybookIds": ["pb_backup-strategies", "pb_network-security"],
+      "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+    },
+    {
+      "id": "inc_solarwinds-2020",
+      "title": "SolarWinds supply-chain compromise (literacy)",
+      "kind": "supply-chain",
+      "background": "Public discourse around Orion-related supply-chain compromise elevated vendor trust and update integrity as first-class concerns.",
+      "timeline": [{ "at": "2020", "text": "Public awareness of supply-chain narratives" }],
+      "affectedTechnologies": ["SolarWinds Orion (teaching sample)", "Enterprise monitoring stacks"],
+      "lessonsLearned": [
+        "Update channels are high-value trust surfaces",
+        "Inventory of vendor software is strategic",
+        "Detection and recovery planning must assume trusted pipes can fail"
+      ],
+      "mitigations": ["Vendor advisory monitoring", "Least privilege on management tools", "Integrity verification practices"],
+      "longTermImpact": "Normalized supply-chain risk in board and public conversations.",
+      "relatedIncidentIds": ["inc_log4shell-2021"],
+      "subjectIds": ["cy_campaign-solarwinds", "cy_software-orion", "cy_te-solarwinds"],
+      "relatedPlaybookIds": ["pb_patch-management", "pb_small-business"],
+      "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+    },
+    {
+      "id": "inc_log4shell-2021",
+      "title": "Log4Shell disclosure wave (2021)",
+      "kind": "large-scale-vulnerability",
+      "background": "A critical Log4j 2 vulnerability disclosure that forced worldwide dependency inventory conversations.",
+      "timeline": [
+        { "at": "2021-12", "text": "Public disclosure" },
+        { "at": "2021-12+", "text": "Advisory and patch waves" }
+      ],
+      "affectedTechnologies": ["Apache Log4j 2", "Java services"],
+      "lessonsLearned": [
+        "Transitive dependencies hide risk",
+        "SBOMs and inventory beat panic scanning theater",
+        "Vendor guidance should be read calmly and completely"
+      ],
+      "mitigations": ["Upgrade Log4j per vendor guidance", "Inventory Java services", "Follow public KEV-oriented literacy"],
+      "longTermImpact": "Permanent shift toward dependency awareness in developer security.",
+      "relatedIncidentIds": ["inc_solarwinds-2020", "inc_moveit-2023"],
+      "subjectIds": ["cy_cve-2021-44228", "cy_software-log4j", "cy_patch-log4j", "cy_te-log4shell"],
+      "relatedPlaybookIds": ["pb_developer-security", "pb_patch-management"],
+      "citations": [{ "label": "CISA", "kind": "government", "url": "https://www.cisa.gov/" }]
+    },
+    {
+      "id": "inc_moveit-2023",
+      "title": "MOVEit exploitation campaigns (2023 literacy)",
+      "kind": "large-scale-vulnerability",
+      "background": "Public campaigns around Progress MOVEit Transfer vulnerabilities highlighted file-transfer exposure in enterprises.",
+      "timeline": [{ "at": "2023", "text": "Public exploitation and advisory waves" }],
+      "affectedTechnologies": ["Progress MOVEit Transfer"],
+      "lessonsLearned": [
+        "Niche enterprise apps can be high-impact",
+        "Internet-facing file transfer needs urgent patch discipline"
+      ],
+      "mitigations": ["Apply vendor patches", "Reduce internet exposure", "Monitor vendor advisories"],
+      "longTermImpact": "Reinforced attention on managed file-transfer estates.",
+      "relatedIncidentIds": ["inc_log4shell-2021"],
+      "subjectIds": ["cy_campaign-moveit-2023", "cy_software-moveit", "cy_cve-2023-34362"],
+      "relatedPlaybookIds": ["pb_patch-management", "pb_small-business"],
+      "citations": [{ "label": "Public vendor/government reporting", "kind": "vendor" }]
+    },
+    {
+      "id": "inc_cloud-outage-awareness",
+      "title": "Large public cloud outage awareness (placeholder literacy)",
+      "kind": "cloud-outage",
+      "background": "Cloud outage days may dominate headlines while vulnerability volume is quiet. This record teaches resilience literacy without inventing a specific outage.",
+      "timeline": [],
+      "affectedTechnologies": ["Public cloud dependencies"],
+      "lessonsLearned": [
+        "Map critical dependencies",
+        "Status pages and communication plans matter",
+        "Backups and multi-region thinking are resilience, not panic"
+      ],
+      "mitigations": ["Dependency maps", "Documented failover expectations", "Customer communication templates"],
+      "longTermImpact": "Keeps outage seasons in the knowledge library without fabricating incidents.",
+      "relatedIncidentIds": [],
+      "subjectIds": [],
+      "relatedPlaybookIds": ["pb_cloud-security", "pb_backup-strategies"],
+      "citations": []
+    },
+    {
+      "id": "inc_heartbleed-2014",
+      "title": "Heartbleed disclosure (2014)",
+      "kind": "large-scale-vulnerability",
+      "background": "OpenSSL heartbeat memory disclosure that forced global certificate and key rotation conversations.",
+      "timeline": [{ "at": "2014-04-07", "text": "Public disclosure" }],
+      "affectedTechnologies": ["OpenSSL", "TLS services"],
+      "lessonsLearned": [
+        "Crypto libraries are infrastructure",
+        "Disclosure coordination shapes public trust",
+        "Rotation and patching are twin responses"
+      ],
+      "mitigations": ["Patch OpenSSL", "Rotate keys/certs as advised", "Inventory TLS endpoints"],
+      "longTermImpact": "Canonical example in vulnerability history courses.",
+      "relatedIncidentIds": ["inc_log4shell-2021"],
+      "subjectIds": ["cy_cve-2014-0160", "cy_software-openssl", "cy_te-heartbleed"],
+      "relatedPlaybookIds": ["pb_linux-workstation", "pb_patch-management"],
+      "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+    },
+    {
+      "id": "inc_infrastructure-dns-literacy",
+      "title": "Internet infrastructure event literacy",
+      "kind": "infrastructure-event",
+      "background": "Placeholder for DNS/CDN-scale public incidents — teaches dependency awareness without naming unverified operational details.",
+      "timeline": [],
+      "affectedTechnologies": ["DNS", "CDN", "Authoritative resolvers"],
+      "lessonsLearned": [
+        "Infrastructure concentration creates correlated outages",
+        "Monitoring and calm communications beat speculation"
+      ],
+      "mitigations": ["Understand DNS dependencies", "Document escalation contacts"],
+      "longTermImpact": "Keeps infrastructure literacy in the library for teaching.",
+      "relatedIncidentIds": ["inc_cloud-outage-awareness"],
+      "subjectIds": [],
+      "relatedPlaybookIds": ["pb_network-security"],
+      "citations": []
+    }
+  ]
+}

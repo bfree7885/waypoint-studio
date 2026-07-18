@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/knowledge-article/v0.1",
+  "title": "Cyber encyclopedia article V0.1",
+  "type": "object",
+  "required": ["id", "kind", "title", "summary", "learningLevel", "lastReviewed", "subjectIds"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^enc_" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "vulnerability",
+        "malware-family",
+        "ransomware-family",
+        "threat-campaign",
+        "security-concept",
+        "networking-concept",
+        "authentication",
+        "encryption",
+        "identity",
+        "cloud-security",
+        "containers",
+        "virtualization",
+        "operating-system",
+        "browser",
+        "programming-language",
+        "developer-tool",
+        "security-framework",
+        "standard"
+      ]
+    },
+    "title": { "type": "string" },
+    "summary": { "type": "string" },
+    "history": { "type": "string" },
+    "howItWorks": { "type": "string" },
+    "whyItMatters": { "type": "string" },
+    "timeline": { "type": "array", "items": { "type": "object" } },
+    "subjectIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Shared cy_* / st_* / wk_* ids — no duplicated models"
+    },
+    "relatedArticleIds": { "type": "array", "items": { "type": "string" } },
+    "relatedPlaybookIds": { "type": "array", "items": { "type": "string" } },
+    "references": { "type": "array" },
+    "citations": { "type": "array" },
+    "learningLevel": { "type": "string", "enum": ["intro", "intermediate", "advanced"] },
+    "lastReviewed": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } }
+  }
+}

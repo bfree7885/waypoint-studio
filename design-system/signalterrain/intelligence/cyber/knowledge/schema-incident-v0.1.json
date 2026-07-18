@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/incident-record/v0.1",
+  "title": "Historical incident record V0.1",
+  "type": "object",
+  "required": ["id", "title", "background", "subjectIds", "lessonsLearned"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^inc_" },
+    "title": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ransomware-campaign",
+        "supply-chain",
+        "cloud-outage",
+        "large-scale-vulnerability",
+        "infrastructure-event"
+      ]
+    },
+    "background": { "type": "string" },
+    "timeline": { "type": "array" },
+    "affectedTechnologies": { "type": "array", "items": { "type": "string" } },
+    "lessonsLearned": { "type": "array", "items": { "type": "string" } },
+    "mitigations": { "type": "array", "items": { "type": "string" } },
+    "longTermImpact": { "type": "string" },
+    "relatedIncidentIds": { "type": "array", "items": { "type": "string" } },
+    "subjectIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Primary cy_* campaign/CVE/timeline subjects"
+    },
+    "relatedPlaybookIds": { "type": "array", "items": { "type": "string" } },
+    "citations": { "type": "array" }
+  }
+}

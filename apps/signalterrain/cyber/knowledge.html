@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Defensive Knowledge — encyclopedia, playbooks, incidents, and learning paths. Educational only.">
+  <title>Defensive Knowledge — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-knowledge { max-width: 52rem; }
+    .st-cyber-nav ul { display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; list-style: none; padding: 0; margin: 1rem 0 1.5rem; }
+    .st-cyber-nav a { color: var(--st-accent, #3a5348); text-decoration: none; border-bottom: 1px solid transparent; }
+    .st-cyber-nav a[aria-current="page"] { border-bottom-color: var(--st-accent, #3a5348); font-weight: 600; }
+    .st-cyber-list { list-style: none; padding: 0; }
+    .st-cyber-list li { padding: 0.75rem 0; border-top: 1px solid var(--st-line, #d2ccc0); }
+    .st-k-links { margin-top: 1.25rem; padding: 1rem; background: var(--st-panel, #faf8f3); border: 1px solid var(--st-line, #d2ccc0); }
+    .st-graph-nodes li.is-focus { background: #f3efe6; }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p>
+        <a class="st-back" href="./">← Cyber Awareness</a>
+        ·
+        <a class="st-back" href="explorer.html">Explorer</a>
+        ·
+        <a class="st-back" href="advisor.html">Advisor</a>
+        ·
+        <a class="st-back" href="brief.html">Daily brief</a>
+      </p>
+      <noscript>
+        <section>
+          <h1>Defensive Knowledge Platform</h1>
+          <p>Encyclopedia, playbooks, historical incidents, and learning paths interconnected with the shared cyber graph. Educational and defensive only. Enable JavaScript to browse.</p>
+        </section>
+      </noscript>
+      <div id="st-knowledge-mount" aria-busy="true">
+        <p class="st-loading">Opening Defensive Knowledge Platform…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-research.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-knowledge.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.signalTerrainCyberKnowledge) {
+        WDS.signalTerrainCyberKnowledge.mountKnowledge(document.getElementById("st-knowledge-mount"), {
+          base: "../../../design-system/signalterrain/intelligence/cyber/",
+          knowledgeBase: "../../../design-system/signalterrain/intelligence/cyber/knowledge/"
+        });
+      }
+    });
+  </script>
+</body>
+</html>
