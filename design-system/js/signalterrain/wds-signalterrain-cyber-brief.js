@@ -5,7 +5,13 @@
 (function (global) {
   "use strict";
 
+  function Util() {
+    return global.WDS && global.WDS.signalTerrainUtil;
+  }
+
   function esc(s) {
+    var u = Util();
+    if (u && u.esc) return u.esc(s);
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -14,6 +20,8 @@
   }
 
   function loadJson(url) {
+    var u = Util();
+    if (u && u.loadJson) return u.loadJson(url);
     return fetch(url, { credentials: "same-origin" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();

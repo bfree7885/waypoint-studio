@@ -8,8 +8,17 @@
 
   var CACHE_PREFIX = "wds.st.cyber.ingest.v01.";
 
+  function Util() {
+    return global.WDS && global.WDS.signalTerrainUtil;
+  }
+
   function esc(s) {
-    return String(s == null ? "" : s);
+    if (Util() && Util().esc) return Util().esc(s);
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
 
   function nowIso() {

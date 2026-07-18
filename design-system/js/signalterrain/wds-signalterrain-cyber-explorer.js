@@ -9,7 +9,13 @@
   var TIMELINE_PAGE = 12;
   var LAYER_CACHE_KEY = "cyber_map_layers";
 
+  function Util() {
+    return global.WDS && global.WDS.signalTerrainUtil;
+  }
+
   function esc(s) {
+    var u = Util();
+    if (u && u.esc) return u.esc(s);
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -18,6 +24,8 @@
   }
 
   function loadJson(url) {
+    var u = Util();
+    if (u && u.loadJson) return u.loadJson(url);
     return fetch(url, { credentials: "same-origin" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();
@@ -33,16 +41,29 @@
   }
 
   function parseHash() {
-    var h = String(global.location.hash || "").replace(/^#/, "");
-    if (!h) return { panel: "overview", detail: null, id: null };
-    var parts = h.split("/");
-    if (parts[0] === "product" || parts[0] === "campaign" || parts[0] === "entity") {
-      return { panel: parts[0], detail: parts[0], id: parts[1] || null };
+    var u = Util();
+    var raw =
+      u && u.parseHash
+        ? u.parseHash()
+        : (function () {
+            var h = String(global.location.hash || "").replace(/^#/, "");
+            if (!h) return { panel: null, id: null };
+            var parts = h.split("/");
+            return { panel: parts[0] || null, id: parts[1] || null };
+          })();
+    var panel = raw.panel || "overview";
+    if (panel === "product" || panel === "campaign" || panel === "entity") {
+      return { panel: panel, detail: panel, id: raw.id || null };
     }
-    return { panel: parts[0], detail: null, id: parts[1] || null };
+    return { panel: panel, detail: null, id: raw.id || null };
   }
 
   function setHash(panel, id) {
+    var u = Util();
+    if (u && u.setHash) {
+      u.setHash(panel, id);
+      return;
+    }
     var next = id ? panel + "/" + id : panel;
     if (String(global.location.hash || "").replace(/^#/, "") !== next) {
       global.location.hash = next;

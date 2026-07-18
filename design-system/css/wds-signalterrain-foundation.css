@@ -513,3 +513,52 @@
 .st-summary-foot a {
   color: var(--st-muted);
 }
+
+/* Shared cyber sub-nav chrome (hash panels + peer links) */
+.st-cyber-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+}
+
+.st-cyber-nav a {
+  color: var(--st-accent, #3a5348);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.st-cyber-nav a[aria-current="page"],
+.st-cyber-nav a[aria-current="true"] {
+  border-bottom-color: var(--st-accent, #3a5348);
+  font-weight: 600;
+}
+
+.st-cyber-list {
+  list-style: none;
+  padding: 0;
+}
+
+.st-cyber-list li {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--st-line, #d2ccc0);
+}
+
+.st-cyber-peers {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.st-cyber-peers a {
+  color: var(--st-accent, #3a5348);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.st-cyber-peers a:hover {
+  border-bottom-color: var(--st-accent, #3a5348);
+}
+

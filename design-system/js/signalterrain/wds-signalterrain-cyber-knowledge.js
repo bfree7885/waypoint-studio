@@ -7,7 +7,13 @@
 (function (global) {
   "use strict";
 
+  function Util() {
+    return global.WDS && global.WDS.signalTerrainUtil;
+  }
+
   function esc(s) {
+    var u = Util();
+    if (u && u.esc) return u.esc(s);
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -16,6 +22,8 @@
   }
 
   function loadJson(url) {
+    var u = Util();
+    if (u && u.loadJson) return u.loadJson(url);
     return fetch(url, { credentials: "same-origin" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();
@@ -415,6 +423,11 @@
   }
 
   function parseHash() {
+    var u = Util();
+    if (u && u.parseHash) {
+      var raw = u.parseHash();
+      return { panel: raw.panel || "overview", id: raw.id || null };
+    }
     var h = String(global.location.hash || "").replace(/^#/, "");
     if (!h) return { panel: "overview", id: null };
     var parts = h.split("/");
@@ -422,6 +435,11 @@
   }
 
   function setHash(panel, id) {
+    var u = Util();
+    if (u && u.setHash) {
+      u.setHash(panel, id);
+      return;
+    }
     var next = id ? panel + "/" + id : panel;
     if (String(global.location.hash || "").replace(/^#/, "") !== next) {
       global.location.hash = next;
@@ -457,7 +475,6 @@
     ]).then(function (parts) {
       var loaded = parts[0];
       var graph = loaded.graph;
-      graph.entities = loaded.bundle.entities;
       if (Research()) Research().loadSeed((parts[5] && parts[5].items) || []);
 
       state.index = createIndex({

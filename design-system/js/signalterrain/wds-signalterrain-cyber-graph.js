@@ -109,6 +109,10 @@
       });
     }
 
+    function listEntities() {
+      return entities.slice();
+    }
+
     function listKinds() {
       var set = {};
       entities.forEach(function (e) {
@@ -117,16 +121,26 @@
       return set;
     }
 
-    return {
-      entities: entities,
+    // Expose entities as a read-only view of the closed-over array so callers
+    // cannot desync byKind/get by reassigning graph.entities to a new array.
+    var api = {
       relationships: rels,
       get: get,
       neighbors: neighbors,
       findPath: findPath,
       traverseAttentionChain: traverseAttentionChain,
       byKind: byKind,
-      listKinds: listKinds
+      listKinds: listKinds,
+      listEntities: listEntities
     };
+    Object.defineProperty(api, "entities", {
+      enumerable: true,
+      configurable: false,
+      get: function () {
+        return entities;
+      }
+    });
+    return api;
   }
 
   function loadBundle(url) {

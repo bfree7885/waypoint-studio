@@ -9,7 +9,13 @@
   var PROFILE_KEY = "st_security_profile_v1";
   var SNAPSHOT_KEY = "st_advisor_snapshot_v1";
 
+  function Util() {
+    return global.WDS && global.WDS.signalTerrainUtil;
+  }
+
   function esc(s) {
+    var u = Util();
+    if (u && u.esc) return u.esc(s);
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -18,6 +24,8 @@
   }
 
   function loadJson(url) {
+    var u = Util();
+    if (u && u.loadJson) return u.loadJson(url);
     return fetch(url, { credentials: "same-origin" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();
@@ -607,7 +615,11 @@
       }
     }
     var blob = "";
-    (graph.entities || []).forEach(function (e) {
+    var entities =
+      graph && typeof graph.listEntities === "function"
+        ? graph.listEntities()
+        : (graph && graph.entities) || [];
+    entities.forEach(function (e) {
       blob += " " + e.kind + " " + e.title + " " + (e.summary || "");
     });
     blob = blob.toLowerCase();
@@ -857,8 +869,6 @@
       Priority() ? Priority().loadRules(base) : Promise.resolve({ factors: null, rules: null })
     ]).then(function (parts) {
       var graph = parts[0].graph;
-      // Attach entities for season detection
-      graph.entities = parts[0].bundle.entities;
       var profileCatalog = parts[1];
       var postureCategories = parts[2].categories || [];
       var seasonsDoc = parts[3];

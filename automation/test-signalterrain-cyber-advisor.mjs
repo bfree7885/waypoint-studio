@@ -123,7 +123,6 @@ const bundle = JSON.parse(readFileSync(join(cyber, "samples/cyber-intelligence.s
 const factors = JSON.parse(readFileSync(join(cyber, "priority-factors.json"), "utf8"));
 const rules = JSON.parse(readFileSync(join(cyber, "priority-rules.json"), "utf8"));
 const graph = Graph.createGraph(bundle);
-graph.entities = bundle.entities;
 
 Inventory.loadSample(invDev.items);
 const profile = {

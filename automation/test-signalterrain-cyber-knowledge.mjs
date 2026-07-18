@@ -113,7 +113,6 @@ ok(!!Knowledge?.createIndex, "createIndex");
 
 const bundle = JSON.parse(readFileSync(join(cyber, "samples/cyber-intelligence.sample.json"), "utf8"));
 const graph = Graph.createGraph(bundle);
-graph.entities = bundle.entities;
 Research.loadSeed(
   JSON.parse(readFileSync(join(cyber, "samples/research-workspace.sample.json"), "utf8")).items
 );

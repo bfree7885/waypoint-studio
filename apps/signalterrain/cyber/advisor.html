@@ -18,8 +18,6 @@
     .st-advisor-panel h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 1.45rem; }
     .st-x-env { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0.75rem 0 1rem; }
     .st-x-check { font-size: 0.9rem; color: var(--st-muted,#5a564e); }
-    .st-cyber-list { list-style: none; padding: 0; }
-    .st-cyber-list li { padding: 0.75rem 0; border-top: 1px solid var(--st-line,#d2ccc0); }
     #st-adv-sim-out { white-space: pre-wrap; font-size: 0.8rem; max-height: 14rem; overflow: auto; }
   </style>
 </head>
@@ -29,12 +27,14 @@
     <div data-wds-app-global data-shell-depth="2"></div>
     <div data-wds-app-local data-shell-depth="2"></div>
     <main id="main" class="wpf-page st-page">
-      <p>
+      <p class="st-cyber-peers">
         <a class="st-back" href="./">← Cyber Awareness</a>
         ·
         <a class="st-back" href="brief.html">Daily brief</a>
         ·
         <a class="st-back" href="explorer.html">Explorer</a>
+        ·
+        <a class="st-back" href="knowledge.html">Knowledge</a>
       </p>
       <noscript>
         <section>
@@ -51,6 +51,7 @@
   <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-util.js" defer></script>
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-priority.js" defer></script>
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-inventory.js" defer></script>

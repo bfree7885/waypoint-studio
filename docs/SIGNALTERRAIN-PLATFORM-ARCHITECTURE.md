@@ -102,13 +102,19 @@ Aligned with SI navigation blueprint:
 SignalTerrain
 ├── Overview (foundation landing)
 ├── Topics (foundation demo — sample graph)
+├── Cyber Awareness (educational workspace — not a separate Studio product)
+│     ├── Daily Brief
+│     ├── Intelligence Explorer
+│     ├── Adaptive Defense Advisor
+│     ├── Defensive Knowledge
+│     └── Ingest Health (internal)
 ├── Watch (planned)
 ├── Library by workspace (planned)
 ├── Receivers / Incidents / Audio (planned; local models exist)
 └── About & Limits (planned)
 ```
 
-No parallel “Cyber” Studio product.
+No parallel “Cyber” Studio product. Cyber lives under SignalTerrain.
 
 ---
 
@@ -119,9 +125,47 @@ No parallel “Cyber” Studio product.
 | Foundation landing | `apps/signalterrain/index.html` |
 | Topics demonstration | `apps/signalterrain/topics.html` |
 | Topic / relationship package | `design-system/signalterrain/` |
+| Shared browser util | `js/signalterrain/wds-signalterrain-util.js` (`esc`, `loadJson`, hash, `STORAGE_KEYS`) |
+| Cyber graph + priority | `wds-signalterrain-cyber-graph.js`, `wds-signalterrain-cyber-priority.js` |
+| Cyber Awareness UI | `apps/signalterrain/cyber/` + `wds-signalterrain-cyber.js` |
+| Daily briefing | `intelligence/cyber/briefing/` + `wds-signalterrain-cyber-brief.js` |
+| Explorer | `intelligence/cyber/explorer/` + `wds-signalterrain-cyber-explorer.js` |
+| Advisor + inventory | `intelligence/cyber/advisor/` + advisor/inventory runtimes |
+| Knowledge platform | `intelligence/cyber/knowledge/` + `wds-signalterrain-cyber-knowledge.js` |
+| Mock ingestion | `wds-signalterrain-cyber-ingest.js` + connectors |
 | Local receivers / incidents | `js/signalterrain-models.js` |
-| Live ingestion | Not implemented |
+| Live ingestion | Mock only — no live harvesting |
 | Advanced RF / scanners / SIEM | Out of scope |
+
+### Cyber dependency sketch
+
+```
+wds-signalterrain-util.js
+        │
+        ├── cyber-graph.js ──► explorer / knowledge / advisor / cyber.js
+        ├── cyber-priority.js ──► brief / advisor / cyber.js
+        ├── inventory.js ──► advisor
+        ├── research.js ──► explorer / knowledge
+        └── cyber-ingest.js (+ connectors) ──► brief / ingest-health
+```
+
+Graph objects expose read-only `entities` and `listEntities()` — callers must not reassign entity arrays.
+
+---
+
+## Work Block 8 (platform quality)
+
+Review set (owner gate — not auto-committed):
+
+- [ARCHITECTURE-REVIEW.md](ARCHITECTURE-REVIEW.md)  
+- [TECHNICAL-DEBT.md](TECHNICAL-DEBT.md)  
+- [SCALABILITY-REVIEW.md](SCALABILITY-REVIEW.md)  
+- [UX-REVIEW.md](UX-REVIEW.md)  
+- [PERFORMANCE-REVIEW.md](PERFORMANCE-REVIEW.md)  
+- [ACCESSIBILITY-REVIEW.md](ACCESSIBILITY-REVIEW.md)  
+- [PLATFORM-HARDENING.md](PLATFORM-HARDENING.md)  
+
+Hardening already applied in-tree (pending owner commit approval): shared util, graph entity invariant, ingest escaping, shared cyber nav CSS, aligned peer links.
 
 ---
 
@@ -132,6 +176,7 @@ No parallel “Cyber” Studio product.
 3. Workspace Library filters  
 4. Four-panel Overview when real digests exist  
 5. Narrow cited sources (prefer space weather / status pages first)  
+6. Execute platform hardening roadmap (fonts/CSP, chunked intelligence, brief generation, a11y focus)
 
 See also [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md).
 
@@ -139,8 +184,8 @@ See also [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md).
 
 ## Boundaries
 
-**In:** architecture, models, sample graph, calm demo, documentation.  
-**Out:** vulnerability scanning, packet capture, offensive tools, SIEM, RSS-reader product, fake live threat feeds.
+**In:** architecture, models, sample graph, calm demo, documentation, educational cyber awareness.  
+**Out:** vulnerability scanning, packet capture, offensive tools, SIEM, RSS-reader product, fake live threat feeds, hidden scoring.
 
 ---
 
@@ -148,4 +193,6 @@ See also [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md).
 
 - [SIGNALTERRAIN-TOPIC-MODEL.md](SIGNALTERRAIN-TOPIC-MODEL.md)  
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
-- [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md)
+- [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md)  
+- [ARCHITECTURE-REVIEW.md](ARCHITECTURE-REVIEW.md)  
+- [PLATFORM-HARDENING.md](PLATFORM-HARDENING.md)
