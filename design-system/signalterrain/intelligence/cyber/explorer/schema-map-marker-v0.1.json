@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/map-marker/v0.1",
+  "title": "Cyber awareness map marker V0.1",
+  "type": "object",
+  "required": ["id", "regionId", "label", "kind", "precision"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^mk_" },
+    "regionId": { "type": "string" },
+    "lat": { "type": "number" },
+    "lon": { "type": "number" },
+    "precision": {
+      "type": "string",
+      "enum": ["global", "continental", "regional", "country-coarse"],
+      "description": "Never finer than country-coarse. No street/city victim precision."
+    },
+    "label": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ransomware-awareness",
+        "public-outage-awareness",
+        "government-advisory",
+        "vendor-announcement",
+        "regional-notice",
+        "educational-incident-summary"
+      ]
+    },
+    "subjectIds": { "type": "array", "items": { "type": "string" } },
+    "summary": { "type": "string" },
+    "citations": { "type": "array" },
+    "confidence": { "type": "string" },
+    "neverPreciseVictim": { "type": "boolean", "const": true }
+  }
+}

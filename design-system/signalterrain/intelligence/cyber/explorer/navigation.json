@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "panels": [
+    { "id": "overview", "label": "Overview", "order": 1 },
+    { "id": "graph", "label": "Relationship Graph", "order": 2 },
+    { "id": "timeline", "label": "Timeline", "order": 3 },
+    { "id": "map", "label": "World Map", "order": 4 },
+    { "id": "organizations", "label": "Organizations", "order": 5 },
+    { "id": "products", "label": "Products", "order": 6 },
+    { "id": "vulnerabilities", "label": "Vulnerabilities", "order": 7 },
+    { "id": "campaigns", "label": "Threat Campaigns", "order": 8 },
+    { "id": "research", "label": "Research", "order": 9 },
+    { "id": "collections", "label": "Saved Collections", "order": 10 }
+  ],
+  "detailRoutes": [
+    { "prefix": "product", "kind": "affected-software", "label": "Product" },
+    { "prefix": "campaign", "kind": "threat-campaign", "label": "Campaign" },
+    { "prefix": "entity", "kind": "*", "label": "Entity" }
+  ]
+}

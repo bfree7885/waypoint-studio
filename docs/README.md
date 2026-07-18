@@ -32,6 +32,11 @@
 | [CYBER-DAILY-BRIEF.md](CYBER-DAILY-BRIEF.md) | Brief sections, profiles, calm UI |
 | [CYBER-EXPLAINABILITY.md](CYBER-EXPLAINABILITY.md) | Why / known / uncertain for brief items |
 | [CYBER-BRIEFING-COMPLETION-REPORT.md](CYBER-BRIEFING-COMPLETION-REPORT.md) | Work Block 4 completion / owner QA |
+| [CYBER-EXPLORER.md](CYBER-EXPLORER.md) | Cyber Terrain Map & Intelligence Explorer |
+| [CYBER-GRAPH-UI.md](CYBER-GRAPH-UI.md) | Relationship graph UI & edge explainability |
+| [CYBER-TIMELINE.md](CYBER-TIMELINE.md) | Timeline explorer & filters |
+| [CYBER-MAP.md](CYBER-MAP.md) | Coarse geographic awareness map |
+| [CYBER-EXPLORER-COMPLETION-REPORT.md](CYBER-EXPLORER-COMPLETION-REPORT.md) | Work Block 5 completion / owner QA |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |

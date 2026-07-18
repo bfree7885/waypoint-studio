@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Cyber Intelligence Explorer — relationships, timelines, and coarse geographic awareness. Educational only.">
+  <title>Cyber Intelligence Explorer — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-x-explorer { max-width: 56rem; }
+    .st-cyber-nav ul { display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; list-style: none; padding: 0; margin: 1rem 0 1.5rem; }
+    .st-cyber-nav a { color: var(--st-accent, #3a5348); text-decoration: none; border-bottom: 1px solid transparent; }
+    .st-cyber-nav a[aria-current="page"] { border-bottom-color: var(--st-accent, #3a5348); font-weight: 600; }
+    .st-cyber-list { list-style: none; padding: 0; }
+    .st-cyber-list li { padding: 0.75rem 0; border-top: 1px solid var(--st-line, #d2ccc0); }
+    .st-x-map { margin: 1rem 0; border: 1px solid var(--st-line, #d2ccc0); background: #e8e4da; }
+    .st-x-filters { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0; align-items: end; }
+    .st-x-filters label { font-size: 0.85rem; color: var(--st-muted, #5a564e); }
+    .st-x-filters input, .st-x-filters select { display: block; margin-top: 0.25rem; max-width: 10rem; }
+    .st-x-explain, .st-x-edge-explain { margin: 0.75rem 0; padding: 0.75rem; background: var(--st-panel, #faf8f3); border: 1px solid var(--st-line, #d2ccc0); }
+    .st-x-research-actions { margin: 0.75rem 0; }
+    .st-graph-nodes li.is-focus { background: #f3efe6; }
+    .st-chip.is-active { font-weight: 600; border-color: var(--st-accent, #3a5348); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p>
+        <a class="st-back" href="./">← Cyber Awareness</a>
+        ·
+        <a class="st-back" href="brief.html">Daily brief</a>
+        ·
+        <a class="st-back" href="../graph.html">Living knowledge graph</a>
+      </p>
+      <noscript>
+        <section>
+          <h1>Cyber Intelligence Explorer</h1>
+          <p>Explore cybersecurity relationships, timelines, and coarse geographic awareness. Educational and defensive only — not a news feed or operational map. Enable JavaScript to open the explorer.</p>
+        </section>
+      </noscript>
+      <div id="st-explorer-mount" aria-busy="true">
+        <p class="st-loading">Opening Cyber Intelligence Explorer…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-research.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-explorer.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.signalTerrainCyberExplorer) {
+        WDS.signalTerrainCyberExplorer.mountExplorer(document.getElementById("st-explorer-mount"), {
+          base: "../../../design-system/signalterrain/intelligence/cyber/",
+          explorerBase: "../../../design-system/signalterrain/intelligence/cyber/explorer/"
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -14,6 +14,10 @@
       "docs/CYBER-BRIEFING-ENGINE.md",
       "docs/CYBER-DAILY-BRIEF.md",
       "docs/CYBER-EXPLAINABILITY.md",
+      "docs/CYBER-EXPLORER.md",
+      "docs/CYBER-GRAPH-UI.md",
+      "docs/CYBER-TIMELINE.md",
+      "docs/CYBER-MAP.md",
       "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md"
     ]
   },
@@ -47,7 +51,11 @@
     "ingestion": "ingestion/",
     "briefing": "briefing/",
     "briefRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-brief.js",
-    "briefSurface": "../../../../apps/signalterrain/cyber/brief.html"
+    "briefSurface": "../../../../apps/signalterrain/cyber/brief.html",
+    "explorer": "explorer/",
+    "explorerRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-explorer.js",
+    "explorerSurface": "../../../../apps/signalterrain/cyber/explorer.html",
+    "researchRuntime": "../../../js/signalterrain/wds-signalterrain-research.js"
   },
   "notInScopeV01": [
     "IDS",

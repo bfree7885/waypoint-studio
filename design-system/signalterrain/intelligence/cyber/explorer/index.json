@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-18",
+    "tagline": "Explore the cybersecurity landscape through relationships, timelines, and context.",
+    "docs": [
+      "docs/CYBER-EXPLORER.md",
+      "docs/CYBER-GRAPH-UI.md",
+      "docs/CYBER-TIMELINE.md",
+      "docs/CYBER-MAP.md",
+      "docs/CYBER-GRAPH-ARCHITECTURE.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-cyber-explorer",
+    "label": "Cyber Terrain Map & Intelligence Explorer",
+    "path": "design-system/signalterrain/intelligence/cyber/explorer/",
+    "uiSurface": "apps/signalterrain/cyber/explorer.html"
+  },
+  "inherits": [
+    "signalterrain-cyber-awareness",
+    "signalterrain-cyber-graph",
+    "signalterrain-research-workspace",
+    "waypoint-trust"
+  ],
+  "philosophy": [
+    "Intelligence map — not a news feed",
+    "Understanding over fear",
+    "Every edge explains itself",
+    "Coarse geographic awareness only — never precise victim mapping",
+    "Reuse the shared cyber graph — do not duplicate traversal logic"
+  ],
+  "artifacts": {
+    "navigation": "navigation.json",
+    "mapLayers": "map-layers.json",
+    "mapSchema": "schema-map-marker-v0.1.json",
+    "runtime": "../../../../js/signalterrain/wds-signalterrain-cyber-explorer.js",
+    "researchRuntime": "../../../../js/signalterrain/wds-signalterrain-research.js",
+    "graphRuntime": "../../../../js/signalterrain/wds-signalterrain-cyber-graph.js"
+  },
+  "consumes": {
+    "graph": "../samples/cyber-intelligence.sample.json",
+    "researchSample": "../samples/research-workspace.sample.json",
+    "relationshipKinds": "../relationship-kinds.json"
+  },
+  "notInScopeV01": [
+    "Precise victim geolocation",
+    "Live operational maps",
+    "News-feed scrolling UI",
+    "Duplicated graph traversal business logic",
+    "Hidden scoring on map weight",
+    "Offensive tooling"
+  ]
+}

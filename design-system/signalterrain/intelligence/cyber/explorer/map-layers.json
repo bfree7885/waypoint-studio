@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "purpose": "Educational geographic awareness only. Coarse regions. Never precise victim mapping. Never operational targeting.",
+    "disclaimer": "Markers are teaching placements for public historical literacy. They do not locate victims, victims' networks, or live incidents."
+  },
+  "regions": [
+    { "id": "global", "label": "Global", "lat": 18, "lon": 10, "precision": "global" },
+    { "id": "north-america", "label": "North America", "lat": 45, "lon": -100, "precision": "continental" },
+    { "id": "europe", "label": "Europe", "lat": 50, "lon": 10, "precision": "continental" },
+    { "id": "asia-pacific", "label": "Asia-Pacific", "lat": 25, "lon": 115, "precision": "continental" },
+    { "id": "latin-america", "label": "Latin America", "lat": -15, "lon": -60, "precision": "continental" },
+    { "id": "africa", "label": "Africa", "lat": 5, "lon": 20, "precision": "continental" },
+    { "id": "middle-east", "label": "Middle East", "lat": 28, "lon": 45, "precision": "continental" }
+  ],
+  "layers": [
+    {
+      "id": "layer_ransomware_awareness",
+      "label": "Major ransomware activity (educational)",
+      "lazy": true,
+      "markers": [
+        {
+          "id": "mk_wannacry_global",
+          "regionId": "global",
+          "lat": 22,
+          "lon": 12,
+          "precision": "global",
+          "kind": "ransomware-awareness",
+          "label": "WannaCry — global educational awareness",
+          "summary": "Public historical literacy for a widely reported ransomware wave. Placement is global, not victim-specific.",
+          "subjectIds": ["cy_ransomware-wannacry", "cy_te-wannacry"],
+          "confidence": "high",
+          "neverPreciseVictim": true,
+          "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+        },
+        {
+          "id": "mk_notpetya_europe",
+          "regionId": "europe",
+          "lat": 50,
+          "lon": 30,
+          "precision": "continental",
+          "kind": "educational-incident-summary",
+          "label": "NotPetya — continental educational summary",
+          "summary": "Teaching placement for a widely documented disruptive campaign. Coarse continental awareness only.",
+          "subjectIds": ["cy_campaign-notpetya", "cy_te-notpetya"],
+          "confidence": "high",
+          "neverPreciseVictim": true,
+          "citations": [{ "label": "Public historical reporting", "kind": "historical" }]
+        }
+      ]
+    },
+    {
+      "id": "layer_government_advisories",
+      "label": "Government advisories (public)",
+      "lazy": true,
+      "markers": [
+        {
+          "id": "mk_cisa_na",
+          "regionId": "north-america",
+          "lat": 39,
+          "lon": -98,
+          "precision": "continental",
+          "kind": "government-advisory",
+          "label": "Public government advisory literacy (CISA-linked samples)",
+          "summary": "Points to public advisory literacy in the sample graph — not a live feed.",
+          "subjectIds": ["cy_advisory-log4j-cisa"],
+          "confidence": "moderate",
+          "neverPreciseVictim": true,
+          "citations": [{ "label": "CISA", "kind": "government", "url": "https://www.cisa.gov/" }]
+        }
+      ]
+    },
+    {
+      "id": "layer_vendor_announcements",
+      "label": "Vendor announcements",
+      "lazy": true,
+      "markers": [
+        {
+          "id": "mk_vendor_global",
+          "regionId": "global",
+          "lat": 15,
+          "lon": 0,
+          "precision": "global",
+          "kind": "vendor-announcement",
+          "label": "Vendor patch / advisory literacy (global)",
+          "summary": "Educational marker for vendor guidance present in the sample intelligence set.",
+          "subjectIds": ["cy_patch-ms17-010", "cy_patch-log4j"],
+          "confidence": "moderate",
+          "neverPreciseVictim": true,
+          "citations": [{ "label": "Vendor guidance in sample graph", "kind": "vendor" }]
+        }
+      ]
+    },
+    {
+      "id": "layer_outage_awareness",
+      "label": "Large public outages (awareness)",
+      "lazy": true,
+      "markers": [
+        {
+          "id": "mk_outage_placeholder",
+          "regionId": "global",
+          "lat": 8,
+          "lon": -20,
+          "precision": "global",
+          "kind": "public-outage-awareness",
+          "label": "Public outage awareness (sample placeholder)",
+          "summary": "No live outage asserted. Layer exists so the explorer can show independent map layers without inventing incidents.",
+          "subjectIds": [],
+          "confidence": "insufficient",
+          "neverPreciseVictim": true,
+          "citations": []
+        }
+      ]
+    },
+    {
+      "id": "layer_regional_notices",
+      "label": "Regional cybersecurity notices",
+      "lazy": true,
+      "markers": [
+        {
+          "id": "mk_apac_notice",
+          "regionId": "asia-pacific",
+          "lat": 25,
+          "lon": 120,
+          "precision": "continental",
+          "kind": "regional-notice",
+          "label": "Asia-Pacific awareness (sample)",
+          "summary": "Coarse regional literacy slot. Empty of precise operational claims.",
+          "subjectIds": [],
+          "confidence": "low",
+          "neverPreciseVictim": true,
+          "citations": []
+        }
+      ]
+    }
+  ]
+}
