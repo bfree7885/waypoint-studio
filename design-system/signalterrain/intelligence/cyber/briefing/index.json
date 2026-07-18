@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-18",
+    "tagline": "What should I pay attention to today?",
+    "docs": [
+      "docs/CYBER-BRIEFING-ENGINE.md",
+      "docs/CYBER-DAILY-BRIEF.md",
+      "docs/CYBER-EXPLAINABILITY.md",
+      "docs/CYBER-PRIORITY-ENGINE.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-cyber-briefing",
+    "label": "Daily Cyber Intelligence Briefing Engine",
+    "path": "design-system/signalterrain/intelligence/cyber/briefing/",
+    "uiSurface": "apps/signalterrain/cyber/brief.html"
+  },
+  "inherits": [
+    "signalterrain-cyber-awareness",
+    "signalterrain-cyber-ingestion",
+    "signalterrain-intelligence-core",
+    "waypoint-trust"
+  ],
+  "philosophy": [
+    "Reduce anxiety — never manufacture urgency",
+    "Clarity and context over volume",
+    "Transparent reasoning — no black-box scores",
+    "Honest empty states",
+    "Facts stay identical across audience profiles; emphasis changes"
+  ],
+  "artifacts": {
+    "briefSchema": "schema-brief-v0.1.json",
+    "itemSchema": "schema-brief-item-v0.1.json",
+    "profileSchema": "schema-audience-profile-v0.1.json",
+    "sections": "sections.json",
+    "profiles": "audience-profiles.json",
+    "emptyStates": "empty-states.json",
+    "toneRules": "tone-rules.json",
+    "runtime": "../../../../js/signalterrain/wds-signalterrain-cyber-brief.js"
+  },
+  "notInScopeV01": [
+    "Push notifications",
+    "Alarm fatigue patterns",
+    "Clickbait headlines",
+    "Hidden ranking models",
+    "Hardcoded daily summaries",
+    "Live feed scrolling UI"
+  ]
+}

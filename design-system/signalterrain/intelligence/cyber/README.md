@@ -12,6 +12,9 @@ Extends SignalTerrain Intelligence Core. Not IDS, SIEM, scanner, or offense.
 - [CYBER-GRAPH-ARCHITECTURE.md](../../../../docs/CYBER-GRAPH-ARCHITECTURE.md)
 - [CYBER-PRIORITY-ENGINE.md](../../../../docs/CYBER-PRIORITY-ENGINE.md)
 - [CYBER-DATA-MODEL.md](../../../../docs/CYBER-DATA-MODEL.md)
+- [CYBER-BRIEFING-ENGINE.md](../../../../docs/CYBER-BRIEFING-ENGINE.md)
+- [CYBER-DAILY-BRIEF.md](../../../../docs/CYBER-DAILY-BRIEF.md)
+- [CYBER-EXPLAINABILITY.md](../../../../docs/CYBER-EXPLAINABILITY.md)
 
 ## Rules
 
@@ -21,4 +24,5 @@ Extends SignalTerrain Intelligence Core. Not IDS, SIEM, scanner, or offense.
 4. Samples stay labeled sample.  
 5. No exploit payloads or PoCs.  
 6. Research workspace is shared with RF (`../research/`).  
-7. Ingestion pipeline lives at `ingestion/` — independent connectors, mock in V0.1.
+7. Ingestion pipeline lives at `ingestion/` — independent connectors, mock in V0.1.  
+8. Daily briefing lives at `briefing/` — calm attention, transparent why.

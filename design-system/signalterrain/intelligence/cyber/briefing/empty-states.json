@@ -1,0 +1,17 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "messages": {
+    "todays-summary": "Nothing urgent stands out in today’s sample window. A quiet day is still a good day to keep ordinary hygiene.",
+    "new-since-yesterday": "No meaningful changes since the previous briefing snapshot.",
+    "highest-priority": "No items meet the transparent priority threshold for this profile today.",
+    "new-vulnerabilities": "No newly highlighted vulnerabilities in this briefing window.",
+    "active-exploitation": "No active-exploitation signals asserted in today’s sample inputs.",
+    "major-vendor-advisories": "No major vendor advisories selected for this profile today.",
+    "patch-highlights": "No patch highlights in this window — check your usual vendor calendars when convenient.",
+    "emerging-trends": "No emerging trend labels inferred from today’s sample set.",
+    "research-worth-reading": "No additional reading queued beyond what you already follow.",
+    "things-to-watch": "Nothing specific to watch beyond ordinary patch cadence.",
+    "confidence-summary": "Confidence remains limited wherever sources are sparse — uncertainty is labeled, not hidden."
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/brief-item/v0.1",
+  "title": "Cyber Brief Item v0.1",
+  "description": "A highlighted briefing item with mandatory transparent explanation. Never 'High Priority' without justification.",
+  "type": "object",
+  "required": [
+    "id",
+    "subjectId",
+    "title",
+    "whyIncludedToday",
+    "whatChanged",
+    "whoIsAffected",
+    "whatIsKnown",
+    "whatIsUncertain",
+    "readNext",
+    "citations",
+    "provenance",
+    "priority"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^cbi_[a-z0-9-]+$" },
+    "subjectId": { "type": "string" },
+    "title": { "type": "string", "maxLength": 300 },
+    "summary": { "type": "string", "maxLength": 800 },
+    "whyIncludedToday": { "type": "string", "maxLength": 800 },
+    "whatChanged": { "type": "string", "maxLength": 800 },
+    "whoIsAffected": { "type": "string", "maxLength": 800 },
+    "whatIsKnown": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "whatIsUncertain": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "readNext": { "type": "array", "items": { "type": "string" } },
+    "citations": { "type": "array", "items": { "type": "object" } },
+    "provenance": { "type": "array", "items": { "type": "object" } },
+    "priority": {
+      "type": "object",
+      "required": ["band", "total", "summaryWhy", "contributions"],
+      "properties": {
+        "band": { "type": "string" },
+        "total": { "type": "number" },
+        "summaryWhy": { "type": "string" },
+        "contributions": { "type": "array", "minItems": 1 }
+      }
+    },
+    "changeTypes": { "type": "array", "items": { "type": "string" } },
+    "readingMinutes": { "type": ["number", "null"] },
+    "readingCategory": {
+      "type": ["string", "null"],
+      "enum": ["vendor", "government", "academic", "technical", "standards", "historical", null]
+    }
+  }
+}

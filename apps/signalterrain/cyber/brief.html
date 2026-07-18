@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Daily Cyber Brief — calm, explainable attention. Not an alert flood.">
+  <title>Daily Cyber Brief — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-brief { max-width: 48rem; }
+    .st-brief-controls { margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: end; }
+    .st-brief-controls label { font-size: 0.9rem; color: var(--st-muted,#5a564e); }
+    .st-brief-controls select { display: block; margin-top: 0.25rem; min-width: 12rem; }
+    .st-brief-dashnav { margin: 0 0 1.5rem; font-size: 0.9rem; line-height: 1.7; }
+    .st-brief-dashnav a { color: var(--st-accent,#3a5348); text-decoration: none; border-bottom: 1px solid transparent; }
+    .st-brief-dashnav a:hover { border-bottom-color: var(--st-accent,#3a5348); }
+    .st-brief-section { margin: 0 0 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--st-line,#d2ccc0); }
+    .st-brief-section h2 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 1.55rem; margin: 0 0 0.5rem; }
+    .st-brief-narrative { color: var(--st-muted,#5a564e); }
+    .st-brief-empty { color: var(--st-muted,#5a564e); font-style: italic; }
+    .st-brief-item { margin: 1rem 0; padding: 1rem; background: var(--st-panel,#faf8f3); border: 1px solid var(--st-line,#d2ccc0); border-radius: 2px; }
+    .st-brief-item h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+    .st-brief-band { display: inline-block; margin-left: 0.35rem; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--st-muted,#5a564e); border: 1px solid var(--st-line,#d2ccc0); padding: 0.1rem 0.35rem; }
+    .st-brief-band--high { color: #5a4a20; border-color: #c4b48a; background: #f7f1e2; }
+    .st-brief-band--urgent { color: #5c2a2a; border-color: #d2a0a0; background: #f8ecec; }
+    .st-brief-cite { font-size: 0.85rem; color: var(--st-muted,#5a564e); }
+    .st-brief-meta { font-size: 0.85rem; color: var(--st-muted,#5a564e); }
+    /* No flashing, no all-red chrome */
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p>
+        <a class="st-back" href="./">← Cyber Awareness</a>
+        ·
+        <a class="st-back" href="../summary.html">Intelligence summary</a>
+        ·
+        <a class="st-back" href="ingest-health.html">Ingest health</a>
+      </p>
+      <noscript>
+        <section>
+          <h1>Daily Cyber Brief</h1>
+          <p>Calm, explainable attention for cybersecurity awareness — not an alert flood. Enable JavaScript to generate profile- and scenario-based sample briefings with transparent priority contributions.</p>
+        </section>
+      </noscript>
+      <div id="st-brief-mount" aria-busy="true">
+        <p class="st-loading">Opening today’s cyber brief…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-priority.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-ingest.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-brief.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      var params = new URLSearchParams(location.search);
+      if (window.WDS && WDS.signalTerrainCyberBrief) {
+        WDS.signalTerrainCyberBrief.mountBrief(document.getElementById("st-brief-mount"), {
+          base: "../../../design-system/signalterrain/intelligence/cyber/briefing/",
+          cyberBase: "../../../design-system/signalterrain/intelligence/cyber/",
+          scenario: params.get("scenario") || "quiet-day",
+          profileId: params.get("profile") || "general-tech"
+        });
+      }
+    });
+  </script>
+</body>
+</html>

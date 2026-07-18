@@ -11,6 +11,9 @@
       "docs/CYBER-GRAPH-ARCHITECTURE.md",
       "docs/CYBER-PRIORITY-ENGINE.md",
       "docs/CYBER-DATA-MODEL.md",
+      "docs/CYBER-BRIEFING-ENGINE.md",
+      "docs/CYBER-DAILY-BRIEF.md",
+      "docs/CYBER-EXPLAINABILITY.md",
       "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md"
     ]
   },
@@ -41,7 +44,10 @@
     "priorityRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-priority.js",
     "uiRuntime": "../../../js/signalterrain/wds-signalterrain-cyber.js",
     "uiSurface": "../../../../apps/signalterrain/cyber/",
-    "ingestion": "ingestion/"
+    "ingestion": "ingestion/",
+    "briefing": "briefing/",
+    "briefRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-brief.js",
+    "briefSurface": "../../../../apps/signalterrain/cyber/brief.html"
   },
   "notInScopeV01": [
     "IDS",

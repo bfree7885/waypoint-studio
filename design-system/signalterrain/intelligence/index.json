@@ -13,7 +13,10 @@
       "docs/CYBER-INTELLIGENCE-MODEL.md",
       "docs/CYBER-GRAPH-ARCHITECTURE.md",
       "docs/CYBER-PRIORITY-ENGINE.md",
-      "docs/CYBER-DATA-MODEL.md"
+      "docs/CYBER-DATA-MODEL.md",
+      "docs/CYBER-BRIEFING-ENGINE.md",
+      "docs/CYBER-DAILY-BRIEF.md",
+      "docs/CYBER-EXPLAINABILITY.md"
     ]
   },
   "package": {

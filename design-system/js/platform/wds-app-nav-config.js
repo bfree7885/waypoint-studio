@@ -388,6 +388,11 @@
           "href": "apps/signalterrain/cyber/"
         },
         {
+          "id": "cyber-brief",
+          "label": "Daily cyber brief",
+          "href": "apps/signalterrain/cyber/brief.html"
+        },
+        {
           "id": "cyber-ingest-health",
           "label": "Cyber ingest (internal)",
           "href": "apps/signalterrain/cyber/ingest-health.html"

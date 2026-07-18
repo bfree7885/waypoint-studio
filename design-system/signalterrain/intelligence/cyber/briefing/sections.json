@@ -1,0 +1,27 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "sections": [
+    { "id": "todays-summary", "label": "Today's Summary", "order": 1, "required": true },
+    { "id": "new-since-yesterday", "label": "New Since Yesterday", "order": 2, "required": true },
+    { "id": "highest-priority", "label": "Highest Priority Items", "order": 3, "required": true },
+    { "id": "new-vulnerabilities", "label": "New Vulnerabilities", "order": 4, "required": true },
+    { "id": "active-exploitation", "label": "Active Exploitation", "order": 5, "required": true },
+    { "id": "major-vendor-advisories", "label": "Major Vendor Advisories", "order": 6, "required": true },
+    { "id": "patch-highlights", "label": "Patch Highlights", "order": 7, "required": true },
+    { "id": "emerging-trends", "label": "Emerging Trends", "order": 8, "required": true },
+    { "id": "research-worth-reading", "label": "Research Worth Reading", "order": 9, "required": true },
+    { "id": "things-to-watch", "label": "Things To Watch", "order": 10, "required": true },
+    { "id": "confidence-summary", "label": "Confidence Summary", "order": 11, "required": true }
+  ],
+  "dashboardPanels": [
+    { "id": "todays-brief", "label": "Today's Brief" },
+    { "id": "priority-changes", "label": "Priority Changes" },
+    { "id": "trending-topics", "label": "Trending Topics" },
+    { "id": "threat-landscape", "label": "Threat Landscape" },
+    { "id": "vendor-activity", "label": "Vendor Activity" },
+    { "id": "learning-corner", "label": "Learning Corner" },
+    { "id": "recently-updated", "label": "Recently Updated" },
+    { "id": "saved-research", "label": "Saved Research" }
+  ]
+}

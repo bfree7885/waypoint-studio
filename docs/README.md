@@ -28,6 +28,10 @@
 | [CYBER-NORMALIZATION.md](CYBER-NORMALIZATION.md) | Provider → shared record normalization |
 | [CYBER-PROVENANCE.md](CYBER-PROVENANCE.md) | Attribution, dedupe, change detection |
 | [CYBER-CACHE.md](CYBER-CACHE.md) | Local-first per-connector cache |
+| [CYBER-BRIEFING-ENGINE.md](CYBER-BRIEFING-ENGINE.md) | Daily Cyber Intelligence Briefing Engine |
+| [CYBER-DAILY-BRIEF.md](CYBER-DAILY-BRIEF.md) | Brief sections, profiles, calm UI |
+| [CYBER-EXPLAINABILITY.md](CYBER-EXPLAINABILITY.md) | Why / known / uncertain for brief items |
+| [CYBER-BRIEFING-COMPLETION-REPORT.md](CYBER-BRIEFING-COMPLETION-REPORT.md) | Work Block 4 completion / owner QA |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |

@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Calm language rules for daily briefs. Reduce anxiety; never manufacture urgency.",
+  "forbidPhrases": [
+    "panic",
+    "apocalypse",
+    "bloodbath",
+    "nightmare",
+    "hackers are coming",
+    "act now or else",
+    "breaking:",
+    "you are doomed"
+  ],
+  "preferPhrases": [
+    "worth noticing",
+    "worth reading",
+    "what changed",
+    "what remains uncertain",
+    "calm priority",
+    "educational"
+  ],
+  "rules": [
+    "Never label High or Urgent without listing contribution reasons from the priority engine.",
+    "Reserve strong warning styling for urgent band only — and only after caps pass.",
+    "Prefer 'attention' over 'alert' in copy.",
+    "Empty sections must use empty-states.json — never invent filler threats.",
+    "Audience profiles may reorder or emphasize — they must not alter factual claims."
+  ]
+}

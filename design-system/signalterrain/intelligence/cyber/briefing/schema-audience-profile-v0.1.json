@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/audience-profile/v0.1",
+  "title": "Cyber Audience Profile v0.1",
+  "description": "Emphasis weights for briefings. Does not change underlying facts.",
+  "type": "object",
+  "required": ["id", "label", "emphasis"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string" },
+    "emphasis": { "type": "object" },
+    "summaryHint": { "type": "string" }
+  }
+}

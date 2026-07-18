@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/brief/v0.1",
+  "title": "Cyber Daily Brief v0.1",
+  "description": "Calm daily briefing. Sections may be empty with honest empty-state copy. Generated — not hardcoded.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "generatedAt",
+    "profileId",
+    "scenario",
+    "sections",
+    "confidenceSummary"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status", "engineVersion"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/cyber/brief/v0.1"
+        },
+        "status": { "type": "string", "enum": ["sample", "draft", "active"] },
+        "engineVersion": { "type": "string" },
+        "disclaimer": { "type": "string" }
+      }
+    },
+    "id": { "type": "string", "pattern": "^cbr_[a-z0-9-]+$" },
+    "generatedAt": { "type": "string" },
+    "profileId": { "type": "string" },
+    "scenario": {
+      "type": "string",
+      "enum": [
+        "quiet-day",
+        "patch-tuesday",
+        "critical-disclosure",
+        "ransomware-campaign",
+        "cloud-outage",
+        "custom"
+      ]
+    },
+    "previousBriefId": { "type": ["string", "null"] },
+    "headline": { "type": "string", "maxLength": 300 },
+    "sections": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["id", "label", "empty", "items", "emptyMessage"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "empty": { "type": "boolean" },
+          "emptyMessage": { "type": "string" },
+          "items": { "type": "array" },
+          "narrative": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "confidenceSummary": {
+      "type": "object",
+      "required": ["narrative", "counts"],
+      "properties": {
+        "narrative": { "type": "string" },
+        "counts": { "type": "object" }
+      }
+    },
+    "readingQueue": { "type": "array" },
+    "dashboard": { "type": "object" },
+    "toneCheck": {
+      "type": "object",
+      "properties": {
+        "ok": { "type": "boolean" },
+        "flags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

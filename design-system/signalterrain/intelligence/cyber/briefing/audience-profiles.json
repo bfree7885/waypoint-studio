@@ -1,0 +1,85 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Audience profiles change emphasis — never the underlying facts.",
+  "profiles": [
+    {
+      "id": "general-tech",
+      "label": "General technology users",
+      "emphasis": {
+        "kinds": { "cve": 1, "vendor-advisory": 1.2, "patch": 1.3, "ransomware-family": 0.8, "threat-campaign": 0.7 },
+        "industries": {},
+        "reading": ["vendor", "government"]
+      },
+      "summaryHint": "Prefer plain-language patches and vendor guidance."
+    },
+    {
+      "id": "homelab",
+      "label": "Home lab enthusiasts",
+      "emphasis": {
+        "kinds": { "cve": 1.2, "patch": 1.4, "affected-software": 1.3, "exploit-technique": 0.6 },
+        "industries": { "software": 1.1 },
+        "reading": ["vendor", "technical", "historical"]
+      },
+      "summaryHint": "Emphasize self-hosted software, patches, and learning from past incidents."
+    },
+    {
+      "id": "linux-users",
+      "label": "Linux users",
+      "emphasis": {
+        "kinds": { "cve": 1.3, "patch": 1.4, "affected-software": 1.2, "vendor-advisory": 1.1 },
+        "productsContains": ["linux", "openssl", "apache", "log4j"],
+        "reading": ["vendor", "technical", "standards"]
+      },
+      "summaryHint": "Lift open-source library and Linux-relevant advisories."
+    },
+    {
+      "id": "developers",
+      "label": "Developers",
+      "emphasis": {
+        "kinds": { "cve": 1.4, "vulnerability": 1.3, "patch": 1.2, "reference": 1.1 },
+        "industries": { "software": 1.3 },
+        "reading": ["vendor", "technical", "academic", "standards"]
+      },
+      "summaryHint": "Emphasize libraries, CVEs, and dependency hygiene."
+    },
+    {
+      "id": "it-admins",
+      "label": "IT administrators",
+      "emphasis": {
+        "kinds": { "cve": 1.3, "vendor-advisory": 1.4, "patch": 1.5, "kev-entry": 1.5, "threat-campaign": 1.2 },
+        "industries": { "software": 1.2 },
+        "reading": ["vendor", "government"]
+      },
+      "summaryHint": "Prioritize patch bulletins, KEV signals, and operational advisories."
+    },
+    {
+      "id": "educators",
+      "label": "Educators",
+      "emphasis": {
+        "kinds": { "timeline-event": 1.3, "threat-campaign": 1.1, "reference": 1.4, "cve": 1 },
+        "reading": ["historical", "academic", "government"]
+      },
+      "summaryHint": "Prefer teaching cases, timelines, and calm historical context."
+    },
+    {
+      "id": "researchers",
+      "label": "Researchers",
+      "emphasis": {
+        "kinds": { "reference": 1.5, "threat-actor": 0.9, "malware-family": 1.2, "cve": 1.2 },
+        "reading": ["academic", "technical", "standards", "government"]
+      },
+      "summaryHint": "Lift primary sources and deeper technical reading."
+    },
+    {
+      "id": "small-business",
+      "label": "Small businesses",
+      "emphasis": {
+        "kinds": { "ransomware-family": 1.4, "patch": 1.4, "vendor-advisory": 1.3, "threat-campaign": 1.2 },
+        "industries": { "healthcare": 1.1, "software": 1.1 },
+        "reading": ["government", "vendor"]
+      },
+      "summaryHint": "Emphasize ransomware awareness, backups context, and vendor patches — calmly."
+    }
+  ]
+}
