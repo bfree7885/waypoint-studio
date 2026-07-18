@@ -150,12 +150,14 @@
   }
 
   function addNote(subjectId, body, title) {
+    var subjects = [];
+    if (subjectId) subjects.push(subjectId);
     return upsert({
       id: "rw_local_note_" + Date.now().toString(36),
       kind: "note",
       title: title || "Note",
       body: body || "",
-      subjectIds: [subjectId],
+      subjectIds: subjects,
       domain: "cyber",
       private: true
     });
@@ -212,6 +214,175 @@
     });
   }
 
+  function recordActivity(activityType, title, opts) {
+    opts = opts || {};
+    return upsert({
+      id: "rw_local_act_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      kind: "activity",
+      title: title || activityType || "Activity",
+      activityType: activityType || null,
+      body: opts.body || null,
+      subjectIds: opts.subjectIds || [],
+      domain: opts.domain || "cyber",
+      private: true,
+      tags: opts.tags || ["activity"]
+    });
+  }
+
+  function createInvestigation(title, opts) {
+    opts = opts || {};
+    var id =
+      opts.id ||
+      "rw_inv_" +
+        String(title || "investigation")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "")
+          .slice(0, 40) +
+        "_" +
+        Date.now().toString(36);
+    var item = upsert({
+      id: id,
+      kind: "investigation",
+      title: title || "Investigation",
+      body: opts.body || "",
+      tags: opts.tags || [],
+      subjectIds: opts.subjectIds || [],
+      tasks: opts.tasks || [],
+      investigationStatus: opts.investigationStatus || "open",
+      citationIds: opts.citationIds || [],
+      attachmentRefs: opts.attachmentRefs || [],
+      relatedInvestigationIds: opts.relatedInvestigationIds || [],
+      domain: "cyber",
+      private: true,
+      createdAt: new Date().toISOString()
+    });
+    recordActivity("investigation-updated", "Opened investigation: " + item.title, {
+      subjectIds: [item.id]
+    });
+    return item;
+  }
+
+  function createWatchlist(title, opts) {
+    opts = opts || {};
+    var id =
+      opts.id ||
+      "rw_watch_" +
+        String(title || "watch")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "")
+          .slice(0, 40) +
+        "_" +
+        Date.now().toString(36);
+    return upsert({
+      id: id,
+      kind: "watchlist",
+      title: title || "Watchlist",
+      body: opts.body || "",
+      tags: opts.tags || [],
+      watchKinds: opts.watchKinds || [],
+      watchTargetIds: opts.watchTargetIds || [],
+      subjectIds: opts.subjectIds || opts.watchTargetIds || [],
+      query: opts.query || null,
+      domain: "cyber",
+      private: true,
+      createdAt: new Date().toISOString()
+    });
+  }
+
+  function addQueueItem(title, opts) {
+    opts = opts || {};
+    return upsert({
+      id: opts.id || "rw_queue_" + Date.now().toString(36),
+      kind: "queue-item",
+      title: title || "Reading item",
+      body: opts.body || "",
+      subjectIds: opts.subjectIds || [],
+      relatedInvestigationIds: opts.relatedInvestigationIds || [],
+      readingStatus: opts.readingStatus || "unread",
+      priority: opts.priority || "normal",
+      difficulty: opts.difficulty || "intro",
+      estimateMinutes: opts.estimateMinutes || 15,
+      tags: opts.tags || ["reading-queue"],
+      domain: "cyber",
+      private: true
+    });
+  }
+
+  function updateNote(id, body, title) {
+    var existing = get(id);
+    if (!existing || existing.kind !== "note") {
+      return addNote(null, body, title);
+    }
+    var versions = (existing.versions || []).slice();
+    if (existing.body) {
+      versions.push({ at: existing.updatedAt || new Date().toISOString(), body: existing.body });
+      if (versions.length > 40) versions = versions.slice(-40);
+    }
+    var next = upsert(
+      Object.assign({}, existing, {
+        title: title || existing.title,
+        body: body,
+        versions: versions
+      })
+    );
+    recordActivity("note-updated", "Updated note: " + next.title, { subjectIds: [next.id] });
+    return next;
+  }
+
+  function linkNoteToSubjects(noteId, subjectIds) {
+    var note = get(noteId);
+    if (!note) return null;
+    var ids = (note.subjectIds || []).slice();
+    (subjectIds || []).forEach(function (s) {
+      if (ids.indexOf(s) === -1) ids.push(s);
+    });
+    return upsert(Object.assign({}, note, { subjectIds: ids }));
+  }
+
+  function notesForSubject(subjectId) {
+    return list({ kind: "note", subjectId: subjectId });
+  }
+
+  function matchWatchlist(watchlist, entities) {
+    watchlist = watchlist || {};
+    entities = entities || [];
+    var kinds = watchlist.watchKinds || [];
+    var targets = watchlist.watchTargetIds || watchlist.subjectIds || [];
+    var q = String(watchlist.query || "").toLowerCase().trim();
+    var hits = [];
+    entities.forEach(function (e) {
+      if (!e || !e.id) return;
+      var reasons = [];
+      if (targets.indexOf(e.id) >= 0) {
+        reasons.push("Exact watched id " + e.id);
+      }
+      if (kinds.length && kinds.indexOf(e.kind) >= 0) {
+        reasons.push("Watched kind “" + e.kind + "”");
+      }
+      if (q) {
+        var blob = ((e.title || "") + " " + (e.summary || "") + " " + (e.kind || "")).toLowerCase();
+        if (blob.indexOf(q) >= 0) reasons.push("Query match “" + q + "”");
+      }
+      if (reasons.length) {
+        hits.push({
+          entityId: e.id,
+          title: e.title || e.id,
+          kind: e.kind,
+          reasons: reasons,
+          explanation:
+            "Surfaced because your watchlist “" +
+            (watchlist.title || watchlist.id) +
+            "” matched: " +
+            reasons.join("; ") +
+            "."
+        });
+      }
+    });
+    return hits;
+  }
+
   function cacheGet(key) {
     var s = storage();
     if (!s) return null;
@@ -248,10 +419,18 @@
     toggleBookmark: toggleBookmark,
     setReadingStatus: setReadingStatus,
     addNote: addNote,
+    updateNote: updateNote,
+    linkNoteToSubjects: linkNoteToSubjects,
+    notesForSubject: notesForSubject,
     ensureCollection: ensureCollection,
     addToCollection: addToCollection,
     pinTimeline: pinTimeline,
     cite: cite,
+    recordActivity: recordActivity,
+    createInvestigation: createInvestigation,
+    createWatchlist: createWatchlist,
+    addQueueItem: addQueueItem,
+    matchWatchlist: matchWatchlist,
     cacheGet: cacheGet,
     cacheSet: cacheSet,
     STORE_KEY: STORE_KEY

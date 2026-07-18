@@ -4,10 +4,10 @@
 **Path:** `design-system/signalterrain/research/`  
 **Runtime:** `design-system/js/signalterrain/wds-signalterrain-research.js` → `WDS.signalTerrainResearch`
 
-Shared bookmarks, collections, notes, saved searches, tags, cross-references, source library, timeline pins, and reading queue for **Radio & Spectrum** and **Cyber Awareness**.
+Shared bookmarks, collections, notes, saved searches, tags, cross-references, source library, timeline pins, reading queue, **investigations**, **watchlists**, and **activity** for **Radio & Spectrum** and **Cyber Awareness**.
 
 Do not implement separate RF-only and Cyber-only workspace stacks.
 
-Persistence: on-device `localStorage` (`st_research_workspace_v01`), seeded from sample JSON when present.
+Persistence: on-device `localStorage` (`st_research_workspace_v01`), seeded from sample JSON when present. Cyber Operations Workspace layout prefs use `st_cyber_workspace_layout_v01` (chrome only).
 
-See [CYBER-INTELLIGENCE-MODEL.md](../../../docs/CYBER-INTELLIGENCE-MODEL.md), [CYBER-EXPLORER.md](../../../docs/CYBER-EXPLORER.md), and Cyber UI Collections / Research sections.
+See [CYBER-WORKSPACE.md](../../../docs/CYBER-WORKSPACE.md), [CYBER-INTELLIGENCE-MODEL.md](../../../docs/CYBER-INTELLIGENCE-MODEL.md), and [CYBER-EXPLORER.md](../../../docs/CYBER-EXPLORER.md).

@@ -51,7 +51,8 @@
     inventory: "st_inventory_v1",
     securityProfile: "st_security_profile_v1",
     advisorSnapshot: "st_advisor_snapshot_v1",
-    ingestPrefix: "wds.st.cyber.ingest.v01."
+    ingestPrefix: "wds.st.cyber.ingest.v01.",
+    workspaceLayout: "st_cyber_workspace_layout_v01"
   };
 
   global.WDS = global.WDS || {};

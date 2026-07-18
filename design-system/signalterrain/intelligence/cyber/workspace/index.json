@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "prototype",
+    "updatedAt": "2026-07-18",
+    "purpose": "Cyber Operations Workspace — personal investigation environment. Not a SOC or SIEM."
+  },
+  "philosophy": [
+    "Deep understanding over constant monitoring",
+    "Thoughtful investigation over alert floods",
+    "Always answer: what am I looking at, why it matters, what I learned, what to revisit",
+    "Educational and defensive only",
+    "Local-first research store — no duplicated content silos"
+  ],
+  "notInScopeV1": [
+    "Security Operations Center (SOC) workflows",
+    "SIEM / log aggregation",
+    "Incident response case management",
+    "Live alerting / paging",
+    "Offensive tooling",
+    "Hidden scoring"
+  ],
+  "ui": "apps/signalterrain/cyber/workspace.html",
+  "runtime": "design-system/js/signalterrain/wds-signalterrain-cyber-workspace.js",
+  "storage": {
+    "content": "st_research_workspace_v01 (shared research)",
+    "layout": "st_cyber_workspace_layout_v01 (panel order/visibility only)"
+  },
+  "docs": [
+    "docs/CYBER-WORKSPACE.md",
+    "docs/INVESTIGATIONS.md",
+    "docs/WATCHLISTS.md",
+    "docs/NOTES.md",
+    "docs/COLLECTIONS.md",
+    "docs/READING-QUEUE.md"
+  ],
+  "artifacts": {
+    "panels": "panels.json",
+    "templates": "investigation-templates.json",
+    "sample": "samples/workspace.seed.json"
+  }
+}

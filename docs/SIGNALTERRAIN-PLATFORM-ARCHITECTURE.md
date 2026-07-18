@@ -107,6 +107,7 @@ SignalTerrain
 │     ├── Intelligence Explorer
 │     ├── Adaptive Defense Advisor
 │     ├── Defensive Knowledge
+│     ├── Cyber Operations Workspace (primary working environment)
 │     └── Ingest Health (internal)
 ├── Watch (planned)
 ├── Library by workspace (planned)
@@ -132,6 +133,7 @@ No parallel “Cyber” Studio product. Cyber lives under SignalTerrain.
 | Explorer | `intelligence/cyber/explorer/` + `wds-signalterrain-cyber-explorer.js` |
 | Advisor + inventory | `intelligence/cyber/advisor/` + advisor/inventory runtimes |
 | Knowledge platform | `intelligence/cyber/knowledge/` + `wds-signalterrain-cyber-knowledge.js` |
+| Cyber Operations Workspace | `intelligence/cyber/workspace/` + `wds-signalterrain-cyber-workspace.js` (shared research store) |
 | Mock ingestion | `wds-signalterrain-cyber-ingest.js` + connectors |
 | Local receivers / incidents | `js/signalterrain-models.js` |
 | Live ingestion | Mock only — no live harvesting |

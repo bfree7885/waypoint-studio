@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Seed items for Cyber Operations Workspace demos. Merged into the shared research store — not a second database."
+  },
+  "items": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_inv-browser-security",
+      "kind": "investigation",
+      "title": "Browser Security",
+      "body": "## Focus\nHow browser choice, updates, and extensions affect my personal risk.\n\n## Why it matters\nBrowsers are the daily attack surface for most people.",
+      "domain": "cyber",
+      "tags": ["browser", "client"],
+      "subjectIds": ["cy_cve-2021-44228"],
+      "investigationStatus": "open",
+      "tasks": [
+        { "id": "t1", "text": "List browsers in use", "done": true },
+        { "id": "t2", "text": "Review extension hygiene", "done": false },
+        { "id": "t3", "text": "Note update cadence", "done": false }
+      ],
+      "citationIds": ["rw_source-cisa-kev"],
+      "attachmentRefs": [],
+      "updatedAt": "2026-07-18T10:00:00Z",
+      "createdAt": "2026-07-17T10:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_inv-linux-hardening",
+      "kind": "investigation",
+      "title": "Linux Hardening",
+      "body": "Baseline notes for home-lab Linux hosts — educational checklist, not a compliance audit.",
+      "domain": "cyber",
+      "tags": ["linux", "hardening", "home-lab"],
+      "subjectIds": [],
+      "investigationStatus": "open",
+      "tasks": [
+        { "id": "t1", "text": "Inventory distros and roles", "done": false },
+        { "id": "t2", "text": "Capture baseline update practice", "done": false }
+      ],
+      "updatedAt": "2026-07-18T09:30:00Z",
+      "createdAt": "2026-07-16T12:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_inv-patch-tuesday",
+      "kind": "investigation",
+      "title": "Patch Tuesday",
+      "body": "Monthly literacy notebook: relate public advisories to my inventory without treating every CVE as urgent.",
+      "domain": "cyber",
+      "tags": ["patching"],
+      "subjectIds": ["cy_cve-2017-0144"],
+      "investigationStatus": "paused",
+      "tasks": [
+        { "id": "t1", "text": "Skim vendor guidance", "done": true },
+        { "id": "t2", "text": "Relate to personal inventory", "done": false }
+      ],
+      "updatedAt": "2026-07-15T18:00:00Z",
+      "createdAt": "2026-07-01T12:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_watch-products",
+      "kind": "watchlist",
+      "title": "Products I care about",
+      "body": "Watch software/hardware products that appear in the shared intelligence sample.",
+      "domain": "cyber",
+      "tags": ["products"],
+      "watchKinds": ["affected-software", "affected-hardware"],
+      "watchTargetIds": ["cy_software-log4j"],
+      "subjectIds": ["cy_software-log4j"],
+      "updatedAt": "2026-07-18T08:00:00Z",
+      "createdAt": "2026-07-10T08:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_watch-ransomware",
+      "kind": "watchlist",
+      "title": "Ransomware campaigns",
+      "body": "Educational watch — campaigns and ransomware families for literacy, not live detection.",
+      "domain": "cyber",
+      "tags": ["ransomware"],
+      "watchKinds": ["threat-campaign", "ransomware-family"],
+      "watchTargetIds": [],
+      "subjectIds": [],
+      "updatedAt": "2026-07-18T08:05:00Z",
+      "createdAt": "2026-07-12T08:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_note-browser-extensions",
+      "kind": "note",
+      "title": "Extension review checklist",
+      "body": "- [ ] Inventory installed extensions\n- [ ] Remove unused\n- [x] Prefer open-source where practical\n\nLinked to the Browser Security investigation.",
+      "domain": "cyber",
+      "tags": ["browser", "checklist"],
+      "subjectIds": [],
+      "relatedInvestigationIds": ["rw_inv-browser-security"],
+      "checklist": [
+        { "id": "c1", "text": "Inventory installed extensions", "done": false },
+        { "id": "c2", "text": "Remove unused", "done": false },
+        { "id": "c3", "text": "Prefer open-source where practical", "done": true }
+      ],
+      "versions": [
+        {
+          "at": "2026-07-17T12:00:00Z",
+          "body": "Draft: start an extension inventory."
+        }
+      ],
+      "updatedAt": "2026-07-18T11:00:00Z",
+      "createdAt": "2026-07-17T12:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_collection-linux-security",
+      "kind": "collection",
+      "title": "Linux Security",
+      "domain": "cyber",
+      "memberIds": ["cy_cve-2017-0144", "rw_inv-linux-hardening", "rw_note-browser-extensions"],
+      "tags": ["linux", "education"],
+      "updatedAt": "2026-07-18T07:00:00Z",
+      "createdAt": "2026-07-14T07:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_collection-home-lab",
+      "kind": "collection",
+      "title": "Home Lab",
+      "domain": "cyber",
+      "memberIds": ["rw_inv-linux-hardening", "rw_watch-products"],
+      "tags": ["home-lab"],
+      "updatedAt": "2026-07-18T07:10:00Z",
+      "createdAt": "2026-07-14T07:10:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_queue-log4shell-literacy",
+      "kind": "queue-item",
+      "title": "Log4Shell literacy path",
+      "domain": "cyber",
+      "subjectIds": ["cy_cve-2021-44228"],
+      "relatedInvestigationIds": ["rw_inv-browser-security"],
+      "readingStatus": "reading",
+      "priority": "high",
+      "difficulty": "intermediate",
+      "estimateMinutes": 25,
+      "body": "Read encyclopedia + one playbook; jot what applies to my stack.",
+      "tags": ["java", "cve"],
+      "updatedAt": "2026-07-18T12:00:00Z",
+      "createdAt": "2026-07-18T08:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_queue-identity-intro",
+      "kind": "queue-item",
+      "title": "Identity protection intro",
+      "domain": "cyber",
+      "subjectIds": [],
+      "readingStatus": "unread",
+      "priority": "normal",
+      "difficulty": "intro",
+      "estimateMinutes": 15,
+      "tags": ["identity"],
+      "updatedAt": "2026-07-17T12:00:00Z",
+      "createdAt": "2026-07-17T12:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_search-open-investigations",
+      "kind": "saved-search",
+      "title": "Open investigations",
+      "query": "kind:investigation status:open",
+      "domain": "cyber",
+      "tags": ["workspace"],
+      "updatedAt": "2026-07-18T06:00:00Z",
+      "createdAt": "2026-07-18T06:00:00Z",
+      "private": true
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_activity-seed-note",
+      "kind": "activity",
+      "title": "Updated note: Extension review checklist",
+      "activityType": "note-updated",
+      "subjectIds": ["rw_note-browser-extensions"],
+      "domain": "cyber",
+      "body": "Saved a new version of the extension checklist.",
+      "updatedAt": "2026-07-18T11:00:00Z",
+      "createdAt": "2026-07-18T11:00:00Z",
+      "private": true
+    }
+  ]
+}

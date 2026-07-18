@@ -12,26 +12,26 @@
     {
       "id": "collections",
       "label": "Collections",
-      "status": "blueprint",
-      "description": "Curated sets of topics and signals."
+      "status": "foundation",
+      "description": "Curated sets of topics, notes, and investigations (shared research store)."
     },
     {
       "id": "bookmarks",
       "label": "Bookmarks",
-      "status": "blueprint",
+      "status": "foundation",
       "description": "Personal saved topics."
     },
     {
       "id": "saved-searches",
       "label": "Saved searches",
-      "status": "blueprint",
+      "status": "foundation",
       "description": "Reusable query presets."
     },
     {
       "id": "timeline",
       "label": "Timeline",
       "status": "foundation",
-      "description": "Chronology on a topic or collection."
+      "description": "Chronology on a topic or personal learning journey."
     },
     {
       "id": "knowledge-relationships",
@@ -48,8 +48,8 @@
     {
       "id": "notes",
       "label": "Notes",
-      "status": "blueprint",
-      "description": "User private notes — local-first."
+      "status": "foundation",
+      "description": "User private notes — local-first, versioned in research store."
     },
     {
       "id": "attachments",
@@ -72,8 +72,26 @@
     {
       "id": "search",
       "label": "Search",
-      "status": "blueprint",
-      "description": "Find topics, notes, and collections."
+      "status": "foundation",
+      "description": "Find topics, notes, investigations, and collections."
+    },
+    {
+      "id": "investigations",
+      "label": "Investigations",
+      "status": "foundation",
+      "description": "Personal topic notebooks — not SOC/IR cases."
+    },
+    {
+      "id": "watchlists",
+      "label": "Watchlists",
+      "status": "foundation",
+      "description": "Explainable interest watches on kinds and entity ids."
+    },
+    {
+      "id": "reading-queue",
+      "label": "Reading queue",
+      "status": "foundation",
+      "description": "Structured literacy reading with time and difficulty."
     },
     {
       "id": "import",

@@ -168,6 +168,7 @@
       return (
         "<h2>Cyber Awareness Intelligence Engine V0.1</h2>" +
         "<p class=\"st-lead\">Educational defensive intelligence — not IDS, SIEM, scanner, or offense. Sample data only.</p>" +
+        '<p><a href="workspace.html">Open Cyber Operations Workspace</a> — investigations, notes, watchlists, reading queue.</p>' +
         '<p><a href="brief.html">Open today’s Daily Cyber Brief</a> — calm attention, transparent why.</p>' +
         '<p><a href="explorer.html">Open Cyber Intelligence Explorer</a> — relationships, timeline, map.</p>' +
         '<p><a href="advisor.html">Open Adaptive Defense Advisor</a> — what should I do differently today?</p>' +
@@ -298,6 +299,7 @@
         "<li>No live feeds in V0.1</li>" +
         "<li>No automatic remediation</li>" +
         "<li>Samples remain labeled sample</li>" +
+        '<li><a href="workspace.html">Cyber operations workspace</a></li>' +
         '<li><a href="brief.html">Daily cyber brief</a></li>' +
         '<li><a href="explorer.html">Cyber intelligence explorer</a></li>' +
         '<li><a href="advisor.html">Adaptive defense advisor</a></li>' +

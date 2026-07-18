@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
   "title": "SignalTerrain Research Workspace Item v0.1",
-  "description": "Reusable research artifact for RF and Cyber. Not a social feed item.",
+  "description": "Reusable research artifact for RF and Cyber. Not a social feed item. Investigations and watchlists live here — not a separate store.",
   "type": "object",
   "required": ["meta", "id", "kind", "title", "updatedAt", "domain"],
   "additionalProperties": false,
@@ -17,7 +17,7 @@
           "type": "string",
           "const": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1"
         },
-        "status": { "type": "string", "enum": ["sample", "draft", "active", "archived"] }
+        "status": { "type": "string", "enum": ["sample", "draft", "active", "archived", "local"] }
       }
     },
     "id": { "type": "string", "pattern": "^rw_[a-z0-9-]+$" },
@@ -32,7 +32,10 @@
         "cross-reference",
         "source-entry",
         "timeline-pin",
-        "queue-item"
+        "queue-item",
+        "investigation",
+        "watchlist",
+        "activity"
       ]
     },
     "title": { "type": "string", "maxLength": 200 },
@@ -45,7 +48,7 @@
     "subjectIds": {
       "type": "array",
       "items": { "type": "string" },
-      "description": "cy_*, st_*, uio_*, or other SignalTerrain ids"
+      "description": "cy_*, st_*, enc_*, pb_*, or other SignalTerrain ids"
     },
     "url": { "type": ["string", "null"], "maxLength": 2048 },
     "sourceClass": {
@@ -55,11 +58,119 @@
     "memberIds": {
       "type": "array",
       "items": { "type": "string" },
-      "description": "For collections — contained item ids"
+      "description": "For collections — contained item / entity ids"
     },
     "query": { "type": ["string", "null"], "maxLength": 500 },
     "updatedAt": { "type": "string" },
     "createdAt": { "type": "string" },
-    "private": { "type": "boolean" }
+    "private": { "type": "boolean" },
+    "readingStatus": {
+      "type": ["string", "null"],
+      "enum": ["unread", "reading", "done", "deferred", null]
+    },
+    "priority": {
+      "type": ["string", "null"],
+      "enum": ["low", "normal", "high", null]
+    },
+    "difficulty": {
+      "type": ["string", "null"],
+      "enum": ["intro", "intermediate", "advanced", null]
+    },
+    "estimateMinutes": { "type": ["integer", "null"], "minimum": 1, "maximum": 600 },
+    "investigationStatus": {
+      "type": ["string", "null"],
+      "enum": ["open", "paused", "completed", "archived", null]
+    },
+    "tasks": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "required": ["id", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string", "maxLength": 400 },
+          "done": { "type": "boolean" }
+        }
+      }
+    },
+    "relatedInvestigationIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^rw_[a-z0-9-]+$" },
+      "maxItems": 32
+    },
+    "citationIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 64
+    },
+    "watchKinds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 24,
+      "description": "Entity kinds to watch (product, vendor, threat-campaign, …)"
+    },
+    "watchTargetIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 64
+    },
+    "checklist": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "required": ["id", "text"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string", "maxLength": 400 },
+          "done": { "type": "boolean" }
+        }
+      }
+    },
+    "versions": {
+      "type": "array",
+      "maxItems": 40,
+      "description": "Note body version history (local-only)",
+      "items": {
+        "type": "object",
+        "required": ["at", "body"],
+        "additionalProperties": false,
+        "properties": {
+          "at": { "type": "string" },
+          "body": { "type": "string", "maxLength": 8000 }
+        }
+      }
+    },
+    "attachmentRefs": {
+      "type": "array",
+      "maxItems": 32,
+      "description": "Future-ready local attachment references — not uploaded",
+      "items": {
+        "type": "object",
+        "required": ["id", "label"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string", "maxLength": 200 },
+          "mimeHint": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "activityType": {
+      "type": ["string", "null"],
+      "enum": [
+        "note-updated",
+        "investigation-updated",
+        "reading-completed",
+        "bookmark-added",
+        "watchlist-hit",
+        "collection-updated",
+        "intel-noticed",
+        null
+      ]
+    }
   }
 }

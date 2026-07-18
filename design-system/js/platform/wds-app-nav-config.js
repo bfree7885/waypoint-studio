@@ -408,6 +408,11 @@
           "href": "apps/signalterrain/cyber/knowledge.html"
         },
         {
+          "id": "cyber-workspace",
+          "label": "Cyber operations workspace",
+          "href": "apps/signalterrain/cyber/workspace.html"
+        },
+        {
           "id": "cyber-ingest-health",
           "label": "Cyber ingest (internal)",
           "href": "apps/signalterrain/cyber/ingest-health.html"

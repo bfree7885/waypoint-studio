@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "panels": [
+    {
+      "id": "brief",
+      "label": "Today's Brief",
+      "defaultVisible": true,
+      "description": "Link into the Daily Cyber Brief — calm attention, not an alert wall."
+    },
+    {
+      "id": "recent-intel",
+      "label": "Recently Updated Intelligence",
+      "defaultVisible": true,
+      "description": "Sample graph entities with recent history entries."
+    },
+    {
+      "id": "investigations",
+      "label": "Saved Investigations",
+      "defaultVisible": true,
+      "description": "Open investigation notebooks linked to the shared graph."
+    },
+    {
+      "id": "reading-queue",
+      "label": "Reading Queue",
+      "defaultVisible": true,
+      "description": "Structured reading with time, difficulty, and status."
+    },
+    {
+      "id": "pinned",
+      "label": "Pinned Topics",
+      "defaultVisible": true,
+      "description": "Timeline pins and bookmarks you keep nearby."
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "defaultVisible": true,
+      "description": "Curated sets that reuse shared entity and knowledge ids."
+    },
+    {
+      "id": "timeline",
+      "label": "Personal Timeline",
+      "defaultVisible": true,
+      "description": "Your learning journey — not a global event firehose."
+    },
+    {
+      "id": "watchlists",
+      "label": "Watchlist",
+      "defaultVisible": true,
+      "description": "Explainable hits when watched products, vendors, or campaigns appear."
+    },
+    {
+      "id": "learning",
+      "label": "Learning Progress",
+      "defaultVisible": false,
+      "description": "Pointers into Defensive Knowledge learning paths."
+    },
+    {
+      "id": "notes",
+      "label": "Recent Notes",
+      "defaultVisible": true,
+      "description": "Private local notes with graph links."
+    }
+  ]
+}

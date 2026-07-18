@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    {
+      "id": "tpl_browser-security",
+      "title": "Browser Security",
+      "tags": ["browser", "client"],
+      "seedSubjectIds": [],
+      "tasks": [
+        { "id": "t1", "text": "List browsers in use", "done": false },
+        { "id": "t2", "text": "Review extension hygiene", "done": false },
+        { "id": "t3", "text": "Note update cadence", "done": false }
+      ]
+    },
+    {
+      "id": "tpl_linux-hardening",
+      "title": "Linux Hardening",
+      "tags": ["linux", "hardening"],
+      "seedSubjectIds": [],
+      "tasks": [
+        { "id": "t1", "text": "Inventory distros and roles", "done": false },
+        { "id": "t2", "text": "Capture baseline update practice", "done": false }
+      ]
+    },
+    {
+      "id": "tpl_identity-protection",
+      "title": "Identity Protection",
+      "tags": ["identity", "auth"],
+      "seedSubjectIds": [],
+      "tasks": [
+        { "id": "t1", "text": "Map accounts that matter", "done": false },
+        { "id": "t2", "text": "Review MFA coverage", "done": false }
+      ]
+    },
+    {
+      "id": "tpl_cloud-security",
+      "title": "Cloud Security",
+      "tags": ["cloud"],
+      "seedSubjectIds": [],
+      "tasks": [
+        { "id": "t1", "text": "List cloud providers in use", "done": false },
+        { "id": "t2", "text": "Note shared-responsibility edges", "done": false }
+      ]
+    },
+    {
+      "id": "tpl_patch-tuesday",
+      "title": "Patch Tuesday",
+      "tags": ["patching", "windows"],
+      "seedSubjectIds": [],
+      "tasks": [
+        { "id": "t1", "text": "Skim vendor guidance", "done": false },
+        { "id": "t2", "text": "Relate to personal inventory", "done": false }
+      ]
+    },
+    {
+      "id": "tpl_ransomware-trends",
+      "title": "Ransomware Trends",
+      "tags": ["ransomware"],
+      "seedSubjectIds": ["cy_ransomware-wannacry"],
+      "tasks": [
+        { "id": "t1", "text": "Review backups story", "done": false },
+        { "id": "t2", "text": "Read one historical incident lesson", "done": false }
+      ]
+    }
+  ]
+}
