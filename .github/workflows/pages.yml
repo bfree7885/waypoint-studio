@@ -1,12 +1,13 @@
 name: Deploy GitHub Pages
 
-# Website deployment is independent of live-engine data publishing.
+# Website deployment is independent of CI and of live-engine data publishing.
+# CI remains the quality signal; it must not block shipping committed site surfaces
+# (Volunteer, SignalTerrain Cyber, etc.) when smoke flakes or environment issues
+# fail the Actions runner.
 # Build metadata is injected into the Pages artifact from the exact commit SHA.
 # Requires: Repo Settings → Pages → Source = GitHub Actions
 on:
-  workflow_run:
-    workflows: ["CI"]
-    types: [completed]
+  push:
     branches: [main]
   workflow_dispatch:
 
@@ -14,7 +15,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read
 
 concurrency:
   group: pages-deploy
@@ -23,18 +23,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Resolve deploy SHA
         id: sha
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_run" ]; then
-            echo "sha=${{ github.event.workflow_run.head_sha }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
       - uses: actions/checkout@v4
         with:

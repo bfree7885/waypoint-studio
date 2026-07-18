@@ -13,6 +13,7 @@
 import { spawn } from "child_process";
 import fs from "fs";
 import http from "http";
+import os from "os";
 import path from "path";
 import { setTimeout as delay } from "timers/promises";
 import { fileURLToPath } from "url";
@@ -54,6 +55,14 @@ const PAGES = [
   { name: "sheds", path: "/apps/shed-hunting/", ready: "shell" },
   { name: "steepleaf", path: "/apps/steepleaf/", ready: "shell" },
   { name: "signalterrain", path: "/apps/signalterrain/", ready: "shell" },
+  { name: "signalterrain-cyber", path: "/apps/signalterrain/cyber/", ready: "shell" },
+  { name: "signalterrain-cyber-brief", path: "/apps/signalterrain/cyber/brief.html", ready: "shell" },
+  { name: "signalterrain-cyber-explorer", path: "/apps/signalterrain/cyber/explorer.html", ready: "shell" },
+  { name: "signalterrain-topics", path: "/apps/signalterrain/topics.html", ready: "shell" },
+  { name: "signalterrain-graph", path: "/apps/signalterrain/graph.html", ready: "shell" },
+  { name: "signalterrain-summary", path: "/apps/signalterrain/summary.html", ready: "shell" },
+  { name: "waypoint-volunteer", path: "/apps/waypoint-volunteer/", ready: "shell" },
+  { name: "waypoint-volunteer-discover", path: "/apps/waypoint-volunteer/discover.html", ready: "shell" },
   { name: "savant", path: "/apps/savant-sommelier/", ready: "shell" },
   { name: "terrainbound-redirect", path: "/apps/terrainbound/", ready: "shell" },
   { name: "species-profile", path: "/design-system/species/profile.html", ready: "any" }
@@ -95,6 +104,7 @@ async function waitForHttp(url, timeoutMs = 30000) {
 }
 
 async function startChrome() {
+  const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), "waypoint-smoke-chrome-"));
   const proc = spawn(
     CHROME,
     [
@@ -103,6 +113,7 @@ async function startChrome() {
       "--no-sandbox",
       "--disable-extensions",
       "--disable-dev-shm-usage",
+      `--user-data-dir=${userDataDir}`,
       `--remote-debugging-port=${CDP_PORT}`,
       "about:blank"
     ],
