@@ -1,0 +1,25 @@
+{
+  "name": "Waypoint Volunteer",
+  "eyebrow": "Contribute",
+  "mission": "What good can I do today? — discover community opportunities without gamification.",
+  "status": "foundation",
+  "statusLabel": "Foundation",
+  "portfolioStatus": "foundation",
+  "portfolioNote": "Discovery prototype with sample orgs and opportunities. Not a management or registration system.",
+  "strategicRole": "Help people find calm ways to contribute; bridge stewardship into Today Outside and field apps later.",
+  "learnToday": [
+    "How discovery differs from volunteer management",
+    "How to filter for one hour outdoors",
+    "How citizen science links toward Fieldry",
+    "Why there are no streaks or leaderboards",
+    "How Today Outside might surface opportunities later"
+  ],
+  "comingSoon": [],
+  "preview": {
+    "title": "What good can I do today?",
+    "placeholderLabel": "Discover",
+    "placeholderHint": "Time · place · interest · skill",
+    "description": "A quiet way to find service that fits your day."
+  },
+  "homeLink": "../../"
+}

@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "foundation",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-17",
+    "tagline": "What good can I do today?",
+    "docs": [
+      "docs/WAYPOINT-VOLUNTEER.md",
+      "docs/WAYPOINT-VOLUNTEER-INTEGRATIONS.md"
+    ]
+  },
+  "package": {
+    "id": "waypoint-volunteer",
+    "label": "Waypoint Volunteer",
+    "path": "design-system/volunteer/"
+  },
+  "artifacts": {
+    "organizationSchema": "schema-organization-v0.1.json",
+    "opportunitySchema": "schema-opportunity-v0.1.json",
+    "categories": "categories.json",
+    "skills": "skills.json",
+    "demoBundle": "samples/demo-bundle.json",
+    "discoverRuntime": "../js/volunteer/wds-volunteer-discover.js",
+    "css": "../css/wds-volunteer.css",
+    "discoverSurface": "../../apps/waypoint-volunteer/discover.html",
+    "foundationSurface": "../../apps/waypoint-volunteer/"
+  },
+  "notInScopeV01": [
+    "Volunteer management / hours tracking",
+    "Event registration / RSVP",
+    "Social feeds, likes, rankings, streaks",
+    "Live partner calendar APIs",
+    "Automatic weather routing"
+  ]
+}

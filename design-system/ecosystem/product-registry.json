@@ -13,7 +13,8 @@
       "shed-hunting",
       "steepleaf",
       "signalterrain",
-      "savant-sommelier"
+      "savant-sommelier",
+      "waypoint-volunteer"
     ],
     "contentTracks": [],
     "modules": [],
@@ -746,6 +747,54 @@
         "optIn": true
       },
       "contentEngineRegion": "pike-county-pa"
+    },
+    "waypoint-volunteer": {
+      "slug": "waypoint-volunteer",
+      "portfolioTier": "module",
+      "portfolioRole": "Volunteer discovery \u2014 what good can I do today?",
+      "dataProduct": "waypoint-volunteer",
+      "name": "Waypoint Volunteer",
+      "hero": "What good can I do today?",
+      "eyebrow": "Contribute",
+      "lead": "Discover meaningful ways to contribute in your community \u2014 calmly, without rankings, streaks, or social pressure.",
+      "description": "Waypoint Volunteer is a discovery platform for community opportunities. It is not volunteer management, event registration, or social media.",
+      "studioHref": "../../",
+      "toolHref": "apps/waypoint-volunteer/",
+      "toolLabel": "Open Volunteer",
+      "package": "design-system/volunteer/",
+      "docs": [
+        "docs/WAYPOINT-VOLUNTEER.md",
+        "docs/WAYPOINT-VOLUNTEER-INTEGRATIONS.md"
+      ],
+      "contentDomains": [
+        "conservation",
+        "habitat",
+        "field-skills",
+        "ecology"
+      ],
+      "homepageSections": [
+        "featured-photograph",
+        "todays-lesson",
+        "outdoor-challenge",
+        "citizen-science"
+      ],
+      "fieldGuideTemplates": [
+        "habitat",
+        "conservation",
+        "outdoor-challenge",
+        "field-investigation"
+      ],
+      "photographyLayout": "stewardship",
+      "citizenScience": {
+        "enabled": true,
+        "optIn": true
+      },
+      "contentEngineRegion": "pike-county-pa",
+      "sharedEngines": [
+        "product-framework",
+        "waypoint-guide-experience",
+        "waypoint-knowledge-curated"
+      ]
     },
     "signalterrain": {
       "slug": "signalterrain",

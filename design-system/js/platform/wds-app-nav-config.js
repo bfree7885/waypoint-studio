@@ -403,6 +403,31 @@
           "href": "apps/savant-sommelier/"
         }
       ]
+    },
+    {
+      "id": "waypoint-volunteer",
+      "title": "Waypoint Volunteer",
+      "shortTitle": "Volunteer",
+      "icon": "volunteer",
+      "route": "apps/waypoint-volunteer/",
+      "match": [
+        "/apps/waypoint-volunteer"
+      ],
+      "category": "outdoor",
+      "description": "What good can I do today? — discover community opportunities without gamification.",
+      "status": "foundation",
+      "features": [
+        {
+          "id": "overview",
+          "label": "Overview",
+          "href": "apps/waypoint-volunteer/"
+        },
+        {
+          "id": "discover",
+          "label": "Discover",
+          "href": "apps/waypoint-volunteer/discover.html"
+        }
+      ]
     }
   ]
 };

@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Volunteer opportunity categories for Waypoint Volunteer discovery.",
+  "categories": [
+    { "id": "animal-rescue", "label": "Animal Rescue" },
+    { "id": "conservation", "label": "Conservation" },
+    { "id": "habitat-restoration", "label": "Habitat Restoration" },
+    { "id": "trail-maintenance", "label": "Trail Maintenance" },
+    { "id": "parks", "label": "Parks" },
+    { "id": "community-gardens", "label": "Community Gardens" },
+    { "id": "food-banks", "label": "Food Banks" },
+    { "id": "education", "label": "Education" },
+    { "id": "museums", "label": "Museums" },
+    { "id": "libraries", "label": "Libraries" },
+    { "id": "search-and-rescue", "label": "Search & Rescue" },
+    { "id": "emergency-preparedness", "label": "Emergency Preparedness" },
+    { "id": "disaster-recovery", "label": "Disaster Recovery" },
+    { "id": "citizen-science", "label": "Citizen Science" },
+    { "id": "community-events", "label": "Community Events" }
+  ]
+}

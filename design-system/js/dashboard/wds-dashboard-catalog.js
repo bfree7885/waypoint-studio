@@ -1239,7 +1239,7 @@
     defaultOrder: 1020,
     futureProvider: "volunteer-events",
     summary: "Trail and habitat work",
-    placeholder: "Stewardship volunteer events when calendar provider connects."
+    placeholder: "Sample stewardship ideas in Waypoint Volunteer (foundation). Live calendar provider still planned."
   });
 
   educational({

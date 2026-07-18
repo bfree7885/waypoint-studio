@@ -23,6 +23,8 @@
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |
+| [WAYPOINT-VOLUNTEER.md](WAYPOINT-VOLUNTEER.md) | Waypoint Volunteer foundation — what good can I do today? |
+| [WAYPOINT-VOLUNTEER-INTEGRATIONS.md](WAYPOINT-VOLUNTEER-INTEGRATIONS.md) | Today Outside + Fieldry/Scenes/ForageCast/SignalTerrain bridges |
 | [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md) | Signal Intelligence Foundation V1 — mission, boundaries, ranger tone |
 | [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md) | Modules, Signal Card, nav, dashboard, trust/knowledge |
 | [SIGNAL-INTELLIGENCE-ROADMAP.md](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature live claims |

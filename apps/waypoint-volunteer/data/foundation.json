@@ -1,0 +1,43 @@
+{
+  "productId": "waypoint-volunteer",
+  "title": "Waypoint Volunteer",
+  "eyebrow": "Waypoint Studio · What good can I do today?",
+  "status": "foundation",
+  "lead": "A calm discovery platform for meaningful community contribution — not volunteer management, not event registration, not social media.",
+  "mission": "Help people answer: What good can I do today?",
+  "principles": [
+    "Observe · Understand · Contribute",
+    "Discovery over management and registration",
+    "Curiosity and stewardship — never rankings, streaks, or likes",
+    "Citizen science bridges to Fieldry — it is not a separate social product",
+    "Sample data stays labeled sample until curated sources exist",
+    "Contact organizations directly — Waypoint does not RSVP for you"
+  ],
+  "modules": [
+    {
+      "title": "Discovery: What good can I do today?",
+      "status": "live",
+      "description": "Filter sample opportunities by time, setting, interest, skill, and family fit."
+    },
+    {
+      "title": "Organizations & opportunities",
+      "status": "foundation",
+      "description": "Shared schemas for orgs, opportunities, skills, and categories."
+    },
+    {
+      "title": "Today Outside hooks",
+      "status": "planned",
+      "description": "Dashboard volunteer glance — documented, not wired to live feeds."
+    },
+    {
+      "title": "App bridges",
+      "status": "planned",
+      "description": "Fieldry, Scenes, ForageCast, SignalTerrain integration architecture only."
+    }
+  ],
+  "routes": [
+    { "path": "/", "label": "Volunteer home", "ready": true },
+    { "path": "discover.html", "label": "What good can I do today?", "ready": true }
+  ],
+  "dataModel": "Sample organizations and opportunities ship in design-system/volunteer/. No backend. No hours tracking. No public activity feed."
+}

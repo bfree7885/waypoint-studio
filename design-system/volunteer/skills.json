@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-17",
+  "purpose": "Skills that may be associated with volunteer opportunities. Multiple skills per opportunity supported.",
+  "skills": [
+    { "id": "photography", "label": "Photography" },
+    { "id": "gis", "label": "GIS" },
+    { "id": "amateur-radio", "label": "Amateur Radio" },
+    { "id": "sdr", "label": "SDR" },
+    { "id": "drone-pilot", "label": "Drone Pilot" },
+    { "id": "trail-work", "label": "Trail Work" },
+    { "id": "gardening", "label": "Gardening" },
+    { "id": "habitat-restoration", "label": "Habitat Restoration" },
+    { "id": "wildlife-observation", "label": "Wildlife Observation" },
+    { "id": "teaching", "label": "Teaching" },
+    { "id": "technology", "label": "Technology" },
+    { "id": "mapping", "label": "Mapping" },
+    { "id": "first-aid", "label": "First Aid" },
+    { "id": "search-and-rescue", "label": "Search and Rescue" },
+    { "id": "data-entry", "label": "Data Entry" }
+  ]
+}

@@ -1,0 +1,177 @@
+/* Waypoint Volunteer — discovery prototype */
+.wv-page {
+  --wv-bg: #f1f4ef;
+  --wv-ink: #1a221c;
+  --wv-muted: #5a655c;
+  --wv-line: #cfd8d0;
+  --wv-panel: #f8faf7;
+  --wv-accent: #3d6b4f;
+  --wv-focus: #6a5a32;
+  background:
+    radial-gradient(900px 500px at 0% 0%, #e3ebe4 0%, transparent 55%),
+    radial-gradient(700px 420px at 100% 10%, #ebe8df 0%, transparent 50%),
+    var(--wv-bg);
+  color: var(--wv-ink);
+  min-height: 70vh;
+}
+
+.wv-discover {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.wv-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wv-muted);
+}
+
+.wv-header h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.wv-lead {
+  margin: 0;
+  max-width: 34rem;
+  color: var(--wv-muted);
+  font-size: 1.05rem;
+}
+
+.wv-badge {
+  margin-top: 0.85rem;
+  font-size: 0.8rem;
+  color: var(--wv-muted);
+  border: 1px solid var(--wv-line);
+  padding: 0.5rem 0.65rem;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.wv-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  margin: 1.35rem 0 1.15rem;
+  align-items: center;
+}
+
+.wv-filters label {
+  font-size: 0.82rem;
+  color: var(--wv-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.wv-filters select {
+  font: inherit;
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  color: var(--wv-ink);
+  padding: 0.35rem 0.45rem;
+  min-width: 9rem;
+}
+
+.wv-check {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 0.4rem !important;
+  margin-top: 1.1rem;
+}
+
+.wv-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.95fr) minmax(280px, 1.15fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .wv-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wv-list,
+.wv-detail {
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 1rem 1.1rem 1.25rem;
+}
+
+.wv-list h2,
+.wv-detail h3 {
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--wv-accent);
+  margin: 0 0 0.65rem;
+}
+
+.wv-detail h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.65rem;
+  margin: 0 0 0.25rem;
+}
+
+.wv-detail h3 {
+  margin-top: 1rem;
+}
+
+.wv-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wv-card {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  border: 1px solid var(--wv-line);
+  background: transparent;
+  padding: 0.75rem 0.85rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wv-card.is-selected {
+  border-color: var(--wv-accent);
+  box-shadow: inset 3px 0 0 var(--wv-accent);
+}
+
+.wv-card-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.wv-card-meta,
+.wv-org,
+.wv-muted,
+.wv-empty,
+.wv-loading,
+.wv-error {
+  font-size: 0.82rem;
+  color: var(--wv-muted);
+}
+
+.wv-org {
+  margin: 0 0 0.75rem;
+}
+
+.wv-back {
+  display: inline-block;
+  margin: 1rem 1.25rem 0;
+  font-size: 0.85rem;
+  color: var(--wv-muted);
+}

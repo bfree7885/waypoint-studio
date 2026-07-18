@@ -165,6 +165,18 @@
       pathFromRoot: "apps/savant-sommelier/",
       dataProduct: "savant-sommelier",
       navPriority: 90
+    },
+    {
+      id: "waypoint-volunteer",
+      name: "Waypoint Volunteer",
+      shortName: "Volunteer",
+      tier: "foundation",
+      status: "foundation",
+      description: "What good can I do today? — community opportunity discovery.",
+      pathFromApps: "../waypoint-volunteer/",
+      pathFromRoot: "apps/waypoint-volunteer/",
+      dataProduct: "waypoint-volunteer",
+      navPriority: 85
     }
   ];
 
