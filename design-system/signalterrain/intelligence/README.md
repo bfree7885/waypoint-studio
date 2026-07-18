@@ -32,8 +32,10 @@ Canonical docs:
 3. Recommendations never auto-execute (`autoExecute: false`).  
 4. Samples stay labeled sample.  
 5. Geopolitical items are structured events — not news articles.  
-6. Prefer attaching UIOs to living topics (`st_*`).
+6. Prefer attaching UIOs to living topics (`st_*`).  
+7. Cyber Awareness Engine lives at `cyber/` — educational defensive literacy only.
 
 ## Demo
 
-Open `apps/signalterrain/summary.html` for the Intelligence Summary prototype.
+Open `apps/signalterrain/summary.html` for the Intelligence Summary prototype.  
+Open `apps/signalterrain/cyber/` for Cyber Awareness navigation + sample graph/priority.

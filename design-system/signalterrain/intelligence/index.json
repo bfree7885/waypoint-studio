@@ -9,7 +9,11 @@
       "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md",
       "docs/SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md",
       "docs/SIGNALTERRAIN-CORRELATION-ENGINE.md",
-      "docs/SIGNALTERRAIN-RECOMMENDATIONS.md"
+      "docs/SIGNALTERRAIN-RECOMMENDATIONS.md",
+      "docs/CYBER-INTELLIGENCE-MODEL.md",
+      "docs/CYBER-GRAPH-ARCHITECTURE.md",
+      "docs/CYBER-PRIORITY-ENGINE.md",
+      "docs/CYBER-DATA-MODEL.md"
     ]
   },
   "package": {
@@ -28,7 +32,10 @@
     "recommendationSample": "samples/recommendations.sample.json",
     "summarySample": "samples/intelligence-summary.sample.json",
     "summaryRuntime": "../../js/signalterrain/wds-signalterrain-summary.js",
-    "summarySurface": "../../../apps/signalterrain/summary.html"
+    "summarySurface": "../../../apps/signalterrain/summary.html",
+    "cyberAwareness": "cyber/",
+    "cyberSurface": "../../../apps/signalterrain/cyber/",
+    "researchWorkspace": "../research/"
   },
   "inherits": [
     "signalterrain-foundation",

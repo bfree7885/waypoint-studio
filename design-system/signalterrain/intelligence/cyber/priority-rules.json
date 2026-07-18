@@ -1,0 +1,52 @@
+{
+  "version": "0.1.0",
+  "engineVersion": "cyber-priority-0.1.0",
+  "updatedAt": "2026-07-18",
+  "bands": [
+    { "id": "low", "min": 0, "max": 24, "label": "Low", "guidance": "Informational hygiene — read when calm." },
+    { "id": "moderate", "min": 25, "max": 49, "label": "Moderate", "guidance": "Plan within normal operations." },
+    { "id": "high", "min": 50, "max": 74, "label": "High", "guidance": "Prioritize soon — still human-paced." },
+    { "id": "urgent", "min": 75, "max": 100, "label": "Urgent", "guidance": "Rare. Requires strong evidence and calm wording — never panic theater." }
+  ],
+  "maps": {
+    "severity": {
+      "info": 2,
+      "notice": 6,
+      "elevated": 12,
+      "high": 16,
+      "critical": 20
+    },
+    "known_exploitation": {
+      "none": 0,
+      "historical": 12,
+      "active": 25
+    },
+    "public_exploit_availability": {
+      "none": 0,
+      "reported": 8,
+      "widely_reported": 15
+    },
+    "patch_availability": {
+      "available": 3,
+      "partial": 7,
+      "unavailable": 10
+    },
+    "recency": {
+      "legacy": 2,
+      "recent": 6,
+      "current": 10
+    },
+    "confidence": {
+      "insufficient": 0,
+      "speculative": 1,
+      "low": 2,
+      "moderate": 4,
+      "high": 5
+    }
+  },
+  "caps": {
+    "urgentRequiresKnownExploitation": true,
+    "urgentMinTrustedSources": 2,
+    "note": "Urgent band is blocked unless known exploitation is active/historical AND at least two trusted citations exist — prevents theatrical urgency."
+  }
+}

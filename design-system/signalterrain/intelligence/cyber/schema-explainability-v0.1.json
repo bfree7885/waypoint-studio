@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/explainability/v0.1",
+  "title": "Cyber Awareness Explainability v0.1",
+  "description": "Required explanation blocks. Known Facts, Likely, Possible, and Unknown must never be blurred.",
+  "type": "object",
+  "required": [
+    "whatIsIt",
+    "whyItMatters",
+    "whoIsAffected",
+    "whatChanged",
+    "readNext",
+    "watch",
+    "uncertain",
+    "knownFacts",
+    "likely",
+    "possible",
+    "unknown"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "whatIsIt": { "type": "string", "maxLength": 800 },
+    "whyItMatters": { "type": "string", "maxLength": 800 },
+    "whoIsAffected": { "type": "string", "maxLength": 800 },
+    "whatChanged": { "type": "string", "maxLength": 800 },
+    "readNext": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 256 },
+      "maxItems": 12
+    },
+    "watch": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 256 },
+      "maxItems": 12
+    },
+    "uncertain": { "type": "string", "maxLength": 800 },
+    "knownFacts": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 500 },
+      "minItems": 1
+    },
+    "likely": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 500 }
+    },
+    "possible": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 500 }
+    },
+    "unknown": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 500 },
+      "minItems": 1
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+  "title": "Cyber Awareness Entity v0.1",
+  "description": "Reusable cyber intelligence entity with history, relationships, notes, citations, confidence, and owner analysis. Not a scanner finding or SIEM alert.",
+  "type": "object",
+  "required": [
+    "meta",
+    "id",
+    "kind",
+    "title",
+    "summary",
+    "confidence",
+    "updatedAt",
+    "history",
+    "relationships",
+    "notes",
+    "citations",
+    "explainability"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["sample", "draft", "active", "archived"]
+        },
+        "disclaimer": { "type": "string", "maxLength": 1024 }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^cy_[a-z0-9]+(?:-[a-z0-9.]+)*$"
+    },
+    "kind": { "type": "string", "minLength": 2, "maxLength": 64 },
+    "title": { "type": "string", "maxLength": 200 },
+    "summary": { "type": "string", "maxLength": 800 },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 120 },
+      "maxItems": 16
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["info", "notice", "elevated", "high", "critical"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "moderate", "low", "speculative", "insufficient"]
+    },
+    "regions": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 80 },
+      "maxItems": 24
+    },
+    "industries": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 80 },
+      "maxItems": 24
+    },
+    "cveId": { "type": ["string", "null"], "pattern": "^CVE-[0-9]{4}-[0-9]+$" },
+    "externalIds": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "maxLength": 120 }
+    },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["at", "summary"],
+        "additionalProperties": false,
+        "properties": {
+          "at": { "type": "string" },
+          "summary": { "type": "string", "maxLength": 400 },
+          "citationIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "from", "to"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^cyr_[a-z0-9-]+$" },
+          "type": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "confidence": {
+            "type": "string",
+            "enum": ["high", "moderate", "low", "speculative", "insufficient"]
+          },
+          "note": { "type": "string", "maxLength": 400 }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "body", "updatedAt"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "body": { "type": "string", "maxLength": 2000 },
+          "updatedAt": { "type": "string" },
+          "private": { "type": "boolean" }
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string", "maxLength": 256 },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "vendor",
+              "government",
+              "academic",
+              "standard",
+              "news",
+              "technical",
+              "other"
+            ]
+          },
+          "url": { "type": ["string", "null"], "maxLength": 2048 },
+          "accessedAt": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "ownerAnalysis": { "type": ["string", "null"], "maxLength": 4000 },
+    "topicIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^st_" },
+      "description": "Optional links into the living knowledge graph."
+    },
+    "uioIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^uio_" }
+    },
+    "explainability": {
+      "$ref": "https://waypoint.studio/schemas/signalterrain/cyber/explainability/v0.1"
+    },
+    "priorityInputs": {
+      "type": "object",
+      "description": "Transparent inputs for the priority engine — never a mysterious score.",
+      "additionalProperties": true
+    }
+  }
+}

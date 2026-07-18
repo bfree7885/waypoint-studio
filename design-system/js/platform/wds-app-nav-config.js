@@ -381,6 +381,11 @@
           "id": "summary",
           "label": "Intelligence summary",
           "href": "apps/signalterrain/summary.html"
+        },
+        {
+          "id": "cyber",
+          "label": "Cyber Awareness",
+          "href": "apps/signalterrain/cyber/"
         }
       ]
     },

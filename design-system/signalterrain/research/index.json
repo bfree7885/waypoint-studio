@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "updatedAt": "2026-07-18",
+    "purpose": "Shared research workspace for SignalTerrain Radio & Spectrum and Cyber Awareness — one implementation, two domains."
+  },
+  "package": {
+    "id": "signalterrain-research-workspace",
+    "path": "design-system/signalterrain/research/"
+  },
+  "domains": ["radio", "cyber", "infrastructure", "research"],
+  "components": [
+    { "id": "bookmarks", "label": "Bookmarks", "schemaKind": "bookmark" },
+    { "id": "collections", "label": "Collections", "schemaKind": "collection" },
+    { "id": "research-notes", "label": "Research notes", "schemaKind": "note" },
+    { "id": "saved-searches", "label": "Saved searches", "schemaKind": "saved-search" },
+    { "id": "tags", "label": "Tags", "schemaKind": "tag" },
+    { "id": "cross-references", "label": "Cross references", "schemaKind": "cross-reference" },
+    { "id": "source-library", "label": "Source library", "schemaKind": "source-entry" },
+    { "id": "timeline", "label": "Timeline", "schemaKind": "timeline-pin" },
+    { "id": "reading-queue", "label": "Reading queue", "schemaKind": "queue-item" },
+    { "id": "technical-docs", "label": "Technical documentation", "schemaKind": "source-entry", "sourceClass": "technical" },
+    { "id": "government-refs", "label": "Government references", "schemaKind": "source-entry", "sourceClass": "government" },
+    { "id": "vendor-docs", "label": "Vendor documentation", "schemaKind": "source-entry", "sourceClass": "vendor" },
+    { "id": "academic-refs", "label": "Academic references", "schemaKind": "source-entry", "sourceClass": "academic" }
+  ],
+  "storagePrinciple": "Local-first. Workspace items stay on-device unless a future sync path earns trust.",
+  "forbidSeparateImplementations": true
+}

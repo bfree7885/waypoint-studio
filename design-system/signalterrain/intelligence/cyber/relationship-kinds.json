@@ -1,0 +1,25 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Cyber Awareness relationship kinds. Prefer living-graph canonical types; cyber aliases map into them.",
+  "livingGraphCatalog": "../relationship-types.json",
+  "kinds": [
+    { "id": "uses", "livingGraph": "uses", "example": "Threat uses Exploit Technique" },
+    { "id": "affects", "livingGraph": "affects", "example": "CVE affects Product" },
+    { "id": "mitigates", "livingGraph": "mitigates", "example": "Mitigation reduces Threat" },
+    { "id": "fixes", "livingGraph": "patched_by", "directionNote": "subject=patch, object=vulnerability — patch fixes vulnerability", "example": "Patch fixes Vulnerability" },
+    { "id": "targets", "livingGraph": "targets", "example": "Threat Campaign targets Industry" },
+    { "id": "linked_advisory", "livingGraph": "references", "example": "Threat linked to Advisory" },
+    { "id": "documented_in", "livingGraph": "documented_in", "example": "Vulnerability documented in Reference" },
+    { "id": "published_by", "livingGraph": "published_by", "example": "Advisory published by Vendor/Source" },
+    { "id": "associated_with", "livingGraph": "associated_with", "example": "Campaign associated with Malware Family" },
+    { "id": "member_of", "livingGraph": "depends_on", "example": "Variant member of Malware Family" },
+    { "id": "exploited_in", "livingGraph": "observed_with", "example": "Vulnerability exploited in Campaign (literacy)" },
+    { "id": "caused_by", "livingGraph": "caused_by", "example": "Impact caused by Vulnerability" },
+    { "id": "supersedes", "livingGraph": "supersedes", "example": "Advisory supersedes earlier note" },
+    { "id": "related_to", "livingGraph": "related_to", "example": "General association — use sparingly" },
+    { "id": "supports", "livingGraph": "supports", "example": "Evidence supports claim" },
+    { "id": "conflicts_with", "livingGraph": "conflicts_with", "example": "Sources disagree" }
+  ],
+  "editorialGates": ["targets", "caused_by", "associated_with", "exploited_in"]
+}

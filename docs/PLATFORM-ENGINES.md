@@ -30,6 +30,7 @@ Waypoint Studio grows as a set of **shared intelligence engines** that applicati
 | **Worth Noticing** | **Active foundation** | Calm context-aware observations — never notifications |
 | **Landscape Interpretation** | **Architecture v0.1** (no runtime) | Why a landscape looks the way it does |
 | **Signal Intelligence** | **Foundation V1 architecture** (no runtime) | Reading RF, cyber, and infrastructure environments calmly |
+| **Cyber Awareness Intelligence** | **Architecture V0.1 + prototype UI** | Explainable cyber entity graph & priority — under SignalTerrain, not a separate product |
 
 Exact boundaries may shift; this list is the account of intent.
 

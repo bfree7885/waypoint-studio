@@ -1,0 +1,3487 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "title": "Cyber Awareness sample intelligence bundle",
+    "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool.",
+    "cases": [
+      "Heartbleed",
+      "EternalBlue",
+      "WannaCry",
+      "NotPetya",
+      "SolarWinds",
+      "ProxyShell",
+      "Log4Shell",
+      "MOVEit"
+    ]
+  },
+  "entities": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_kev",
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "kind": "government",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_source-cisa",
+      "kind": "source",
+      "title": "CISA",
+      "summary": "U.S. Cybersecurity and Infrastructure Security Agency — government advisories and KEV.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "A primary government publisher of defensive cyber guidance in the United States.",
+        "whyItMatters": "KEV and advisories help prioritize what is known to be exploited.",
+        "whoIsAffected": "Organizations and individuals who follow U.S. federal cyber guidance.",
+        "whatChanged": "Catalog role is stable; specific entries change over time.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Coverage is not exhaustive of all global threats.",
+        "knownFacts": [
+          "CISA publishes the Known Exploited Vulnerabilities catalog.",
+          "CISA issues binding operational directives for federal civilian executive branch agencies."
+        ],
+        "likely": [
+          "KEV membership correlates with higher defensive priority for many operators."
+        ],
+        "possible": [],
+        "unknown": [
+          "Future catalog membership for any given CVE until published."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_industry-software",
+      "kind": "industry",
+      "title": "Software & IT services",
+      "summary": "Sector relevance tag for prioritization.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "An industry label used for priority relevance.",
+        "whyItMatters": "Helps answer who should pay attention.",
+        "whoIsAffected": "Operators in software and IT services.",
+        "whatChanged": "Label vocabulary only.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Industry boundaries are coarse.",
+        "knownFacts": [
+          "Used as a prioritization facet, not a precise NAICS classifier."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Exact exposure of any one organization."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_industry-healthcare",
+      "kind": "industry",
+      "title": "Healthcare",
+      "summary": "Sector relevance tag.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Healthcare sector relevance label.",
+        "whyItMatters": "Some campaigns historically impacted healthcare operations.",
+        "whoIsAffected": "Healthcare providers and related IT.",
+        "whatChanged": "Label vocabulary only.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Sector impact varies by incident.",
+        "knownFacts": [
+          "Used for awareness prioritization."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Current exposure of any specific provider."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2014-04-07",
+          "summary": "Public disclosure of Heartbleed affecting OpenSSL.",
+          "citationIds": [
+            "cite_openssl",
+            "cite_nvd"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_hb_cve_affects_openssl",
+          "type": "affects",
+          "from": "cy_cve-2014-0160",
+          "to": "cy_software-openssl",
+          "confidence": "high",
+          "note": "CVE affects OpenSSL"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_openssl",
+          "label": "OpenSSL security advisories",
+          "kind": "vendor",
+          "url": "https://www.openssl.org/news/vulnerabilities.html",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": "Foundational example of why patch and inventory literacy matter. Historical — still useful for teaching.",
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [
+        "Heartbleed"
+      ],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_cve-2014-0160",
+      "kind": "cve",
+      "title": "CVE-2014-0160 (Heartbleed)",
+      "cveId": "CVE-2014-0160",
+      "summary": "OpenSSL TLS heartbeat extension memory disclosure vulnerability disclosed in 2014.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A critical memory disclosure bug in certain OpenSSL versions via the TLS heartbeat extension.",
+        "whyItMatters": "It could expose private keys and sensitive memory contents on affected servers.",
+        "whoIsAffected": "Services using vulnerable OpenSSL builds that exposed heartbeat.",
+        "whatChanged": "Disclosure in April 2014; patches followed from OpenSSL and vendors.",
+        "readNext": [
+          "OpenSSL advisory history",
+          "NVD CVE-2014-0160"
+        ],
+        "watch": [
+          "Whether legacy appliances still run vulnerable OpenSSL"
+        ],
+        "uncertain": "Whether any specific host today remains unpatched.",
+        "knownFacts": [
+          "CVE-2014-0160 is the Heartbleed identifier.",
+          "The issue involved the TLS heartbeat extension in OpenSSL.",
+          "Vendors released patched OpenSSL versions after disclosure."
+        ],
+        "likely": [
+          "Unpatched legacy systems could remain exposed years later."
+        ],
+        "possible": [
+          "Some closed appliances lag on OpenSSL updates."
+        ],
+        "unknown": [
+          "Inventory of remaining vulnerable endpoints on the public Internet for any one observer."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "historical",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 8,
+        "recency": "legacy",
+        "trustedSourceCount": 3,
+        "ownerInterest": 1,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_openssl",
+          "label": "OpenSSL security advisories",
+          "kind": "vendor",
+          "url": "https://www.openssl.org/news/vulnerabilities.html",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-openssl",
+      "kind": "affected-software",
+      "title": "OpenSSL",
+      "summary": "Widely used TLS/SSL library.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Open-source cryptography library implementing TLS/SSL.",
+        "whyItMatters": "Heartbleed affected specific OpenSSL releases.",
+        "whoIsAffected": "Applications and appliances bundling vulnerable OpenSSL.",
+        "whatChanged": "Patch releases after Heartbleed disclosure.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Bundle versions inside proprietary appliances.",
+        "knownFacts": [
+          "OpenSSL published fixed versions after Heartbleed."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Exact version on each local system until inventoried."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_hb_vuln_cve",
+          "type": "related_to",
+          "from": "cy_vuln-heartbleed",
+          "to": "cy_cve-2014-0160",
+          "confidence": "high",
+          "note": "Vulnerability maps to CVE"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_openssl",
+          "label": "OpenSSL security advisories",
+          "kind": "vendor",
+          "url": "https://www.openssl.org/news/vulnerabilities.html",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_vuln-heartbleed",
+      "kind": "vulnerability",
+      "title": "Heartbleed memory disclosure",
+      "summary": "Heartbeat extension over-read in OpenSSL.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "The vulnerability class behind CVE-2014-0160.",
+        "whyItMatters": "Confidentiality of server memory could be compromised.",
+        "whoIsAffected": "TLS services on vulnerable OpenSSL.",
+        "whatChanged": "Public understanding and patches in 2014.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Residual exposure today.",
+        "knownFacts": [
+          "Tied to CVE-2014-0160.",
+          "Defensive response centered on patching and key rotation guidance from vendors/authorities."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Whether a given legacy host rotated keys after patching."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_hb_patch_fixes",
+          "type": "fixes",
+          "from": "cy_patch-openssl-heartbleed",
+          "to": "cy_cve-2014-0160",
+          "confidence": "high",
+          "note": "Patch fixes CVE"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_openssl",
+          "label": "OpenSSL security advisories",
+          "kind": "vendor",
+          "url": "https://www.openssl.org/news/vulnerabilities.html",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_patch-openssl-heartbleed",
+      "kind": "patch",
+      "title": "OpenSSL Heartbleed fixes",
+      "summary": "Patched OpenSSL releases addressing CVE-2014-0160.",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "Vendor/library updates that remove the Heartbleed defect.",
+        "whyItMatters": "Patching is the primary defensive remediation path.",
+        "whoIsAffected": "Operators of OpenSSL-based services.",
+        "whatChanged": "Fixed releases became available after disclosure.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Downstream appliance update lag.",
+        "knownFacts": [
+          "OpenSSL released fixed versions.",
+          "Operators were advised to update and consider credential/key rotation."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Completion status of rotation for any one operator."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_hb_mit_mitigates",
+          "type": "mitigates",
+          "from": "cy_mitigation-patch-rotate",
+          "to": "cy_vuln-heartbleed",
+          "confidence": "high",
+          "note": "Mitigation reduces vulnerability impact"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_openssl",
+          "label": "OpenSSL security advisories",
+          "kind": "vendor",
+          "url": "https://www.openssl.org/news/vulnerabilities.html",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_mitigation-patch-rotate",
+      "kind": "mitigation",
+      "title": "Patch and rotate secrets",
+      "summary": "Apply vendor fixes and rotate potentially exposed secrets when memory disclosure is plausible.",
+      "confidence": "high",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "Defensive guidance combining software update and secret hygiene.",
+        "whyItMatters": "Patch alone may not undo prior exposure of keys.",
+        "whoIsAffected": "Operators of previously vulnerable TLS services.",
+        "whatChanged": "Became standard advice after Heartbleed.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Scope of secrets that need rotation in each environment.",
+        "knownFacts": [
+          "Public guidance emphasized patching OpenSSL and considering key/certificate rotation."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Environment-specific secret inventory."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-03-14",
+          "summary": "Microsoft released security update MS17-010.",
+          "citationIds": [
+            "cite_ms"
+          ]
+        },
+        {
+          "at": "2017-05",
+          "summary": "WannaCry ransomware worm activity widely reported.",
+          "citationIds": [
+            "cite_cisa"
+          ]
+        },
+        {
+          "at": "2017-06",
+          "summary": "NotPetya destructive malware wave widely reported.",
+          "citationIds": [
+            "cite_cisa"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_eb_affects",
+          "type": "affects",
+          "from": "cy_cve-2017-0144",
+          "to": "cy_software-windows-smb",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_wc_exploited",
+          "type": "exploited_in",
+          "from": "cy_cve-2017-0144",
+          "to": "cy_ransomware-wannacry",
+          "confidence": "high",
+          "note": "Literacy link — not a how-to"
+        },
+        {
+          "id": "cyr_np_exploited",
+          "type": "exploited_in",
+          "from": "cy_cve-2017-0144",
+          "to": "cy_campaign-notpetya",
+          "confidence": "moderate",
+          "note": "Public analyses discuss EternalBlue-related propagation"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [
+        "EternalBlue"
+      ],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_cve-2017-0144",
+      "kind": "cve",
+      "title": "CVE-2017-0144 (EternalBlue)",
+      "cveId": "CVE-2017-0144",
+      "summary": "Microsoft SMBv1 remote code execution vulnerability addressed in MS17-010; later associated with WannaCry and NotPetya.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A critical Windows SMBv1 vulnerability patched via MS17-010, publicly known as EternalBlue.",
+        "whyItMatters": "It enabled wormable exploitation paths later seen in major 2017 incidents.",
+        "whoIsAffected": "Windows systems that remained unpatched and exposed SMBv1.",
+        "whatChanged": "Microsoft issued MS17-010; later global incidents demonstrated exploitation at scale.",
+        "readNext": [
+          "MS17-010",
+          "WannaCry",
+          "NotPetya"
+        ],
+        "watch": [
+          "Legacy Windows and SMBv1 exposure"
+        ],
+        "uncertain": "Residual unpatched estate size for any one network.",
+        "knownFacts": [
+          "CVE-2017-0144 is associated with EternalBlue.",
+          "Microsoft published MS17-010.",
+          "WannaCry and NotPetya campaigns were widely linked in public reporting to SMBv1 exploitation techniques including EternalBlue."
+        ],
+        "likely": [
+          "Unpatched SMBv1 remains a serious hygiene failure."
+        ],
+        "possible": [
+          "Some OT/legacy systems still defer patching."
+        ],
+        "unknown": [
+          "Exact current exposure inside a private network without inventory."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "historical",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 9,
+        "recency": "legacy",
+        "trustedSourceCount": 3,
+        "ownerInterest": 2,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-windows-smb",
+      "kind": "affected-software",
+      "title": "Microsoft Windows (SMBv1)",
+      "summary": "Windows systems exposing SMBv1 relevant to MS17-010.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Windows platforms that implemented vulnerable SMBv1 handling addressed by MS17-010.",
+        "whyItMatters": "Patch and SMBv1 reduction are core defenses.",
+        "whoIsAffected": "Windows administrators and dependent services.",
+        "whatChanged": "MS17-010 and subsequent hardening guidance.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Per-host patch level.",
+        "knownFacts": [
+          "Microsoft released MS17-010.",
+          "Disabling SMBv1 where unused is common defensive guidance."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local SMBv1 usage requirements."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_eb_patch",
+          "type": "fixes",
+          "from": "cy_patch-ms17-010",
+          "to": "cy_cve-2017-0144",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_patch-ms17-010",
+      "kind": "patch",
+      "title": "MS17-010",
+      "summary": "Microsoft security update addressing EternalBlue-class SMB vulnerabilities including CVE-2017-0144.",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Microsoft’s March 2017 security update package commonly referenced as MS17-010.",
+        "whyItMatters": "Primary vendor fix path for EternalBlue-related issues.",
+        "whoIsAffected": "Windows administrators.",
+        "whatChanged": "Update became available; later incidents highlighted urgency for stragglers.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Whether offline/air-gapped images received the update.",
+        "knownFacts": [
+          "MS17-010 was released by Microsoft.",
+          "Public incident reporting urged rapid application of the update."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Patch compliance in any specific estate."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_mitre",
+          "label": "MITRE ATT&CK / CVE program references",
+          "kind": "standard",
+          "url": "https://cve.mitre.org/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_technique-smb-worm",
+      "kind": "exploit-technique",
+      "title": "Wormable SMB exploitation (literacy)",
+      "summary": "High-level technique class: automated propagation via vulnerable SMB services. No steps provided.",
+      "confidence": "high",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "A literacy label for self-propagating abuse of vulnerable SMB services.",
+        "whyItMatters": "Explains why perimeter and patching failures cascade quickly.",
+        "whoIsAffected": "Networks with vulnerable SMB exposure.",
+        "whatChanged": "Demonstrated at scale in 2017 incidents.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Applicability to modern hardened estates.",
+        "knownFacts": [
+          "WannaCry exhibited worm-like propagation in public reporting.",
+          "Guidance focuses on patching and reducing SMBv1 exposure — not on reproducing attacks."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Operator-specific network segmentation quality."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-05",
+          "summary": "Global WannaCry outbreak widely reported, including healthcare impacts in some regions.",
+          "citationIds": [
+            "cite_cisa"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_wc_uses_tech",
+          "type": "uses",
+          "from": "cy_ransomware-wannacry",
+          "to": "cy_technique-smb-worm",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_wc_targets_health",
+          "type": "targets",
+          "from": "cy_ransomware-wannacry",
+          "to": "cy_industry-healthcare",
+          "confidence": "moderate",
+          "note": "Public reporting included healthcare impacts"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [
+        "healthcare",
+        "software"
+      ],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_ransomware-wannacry",
+      "kind": "ransomware-family",
+      "title": "WannaCry",
+      "summary": "May 2017 ransomware worm incident family widely reported globally.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A ransomware campaign/worm event in May 2017.",
+        "whyItMatters": "Showed how unpatched SMB exposure and ransomware can disrupt critical services.",
+        "whoIsAffected": "Organizations with vulnerable Windows systems; healthcare was among publicly reported impacted sectors in some countries.",
+        "whatChanged": "Rapid global attention on MS17-010 compliance.",
+        "readNext": [
+          "MS17-010",
+          "CVE-2017-0144",
+          "NotPetya"
+        ],
+        "watch": [
+          "Ransomware hygiene: backups, patching, least privilege"
+        ],
+        "uncertain": "Attribution details beyond public government/industry statements.",
+        "knownFacts": [
+          "WannaCry activity surged in May 2017.",
+          "Public reporting linked propagation to EternalBlue-class SMB exploitation.",
+          "Healthcare organizations were among publicly reported victims in some regions."
+        ],
+        "likely": [
+          "Backup and segmentation quality strongly influenced outcomes."
+        ],
+        "possible": [
+          "Some infections arrived via other initial access paths before worming."
+        ],
+        "unknown": [
+          "Complete victim inventory.",
+          "Private forensic details for specific victims."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "historical",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 9,
+        "recency": "legacy",
+        "trustedSourceCount": 3,
+        "ownerInterest": 2,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-06",
+          "summary": "NotPetya wave caused major enterprise disruption globally.",
+          "citationIds": [
+            "cite_cisa"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_np_uses_tech",
+          "type": "uses",
+          "from": "cy_campaign-notpetya",
+          "to": "cy_technique-smb-worm",
+          "confidence": "moderate",
+          "note": ""
+        },
+        {
+          "id": "cyr_np_assoc_threat",
+          "type": "associated_with",
+          "from": "cy_campaign-notpetya",
+          "to": "cy_threat-destructive-ransomware",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [
+        "software",
+        "healthcare"
+      ],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_campaign-notpetya",
+      "kind": "threat-campaign",
+      "title": "NotPetya (2017)",
+      "summary": "June 2017 destructive malware wave often discussed alongside ransomware aesthetics but primarily described as wiper/destructive in public analyses.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A major 2017 malware event using destructive techniques; often compared with ransomware but widely characterized as destructive.",
+        "whyItMatters": "Demonstrated supply-chain/adjacent update abuse and rapid lateral impact with lasting operational damage.",
+        "whoIsAffected": "Enterprises, especially those connected to initially impacted regions and software update paths discussed in public reporting.",
+        "whatChanged": "Raised awareness of destructive malware posing as ransomware and of update-path trust.",
+        "readNext": [
+          "EternalBlue",
+          "WannaCry",
+          "Supply-chain trust topics"
+        ],
+        "watch": [
+          "Integrity of software update channels",
+          "Backup recoverability"
+        ],
+        "uncertain": "Full private victim impact tallies.",
+        "knownFacts": [
+          "NotPetya emerged in June 2017.",
+          "Public reporting associated it with destructive outcomes beyond typical ransom recovery.",
+          "EternalBlue-related techniques were discussed in public technical analyses of propagation."
+        ],
+        "likely": [
+          "Organizations with strong offline backups recovered faster."
+        ],
+        "possible": [
+          "Some environments saw limited impact due to segmentation."
+        ],
+        "unknown": [
+          "Complete attribution evidence beyond public government statements."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "historical",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 8,
+        "recency": "legacy",
+        "trustedSourceCount": 2,
+        "ownerInterest": 1,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_threat-destructive-ransomware",
+      "kind": "threat",
+      "title": "Destructive malware with ransomware appearance",
+      "summary": "Awareness topic: malware that looks like ransomware but prioritizes destruction.",
+      "confidence": "moderate",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "A defensive literacy topic distinguishing ransom-driven encryption from destructive wipers.",
+        "whyItMatters": "Payment assumptions can be wrong; resilience and integrity matter.",
+        "whoIsAffected": "Any organization facing ransomware-like incidents.",
+        "whatChanged": "NotPetya sharpened this distinction in public discourse.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Intent in any new incident until analyzed.",
+        "knownFacts": [
+          "NotPetya is widely cited as destructive despite ransomware-like presentation."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Intent behind a novel future sample until experts publish."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2020-12",
+          "summary": "Public disclosure of SolarWinds Orion supply-chain compromise (SUNBURST).",
+          "citationIds": [
+            "cite_cisa",
+            "cite_solarwinds_industry"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_sw_assoc_malware",
+          "type": "associated_with",
+          "from": "cy_campaign-solarwinds",
+          "to": "cy_malware-sunburst",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_sw_assoc_software",
+          "type": "affects",
+          "from": "cy_campaign-solarwinds",
+          "to": "cy_software-orion",
+          "confidence": "high",
+          "note": "Campaign affected Orion customers via updates"
+        },
+        {
+          "id": "cyr_sw_actor",
+          "type": "associated_with",
+          "from": "cy_campaign-solarwinds",
+          "to": "cy_actor-solarwinds-descriptive",
+          "confidence": "moderate",
+          "note": ""
+        },
+        {
+          "id": "cyr_sw_targets_software",
+          "type": "targets",
+          "from": "cy_campaign-solarwinds",
+          "to": "cy_industry-software",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_solarwinds_industry",
+          "label": "Public SolarWinds / SUNBURST industry reporting (2020–2021)",
+          "kind": "technical",
+          "url": null,
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [
+        "software"
+      ],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_campaign-solarwinds",
+      "kind": "threat-campaign",
+      "title": "SolarWinds / SUNBURST supply-chain campaign (2020)",
+      "summary": "Supply-chain compromise involving SolarWinds Orion updates, publicly disclosed in December 2020.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A supply-chain campaign that distributed trojanized SolarWinds Orion updates, commonly associated with the SUNBURST backdoor in public reporting.",
+        "whyItMatters": "Trusted software updates became a distribution path; detection and response required vendor and authority guidance.",
+        "whoIsAffected": "Organizations running affected Orion releases; downstream customers and related ecosystems discussed in public reporting.",
+        "whatChanged": "December 2020 disclosures and subsequent advisories/directives.",
+        "readNext": [
+          "CISA SolarWinds guidance",
+          "Vendor Orion advisories"
+        ],
+        "watch": [
+          "Software supply-chain integrity",
+          "Update verification practices"
+        ],
+        "uncertain": "Full victim set and private intrusion details.",
+        "knownFacts": [
+          "Public disclosure occurred in December 2020.",
+          "Trojanized Orion updates were a central public narrative.",
+          "CISA and industry published defensive guidance."
+        ],
+        "likely": [
+          "Not every Orion customer experienced follow-on intrusion."
+        ],
+        "possible": [
+          "Related activity extended beyond the initially named implant in some environments."
+        ],
+        "unknown": [
+          "Complete attribution package beyond public statements.",
+          "Private dwell-time details per victim."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "historical",
+        "publicExploitAvailability": "reported",
+        "patchAvailability": "available",
+        "industryRelevance": 10,
+        "recency": "legacy",
+        "trustedSourceCount": 2,
+        "ownerInterest": 3,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-orion",
+      "kind": "affected-software",
+      "title": "SolarWinds Orion",
+      "summary": "Network monitoring platform versions implicated in the 2020 supply-chain event.",
+      "confidence": "high",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "SolarWinds Orion platform components discussed in the 2020 supply-chain disclosures.",
+        "whyItMatters": "Update channel compromise affected trust in management software.",
+        "whoIsAffected": "Orion administrators and dependent enterprises.",
+        "whatChanged": "Vendor and authority response playbooks after disclosure.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Which builds a given org actually installed.",
+        "knownFacts": [
+          "Public advisories identified affected Orion builds.",
+          "Defensive response emphasized isolation, hunting guidance, and vendor fixes."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local build inventory until checked."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_solarwinds_industry",
+          "label": "Public SolarWinds / SUNBURST industry reporting (2020–2021)",
+          "kind": "technical",
+          "url": null,
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_malware-sunburst",
+      "kind": "malware-family",
+      "title": "SUNBURST (literacy)",
+      "summary": "Backdoor family name used in public reporting on the SolarWinds supply-chain event.",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Public name for the backdoor associated with trojanized Orion updates.",
+        "whyItMatters": "Helps connect campaign, software, and defensive hunting guidance.",
+        "whoIsAffected": "Environments that installed affected updates.",
+        "whatChanged": "Named and analyzed publicly after December 2020.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Variant naming across vendors.",
+        "knownFacts": [
+          "SUNBURST is widely used in public reporting for the Orion supply-chain backdoor."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private detection telemetry for any one org."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_actor-solarwinds-descriptive",
+      "kind": "threat-actor",
+      "title": "SolarWinds campaign actor (descriptive only)",
+      "summary": "Placeholder for public attribution literacy — SignalTerrain stores descriptive references, not targeting aids.",
+      "confidence": "moderate",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "A descriptive actor slot for publicly discussed attribution of the SolarWinds campaign.",
+        "whyItMatters": "Attribution context can inform strategic awareness — not tactical offense.",
+        "whoIsAffected": "Readers of public government/industry attribution statements.",
+        "whatChanged": "Public attribution statements evolved after disclosure.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Confidence of any single public attribution claim.",
+        "knownFacts": [
+          "Multiple public authorities and vendors published attribution assessments.",
+          "SignalTerrain will not store exploit playbooks or targeting data."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Classified evidence not in public sources."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_sw_mit",
+          "type": "mitigates",
+          "from": "cy_mitigation-supply-chain-hygiene",
+          "to": "cy_campaign-solarwinds",
+          "confidence": "moderate",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_mitigation-supply-chain-hygiene",
+      "kind": "mitigation",
+      "title": "Software supply-chain hygiene",
+      "summary": "Verify updates, monitor management-plane software, follow vendor/authority incident guidance.",
+      "confidence": "high",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "Defensive practices for trusting and verifying software updates.",
+        "whyItMatters": "Supply-chain events bypass perimeter assumptions.",
+        "whoIsAffected": "Organizations that depend on third-party management software.",
+        "whatChanged": "Emphasis increased after SolarWinds.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Which controls fit each org’s size.",
+        "knownFacts": [
+          "Public playbooks stressed inventory, isolation, and vendor guidance."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Org-specific residual risk."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2021-07",
+          "summary": "ProxyShell Exchange vulnerabilities widely discussed; Microsoft updates available.",
+          "citationIds": [
+            "cite_ms",
+            "cite_cisa"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_ps_affects",
+          "type": "affects",
+          "from": "cy_cve-2021-34473",
+          "to": "cy_software-exchange",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_ps_advisory",
+          "type": "linked_advisory",
+          "from": "cy_cve-2021-34473",
+          "to": "cy_advisory-exchange-2021",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_ps_kev",
+          "type": "documented_in",
+          "from": "cy_cve-2021-34473",
+          "to": "cy_kev-proxyshell-literacy",
+          "confidence": "moderate",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_kev",
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "kind": "government",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [
+        "ProxyShell"
+      ],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_cve-2021-34473",
+      "kind": "cve",
+      "title": "CVE-2021-34473 (ProxyShell chain component)",
+      "cveId": "CVE-2021-34473",
+      "summary": "Microsoft Exchange Server vulnerability commonly discussed as part of the ProxyShell attack chain.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "An Exchange Server CVE frequently cited within the ProxyShell chain.",
+        "whyItMatters": "Internet-facing Exchange combined with unpatched CVEs led to widespread exploitation reporting.",
+        "whoIsAffected": "Organizations running vulnerable on-premises Exchange.",
+        "whatChanged": "2021 public exploitation reporting and vendor patches.",
+        "readNext": [
+          "Microsoft Exchange security updates",
+          "CISA Exchange guidance"
+        ],
+        "watch": [
+          "On-prem Exchange patch level",
+          "Exposure of Outlook Web Access / Exchange portals"
+        ],
+        "uncertain": "Whether a given server was patched before exploitation attempts.",
+        "knownFacts": [
+          "CVE-2021-34473 is associated with ProxyShell discussions.",
+          "Microsoft released security updates for Exchange.",
+          "CISA urged mitigation of Exchange vulnerabilities."
+        ],
+        "likely": [
+          "Unpatched internet-facing Exchange remains high priority."
+        ],
+        "possible": [
+          "Chained CVEs used together in reported intrusions."
+        ],
+        "unknown": [
+          "Private exploitation attempts against a specific host."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "active",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 8,
+        "recency": "recent",
+        "trustedSourceCount": 3,
+        "ownerInterest": 2,
+        "confidence": "high"
+      },
+      "externalIds": {
+        "kevNote": "Check current CISA KEV membership — sample asserts historical known exploitation literacy."
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-exchange",
+      "kind": "affected-software",
+      "title": "Microsoft Exchange Server",
+      "summary": "On-premises Exchange Server products relevant to ProxyShell-era CVEs.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Microsoft’s on-premises mail and calendaring server.",
+        "whyItMatters": "Internet exposure plus delayed patching created large attack surface in 2021 reporting.",
+        "whoIsAffected": "Exchange administrators.",
+        "whatChanged": "Multiple 2021 security updates and authority guidance.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Hybrid vs on-prem posture per org.",
+        "knownFacts": [
+          "Microsoft published Exchange security updates for ProxyShell-related CVEs."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local CU/SU level until inventoried."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_ps_adv_pub",
+          "type": "published_by",
+          "from": "cy_advisory-exchange-2021",
+          "to": "cy_source-cisa",
+          "confidence": "moderate",
+          "note": "Also Microsoft — CISA amplified"
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_ms",
+          "label": "Microsoft Security Response Center",
+          "kind": "vendor",
+          "url": "https://msrc.microsoft.com/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_advisory-exchange-2021",
+      "kind": "vendor-advisory",
+      "title": "Microsoft Exchange 2021 security advisories (ProxyShell era)",
+      "summary": "Vendor advisory umbrella for Exchange updates addressing ProxyShell-related CVEs.",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Vendor security guidance and updates for Exchange Server in the ProxyShell timeframe.",
+        "whyItMatters": "Authoritative patch and mitigation source.",
+        "whoIsAffected": "Exchange operators.",
+        "whatChanged": "Updates and guidance published in 2021.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Whether all related CVEs are tracked under one advisory page forever.",
+        "knownFacts": [
+          "Microsoft published security updates.",
+          "Operators were urged to patch promptly."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Org-specific change windows."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_kev",
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "kind": "government",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_kev-proxyshell-literacy",
+      "kind": "kev-entry",
+      "title": "KEV literacy — ProxyShell-era Exchange CVEs",
+      "summary": "Sample KEV-oriented record reminding operators to check CISA KEV for Exchange CVEs. Not a live KEV mirror.",
+      "confidence": "moderate",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "A sample placeholder teaching KEV linkage — not a synchronized KEV feed.",
+        "whyItMatters": "KEV membership is a strong known-exploitation signal for prioritization.",
+        "whoIsAffected": "Anyone using KEV to prioritize patching.",
+        "whatChanged": "KEV entries change over time — always verify live catalog.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact current KEV row state in this sample.",
+        "knownFacts": [
+          "CISA KEV catalogs vulnerabilities known to be exploited.",
+          "Exchange CVEs from 2021 were widely prioritized by authorities."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Live KEV membership at read time until fetched from CISA."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2021-12-09",
+          "summary": "Public disclosure and emergency response for Log4j RCE (Log4Shell).",
+          "citationIds": [
+            "cite_apache",
+            "cite_cisa",
+            "cite_nvd"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_l4_affects",
+          "type": "affects",
+          "from": "cy_cve-2021-44228",
+          "to": "cy_software-log4j",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_l4_adv",
+          "type": "linked_advisory",
+          "from": "cy_cve-2021-44228",
+          "to": "cy_advisory-log4j-cisa",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_apache",
+          "label": "Apache Log4j security advisories",
+          "kind": "vendor",
+          "url": "https://logging.apache.org/log4j/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_kev",
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "kind": "government",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [
+        "Log4Shell"
+      ],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_cve-2021-44228",
+      "kind": "cve",
+      "title": "CVE-2021-44228 (Log4Shell)",
+      "cveId": "CVE-2021-44228",
+      "summary": "Critical remote code execution vulnerability in Apache Log4j 2 disclosed in December 2021.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A critical RCE vulnerability in Apache Log4j 2, widely known as Log4Shell.",
+        "whyItMatters": "Log4j is embedded across many Java applications, creating large, hard-to-inventory exposure.",
+        "whoIsAffected": "Organizations running vulnerable Log4j 2 versions in applications and appliances.",
+        "whatChanged": "Emergency patches, detection guidance, and authority directives in December 2021.",
+        "readNext": [
+          "Apache Log4j security page",
+          "CISA Log4j guidance",
+          "NVD CVE-2021-44228"
+        ],
+        "watch": [
+          "Nested dependency inventory",
+          "Vendor appliance statements"
+        ],
+        "uncertain": "Whether every transitive dependency in an estate is inventoried.",
+        "knownFacts": [
+          "CVE-2021-44228 is Log4Shell.",
+          "Apache published fixed Log4j releases.",
+          "CISA and industry published extensive defensive guidance.",
+          "Known exploitation was widely reported."
+        ],
+        "likely": [
+          "Shadow IT and appliances remain longer-tail exposure."
+        ],
+        "possible": [
+          "Related Log4j CVEs also require attention in the same era."
+        ],
+        "unknown": [
+          "Complete software bill of materials for any one org without SCA/inventory."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "active",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 10,
+        "recency": "recent",
+        "trustedSourceCount": 4,
+        "ownerInterest": 4,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_apache",
+          "label": "Apache Log4j security advisories",
+          "kind": "vendor",
+          "url": "https://logging.apache.org/log4j/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-log4j",
+      "kind": "affected-software",
+      "title": "Apache Log4j 2",
+      "summary": "Java logging library affected by Log4Shell.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Apache Log4j 2 logging library.",
+        "whyItMatters": "Ubiquitous dependency made CVE-2021-44228 systemic.",
+        "whoIsAffected": "Java application operators and vendors embedding Log4j.",
+        "whatChanged": "Fixed releases and configuration mitigations published.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Transitive dependency trees.",
+        "knownFacts": [
+          "Apache released patched versions.",
+          "Authorities urged rapid upgrade or mitigations."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local dependency graph until scanned with approved inventory tools."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_l4_fixes",
+          "type": "fixes",
+          "from": "cy_patch-log4j",
+          "to": "cy_cve-2021-44228",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_apache",
+          "label": "Apache Log4j security advisories",
+          "kind": "vendor",
+          "url": "https://logging.apache.org/log4j/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_patch-log4j",
+      "kind": "patch",
+      "title": "Apache Log4j fixed releases",
+      "summary": "Patched Log4j 2 versions addressing CVE-2021-44228 (and follow-ons as documented by Apache).",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Upstream fixed Log4j releases.",
+        "whyItMatters": "Primary remediation path.",
+        "whoIsAffected": "Anyone bundling Log4j 2.",
+        "whatChanged": "Multiple fixed versions published during the response window.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Whether a vendor rebuild included the fix.",
+        "knownFacts": [
+          "Apache documented fixed versions on project security pages."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Vendor lag for embedded products."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_l4_mit",
+          "type": "mitigates",
+          "from": "cy_mitigation-log4j-inventory",
+          "to": "cy_cve-2021-44228",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_apache",
+          "label": "Apache Log4j security advisories",
+          "kind": "vendor",
+          "url": "https://logging.apache.org/log4j/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_mitigation-log4j-inventory",
+      "kind": "mitigation",
+      "title": "Inventory and upgrade Log4j",
+      "summary": "Find Log4j usage (including transitive) and upgrade or apply vendor mitigations.",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Defensive response pattern for Log4Shell.",
+        "whyItMatters": "You cannot patch what you cannot find.",
+        "whoIsAffected": "Security and engineering teams jointly.",
+        "whatChanged": "Became urgent practice in Dec 2021.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Best inventory tooling per stack.",
+        "knownFacts": [
+          "Public guidance stressed discovery + upgrade.",
+          "Temporary mitigations existed but upgrading was preferred."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Completeness of any one inventory."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_l4_adv_pub",
+          "type": "published_by",
+          "from": "cy_advisory-log4j-cisa",
+          "to": "cy_source-cisa",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_advisory-log4j-cisa",
+      "kind": "vendor-advisory",
+      "title": "CISA Log4j guidance (umbrella)",
+      "summary": "Authority guidance umbrella for Log4Shell response.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "Government defensive guidance for Log4j vulnerabilities.",
+        "whyItMatters": "Trusted prioritization signal and operational advice.",
+        "whoIsAffected": "U.S. federal and broader community followers of CISA guidance.",
+        "whatChanged": "Multiple alerts/directives during Dec 2021 response.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Which specific alert page is canonical years later.",
+        "knownFacts": [
+          "CISA published Log4j guidance and related KEV prioritization signals."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Future related Java logging issues."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2023-05",
+          "summary": "Progress published MOVEit Transfer advisories; exploitation and data-theft campaigns widely reported.",
+          "citationIds": [
+            "cite_progress",
+            "cite_cisa",
+            "cite_nvd"
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_mv_affects",
+          "type": "affects",
+          "from": "cy_cve-2023-34362",
+          "to": "cy_software-moveit",
+          "confidence": "high",
+          "note": ""
+        },
+        {
+          "id": "cyr_mv_exploited",
+          "type": "exploited_in",
+          "from": "cy_cve-2023-34362",
+          "to": "cy_campaign-moveit-2023",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_nvd",
+          "label": "NIST National Vulnerability Database",
+          "kind": "government",
+          "url": "https://nvd.nist.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_progress",
+          "label": "Progress / MOVEit security advisories",
+          "kind": "vendor",
+          "url": "https://www.progress.com/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_kev",
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "kind": "government",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [
+        "MOVEit"
+      ],
+      "regions": [
+        "global"
+      ],
+      "industries": [
+        "software",
+        "healthcare"
+      ],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_cve-2023-34362",
+      "kind": "cve",
+      "title": "CVE-2023-34362 (MOVEit Transfer)",
+      "cveId": "CVE-2023-34362",
+      "summary": "SQL injection vulnerability in Progress MOVEit Transfer exploited in 2023 ransomware/data-theft campaigns.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "A critical SQL injection issue in Progress MOVEit Transfer (CVE-2023-34362).",
+        "whyItMatters": "File-transfer systems often hold sensitive data; exploitation led to large-scale data theft reporting.",
+        "whoIsAffected": "Organizations running vulnerable MOVEit Transfer, plus their customers/partners whose data resided there.",
+        "whatChanged": "May–June 2023 advisories, patches, and campaign reporting.",
+        "readNext": [
+          "Progress MOVEit advisories",
+          "CISA MOVEit guidance"
+        ],
+        "watch": [
+          "Internet-facing file-transfer appliances",
+          "Vendor patch bulletins"
+        ],
+        "uncertain": "Whether a specific tenant’s data was exfiltrated.",
+        "knownFacts": [
+          "CVE-2023-34362 affects MOVEit Transfer.",
+          "Progress released patches and guidance.",
+          "Public reporting described widespread exploitation and data theft.",
+          "CISA published related guidance."
+        ],
+        "likely": [
+          "Third parties were impacted via service providers using MOVEit."
+        ],
+        "possible": [
+          "Follow-on CVEs in the same product line also mattered during response."
+        ],
+        "unknown": [
+          "Complete victim list.",
+          "Private negotiation details."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "active",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 9,
+        "recency": "current",
+        "trustedSourceCount": 3,
+        "ownerInterest": 3,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_progress",
+          "label": "Progress / MOVEit security advisories",
+          "kind": "vendor",
+          "url": "https://www.progress.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_software-moveit",
+      "kind": "affected-software",
+      "title": "Progress MOVEit Transfer",
+      "summary": "Managed file-transfer product affected by CVE-2023-34362.",
+      "confidence": "high",
+      "severity": "info",
+      "explainability": {
+        "whatIsIt": "Progress MOVEit Transfer MFT software.",
+        "whyItMatters": "Centralized file transfer concentrates sensitive data.",
+        "whoIsAffected": "MOVEit administrators and dependent organizations.",
+        "whatChanged": "2023 patches and hardening guidance.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Cloud vs self-hosted exposure differences per customer.",
+        "knownFacts": [
+          "Progress published security advisories and patches."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local version until inventoried."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_mv_ind",
+          "type": "associated_with",
+          "from": "cy_campaign-moveit-2023",
+          "to": "cy_indicator-mft-exposure",
+          "confidence": "moderate",
+          "note": ""
+        },
+        {
+          "id": "cyr_mv_targets_software",
+          "type": "targets",
+          "from": "cy_campaign-moveit-2023",
+          "to": "cy_industry-software",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        },
+        {
+          "id": "cite_progress",
+          "label": "Progress / MOVEit security advisories",
+          "kind": "vendor",
+          "url": "https://www.progress.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_campaign-moveit-2023",
+      "kind": "threat-campaign",
+      "title": "MOVEit exploitation campaigns (2023)",
+      "summary": "Publicly reported exploitation of MOVEit Transfer leading to data theft and extortion activity.",
+      "confidence": "high",
+      "severity": "critical",
+      "explainability": {
+        "whatIsIt": "Campaign activity exploiting MOVEit Transfer vulnerabilities in 2023.",
+        "whyItMatters": "Showed cascading third-party data exposure risk.",
+        "whoIsAffected": "Direct MOVEit operators and organizations whose data was stored/transferred there.",
+        "whatChanged": "Rapid disclosure, patching, and victim notifications in mid-2023.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Full attribution and private negotiations.",
+        "knownFacts": [
+          "Exploitation was widely reported in 2023.",
+          "Patches and authority guidance were published."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Whether any one org’s data was taken without checking vendor/forensics notices."
+        ]
+      },
+      "priorityInputs": {
+        "severity": "critical",
+        "knownExploitation": "active",
+        "publicExploitAvailability": "widely_reported",
+        "patchAvailability": "available",
+        "industryRelevance": 9,
+        "recency": "current",
+        "trustedSourceCount": 2,
+        "ownerInterest": 2,
+        "confidence": "high"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [
+        {
+          "id": "cyr_mv_fixes",
+          "type": "fixes",
+          "from": "cy_patch-moveit",
+          "to": "cy_cve-2023-34362",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_progress",
+          "label": "Progress / MOVEit security advisories",
+          "kind": "vendor",
+          "url": "https://www.progress.com/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_patch-moveit",
+      "kind": "patch",
+      "title": "Progress MOVEit Transfer patches (2023)",
+      "summary": "Vendor patches addressing CVE-2023-34362 and related guidance.",
+      "confidence": "high",
+      "severity": "high",
+      "explainability": {
+        "whatIsIt": "Vendor-supplied updates for MOVEit Transfer.",
+        "whyItMatters": "Primary fix path.",
+        "whoIsAffected": "MOVEit operators.",
+        "whatChanged": "Patches released during the 2023 response.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Whether additional related CVEs apply to a given build.",
+        "knownFacts": [
+          "Progress published patches and advisories."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Change-window constraints per org."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [],
+      "relationships": [],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_indicator-mft-exposure",
+      "kind": "indicator",
+      "title": "Internet-facing MFT exposure (high-level)",
+      "summary": "High-level indicator category: managed file-transfer portals exposed to the Internet without timely patching.",
+      "confidence": "moderate",
+      "severity": "elevated",
+      "explainability": {
+        "whatIsIt": "A defensive indicator category — not a raw IOC list.",
+        "whyItMatters": "Helps watch for risky exposure patterns.",
+        "whoIsAffected": "Security reviewers of external attack surface.",
+        "whatChanged": "Emphasis after MOVEit.",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Business need for Internet exposure vs risk.",
+        "knownFacts": [
+          "Public incidents highlighted Internet-facing MFT risk."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Specific hostnames in this sample — intentionally omitted."
+        ]
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2014-04-07",
+          "summary": "Heartbleed disclosed"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-heartbleed",
+          "type": "related_to",
+          "from": "cy_te-heartbleed",
+          "to": "cy_cve-2014-0160",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-heartbleed",
+      "kind": "timeline-event",
+      "title": "Heartbleed disclosed",
+      "summary": "Timeline milestone: Heartbleed disclosed (2014-04-07).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_cve-2014-0160.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "Heartbleed disclosed",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2014-04-07."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_cve-2014-0160",
+        "at": "2014-04-07"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-03-14",
+          "summary": "MS17-010 released"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-ms17",
+          "type": "related_to",
+          "from": "cy_te-ms17",
+          "to": "cy_patch-ms17-010",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-ms17",
+      "kind": "timeline-event",
+      "title": "MS17-010 released",
+      "summary": "Timeline milestone: MS17-010 released (2017-03-14).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_patch-ms17-010.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "MS17-010 released",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2017-03-14."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_patch-ms17-010",
+        "at": "2017-03-14"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-05",
+          "summary": "WannaCry outbreak window"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-wannacry",
+          "type": "related_to",
+          "from": "cy_te-wannacry",
+          "to": "cy_ransomware-wannacry",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-wannacry",
+      "kind": "timeline-event",
+      "title": "WannaCry outbreak window",
+      "summary": "Timeline milestone: WannaCry outbreak window (2017-05).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_ransomware-wannacry.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "WannaCry outbreak window",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2017-05."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_ransomware-wannacry",
+        "at": "2017-05"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2017-06",
+          "summary": "NotPetya wave"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-notpetya",
+          "type": "related_to",
+          "from": "cy_te-notpetya",
+          "to": "cy_campaign-notpetya",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-notpetya",
+      "kind": "timeline-event",
+      "title": "NotPetya wave",
+      "summary": "Timeline milestone: NotPetya wave (2017-06).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_campaign-notpetya.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "NotPetya wave",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2017-06."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_campaign-notpetya",
+        "at": "2017-06"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2020-12",
+          "summary": "SolarWinds disclosure"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-solarwinds",
+          "type": "related_to",
+          "from": "cy_te-solarwinds",
+          "to": "cy_campaign-solarwinds",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-solarwinds",
+      "kind": "timeline-event",
+      "title": "SolarWinds disclosure",
+      "summary": "Timeline milestone: SolarWinds disclosure (2020-12).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_campaign-solarwinds.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "SolarWinds disclosure",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2020-12."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_campaign-solarwinds",
+        "at": "2020-12"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2021-07",
+          "summary": "ProxyShell era Exchange focus"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-proxyshell",
+          "type": "related_to",
+          "from": "cy_te-proxyshell",
+          "to": "cy_cve-2021-34473",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-proxyshell",
+      "kind": "timeline-event",
+      "title": "ProxyShell era Exchange focus",
+      "summary": "Timeline milestone: ProxyShell era Exchange focus (2021-07).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_cve-2021-34473.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "ProxyShell era Exchange focus",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2021-07."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_cve-2021-34473",
+        "at": "2021-07"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2021-12-09",
+          "summary": "Log4Shell disclosed"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-log4shell",
+          "type": "related_to",
+          "from": "cy_te-log4shell",
+          "to": "cy_cve-2021-44228",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-log4shell",
+      "kind": "timeline-event",
+      "title": "Log4Shell disclosed",
+      "summary": "Timeline milestone: Log4Shell disclosed (2021-12-09).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_cve-2021-44228.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "Log4Shell disclosed",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2021-12-09."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_cve-2021-44228",
+        "at": "2021-12-09"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/cyber/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for SignalTerrain Cyber Awareness. Public historical facts only. Not live intelligence. Not a scanner, SIEM, IDS, or offense tool."
+      },
+      "history": [
+        {
+          "at": "2023-05",
+          "summary": "MOVEit exploitation reporting"
+        }
+      ],
+      "relationships": [
+        {
+          "id": "cyr_te_cy_te-moveit",
+          "type": "related_to",
+          "from": "cy_te-moveit",
+          "to": "cy_cve-2023-34362",
+          "confidence": "high",
+          "note": ""
+        }
+      ],
+      "notes": [],
+      "citations": [
+        {
+          "id": "cite_cisa",
+          "label": "CISA — Cybersecurity & Infrastructure Security Agency",
+          "kind": "government",
+          "url": "https://www.cisa.gov/",
+          "accessedAt": "2026-07-18"
+        }
+      ],
+      "ownerAnalysis": null,
+      "topicIds": [],
+      "uioIds": [],
+      "aliases": [],
+      "regions": [
+        "global"
+      ],
+      "industries": [],
+      "createdAt": "2026-07-18T00:00:00Z",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "id": "cy_te-moveit",
+      "kind": "timeline-event",
+      "title": "MOVEit exploitation reporting",
+      "summary": "Timeline milestone: MOVEit exploitation reporting (2023-05).",
+      "confidence": "high",
+      "severity": "notice",
+      "explainability": {
+        "whatIsIt": "A dated milestone related to cy_cve-2023-34362.",
+        "whyItMatters": "Timelines show what changed and when.",
+        "whoIsAffected": "Readers reconstructing incident history.",
+        "whatChanged": "MOVEit exploitation reporting",
+        "readNext": [],
+        "watch": [],
+        "uncertain": "Exact hour/timezone for multi-day events.",
+        "knownFacts": [
+          "Public reporting places this milestone around 2023-05."
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Private internal discovery dates for each org."
+        ]
+      },
+      "externalIds": {
+        "subjectId": "cy_cve-2023-34362",
+        "at": "2023-05"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "cyr_hb_cve_affects_openssl",
+      "type": "affects",
+      "from": "cy_cve-2014-0160",
+      "to": "cy_software-openssl",
+      "confidence": "high",
+      "note": "CVE affects OpenSSL"
+    },
+    {
+      "id": "cyr_hb_vuln_cve",
+      "type": "related_to",
+      "from": "cy_vuln-heartbleed",
+      "to": "cy_cve-2014-0160",
+      "confidence": "high",
+      "note": "Vulnerability maps to CVE"
+    },
+    {
+      "id": "cyr_hb_patch_fixes",
+      "type": "fixes",
+      "from": "cy_patch-openssl-heartbleed",
+      "to": "cy_cve-2014-0160",
+      "confidence": "high",
+      "note": "Patch fixes CVE"
+    },
+    {
+      "id": "cyr_hb_mit_mitigates",
+      "type": "mitigates",
+      "from": "cy_mitigation-patch-rotate",
+      "to": "cy_vuln-heartbleed",
+      "confidence": "high",
+      "note": "Mitigation reduces vulnerability impact"
+    },
+    {
+      "id": "cyr_eb_affects",
+      "type": "affects",
+      "from": "cy_cve-2017-0144",
+      "to": "cy_software-windows-smb",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_eb_patch",
+      "type": "fixes",
+      "from": "cy_patch-ms17-010",
+      "to": "cy_cve-2017-0144",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_wc_exploited",
+      "type": "exploited_in",
+      "from": "cy_cve-2017-0144",
+      "to": "cy_ransomware-wannacry",
+      "confidence": "high",
+      "note": "Literacy link — not a how-to"
+    },
+    {
+      "id": "cyr_np_exploited",
+      "type": "exploited_in",
+      "from": "cy_cve-2017-0144",
+      "to": "cy_campaign-notpetya",
+      "confidence": "moderate",
+      "note": "Public analyses discuss EternalBlue-related propagation"
+    },
+    {
+      "id": "cyr_wc_uses_tech",
+      "type": "uses",
+      "from": "cy_ransomware-wannacry",
+      "to": "cy_technique-smb-worm",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_np_uses_tech",
+      "type": "uses",
+      "from": "cy_campaign-notpetya",
+      "to": "cy_technique-smb-worm",
+      "confidence": "moderate",
+      "note": ""
+    },
+    {
+      "id": "cyr_np_assoc_threat",
+      "type": "associated_with",
+      "from": "cy_campaign-notpetya",
+      "to": "cy_threat-destructive-ransomware",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_wc_targets_health",
+      "type": "targets",
+      "from": "cy_ransomware-wannacry",
+      "to": "cy_industry-healthcare",
+      "confidence": "moderate",
+      "note": "Public reporting included healthcare impacts"
+    },
+    {
+      "id": "cyr_sw_assoc_malware",
+      "type": "associated_with",
+      "from": "cy_campaign-solarwinds",
+      "to": "cy_malware-sunburst",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_sw_assoc_software",
+      "type": "affects",
+      "from": "cy_campaign-solarwinds",
+      "to": "cy_software-orion",
+      "confidence": "high",
+      "note": "Campaign affected Orion customers via updates"
+    },
+    {
+      "id": "cyr_sw_actor",
+      "type": "associated_with",
+      "from": "cy_campaign-solarwinds",
+      "to": "cy_actor-solarwinds-descriptive",
+      "confidence": "moderate",
+      "note": ""
+    },
+    {
+      "id": "cyr_sw_mit",
+      "type": "mitigates",
+      "from": "cy_mitigation-supply-chain-hygiene",
+      "to": "cy_campaign-solarwinds",
+      "confidence": "moderate",
+      "note": ""
+    },
+    {
+      "id": "cyr_sw_targets_software",
+      "type": "targets",
+      "from": "cy_campaign-solarwinds",
+      "to": "cy_industry-software",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_ps_affects",
+      "type": "affects",
+      "from": "cy_cve-2021-34473",
+      "to": "cy_software-exchange",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_ps_advisory",
+      "type": "linked_advisory",
+      "from": "cy_cve-2021-34473",
+      "to": "cy_advisory-exchange-2021",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_ps_kev",
+      "type": "documented_in",
+      "from": "cy_cve-2021-34473",
+      "to": "cy_kev-proxyshell-literacy",
+      "confidence": "moderate",
+      "note": ""
+    },
+    {
+      "id": "cyr_ps_adv_pub",
+      "type": "published_by",
+      "from": "cy_advisory-exchange-2021",
+      "to": "cy_source-cisa",
+      "confidence": "moderate",
+      "note": "Also Microsoft — CISA amplified"
+    },
+    {
+      "id": "cyr_l4_affects",
+      "type": "affects",
+      "from": "cy_cve-2021-44228",
+      "to": "cy_software-log4j",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_l4_fixes",
+      "type": "fixes",
+      "from": "cy_patch-log4j",
+      "to": "cy_cve-2021-44228",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_l4_adv",
+      "type": "linked_advisory",
+      "from": "cy_cve-2021-44228",
+      "to": "cy_advisory-log4j-cisa",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_l4_mit",
+      "type": "mitigates",
+      "from": "cy_mitigation-log4j-inventory",
+      "to": "cy_cve-2021-44228",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_l4_adv_pub",
+      "type": "published_by",
+      "from": "cy_advisory-log4j-cisa",
+      "to": "cy_source-cisa",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_mv_affects",
+      "type": "affects",
+      "from": "cy_cve-2023-34362",
+      "to": "cy_software-moveit",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_mv_fixes",
+      "type": "fixes",
+      "from": "cy_patch-moveit",
+      "to": "cy_cve-2023-34362",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_mv_exploited",
+      "type": "exploited_in",
+      "from": "cy_cve-2023-34362",
+      "to": "cy_campaign-moveit-2023",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_mv_ind",
+      "type": "associated_with",
+      "from": "cy_campaign-moveit-2023",
+      "to": "cy_indicator-mft-exposure",
+      "confidence": "moderate",
+      "note": ""
+    },
+    {
+      "id": "cyr_mv_targets_software",
+      "type": "targets",
+      "from": "cy_campaign-moveit-2023",
+      "to": "cy_industry-software",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-heartbleed",
+      "type": "related_to",
+      "from": "cy_te-heartbleed",
+      "to": "cy_cve-2014-0160",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-ms17",
+      "type": "related_to",
+      "from": "cy_te-ms17",
+      "to": "cy_patch-ms17-010",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-wannacry",
+      "type": "related_to",
+      "from": "cy_te-wannacry",
+      "to": "cy_ransomware-wannacry",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-notpetya",
+      "type": "related_to",
+      "from": "cy_te-notpetya",
+      "to": "cy_campaign-notpetya",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-solarwinds",
+      "type": "related_to",
+      "from": "cy_te-solarwinds",
+      "to": "cy_campaign-solarwinds",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-proxyshell",
+      "type": "related_to",
+      "from": "cy_te-proxyshell",
+      "to": "cy_cve-2021-34473",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-log4shell",
+      "type": "related_to",
+      "from": "cy_te-log4shell",
+      "to": "cy_cve-2021-44228",
+      "confidence": "high",
+      "note": ""
+    },
+    {
+      "id": "cyr_te_cy_te-moveit",
+      "type": "related_to",
+      "from": "cy_te-moveit",
+      "to": "cy_cve-2023-34362",
+      "confidence": "high",
+      "note": ""
+    }
+  ],
+  "traversalExamples": [
+    {
+      "id": "trav_log4shell",
+      "label": "Log4Shell attention chain",
+      "startId": "cy_cve-2021-44228",
+      "expectedRoles": [
+        "cve",
+        "affected-software",
+        "advisory",
+        "patch"
+      ]
+    },
+    {
+      "id": "trav_eternalblue",
+      "label": "EternalBlue to WannaCry",
+      "fromId": "cy_cve-2017-0144",
+      "toId": "cy_ransomware-wannacry"
+    }
+  ]
+}

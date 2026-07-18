@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Cyber Awareness — educational defensive intelligence. Not IDS, SIEM, or offense.">
+  <title>Cyber Awareness — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-cyber-nav ul { display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; list-style: none; padding: 0; margin: 1rem 0 1.5rem; }
+    .st-cyber-nav a { color: var(--st-accent, #3a5348); text-decoration: none; border-bottom: 1px solid transparent; }
+    .st-cyber-nav a[aria-current="page"] { border-bottom-color: var(--st-accent, #3a5348); font-weight: 600; }
+    .st-cyber-list { list-style: none; padding: 0; }
+    .st-cyber-list li { padding: 0.75rem 0; border-top: 1px solid var(--st-line, #d2ccc0); }
+    .st-cyber-explain-block h4 { margin: 0.75rem 0 0.25rem; font-size: 0.95rem; }
+    .st-cyber-priority { margin-top: 1.25rem; padding: 1rem; background: var(--st-panel, #faf8f3); border: 1px solid var(--st-line, #d2ccc0); }
+    .st-cyber-main { max-width: 48rem; }
+    noscript .st-cyber-static { max-width: 40rem; padding: 1rem 0; }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p>
+        <a class="st-back" href="../">← SignalTerrain overview</a>
+        ·
+        <a class="st-back" href="../summary.html">Intelligence summary</a>
+        ·
+        <a class="st-back" href="../graph.html">Knowledge graph</a>
+      </p>
+      <noscript>
+        <section class="st-cyber-static">
+          <h1>Cyber Awareness</h1>
+          <p>Educational defensive intelligence for SignalTerrain. Not an IDS, SIEM, vulnerability scanner, or offensive tool.</p>
+          <p>This prototype organizes threats, vulnerabilities, campaigns, software, advisories, mitigations, and sources — with transparent priority reasoning and explicit Known Facts / Likely / Possible / Unknown.</p>
+          <p>Sample teaching cases include Heartbleed, EternalBlue, WannaCry, NotPetya, SolarWinds, ProxyShell, Log4Shell, and MOVEit.</p>
+          <p>Enable JavaScript to browse section navigation and sample graph traversal.</p>
+        </section>
+      </noscript>
+      <div id="st-cyber-mount" aria-busy="true">
+        <p class="st-loading">Opening Cyber Awareness…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-platform-catalog.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-priority.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.signalTerrainCyber) {
+        WDS.signalTerrainCyber.mount(document.getElementById("st-cyber-mount"));
+      }
+    });
+  </script>
+</body>
+</html>

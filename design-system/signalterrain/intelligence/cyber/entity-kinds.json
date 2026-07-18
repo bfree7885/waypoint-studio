@@ -1,0 +1,36 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Cyber Awareness entity kinds for SignalTerrain. Educational and defensive only.",
+  "idPrefix": "cy_",
+  "kinds": [
+    { "id": "threat", "label": "Threat", "description": "A defensive awareness topic about a harmful capability or condition — not an attack playbook." },
+    { "id": "threat-campaign", "label": "Threat Campaign", "description": "A named or documented campaign discussed in public sources." },
+    { "id": "malware-family", "label": "Malware Family", "description": "Family-level literacy about malware behavior categories." },
+    { "id": "ransomware-family", "label": "Ransomware Family", "description": "Ransomware family awareness — impact and defense framing only." },
+    { "id": "vulnerability", "label": "Vulnerability", "description": "A software or hardware weakness discussed publicly." },
+    { "id": "cve", "label": "CVE", "description": "A Common Vulnerabilities and Exposures identifier record." },
+    { "id": "kev-entry", "label": "KEV Entry", "description": "Known Exploited Vulnerability catalog entry (e.g. CISA KEV) when cited." },
+    { "id": "vendor-advisory", "label": "Vendor Advisory", "description": "Vendor or authority advisory summary." },
+    { "id": "patch", "label": "Patch", "description": "A published fix or update path — not automatic deployment." },
+    { "id": "exploit-technique", "label": "Exploit Technique", "description": "High-level technique literacy (e.g. MITRE ATT&CK style). Never step-by-step exploitation." },
+    { "id": "affected-software", "label": "Affected Software", "description": "A product or library affected by a vulnerability." },
+    { "id": "affected-hardware", "label": "Affected Hardware", "description": "Hardware platform context when relevant." },
+    { "id": "threat-actor", "label": "Threat Actor", "description": "Descriptive public attribution literacy only — never operational targeting aids." },
+    { "id": "mitigation", "label": "Mitigation", "description": "Defensive guidance that reduces exposure or impact." },
+    { "id": "indicator", "label": "Indicator", "description": "High-level indicator categories only — not raw IOC dumps for offense." },
+    { "id": "reference", "label": "Reference", "description": "Citation to a public source." },
+    { "id": "timeline-event", "label": "Timeline Event", "description": "A dated milestone in a topic's history." },
+    { "id": "source", "label": "Source", "description": "A publisher or origin of intelligence." },
+    { "id": "confidence", "label": "Confidence", "description": "Shared confidence vocabulary alignment (usually a field, occasionally a catalog entry)." },
+    { "id": "region", "label": "Region", "description": "Geographic scope for awareness." },
+    { "id": "industry", "label": "Industry", "description": "Sector relevance for prioritization." },
+    { "id": "severity", "label": "Severity", "description": "Attention urgency vocabulary — not CVSS theater alone." }
+  ],
+  "forbiddenContent": [
+    "Exploit payloads",
+    "Weaponization steps",
+    "Credential attack recipes",
+    "Scanner configuration for unauthorized probing"
+  ]
+}

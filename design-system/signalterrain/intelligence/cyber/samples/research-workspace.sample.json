@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Sample research workspace items for RF + Cyber shared components."
+  },
+  "items": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_bookmark-log4shell",
+      "kind": "bookmark",
+      "title": "Log4Shell CVE",
+      "domain": "cyber",
+      "subjectIds": [
+        "cy_cve-2021-44228"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "cve",
+        "java"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_collection-historic",
+      "kind": "collection",
+      "title": "Historic teaching cases",
+      "domain": "cyber",
+      "memberIds": [
+        "cy_cve-2014-0160",
+        "cy_cve-2017-0144",
+        "cy_cve-2021-44228"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_note-wannacry",
+      "kind": "note",
+      "title": "WannaCry teaching note",
+      "body": "Emphasize patching MS17-010 and backups — not ransom payment advice as a strategy.",
+      "domain": "cyber",
+      "subjectIds": [
+        "cy_ransomware-wannacry"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "ransomware"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_search-kev",
+      "kind": "saved-search",
+      "title": "KEV-linked CVEs",
+      "query": "kind:cve kev",
+      "domain": "cyber",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_tag-supply-chain",
+      "kind": "tag",
+      "title": "supply-chain",
+      "domain": "shared",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": false,
+      "tags": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_xref-rf-cyber",
+      "kind": "cross-reference",
+      "title": "RF outage vs cyber campaign",
+      "body": "Example cross-domain pin — infrastructure symptoms may have cyber or physical causes; keep categories honest.",
+      "domain": "shared",
+      "subjectIds": [
+        "cy_campaign-notpetya"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "cross-domain"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_source-cisa-kev",
+      "kind": "source-entry",
+      "title": "CISA KEV catalog",
+      "domain": "cyber",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "sourceClass": "government",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": false,
+      "tags": [
+        "kev"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_queue-moveit",
+      "kind": "queue-item",
+      "title": "Read MOVEit Progress advisory",
+      "domain": "cyber",
+      "subjectIds": [
+        "cy_cve-2023-34362"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "reading-queue"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_timeline-pin-log4",
+      "kind": "timeline-pin",
+      "title": "Pin: Log4Shell week",
+      "domain": "cyber",
+      "subjectIds": [
+        "cy_te-log4shell"
+      ],
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_source-openssl",
+      "kind": "source-entry",
+      "title": "OpenSSL vulnerabilities page",
+      "domain": "cyber",
+      "url": "https://www.openssl.org/news/vulnerabilities.html",
+      "sourceClass": "vendor",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": false,
+      "tags": [
+        "vendor"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+        "status": "sample"
+      },
+      "id": "rw_bookmark-rf-example",
+      "kind": "bookmark",
+      "title": "Example RF topic bookmark",
+      "domain": "radio",
+      "body": "Shared workspace works for RF too — placeholder.",
+      "updatedAt": "2026-07-18T00:00:00Z",
+      "createdAt": "2026-07-18T00:00:00Z",
+      "private": true,
+      "tags": [
+        "rf"
+      ]
+    }
+  ]
+}

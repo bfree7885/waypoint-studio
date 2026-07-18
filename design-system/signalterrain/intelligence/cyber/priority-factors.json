@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "maxTotal": 100,
+  "philosophy": "Priority is a sum of labeled contributions. Every point has a human-readable reason. No opaque model scores.",
+  "factors": [
+    {
+      "id": "known_exploitation",
+      "label": "Known exploitation",
+      "maxPoints": 25,
+      "description": "Public evidence that exploitation is occurring or has occurred (e.g. KEV listing)."
+    },
+    {
+      "id": "severity",
+      "label": "Severity",
+      "maxPoints": 20,
+      "description": "Attention urgency of the subject (critical → info)."
+    },
+    {
+      "id": "public_exploit_availability",
+      "label": "Public exploit availability",
+      "maxPoints": 15,
+      "description": "Whether public reporting indicates exploit code or weaponization exists — literacy only, never include payloads."
+    },
+    {
+      "id": "patch_availability",
+      "label": "Patch availability",
+      "maxPoints": 10,
+      "description": "Missing or delayed patches raise priority; available patches still matter for awareness."
+    },
+    {
+      "id": "industry_relevance",
+      "label": "Industry relevance",
+      "maxPoints": 10,
+      "description": "Overlap with industries the observer cares about."
+    },
+    {
+      "id": "recency",
+      "label": "Recency",
+      "maxPoints": 10,
+      "description": "How recently the subject changed or was disclosed."
+    },
+    {
+      "id": "trusted_source_count",
+      "label": "Trusted sources",
+      "maxPoints": 5,
+      "description": "Count of government/vendor/standard citations supporting the picture."
+    },
+    {
+      "id": "owner_interest",
+      "label": "Owner interest",
+      "maxPoints": 5,
+      "description": "Local preference — bookmarks, watchlist, or manual boost. Stays on device."
+    },
+    {
+      "id": "confidence",
+      "label": "Confidence",
+      "maxPoints": 5,
+      "description": "Higher confidence supports acting on the other factors; low confidence caps urgency theater."
+    }
+  ]
+}

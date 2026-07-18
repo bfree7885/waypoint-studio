@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1",
+  "title": "SignalTerrain Research Workspace Item v0.1",
+  "description": "Reusable research artifact for RF and Cyber. Not a social feed item.",
+  "type": "object",
+  "required": ["meta", "id", "kind", "title", "updatedAt", "domain"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/signalterrain/research/item/v0.1"
+        },
+        "status": { "type": "string", "enum": ["sample", "draft", "active", "archived"] }
+      }
+    },
+    "id": { "type": "string", "pattern": "^rw_[a-z0-9-]+$" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "bookmark",
+        "collection",
+        "note",
+        "saved-search",
+        "tag",
+        "cross-reference",
+        "source-entry",
+        "timeline-pin",
+        "queue-item"
+      ]
+    },
+    "title": { "type": "string", "maxLength": 200 },
+    "body": { "type": ["string", "null"], "maxLength": 8000 },
+    "domain": {
+      "type": "string",
+      "enum": ["radio", "cyber", "infrastructure", "research", "shared"]
+    },
+    "tags": { "type": "array", "items": { "type": "string" }, "maxItems": 32 },
+    "subjectIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "cy_*, st_*, uio_*, or other SignalTerrain ids"
+    },
+    "url": { "type": ["string", "null"], "maxLength": 2048 },
+    "sourceClass": {
+      "type": ["string", "null"],
+      "enum": ["technical", "government", "vendor", "academic", "news", "other", null]
+    },
+    "memberIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "For collections — contained item ids"
+    },
+    "query": { "type": ["string", "null"], "maxLength": 500 },
+    "updatedAt": { "type": "string" },
+    "createdAt": { "type": "string" },
+    "private": { "type": "boolean" }
+  }
+}

@@ -25,7 +25,9 @@
     { "id": "caused_by", "label": "Caused by", "description": "Effect linked to a cause — require sources when strong." },
     { "id": "supports", "label": "Supports", "description": "Evidence or capability supports a claim or topic." },
     { "id": "conflicts_with", "label": "Conflicts with", "description": "Sources or claims disagree." },
-    { "id": "observed_with", "label": "Observed with", "description": "Co-occurrence worth noting — not forced causality." }
+    { "id": "observed_with", "label": "Observed with", "description": "Co-occurrence worth noting — not forced causality." },
+    { "id": "fixes", "label": "Fixes", "description": "A patch or update fixes a vulnerability — defensive framing." },
+    { "id": "exploited_in", "label": "Exploited in (literacy)", "description": "Vulnerability observed in a campaign — literacy only, never exploit steps." }
   ],
   "aliases": {
     "related-to": "related_to",
@@ -39,7 +41,9 @@
     "historically-related": "related_to",
     "operates": "associated_with",
     "part-of": "depends_on",
-    "located-in": "associated_with"
+    "located-in": "associated_with",
+    "linked_advisory": "references",
+    "patched_by_alias": "patched_by"
   },
-  "editorialGates": ["targets", "caused_by", "associated_with"]
+  "editorialGates": ["targets", "caused_by", "associated_with", "exploited_in"]
 }

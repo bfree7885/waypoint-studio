@@ -58,6 +58,11 @@
   ],
   "modules": [
     {
+      "title": "Cyber Awareness Intelligence Engine",
+      "status": "foundation",
+      "description": "Entity graph, explainable priority, and shared research workspace — educational defensive literacy only."
+    },
+    {
       "title": "Intelligence Core",
       "status": "foundation",
       "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces — architecture first."
@@ -91,6 +96,7 @@
   "routes": [
     { "path": "/", "label": "SignalTerrain home", "ready": true },
     { "path": "summary.html", "label": "Intelligence summary", "ready": true },
+    { "path": "cyber/", "label": "Cyber Awareness", "ready": true },
     { "path": "topics.html", "label": "Topics", "ready": true },
     { "path": "graph.html", "label": "Knowledge graph", "ready": true },
     { "path": "/receivers/", "label": "Receivers", "ready": false },

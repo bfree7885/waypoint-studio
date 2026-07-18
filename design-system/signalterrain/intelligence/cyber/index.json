@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "architecture",
+    "runtime": "prototype",
+    "updatedAt": "2026-07-18",
+    "tagline": "What should I pay attention to today?",
+    "domain": "cyber",
+    "docs": [
+      "docs/CYBER-INTELLIGENCE-MODEL.md",
+      "docs/CYBER-GRAPH-ARCHITECTURE.md",
+      "docs/CYBER-PRIORITY-ENGINE.md",
+      "docs/CYBER-DATA-MODEL.md",
+      "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md"
+    ]
+  },
+  "package": {
+    "id": "signalterrain-cyber-awareness",
+    "label": "Cyber Awareness Intelligence Engine",
+    "path": "design-system/signalterrain/intelligence/cyber/",
+    "home": "apps/signalterrain/cyber/"
+  },
+  "inherits": [
+    "signalterrain-intelligence-core",
+    "signalterrain-living-graph",
+    "signalterrain-research-workspace",
+    "signal-intelligence",
+    "waypoint-trust"
+  ],
+  "artifacts": {
+    "entityKinds": "entity-kinds.json",
+    "relationshipKinds": "relationship-kinds.json",
+    "entitySchema": "schema-entity-v0.1.json",
+    "explainabilitySchema": "schema-explainability-v0.1.json",
+    "prioritySchema": "schema-priority-score-v0.1.json",
+    "priorityFactors": "priority-factors.json",
+    "priorityRules": "priority-rules.json",
+    "sampleBundle": "samples/cyber-intelligence.sample.json",
+    "sampleResearch": "samples/research-workspace.sample.json",
+    "graphRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-graph.js",
+    "priorityRuntime": "../../../js/signalterrain/wds-signalterrain-cyber-priority.js",
+    "uiRuntime": "../../../js/signalterrain/wds-signalterrain-cyber.js",
+    "uiSurface": "../../../../apps/signalterrain/cyber/"
+  },
+  "notInScopeV01": [
+    "IDS",
+    "IPS",
+    "SIEM replacement",
+    "Vulnerability scanner product",
+    "Live feed connectors",
+    "Exploit payloads or PoCs",
+    "Offensive tooling",
+    "Automatic remediation",
+    "Mysterious AI priority scores"
+  ],
+  "futureIngestionWithoutSchemaBreak": [
+    "Vendor advisories",
+    "CVE catalogs (NVD)",
+    "CISA KEV",
+    "Ransomware tracking summaries",
+    "Curated security news as structured events"
+  ]
+}

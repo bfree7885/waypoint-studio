@@ -15,6 +15,7 @@
   <url><loc>https://waypointstudio.org/apps/shed-hunting/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://waypointstudio.org/apps/steepleaf/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://waypointstudio.org/apps/signalterrain/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://waypointstudio.org/apps/signalterrain/cyber/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://waypointstudio.org/apps/signalterrain/summary.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://waypointstudio.org/apps/signalterrain/topics.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://waypointstudio.org/apps/signalterrain/graph.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>

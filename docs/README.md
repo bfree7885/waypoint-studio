@@ -20,6 +20,10 @@
 | [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md) | How topics are born, evolve, and gain confidence |
 | [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md) | Research enriches topics instead of living apart |
 | [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) | Intelligence Core V0.1 — four questions, UIO, architecture |
+| [CYBER-INTELLIGENCE-MODEL.md](CYBER-INTELLIGENCE-MODEL.md) | Cyber Awareness Intelligence Engine — knowledge model |
+| [CYBER-GRAPH-ARCHITECTURE.md](CYBER-GRAPH-ARCHITECTURE.md) | Cyber relationship traversal engine |
+| [CYBER-PRIORITY-ENGINE.md](CYBER-PRIORITY-ENGINE.md) | Transparent cyber priority scoring |
+| [CYBER-DATA-MODEL.md](CYBER-DATA-MODEL.md) | Cyber schemas, samples, future ingestion map |
 | [SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md](SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md) | Phases 1–7 from ingestion to carefully bounded IPS |
 | [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md) | Event correlation graph design |
 | [SIGNALTERRAIN-RECOMMENDATIONS.md](SIGNALTERRAIN-RECOMMENDATIONS.md) | Defensive recommendations — guidance only |
