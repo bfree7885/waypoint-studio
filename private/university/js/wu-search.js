@@ -181,12 +181,103 @@
     return out.slice(0, limit);
   }
 
+  /**
+   * Research-assistant context for a focus node or top search hit.
+   */
+  function researchAssist(graphIndex, node, opts) {
+    opts = opts || {};
+    if (!graphIndex || !node) {
+      return {
+        nearby: [],
+        frequent: [],
+        followUps: [],
+        projects: [],
+        questions: [],
+        reasons: []
+      };
+    }
+    var nearby = [];
+    var seen = Object.create(null);
+    (graphIndex.adj[node.id] || []).forEach(function (e) {
+      if (seen[e.otherId]) return;
+      seen[e.otherId] = true;
+      var o = graphIndex.nodeMap[e.otherId];
+      if (!o) return;
+      nearby.push({
+        id: o.id,
+        node: o,
+        reasons: [global.WU.Schema.relationLabel(e.type) || e.type]
+      });
+    });
+    nearby = nearby.slice(0, opts.nearbyLimit || 8);
+
+    var frequent = [];
+    if (global.WU.Graph && global.WU.Graph.frequentlyConnected) {
+      frequent = global.WU.Graph.frequentlyConnected(graphIndex, 6)
+        .filter(function (x) {
+          return x.id !== node.id;
+        })
+        .map(function (x) {
+          return {
+            id: x.id,
+            node: x.node,
+            reasons: ["Frequently connected hub (degree " + x.degree + ")"]
+          };
+        });
+    }
+
+    var projects = (node.projects || []).map(function (pid) {
+      return { id: pid, label: global.WU.Schema.projectLabel(pid) };
+    });
+
+    var questions = [];
+    (graphIndex.adj[node.id] || []).forEach(function (e) {
+      var o = graphIndex.nodeMap[e.otherId];
+      if (!o || o.kind !== "question") return;
+      var st = (o.question && o.question.status) || "open";
+      if (st === "answered" || st === "parked") return;
+      questions.push({
+        id: o.id,
+        node: o,
+        reasons: ["Open question linked via “" + (global.WU.Schema.relationLabel(e.type) || e.type) + "”"]
+      });
+    });
+    (node.projects || []).forEach(function (p) {
+      ((graphIndex.byProject && graphIndex.byProject[p]) || []).forEach(function (id) {
+        var o = graphIndex.nodeMap[id];
+        if (!o || o.kind !== "question") return;
+        if (questions.some(function (q) {
+          return q.id === o.id;
+        }))
+          return;
+        var st = (o.question && o.question.status) || "open";
+        if (st === "open" || st === "investigating") {
+          questions.push({
+            id: o.id,
+            node: o,
+            reasons: ["Same project lane"]
+          });
+        }
+      });
+    });
+
+    return {
+      nearby: nearby,
+      frequent: frequent.slice(0, 6),
+      followUps: followUps(node, graphIndex, 6),
+      projects: projects,
+      questions: questions.slice(0, 8),
+      reasons: ["Context built from graph neighbors, hubs, projects, and open questions"]
+    };
+  }
+
   global.WU = global.WU || {};
   global.WU.Search = {
     tokenize: tokenize,
     buildIndex: buildIndex,
     search: search,
     relatedToResults: relatedToResults,
-    followUps: followUps
+    followUps: followUps,
+    researchAssist: researchAssist
   };
 })(typeof window !== "undefined" ? window : globalThis);

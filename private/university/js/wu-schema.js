@@ -1,11 +1,11 @@
 /**
- * Waypoint University — schema 1.1 (Work Block 2).
- * Knowledge graph vocabulary, sources, questions, research stages.
+ * Waypoint University — schema 1.2 (Work Block 3).
+ * Learning engine: understanding stages, annotations, discipline bridges.
  */
 (function (global) {
   "use strict";
 
-  var SCHEMA = "1.1.0";
+  var SCHEMA = "1.2.0";
   var DB_NAME = "waypoint-university-v1";
   var DB_VERSION = 1;
 
@@ -178,6 +178,89 @@
     { id: "reference", label: "Reference only" }
   ];
 
+  /** Understanding Map stages — descriptive, never grades */
+  var UNDERSTANDING_STAGES = [
+    { id: "discovered", label: "Discovered", blurb: "Noticed and captured." },
+    { id: "exploring", label: "Exploring", blurb: "Reading and turning over the idea." },
+    { id: "practicing", label: "Practicing", blurb: "Working examples and small drills." },
+    { id: "applying", label: "Applying", blurb: "Using it in a project or decision." },
+    { id: "connecting", label: "Connecting", blurb: "Linking across topics and fields." },
+    { id: "teaching", label: "Teaching", blurb: "Explaining, defining, answering others." },
+    { id: "mastering", label: "Mastering", blurb: "Stable, revisited, confidently held." }
+  ];
+
+  var ANNOTATION_KINDS = [
+    { id: "highlight", label: "Highlight" },
+    { id: "margin", label: "Margin note" },
+    { id: "definition", label: "Definition" },
+    { id: "question", label: "Question" },
+    { id: "concept", label: "Related concept" },
+    { id: "future", label: "Future research" }
+  ];
+
+  /**
+   * Cross-disciplinary bridges — surface unexpected relationships.
+   * left/right are project lane ids (and compatible path themes).
+   */
+  var DISCIPLINE_BRIDGES = [
+    {
+      id: "vision-photo",
+      label: "Computer vision ↔ Photography",
+      blurb: "Seeing systems and making photographs share optics, signal, and attention.",
+      left: ["scenes", "signalterrain", "dashboard"],
+      right: ["photography"]
+    },
+    {
+      id: "gis-ecology",
+      label: "GIS ↔ Ecology",
+      blurb: "Place, pattern, and living systems.",
+      left: ["gis", "fieldry"],
+      right: ["ecology"]
+    },
+    {
+      id: "ecology-forage",
+      label: "Ecology ↔ Foraging",
+      blurb: "Field knowledge meets seasonal attention.",
+      left: ["ecology", "foragecast"],
+      right: ["foraging"]
+    },
+    {
+      id: "cyber-linux",
+      label: "Cybersecurity ↔ Linux",
+      blurb: "Defensive understanding needs the systems layer.",
+      left: ["cybersecurity", "signalterrain"],
+      right: ["linux"]
+    },
+    {
+      id: "stats-wildlife",
+      label: "Statistics ↔ Wildlife / field research",
+      blurb: "Observation becomes evidence when counted carefully.",
+      left: ["fieldry", "foragecast", "ecology"],
+      right: ["dashboard", "other"]
+    },
+    {
+      id: "ai-apps",
+      label: "Artificial intelligence ↔ Waypoint apps",
+      blurb: "AI ideas should touch every product lane you build.",
+      left: ["waypoint-studio", "university"],
+      right: ["signalterrain", "scenes", "dashboard", "volunteer", "steepleaf", "savant", "foragecast"]
+    },
+    {
+      id: "tea-ecology",
+      label: "Tea ↔ Ecology / place",
+      blurb: "Plants, terroir, and attentive tasting.",
+      left: ["tea", "steepleaf"],
+      right: ["ecology", "foraging"]
+    },
+    {
+      id: "wine-place",
+      label: "Wine ↔ Place / ecology",
+      blurb: "Terroir links palate to landscape.",
+      left: ["wine", "savant"],
+      right: ["ecology", "gis"]
+    }
+  ];
+
   function kindLabel(id) {
     for (var i = 0; i < KINDS.length; i++) {
       if (KINDS[i].id === id) return KINDS[i].label;
@@ -210,6 +293,20 @@
     return SOURCE_KINDS.indexOf(kind) >= 0;
   }
 
+  function understandingLabel(id) {
+    for (var i = 0; i < UNDERSTANDING_STAGES.length; i++) {
+      if (UNDERSTANDING_STAGES[i].id === id) return UNDERSTANDING_STAGES[i].label;
+    }
+    return id || "Discovered";
+  }
+
+  function annotationLabel(id) {
+    for (var i = 0; i < ANNOTATION_KINDS.length; i++) {
+      if (ANNOTATION_KINDS[i].id === id) return ANNOTATION_KINDS[i].label;
+    }
+    return id || "Note";
+  }
+
   global.WU = global.WU || {};
   global.WU.Schema = {
     SCHEMA: SCHEMA,
@@ -226,10 +323,15 @@
     QUESTION_STATUSES: QUESTION_STATUSES,
     RESEARCH_STAGES: RESEARCH_STAGES,
     READING_STATUSES: READING_STATUSES,
+    UNDERSTANDING_STAGES: UNDERSTANDING_STAGES,
+    ANNOTATION_KINDS: ANNOTATION_KINDS,
+    DISCIPLINE_BRIDGES: DISCIPLINE_BRIDGES,
     kindLabel: kindLabel,
     relationLabel: relationLabel,
     relationMeta: relationMeta,
     projectLabel: projectLabel,
-    isSourceKind: isSourceKind
+    isSourceKind: isSourceKind,
+    understandingLabel: understandingLabel,
+    annotationLabel: annotationLabel
   };
 })(typeof window !== "undefined" ? window : globalThis);

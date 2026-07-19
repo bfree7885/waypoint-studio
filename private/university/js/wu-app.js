@@ -1,6 +1,6 @@
 /**
- * Waypoint University — Work Block 2 application shell.
- * Learning dashboard, graph neighborhood, health, research, sources.
+ * Waypoint University — Work Block 3 application shell.
+ * Learning engine companion: understanding map, next steps, timeline, reading.
  */
 (function (global) {
   "use strict";
@@ -10,6 +10,10 @@
     ["capture", "Quick Capture"],
     ["search", "Search"],
     ["graph", "Graph"],
+    ["understanding", "Understanding"],
+    ["next", "Next Steps"],
+    ["timeline", "Timeline"],
+    ["reading", "Reading"],
     ["paths", "Learning Paths"],
     ["research", "Research"],
     ["sources", "Sources"],
@@ -37,6 +41,9 @@
   }
   function Health() {
     return global.WU.Health;
+  }
+  function Learn() {
+    return global.WU.Learn;
   }
 
   function esc(s) {
@@ -142,6 +149,9 @@
       index: null,
       graphIndex: null,
       recentIds: [],
+      learningGoals: [],
+      lastWriteAt: "",
+      insights: null,
       q: "",
       libraryKind: "all",
       libraryQuery: "",
@@ -161,6 +171,11 @@
         var fav = Graph().frequentlyConnected(state.graphIndex, 1)[0];
         state.graphFocus = (fav && fav.id) || state.nodes[0].id;
       }
+      state.insights = Learn().buildInsights(state.graphIndex, {
+        lastWriteAt: state.lastWriteAt,
+        recentViews: state.recentIds,
+        learningGoals: state.learningGoals
+      });
     }
 
     function byUpdated(a, b) {
@@ -174,6 +189,8 @@
       state.nodes = await Store().listNodes();
       state.edges = await Store().listEdges();
       state.recentIds = await Store().recentViewIds();
+      state.learningGoals = await Store().getLearningGoals();
+      state.lastWriteAt = await Store().getMeta("lastWriteAt", "");
       rebuild();
     }
 
@@ -208,7 +225,12 @@
     }
 
     function homePanel() {
-      var map = nodeMap();
+      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
+        recentViews: state.recentIds,
+        learningGoals: state.learningGoals,
+        lastWriteAt: state.lastWriteAt
+      });
+      var profile = insights.profile;
       var continueLearning = state.nodes
         .filter(function (n) {
           return n.lastOpenedAt && n.kind !== "capture";
@@ -223,19 +245,13 @@
           return String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
         })
         .slice(0, 6);
-      var health = Health().analyze(state.graphIndex);
-      var gapIds = { "no-connections": 1, "incomplete-definitions": 1, "unanswered-questions": 1 };
-      var gaps = [];
-      var gapSeen = Object.create(null);
-      health.opportunities.forEach(function (o) {
-        if (!gapIds[o.id]) return;
-        (o.items || []).forEach(function (n) {
-          if (!n || !n.id || gapSeen[n.id] || n.kind === "edge") return;
-          gapSeen[n.id] = true;
-          gaps.push(n);
+      var learnGaps = [];
+      (insights.gaps || []).forEach(function (g) {
+        (g.items || []).slice(0, 3).forEach(function (it) {
+          if (it.node) learnGaps.push(it.node);
         });
       });
-      gaps = gaps.slice(0, 6);
+      learnGaps = learnGaps.slice(0, 6);
       var freq = Graph().frequentlyConnected(state.graphIndex, 6).map(function (x) {
         return x.node;
       });
@@ -249,60 +265,121 @@
         .sort(byUpdated)
         .slice(0, 6);
       var recentConn = Graph().recentConnections(state.graphIndex, 6);
-      var needsResearch = state.nodes
-        .filter(function (n) {
-          return (n.projects || []).length && (!n.research || !n.research.stage || n.research.stage !== "conclusions");
-        })
-        .filter(function (n) {
-          return n.kind === "project" || (n.projects || []).length;
-        })
-        .sort(byUpdated)
-        .slice(0, 6);
       var reading = state.nodes.filter(function (n) {
         return n.queue && n.queue.reading;
-      }).slice(0, 6);
-      var inbox = state.nodes.filter(function (n) {
-        return n.queue && n.queue.researchInbox;
       }).slice(0, 6);
       var focus = state.nodes.filter(function (n) {
         return n.queue && n.queue.focusToday;
       }).slice(0, 6);
+      var next = insights.next || [];
+      var bridges = (insights.bridges || []).filter(function (b) {
+        return b.opportunity;
+      }).slice(0, 3);
 
       return (
         '<header class="wu-hero">' +
-        '<p class="wu-eyebrow">Active learning</p>' +
+        '<p class="wu-eyebrow">Learning companion</p>' +
         '<h1 class="wu-title">What are you thinking about today?</h1>' +
-        '<p class="wu-lead">Discover connections, notice gaps, and move research forward — calmly.</p>' +
+        '<p class="wu-lead">Understand what you know, notice what needs attention, and take one meaningful next step.</p>' +
         '<div class="wu-hero-actions">' +
-        '<a class="wu-btn wu-btn--primary" href="#capture">Quick capture</a>' +
-        '<a class="wu-btn" href="#graph">Explore graph</a>' +
-        '<a class="wu-btn" href="#health">Knowledge health</a>' +
+        '<a class="wu-btn wu-btn--primary" href="#next">Next steps</a>' +
+        '<a class="wu-btn" href="#understanding">Understanding map</a>' +
+        '<a class="wu-btn" href="#capture">Quick capture</a>' +
         "</div>" +
         '<p class="wu-meta">' +
-        health.summary.nodes +
-        " nodes · " +
-        health.summary.edges +
-        " links · " +
-        health.summary.openQuestions +
-        " open questions · " +
-        health.summary.opportunities +
-        " improvement opportunities</p></header>" +
+        profile.nodeCount +
+        " topics · depth " +
+        profile.depth.toFixed(1) +
+        " · breadth " +
+        profile.breadth +
+        " lanes · momentum " +
+        profile.momentum +
+        " this week" +
+        (profile.knowledgeConfidence != null
+          ? " · confidence " + profile.knowledgeConfidence.toFixed(1) + "/5"
+          : "") +
+        "</p></header>" +
+        '<section class="wu-card wu-profile-strip">' +
+        "<h2>Learning profile</h2>" +
+        '<p class="wu-lead">Self-awareness, not evaluation.</p>' +
+        '<ul class="wu-meta-row">' +
+        "<li><strong>Focus</strong> " +
+        (profile.currentFocus.length
+          ? profile.currentFocus
+              .map(function (f) {
+                return esc(f.label);
+              })
+              .join(", ")
+          : "Open anything to shape focus") +
+        "</li>" +
+        "<li><strong>Improving</strong> " +
+        profile.improving.length +
+        " · <strong>Quiet</strong> " +
+        profile.neglected.length +
+        " · <strong>Revisited</strong> " +
+        profile.revisited.length +
+        " · <strong>Cross-links</strong> " +
+        profile.interdisciplinaryLinks +
+        "</li></ul>" +
+        '<p><a href="#understanding">Full understanding map →</a></p></section>' +
         '<div class="wu-home-grid">' +
+        '<section class="wu-card"><h2>Suggested next steps</h2>' +
+        (next.length
+          ? '<ul class="wu-list">' +
+            next
+              .map(function (s) {
+                return (
+                  "<li><a href=\"#item/" +
+                  encodeURIComponent(s.id) +
+                  "\"><strong>" +
+                  esc(s.node.title) +
+                  "</strong></a>" +
+                  '<span class="wu-meta">' +
+                  esc(s.why) +
+                  "</span></li>"
+                );
+              })
+              .join("") +
+            "</ul>"
+          : '<p class="wu-empty">Capture and link a few ideas — suggestions will appear.</p>') +
+        '<p><a href="#next">All next steps →</a></p></section>' +
         '<section class="wu-card"><h2>Continue learning</h2>' +
         listHtml(continueLearning, "Open any item — it appears here.") +
+        "</section>" +
+        '<section class="wu-card"><h2>Learning opportunities</h2>' +
+        listHtml(learnGaps, "No pressing opportunities — keep connecting.") +
+        '<p><a href="#next">Gap detail →</a></p></section>' +
+        '<section class="wu-card"><h2>Cross-disciplinary sparks</h2>' +
+        (bridges.length
+          ? '<ul class="wu-list">' +
+            bridges
+              .map(function (b) {
+                return (
+                  "<li><strong>" +
+                  esc(b.label) +
+                  "</strong>" +
+                  '<span class="wu-meta">' +
+                  esc(b.why) +
+                  "</span>" +
+                  (b.seedNode
+                    ? ' <a href="#item/' + encodeURIComponent(b.seedNode.id) + '">Explore</a>'
+                    : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ul>"
+          : '<p class="wu-empty">Tag work across related fields to surface bridges.</p>') +
         "</section>" +
         '<section class="wu-card"><h2>Topics started recently</h2>' +
         listHtml(started, "New topics will land here.") +
         "</section>" +
-        '<section class="wu-card"><h2>Knowledge gaps</h2>' +
-        listHtml(gaps, "No obvious gaps yet — keep linking.") +
-        '<p><a href="#health">All opportunities →</a></p></section>' +
         '<section class="wu-card"><h2>Frequently connected</h2>' +
         listHtml(freq, "Link ideas to grow hubs.") +
         "</section>" +
         '<section class="wu-card"><h2>Open questions</h2>' +
         listHtml(questions, "Capture a question anytime.") +
-        '<p><a href="#questions">Question desk →</a></p></section>' +
+        "</section>" +
         '<section class="wu-card"><h2>Recently discovered connections</h2>' +
         (recentConn.length
           ? '<ul class="wu-list">' +
@@ -324,19 +401,251 @@
             "</ul>"
           : '<p class="wu-empty">New links will appear here.</p>') +
         "</section>" +
-        '<section class="wu-card"><h2>Projects needing research</h2>' +
-        listHtml(needsResearch, "Tag items with projects to fill this lane.") +
-        "</section>" +
         '<section class="wu-card"><h2>Reading queue</h2>' +
-        listHtml(reading, "Mark sources “In reading queue” while editing.") +
-        "</section>" +
-        '<section class="wu-card"><h2>Research inbox</h2>' +
-        listHtml(inbox, "Flag captures for research follow-up.") +
-        "</section>" +
+        listHtml(reading, "Mark sources while editing.") +
+        '<p><a href="#reading">Reading workspace →</a></p></section>' +
         '<section class="wu-card"><h2>Today\'s focus</h2>' +
         listHtml(focus, "Pin today’s focus on any item.") +
         "</section>" +
         "</div>"
+      );
+    }
+
+    function understandingPanel() {
+      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
+        learningGoals: state.learningGoals,
+        recentViews: state.recentIds,
+        lastWriteAt: state.lastWriteAt
+      });
+      var map = insights.map;
+      var profile = insights.profile;
+      return (
+        "<h1 class=\"wu-title\">Understanding map</h1>" +
+        '<p class="wu-lead">Where each topic sits in your journey — descriptive stages, not grades. Movement comes from use.</p>' +
+        '<p class="wu-meta">' +
+        map.total +
+        " topics · avg depth " +
+        profile.depth.toFixed(2) +
+        " · computed in " +
+        (insights.elapsedMs || 0) +
+        " ms</p>" +
+        '<div class="wu-stage-grid">' +
+        map.stages
+          .map(function (s) {
+            return (
+              '<section class="wu-card wu-stage-card"><h2>' +
+              esc(s.label) +
+              ' <span class="wu-badge">' +
+              ((profile.byStage[s.id] && profile.byStage[s.id].length) || 0) +
+              "</span></h2>" +
+              '<p class="wu-empty">' +
+              esc(s.blurb) +
+              "</p>" +
+              listHtml(s.items, "Nothing here yet.") +
+              "</section>"
+            );
+          })
+          .join("") +
+        "</div>" +
+        '<section class="wu-card"><h2>Attention</h2>' +
+        "<h3 class=\"wu-section\">Actively improving</h3>" +
+        listHtml(profile.improving, "Keep studying — improvement shows here.") +
+        "<h3 class=\"wu-section\">Receiving little attention</h3>" +
+        listHtml(profile.neglected, "Nothing quiet right now.") +
+        "<h3 class=\"wu-section\">Frequently revisited</h3>" +
+        listHtml(profile.revisited, "Revisits accumulate as you return.") +
+        "</section>"
+      );
+    }
+
+    function nextPanel() {
+      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
+        learningGoals: state.learningGoals,
+        recentViews: state.recentIds,
+        lastWriteAt: state.lastWriteAt
+      });
+      return (
+        "<h1 class=\"wu-title\">Suggested next steps</h1>" +
+        '<p class="wu-lead">A small set of logical moves — each with a reason. Never an endless feed.</p>' +
+        '<ul class="wu-list wu-next-list">' +
+        ((insights.next || []).length
+          ? insights.next
+              .map(function (s, i) {
+                return (
+                  "<li><span class=\"wu-badge\">" +
+                  (i + 1) +
+                  "</span> <a href=\"#item/" +
+                  encodeURIComponent(s.id) +
+                  "\"><strong>" +
+                  esc(s.node.title) +
+                  "</strong></a>" +
+                  '<span class="wu-meta">' +
+                  esc(Schema().kindLabel(s.node.kind)) +
+                  " · " +
+                  esc(Learn().stageLabel(Learn().effectiveStage(s.node, state.graphIndex))) +
+                  "</span>" +
+                  "<p>" +
+                  esc(s.why) +
+                  "</p></li>"
+                );
+              })
+              .join("")
+          : '<li class="wu-empty">No suggestions yet — capture ideas, open questions, or set goals in Settings.</li>') +
+        "</ul>" +
+        "<h2 class=\"wu-section\">Learning opportunities</h2>" +
+        ((insights.gaps || [])
+          .map(function (g) {
+            return (
+              '<section class="wu-card"><h3>' +
+              esc(g.title) +
+              "</h3><p class=\"wu-empty\">" +
+              esc(g.blurb) +
+              "</p><ul class=\"wu-list\">" +
+              (g.items || [])
+                .map(function (it) {
+                  return (
+                    "<li><a href=\"#item/" +
+                    encodeURIComponent(it.id) +
+                    "\"><strong>" +
+                    esc(it.node.title) +
+                    "</strong></a>" +
+                    '<span class="wu-meta">' +
+                    esc(it.why || "") +
+                    "</span></li>"
+                  );
+                })
+                .join("") +
+              "</ul></section>"
+            );
+          })
+          .join("") || '<p class="wu-empty">Your map looks balanced.</p>') +
+        "<h2 class=\"wu-section\">Cross-disciplinary discovery</h2>" +
+        '<div class="wu-home-grid">' +
+        (insights.bridges || [])
+          .slice(0, 6)
+          .map(function (b) {
+            return (
+              '<section class="wu-card"><h3>' +
+              esc(b.label) +
+              "</h3><p class=\"wu-empty\">" +
+              esc(b.blurb || b.why) +
+              "</p><p class=\"wu-meta\">" +
+              b.leftCount +
+              " · " +
+              b.rightCount +
+              " items · " +
+              b.crossLinks +
+              " cross-links" +
+              (b.opportunity ? " · opportunity" : "") +
+              "</p>" +
+              (b.seedNode
+                ? '<p><a href="#item/' +
+                  encodeURIComponent(b.seedNode.id) +
+                  '">' +
+                  esc(b.seedNode.title) +
+                  "</a></p>"
+                : "") +
+              "</section>"
+            );
+          })
+          .join("") +
+        "</div>"
+      );
+    }
+
+    function timelinePanel() {
+      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
+        learningGoals: state.learningGoals,
+        recentViews: state.recentIds,
+        lastWriteAt: state.lastWriteAt
+      });
+      var events = insights.timeline || [];
+      var byYear = Object.create(null);
+      events.forEach(function (ev) {
+        var y = String(ev.at || "").slice(0, 4) || "—";
+        if (!byYear[y]) byYear[y] = [];
+        byYear[y].push(ev);
+      });
+      var years = Object.keys(byYear).sort(function (a, b) {
+        return String(b).localeCompare(String(a));
+      });
+      return (
+        "<h1 class=\"wu-title\">Learning timeline</h1>" +
+        '<p class="wu-lead">Intellectual growth over time — discoveries, reading, research, answered questions.</p>' +
+        (years.length
+          ? years
+              .map(function (y) {
+                return (
+                  "<h2 class=\"wu-section\">" +
+                  esc(y) +
+                  '</h2><ol class="wu-timeline">' +
+                  byYear[y]
+                    .map(function (ev) {
+                      return (
+                        "<li><time class=\"wu-meta\">" +
+                        esc(fmtDate(ev.at)) +
+                        "</time> <span class=\"wu-badge\">" +
+                        esc(ev.type) +
+                        "</span> " +
+                        (ev.nodeId
+                          ? '<a href="#item/' + encodeURIComponent(ev.nodeId) + '">' + esc(ev.title) + "</a>"
+                          : esc(ev.title)) +
+                        '<span class="wu-meta">' +
+                        esc(ev.detail || "") +
+                        "</span></li>"
+                      );
+                    })
+                    .join("") +
+                  "</ol>"
+                );
+              })
+              .join("")
+          : '<p class="wu-empty">Your timeline will fill as you capture and connect.</p>')
+      );
+    }
+
+    function readingPanel() {
+      var sources = state.nodes
+        .filter(function (n) {
+          return Schema().isSourceKind(n.kind);
+        })
+        .sort(byUpdated);
+      var withNotes = sources.filter(function (n) {
+        return (n.annotations || []).length > 0;
+      });
+      var inProgress = sources.filter(function (n) {
+        return n.source && (n.source.readingStatus === "reading" || (n.queue && n.queue.reading));
+      });
+      return (
+        "<h1 class=\"wu-title\">Reading workspace</h1>" +
+        '<p class="wu-lead">Deep reading with highlights, margin notes, definitions, and questions — lightweight now, ready for richer annotation later.</p>' +
+        '<p class="wu-actions"><a class="wu-btn wu-btn--primary" href="#sources">Source library</a> ' +
+        '<a class="wu-btn" href="#new/book">Add book</a> <a class="wu-btn" href="#new/paper">Add paper</a></p>' +
+        "<h2 class=\"wu-section\">In progress</h2>" +
+        listHtml(inProgress, "Mark a source as Reading or add it to the reading queue.") +
+        "<h2 class=\"wu-section\">With annotations</h2>" +
+        (withNotes.length
+          ? '<ul class="wu-list">' +
+            withNotes
+              .map(function (n) {
+                return (
+                  "<li><a href=\"#item/" +
+                  encodeURIComponent(n.id) +
+                  "\"><strong>" +
+                  esc(n.title) +
+                  "</strong></a>" +
+                  '<span class="wu-meta">' +
+                  (n.annotations || []).length +
+                  " notes · " +
+                  esc(Schema().kindLabel(n.kind)) +
+                  "</span></li>"
+                );
+              })
+              .join("") +
+            "</ul>"
+          : '<p class="wu-empty">Open a source and add a highlight or margin note.</p>') +
+        "<h2 class=\"wu-section\">Personal reference library</h2>" +
+        listHtml(sources.slice(0, 40), "Add books, papers, manuals, podcasts, videos, and courses.")
       );
     }
 
@@ -373,10 +682,9 @@
         })
         .filter(Boolean)
         .slice(0, 6);
-      var follow =
-        results[0] && results[0].node
-          ? Search().followUps(results[0].node, state.graphIndex, 6)
-          : [];
+      var focusNode = results[0] && results[0].node;
+      var assist = focusNode ? Search().researchAssist(state.graphIndex, focusNode) : null;
+      var follow = assist ? assist.followUps : [];
 
       function resultList(arr) {
         return (
@@ -391,6 +699,8 @@
                 "</strong></a>" +
                 '<span class="wu-meta">' +
                 esc(Schema().kindLabel(r.node.kind)) +
+                " · " +
+                esc(Learn().stageLabel(Learn().effectiveStage(r.node, state.graphIndex))) +
                 (r.score != null ? " · score " + r.score : "") +
                 "</span>" +
                 '<ul class="wu-reasons">' +
@@ -409,6 +719,7 @@
 
       return (
         "<h1 class=\"wu-title\">Search</h1>" +
+        '<p class="wu-lead">Research assistant — related topics, nearby concepts, projects, and open questions.</p>' +
         '<form id="wu-search-form" class="wu-form wu-form--row">' +
         "<label class=\"wu-grow\">Query <input name=\"q\" value=\"" +
         esc(state.q) +
@@ -424,10 +735,31 @@
             (related.length
               ? "<h2 class=\"wu-section\">Related &amp; connected</h2>" + resultList(related)
               : "") +
-            (follow.length
-              ? "<h2 class=\"wu-section\">Suggested follow-up reading</h2>" + resultList(follow)
+            (assist
+              ? "<h2 class=\"wu-section\">Nearby concepts</h2>" +
+                (assist.nearby.length ? resultList(assist.nearby) : '<p class="wu-empty">No neighbors yet.</p>') +
+                "<h2 class=\"wu-section\">Frequently connected ideas</h2>" +
+                (assist.frequent.length ? resultList(assist.frequent) : '<p class="wu-empty">—</p>') +
+                "<h2 class=\"wu-section\">Suggested follow-up reading</h2>" +
+                (follow.length ? resultList(follow) : '<p class="wu-empty">—</p>') +
+                "<h2 class=\"wu-section\">Projects using this</h2>" +
+                (assist.projects.length
+                  ? "<p>" +
+                    assist.projects
+                      .map(function (p) {
+                        return (
+                          '<a href="#projects/' + encodeURIComponent(p.id) + '">' + esc(p.label) + "</a>"
+                        );
+                      })
+                      .join(" · ") +
+                    "</p>"
+                  : '<p class="wu-empty">No project tags on the top hit.</p>') +
+                "<h2 class=\"wu-section\">Questions involving this</h2>" +
+                (assist.questions.length
+                  ? resultList(assist.questions)
+                  : '<p class="wu-empty">No open questions nearby.</p>')
               : "")
-          : '<p class="wu-lead">Every result explains why it matched. Related topics appear from the graph and shared tags.</p>') +
+          : '<p class="wu-lead">Every result explains why it matched. Context expands from the top hit.</p>') +
         (recent.length
           ? "<h2 class=\"wu-section\">Recently viewed</h2>" + listHtml(recent, "")
           : "")
@@ -694,35 +1026,80 @@
         });
       });
 
-      if (focus && byProj[focus]) {
-        var items = byProj[focus].slice().sort(byUpdated);
-        var questions = items.filter(function (n) {
-          return n.kind === "question";
-        });
-        var sources = items.filter(function (n) {
-          return Schema().isSourceKind(n.kind);
-        });
+      if (focus && byProj[focus] != null) {
+        var intel = Learn().projectIntelligence(focus, state.graphIndex);
         return (
           '<p><a href="#projects">← All projects</a></p>' +
           "<h1 class=\"wu-title\">" +
-          esc(Schema().projectLabel(focus)) +
+          esc(intel.label) +
           "</h1>" +
-          '<p class="wu-lead">Living map of what you know in this lane.</p>' +
+          '<p class="wu-lead">Living knowledge hub — related work, gaps, references, questions, and connected disciplines.</p>' +
           '<p class="wu-meta">' +
-          items.length +
+          intel.related.length +
           " items · " +
-          questions.length +
-          " questions · " +
-          sources.length +
-          " sources · <a href=\"#graph/" +
-          encodeURIComponent(items[0] ? items[0].id : "") +
-          '">Open graph near first item</a></p>' +
-          "<h2 class=\"wu-section\">All knowledge</h2>" +
-          listHtml(items, "Nothing tagged yet.") +
-          "<h2 class=\"wu-section\">Questions</h2>" +
-          listHtml(questions, "No questions in this project.") +
-          "<h2 class=\"wu-section\">Sources</h2>" +
-          listHtml(sources, "No sources tagged.")
+          intel.questions.length +
+          " open questions · " +
+          intel.references.length +
+          " sources" +
+          (intel.related[0]
+            ? ' · <a href="#graph/' + encodeURIComponent(intel.related[0].id) + '">Graph</a>'
+            : "") +
+          "</p>" +
+          (intel.connectedDisciplines.length
+            ? '<p class="wu-meta">Connected disciplines: ' +
+              intel.connectedDisciplines
+                .map(function (d) {
+                  return (
+                    '<a href="#projects/' + encodeURIComponent(d.id) + '">' + esc(d.label) + "</a>"
+                  );
+                })
+                .join(" · ") +
+              "</p>"
+            : "") +
+          (intel.bridges.length
+            ? '<section class="wu-card"><h2>Bridge opportunities</h2><ul class="wu-list">' +
+              intel.bridges
+                .map(function (b) {
+                  return (
+                    "<li><strong>" +
+                    esc(b.label) +
+                    "</strong><span class=\"wu-meta\">" +
+                    esc(b.why) +
+                    "</span></li>"
+                  );
+                })
+                .join("") +
+              "</ul></section>"
+            : "") +
+          "<h2 class=\"wu-section\">Missing knowledge</h2>" +
+          (intel.missing.length
+            ? '<ul class="wu-list">' +
+              intel.missing
+                .map(function (m) {
+                  return (
+                    "<li><a href=\"#item/" +
+                    encodeURIComponent(m.id) +
+                    "\"><strong>" +
+                    esc(m.node.title) +
+                    "</strong></a>" +
+                    '<span class="wu-meta">' +
+                    esc(m.why) +
+                    "</span></li>"
+                  );
+                })
+                .join("") +
+              "</ul>"
+            : '<p class="wu-empty">No obvious missing prerequisites.</p>') +
+          "<h2 class=\"wu-section\">Open questions</h2>" +
+          listHtml(intel.questions, "No open questions in this project.") +
+          "<h2 class=\"wu-section\">Helpful references</h2>" +
+          listHtml(intel.references, "No sources tagged yet.") +
+          "<h2 class=\"wu-section\">Recent discoveries</h2>" +
+          listHtml(intel.recent, "Nothing recent.") +
+          "<h2 class=\"wu-section\">Relevant research</h2>" +
+          listHtml(intel.research, "No research notes staged.") +
+          "<h2 class=\"wu-section\">All related knowledge</h2>" +
+          listHtml(intel.related, "Nothing tagged yet.")
         );
       }
 
@@ -832,18 +1209,26 @@
     function settingsPanel() {
       return (
         "<h1 class=\"wu-title\">Settings</h1>" +
+        '<div class="wu-card"><h2>Long-term learning goals</h2>' +
+        '<p class="wu-empty">Quiet intentions that shape next-step suggestions — not grades.</p>' +
+        '<form id="wu-goals-form" class="wu-form">' +
+        "<label>Goals (one per line)<textarea name=\"goals\" rows=\"5\" placeholder=\"e.g. Defensive Linux fluency&#10;Seasonal foraging ecology\">" +
+        esc((state.learningGoals || []).join("\n")) +
+        "</textarea></label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Save goals</button></form></div>' +
         '<div class="wu-card"><h2>Data</h2><p class="wu-meta">' +
         state.nodes.length +
         " nodes · " +
         state.edges.length +
         " edges · schema " +
         esc(Schema().SCHEMA) +
+        (state.insights ? " · insights " + state.insights.elapsedMs + " ms" : "") +
         "</p>" +
         '<p class="wu-actions"><button type="button" class="wu-btn wu-btn--primary" id="wu-export">Export JSON</button> ' +
         '<label class="wu-btn">Import JSON<input type="file" id="wu-import" accept="application/json,.json" hidden/></label></p>' +
         (state.flash ? '<p class="wu-flash">' + esc(state.flash) + "</p>" : "") +
         "</div>" +
-        '<div class="wu-card"><h2>Block 2</h2><p>Interactive neighborhood graph, learning dashboard, knowledge health, research workflow, source fields, richer search.</p></div>'
+        '<div class="wu-card"><h2>Block 3</h2><p>Learning engine — understanding map, profile, next steps, timeline, reading annotations, project intelligence. No grades, no social features.</p></div>'
       );
     }
 
@@ -926,6 +1311,28 @@
             esc(node.source && node.source.confidence != null ? node.source.confidence : "") +
             "\"/></label></fieldset>"
           : "") +
+        "<fieldset><legend>Understanding</legend>" +
+        "<label>Stage override <select name=\"stageManual\"><option value=\"\">Auto (from use)</option>" +
+        Schema().UNDERSTANDING_STAGES.map(function (s) {
+          return (
+            "<option value=\"" +
+            s.id +
+            "\"" +
+            ((node.learning && node.learning.stageManual) === s.id ? " selected" : "") +
+            ">" +
+            esc(s.label) +
+            "</option>"
+          );
+        }).join("") +
+        "</select></label>" +
+        "<label>Knowledge confidence (0–5) <input name=\"lconf\" type=\"number\" min=\"0\" max=\"5\" value=\"" +
+        esc(node.learning && node.learning.confidence != null ? node.learning.confidence : "") +
+        "\"/></label>" +
+        '<p class="wu-meta">Auto stage now: ' +
+        esc(Learn().stageLabel(Learn().effectiveStage(node, state.graphIndex))) +
+        " · opens " +
+        esc(String((node.learning && node.learning.openCount) || 0)) +
+        "</p></fieldset>" +
         "<fieldset><legend>Research stage</legend>" +
         "<label>Stage <select name=\"rstage\"><option value=\"\">—</option>" +
         Schema().RESEARCH_STAGES.map(function (s) {
@@ -1015,6 +1422,11 @@
         "</h1>" +
         '<p class="wu-meta">Updated ' +
         esc(fmtDate(node.updatedAt)) +
+        " · " +
+        esc(Learn().stageLabel(Learn().effectiveStage(node, state.graphIndex))) +
+        (node.learning && node.learning.confidence != null
+          ? " · confidence " + node.learning.confidence + "/5"
+          : "") +
         (node.question && node.question.status ? " · Q: " + node.question.status : "") +
         (node.research && node.research.stage ? " · Research: " + node.research.stage : "") +
         (node.source && node.source.readingStatus ? " · Reading: " + node.source.readingStatus : "") +
@@ -1062,6 +1474,38 @@
         '<article class="wu-prose">' +
         Md().render(node.body || "_No body yet._") +
         "</article>" +
+        '<section class="wu-card"><h2>Reading notes</h2>' +
+        ((node.annotations || []).length
+          ? '<ul class="wu-list">' +
+            node.annotations
+              .map(function (a) {
+                return (
+                  "<li><span class=\"wu-badge\">" +
+                  esc(Schema().annotationLabel(a.type)) +
+                  "</span> " +
+                  (a.quote ? "<em>“" + esc(a.quote) + "”</em> — " : "") +
+                  esc(a.text) +
+                  ' <button type="button" class="wu-linkish" data-del-anno="' +
+                  esc(a.id) +
+                  '" data-node="' +
+                  esc(id) +
+                  '">Remove</button></li>'
+                );
+              })
+              .join("") +
+            "</ul>"
+          : '<p class="wu-empty">No highlights or margin notes yet.</p>') +
+        '<form id="wu-anno-form" class="wu-form" data-node="' +
+        esc(id) +
+        '">' +
+        "<label>Type <select name=\"atype\">" +
+        Schema().ANNOTATION_KINDS.map(function (k) {
+          return "<option value=\"" + k.id + "\">" + esc(k.label) + "</option>";
+        }).join("") +
+        "</select></label>" +
+        "<label>Quote (optional) <input name=\"quote\" placeholder=\"Passage…\"/></label>" +
+        "<label>Note <textarea name=\"text\" rows=\"2\" required placeholder=\"Highlight meaning, definition, question…\"></textarea></label>" +
+        '<button type="submit" class="wu-btn">Add note</button></form></section>' +
         (follow.length
           ? '<section class="wu-card"><h2>Continue with</h2>' +
             listHtml(
@@ -1156,6 +1600,10 @@
       if (route.panel === "capture") return capturePanel();
       if (route.panel === "search") return searchPanel();
       if (route.panel === "graph") return graphPanel();
+      if (route.panel === "understanding") return understandingPanel();
+      if (route.panel === "next") return nextPanel();
+      if (route.panel === "timeline") return timelinePanel();
+      if (route.panel === "reading") return readingPanel();
       if (route.panel === "health") return healthPanel();
       if (route.panel === "paths") return pathsPanel();
       if (route.panel === "research") return researchPanel();
@@ -1224,7 +1672,15 @@
             reading: !!fd.get("readingQ"),
             researchInbox: !!fd.get("inbox"),
             focusToday: !!fd.get("focus")
-          }
+          },
+          learning: {
+            stageManual: String(fd.get("stageManual") || "") || null,
+            confidence: fd.get("lconf") !== "" && fd.get("lconf") != null ? Number(fd.get("lconf")) : null,
+            openCount: (existing && existing.learning && existing.learning.openCount) || 0,
+            searchHits: (existing && existing.learning && existing.learning.searchHits) || 0,
+            lastStudiedAt: (existing && existing.learning && existing.learning.lastStudiedAt) || null
+          },
+          annotations: (existing && existing.annotations) || []
         })
       );
     }
@@ -1293,9 +1749,68 @@
         search.addEventListener("submit", function (ev) {
           ev.preventDefault();
           state.q = String(new FormData(search).get("q") || "");
-          paint();
+          var hits = state.q ? Search().search(state.index, state.q, { limit: 12 }) : [];
+          Store()
+            .recordSearchHits(
+              hits.map(function (h) {
+                return h.id;
+              })
+            )
+            .then(function () {
+              return refresh().then(paint);
+            })
+            .catch(function () {
+              paint();
+            });
         });
       }
+
+      var goals = root.querySelector("#wu-goals-form");
+      if (goals) {
+        goals.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var raw = String(new FormData(goals).get("goals") || "");
+          var list = raw
+            .split(/\n/)
+            .map(function (g) {
+              return g.trim();
+            })
+            .filter(Boolean);
+          Store()
+            .setLearningGoals(list)
+            .then(function () {
+              state.flash = "Goals saved.";
+              return refresh().then(paint);
+            });
+        });
+      }
+
+      var anno = root.querySelector("#wu-anno-form");
+      if (anno) {
+        anno.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(anno);
+          Store()
+            .addAnnotation(anno.getAttribute("data-node"), {
+              type: String(fd.get("atype") || "margin"),
+              quote: String(fd.get("quote") || ""),
+              text: String(fd.get("text") || "")
+            })
+            .then(function () {
+              return refresh().then(paint);
+            });
+        });
+      }
+
+      root.querySelectorAll("[data-del-anno]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          Store()
+            .removeAnnotation(btn.getAttribute("data-node"), btn.getAttribute("data-del-anno"))
+            .then(function () {
+              return refresh().then(paint);
+            });
+        });
+      });
 
       var lib = root.querySelector("#wu-library-filter");
       if (lib) {

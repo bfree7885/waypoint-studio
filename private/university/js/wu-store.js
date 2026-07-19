@@ -89,6 +89,24 @@
     });
   }
 
+  function normalizeAnnotations(list) {
+    if (!Array.isArray(list)) return [];
+    return list
+      .filter(function (a) {
+        return a && (a.text || a.quote);
+      })
+      .map(function (a) {
+        return {
+          id: a.id || "wua_" + uuid(),
+          type: a.type || "margin",
+          text: a.text != null ? String(a.text) : "",
+          quote: a.quote != null ? String(a.quote) : "",
+          linkedNodeId: a.linkedNodeId || null,
+          createdAt: a.createdAt || nowIso()
+        };
+      });
+  }
+
   function normalizeNode(partial) {
     partial = partial || {};
     var now = nowIso();
@@ -96,6 +114,7 @@
     var src = partial.source || {};
     var research = partial.research || {};
     var queue = partial.queue || {};
+    var learning = partial.learning || {};
     return {
       schemaVersion: Schema().SCHEMA,
       id: partial.id || "wu_" + uuid(),
@@ -141,6 +160,14 @@
         researchInbox: !!queue.researchInbox,
         focusToday: !!queue.focusToday
       },
+      learning: {
+        stageManual: learning.stageManual || null,
+        confidence: learning.confidence != null && learning.confidence !== "" ? Number(learning.confidence) : null,
+        openCount: learning.openCount != null ? Number(learning.openCount) || 0 : 0,
+        searchHits: learning.searchHits != null ? Number(learning.searchHits) || 0 : 0,
+        lastStudiedAt: learning.lastStudiedAt || null
+      },
+      annotations: normalizeAnnotations(partial.annotations),
       capture: partial.capture || null,
       meta: partial.meta && typeof partial.meta === "object" ? partial.meta : {},
       createdAt: partial.createdAt || now,
@@ -220,6 +247,11 @@
     tx.objectStore("nodes").put(n);
     await txDone(tx);
     await setMeta("lastWriteAt", nowIso());
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e) { /* ignore */ }
+    }
     return n;
   }
 
@@ -258,6 +290,11 @@
     await txDone(tx);
     // Undirected types: also ensure reverse exists optionally — caller can add both
     await setMeta("lastWriteAt", nowIso());
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e) { /* ignore */ }
+    }
     return e;
   }
 
@@ -312,6 +349,9 @@
     var n = await getNode(id);
     if (!n) return null;
     n.lastOpenedAt = nowIso();
+    n.learning = n.learning || {};
+    n.learning.openCount = (Number(n.learning.openCount) || 0) + 1;
+    n.learning.lastStudiedAt = n.lastOpenedAt;
     var saved = await putNode(n, { skipRevision: true });
     try {
       var recent = (await getMeta("recentViews", [])) || [];
@@ -322,11 +362,86 @@
       ).slice(0, 30);
       await setMeta("recentViews", recent);
     } catch (e) { /* ignore */ }
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e2) { /* ignore */ }
+    }
     return saved;
   }
 
   async function recentViewIds() {
     return (await getMeta("recentViews", [])) || [];
+  }
+
+  async function recordSearchHits(nodeIds) {
+    if (!nodeIds || !nodeIds.length) return;
+    var uniq = [];
+    var seen = Object.create(null);
+    nodeIds.slice(0, 12).forEach(function (id) {
+      if (!id || seen[id]) return;
+      seen[id] = true;
+      uniq.push(id);
+    });
+    for (var i = 0; i < uniq.length; i++) {
+      var n = await getNode(uniq[i]);
+      if (!n) continue;
+      n.learning = n.learning || {};
+      n.learning.searchHits = (Number(n.learning.searchHits) || 0) + 1;
+      await putNode(n, { skipRevision: true });
+    }
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e) { /* ignore */ }
+    }
+  }
+
+  async function addAnnotation(nodeId, annotation) {
+    var n = await getNode(nodeId);
+    if (!n) return null;
+    var list = Array.isArray(n.annotations) ? n.annotations.slice() : [];
+    list.push({
+      id: "wua_" + uuid(),
+      type: (annotation && annotation.type) || "margin",
+      text: (annotation && annotation.text) || "",
+      quote: (annotation && annotation.quote) || "",
+      linkedNodeId: (annotation && annotation.linkedNodeId) || null,
+      createdAt: nowIso()
+    });
+    n.annotations = list;
+    return putNode(n, { skipRevision: true });
+  }
+
+  async function removeAnnotation(nodeId, annotationId) {
+    var n = await getNode(nodeId);
+    if (!n) return null;
+    n.annotations = (n.annotations || []).filter(function (a) {
+      return a.id !== annotationId;
+    });
+    return putNode(n, { skipRevision: true });
+  }
+
+  async function getLearningGoals() {
+    return (await getMeta("learningGoals", [])) || [];
+  }
+
+  async function setLearningGoals(goals) {
+    var list = Array.isArray(goals)
+      ? goals
+          .map(function (g) {
+            return String(g || "").trim();
+          })
+          .filter(Boolean)
+          .slice(0, 20)
+      : [];
+    await setMeta("learningGoals", list);
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e) { /* ignore */ }
+    }
+    return list;
   }
 
   async function exportBundle() {
@@ -428,6 +543,11 @@
     putMedia: putMedia,
     getMedia: getMedia,
     touchOpened: touchOpened,
+    recordSearchHits: recordSearchHits,
+    addAnnotation: addAnnotation,
+    removeAnnotation: removeAnnotation,
+    getLearningGoals: getLearningGoals,
+    setLearningGoals: setLearningGoals,
     exportBundle: exportBundle,
     importBundle: importBundle,
     ensurePathTemplates: ensurePathTemplates,
