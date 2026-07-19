@@ -78,6 +78,29 @@
       });
     }
 
+    if (live && wx.rainSoon && wx.rainInchesHint) {
+      bullets.push({
+        text: "Soil moisture should rise after roughly " + wx.rainInchesHint + "\" of forecast rainfall.",
+        why: "Wet litter and damp soil after rain often improve short-term conditions for moisture-loving fungi — still verify outdoors.",
+        tone: "favorable",
+        source: source
+      });
+    } else if (live && wx.rainRecentHint) {
+      bullets.push({
+        text: "Recent rainfall leaves soil moisture elevated in sheltered ground.",
+        why: "North slopes, ravines, and leaf litter hold moisture longer than exposed ridges after rain.",
+        tone: "favorable",
+        source: source
+      });
+    } else if (live && !wx.rainSoon && !wx.rainRecentHint && wx.hot) {
+      bullets.push({
+        text: "Dry, warm conditions reduce likelihood despite seasonal timing.",
+        why: "Heat and evaporation dry litter quickly — fruiting signals weaken on exposed aspects until moisture returns.",
+        tone: "caution",
+        source: source
+      });
+    }
+
     if (live && wx.rainSoon) {
       bullets.push({
         text: "Rain is in the near-term forecast" +

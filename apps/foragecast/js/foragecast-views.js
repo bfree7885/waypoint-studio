@@ -154,14 +154,44 @@
     function list(arr) {
       return (arr || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
     }
+    var similar = cards
+      .filter(function (c) {
+        return c.id !== card.id;
+      })
+      .slice(0, 3)
+      .map(function (c) {
+        return (
+          '<li><a href="species.html?id=' +
+          esc(c.id) +
+          '"><strong>' +
+          esc(c.name) +
+          "</strong></a> — " +
+          esc(c.confidenceLabel) +
+          " confidence · " +
+          esc(c.phase && c.phase.label) +
+          "</li>"
+        );
+      })
+      .join("");
+    var drivers =
+      whys ||
+      list([
+        card.why ||
+          "Season timing, moisture, and habitat alignment drive this educational outlook."
+      ]);
+    var safety =
+      ethics ||
+      "<li>Never eat a wild specimen you cannot identify with certainty.</li>" +
+        "<li>Respect land access rules and leave productive sites intact.</li>";
     return (
       '<section class="fc-section fc-species-detail">' +
-      '<p class="fc-section__eyebrow">' +
-      esc(card.scientificName) +
-      "</p>" +
+      '<p class="fc-section__eyebrow">Species outlook</p>' +
       "<h1>" +
       esc(card.name) +
       "</h1>" +
+      '<p class="wds-caption">' +
+      esc(card.scientificName) +
+      "</p>" +
       '<p><span class="' +
       levelClass(card.level) +
       '">' +
@@ -171,49 +201,53 @@
         ? ' · <span class="fc-momentum">' + esc(card.momentum.label) + "</span>"
         : "") +
       "</p>" +
-      "<h2>Current seasonal status</h2><p>" +
+      "<h2>Overview</h2><p>" +
+      esc(card.explanation || card.why || "Educational suitability for today’s conditions.") +
+      "</p>" +
+      "<h2>Season</h2><p><strong>" +
       esc(card.phase && card.phase.label) +
-      " — " +
+      ".</strong> " +
       esc(card.phase && card.phase.note) +
+      (card.seasonWindow ? " Window: " + esc(card.seasonWindow) + "." : "") +
       "</p>" +
-      "<h2>Why is confidence " +
-      esc((conf.band || card.level || "").toString()) +
-      "?</h2>" +
-      "<ul>" +
-      list(conf.band === "low" ? conf.whyLow : conf.whyHigh) +
-      list(conf.band === "moderate" ? conf.whyLow : []) +
-      "</ul>" +
-      "<h2>What changed since yesterday?</h2><ul>" +
-      list(conf.changedSinceYesterday) +
-      "</ul>" +
-      "<h2>What would improve confidence?</h2><ul>" +
-      list(conf.wouldImprove) +
-      "</ul>" +
-      "<h2>What would reduce confidence?</h2><ul>" +
-      list(conf.wouldReduce) +
-      "</ul>" +
-      "<h2>Preferred habitat</h2><p>" +
-      esc(card.preferredHabitat) +
+      "<h2>Habitat</h2><p>" +
+      esc(card.preferredHabitat || "Habitat notes are limited for this species.") +
       "</p>" +
+      "<h2>Environmental drivers</h2><ul>" +
+      drivers +
+      "</ul>" +
+      "<h2>Current outlook</h2><p><strong>" +
+      esc((card.momentum && card.momentum.label) || (card.trend && card.trend.label) || "Uncertain") +
+      ".</strong> " +
+      esc((card.momentum && card.momentum.why) || (card.trend && card.trend.detail) || "") +
+      "</p>" +
+      "<h2>Confidence</h2>" +
+      "<p>Why this band:</p><ul>" +
+      list(conf.band === "high" ? conf.whyHigh : conf.whyLow) +
+      list(conf.band === "moderate" ? conf.whyHigh : []) +
+      (conf.reason ? "<li>" + esc(conf.reason) + "</li>" : "") +
+      (card.confidenceReason ? "<li>" + esc(card.confidenceReason) + "</li>" : "") +
+      "</ul>" +
+      (conf.wouldImprove
+        ? "<p>What would improve confidence:</p><ul>" + list(conf.wouldImprove) + "</ul>"
+        : "") +
+      (conf.wouldReduce
+        ? "<p>What would reduce confidence:</p><ul>" + list(conf.wouldReduce) + "</ul>"
+        : "") +
+      "<h2>Similar species (also tracked)</h2><ul>" +
+      (similar || "<li>No other supported species in this build.</li>") +
+      "</ul>" +
       "<h2>Identification reminders</h2><ul>" +
-      ids +
+      (ids || "<li>Use a trusted field guide before any harvest decision.</li>") +
       "</ul>" +
-      "<h2>Common look-alikes</h2><ul>" +
+      "<h2>Look-alikes</h2><ul>" +
       (look || "<li>See field guides; never eat uncertain specimens.</li>") +
       "</ul>" +
-      "<h2>Ethical harvesting</h2><ul>" +
-      ethics +
-      "</ul>" +
-      "<h2>Seasonal momentum</h2><p><strong>" +
-      esc((card.momentum && card.momentum.label) || (card.trend && card.trend.label)) +
-      ".</strong> " +
-      esc((card.momentum && card.momentum.why) || (card.trend && card.trend.detail)) +
-      "</p>" +
-      "<h2>Variables that most influenced the score</h2><ul>" +
-      whys +
+      "<h2>Safety &amp; ethics</h2><ul>" +
+      safety +
       "</ul>" +
       '<p class="fc-honesty">Transparent educational suitability — not opaque AI and not live detection.</p>' +
-      '<p><a href="species.html">← All species</a> · <a href="timeline.html">Season timeline</a></p>' +
+      '<p><a href="species.html">← All species</a> · <a href="timeline.html">Season timeline</a> · <a href="conditions.html">Today’s conditions</a></p>' +
       "</section>"
     );
   }

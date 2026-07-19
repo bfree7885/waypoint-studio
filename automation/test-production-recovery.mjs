@@ -112,7 +112,10 @@ const fcLoc = fs.readFileSync(
   "utf8"
 );
 assert("foragecast formatRegionLabel", /function formatRegionLabel/.test(fcLoc));
-assert("foragecast rejects null name", /\/\^null\$\/i/.test(fcLoc));
+assert(
+  "foragecast rejects null name",
+  /isUsablePlacePart|\/\^null\$\/i|\/\^null\\s\*,\/i/.test(fcLoc)
+);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s)");

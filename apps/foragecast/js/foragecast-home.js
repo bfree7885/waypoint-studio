@@ -64,10 +64,13 @@
   }
 
   function formatRegionLabel(loc) {
+    if (window.ForageCastLocation && ForageCastLocation.formatRegionLabel) {
+      return ForageCastLocation.formatRegionLabel(loc);
+    }
     if (!loc) return "your region";
     var name = loc.displayTitle || loc.placeLabel || loc.city || loc.name;
     if (name != null) name = String(name).trim();
-    if (!name || /^null$/i.test(name) || /^undefined$/i.test(name)) {
+    if (!name || /^(null|undefined)$/i.test(name) || /^null\s*,/i.test(name)) {
       if (loc.stateCode || loc.state) return "Location in " + (loc.stateCode || loc.state);
       return "your region";
     }
@@ -76,6 +79,24 @@
       return name + ", " + region;
     }
     return name;
+  }
+
+  function renderReliability(data) {
+    var state =
+      window.ForageCastLocation && ForageCastLocation.reliabilityState
+        ? ForageCastLocation.reliabilityState(data._platform || null, data._location)
+        : null;
+    if (!state) return "";
+    return (
+      '<p class="fc-reliability fc-reliability--' +
+      escapeHtml(state.id) +
+      '" role="status">' +
+      "<strong>" +
+      escapeHtml(state.label) +
+      "</strong> — " +
+      escapeHtml(state.detail) +
+      "</p>"
+    );
   }
 
   function renderSummary(data) {
@@ -158,15 +179,16 @@
 
     return (
       '<section class="fc-summary" aria-labelledby="fc-summary-title">' +
-      '<p class="wds-eyebrow">ForageCast · outdoor intelligence engine · ' +
+      '<p class="wds-eyebrow">ForageCast · outdoor intelligence · ' +
       escapeHtml(regionLabel) +
       "</p>" +
       '<h1 class="fc-summary__title" id="fc-summary-title">' +
       escapeHtml(summary.title) +
       "</h1>" +
       '<p class="fc-summary__question">' +
-      escapeHtml(summary.question) +
+      escapeHtml(summary.question || "What should I look for today, and why?") +
       "</p>" +
+      renderReliability(data) +
       freshness +
       '<p class="fc-honesty" role="note">' +
       escapeHtml(summary.honesty) +
@@ -175,12 +197,12 @@
       '<ul class="fc-summary__list">' +
       opportunities +
       "</ul>" +
-      '<h2 class="fc-summary__subtitle">Why conditions are changing</h2>' +
+      '<h2 class="fc-summary__subtitle">Why conditions favor (or limit) them</h2>' +
       '<ul class="fc-summary__list">' +
       conditionRows +
       "</ul>" +
       (forecastRows
-        ? '<h2 class="fc-summary__subtitle">Forecast intelligence</h2><ul class="fc-summary__list">' +
+        ? '<h2 class="fc-summary__subtitle">Near-term outlook</h2><ul class="fc-summary__list">' +
           forecastRows +
           "</ul>"
         : "") +

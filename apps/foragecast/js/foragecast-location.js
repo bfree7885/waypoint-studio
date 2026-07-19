@@ -16,13 +16,36 @@
     return "";
   }
 
+  function isUsablePlacePart(value) {
+    if (global.WDS && global.WDS.location && global.WDS.location.isUsablePlacePart) {
+      return global.WDS.location.isUsablePlacePart(value);
+    }
+    if (value == null) return false;
+    var s = String(value).trim();
+    if (!s) return false;
+    if (/^(null|undefined|n\/?a|unknown|none)$/i.test(s)) return false;
+    if (/^null\s*,/i.test(s) || /^undefined\s*,/i.test(s)) return false;
+    return true;
+  }
+
   function formatRegionLabel(loc) {
-    if (!loc) return "Regional location unavailable";
-    var name = loc.displayTitle || loc.placeLabel || loc.city || loc.name;
+    if (!loc) return "Set a place to personalize";
+    if (global.WDS && global.WDS.location && global.WDS.location.formatRegionLabel) {
+      var platformLabel = global.WDS.location.formatRegionLabel(loc);
+      if (isUsablePlacePart(platformLabel) && !/^default region$/i.test(platformLabel)) {
+        return platformLabel;
+      }
+    }
+    var name = loc.displayTitle || loc.placeLabel || loc.city || loc.county || loc.name;
     if (name != null) name = String(name).trim();
-    if (!name || /^null$/i.test(name) || /^undefined$/i.test(name)) {
-      if (loc.stateCode || loc.state) return "Location in " + (loc.stateCode || loc.state);
-      return "Regional location unavailable";
+    if (!isUsablePlacePart(name)) {
+      if (isUsablePlacePart(loc.stateCode) || isUsablePlacePart(loc.state)) {
+        return "Location in " + (loc.stateCode || loc.state);
+      }
+      if (loc.lat != null && loc.lng != null && formatCoords(loc.lat, loc.lng)) {
+        return formatCoords(loc.lat, loc.lng);
+      }
+      return "Set a place to personalize";
     }
     var region = loc.stateCode || loc.state;
     if (region && name.indexOf(String(region)) === -1) return name + ", " + region;
@@ -31,10 +54,11 @@
 
   function locationNote(loc) {
     loc = loc || read();
-    if (global.WDS && global.WDS.location) {
-      return global.WDS.location.formatStatusLine(loc);
+    if (global.WDS && global.WDS.location && global.WDS.location.formatStatusLine) {
+      var line = global.WDS.location.formatStatusLine(loc);
+      if (isUsablePlacePart(line) && !/^null/i.test(line)) return line;
     }
-    if (!loc) return "Regional location unavailable";
+    if (!loc) return "Location unavailable — set a place in Settings or allow location.";
     return formatRegionLabel(loc);
   }
 
@@ -77,6 +101,29 @@
     return formatRegionLabel(loc) + " · schematic zones";
   }
 
+  function reliabilityState(platform, loc) {
+    loc = loc || read();
+    var weather = platform && platform.modules && platform.modules.weather;
+    var offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    if (offline) return { id: "offline", label: "Offline", detail: "Showing last known educational model when available." };
+    if (!loc || loc.unavailable || loc.source === "unavailable") {
+      return { id: "location-unavailable", label: "Location unavailable", detail: "Set a place to personalize weather and season signals." };
+    }
+    if (weather && (weather.status === "live" || weather.isLive || weather.current)) {
+      return { id: "ready", label: "Ready", detail: "Live weather linked for this place." };
+    }
+    if (weather && (weather.status === "cached" || weather.fromCache)) {
+      return { id: "cached", label: "Cached", detail: "Using a recent weather package — freshness may lag." };
+    }
+    if (platform && platform._error) {
+      return { id: "provider-unavailable", label: "Provider unavailable", detail: String(platform._error) };
+    }
+    if (!weather) {
+      return { id: "provider-unavailable", label: "Weather unavailable", detail: "Species outlook uses season models only until weather responds." };
+    }
+    return { id: "ready", label: "Ready", detail: "Educational outlook ready for this place." };
+  }
+
   global.ForageCastLocation = {
     read: read,
     formatCoords: formatCoords,
@@ -84,6 +131,8 @@
     locationNote: locationNote,
     applyToHomeData: applyToHomeData,
     applyToConditions: applyToConditions,
-    mapLabel: mapLabel
+    mapLabel: mapLabel,
+    reliabilityState: reliabilityState,
+    isUsablePlacePart: isUsablePlacePart
   };
 })(window);
