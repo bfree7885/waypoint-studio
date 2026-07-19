@@ -1,6 +1,7 @@
 /**
- * SignalTerrain Cyber — Live Intelligence Dashboard
+ * SignalTerrain Cyber — Live Intelligence Dashboard (Product Recovery)
  * Reads data/cyber/live.json only. Never loads sample/fixture intelligence.
+ * Home experience: Today's Cyber Brief. Task nav for detail.
  */
 (function (global) {
   "use strict";
@@ -11,6 +12,24 @@
     "research-workspace.sample.json",
     "quiet-day.brief.json",
     "ingestion/samples/raw"
+  ];
+
+  var CACHE_KEY = "st_cyber_live_cache_v2";
+  var CACHE_TTL_MS = 5 * 60 * 1000;
+
+  var NAV = [
+    ["brief", "Overview"],
+    ["threats", "Threats"],
+    ["vulnerabilities", "Vulnerabilities"],
+    ["kev", "KEV"],
+    ["ransomware", "Ransomware"],
+    ["zeroday", "Zero-Day"],
+    ["advisories", "Advisories"],
+    ["outages", "Outages"],
+    ["feeds", "Feeds"],
+    ["search", "Search"],
+    ["history", "History"],
+    ["settings", "Settings"]
   ];
 
   function Util() {
@@ -35,32 +54,50 @@
     if (BANNED_SAMPLE_PATHS.some(function (b) { return String(url).indexOf(b) >= 0; })) {
       return Promise.reject(new Error("Refusing to load sample/fixture path in live dashboard: " + url));
     }
+    try {
+      var cached = global.sessionStorage && global.sessionStorage.getItem(CACHE_KEY);
+      if (cached) {
+        var parsed = JSON.parse(cached);
+        if (parsed && parsed.url === url && parsed.at && Date.now() - parsed.at < CACHE_TTL_MS && parsed.doc) {
+          return Promise.resolve(parsed.doc);
+        }
+      }
+    } catch (e) { /* ignore cache */ }
+
     var u = Util();
-    if (u && u.loadJson) return u.loadJson(url);
-    return fetch(url, { credentials: "same-origin" }).then(function (r) {
-      if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
-      return r.json();
+    var p = u && u.loadJson
+      ? u.loadJson(url)
+      : fetch(url, { credentials: "same-origin", cache: "no-cache" }).then(function (r) {
+          if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
+          return r.json();
+        });
+    return p.then(function (doc) {
+      try {
+        if (global.sessionStorage) {
+          global.sessionStorage.setItem(
+            CACHE_KEY,
+            JSON.stringify({ url: url, at: Date.now(), doc: doc })
+          );
+        }
+      } catch (e2) { /* ignore */ }
+      return doc;
     });
   }
 
   function parseHash() {
-    var u = Util();
-    if (u && u.parseHash) {
-      var raw = u.parseHash();
-      return { panel: raw.panel || "posture", id: raw.id || null };
-    }
     var h = String(global.location.hash || "").replace(/^#/, "");
-    if (!h) return { panel: "posture", id: null };
+    if (!h) return { panel: "brief", id: null };
     var parts = h.split("/");
-    return { panel: parts[0] || "posture", id: parts[1] || null };
+    var panel = parts[0] || "brief";
+    // Legacy aliases
+    if (panel === "posture" || panel === "today" || panel === "immediate") panel = "brief";
+    if (panel === "providers" || panel === "about") panel = "feeds";
+    if (panel === "profile") panel = "settings";
+    if (panel === "releases") panel = "advisories";
+    return { panel: panel, id: parts[1] || null };
   }
 
   function setHash(panel, id) {
-    var u = Util();
-    if (u && u.setHash) {
-      u.setHash(panel, id);
-      return;
-    }
     global.location.hash = id ? panel + "/" + id : panel;
   }
 
@@ -85,9 +122,10 @@
       var t = String(term.name || "").toLowerCase().trim();
       if (t.length < 2) return;
       var vendor = String(term.vendor || "").toLowerCase();
-      var productHit = products.some(function (p) {
-        return p.indexOf(t) >= 0 || t.indexOf(p) >= 0;
-      }) || blob.indexOf(t) >= 0;
+      var productHit =
+        products.some(function (p) {
+          return p.indexOf(t) >= 0 || t.indexOf(p) >= 0;
+        }) || blob.indexOf(t) >= 0;
       var vendorHit =
         (vendor &&
           vendors.some(function (v) {
@@ -150,7 +188,7 @@
       .sort(function (a, b) {
         return b.points - a.points;
       })
-      .slice(0, 4)
+      .slice(0, 5)
       .map(function (c) {
         return c.reason;
       })
@@ -182,7 +220,7 @@
   }
 
   function trustBadge(state) {
-    return '<span class="st-live-trust" data-trust="' + esc(state || "Unknown") + '">' + esc(state || "Unknown") + "</span>";
+    return '<span class="st-live-trust">' + esc(state || "Unknown") + "</span>";
   }
 
   function filterRecords(records, state) {
@@ -195,9 +233,13 @@
           " " +
           ((r.identifiers && r.identifiers.cves) || []).join(" ") +
           " " +
+          ((r.identifiers && r.identifiers.ghsa) || "") +
+          " " +
           ((r.entities && r.entities.vendors) || []).join(" ") +
           " " +
-          ((r.entities && r.entities.products) || []).join(" ")
+          ((r.entities && r.entities.products) || []).join(" ") +
+          " " +
+          (r.type || "")
         ).toLowerCase();
         if (blob.indexOf(state.q.toLowerCase()) < 0) return false;
       }
@@ -237,106 +279,59 @@
       esc(r.title) +
       "</a></h3>" +
       "<p>" +
-      esc((r.summary || "").slice(0, 280)) +
-      (r.summary && r.summary.length > 280 ? "…" : "") +
+      esc((r.summary || "").slice(0, 240)) +
+      (r.summary && r.summary.length > 240 ? "…" : "") +
       "</p>" +
       '<ul class="st-live-meta">' +
       (cves ? "<li><strong>CVE:</strong> " + esc(cves) + "</li>" : "") +
       (vendors || products
         ? "<li><strong>Affects:</strong> " + esc([vendors, products].filter(Boolean).join(" / ")) + "</li>"
         : "") +
-      "<li><strong>Exploitation:</strong> " +
-      esc(
-        r.exploitation && r.exploitation.knownExploited
-          ? "Known exploited (" + (r.exploitation.exploitationEvidence || "confirmed") + ")"
-          : "Not asserted as known-exploited in connected sources"
-      ) +
-      "</li>" +
-      "<li><strong>Profile:</strong> " +
-      esc(pm.label || "No declared technology match") +
+      "<li><strong>Why:</strong> " +
+      esc((r.priority && r.priority.explanation) || "") +
       "</li>" +
       "<li><strong>Source:</strong> <a href=\"" +
       esc(r.source && r.source.sourceUrl) +
       "\" rel=\"noopener noreferrer\" target=\"_blank\">" +
       esc(r.source && r.source.providerName) +
-      "</a> · " +
-      esc(r.source && r.source.authorityLevel) +
-      "</li>" +
-      "<li><strong>Published:</strong> " +
-      esc((r.publishedAt || "—").slice(0, 19)) +
-      " · <strong>Retrieved:</strong> " +
-      esc((r.retrievedAt || "—").slice(0, 19)) +
-      " · <strong>Freshness:</strong> " +
-      esc(r.freshness || "—") +
-      " · <strong>Confidence:</strong> " +
-      esc(r.confidence || "—") +
-      "</li>" +
-      "<li><strong>Why prioritized:</strong> " +
-      esc((r.priority && r.priority.explanation) || "") +
-      "</li>" +
+      "</a></li>" +
       "</ul></article>"
     );
   }
 
-  function todayPriorities(records) {
-    var lines = [];
-    var immediate = records.filter(function (r) {
-      return r.priority && r.priority.band === "Immediate";
+  function listPanel(title, lead, list) {
+    return (
+      "<h1 class=\"st-live-section-title\">" +
+      esc(title) +
+      "</h1>" +
+      '<p class="st-live-lead">' +
+      esc(lead) +
+      "</p>" +
+      (list.length
+        ? list.map(cardHtml).join("")
+        : '<p class="st-live-lead">No matching verified records in the live artifact.</p>')
+    );
+  }
+
+  function byIdMap(records) {
+    var m = Object.create(null);
+    (records || []).forEach(function (r) {
+      m[r.id] = r;
     });
-    var exact = records.filter(function (r) {
-      return r.priority && r.priority.profileMatch && r.priority.profileMatch.level === "exact";
-    });
-    var kevNew = records.filter(function (r) {
-      return r.type === "exploited-vulnerability" && r.freshness === "live";
-    });
-    immediate.slice(0, 5).forEach(function (r) {
-      var pm = r.priority.profileMatch || {};
-      if (pm.level === "exact") {
-        lines.push(
-          "Review " +
-            r.title +
-            " — direct product match to “" +
-            pm.detail +
-            "”. Version confirmation may still be required. Known exploited per official sources."
-        );
-      } else if (pm.level === "vendor") {
-        lines.push(
-          "Possibly relevant: " +
-            r.title +
-            " — vendor-level match to “" +
-            pm.detail +
-            "”; not proof you are affected."
-        );
-      } else {
-        lines.push(
-          "Immediate (not a declared profile match): " +
-            r.title +
-            " — track if you use related products; no declared technology match found."
-        );
-      }
-    });
-    if (!exact.length) {
-      lines.push("No direct product matches were found between Immediate items and your declared technology profile.");
-    }
-    if (kevNew.length) {
-      lines.push(
-        kevNew.length +
-          " KEV-linked record(s) appear freshly retrieved; confirm whether any products you run are in scope."
-      );
-    }
-    if (!lines.length) {
-      lines.push("No current Immediate items from connected sources. Absence of matches does not prove safety.");
-    }
-    return lines;
+    return m;
   }
 
   function mountLive(root, options) {
     options = options || {};
     if (!root) return Promise.reject(new Error("mount root required"));
+    try {
+      if (global.performance && performance.mark) performance.mark("st-cyber-mount-start");
+    } catch (e0) { /* noop */ }
     root.setAttribute("aria-busy", "true");
     root.innerHTML = '<p class="st-loading">Loading verified cyber intelligence…</p>';
 
     var liveUrl = options.liveUrl || "../../../data/cyber/live.json";
+    var historyUrl = options.historyUrl || "../../../data/cyber/history.json";
     var state = {
       q: "",
       band: "all",
@@ -345,16 +340,17 @@
       kevOnly: false,
       profileOnly: false,
       doc: null,
-      records: []
+      records: [],
+      historyDoc: null
     };
 
     return loadJson(liveUrl)
       .catch(function (err) {
         root.innerHTML =
-          '<div class="st-demo" role="alert">' +
+          '<div class="st-live-app" role="alert">' +
           "<h1>No verified cyber intelligence has been retrieved yet.</h1>" +
-          "<p>The live artifact is missing or unreadable. Run <code>node scripts/signalterrain-cyber-live-engine.mjs</code> to fetch official sources. Sample data will not be substituted.</p>" +
-          "<p class=\"st-ws-meta\">" +
+          "<p>Run <code>node scripts/signalterrain-cyber-live-engine.mjs</code>. Sample data will not be substituted.</p>" +
+          "<p class=\"st-live-lead\">" +
           esc(String(err && err.message ? err.message : err)) +
           "</p></div>";
         root.removeAttribute("aria-busy");
@@ -362,107 +358,119 @@
       })
       .then(function (doc) {
         if (!doc || !Array.isArray(doc.records)) {
-          root.innerHTML =
-            '<p role="alert">Live artifact is malformed. Sample data will not be substituted.</p>';
+          root.innerHTML = '<p role="alert">Live artifact is malformed. Sample data will not be substituted.</p>';
           root.removeAttribute("aria-busy");
           return;
         }
         state.doc = doc;
-        var items = profileTermsFromInventory();
-        state.records = applyProfile(doc.records, items);
+        state.records = applyProfile(doc.records, profileTermsFromInventory());
+        // Soft-load history (non-blocking)
+        loadJson(historyUrl)
+          .then(function (h) {
+            state.historyDoc = h;
+          })
+          .catch(function () {
+            state.historyDoc = { entries: doc.historyPreview || [] };
+          });
 
-        function nav() {
+        function navHtml() {
           var route = parseHash();
-          var panels = [
-            ["posture", "Posture"],
-            ["immediate", "Immediate"],
-            ["kev", "KEV"],
-            ["advisories", "Advisories"],
-            ["releases", "Software updates"],
-            ["today", "Today"],
-            ["search", "Search"],
-            ["providers", "Provider health"],
-            ["profile", "Tech profile"],
-            ["about", "How we evaluate"]
-          ];
           return (
-            '<nav class="st-cyber-nav" aria-label="Live cyber intelligence">' +
+            '<nav class="st-live-nav" aria-label="Cyber intelligence">' +
             "<ul>" +
-            panels
-              .map(function (p) {
-                var cur = route.panel === p[0] || (p[0] === "immediate" && route.panel === "record");
-                return (
-                  "<li><a href=\"#" +
-                  p[0] +
-                  "\"" +
-                  (cur ? ' aria-current="page"' : "") +
-                  ">" +
-                  esc(p[1]) +
-                  "</a></li>"
-                );
-              })
-              .join("") +
+            NAV.map(function (p) {
+              var cur = route.panel === p[0] || (route.panel === "record" && p[0] === "threats");
+              return (
+                "<li><a href=\"#" +
+                p[0] +
+                "\"" +
+                (cur ? ' aria-current="page"' : "") +
+                ">" +
+                esc(p[1]) +
+                "</a></li>"
+              );
+            }).join("") +
             "</ul></nav>"
           );
         }
 
-        function posture() {
+        function briefPanel() {
+          var brief = state.doc.brief;
+          var bullets =
+            brief && brief.bullets && brief.bullets.length
+              ? brief.bullets
+              : [{ text: "Brief not present in artifact — showing highest-priority verified items instead." }].concat(
+                  state.records.slice(0, 5).map(function (r) {
+                    return { text: r.title };
+                  })
+                );
           var imm = state.records.filter(function (r) {
             return r.priority.band === "Immediate";
           }).length;
           var high = state.records.filter(function (r) {
             return r.priority.band === "High";
           }).length;
-          var exact = state.records.filter(function (r) {
-            return r.priority.profileMatch && r.priority.profileMatch.level === "exact";
-          }).length;
-          var unavailable = (state.doc.providers || []).filter(function (p) {
-            return p.status === "error" || p.status === "planned";
-          }).length;
-          var oldest = state.records.reduce(function (min, r) {
-            var t = r.retrievedAt || "";
-            return !min || t < min ? t : min;
-          }, "");
           return (
-            '<header class="st-demo-header"><h1>Current cyber posture</h1>' +
-            '<p class="st-lead">Real public cyber intelligence — not a sample dashboard. ' +
-            trustBadge(state.doc.meta && state.doc.meta.trustState) +
-            "</p>" +
-            '<p class="st-badge">Generated ' +
-            esc((state.doc.meta && state.doc.meta.generatedAt) || "—") +
+            '<section class="st-live-brief" aria-labelledby="st-brief-title">' +
+            '<p class="st-live-brief__eyebrow">Today\'s Cyber Brief</p>' +
+            '<h1 class="st-live-brief__title" id="st-brief-title">What should I pay attention to right now?</h1>' +
+            '<p class="st-live-brief__meta">Generated ' +
+            esc((brief && brief.generatedAt) || (state.doc.meta && state.doc.meta.generatedAt) || "—") +
             " · " +
-            esc(String((state.doc.meta && state.doc.meta.counts && state.doc.meta.counts.records) || state.records.length)) +
-            " records</p></header>" +
-            '<ul class="st-cyber-list">' +
-            "<li><strong>" +
+            trustBadge(state.doc.meta && state.doc.meta.trustState) +
+            " · " +
+            esc(String(state.records.length)) +
+            " verified records</p>" +
+            '<div class="st-live-stats" aria-label="Priority counts">' +
+            '<div class="st-live-stat"><strong>' +
             imm +
-            "</strong> Immediate items</li>" +
-            "<li><strong>" +
+            "</strong><span>Immediate</span></div>" +
+            '<div class="st-live-stat"><strong>' +
             high +
-            "</strong> High-priority items</li>" +
-            "<li><strong>" +
-            exact +
-            "</strong> direct matches to your technology profile</li>" +
-            "<li><strong>" +
-            unavailable +
-            "</strong> providers unavailable or planned</li>" +
-            "<li>Oldest retrieved timestamp in view: " +
-            esc((oldest || "—").slice(0, 19)) +
-            "</li></ul>" +
-            '<p class="st-ws-meta">Counts are derived only from the live artifact. No sample records are included.</p>'
-          );
-        }
-
-        function listPanel(title, lead, list) {
-          return (
-            '<header class="st-demo-header"><h1>' +
-            esc(title) +
-            "</h1><p class=\"st-lead\">" +
-            esc(lead) +
-            "</p></header>" +
-            (list.length
-              ? list.map(cardHtml).join("")
-              : '<p class="st-ws-meta">No matching verified records.</p>')
+            "</strong><span>High</span></div>" +
+            '<div class="st-live-stat"><strong>' +
+            esc(
+              String(
+                state.records.filter(function (r) {
+                  return r.exploitation && r.exploitation.knownExploited;
+                }).length
+              )
+            ) +
+            "</strong><span>KEV</span></div>" +
+            '<div class="st-live-stat"><strong>' +
+            esc(
+              String(
+                state.records.filter(function (r) {
+                  return r.type === "service-outage" && !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
+                }).length
+              )
+            ) +
+            "</strong><span>Outages</span></div>" +
+            "</div>" +
+            '<ul class="st-live-brief__list">' +
+            bullets
+              .map(function (b) {
+                return "<li>" + esc(b.text || b) + "</li>";
+              })
+              .join("") +
+            "</ul>" +
+            (brief && brief.recommendation
+              ? '<p class="st-live-brief__rec"><strong>Recommended priority:</strong> ' +
+                esc(brief.recommendation) +
+                "</p>"
+              : "") +
+            '<p class="st-live-lead">' +
+            esc((brief && brief.method) || "Interpretation of provider-backed records only.") +
+            "</p></section>" +
+            listPanel(
+              "Top threats by priority",
+              "Sorted by operational priority score — not chronology.",
+              state.records
+                .filter(function (r) {
+                  return r.type !== "service-outage" || !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
+                })
+                .slice(0, 8)
+            )
           );
         }
 
@@ -472,58 +480,106 @@
           })[0];
           if (!r) return '<p role="alert">Record not found in the live artifact.</p>';
           var factors = ((r.priority && r.priority.contributions) || [])
+            .filter(function (c) {
+              return c.points > 0;
+            })
+            .sort(function (a, b) {
+              return b.points - a.points;
+            })
             .map(function (c) {
               return (
-                "<li><strong>" +
-                esc(c.factorId) +
-                "</strong> +" +
+                "<li><strong>+" +
                 esc(String(c.points)) +
-                "/" +
-                esc(String(c.maxPoints)) +
-                " — " +
+                "</strong> " +
                 esc(c.reason) +
                 "</li>"
               );
             })
             .join("");
-          var sources = ((r.supportingSources || []).concat([
-            {
-              providerName: r.source.providerName,
-              sourceUrl: r.source.sourceUrl,
-              providerId: r.source.providerId
-            }
-          ]))
-            .map(function (s) {
-              return (
-                "<li><a href=\"" +
-                esc(s.sourceUrl) +
-                "\" rel=\"noopener noreferrer\" target=\"_blank\">" +
-                esc(s.providerName || s.providerId) +
-                "</a></li>"
-              );
-            })
-            .join("");
+          var who =
+            (r.priority && r.priority.profileMatch && r.priority.profileMatch.level === "exact"
+              ? "You declared related technology (“" + r.priority.profileMatch.detail + "”) — confirm versions."
+              : r.priority && r.priority.profileMatch && r.priority.profileMatch.level === "vendor"
+                ? "Possible vendor overlap with your profile — not proof of exposure."
+                : "No declared profile match. Relevant if you run related products.");
+          var exploit = r.exploitation && r.exploitation.knownExploited
+            ? "Yes — known exploited per connected official sources (" +
+              (r.exploitation.exploitationEvidence || "confirmed") +
+              ")."
+            : "Not asserted as known-exploited in connected sources.";
+          var mitigate =
+            (r.remediation && (r.remediation.summary || (r.remediation.mitigations || []).join("; "))) ||
+            (r.remediation && r.remediation.patchesAvailable
+              ? "Vendor patches indicated as available — check the source advisory for builds."
+              : "See source advisory for mitigations and patch status.");
           return (
-            '<p><a href="#immediate">← Back</a></p>' +
-            '<header class="st-demo-header"><h1>' +
+            '<p><a href="#threats">← Threats</a></p>' +
+            "<h1 class=\"st-live-section-title\">" +
             esc(r.title) +
-            "</h1></header>" +
-            cardHtml(r) +
-            "<h2>Priority factors</h2><ul class=\"st-cyber-list\">" +
+            "</h1>" +
+            '<p class="' +
+            bandClass(r.priority && r.priority.band) +
+            '">' +
+            esc((r.priority && r.priority.band) || "—") +
+            " · score " +
+            esc(String((r.priority && r.priority.score) || "—")) +
+            "</p>" +
+            '<div class="st-detail-grid">' +
+            '<div class="st-detail-block"><h2>What is affected</h2><p>' +
+            esc(
+              [((r.entities && r.entities.vendors) || []).join(", "), ((r.entities && r.entities.products) || []).join(", ")]
+                .filter(Boolean)
+                .join(" / ") || "See source — entities not fully parsed from this feed."
+            ) +
+            "</p></div>" +
+            '<div class="st-detail-block"><h2>How serious</h2><p>' +
+            esc(
+              (r.severity && r.severity.label ? "Severity: " + r.severity.label : "Severity unknown") +
+                (r.severity && r.severity.cvssScore != null ? " · CVSS " + r.severity.cvssScore : "")
+            ) +
+            ". " +
+            esc((r.priority && r.priority.explanation) || "") +
+            "</p></div>" +
+            '<div class="st-detail-block"><h2>Exploitation occurring?</h2><p>' +
+            esc(exploit) +
+            (r.exploitation && r.exploitation.ransomwareLinked ? " Flagged with ransomware association in KEV." : "") +
+            "</p></div>" +
+            '<div class="st-detail-block"><h2>Who should care</h2><p>' +
+            esc(who) +
+            "</p></div>" +
+            '<div class="st-detail-block"><h2>How to mitigate / patches</h2><p>' +
+            esc(mitigate) +
+            (r.remediation && r.remediation.deadline ? " Deadline: " + r.remediation.deadline : "") +
+            "</p></div>" +
+            '<div class="st-detail-block"><h2>Why ranked here</h2><ul class="st-live-meta">' +
             factors +
-            "</ul>" +
-            "<h2>Supporting sources</h2><ul class=\"st-cyber-list\">" +
-            sources +
-            "</ul>" +
-            '<p class="st-disclaimer">Provider facts above are attributed. SignalTerrain priority text is interpretation of those facts — not a claim that you are compromised.</p>'
+            "</ul></div>" +
+            '<div class="st-detail-block"><h2>References</h2><ul class="st-live-meta"><li><a href="' +
+            esc(r.source && r.source.sourceUrl) +
+            '" rel="noopener noreferrer" target="_blank">' +
+            esc(r.source && r.source.providerName) +
+            "</a></li>" +
+            ((r.supportingSources || [])
+              .map(function (s) {
+                return (
+                  "<li><a href=\"" +
+                  esc(s.sourceUrl) +
+                  "\" rel=\"noopener noreferrer\" target=\"_blank\">" +
+                  esc(s.providerName || s.providerId) +
+                  "</a></li>"
+                );
+              })
+              .join("") || "") +
+            "</ul></div></div>" +
+            '<p class="st-disclaimer">Plain-language sections interpret provider facts. Not a claim that you are compromised.</p>'
           );
         }
 
-        function providersPanel() {
+        function feedsPanel() {
           return (
-            '<header class="st-demo-header"><h1>Provider health</h1>' +
-            '<p class="st-lead">Failures are visible. Cached or planned providers are never presented as live sample data.</p></header>' +
-            '<table class="st-health-table"><thead><tr><th>Provider</th><th>Status</th><th>Records</th><th>Last success</th><th>Error / note</th></tr></thead><tbody>' +
+            "<h1 class=\"st-live-section-title\">Feeds &amp; provider health</h1>" +
+            '<p class="st-live-lead">Timeouts, failures, and planned sources stay visible. Nothing is filled with sample data.</p>' +
+            '<table class="st-health-table"><thead><tr><th>Provider</th><th>Status</th><th>Records</th><th>Last success</th><th>Note</th></tr></thead><tbody>' +
             (state.doc.providers || [])
               .map(function (p) {
                 return (
@@ -531,8 +587,6 @@
                   esc(p.providerName) +
                   "</td><td>" +
                   esc(p.status) +
-                  " / " +
-                  esc(p.resultsMode || "") +
                   "</td><td>" +
                   esc(String(p.recordCount)) +
                   "</td><td>" +
@@ -543,18 +597,26 @@
                 );
               })
               .join("") +
-            "</tbody></table>"
+            "</tbody></table>" +
+            "<h2 class=\"st-live-section-title\" style=\"margin-top:1.25rem;font-size:1.05rem\">How we evaluate</h2>" +
+            "<ul class=\"st-live-meta\">" +
+            (((state.doc.howToEvaluate && state.doc.howToEvaluate.points) || [])
+              .map(function (p) {
+                return "<li>" + esc(p) + "</li>";
+              })
+              .join("") || "") +
+            "</ul>"
           );
         }
 
-        function profilePanel() {
+        function settingsPanel() {
           var Inv = Inventory();
           var items = Inv ? Inv.list() : [];
           return (
-            '<header class="st-demo-header"><h1>Technology profile</h1>' +
-            '<p class="st-lead">Private and local-first. Matching distinguishes exact, vendor, platform, ambiguous, and none. Never proof of compromise.</p></header>' +
+            "<h1 class=\"st-live-section-title\">Settings · technology profile</h1>" +
+            '<p class="st-live-lead">Local-only inventory used to re-weight priority. Never leaves this browser.</p>' +
             '<form id="st-live-profile-add" class="st-ws-form">' +
-            "<label>Name <input name=\"name\" required placeholder=\"Firefox\"/></label>" +
+            "<label>Name <input name=\"name\" required placeholder=\"Exchange Server\"/></label>" +
             "<label>Category <select name=\"category\">" +
             ((Inv && Inv.CATEGORIES) || ["browser", "operating-system", "application", "other"])
               .map(function (c) {
@@ -564,152 +626,228 @@
             "</select></label>" +
             "<label>Vendor (optional) <input name=\"vendor\"/></label>" +
             "<label>Version (optional) <input name=\"version\"/></label>" +
-            '<button type="submit" class="wds-btn wds-btn--primary">Add to local profile</button></form>' +
-            "<ul class=\"st-cyber-list\">" +
+            '<button type="submit" class="wds-btn wds-btn--primary">Add</button></form>' +
+            "<ul class=\"st-live-meta\">" +
             (items
               .map(function (it) {
                 return (
                   "<li><strong>" +
                   esc(it.name) +
-                  "</strong> <span class=\"st-ws-meta\">" +
+                  "</strong> · " +
                   esc(it.category) +
-                  (it.version ? " · " + esc(it.version) : "") +
-                  '</span> <button type="button" class="wds-btn wds-btn--ghost" data-rm-inv="' +
+                  ' <button type="button" class="wds-btn wds-btn--ghost" data-rm-inv="' +
                   esc(it.id) +
                   '">Remove</button></li>'
                 );
               })
-              .join("") || "<li class=\"st-ws-meta\">No technologies declared yet.</li>") +
+              .join("") || "<li>No technologies declared yet.</li>") +
             "</ul>"
-          );
-        }
-
-        function aboutPanel() {
-          var pts = ((state.doc.howToEvaluate && state.doc.howToEvaluate.points) || [])
-            .map(function (p) {
-              return "<li>" + esc(p) + "</li>";
-            })
-            .join("");
-          return (
-            '<header class="st-demo-header"><h1>How SignalTerrain evaluates cyber information</h1></header>' +
-            "<ul class=\"st-cyber-list\">" +
-            pts +
-            "</ul>" +
-            '<p class="st-disclaimer">Educational defensive awareness. No scanning, no offense, no SIEM claims.</p>'
           );
         }
 
         function searchPanel() {
           var list = filterRecords(state.records, state);
           return (
-            '<header class="st-demo-header"><h1>Search</h1>' +
-            '<p class="st-lead">Search and filter verified live records only.</p></header>' +
+            "<h1 class=\"st-live-section-title\">Search</h1>" +
+            '<p class="st-live-lead">CVE, vendor, product, GHSA, advisory text — live artifact only.</p>' +
             '<form id="st-live-search" class="st-ws-form">' +
             "<label>Query <input name=\"q\" value=\"" +
             esc(state.q) +
-            "\" placeholder=\"CVE, vendor, product\"/></label>" +
+            "\" placeholder=\"CVE-2024-…, Fortinet, Exchange\"/></label>" +
             "<label>Band <select name=\"band\">" +
             ["all", "Immediate", "High", "Monitor", "Informational"]
               .map(function (b) {
-                return (
-                  "<option" +
-                  (state.band === b ? " selected" : "") +
-                  ">" +
-                  b +
-                  "</option>"
-                );
+                return "<option" + (state.band === b ? " selected" : "") + ">" + b + "</option>";
               })
               .join("") +
             "</select></label>" +
             "<label>Type <select name=\"type\">" +
-            ["all", "exploited-vulnerability", "vulnerability", "security-advisory", "software-security-release"]
+            [
+              "all",
+              "exploited-vulnerability",
+              "vulnerability",
+              "security-advisory",
+              "software-security-release",
+              "service-outage"
+            ]
               .map(function (t) {
                 return "<option" + (state.type === t ? " selected" : "") + ">" + t + "</option>";
               })
               .join("") +
-            '</select></label>' +
+            "</select></label>" +
             "<label><input type=\"checkbox\" name=\"kev\"" +
             (state.kevOnly ? " checked" : "") +
-            "/> KEV / known exploited only</label>" +
+            "/> KEV only</label>" +
             "<label><input type=\"checkbox\" name=\"profile\"" +
             (state.profileOnly ? " checked" : "") +
-            "/> Profile matches only</label>" +
+            "/> Profile matches</label>" +
             '<button type="submit" class="wds-btn wds-btn--primary">Apply</button></form>' +
-            "<p class=\"st-ws-meta\">" +
+            "<p class=\"st-live-lead\">" +
             list.length +
             " results</p>" +
-            list.slice(0, 40).map(cardHtml).join("")
+            list.slice(0, 50).map(cardHtml).join("")
+          );
+        }
+
+        function historyPanel() {
+          var entries =
+            (state.historyDoc && state.historyDoc.entries) ||
+            state.doc.historyPreview ||
+            [];
+          if (!entries.length) {
+            return (
+              "<h1 class=\"st-live-section-title\">History</h1>" +
+              '<p class="st-live-lead">No prior brief snapshots yet. History fills as the live engine runs.</p>'
+            );
+          }
+          return (
+            "<h1 class=\"st-live-section-title\">History</h1>" +
+            '<p class="st-live-lead">Prior brief snapshots from engine runs (local artifact).</p>' +
+            entries
+              .map(function (e) {
+                return (
+                  '<article class="st-live-card"><h3>' +
+                  esc((e.at || "").slice(0, 19)) +
+                  " · " +
+                  esc(e.trustState || "") +
+                  "</h3><ul class=\"st-live-meta\">" +
+                  ((e.briefBullets || []).slice(0, 4)
+                    .map(function (b) {
+                      return "<li>" + esc(b) + "</li>";
+                    })
+                    .join("") || "<li>" + esc(e.recommendation || "") + "</li>") +
+                  "</ul></article>"
+                );
+              })
+              .join("")
+          );
+        }
+
+        function ransomwarePanel() {
+          var derived = (state.doc.derived && state.doc.derived.ransomware) || [];
+          if (derived.length) {
+            var map = byIdMap(state.records);
+            var list = derived
+              .map(function (d) {
+                return map[d.id];
+              })
+              .filter(Boolean);
+            return listPanel(
+              "Ransomware center",
+              "KEV entries flagged with ransomware association. Campaign TTPs beyond this flag require additional authoritative sources (not fabricated here).",
+              list
+            );
+          }
+          return listPanel(
+            "Ransomware center",
+            "No ransomware-associated KEV flags in the current live artifact.",
+            []
+          );
+        }
+
+        function zeroDayPanel() {
+          var derived = (state.doc.derived && state.doc.derived.zeroDay) || [];
+          var map = byIdMap(state.records);
+          var list = derived
+            .map(function (d) {
+              return map[d.id];
+            })
+            .filter(Boolean);
+          return (
+            listPanel(
+              "Zero-Day center",
+              "Public feeds rarely prove a true zero-day. This view highlights known-exploited, freshly listed, or explicitly labeled items — with honest status tags.",
+              list
+            ) +
+            (derived.length
+              ? '<ul class="st-live-meta">' +
+                derived
+                  .slice(0, 20)
+                  .map(function (d) {
+                    return (
+                      "<li><strong>" +
+                      esc(d.status) +
+                      "</strong> — " +
+                      esc(d.title) +
+                      "</li>"
+                    );
+                  })
+                  .join("") +
+                "</ul>"
+              : "")
           );
         }
 
         function body() {
           var route = parseHash();
           if (route.panel === "record") return recordDetail(route.id);
-          if (route.panel === "immediate") {
+          if (route.panel === "brief") return briefPanel();
+          if (route.panel === "threats") {
             return listPanel(
-              "Immediate attention",
-              "Only verified records at the Immediate priority band.",
+              "Threats",
+              "Immediate and High priority — ranked by operational score.",
               state.records.filter(function (r) {
-                return r.priority.band === "Immediate";
+                return (
+                  (r.priority.band === "Immediate" || r.priority.band === "High") &&
+                  r.type !== "service-outage"
+                );
+              })
+            );
+          }
+          if (route.panel === "vulnerabilities") {
+            return listPanel(
+              "Vulnerabilities",
+              "KEV, NVD, and GHSA vulnerability records — priority sorted.",
+              state.records.filter(function (r) {
+                return r.type === "exploited-vulnerability" || r.type === "vulnerability";
               })
             );
           }
           if (route.panel === "kev") {
             return listPanel(
-              "Known exploited vulnerabilities (CISA KEV)",
-              "Official KEV-linked records from the live artifact.",
+              "CISA KEV",
+              "Known Exploited Vulnerabilities catalog entries in this artifact.",
               state.records.filter(function (r) {
                 return r.exploitation && r.exploitation.knownExploited;
               })
             );
           }
+          if (route.panel === "ransomware") return ransomwarePanel();
+          if (route.panel === "zeroday") return zeroDayPanel();
           if (route.panel === "advisories") {
             return listPanel(
-              "Advisories",
-              "Official and authoritative advisories from connected providers.",
+              "Advisories & security releases",
+              "Official/authoritative advisories and vendor security release notices.",
               state.records.filter(function (r) {
-                return r.type === "security-advisory";
+                return r.type === "security-advisory" || r.type === "software-security-release";
               })
             );
           }
-          if (route.panel === "releases") {
+          if (route.panel === "outages") {
             return listPanel(
-              "Software security updates",
-              "Vendor security release notices from connected feeds.",
+              "Outage center",
+              "Public cloud/SaaS status signals (AWS, Azure, GCP, Cloudflare, GitHub, OpenAI). Healthy heartbeats included for honesty.",
               state.records.filter(function (r) {
-                return r.type === "software-security-release";
+                return r.type === "service-outage";
               })
             );
           }
-          if (route.panel === "today") {
-            var lines = todayPriorities(state.records);
-            return (
-              '<header class="st-demo-header"><h1>Today’s defensive priorities</h1>' +
-              '<p class="st-lead">Careful interpretation of source-backed records. Not a claim that you are compromised.</p></header>' +
-              "<ul class=\"st-cyber-list\">" +
-              lines
-                .map(function (l) {
-                  return "<li>" + esc(l) + "</li>";
-                })
-                .join("") +
-              "</ul>"
-            );
-          }
+          if (route.panel === "feeds") return feedsPanel();
           if (route.panel === "search") return searchPanel();
-          if (route.panel === "providers") return providersPanel();
-          if (route.panel === "profile") return profilePanel();
-          if (route.panel === "about") return aboutPanel();
-          return posture();
+          if (route.panel === "history") return historyPanel();
+          if (route.panel === "settings") return settingsPanel();
+          return briefPanel();
         }
 
         function paint() {
           root.innerHTML =
-            '<div class="st-live st-demo">' +
-            nav() +
-            '<div id="st-live-body">' +
+            '<div class="st-live-app">' +
+            '<div class="st-live-shell">' +
+            navHtml() +
+            '<div class="st-live-main" id="st-live-body">' +
             body() +
-            "</div>" +
-            '<p class="st-disclaimer">Live cyber intelligence from official/public sources. Defensive and educational only. Teaching samples are isolated to teaching mode and are never used as fallback here.</p></div>';
+            "</div></div>" +
+            '<p class="st-disclaimer">Live cyber intelligence from official/public sources. Defensive awareness only. Teaching samples are never used as fallback.</p></div>';
 
           var form = root.querySelector("#st-live-search");
           if (form) {
@@ -756,17 +894,15 @@
             });
           });
           root.removeAttribute("aria-busy");
-          var h = root.querySelector("#st-live-body h1");
-          if (h) {
-            h.setAttribute("tabindex", "-1");
-            try {
-              h.focus();
-            } catch (e) {
-              /* ignore */
+          try {
+            if (global.performance && performance.mark) {
+              performance.mark("st-cyber-paint");
+              performance.measure("st-cyber-mount-to-paint", "st-cyber-mount-start", "st-cyber-paint");
             }
-          }
+          } catch (e1) { /* noop */ }
         }
 
+        if (!global.location.hash) setHash("brief");
         global.addEventListener("hashchange", paint);
         paint();
       });

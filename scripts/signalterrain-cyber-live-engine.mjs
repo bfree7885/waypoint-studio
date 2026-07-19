@@ -27,7 +27,9 @@ const OUT_DIR = path.join(ROOT, "data", "cyber");
 const LIVE_PATH = process.env.CYBER_LIVE_OUT || path.join(OUT_DIR, "live.json");
 const HEALTH_PATH = process.env.CYBER_HEALTH_OUT || path.join(OUT_DIR, "health.json");
 const GRAPH_PATH = process.env.CYBER_GRAPH_OUT || path.join(OUT_DIR, "graph.json");
-const ENGINE_VERSION = "1.0.0";
+const ENGINE_VERSION = "1.1.0";
+const HISTORY_PATH = process.env.CYBER_HISTORY_OUT || path.join(OUT_DIR, "history.json");
+const MAX_GHSA = Number(process.env.CYBER_MAX_GHSA || 25);
 
 const TIMEOUT_MS = Number(process.env.CYBER_PROVIDER_TIMEOUT_MS || 15000);
 const MAX_KEV = Number(process.env.CYBER_MAX_KEV || 200);
@@ -43,7 +45,15 @@ const ENDPOINTS = {
   msrcCvrf: "https://api.msrc.microsoft.com/cvrf/v3.0/updates",
   chromeReleasesRss: "https://chromereleases.googleblog.com/feeds/posts/default?alt=rss",
   mozillaMfsaRss: "https://www.mozilla.org/en-US/security/advisories/feed.xml",
-  ubuntuUsnRss: "https://ubuntu.com/security/notices/rss.xml"
+  ubuntuUsnRss: "https://ubuntu.com/security/notices/rss.xml",
+  ghsa: "https://api.github.com/advisories",
+  awsStatusRss: "https://status.aws.amazon.com/rss/all.rss",
+  azureStatusRss: "https://azure.status.microsoft/en-us/status/feed/",
+  gcpIncidents: "https://status.cloud.google.com/incidents.json",
+  cloudflareStatus: "https://www.cloudflarestatus.com/api/v2/summary.json",
+  githubStatus: "https://www.githubstatus.com/api/v2/summary.json",
+  openaiStatus: "https://status.openai.com/api/v2/summary.json",
+  m365StatusRss: "https://rss.cloud.microsoft/status/feed"
 };
 
 function log(...args) {
@@ -272,6 +282,57 @@ function scoreRecord(rec, profileTerms) {
     add("confidence", 0, 4, "Preliminary — reduced weight.");
   }
 
+  // Operational context factors (keyword / entity heuristics — explained, never invented facts)
+  const blob = `${rec.title} ${rec.summary} ${(rec.entities?.vendors || []).join(" ")} ${(rec.entities?.products || []).join(" ")}`.toLowerCase();
+  const critInfra =
+    /\b(scada|ics|ot\b|energy|electric|water.?utility|pipeline|hospital|healthcare|medical.?device|aviation|rail|telecom|5g core|power.?grid)\b/i.test(
+      blob
+    );
+  if (critInfra) {
+    add(
+      "critical_infrastructure_context",
+      6,
+      8,
+      "Source text references sectors often treated as critical infrastructure — elevate awareness; confirm applicability."
+    );
+  }
+  const supplyChain =
+    /\b(supply.?chain|ci\/cd|build.?pipeline|package.?registry|npm|pypi|maven|dependency|library|framework|sdk)\b/i.test(blob);
+  if (supplyChain) {
+    add("supply_chain_context", 5, 7, "Supply-chain / dependency context indicated by source wording.");
+  }
+  const edgeRemote =
+    /\b(vpn|firewall|gateway|exchange|remote.?desktop|rdp|citrix|pulse.?secure|fortinet|palo.?alto|ivanti|moveit|file.?transfer)\b/i.test(
+      blob
+    );
+  if (edgeRemote) {
+    add(
+      "edge_exposure_context",
+      7,
+      8,
+      "Edge / remotely reachable software context (VPN, mail, file transfer, etc.) — often higher operational urgency."
+    );
+  }
+  const popularVendor = /\b(microsoft|google|apple|amazon|aws|azure|cisco|oracle|vmware|adobe|linux|windows|android|ios)\b/i.test(
+    blob
+  );
+  if (popularVendor) {
+    add("vendor_prevalence", 3, 5, "Widely deployed vendor/product family named — larger potential blast radius.");
+  }
+  // Exploit maturity proxy from official evidence only
+  if (rec.exploitation?.knownExploited && rec.source?.providerId === "cisa-kev") {
+    add("exploit_maturity_kev", 6, 6, "Listed in CISA KEV — treated as mature/known exploitation signal.");
+  }
+  // Nation-state: only when source text explicitly says so (never invent attribution)
+  if (/\b(nation.?state|apt\b|state.?sponsored)\b/i.test(blob) && rec.source?.authorityLevel === "official") {
+    add(
+      "nation_state_mention",
+      4,
+      6,
+      "Official source text mentions nation-state / APT context — attribution remains the source’s claim."
+    );
+  }
+
   const match = matchProfile(rec, profileTerms || []);
   if (match.level === "exact") {
     add("profile_exact", 18, 18, `Direct product match: ${match.detail}`);
@@ -294,7 +355,7 @@ function scoreRecord(rec, profileTerms) {
   const why = contributions
     .filter((c) => c.points > 0)
     .sort((a, b) => b.points - a.points)
-    .slice(0, 4)
+    .slice(0, 5)
     .map((c) => c.reason)
     .join(" ");
 
@@ -604,6 +665,460 @@ function dedupeRecords(records) {
   return unified;
 }
 
+function statuspageToRecords(providerId, providerName, summary, sourceUrl) {
+  const retrievedAt = nowIso();
+  const records = [];
+  const status = summary?.status || {};
+  const indicator = String(status.indicator || "none").toLowerCase();
+  const description = status.description || "Status unknown";
+  const incidents = Array.isArray(summary?.incidents) ? summary.incidents.slice(0, 8) : [];
+  const components = Array.isArray(summary?.components) ? summary.components : [];
+  const degraded = components.filter((c) => {
+    const s = String(c.status || "").toLowerCase();
+    return s && s !== "operational";
+  });
+
+  if (indicator !== "none" || degraded.length || incidents.length) {
+    const titleParts = [];
+    if (indicator && indicator !== "none") titleParts.push(providerName + " status: " + description);
+    else if (degraded.length) titleParts.push(providerName + ": " + degraded.length + " component(s) not fully operational");
+    else titleParts.push(providerName + ": active incident report(s)");
+    records.push(
+      makeRecord({
+        id: `live_outage_${providerId}_${Buffer.from(description + indicator).toString("hex").slice(0, 16)}`,
+        type: "service-outage",
+        title: titleParts[0],
+        summary:
+          (incidents[0] && (incidents[0].name || incidents[0].impact)) ||
+          (degraded.length
+            ? "Affected: " + degraded.slice(0, 6).map((c) => c.name).join(", ")
+            : description),
+        publishedAt: (incidents[0] && (incidents[0].updated_at || incidents[0].created_at)) || retrievedAt,
+        updatedAt: retrievedAt,
+        retrievedAt,
+        source: {
+          providerId,
+          providerName,
+          sourceUrl,
+          authorityLevel: "authoritative"
+        },
+        identifiers: {},
+        entities: { vendors: [providerName], products: [providerName], platforms: ["cloud"] },
+        severity: {
+          label: indicator === "critical" || indicator === "major" ? "high" : indicator === "minor" ? "medium" : "low"
+        },
+        exploitation: { knownExploited: false, exploitationEvidence: "unknown", ransomwareLinked: false },
+        remediation: {
+          summary: "Check provider status page for customer impact and workarounds."
+        },
+        confidence: "high",
+        rawProviderMetadata: { indicator, description, degradedCount: degraded.length, incidentCount: incidents.length }
+      })
+    );
+  } else {
+    // Healthy — still emit a quiet operational heartbeat so Outages can say "no major issues"
+    records.push(
+      makeRecord({
+        id: `live_outage_${providerId}_ok`,
+        type: "service-outage",
+        title: providerName + ": no major outage indicated",
+        summary: description || "All monitored components reported operational on the public status page.",
+        publishedAt: retrievedAt,
+        updatedAt: retrievedAt,
+        retrievedAt,
+        source: {
+          providerId,
+          providerName,
+          sourceUrl,
+          authorityLevel: "authoritative"
+        },
+        identifiers: {},
+        entities: { vendors: [providerName], products: [providerName], platforms: ["cloud"] },
+        severity: { label: "info" },
+        exploitation: { knownExploited: false, exploitationEvidence: "unknown", ransomwareLinked: false },
+        remediation: {},
+        confidence: "high",
+        rawProviderMetadata: { indicator: "none", healthy: true }
+      })
+    );
+  }
+  return records;
+}
+
+async function providerStatuspage(providerId, providerName, url) {
+  const started = Date.now();
+  const res = await fetchText(url);
+  if (!res.ok) throw new Error(`${providerId} HTTP ${res.status}`);
+  const summary = JSON.parse(res.text);
+  const records = statuspageToRecords(providerId, providerName, summary, url.replace(/\/api\/v2\/summary\.json.*/, ""));
+  return {
+    providerId,
+    providerName,
+    status: "ok",
+    records,
+    meta: { included: records.length, responseMs: Date.now() - started, sourceUrl: url }
+  };
+}
+
+async function providerAwsStatusRss() {
+  const started = Date.now();
+  const url = ENDPOINTS.awsStatusRss;
+  const res = await fetchText(url, { accept: "application/rss+xml, application/xml, text/xml, */*" });
+  if (!res.ok) throw new Error(`aws-status HTTP ${res.status}`);
+  const items = parseRssItems(res.text, 15);
+  const retrievedAt = nowIso();
+  const active = items.filter((it) => {
+    const t = `${it.title} ${it.summary}`.toLowerCase();
+    return !/resolved|completed|service is operating normally/i.test(t);
+  });
+  let records;
+  if (active.length) {
+    records = active.slice(0, 5).map((it) =>
+      makeRecord({
+        id: `live_outage_aws_${Buffer.from(it.guid || it.title).toString("hex").slice(0, 16)}`,
+        type: "service-outage",
+        title: "AWS: " + it.title,
+        summary: it.summary || it.title,
+        publishedAt: it.publishedAt,
+        updatedAt: it.publishedAt,
+        retrievedAt,
+        source: { providerId: "aws-status", providerName: "AWS Service Health", sourceUrl: it.link || url, authorityLevel: "authoritative" },
+        entities: { vendors: ["Amazon Web Services"], products: ["AWS"], platforms: ["cloud"] },
+        severity: { label: /service disruption|impaired|outage/i.test(it.title) ? "high" : "medium" },
+        confidence: "high"
+      })
+    );
+  } else {
+    records = [
+      makeRecord({
+        id: "live_outage_aws_ok",
+        type: "service-outage",
+        title: "AWS: no major outage indicated in public RSS",
+        summary: "Recent AWS status RSS items do not show an unresolved disruption (or feed was empty of active events).",
+        publishedAt: retrievedAt,
+        updatedAt: retrievedAt,
+        retrievedAt,
+        source: { providerId: "aws-status", providerName: "AWS Service Health", sourceUrl: url, authorityLevel: "authoritative" },
+        entities: { vendors: ["Amazon Web Services"], products: ["AWS"], platforms: ["cloud"] },
+        severity: { label: "info" },
+        confidence: "moderate",
+        rawProviderMetadata: { healthy: true, rssItems: items.length }
+      })
+    ];
+  }
+  return {
+    providerId: "aws-status",
+    providerName: "AWS Service Health",
+    status: "ok",
+    records,
+    meta: { included: records.length, responseMs: Date.now() - started, sourceUrl: url, rssItems: items.length }
+  };
+}
+
+async function providerGcpIncidents() {
+  const started = Date.now();
+  const url = ENDPOINTS.gcpIncidents;
+  const res = await fetchText(url);
+  if (!res.ok) throw new Error(`gcp-status HTTP ${res.status}`);
+  const data = JSON.parse(res.text);
+  const list = Array.isArray(data) ? data : [];
+  const retrievedAt = nowIso();
+  const open = list.filter((inc) => {
+    const end = inc.end || inc.end_time;
+    return !end;
+  }).slice(0, 8);
+  let records;
+  if (open.length) {
+    records = open.map((inc) =>
+      makeRecord({
+        id: `live_outage_gcp_${String(inc.id || inc.number || inc.service_key || Math.random()).slice(0, 24)}`,
+        type: "service-outage",
+        title: "Google Cloud: " + (inc.external_desc || inc.status_impact || "Open incident"),
+        summary: String(inc.most_recent_update?.text || inc.external_desc || "").slice(0, 600),
+        publishedAt: inc.begin || inc.created || retrievedAt,
+        updatedAt: retrievedAt,
+        retrievedAt,
+        source: {
+          providerId: "gcp-status",
+          providerName: "Google Cloud Status",
+          sourceUrl: inc.uri || "https://status.cloud.google.com/",
+          authorityLevel: "authoritative"
+        },
+        entities: { vendors: ["Google"], products: ["Google Cloud"], platforms: ["cloud"] },
+        severity: { label: /high|critical/i.test(String(inc.severity || "")) ? "high" : "medium" },
+        confidence: "high"
+      })
+    );
+  } else {
+    records = [
+      makeRecord({
+        id: "live_outage_gcp_ok",
+        type: "service-outage",
+        title: "Google Cloud: no open incidents in public feed",
+        summary: "Google Cloud status incidents.json reports no currently open incidents.",
+        publishedAt: retrievedAt,
+        updatedAt: retrievedAt,
+        retrievedAt,
+        source: {
+          providerId: "gcp-status",
+          providerName: "Google Cloud Status",
+          sourceUrl: "https://status.cloud.google.com/",
+          authorityLevel: "authoritative"
+        },
+        entities: { vendors: ["Google"], products: ["Google Cloud"], platforms: ["cloud"] },
+        severity: { label: "info" },
+        confidence: "high",
+        rawProviderMetadata: { healthy: true, totalIncidentsListed: list.length }
+      })
+    ];
+  }
+  return {
+    providerId: "gcp-status",
+    providerName: "Google Cloud Status",
+    status: "ok",
+    records,
+    meta: { included: records.length, responseMs: Date.now() - started, sourceUrl: url }
+  };
+}
+
+async function providerGhsa() {
+  const started = Date.now();
+  const url = `${ENDPOINTS.ghsa}?per_page=${MAX_GHSA}&type=reviewed`;
+  const res = await fetchText(url, {
+    accept: "application/vnd.github+json",
+    headers: { "X-GitHub-Api-Version": "2022-11-28" }
+  });
+  if (!res.ok) throw new Error(`ghsa HTTP ${res.status}`);
+  const data = JSON.parse(res.text);
+  if (!Array.isArray(data)) throw new Error("ghsa: unexpected payload");
+  const retrievedAt = nowIso();
+  const records = data.map((adv) => {
+    const cves = (adv.cve_id ? [adv.cve_id] : []).concat(extractCves(JSON.stringify(adv.identifiers || [])));
+    const uniq = [...new Set(cves.map((c) => String(c).toUpperCase()))];
+    const sev = String(adv.severity || "unknown").toLowerCase();
+    return makeRecord({
+      id: `live_ghsa_${adv.ghsa_id || Buffer.from(adv.summary || "").toString("hex").slice(0, 16)}`,
+      type: "vulnerability",
+      title: (adv.ghsa_id ? adv.ghsa_id + ": " : "") + (adv.summary || "GitHub Security Advisory"),
+      summary: stripHtml(adv.description || adv.summary || "").slice(0, 600),
+      publishedAt: adv.published_at || null,
+      updatedAt: adv.updated_at || adv.published_at || null,
+      retrievedAt,
+      source: {
+        providerId: "ghsa",
+        providerName: "GitHub Security Advisories",
+        sourceUrl: adv.html_url || "https://github.com/advisories",
+        authorityLevel: "authoritative"
+      },
+      identifiers: { cves: uniq, ghsa: adv.ghsa_id || null },
+      entities: {
+        vendors: (adv.vulnerabilities || [])
+          .map((v) => v?.package?.ecosystem)
+          .filter(Boolean)
+          .slice(0, 5),
+        products: (adv.vulnerabilities || [])
+          .map((v) => v?.package?.name)
+          .filter(Boolean)
+          .slice(0, 8)
+      },
+      severity: { label: sev },
+      exploitation: { knownExploited: false, exploitationEvidence: "unknown", ransomwareLinked: false },
+      remediation: {
+        patchesAvailable: Boolean(adv.vulnerabilities?.some((v) => v?.first_patched_version)),
+        summary: adv.vulnerabilities?.some((v) => v?.first_patched_version)
+          ? "Patched versions listed in GHSA."
+          : undefined
+      },
+      confidence: "high"
+    });
+  });
+  return {
+    providerId: "ghsa",
+    providerName: "GitHub Security Advisories",
+    status: "ok",
+    records,
+    meta: { included: records.length, responseMs: Date.now() - started, sourceUrl: url }
+  };
+}
+
+function buildBrief(scored, providers) {
+  const bullets = [];
+  const push = (text, basedOn = [], priority = 50) => {
+    if (!text) return;
+    bullets.push({ text, basedOnRecordIds: basedOn, priority });
+  };
+
+  const kev = scored.filter((r) => r.type === "exploited-vulnerability" || r.exploitation?.knownExploited);
+  const kevRecent = kev.filter((r) => {
+    // Prefer KEV dateAdded (publishedAt) — catalog updatedAt is often shared across entries
+    const when = r.publishedAt;
+    if (!when) return false;
+    return daysBetween(when, nowIso()) <= 30;
+  });
+  if (kevRecent.length) {
+    push(
+      `CISA added or listed ${kevRecent.length} known-exploited vulnerabilit${kevRecent.length === 1 ? "y" : "ies"} in the last ~30 days (by KEV dateAdded) — review edge and internet-facing systems first.`,
+      kevRecent.slice(0, 5).map((r) => r.id),
+      10
+    );
+  } else if (kev.length) {
+    push(
+      `CISA KEV catalog present (${kev.length} items in this artifact). Prioritize anything matching your stack.`,
+      kev.slice(0, 3).map((r) => r.id),
+      20
+    );
+  }
+
+  const ransomware = scored.filter((r) => r.exploitation?.ransomwareLinked);
+  if (ransomware.length) {
+    push(
+      `${ransomware.length} KEV-linked vulnerabilit${ransomware.length === 1 ? "y is" : "ies are"} associated with ransomware campaigns — treat those as elevated operational risk.`,
+      ransomware.slice(0, 5).map((r) => r.id),
+      12
+    );
+  }
+
+  const highActive = scored.filter(
+    (r) =>
+      r.exploitation?.knownExploited &&
+      (r.severity?.label === "critical" ||
+        r.severity?.label === "high" ||
+        (Number(r.severity?.cvssScore) || 0) >= 7)
+  );
+  if (highActive.length) {
+    push(
+      `${Math.min(highActive.length, 2)}+ high-severity vulnerabilit${highActive.length === 1 ? "y is" : "ies are"} under known exploitation per official sources.`,
+      highActive.slice(0, 4).map((r) => r.id),
+      15
+    );
+  }
+
+  const advisories = scored.filter((r) => r.type === "security-advisory" || r.type === "software-security-release");
+  const notableAdv = advisories
+    .filter((r) => daysBetween(r.publishedAt || r.retrievedAt, nowIso()) <= 10)
+    .slice(0, 3);
+  notableAdv.forEach((r) => {
+    push(`${r.source?.providerName || "Vendor"}: ${r.title}`.slice(0, 180), [r.id], 25);
+  });
+
+  const outages = scored.filter((r) => r.type === "service-outage");
+  const badOutages = outages.filter((r) => !(r.rawProviderMetadata && r.rawProviderMetadata.healthy));
+  if (!badOutages.length) {
+    push(
+      "No major cloud outages currently indicated for AWS, Azure/M365 (if connected), Google Cloud, Cloudflare, GitHub, or OpenAI public status feeds in this run.",
+      outages.slice(0, 3).map((r) => r.id),
+      40
+    );
+  } else {
+    badOutages.slice(0, 4).forEach((r) => {
+      push(r.title, [r.id], 8);
+    });
+  }
+
+  const edge = scored
+    .filter((r) => r.priority?.band === "Immediate" || r.priority?.band === "High")
+    .filter((r) =>
+      /\b(vpn|exchange|firewall|gateway|ivanti|fortinet|citrix|pulse|moveit)\b/i.test(`${r.title} ${r.summary}`)
+    );
+  if (edge.length) {
+    push(
+      "Recommended priority today: patch or mitigate internet-facing appliances (VPN / mail / file-transfer / gateway) before routine workstation updates.",
+      edge.slice(0, 3).map((r) => r.id),
+      5
+    );
+  } else if (scored[0]) {
+    push(
+      `Recommended focus: review “${scored[0].title.slice(0, 100)}” (highest priority in this artifact) and confirm whether it touches your environment.`,
+      [scored[0].id],
+      30
+    );
+  }
+
+  bullets.sort((a, b) => a.priority - b.priority);
+  const trimmed = bullets.slice(0, 8);
+
+  const failed = (providers || []).filter((p) => p.status === "error" || p.status === "planned");
+  return {
+    title: "Today's Cyber Brief",
+    question: "What should I pay attention to right now?",
+    generatedAt: nowIso(),
+    bullets: trimmed,
+    recommendation:
+      edge.length > 0
+        ? "Patch VPN / edge appliances before workstation rollouts."
+        : "Confirm Immediate-band items against your inventory, then schedule advisory reviews.",
+    providerCaveats: failed.map((p) => ({
+      providerId: p.providerId,
+      status: p.status,
+      note: p.latestError || p.meta?.note || p.status
+    })),
+    method:
+      "Bullets are interpretations of provider-backed records in this artifact. They are not new intelligence claims and not proof of compromise."
+  };
+}
+
+function buildDerivedViews(scored) {
+  const ransomware = scored
+    .filter((r) => r.exploitation?.ransomwareLinked)
+    .map((r) => ({
+      id: r.id,
+      title: r.title,
+      cves: r.identifiers?.cves || [],
+      vendors: r.entities?.vendors || [],
+      products: r.entities?.products || [],
+      priority: r.priority?.score,
+      band: r.priority?.band,
+      sourceUrl: r.source?.sourceUrl,
+      remediation: r.remediation || {},
+      note: "Association comes from CISA KEV ransomwareUse field (or equivalent official flag) — not a private campaign tracker."
+    }));
+
+  const zeroDay = scored
+    .filter((r) => {
+      const blob = `${r.title} ${r.summary}`.toLowerCase();
+      const explicit = /\b(zero.?day|0.?day)\b/.test(blob);
+      const kevUnpatched =
+        r.exploitation?.knownExploited && r.remediation && r.remediation.patchesAvailable === false;
+      const kevFresh =
+        r.exploitation?.knownExploited && daysBetween(r.publishedAt || r.updatedAt || nowIso(), nowIso()) <= 30;
+      return explicit || kevUnpatched || kevFresh;
+    })
+    .slice(0, 80)
+    .map((r) => ({
+      id: r.id,
+      title: r.title,
+      status: r.remediation?.patchesAvailable
+        ? "patched-available"
+        : r.exploitation?.knownExploited
+          ? "currently-exploited"
+          : "reported",
+      cves: r.identifiers?.cves || [],
+      priority: r.priority?.score,
+      band: r.priority?.band,
+      sourceUrl: r.source?.sourceUrl,
+      note: "Public feeds rarely prove a true zero-day. This view highlights known-exploited / freshly listed / explicitly labeled items."
+    }));
+
+  const outages = scored.filter((r) => r.type === "service-outage");
+  const threats = scored.filter((r) => r.priority?.band === "Immediate" || r.priority?.band === "High");
+
+  return { ransomware, zeroDay, outages: outages.map((r) => r.id), threats: threats.slice(0, 50).map((r) => r.id) };
+}
+
+function appendHistory(brief, meta) {
+  const prev = readJsonSafe(HISTORY_PATH) || { version: 1, entries: [] };
+  const entry = {
+    at: meta.generatedAt,
+    trustState: meta.trustState,
+    recordCount: meta.counts?.records,
+    briefBullets: (brief.bullets || []).map((b) => b.text),
+    recommendation: brief.recommendation
+  };
+  const entries = [entry].concat(prev.entries || []).slice(0, 60);
+  writeJson(HISTORY_PATH, { version: 1, updatedAt: nowIso(), entries });
+  return entries.slice(0, 14);
+}
+
 async function runProvider(fn, id) {
   try {
     const result = await fn();
@@ -762,6 +1277,104 @@ async function main() {
           "authoritative"
         ),
       "ubuntu-usn"
+    ),
+    runProvider(providerGhsa, "ghsa"),
+    runProvider(providerAwsStatusRss, "aws-status"),
+    runProvider(
+      () => providerStatuspage("cloudflare-status", "Cloudflare Status", ENDPOINTS.cloudflareStatus),
+      "cloudflare-status"
+    ),
+    runProvider(
+      () => providerStatuspage("github-status", "GitHub Status", ENDPOINTS.githubStatus),
+      "github-status"
+    ),
+    runProvider(
+      () => providerStatuspage("openai-status", "OpenAI Status", ENDPOINTS.openaiStatus),
+      "openai-status"
+    ),
+    runProvider(providerGcpIncidents, "gcp-status"),
+    runProvider(
+      async () => {
+        try {
+          return await providerRss(
+            "azure-status",
+            "Azure Status",
+            ENDPOINTS.azureStatusRss,
+            "service-outage",
+            "authoritative"
+          ).then((p) => {
+            const retrievedAt = nowIso();
+            const recent = (p.records || []).filter((r) => {
+              const when = r.publishedAt || r.retrievedAt;
+              return when && daysBetween(when, retrievedAt) <= 7;
+            });
+            if (!recent.length) {
+              p.records = [
+                makeRecord({
+                  id: "live_outage_azure_ok",
+                  type: "service-outage",
+                  title: "Azure: no recent status-feed disruptions in the last 7 days",
+                  summary: "Azure status feed had no parseable items from the past week (or feed empty).",
+                  publishedAt: retrievedAt,
+                  updatedAt: retrievedAt,
+                  retrievedAt,
+                  source: {
+                    providerId: "azure-status",
+                    providerName: "Azure Status",
+                    sourceUrl: ENDPOINTS.azureStatusRss,
+                    authorityLevel: "authoritative"
+                  },
+                  entities: { vendors: ["Microsoft"], products: ["Azure"], platforms: ["cloud"] },
+                  severity: { label: "info" },
+                  confidence: "moderate",
+                  rawProviderMetadata: { healthy: true }
+                })
+              ];
+            } else {
+              p.records = recent.slice(0, 6).map((r) =>
+                Object.assign({}, r, {
+                  type: "service-outage",
+                  title: r.title.startsWith("Azure") ? r.title : "Azure: " + r.title,
+                  entities: { vendors: ["Microsoft"], products: ["Azure"], platforms: ["cloud"] },
+                  rawProviderMetadata: Object.assign({}, r.rawProviderMetadata, { healthy: false })
+                })
+              );
+            }
+            return p;
+          });
+        } catch (err) {
+          // Honest empty heartbeat — do not invent outages
+          const retrievedAt = nowIso();
+          return {
+            providerId: "azure-status",
+            providerName: "Azure Status",
+            status: "ok",
+            records: [
+              makeRecord({
+                id: "live_outage_azure_unavailable",
+                type: "service-outage",
+                title: "Azure: public status feed unavailable this run",
+                summary: String(err && err.message ? err.message : err),
+                publishedAt: retrievedAt,
+                updatedAt: retrievedAt,
+                retrievedAt,
+                source: {
+                  providerId: "azure-status",
+                  providerName: "Azure Status",
+                  sourceUrl: ENDPOINTS.azureStatusRss,
+                  authorityLevel: "authoritative"
+                },
+                entities: { vendors: ["Microsoft"], products: ["Azure"], platforms: ["cloud"] },
+                severity: { label: "info" },
+                confidence: "preliminary",
+                rawProviderMetadata: { healthy: true, feedError: true }
+              })
+            ],
+            meta: { errorSoft: String(err && err.message ? err.message : err), sourceUrl: ENDPOINTS.azureStatusRss }
+          };
+        }
+      },
+      "azure-status"
     )
   ]);
 
@@ -783,7 +1396,7 @@ async function main() {
       status: "planned",
       records: [],
       meta: {
-        note: "MSRC CVRF/API integration planned — not simulated.",
+        note: "MSRC CVRF/API integration planned — not simulated. Azure status RSS is connected separately.",
         sourceUrl: ENDPOINTS.msrcCvrf
       }
     },
@@ -807,6 +1420,16 @@ async function main() {
       status: "planned",
       records: [],
       meta: { note: "Optional secondary source after required providers stabilize." }
+    },
+    {
+      providerId: "m365-status",
+      providerName: "Microsoft 365 Status",
+      status: "planned",
+      records: [],
+      meta: {
+        note: "M365 public RSS endpoint varies by tenant/region; Azure status is used as partial Microsoft cloud signal for now.",
+        attemptedUrl: ENDPOINTS.m365StatusRss
+      }
     }
   ];
 
@@ -866,6 +1489,14 @@ async function main() {
     byType[r.type] = (byType[r.type] || 0) + 1;
   }
 
+  const brief = buildBrief(scored, providerHealth);
+  const derived = buildDerivedViews(scored);
+  const history = appendHistory(brief, {
+    generatedAt: nowIso(),
+    trustState,
+    counts: { records: scored.length }
+  });
+
   const live = {
     meta: {
       version: ENGINE_VERSION,
@@ -876,7 +1507,8 @@ async function main() {
         "No sample or fixture data in this artifact",
         "Official sources preferred",
         "Transparent priority factors",
-        "Defensive awareness only"
+        "Defensive awareness only",
+        "Briefing interprets provider facts — never invents incidents"
       ],
       counts: {
         records: scored.length,
@@ -885,6 +1517,9 @@ async function main() {
         providersError: errCount
       }
     },
+    brief,
+    derived,
+    historyPreview: history,
     providers: providerHealth,
     records: scored,
     howToEvaluate: {
@@ -896,7 +1531,9 @@ async function main() {
         "Vendor advisories may be more current than aggregated databases.",
         "Technology-profile matching may require exact version confirmation.",
         "Absence of a match does not prove safety.",
-        "News reporting is not equivalent to official confirmation."
+        "News reporting is not equivalent to official confirmation.",
+        "Outage signals come from public status pages/RSS — customer impact may differ.",
+        "Priority scores explain their factors; they are decision support, not risk scores for your firm."
       ]
     }
   };

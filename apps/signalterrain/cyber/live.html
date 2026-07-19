@@ -4,47 +4,21 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SignalTerrain Cyber Live — real public cyber intelligence. Not a sample dashboard.">
-  <title>Cyber Live Intelligence — SignalTerrain</title>
+  <meta name="description" content="SignalTerrain Cyber — operational brief from verified public cyber intelligence. Not a sample dashboard.">
+  <title>Cyber Intelligence — SignalTerrain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
   <link rel="stylesheet" href="../../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
   <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-cyber-live.css">
   <style>
-    .st-live { max-width: 56rem; }
-    .st-live-trust {
-      display: inline-block;
-      margin-left: 0.35rem;
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      border: 1px solid var(--st-line, #d2ccc0);
-      padding: 0.15rem 0.4rem;
-    }
-    .st-live-card {
-      margin: 0 0 1.25rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--st-line, #d2ccc0);
-    }
-    .st-live-card h3 { font-size: 1.1rem; margin: 0.35rem 0; }
-    .st-live-card-top { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-    .st-live-band {
-      font-size: 0.72rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      border: 1px solid var(--st-line, #d2ccc0);
-      padding: 0.1rem 0.35rem;
-      color: var(--st-muted, #5a564e);
-    }
-    .st-live-band--immediate { color: #5c2a2a; border-color: #d2a0a0; background: #f8ecec; }
-    .st-live-band--high { color: #5a4a20; border-color: #c4b48a; background: #f7f1e2; }
-    .st-live-band--monitor { color: #3a5348; border-color: #a8b8b0; background: #eef3f0; }
-    .st-live-meta { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--st-muted, #5a564e); }
-    .st-live-meta li { margin: 0.25rem 0; }
-    .st-health-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    .st-health-table th, .st-health-table td { border-top: 1px solid var(--st-line,#d2ccc0); padding: 0.55rem 0.4rem; text-align: left; vertical-align: top; }
+    #st-live-mount { min-height: 70vh; }
+    .st-boot-skel { max-width: 72rem; margin: 0 auto; padding: 1rem; }
+    .st-boot-skel__bar { height: 2.5rem; width: 12rem; background: #e8eaee; border-radius: 4px; margin-bottom: 1rem; }
+    .st-boot-skel__line { height: 0.9rem; background: #e8eaee; border-radius: 4px; margin: 0.45rem 0; }
   </style>
 </head>
 <body>
@@ -58,9 +32,9 @@
         ·
         <a class="st-back" href="workspace.html">Workspace</a>
         ·
-        <a class="st-back" href="teaching.html">Teaching samples</a>
-        ·
         <a class="st-back" href="../">SignalTerrain</a>
+        ·
+        <a class="st-back" href="teaching.html">Teaching (samples)</a>
       </p>
       <noscript>
         <section>
@@ -69,11 +43,18 @@
         </section>
       </noscript>
       <div id="st-live-mount" aria-busy="true">
-        <p class="st-loading">Loading verified cyber intelligence…</p>
+        <div class="st-boot-skel" role="status">
+          <div class="st-boot-skel__bar" aria-hidden="true"></div>
+          <div class="st-boot-skel__line" style="width:70%" aria-hidden="true"></div>
+          <div class="st-boot-skel__line" style="width:92%" aria-hidden="true"></div>
+          <div class="st-boot-skel__line" style="width:84%" aria-hidden="true"></div>
+          <p class="st-loading">Loading today’s cyber brief…</p>
+        </div>
       </div>
     </main>
     <div data-wds-app-footer data-shell-depth="2"></div>
   </div>
+  <script>try { performance.mark("st-cyber-html"); } catch (e) {}</script>
   <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
@@ -87,7 +68,8 @@
       }
       if (window.WDS && WDS.signalTerrainCyberLive) {
         WDS.signalTerrainCyberLive.mountLive(document.getElementById("st-live-mount"), {
-          liveUrl: "../../../data/cyber/live.json"
+          liveUrl: "../../../data/cyber/live.json",
+          historyUrl: "../../../data/cyber/history.json"
         });
       }
     });

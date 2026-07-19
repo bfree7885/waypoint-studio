@@ -384,38 +384,38 @@
         },
         {
           "id": "cyber",
-          "label": "Cyber live intelligence",
+          "label": "Cyber intelligence",
           "href": "apps/signalterrain/cyber/live.html"
         },
         {
+          "id": "cyber-workspace",
+          "label": "Cyber workspace",
+          "href": "apps/signalterrain/cyber/workspace.html"
+        },
+        {
           "id": "cyber-teaching",
-          "label": "Cyber teaching samples",
+          "label": "Cyber teaching (samples)",
           "href": "apps/signalterrain/cyber/teaching.html"
         },
         {
           "id": "cyber-brief",
-          "label": "Daily cyber brief",
+          "label": "Cyber brief demo (samples)",
           "href": "apps/signalterrain/cyber/brief.html"
         },
         {
           "id": "cyber-explorer",
-          "label": "Cyber intelligence explorer",
+          "label": "Cyber explorer (samples)",
           "href": "apps/signalterrain/cyber/explorer.html"
         },
         {
           "id": "cyber-advisor",
-          "label": "Adaptive defense advisor",
+          "label": "Cyber advisor (samples)",
           "href": "apps/signalterrain/cyber/advisor.html"
         },
         {
           "id": "cyber-knowledge",
-          "label": "Defensive knowledge",
+          "label": "Cyber knowledge (samples)",
           "href": "apps/signalterrain/cyber/knowledge.html"
-        },
-        {
-          "id": "cyber-workspace",
-          "label": "Cyber operations workspace",
-          "href": "apps/signalterrain/cyber/workspace.html"
         },
         {
           "id": "cyber-ingest-health",
