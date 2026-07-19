@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ForageCast — outdoor intelligence for foraging and land care. What should I look for today, and why?">
-  <title>ForageCast — What should I look for today?</title>
+  <meta name="description" content="ForageCast — Learn. Outdoor intelligence for seasonal foraging and land care.">
+  <title>Learn — ForageCast</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,35 +19,15 @@
   <div class="wds-app was-shell" data-wds-app-shell data-product="foragecast" data-product-name="ForageCast" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
-
     <div id="wds-location-prompt"></div>
-
     <main id="main" class="fc-page">
-      <noscript>
-        <section class="fc-hero" style="max-width:40rem;margin:0 auto;padding:1.5rem 1rem 2rem">
-          <p class="wds-eyebrow">ForageCast</p>
-          <h1>What should I look for today?</h1>
-          <p>ForageCast interprets seasonal conditions and species windows for your place. Educational estimates, not guarantees. Private by default.</p>
-        </section>
-      </noscript>
-      <div id="foragecast-home" aria-busy="true">
-        <section class="fc-summary" aria-label="ForageCast">
-          <p class="wds-eyebrow">ForageCast</p>
-          <h1 class="fc-summary__title">Today’s foraging summary</h1>
-          <p class="fc-summary__question">What should I be looking for today, and why?</p>
-          <p class="fc-loading">Opening outdoor intelligence…</p>
-        </section>
-      </div>
+      <div id="foragecast-page" aria-busy="true"></div>
     </main>
-
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
-  <script src="../../design-system/js/species/wds-wskb-render.js" defer></script>
-  <script src="../../design-system/js/wds-species-spotlight.js" defer></script>
   <script src="../../design-system/js/wds-map-view.js" defer></script>
   <script src="../../design-system/js/wds-platform.js?v=local" defer></script>
   <script src="js/foragecast-model.js" defer></script>
@@ -58,6 +38,16 @@
   <script src="js/foragecast-today.js" defer></script>
   <script src="js/foragecast-fetch.js" defer></script>
   <script src="js/foragecast-intelligence.js" defer></script>
+  <script src="js/foragecast-shell.js" defer></script>
   <script src="js/foragecast-home.js" defer></script>
+  <script src="js/foragecast-views.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "foragecast", productName: "ForageCast", shellDepth: 1 });
+      }
+      if (window.ForageCastViews) ForageCastViews.start("learn");
+    });
+  </script>
 </body>
 </html>

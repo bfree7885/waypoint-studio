@@ -138,7 +138,7 @@
         '<div class="wds-map-viewport fc-map-wrap" data-wds-map-view tabindex="0" role="region" aria-label="' + escapeHtml(snapshot ? ForageCastHeat.mapMetaTitle(snapshot, loc) : "Terrain zones") + '">' +
           mapControlsHtml() +
           '<div class="wds-map-stage">' +
-            '<svg class="fc-terrain-svg" viewBox="0 0 420 300" width="420" height="300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+            '<svg class="fc-terrain-svg" viewBox="0 0 420 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Schematic terrain zones">' +
               '<rect width="420" height="300" fill="#112038" rx="4"/>' +
               '<text x="210" y="24" text-anchor="middle" font-size="10" fill="rgba(228,234,244,0.45)">N ↑ · ' + escapeHtml(ForageCastLocation.mapLabel()) + "</text>" +
               paths +
@@ -204,7 +204,10 @@
       '<section class="fc-factors-panel" aria-labelledby="fc-factors-title">' +
         '<h3 id="fc-factors-title">Model factors · educational index</h3>' +
         '<p class="wds-body" style="margin:0 0 var(--wds-space-4); font-size:var(--wds-text-sm); color:var(--wds-text-secondary);">' +
-          "Weighted inputs for this species in " + escapeHtml(regionName) + ". Sample values from local JSON — not live weather." +
+          "Weighted inputs for this species. " +
+          (state.conditions._hydration && state.conditions._hydration.liveWeather
+            ? "Rainfall and temperature inputs were refreshed from live weather when available."
+            : "Sample educational inputs — live weather was unavailable or not linked.") +
         "</p>" +
         '<div class="fc-factor-bars">' + rows + "</div>" +
       "</section>"
@@ -272,6 +275,79 @@
     state.prediction = ForageCastModel.computeCountyPrediction(species, state.zones, state.conditions);
   }
 
+  function updateMapZoneClasses(pred) {
+    var topZoneId = pred.topZones[0] ? pred.topZones[0].zoneId : null;
+    document.querySelectorAll(".fc-zone").forEach(function (path) {
+      var id = path.getAttribute("data-zone");
+      var zr = pred.zoneResults.find(function (z) { return z.zoneId === id; });
+      var level = zr ? zr.level : "low";
+      path.className.baseVal = path.className.baseVal; // SVG
+      path.setAttribute(
+        "class",
+        "fc-zone fc-zone--" +
+          level +
+          (state.selectedZoneId === id ? " is-selected" : "") +
+          (id === topZoneId ? " is-top" : "")
+      );
+      var band = window.ForageCastHeat ? ForageCastHeat.bandLabel(level) : level;
+      var zone = getZone(id);
+      if (zone) {
+        path.setAttribute(
+          "aria-label",
+          zone.name + ", " + band + " (model estimate)"
+        );
+      }
+    });
+  }
+
+  function refreshSpeciesView() {
+    updatePrediction();
+    var species = getSpecies();
+    var pred = state.prediction;
+    var main = document.querySelector(".fc-tool-main");
+    var sidebarBtns = document.querySelector(".fc-species-select [role='group']");
+    if (sidebarBtns) sidebarBtns.innerHTML = renderSpeciesButtons();
+    if (!main) {
+      render();
+      return;
+    }
+
+    var mapPanel = main.querySelector(".fc-map-panel");
+    var frag = document.createElement("div");
+    frag.innerHTML =
+      renderPredictionPanel(pred, species) +
+      "<div data-fc-map-slot></div>" +
+      renderFactors(pred) +
+      renderExplain(pred, species) +
+      renderTestCard(species) +
+      renderCitizenScience();
+
+    // Replace children while reusing the live map panel node (preserves pan/zoom).
+    while (main.firstChild) main.removeChild(main.firstChild);
+    Array.prototype.slice.call(frag.childNodes).forEach(function (node) {
+      if (node.nodeType === 1 && node.getAttribute("data-fc-map-slot") != null) {
+        if (mapPanel) main.appendChild(mapPanel);
+        else {
+          var wrap = document.createElement("div");
+          wrap.innerHTML = renderMap(pred);
+          main.appendChild(wrap.firstChild);
+        }
+      } else {
+        main.appendChild(node);
+      }
+    });
+
+    updateMapZoneClasses(pred);
+    var detail = document.getElementById("fc-zone-detail");
+    if (detail) detail.innerHTML = renderZoneDetail();
+    bindSpeciesEvents();
+    bindZoneEvents();
+    var vp = main.querySelector(".fc-map-wrap[data-wds-map-view]");
+    if (vp && !vp._wdsMapView && window.WDS && WDS.mapView) {
+      bindMapViews();
+    }
+  }
+
   function render() {
     var mount = document.getElementById("fc-season-table");
     if (!mount) return;
@@ -310,28 +386,40 @@
     bindMapViews();
   }
 
-  function bindEvents() {
+  function bindSpeciesEvents() {
     document.querySelectorAll(".fc-species-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         state.selectedSpeciesId = btn.getAttribute("data-species");
         state.selectedZoneId = null;
-        render();
+        refreshSpeciesView();
       });
     });
+  }
 
+  function bindZoneEvents() {
     document.querySelectorAll(".fc-zone").forEach(function (path) {
       function select() {
         state.selectedZoneId = path.getAttribute("data-zone");
         var detail = document.getElementById("fc-zone-detail");
         if (detail) detail.innerHTML = renderZoneDetail();
-        document.querySelectorAll(".fc-zone").forEach(function (p) { p.classList.remove("is-selected"); });
+        document.querySelectorAll(".fc-zone").forEach(function (p) {
+          p.classList.remove("is-selected");
+        });
         path.classList.add("is-selected");
       }
       path.addEventListener("click", select);
       path.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(); }
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          select();
+        }
       });
     });
+  }
+
+  function bindEvents() {
+    bindSpeciesEvents();
+    bindZoneEvents();
   }
 
   function initFromQuery() {

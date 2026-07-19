@@ -291,17 +291,21 @@
   width: 100%;
   max-width: 36rem;
   margin: 0 auto;
+  min-height: 240px;
+  touch-action: none;
 }
 
 .fc-map-wrap .wds-map-stage {
-  width: 420px;
+  width: 100%;
   max-width: none;
 }
 
 .fc-terrain-svg {
-  width: 420px;
-  height: 300px;
   display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  touch-action: none;
   pointer-events: auto;
 }
 

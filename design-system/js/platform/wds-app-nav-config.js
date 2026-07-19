@@ -201,12 +201,12 @@
         "/apps/foragecast"
       ],
       "category": "outdoor",
-      "description": "Seasonal land companion \u2014 what to find and what to do today across foraging, orchard, garden, and land care.",
+      "description": "Outdoor intelligence \u2014 what to look for today and why, across foraging and land care.",
       "status": "live",
       "features": [
         {
-          "id": "today",
-          "label": "Today",
+          "id": "overview",
+          "label": "Overview",
           "href": "apps/foragecast/",
           "match": [
             "/apps/foragecast/?$",
@@ -214,60 +214,58 @@
           ]
         },
         {
-          "id": "foraging",
-          "label": "Foraging",
-          "href": "apps/foragecast/foraging.html",
-          "match": [
-            "foraging.html"
-          ]
+          "id": "conditions",
+          "label": "Today's Conditions",
+          "href": "apps/foragecast/conditions.html",
+          "match": ["conditions.html"]
         },
         {
-          "id": "orchard",
-          "label": "Orchard",
-          "href": "apps/foragecast/pillar.html?id=orchard",
-          "match": [
-            "pillar.html\\?id=orchard"
-          ]
+          "id": "species",
+          "label": "Species",
+          "href": "apps/foragecast/species.html",
+          "match": ["species.html"]
         },
         {
-          "id": "garden",
-          "label": "Garden",
-          "href": "apps/foragecast/pillar.html?id=garden",
-          "match": [
-            "pillar.html\\?id=garden"
-          ]
+          "id": "map",
+          "label": "Map",
+          "href": "apps/foragecast/map.html",
+          "match": ["map.html"]
         },
         {
-          "id": "food-forest",
-          "label": "Food forest",
-          "href": "apps/foragecast/pillar.html?id=food-forest",
-          "match": [
-            "food-forest"
-          ]
+          "id": "timeline",
+          "label": "Season Timeline",
+          "href": "apps/foragecast/timeline.html",
+          "match": ["timeline.html"]
         },
         {
-          "id": "permaculture",
-          "label": "Permaculture",
-          "href": "apps/foragecast/pillar.html?id=permaculture",
-          "match": [
-            "permaculture"
-          ]
+          "id": "weather",
+          "label": "Recent Weather",
+          "href": "apps/foragecast/weather.html",
+          "match": ["weather.html"]
         },
         {
-          "id": "property",
-          "label": "Property",
-          "href": "apps/foragecast/property.html",
-          "match": [
-            "property.html"
-          ]
+          "id": "habitats",
+          "label": "Habitats",
+          "href": "apps/foragecast/habitats.html",
+          "match": ["habitats.html"]
         },
         {
-          "id": "season-table",
-          "label": "Season table",
-          "href": "apps/foragecast/season-table.html",
-          "match": [
-            "season-table"
-          ]
+          "id": "learn",
+          "label": "Learn",
+          "href": "apps/foragecast/learn.html",
+          "match": ["learn.html"]
+        },
+        {
+          "id": "journal",
+          "label": "Journal",
+          "href": "apps/foragecast/journal.html",
+          "match": ["journal.html"]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "href": "apps/foragecast/settings.html",
+          "match": ["settings.html"]
         }
       ]
     },

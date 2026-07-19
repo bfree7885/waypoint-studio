@@ -20,6 +20,9 @@ with plants and fungi.
 ForageCast teaches stewardship and phenology. It does not promise harvests,
 pin secret patches for crowds, or replace field identification.
 
+**Product Recovery Phase 1** (summary-first outdoor intelligence): see
+[`docs/FORAGECAST-PRODUCT-RECOVERY.md`](FORAGECAST-PRODUCT-RECOVERY.md).
+
 ------------------------------------------------------------------------
 
 # Target Users
