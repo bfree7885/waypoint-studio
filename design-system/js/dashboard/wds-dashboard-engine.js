@@ -206,6 +206,11 @@
   }
 
   function renderDashboard(options) {
+    var Recovery = global.WDS && global.WDS.dashboardRecovery;
+    if (Recovery && Recovery.isEnabled && Recovery.isEnabled() && Recovery.renderDashboard) {
+      return Recovery.renderDashboard(options);
+    }
+
     var W = global.WDS && global.WDS.dashboardWidgets;
     var S = global.WDS && global.WDS.dashboardSettings;
     if (!W || !S) return "";
@@ -267,6 +272,22 @@
   function mountWidgets(root, options) {
     if (!root) return Promise.resolve();
     options = options || {};
+
+    // Product Recovery: only mount specialty UIs in the active tab panel.
+    var Recovery = global.WDS && global.WDS.dashboardRecovery;
+    if (Recovery && Recovery.isEnabled && Recovery.isEnabled() &&
+        root.querySelector && root.querySelector("[data-wdb-recovery], [data-wdb-tab-panel]")) {
+      // If root is the page mount, prefer recovery orchestrator.
+      if (root.querySelector("[data-wdb-recovery]") && Recovery.mountRecovery) {
+        return Recovery.mountRecovery(root, options).then(function () {
+          applyPlatformTrustBadges(root, options.platform);
+        }).finally(function () {
+          settleStaleMounts(root, options);
+        });
+      }
+      // Panel-scoped mount: fall through to specialty mounts for this subtree only.
+    }
+
     var Rel = global.WDS && global.WDS.dashboardReliability;
     var weatherOpts = {
       location: options.location,
@@ -299,7 +320,7 @@
     });
     return Promise.all(guarded).then(function () {
       var BP = global.WDS && global.WDS.briefingPackage;
-      if (BP && BP.refresh) {
+      if (BP && BP.refresh && !(Recovery && Recovery.isEnabled && Recovery.isEnabled())) {
         BP.refresh(root, {
           platform: options.platform,
           location: options.location,
@@ -346,6 +367,9 @@
     var mounts = root.querySelectorAll("[data-wds-weather-mount][aria-busy='true']");
     for (var i = 0; i < mounts.length; i++) {
       var mount = mounts[i];
+      // Product Recovery: leave unvisited tab panels alone until first open.
+      var panel = mount.closest("[data-wdb-tab-panel]");
+      if (panel && panel.getAttribute("data-wdb-mounted") === "0") continue;
       var kind = mount.getAttribute("data-wds-weather-mount") || "";
       var topic = EF.topicForMount ? EF.topicForMount(kind) : "weather";
       var updatedAt = options && options.platform && options.platform.meta
@@ -489,9 +513,17 @@
   function refreshDashboard(root, options) {
     var host = root.querySelector("[data-wds-dashboard-root]");
     if (!host) return Promise.resolve();
+    var Recovery = global.WDS && global.WDS.dashboardRecovery;
+    if (Recovery && Recovery.mark) Recovery.mark("wdb-dashboard-refresh-start");
     host.innerHTML = renderDashboard(options);
     bindInteractions(root);
-    return mountWidgets(root, options);
+    return mountWidgets(root, options).then(function (v) {
+      if (Recovery && Recovery.mark) {
+        Recovery.mark("wdb-dashboard-refresh-end");
+        Recovery.measure("wdb-dashboard-refresh", "wdb-dashboard-refresh-start", "wdb-dashboard-refresh-end");
+      }
+      return v;
+    });
   }
 
   function refreshGrid(root, options) {

@@ -322,22 +322,10 @@
         })
       : "";
 
-    var Nav = global.WDS && global.WDS.appNav;
-    var depth = Nav && Nav.depthFromPath ? Nav.depthFromPath() : 1;
-    function fieldHref(route) {
-      return Nav && Nav.resolveRoute ? Nav.resolveRoute(route, depth) : ("../" + String(route || "").replace(/^apps\//, ""));
-    }
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
         '<h1 class="wds-sr-only" id="wod-title">Outdoor dashboard</h1>' +
-        '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence widgets">' + dashboardHtml + "</div>" +
-        '<nav class="wod__links" id="field-tools" aria-label="Field tools">' +
-          '<a class="wod__link" href="' + fieldHref("apps/foragecast/") + '">ForageCast</a>' +
-          '<a class="wod__link" href="' + fieldHref("apps/fieldry/") + '">Fieldry</a>' +
-          '<a class="wod__link" href="' + fieldHref("apps/scenes/") + '">Scenes</a>' +
-          '<a class="wod__link" href="' + fieldHref("apps/photo-coach/") + '">Photo Coach</a>' +
-          '<a class="wod__link" href="' + fieldHref("design-system/species/profile.html?id=morchella-americana") + '">Species</a>' +
-        "</nav>" +
+        '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence">' + dashboardHtml + "</div>" +
       "</section>"
     );
   }
@@ -1263,7 +1251,16 @@
       // Progressive first paint: shell + grid with per-card Loading states.
       var shellData = applyPlatformToData(data, null);
       if (!mount.classList.contains("wdb-content-ready")) {
+        try {
+          if (global.performance && performance.mark) performance.mark("wdb-shell-paint-start");
+        } catch (e0) { /* noop */ }
         renderIntoMount(mount, shellData, loc, base, options, null);
+        try {
+          if (global.performance && performance.mark) {
+            performance.mark("wdb-shell-paint-end");
+            performance.measure("wdb-shell-paint", "wdb-shell-paint-start", "wdb-shell-paint-end");
+          }
+        } catch (e1) { /* noop */ }
       }
 
       // WSKB preload must not block the dashboard grid.

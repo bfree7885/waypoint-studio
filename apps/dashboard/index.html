@@ -11,10 +11,26 @@
   <title>Dashboard — Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Non-blocking fonts: shell paints with fallbacks first -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"></noscript>
   <link rel="stylesheet" href="../../design-system/css/wds-dashboard-home.css">
   <link rel="stylesheet" href="../../design-system/css/wds-app-shell.css?v=local">
   <link rel="stylesheet" href="../../css/home-dashboard.css">
+  <style>
+    /* Critical shell — visible before full CSS graph settles */
+    #wds-content-engine { min-height: 70vh; }
+    .wdb-page-loading { padding: 1rem 1.1rem 2rem; max-width: 72rem; margin: 0 auto; }
+    .wdb-skel { background: linear-gradient(90deg, #ebe7df 25%, #f4f1ea 50%, #ebe7df 75%); background-size: 200% 100%; animation: wdb-shimmer 1.1s ease-in-out infinite; border-radius: 8px; }
+    .wdb-skel--title { height: 1.6rem; width: min(18rem, 70%); margin-bottom: 0.6rem; }
+    .wdb-skel--sub { height: 0.9rem; width: min(24rem, 90%); margin-bottom: 1rem; }
+    .wdb-skel--hero { height: 8.5rem; width: 100%; margin-bottom: 0.85rem; }
+    .wdb-skel--tabs { height: 2.5rem; width: 100%; margin-bottom: 0.85rem; border-radius: 999px; }
+    .wdb-skel--line { height: 0.85rem; width: 100%; margin-bottom: 0.45rem; }
+    @keyframes wdb-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+    @media (prefers-reduced-motion: reduce) { .wdb-skel { animation: none; } }
+  </style>
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
@@ -30,17 +46,6 @@
           <p class="wds-eyebrow">Dashboard</p>
           <h1>Outdoor overview</h1>
           <p>Weather, light, trails, and outdoor conditions for your region — a calm starting point before you go outside.</p>
-          <h2>Who it helps</h2>
-          <p>Photographers, walkers, foragers, and anyone who wants conditions before they head out.</p>
-          <h2>Key capabilities</h2>
-          <ul>
-            <li>Weather and outdoor conditions</li>
-            <li>Sun, moon, and light context</li>
-            <li>Safety and water awareness</li>
-            <li>Photography-oriented condition cues</li>
-          </ul>
-          <h2>Privacy philosophy</h2>
-          <p>Location is optional. Map and weather providers may see approximate coordinates when those features run. Field notes stay in other apps on-device by default.</p>
           <p><a href="../../">Studio home</a> · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></p>
         </section>
       </noscript>
@@ -50,23 +55,24 @@
           <div class="wdb-page-loading__skeleton" aria-hidden="true">
             <div class="wdb-skel wdb-skel--line wdb-skel--title"></div>
             <div class="wdb-skel wdb-skel--line wdb-skel--sub"></div>
-            <div class="wdb-skel wdb-skel--card wdb-skel--hero"></div>
-            <div class="wdb-skel wdb-skel--row">
-              <div class="wdb-skel wdb-skel--chip"></div>
-              <div class="wdb-skel wdb-skel--chip"></div>
-              <div class="wdb-skel wdb-skel--chip"></div>
-            </div>
-            <div class="wdb-skel wdb-skel--card"></div>
-            <div class="wdb-skel wdb-skel--card"></div>
+            <div class="wdb-skel wdb-skel--hero"></div>
+            <div class="wdb-skel wdb-skel--tabs"></div>
+            <div class="wdb-skel wdb-skel--line"></div>
+            <div class="wdb-skel wdb-skel--line" style="width:88%"></div>
+            <div class="wdb-skel wdb-skel--line" style="width:76%"></div>
+            <div class="wdb-skel wdb-skel--line" style="width:82%"></div>
           </div>
-          <p class="wdb-page-loading__text">Dashboard — outdoor overview</p>
-          <p class="wdb-page-loading__detail">Weather, light, trails, and conditions for your region. Cards appear next while live data loads independently.</p>
+          <p class="wdb-page-loading__text">Today’s outdoor summary</p>
+          <p class="wdb-page-loading__detail">Shell first — live conditions fill in without blocking the page.</p>
         </div>
       </div>
     </main>
 
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+  <script>
+    try { performance.mark("wdb-html-parsed"); } catch (e) {}
+  </script>
   <script src="../../design-system/js/wds-build.js?v=local"></script>
   <!-- Nav/shell modules load via wds.js — do not duplicate (double-bind risk). -->
   <script src="../../design-system/js/wds.js?v=local" defer></script>

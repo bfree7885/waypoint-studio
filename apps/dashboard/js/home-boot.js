@@ -211,17 +211,28 @@
 
   function startDashboard(loc) {
     if (!window.WDS || !WDS.contentEngine || !loc) return;
+    try {
+      if (window.performance && performance.mark) performance.mark("wdb-boot-start-dashboard");
+    } catch (e) { /* noop */ }
     WDS.contentEngine.init({
       base: ENGINE_BASE,
       mount: document.getElementById("wds-content-engine"),
       wrapMain: false,
       location: loc,
+      // Product Recovery: dashboard primary — skip app-catalog noise below the fold
+      sections: ["outdoor-dashboard"],
       includeCitizenScience: false,
-      includeMethodology: true,
+      includeMethodology: false,
       onLocationChange: function (newLoc) {
         startDashboard(newLoc);
       }
     }).then(function () {
+      try {
+        if (window.performance && performance.mark) {
+          performance.mark("wdb-boot-hydrated");
+          performance.measure("wdb-boot-to-hydrated", "wdb-boot-start-dashboard", "wdb-boot-hydrated");
+        }
+      } catch (e) { /* noop */ }
       scrollToDashboardHash();
       if (WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast) {
         var pkg = WDS.outdoorIntelligence.getLast();

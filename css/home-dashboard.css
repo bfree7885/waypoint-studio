@@ -19,14 +19,15 @@
   margin-top: 0;
 }
 
-/* Hydrated content — smooth first paint */
+/* Hydrated content — no opacity flash (Product Recovery) */
 #wds-content-engine.wdb-content-ready {
-  animation: wdb-content-in 0.4s var(--wds-ease-out, ease-out) both;
+  animation: none;
 }
 
-@keyframes wdb-content-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  #wds-content-engine.wdb-content-ready {
+    animation: none;
+  }
 }
 
 /* Top nav — horizontal scroll on small screens */
