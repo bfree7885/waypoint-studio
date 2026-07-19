@@ -1,0 +1,30 @@
+{
+  "base": "https://waypointstudio.org",
+  "startedAt": "2026-07-19T13:48:20.716Z",
+  "finishedAt": "2026-07-19T13:55:11.383Z",
+  "routesAudited": 110,
+  "uniqueDesktopRoutes": 74,
+  "defects": 263,
+  "p0": 1,
+  "p1": 5,
+  "stuckLoading": 9,
+  "httpErrors": 2,
+  "mapOk": true,
+  "interactions": [
+    {
+      "test": "studio-home-search",
+      "ok": true,
+      "detail": "results=2"
+    },
+    {
+      "test": "contact-email-field-present",
+      "ok": true,
+      "detail": "filled invalid email; did not submit form"
+    },
+    {
+      "test": "keyboard-tab-focus",
+      "ok": true,
+      "detail": "{\"tag\":\"A\",\"text\":\"Waypoint Studio\",\"outline\":\"solid 2px\"}"
+    }
+  ]
+}

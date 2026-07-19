@@ -1,10 +1,10 @@
 {
   "productId": "savant-sommelier",
   "title": "Savant Sommelier",
-  "eyebrow": "Waypoint Studio · Savant Sommelier",
+  "eyebrow": "Waypoint Studio \u00b7 Savant Sommelier",
   "status": "intelligence",
-  "lead": "Wine intelligence — discover, learn, track, and analyze vineyard potential with explanations that answer why.",
-  "mission": "Help people learn wine, find wine, track wine, and understand what could grow on a property today and decades ahead — powered by an explainable Wine Intelligence Engine.",
+  "lead": "Wine intelligence \u2014 discover, learn, track, and analyze vineyard potential with explanations that answer why.",
+  "mission": "Help people learn wine, find wine, track wine, and understand what could grow on a property today and decades ahead \u2014 powered by an explainable Wine Intelligence Engine.",
   "principles": [
     "Every recommendation explains why",
     "Palate learning from local ratings, favorites, purchases, and notes",
@@ -14,22 +14,70 @@
     "Future climate horizons are labeled scenarios, not precision forecasts"
   ],
   "modules": [
-    { "title": "Wine Intelligence Engine", "status": "active", "description": "Layered palate → recommend → discovery → tasting → pairing → cellar → purchase intelligence." },
-    { "title": "Discover", "status": "active", "description": "Personal why, guided discovery, intelligent search, food pairing, comparisons." },
-    { "title": "Learn", "status": "active", "description": "Curriculum plus continuous teachable moments." },
-    { "title": "My Cellar", "status": "active", "description": "Inventory plus cellar, tasting, and purchase intelligence." },
-    { "title": "Vineyard Intelligence", "status": "active", "description": "Why / why-not grapes, strengths, risks, climate trajectory with uncertainty." },
-    { "title": "Buying architecture", "status": "contract", "description": "Retailer / price / availability seams — not live marketplace." },
-    { "title": "Map overlays", "status": "contract", "description": "Parcel, soils, hydrology, climate, terrain contracts." }
+    {
+      "title": "Wine Intelligence Engine",
+      "status": "active",
+      "description": "Layered palate \u2192 recommend \u2192 discovery \u2192 tasting \u2192 pairing \u2192 cellar \u2192 purchase intelligence."
+    },
+    {
+      "title": "Discover",
+      "status": "active",
+      "description": "Personal why, guided discovery, intelligent search, food pairing, comparisons."
+    },
+    {
+      "title": "Learn",
+      "status": "active",
+      "description": "Curriculum plus continuous teachable moments."
+    },
+    {
+      "title": "My Cellar",
+      "status": "active",
+      "description": "Inventory plus cellar, tasting, and purchase intelligence."
+    },
+    {
+      "title": "Vineyard Intelligence",
+      "status": "active",
+      "description": "Why / why-not grapes, strengths, risks, climate trajectory with uncertainty."
+    },
+    {
+      "title": "Buying architecture",
+      "status": "contract",
+      "description": "Retailer / price / availability seams \u2014 not live marketplace."
+    },
+    {
+      "title": "Map overlays",
+      "status": "contract",
+      "description": "Parcel, soils, hydrology, climate, terrain contracts."
+    }
   ],
   "routes": [
-    { "path": "/", "label": "Discover", "ready": true },
-    { "path": "/learn.html", "label": "Learn", "ready": true },
-    { "path": "/cellar.html", "label": "My Cellar", "ready": true },
-    { "path": "/vineyard.html", "label": "Vineyard Intelligence", "ready": true },
-    { "path": "/settings.html", "label": "Settings", "ready": true }
+    {
+      "path": "./",
+      "label": "Discover",
+      "ready": true
+    },
+    {
+      "path": "learn.html",
+      "label": "Learn",
+      "ready": true
+    },
+    {
+      "path": "cellar.html",
+      "label": "My Cellar",
+      "ready": true
+    },
+    {
+      "path": "vineyard.html",
+      "label": "Vineyard Intelligence",
+      "ready": true
+    },
+    {
+      "path": "settings.html",
+      "label": "Settings",
+      "ready": true
+    }
   ],
   "dataModel": "Educational catalogs ship as JSON. Cellar, sites, wishlist, and settings stay in localStorage. No sample cellar inventory.",
-  "privacyPhilosophy": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought.",
-  "futureDirection": "Authoritative DEM/climate layers, parcel soils, live retailer adapters, and friends’ recommendations — always with honesty labels."
+  "privacyPhilosophy": "Sites, wineries, and wines stay local. Property privacy is the default \u2014 not an afterthought.",
+  "futureDirection": "Authoritative DEM/climate layers, parcel soils, live retailer adapters, and friends\u2019 recommendations \u2014 always with honesty labels."
 }

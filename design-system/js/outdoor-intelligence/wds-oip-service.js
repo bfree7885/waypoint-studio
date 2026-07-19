@@ -172,8 +172,18 @@
   }
 
   function coordsFromRequest(req, pkg) {
-    if (req && req.location && M.isFiniteCoord(req.location.lat) && M.isFiniteCoord(req.location.lng)) {
-      return { lat: Number(req.location.lat), lng: Number(req.location.lng) };
+    if (req && req.location) {
+      var loc = req.location;
+      // Provisional / national educational shells must not drive point APIs
+      if (loc.useNationalFallback || loc.contentMode === "national-educational" || loc.source === "pending") {
+        return null;
+      }
+      if (M.isFiniteCoord(loc.lat) && M.isFiniteCoord(loc.lng)) {
+        var lat = Number(loc.lat);
+        var lng = Number(loc.lng);
+        if (lat === 0 && lng === 0) return null;
+        return { lat: lat, lng: lng };
+      }
     }
     return coordsFromPkg(pkg);
   }

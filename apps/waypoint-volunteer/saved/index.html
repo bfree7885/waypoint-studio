@@ -23,7 +23,15 @@
         <h1>Saved opportunities</h1>
         <p class="wv-lead">Private on this device — interested, planning, registered, completed, favorites, and reminders.</p>
         <p class="wv-honesty">private-local</p>
-        <div id="wv-saved-mount" aria-busy="true"></div>
+        <div id="wv-saved-mount" aria-busy="true">
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">Waypoint Volunteer</p>
+          <p class="wds-boot__title">Saved</p>
+          <p class="wds-boot__detail">Loading saved opportunities on this device.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div>
+      </div>
       </div>
     </main>
     <div data-wds-app-footer data-shell-depth="2"></div>
@@ -34,6 +42,7 @@
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../../design-system/js/volunteer/wds-volunteer-planning.js" defer></script>
   <script>

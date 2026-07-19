@@ -48,8 +48,17 @@
     console.log.apply(console, args);
   }
 
+  /**
+   * True only for real numeric coordinates.
+   * Rejects null/undefined/""/boolean — Number(null)===0 previously sent NWS point=0,0.
+   */
   function isFiniteCoord(n) {
-    return isFinite(Number(n));
+    if (typeof n === "number") return isFinite(n);
+    if (typeof n === "string" && n.trim() !== "") {
+      var num = Number(n);
+      return isFinite(num);
+    }
+    return false;
   }
 
   function normalizeLocationSource(source, isDefault) {

@@ -5,8 +5,9 @@
 (function (global) {
   "use strict";
 
-  var LIVE_URL = "data/live.json";
-  var HEALTH_URL = "data/health.json";
+  // Site-root absolute paths — document-relative "data/live.json" 404s from /apps/*/
+  var LIVE_URL = "/data/live.json";
+  var HEALTH_URL = "/data/health.json";
   var MAX_AGE_MS = 3 * 60 * 60 * 1000;
   var lastFeed = null;
   var lastHealth = null;
@@ -95,7 +96,11 @@
     platform.meta = Object.assign({}, platform.meta || {});
     platform.meta.contentSource = "user-oip";
     platform.meta.liveFeed = false;
-    if (userLoc && isFinite(Number(userLoc.lat)) && isFinite(Number(userLoc.lng))) {
+    if (
+      userLoc &&
+      typeof userLoc.lat === "number" && isFinite(userLoc.lat) &&
+      typeof userLoc.lng === "number" && isFinite(userLoc.lng)
+    ) {
       platform.location = Object.assign({}, platform.location || {}, {
         latitude: Number(userLoc.lat),
         longitude: Number(userLoc.lng),

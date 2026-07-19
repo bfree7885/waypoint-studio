@@ -1,9 +1,9 @@
 {
   "productId": "steepleaf",
   "title": "Steepleaf",
-  "eyebrow": "Waypoint Studio · Steepleaf",
+  "eyebrow": "Waypoint Studio \u00b7 Steepleaf",
   "status": "active",
-  "lead": "A calm tea companion — what to brew today, how to steep it well, and how today’s cup compares to yesterday’s.",
+  "lead": "A calm tea companion \u2014 what to brew today, how to steep it well, and how today\u2019s cup compares to yesterday\u2019s.",
   "mission": "Help people brew with attention using a private collection, guided sessions, practical tea literacy, and an educational knowledge graph.",
   "principles": [
     "Personal taste over popularity",
@@ -12,26 +12,90 @@
     "No fabricated tasting journals or marketplace pressure"
   ],
   "modules": [
-    { "title": "Today's Tea briefing", "status": "active", "description": "Personalized guidance from your shelf and sessions — never invented cups." },
-    { "title": "Today's Brew workflow", "status": "active", "description": "Temperature, leaf, timer, infusions, and notes with minimal taps." },
-    { "title": "My Collection", "status": "active", "description": "Type, origin, harvest, vendor, storage, quantity, favorites, search and filters." },
-    { "title": "Brewing sessions & journal", "status": "active", "description": "History with parameters, mood, rating, and comparison to prior brews." },
-    { "title": "Discover & Learning", "status": "active", "description": "Style map and practical literacy — not a shopfront." },
-    { "title": "Knowledge graph", "status": "active", "description": "Educational explore/entity discovery layer with labeled sample data." },
-    { "title": "Search & Settings", "status": "active", "description": "Fast private search, export/import, preferences." }
+    {
+      "title": "Today's Tea briefing",
+      "status": "active",
+      "description": "Personalized guidance from your shelf and sessions \u2014 never invented cups."
+    },
+    {
+      "title": "Today's Brew workflow",
+      "status": "active",
+      "description": "Temperature, leaf, timer, infusions, and notes with minimal taps."
+    },
+    {
+      "title": "My Collection",
+      "status": "active",
+      "description": "Type, origin, harvest, vendor, storage, quantity, favorites, search and filters."
+    },
+    {
+      "title": "Brewing sessions & journal",
+      "status": "active",
+      "description": "History with parameters, mood, rating, and comparison to prior brews."
+    },
+    {
+      "title": "Discover & Learning",
+      "status": "active",
+      "description": "Style map and practical literacy \u2014 not a shopfront."
+    },
+    {
+      "title": "Knowledge graph",
+      "status": "active",
+      "description": "Educational explore/entity discovery layer with labeled sample data."
+    },
+    {
+      "title": "Search & Settings",
+      "status": "active",
+      "description": "Fast private search, export/import, preferences."
+    }
   ],
   "routes": [
-    { "path": "/", "label": "Home / Today's Tea", "ready": true },
-    { "path": "/#brew", "label": "Today's Brew", "ready": true },
-    { "path": "/#collection", "label": "My Collection", "ready": true },
-    { "path": "/#sessions", "label": "Brewing Sessions", "ready": true },
-    { "path": "/#journal", "label": "Tea Journal", "ready": true },
-    { "path": "/explore/", "label": "Knowledge graph", "ready": true },
-    { "path": "/#learning", "label": "Learning", "ready": true },
-    { "path": "/#search", "label": "Search", "ready": true },
-    { "path": "/#settings", "label": "Settings", "ready": true }
+    {
+      "path": "./",
+      "label": "Home / Today's Tea",
+      "ready": true
+    },
+    {
+      "path": "#brew",
+      "label": "Today's Brew",
+      "ready": true
+    },
+    {
+      "path": "#collection",
+      "label": "My Collection",
+      "ready": true
+    },
+    {
+      "path": "#sessions",
+      "label": "Brewing Sessions",
+      "ready": true
+    },
+    {
+      "path": "#journal",
+      "label": "Tea Journal",
+      "ready": true
+    },
+    {
+      "path": "explore/",
+      "label": "Knowledge graph",
+      "ready": true
+    },
+    {
+      "path": "#learning",
+      "label": "Learning",
+      "ready": true
+    },
+    {
+      "path": "#search",
+      "label": "Search",
+      "ready": true
+    },
+    {
+      "path": "#settings",
+      "label": "Settings",
+      "ready": true
+    }
   ],
   "dataModel": "Teas and brew sessions stay in localStorage on this device. The knowledge graph uses labeled educational sample data separate from your private journal.",
   "privacyPhilosophy": "Brew notes stay private. There is no marketplace and no public tasting board.",
-  "futureDirection": "Deeper persona preferences, optional Knowledge cross-links, and refined timer UX — still without social graphs."
+  "futureDirection": "Deeper persona preferences, optional Knowledge cross-links, and refined timer UX \u2014 still without social graphs."
 }

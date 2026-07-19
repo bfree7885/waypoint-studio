@@ -19,7 +19,15 @@
     <div data-wds-app-global data-shell-depth="2"></div>
     <div data-wds-app-local data-shell-depth="2"></div>
     <main id="main" class="wpf-page stl-page">
-      <div id="stl-explore-mount" aria-busy="true"></div>
+      <div id="stl-explore-mount" aria-busy="true">
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">Steepleaf</p>
+          <p class="wds-boot__title">Knowledge graph</p>
+          <p class="wds-boot__detail">Loading the tea knowledge graph.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div>
+      </div>
     </main>
     <div data-wds-app-footer data-shell-depth="2"></div>
   </div>
@@ -29,6 +37,7 @@
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../../design-system/js/steepleaf/wds-steepleaf-graph.js" defer></script>
   <script src="../../../design-system/js/steepleaf/wds-steepleaf-search.js" defer></script>

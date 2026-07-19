@@ -66,7 +66,12 @@
   }
 
   function isFiniteCoord(n) {
-    return isFinite(Number(n));
+    if (typeof n === "number") return isFinite(n);
+    if (typeof n === "string" && n.trim() !== "") {
+      var num = Number(n);
+      return isFinite(num);
+    }
+    return false;
   }
 
   M.isFiniteCoord = isFiniteCoord;

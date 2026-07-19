@@ -19,7 +19,13 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="fc-page fc-land-page">
-      <div id="fc-wizard-mount" aria-busy="true"><p class="wds-body">Opening property setup…</p></div>
+      <div id="fc-wizard-mount" aria-busy="true"><div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">ForageCast</p>
+          <p class="wds-boot__title">Property setup</p>
+          <p class="wds-boot__detail">Loading the property profile wizard.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div></div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -27,6 +33,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="js/foragecast-profile.js" defer></script>
   <script src="js/foragecast-property-wizard.js" defer></script>

@@ -109,7 +109,7 @@
         {
           "id": "photo-library",
           "label": "Library",
-          "href": "apps/scenes/photo-library/",
+          "href": "apps/photo-library/",
           "match": [
             "/apps/scenes/photo-library",
             "/apps/photo-library"
@@ -118,7 +118,7 @@
         {
           "id": "photo-coach",
           "label": "Photo Coach",
-          "href": "apps/scenes/photo-coach/",
+          "href": "apps/photo-coach/",
           "match": [
             "/apps/scenes/photo-coach",
             "/apps/photo-coach/?$",
@@ -128,7 +128,7 @@
         {
           "id": "hidden-landscapes",
           "label": "Hidden Landscapes",
-          "href": "apps/scenes/hidden-landscapes/",
+          "href": "apps/hidden-landscapes/",
           "match": [
             "/apps/scenes/hidden-landscapes",
             "/apps/hidden-landscapes",

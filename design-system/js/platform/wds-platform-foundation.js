@@ -144,10 +144,16 @@
     );
   }
 
+  /**
+   * Resolve foundation route paths relative to the current app directory.
+   * Leading "/" must NOT mean site-root (that caused live 404s like /map/).
+   */
   function routeHref(path) {
     if (!path || path === "/") return "#main";
     if (path.charAt(0) === "#") return path;
-    if (path.indexOf("http") === 0 || path.indexOf("/") === 0) return path;
+    if (/^https?:\/\//i.test(path)) return path;
+    // Strip one leading slash → app-relative ( /map/ → map/ )
+    if (path.charAt(0) === "/") return path.slice(1);
     return path;
   }
 
@@ -228,6 +234,7 @@
   global.WDS.platformFoundation = {
     render: render,
     mount: mount,
-    statusLabel: statusLabel
+    statusLabel: statusLabel,
+    routeHref: routeHref
   };
 })(typeof window !== "undefined" ? window : global);

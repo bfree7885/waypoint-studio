@@ -37,11 +37,12 @@
         </section>
       </noscript>
       <div id="sl-mount" aria-busy="true">
-        <div class="sl-boot" role="status">
-          <div class="sl-boot__bar" aria-hidden="true"></div>
-          <div class="sl-boot__line" style="width:68%" aria-hidden="true"></div>
-          <div class="sl-boot__line" style="width:88%" aria-hidden="true"></div>
-          <p>Preparing today’s tea briefing…</p>
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">Steepleaf</p>
+          <p class="wds-boot__title">Today’s tea briefing</p>
+          <p class="wds-boot__detail">Loading your private collection and brewing guidance. Steepleaf does not invent tasting notes for you.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting Steepleaf…</p>
         </div>
       </div>
     </main>
@@ -52,6 +53,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-places.js?v=local" defer></script>

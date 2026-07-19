@@ -33,7 +33,13 @@
       </header>
 
       <div id="fc-season-table" aria-busy="true">
-        <p class="wds-body" style="padding: 2rem;">Opening the season table…</p>
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">ForageCast</p>
+          <p class="wds-boot__title">Season table</p>
+          <p class="wds-boot__detail">Loading educational season timing.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div>
       </div>
     </main>
 
@@ -43,6 +49,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js" defer></script>
   <script src="../../design-system/js/wds-map-view.js" defer></script>
   <script src="../../design-system/js/wds-platform.js" defer></script>

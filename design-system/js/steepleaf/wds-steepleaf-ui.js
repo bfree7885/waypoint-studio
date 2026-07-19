@@ -29,9 +29,32 @@
     opts = opts || {};
     var base = resolvePackageBase(opts);
     root.setAttribute("aria-busy", "true");
-    root.innerHTML = '<p class="stl-loading">Opening the tea knowledge graph…</p>';
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.mount) {
+      WDS.platformBoot.mount(root, {
+        product: "Steepleaf",
+        title: "Knowledge graph",
+        detail: "Loading the tea knowledge graph.",
+        status: "Starting…"
+      });
+      WDS.platformBoot.watch(root, {
+        product: "Steepleaf",
+        title: "Could not open the knowledge graph",
+        detail: "The sample graph did not finish loading. Check your connection and retry.",
+        homeHref: "../",
+        supportHref: "../../../support.html",
+        timeoutMs: 15000,
+        onRetry: function () {
+          mountExplore(root, opts);
+        }
+      });
+    } else {
+      root.innerHTML = '<p class="stl-loading">Opening the tea knowledge graph…</p>';
+    }
 
     return WDS.steepleafGraph.load({ base: base }).then(function () {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
+        WDS.platformBoot.clear(root);
+      }
       var state = {
         q: "",
         kind: "tea",
@@ -104,7 +127,7 @@
               );
             })
             .join("") +
-          "</div><ul class="stl-list">' +
+          '</div><ul class="stl-list">' +
           (recs.length
             ? recs
                 .map(function (r) {
@@ -227,6 +250,24 @@
 
       root.removeAttribute("aria-busy");
       paint();
+    }).catch(function (err) {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+        WDS.platformBoot.fail(root, {
+          product: "Steepleaf",
+          title: "Could not open the knowledge graph",
+          detail: (err && err.message) || "The sample graph failed to load.",
+          homeHref: "../",
+          supportHref: "../../../support.html",
+          onRetry: function () {
+            mountExplore(root, opts);
+          }
+        });
+      } else {
+        root.innerHTML =
+          '<p class="stl-error" role="alert">Could not load the tea knowledge graph. ' +
+          '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>';
+        root.removeAttribute("aria-busy");
+      }
     });
   }
 
@@ -235,7 +276,29 @@
     var id = opts.id || new URLSearchParams(global.location.search).get("id");
     var base = resolvePackageBase(opts);
     root.setAttribute("aria-busy", "true");
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.mount) {
+      WDS.platformBoot.mount(root, {
+        product: "Steepleaf",
+        title: "Entity",
+        detail: "Loading this tea graph entity.",
+        status: "Starting…"
+      });
+      WDS.platformBoot.watch(root, {
+        product: "Steepleaf",
+        title: "Could not open this entity",
+        detail: "The sample graph did not finish loading.",
+        homeHref: "../",
+        supportHref: "../../../support.html",
+        timeoutMs: 15000,
+        onRetry: function () {
+          mountEntity(root, opts);
+        }
+      });
+    }
     return WDS.steepleafGraph.load({ base: base }).then(function () {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
+        WDS.platformBoot.clear(root);
+      }
       var e = WDS.steepleafGraph.get(id);
       if (!e) {
         root.innerHTML = '<p class="stl-error">Entity not found in the sample graph.</p>';
@@ -400,6 +463,24 @@
         '<p class="stl-nav"><a href="../explore/">← Explore graph</a> · <a href="../">Overview</a></p>' +
         "</article>";
       root.removeAttribute("aria-busy");
+    }).catch(function (err) {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+        WDS.platformBoot.fail(root, {
+          product: "Steepleaf",
+          title: "Could not open this entity",
+          detail: (err && err.message) || "The sample graph failed to load.",
+          homeHref: "../",
+          supportHref: "../../../support.html",
+          onRetry: function () {
+            mountEntity(root, opts);
+          }
+        });
+      } else {
+        root.innerHTML =
+          '<p class="stl-error" role="alert">Could not load this entity. ' +
+          '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>';
+        root.removeAttribute("aria-busy");
+      }
     });
   }
 

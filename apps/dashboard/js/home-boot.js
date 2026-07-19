@@ -186,10 +186,13 @@
 
   function isSafeEarlyLocation(loc) {
     if (!loc) return false;
-    var lat = Number(loc.lat);
-    var lng = Number(loc.lng);
+    // Reject null/undefined before Number() — Number(null)===0 caused Null Island fetches
+    if (loc.lat == null || loc.lng == null || loc.lat === "" || loc.lng === "") return false;
+    var lat = typeof loc.lat === "number" ? loc.lat : Number(loc.lat);
+    var lng = typeof loc.lng === "number" ? loc.lng : Number(loc.lng);
     if (!isFinite(lat) || !isFinite(lng)) return false;
-    if (loc.source === "unavailable") return false;
+    if (lat === 0 && lng === 0) return false;
+    if (loc.source === "unavailable" || loc.source === "pending") return false;
     if (WDS.location.isLegacyDefault && WDS.location.isLegacyDefault(loc)) return false;
     if (WDS.location.isEnginePublishPoint && WDS.location.isEnginePublishPoint(lat, lng)) return false;
     return true;

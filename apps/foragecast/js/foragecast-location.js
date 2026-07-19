@@ -16,13 +16,26 @@
     return "";
   }
 
+  function formatRegionLabel(loc) {
+    if (!loc) return "Regional location unavailable";
+    var name = loc.displayTitle || loc.placeLabel || loc.city || loc.name;
+    if (name != null) name = String(name).trim();
+    if (!name || /^null$/i.test(name) || /^undefined$/i.test(name)) {
+      if (loc.stateCode || loc.state) return "Location in " + (loc.stateCode || loc.state);
+      return "Regional location unavailable";
+    }
+    var region = loc.stateCode || loc.state;
+    if (region && name.indexOf(String(region)) === -1) return name + ", " + region;
+    return name;
+  }
+
   function locationNote(loc) {
     loc = loc || read();
     if (global.WDS && global.WDS.location) {
       return global.WDS.location.formatStatusLine(loc);
     }
     if (!loc) return "Regional location unavailable";
-    return loc.name + ", " + (loc.stateCode || loc.state);
+    return formatRegionLabel(loc);
   }
 
   function applyToHomeData(data, loc, platform) {
@@ -61,12 +74,13 @@
     if (loc.source === "geo" && global.WDS && global.WDS.location) {
       return global.WDS.location.formatCoords(loc.lat, loc.lng) + " · schematic zones";
     }
-    return loc.name + ", " + loc.stateCode + " · schematic zones";
+    return formatRegionLabel(loc) + " · schematic zones";
   }
 
   global.ForageCastLocation = {
     read: read,
     formatCoords: formatCoords,
+    formatRegionLabel: formatRegionLabel,
     locationNote: locationNote,
     applyToHomeData: applyToHomeData,
     applyToConditions: applyToConditions,
