@@ -11,8 +11,10 @@
   function renderConditions(ctx, esc) {
     var briefing = ctx.summary && ctx.summary.briefing;
     var bullets = (briefing && briefing.bullets) || [];
-    var hydration = ctx.conditions && ctx.conditions._hydration;
-    var changes = (ctx.conditions && ctx.conditions.whatChangedThisWeek) || [];
+    var forecast = (ctx.summary && ctx.summary.forecast) || [];
+    var insights = (ctx.summary && ctx.summary.insights) || [];
+    var derived = ctx.summary && ctx.summary.engine && ctx.summary.engine.derived;
+    var signals = (derived && derived.signals) || {};
     var list = bullets
       .map(function (b) {
         return (
@@ -26,22 +28,31 @@
         );
       })
       .join("");
-    var changeList = changes
-      .map(function (c) {
-        return "<li>" + esc(c) + "</li>";
+    var forecastList = forecast
+      .map(function (f) {
+        return (
+          "<li><p><strong>" +
+          esc(f.text) +
+          '</strong></p><p class="fc-summary__why">' +
+          esc(f.why) +
+          "</p></li>"
+        );
+      })
+      .join("");
+    var signalRows = Object.keys(signals)
+      .map(function (k) {
+        var v = signals[k];
+        var label = typeof v === "object" && v && v.label ? v.label : String(v);
+        return "<li><strong>" + esc(k.replace(/([A-Z])/g, " $1").toLowerCase()) + ":</strong> " + esc(label) + "</li>";
       })
       .join("");
     return (
       '<section class="fc-section">' +
       '<p class="fc-section__eyebrow">Operational briefing</p>' +
       '<h1 class="fc-section__title">Today’s conditions</h1>' +
-      '<p class="fc-section__lead">Interpreted environmental reading — not a raw chart dump.</p>' +
+      '<p class="fc-section__lead">Interpreted environmental reading from the Outdoor Intelligence Engine.</p>' +
       '<p class="fc-honesty">' +
-      esc(
-        hydration && hydration.note
-          ? hydration.note
-          : "Weather source status unknown"
-      ) +
+      esc((derived && derived.evidenceQuality) || "evidence quality unknown") +
       (global.ForageCastFetch && ctx.freshness
         ? " · " + ForageCastFetch.formatFreshness(ctx.freshness)
         : "") +
@@ -49,9 +60,19 @@
       '<ul class="fc-brief__list">' +
       list +
       "</ul>" +
-      (changeList
-        ? '<h2 class="fc-summary__subtitle">What changed</h2><ul class="fc-changes-list">' +
-          changeList +
+      (forecastList
+        ? '<h2 class="fc-summary__subtitle">Forecast intelligence</h2><ul class="fc-brief__list">' +
+          forecastList +
+          "</ul>"
+        : "") +
+      (signalRows
+        ? '<h2 class="fc-summary__subtitle">Derived signals</h2><ul class="fc-changes-list">' +
+          signalRows +
+          "</ul>"
+        : "") +
+      (insights.length
+        ? '<h2 class="fc-summary__subtitle">Naturalist insights</h2><ul class="fc-insight-list">' +
+          insights.map(function (i) { return "<li>" + esc(i.text || i) + "</li>"; }).join("") +
           "</ul>"
         : "") +
       '<p class="wds-caption">Educational guidance only. Confirm conditions outdoors.</p>' +
@@ -78,7 +99,8 @@
           '">' +
           esc(card.confidenceLabel) +
           " confidence</span> · " +
-          esc(card.phase.label) +
+          esc(card.phase && card.phase.label) +
+          (card.momentum ? " · " + esc(card.momentum.label) : "") +
           "</p>" +
           '<p class="fc-summary__why">' +
           esc(card.explanation) +
@@ -128,6 +150,10 @@
         return "<li>" + esc(x) + "</li>";
       })
       .join("");
+    var conf = card.confidence || {};
+    function list(arr) {
+      return (arr || []).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("");
+    }
     return (
       '<section class="fc-section fc-species-detail">' +
       '<p class="fc-section__eyebrow">' +
@@ -140,15 +166,32 @@
       levelClass(card.level) +
       '">' +
       esc(card.confidenceLabel) +
-      " confidence</span></p>" +
+      " confidence</span>" +
+      (card.momentum
+        ? ' · <span class="fc-momentum">' + esc(card.momentum.label) + "</span>"
+        : "") +
+      "</p>" +
       "<h2>Current seasonal status</h2><p>" +
-      esc(card.phase.label) +
+      esc(card.phase && card.phase.label) +
       " — " +
-      esc(card.phase.note) +
+      esc(card.phase && card.phase.note) +
       "</p>" +
-      "<h2>Environmental confidence</h2><p>" +
-      esc(card.confidenceReason || card.explanation) +
-      "</p>" +
+      "<h2>Why is confidence " +
+      esc((conf.band || card.level || "").toString()) +
+      "?</h2>" +
+      "<ul>" +
+      list(conf.band === "low" ? conf.whyLow : conf.whyHigh) +
+      list(conf.band === "moderate" ? conf.whyLow : []) +
+      "</ul>" +
+      "<h2>What changed since yesterday?</h2><ul>" +
+      list(conf.changedSinceYesterday) +
+      "</ul>" +
+      "<h2>What would improve confidence?</h2><ul>" +
+      list(conf.wouldImprove) +
+      "</ul>" +
+      "<h2>What would reduce confidence?</h2><ul>" +
+      list(conf.wouldReduce) +
+      "</ul>" +
       "<h2>Preferred habitat</h2><p>" +
       esc(card.preferredHabitat) +
       "</p>" +
@@ -161,15 +204,15 @@
       "<h2>Ethical harvesting</h2><ul>" +
       ethics +
       "</ul>" +
-      "<h2>Expected trend (coming week)</h2><p><strong>" +
-      esc(card.trend.label) +
+      "<h2>Seasonal momentum</h2><p><strong>" +
+      esc((card.momentum && card.momentum.label) || (card.trend && card.trend.label)) +
       ".</strong> " +
-      esc(card.trend.detail) +
+      esc((card.momentum && card.momentum.why) || (card.trend && card.trend.detail)) +
       "</p>" +
-      "<h2>Confidence explanation</h2><ul>" +
+      "<h2>Variables that most influenced the score</h2><ul>" +
       whys +
       "</ul>" +
-      '<p class="fc-honesty">Educational local index — not a live detection forecast. Confirm every identification yourself.</p>' +
+      '<p class="fc-honesty">Transparent educational suitability — not opaque AI and not live detection.</p>' +
       '<p><a href="species.html">← All species</a> · <a href="timeline.html">Season timeline</a></p>' +
       "</section>"
     );
@@ -345,9 +388,7 @@
       '<div class="wds-map-stage fc-heatmap-stage">' +
       cells +
       "</div></div>" +
-      '<p class="fc-honesty">Architecture ready for future observation overlays. Current view is educational habitat alignment for ' +
-      esc(species && species.name) +
-      ".</p>" +
+      '<p class="fc-honesty">Architecture ready for future observation overlays (heat maps, habitat suitability, species overlays, observation density, public land, terrain suitability). Current view is educational schematic suitability — not georeferenced detection.</p>' +
       '<p><a href="season-table.html">Classic season table map →</a></p></section>'
     );
   }

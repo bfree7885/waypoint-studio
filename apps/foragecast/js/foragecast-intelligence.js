@@ -235,6 +235,13 @@
   }
 
   function buildSpeciesCards(speciesList, zones, conditions) {
+    if (global.ForageCastOIE && ForageCastOIE.engine) {
+      return ForageCastOIE.engine.buildSummary({
+        speciesList: speciesList,
+        zones: zones,
+        conditions: conditions
+      }).species;
+    }
     if (!global.ForageCastModel || !speciesList || !zones || !conditions) return [];
     return speciesList.map(function (species) {
       var prediction = ForageCastModel.computeCountyPrediction(species, zones, conditions);
@@ -276,6 +283,9 @@
 
   function buildSummary(options) {
     options = options || {};
+    if (global.ForageCastOIE && ForageCastOIE.engine) {
+      return ForageCastOIE.engine.buildSummary(options);
+    }
     var speciesList = options.speciesList || [];
     var zones = options.zones || [];
     var conditions = options.conditions || {};

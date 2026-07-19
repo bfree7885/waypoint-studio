@@ -65,31 +65,35 @@
       ? loc.name + ", " + (loc.stateCode || loc.state)
       : (data.region && data.region.county) || "your region";
 
-    var speciesRows = (summary.species || [])
+    var opportunities = (summary.opportunities || summary.species || [])
       .slice(0, 5)
       .map(function (card) {
+        var momentum = card.momentum
+          ? '<span class="fc-momentum">' + escapeHtml(card.momentum.label) + "</span>"
+          : "";
+        var text = card.text ||
+          (card.name + " — " + card.confidenceLabel + " confidence. " + (card.why || ""));
         return (
           '<li class="fc-summary__item">' +
           '<a class="fc-summary__species" href="' +
           escapeHtml(card.href) +
           '">' +
           escapeHtml(card.name) +
-          "</a>" +
-          '<span class="' +
-          levelClass(card.level) +
-          '">' +
-          escapeHtml(card.confidenceLabel) +
-          " confidence</span>" +
+          "</a> " +
+          momentum +
+          '<p class="fc-summary__opportunity">' +
+          escapeHtml(text) +
+          "</p>" +
           '<p class="fc-summary__why"><span class="fc-summary__why-label">Why</span> ' +
-          escapeHtml(card.why) +
+          escapeHtml(card.why || card.explanation || "") +
           "</p>" +
           "</li>"
         );
       })
       .join("");
 
-    var conditionRows = (summary.briefing.bullets || [])
-      .slice(0, 4)
+    var conditionRows = (summary.briefing && summary.briefing.bullets || [])
+      .slice(0, 5)
       .map(function (b) {
         return (
           '<li class="fc-summary__item fc-summary__item--condition">' +
@@ -104,17 +108,36 @@
       })
       .join("");
 
+    var forecastRows = (summary.forecast || [])
+      .map(function (f) {
+        return (
+          "<li><p>" +
+          escapeHtml(f.text) +
+          '</p><p class="fc-summary__why">' +
+          escapeHtml(f.why) +
+          "</p></li>"
+        );
+      })
+      .join("");
+
+    var insightRows = (summary.insights || [])
+      .map(function (i) {
+        return "<li>" + escapeHtml(i.text || i) + "</li>";
+      })
+      .join("");
+
     var freshness =
       data._freshness && window.ForageCastFetch
         ? '<p class="fc-freshness">' +
           escapeHtml(ForageCastFetch.formatFreshness(data._freshness)) +
           (summary.liveWeather ? " · live weather linked" : " · weather uncertain") +
+          (summary.engine && summary.engine._fromCache ? " · derived model cached" : "") +
           "</p>"
         : "";
 
     return (
       '<section class="fc-summary" aria-labelledby="fc-summary-title">' +
-      '<p class="wds-eyebrow">ForageCast · outdoor intelligence · ' +
+      '<p class="wds-eyebrow">ForageCast · outdoor intelligence engine · ' +
       escapeHtml(regionLabel) +
       "</p>" +
       '<h1 class="fc-summary__title" id="fc-summary-title">' +
@@ -127,14 +150,24 @@
       '<p class="fc-honesty" role="note">' +
       escapeHtml(summary.honesty) +
       "</p>" +
-      '<h2 class="fc-summary__subtitle">Species attention</h2>' +
+      '<h2 class="fc-summary__subtitle">Today’s best opportunities</h2>' +
       '<ul class="fc-summary__list">' +
-      speciesRows +
+      opportunities +
       "</ul>" +
-      '<h2 class="fc-summary__subtitle">Condition reading</h2>' +
+      '<h2 class="fc-summary__subtitle">Why conditions are changing</h2>' +
       '<ul class="fc-summary__list">' +
       conditionRows +
       "</ul>" +
+      (forecastRows
+        ? '<h2 class="fc-summary__subtitle">Forecast intelligence</h2><ul class="fc-summary__list">' +
+          forecastRows +
+          "</ul>"
+        : "") +
+      (insightRows
+        ? '<h2 class="fc-summary__subtitle">Naturalist insights</h2><ul class="fc-insight-list">' +
+          insightRows +
+          "</ul>"
+        : "") +
       '<p class="fc-summary__links">' +
       '<a class="wds-btn wds-btn--primary wds-btn--sm" href="conditions.html">Today’s conditions</a> ' +
       '<a class="wds-btn wds-btn--secondary wds-btn--sm" href="species.html">All species</a> ' +

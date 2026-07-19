@@ -106,4 +106,7 @@ node automation/test-foragecast-recovery.mjs
 **Before:** polished prototype / field-guide shell.  
 **After Phase 1:** cohesive outdoor planning application shell with summary-first intelligence, task IA, interpreted conditions, and honest uncertainty.
 
+**Phase 2** adds the layered Outdoor Intelligence Engine — see
+[`FORAGECAST-OUTDOOR-INTELLIGENCE-ENGINE.md`](FORAGECAST-OUTDOOR-INTELLIGENCE-ENGINE.md).
+
 **Not yet V1.0** — map depth, species breadth, and provider resilience still gate a true “use before every trip” product — but the product now feels like an application rather than a dataset showcase.

@@ -23,6 +23,9 @@ pin secret patches for crowds, or replace field identification.
 **Product Recovery Phase 1** (summary-first outdoor intelligence): see
 [`docs/FORAGECAST-PRODUCT-RECOVERY.md`](FORAGECAST-PRODUCT-RECOVERY.md).
 
+**Product Recovery Phase 2** (Outdoor Intelligence Engine): see
+[`docs/FORAGECAST-OUTDOOR-INTELLIGENCE-ENGINE.md`](FORAGECAST-OUTDOOR-INTELLIGENCE-ENGINE.md).
+
 ------------------------------------------------------------------------
 
 # Target Users

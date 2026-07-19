@@ -242,13 +242,34 @@
   margin-top: 0.75rem;
 }
 
-.fc-species-detail h2 {
-  margin-top: 1.25rem;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
+.fc-momentum {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--wds-text-tertiary, #777);
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--wds-border-subtle, #ccc);
+  color: var(--wds-text-secondary, #555);
+  vertical-align: middle;
 }
+
+.fc-summary__opportunity {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.fc-insight-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--wds-text-secondary, #555);
+  line-height: 1.5;
+}
+
+.fc-insight-list li {
+  margin: 0.35rem 0;
+}
+
 
 @media (max-width: 640px) {
   .fc-summary__title {
