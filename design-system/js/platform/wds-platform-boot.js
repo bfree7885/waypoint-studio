@@ -128,6 +128,13 @@
     }
   }
 
+  /** Update the status line on an existing boot shell (no remount). */
+  function status(el, text) {
+    if (!el) return;
+    var line = el.querySelector(".wds-boot__status");
+    if (line) line.textContent = String(text == null ? "" : text);
+  }
+
   /**
    * If the mount still has a boot shell after timeoutMs, show failure UI.
    */
@@ -154,13 +161,14 @@
 
   global.WDS = global.WDS || {};
   global.WDS.platformBoot = {
-    version: "1.0.0",
+    version: "1.0.1",
     DEFAULT_TIMEOUT_MS: DEFAULT_TIMEOUT_MS,
     html: html,
     failHtml: failHtml,
     mount: mount,
     fail: fail,
     clear: clear,
+    status: status,
     watch: watch
   };
 })(typeof window !== "undefined" ? window : globalThis);

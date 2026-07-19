@@ -9,6 +9,8 @@
   var byId = {};
   var typeAliases = {};
   var kindsIndex = {};
+  var loadPromise = null;
+  var loadedBase = null;
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -37,7 +39,14 @@
   function load(opts) {
     opts = opts || {};
     var base = opts.base || "../../design-system/steepleaf/";
-    return Promise.all([
+    if (graph && loadedBase === base && !opts.force) {
+      return Promise.resolve(graph);
+    }
+    if (loadPromise && loadedBase === base && !opts.force) {
+      return loadPromise;
+    }
+    loadedBase = base;
+    loadPromise = Promise.all([
       loadJson(base + "samples/demo-graph.json"),
       loadJson(base + "relationship-types.json").catch(function () {
         return { types: [], aliases: {} };
@@ -45,14 +54,21 @@
       loadJson(base + "entity-kinds.json").catch(function () {
         return { kinds: [] };
       })
-    ]).then(function (parts) {
-      typeAliases = parts[1].aliases || {};
-      kindsIndex = {};
-      (parts[2].kinds || []).forEach(function (k) {
-        kindsIndex[k.id] = k;
+    ])
+      .then(function (parts) {
+        typeAliases = parts[1].aliases || {};
+        kindsIndex = {};
+        (parts[2].kinds || []).forEach(function (k) {
+          kindsIndex[k.id] = k;
+        });
+        return indexGraph(parts[0]);
+      })
+      .catch(function (err) {
+        loadPromise = null;
+        loadedBase = null;
+        throw err;
       });
-      return indexGraph(parts[0]);
-    });
+    return loadPromise;
   }
 
   function resolveType(type) {

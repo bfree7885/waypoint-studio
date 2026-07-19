@@ -49,9 +49,35 @@
       if (window.WDS && WDS.appShell) {
         WDS.appShell.mount({ appId: "steepleaf", productName: "Steepleaf", shellDepth: 2 });
       }
-      if (window.WDS && WDS.steepleafUI) {
-        WDS.steepleafUI.mountEntity(document.getElementById("stl-entity-mount"));
+      var mount = document.getElementById("stl-entity-mount");
+      var deadline = Date.now() + 12000;
+      function start() {
+        if (window.WDS && WDS.steepleafUI && typeof WDS.steepleafUI.mountEntity === "function") {
+          WDS.steepleafUI.mountEntity(mount);
+          return;
+        }
+        if (Date.now() >= deadline) {
+          if (window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+            WDS.platformBoot.fail(mount, {
+              product: "Steepleaf",
+              title: "Could not open this tea page",
+              detail: "Entity scripts did not load. Check your connection and retry.",
+              homeHref: "../",
+              supportHref: "../../../support.html"
+            });
+          } else if (mount) {
+            mount.innerHTML =
+              '<p role="alert">Tea page failed to load. <button type="button" onclick="location.reload()">Retry</button></p>';
+            mount.removeAttribute("aria-busy");
+          }
+          return;
+        }
+        if (window.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+          WDS.platformBoot.status(mount, "Waiting for entity scripts…");
+        }
+        requestAnimationFrame(start);
       }
+      start();
     });
   </script>
 </body>

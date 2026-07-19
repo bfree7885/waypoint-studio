@@ -42,7 +42,7 @@
         detail: "The sample graph did not finish loading. Check your connection and retry.",
         homeHref: "../",
         supportHref: "../../../support.html",
-        timeoutMs: 15000,
+        timeoutMs: 12000,
         onRetry: function () {
           mountExplore(root, opts);
         }
@@ -50,8 +50,14 @@
     } else {
       root.innerHTML = '<p class="stl-loading">Opening the tea knowledge graph…</p>';
     }
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+      WDS.platformBoot.status(root, "Fetching sample graph…");
+    }
 
     return WDS.steepleafGraph.load({ base: base }).then(function () {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+        WDS.platformBoot.status(root, "Building search…");
+      }
       if (global.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
         WDS.platformBoot.clear(root);
       }
@@ -84,10 +90,11 @@
         root.innerHTML =
           '<div class="stl-explore">' +
           '<header class="stl-header">' +
-          '<p class="stl-eyebrow">Steepleaf · Knowledge Graph</p>' +
-          "<h1>Tea knowledge & discovery</h1>" +
-          '<p class="stl-lead">Move from leaf to land to process to cup — every recommendation explains why.</p>' +
-          '<p class="stl-honesty">demo · educational sample · not a live shop · no social rankings</p></header>' +
+          '<p class="stl-eyebrow">Steepleaf · Educational knowledge graph</p>' +
+          "<h1>Browse teas, regions, and styles</h1>" +
+          '<p class="stl-lead">Search labeled sample teas, follow relations from leaf to land to cup, and see why a suggestion appears. This is not your private journal.</p>' +
+          '<p class="stl-honesty">educational sample · not your collection · not a shop · no social rankings</p>' +
+          '<p class="stl-bridge"><a href="../">Open the private companion</a> to brew, track teas you own, and keep tasting notes on this device.</p></header>' +
           '<section class="stl-panel" aria-label="Graph-grounded guide">' +
           "<h2>Ask the graph</h2>" +
           '<form id="stl-ai-form" class="stl-row">' +
@@ -279,23 +286,31 @@
     if (global.WDS && WDS.platformBoot && WDS.platformBoot.mount) {
       WDS.platformBoot.mount(root, {
         product: "Steepleaf",
-        title: "Entity",
-        detail: "Loading this tea graph entity.",
+        title: "Tea page",
+        detail: "Loading this labeled sample from the knowledge graph.",
         status: "Starting…"
       });
       WDS.platformBoot.watch(root, {
         product: "Steepleaf",
-        title: "Could not open this entity",
-        detail: "The sample graph did not finish loading.",
+        title: "Could not open this tea page",
+        detail: "The educational sample graph did not finish loading.",
         homeHref: "../",
         supportHref: "../../../support.html",
-        timeoutMs: 15000,
+        timeoutMs: 12000,
         onRetry: function () {
           mountEntity(root, opts);
         }
       });
+    } else {
+      root.innerHTML = '<p class="stl-loading">Opening this tea page…</p>';
+    }
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+      WDS.platformBoot.status(root, "Fetching sample graph…");
     }
     return WDS.steepleafGraph.load({ base: base }).then(function () {
+      if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+        WDS.platformBoot.status(root, "Building page…");
+      }
       if (global.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
         WDS.platformBoot.clear(root);
       }
@@ -366,7 +381,7 @@
         '<article class="stl-entity">' +
         '<p class="stl-eyebrow">' +
         esc(e.kind) +
-        " · sample</p>" +
+        " · educational sample</p>" +
         "<h1>" +
         esc(e.name) +
         "</h1>" +
@@ -374,9 +389,10 @@
         "<p>" +
         esc(e.description || e.summary) +
         "</p>" +
-        '<p class="stl-honesty">demo · educational · confidence ' +
+        '<p class="stl-honesty">educational sample · not your private journal · confidence ' +
         esc((e.meta && e.meta.confidence) || "moderate") +
         "</p>" +
+        '<p class="stl-bridge"><a href="../">Add a tea you own in the companion</a> · <a href="../explore/">Back to graph search</a></p>' +
         '<section><h2>Overview</h2><p>' +
         esc(e.summary) +
         "</p></section>" +
@@ -393,9 +409,9 @@
             esc(map.precision || "approx") +
             ")</p></section>"
           : "") +
-        "<section><h2>AI summary</h2><p>" +
+        "<section><h2>Educational summary</h2><p>" +
         esc(ai.answer) +
-        "</p></section>" +
+        '</p><p class="stl-muted">Generated from this sample graph — not a tasting note from your journal.</p></section>' +
         "<section><h2>Related entities</h2><ul class=\"stl-list\">" +
         (related || "<li>No edges yet.</li>") +
         "</ul></section>" +
@@ -460,7 +476,7 @@
             e.unknowns.map(function (u) { return "<li>" + esc(u) + "</li>"; }).join("") +
             "</ul></section>"
           : "") +
-        '<p class="stl-nav"><a href="../explore/">← Explore graph</a> · <a href="../">Overview</a></p>' +
+        '<p class="stl-nav"><a href="../explore/">← Explore graph</a> · <a href="../">Private companion</a></p>' +
         "</article>";
       root.removeAttribute("aria-busy");
     }).catch(function (err) {

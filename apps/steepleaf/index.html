@@ -25,10 +25,12 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="wpf-page sl-page">
-      <p class="sl-peers" style="max-width:72rem;margin:0.5rem auto 0;padding:0 1rem;font-size:0.85rem;color:#5a6b60">
-        <a href="./">Companion</a> ·
-        <a href="explore/">Knowledge graph</a> ·
-        <a href="entity/?id=stl_tea-longjing-shifeng">Sample tea page</a>
+      <p class="sl-peers" aria-label="Steepleaf surfaces">
+        <a href="./" aria-current="page">Private companion</a>
+        <span aria-hidden="true">·</span>
+        <a href="explore/">Educational knowledge graph</a>
+        <span aria-hidden="true">·</span>
+        <a href="entity/?id=stl_tea-longjing-shifeng">Labeled sample tea</a>
       </p>
       <noscript>
         <section>
@@ -68,9 +70,45 @@
       if (window.WDS && WDS.appShell) {
         WDS.appShell.mount({ appId: "steepleaf", productName: "Steepleaf", shellDepth: 1 });
       }
-      if (window.WDS && WDS.steepleafApp) {
-        WDS.steepleafApp.mount(document.getElementById("sl-mount"));
+      var mount = document.getElementById("sl-mount");
+      var deadline = Date.now() + 12000;
+      function start() {
+        if (window.WDS && WDS.steepleafApp && typeof WDS.steepleafApp.mount === "function") {
+          WDS.steepleafApp.mount(mount);
+          return;
+        }
+        if (Date.now() >= deadline) {
+          if (window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+            WDS.platformBoot.fail(mount, {
+              product: "Steepleaf",
+              title: "Could not open Steepleaf",
+              detail: "Companion scripts did not load. Check your connection and retry.",
+              homeHref: "../../",
+              supportHref: "../../support.html"
+            });
+          } else if (mount) {
+            mount.innerHTML =
+              '<p role="alert">Steepleaf failed to load. <button type="button" onclick="location.reload()">Retry</button></p>';
+            mount.removeAttribute("aria-busy");
+          }
+          return;
+        }
+        if (window.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+          WDS.platformBoot.status(mount, "Waiting for companion scripts…");
+        }
+        requestAnimationFrame(start);
       }
+      if (window.WDS && WDS.platformBoot && WDS.platformBoot.watch) {
+        WDS.platformBoot.watch(mount, {
+          product: "Steepleaf",
+          title: "Could not open Steepleaf",
+          detail: "Startup took too long. You can retry or return to Studio home.",
+          homeHref: "../../",
+          supportHref: "../../support.html",
+          timeoutMs: 15000
+        });
+      }
+      start();
     });
   </script>
 </body>
