@@ -7,6 +7,11 @@ node_modules/
 scripts/logs/
 automation/artifacts/
 
+# Waypoint University owner secrets (never commit)
+private/university/server/.env
+private/university/server/.owner-secret
+
+
 # Deploy-time build metadata is injected into the Pages artifact from GITHUB_SHA.
 # Keep a committed stub for local browsing; ignore accidental local regenerations
 # when developers run inject/generate against HEAD.
@@ -26,3 +31,8 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# University smoke/test env files
+private/university/server/.env.smoke
+private/university/server/.env.*
+!private/university/server/.env.example

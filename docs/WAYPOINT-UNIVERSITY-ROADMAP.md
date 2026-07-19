@@ -12,27 +12,28 @@ Neighborhood graph, learning dashboard, knowledge health, research workflow, sou
 Understanding Map, learning profile, gaps-as-opportunities, next steps with why, cross-disciplinary bridges, timeline, project intelligence, reading annotations, research-assist search.
 
 ### Module 4 — Scholar (research environment)
-Research workspaces, sessions, field notes, source reliability, project research hubs, thinking-tool foundations. Primary “ideas begin here” surface.
+Research workspaces, sessions, field notes, source reliability, project research hubs, thinking-tool foundations.
+
+### Module 5 — Private access & daily use
+Loopback owner authentication, daily home workspace, journal, path entry management, editor drafts/preview, JSON+Markdown export. Exact access: `private/university/ACCESS.md`. Remote subdomain deferred.
 
 ---
 
 ## Recommended next modules
 
-### Module 5 — Capture depth & thinking canvases
-1. Media blobs on field notes / sources (images, audio)  
-2. Full backup including media  
-3. Session link pickers (questions, concepts, sources)  
-4. Hypothesis board + decision journal review  
-5. Scholar command palette (session / field / search)  
-6. Optional GPS / place assist for field notes  
+### Module 6 — Capture depth & remote private host
+1. Media blobs + full backup  
+2. DNS/TLS private host or Tailscale/Cloudflare Access for `university.waypointstudio.org`  
+3. Session link pickers  
+4. Hypothesis / decision canvases  
 
-### Module 6 — Scale & craft
+### Module 7 — Scale & craft
 1. Worker-built search + incremental graph/insights  
 2. Virtualized library  
 3. Duplicate merge + revision restore  
 4. Calm whole-graph overview  
 
-### Module 7 — Review (only when ready)
+### Module 8 — Review (only when ready)
 1. Optional private spaced repetition  
 2. No social / no leaderboards  
 
@@ -47,11 +48,11 @@ Research workspaces, sessions, field notes, source reliability, project research
 
 | Item | Severity | Notes |
 |------|----------|-------|
-| Nav density | Med | Scholar-first collapse later |
-| session.*Ids unused in UI | Low | Module 5 pickers |
-| Thinking stubs ≠ canvases | By design | Module 5 |
-| Export omits media | High for V1.0 | Module 5 |
-| No automated browser tests | Medium | Smoke under `private/` |
+| Knowledge in browser IDB | By design | Export often |
+| No remote private subdomain | High for travel | Needs host ≠ Pages |
+| Media omitted from export | High for V1.0 | Module 6 |
+| Automated browser IDB E2E | Medium | Manual journey after setup |
+| Thinking stubs ≠ canvases | By design | Module 6 |
 
 ---
 
@@ -59,9 +60,9 @@ Research workspaces, sessions, field notes, source reliability, project research
 
 - Instant feel at ≥5k nodes  
 - Media + complete backup  
-- Scholar sessions + field capture habitual  
+- Private remote access option (authenticated)  
 - Neighborhood **and** calm overview graph  
 - Merge + revision restore  
 - Zero public-suite leakage  
 
-Module 4 makes University feel like a **private research laboratory**; media and deeper thinking canvases remain for Module 5 / V1.0.
+Module 5 makes University **usable today on the owner machine** with real auth and persistence.

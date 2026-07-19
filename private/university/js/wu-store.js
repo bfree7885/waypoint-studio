@@ -225,6 +225,9 @@
         nodeIds: Array.isArray(thinking.nodeIds) ? thinking.nodeIds : [],
         evidenceIds: Array.isArray(thinking.evidenceIds) ? thinking.evidenceIds : []
       },
+      journal: {
+        date: (partial.journal && partial.journal.date) || (partial.kind === "journal" ? now.slice(0, 10) : null)
+      },
       annotations: normalizeAnnotations(partial.annotations),
       capture: partial.capture || null,
       meta: partial.meta && typeof partial.meta === "object" ? partial.meta : {},
@@ -512,8 +515,72 @@
       product: "waypoint-university",
       nodes: nodes,
       edges: edges,
-      note: "Media blobs are not included in JSON export in Foundation — use full backup when added."
+      note: "Media blobs are not included in JSON export — attach media backup when Module 5 media lands."
     };
+  }
+
+  /** Readable Markdown export of all knowledge objects */
+  async function exportMarkdownArchive() {
+    var nodes = await listNodes();
+    var edges = await listEdges();
+    nodes = nodes.slice().sort(function (a, b) {
+      return String(a.title || "").localeCompare(String(b.title || ""));
+    });
+    var parts = [
+      "# Waypoint University export",
+      "",
+      "_Exported " + nowIso() + " · schema " + Schema().SCHEMA + "_",
+      "",
+      "## Contents",
+      ""
+    ];
+    nodes.forEach(function (n) {
+      parts.push("- [" + n.title + "](#" + n.id + ") — " + n.kind);
+    });
+    parts.push("", "---", "");
+    nodes.forEach(function (n) {
+      parts.push('<a id="' + n.id + '"></a>', "", "# " + n.title, "");
+      parts.push("- Kind: " + n.kind);
+      parts.push("- Status: " + (n.status || "active"));
+      parts.push("- Updated: " + (n.updatedAt || ""));
+      if ((n.tags || []).length) parts.push("- Tags: " + n.tags.join(", "));
+      if ((n.projects || []).length) parts.push("- Projects: " + n.projects.join(", "));
+      parts.push("", n.body || "_No body._", "", "### Relationships", "");
+      var rels = edges.filter(function (e) {
+        return e.fromId === n.id || e.toId === n.id;
+      });
+      if (!rels.length) parts.push("_None._", "");
+      else {
+        rels.forEach(function (e) {
+          var other = e.fromId === n.id ? e.toId : e.fromId;
+          parts.push("- " + e.type + " → `" + other + "`");
+        });
+        parts.push("");
+      }
+      parts.push("---", "");
+    });
+    return parts.join("\n");
+  }
+
+  async function saveDraft(nodeId, payload) {
+    var drafts = (await getMeta("drafts", {})) || {};
+    drafts[nodeId || "new"] = {
+      payload: payload,
+      savedAt: nowIso()
+    };
+    await setMeta("drafts", drafts);
+    return drafts[nodeId || "new"];
+  }
+
+  async function getDraft(nodeId) {
+    var drafts = (await getMeta("drafts", {})) || {};
+    return drafts[nodeId || "new"] || null;
+  }
+
+  async function clearDraft(nodeId) {
+    var drafts = (await getMeta("drafts", {})) || {};
+    delete drafts[nodeId || "new"];
+    await setMeta("drafts", drafts);
   }
 
   async function importBundle(bundle, mode) {
@@ -699,6 +766,10 @@
     endSession: endSession,
     captureFieldNote: captureFieldNote,
     exportBundle: exportBundle,
+    exportMarkdownArchive: exportMarkdownArchive,
+    saveDraft: saveDraft,
+    getDraft: getDraft,
+    clearDraft: clearDraft,
     importBundle: importBundle,
     ensurePathTemplates: ensurePathTemplates,
     getMeta: getMeta,

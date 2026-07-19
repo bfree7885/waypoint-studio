@@ -1,27 +1,21 @@
 /**
- * Waypoint University — Module 4 application shell.
- * Scholar research environment + learning companion.
+ * Waypoint University — Module 5 application shell.
+ * Daily-use private workspace after owner authentication.
  */
 (function (global) {
   "use strict";
 
   var NAV = [
     ["home", "Home"],
-    ["scholar", "Scholar"],
-    ["capture", "Quick Capture"],
-    ["search", "Search"],
-    ["graph", "Graph"],
-    ["understanding", "Understanding"],
-    ["next", "Next Steps"],
-    ["timeline", "Timeline"],
-    ["reading", "Reading"],
+    ["knowledge", "Knowledge"],
+    ["scholar", "Research"],
     ["paths", "Learning Paths"],
-    ["research", "Research"],
+    ["projects", "Projects"],
     ["sources", "Sources"],
     ["questions", "Questions"],
-    ["projects", "Projects"],
-    ["health", "Knowledge Health"],
-    ["library", "Library"],
+    ["journal", "Journal"],
+    ["graph", "Graph"],
+    ["search", "Search"],
     ["settings", "Settings"]
   ];
 
@@ -232,187 +226,129 @@
     }
 
     function homePanel() {
-      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
-        recentViews: state.recentIds,
-        learningGoals: state.learningGoals,
-        lastWriteAt: state.lastWriteAt
-      });
-      var profile = insights.profile;
       var continueLearning = state.nodes
         .filter(function (n) {
-          return n.lastOpenedAt && n.kind !== "capture";
+          return n.lastOpenedAt && n.kind !== "capture" && n.status !== "archived";
         })
         .sort(byOpened)
-        .slice(0, 6);
-      var started = state.nodes
+        .slice(0, 8);
+      var recentKnowledge = state.nodes
         .filter(function (n) {
-          return n.kind !== "path" && n.kind !== "capture";
+          return n.kind !== "path" && n.kind !== "capture" && n.status !== "archived";
         })
-        .sort(function (a, b) {
-          return String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
-        })
-        .slice(0, 6);
-      var learnGaps = [];
-      (insights.gaps || []).forEach(function (g) {
-        (g.items || []).slice(0, 3).forEach(function (it) {
-          if (it.node) learnGaps.push(it.node);
-        });
-      });
-      learnGaps = learnGaps.slice(0, 6);
-      var freq = Graph().frequentlyConnected(state.graphIndex, 6).map(function (x) {
-        return x.node;
-      });
+        .sort(byUpdated)
+        .slice(0, 8);
       var questions = state.nodes
         .filter(function (n) {
           return (
             n.kind === "question" &&
-            (!n.question || n.question.status === "open" || n.question.status === "investigating")
+            (!n.question ||
+              n.question.status === "open" ||
+              n.question.status === "investigating" ||
+              n.question.status === "partial")
           );
         })
         .sort(byUpdated)
-        .slice(0, 6);
-      var recentConn = Graph().recentConnections(state.graphIndex, 6);
-      var reading = state.nodes.filter(function (n) {
-        return n.queue && n.queue.reading;
-      }).slice(0, 6);
+        .slice(0, 8);
       var focus = state.nodes.filter(function (n) {
-        return n.queue && n.queue.focusToday;
-      }).slice(0, 6);
-      var next = insights.next || [];
-      var bridges = (insights.bridges || []).filter(function (b) {
-        return b.opportunity;
-      }).slice(0, 3);
+        return n.queue && n.queue.focusToday && n.status !== "archived";
+      }).slice(0, 8);
+      var review = state.nodes
+        .filter(function (n) {
+          return n.review && n.review.enabled;
+        })
+        .sort(byUpdated)
+        .slice(0, 8);
+      var projects = Schema().PROJECTS.map(function (p) {
+        var count = state.nodes.filter(function (n) {
+          return (n.projects || []).indexOf(p.id) >= 0 && n.status !== "archived";
+        }).length;
+        return { id: p.id, label: p.label, count: count };
+      })
+        .filter(function (p) {
+          return p.count > 0;
+        })
+        .sort(function (a, b) {
+          return b.count - a.count;
+        })
+        .slice(0, 8);
+      var active = Scholar().activeSession(state.nodes, state.activeSessionId);
 
       return (
         '<header class="wu-hero">' +
-        '<p class="wu-eyebrow">Learning companion · Scholar</p>' +
-        '<h1 class="wu-title">What are you thinking about today?</h1>' +
-        '<p class="wu-lead">Understand what you know, notice what needs attention, and take one meaningful next step.</p>' +
-        '<div class="wu-hero-actions">' +
-        '<a class="wu-btn wu-btn--primary" href="#scholar">Open Scholar</a>' +
-        '<a class="wu-btn" href="#next">Next steps</a>' +
-        '<a class="wu-btn" href="#capture">Quick capture</a>' +
-        "</div>" +
-        '<p class="wu-meta">' +
-        profile.nodeCount +
-        " topics · depth " +
-        profile.depth.toFixed(1) +
-        " · breadth " +
-        profile.breadth +
-        " lanes · momentum " +
-        profile.momentum +
-        " this week" +
-        (profile.knowledgeConfidence != null
-          ? " · confidence " + profile.knowledgeConfidence.toFixed(1) + "/5"
-          : "") +
-        "</p></header>" +
-        '<section class="wu-card wu-profile-strip">' +
-        "<h2>Learning profile</h2>" +
-        '<p class="wu-lead">Self-awareness, not evaluation.</p>' +
-        '<ul class="wu-meta-row">' +
-        "<li><strong>Focus</strong> " +
-        (profile.currentFocus.length
-          ? profile.currentFocus
-              .map(function (f) {
-                return esc(f.label);
-              })
-              .join(", ")
-          : "Open anything to shape focus") +
-        "</li>" +
-        "<li><strong>Improving</strong> " +
-        profile.improving.length +
-        " · <strong>Quiet</strong> " +
-        profile.neglected.length +
-        " · <strong>Revisited</strong> " +
-        profile.revisited.length +
-        " · <strong>Cross-links</strong> " +
-        profile.interdisciplinaryLinks +
-        "</li></ul>" +
-        '<p><a href="#understanding">Full understanding map →</a></p></section>' +
+        '<p class="wu-eyebrow">Daily workspace</p>' +
+        '<h1 class="wu-title">Continue where you left off</h1>' +
+        '<p class="wu-lead">Capture, connect, and return — everything here is your real data.</p>' +
+        (active
+          ? '<p class="wu-meta">Active research session: <a href="#item/' +
+            encodeURIComponent(active.id) +
+            '">' +
+            esc(active.title) +
+            "</a> · <a href=\"#scholar/end\">End session</a></p>"
+          : '<p class="wu-meta"><a href="#scholar/session">Start a research session</a></p>') +
+        "</header>" +
+        '<section class="wu-card"><h2>Quick capture</h2>' +
+        '<form id="wu-home-capture" class="wu-form">' +
+        "<label>Type <select name=\"kind\">" +
+        [
+          ["concept", "Note / concept"],
+          ["question", "Question"],
+          ["idea", "Idea"],
+          ["book", "Source (book)"],
+          ["article", "Source (article)"],
+          ["session", "Research session"],
+          ["observation", "Observation"],
+          ["journal", "Journal entry"],
+          ["capture", "Quick note"]
+        ]
+          .map(function (pair) {
+            return "<option value=\"" + pair[0] + "\">" + esc(pair[1]) + "</option>";
+          })
+          .join("") +
+        "</select></label>" +
+        "<label>Title <input name=\"title\" required placeholder=\"Spatial Computing\" autofocus/></label>" +
+        "<label>Body (Markdown)<textarea name=\"body\" rows=\"5\" placeholder=\"Write freely…\"></textarea></label>" +
+        "<label>Tags <input name=\"tags\" placeholder=\"spatial, vision\"/></label>" +
+        '<fieldset><legend>Projects</legend><div class="wu-proj-grid">' +
+        projectOptions([]) +
+        "</div></fieldset>" +
+        "<label><input type=\"checkbox\" name=\"focus\"/> Mark as current focus</label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Save</button></form></section>' +
         '<div class="wu-home-grid">' +
-        '<section class="wu-card"><h2>Suggested next steps</h2>' +
-        (next.length
-          ? '<ul class="wu-list">' +
-            next
-              .map(function (s) {
-                return (
-                  "<li><a href=\"#item/" +
-                  encodeURIComponent(s.id) +
-                  "\"><strong>" +
-                  esc(s.node.title) +
-                  "</strong></a>" +
-                  '<span class="wu-meta">' +
-                  esc(s.why) +
-                  "</span></li>"
-                );
-              })
-              .join("") +
-            "</ul>"
-          : '<p class="wu-empty">Capture and link a few ideas — suggestions will appear.</p>') +
-        '<p><a href="#next">All next steps →</a></p></section>' +
-        '<section class="wu-card"><h2>Continue learning</h2>' +
+        '<section class="wu-card"><h2>Continue</h2>' +
         listHtml(continueLearning, "Open any item — it appears here.") +
         "</section>" +
-        '<section class="wu-card"><h2>Learning opportunities</h2>' +
-        listHtml(learnGaps, "No pressing opportunities — keep connecting.") +
-        '<p><a href="#next">Gap detail →</a></p></section>' +
-        '<section class="wu-card"><h2>Cross-disciplinary sparks</h2>' +
-        (bridges.length
-          ? '<ul class="wu-list">' +
-            bridges
-              .map(function (b) {
-                return (
-                  "<li><strong>" +
-                  esc(b.label) +
-                  "</strong>" +
-                  '<span class="wu-meta">' +
-                  esc(b.why) +
-                  "</span>" +
-                  (b.seedNode
-                    ? ' <a href="#item/' + encodeURIComponent(b.seedNode.id) + '">Explore</a>'
-                    : "") +
-                  "</li>"
-                );
-              })
-              .join("") +
-            "</ul>"
-          : '<p class="wu-empty">Tag work across related fields to surface bridges.</p>') +
-        "</section>" +
-        '<section class="wu-card"><h2>Topics started recently</h2>' +
-        listHtml(started, "New topics will land here.") +
-        "</section>" +
-        '<section class="wu-card"><h2>Frequently connected</h2>' +
-        listHtml(freq, "Link ideas to grow hubs.") +
+        '<section class="wu-card"><h2>Current focus</h2>' +
+        listHtml(focus, "Check “Mark as current focus” when capturing or editing.") +
         "</section>" +
         '<section class="wu-card"><h2>Open questions</h2>' +
-        listHtml(questions, "Capture a question anytime.") +
-        "</section>" +
-        '<section class="wu-card"><h2>Recently discovered connections</h2>' +
-        (recentConn.length
+        listHtml(questions, "Capture a question from Quick capture or Questions.") +
+        '<p><a href="#questions">All questions →</a></p></section>' +
+        '<section class="wu-card"><h2>Recent knowledge</h2>' +
+        listHtml(recentKnowledge, "Create your first note above.") +
+        '<p><a href="#knowledge">Knowledge library →</a></p></section>' +
+        '<section class="wu-card"><h2>Active projects</h2>' +
+        (projects.length
           ? '<ul class="wu-list">' +
-            recentConn
-              .map(function (c) {
+            projects
+              .map(function (p) {
                 return (
-                  "<li><span class=\"wu-meta\">" +
-                  esc(Schema().relationLabel(c.edge.type)) +
-                  "</span><br/>" +
-                  (c.from
-                    ? '<a href="#item/' + encodeURIComponent(c.from.id) + '">' + esc(c.from.title) + "</a>"
-                    : "?") +
-                  " → " +
-                  (c.to ? '<a href="#item/' + encodeURIComponent(c.to.id) + '">' + esc(c.to.title) + "</a>" : "?") +
-                  "</li>"
+                  "<li><a href=\"#projects/" +
+                  encodeURIComponent(p.id) +
+                  "\"><strong>" +
+                  esc(p.label) +
+                  "</strong></a>" +
+                  '<span class="wu-meta">' +
+                  p.count +
+                  " items</span></li>"
                 );
               })
               .join("") +
             "</ul>"
-          : '<p class="wu-empty">New links will appear here.</p>') +
-        "</section>" +
-        '<section class="wu-card"><h2>Reading queue</h2>' +
-        listHtml(reading, "Mark sources while editing.") +
-        '<p><a href="#reading">Reading workspace →</a></p></section>' +
-        '<section class="wu-card"><h2>Today\'s focus</h2>' +
-        listHtml(focus, "Pin today’s focus on any item.") +
+          : '<p class="wu-empty">Tag notes with a project to grow hubs.</p>') +
+        '<p><a href="#projects">All projects →</a></p></section>' +
+        '<section class="wu-card"><h2>Review</h2>' +
+        listHtml(review, "Enable review while editing an item.") +
         "</section>" +
         "</div>"
       );
@@ -1326,6 +1262,103 @@
     }
 
     function pathsPanel() {
+      var route = parseHash();
+      var map = nodeMap();
+      if (route.id) {
+        var path = state.nodes.filter(function (n) {
+          return n.id === route.id && n.kind === "path";
+        })[0];
+        if (!path) return '<p class="wu-empty">Path not found. <a href="#paths">Back</a></p>';
+        var order = (path.meta && path.meta.order) || [];
+        var children = state.edges
+          .filter(function (e) {
+            return e.type === "part-of" && e.toId === path.id;
+          })
+          .map(function (e) {
+            return map[e.fromId];
+          })
+          .filter(Boolean);
+        children.sort(function (a, b) {
+          var ia = order.indexOf(a.id);
+          var ib = order.indexOf(b.id);
+          if (ia < 0 && ib < 0) return String(a.title).localeCompare(String(b.title));
+          if (ia < 0) return 1;
+          if (ib < 0) return -1;
+          return ia - ib;
+        });
+        var qs = state.nodes.filter(function (n) {
+          return n.kind === "question" && (n.pathId === path.id || (n.projects || []).some(function () {
+            return false;
+          }));
+        });
+        // questions linked via edges or same tags as path slug
+        qs = state.nodes.filter(function (n) {
+          if (n.kind !== "question") return false;
+          return state.edges.some(function (e) {
+            return (
+              (e.fromId === n.id && e.toId === path.id) ||
+              (e.toId === n.id && e.fromId === path.id)
+            );
+          });
+        });
+        return (
+          '<p><a href="#paths">← Learning paths</a></p>' +
+          "<h1 class=\"wu-title\">" +
+          esc(path.title) +
+          "</h1>" +
+          '<p class="wu-lead">' +
+          esc(path.summary || "Organize knowledge without grades.") +
+          "</p>" +
+          '<article class="wu-prose">' +
+          Md().render(path.body || "") +
+          "</article>" +
+          '<p class="wu-actions"><a class="wu-btn" href="#item/' +
+          encodeURIComponent(path.id) +
+          '/edit">Edit path</a> <a class="wu-btn" href="#graph/' +
+          encodeURIComponent(path.id) +
+          '">Graph</a></p>' +
+          "<h2 class=\"wu-section\">Entries (" +
+          children.length +
+          ")</h2>" +
+          listHtml(children, "Add knowledge with the form below.") +
+          '<form id="wu-path-add" class="wu-form wu-form--row" data-path="' +
+          esc(path.id) +
+          '">' +
+          "<label class=\"wu-grow\">Add existing item <select name=\"node\">" +
+          state.nodes
+            .filter(function (n) {
+              return n.kind !== "path" && n.id !== path.id;
+            })
+            .sort(function (a, b) {
+              return String(a.title).localeCompare(String(b.title));
+            })
+            .slice(0, 500)
+            .map(function (n) {
+              return (
+                "<option value=\"" +
+                esc(n.id) +
+                "\">" +
+                esc(n.title) +
+                " (" +
+                esc(n.kind) +
+                ")</option>"
+              );
+            })
+            .join("") +
+          "</select></label>" +
+          '<button type="submit" class="wu-btn wu-btn--primary">Add to path</button></form>' +
+          "<h2 class=\"wu-section\">Related questions</h2>" +
+          listHtml(qs, "Link questions to this path from an item’s Connections.") +
+          (path.meta && path.meta.focusId
+            ? '<p class="wu-meta">Current focus: <a href="#item/' +
+              encodeURIComponent(path.meta.focusId) +
+              '">' +
+              esc((map[path.meta.focusId] && map[path.meta.focusId].title) || path.meta.focusId) +
+              "</a></p>"
+            : "")
+        );
+      }
+
       var paths = state.nodes
         .filter(function (n) {
           return n.kind === "path";
@@ -1333,38 +1366,80 @@
         .sort(function (a, b) {
           return String(a.title).localeCompare(String(b.title));
         });
-      var map = nodeMap();
       return (
         "<h1 class=\"wu-title\">Learning paths</h1>" +
-        '<p class="wu-lead">Structured lanes — free to cross-link across disciplines.</p>' +
+        '<p class="wu-lead">Organize knowledge into lanes — no grades, no mandatory curriculum.</p>' +
+        '<p><a class="wu-btn wu-btn--primary" href="#new/path">New learning path</a></p>' +
         '<ul class="wu-path-grid">' +
         paths
           .map(function (p) {
-            var children = state.edges
-              .filter(function (e) {
-                return e.type === "part-of" && e.toId === p.id;
-              })
-              .map(function (e) {
-                return map[e.fromId];
-              })
-              .filter(Boolean);
+            var children = state.edges.filter(function (e) {
+              return e.type === "part-of" && e.toId === p.id;
+            }).length;
             return (
-              "<li class=\"wu-card\"><h2><a href=\"#item/" +
+              "<li class=\"wu-card\"><h2><a href=\"#paths/" +
               encodeURIComponent(p.id) +
               "\">" +
               esc(p.title) +
               "</a></h2>" +
               '<p class="wu-meta">' +
-              children.length +
-              " linked · <a href=\"#graph/" +
+              children +
+              " entries · " +
+              (p.meta && p.meta.template ? "starter path · " : "") +
+              '<a href="#item/' +
               encodeURIComponent(p.id) +
-              '">Graph</a></p>' +
-              listHtml(children.slice(0, 5), "Empty path — link with Part of…") +
-              "</li>"
+              '">Open</a></p>' +
+              '<p class="wu-empty">' +
+              esc(p.summary || "Add a description while editing.") +
+              "</p></li>"
             );
           })
           .join("") +
         "</ul>"
+      );
+    }
+
+    function journalPanel() {
+      var entries = state.nodes
+        .filter(function (n) {
+          return n.kind === "journal";
+        })
+        .sort(function (a, b) {
+          var da = (a.journal && a.journal.date) || a.createdAt || "";
+          var db = (b.journal && b.journal.date) || b.createdAt || "";
+          return String(db).localeCompare(String(da));
+        });
+      return (
+        "<h1 class=\"wu-title\">Journal</h1>" +
+        '<p class="wu-lead">Dated intellectual context — not a health tracker or social diary.</p>' +
+        '<p><a class="wu-btn wu-btn--primary" href="#new/journal">New entry</a></p>' +
+        '<ul class="wu-list">' +
+        (entries.length
+          ? entries
+              .map(function (n) {
+                return (
+                  "<li><a href=\"#item/" +
+                  encodeURIComponent(n.id) +
+                  "\"><strong>" +
+                  esc(n.title) +
+                  "</strong></a>" +
+                  '<span class="wu-meta">' +
+                  esc((n.journal && n.journal.date) || fmtDate(n.createdAt)) +
+                  ((n.tags || []).length ? " · " + esc(n.tags.join(", ")) : "") +
+                  "</span></li>"
+                );
+              })
+              .join("")
+          : '<li class="wu-empty">Write your first journal entry to preserve context over time.</li>') +
+        "</ul>"
+      );
+    }
+
+    function knowledgePanel() {
+      state.libraryKind = state.libraryKind || "all";
+      return libraryPanel().replace(
+        "<h1 class=\"wu-title\">Library</h1>",
+        "<h1 class=\"wu-title\">Knowledge</h1>"
       );
     }
 
@@ -1406,26 +1481,36 @@
     function settingsPanel() {
       return (
         "<h1 class=\"wu-title\">Settings</h1>" +
+        '<div class="wu-card"><h2>Account &amp; privacy</h2>' +
+        '<p class="wu-empty">Owner-only application. Sign-in is enforced by the local University server when you use <code>./start.sh</code>.</p>' +
+        '<p class="wu-actions"><a class="wu-btn" href="/logout">Sign out</a></p>' +
+        "<ul class=\"wu-list\">" +
+        "<li><span class=\"wu-meta\">Data location</span><br/>Browser IndexedDB database <code>waypoint-university-v1</code> on this profile.</li>" +
+        "<li><span class=\"wu-meta\">Public exposure</span><br/>Not in the Waypoint Studio directory. Pages deploy strips <code>private/</code>. robots.txt disallows /private/.</li>" +
+        "<li><span class=\"wu-meta\">Remote subdomain</span><br/>university.waypointstudio.org is <strong>not</strong> configured in this stack yet — see ACCESS.md.</li>" +
+        "</ul></div>" +
         '<div class="wu-card"><h2>Long-term learning goals</h2>' +
-        '<p class="wu-empty">Quiet intentions that shape next-step suggestions — not grades.</p>' +
         '<form id="wu-goals-form" class="wu-form">' +
-        "<label>Goals (one per line)<textarea name=\"goals\" rows=\"5\" placeholder=\"e.g. Defensive Linux fluency&#10;Seasonal foraging ecology\">" +
+        "<label>Goals (one per line)<textarea name=\"goals\" rows=\"4\">" +
         esc((state.learningGoals || []).join("\n")) +
         "</textarea></label>" +
         '<button type="submit" class="wu-btn wu-btn--primary">Save goals</button></form></div>' +
-        '<div class="wu-card"><h2>Data</h2><p class="wu-meta">' +
+        '<div class="wu-card"><h2>Backup &amp; export</h2><p class="wu-meta">' +
         state.nodes.length +
         " nodes · " +
         state.edges.length +
         " edges · schema " +
         esc(Schema().SCHEMA) +
-        (state.insights ? " · insights " + state.insights.elapsedMs + " ms" : "") +
         "</p>" +
-        '<p class="wu-actions"><button type="button" class="wu-btn wu-btn--primary" id="wu-export">Export JSON</button> ' +
+        '<p class="wu-actions"><button type="button" class="wu-btn wu-btn--primary" id="wu-export">Export JSON backup</button> ' +
+        '<button type="button" class="wu-btn" id="wu-export-md">Export Markdown</button> ' +
         '<label class="wu-btn">Import JSON<input type="file" id="wu-import" accept="application/json,.json" hidden/></label></p>' +
+        '<p class="wu-empty">Export creates a download on this device. Nothing is uploaded. Restore by importing the JSON backup.</p>' +
         (state.flash ? '<p class="wu-flash">' + esc(state.flash) + "</p>" : "") +
         "</div>" +
-        '<div class="wu-card"><h2>Module 4 · Scholar</h2><p>Research workspaces, sessions, field notes, source reliability, project hubs, and thinking-tool foundations.</p></div>'
+        '<div class="wu-card"><h2>Appearance</h2>' +
+        '<p class="wu-empty">Calm light theme is fixed for deep study. System reduced-motion preferences are respected.</p></div>' +
+        '<div class="wu-card"><h2>Module 5</h2><p>Private access server, daily workspace, journal, durable IndexedDB persistence, export. No public registration.</p></div>'
       );
     }
 
@@ -1440,17 +1525,64 @@
         "<label>Kind <select name=\"kind\">" +
         kindOptions(node.kind) +
         "</select></label>" +
+        "<label>Status <select name=\"status\">" +
+        (Schema().NODE_STATUSES || [{ id: "active", label: "Active" }])
+          .map(function (s) {
+            return (
+              "<option value=\"" +
+              s.id +
+              "\"" +
+              ((node.status || "active") === s.id ? " selected" : "") +
+              ">" +
+              esc(s.label) +
+              "</option>"
+            );
+          })
+          .join("") +
+        "</select></label>" +
         "<label>Title <input name=\"title\" required value=\"" +
         esc(node.title === "Untitled" && isNew ? "" : node.title) +
         "\"/></label>" +
         "<label>Summary <input name=\"summary\" value=\"" +
         esc(node.summary || "") +
         "\"/></label>" +
-        "<label>Body (Markdown)<textarea name=\"body\" rows=\"14\" class=\"wu-editor\">" +
+        "<label>Body (Markdown)<textarea name=\"body\" rows=\"14\" class=\"wu-editor\" id=\"wu-body\">" +
         esc(node.body || "") +
         "</textarea></label>" +
+        '<p class="wu-actions"><button type="button" class="wu-btn" id="wu-preview-toggle">Toggle preview</button> ' +
+        '<span class="wu-meta" id="wu-draft-status">Edits autosave as drafts every few seconds</span></p>' +
+        '<div id="wu-preview" class="wu-prose wu-preview" hidden></div>' +
+        "<label>Learning path <select name=\"pathId\"><option value=\"\">—</option>" +
+        state.nodes
+          .filter(function (n) {
+            return n.kind === "path";
+          })
+          .map(function (p) {
+            return (
+              "<option value=\"" +
+              esc(p.id) +
+              "\"" +
+              (node.pathId === p.id ? " selected" : "") +
+              ">" +
+              esc(p.title) +
+              "</option>"
+            );
+          })
+          .join("") +
+        "</select></label>" +
         "<label>Tags <input name=\"tags\" value=\"" +
         esc((node.tags || []).join(", ")) +
+        "\"/></label>" +
+        (node.kind === "journal"
+          ? "<label>Journal date <input name=\"jdate\" type=\"date\" value=\"" +
+            esc((node.journal && node.journal.date) || "") +
+            "\"/></label>"
+          : "") +
+        "<label><input type=\"checkbox\" name=\"reviewOn\"" +
+        (node.review && node.review.enabled ? " checked" : "") +
+        "/> Mark for later review</label>" +
+        "<label>Review due <input name=\"reviewDue\" type=\"date\" value=\"" +
+        esc(node.review && node.review.dueAt ? String(node.review.dueAt).slice(0, 10) : "") +
         "\"/></label>" +
         "<label>Source URL <input name=\"url\" value=\"" +
         esc(node.sourceUrl || "") +
@@ -1919,7 +2051,9 @@
     function body() {
       var route = parseHash();
       if (route.panel === "home") return homePanel();
-      if (route.panel === "scholar") return scholarPanel();
+      if (route.panel === "scholar" || route.panel === "research") return scholarPanel();
+      if (route.panel === "knowledge" || route.panel === "library") return knowledgePanel();
+      if (route.panel === "journal") return journalPanel();
       if (route.panel === "capture") return capturePanel();
       if (route.panel === "search") return searchPanel();
       if (route.panel === "graph") return graphPanel();
@@ -1929,14 +2063,12 @@
       if (route.panel === "reading") return readingPanel();
       if (route.panel === "health") return healthPanel();
       if (route.panel === "paths") return pathsPanel();
-      if (route.panel === "research") return researchPanel();
       if (route.panel === "sources") return sourcesPanel();
       if (route.panel === "questions") return questionsPanel();
       if (route.panel === "projects") {
         state.projectFocus = route.id;
         return projectsPanel();
       }
-      if (route.panel === "library") return libraryPanel();
       if (route.panel === "settings") return settingsPanel();
       if (route.panel === "item") return itemPanel(route.id, route.mode);
       if (route.panel === "new") return newPanel(route.id);
@@ -1973,6 +2105,16 @@
           sourceUrl: String(fd.get("url") || "") || null,
           projects: collectProjects(form),
           bookmarked: !!fd.get("bookmarked"),
+          status: String(fd.get("status") || "active"),
+          pathId: String(fd.get("pathId") || "") || null,
+          review: {
+            enabled: !!fd.get("reviewOn"),
+            dueAt: String(fd.get("reviewDue") || "") || null,
+            intervalDays: (existing && existing.review && existing.review.intervalDays) || null
+          },
+          journal: {
+            date: String(fd.get("jdate") || "") || (existing && existing.journal && existing.journal.date) || null
+          },
           question: {
             status: String(fd.get("qstatus") || "") || null,
             confidence: fd.get("qconf") !== "" && fd.get("qconf") != null ? Number(fd.get("qconf")) : null,
@@ -2095,6 +2237,147 @@
               return refresh().then(function () {
                 setHash("item", n.id);
               });
+            });
+        });
+      }
+
+      var homeCap = root.querySelector("#wu-home-capture");
+      if (homeCap) {
+        homeCap.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(homeCap);
+          var kind = String(fd.get("kind") || "concept");
+          var payload = {
+            kind: kind,
+            title: String(fd.get("title") || "").trim(),
+            body: String(fd.get("body") || ""),
+            tags: parseTags(fd.get("tags")),
+            projects: collectProjects(homeCap),
+            status: "active",
+            queue: {
+              focusToday: !!fd.get("focus"),
+              researchInbox: false,
+              reading: false
+            }
+          };
+          if (kind === "session") {
+            Store()
+              .startSession({
+                title: payload.title,
+                purpose: payload.body.slice(0, 200),
+                body: payload.body,
+                projects: payload.projects
+              })
+              .then(function (n) {
+                return refresh().then(function () {
+                  setHash("item", n.id);
+                });
+              });
+            return;
+          }
+          if (kind === "question") {
+            payload.question = { status: "open" };
+          }
+          if (kind === "journal") {
+            payload.journal = { date: new Date().toISOString().slice(0, 10) };
+          }
+          Store()
+            .putNode(payload)
+            .then(function (n) {
+              return Store().clearDraft("new").then(function () {
+                return refresh().then(function () {
+                  setHash("item", n.id);
+                });
+              });
+            })
+            .catch(function (err) {
+              state.flash = "Save failed: " + (err && err.message ? err.message : String(err));
+              paint();
+            });
+        });
+      }
+
+      var pathAdd = root.querySelector("#wu-path-add");
+      if (pathAdd) {
+        pathAdd.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(pathAdd);
+          var pathId = pathAdd.getAttribute("data-path");
+          var nodeId = String(fd.get("node") || "");
+          Store()
+            .putEdge({ fromId: nodeId, toId: pathId, type: "part-of" })
+            .then(function () {
+              return Store().getNode(pathId);
+            })
+            .then(function (path) {
+              if (!path) return;
+              path.meta = path.meta || {};
+              path.meta.order = path.meta.order || [];
+              if (path.meta.order.indexOf(nodeId) < 0) path.meta.order.push(nodeId);
+              return Store().putNode(path, { skipRevision: true });
+            })
+            .then(function () {
+              return refresh().then(paint);
+            });
+        });
+      }
+
+      var previewBtn = root.querySelector("#wu-preview-toggle");
+      var preview = root.querySelector("#wu-preview");
+      var bodyEl = root.querySelector("#wu-body");
+      if (previewBtn && preview && bodyEl) {
+        previewBtn.addEventListener("click", function () {
+          var hidden = preview.hasAttribute("hidden");
+          if (hidden) {
+            preview.innerHTML = Md().render(bodyEl.value || "");
+            preview.removeAttribute("hidden");
+          } else {
+            preview.setAttribute("hidden", "");
+          }
+        });
+      }
+
+      var edit = root.querySelector("#wu-edit-form");
+      if (edit && bodyEl) {
+        state._dirty = false;
+        var draftTimer = null;
+        function markDirty() {
+          state._dirty = true;
+          var st = root.querySelector("#wu-draft-status");
+          if (st) st.textContent = "Unsaved changes…";
+          clearTimeout(draftTimer);
+          draftTimer = setTimeout(function () {
+            var id = edit.getAttribute("data-id");
+            Store()
+              .saveDraft(id, {
+                title: edit.title ? edit.querySelector('[name="title"]').value : "",
+                body: bodyEl.value
+              })
+              .then(function () {
+                if (st) st.textContent = "Draft saved locally " + new Date().toLocaleTimeString();
+              });
+          }, 2000);
+        }
+        edit.addEventListener("input", markDirty);
+      }
+
+      var search = root.querySelector("#wu-search-form");
+      if (search) {
+        search.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          state.q = String(new FormData(search).get("q") || "");
+          var hits = state.q ? Search().search(state.index, state.q, { limit: 12 }) : [];
+          Store()
+            .recordSearchHits(
+              hits.map(function (h) {
+                return h.id;
+              })
+            )
+            .then(function () {
+              return refresh().then(paint);
+            })
+            .catch(function () {
+              paint();
             });
         });
       }
@@ -2311,9 +2594,16 @@
               return Store().putNode(readEditorFields(edit, existing));
             })
             .then(function (n) {
-              return refresh().then(function () {
-                setHash("item", n.id);
+              state._dirty = false;
+              return Store().clearDraft(id).then(function () {
+                return refresh().then(function () {
+                  setHash("item", n.id);
+                });
               });
+            })
+            .catch(function (err) {
+              state.flash = "Save failed — draft kept. " + (err && err.message ? err.message : "");
+              paint();
             });
         });
       }
@@ -2395,7 +2685,32 @@
               a.href = URL.createObjectURL(blob);
               a.download = "waypoint-university-" + new Date().toISOString().slice(0, 10) + ".json";
               a.click();
-              state.flash = "Backup downloaded.";
+              state.flash = "JSON backup downloaded to this device.";
+              paint();
+            })
+            .catch(function (err) {
+              state.flash = "Export failed: " + (err && err.message ? err.message : String(err));
+              paint();
+            });
+        });
+      }
+
+      var expMd = root.querySelector("#wu-export-md");
+      if (expMd) {
+        expMd.addEventListener("click", function () {
+          Store()
+            .exportMarkdownArchive()
+            .then(function (md) {
+              var blob = new Blob([md], { type: "text/markdown" });
+              var a = document.createElement("a");
+              a.href = URL.createObjectURL(blob);
+              a.download = "waypoint-university-" + new Date().toISOString().slice(0, 10) + ".md";
+              a.click();
+              state.flash = "Markdown export downloaded.";
+              paint();
+            })
+            .catch(function (err) {
+              state.flash = "Markdown export failed: " + (err && err.message ? err.message : String(err));
               paint();
             });
         });
@@ -2436,7 +2751,14 @@
     global.addEventListener("keydown", function (ev) {
       if ((ev.metaKey || ev.ctrlKey) && String(ev.key).toLowerCase() === "k") {
         ev.preventDefault();
-        setHash("capture");
+        setHash("home");
+      }
+    });
+
+    global.addEventListener("beforeunload", function (ev) {
+      if (state._dirty) {
+        ev.preventDefault();
+        ev.returnValue = "";
       }
     });
 

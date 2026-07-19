@@ -1,11 +1,11 @@
 /**
- * Waypoint University — schema 1.3 (Module 4 · Scholar).
- * Research workspaces, sessions, field notes, reliability, thinking-tool foundations.
+ * Waypoint University — schema 1.4 (Module 5 · daily use).
+ * Journal, expanded statuses, owner-ready kinds.
  */
 (function (global) {
   "use strict";
 
-  var SCHEMA = "1.3.0";
+  var SCHEMA = "1.4.0";
   var DB_NAME = "waypoint-university-v1";
   var DB_VERSION = 1;
 
@@ -42,10 +42,25 @@
     { id: "hypothesis", label: "Hypothesis", plural: "Hypotheses" },
     { id: "decision", label: "Decision journal", plural: "Decision journals" },
     { id: "argument", label: "Argument map", plural: "Argument maps" },
-    { id: "concept-map", label: "Concept map", plural: "Concept maps" }
+    { id: "concept-map", label: "Concept map", plural: "Concept maps" },
+    { id: "journal", label: "Journal entry", plural: "Journal entries" },
+    { id: "personal-communication", label: "Personal communication", plural: "Personal communications" },
+    { id: "other", label: "Other source", plural: "Other sources" }
   ];
 
-  var SOURCE_KINDS = ["book", "paper", "article", "document", "manual", "video", "podcast", "website", "course"];
+  var SOURCE_KINDS = [
+    "book",
+    "paper",
+    "article",
+    "document",
+    "manual",
+    "video",
+    "podcast",
+    "website",
+    "course",
+    "personal-communication",
+    "other"
+  ];
 
   /** Canonical relationship vocabulary — UX labels match thinking language */
   var RELATION_TYPES = [
@@ -162,8 +177,16 @@
   var QUESTION_STATUSES = [
     { id: "open", label: "Open" },
     { id: "investigating", label: "Investigating" },
-    { id: "answered", label: "Answered" },
+    { id: "partial", label: "Partially answered" },
+    { id: "answered", label: "Resolved" },
+    { id: "deferred", label: "Deferred" },
     { id: "parked", label: "Parked" }
+  ];
+
+  var NODE_STATUSES = [
+    { id: "active", label: "Active" },
+    { id: "draft", label: "Draft" },
+    { id: "archived", label: "Archived" }
   ];
 
   var RESEARCH_STAGES = [
@@ -475,6 +498,7 @@
     PATH_TEMPLATES: PATH_TEMPLATES,
     MEDIA_KINDS: MEDIA_KINDS,
     QUESTION_STATUSES: QUESTION_STATUSES,
+    NODE_STATUSES: NODE_STATUSES,
     RESEARCH_STAGES: RESEARCH_STAGES,
     READING_STATUSES: READING_STATUSES,
     UNDERSTANDING_STAGES: UNDERSTANDING_STAGES,
