@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waypoint Photo Pipeline — Review</title>
+  <meta name="description" content="Local review for Waypoint Studio photography pipeline. Owner approval required before publish.">
+  <link rel="stylesheet" href="css/review.css">
+</head>
+<body>
+  <header class="rp-header">
+    <div class="rp-brand">
+      <strong>Waypoint Studio</strong>
+      <span>Photo Pipeline Review</span>
+    </div>
+    <p class="rp-policy">Originals sacred · No auto-publish · Local-first</p>
+    <div class="rp-toolbar">
+      <label class="rp-search">
+        <span class="visually-hidden">Search</span>
+        <input id="search" type="search" placeholder="Search filename, tags, caption…" autocomplete="off">
+      </label>
+      <label>
+        Filter
+        <select id="filter">
+          <option value="pending">Needs review</option>
+          <option value="all">All</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+          <option value="needs_editing">Needs editing</option>
+          <option value="hidden">Hidden</option>
+          <option value="safe">Privacy: Safe</option>
+          <option value="privacy">Privacy flagged</option>
+        </select>
+      </label>
+      <button type="button" id="btn-reload">Reload queue</button>
+      <button type="button" id="btn-approve-safe">Approve All Safe</button>
+      <button type="button" id="btn-reject-all">Reject All (pending)</button>
+    </div>
+  </header>
+
+  <main class="rp-layout">
+    <aside class="rp-list" aria-label="Review queue">
+      <ul id="queue"></ul>
+    </aside>
+
+    <section class="rp-detail" aria-live="polite">
+      <div id="empty" class="rp-empty">
+        <p>Load a review queue to begin.</p>
+        <p class="rp-hint">Run <code>python -m photo_pipeline export-review</code> then serve this app, or paste JSON.</p>
+        <label class="rp-file">
+          Open review-queue.json
+          <input type="file" id="file" accept="application/json,.json">
+        </label>
+      </div>
+
+      <article id="detail" class="rp-card" hidden>
+        <div class="rp-preview">
+          <img id="preview" alt="">
+        </div>
+        <div class="rp-meta">
+          <h1 id="title"></h1>
+          <p id="status-line" class="rp-status"></p>
+          <div class="rp-actions">
+            <button type="button" data-act="approve" class="ok">Approve (A)</button>
+            <button type="button" data-act="reject" class="bad">Reject (R)</button>
+            <button type="button" data-act="needs_editing">Needs Editing (E)</button>
+            <button type="button" data-act="hide">Hide (H)</button>
+          </div>
+          <p class="rp-hint">Decisions are stored in localStorage until you run the CLI <code>decide</code> / <code>bulk</code> commands (or paste export). Publishing still requires <code>--publish</code>.</p>
+
+          <h2>Privacy</h2>
+          <div id="privacy"></div>
+
+          <h2>Scores</h2>
+          <div id="scores"></div>
+
+          <h2>Classification</h2>
+          <div id="classify"></div>
+
+          <h2>Accessibility (editable drafts)</h2>
+          <label>Alt text<textarea id="alt" rows="2"></textarea></label>
+          <label>Caption<textarea id="caption" rows="3"></textarea></label>
+
+          <h2>Metadata</h2>
+          <pre id="metadata"></pre>
+
+          <h2>Analysis</h2>
+          <pre id="analysis"></pre>
+
+          <div class="rp-nav">
+            <button type="button" id="prev">Previous (P)</button>
+            <button type="button" id="next">Next (N)</button>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="rp-footer">
+    <span id="stats"></span>
+    <button type="button" id="btn-export-decisions">Export decisions JSON</button>
+  </footer>
+
+  <script src="js/review.js"></script>
+</body>
+</html>

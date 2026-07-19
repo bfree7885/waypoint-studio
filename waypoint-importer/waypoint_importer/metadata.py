@@ -110,3 +110,28 @@ def drive_shoot_path(remote: str, drive_root: str, dt: datetime) -> str:
     yyyy, shoot_date = folder_parts_from_datetime(dt)
     root = drive_root.strip("/")
     return f"{remote}:{root}/{yyyy}/{shoot_date}"
+
+
+def extract_full_metadata(path: Path) -> dict:
+    """
+    Prefer photo_pipeline full extractor when available; otherwise date-focused fallback.
+    Read-only — never writes EXIF back to the file.
+    """
+    try:
+        import sys
+
+        repo = Path(__file__).resolve().parents[2]
+        if str(repo) not in sys.path:
+            sys.path.insert(0, str(repo))
+        from photo_pipeline.metadata_extract import extract_metadata
+
+        return extract_metadata(path)
+    except Exception as exc:  # noqa: BLE001
+        log.debug("Full metadata via pipeline unavailable (%s); minimal fallback", exc)
+        dt = get_capture_datetime(path)
+        return {
+            "path": str(path),
+            "filename": path.name,
+            "date": dt.isoformat(sep=" ") if dt else None,
+            "fallback": True,
+        }

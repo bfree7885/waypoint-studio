@@ -34,6 +34,9 @@ class ImportStats:
     last_yyyy: str | None = None
     last_mm_dd: str | None = None
     last_local_dir: Path | None = None
+    imported_paths: list[str] = field(default_factory=list)
+    imported_hashes: dict[str, str] = field(default_factory=dict)
+    pipeline_manifest_id: str | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -46,6 +49,8 @@ class ImportStats:
             "last_yyyy": self.last_yyyy,
             "last_mm_dd": self.last_mm_dd,
             "last_local_dir": str(self.last_local_dir) if self.last_local_dir else None,
+            "imported_count_paths": len(self.imported_paths),
+            "pipeline_manifest_id": self.pipeline_manifest_id,
         }
 
 
@@ -162,6 +167,8 @@ class Importer:
                     local_path=dest,
                 )
                 stats.imported += 1
+                stats.imported_paths.append(str(dest))
+                stats.imported_hashes[str(dest)] = digest
                 stats.last_yyyy = yyyy
                 stats.last_mm_dd = shoot_date
                 stats.last_local_dir = dest_dir
@@ -180,6 +187,26 @@ class Importer:
             except OSError as exc:
                 msg = f"Import failed for {src.name}: {exc}"
                 log.error(msg)
+                stats.errors.append(msg)
+
+        # Queue local photo pipeline analysis (never publishes; originals untouched)
+        if getattr(self.prefs, "enable_photo_pipeline", True) and stats.imported_paths:
+            try:
+                from .pipeline_hook import after_import_batch
+
+                manifest = after_import_batch(
+                    [Path(p) for p in stats.imported_paths],
+                    library=library,
+                    card_name=card.display_name,
+                    stats=stats.as_dict(),
+                    hashes=stats.imported_hashes,
+                )
+                if manifest and manifest.get("id"):
+                    stats.pipeline_manifest_id = manifest["id"]
+                    log.info("Photo pipeline queued: %s", manifest["id"])
+            except Exception as exc:  # noqa: BLE001
+                msg = f"Photo pipeline enqueue failed: {exc}"
+                log.warning(msg)
                 stats.errors.append(msg)
 
         if progress:

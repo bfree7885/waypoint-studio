@@ -64,6 +64,8 @@ class Preferences:
     auto_launch_photo_coach: bool = False
     photo_coach_url: str = PHOTO_COACH_URL_DEFAULT
     camera_profiles: list[dict[str, Any]] = field(default_factory=list)
+    # Automated Photo Pipeline V1 — enqueue analysis after import (no auto-publish)
+    enable_photo_pipeline: bool = True
 
     def library_path(self) -> Path:
         return Path(self.library_root).expanduser()

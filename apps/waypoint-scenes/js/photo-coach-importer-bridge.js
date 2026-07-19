@@ -99,16 +99,17 @@
 
   /**
    * Future entry: convert staged File-like refs into a coach ingest.
-   * Stub for Work Block 3 — returns null until Importer supplies real File/Blob objects.
+   * Official publish path is photo_pipeline → review UI → data/media (not this bridge).
+   * Stub — returns not-implemented until Importer supplies real File/Blob objects.
    */
   function receiveSession(payload) {
     var check = validatePayload(payload);
     if (!check.ok) return Promise.reject(new Error(check.errors.join(" ")));
-    // Extension point: when File handles are available, call WaypointPhotoCoach.handleFiles(files)
     return Promise.resolve({
       status: "not-implemented",
-      message: "Importer → Photo Coach ingest is reserved. Stage handoff with stageHandoff(); Photo Coach V2 will consume File blobs in a later milestone.",
-      protocolVersion: PROTOCOL_VERSION
+      message: "Importer → Photo Coach ingest is reserved. Use photo_pipeline review for website media. Stage handoff with stageHandoff() for future Coach File blobs.",
+      protocolVersion: PROTOCOL_VERSION,
+      related: "apps/photo-pipeline/ + python -m photo_pipeline"
     });
   }
 
