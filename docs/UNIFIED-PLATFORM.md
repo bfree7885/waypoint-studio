@@ -57,9 +57,19 @@ No runtime engines or placeholder UIs are implied by this section.
 | Catalog | `design-system/js/platform/wds-platform-catalog.js` | Product registry for nav |
 | Shell | `design-system/js/platform/wds-platform-shell.js` | Shared topbar / footer |
 | Stores | `design-system/js/platform/wds-platform-stores.js` | Profile, locations, collections, settings |
+| Observations bridge | `design-system/js/platform/wds-platform-observations.js` | Cross-app private observation query |
+| Places | `design-system/js/platform/wds-platform-places.js` | Saved / recent / favorite places |
+| Search | `design-system/js/platform/wds-platform-search.js` | Studio-wide local search |
+| Notifications | `design-system/js/platform/wds-platform-notifications.js` | Opt-in local reminder inbox |
+| Graph | `design-system/js/platform/wds-platform-graph.js` | Cross-app relationship edges |
+| Workflows | `design-system/js/platform/wds-platform-workflows.js` | Natural cross-app handoffs |
+| Identity | `design-system/js/platform/wds-platform-identity.js` | Profile/settings ensure + theme |
 | Foundation UI | `design-system/js/platform/wds-platform-foundation.js` | Landing renderer |
 | Future data | `design-system/js/platform/wds-platform-future-data.js` | Disabled APIs / GIS / research exports |
 | WOS extensions | `design-system/js/observations/wds-wos-extensions.js` | App-namespaced observation extensions |
+
+Studio Settings UI: `settings.html`  
+Integration docs: `docs/PLATFORM-INTEGRATION-REPORT.md`
 
 Loaded via `design-system/js/wds.js` for dashboard surfaces; foundation apps may load modules directly.
 

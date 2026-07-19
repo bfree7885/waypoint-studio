@@ -100,6 +100,21 @@
 
   function fieldryLocalStats() {
     try {
+      if (global.WDS && WDS.platformObservations && WDS.platformObservations.wildlifeContext) {
+        var ctx = WDS.platformObservations.wildlifeContext();
+        return {
+          total: ctx.fieldryCount,
+          speciesCount: ctx.speciesCount,
+          countyCount: ctx.countyCount,
+          recent: (ctx.recent || []).map(function (o) {
+            return {
+              recordedAt: o.recordedAt,
+              taxon: { commonName: o.taxonLabel || o.title }
+            };
+          }),
+          honesty: ctx.honesty
+        };
+      }
       var raw = localStorage.getItem("waypoint-fieldry-observations-v1");
       if (!raw) return null;
       var list = JSON.parse(raw);
@@ -128,6 +143,14 @@
 
   function favoriteLocations() {
     try {
+      if (global.WDS && WDS.platformPlaces && WDS.platformPlaces.favorites) {
+        var fav = WDS.platformPlaces.favorites();
+        if (fav && fav.length) return fav;
+      }
+      if (global.WDS && WDS.platformPlaces && WDS.platformPlaces.saved) {
+        var saved = WDS.platformPlaces.saved();
+        if (saved && saved.length) return saved.slice(0, 8);
+      }
       var raw = localStorage.getItem("waypoint-dashboard-favorites-v1");
       if (!raw) return [];
       var list = JSON.parse(raw);

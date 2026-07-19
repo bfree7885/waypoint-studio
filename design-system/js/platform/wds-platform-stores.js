@@ -57,7 +57,7 @@
 
   function emptySettings() {
     return {
-      schemaVersion: "1.0.0",
+      schemaVersion: "1.1.0",
       updatedAt: new Date().toISOString(),
       accessibility: {
         reduceMotion: false,
@@ -66,6 +66,18 @@
       notifications: {
         enabled: false,
         localRemindersOnly: true
+      },
+      units: {
+        measurementSystem: "imperial",
+        temperature: "fahrenheit",
+        coordinateFormat: "dd"
+      },
+      maps: {
+        preferOfflineTiles: false,
+        defaultZoomHint: "region"
+      },
+      theme: {
+        mode: "system"
       },
       data: {
         allowAnonymousAggregates: false,

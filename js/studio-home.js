@@ -73,7 +73,49 @@
     return true;
   }
 
+  function bindStudioSearch() {
+    var input = document.getElementById("was-studio-search");
+    var out = document.getElementById("was-studio-search-results");
+    if (!input || !out) return;
+    function paint() {
+      var Search = global.WDS && global.WDS.platformSearch;
+      if (!Search) {
+        out.innerHTML = "";
+        return;
+      }
+      var q = input.value.trim();
+      if (!q) {
+        out.innerHTML = "";
+        return;
+      }
+      var res = Search.search(q, { depth: 0, limit: 12 });
+      if (!res.total) {
+        out.innerHTML = '<p class="wds-honesty">No matches on this device.</p>';
+        return;
+      }
+      out.innerHTML =
+        '<p class="wds-honesty">' + esc(res.honesty) + "</p><ul>" +
+        res.results.map(function (h) {
+          var title = h.href
+            ? '<a href="' + esc(h.href) + '">' + esc(h.title) + "</a>"
+            : esc(h.title);
+          return "<li>" + title +
+            (h.subtitle ? " — " + esc(h.subtitle) : "") +
+            "</li>";
+        }).join("") + "</ul>";
+    }
+    var handler = paint;
+    if (global.WDS && WDS.resilience && WDS.resilience.debounce) {
+      handler = WDS.resilience.debounce(paint, 140);
+    }
+    input.addEventListener("input", handler);
+  }
+
   function boot() {
+    if (global.WDS && WDS.platformIdentity) {
+      try { WDS.platformIdentity.ensure(); } catch (e) { /* ignore */ }
+    }
+    bindStudioSearch();
     if (render()) return;
     if (Date.now() >= BOOT_DEADLINE) {
       var mount = document.getElementById("was-home-apps");

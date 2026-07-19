@@ -798,6 +798,10 @@
           ? "<h3 class=\"ss-sub\">Provider health (this session)</h3>" + WDS.resilience.providerHealthHtml() +
             '<p class="ss-honesty">Offline: ' + (WDS.resilience.isOnline() ? "no" : "yes") + "</p>"
           : "") +
+        (global.WDS && WDS.platformWorkflows
+          ? WDS.platformWorkflows.renderLinksHtml("savant-sommelier", { depth: 1, when: "settings" })
+          : "") +
+        '<p class="ss-honesty"><a href="../../settings.html">Open Studio settings</a> — profile, places, units, collections.</p>' +
       "</section>";
 
     root.querySelector("#ss-settings-form").addEventListener("submit", function (ev) {

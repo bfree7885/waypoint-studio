@@ -40,10 +40,16 @@
         <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
           <a href="about.html">About</a>
           <a href="knowledge.html">Knowledge</a>
+          <a href="settings.html">Settings</a>
           <a href="contact.html">Contact</a>
           <a href="support.html">Support</a>
           <a href="privacy.html">Privacy</a>
         </p>
+        <div class="was-home__search" role="search">
+          <label class="wds-visually-hidden" for="was-studio-search">Search Studio</label>
+          <input type="search" id="was-studio-search" placeholder="Search apps, places, observations…" autocomplete="off">
+          <div id="was-studio-search-results" class="was-home__search-results" aria-live="polite"></div>
+        </div>
       </header>
       <div id="was-home-apps" aria-busy="true">
         <section class="was-home__section" aria-labelledby="was-home-core-static">
@@ -88,8 +94,17 @@
 
   <script src="design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-catalog.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-stores.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-places.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-search.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-notifications.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-graph.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="js/studio-home.js?v=local" defer></script>
 </body>

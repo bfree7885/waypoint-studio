@@ -188,10 +188,14 @@
         seasonalBlock(life) +
         (list.length ? collectionsTeaser : "") +
         achievementsBlock(earned, list.length) +
+        (global.WDS && WDS.platformWorkflows
+          ? WDS.platformWorkflows.renderLinksHtml("fieldry", { depth: 1, when: "after-save" })
+          : "") +
         '<nav class="fld-home-nav" aria-label="Fieldry sections">' +
           '<a href="#/browse">Categories</a>' +
           '<a href="#/stats">Statistics</a>' +
           '<a href="#/collections">Collections</a>' +
+          '<a href="../../settings.html">Studio settings</a>' +
           '<a href="#/history">History</a>' +
         "</nav>" +
       "</section>"

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Studio shared settings — profile, places, units, notifications, and privacy on this device.">
+  <title>Settings — Waypoint Studio</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system/css/wds.css">
+  <link rel="stylesheet" href="design-system/css/wds-app-shell.css?v=local">
+  <link rel="stylesheet" href="design-system/css/wds-platform-ui.css?v=local">
+  <link rel="stylesheet" href="design-system/css/wds-platform-integration.css?v=local">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+    <main id="main" class="wds-platform-settings">
+      <header class="wds-platform-settings__hero">
+        <p class="wds-eyebrow">Waypoint Studio</p>
+        <h1>Settings</h1>
+        <p class="wds-platform-settings__lead">One profile, one place list, and shared preferences for every Studio app on this device. Private by default. No accounts required.</p>
+      </header>
+
+      <section id="profile" class="wds-platform-settings__section" aria-labelledby="profile-title">
+        <h2 id="profile-title">Profile</h2>
+        <label class="wds-field"><span>Display name</span>
+          <input type="text" id="wps-display-name" maxlength="80" autocomplete="nickname" placeholder="Optional">
+        </label>
+        <p class="wds-honesty">Stored only in this browser. Not a public identity.</p>
+      </section>
+
+      <section id="places" class="wds-platform-settings__section" aria-labelledby="places-title">
+        <h2 id="places-title">Places</h2>
+        <p>Saved and recent places shared across Dashboard, ForageCast, Fieldry, Sheds, and maps.</p>
+        <p>
+          <button type="button" class="wds-btn wds-btn--primary wds-btn--sm" id="wps-save-current">Save current location</button>
+        </p>
+        <div id="wps-places" class="wds-platform-settings__list"></div>
+      </section>
+
+      <section id="units" class="wds-platform-settings__section" aria-labelledby="units-title">
+        <h2 id="units-title">Units &amp; maps</h2>
+        <label class="wds-field"><span>Measurement system</span>
+          <select id="wps-units">
+            <option value="imperial">Imperial</option>
+            <option value="metric">Metric</option>
+          </select>
+        </label>
+        <label class="wds-field"><span>Theme</span>
+          <select id="wps-theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="wds-field wds-field--check">
+          <input type="checkbox" id="wps-reduce-motion"> Reduce motion
+        </label>
+      </section>
+
+      <section id="notifications" class="wds-platform-settings__section" aria-labelledby="ntf-title">
+        <h2 id="ntf-title">Notifications</h2>
+        <label class="wds-field wds-field--check">
+          <input type="checkbox" id="wps-ntf-enabled"> Enable local reminders on this device
+        </label>
+        <p class="wds-honesty">No push notifications. No engagement streaks. Opt-in inbox only.</p>
+        <div id="wps-ntf-list" class="wds-platform-settings__list"></div>
+      </section>
+
+      <section id="collections" class="wds-platform-settings__section" aria-labelledby="col-title">
+        <h2 id="col-title">Collections</h2>
+        <div id="wps-collections" class="wds-platform-settings__list"></div>
+        <p class="wds-honesty">Platform collections are shared. Fieldry already uses them for favorites.</p>
+      </section>
+
+      <section id="observations" class="wds-platform-settings__section" aria-labelledby="obs-title">
+        <h2 id="obs-title">Observation history</h2>
+        <p>Private records from Fieldry, Sheds, ForageCast journal, and Volunteer planning — one ledger view.</p>
+        <div id="wps-obs-stats" class="wds-honesty"></div>
+        <div id="wps-obs-recent" class="wds-platform-settings__list"></div>
+      </section>
+
+      <section id="search" class="wds-platform-settings__section" aria-labelledby="search-title">
+        <h2 id="search-title">Studio search</h2>
+        <label class="wds-field"><span>Search apps, places, observations, knowledge</span>
+          <input type="search" id="wps-search" placeholder="Try: fieldry, oak, dashboard…" autocomplete="off">
+        </label>
+        <div id="wps-search-results" class="wds-platform-settings__list"></div>
+      </section>
+
+      <p class="wds-platform-settings__foot">
+        <a href="index.html">Studio home</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="support.html">Support</a>
+      </p>
+    </main>
+  </div>
+
+  <script src="design-system/js/wds-build.js?v=local"></script>
+  <script src="design-system/js/platform/wds-platform-catalog.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-stores.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-places.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-search.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-notifications.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-graph.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
+  <script src="design-system/js/wds-location.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-settings-page.js?v=local" defer></script>
+</body>
+</html>

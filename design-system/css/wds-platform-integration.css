@@ -1,0 +1,137 @@
+/* Waypoint Studio — platform integration surfaces */
+
+.wds-platform-settings {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.wds-platform-settings__hero h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0.25rem 0 0.75rem;
+}
+
+.wds-platform-settings__lead {
+  color: var(--wds-text-secondary, #555);
+  line-height: 1.55;
+  margin: 0 0 1.5rem;
+}
+
+.wds-platform-settings__section {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--wds-border, rgba(0, 0, 0, 0.1));
+}
+
+.wds-platform-settings__section h2 {
+  font-size: 1.15rem;
+  margin: 0 0 0.75rem;
+}
+
+.wds-platform-settings__list ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  line-height: 1.5;
+}
+
+.wds-platform-settings__list h3 {
+  font-size: 0.95rem;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.wds-platform-settings__foot {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.wds-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.65rem 0;
+}
+
+.wds-field input,
+.wds-field select {
+  min-height: 44px;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--wds-border, rgba(0, 0, 0, 0.15));
+  border-radius: var(--wds-radius-md, 10px);
+  font: inherit;
+}
+
+.wds-field--check {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.wds-workflows {
+  margin: 1.25rem 0;
+  padding: 0.85rem 0 0;
+  border-top: 1px solid var(--wds-border, rgba(0, 0, 0, 0.08));
+}
+
+.wds-workflows__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.wds-workflows ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wds-workflows li {
+  margin: 0.55rem 0;
+}
+
+.wds-workflows a {
+  font-weight: 500;
+}
+
+.wds-workflows .wds-honesty {
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.was-home__search {
+  margin: 1.25rem 0 0;
+  max-width: 28rem;
+}
+
+.was-home__search input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--wds-border, rgba(0, 0, 0, 0.15));
+  border-radius: var(--wds-radius-md, 10px);
+  font: inherit;
+}
+
+.was-home__search-results {
+  margin-top: 0.65rem;
+}
+
+.was-home__search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.was-home__search-results li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--wds-border, rgba(0, 0, 0, 0.06));
+}
+
+.wds-visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}

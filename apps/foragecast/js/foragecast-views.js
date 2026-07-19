@@ -510,6 +510,10 @@
           (WDS.resilience.isOnline() ? "online" : "offline") +
           "</p>"
         : "") +
+      (global.WDS && WDS.platformWorkflows
+        ? WDS.platformWorkflows.renderLinksHtml("foragecast", { depth: 1, when: "after-conditions" })
+        : "") +
+      '<p class="fc-honesty">Shared Studio settings: <a href="../../settings.html">Profile, places, units</a></p>' +
       '<p class="fc-honesty">ForageCast will not invent live forecasts when providers fail.</p></section>'
     );
   }

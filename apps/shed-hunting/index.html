@@ -21,6 +21,7 @@
       <div class="sheds-launch" style="max-width:40rem;margin:0 auto 1.25rem;padding:0 1rem;">
         <p class="wds-body" style="margin:0 0 0.75rem;">Open field intelligence for whitetail shed walking: topo map, private observations, search coverage, and suggested next areas with transparent why — never certainty.</p>
         <p><a class="wds-btn wds-btn--primary" href="map/">Open field intelligence</a></p>
+        <div id="sheds-workflows"></div>
       </div>
       <div id="wds-foundation-mount" aria-busy="true" data-foundation-src="data/foundation.json">
         <header class="wpf-hero">
@@ -55,9 +56,18 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-foundation.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-foundation-boot.js" defer></script>
   <script src="js/sheds-models.js" defer></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function () {
+      var el = document.getElementById("sheds-workflows");
+      if (el && window.WDS && WDS.platformWorkflows) {
+        el.innerHTML = WDS.platformWorkflows.renderLinksHtml("shed-hunting", { depth: 1, when: "after-observation" });
+      }
+    });
+  </script>
 </body>
 </html>
