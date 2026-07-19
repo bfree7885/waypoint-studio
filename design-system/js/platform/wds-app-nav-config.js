@@ -401,29 +401,34 @@
           "href": "apps/signalterrain/"
         },
         {
-          "id": "topics",
-          "label": "Topics",
-          "href": "apps/signalterrain/topics.html"
-        },
-        {
-          "id": "graph",
-          "label": "Knowledge graph",
-          "href": "apps/signalterrain/graph.html"
-        },
-        {
-          "id": "summary",
-          "label": "Intelligence summary",
-          "href": "apps/signalterrain/summary.html"
-        },
-        {
           "id": "cyber",
-          "label": "Cyber intelligence",
-          "href": "apps/signalterrain/cyber/live.html"
+          "label": "Today’s cyber brief",
+          "href": "apps/signalterrain/cyber/live.html#brief"
         },
         {
           "id": "cyber-workspace",
           "label": "Cyber workspace",
           "href": "apps/signalterrain/cyber/workspace.html"
+        },
+        {
+          "id": "cyber-ingest-health",
+          "label": "Cyber ingest (internal)",
+          "href": "apps/signalterrain/cyber/ingest-health.html"
+        },
+        {
+          "id": "topics",
+          "label": "Topics (samples)",
+          "href": "apps/signalterrain/topics.html"
+        },
+        {
+          "id": "graph",
+          "label": "Knowledge graph (samples)",
+          "href": "apps/signalterrain/graph.html"
+        },
+        {
+          "id": "summary",
+          "label": "Intelligence summary (samples)",
+          "href": "apps/signalterrain/summary.html"
         },
         {
           "id": "cyber-teaching",
@@ -449,11 +454,6 @@
           "id": "cyber-knowledge",
           "label": "Cyber knowledge (samples)",
           "href": "apps/signalterrain/cyber/knowledge.html"
-        },
-        {
-          "id": "cyber-ingest-health",
-          "label": "Cyber ingest (internal)",
-          "href": "apps/signalterrain/cyber/ingest-health.html"
         }
       ]
     },

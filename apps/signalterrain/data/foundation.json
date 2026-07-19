@@ -11,8 +11,8 @@
     "Infrastructure and research signals lack a calm place to connect evidence over time"
   ],
   "cta": {
-    "href": "summary.html",
-    "label": "Open intelligence summary"
+    "href": "cyber/live.html#brief",
+    "label": "Open today’s cyber brief"
   },
   "capabilityGroups": [
     {
@@ -68,9 +68,14 @@
       "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces \u2014 architecture first."
     },
     {
-      "title": "Intelligence Summary",
+      "title": "Cyber Live intelligence",
       "status": "live",
-      "description": "Concise daily intelligence prototype \u2014 summarizes sample events, does not scroll feeds."
+      "description": "Verified public sources — daily brief with priority, trust, and provider health. Defensive awareness only."
+    },
+    {
+      "title": "Intelligence Summary (samples)",
+      "status": "foundation",
+      "description": "Educational sample UIOs — labeled samples, not live intelligence."
     },
     {
       "title": "Living knowledge graph",
@@ -100,13 +105,13 @@
       "ready": true
     },
     {
-      "path": "summary.html",
-      "label": "Intelligence summary",
+      "path": "cyber/live.html#brief",
+      "label": "Today’s cyber brief (live)",
       "ready": true
     },
     {
       "path": "cyber/",
-      "label": "Cyber Awareness",
+      "label": "Cyber Awareness (live)",
       "ready": true
     },
     {
@@ -116,27 +121,32 @@
     },
     {
       "path": "topics.html",
-      "label": "Topics",
+      "label": "Topics (samples)",
       "ready": true
     },
     {
       "path": "graph.html",
-      "label": "Knowledge graph",
+      "label": "Knowledge graph (samples)",
+      "ready": true
+    },
+    {
+      "path": "summary.html",
+      "label": "Intelligence summary (samples)",
       "ready": true
     },
     {
       "path": "receivers/",
-      "label": "Receivers",
+      "label": "Receivers (planned)",
       "ready": false
     },
     {
       "path": "incidents/",
-      "label": "Incident timeline",
+      "label": "Incident timeline (planned)",
       "ready": false
     },
     {
       "path": "audio/",
-      "label": "Audio library",
+      "label": "Audio library (planned)",
       "ready": false
     }
   ],

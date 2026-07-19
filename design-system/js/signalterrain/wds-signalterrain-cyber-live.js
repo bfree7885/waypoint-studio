@@ -259,8 +259,71 @@
     return "st-live-band";
   }
 
+  /** User-facing priority vocabulary (engine bands → briefing language). */
+  function bandLabel(band) {
+    if (band === "Immediate") return "Critical";
+    if (band === "High") return "High";
+    if (band === "Monitor") return "Medium";
+    return "Informational";
+  }
+
+  function bandWhy(band) {
+    if (band === "Immediate") {
+      return "Critical — known exploitation, severe exposure, or time-sensitive defensive action.";
+    }
+    if (band === "High") {
+      return "High — material risk or widespread advisory; confirm relevance and plan remediation.";
+    }
+    if (band === "Monitor") {
+      return "Medium — worth tracking; not the first thing to interrupt your day unless it matches your stack.";
+    }
+    return "Informational — context and awareness; low urgency unless your profile elevates it.";
+  }
+
   function trustBadge(state) {
     return '<span class="st-live-trust">' + esc(state || "Unknown") + "</span>";
+  }
+
+  function providerTrustStrip(doc) {
+    var providers = (doc && doc.providers) || [];
+    var ok = providers.filter(function (p) {
+      return p.status === "ok";
+    }).length;
+    var failed = providers.filter(function (p) {
+      return p.status === "error" || p.status === "timeout" || p.status === "failed";
+    });
+    var planned = providers.filter(function (p) {
+      return p.status === "planned";
+    }).length;
+    var cached = providers.filter(function (p) {
+      return p.status === "cached" || p.status === "stale";
+    }).length;
+    var gen = (doc && doc.meta && doc.meta.generatedAt) || "—";
+    return (
+      '<div class="st-live-trust-strip" role="status">' +
+      "<p><strong>Trust:</strong> " +
+      trustBadge(doc && doc.meta && doc.meta.trustState) +
+      " · refreshed " +
+      esc(String(gen).slice(0, 19)) +
+      " · " +
+      esc(String(ok)) +
+      " providers ok" +
+      (cached ? " · " + esc(String(cached)) + " cached" : "") +
+      (planned ? " · " + esc(String(planned)) + " planned (not faked live)" : "") +
+      "</p>" +
+      (failed.length
+        ? "<p><strong>Unavailable now:</strong> " +
+          esc(
+            failed
+              .map(function (p) {
+                return p.providerName || p.providerId;
+              })
+              .join(", ")
+          ) +
+          ' · <a href="#feeds">Provider health</a></p>'
+        : '<p>All active providers responded or are planned. <a href="#feeds">Provider health</a></p>') +
+      "</div>"
+    );
   }
 
   function filterRecords(records, state) {
@@ -320,7 +383,7 @@
       '<span class="' +
       bandClass(r.priority && r.priority.band) +
       '">' +
-      esc((r.priority && r.priority.band) || "—") +
+      esc(bandLabel(r.priority && r.priority.band)) +
       " · " +
       esc(String((r.priority && r.priority.score) || "—")) +
       "</span>" +
@@ -344,18 +407,32 @@
       (vendors || products
         ? "<li><strong>Affects:</strong> " + esc([vendors, products].filter(Boolean).join(" / ")) + "</li>"
         : "") +
-      (rec.why ? "<li><strong>Action why:</strong> " + esc(rec.why) + "</li>" : "") +
-      "<li><strong>Why ranked:</strong> " +
+      (rec.why ? "<li><strong>Why this matters:</strong> " + esc(rec.why) + "</li>" : "") +
+      "<li><strong>Why ranked " +
+      esc(bandLabel(r.priority && r.priority.band)) +
+      ":</strong> " +
       esc((r.priority && r.priority.explanation) || "") +
       "</li>" +
       (merged
-        ? "<li><strong>Sources merged:</strong> " + esc(String(merged + 1)) + " related reports</li>"
+        ? "<li><strong>Deduped:</strong> " + esc(String(merged + 1)) + " related reports merged</li>"
         : "") +
-      "<li><strong>Source:</strong> <a href=\"" +
-      esc(r.source && r.source.sourceUrl) +
-      "\" rel=\"noopener noreferrer\" target=\"_blank\">" +
-      esc(r.source && r.source.providerName) +
-      "</a></li>" +
+      "<li><strong>Source:</strong> " +
+      esc((r.source && (r.source.providerName || r.source.providerId)) || "—") +
+      (r.source && r.source.providerId ? " (" + esc(r.source.providerId) + ")" : "") +
+      (r.source && r.source.sourceUrl
+        ? ' · <a href="' +
+          esc(r.source.sourceUrl) +
+          '" rel="noopener noreferrer" target="_blank">Open</a>'
+        : "") +
+      "</li>" +
+      "<li><strong>Retrieved:</strong> " +
+      esc(String(r.retrievedAt || "—").slice(0, 19)) +
+      (r.confidence != null
+        ? " · <strong>Confidence:</strong> " + esc(String(r.confidence))
+        : r.source && r.source.confidence != null
+          ? " · <strong>Confidence:</strong> " + esc(String(r.source.confidence))
+          : "") +
+      "</li>" +
       "</ul></article>"
     );
   }
@@ -412,7 +489,30 @@
       if (global.performance && performance.mark) performance.mark("st-cyber-mount-start");
     } catch (e0) { /* noop */ }
     root.setAttribute("aria-busy", "true");
-    root.innerHTML = '<p class="st-loading">Loading verified cyber intelligence…</p>';
+    var Boot = global.WDS && global.WDS.platformBoot;
+    if (Boot && Boot.mount) {
+      Boot.mount(root, {
+        product: "SignalTerrain Cyber",
+        title: "Today’s cyber brief",
+        detail: "Loading verified public intelligence. Sample threats are never substituted.",
+        status: "Fetching live artifact…"
+      });
+      if (Boot.watch) {
+        Boot.watch(root, {
+          product: "SignalTerrain Cyber",
+          title: "Cyber intelligence is taking too long",
+          detail: "The live artifact did not finish loading. Retry, or check provider/engine health.",
+          homeHref: "../",
+          supportHref: "../../../support.html",
+          timeoutMs: 20000,
+          onRetry: function () {
+            mountLive(root, options);
+          }
+        });
+      }
+    } else {
+      root.innerHTML = '<p class="st-loading">Loading verified cyber intelligence…</p>';
+    }
 
     var liveUrl = options.liveUrl || "../../../data/cyber/live.json";
     var historyUrl = options.historyUrl || "../../../data/cyber/history.json";
@@ -433,24 +533,55 @@
       historyDoc: null
     };
 
+    if (Boot && Boot.status) Boot.status(root, "Loading live.json…");
+
     return loadJson(liveUrl)
       .catch(function (err) {
-        root.innerHTML =
-          '<div class="st-live-app" role="alert">' +
-          "<h1>No verified cyber intelligence has been retrieved yet.</h1>" +
-          "<p>Run <code>node scripts/signalterrain-cyber-live-engine.mjs</code>. Sample data will not be substituted.</p>" +
-          "<p class=\"st-live-lead\">" +
-          esc(String(err && err.message ? err.message : err)) +
-          "</p></div>";
-        root.removeAttribute("aria-busy");
+        if (Boot && Boot.fail) {
+          Boot.fail(root, {
+            product: "SignalTerrain Cyber",
+            title: "No verified cyber intelligence yet",
+            detail:
+              (err && err.message ? err.message + " — " : "") +
+              "Run node scripts/signalterrain-cyber-live-engine.mjs. Sample data will not be substituted.",
+            homeHref: "../",
+            supportHref: "../../../support.html",
+            onRetry: function () {
+              mountLive(root, options);
+            }
+          });
+        } else {
+          root.innerHTML =
+            '<div class="st-live-app" role="alert">' +
+            "<h1>No verified cyber intelligence has been retrieved yet.</h1>" +
+            "<p>Run <code>node scripts/signalterrain-cyber-live-engine.mjs</code>. Sample data will not be substituted.</p>" +
+            "<p class=\"st-live-lead\">" +
+            esc(String(err && err.message ? err.message : err)) +
+            "</p>" +
+            '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p></div>';
+          root.removeAttribute("aria-busy");
+        }
         throw err;
       })
       .then(function (doc) {
         if (!doc || !Array.isArray(doc.records)) {
-          root.innerHTML = '<p role="alert">Live artifact is malformed. Sample data will not be substituted.</p>';
-          root.removeAttribute("aria-busy");
+          if (Boot && Boot.fail) {
+            Boot.fail(root, {
+              product: "SignalTerrain Cyber",
+              title: "Live artifact is malformed",
+              detail: "Sample data will not be substituted.",
+              onRetry: function () {
+                mountLive(root, options);
+              }
+            });
+          } else {
+            root.innerHTML = '<p role="alert">Live artifact is malformed. Sample data will not be substituted.</p>';
+            root.removeAttribute("aria-busy");
+          }
           return;
         }
+        if (Boot && Boot.clear) Boot.clear(root);
+        if (Boot && Boot.status) Boot.status(root, "Building brief…");
         state.doc = doc;
         state.records = applyProfile(doc.records, profileTermsFromInventory());
         // Soft-load history (non-blocking)
@@ -489,7 +620,20 @@
           var briefings = signal.briefings || {};
           var activeKind = briefings.activeKind || "morning";
           var active = briefings[activeKind] || null;
-          var surfaced = visibleRecords(state.records, state.showNoise);
+          var surfaced = visibleRecords(state.records, state.showNoise).filter(function (r) {
+            return r.type !== "service-outage" || !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
+          });
+          var byBand = {
+            Immediate: [],
+            High: [],
+            Monitor: [],
+            Informational: []
+          };
+          surfaced.forEach(function (r) {
+            var b = (r.priority && r.priority.band) || "Informational";
+            if (!byBand[b]) b = "Informational";
+            byBand[b].push(r);
+          });
           var bullets =
             brief && brief.bullets && brief.bullets.length
               ? brief.bullets
@@ -498,59 +642,84 @@
                     return { text: r.title };
                   })
                 );
-          var imm = surfaced.filter(function (r) {
-            return r.priority.band === "Immediate";
-          }).length;
-          var high = surfaced.filter(function (r) {
-            return r.priority.band === "High";
-          }).length;
           var trendsNarrative = ((signal.trends && signal.trends.narrative) || []).slice(0, 3);
+          var hidden =
+            (state.doc.meta && state.doc.meta.counts && state.doc.meta.counts.hiddenByDefault) ||
+            (signal.noise && signal.noise.hideByDefaultCount) ||
+            0;
+
+          function bandBlock(engineBand) {
+            var list = byBand[engineBand] || [];
+            if (!list.length) return "";
+            return (
+              '<section class="st-live-band-block" aria-labelledby="st-band-' +
+              esc(engineBand) +
+              '">' +
+              '<h2 class="st-live-band-block__title" id="st-band-' +
+              esc(engineBand) +
+              '">' +
+              esc(bandLabel(engineBand)) +
+              " (" +
+              list.length +
+              ")</h2>" +
+              '<p class="st-live-band-block__why">' +
+              esc(bandWhy(engineBand)) +
+              "</p>" +
+              list
+                .slice(0, engineBand === "Immediate" || engineBand === "High" ? 5 : 3)
+                .map(cardHtml)
+                .join("") +
+              (list.length > (engineBand === "Immediate" || engineBand === "High" ? 5 : 3)
+                ? '<p class="st-live-lead"><a href="#threats">See all ' +
+                  esc(bandLabel(engineBand).toLowerCase()) +
+                  " items →</a></p>"
+                : "") +
+              "</section>"
+            );
+          }
+
           return (
             noiseToolbar(state) +
             '<section class="st-live-brief" aria-labelledby="st-brief-title">' +
             '<p class="st-live-brief__eyebrow">Operational intelligence · ' +
             esc((active && active.title) || (brief && brief.title) || "Today's Cyber Brief") +
             "</p>" +
-            '<h1 class="st-live-brief__title" id="st-brief-title">What deserves attention right now?</h1>' +
+            '<h1 class="st-live-brief__title" id="st-brief-title">What changed — and what deserves attention?</h1>' +
+            '<p class="st-live-brief__question">Why it matters, who is affected, and what is low priority today.</p>' +
             '<p class="st-live-brief__meta">Generated ' +
             esc((brief && brief.generatedAt) || (state.doc.meta && state.doc.meta.generatedAt) || "—") +
-            " · " +
-            trustBadge(state.doc.meta && state.doc.meta.trustState) +
             " · " +
             esc(String(surfaced.length)) +
             " surfaced / " +
             esc(String(state.records.length)) +
-            " total</p>" +
+            " total · " +
+            esc(String(hidden)) +
+            " low-signal hidden</p>" +
+            providerTrustStrip(state.doc) +
             '<div class="st-live-stats" aria-label="Priority counts">' +
             '<div class="st-live-stat"><strong>' +
-            imm +
-            "</strong><span>Immediate</span></div>" +
+            byBand.Immediate.length +
+            "</strong><span>Critical</span></div>" +
             '<div class="st-live-stat"><strong>' +
-            high +
+            byBand.High.length +
             "</strong><span>High</span></div>" +
             '<div class="st-live-stat"><strong>' +
-            esc(
-              String(
-                surfaced.filter(function (r) {
-                  return r.exploitation && r.exploitation.knownExploited;
-                }).length
-              )
-            ) +
-            "</strong><span>KEV</span></div>" +
+            byBand.Monitor.length +
+            "</strong><span>Medium</span></div>" +
             '<div class="st-live-stat"><strong>' +
-            esc(
-              String(
-                surfaced.filter(function (r) {
-                  return r.type === "service-outage" && !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
-                }).length
-              )
-            ) +
-            "</strong><span>Outages</span></div>" +
+            byBand.Informational.length +
+            "</strong><span>Info</span></div>" +
             "</div>" +
+            '<h2 class="st-live-section-title" style="font-size:1.05rem">What should I pay attention to?</h2>' +
             '<ul class="st-live-brief__list">' +
             bullets
               .map(function (b) {
-                return "<li>" + esc(b.text || b) + "</li>";
+                return (
+                  "<li>" +
+                  esc(b.text || b) +
+                  (b.why ? '<span class="st-live-brief__why"> — ' + esc(b.why) + "</span>" : "") +
+                  "</li>"
+                );
               })
               .join("") +
             "</ul>" +
@@ -560,7 +729,7 @@
                 "</p>"
               : "") +
             (brief && brief.recommendation
-              ? '<p class="st-live-brief__rec"><strong>Recommended priority:</strong> ' +
+              ? '<p class="st-live-brief__rec"><strong>Recommended focus:</strong> ' +
                 esc(brief.recommendation) +
                 "</p>"
               : "") +
@@ -580,16 +749,15 @@
               : "") +
             '<p class="st-live-lead">' +
             esc((brief && brief.method) || "Interpretation of provider-backed records only.") +
-            ' <a href="#briefings">All briefings</a></p></section>' +
-            listPanel(
-              "Top intelligence by priority",
-              "Sorted by operational priority — low-signal hidden unless enabled.",
-              surfaced
-                .filter(function (r) {
-                  return r.type !== "service-outage" || !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
-                })
-                .slice(0, 8)
-            )
+            ' Low-signal items stay hidden unless you enable them. <a href="#briefings">All briefings</a> · <a href="#feeds">Feeds</a></p></section>' +
+            bandBlock("Immediate") +
+            bandBlock("High") +
+            bandBlock("Monitor") +
+            '<p class="st-live-lead st-live-lowpri"><strong>Low priority today:</strong> ' +
+            esc(String(byBand.Informational.length)) +
+            " informational items and " +
+            esc(String(hidden)) +
+            " hidden low-signal records — open <a href=\"#threats\">Threats</a> or enable low-signal only when you need depth.</p>"
           );
         }
 
@@ -1336,6 +1504,8 @@
     applyProfile: applyProfile,
     matchProfile: matchProfile,
     rescore: rescore,
+    bandLabel: bandLabel,
+    bandWhy: bandWhy,
     BANNED_SAMPLE_PATHS: BANNED_SAMPLE_PATHS
   };
 })(typeof window !== "undefined" ? window : globalThis);
