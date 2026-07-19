@@ -107,6 +107,12 @@
       });
   }
 
+  function scoreOrNull(v) {
+    if (v == null || v === "") return null;
+    var n = Number(v);
+    return isNaN(n) ? null : n;
+  }
+
   function normalizeNode(partial) {
     partial = partial || {};
     var now = nowIso();
@@ -115,6 +121,10 @@
     var research = partial.research || {};
     var queue = partial.queue || {};
     var learning = partial.learning || {};
+    var session = partial.session || {};
+    var field = partial.field || {};
+    var reliability = partial.reliability || {};
+    var thinking = partial.thinking || {};
     return {
       schemaVersion: Schema().SCHEMA,
       id: partial.id || "wu_" + uuid(),
@@ -166,6 +176,54 @@
         openCount: learning.openCount != null ? Number(learning.openCount) || 0 : 0,
         searchHits: learning.searchHits != null ? Number(learning.searchHits) || 0 : 0,
         lastStudiedAt: learning.lastStudiedAt || null
+      },
+      session: {
+        purpose: session.purpose || null,
+        startedAt: session.startedAt || (partial.kind === "session" ? now : null),
+        endedAt: session.endedAt || null,
+        status: session.status || (partial.kind === "session" ? "active" : null),
+        workspace: session.workspace || "active",
+        discoveries: session.discoveries || null,
+        futureWork: session.futureWork || null,
+        questionIds: Array.isArray(session.questionIds) ? session.questionIds : [],
+        conceptIds: Array.isArray(session.conceptIds) ? session.conceptIds : [],
+        sourceIds: Array.isArray(session.sourceIds) ? session.sourceIds : []
+      },
+      field: {
+        context: field.context || (partial.kind === "field-note" ? "other" : null),
+        place: field.place || null,
+        conditions: field.conditions || null,
+        capturedAt: field.capturedAt || (partial.kind === "field-note" ? now : null),
+        lat: field.lat != null && field.lat !== "" ? Number(field.lat) : null,
+        lon: field.lon != null && field.lon !== "" ? Number(field.lon) : null
+      },
+      reliability: {
+        authority: scoreOrNull(reliability.authority),
+        evidence: scoreOrNull(reliability.evidence),
+        bias: scoreOrNull(reliability.bias),
+        recency: scoreOrNull(reliability.recency),
+        confidence: scoreOrNull(reliability.confidence),
+        conflicts: reliability.conflicts || null,
+        notes: reliability.notes || null
+      },
+      thinking: {
+        tool: thinking.tool || null,
+        status: thinking.status || null,
+        claim: thinking.claim || null,
+        supports: thinking.supports || null,
+        objections: thinking.objections || null,
+        statement: thinking.statement || null,
+        hypothesisStatus: thinking.hypothesisStatus || null,
+        question: thinking.question || null,
+        options: thinking.options || null,
+        chosen: thinking.chosen || null,
+        rationale: thinking.rationale || null,
+        method: thinking.method || null,
+        result: thinking.result || null,
+        next: thinking.next || null,
+        focusId: thinking.focusId || null,
+        nodeIds: Array.isArray(thinking.nodeIds) ? thinking.nodeIds : [],
+        evidenceIds: Array.isArray(thinking.evidenceIds) ? thinking.evidenceIds : []
       },
       annotations: normalizeAnnotations(partial.annotations),
       capture: partial.capture || null,
@@ -527,6 +585,93 @@
     );
   }
 
+  async function getActiveSessionId() {
+    return (await getMeta("activeSessionId", null)) || null;
+  }
+
+  async function setActiveSessionId(id) {
+    await setMeta("activeSessionId", id || null);
+    return id;
+  }
+
+  async function startSession(opts) {
+    opts = opts || {};
+    var existing = await getActiveSessionId();
+    if (existing) {
+      var cur = await getNode(existing);
+      if (cur && cur.session && cur.session.status === "active") {
+        return cur;
+      }
+    }
+    var node = await putNode({
+      kind: "session",
+      title: opts.title || "Research session",
+      body: opts.body || "",
+      summary: opts.purpose || "",
+      projects: Array.isArray(opts.projects) ? opts.projects : [],
+      tags: ["research-session"],
+      session: {
+        purpose: opts.purpose || null,
+        startedAt: nowIso(),
+        endedAt: null,
+        status: "active",
+        workspace: opts.workspace || "active",
+        discoveries: null,
+        futureWork: null,
+        questionIds: [],
+        conceptIds: [],
+        sourceIds: []
+      },
+      research: { stage: "capture", nextAction: "Work the session", conclusions: null }
+    });
+    await setActiveSessionId(node.id);
+    return node;
+  }
+
+  async function endSession(id, opts) {
+    opts = opts || {};
+    var n = await getNode(id);
+    if (!n) return null;
+    n.session = n.session || {};
+    n.session.status = opts.status || "completed";
+    n.session.endedAt = nowIso();
+    if (opts.discoveries != null) n.session.discoveries = opts.discoveries;
+    if (opts.futureWork != null) n.session.futureWork = opts.futureWork;
+    if (opts.body != null) n.body = opts.body;
+    if (opts.purpose != null) {
+      n.session.purpose = opts.purpose;
+      n.summary = opts.purpose;
+    }
+    var saved = await putNode(n);
+    var active = await getActiveSessionId();
+    if (active === id) await setActiveSessionId(null);
+    return saved;
+  }
+
+  async function captureFieldNote(opts) {
+    opts = opts || {};
+    return putNode({
+      kind: "field-note",
+      title: opts.title || "Field note",
+      body: opts.body || "",
+      projects: Array.isArray(opts.projects) ? opts.projects : [],
+      tags: ["field-note", opts.context || "other"].filter(Boolean),
+      field: {
+        context: opts.context || "other",
+        place: opts.place || null,
+        conditions: opts.conditions || null,
+        capturedAt: nowIso(),
+        lat: opts.lat,
+        lon: opts.lon
+      },
+      queue: {
+        researchInbox: opts.inbox !== false,
+        reading: false,
+        focusToday: !!opts.focus
+      }
+    });
+  }
+
   global.WU = global.WU || {};
   global.WU.Store = {
     bootstrap: bootstrap,
@@ -548,6 +693,11 @@
     removeAnnotation: removeAnnotation,
     getLearningGoals: getLearningGoals,
     setLearningGoals: setLearningGoals,
+    getActiveSessionId: getActiveSessionId,
+    setActiveSessionId: setActiveSessionId,
+    startSession: startSession,
+    endSession: endSession,
+    captureFieldNote: captureFieldNote,
     exportBundle: exportBundle,
     importBundle: importBundle,
     ensurePathTemplates: ensurePathTemplates,

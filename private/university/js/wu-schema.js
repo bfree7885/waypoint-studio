@@ -1,11 +1,11 @@
 /**
- * Waypoint University — schema 1.2 (Work Block 3).
- * Learning engine: understanding stages, annotations, discipline bridges.
+ * Waypoint University — schema 1.3 (Module 4 · Scholar).
+ * Research workspaces, sessions, field notes, reliability, thinking-tool foundations.
  */
 (function (global) {
   "use strict";
 
-  var SCHEMA = "1.2.0";
+  var SCHEMA = "1.3.0";
   var DB_NAME = "waypoint-university-v1";
   var DB_VERSION = 1;
 
@@ -36,7 +36,13 @@
     { id: "place", label: "Place", plural: "Places" },
     { id: "code", label: "Code", plural: "Code" },
     { id: "checklist", label: "Checklist", plural: "Checklists" },
-    { id: "task", label: "Task", plural: "Tasks" }
+    { id: "task", label: "Task", plural: "Tasks" },
+    { id: "session", label: "Research session", plural: "Research sessions" },
+    { id: "field-note", label: "Field note", plural: "Field notes" },
+    { id: "hypothesis", label: "Hypothesis", plural: "Hypotheses" },
+    { id: "decision", label: "Decision journal", plural: "Decision journals" },
+    { id: "argument", label: "Argument map", plural: "Argument maps" },
+    { id: "concept-map", label: "Concept map", plural: "Concept maps" }
   ];
 
   var SOURCE_KINDS = ["book", "paper", "article", "document", "manual", "video", "podcast", "website", "course"];
@@ -261,6 +267,140 @@
     }
   ];
 
+  /** Scholar research workspaces — shared design, distinct workflows */
+  var SCHOLAR_WORKSPACES = [
+    {
+      id: "active",
+      label: "Active Research",
+      blurb: "Focused inquiry in progress — sessions, notes, and open threads.",
+      kinds: ["session", "research-note", "topic", "concept", "idea"],
+      primaryAction: { href: "#scholar/session", label: "Start session" }
+    },
+    {
+      id: "reading",
+      label: "Reading",
+      blurb: "Deep reading with sources, highlights, and reliability notes.",
+      kinds: ["book", "paper", "article", "document", "manual", "video", "podcast", "website", "course"],
+      primaryAction: { href: "#reading", label: "Reading workspace" }
+    },
+    {
+      id: "writing",
+      label: "Writing",
+      blurb: "Compose definitions, articles, and synthesis from evidence.",
+      kinds: ["article", "research-note", "definition", "reference", "argument"],
+      primaryAction: { href: "#new/research-note", label: "New writing" }
+    },
+    {
+      id: "projects",
+      label: "Projects",
+      blurb: "Living research hubs for every Waypoint lane and personal project.",
+      kinds: ["project"],
+      primaryAction: { href: "#projects", label: "Open projects" }
+    },
+    {
+      id: "experiments",
+      label: "Experiments",
+      blurb: "Hypotheses, trials, and results — careful, revisable claims.",
+      kinds: ["experiment", "hypothesis"],
+      primaryAction: { href: "#new/experiment", label: "New experiment" }
+    },
+    {
+      id: "reference",
+      label: "Reference",
+      blurb: "Stable lookup pages, manuals, and citation anchors.",
+      kinds: ["reference", "manual", "document", "definition"],
+      primaryAction: { href: "#new/reference", label: "New reference" }
+    },
+    {
+      id: "questions",
+      label: "Questions",
+      blurb: "Unresolved curiosity — linked to evidence and experiments.",
+      kinds: ["question"],
+      primaryAction: { href: "#new/question", label: "New question" }
+    },
+    {
+      id: "field",
+      label: "Field Notes",
+      blurb: "Observations from the world — trails, tastings, investigations.",
+      kinds: ["field-note", "observation"],
+      primaryAction: { href: "#scholar/field", label: "Quick field note" }
+    }
+  ];
+
+  var FIELD_NOTE_CONTEXTS = [
+    { id: "photography", label: "Photography outing" },
+    { id: "wildlife", label: "Wildlife observation" },
+    { id: "trail", label: "Trail walk" },
+    { id: "tea", label: "Tea tasting" },
+    { id: "wine", label: "Wine tasting" },
+    { id: "foraging", label: "Foraging trip" },
+    { id: "cyber", label: "Cybersecurity investigation" },
+    { id: "linux", label: "Linux troubleshooting" },
+    { id: "gis", label: "GIS / field survey" },
+    { id: "other", label: "Other field work" }
+  ];
+
+  var SESSION_STATUSES = [
+    { id: "active", label: "Active" },
+    { id: "completed", label: "Completed" },
+    { id: "abandoned", label: "Parked" }
+  ];
+
+  /** Personal source reliability — organize evidence without pretending certainty */
+  var RELIABILITY_DIMENSIONS = [
+    { id: "authority", label: "Authority", blurb: "Who produced this, and how qualified?" },
+    { id: "evidence", label: "Evidence", blurb: "How well is the claim supported?" },
+    { id: "bias", label: "Bias concern", blurb: "0 = little concern · 5 = strong concern" },
+    { id: "recency", label: "Recency", blurb: "How current is this for your purpose?" },
+    { id: "confidence", label: "Your confidence", blurb: "How much weight will you give it for now?" }
+  ];
+
+  /**
+   * Thinking tools — extensible foundations (full canvases in later modules).
+   */
+  var THINKING_TOOLS = [
+    {
+      id: "concept-map",
+      kind: "concept-map",
+      label: "Concept map",
+      blurb: "Nodes and relations for a topic cluster.",
+      status: "foundation",
+      fields: ["nodes", "focusId"]
+    },
+    {
+      id: "argument-map",
+      kind: "argument",
+      label: "Argument map",
+      blurb: "Claims, supports, and objections.",
+      status: "foundation",
+      fields: ["claim", "supports", "objections"]
+    },
+    {
+      id: "decision-journal",
+      kind: "decision",
+      label: "Decision journal",
+      blurb: "Options, rationale, and later review.",
+      status: "foundation",
+      fields: ["question", "options", "chosen", "rationale"]
+    },
+    {
+      id: "hypothesis",
+      kind: "hypothesis",
+      label: "Hypothesis tracking",
+      blurb: "Statement, status, and linked evidence.",
+      status: "foundation",
+      fields: ["statement", "status", "evidenceIds"]
+    },
+    {
+      id: "experiment-plan",
+      kind: "experiment",
+      label: "Experiment planning",
+      blurb: "Question, method, result, next step.",
+      status: "foundation",
+      fields: ["question", "method", "result", "next"]
+    }
+  ];
+
   function kindLabel(id) {
     for (var i = 0; i < KINDS.length; i++) {
       if (KINDS[i].id === id) return KINDS[i].label;
@@ -307,6 +447,20 @@
     return id || "Note";
   }
 
+  function workspaceLabel(id) {
+    for (var i = 0; i < SCHOLAR_WORKSPACES.length; i++) {
+      if (SCHOLAR_WORKSPACES[i].id === id) return SCHOLAR_WORKSPACES[i].label;
+    }
+    return id || "Workspace";
+  }
+
+  function fieldContextLabel(id) {
+    for (var i = 0; i < FIELD_NOTE_CONTEXTS.length; i++) {
+      if (FIELD_NOTE_CONTEXTS[i].id === id) return FIELD_NOTE_CONTEXTS[i].label;
+    }
+    return id || "Field work";
+  }
+
   global.WU = global.WU || {};
   global.WU.Schema = {
     SCHEMA: SCHEMA,
@@ -326,12 +480,19 @@
     UNDERSTANDING_STAGES: UNDERSTANDING_STAGES,
     ANNOTATION_KINDS: ANNOTATION_KINDS,
     DISCIPLINE_BRIDGES: DISCIPLINE_BRIDGES,
+    SCHOLAR_WORKSPACES: SCHOLAR_WORKSPACES,
+    FIELD_NOTE_CONTEXTS: FIELD_NOTE_CONTEXTS,
+    SESSION_STATUSES: SESSION_STATUSES,
+    RELIABILITY_DIMENSIONS: RELIABILITY_DIMENSIONS,
+    THINKING_TOOLS: THINKING_TOOLS,
     kindLabel: kindLabel,
     relationLabel: relationLabel,
     relationMeta: relationMeta,
     projectLabel: projectLabel,
     isSourceKind: isSourceKind,
     understandingLabel: understandingLabel,
-    annotationLabel: annotationLabel
+    annotationLabel: annotationLabel,
+    workspaceLabel: workspaceLabel,
+    fieldContextLabel: fieldContextLabel
   };
 })(typeof window !== "undefined" ? window : globalThis);

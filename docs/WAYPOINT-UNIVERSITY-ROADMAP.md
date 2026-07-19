@@ -9,35 +9,37 @@ Local-first IndexedDB OS, Markdown, capture, paths, basic links, privacy isolati
 Neighborhood graph, learning dashboard, knowledge health, research workflow, sources, richer questions/search/projects.
 
 ### Work block 3 — Learning engine
-Understanding Map, learning profile, gaps-as-opportunities, next steps with why, cross-disciplinary bridges, timeline, project intelligence, reading annotations, research-assist search. Cached insights. No grades / social / gamification.
+Understanding Map, learning profile, gaps-as-opportunities, next steps with why, cross-disciplinary bridges, timeline, project intelligence, reading annotations, research-assist search.
+
+### Module 4 — Scholar (research environment)
+Research workspaces, sessions, field notes, source reliability, project research hubs, thinking-tool foundations. Primary “ideas begin here” surface.
 
 ---
 
-## Recommended next work blocks
+## Recommended next modules
 
-### Work block 4 — Capture & media
-1. Drag-drop images / PDF attach (IDB blobs)  
+### Module 5 — Capture depth & thinking canvases
+1. Media blobs on field notes / sources (images, audio)  
 2. Full backup including media  
-3. Voice capture → audio + transcript placeholder  
-4. OCR / text-extract hooks  
-5. Optional page-anchored PDF annotation (builds on annotation model)
+3. Session link pickers (questions, concepts, sources)  
+4. Hypothesis board + decision journal review  
+5. Scholar command palette (session / field / search)  
+6. Optional GPS / place assist for field notes  
 
-### Work block 5 — Scale & craft
-1. Worker-built search + incremental graph/insights index  
-2. Virtualized library / link picker search-select  
-3. Duplicate merge assistant  
-4. Revision restore UI  
-5. Optional whole-graph overview (clustered, not hairball)
+### Module 6 — Scale & craft
+1. Worker-built search + incremental graph/insights  
+2. Virtualized library  
+3. Duplicate merge + revision restore  
+4. Calm whole-graph overview  
 
-### Work block 6 — Review (only when ready)
-1. Enable `review` scheduling UI  
-2. Spaced repetition — private, optional  
-3. No social / no leaderboards  
+### Module 7 — Review (only when ready)
+1. Optional private spaced repetition  
+2. No social / no leaderboards  
 
 ### Explicitly later / maybe never
 - AI tutoring  
 - Public sharing / classrooms / certificates  
-- Multi-user sync (if ever: E2E encrypted, owner-controlled)
+- Multi-user sync (if ever: E2E encrypted)
 
 ---
 
@@ -45,12 +47,11 @@ Understanding Map, learning profile, gaps-as-opportunities, next steps with why,
 
 | Item | Severity | Notes |
 |------|----------|-------|
-| Insights full rebuild on fingerprint change | Low–Med | Fine to mid thousands; workerize later |
-| Bridge cross-link scan capped | By design | Avoid O(n²) blowups |
-| Library lists capped ~250 | Medium | Virtualize |
-| Export omits media blobs | Medium | Block 4 |
-| No automated browser tests | Medium | Add smoke under `private/` |
-| Annotation UI is note-based, not overlay | By design | Schema ready for anchors |
+| Nav density | Med | Scholar-first collapse later |
+| session.*Ids unused in UI | Low | Module 5 pickers |
+| Thinking stubs ≠ canvases | By design | Module 5 |
+| Export omits media | High for V1.0 | Module 5 |
+| No automated browser tests | Medium | Smoke under `private/` |
 
 ---
 
@@ -58,9 +59,9 @@ Understanding Map, learning profile, gaps-as-opportunities, next steps with why,
 
 - Instant feel at ≥5k nodes  
 - Media + complete backup  
+- Scholar sessions + field capture habitual  
 - Neighborhood **and** calm overview graph  
 - Merge + revision restore  
 - Zero public-suite leakage  
-- Learning companion behaviors stable (Blocks 2–3)
 
-Block 3 clears the “lifelong intellectual companion” bar for understanding and next steps; media/scale/polish remain for V1.0.
+Module 4 makes University feel like a **private research laboratory**; media and deeper thinking canvases remain for Module 5 / V1.0.

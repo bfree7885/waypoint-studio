@@ -1,12 +1,13 @@
 /**
- * Waypoint University — Work Block 3 application shell.
- * Learning engine companion: understanding map, next steps, timeline, reading.
+ * Waypoint University — Module 4 application shell.
+ * Scholar research environment + learning companion.
  */
 (function (global) {
   "use strict";
 
   var NAV = [
     ["home", "Home"],
+    ["scholar", "Scholar"],
     ["capture", "Quick Capture"],
     ["search", "Search"],
     ["graph", "Graph"],
@@ -44,6 +45,9 @@
   }
   function Learn() {
     return global.WU.Learn;
+  }
+  function Scholar() {
+    return global.WU.Scholar;
   }
 
   function esc(s) {
@@ -152,6 +156,8 @@
       learningGoals: [],
       lastWriteAt: "",
       insights: null,
+      activeSessionId: null,
+      scholarWorkspace: "active",
       q: "",
       libraryKind: "all",
       libraryQuery: "",
@@ -191,6 +197,7 @@
       state.recentIds = await Store().recentViewIds();
       state.learningGoals = await Store().getLearningGoals();
       state.lastWriteAt = await Store().getMeta("lastWriteAt", "");
+      state.activeSessionId = await Store().getActiveSessionId();
       rebuild();
     }
 
@@ -203,7 +210,7 @@
       return (
         '<nav class="wu-nav" aria-label="University">' +
         '<p class="wu-brand">Waypoint University</p>' +
-        '<p class="wu-brand-sub">Private · thinking tool</p>' +
+        '<p class="wu-brand-sub">Private · Scholar</p>' +
         "<ul>" +
         NAV.map(function (p) {
           var cur =
@@ -278,12 +285,12 @@
 
       return (
         '<header class="wu-hero">' +
-        '<p class="wu-eyebrow">Learning companion</p>' +
+        '<p class="wu-eyebrow">Learning companion · Scholar</p>' +
         '<h1 class="wu-title">What are you thinking about today?</h1>' +
         '<p class="wu-lead">Understand what you know, notice what needs attention, and take one meaningful next step.</p>' +
         '<div class="wu-hero-actions">' +
-        '<a class="wu-btn wu-btn--primary" href="#next">Next steps</a>' +
-        '<a class="wu-btn" href="#understanding">Understanding map</a>' +
+        '<a class="wu-btn wu-btn--primary" href="#scholar">Open Scholar</a>' +
+        '<a class="wu-btn" href="#next">Next steps</a>' +
         '<a class="wu-btn" href="#capture">Quick capture</a>' +
         "</div>" +
         '<p class="wu-meta">' +
@@ -554,12 +561,7 @@
     }
 
     function timelinePanel() {
-      var insights = state.insights || Learn().buildInsights(state.graphIndex, {
-        learningGoals: state.learningGoals,
-        recentViews: state.recentIds,
-        lastWriteAt: state.lastWriteAt
-      });
-      var events = insights.timeline || [];
+      var events = Scholar().mergeTimeline(state.graphIndex, state.nodes, 80);
       var byYear = Object.create(null);
       events.forEach(function (ev) {
         var y = String(ev.at || "").slice(0, 4) || "—";
@@ -571,7 +573,7 @@
       });
       return (
         "<h1 class=\"wu-title\">Learning timeline</h1>" +
-        '<p class="wu-lead">Intellectual growth over time — discoveries, reading, research, answered questions.</p>' +
+        '<p class="wu-lead">Intellectual growth over time — sessions, discoveries, reading, field notes, answered questions.</p>' +
         (years.length
           ? years
               .map(function (y) {
@@ -600,7 +602,7 @@
                 );
               })
               .join("")
-          : '<p class="wu-empty">Your timeline will fill as you capture and connect.</p>')
+          : '<p class="wu-empty">Your timeline will fill as you capture, session, and connect.</p>')
       );
     }
 
@@ -646,6 +648,189 @@
           : '<p class="wu-empty">Open a source and add a highlight or margin note.</p>') +
         "<h2 class=\"wu-section\">Personal reference library</h2>" +
         listHtml(sources.slice(0, 40), "Add books, papers, manuals, podcasts, videos, and courses.")
+      );
+    }
+
+    function scholarPanel() {
+      var route = parseHash();
+      var mode = route.id || state.scholarWorkspace || "active";
+      if (mode === "session") return scholarSessionForm();
+      if (mode === "field") return scholarFieldForm();
+      if (mode === "thinking") return scholarThinkingPanel();
+      if (mode === "end") return scholarEndSessionForm();
+
+      var known = Schema().SCHOLAR_WORKSPACES.some(function (w) {
+        return w.id === mode;
+      });
+      if (!known) mode = "active";
+      state.scholarWorkspace = mode;
+
+      var active = Scholar().activeSession(state.nodes, state.activeSessionId);
+      var stats = Scholar().workspaceStats(state.nodes);
+      var items = Scholar().filterWorkspace(mode, state.nodes).slice(0, 40);
+      var ws = Scholar().workspaceMeta(mode);
+
+      return (
+        '<header class="wu-hero wu-hero--scholar">' +
+        '<p class="wu-eyebrow">Waypoint Scholar</p>' +
+        '<h1 class="wu-title">Private research laboratory</h1>' +
+        '<p class="wu-lead">Where curiosity becomes organized knowledge — calm, focused, and connected to everything you learn.</p>' +
+        '<div class="wu-hero-actions">' +
+        (active
+          ? '<a class="wu-btn wu-btn--primary" href="#item/' +
+            encodeURIComponent(active.id) +
+            '">Resume session</a> <a class="wu-btn" href="#scholar/end">End session</a>'
+          : '<a class="wu-btn wu-btn--primary" href="#scholar/session">Start research session</a>') +
+        ' <a class="wu-btn" href="#scholar/field">Field note</a> <a class="wu-btn" href="#scholar/thinking">Thinking tools</a>' +
+        "</div>" +
+        (active
+          ? '<p class="wu-meta">Active since ' +
+            esc(fmtDate(active.session && active.session.startedAt)) +
+            " · " +
+            esc(active.title) +
+            (active.session && active.session.purpose ? " — " + esc(active.session.purpose) : "") +
+            "</p>"
+          : "") +
+        "</header>" +
+        '<nav class="wu-workspace-nav" aria-label="Scholar workspaces"><ul>' +
+        stats
+          .map(function (s) {
+            return (
+              "<li><a href=\"#scholar/" +
+              encodeURIComponent(s.id) +
+              "\"" +
+              (s.id === mode ? ' aria-current="page"' : "") +
+              ">" +
+              esc(s.label) +
+              ' <span class="wu-badge">' +
+              s.count +
+              "</span></a></li>"
+            );
+          })
+          .join("") +
+        "</ul></nav>" +
+        '<section class="wu-card">' +
+        "<h2>" +
+        esc(ws.label) +
+        "</h2>" +
+        '<p class="wu-empty">' +
+        esc(ws.blurb) +
+        "</p>" +
+        (ws.primaryAction
+          ? '<p><a class="wu-btn" href="' +
+            esc(ws.primaryAction.href) +
+            '">' +
+            esc(ws.primaryAction.label) +
+            "</a></p>"
+          : "") +
+        listHtml(
+          items,
+          "Nothing in this workspace yet — start a session or capture an idea."
+        ) +
+        "</section>"
+      );
+    }
+
+    function scholarSessionForm() {
+      return (
+        '<p><a href="#scholar">← Scholar</a></p>' +
+        "<h1 class=\"wu-title\">Start research session</h1>" +
+        '<p class="wu-lead">Focused work on one topic. When you finish, discoveries join your learning timeline.</p>' +
+        '<form id="wu-session-start" class="wu-form">' +
+        "<label>Topic <input name=\"title\" required placeholder=\"What are you researching?\" autofocus/></label>" +
+        "<label>Purpose <input name=\"purpose\" placeholder=\"Why this session?\"/></label>" +
+        "<label>Opening notes (Markdown)<textarea name=\"body\" rows=\"6\"></textarea></label>" +
+        '<fieldset><legend>Projects</legend><div class="wu-proj-grid">' +
+        projectOptions([]) +
+        "</div></fieldset>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Begin session</button></form>'
+      );
+    }
+
+    function scholarEndSessionForm() {
+      var active = Scholar().activeSession(state.nodes, state.activeSessionId);
+      if (!active) {
+        return (
+          '<p><a href="#scholar">← Scholar</a></p><p class="wu-empty">No active session.</p>'
+        );
+      }
+      return (
+        '<p><a href="#scholar">← Scholar</a></p>' +
+        "<h1 class=\"wu-title\">End session</h1>" +
+        '<p class="wu-meta">' +
+        esc(active.title) +
+        " · started " +
+        esc(fmtDate(active.session && active.session.startedAt)) +
+        "</p>" +
+        '<form id="wu-session-end" class="wu-form" data-id="' +
+        esc(active.id) +
+        '">' +
+        "<label>Key discoveries <textarea name=\"discoveries\" rows=\"4\" placeholder=\"What clicked?\"></textarea></label>" +
+        "<label>Ideas for future work <textarea name=\"future\" rows=\"3\"></textarea></label>" +
+        "<label>Session notes (Markdown)<textarea name=\"body\" rows=\"8\">" +
+        esc(active.body || "") +
+        "</textarea></label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Complete session</button> ' +
+        '<button type="submit" class="wu-btn" name=\"park\" value=\"1\">Park for later</button></form>'
+      );
+    }
+
+    function scholarFieldForm() {
+      return (
+        '<p><a href="#scholar">← Scholar</a></p>' +
+        "<h1 class=\"wu-title\">Field note</h1>" +
+        '<p class="wu-lead">Capture observations from the world — effortless now, linkable later. Architecture ready for place and media.</p>' +
+        '<form id="wu-field-form" class="wu-form">' +
+        "<label>Context <select name=\"context\">" +
+        Schema().FIELD_NOTE_CONTEXTS.map(function (c) {
+          return "<option value=\"" + c.id + "\">" + esc(c.label) + "</option>";
+        }).join("") +
+        "</select></label>" +
+        "<label>Title <input name=\"title\" required placeholder=\"What did you notice?\" autofocus/></label>" +
+        "<label>Place <input name=\"place\" placeholder=\"Trail, cellar, lab, host…\"/></label>" +
+        "<label>Conditions <input name=\"conditions\" placeholder=\"Weather, setup, constraints…\"/></label>" +
+        "<label>Notes (Markdown)<textarea name=\"body\" rows=\"8\"></textarea></label>" +
+        '<fieldset><legend>Projects</legend><div class="wu-proj-grid">' +
+        projectOptions([]) +
+        "</div></fieldset>" +
+        "<label><input type=\"checkbox\" name=\"focus\"/> Today's focus</label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Save field note</button></form>'
+      );
+    }
+
+    function scholarThinkingPanel() {
+      var tools = Scholar().thinkingCatalog();
+      var existing = state.nodes
+        .filter(function (n) {
+          return n.thinking && n.thinking.tool;
+        })
+        .sort(function (a, b) {
+          return String(b.updatedAt || "").localeCompare(String(a.updatedAt || ""));
+        })
+        .slice(0, 20);
+      return (
+        '<p><a href="#scholar">← Scholar</a></p>' +
+        "<h1 class=\"wu-title\">Thinking tools</h1>" +
+        '<p class="wu-lead">Architectural foundations — concept maps, arguments, decisions, hypotheses, experiment plans. Full canvases grow in later modules.</p>' +
+        '<div class="wu-home-grid">' +
+        tools
+          .map(function (t) {
+            return (
+              '<section class="wu-card"><h2>' +
+              esc(t.label) +
+              '</h2><p class="wu-empty">' +
+              esc(t.blurb) +
+              '</p><p class="wu-meta">Status: ' +
+              esc(t.status) +
+              '</p><button type="button" class="wu-btn" data-thinking-tool="' +
+              esc(t.id) +
+              '">Create stub</button></section>'
+            );
+          })
+          .join("") +
+        "</div>" +
+        "<h2 class=\"wu-section\">Your thinking artifacts</h2>" +
+        listHtml(existing, "Create a stub to begin — expand fields while editing.")
       );
     }
 
@@ -978,7 +1163,7 @@
         .sort(byUpdated);
       return (
         "<h1 class=\"wu-title\">Sources</h1>" +
-        '<p class="wu-lead">Books, papers, docs, videos, podcasts — with citation, reading status, and links into the graph.</p>' +
+        '<p class="wu-lead">Personal reference library — citation, reading status, graph links, and reliability assessment.</p>' +
         '<p class="wu-actions">' +
         ["book", "paper", "article", "video", "podcast", "website", "manual"]
           .map(function (k) {
@@ -993,6 +1178,7 @@
           ? sources
               .map(function (n) {
                 var rs = (n.source && n.source.readingStatus) || "—";
+                var rel = Scholar().reliabilitySummary(n);
                 return (
                   "<li><a href=\"#item/" +
                   encodeURIComponent(n.id) +
@@ -1004,6 +1190,7 @@
                   " · " +
                   esc(rs) +
                   (n.source && n.source.authors ? " · " + esc(n.source.authors) : "") +
+                  (rel.assessed ? " · " + esc(rel.blurb) : "") +
                   "</span></li>"
                 );
               })
@@ -1027,16 +1214,18 @@
       });
 
       if (focus && byProj[focus] != null) {
-        var intel = Learn().projectIntelligence(focus, state.graphIndex);
+        var intel = Scholar().projectResearchHub(focus, state.graphIndex);
         return (
           '<p><a href="#projects">← All projects</a></p>' +
           "<h1 class=\"wu-title\">" +
           esc(intel.label) +
           "</h1>" +
-          '<p class="wu-lead">Living knowledge hub — related work, gaps, references, questions, and connected disciplines.</p>' +
+          '<p class="wu-lead">Project research hub — notes, sessions, questions, sources, experiments, and ideas in one living map.</p>' +
           '<p class="wu-meta">' +
           intel.related.length +
           " items · " +
+          intel.sessions.length +
+          " sessions · " +
           intel.questions.length +
           " open questions · " +
           intel.references.length +
@@ -1044,7 +1233,7 @@
           (intel.related[0]
             ? ' · <a href="#graph/' + encodeURIComponent(intel.related[0].id) + '">Graph</a>'
             : "") +
-          "</p>" +
+          ' · <a href="#scholar/session">New session</a></p>' +
           (intel.connectedDisciplines.length
             ? '<p class="wu-meta">Connected disciplines: ' +
               intel.connectedDisciplines
@@ -1071,6 +1260,8 @@
                 .join("") +
               "</ul></section>"
             : "") +
+          "<h2 class=\"wu-section\">Research sessions</h2>" +
+          listHtml(intel.sessions, "No sessions tagged to this project yet.") +
           "<h2 class=\"wu-section\">Missing knowledge</h2>" +
           (intel.missing.length
             ? '<ul class="wu-list">' +
@@ -1092,12 +1283,18 @@
             : '<p class="wu-empty">No obvious missing prerequisites.</p>') +
           "<h2 class=\"wu-section\">Open questions</h2>" +
           listHtml(intel.questions, "No open questions in this project.") +
+          "<h2 class=\"wu-section\">Related notes &amp; concepts</h2>" +
+          listHtml(intel.notes, "No notes yet.") +
           "<h2 class=\"wu-section\">Helpful references</h2>" +
           listHtml(intel.references, "No sources tagged yet.") +
+          "<h2 class=\"wu-section\">Experiments &amp; hypotheses</h2>" +
+          listHtml(intel.experiments, "None yet.") +
+          "<h2 class=\"wu-section\">Field notes</h2>" +
+          listHtml(intel.fieldNotes, "No field notes.") +
+          "<h2 class=\"wu-section\">Ideas</h2>" +
+          listHtml(intel.ideas, "No ideas tagged.") +
           "<h2 class=\"wu-section\">Recent discoveries</h2>" +
           listHtml(intel.recent, "Nothing recent.") +
-          "<h2 class=\"wu-section\">Relevant research</h2>" +
-          listHtml(intel.research, "No research notes staged.") +
           "<h2 class=\"wu-section\">All related knowledge</h2>" +
           listHtml(intel.related, "Nothing tagged yet.")
         );
@@ -1228,7 +1425,7 @@
         '<label class="wu-btn">Import JSON<input type="file" id="wu-import" accept="application/json,.json" hidden/></label></p>' +
         (state.flash ? '<p class="wu-flash">' + esc(state.flash) + "</p>" : "") +
         "</div>" +
-        '<div class="wu-card"><h2>Block 3</h2><p>Learning engine — understanding map, profile, next steps, timeline, reading annotations, project intelligence. No grades, no social features.</p></div>'
+        '<div class="wu-card"><h2>Module 4 · Scholar</h2><p>Research workspaces, sessions, field notes, source reliability, project hubs, and thinking-tool foundations.</p></div>'
       );
     }
 
@@ -1309,6 +1506,94 @@
             "</select></label>" +
             "<label>Source confidence (0–5) <input name=\"sconf\" type=\"number\" min=\"0\" max=\"5\" value=\"" +
             esc(node.source && node.source.confidence != null ? node.source.confidence : "") +
+            "\"/></label></fieldset>" +
+            "<fieldset><legend>Source reliability (personal)</legend>" +
+            '<p class="wu-empty">Organize evidence without pretending certainty.</p>' +
+            Schema().RELIABILITY_DIMENSIONS.map(function (d) {
+              return (
+                "<label>" +
+                esc(d.label) +
+                " (0–5) <input name=\"rel_" +
+                d.id +
+                "\" type=\"number\" min=\"0\" max=\"5\" value=\"" +
+                esc(
+                  node.reliability && node.reliability[d.id] != null ? node.reliability[d.id] : ""
+                ) +
+                "\"/></label>"
+              );
+            }).join("") +
+            "<label>Conflicting viewpoints <textarea name=\"rel_conflicts\" rows=\"2\">" +
+            esc((node.reliability && node.reliability.conflicts) || "") +
+            "</textarea></label>" +
+            "<label>Reliability notes <textarea name=\"rel_notes\" rows=\"2\">" +
+            esc((node.reliability && node.reliability.notes) || "") +
+            "</textarea></label></fieldset>"
+          : "") +
+        (node.kind === "session"
+          ? "<fieldset><legend>Session</legend>" +
+            "<label>Purpose <input name=\"spurpose\" value=\"" +
+            esc((node.session && node.session.purpose) || "") +
+            "\"/></label>" +
+            "<label>Status <select name=\"sstatus\">" +
+            Schema().SESSION_STATUSES.map(function (s) {
+              return (
+                "<option value=\"" +
+                s.id +
+                "\"" +
+                ((node.session && node.session.status) === s.id ? " selected" : "") +
+                ">" +
+                esc(s.label) +
+                "</option>"
+              );
+            }).join("") +
+            "</select></label>" +
+            "<label>Key discoveries <textarea name=\"sdisc\" rows=\"3\">" +
+            esc((node.session && node.session.discoveries) || "") +
+            "</textarea></label>" +
+            "<label>Future work <textarea name=\"sfuture\" rows=\"2\">" +
+            esc((node.session && node.session.futureWork) || "") +
+            "</textarea></label></fieldset>"
+          : "") +
+        (node.kind === "field-note"
+          ? "<fieldset><legend>Field context</legend>" +
+            "<label>Context <select name=\"fcontext\">" +
+            Schema().FIELD_NOTE_CONTEXTS.map(function (c) {
+              return (
+                "<option value=\"" +
+                c.id +
+                "\"" +
+                ((node.field && node.field.context) === c.id ? " selected" : "") +
+                ">" +
+                esc(c.label) +
+                "</option>"
+              );
+            }).join("") +
+            "</select></label>" +
+            "<label>Place <input name=\"fplace\" value=\"" +
+            esc((node.field && node.field.place) || "") +
+            "\"/></label>" +
+            "<label>Conditions <input name=\"fcond\" value=\"" +
+            esc((node.field && node.field.conditions) || "") +
+            "\"/></label></fieldset>"
+          : "") +
+        (node.thinking && node.thinking.tool
+          ? "<fieldset><legend>Thinking tool · " +
+            esc(node.thinking.tool) +
+            "</legend>" +
+            "<label>Status <input name=\"tstatus\" value=\"" +
+            esc(node.thinking.status || "draft") +
+            "\"/></label>" +
+            "<label>Claim / statement <textarea name=\"tclaim\" rows=\"2\">" +
+            esc(node.thinking.claim || node.thinking.statement || "") +
+            "</textarea></label>" +
+            "<label>Supports / options / method <textarea name=\"tsupports\" rows=\"2\">" +
+            esc(node.thinking.supports || node.thinking.options || node.thinking.method || "") +
+            "</textarea></label>" +
+            "<label>Objections / rationale / result <textarea name=\"tobjections\" rows=\"2\">" +
+            esc(node.thinking.objections || node.thinking.rationale || node.thinking.result || "") +
+            "</textarea></label>" +
+            "<label>Next <input name=\"tnext\" value=\"" +
+            esc(node.thinking.next || "") +
             "\"/></label></fieldset>"
           : "") +
         "<fieldset><legend>Understanding</legend>" +
@@ -1448,6 +1733,43 @@
           : "") +
         (node.source && node.source.citation
           ? '<p class="wu-meta">Citation: ' + esc(node.source.citation) + "</p>"
+          : "") +
+        (node.kind === "session" && node.session
+          ? '<div class="wu-card"><h2>Research session</h2><p class="wu-meta">' +
+            esc(node.session.status || "") +
+            " · " +
+            esc(fmtDate(node.session.startedAt)) +
+            (node.session.endedAt ? " → " + esc(fmtDate(node.session.endedAt)) : " · in progress") +
+            "</p>" +
+            (node.session.purpose ? "<p><strong>Purpose</strong><br/>" + esc(node.session.purpose) + "</p>" : "") +
+            (node.session.discoveries
+              ? "<p><strong>Key discoveries</strong><br/>" + esc(node.session.discoveries) + "</p>"
+              : "") +
+            (node.session.futureWork
+              ? "<p><strong>Future work</strong><br/>" + esc(node.session.futureWork) + "</p>"
+              : "") +
+            (node.session.status === "active"
+              ? '<p><a class="wu-btn" href="#scholar/end">End session</a></p>'
+              : "") +
+            "</div>"
+          : "") +
+        (node.kind === "field-note" && node.field
+          ? '<div class="wu-card"><h2>Field context</h2><p class="wu-meta">' +
+            esc(Schema().fieldContextLabel(node.field.context)) +
+            (node.field.place ? " · " + esc(node.field.place) : "") +
+            (node.field.conditions ? " · " + esc(node.field.conditions) : "") +
+            " · " +
+            esc(fmtDate(node.field.capturedAt)) +
+            "</p></div>"
+          : "") +
+        (Schema().isSourceKind(node.kind) && Scholar().reliabilityFilled(node.reliability)
+          ? '<div class="wu-card"><h2>Source reliability</h2><p class="wu-meta">' +
+            esc(Scholar().reliabilitySummary(node).blurb) +
+            "</p>" +
+            (node.reliability.conflicts
+              ? "<p><strong>Conflicting viewpoints</strong><br/>" + esc(node.reliability.conflicts) + "</p>"
+              : "") +
+            "</div>"
           : "") +
         '<div class="wu-actions">' +
         '<a class="wu-btn wu-btn--primary" href="#item/' +
@@ -1597,6 +1919,7 @@
     function body() {
       var route = parseHash();
       if (route.panel === "home") return homePanel();
+      if (route.panel === "scholar") return scholarPanel();
       if (route.panel === "capture") return capturePanel();
       if (route.panel === "search") return searchPanel();
       if (route.panel === "graph") return graphPanel();
@@ -1680,6 +2003,38 @@
             searchHits: (existing && existing.learning && existing.learning.searchHits) || 0,
             lastStudiedAt: (existing && existing.learning && existing.learning.lastStudiedAt) || null
           },
+          session: Object.assign({}, (existing && existing.session) || {}, {
+            purpose: fd.get("spurpose") != null ? String(fd.get("spurpose") || "") || null : (existing && existing.session && existing.session.purpose) || null,
+            status: fd.get("sstatus") != null ? String(fd.get("sstatus") || "") || null : (existing && existing.session && existing.session.status) || null,
+            discoveries: fd.get("sdisc") != null ? String(fd.get("sdisc") || "") || null : (existing && existing.session && existing.session.discoveries) || null,
+            futureWork: fd.get("sfuture") != null ? String(fd.get("sfuture") || "") || null : (existing && existing.session && existing.session.futureWork) || null
+          }),
+          field: Object.assign({}, (existing && existing.field) || {}, {
+            context: fd.get("fcontext") != null ? String(fd.get("fcontext") || "") || null : (existing && existing.field && existing.field.context) || null,
+            place: fd.get("fplace") != null ? String(fd.get("fplace") || "") || null : (existing && existing.field && existing.field.place) || null,
+            conditions: fd.get("fcond") != null ? String(fd.get("fcond") || "") || null : (existing && existing.field && existing.field.conditions) || null
+          }),
+          reliability: {
+            authority: fd.get("rel_authority") !== "" && fd.get("rel_authority") != null ? Number(fd.get("rel_authority")) : (existing && existing.reliability && existing.reliability.authority) || null,
+            evidence: fd.get("rel_evidence") !== "" && fd.get("rel_evidence") != null ? Number(fd.get("rel_evidence")) : (existing && existing.reliability && existing.reliability.evidence) || null,
+            bias: fd.get("rel_bias") !== "" && fd.get("rel_bias") != null ? Number(fd.get("rel_bias")) : (existing && existing.reliability && existing.reliability.bias) || null,
+            recency: fd.get("rel_recency") !== "" && fd.get("rel_recency") != null ? Number(fd.get("rel_recency")) : (existing && existing.reliability && existing.reliability.recency) || null,
+            confidence: fd.get("rel_confidence") !== "" && fd.get("rel_confidence") != null ? Number(fd.get("rel_confidence")) : (existing && existing.reliability && existing.reliability.confidence) || null,
+            conflicts: fd.get("rel_conflicts") != null ? String(fd.get("rel_conflicts") || "") || null : (existing && existing.reliability && existing.reliability.conflicts) || null,
+            notes: fd.get("rel_notes") != null ? String(fd.get("rel_notes") || "") || null : (existing && existing.reliability && existing.reliability.notes) || null
+          },
+          thinking: Object.assign({}, (existing && existing.thinking) || {}, {
+            status: fd.get("tstatus") != null ? String(fd.get("tstatus") || "") || null : (existing && existing.thinking && existing.thinking.status) || null,
+            claim: fd.get("tclaim") != null ? String(fd.get("tclaim") || "") || null : (existing && existing.thinking && existing.thinking.claim) || null,
+            statement: fd.get("tclaim") != null ? String(fd.get("tclaim") || "") || null : (existing && existing.thinking && existing.thinking.statement) || null,
+            supports: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.supports) || null,
+            options: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.options) || null,
+            method: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.method) || null,
+            objections: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.objections) || null,
+            rationale: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.rationale) || null,
+            result: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.result) || null,
+            next: fd.get("tnext") != null ? String(fd.get("tnext") || "") || null : (existing && existing.thinking && existing.thinking.next) || null
+          }),
           annotations: (existing && existing.annotations) || []
         })
       );
@@ -1743,6 +2098,85 @@
             });
         });
       }
+
+      var sessStart = root.querySelector("#wu-session-start");
+      if (sessStart) {
+        sessStart.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(sessStart);
+          Store()
+            .startSession({
+              title: String(fd.get("title") || "").trim(),
+              purpose: String(fd.get("purpose") || ""),
+              body: String(fd.get("body") || ""),
+              projects: collectProjects(sessStart),
+              workspace: "active"
+            })
+            .then(function (n) {
+              return refresh().then(function () {
+                setHash("item", n.id);
+              });
+            });
+        });
+      }
+
+      var sessEnd = root.querySelector("#wu-session-end");
+      if (sessEnd) {
+        sessEnd.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(sessEnd);
+          var park = !!fd.get("park");
+          Store()
+            .endSession(sessEnd.getAttribute("data-id"), {
+              status: park ? "abandoned" : "completed",
+              discoveries: String(fd.get("discoveries") || ""),
+              futureWork: String(fd.get("future") || ""),
+              body: String(fd.get("body") || "")
+            })
+            .then(function (n) {
+              return refresh().then(function () {
+                setHash("item", n.id);
+              });
+            });
+        });
+      }
+
+      var fieldForm = root.querySelector("#wu-field-form");
+      if (fieldForm) {
+        fieldForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(fieldForm);
+          Store()
+            .captureFieldNote({
+              title: String(fd.get("title") || "").trim(),
+              body: String(fd.get("body") || ""),
+              context: String(fd.get("context") || "other"),
+              place: String(fd.get("place") || ""),
+              conditions: String(fd.get("conditions") || ""),
+              projects: collectProjects(fieldForm),
+              focus: !!fd.get("focus")
+            })
+            .then(function (n) {
+              return refresh().then(function () {
+                setHash("item", n.id);
+              });
+            });
+        });
+      }
+
+      root.querySelectorAll("[data-thinking-tool]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var stub = Scholar().createThinkingStub(btn.getAttribute("data-thinking-tool"));
+          if (!stub) return;
+          Store()
+            .putNode(stub)
+            .then(function (n) {
+              return refresh().then(function () {
+                setHash("item", n.id, "edit");
+              });
+            });
+        });
+      });
 
       var search = root.querySelector("#wu-search-form");
       if (search) {

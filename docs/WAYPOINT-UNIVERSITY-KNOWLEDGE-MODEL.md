@@ -1,6 +1,6 @@
 # Waypoint University — Knowledge & Relationship Model
 
-**Schema:** `1.2.0`
+**Schema:** `1.3.0`
 
 ---
 
@@ -28,6 +28,10 @@
 | `queue` | `{ reading, researchInbox, focusToday }` |
 | `learning` | `{ stageManual, confidence, openCount, searchHits, lastStudiedAt }` |
 | `annotations[]` | `{ id, type, text, quote, linkedNodeId, createdAt }` |
+| `session` | Research session payload |
+| `field` | Field note context / place |
+| `reliability` | Personal source assessment |
+| `thinking` | Thinking-tool foundation payload |
 | `capture` | Provenance for quick capture |
 | `meta` | Extensible bag |
 | `createdAt` / `updatedAt` / `lastOpenedAt` | ISO timestamps |
@@ -44,7 +48,7 @@ Inferred from use; `learning.stageManual` overrides. Never grades.
 
 ### Kinds
 
-topic · concept · article · paper · research-note · book · course · video · podcast · website · document · manual · project · idea · question · experiment · observation · definition · reference · path · capture · media · person · place · code · checklist · task
+topic · concept · article · paper · research-note · book · course · video · podcast · website · document · manual · project · idea · question · experiment · observation · definition · reference · path · capture · media · person · place · code · checklist · task · session · field-note · hypothesis · decision · argument · concept-map
 
 **Source kinds:** book · paper · article · document · manual · video · podcast · website · course
 

@@ -618,6 +618,39 @@ body {
   background: var(--wu-accent);
 }
 
+.wu-hero--scholar {
+  margin-bottom: 1rem;
+}
+
+.wu-workspace-nav {
+  margin: 0.75rem 0 1.25rem;
+  border-bottom: 1px solid var(--wu-line);
+}
+
+.wu-workspace-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.35rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wu-workspace-nav a {
+  display: inline-block;
+  padding: 0.45rem 0.65rem;
+  color: var(--wu-muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  font-size: 0.92rem;
+}
+
+.wu-workspace-nav a[aria-current="page"] {
+  color: var(--wu-ink);
+  border-bottom-color: var(--wu-accent);
+  font-weight: 600;
+}
+
 .wu-crumb {
   color: var(--wu-muted);
   font-size: 0.88rem;

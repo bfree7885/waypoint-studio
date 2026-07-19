@@ -1,8 +1,8 @@
 # Waypoint University — Architecture
 
-**Status:** Private · local-first · Work Block 3 (learning engine)  
+**Status:** Private · local-first · Module 4 (Scholar research environment)  
 **Location:** `private/university/`  
-**Schema:** `1.2.0`  
+**Schema:** `1.3.0`  
 **Commit policy:** Owner review — do not treat as public product
 
 ---
@@ -46,6 +46,7 @@ index.html
   ├── wu-graph.js      adjacency index, BFS neighborhood, radial SVG
   ├── wu-health.js     knowledge-health opportunities
   ├── wu-learn.js      learning profile, map, gaps, next, bridges, timeline
+  ├── wu-scholar.js    research workspaces, sessions, field, reliability
   └── wu-app.js        hash SPA: companion home + learning panels
 ```
 
@@ -94,8 +95,9 @@ See `docs/WAYPOINT-UNIVERSITY-BLOCK2.md` for workflow, health, and performance n
 |-------|--------|
 | 1 | Foundation OS |
 | 2 | Graph + learning workspace |
-| 3 | Learning engine *(current)* |
-| 4+ | Media, scale, optional review — see roadmap |
+| 3 | Learning engine |
+| 4 | Scholar research environment *(current)* |
+| 5+ | Media, thinking canvases, scale — see roadmap |
 
 **Export:** JSON bundle of nodes + edges. Media blobs reserved for a later full backup format.
 
