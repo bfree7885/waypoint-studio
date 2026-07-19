@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+  "title": "Steepleaf Knowledge Relationship v0.1",
+  "description": "Typed directed edge between Steepleaf entities.",
+  "type": "object",
+  "required": ["meta", "id", "type", "from", "to"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["sample", "draft", "active", "archived"]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "speculative"]
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^stlr_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "type": { "type": "string" },
+    "from": { "type": "string", "pattern": "^stl_" },
+    "to": { "type": "string", "pattern": "^stl_" },
+    "why": {
+      "type": ["string", "null"],
+      "maxLength": 800,
+      "description": "Human-readable reason for recommendations and AI answers."
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Edge payload. For sold-by: priceUsd, sizeG, costPerGram, availability, freshness, organic, priceHistory[], shipping{}, countryRestrictions[], organicCertification."
+    }
+  }
+}

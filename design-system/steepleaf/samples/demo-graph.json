@@ -1,0 +1,4359 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "status": "sample",
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Educational Steepleaf knowledge graph sample. Not a live shop, tasting board, or medical authority.",
+    "honesty": "demo",
+    "shopping": "Vendors are separate from teas. Offers may include current/historical price, size, cost per gram, availability, shipping, restrictions, organic, freshness \u2014 educational samples only.",
+    "futureHooks": [
+      "barcode-scanning",
+      "ocr-label-recognition",
+      "photo-identification",
+      "marketplace-apis",
+      "vendor-feeds",
+      "scientific-reference-ingest",
+      "ai-image-analysis"
+    ]
+  },
+  "entities": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_family-camellia",
+      "kind": "tea-family",
+      "name": "Camellia sinensis",
+      "aka": [],
+      "summary": "The botanical family of true tea.",
+      "description": "The botanical family of true tea.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Camellia sinensis The botanical family of true tea.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-green",
+      "kind": "tea-type",
+      "name": "Green tea",
+      "aka": [],
+      "summary": "Unoxidized tea emphasizing freshness and vegetal or sweet notes.",
+      "description": "Unoxidized tea emphasizing freshness and vegetal or sweet notes.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Green tea Unoxidized tea emphasizing freshness and vegetal or sweet notes.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-white",
+      "kind": "tea-type",
+      "name": "White tea",
+      "aka": [],
+      "summary": "Minimally processed tea with delicate floral and honey tones.",
+      "description": "Minimally processed tea with delicate floral and honey tones.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "White tea Minimally processed tea with delicate floral and honey tones.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-oolong",
+      "kind": "tea-type",
+      "name": "Oolong tea",
+      "aka": [],
+      "summary": "Partially oxidized tea spanning floral greens to roasted ambers.",
+      "description": "Partially oxidized tea spanning floral greens to roasted ambers.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Oolong tea Partially oxidized tea spanning floral greens to roasted ambers.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-black",
+      "kind": "tea-type",
+      "name": "Black tea",
+      "aka": [],
+      "summary": "Fully oxidized tea with malt, fruit, and sweet depth.",
+      "description": "Fully oxidized tea with malt, fruit, and sweet depth.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Black tea Fully oxidized tea with malt, fruit, and sweet depth.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-dark",
+      "kind": "tea-type",
+      "name": "Dark / Heicha",
+      "aka": [],
+      "summary": "Microbially transformed teas including sheng and shou puer styles.",
+      "description": "Microbially transformed teas including sheng and shou puer styles.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Dark / Heicha Microbially transformed teas including sheng and shou puer styles.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_type-yellow",
+      "kind": "tea-type",
+      "name": "Yellow tea",
+      "aka": [],
+      "summary": "Rare gently yellowed tea with soft sweetness.",
+      "description": "Rare gently yellowed tea with soft sweetness.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Yellow tea Rare gently yellowed tea with soft sweetness.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_country-china",
+      "kind": "country",
+      "name": "China",
+      "aka": [],
+      "summary": "Historic heartland of tea cultivation and culture.",
+      "description": "Historic heartland of tea cultivation and culture.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "China Historic heartland of tea cultivation and culture.",
+      "education": {
+        "mapHint": {
+          "lat": 30.5,
+          "lon": 114.0,
+          "precision": "country",
+          "label": "China"
+        },
+        "timeline": [
+          {
+            "year": "Tang",
+            "event": "Tea culture blossoms in poetry and markets."
+          },
+          {
+            "year": "Song",
+            "event": "Whipped and powdered styles evolve."
+          }
+        ]
+      },
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_province-zhejiang",
+      "kind": "province",
+      "name": "Zhejiang",
+      "aka": [],
+      "summary": "Home of Longjing and other celebrated greens.",
+      "description": "Home of Longjing and other celebrated greens.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Zhejiang Home of Longjing and other celebrated greens.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_province-fujian",
+      "kind": "province",
+      "name": "Fujian",
+      "aka": [],
+      "summary": "Cradle of oolongs and many white teas.",
+      "description": "Cradle of oolongs and many white teas.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Fujian Cradle of oolongs and many white teas.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_province-yunnan",
+      "kind": "province",
+      "name": "Yunnan",
+      "aka": [],
+      "summary": "Ancient tea trees and puer traditions.",
+      "description": "Ancient tea trees and puer traditions.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Yunnan Ancient tea trees and puer traditions.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_region-westlake",
+      "kind": "region",
+      "name": "West Lake / Longjing area",
+      "aka": [],
+      "summary": "Hills around Hangzhou known for Dragon Well greens.",
+      "description": "Hills around Hangzhou known for Dragon Well greens.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "West Lake / Longjing area Hills around Hangzhou known for Dragon Well greens.",
+      "education": {
+        "mapHint": {
+          "lat": 30.23,
+          "lon": 120.12,
+          "precision": "region",
+          "label": "West Lake"
+        }
+      },
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_region-wuyi",
+      "kind": "region",
+      "name": "Wuyi Mountains",
+      "aka": [],
+      "summary": "Cliff teas with mineral rock character (yan yun).",
+      "description": "Cliff teas with mineral rock character (yan yun).",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Wuyi Mountains Cliff teas with mineral rock character (yan yun).",
+      "education": {
+        "mapHint": {
+          "lat": 27.72,
+          "lon": 117.68,
+          "precision": "region",
+          "label": "Wuyi"
+        }
+      },
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_region-anxi",
+      "kind": "region",
+      "name": "Anxi",
+      "aka": [],
+      "summary": "Home of Tieguanyin and southern Fujian oolongs.",
+      "description": "Home of Tieguanyin and southern Fujian oolongs.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Anxi Home of Tieguanyin and southern Fujian oolongs.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_mountain-wuyi",
+      "kind": "mountain",
+      "name": "Wuyi Shan",
+      "aka": [],
+      "summary": "Rocky massif shaping cliff-tea terroir.",
+      "description": "Rocky massif shaping cliff-tea terroir.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Wuyi Shan Rocky massif shaping cliff-tea terroir.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_estate-shi-feng",
+      "kind": "estate",
+      "name": "Shi Feng (Lion Peak) gardens",
+      "aka": [],
+      "summary": "Classic Longjing garden zone (sample framing).",
+      "description": "Classic Longjing garden zone (sample framing).",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Shi Feng (Lion Peak) gardens Classic Longjing garden zone (sample framing).",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_garden-da-hong",
+      "kind": "garden",
+      "name": "Da Hong Pao mother-tree vicinity",
+      "aka": [],
+      "summary": "Educational garden reference for Wuyi cliff tea.",
+      "description": "Educational garden reference for Wuyi cliff tea.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Da Hong Pao mother-tree vicinity Educational garden reference for Wuyi cliff tea.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_producer-hangzhou-coop",
+      "kind": "producer",
+      "name": "Hangzhou Leaf Cooperative (sample)",
+      "aka": [],
+      "summary": "Sample producer framing for West Lake greens.",
+      "description": "Sample producer framing for West Lake greens.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Hangzhou Leaf Cooperative (sample) Sample producer framing for West Lake greens.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_producer-wuyi-rock",
+      "kind": "producer",
+      "name": "Wuyi Rock Tea House (sample)",
+      "aka": [],
+      "summary": "Sample cliff-tea producer.",
+      "description": "Sample cliff-tea producer.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Wuyi Rock Tea House (sample) Sample cliff-tea producer.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_producer-anxi-family",
+      "kind": "producer",
+      "name": "Anxi Family Garden (sample)",
+      "aka": [],
+      "summary": "Sample Tieguanyin household producer.",
+      "description": "Sample Tieguanyin household producer.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Anxi Family Garden (sample) Sample Tieguanyin household producer.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_vendor-leaf-library",
+      "kind": "vendor",
+      "name": "Leaf Library (sample vendor)",
+      "aka": [],
+      "summary": "Educational specialty vendor \u2014 not a live shop.",
+      "description": "Educational specialty vendor \u2014 not a live shop.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {
+        "shippingRegions": [
+          "US",
+          "CA",
+          "EU"
+        ],
+        "organicOffers": true
+      },
+      "searchText": "Leaf Library (sample vendor) Educational specialty vendor \u2014 not a live shop.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_vendor-quiet-cup",
+      "kind": "vendor",
+      "name": "Quiet Cup Co. (sample vendor)",
+      "aka": [],
+      "summary": "Value-focused sample vendor listing.",
+      "description": "Value-focused sample vendor listing.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {
+        "shippingRegions": [
+          "US"
+        ],
+        "organicOffers": false
+      },
+      "searchText": "Quiet Cup Co. (sample vendor) Value-focused sample vendor listing.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_cultivar-longjing43",
+      "kind": "cultivar",
+      "name": "Longjing #43",
+      "aka": [],
+      "summary": "Widely planted Longjing cultivar (sample).",
+      "description": "Widely planted Longjing cultivar (sample).",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Longjing #43 Widely planted Longjing cultivar (sample).",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_cultivar-qidan",
+      "kind": "cultivar",
+      "name": "Qi Dan",
+      "aka": [],
+      "summary": "Modern mother-tree lineage cultivar used for Da Hong Pao style teas.",
+      "description": "Modern mother-tree lineage cultivar used for Da Hong Pao style teas.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Qi Dan Modern mother-tree lineage cultivar used for Da Hong Pao style teas.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_cultivar-tieguanyin",
+      "kind": "cultivar",
+      "name": "Tieguanyin cultivar",
+      "aka": [],
+      "summary": "Classic southern Fujian oolong cultivar.",
+      "description": "Classic southern Fujian oolong cultivar.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Tieguanyin cultivar Classic southern Fujian oolong cultivar.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_process-panfire",
+      "kind": "processing-method",
+      "name": "Pan-firing (kill-green)",
+      "aka": [],
+      "summary": "Stops oxidation with wok heat; key to many Chinese greens.",
+      "description": "Stops oxidation with wok heat; key to many Chinese greens.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Pan-firing (kill-green) Stops oxidation with wok heat; key to many Chinese greens.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_process-wither",
+      "kind": "processing-method",
+      "name": "Withering",
+      "aka": [],
+      "summary": "Moisture loss that begins aroma development.",
+      "description": "Moisture loss that begins aroma development.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Withering Moisture loss that begins aroma development.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_process-bruise",
+      "kind": "processing-method",
+      "name": "Bruising / tossing",
+      "aka": [],
+      "summary": "Damages leaf edges to drive oolong oxidation.",
+      "description": "Damages leaf edges to drive oolong oxidation.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Bruising / tossing Damages leaf edges to drive oolong oxidation.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_process-roast-charcoal",
+      "kind": "processing-method",
+      "name": "Charcoal roasting",
+      "aka": [],
+      "summary": "Traditional slow roast shaping Wuyi depth.",
+      "description": "Traditional slow roast shaping Wuyi depth.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Charcoal roasting Traditional slow roast shaping Wuyi depth.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_oxidation-none",
+      "kind": "oxidation",
+      "name": "Unoxidized",
+      "aka": [],
+      "summary": "Green tea oxidation target.",
+      "description": "Green tea oxidation target.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Unoxidized Green tea oxidation target.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_oxidation-partial-light",
+      "kind": "oxidation",
+      "name": "Light partial oxidation",
+      "aka": [],
+      "summary": "Greener oolong range.",
+      "description": "Greener oolong range.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Light partial oxidation Greener oolong range.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_oxidation-partial-mid",
+      "kind": "oxidation",
+      "name": "Medium partial oxidation",
+      "aka": [],
+      "summary": "Balanced oolong range.",
+      "description": "Balanced oolong range.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Medium partial oxidation Balanced oolong range.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_oxidation-full",
+      "kind": "oxidation",
+      "name": "Full oxidation",
+      "aka": [],
+      "summary": "Black tea range.",
+      "description": "Black tea range.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Full oxidation Black tea range.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_roast-light",
+      "kind": "roast",
+      "name": "Light roast",
+      "aka": [],
+      "summary": "Preserves floral top notes.",
+      "description": "Preserves floral top notes.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Light roast Preserves floral top notes.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_roast-medium",
+      "kind": "roast",
+      "name": "Medium roast",
+      "aka": [],
+      "summary": "Adds caramel and toast.",
+      "description": "Adds caramel and toast.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Medium roast Adds caramel and toast.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_roast-dark",
+      "kind": "roast",
+      "name": "Dark roast",
+      "aka": [],
+      "summary": "Emphasizes smoke, wood, and depth.",
+      "description": "Emphasizes smoke, wood, and depth.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Dark roast Emphasizes smoke, wood, and depth.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_ferment-pile",
+      "kind": "fermentation",
+      "name": "Wo dui pile fermentation",
+      "aka": [],
+      "summary": "Microbial transformation for shou puer styles.",
+      "description": "Microbial transformation for shou puer styles.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Wo dui pile fermentation Microbial transformation for shou puer styles.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_compress-cake",
+      "kind": "compression",
+      "name": "Bing / cake compression",
+      "aka": [],
+      "summary": "Compressed cake form for aging and travel.",
+      "description": "Compressed cake form for aging and travel.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Bing / cake compression Compressed cake form for aging and travel.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_storage-dry",
+      "kind": "storage",
+      "name": "Dry clean storage",
+      "aka": [],
+      "summary": "Avoids dampness and odor pickup.",
+      "description": "Avoids dampness and odor pickup.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Dry clean storage Avoids dampness and odor pickup.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_harvest-mingqian",
+      "kind": "harvest",
+      "name": "Ming Qian (pre-Qingming)",
+      "aka": [],
+      "summary": "Early spring green harvest window.",
+      "description": "Early spring green harvest window.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Ming Qian (pre-Qingming) Early spring green harvest window.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flush-first",
+      "kind": "flush",
+      "name": "First flush",
+      "aka": [],
+      "summary": "Early season pluck \u2014 often brighter and sweeter.",
+      "description": "Early season pluck \u2014 often brighter and sweeter.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "First flush Early season pluck \u2014 often brighter and sweeter.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_season-spring",
+      "kind": "season",
+      "name": "Spring",
+      "aka": [],
+      "summary": "Prime season for many greens and first flushes.",
+      "description": "Prime season for many greens and first flushes.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Spring Prime season for many greens and first flushes.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-floral",
+      "kind": "flavor",
+      "name": "Floral",
+      "aka": [],
+      "summary": "Sensory note: Floral.",
+      "description": "Sensory note: Floral.",
+      "quickFacts": [],
+      "tags": [
+        "floral",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Floral Sensory note: Floral. floral flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-orchid",
+      "kind": "flavor",
+      "name": "Orchid",
+      "aka": [],
+      "summary": "Sensory note: Orchid.",
+      "description": "Sensory note: Orchid.",
+      "quickFacts": [],
+      "tags": [
+        "orchid",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Orchid Sensory note: Orchid. orchid flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-jasmine",
+      "kind": "flavor",
+      "name": "Jasmine",
+      "aka": [],
+      "summary": "Sensory note: Jasmine.",
+      "description": "Sensory note: Jasmine.",
+      "quickFacts": [],
+      "tags": [
+        "jasmine",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Jasmine Sensory note: Jasmine. jasmine flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-honey",
+      "kind": "flavor",
+      "name": "Honey",
+      "aka": [],
+      "summary": "Sensory note: Honey.",
+      "description": "Sensory note: Honey.",
+      "quickFacts": [],
+      "tags": [
+        "honey",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Honey Sensory note: Honey. honey flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-chestnut",
+      "kind": "flavor",
+      "name": "Chestnut",
+      "aka": [],
+      "summary": "Sensory note: Chestnut.",
+      "description": "Sensory note: Chestnut.",
+      "quickFacts": [],
+      "tags": [
+        "chestnut",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Chestnut Sensory note: Chestnut. chestnut flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-grassy",
+      "kind": "flavor",
+      "name": "Grassy",
+      "aka": [],
+      "summary": "Sensory note: Grassy.",
+      "description": "Sensory note: Grassy.",
+      "quickFacts": [],
+      "tags": [
+        "grassy",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Grassy Sensory note: Grassy. grassy flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-mineral",
+      "kind": "flavor",
+      "name": "Mineral",
+      "aka": [],
+      "summary": "Sensory note: Mineral.",
+      "description": "Sensory note: Mineral.",
+      "quickFacts": [],
+      "tags": [
+        "mineral",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Mineral Sensory note: Mineral. mineral flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-stone-fruit",
+      "kind": "flavor",
+      "name": "Stone fruit",
+      "aka": [],
+      "summary": "Sensory note: Stone fruit.",
+      "description": "Sensory note: Stone fruit.",
+      "quickFacts": [],
+      "tags": [
+        "stone-fruit",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Stone fruit Sensory note: Stone fruit. stone-fruit flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-citrus",
+      "kind": "flavor",
+      "name": "Citrus",
+      "aka": [],
+      "summary": "Sensory note: Citrus.",
+      "description": "Sensory note: Citrus.",
+      "quickFacts": [],
+      "tags": [
+        "citrus",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Citrus Sensory note: Citrus. citrus flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-caramel",
+      "kind": "flavor",
+      "name": "Caramel",
+      "aka": [],
+      "summary": "Sensory note: Caramel.",
+      "description": "Sensory note: Caramel.",
+      "quickFacts": [],
+      "tags": [
+        "caramel",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Caramel Sensory note: Caramel. caramel flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-smoke",
+      "kind": "flavor",
+      "name": "Smoke",
+      "aka": [],
+      "summary": "Sensory note: Smoke.",
+      "description": "Sensory note: Smoke.",
+      "quickFacts": [],
+      "tags": [
+        "smoke",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Smoke Sensory note: Smoke. smoke flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-wood",
+      "kind": "flavor",
+      "name": "Wood",
+      "aka": [],
+      "summary": "Sensory note: Wood.",
+      "description": "Sensory note: Wood.",
+      "quickFacts": [],
+      "tags": [
+        "wood",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Wood Sensory note: Wood. wood flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-umami",
+      "kind": "flavor",
+      "name": "Umami",
+      "aka": [],
+      "summary": "Sensory note: Umami.",
+      "description": "Sensory note: Umami.",
+      "quickFacts": [],
+      "tags": [
+        "umami",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Umami Sensory note: Umami. umami flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_flavor-cream",
+      "kind": "flavor",
+      "name": "Creamy",
+      "aka": [],
+      "summary": "Sensory note: Creamy.",
+      "description": "Sensory note: Creamy.",
+      "quickFacts": [],
+      "tags": [
+        "creamy",
+        "flavor-ontology"
+      ],
+      "attributes": {},
+      "searchText": "Creamy Sensory note: Creamy. creamy flavor-ontology",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_aroma-toasted",
+      "kind": "aroma",
+      "name": "Toasted rice / wok",
+      "aka": [],
+      "summary": "Warm toasted aroma from pan work.",
+      "description": "Warm toasted aroma from pan work.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Toasted rice / wok Warm toasted aroma from pan work.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_mouthfeel-silky",
+      "kind": "mouthfeel",
+      "name": "Silky",
+      "aka": [],
+      "summary": "Smooth coat without harsh edges.",
+      "description": "Smooth coat without harsh edges.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Silky Smooth coat without harsh edges.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_mouthfeel-mineral",
+      "kind": "mouthfeel",
+      "name": "Mineral grip",
+      "aka": [],
+      "summary": "Rock-tea structure on the palate.",
+      "description": "Rock-tea structure on the palate.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Mineral grip Rock-tea structure on the palate.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_color-jade",
+      "kind": "color",
+      "name": "Jade liquor",
+      "aka": [],
+      "summary": "Clear pale green cup.",
+      "description": "Clear pale green cup.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Jade liquor Clear pale green cup.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_color-amber",
+      "kind": "color",
+      "name": "Amber liquor",
+      "aka": [],
+      "summary": "Warm gold to amber cup.",
+      "description": "Warm gold to amber cup.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Amber liquor Warm gold to amber cup.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_brew-western",
+      "kind": "brewing-method",
+      "name": "Western",
+      "aka": [],
+      "summary": "Larger vessel, longer steep.",
+      "description": "Larger vessel, longer steep.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Western Larger vessel, longer steep.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_brew-gongfu",
+      "kind": "brewing-method",
+      "name": "Gongfu",
+      "aka": [],
+      "summary": "Small pot, short steeps, many infusions.",
+      "description": "Small pot, short steeps, many infusions.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Gongfu Small pot, short steeps, many infusions.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_brew-grandpa",
+      "kind": "brewing-method",
+      "name": "Grandpa style",
+      "aka": [],
+      "summary": "Leaves stay in the cup.",
+      "description": "Leaves stay in the cup.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Grandpa style Leaves stay in the cup.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_brew-cold",
+      "kind": "brewing-method",
+      "name": "Cold brew",
+      "aka": [],
+      "summary": "Long cold extraction.",
+      "description": "Long cold extraction.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Cold brew Long cold extraction.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_water-soft",
+      "kind": "water",
+      "name": "Soft mineral water",
+      "aka": [],
+      "summary": "Gentle on delicate greens.",
+      "description": "Gentle on delicate greens.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Soft mineral water Gentle on delicate greens.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_water-balanced",
+      "kind": "water",
+      "name": "Balanced mineral water",
+      "aka": [],
+      "summary": "Everyday profile for oolong and black.",
+      "description": "Everyday profile for oolong and black.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Balanced mineral water Everyday profile for oolong and black.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_equip-gaiwan",
+      "kind": "equipment",
+      "name": "Gaiwan",
+      "aka": [],
+      "summary": "Lidded bowl for gongfu brewing.",
+      "description": "Lidded bowl for gongfu brewing.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Gaiwan Lidded bowl for gongfu brewing.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_equip-yixing",
+      "kind": "equipment",
+      "name": "Yixing clay pot",
+      "aka": [],
+      "summary": "Porous clay pot that seasons with use.",
+      "description": "Porous clay pot that seasons with use.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Yixing clay pot Porous clay pot that seasons with use.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_ceremony-gongfu",
+      "kind": "tea-ceremony",
+      "name": "Gongfu cha",
+      "aka": [],
+      "summary": "Attentive Chinese brewing practice.",
+      "description": "Attentive Chinese brewing practice.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Gongfu cha Attentive Chinese brewing practice.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tradition-jiangnan",
+      "kind": "tea-tradition",
+      "name": "Jiangnan green tea culture",
+      "aka": [],
+      "summary": "Literati and garden tea around the lower Yangtze.",
+      "description": "Literati and garden tea around the lower Yangtze.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Jiangnan green tea culture Literati and garden tea around the lower Yangtze.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_history-tribute",
+      "kind": "historical-event",
+      "name": "Imperial tribute teas",
+      "aka": [],
+      "summary": "Historic tribute systems elevated famous gardens (sample framing).",
+      "description": "Historic tribute systems elevated famous gardens (sample framing).",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Imperial tribute teas Historic tribute systems elevated famous gardens (sample framing).",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_health-calm-focus",
+      "kind": "health-topic",
+      "name": "Calm focus (L-theanine context)",
+      "aka": [],
+      "summary": "Educational topic \u2014 not medical advice.",
+      "description": "Educational topic \u2014 not medical advice.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Calm focus (L-theanine context) Educational topic \u2014 not medical advice.",
+      "education": {},
+      "unknowns": [
+        "Individual responses vary; not a health claim."
+      ],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_study-placeholder",
+      "kind": "scientific-study",
+      "name": "Sample sensory chemistry overview",
+      "aka": [],
+      "summary": "Placeholder educational citation node \u2014 replace with real DOIs later.",
+      "description": "Placeholder educational citation node \u2014 replace with real DOIs later.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {
+        "year": 2018,
+        "honesty": "sample-placeholder"
+      },
+      "searchText": "Sample sensory chemistry overview Placeholder educational citation node \u2014 replace with real DOIs later.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_food-dimsum",
+      "kind": "food-pairing",
+      "name": "Light dim sum",
+      "aka": [],
+      "summary": "Gentle savory bites that leave room for green tea.",
+      "description": "Gentle savory bites that leave room for green tea.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Light dim sum Gentle savory bites that leave room for green tea.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_food-dark-chocolate",
+      "kind": "food-pairing",
+      "name": "Dark chocolate",
+      "aka": [],
+      "summary": "Bittersweet contrast for roasted oolongs.",
+      "description": "Bittersweet contrast for roasted oolongs.",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "Dark chocolate Bittersweet contrast for roasted oolongs.",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_article-how-longjing",
+      "kind": "article",
+      "name": "How Longjing is made",
+      "aka": [],
+      "summary": "Educational processing walkthrough (sample).",
+      "description": "Educational processing walkthrough (sample).",
+      "quickFacts": [],
+      "tags": [],
+      "attributes": {},
+      "searchText": "How Longjing is made Educational processing walkthrough (sample).",
+      "education": {},
+      "unknowns": [],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tea-longjing-shifeng",
+      "kind": "tea",
+      "name": "Shi Feng Longjing (sample)",
+      "aka": [
+        "Dragon Well",
+        "Lion Peak Longjing"
+      ],
+      "summary": "Classic West Lake green with chestnut sweetness and clean jade liquor.",
+      "description": "Classic West Lake green with chestnut sweetness and clean jade liquor.",
+      "quickFacts": [
+        {
+          "label": "Type",
+          "value": "stl_type-green"
+        },
+        {
+          "label": "Price band / 50g",
+          "value": "$28"
+        },
+        {
+          "label": "Value hint",
+          "value": "premium"
+        }
+      ],
+      "tags": [
+        "tea",
+        "green"
+      ],
+      "attributes": {
+        "oxidationLevel": 0,
+        "caffeineHint": "moderate",
+        "rarity": "seasonal",
+        "valueHint": "premium",
+        "bitterness": "low",
+        "astringency": "low",
+        "floralIntensity": 2,
+        "sweetness": 7,
+        "priceBandUsdPer50g": 28
+      },
+      "searchText": "Shi Feng Longjing (sample) Classic West Lake green with chestnut sweetness and clean jade liquor. Dragon Well Lion Peak Longjing tea green",
+      "education": {
+        "aiSummary": "Classic West Lake green with chestnut sweetness and clean jade liquor. Explore region, processing, and brewing neighbors to understand why it tastes this way.",
+        "mapHint": {
+          "lat": 30.2,
+          "lon": 120.1,
+          "precision": "region",
+          "label": "Shi Feng Longjing (sample)"
+        }
+      },
+      "unknowns": [
+        "Sample listing \u2014 confirm vintage and garden with vendors."
+      ],
+      "relatedKnowledgeIds": [
+        "kn_longjing"
+      ]
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tea-daho-ngpao",
+      "kind": "tea",
+      "name": "Da Hong Pao style cliff tea (sample)",
+      "aka": [
+        "Big Red Robe style"
+      ],
+      "summary": "Wuyi rock oolong with mineral grip, roasted depth, and orchid lift.",
+      "description": "Wuyi rock oolong with mineral grip, roasted depth, and orchid lift.",
+      "quickFacts": [
+        {
+          "label": "Type",
+          "value": "stl_type-oolong"
+        },
+        {
+          "label": "Price band / 50g",
+          "value": "$32"
+        },
+        {
+          "label": "Value hint",
+          "value": "premium"
+        }
+      ],
+      "tags": [
+        "tea",
+        "oolong"
+      ],
+      "attributes": {
+        "oxidationLevel": 45,
+        "caffeineHint": "moderate-high",
+        "rarity": "classic",
+        "valueHint": "premium",
+        "bitterness": "low-moderate",
+        "astringency": "moderate",
+        "floralIntensity": 6,
+        "sweetness": 5,
+        "priceBandUsdPer50g": 32
+      },
+      "searchText": "Da Hong Pao style cliff tea (sample) Wuyi rock oolong with mineral grip, roasted depth, and orchid lift. Big Red Robe style tea oolong",
+      "education": {
+        "aiSummary": "Wuyi rock oolong with mineral grip, roasted depth, and orchid lift. Explore region, processing, and brewing neighbors to understand why it tastes this way.",
+        "mapHint": {
+          "lat": 30.2,
+          "lon": 120.1,
+          "precision": "region",
+          "label": "Da Hong Pao style cliff tea (sample)"
+        }
+      },
+      "unknowns": [
+        "Sample listing \u2014 confirm vintage and garden with vendors."
+      ],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tea-tieguanyin-light",
+      "kind": "tea",
+      "name": "Light Tieguanyin (sample)",
+      "aka": [
+        "Qing Xiang Tieguanyin"
+      ],
+      "summary": "Greener Anxi oolong \u2014 floral, creamy, and less roasted than traditional styles.",
+      "description": "Greener Anxi oolong \u2014 floral, creamy, and less roasted than traditional styles.",
+      "quickFacts": [
+        {
+          "label": "Type",
+          "value": "stl_type-oolong"
+        },
+        {
+          "label": "Price band / 50g",
+          "value": "$14"
+        },
+        {
+          "label": "Value hint",
+          "value": "excellent-value"
+        }
+      ],
+      "tags": [
+        "tea",
+        "oolong"
+      ],
+      "attributes": {
+        "oxidationLevel": 25,
+        "caffeineHint": "moderate",
+        "rarity": "common",
+        "valueHint": "excellent-value",
+        "bitterness": "low",
+        "astringency": "low",
+        "floralIntensity": 8,
+        "sweetness": 7,
+        "priceBandUsdPer50g": 14
+      },
+      "searchText": "Light Tieguanyin (sample) Greener Anxi oolong \u2014 floral, creamy, and less roasted than traditional styles. Qing Xiang Tieguanyin tea oolong",
+      "education": {
+        "aiSummary": "Greener Anxi oolong \u2014 floral, creamy, and less roasted than traditional styles. Explore region, processing, and brewing neighbors to understand why it tastes this way.",
+        "mapHint": {
+          "lat": 30.2,
+          "lon": 120.1,
+          "precision": "region",
+          "label": "Light Tieguanyin (sample)"
+        }
+      },
+      "unknowns": [
+        "Sample listing \u2014 confirm vintage and garden with vendors."
+      ],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tea-keemun-mao-feng",
+      "kind": "tea",
+      "name": "Keemun Mao Feng (sample)",
+      "aka": [
+        "Qimen"
+      ],
+      "summary": "Anhui black tea with stone fruit, cocoa, and gentle smoke.",
+      "description": "Anhui black tea with stone fruit, cocoa, and gentle smoke.",
+      "quickFacts": [
+        {
+          "label": "Type",
+          "value": "stl_type-black"
+        },
+        {
+          "label": "Price band / 50g",
+          "value": "$11"
+        },
+        {
+          "label": "Value hint",
+          "value": "good-value"
+        }
+      ],
+      "tags": [
+        "tea",
+        "black"
+      ],
+      "attributes": {
+        "oxidationLevel": 100,
+        "caffeineHint": "high",
+        "rarity": "classic",
+        "valueHint": "good-value",
+        "bitterness": "moderate",
+        "astringency": "moderate",
+        "floralIntensity": 3,
+        "sweetness": 6,
+        "priceBandUsdPer50g": 11
+      },
+      "searchText": "Keemun Mao Feng (sample) Anhui black tea with stone fruit, cocoa, and gentle smoke. Qimen tea black",
+      "education": {
+        "aiSummary": "Anhui black tea with stone fruit, cocoa, and gentle smoke. Explore region, processing, and brewing neighbors to understand why it tastes this way.",
+        "mapHint": {
+          "lat": 30.2,
+          "lon": 120.1,
+          "precision": "region",
+          "label": "Keemun Mao Feng (sample)"
+        }
+      },
+      "unknowns": [
+        "Sample listing \u2014 confirm vintage and garden with vendors."
+      ],
+      "relatedKnowledgeIds": []
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+        "status": "sample",
+        "disclaimer": "Educational sample for Steepleaf knowledge graph \u2014 not a live marketplace or tasting board.",
+        "confidence": "moderate"
+      },
+      "id": "stl_tea-shou-puer-cake",
+      "kind": "tea",
+      "name": "Shou Puer cake (sample)",
+      "aka": [
+        "Ripe puer"
+      ],
+      "summary": "Yunnan dark tea cake \u2014 earthy, woody, and mellow when well stored.",
+      "description": "Yunnan dark tea cake \u2014 earthy, woody, and mellow when well stored.",
+      "quickFacts": [
+        {
+          "label": "Type",
+          "value": "stl_type-dark"
+        },
+        {
+          "label": "Price band / 50g",
+          "value": "$8"
+        },
+        {
+          "label": "Value hint",
+          "value": "excellent-value"
+        }
+      ],
+      "tags": [
+        "tea",
+        "dark"
+      ],
+      "attributes": {
+        "oxidationLevel": null,
+        "caffeineHint": "moderate",
+        "rarity": "common",
+        "valueHint": "excellent-value",
+        "bitterness": "low",
+        "astringency": "low",
+        "floralIntensity": 1,
+        "sweetness": 5,
+        "priceBandUsdPer50g": 8,
+        "compressed": true
+      },
+      "searchText": "Shou Puer cake (sample) Yunnan dark tea cake \u2014 earthy, woody, and mellow when well stored. Ripe puer tea dark",
+      "education": {
+        "aiSummary": "Yunnan dark tea cake \u2014 earthy, woody, and mellow when well stored. Explore region, processing, and brewing neighbors to understand why it tastes this way.",
+        "mapHint": {
+          "lat": 30.2,
+          "lon": 120.1,
+          "precision": "region",
+          "label": "Shou Puer cake (sample)"
+        }
+      },
+      "unknowns": [
+        "Sample listing \u2014 confirm vintage and garden with vendors."
+      ],
+      "relatedKnowledgeIds": []
+    }
+  ],
+  "edges": [
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-green-family",
+      "type": "belongs-to",
+      "from": "stl_type-green",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-white-family",
+      "type": "belongs-to",
+      "from": "stl_type-white",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-oolong-family",
+      "type": "belongs-to",
+      "from": "stl_type-oolong",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-black-family",
+      "type": "belongs-to",
+      "from": "stl_type-black",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-dark-family",
+      "type": "belongs-to",
+      "from": "stl_type-dark",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_type-yellow-family",
+      "type": "belongs-to",
+      "from": "stl_type-yellow",
+      "to": "stl_family-camellia",
+      "why": "True tea types descend from Camellia sinensis.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_zhejiang-china",
+      "type": "located-in",
+      "from": "stl_province-zhejiang",
+      "to": "stl_country-china",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_fujian-china",
+      "type": "located-in",
+      "from": "stl_province-fujian",
+      "to": "stl_country-china",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_yunnan-china",
+      "type": "located-in",
+      "from": "stl_province-yunnan",
+      "to": "stl_country-china",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_westlake-zhejiang",
+      "type": "located-in",
+      "from": "stl_region-westlake",
+      "to": "stl_province-zhejiang",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_wuyi-fujian",
+      "type": "located-in",
+      "from": "stl_region-wuyi",
+      "to": "stl_province-fujian",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_anxi-fujian",
+      "type": "located-in",
+      "from": "stl_region-anxi",
+      "to": "stl_province-fujian",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_mt-wuyi-region",
+      "type": "located-in",
+      "from": "stl_mountain-wuyi",
+      "to": "stl_region-wuyi",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_shifeng-westlake",
+      "type": "located-in",
+      "from": "stl_estate-shi-feng",
+      "to": "stl_region-westlake",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_dahong-wuyi",
+      "type": "located-in",
+      "from": "stl_garden-da-hong",
+      "to": "stl_region-wuyi",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_coop-shifeng",
+      "type": "located-in",
+      "from": "stl_producer-hangzhou-coop",
+      "to": "stl_estate-shi-feng",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_wuyi-prod-garden",
+      "type": "located-in",
+      "from": "stl_producer-wuyi-rock",
+      "to": "stl_garden-da-hong",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_anxi-prod-region",
+      "type": "located-in",
+      "from": "stl_producer-anxi-family",
+      "to": "stl_region-anxi",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_orchid-floral",
+      "type": "parent-flavor",
+      "from": "stl_flavor-orchid",
+      "to": "stl_flavor-floral",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_jasmine-floral",
+      "type": "parent-flavor",
+      "from": "stl_flavor-jasmine",
+      "to": "stl_flavor-floral",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_chestnut-nutty",
+      "type": "parent-flavor",
+      "from": "stl_flavor-chestnut",
+      "to": "stl_flavor-honey",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-type",
+      "type": "belongs-to",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_type-green",
+      "why": "Tea type taxonomy.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-prod",
+      "type": "produced-by",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_producer-hangzhou-coop",
+      "why": "Sample producer attribution.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-region",
+      "type": "located-in",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_region-westlake",
+      "why": "Growing region.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-estate",
+      "type": "located-in",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_estate-shi-feng",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-cult",
+      "type": "made-from",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_cultivar-longjing43",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-process-panfire",
+      "type": "processed-by",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_process-panfire",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-process-wither",
+      "type": "processed-by",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_process-wither",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-ox",
+      "type": "has-oxidation",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_oxidation-none",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-harv",
+      "type": "harvested-as",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_harvest-mingqian",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-flush",
+      "type": "from-flush",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_flush-first",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-season",
+      "type": "in-season",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_season-spring",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-flavor-chestnut",
+      "type": "has-flavor",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_flavor-chestnut",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-flavor-honey",
+      "type": "has-flavor",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_flavor-honey",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-flavor-grassy",
+      "type": "has-flavor",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_flavor-grassy",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-aroma-toasted",
+      "type": "has-aroma",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_aroma-toasted",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-mf",
+      "type": "has-mouthfeel",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_mouthfeel-silky",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-col",
+      "type": "has-color",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_color-jade",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-brew-western",
+      "type": "best-brewed-using",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_brew-western",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-brew-gongfu",
+      "type": "best-brewed-using",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_brew-gongfu",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-water",
+      "type": "uses-water",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_water-soft",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-gaiwan",
+      "type": "uses-equipment",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_equip-gaiwan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-ceremony",
+      "type": "served-in",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_ceremony-gongfu",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-sold-0",
+      "type": "sold-by",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_vendor-leaf-library",
+      "why": "Sample multi-vendor offer with price history (educational, not checkout).",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 26,
+        "sizeG": 50,
+        "availability": "in-stock",
+        "organic": true,
+        "freshness": "2026 spring",
+        "costPerGram": 0.52,
+        "priceHistory": [
+          {
+            "date": "2025-09-01",
+            "priceUsd": 28
+          },
+          {
+            "date": "2026-03-15",
+            "priceUsd": 26
+          }
+        ],
+        "shipping": {
+          "shipsFrom": "US",
+          "regions": [
+            "US",
+            "CA"
+          ],
+          "notes": "Sample educational shipping metadata"
+        },
+        "countryRestrictions": [
+          "none-sample"
+        ],
+        "organicCertification": "sample-organic-label"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-longjing-shifeng-sold-1",
+      "type": "sold-by",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_vendor-quiet-cup",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 18,
+        "sizeG": 50,
+        "availability": "limited",
+        "organic": false,
+        "freshness": "2025 spring",
+        "costPerGram": 0.36
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-type",
+      "type": "belongs-to",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_type-oolong",
+      "why": "Tea type taxonomy.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-prod",
+      "type": "produced-by",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_producer-wuyi-rock",
+      "why": "Sample producer attribution.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-region",
+      "type": "located-in",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_region-wuyi",
+      "why": "Growing region.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-estate",
+      "type": "located-in",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_garden-da-hong",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-cult",
+      "type": "made-from",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_cultivar-qidan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-process-wither",
+      "type": "processed-by",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_process-wither",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-process-bruise",
+      "type": "processed-by",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_process-bruise",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-process-roast-charcoal",
+      "type": "processed-by",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_process-roast-charcoal",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-ox",
+      "type": "has-oxidation",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_oxidation-partial-mid",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-roast",
+      "type": "has-roast",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_roast-medium",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-flush",
+      "type": "from-flush",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_flush-first",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-season",
+      "type": "in-season",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_season-spring",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-flavor-orchid",
+      "type": "has-flavor",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_flavor-orchid",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-flavor-mineral",
+      "type": "has-flavor",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_flavor-mineral",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-flavor-wood",
+      "type": "has-flavor",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_flavor-wood",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-flavor-caramel",
+      "type": "has-flavor",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_flavor-caramel",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-mf",
+      "type": "has-mouthfeel",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_mouthfeel-mineral",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-col",
+      "type": "has-color",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_color-amber",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-brew-gongfu",
+      "type": "best-brewed-using",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_brew-gongfu",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-water",
+      "type": "uses-water",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_water-balanced",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-gaiwan",
+      "type": "uses-equipment",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_equip-gaiwan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-ceremony",
+      "type": "served-in",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_ceremony-gongfu",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-daho-ngpao-sold-0",
+      "type": "sold-by",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_vendor-leaf-library",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 34,
+        "sizeG": 50,
+        "availability": "in-stock",
+        "organic": false,
+        "freshness": "2025 roast",
+        "costPerGram": 0.68
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-type",
+      "type": "belongs-to",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_type-oolong",
+      "why": "Tea type taxonomy.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-prod",
+      "type": "produced-by",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_producer-anxi-family",
+      "why": "Sample producer attribution.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-region",
+      "type": "located-in",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_region-anxi",
+      "why": "Growing region.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-cult",
+      "type": "made-from",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_cultivar-tieguanyin",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-process-wither",
+      "type": "processed-by",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_process-wither",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-process-bruise",
+      "type": "processed-by",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_process-bruise",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-ox",
+      "type": "has-oxidation",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_oxidation-partial-light",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-roast",
+      "type": "has-roast",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_roast-light",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-flush",
+      "type": "from-flush",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_flush-first",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-season",
+      "type": "in-season",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_season-spring",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-flavor-orchid",
+      "type": "has-flavor",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_flavor-orchid",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-flavor-cream",
+      "type": "has-flavor",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_flavor-cream",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-flavor-floral",
+      "type": "has-flavor",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_flavor-floral",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-flavor-honey",
+      "type": "has-flavor",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_flavor-honey",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-mf",
+      "type": "has-mouthfeel",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_mouthfeel-silky",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-col",
+      "type": "has-color",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_color-jade",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-brew-gongfu",
+      "type": "best-brewed-using",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_brew-gongfu",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-brew-western",
+      "type": "best-brewed-using",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_brew-western",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-water",
+      "type": "uses-water",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_water-balanced",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-gaiwan",
+      "type": "uses-equipment",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_equip-gaiwan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-ceremony",
+      "type": "served-in",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_ceremony-gongfu",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-sold-0",
+      "type": "sold-by",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_vendor-quiet-cup",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 12,
+        "sizeG": 50,
+        "availability": "in-stock",
+        "organic": false,
+        "freshness": "2026 spring",
+        "costPerGram": 0.24,
+        "priceHistory": [
+          {
+            "date": "2025-11-01",
+            "priceUsd": 14
+          },
+          {
+            "date": "2026-04-01",
+            "priceUsd": 12
+          }
+        ],
+        "shipping": {
+          "shipsFrom": "US",
+          "regions": [
+            "US"
+          ],
+          "notes": "Domestic sample only"
+        }
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-tieguanyin-light-sold-1",
+      "type": "sold-by",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_vendor-leaf-library",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 16,
+        "sizeG": 50,
+        "availability": "in-stock",
+        "organic": true,
+        "freshness": "2026 spring",
+        "costPerGram": 0.32
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-type",
+      "type": "belongs-to",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_type-black",
+      "why": "Tea type taxonomy.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-prod",
+      "type": "produced-by",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_producer-hangzhou-coop",
+      "why": "Sample producer attribution.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-region",
+      "type": "located-in",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_province-zhejiang",
+      "why": "Growing region.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-process-wither",
+      "type": "processed-by",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_process-wither",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-ox",
+      "type": "has-oxidation",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_oxidation-full",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-flush",
+      "type": "from-flush",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_flush-first",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-season",
+      "type": "in-season",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_season-spring",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-flavor-stone-fruit",
+      "type": "has-flavor",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_flavor-stone-fruit",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-flavor-caramel",
+      "type": "has-flavor",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_flavor-caramel",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-flavor-smoke",
+      "type": "has-flavor",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_flavor-smoke",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-flavor-citrus",
+      "type": "has-flavor",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_flavor-citrus",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-mf",
+      "type": "has-mouthfeel",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_mouthfeel-silky",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-col",
+      "type": "has-color",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_color-amber",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-brew-western",
+      "type": "best-brewed-using",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_brew-western",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-brew-grandpa",
+      "type": "best-brewed-using",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_brew-grandpa",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-water",
+      "type": "uses-water",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_water-balanced",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-keemun-mao-feng-sold-0",
+      "type": "sold-by",
+      "from": "stl_tea-keemun-mao-feng",
+      "to": "stl_vendor-quiet-cup",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 9,
+        "sizeG": 50,
+        "availability": "in-stock",
+        "organic": false,
+        "freshness": "2025",
+        "costPerGram": 0.18
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-type",
+      "type": "belongs-to",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_type-dark",
+      "why": "Tea type taxonomy.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-prod",
+      "type": "produced-by",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_producer-wuyi-rock",
+      "why": "Sample producer attribution.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-region",
+      "type": "located-in",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_province-yunnan",
+      "why": "Growing region.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-ferment-pile",
+      "type": "processed-by",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_ferment-pile",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-flavor-wood",
+      "type": "has-flavor",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_flavor-wood",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-flavor-caramel",
+      "type": "has-flavor",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_flavor-caramel",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-flavor-mineral",
+      "type": "has-flavor",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_flavor-mineral",
+      "why": "Tasting note present in sample profile.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-mf",
+      "type": "has-mouthfeel",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_mouthfeel-silky",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-col",
+      "type": "has-color",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_color-amber",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-brew-gongfu",
+      "type": "best-brewed-using",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_brew-gongfu",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-brew-grandpa",
+      "type": "best-brewed-using",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_brew-grandpa",
+      "why": "Sample brewing suggestion.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-water",
+      "type": "uses-water",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_water-balanced",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-gaiwan",
+      "type": "uses-equipment",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_equip-gaiwan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-ceremony",
+      "type": "served-in",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_ceremony-gongfu",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tea-shou-puer-cake-sold-0",
+      "type": "sold-by",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_vendor-quiet-cup",
+      "why": "Sample vendor offer \u2014 not a live cart.",
+      "weight": 0.6,
+      "attributes": {
+        "priceUsd": 22,
+        "sizeG": 200,
+        "availability": "in-stock",
+        "organic": false,
+        "freshness": "aged sample",
+        "costPerGram": 0.11
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tie-more-floral-lj",
+      "type": "more-floral-than",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_tea-longjing-shifeng",
+      "why": "Tieguanyin sample leans more orchid-floral; Longjing leans chestnut-sweet.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-sweeter-keemun",
+      "type": "sweeter-than",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_tea-keemun-mao-feng",
+      "why": "Longjing sample presents clearer natural sweetness with lower roast bitterness.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_dhp-more-ox-tie",
+      "type": "more-oxidized-than",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_tea-tieguanyin-light",
+      "why": "Cliff tea sample sits at medium oxidation vs light Tieguanyin.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_tie-lighter-roast-dhp",
+      "type": "lighter-roast-than",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_tea-daho-ngpao",
+      "why": "Qingxiang Tieguanyin is lightly roasted compared with charcoal-leaning cliff tea.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-less-ast-keemun",
+      "type": "less-astringent-than",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_tea-keemun-mao-feng",
+      "why": "Sample Longjing is softer; Keemun can show more tannin structure.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_shou-lower-caf-keemun",
+      "type": "lower-caffeine-than",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_tea-keemun-mao-feng",
+      "why": "Gentle ripe puer often feels less caffeinated than brisk black tea \u2014 individual response varies.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-similar-tie",
+      "type": "similar-to",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_tea-tieguanyin-light",
+      "why": "Both can drink fragrant and approachable; processing paths differ.",
+      "weight": 0.55,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-share-honey-tie",
+      "type": "shares-flavor-with",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_tea-tieguanyin-light",
+      "why": "Shared honey-sweet register in sample tasting notes.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_after-lj-try-tie",
+      "type": "recommended-after",
+      "from": "stl_tea-tieguanyin-light",
+      "to": "stl_tea-longjing-shifeng",
+      "why": "If you like Longjing's clean sweetness, a light Tieguanyin offers more floral lift.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_after-tie-try-dhp",
+      "type": "recommended-after",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_tea-tieguanyin-light",
+      "why": "Ready for more roast and mineral depth after floral oolong.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-pairs-dimsum",
+      "type": "pairs-with",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_food-dimsum",
+      "why": "Light savory bites leave room for green tea sweetness.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_dhp-pairs-choc",
+      "type": "pairs-with",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_food-dark-chocolate",
+      "why": "Roasted depth meets bittersweet chocolate.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-tradition",
+      "type": "part-of-tradition",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_tradition-jiangnan",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-history",
+      "type": "related-history",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_history-tribute",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-health",
+      "type": "related-health",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_health-calm-focus",
+      "why": "Educational adjacency only \u2014 not medical advice.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_health-study",
+      "type": "cited-by-study",
+      "from": "stl_health-calm-focus",
+      "to": "stl_study-placeholder",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_lj-article",
+      "type": "related-history",
+      "from": "stl_tea-longjing-shifeng",
+      "to": "stl_article-how-longjing",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_dhp-yixing",
+      "type": "uses-equipment",
+      "from": "stl_tea-daho-ngpao",
+      "to": "stl_equip-yixing",
+      "why": "Clay pot can soften roast edges over sessions.",
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_shou-compress",
+      "type": "compressed-as",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_compress-cake",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_shou-storage",
+      "type": "stored-as",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_storage-dry",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/steepleaf/relationship/v0.1",
+        "status": "sample",
+        "confidence": "moderate"
+      },
+      "id": "stlr_shou-ferment",
+      "type": "has-fermentation",
+      "from": "stl_tea-shou-puer-cake",
+      "to": "stl_ferment-pile",
+      "why": null,
+      "weight": 0.7,
+      "attributes": {}
+    }
+  ]
+}

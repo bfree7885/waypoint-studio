@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-product="steepleaf">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Steepleaf entity page — overview, relations, recommendations, and educational context.">
+  <title>Entity — Steepleaf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-steepleaf.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="steepleaf" data-product-name="Steepleaf" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page stl-page">
+      <div id="stl-entity-mount" aria-busy="true"></div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-platform-catalog.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/steepleaf/wds-steepleaf-graph.js" defer></script>
+  <script src="../../../design-system/js/steepleaf/wds-steepleaf-search.js" defer></script>
+  <script src="../../../design-system/js/steepleaf/wds-steepleaf-recommend.js" defer></script>
+  <script src="../../../design-system/js/steepleaf/wds-steepleaf-ai.js" defer></script>
+  <script src="../../../design-system/js/steepleaf/wds-steepleaf-ui.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "steepleaf", productName: "Steepleaf", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.steepleafUI) {
+        WDS.steepleafUI.mountEntity(document.getElementById("stl-entity-mount"));
+      }
+    });
+  </script>
+</body>
+</html>

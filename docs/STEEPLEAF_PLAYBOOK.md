@@ -19,6 +19,11 @@ their own pace—learning leaves, water, time, and taste without pretension.
 Steepleaf is an education-through-exploration product. It is not a ranking
 arena, not a shopfront requirement, and not a substitute for personal taste.
 
+**Shared knowledge graph (Work Block 2):** see
+[`docs/STEEPLEAF-KNOWLEDGE-GRAPH.md`](STEEPLEAF-KNOWLEDGE-GRAPH.md) and the
+package under `design-system/steepleaf/`. Personal brew journals remain
+on-device and separate from the educational graph.
+
 ------------------------------------------------------------------------
 
 # Target Users

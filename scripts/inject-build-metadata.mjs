@@ -38,6 +38,8 @@ const HTML_FILES = [
   "apps/fieldry/index.html",
   "apps/shed-hunting/index.html",
   "apps/steepleaf/index.html",
+  "apps/steepleaf/explore/index.html",
+  "apps/steepleaf/entity/index.html",
   "apps/signalterrain/index.html",
   "apps/signalterrain/topics.html",
   "apps/signalterrain/graph.html",

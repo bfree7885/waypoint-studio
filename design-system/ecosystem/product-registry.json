@@ -666,45 +666,43 @@
     "steepleaf": {
       "slug": "steepleaf",
       "portfolioTier": "content-track",
-      "portfolioRole": "Botany and phenology \u2014 merging into ForageCast",
+      "portfolioRole": "Global tea knowledge graph and educational discovery",
       "dataProduct": "steepleaf",
       "name": "Steepleaf",
-      "hero": "The herbarium cabinet",
-      "eyebrow": "Tea & botanical craft",
-      "lead": "Botanical plates, habitat keys, and phenology through the year \u2014 taught the way a good field guide teaches.",
-      "description": "Botany with illustrations, species pages, and respect for rare plants.",
+      "hero": "Tea knowledge, interconnected",
+      "eyebrow": "Tea literacy",
+      "lead": "Move from leaf to land to process to cup — with explainable discovery and no social rankings.",
+      "description": "Shared tea knowledge graph: teas, regions, producers, cultivars, processing, flavor, brewing, history, science, and sample vendor offers.",
       "studioHref": "../../",
-      "toolHref": null,
+      "toolHref": "apps/steepleaf/explore/",
       "contentDomains": [
-        "species",
-        "habitat",
-        "ecology",
-        "conservation"
+        "tea",
+        "brewing",
+        "flavor",
+        "origins",
+        "processing",
+        "history"
       ],
       "homepageSections": [
-        "featured-photograph",
-        "todays-lesson",
-        "seasonal-highlight",
-        "field-guide-spotlight",
-        "recent-news",
-        "featured-video",
-        "outdoor-challenge",
-        "citizen-science"
+        "knowledge-graph",
+        "explore",
+        "entity-education",
+        "private-journal"
       ],
       "fieldGuideTemplates": [
-        "species",
-        "habitat",
-        "ecosystem",
-        "seasonal-journal",
-        "field-investigation",
-        "research-brief"
+        "tea",
+        "region",
+        "producer",
+        "cultivar",
+        "processing",
+        "brewing"
       ],
-      "photographyLayout": "species-plate",
+      "photographyLayout": "tea-plate",
       "citizenScience": {
-        "enabled": true,
-        "optIn": true
+        "enabled": false,
+        "optIn": false
       },
-      "contentEngineRegion": "pike-county-pa"
+      "contentEngineRegion": null
     },
     "savant-sommelier": {
       "slug": "savant-sommelier",

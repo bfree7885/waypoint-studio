@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Brewing graph — methods and variables for educational Steepleaf pages.",
+  "methods": [
+    {
+      "id": "western",
+      "label": "Western",
+      "description": "Larger vessel, longer steep, fewer infusions.",
+      "defaults": { "tempC": 90, "timeSeconds": 180, "ratioMlPerG": 50, "infusions": 1 }
+    },
+    {
+      "id": "gongfu",
+      "label": "Gongfu",
+      "description": "Small vessel, short steeps, many infusions; attentive leaf expansion.",
+      "defaults": { "tempC": 95, "timeSeconds": 20, "ratioMlPerG": 20, "infusions": 8 }
+    },
+    {
+      "id": "grandpa",
+      "label": "Grandpa",
+      "description": "Leaves stay in the cup; top up with water as you drink.",
+      "defaults": { "tempC": 85, "timeSeconds": null, "ratioMlPerG": 60, "infusions": null }
+    },
+    {
+      "id": "cold-brew",
+      "label": "Cold Brew",
+      "description": "Long cold infusion; soft extraction, low bitterness.",
+      "defaults": { "tempC": 4, "timeSeconds": 28800, "ratioMlPerG": 80, "infusions": 1 }
+    },
+    {
+      "id": "matcha",
+      "label": "Matcha",
+      "description": "Whisked powdered tea; full leaf consumption.",
+      "defaults": { "tempC": 75, "timeSeconds": 30, "ratioMlPerG": 70, "infusions": 1 }
+    },
+    {
+      "id": "travel",
+      "label": "Travel",
+      "description": "Simple thermos or bottle brew when away from a tray.",
+      "defaults": { "tempC": 90, "timeSeconds": 240, "ratioMlPerG": 55, "infusions": 1 }
+    },
+    {
+      "id": "competition",
+      "label": "Competition",
+      "description": "Protocol-driven evaluation brew for cupping or contests.",
+      "defaults": { "tempC": 95, "timeSeconds": 300, "ratioMlPerG": 50, "infusions": 1 }
+    }
+  ],
+  "variables": [
+    "temperature",
+    "time",
+    "ratio",
+    "water-chemistry",
+    "infusion-count",
+    "leaf-expansion"
+  ],
+  "waterProfiles": [
+    { "id": "soft-mineral", "label": "Soft mineral", "notes": "Gentle extraction; good for delicate greens." },
+    { "id": "balanced", "label": "Balanced", "notes": "Everyday profile for most oolongs and blacks." },
+    { "id": "higher-mineral", "label": "Higher mineral", "notes": "Can amplify body; watch bitterness on greens." }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "purpose": "Steepleaf flavor ontology — hierarchical sensory vocabulary for search, discovery, and explainable recommendations.",
+  "families": [
+    {
+      "id": "floral",
+      "label": "Floral",
+      "children": ["orchid", "rose", "jasmine", "osmanthus", "honeysuckle", "chrysanthemum"]
+    },
+    {
+      "id": "honey",
+      "label": "Honey",
+      "children": ["nectar", "beeswax"]
+    },
+    {
+      "id": "fruit",
+      "label": "Fruit",
+      "children": ["stone-fruit", "citrus", "berry", "tropical", "dried-fruit", "apple", "apricot", "peach", "lychee"]
+    },
+    {
+      "id": "sweet",
+      "label": "Sweet",
+      "children": ["caramel", "brown-sugar", "chocolate", "vanilla", "molasses", "maple"]
+    },
+    {
+      "id": "nutty",
+      "label": "Nutty",
+      "children": ["toasted", "almond", "chestnut", "hazelnut"]
+    },
+    {
+      "id": "earthy",
+      "label": "Earthy",
+      "children": ["forest-floor", "compost", "wet-leaves"]
+    },
+    {
+      "id": "mineral",
+      "label": "Mineral",
+      "children": ["wet-stone", "slate", "flint"]
+    },
+    {
+      "id": "marine",
+      "label": "Marine",
+      "children": ["seaweed", "briny", "oceanic"]
+    },
+    {
+      "id": "vegetal",
+      "label": "Vegetal",
+      "children": ["grassy", "spinach", "snap-pea", "asparagus", "bamboo"]
+    },
+    {
+      "id": "umami",
+      "label": "Umami",
+      "children": ["broth", "savory"]
+    },
+    {
+      "id": "spice",
+      "label": "Spice",
+      "children": ["cinnamon", "pepper", "clove", "anise"]
+    },
+    {
+      "id": "smoke",
+      "label": "Smoke",
+      "children": ["campfire", "pine-smoke", "incense"]
+    },
+    {
+      "id": "wood",
+      "label": "Wood",
+      "children": ["cedar", "oak", "bamboo-wood", "resin"]
+    },
+    {
+      "id": "cooling",
+      "label": "Cooling",
+      "children": ["menthol", "fresh"]
+    },
+    {
+      "id": "creamy",
+      "label": "Creamy",
+      "children": ["milky", "butter", "silk"]
+    }
+  ]
+}

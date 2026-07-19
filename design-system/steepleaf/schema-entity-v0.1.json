@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.studio/schemas/steepleaf/entity/v0.1",
+  "title": "Steepleaf Knowledge Entity v0.1",
+  "description": "Normalized knowledge-graph node for Steepleaf. Educational first. Not a social profile.",
+  "type": "object",
+  "required": ["meta", "id", "kind", "name", "summary"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["version", "schema", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string", "const": "0.1.0" },
+        "schema": {
+          "type": "string",
+          "const": "https://waypoint.studio/schemas/steepleaf/entity/v0.1"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["sample", "draft", "active", "archived"]
+        },
+        "disclaimer": { "type": "string", "maxLength": 1024 },
+        "confidence": {
+          "type": "string",
+          "enum": ["high", "moderate", "low", "speculative"]
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^stl_[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "kind": { "type": "string" },
+    "name": { "type": "string", "maxLength": 200 },
+    "aka": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 120 }
+    },
+    "summary": { "type": "string", "maxLength": 2000 },
+    "description": { "type": ["string", "null"], "maxLength": 8000 },
+    "quickFacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "attributes": {
+      "type": "object",
+      "description": "Kind-specific structured fields (oxidation level, price, lat/lon, etc.).",
+      "additionalProperties": true
+    },
+    "searchText": {
+      "type": "string",
+      "description": "Denormalized search blob for fielded discovery."
+    },
+    "education": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "aiSummary": { "type": "string", "maxLength": 2000 },
+        "timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["year", "event"],
+            "additionalProperties": false,
+            "properties": {
+              "year": { "type": "string" },
+              "event": { "type": "string" }
+            }
+          }
+        },
+        "mapHint": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lat": { "type": ["number", "null"] },
+            "lon": { "type": ["number", "null"] },
+            "precision": { "type": ["string", "null"] },
+            "label": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 400 }
+    },
+    "relatedKnowledgeIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional links into shared WDS.knowledge entries."
+    }
+  }
+}

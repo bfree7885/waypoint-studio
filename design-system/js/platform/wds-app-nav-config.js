@@ -339,13 +339,23 @@
         "/apps/steepleaf"
       ],
       "category": "outdoor",
-      "description": "Tea discovery \u2014 catalog, brew journal, and sensory notes.",
-      "status": "foundation",
+      "description": "Global tea knowledge graph — interconnected education, discovery, and explainable recommendations.",
+      "status": "knowledge-graph",
       "features": [
         {
           "id": "overview",
           "label": "Overview",
           "href": "apps/steepleaf/"
+        },
+        {
+          "id": "explore",
+          "label": "Explore graph",
+          "href": "apps/steepleaf/explore/"
+        },
+        {
+          "id": "entity",
+          "label": "Entity pages",
+          "href": "apps/steepleaf/entity/?id=stl_tea-longjing-shifeng"
         }
       ]
     },

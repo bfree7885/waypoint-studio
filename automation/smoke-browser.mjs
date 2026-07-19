@@ -54,6 +54,8 @@ const PAGES = [
   { name: "photo-coach-profile", path: "/apps/photo-coach/profile/", ready: "shell" },
   { name: "sheds", path: "/apps/shed-hunting/", ready: "shell" },
   { name: "steepleaf", path: "/apps/steepleaf/", ready: "shell" },
+  { name: "steepleaf-explore", path: "/apps/steepleaf/explore/", ready: "shell" },
+  { name: "steepleaf-entity", path: "/apps/steepleaf/entity/?id=stl_tea-longjing-shifeng", ready: "shell" },
   { name: "signalterrain", path: "/apps/signalterrain/", ready: "shell" },
   { name: "signalterrain-cyber", path: "/apps/signalterrain/cyber/", ready: "shell" },
   { name: "signalterrain-cyber-brief", path: "/apps/signalterrain/cyber/brief.html", ready: "shell" },

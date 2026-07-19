@@ -1,0 +1,221 @@
+/* Steepleaf — knowledge graph surfaces */
+.stl-page {
+  --stl-bg: #f6f1e8;
+  --stl-ink: #2a241c;
+  --stl-muted: #6b6258;
+  --stl-line: #d9d0c3;
+  --stl-panel: #fcf8f2;
+  --stl-accent: #6b4f2a;
+  --stl-focus: #3d5a45;
+  background:
+    radial-gradient(800px 420px at 10% 0%, #ebe3d4 0%, transparent 55%),
+    radial-gradient(700px 400px at 100% 10%, #e7ebe3 0%, transparent 50%),
+    var(--stl-bg);
+  color: var(--stl-ink);
+  min-height: 70vh;
+}
+
+.stl-explore,
+.stl-entity {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.stl-eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stl-muted);
+}
+
+.stl-header h1,
+.stl-entity h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  margin: 0 0 0.4rem;
+}
+
+.stl-lead,
+.stl-aka,
+.stl-muted {
+  color: var(--stl-muted);
+}
+
+.stl-honesty {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--stl-line);
+  padding: 0.2rem 0.45rem;
+  color: var(--stl-muted);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.stl-panel {
+  border: 1px solid var(--stl-line);
+  background: var(--stl-panel);
+  padding: 1rem 1.1rem 1.2rem;
+  margin: 1rem 0;
+}
+
+.stl-panel h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.45rem;
+  margin: 0 0 0.65rem;
+}
+
+.stl-row,
+.stl-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.75rem;
+  align-items: end;
+  margin-bottom: 0.75rem;
+}
+
+.stl-filters label,
+.stl-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--stl-muted);
+}
+
+.stl-filters input,
+.stl-filters select,
+.stl-panel input,
+.stl-panel select,
+.stl-row input {
+  font: inherit;
+  border: 1px solid var(--stl-line);
+  background: #fff;
+  padding: 0.4rem 0.5rem;
+  color: var(--stl-ink);
+}
+
+.stl-btn {
+  font: inherit;
+  border: 1px solid var(--stl-accent);
+  background: var(--stl-accent);
+  color: #faf6ef;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+.stl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.65rem 0 0.85rem;
+}
+
+.stl-chip {
+  font: inherit;
+  font-size: 0.78rem;
+  border: 1px solid var(--stl-line);
+  background: transparent;
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+}
+
+.stl-chip.is-on {
+  border-color: var(--stl-accent);
+  background: rgba(107, 79, 42, 0.1);
+}
+
+.stl-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stl-list li {
+  border-top: 1px solid var(--stl-line);
+  padding: 0.65rem 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.stl-list strong {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.stl-list em {
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--stl-muted);
+}
+
+.stl-list span,
+.stl-rel {
+  font-size: 0.88rem;
+  color: var(--stl-muted);
+}
+
+.stl-rel {
+  display: inline-block;
+  min-width: 8rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stl-entity section {
+  margin-top: 1.25rem;
+}
+
+.stl-entity h2 {
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--stl-accent);
+}
+
+.stl-btn:focus-visible,
+.stl-chip:focus-visible,
+.stl-filters input:focus-visible,
+.stl-filters select:focus-visible,
+.stl-panel input:focus-visible,
+.stl-panel select:focus-visible {
+  outline: 2px solid var(--stl-focus);
+  outline-offset: 2px;
+}
+
+.stl-home-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.stl-home-cta a:not(.stl-btn) {
+  color: var(--stl-accent, #6b4f2a);
+}
+
+.stl-loading,
+.stl-error {
+  padding: 2rem 1.25rem;
+  color: var(--stl-muted, #6b6258);
+}
+
+.stl-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+

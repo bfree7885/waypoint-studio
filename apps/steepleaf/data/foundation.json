@@ -2,31 +2,34 @@
   "productId": "steepleaf",
   "title": "Steepleaf",
   "eyebrow": "Waypoint Studio · Steepleaf",
-  "status": "foundation",
-  "lead": "A refined tea companion — catalog your leaves, journal your brews, and notice flavor without social ranking.",
-  "mission": "For people who brew with attention: what you steep, how it tastes, and what you want to try next.",
+  "status": "knowledge-graph",
+  "lead": "The world’s tea knowledge, connected — leaf to land to cup, with explainable discovery and no social rankings.",
+  "mission": "Build an interconnected understanding of tea: regions, producers, cultivars, processing, flavor, brewing, history, science, and where to learn more.",
   "principles": [
-    "Personal taste over popularity",
-    "No influencer rankings or follower counts",
-    "Brew notes stay private",
-    "Suggestions stay optional and explainable"
+    "Every fact connects to related knowledge",
+    "Recommendations always explain WHY",
+    "Education first — never social competition",
+    "Vendors are separate from teas",
+    "Private brew journal stays on-device",
+    "Demo and sample data are labeled honestly"
   ],
   "modules": [
-    { "title": "Tea catalog", "status": "foundation", "description": "Origin, type, and tasting words for the teas you keep." },
-    { "title": "Brew journal", "status": "foundation", "description": "Leaf, water, time, temperature, and quiet tasting notes." },
-    { "title": "Collections", "status": "foundation", "description": "Private shelves and tasting sets for your own cupboards." },
-    { "title": "Ratings & flavor notes", "status": "planned", "description": "Personal scales — never public scoreboards." },
-    { "title": "Brew timer", "status": "planned", "description": "Timers that save straight into your brew journal." },
-    { "title": "Discovery", "status": "planned", "description": "Gentle taste neighbors — no social graphs." },
-    { "title": "Search", "status": "planned", "description": "Find teas and past brews quickly." }
+    { "title": "Knowledge graph", "status": "ready", "description": "Normalized entities and typed relationships across tea, place, craft, sensory, culture, and science." },
+    { "title": "Explore & search", "status": "ready", "description": "Fielded search by name, flavor, place, producer, cultivar, processing, brewing, price, and more." },
+    { "title": "Discovery lenses", "status": "ready", "description": "Similar teas, more floral, sweeter, more oxidized, lighter roast, value, seasonal greens — each with a reason." },
+    { "title": "Entity education pages", "status": "ready", "description": "Overview, quick facts, timeline, map hints, relations, AI summary, shopping samples, unknowns." },
+    { "title": "Graph-grounded AI", "status": "ready", "description": "Deterministic answers from the sample graph — uniqueness, comparisons, next cups, price filters." },
+    { "title": "Private catalog & brew journal", "status": "foundation", "description": "On-device teas and brew notes — separate from the public educational graph." },
+    { "title": "Marketplace feeds & vision", "status": "planned", "description": "Vendor APIs, barcode/OCR/label recognition, and photo ID — architected, not shipped." }
   ],
   "routes": [
     { "path": "/", "label": "Steepleaf home", "ready": true },
-    { "path": "/catalog/", "label": "Tea catalog", "ready": false },
-    { "path": "/journal/", "label": "Brew journal", "ready": false },
-    { "path": "/collections/", "label": "Collections", "ready": false }
+    { "path": "/explore/", "label": "Explore knowledge graph", "ready": true },
+    { "path": "/entity/", "label": "Entity detail", "ready": true },
+    { "path": "/catalog/", "label": "Private tea catalog", "ready": false },
+    { "path": "/journal/", "label": "Brew journal", "ready": false }
   ],
-  "dataModel": "Your catalog and brew journal stay on this device. There is no marketplace and no public tasting board.",
-  "privacyPhilosophy": "Brew notes stay private. There is no marketplace and no public tasting board.",
-  "futureDirection": "Personal ratings, brew timers, and gentle taste neighbors — still without social graphs."
+  "dataModel": "Shared Steepleaf KG package under design-system/steepleaf/. Personal catalog/journal stay on-device. Vendor offers are sample edges, not checkout.",
+  "privacyPhilosophy": "Brew notes stay private. No follower counts, influencers, or engagement tricks. Educational recommendations only.",
+  "futureDirection": "Expand coverage, vendor feeds, scientific citations, and vision/OCR identification — still educational-first."
 }

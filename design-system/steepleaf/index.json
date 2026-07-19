@@ -1,0 +1,39 @@
+{
+  "id": "steepleaf-knowledge-graph",
+  "version": "0.1.0",
+  "updatedAt": "2026-07-18",
+  "title": "Steepleaf Knowledge Graph",
+  "purpose": "Shared normalized tea knowledge package powering search, discovery, education pages, and graph-grounded AI.",
+  "honesty": "Sample educational graph — not a complete world catalog and not a live shop.",
+  "packageFiles": {
+    "entityKinds": "entity-kinds.json",
+    "relationshipTypes": "relationship-types.json",
+    "flavorOntology": "flavor-ontology.json",
+    "brewingStyles": "brewing-styles.json",
+    "entitySchema": "schema-entity-v0.1.json",
+    "relationshipSchema": "schema-relationship-v0.1.json",
+    "demoGraph": "samples/demo-graph.json"
+  },
+  "runtime": {
+    "graph": "design-system/js/steepleaf/wds-steepleaf-graph.js",
+    "search": "design-system/js/steepleaf/wds-steepleaf-search.js",
+    "recommend": "design-system/js/steepleaf/wds-steepleaf-recommend.js",
+    "ai": "design-system/js/steepleaf/wds-steepleaf-ai.js",
+    "ui": "design-system/js/steepleaf/wds-steepleaf-ui.js",
+    "css": "design-system/css/wds-steepleaf.css"
+  },
+  "apps": {
+    "home": "apps/steepleaf/",
+    "explore": "apps/steepleaf/explore/",
+    "entity": "apps/steepleaf/entity/"
+  },
+  "futureHooks": [
+    "barcode-scanning",
+    "ocr-label-recognition",
+    "photo-identification",
+    "marketplace-apis",
+    "vendor-feeds",
+    "scientific-reference-ingest",
+    "ai-image-analysis"
+  ]
+}
