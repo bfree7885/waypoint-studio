@@ -1,9 +1,10 @@
 # Waypoint Volunteer — Foundation V0.1
 
-**Status:** Active foundation (prototype — no backend integrations)  
+**Status:** Active foundation + Opportunity Intelligence Engine v1 (demo catalog)  
 **Tagline:** What good can I do today?  
 **Product home:** `apps/waypoint-volunteer/`  
 **Package:** `design-system/volunteer/`  
+**Intelligence:** [`docs/VOLUNTEER-OPPORTUNITY-INTELLIGENCE.md`](VOLUNTEER-OPPORTUNITY-INTELLIGENCE.md)
 
 Waypoint Volunteer is Waypoint Studio’s **volunteer discovery** platform.
 
@@ -27,16 +28,19 @@ Answer one simple question:
 
 > **What good can I do today?**
 
-Eventually support calm filters such as:
+Opportunity Intelligence v1 ranks a short list with explanations using weather, season, distance, private preferences, and accessibility — soft private estimates only.
 
-- What is near me?  
+Calm filters include:
+
 - What matches my interests?  
 - What can I do for one hour?  
 - What can I do outdoors today?  
 - What fits today’s weather?  
 - What needs help this weekend?  
+- Remote / virtual / accessible options  
 
-V0.1 ships sample data and a discovery prototype — no live feeds.
+V0.2 ships sample data, Today panel, map, private profile/saved/impact — no live partner feeds.
+
 
 ---
 

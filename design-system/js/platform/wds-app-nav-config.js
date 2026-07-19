@@ -466,6 +466,21 @@
           "id": "discover",
           "label": "Discover",
           "href": "apps/waypoint-volunteer/discover.html"
+        },
+        {
+          "id": "saved",
+          "label": "Saved",
+          "href": "apps/waypoint-volunteer/saved/"
+        },
+        {
+          "id": "profile",
+          "label": "Profile",
+          "href": "apps/waypoint-volunteer/profile/"
+        },
+        {
+          "id": "impact",
+          "label": "Impact",
+          "href": "apps/waypoint-volunteer/impact/"
         }
       ]
     }

@@ -1,13 +1,14 @@
 {
   "meta": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "status": "foundation",
-    "runtime": "prototype",
-    "updatedAt": "2026-07-17",
+    "runtime": "opportunity-intelligence-v1",
+    "updatedAt": "2026-07-18",
     "tagline": "What good can I do today?",
     "docs": [
       "docs/WAYPOINT-VOLUNTEER.md",
-      "docs/WAYPOINT-VOLUNTEER-INTEGRATIONS.md"
+      "docs/WAYPOINT-VOLUNTEER-INTEGRATIONS.md",
+      "docs/VOLUNTEER-OPPORTUNITY-INTELLIGENCE.md"
     ]
   },
   "package": {
@@ -22,15 +23,19 @@
     "skills": "skills.json",
     "demoBundle": "samples/demo-bundle.json",
     "discoverRuntime": "../js/volunteer/wds-volunteer-discover.js",
+    "intelligenceRuntime": "../js/volunteer/wds-volunteer-intelligence.js",
     "css": "../css/wds-volunteer.css",
     "discoverSurface": "../../apps/waypoint-volunteer/discover.html",
-    "foundationSurface": "../../apps/waypoint-volunteer/"
+    "foundationSurface": "../../apps/waypoint-volunteer/",
+    "savedSurface": "../../apps/waypoint-volunteer/saved/",
+    "profileSurface": "../../apps/waypoint-volunteer/profile/",
+    "impactSurface": "../../apps/waypoint-volunteer/impact/"
   },
   "notInScopeV01": [
-    "Volunteer management / hours tracking",
+    "Volunteer management / hours tracking sync",
     "Event registration / RSVP",
-    "Social feeds, likes, rankings, streaks",
+    "Social feeds, likes, rankings, public streaks",
     "Live partner calendar APIs",
-    "Automatic weather routing"
+    "Public profiles or leaderboards"
   ]
 }

@@ -54,7 +54,19 @@
       "properties": {
         "label": { "type": "string", "maxLength": 256 },
         "regionHint": { "type": ["string", "null"] },
-        "notes": { "type": ["string", "null"], "maxLength": 400 }
+        "notes": { "type": ["string", "null"], "maxLength": 400 },
+        "lat": {
+          "type": ["number", "null"],
+          "description": "Approximate demo coordinates only — never precise private addresses."
+        },
+        "lon": {
+          "type": ["number", "null"],
+          "description": "Approximate demo coordinates only — never precise private addresses."
+        },
+        "precision": {
+          "type": ["string", "null"],
+          "enum": ["site", "neighborhood", "city", "county", "region", null]
+        }
       }
     },
     "setting": {
@@ -102,6 +114,66 @@
       "maxLength": 400
     },
     "familyFriendly": { "type": "boolean" },
+    "intelligence": {
+      "type": "object",
+      "description": "Soft Opportunity Intelligence facets for Today recommendations — never public scores or leaderboards.",
+      "additionalProperties": false,
+      "properties": {
+        "serviceImpact": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "travelEffort": { "type": "string", "enum": ["low", "moderate", "high"] },
+        "outdoorSuitability": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "accessibilityFit": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "kidFriendly": { "type": "boolean" },
+        "seniorFriendly": { "type": "boolean" },
+        "dogFriendly": { "type": "boolean" },
+        "wheelchairFriendly": { "type": "boolean" },
+        "dropInFriendly": { "type": "boolean" },
+        "remote": { "type": "boolean" },
+        "virtual": { "type": "boolean" },
+        "skillRequirement": {
+          "type": "string",
+          "enum": ["none", "light", "trained", "licensed"]
+        },
+        "causeTags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "emergency-response",
+              "conservation",
+              "community",
+              "education",
+              "animal-welfare",
+              "citizen-science",
+              "food-security",
+              "habitat-restoration",
+              "trail-work",
+              "tree-planting",
+              "cleanup",
+              "fundraising",
+              "remote",
+              "virtual",
+              "one-time",
+              "seasonal",
+              "recurring"
+            ]
+          }
+        },
+        "impactMetrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Optional private impact hints when a volunteer marks completed (demo labels only).",
+          "properties": {
+            "hours": { "type": "number", "minimum": 0 },
+            "trailMiles": { "type": "number", "minimum": 0 },
+            "treesPlanted": { "type": "integer", "minimum": 0 },
+            "mealsPacked": { "type": "integer", "minimum": 0 },
+            "animalsHelped": { "type": "integer", "minimum": 0 },
+            "observations": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
     "requiredSkills": {
       "type": "array",
       "items": { "type": "string" },

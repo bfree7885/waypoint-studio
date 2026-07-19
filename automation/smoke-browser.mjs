@@ -63,6 +63,9 @@ const PAGES = [
   { name: "signalterrain-summary", path: "/apps/signalterrain/summary.html", ready: "shell" },
   { name: "waypoint-volunteer", path: "/apps/waypoint-volunteer/", ready: "shell" },
   { name: "waypoint-volunteer-discover", path: "/apps/waypoint-volunteer/discover.html", ready: "shell" },
+  { name: "waypoint-volunteer-saved", path: "/apps/waypoint-volunteer/saved/", ready: "shell" },
+  { name: "waypoint-volunteer-profile", path: "/apps/waypoint-volunteer/profile/", ready: "shell" },
+  { name: "waypoint-volunteer-impact", path: "/apps/waypoint-volunteer/impact/", ready: "shell" },
   { name: "savant", path: "/apps/savant-sommelier/", ready: "shell" },
   { name: "terrainbound-redirect", path: "/apps/terrainbound/", ready: "shell" },
   { name: "species-profile", path: "/design-system/species/profile.html", ready: "any" }

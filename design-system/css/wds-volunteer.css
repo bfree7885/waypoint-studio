@@ -175,3 +175,288 @@
   font-size: 0.85rem;
   color: var(--wv-muted);
 }
+
+.wv-nav-mini {
+  font-size: 0.85rem;
+  color: var(--wv-muted);
+  margin: 0 0 0.75rem;
+}
+
+.wv-nav-mini a {
+  color: var(--wv-accent);
+}
+
+.wv-honesty {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--wv-line);
+  padding: 0.15rem 0.4rem;
+  margin: 0 0.25rem 0.25rem 0;
+  color: var(--wv-muted);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.wv-today {
+  border: 1px solid var(--wv-line);
+  background: linear-gradient(160deg, #f7faf5 0%, #eef3eb 100%);
+  padding: 1.1rem 1.15rem 1.25rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.wv-today-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.wv-today h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  margin: 0;
+}
+
+.wv-today-wx {
+  color: var(--wv-muted);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.wv-today-card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--wv-line);
+  padding: 0.9rem 1rem;
+}
+
+.wv-today-card h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  margin: 0 0 0.2rem;
+}
+
+.wv-why {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.wv-today-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  color: var(--wv-muted);
+}
+
+.wv-alts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wv-alt {
+  font: inherit;
+  font-size: 0.82rem;
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+}
+
+.wv-btn {
+  font: inherit;
+  border: 1px solid var(--wv-accent);
+  background: var(--wv-accent);
+  color: #f7faf5;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+.wv-btn-quiet {
+  background: transparent;
+  color: var(--wv-muted);
+  border-color: var(--wv-line);
+  margin-left: 0.5rem;
+}
+
+.wv-btn:focus-visible,
+.wv-card:focus-visible,
+.wv-chip:focus-visible,
+.wv-alt:focus-visible,
+.wv-filters select:focus-visible,
+.wv-filters input:focus-visible {
+  outline: 2px solid var(--wv-focus);
+  outline-offset: 2px;
+}
+
+.wv-view-toggle {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.wv-view-toggle button {
+  font: inherit;
+  font-size: 0.82rem;
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.wv-view-toggle button.is-on {
+  border-color: var(--wv-accent);
+  color: var(--wv-accent);
+}
+
+.wv-map {
+  height: 220px;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--wv-line);
+  background: #dfe6df;
+}
+
+.wv-map-legend {
+  font-size: 0.75rem;
+  color: var(--wv-muted);
+  margin: 0 0 0.75rem;
+}
+
+.wv-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  margin-right: 0.15rem;
+  vertical-align: middle;
+}
+
+.wv-dot-today { background: #c9a227; }
+.wv-dot-saved { background: #4a6fa5; }
+.wv-dot-cat { background: #3d6b4f; }
+
+.wv-card-why {
+  font-size: 0.78rem;
+  color: var(--wv-muted);
+}
+
+.wv-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.wv-chip {
+  font: inherit;
+  font-size: 0.75rem;
+  border: 1px solid var(--wv-line);
+  background: transparent;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.wv-chip.is-on {
+  border-color: var(--wv-accent);
+  background: rgba(61, 107, 79, 0.1);
+}
+
+.wv-facets {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--wv-muted);
+  font-size: 0.88rem;
+}
+
+.wv-explain {
+  border-left: 3px solid var(--wv-accent);
+  padding-left: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.wv-profile-form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 28rem;
+}
+
+.wv-profile-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--wv-muted);
+}
+
+.wv-profile-form input,
+.wv-profile-form select {
+  font: inherit;
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.4rem 0.5rem;
+}
+
+.wv-causes {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.wv-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.wv-impact-grid li {
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.wv-impact-grid strong {
+  display: block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.45rem;
+  color: var(--wv-ink);
+}
+
+.wv-filters input[type="number"] {
+  font: inherit;
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.35rem 0.45rem;
+  width: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wv-card,
+  .wv-chip,
+  .wv-btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .wv-today-facts {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .wv-map {
+    height: 200px;
+  }
+}
+

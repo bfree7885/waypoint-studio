@@ -3,7 +3,7 @@
   "title": "Waypoint Volunteer",
   "eyebrow": "Waypoint Studio · What good can I do today?",
   "status": "foundation",
-  "lead": "A hopeful discovery platform for meaningful community contribution — animal shelters, conservation, citizen science, trail work, food banks, and more. Not volunteer management, not registration, not social media.",
+  "lead": "A hopeful discovery platform with Opportunity Intelligence — prioritized, explained suggestions that adapt to weather, time, and private preferences. Not volunteer management, not registration, not social media.",
   "mission": "Anyone who wants a calm answer to “What good can I do today?” — neighbors, families, outdoor people, and careful observers looking for a place to help without pressure, rankings, or gamification.",
   "problems": [
     "Good opportunities are scattered across calendars and websites",
@@ -16,17 +16,27 @@
   },
   "capabilityGroups": [
     {
+      "title": "Opportunity Intelligence",
+      "status": "live",
+      "description": "Soft private scores with plain-language reasons — weather, season, distance, accessibility, and causes.",
+      "items": [
+        "Today recommendation panel",
+        "Explained alternatives",
+        "Live weather when available",
+        "Demo catalog honesty labels"
+      ]
+    },
+    {
       "title": "Kinds of good work",
       "status": "foundation",
       "description": "Discovery covers community and outdoor stewardship — samples today, curated sources later.",
       "items": [
         "Animal shelters and wildlife care",
         "Conservation and habitat restoration",
-        "Invasive species removal",
-        "Bird counts and community science",
-        "Trail maintenance and park cleanup",
-        "Environmental organizations",
-        "Food banks and community events"
+        "Citizen science and education",
+        "Trail work, planting, and cleanups",
+        "Food pantries and indoor help",
+        "Remote and virtual options"
       ]
     }
   ],
@@ -34,25 +44,31 @@
     "Observe · Understand · Contribute",
     "Discovery over management and registration",
     "Curiosity and stewardship — never rankings, streaks, or likes",
-    "Citizen science bridges to Fieldry — not a separate social product",
+    "Always explain recommendations",
     "Sample data stays labeled sample until curated sources exist",
-    "Contact organizations directly — Waypoint does not RSVP for you"
+    "Contact organizations directly — Waypoint does not RSVP for you",
+    "Profile, saves, and impact stay private on-device"
   ],
   "modules": [
     {
       "title": "Discovery: What good can I do today?",
       "status": "live",
-      "description": "Filter sample opportunities by time, setting, interest, skill, and family fit."
+      "description": "Today panel, filters, map, and explained Opportunity Intelligence ranking over sample opportunities."
+    },
+    {
+      "title": "Private profile & saved lists",
+      "status": "live",
+      "description": "Causes, ability, travel, and planning statuses — localStorage only."
+    },
+    {
+      "title": "Personal impact",
+      "status": "live",
+      "description": "Private hours and cause tallies when you mark completed — never public."
     },
     {
       "title": "Organizations & opportunities",
       "status": "foundation",
-      "description": "Shared schemas for orgs, opportunities, skills, and categories."
-    },
-    {
-      "title": "Adaptive recommendations",
-      "status": "planned",
-      "description": "Eventually adapt to location, season, weather, current events, skills, available time, and interests."
+      "description": "Shared schemas with intelligence facets for soft scoring."
     },
     {
       "title": "Today Outside hooks",
@@ -62,8 +78,11 @@
   ],
   "routes": [
     { "path": "/", "label": "Volunteer home", "ready": true },
-    { "path": "discover.html", "label": "What good can I do today?", "ready": true }
+    { "path": "discover.html", "label": "What good can I do today?", "ready": true },
+    { "path": "saved/", "label": "Saved", "ready": true },
+    { "path": "profile/", "label": "Private profile", "ready": true },
+    { "path": "impact/", "label": "Personal impact", "ready": true }
   ],
-  "privacyPhilosophy": "Sample organizations and opportunities ship in design-system/volunteer/. No backend. No hours tracking. No public activity feed. You contact organizations yourself.",
-  "futureDirection": "Recommendations that adapt to location, season, weather, current events, skills, available time, and interests — still discovery-only, still without gamification."
+  "privacyPhilosophy": "Sample organizations and opportunities ship in design-system/volunteer/. Profile, planning, and impact use localStorage only. No backend. No public activity feed. You contact organizations yourself.",
+  "futureDirection": "Richer live catalogs and Dashboard Today Outside glances — still discovery-only, still without gamification."
 }

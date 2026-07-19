@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-product="waypoint-volunteer">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Private volunteer preferences — stored only on this device.">
+  <title>Profile — Waypoint Volunteer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-volunteer.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="waypoint-volunteer" data-product-name="Waypoint Volunteer" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page wv-page">
+      <div class="wv-discover">
+        <p class="wv-nav-mini"><a href="../discover.html">Discover</a> · <a href="../saved/">Saved</a> · <a href="../impact/">Impact</a></p>
+        <h1>Private volunteer profile</h1>
+        <p class="wv-lead">Preferences stay on this device. No public profile. No followers.</p>
+        <p class="wv-honesty">private-local</p>
+        <form id="wv-profile-form" class="wv-profile-form" aria-label="Volunteer preferences">
+          <label>Preferred travel (miles) <input name="preferredTravelMiles" type="number" min="1" max="200" /></label>
+          <label>Preferred duration (minutes) <input name="preferredDurationMinutes" type="number" min="30" max="480" /></label>
+          <label>Physical ability
+            <select name="physicalAbility">
+              <option value="light">Light</option>
+              <option value="moderate">Moderate</option>
+              <option value="vigorous">Vigorous</option>
+            </select>
+          </label>
+          <label>Indoor / outdoor
+            <select name="indoorOutdoor">
+              <option value="any">Any</option>
+              <option value="outdoor">Prefer outdoor</option>
+              <option value="indoor">Prefer indoor</option>
+            </select>
+          </label>
+          <label>Transportation
+            <select name="transportation">
+              <option value="car">Car</option>
+              <option value="transit">Transit</option>
+              <option value="bike">Bike</option>
+              <option value="walk">Walk</option>
+            </select>
+          </label>
+          <label>Frequency
+            <select name="volunteerFrequency">
+              <option value="rare">Rarely</option>
+              <option value="occasional">Occasionally</option>
+              <option value="weekly">Most weeks</option>
+            </select>
+          </label>
+          <label class="wv-check"><input type="checkbox" name="availableWeekdays" /> Available weekdays</label>
+          <label class="wv-check"><input type="checkbox" name="availableWeekends" /> Available weekends</label>
+          <label class="wv-check"><input type="checkbox" name="accessibilityNeeded" /> Prefer accessible options</label>
+          <label class="wv-check"><input type="checkbox" name="kidFriendlyPreferred" /> Prefer kid-friendly</label>
+          <fieldset>
+            <legend>Causes you care about</legend>
+            <div id="wv-causes" class="wv-causes"></div>
+          </fieldset>
+          <p id="wv-profile-status" class="wv-muted" role="status"></p>
+          <button type="submit" class="wv-btn">Save preferences</button>
+          <button type="button" id="wv-profile-clear" class="wv-btn wv-btn-quiet">Clear local profile</button>
+        </form>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-platform-catalog.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/volunteer/wds-volunteer-profile.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "waypoint-volunteer", productName: "Waypoint Volunteer", shellDepth: 2 });
+      }
+      var form = document.getElementById("wv-profile-form");
+      var status = document.getElementById("wv-profile-status");
+      var causesEl = document.getElementById("wv-causes");
+      fetch("../../../design-system/volunteer/categories.json")
+        .then(function (r) { return r.json(); })
+        .then(function (cats) {
+          var p = WDS.volunteerProfile.load();
+          causesEl.innerHTML = (cats.categories || []).map(function (c) {
+            var on = (p.causes || []).indexOf(c.id) !== -1;
+            return '<label class="wv-check"><input type="checkbox" name="cause" value="' + c.id + '"' + (on ? " checked" : "") + " /> " + c.label + "</label>";
+          }).join("");
+          form.preferredTravelMiles.value = p.preferredTravelMiles;
+          form.preferredDurationMinutes.value = p.preferredDurationMinutes;
+          form.physicalAbility.value = p.physicalAbility;
+          form.indoorOutdoor.value = p.indoorOutdoor;
+          form.transportation.value = p.transportation;
+          form.volunteerFrequency.value = p.volunteerFrequency;
+          form.availableWeekdays.checked = !!p.availableWeekdays;
+          form.availableWeekends.checked = !!p.availableWeekends;
+          form.accessibilityNeeded.checked = !!p.accessibilityNeeded;
+          form.kidFriendlyPreferred.checked = !!p.kidFriendlyPreferred;
+        });
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var causes = Array.prototype.map.call(form.querySelectorAll('input[name="cause"]:checked'), function (el) { return el.value; });
+        WDS.volunteerProfile.save({
+          preferredTravelMiles: Number(form.preferredTravelMiles.value) || 25,
+          preferredDurationMinutes: Number(form.preferredDurationMinutes.value) || 120,
+          physicalAbility: form.physicalAbility.value,
+          indoorOutdoor: form.indoorOutdoor.value,
+          transportation: form.transportation.value,
+          volunteerFrequency: form.volunteerFrequency.value,
+          availableWeekdays: form.availableWeekdays.checked,
+          availableWeekends: form.availableWeekends.checked,
+          accessibilityNeeded: form.accessibilityNeeded.checked,
+          kidFriendlyPreferred: form.kidFriendlyPreferred.checked,
+          causes: causes
+        });
+        status.textContent = "Saved on this device.";
+      });
+      document.getElementById("wv-profile-clear").addEventListener("click", function () {
+        WDS.volunteerProfile.clear();
+        status.textContent = "Local profile cleared.";
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>

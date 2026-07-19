@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Volunteer — What good can I do today? Discover community opportunities without gamification.">
+  <meta name="description" content="Waypoint Volunteer — What good can I do today? Opportunity Intelligence with calm, explained recommendations.">
   <title>What good can I do today? — Waypoint Volunteer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../design-system/css/wds-platform-foundation.css">
   <link rel="stylesheet" href="../../design-system/css/wds-volunteer.css">
@@ -20,15 +21,23 @@
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="wpf-page wv-page">
       <a class="wv-back" href="./">← Waypoint Volunteer overview</a>
+      <noscript><p class="wv-badge">JavaScript is required for Opportunity Intelligence discovery.</p></noscript>
       <div id="wv-discover-mount" aria-busy="true"></div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="../../design-system/js/platform/wds-platform-catalog.js" defer></script>
   <script src="../../design-system/js/platform/wds-platform-stores.js" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-weather.js" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-profile.js" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-planning.js" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-impact.js" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-intelligence.js" defer></script>
+  <script src="../../design-system/js/volunteer/wds-volunteer-map.js" defer></script>
   <script src="../../design-system/js/volunteer/wds-volunteer-discover.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {

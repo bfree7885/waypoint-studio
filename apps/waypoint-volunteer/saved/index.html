@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-product="waypoint-volunteer">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Private saved volunteer opportunities — local only.">
+  <title>Saved — Waypoint Volunteer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-volunteer.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="waypoint-volunteer" data-product-name="Waypoint Volunteer" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page wv-page">
+      <div class="wv-discover">
+        <p class="wv-nav-mini"><a href="../discover.html">Discover</a> · <a href="../profile/">Profile</a> · <a href="../impact/">Impact</a></p>
+        <h1>Saved opportunities</h1>
+        <p class="wv-lead">Private on this device — interested, planning, registered, completed, favorites, and reminders.</p>
+        <p class="wv-honesty">private-local</p>
+        <div id="wv-saved-mount" aria-busy="true"></div>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-platform-catalog.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/volunteer/wds-volunteer-planning.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "waypoint-volunteer", productName: "Waypoint Volunteer", shellDepth: 2 });
+      }
+      var mount = document.getElementById("wv-saved-mount");
+      var P = WDS.volunteerPlanning;
+      var state = P.load();
+      var statuses = P.STATUSES.filter(function (s) { return s !== "hidden" && s !== "dismissed"; });
+      function esc(s) {
+        return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+      }
+      fetch("../../../design-system/volunteer/samples/demo-bundle.json")
+        .then(function (r) { return r.json(); })
+        .then(function (bundle) {
+          var byId = {};
+          (bundle.opportunities || []).forEach(function (o) { byId[o.id] = o; });
+          var html = statuses.map(function (st) {
+            var ids = Object.keys(state.items).filter(function (id) {
+              return (state.items[id].statuses || []).indexOf(st) !== -1;
+            });
+            if (!ids.length) return "";
+            return "<section class='wv-saved-section'><h2>" + esc(st) + "</h2><ul>" +
+              ids.map(function (id) {
+                var o = byId[id];
+                return "<li><a href='../discover.html'>" + esc(o ? o.title : id) + "</a></li>";
+              }).join("") + "</ul></section>";
+          }).join("");
+          mount.innerHTML = html || "<p class='wv-empty'>Nothing saved yet — mark opportunities from Discover.</p>";
+          mount.removeAttribute("aria-busy");
+        })
+        .catch(function (e) {
+          mount.innerHTML = "<p class='wv-error'>" + esc(e.message) + "</p>";
+          mount.removeAttribute("aria-busy");
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,10 +1,11 @@
 {
   "meta": {
-    "version": "0.1.0",
+    "version": "0.2.0",
     "status": "sample",
     "regionHint": "pike-county-pa-adjacent-sample",
-    "updatedAt": "2026-07-17",
-    "disclaimer": "Educational sample organizations and opportunities for Waypoint Volunteer. Not a live volunteer board. Confirm details with organizations before traveling."
+    "updatedAt": "2026-07-18",
+    "disclaimer": "Educational sample organizations and opportunities for Waypoint Volunteer. Not a live volunteer board. Confirm details with organizations before traveling.",
+    "intelligence": "Opportunity Intelligence Engine v1 \u2014 soft scores for Today recommendations only."
   },
   "organizations": [
     {
@@ -12,14 +13,16 @@
         "version": "0.1.0",
         "schema": "https://waypoint.studio/schemas/volunteer/organization/v0.1",
         "status": "sample",
-        "disclaimer": "Sample org — fictionalized for discovery demo."
+        "disclaimer": "Sample org \u2014 fictionalized for discovery demo."
       },
       "id": "org_sample-ridge-shelter",
       "name": "Ridge Animal Shelter (sample)",
       "description": "Sample community shelter focused on companion animal care and adoption support.",
       "website": null,
       "mission": "Care for animals and match them with thoughtful homes.",
-      "categories": ["animal-rescue"],
+      "categories": [
+        "animal-rescue"
+      ],
       "serviceArea": {
         "label": "Pike County area (sample)",
         "regionHint": "pike-county-pa",
@@ -38,7 +41,12 @@
       "description": "Sample land trust stewarding forests, meadows, and public trails.",
       "website": null,
       "mission": "Protect open space and invite careful public access.",
-      "categories": ["conservation", "habitat-restoration", "trail-maintenance", "parks"],
+      "categories": [
+        "conservation",
+        "habitat-restoration",
+        "trail-maintenance",
+        "parks"
+      ],
       "serviceArea": {
         "label": "Upper Delaware highlands (sample)",
         "regionHint": "pike-county-pa",
@@ -57,7 +65,11 @@
       "description": "Neighborhood garden plots, compost, and shared work mornings.",
       "website": null,
       "mission": "Grow food and neighbors together.",
-      "categories": ["community-gardens", "food-banks", "education"],
+      "categories": [
+        "community-gardens",
+        "food-banks",
+        "education"
+      ],
       "serviceArea": {
         "label": "Millbrook neighborhood (sample)",
         "regionHint": "pike-county-pa",
@@ -76,7 +88,12 @@
       "description": "Programs, trails, and citizen-science friendly habitat work.",
       "website": null,
       "mission": "Invite people to observe and care for local habitats.",
-      "categories": ["education", "citizen-science", "conservation", "parks"],
+      "categories": [
+        "education",
+        "citizen-science",
+        "conservation",
+        "parks"
+      ],
       "serviceArea": {
         "label": "Cedar valley (sample)",
         "regionHint": "pike-county-pa",
@@ -95,7 +112,10 @@
       "description": "Amateur radio volunteers supporting emergency communications literacy and drills.",
       "website": null,
       "mission": "Practice calm, lawful radio support for community readiness.",
-      "categories": ["emergency-preparedness", "disaster-recovery"],
+      "categories": [
+        "emergency-preparedness",
+        "disaster-recovery"
+      ],
       "serviceArea": {
         "label": "County-wide (sample)",
         "regionHint": "pike-county-pa",
@@ -114,11 +134,37 @@
       "description": "Local library seeking help with shelves, programs, and digitization.",
       "website": null,
       "mission": "Keep knowledge accessible to everyone.",
-      "categories": ["libraries", "education", "museums"],
+      "categories": [
+        "libraries",
+        "education",
+        "museums"
+      ],
       "serviceArea": {
         "label": "River town (sample)",
         "regionHint": "pike-county-pa",
         "precision": "city"
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/volunteer/organization/v0.1",
+        "status": "sample",
+        "disclaimer": "Sample food pantry."
+      },
+      "id": "org_sample-valley-pantry",
+      "name": "Valley Food Pantry (sample)",
+      "description": "Community pantry packing and distribution support.",
+      "website": null,
+      "mission": "Share food with neighbors quietly and kindly.",
+      "categories": [
+        "food-banks",
+        "community-events"
+      ],
+      "serviceArea": {
+        "label": "Valley towns (sample)",
+        "regionHint": "pike-county-pa",
+        "precision": "county"
       }
     }
   ],
@@ -128,7 +174,7 @@
         "version": "0.1.0",
         "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
         "status": "sample",
-        "disclaimer": "Sample opportunity — confirm with organization."
+        "disclaimer": "Sample opportunity \u2014 confirm with organization."
       },
       "id": "vo_sample-dog-walk",
       "title": "Morning dog walking shift",
@@ -137,7 +183,10 @@
       "location": {
         "label": "Ridge Animal Shelter grounds (sample)",
         "regionHint": "pike-county-pa",
-        "notes": "Meet at volunteer desk."
+        "notes": "Meet at volunteer desk.",
+        "lat": 41.362,
+        "lon": -74.902,
+        "precision": "site"
       },
       "setting": "outdoor",
       "schedule": {
@@ -145,7 +194,10 @@
         "whenLabel": "Weekday mornings",
         "recurrenceNote": "Sign up for individual shifts with the shelter (not via Waypoint)."
       },
-      "estimatedDuration": { "minutes": 60, "label": "About 1 hour" },
+      "estimatedDuration": {
+        "minutes": 60,
+        "label": "About 1 hour"
+      },
       "physicalEffort": "moderate",
       "accessibility": "Uneven outdoor paths; ask shelter about alternatives.",
       "weatherSensitive": true,
@@ -153,12 +205,47 @@
       "ageRequirements": "16+ or accompanied as required by shelter policy (sample).",
       "familyFriendly": false,
       "requiredSkills": [],
-      "suggestedClothing": ["Closed-toe shoes", "Weather-appropriate layers"],
-      "suggestedEquipment": ["Water bottle"],
-      "categories": ["animal-rescue"],
-      "todayOutsideHints": ["Local shelter looking for dog walkers."],
-      "bridgeApps": ["dashboard"],
-      "unknowns": ["Exact shift availability not live in this demo."]
+      "suggestedClothing": [
+        "Closed-toe shoes",
+        "Weather-appropriate layers"
+      ],
+      "suggestedEquipment": [
+        "Water bottle"
+      ],
+      "categories": [
+        "animal-rescue"
+      ],
+      "todayOutsideHints": [
+        "Local shelter looking for dog walkers."
+      ],
+      "bridgeApps": [
+        "dashboard"
+      ],
+      "unknowns": [
+        "Exact shift availability not live in this demo."
+      ],
+      "intelligence": {
+        "serviceImpact": 72,
+        "travelEffort": "low",
+        "outdoorSuitability": 80,
+        "accessibilityFit": 45,
+        "kidFriendly": false,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "animal-welfare",
+          "recurring"
+        ],
+        "impactMetrics": {
+          "hours": 1,
+          "animalsHelped": 2
+        }
+      }
     },
     {
       "meta": {
@@ -172,9 +259,12 @@
       "description": "Clear light brush, pack out litter, and check water bars on a short loop. Tools provided for sample demo framing.",
       "organizationId": "org_sample-highland-trust",
       "location": {
-        "label": "Highland Preserve — Blue Loop (sample)",
+        "label": "Highland Preserve \u2014 Blue Loop (sample)",
         "regionHint": "pike-county-pa",
-        "notes": "Park at the lower lot."
+        "notes": "Park at the lower lot.",
+        "lat": 41.348,
+        "lon": -74.945,
+        "precision": "site"
       },
       "setting": "outdoor",
       "schedule": {
@@ -182,23 +272,68 @@
         "whenLabel": "This Saturday morning (sample)",
         "recurrenceNote": null
       },
-      "estimatedDuration": { "minutes": 180, "label": "About 3 hours" },
+      "estimatedDuration": {
+        "minutes": 180,
+        "label": "About 3 hours"
+      },
       "physicalEffort": "moderate",
       "accessibility": "Rooty trail; not wheelchair accessible in this sample description.",
       "weatherSensitive": true,
       "seasonal": "Spring through fall",
       "ageRequirements": "14+ with adult; 16+ solo (sample policy).",
       "familyFriendly": true,
-      "requiredSkills": ["trail-work"],
-      "suggestedClothing": ["Long pants", "Sturdy boots", "Work gloves"],
-      "suggestedEquipment": ["Water", "Daypack"],
-      "categories": ["trail-maintenance", "parks", "conservation"],
+      "requiredSkills": [
+        "trail-work"
+      ],
+      "suggestedClothing": [
+        "Long pants",
+        "Sturdy boots",
+        "Work gloves"
+      ],
+      "suggestedEquipment": [
+        "Water",
+        "Daypack"
+      ],
+      "categories": [
+        "trail-maintenance",
+        "parks",
+        "conservation"
+      ],
       "todayOutsideHints": [
         "Beautiful weather for trail maintenance.",
         "Trail work day this Saturday."
       ],
-      "bridgeApps": ["fieldry", "dashboard"],
-      "unknowns": ["Weather call may cancel — confirm with trust."]
+      "bridgeApps": [
+        "fieldry",
+        "dashboard"
+      ],
+      "unknowns": [
+        "Weather call may cancel \u2014 confirm with trust."
+      ],
+      "intelligence": {
+        "serviceImpact": 88,
+        "travelEffort": "moderate",
+        "outdoorSuitability": 95,
+        "accessibilityFit": 25,
+        "kidFriendly": true,
+        "seniorFriendly": false,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": false,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "conservation",
+          "trail-work",
+          "one-time",
+          "seasonal"
+        ],
+        "impactMetrics": {
+          "hours": 3,
+          "trailMiles": 1.2
+        }
+      }
     },
     {
       "meta": {
@@ -214,7 +349,10 @@
       "location": {
         "label": "Millbrook Community Garden (sample)",
         "regionHint": "pike-county-pa",
-        "notes": null
+        "notes": null,
+        "lat": 41.355,
+        "lon": -74.89,
+        "precision": "neighborhood"
       },
       "setting": "outdoor",
       "schedule": {
@@ -222,22 +360,66 @@
         "whenLabel": "Tomorrow morning (sample)",
         "recurrenceNote": "Most Saturday mornings in growing season."
       },
-      "estimatedDuration": { "minutes": 120, "label": "About 2 hours" },
+      "estimatedDuration": {
+        "minutes": 120,
+        "label": "About 2 hours"
+      },
       "physicalEffort": "light",
       "accessibility": "Mostly flat paths; some kneeling required.",
       "weatherSensitive": true,
       "seasonal": "Growing season",
       "ageRequirements": "All ages welcome with caregiver for young children (sample).",
       "familyFriendly": true,
-      "requiredSkills": ["gardening"],
-      "suggestedClothing": ["Sun hat", "Clothes that can get dirty"],
-      "suggestedEquipment": ["Water bottle", "Optional gloves"],
-      "categories": ["community-gardens", "food-banks", "community-events"],
+      "requiredSkills": [
+        "gardening"
+      ],
+      "suggestedClothing": [
+        "Sun hat",
+        "Clothes that can get dirty"
+      ],
+      "suggestedEquipment": [
+        "Water bottle",
+        "Optional gloves"
+      ],
+      "categories": [
+        "community-gardens",
+        "food-banks",
+        "community-events"
+      ],
       "todayOutsideHints": [
         "Community garden volunteer morning tomorrow."
       ],
-      "bridgeApps": ["foragecast", "dashboard"],
-      "unknowns": ["Plot assignments change weekly."]
+      "bridgeApps": [
+        "foragecast",
+        "dashboard"
+      ],
+      "unknowns": [
+        "Plot assignments change weekly."
+      ],
+      "intelligence": {
+        "serviceImpact": 70,
+        "travelEffort": "low",
+        "outdoorSuitability": 85,
+        "accessibilityFit": 60,
+        "kidFriendly": true,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "none",
+        "causeTags": [
+          "food-security",
+          "community",
+          "recurring",
+          "seasonal"
+        ],
+        "impactMetrics": {
+          "hours": 2,
+          "mealsPacked": 0
+        }
+      }
     },
     {
       "meta": {
@@ -248,12 +430,15 @@
       },
       "id": "vo_sample-pollinator-restore",
       "title": "Pollinator habitat restoration",
-      "description": "Plant native plugs and mulch a meadow edge. Learn plant IDs as you go — Fieldry can deepen habitat literacy later.",
+      "description": "Plant native plugs and mulch a meadow edge. Learn plant IDs as you go \u2014 Fieldry can deepen habitat literacy later.",
       "organizationId": "org_sample-cedar-nature",
       "location": {
         "label": "Cedar Nature Center meadow (sample)",
         "regionHint": "pike-county-pa",
-        "notes": null
+        "notes": null,
+        "lat": 41.34,
+        "lon": -74.92,
+        "precision": "site"
       },
       "setting": "outdoor",
       "schedule": {
@@ -261,22 +446,69 @@
         "whenLabel": "This Saturday (sample)",
         "recurrenceNote": null
       },
-      "estimatedDuration": { "minutes": 150, "label": "About 2.5 hours" },
+      "estimatedDuration": {
+        "minutes": 150,
+        "label": "About 2.5 hours"
+      },
       "physicalEffort": "moderate",
       "accessibility": "Uneven ground; seating breaks available at the center.",
       "weatherSensitive": true,
       "seasonal": "Late spring / early fall planting windows",
       "ageRequirements": "12+ with adult (sample).",
       "familyFriendly": true,
-      "requiredSkills": ["habitat-restoration", "gardening"],
-      "suggestedClothing": ["Long sleeves", "Closed-toe shoes"],
-      "suggestedEquipment": ["Water", "Sun protection"],
-      "categories": ["habitat-restoration", "conservation", "citizen-science"],
+      "requiredSkills": [
+        "habitat-restoration",
+        "gardening"
+      ],
+      "suggestedClothing": [
+        "Long sleeves",
+        "Closed-toe shoes"
+      ],
+      "suggestedEquipment": [
+        "Water",
+        "Sun protection"
+      ],
+      "categories": [
+        "habitat-restoration",
+        "conservation",
+        "citizen-science"
+      ],
       "todayOutsideHints": [
         "Pollinator habitat restoration this Saturday."
       ],
-      "bridgeApps": ["fieldry", "foragecast", "dashboard"],
-      "unknowns": ["Species list finalized on-site."]
+      "bridgeApps": [
+        "fieldry",
+        "foragecast",
+        "dashboard"
+      ],
+      "unknowns": [
+        "Species list finalized on-site."
+      ],
+      "intelligence": {
+        "serviceImpact": 90,
+        "travelEffort": "moderate",
+        "outdoorSuitability": 92,
+        "accessibilityFit": 40,
+        "kidFriendly": true,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": false,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "habitat-restoration",
+          "conservation",
+          "tree-planting",
+          "one-time",
+          "seasonal"
+        ],
+        "impactMetrics": {
+          "hours": 2.5,
+          "treesPlanted": 12
+        }
+      }
     },
     {
       "meta": {
@@ -292,7 +524,10 @@
       "location": {
         "label": "River access #3 (sample)",
         "regionHint": "pike-county-pa",
-        "notes": "Stay above high-water marks; follow leader guidance."
+        "notes": "Stay above high-water marks; follow leader guidance.",
+        "lat": 41.37,
+        "lon": -74.935,
+        "precision": "site"
       },
       "setting": "outdoor",
       "schedule": {
@@ -300,38 +535,82 @@
         "whenLabel": "This weekend (sample)",
         "recurrenceNote": null
       },
-      "estimatedDuration": { "minutes": 120, "label": "About 2 hours" },
+      "estimatedDuration": {
+        "minutes": 120,
+        "label": "About 2 hours"
+      },
       "physicalEffort": "moderate",
-      "accessibility": "Riverside rocks and mud — mobility varies.",
+      "accessibility": "Riverside rocks and mud \u2014 mobility varies.",
       "weatherSensitive": true,
       "seasonal": "Ice-free seasons",
       "ageRequirements": "10+ with adult (sample).",
       "familyFriendly": true,
       "requiredSkills": [],
-      "suggestedClothing": ["Clothes that can get wet/muddy", "Sturdy shoes"],
-      "suggestedEquipment": ["Water", "Work gloves if you have them"],
-      "categories": ["conservation", "community-events", "parks"],
+      "suggestedClothing": [
+        "Clothes that can get wet/muddy",
+        "Sturdy shoes"
+      ],
+      "suggestedEquipment": [
+        "Water",
+        "Work gloves if you have them"
+      ],
+      "categories": [
+        "conservation",
+        "community-events",
+        "parks"
+      ],
       "todayOutsideHints": [
         "River cleanup scheduled this weekend."
       ],
-      "bridgeApps": ["dashboard", "scenes"],
-      "unknowns": ["Water levels may shift the route."]
+      "bridgeApps": [
+        "dashboard",
+        "scenes"
+      ],
+      "unknowns": [
+        "Water levels may shift the route."
+      ],
+      "intelligence": {
+        "serviceImpact": 85,
+        "travelEffort": "moderate",
+        "outdoorSuitability": 78,
+        "accessibilityFit": 30,
+        "kidFriendly": true,
+        "seniorFriendly": false,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "none",
+        "causeTags": [
+          "cleanup",
+          "conservation",
+          "community",
+          "one-time"
+        ],
+        "impactMetrics": {
+          "hours": 2
+        }
+      }
     },
     {
       "meta": {
         "version": "0.1.0",
         "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
         "status": "sample",
-        "disclaimer": "Sample ARES practice net support — literacy, not emergency dispatch."
+        "disclaimer": "Sample ARES practice net support \u2014 literacy, not emergency dispatch."
       },
       "id": "vo_sample-ares-net",
       "title": "Amateur radio practice net support",
-      "description": "Help check in licensed operators during a weekly practice net. Licensed amateurs only for transmitting; observers may listen. Educational readiness — not a live incident.",
+      "description": "Help check in licensed operators during a weekly practice net. Licensed amateurs only for transmitting; observers may listen. Educational readiness \u2014 not a live incident.",
       "organizationId": "org_sample-county-ares",
       "location": {
         "label": "Home station or club site (sample)",
         "regionHint": "pike-county-pa",
-        "notes": "Follow FCC rules and net control."
+        "notes": "Follow FCC rules and net control.",
+        "lat": 41.35,
+        "lon": -74.91,
+        "precision": "county"
       },
       "setting": "indoor",
       "schedule": {
@@ -339,20 +618,57 @@
         "whenLabel": "Tuesday evenings (sample)",
         "recurrenceNote": "Weekly practice net."
       },
-      "estimatedDuration": { "minutes": 60, "label": "About 1 hour" },
+      "estimatedDuration": {
+        "minutes": 60,
+        "label": "About 1 hour"
+      },
       "physicalEffort": "light",
       "accessibility": "Home-station friendly.",
       "weatherSensitive": false,
       "seasonal": null,
       "ageRequirements": "Licensed operators for TX; check club policy (sample).",
       "familyFriendly": false,
-      "requiredSkills": ["amateur-radio"],
+      "requiredSkills": [
+        "amateur-radio"
+      ],
       "suggestedClothing": [],
-      "suggestedEquipment": ["Licensed radio equipment", "Log sheet"],
-      "categories": ["emergency-preparedness"],
+      "suggestedEquipment": [
+        "Licensed radio equipment",
+        "Log sheet"
+      ],
+      "categories": [
+        "emergency-preparedness"
+      ],
       "todayOutsideHints": [],
-      "bridgeApps": ["signalterrain"],
-      "unknowns": ["Frequency and net control announced by club."]
+      "bridgeApps": [
+        "signalterrain"
+      ],
+      "unknowns": [
+        "Frequency and net control announced by club."
+      ],
+      "intelligence": {
+        "serviceImpact": 65,
+        "travelEffort": "low",
+        "outdoorSuitability": 10,
+        "accessibilityFit": 90,
+        "kidFriendly": false,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": true,
+        "dropInFriendly": false,
+        "remote": true,
+        "virtual": false,
+        "skillRequirement": "licensed",
+        "causeTags": [
+          "emergency-response",
+          "education",
+          "recurring",
+          "remote"
+        ],
+        "impactMetrics": {
+          "hours": 1
+        }
+      }
     },
     {
       "meta": {
@@ -363,12 +679,15 @@
       },
       "id": "vo_sample-library-digitize",
       "title": "Herbarium / archive digitization help",
-      "description": "Careful scanning and data entry for local natural-history sheets. Quiet indoor work — pairs with technology and data-entry skills.",
+      "description": "Careful scanning and data entry for local natural-history sheets. Quiet indoor work \u2014 pairs with technology and data-entry skills.",
       "organizationId": "org_sample-river-library",
       "location": {
         "label": "River Public Library local history room (sample)",
         "regionHint": "pike-county-pa",
-        "notes": null
+        "notes": null,
+        "lat": 41.358,
+        "lon": -74.885,
+        "precision": "site"
       },
       "setting": "indoor",
       "schedule": {
@@ -376,36 +695,79 @@
         "whenLabel": "Weekday afternoons (sample)",
         "recurrenceNote": "Flexible shifts."
       },
-      "estimatedDuration": { "minutes": 90, "label": "About 1.5 hours" },
+      "estimatedDuration": {
+        "minutes": 90,
+        "label": "About 1.5 hours"
+      },
       "physicalEffort": "light",
       "accessibility": "Indoor, seated work; ask about ergonomic options.",
       "weatherSensitive": false,
       "seasonal": null,
       "ageRequirements": "16+ (sample).",
       "familyFriendly": false,
-      "requiredSkills": ["data-entry", "technology"],
+      "requiredSkills": [
+        "data-entry",
+        "technology"
+      ],
       "suggestedClothing": [],
       "suggestedEquipment": [],
-      "categories": ["libraries", "museums", "citizen-science", "education"],
+      "categories": [
+        "libraries",
+        "museums",
+        "citizen-science",
+        "education"
+      ],
       "todayOutsideHints": [],
-      "bridgeApps": ["fieldry", "scenes"],
-      "unknowns": ["Training session required before solo scanning."]
+      "bridgeApps": [
+        "fieldry",
+        "scenes"
+      ],
+      "unknowns": [
+        "Training session required before solo scanning."
+      ],
+      "intelligence": {
+        "serviceImpact": 68,
+        "travelEffort": "low",
+        "outdoorSuitability": 5,
+        "accessibilityFit": 95,
+        "kidFriendly": false,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": true,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "education",
+          "citizen-science",
+          "community",
+          "recurring"
+        ],
+        "impactMetrics": {
+          "hours": 1.5,
+          "observations": 0
+        }
+      }
     },
     {
       "meta": {
         "version": "0.1.0",
         "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
         "status": "sample",
-        "disclaimer": "Sample bird survey — citizen science bridge."
+        "disclaimer": "Sample bird survey \u2014 citizen science bridge."
       },
       "id": "vo_sample-bird-survey",
       "title": "Morning bird survey (citizen science)",
-      "description": "Join a short point-count along the nature center trail. Observations can continue later in Fieldry — this listing is the volunteer meetup only.",
+      "description": "Join a short point-count along the nature center trail. Observations can continue later in Fieldry \u2014 this listing is the volunteer meetup only.",
       "organizationId": "org_sample-cedar-nature",
       "location": {
         "label": "Cedar Nature Center trailhead (sample)",
         "regionHint": "pike-county-pa",
-        "notes": "Bring binoculars if you have them."
+        "notes": "Bring binoculars if you have them.",
+        "lat": 41.342,
+        "lon": -74.918,
+        "precision": "site"
       },
       "setting": "outdoor",
       "schedule": {
@@ -413,20 +775,307 @@
         "whenLabel": "Sunday morning (sample)",
         "recurrenceNote": null
       },
-      "estimatedDuration": { "minutes": 90, "label": "About 1.5 hours" },
+      "estimatedDuration": {
+        "minutes": 90,
+        "label": "About 1.5 hours"
+      },
       "physicalEffort": "light",
       "accessibility": "Gravel path; some standing still.",
       "weatherSensitive": true,
       "seasonal": "Migration and breeding seasons",
       "ageRequirements": "All ages with quiet participation (sample).",
       "familyFriendly": true,
-      "requiredSkills": ["wildlife-observation"],
-      "suggestedClothing": ["Quiet earth tones", "Layers"],
-      "suggestedEquipment": ["Binoculars optional", "Notebook"],
-      "categories": ["citizen-science", "education", "conservation"],
-      "todayOutsideHints": ["Calm morning for a guided bird survey."],
-      "bridgeApps": ["fieldry", "scenes", "dashboard"],
-      "unknowns": ["Species list depends on the morning."]
+      "requiredSkills": [
+        "wildlife-observation"
+      ],
+      "suggestedClothing": [
+        "Quiet earth tones",
+        "Layers"
+      ],
+      "suggestedEquipment": [
+        "Binoculars optional",
+        "Notebook"
+      ],
+      "categories": [
+        "citizen-science",
+        "education",
+        "conservation"
+      ],
+      "todayOutsideHints": [
+        "Calm morning for a guided bird survey."
+      ],
+      "bridgeApps": [
+        "fieldry",
+        "scenes",
+        "dashboard"
+      ],
+      "unknowns": [
+        "Species list depends on the morning."
+      ],
+      "intelligence": {
+        "serviceImpact": 75,
+        "travelEffort": "low",
+        "outdoorSuitability": 88,
+        "accessibilityFit": 55,
+        "kidFriendly": true,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "citizen-science",
+          "education",
+          "conservation",
+          "one-time",
+          "seasonal"
+        ],
+        "impactMetrics": {
+          "hours": 1.5,
+          "observations": 8
+        }
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
+        "status": "sample",
+        "disclaimer": "Sample pantry packing."
+      },
+      "id": "vo_sample-pantry-pack",
+      "title": "Food pantry packing shift",
+      "description": "Sort donations and pack family boxes indoors. Calm, seated or standing work \u2014 good on wet or hot days.",
+      "organizationId": "org_sample-valley-pantry",
+      "location": {
+        "label": "Valley Food Pantry warehouse (sample)",
+        "regionHint": "pike-county-pa",
+        "notes": null,
+        "lat": 41.365,
+        "lon": -74.87,
+        "precision": "site"
+      },
+      "setting": "indoor",
+      "schedule": {
+        "kind": "recurring",
+        "whenLabel": "Weekday evenings (sample)",
+        "recurrenceNote": "Drop-in welcome most evenings."
+      },
+      "estimatedDuration": {
+        "minutes": 90,
+        "label": "About 1.5 hours"
+      },
+      "physicalEffort": "light",
+      "accessibility": "Indoor floor; ask about seated packing stations.",
+      "weatherSensitive": false,
+      "seasonal": null,
+      "ageRequirements": "14+ (sample).",
+      "familyFriendly": true,
+      "requiredSkills": [],
+      "suggestedClothing": [],
+      "suggestedEquipment": [],
+      "categories": [
+        "food-banks",
+        "community-events"
+      ],
+      "todayOutsideHints": [
+        "Indoor pantry packing is a steady option when weather turns."
+      ],
+      "bridgeApps": [
+        "dashboard"
+      ],
+      "unknowns": [
+        "Inventory varies nightly."
+      ],
+      "intelligence": {
+        "serviceImpact": 82,
+        "travelEffort": "low",
+        "outdoorSuitability": 8,
+        "accessibilityFit": 85,
+        "kidFriendly": true,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": true,
+        "dropInFriendly": true,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "none",
+        "causeTags": [
+          "food-security",
+          "community",
+          "recurring"
+        ],
+        "impactMetrics": {
+          "hours": 1.5,
+          "mealsPacked": 40
+        }
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
+        "status": "sample",
+        "disclaimer": "Sample virtual tutoring."
+      },
+      "id": "vo_sample-virtual-tutoring",
+      "title": "Virtual homework help hour",
+      "description": "Support middle-school students online for one calm hour. Remote \u2014 no travel.",
+      "organizationId": "org_sample-river-library",
+      "location": {
+        "label": "Remote / virtual (sample)",
+        "regionHint": "pike-county-pa",
+        "notes": "Join from home.",
+        "lat": null,
+        "lon": null,
+        "precision": "region"
+      },
+      "setting": "indoor",
+      "schedule": {
+        "kind": "recurring",
+        "whenLabel": "Weekday evenings (sample)",
+        "recurrenceNote": "Book a slot with the library."
+      },
+      "estimatedDuration": {
+        "minutes": 60,
+        "label": "About 1 hour"
+      },
+      "physicalEffort": "light",
+      "accessibility": "Fully remote; use your own accessible setup.",
+      "weatherSensitive": false,
+      "seasonal": "School year",
+      "ageRequirements": "18+ (sample).",
+      "familyFriendly": false,
+      "requiredSkills": [
+        "technology"
+      ],
+      "suggestedClothing": [],
+      "suggestedEquipment": [
+        "Computer with camera"
+      ],
+      "categories": [
+        "education",
+        "libraries"
+      ],
+      "todayOutsideHints": [
+        "Remote tutoring when you cannot travel."
+      ],
+      "bridgeApps": [],
+      "unknowns": [
+        "Platform login provided by library."
+      ],
+      "intelligence": {
+        "serviceImpact": 74,
+        "travelEffort": "low",
+        "outdoorSuitability": 0,
+        "accessibilityFit": 98,
+        "kidFriendly": false,
+        "seniorFriendly": true,
+        "dogFriendly": false,
+        "wheelchairFriendly": true,
+        "dropInFriendly": false,
+        "remote": true,
+        "virtual": true,
+        "skillRequirement": "light",
+        "causeTags": [
+          "education",
+          "community",
+          "remote",
+          "virtual",
+          "recurring"
+        ],
+        "impactMetrics": {
+          "hours": 1
+        }
+      }
+    },
+    {
+      "meta": {
+        "version": "0.1.0",
+        "schema": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1",
+        "status": "sample",
+        "disclaimer": "Sample tree planting."
+      },
+      "id": "vo_sample-tree-planting",
+      "title": "Native tree planting morning",
+      "description": "Plant saplings along a meadow buffer. Cool, dry mornings are ideal.",
+      "organizationId": "org_sample-highland-trust",
+      "location": {
+        "label": "Highland Preserve meadow edge (sample)",
+        "regionHint": "pike-county-pa",
+        "notes": null,
+        "lat": 41.346,
+        "lon": -74.95,
+        "precision": "site"
+      },
+      "setting": "outdoor",
+      "schedule": {
+        "kind": "one-time",
+        "whenLabel": "This Saturday morning (sample)",
+        "recurrenceNote": null
+      },
+      "estimatedDuration": {
+        "minutes": 150,
+        "label": "About 2.5 hours"
+      },
+      "physicalEffort": "moderate",
+      "accessibility": "Soft ground; digging required.",
+      "weatherSensitive": true,
+      "seasonal": "Spring and fall planting windows",
+      "ageRequirements": "12+ with adult (sample).",
+      "familyFriendly": true,
+      "requiredSkills": [
+        "habitat-restoration"
+      ],
+      "suggestedClothing": [
+        "Work gloves",
+        "Boots"
+      ],
+      "suggestedEquipment": [
+        "Water"
+      ],
+      "categories": [
+        "habitat-restoration",
+        "conservation",
+        "parks"
+      ],
+      "todayOutsideHints": [
+        "Cool clear mornings favor tree planting."
+      ],
+      "bridgeApps": [
+        "fieldry",
+        "foragecast"
+      ],
+      "unknowns": [
+        "Species mix announced on arrival."
+      ],
+      "intelligence": {
+        "serviceImpact": 92,
+        "travelEffort": "moderate",
+        "outdoorSuitability": 96,
+        "accessibilityFit": 35,
+        "kidFriendly": true,
+        "seniorFriendly": false,
+        "dogFriendly": false,
+        "wheelchairFriendly": false,
+        "dropInFriendly": false,
+        "remote": false,
+        "virtual": false,
+        "skillRequirement": "light",
+        "causeTags": [
+          "tree-planting",
+          "habitat-restoration",
+          "conservation",
+          "one-time",
+          "seasonal"
+        ],
+        "impactMetrics": {
+          "hours": 2.5,
+          "treesPlanted": 8
+        }
+      }
     }
   ]
 }
