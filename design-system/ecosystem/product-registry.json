@@ -665,44 +665,37 @@
     },
     "steepleaf": {
       "slug": "steepleaf",
-      "portfolioTier": "content-track",
-      "portfolioRole": "Global tea knowledge graph and educational discovery",
+      "portfolioTier": "product",
+      "portfolioRole": "Private tea companion with educational knowledge graph",
       "dataProduct": "steepleaf",
       "name": "Steepleaf",
-      "hero": "Tea knowledge, interconnected",
-      "eyebrow": "Tea literacy",
-      "lead": "Move from leaf to land to process to cup — with explainable discovery and no social rankings.",
-      "description": "Shared tea knowledge graph: teas, regions, producers, cultivars, processing, flavor, brewing, history, science, and sample vendor offers.",
+      "hero": "Today's Tea",
+      "eyebrow": "Tea companion",
+      "lead": "What should I brew today, and how can I get the best experience from it?",
+      "description": "Calm tea collection, brewing guidance, session history, practical learning, and an educational knowledge graph \u2014 private notes on-device by default.",
       "studioHref": "../../",
-      "toolHref": "apps/steepleaf/explore/",
+      "toolHref": "apps/steepleaf/",
       "contentDomains": [
         "tea",
         "brewing",
-        "flavor",
-        "origins",
-        "processing",
-        "history"
+        "tasting"
       ],
       "homepageSections": [
-        "knowledge-graph",
-        "explore",
-        "entity-education",
-        "private-journal"
+        "todays-tea",
+        "todays-brew",
+        "collection",
+        "sessions",
+        "learning",
+        "knowledge-graph"
       ],
-      "fieldGuideTemplates": [
-        "tea",
-        "region",
-        "producer",
-        "cultivar",
-        "processing",
-        "brewing"
-      ],
-      "photographyLayout": "tea-plate",
+      "fieldGuideTemplates": [],
+      "photographyLayout": null,
       "citizenScience": {
         "enabled": false,
         "optIn": false
       },
-      "contentEngineRegion": null
+      "contentEngineRegion": null,
+      "note": "Product Recovery Phase 1 affirmed tea companion as primary UX. Knowledge graph (explore/entity) remains an educational discovery layer."
     },
     "savant-sommelier": {
       "slug": "savant-sommelier",
@@ -802,7 +795,7 @@
       "name": "SignalTerrain",
       "hero": "Understand the world's signals",
       "eyebrow": "Signal Intelligence",
-      "lead": "Two major areas: Radio & Spectrum Intelligence (SDR, receivers, propagation, monitoring, RF observations) and Cyber Awareness (ransomware, vulnerabilities, attacks, outages, advisories, defensive guidance) — educational and defensive only.",
+      "lead": "Two major areas: Radio & Spectrum Intelligence (SDR, receivers, propagation, monitoring, RF observations) and Cyber Awareness (ransomware, vulnerabilities, attacks, outages, advisories, defensive guidance) \u2014 educational and defensive only.",
       "description": "SignalTerrain is the studio home for Signal Intelligence: Radio & Spectrum Intelligence and educational Cyber Awareness connected through topics and a living knowledge graph. Not a scanner, SIEM, penetration-testing tool, or RSS reader.",
       "studioHref": "../../",
       "toolHref": "apps/signalterrain/",

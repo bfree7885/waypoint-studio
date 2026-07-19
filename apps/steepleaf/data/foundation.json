@@ -2,34 +2,36 @@
   "productId": "steepleaf",
   "title": "Steepleaf",
   "eyebrow": "Waypoint Studio · Steepleaf",
-  "status": "knowledge-graph",
-  "lead": "The world’s tea knowledge, connected — leaf to land to cup, with explainable discovery and no social rankings.",
-  "mission": "Build an interconnected understanding of tea: regions, producers, cultivars, processing, flavor, brewing, history, science, and where to learn more.",
+  "status": "active",
+  "lead": "A calm tea companion — what to brew today, how to steep it well, and how today’s cup compares to yesterday’s.",
+  "mission": "Help people brew with attention using a private collection, guided sessions, practical tea literacy, and an educational knowledge graph.",
   "principles": [
-    "Every fact connects to related knowledge",
-    "Recommendations always explain WHY",
-    "Education first — never social competition",
-    "Vendors are separate from teas",
-    "Private brew journal stays on-device",
-    "Demo and sample data are labeled honestly"
+    "Personal taste over popularity",
+    "Recommendations explain why and stay optional",
+    "Brew notes stay private on this device",
+    "No fabricated tasting journals or marketplace pressure"
   ],
   "modules": [
-    { "title": "Knowledge graph", "status": "ready", "description": "Normalized entities and typed relationships across tea, place, craft, sensory, culture, and science." },
-    { "title": "Explore & search", "status": "ready", "description": "Fielded search by name, flavor, place, producer, cultivar, processing, brewing, price, and more." },
-    { "title": "Discovery lenses", "status": "ready", "description": "Similar teas, more floral, sweeter, more oxidized, lighter roast, value, seasonal greens — each with a reason." },
-    { "title": "Entity education pages", "status": "ready", "description": "Overview, quick facts, timeline, map hints, relations, AI summary, shopping samples, unknowns." },
-    { "title": "Graph-grounded AI", "status": "ready", "description": "Deterministic answers from the sample graph — uniqueness, comparisons, next cups, price filters." },
-    { "title": "Private catalog & brew journal", "status": "foundation", "description": "On-device teas and brew notes — separate from the public educational graph." },
-    { "title": "Marketplace feeds & vision", "status": "planned", "description": "Vendor APIs, barcode/OCR/label recognition, and photo ID — architected, not shipped." }
+    { "title": "Today's Tea briefing", "status": "active", "description": "Personalized guidance from your shelf and sessions — never invented cups." },
+    { "title": "Today's Brew workflow", "status": "active", "description": "Temperature, leaf, timer, infusions, and notes with minimal taps." },
+    { "title": "My Collection", "status": "active", "description": "Type, origin, harvest, vendor, storage, quantity, favorites, search and filters." },
+    { "title": "Brewing sessions & journal", "status": "active", "description": "History with parameters, mood, rating, and comparison to prior brews." },
+    { "title": "Discover & Learning", "status": "active", "description": "Style map and practical literacy — not a shopfront." },
+    { "title": "Knowledge graph", "status": "active", "description": "Educational explore/entity discovery layer with labeled sample data." },
+    { "title": "Search & Settings", "status": "active", "description": "Fast private search, export/import, preferences." }
   ],
   "routes": [
-    { "path": "/", "label": "Steepleaf home", "ready": true },
-    { "path": "/explore/", "label": "Explore knowledge graph", "ready": true },
-    { "path": "/entity/", "label": "Entity detail", "ready": true },
-    { "path": "/catalog/", "label": "Private tea catalog", "ready": false },
-    { "path": "/journal/", "label": "Brew journal", "ready": false }
+    { "path": "/", "label": "Home / Today's Tea", "ready": true },
+    { "path": "/#brew", "label": "Today's Brew", "ready": true },
+    { "path": "/#collection", "label": "My Collection", "ready": true },
+    { "path": "/#sessions", "label": "Brewing Sessions", "ready": true },
+    { "path": "/#journal", "label": "Tea Journal", "ready": true },
+    { "path": "/explore/", "label": "Knowledge graph", "ready": true },
+    { "path": "/#learning", "label": "Learning", "ready": true },
+    { "path": "/#search", "label": "Search", "ready": true },
+    { "path": "/#settings", "label": "Settings", "ready": true }
   ],
-  "dataModel": "Shared Steepleaf KG package under design-system/steepleaf/. Personal catalog/journal stay on-device. Vendor offers are sample edges, not checkout.",
-  "privacyPhilosophy": "Brew notes stay private. No follower counts, influencers, or engagement tricks. Educational recommendations only.",
-  "futureDirection": "Expand coverage, vendor feeds, scientific citations, and vision/OCR identification — still educational-first."
+  "dataModel": "Teas and brew sessions stay in localStorage on this device. The knowledge graph uses labeled educational sample data separate from your private journal.",
+  "privacyPhilosophy": "Brew notes stay private. There is no marketplace and no public tasting board.",
+  "futureDirection": "Deeper persona preferences, optional Knowledge cross-links, and refined timer UX — still without social graphs."
 }

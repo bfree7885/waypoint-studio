@@ -201,12 +201,12 @@
         "/apps/foragecast"
       ],
       "category": "outdoor",
-      "description": "Outdoor intelligence \u2014 what to look for today and why, across foraging and land care.",
+      "description": "Seasonal land companion \u2014 what to find and what to do today across foraging, orchard, garden, and land care.",
       "status": "live",
       "features": [
         {
-          "id": "overview",
-          "label": "Overview",
+          "id": "today",
+          "label": "Today",
           "href": "apps/foragecast/",
           "match": [
             "/apps/foragecast/?$",
@@ -214,58 +214,60 @@
           ]
         },
         {
-          "id": "conditions",
-          "label": "Today's Conditions",
-          "href": "apps/foragecast/conditions.html",
-          "match": ["conditions.html"]
+          "id": "foraging",
+          "label": "Foraging",
+          "href": "apps/foragecast/foraging.html",
+          "match": [
+            "foraging.html"
+          ]
         },
         {
-          "id": "species",
-          "label": "Species",
-          "href": "apps/foragecast/species.html",
-          "match": ["species.html"]
+          "id": "orchard",
+          "label": "Orchard",
+          "href": "apps/foragecast/pillar.html?id=orchard",
+          "match": [
+            "pillar.html\\?id=orchard"
+          ]
         },
         {
-          "id": "map",
-          "label": "Map",
-          "href": "apps/foragecast/map.html",
-          "match": ["map.html"]
+          "id": "garden",
+          "label": "Garden",
+          "href": "apps/foragecast/pillar.html?id=garden",
+          "match": [
+            "pillar.html\\?id=garden"
+          ]
         },
         {
-          "id": "timeline",
-          "label": "Season Timeline",
-          "href": "apps/foragecast/timeline.html",
-          "match": ["timeline.html"]
+          "id": "food-forest",
+          "label": "Food forest",
+          "href": "apps/foragecast/pillar.html?id=food-forest",
+          "match": [
+            "food-forest"
+          ]
         },
         {
-          "id": "weather",
-          "label": "Recent Weather",
-          "href": "apps/foragecast/weather.html",
-          "match": ["weather.html"]
+          "id": "permaculture",
+          "label": "Permaculture",
+          "href": "apps/foragecast/pillar.html?id=permaculture",
+          "match": [
+            "permaculture"
+          ]
         },
         {
-          "id": "habitats",
-          "label": "Habitats",
-          "href": "apps/foragecast/habitats.html",
-          "match": ["habitats.html"]
+          "id": "property",
+          "label": "Property",
+          "href": "apps/foragecast/property.html",
+          "match": [
+            "property.html"
+          ]
         },
         {
-          "id": "learn",
-          "label": "Learn",
-          "href": "apps/foragecast/learn.html",
-          "match": ["learn.html"]
-        },
-        {
-          "id": "journal",
-          "label": "Journal",
-          "href": "apps/foragecast/journal.html",
-          "match": ["journal.html"]
-        },
-        {
-          "id": "settings",
-          "label": "Settings",
-          "href": "apps/foragecast/settings.html",
-          "match": ["settings.html"]
+          "id": "season-table",
+          "label": "Season table",
+          "href": "apps/foragecast/season-table.html",
+          "match": [
+            "season-table"
+          ]
         }
       ]
     },
@@ -337,23 +339,48 @@
         "/apps/steepleaf"
       ],
       "category": "outdoor",
-      "description": "Global tea knowledge graph — interconnected education, discovery, and explainable recommendations.",
-      "status": "knowledge-graph",
+      "description": "Tea companion — today’s brew, private collection, sessions, and knowledge graph.",
+      "status": "active",
       "features": [
         {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/steepleaf/"
+          "id": "home",
+          "label": "Home",
+          "href": "apps/steepleaf/#home"
+        },
+        {
+          "id": "brew",
+          "label": "Today's Brew",
+          "href": "apps/steepleaf/#brew"
+        },
+        {
+          "id": "collection",
+          "label": "My Collection",
+          "href": "apps/steepleaf/#collection"
+        },
+        {
+          "id": "sessions",
+          "label": "Sessions",
+          "href": "apps/steepleaf/#sessions"
+        },
+        {
+          "id": "journal",
+          "label": "Journal",
+          "href": "apps/steepleaf/#journal"
+        },
+        {
+          "id": "learning",
+          "label": "Learning",
+          "href": "apps/steepleaf/#learning"
         },
         {
           "id": "explore",
-          "label": "Explore graph",
+          "label": "Knowledge graph",
           "href": "apps/steepleaf/explore/"
         },
         {
-          "id": "entity",
-          "label": "Entity pages",
-          "href": "apps/steepleaf/entity/?id=stl_tea-longjing-shifeng"
+          "id": "settings",
+          "label": "Settings",
+          "href": "apps/steepleaf/#settings"
         }
       ]
     },

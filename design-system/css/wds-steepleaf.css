@@ -1,3 +1,423 @@
+/**
+ * Steepleaf — Product Recovery Phase 1
+ * Calm, kitchen-friendly companion shell.
+ */
+
+.sl-app {
+  --sl-ink: #1e2a22;
+  --sl-muted: #5a6b60;
+  --sl-line: #d5ddd6;
+  --sl-bg: #f3f6f2;
+  --sl-panel: #ffffff;
+  --sl-accent: #3d6b4f;
+  --sl-accent-soft: #e7f0ea;
+  --sl-warm: #7a8f9c;
+  max-width: 72rem;
+  margin: 0 auto;
+  color: var(--sl-ink);
+  font-family: Inter, "Source Sans 3", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.sl-shell {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 12rem) minmax(0, 1fr);
+  gap: 1rem 1.25rem;
+  align-items: start;
+}
+
+.sl-nav {
+  position: sticky;
+  top: 0.5rem;
+  background: var(--sl-panel);
+  border: 1px solid var(--sl-line);
+  border-radius: 8px;
+  padding: 0.45rem 0;
+  background-image: linear-gradient(180deg, #fafcf9 0%, #fff 40%);
+}
+
+.sl-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sl-nav a {
+  display: block;
+  padding: 0.48rem 0.8rem;
+  color: var(--sl-muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.sl-nav a:hover {
+  color: var(--sl-ink);
+  background: #f0f4f1;
+}
+
+.sl-nav a[aria-current="page"] {
+  color: var(--sl-ink);
+  border-left-color: var(--sl-accent);
+  background: var(--sl-accent-soft);
+}
+
+.sl-main {
+  min-width: 0;
+  background: var(--sl-panel);
+  border: 1px solid var(--sl-line);
+  border-radius: 8px;
+  padding: 1.1rem 1.2rem 1.4rem;
+  min-height: 24rem;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 100% 0%, rgba(61, 107, 79, 0.06), transparent 55%),
+    linear-gradient(180deg, #fcfdfb 0%, #fff 28%);
+}
+
+.sl-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-accent);
+  font-weight: 600;
+}
+
+.sl-title {
+  margin: 0.2rem 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.sl-lead {
+  margin: 0.45rem 0 1rem;
+  color: var(--sl-muted);
+}
+
+.sl-meta {
+  margin: 0.35rem 0 0.75rem;
+  color: var(--sl-muted);
+  font-size: 0.85rem;
+}
+
+.sl-brief-list {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.sl-brief-list li {
+  position: relative;
+  padding: 0.45rem 0 0.45rem 1rem;
+  border-top: 1px solid #e8eee9;
+}
+
+.sl-brief-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.9em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 1px;
+  background: var(--sl-accent);
+}
+
+.sl-rec {
+  margin-top: 1rem;
+  padding: 0.85rem 0.95rem;
+  background: var(--sl-accent-soft);
+  border-left: 3px solid var(--sl-accent);
+  border-radius: 0 6px 6px 0;
+}
+
+.sl-why {
+  color: var(--sl-muted);
+  font-size: 0.92rem;
+}
+
+.sl-quick {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sl-line);
+}
+
+.sl-quick h2 {
+  margin: 0 0 0.55rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sl-muted);
+}
+
+.sl-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.sl-quick-grid a {
+  display: block;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--sl-line);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--sl-ink);
+  font-weight: 500;
+  font-size: 0.9rem;
+  background: #fafcf9;
+}
+
+.sl-quick-grid a:hover {
+  border-color: #b7c9bb;
+  background: var(--sl-accent-soft);
+}
+
+.sl-form {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.75rem 0 1rem;
+  max-width: 28rem;
+}
+
+.sl-form--inline {
+  max-width: none;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  align-items: end;
+}
+
+.sl-form label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.84rem;
+  color: var(--sl-muted);
+  font-weight: 500;
+}
+
+.sl-form input,
+.sl-form select,
+.sl-form textarea {
+  font: inherit;
+  color: var(--sl-ink);
+  border: 1px solid var(--sl-line);
+  border-radius: 6px;
+  padding: 0.45rem 0.55rem;
+  background: #fff;
+}
+
+.sl-form input:focus,
+.sl-form select:focus,
+.sl-form textarea:focus {
+  outline: 2px solid rgba(61, 107, 79, 0.35);
+  outline-offset: 1px;
+  border-color: var(--sl-accent);
+}
+
+.sl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.sl-guide-card {
+  margin: 0.75rem 0 1rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--sl-line);
+  border-radius: 8px;
+  background: #fafcf9;
+}
+
+.sl-guide-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.sl-kv {
+  list-style: none;
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+.sl-kv li {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0.35rem 0.75rem;
+  padding: 0.35rem 0;
+  border-top: 1px solid #e8eee9;
+  font-size: 0.92rem;
+}
+
+.sl-kv span {
+  color: var(--sl-muted);
+}
+
+.sl-tea-list,
+.sl-session-list,
+.sl-pick-list,
+.sl-learn-list,
+.sl-discover {
+  list-style: none;
+  margin: 0.5rem 0 1rem;
+  padding: 0;
+}
+
+.sl-tea-list li,
+.sl-session-list li,
+.sl-pick-list li,
+.sl-learn-list li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--sl-line);
+}
+
+.sl-tea-list a,
+.sl-session-list a,
+.sl-pick-list a,
+.sl-learn-list a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sl-tea-list a:hover,
+.sl-session-list a:hover,
+.sl-pick-list a:hover,
+.sl-learn-list a:hover {
+  text-decoration: underline;
+}
+
+.sl-tea-list span,
+.sl-session-list span,
+.sl-learn-list span {
+  color: var(--sl-muted);
+  font-size: 0.86rem;
+}
+
+.sl-inline {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--sl-accent);
+}
+
+.sl-discover li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--sl-line);
+}
+
+.sl-discover p {
+  margin: 0.25rem 0;
+}
+
+.sl-empty {
+  color: var(--sl-muted);
+  padding: 0.75rem 0;
+}
+
+.sl-add {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--sl-line);
+  padding-top: 0.75rem;
+}
+
+.sl-add summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--sl-accent);
+}
+
+.sl-timer {
+  margin: 1rem 0;
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid var(--sl-line);
+  border-radius: 8px;
+  background: #f7faf7;
+}
+
+.sl-timer-display {
+  margin: 0 0 0.75rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 3rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.sl-flash {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--sl-accent-soft);
+  border-radius: 6px;
+}
+
+.sl-disclaimer {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--sl-muted);
+}
+
+@media (max-width: 800px) {
+  .sl-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sl-nav {
+    position: static;
+  }
+
+  .sl-nav ul {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sl-nav ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sl-nav a {
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+
+  .sl-nav a[aria-current="page"] {
+    border-left-color: transparent;
+    border-bottom-color: var(--sl-accent);
+  }
+
+  .sl-title {
+    font-size: 1.7rem;
+  }
+
+  .sl-kv li {
+    grid-template-columns: 1fr;
+  }
+
+  .sl-timer-display {
+    font-size: 2.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-app * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* --- Knowledge graph surfaces (from upstream) --- */
 /* Steepleaf — knowledge graph surfaces */
 .stl-page {
   --stl-bg: #f6f1e8;
