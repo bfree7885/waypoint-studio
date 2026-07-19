@@ -1,0 +1,263 @@
+{
+  "version": "1.0.0",
+  "honesty": "Educational curriculum authored for Savant — not scraped Wikipedia. Each topic teaches with overview, facts, misconceptions, and related learning.",
+  "topics": [
+    {
+      "id": "grape-varieties",
+      "title": "Major grape varieties",
+      "category": "grapes",
+      "overview": "Vitis vinifera cultivars differ in ripening needs, skin thickness, acidity, and aromatic precursors. Learning a few anchor grapes unlocks most wine lists.",
+      "visualAid": "Think of grapes as instruments: same vineyard can sound different depending on which cultivar plays the climate.",
+      "facts": [
+        "Cabernet Sauvignon generally needs more heat accumulation than Pinot Noir.",
+        "Riesling’s high acid lets it succeed as dry or sweet wine.",
+        "Chardonnay’s neutrality makes winemaking choices unusually visible."
+      ],
+      "misconceptions": [
+        "A grape name does not guarantee a single taste — climate and cellar choices matter.",
+        "Old World vs New World is a teaching shorthand, not a law of flavor."
+      ],
+      "related": ["wine-regions", "climate-terroir", "tasting-method"],
+      "similarGrapes": ["Cabernet Sauvignon", "Pinot Noir", "Chardonnay", "Riesling"]
+    },
+    {
+      "id": "wine-regions",
+      "title": "Wine regions",
+      "category": "place",
+      "overview": "Regions encode climate, tradition, and law. Studying maps teaches why the same grape tastes different across valleys.",
+      "visualAid": "Start with latitude bands, then zoom into rivers, slopes, and cooling winds.",
+      "facts": [
+        "Maritime climates often moderate heat spikes.",
+        "Continental interiors can show larger day–night swings.",
+        "AVA and AOC systems are legal geographies — helpful labels, not flavor guarantees."
+      ],
+      "misconceptions": [
+        "Famous regions are not automatically better for every grape.",
+        "A regional name on a label does not replace vintage and producer context."
+      ],
+      "related": ["climate-terroir", "growing-conditions", "grape-varieties"],
+      "similarRegions": ["Bordeaux", "Burgundy", "Napa Valley", "Mosel"]
+    },
+    {
+      "id": "climate-terroir",
+      "title": "Climate and terroir",
+      "category": "place",
+      "overview": "Terroir is the interaction of climate, soil, terrain, and human choices. Savant emphasizes measurable climate and terrain first — with humility about soil myths.",
+      "visualAid": "Heat accumulation, frost timing, and aspect often explain more beginner mysteries than soil color alone.",
+      "facts": [
+        "Growing degree days summarize heat available for ripening.",
+        "Cool nights can preserve acidity even when days are warm.",
+        "Slope and aspect change solar exposure and cold-air drainage."
+      ],
+      "misconceptions": [
+        "Soil type alone rarely dictates a single flavor note.",
+        "Terroir is not a marketing synonym for ‘expensive’."
+      ],
+      "related": ["growing-conditions", "vineyard-intelligence", "grape-varieties"]
+    },
+    {
+      "id": "growing-conditions",
+      "title": "Growing conditions",
+      "category": "vineyard",
+      "overview": "Vines need a growing season long enough to ripen fruit without excessive disease or freeze damage. Water, wind, and humidity shape both quality and risk.",
+      "visualAid": "Imagine a balance beam: heat on one side, disease and frost risk on the other.",
+      "facts": [
+        "Spring frost can destroy young shoots.",
+        "High humidity raises fungal disease pressure.",
+        "Drought stress can concentrate flavors but also reduce yields."
+      ],
+      "misconceptions": [
+        "More heat is not always better — some grapes lose freshness.",
+        "Irrigation is neither universally good nor bad; context matters."
+      ],
+      "related": ["climate-terroir", "wine-production", "vineyard-intelligence"]
+    },
+    {
+      "id": "wine-production",
+      "title": "Wine production overview",
+      "category": "winemaking",
+      "overview": "From harvest to bottle, choices about crush, fermentation vessel, temperature, and aging shape texture and aroma as much as the vineyard.",
+      "visualAid": "Farm → ferment → élevage → bottle — each stage can amplify or mute site character.",
+      "facts": [
+        "Yeast converts sugar to alcohol and CO₂.",
+        "Skin contact builds color and tannin in reds.",
+        "Oxygen management influences freshness versus nutty development."
+      ],
+      "misconceptions": [
+        "‘Natural’ is not a regulated synonym for unsupervised.",
+        "Oak barrels do not automatically mean better wine."
+      ],
+      "related": ["fermentation", "oak-aging", "malolactic"]
+    },
+    {
+      "id": "fermentation",
+      "title": "Fermentation",
+      "category": "winemaking",
+      "overview": "Fermentation temperature, yeast, and vessel change ester profiles and texture. Understanding fermentation demystifies ‘funky’ versus ‘clean’ styles.",
+      "visualAid": "Cooler ferments often keep delicate aromatics; warmer ferments can deepen color extraction in reds.",
+      "facts": [
+        "Stuck ferments leave residual sugar unexpectedly.",
+        "Carbonic maceration favors early-drinking fruitiness (classic Beaujolais lesson).",
+        "Lees contact can add texture after primary fermentation."
+      ],
+      "misconceptions": [
+        "All fermentation smells are faults — some are stylistic.",
+        "Alcohol level alone tells you little about quality."
+      ],
+      "related": ["malolactic", "sparkling", "faults"]
+    },
+    {
+      "id": "oak-aging",
+      "title": "Oak aging",
+      "category": "winemaking",
+      "overview": "Oak can add vanilla, spice, and texture while allowing controlled oxygen exchange. Toast level and barrel age matter.",
+      "visualAid": "New oak is a loud instrument; neutral vessels are quieter stages.",
+      "facts": [
+        "French and American oak differ in lactone and toast character.",
+        "Larger, older vessels impart less flavor.",
+        "Stainless steel preserves primary fruit when oxygen is limited."
+      ],
+      "misconceptions": [
+        "More oak is not a quality score.",
+        "Unoaked wines are not incomplete — they are a stylistic choice."
+      ],
+      "related": ["wine-production", "chardonnay-styles", "storage-aging"]
+    },
+    {
+      "id": "malolactic",
+      "title": "Malolactic fermentation",
+      "category": "winemaking",
+      "overview": "Bacteria convert malic acid to softer lactic acid. Common in reds; optional in whites — a key reason some Chardonnays taste creamy.",
+      "visualAid": "Sharp green-apple acidity can round into yogurt-like softness when MLF completes.",
+      "facts": [
+        "MLF is a bacterial process, not alcoholic fermentation.",
+        "Diacetyl can contribute buttery notes.",
+        "Blocking MLF keeps wines tenser and fresher."
+      ],
+      "misconceptions": [
+        "Butter equals poor wine — it can be intentional.",
+        "All white wines undergo MLF."
+      ],
+      "related": ["fermentation", "oak-aging", "tasting-method"]
+    },
+    {
+      "id": "sparkling",
+      "title": "Sparkling production",
+      "category": "winemaking",
+      "overview": "Bubbles come from trapped CO₂. Traditional method builds complexity via bottle fermentation and lees aging; tank method emphasizes fruit and efficiency.",
+      "visualAid": "Pressure + time on lees ≈ texture lesson in a glass.",
+      "facts": [
+        "Dosage adjusts final sweetness after disgorgement.",
+        "Autolysis contributes brioche notes over time.",
+        "Prosecco often uses tank method; Champagne requires traditional method by definition."
+      ],
+      "misconceptions": [
+        "All sparkling wine is Champagne.",
+        "Sweeter sparkling is always lower quality."
+      ],
+      "related": ["fermentation", "serving-glassware", "food-pairing"]
+    },
+    {
+      "id": "fortified-dessert",
+      "title": "Fortified and dessert wines",
+      "category": "styles",
+      "overview": "Fortification adds spirit; dessert styles concentrate sugar through late harvest, botrytis, or freezing. Acidity is the balancer.",
+      "visualAid": "Sweetness without acid collapses; acid without fruit tires — balance is the lesson.",
+      "facts": [
+        "Port styles differ by oxidative aging path.",
+        "Sherry teaches biological versus oxidative aging.",
+        "Ice wine requires deep cold at harvest."
+      ],
+      "misconceptions": [
+        "Sweet wine is only for beginners.",
+        "High alcohol always means dessert wine."
+      ],
+      "related": ["food-pairing", "storage-aging", "tasting-method"]
+    },
+    {
+      "id": "food-pairing",
+      "title": "Food pairing",
+      "category": "service",
+      "overview": "Pairing works through weight, acid, salt, fat, spice, and aromatic bridges — not rigid color rules.",
+      "visualAid": "Match intensity: delicate wine with delicate food; rich with rich — then use acid to cut fat.",
+      "facts": [
+        "High acid wines refresh salty and fried foods.",
+        "Tannin loves protein and fat.",
+        "Spice heat often prefers off-dry aromatics."
+      ],
+      "misconceptions": [
+        "Red meat must pair with red wine always.",
+        "There is one correct pairing for each dish."
+      ],
+      "related": ["tasting-method", "serving-glassware", "grape-varieties"]
+    },
+    {
+      "id": "serving-glassware",
+      "title": "Glassware and serving temperature",
+      "category": "service",
+      "overview": "Glass shape and temperature change aroma delivery and perceived body. Small adjustments teach more than expensive stemware myths.",
+      "visualAid": "Too cold mutes aroma; too warm exaggerates alcohol.",
+      "facts": [
+        "Many light reds benefit from a slight chill.",
+        "Sparkling stays lively cooler than still whites.",
+        "A clean, tulip-shaped glass outperforms novelty shapes for learning."
+      ],
+      "misconceptions": [
+        "One universal glass ruins all wine equally — still, consistency helps tasting practice.",
+        "Room temperature always means 72°F / 22°C for reds."
+      ],
+      "related": ["tasting-method", "storage-aging", "food-pairing"]
+    },
+    {
+      "id": "storage-aging",
+      "title": "Storage and aging",
+      "category": "service",
+      "overview": "Stable cool temperature, darkness, and humidity protect wine. Most wine is meant to be enjoyed young; aging potential is grape-, region-, and vintage-dependent.",
+      "visualAid": "Think pantry calm, not fridge freeze-thaw cycles.",
+      "facts": [
+        "Heat spikes permanently damage wine faster than mild cool storage.",
+        "UV light can create lightstrike faults.",
+        "Drink windows are estimates, not clocks."
+      ],
+      "misconceptions": [
+        "All wine improves with decades.",
+        "A wine fridge is required to enjoy wine at all."
+      ],
+      "related": ["faults", "tasting-method", "my-cellar"]
+    },
+    {
+      "id": "faults",
+      "title": "Wine faults",
+      "category": "tasting",
+      "overview": "Faults are unwanted aromas or textures from spoilage, packaging, or winemaking accidents. Learning faults prevents blaming the grape unfairly.",
+      "visualAid": "Cork taint (TCA) mutes fruit; volatile acidity smells like vinegar or nail polish in excess.",
+      "facts": [
+        "TCA is often cork-related but not exclusively.",
+        "Reduction can smell sulfurous and sometimes blows off with air.",
+        "Brettanomyces is stylistic for some, a fault for others — context matters."
+      ],
+      "misconceptions": [
+        "Any unfamiliar smell is a fault.",
+        "A flawed bottle means the entire vintage is bad."
+      ],
+      "related": ["tasting-method", "storage-aging", "fermentation"]
+    },
+    {
+      "id": "tasting-method",
+      "title": "Tasting methodology",
+      "category": "tasting",
+      "overview": "See → smell → taste → conclude. Structured tasting builds memory without turning preference into a scoreboard.",
+      "visualAid": "Write three words you actually perceive before borrowing fancy vocabulary.",
+      "facts": [
+        "Acidity is tasted on the sides of the tongue as mouthwatering freshness.",
+        "Tannin dries the gums and cheeks.",
+        "Personal preference is valid data — separate it from description."
+      ],
+      "misconceptions": [
+        "Experts never disagree.",
+        "Points are required to learn."
+      ],
+      "related": ["food-pairing", "faults", "grape-varieties"]
+    }
+  ]
+}

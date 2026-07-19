@@ -1,24 +1,28 @@
 {
   "name": "Savant Sommelier",
-  "eyebrow": "Vineyard intelligence",
-  "mission": "Vineyard intelligence — terrain, climate, and wine landscape literacy without pretension.",
-  "status": "foundation",
-  "statusLabel": "Foundation",
-  "portfolioStatus": "foundation",
-  "portfolioNote": "Place, geology, and climate literacy for careful drinkers and growers.",
-  "strategicRole": "Help people read a landscape before they read a label.",
+  "eyebrow": "Wine intelligence",
+  "mission": "Discover, learn, track, and analyze vineyard potential — every recommendation explains why.",
+  "status": "recovery",
+  "statusLabel": "Product recovery",
+  "portfolioStatus": "active",
+  "portfolioNote": "Wine intelligence platform with Vineyard Intelligence as the flagship differentiator.",
+  "strategicRole": "Help people become better wine enthusiasts through place, climate, and explanation — not scores.",
   "learnToday": [
-    "How slope, soil, and climate shape cultivated landscapes",
-    "Reading a landscape before reading a label — attention without pretension",
-    "Water, stewardship, and habitat at the edge of working land",
-    "Connecting geology notes to what a place can grow"
+    "Why a grape matches climate and style goals",
+    "How slope, aspect, and heat shape ripening",
+    "Tasting method without pretension",
+    "Future vineyard scenarios with honest uncertainty"
   ],
-  "comingSoon": [],
+  "comingSoon": [
+    "Authoritative DEM and climate normals",
+    "Parcel / soil / hydrology overlays",
+    "Live retailer price adapters"
+  ],
   "preview": {
-    "title": "The tasting room overlook",
-    "placeholderLabel": "Landscape",
-    "placeholderHint": "Slope · watershed · season · stewardship",
-    "description": "Terrain, climate, and place — careful literacy without pretension."
+    "title": "Vineyard Intelligence",
+    "placeholderLabel": "Map",
+    "placeholderHint": "Click a site · analyze · project decades",
+    "description": "Property metrics with why-it-matters, plus Future Vineyard horizons that explain suitability shifts."
   },
   "homeLink": "../../"
 }

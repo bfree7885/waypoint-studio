@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "honesty": "Educational grape climate preference models for Vineyard Intelligence. Not site-certified agronomy advice. Future-decade projections are scenario estimates.",
+  "horizonsYears": [0, 5, 10, 15, 20, 25],
+  "warmingScenarioCPerDecade": 0.25,
+  "grapes": [
+    {
+      "id": "cabernet-sauvignon",
+      "name": "Cabernet Sauvignon",
+      "heatPreference": "warm",
+      "idealGddF": [2600, 3500],
+      "frostSensitivity": "moderate",
+      "diseaseSensitivity": "moderate",
+      "waterDemand": "moderate-high",
+      "notes": "Needs sufficient heat to ripen thick skins; excess heat can push alcohol and soften freshness."
+    },
+    {
+      "id": "pinot-noir",
+      "name": "Pinot Noir",
+      "heatPreference": "cool",
+      "idealGddF": [1800, 2500],
+      "frostSensitivity": "high",
+      "diseaseSensitivity": "high",
+      "waterDemand": "moderate",
+      "notes": "Prefers cooler seasons; rising summer heat and humidity often increase stress and disease pressure."
+    },
+    {
+      "id": "chardonnay",
+      "name": "Chardonnay",
+      "heatPreference": "cool-warm",
+      "idealGddF": [2000, 3000],
+      "frostSensitivity": "moderate",
+      "diseaseSensitivity": "moderate",
+      "waterDemand": "moderate",
+      "notes": "Wide stylistic range; cooler sites keep tension, warmer sites deepen body."
+    },
+    {
+      "id": "riesling",
+      "name": "Riesling",
+      "heatPreference": "cool",
+      "idealGddF": [1700, 2400],
+      "frostSensitivity": "moderate",
+      "diseaseSensitivity": "moderate",
+      "waterDemand": "moderate",
+      "notes": "Nighttime cooling and retained acidity support long-term suitability in many warming scenarios."
+    },
+    {
+      "id": "merlot",
+      "name": "Merlot",
+      "heatPreference": "warm",
+      "idealGddF": [2400, 3300],
+      "frostSensitivity": "moderate",
+      "diseaseSensitivity": "moderate",
+      "waterDemand": "moderate",
+      "notes": "Earlier ripening than Cabernet can help in shorter seasons."
+    },
+    {
+      "id": "cabernet-franc",
+      "name": "Cabernet Franc",
+      "heatPreference": "cool-warm",
+      "idealGddF": [2200, 3000],
+      "frostSensitivity": "moderate",
+      "diseaseSensitivity": "moderate",
+      "waterDemand": "moderate",
+      "notes": "Often a resilient bridge grape between cool and warm regimes."
+    }
+  ]
+}

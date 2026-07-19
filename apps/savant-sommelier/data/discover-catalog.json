@@ -1,0 +1,671 @@
+{
+  "version": "1.0.0",
+  "honesty": "Educational discovery catalog \u2014 styles, grapes, and regions for learning. Not a live retailer inventory and not user cellar data.",
+  "facets": [
+    "country",
+    "region",
+    "subregion",
+    "ava",
+    "producer",
+    "grape",
+    "blend",
+    "style",
+    "body",
+    "sweetness",
+    "acidity",
+    "alcohol",
+    "oak",
+    "sparkling",
+    "dessert",
+    "fortified",
+    "vintage",
+    "price",
+    "foodPairing",
+    "organic",
+    "biodynamic",
+    "natural"
+  ],
+  "entries": [
+    {
+      "id": "ss_cabernet-sauvignon",
+      "kind": "grape",
+      "name": "Cabernet Sauvignon",
+      "aka": [
+        "Cabernet"
+      ],
+      "countryHints": [
+        "France",
+        "USA",
+        "Chile",
+        "Australia"
+      ],
+      "regionHints": [
+        "Bordeaux",
+        "Napa Valley",
+        "Maipo",
+        "Coonawarra"
+      ],
+      "style": "red",
+      "body": "full",
+      "sweetness": "dry",
+      "acidity": "medium-high",
+      "alcohol": "medium-high",
+      "oak": "often-aged",
+      "flavors": [
+        "blackcurrant",
+        "cedar",
+        "graphite",
+        "bell pepper when cooler"
+      ],
+      "unique": "Thick skins and late ripening favor structured wines with aging potential when heat accumulation is sufficient.",
+      "typicalPrice": "widely varies \u00b7 everyday to collectible",
+      "foodPairing": [
+        "grilled steak",
+        "hard cheeses",
+        "mushroom dishes"
+      ],
+      "similar": [
+        "ss_merlot",
+        "ss_cabernet-franc"
+      ],
+      "whyMatchTemplate": "Matches seekers of structured dry reds with black-fruit depth and oak-friendly frames.",
+      "tags": [
+        "grape",
+        "red",
+        "full",
+        "dry",
+        "oak"
+      ]
+    },
+    {
+      "id": "ss_pinot-noir",
+      "kind": "grape",
+      "name": "Pinot Noir",
+      "aka": [
+        "Pinot"
+      ],
+      "countryHints": [
+        "France",
+        "USA",
+        "New Zealand",
+        "Germany"
+      ],
+      "regionHints": [
+        "Burgundy",
+        "Willamette Valley",
+        "Central Otago",
+        "Baden"
+      ],
+      "style": "red",
+      "body": "light-medium",
+      "sweetness": "dry",
+      "acidity": "high",
+      "alcohol": "medium",
+      "oak": "restrained-to-moderate",
+      "flavors": [
+        "cherry",
+        "raspberry",
+        "forest floor",
+        "spice"
+      ],
+      "unique": "Thin skins and cool-climate preference make site and vintage especially expressive.",
+      "typicalPrice": "premium more often than commodity",
+      "foodPairing": [
+        "salmon",
+        "duck",
+        "mushroom risotto"
+      ],
+      "similar": [
+        "ss_gamay",
+        "ss_nebbiolo"
+      ],
+      "whyMatchTemplate": "Matches curiosity about elegant, high-acid reds that reward cooler nights.",
+      "tags": [
+        "grape",
+        "red",
+        "light-medium",
+        "dry",
+        "cool-climate"
+      ]
+    },
+    {
+      "id": "ss_chardonnay",
+      "kind": "grape",
+      "name": "Chardonnay",
+      "aka": [],
+      "countryHints": [
+        "France",
+        "USA",
+        "Australia",
+        "Chile"
+      ],
+      "regionHints": [
+        "Burgundy",
+        "Sonoma",
+        "Margaret River",
+        "Casablanca"
+      ],
+      "style": "white",
+      "body": "medium-full",
+      "sweetness": "dry",
+      "acidity": "medium",
+      "alcohol": "medium",
+      "oak": "variable",
+      "flavors": [
+        "apple",
+        "citrus",
+        "butter when MLF",
+        "toast when oak"
+      ],
+      "unique": "Style range is extreme \u2014 from lean Chablis to richly oaked expressions \u2014 so climate and winemaking dominate the story.",
+      "typicalPrice": "broad range",
+      "foodPairing": [
+        "roast chicken",
+        "creamy pasta",
+        "lobster"
+      ],
+      "similar": [
+        "ss_chenin",
+        "ss_riesling"
+      ],
+      "whyMatchTemplate": "Matches learners who want to compare climate and oak effects on one versatile grape.",
+      "tags": [
+        "grape",
+        "white",
+        "dry",
+        "oak-variable"
+      ]
+    },
+    {
+      "id": "ss_riesling",
+      "kind": "grape",
+      "name": "Riesling",
+      "aka": [],
+      "countryHints": [
+        "Germany",
+        "France",
+        "Australia",
+        "USA"
+      ],
+      "regionHints": [
+        "Mosel",
+        "Alsace",
+        "Clare Valley",
+        "Finger Lakes"
+      ],
+      "style": "white",
+      "body": "light-medium",
+      "sweetness": "dry-to-sweet",
+      "acidity": "high",
+      "alcohol": "low-medium",
+      "oak": "rare",
+      "flavors": [
+        "lime",
+        "peach",
+        "petrol with age",
+        "slate"
+      ],
+      "unique": "High acidity preserves freshness across dryness levels; nighttime cooling often supports aromatic precision.",
+      "typicalPrice": "strong value at many quality levels",
+      "foodPairing": [
+        "spicy Asian cuisine",
+        "pork",
+        "apple desserts when sweeter"
+      ],
+      "similar": [
+        "ss_chenin",
+        "ss_gewurz"
+      ],
+      "whyMatchTemplate": "Matches interest in aromatic whites where acidity and site voice stay central.",
+      "tags": [
+        "grape",
+        "white",
+        "high-acid",
+        "aromatic"
+      ]
+    },
+    {
+      "id": "ss_merlot",
+      "kind": "grape",
+      "name": "Merlot",
+      "countryHints": [
+        "France",
+        "USA",
+        "Italy",
+        "Chile"
+      ],
+      "regionHints": [
+        "Saint-\u00c9milion",
+        "Napa",
+        "Tuscany"
+      ],
+      "style": "red",
+      "body": "medium-full",
+      "sweetness": "dry",
+      "acidity": "medium",
+      "alcohol": "medium-high",
+      "oak": "often-aged",
+      "flavors": [
+        "plum",
+        "chocolate",
+        "blackberry",
+        "herbs"
+      ],
+      "unique": "Earlier ripening than Cabernet often softens tannin and fills blends.",
+      "typicalPrice": "broad",
+      "foodPairing": [
+        "roast lamb",
+        "tomato sauces",
+        "mild cheeses"
+      ],
+      "similar": [
+        "ss_cabernet-sauvignon",
+        "ss_cabernet-franc"
+      ],
+      "whyMatchTemplate": "Matches preference for plush dry reds with approachable texture.",
+      "tags": [
+        "grape",
+        "red",
+        "dry"
+      ]
+    },
+    {
+      "id": "ss_cabernet-franc",
+      "kind": "grape",
+      "name": "Cabernet Franc",
+      "countryHints": [
+        "France",
+        "USA",
+        "Italy"
+      ],
+      "regionHints": [
+        "Loire",
+        "Bordeaux",
+        "Finger Lakes"
+      ],
+      "style": "red",
+      "body": "medium",
+      "sweetness": "dry",
+      "acidity": "medium-high",
+      "alcohol": "medium",
+      "oak": "moderate",
+      "flavors": [
+        "raspberry",
+        "violet",
+        "graphite",
+        "green herb"
+      ],
+      "unique": "Cooler sites can show savory herb; warmer sites deepen fruit.",
+      "typicalPrice": "often value relative to Cabernet Sauvignon",
+      "foodPairing": [
+        "roasted vegetables",
+        "charcuterie",
+        "herbed chicken"
+      ],
+      "similar": [
+        "ss_cabernet-sauvignon",
+        "ss_pinot-noir"
+      ],
+      "whyMatchTemplate": "Matches curiosity about Loire-to-Bordeaux savory reds.",
+      "tags": [
+        "grape",
+        "red"
+      ]
+    },
+    {
+      "id": "ss_chenin",
+      "kind": "grape",
+      "name": "Chenin Blanc",
+      "countryHints": [
+        "France",
+        "South Africa",
+        "USA"
+      ],
+      "regionHints": [
+        "Loire",
+        "Stellenbosch"
+      ],
+      "style": "white",
+      "body": "medium",
+      "sweetness": "dry-to-sweet",
+      "acidity": "high",
+      "alcohol": "medium",
+      "oak": "variable",
+      "flavors": [
+        "apple",
+        "quince",
+        "honey with age",
+        "chamomile"
+      ],
+      "unique": "Versatile across sparkling, dry, and sweet styles when acidity holds.",
+      "typicalPrice": "often excellent value",
+      "foodPairing": [
+        "goat cheese",
+        "seafood",
+        "spicy dishes"
+      ],
+      "similar": [
+        "ss_riesling",
+        "ss_chardonnay"
+      ],
+      "whyMatchTemplate": "Matches learners exploring style range under one grape.",
+      "tags": [
+        "grape",
+        "white",
+        "versatile"
+      ]
+    },
+    {
+      "id": "ss_gamay",
+      "kind": "grape",
+      "name": "Gamay",
+      "countryHints": [
+        "France"
+      ],
+      "regionHints": [
+        "Beaujolais"
+      ],
+      "style": "red",
+      "body": "light",
+      "sweetness": "dry",
+      "acidity": "medium-high",
+      "alcohol": "medium",
+      "oak": "rare",
+      "flavors": [
+        "cherry",
+        "banana when carbonic",
+        "violet"
+      ],
+      "unique": "Often fermented for early drinkability; chillable reds teach texture without heaviness.",
+      "typicalPrice": "everyday friendly",
+      "foodPairing": [
+        "charcuterie",
+        "roast chicken",
+        "picnic foods"
+      ],
+      "similar": [
+        "ss_pinot-noir"
+      ],
+      "whyMatchTemplate": "Matches seekers of light, food-friendly dry reds.",
+      "tags": [
+        "grape",
+        "red",
+        "light"
+      ]
+    },
+    {
+      "id": "ss_nebbiolo",
+      "kind": "grape",
+      "name": "Nebbiolo",
+      "countryHints": [
+        "Italy"
+      ],
+      "regionHints": [
+        "Barolo",
+        "Barbaresco"
+      ],
+      "style": "red",
+      "body": "full",
+      "sweetness": "dry",
+      "acidity": "high",
+      "alcohol": "high",
+      "oak": "traditional-large",
+      "flavors": [
+        "rose",
+        "tar",
+        "cherry",
+        "anise"
+      ],
+      "unique": "Pale color with firm tannin and high acid \u2014 aging and site are central lessons.",
+      "typicalPrice": "often premium",
+      "foodPairing": [
+        "truffle pasta",
+        "braised beef",
+        "aged cheese"
+      ],
+      "similar": [
+        "ss_pinot-noir",
+        "ss_cabernet-sauvignon"
+      ],
+      "whyMatchTemplate": "Matches advanced curiosity about structured, age-worthy Italian reds.",
+      "tags": [
+        "grape",
+        "red",
+        "ageworthy"
+      ]
+    },
+    {
+      "id": "ss_gewurz",
+      "kind": "grape",
+      "name": "Gew\u00fcrztraminer",
+      "countryHints": [
+        "France",
+        "Germany",
+        "USA"
+      ],
+      "regionHints": [
+        "Alsace"
+      ],
+      "style": "white",
+      "body": "medium-full",
+      "sweetness": "off-dry-common",
+      "acidity": "low-medium",
+      "alcohol": "medium-high",
+      "oak": "rare",
+      "flavors": [
+        "lychee",
+        "rose",
+        "ginger",
+        "spice"
+      ],
+      "unique": "Aromatic intensity teaches how variety character can dominate terroir cues.",
+      "typicalPrice": "mid",
+      "foodPairing": [
+        "Thai cuisine",
+        "Munster cheese",
+        "spiced dishes"
+      ],
+      "similar": [
+        "ss_riesling"
+      ],
+      "whyMatchTemplate": "Matches interest in highly aromatic whites.",
+      "tags": [
+        "grape",
+        "white",
+        "aromatic"
+      ]
+    },
+    {
+      "id": "ss_region-bordeaux",
+      "kind": "region",
+      "name": "Bordeaux",
+      "country": "France",
+      "subregions": [
+        "M\u00e9doc",
+        "Saint-\u00c9milion",
+        "Pomerol",
+        "Graves"
+      ],
+      "style": "mostly red blends",
+      "climateNote": "Maritime influence moderates extremes; vintage variation teaches harvest timing.",
+      "unique": "Cabernet\u2013Merlot blending traditions encode site differences across the Gironde.",
+      "typicalPrice": "entry to collectible",
+      "foodPairing": [
+        "lamb",
+        "entrec\u00f4te",
+        "mushroom"
+      ],
+      "similar": [
+        "ss_region-napa",
+        "ss_cabernet-sauvignon"
+      ],
+      "whyMatchTemplate": "Matches learners studying classic blend logic and maritime climate.",
+      "tags": [
+        "region",
+        "france",
+        "blend"
+      ],
+      "flavors": [
+        "blackcurrant",
+        "cedar",
+        "graphite",
+        "plum"
+      ]
+    },
+    {
+      "id": "ss_region-burgundy",
+      "kind": "region",
+      "name": "Burgundy",
+      "country": "France",
+      "subregions": [
+        "C\u00f4te de Nuits",
+        "C\u00f4te de Beaune",
+        "Chablis"
+      ],
+      "style": "Pinot Noir and Chardonnay focused",
+      "climateNote": "Cooler continental signals; site (climat) is the curriculum.",
+      "unique": "Village-to-grand-cru hierarchy teaches how slope and exposure change wine.",
+      "typicalPrice": "often premium",
+      "foodPairing": [
+        "coq au vin",
+        "roast bird",
+        "Comt\u00e9"
+      ],
+      "similar": [
+        "ss_pinot-noir",
+        "ss_chardonnay"
+      ],
+      "whyMatchTemplate": "Matches deep interest in site expression and cool-climate classics.",
+      "tags": [
+        "region",
+        "france",
+        "cool-climate"
+      ],
+      "flavors": [
+        "cherry",
+        "earth",
+        "red berry",
+        "mineral"
+      ]
+    },
+    {
+      "id": "ss_region-napa",
+      "kind": "region",
+      "name": "Napa Valley",
+      "country": "USA",
+      "ava": "Napa Valley AVA",
+      "subregions": [
+        "Oakville",
+        "Rutherford",
+        "Stags Leap"
+      ],
+      "style": "Cabernet-led reds; diverse whites",
+      "climateNote": "Warm days with marine influence vary by AVA pocket.",
+      "unique": "AVA mosaic is a practical lesson in meso-climate within one valley.",
+      "typicalPrice": "often premium",
+      "foodPairing": [
+        "grilled meats",
+        "aged cheddar"
+      ],
+      "similar": [
+        "ss_cabernet-sauvignon",
+        "ss_region-bordeaux"
+      ],
+      "whyMatchTemplate": "Matches New World Cabernet and AVA literacy goals.",
+      "tags": [
+        "region",
+        "usa",
+        "ava"
+      ],
+      "flavors": [
+        "ripe black fruit",
+        "oak spice",
+        "cassis",
+        "sun-warmed herb"
+      ]
+    },
+    {
+      "id": "ss_style-sparkling",
+      "kind": "style",
+      "name": "Traditional-method sparkling",
+      "style": "sparkling",
+      "body": "light-medium",
+      "sweetness": "brut-common",
+      "unique": "Secondary fermentation in bottle builds texture and lees character.",
+      "flavors": [
+        "citrus",
+        "brioche",
+        "apple"
+      ],
+      "typicalPrice": "mid to premium",
+      "foodPairing": [
+        "oysters",
+        "fried foods",
+        "celebration menus"
+      ],
+      "similar": [
+        "ss_chardonnay",
+        "ss_style-dessert"
+      ],
+      "whyMatchTemplate": "Matches curiosity about bubbles, pressure, and production method.",
+      "tags": [
+        "style",
+        "sparkling"
+      ]
+    },
+    {
+      "id": "ss_style-dessert",
+      "kind": "style",
+      "name": "Dessert / late-harvest",
+      "style": "dessert",
+      "sweetness": "sweet",
+      "unique": "Concentration via late harvest, noble rot, or ice wine \u2014 acidity must balance sugar.",
+      "flavors": [
+        "honey",
+        "apricot",
+        "orange peel"
+      ],
+      "typicalPrice": "small bottles, variable",
+      "foodPairing": [
+        "blue cheese",
+        "fruit tarts"
+      ],
+      "similar": [
+        "ss_riesling",
+        "ss_chenin"
+      ],
+      "whyMatchTemplate": "Matches interest in sweetness balanced by acid.",
+      "tags": [
+        "style",
+        "dessert"
+      ]
+    },
+    {
+      "id": "ss_style-fortified",
+      "kind": "style",
+      "name": "Fortified wine",
+      "style": "fortified",
+      "alcohol": "high",
+      "unique": "Spirit addition stops or shapes fermentation \u2014 Port, Sherry, Madeira teach oxidative vs reductive paths.",
+      "flavors": [
+        "dried fruit",
+        "nut",
+        "caramel"
+      ],
+      "typicalPrice": "broad",
+      "foodPairing": [
+        "nuts",
+        "chocolate",
+        "blue cheese"
+      ],
+      "similar": [
+        "ss_style-dessert"
+      ],
+      "whyMatchTemplate": "Matches curiosity about alcohol fortification and aging traditions.",
+      "tags": [
+        "style",
+        "fortified"
+      ]
+    }
+  ]
+}

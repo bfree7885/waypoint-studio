@@ -469,13 +469,37 @@
         "/apps/savant-sommelier"
       ],
       "category": "lifestyle",
-      "description": "Vineyard intelligence \u2014 terrain, climate, and wine landscape literacy.",
-      "status": "foundation",
+      "description": "Wine intelligence — discover, learn, cellar, and vineyard suitability with explanations.",
+      "status": "active",
       "features": [
         {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/savant-sommelier/"
+          "id": "discover",
+          "label": "Discover",
+          "href": "apps/savant-sommelier/",
+          "match": [
+            "/apps/savant-sommelier/?$",
+            "/apps/savant-sommelier/index"
+          ]
+        },
+        {
+          "id": "learn",
+          "label": "Learn",
+          "href": "apps/savant-sommelier/learn.html"
+        },
+        {
+          "id": "cellar",
+          "label": "My Cellar",
+          "href": "apps/savant-sommelier/cellar.html"
+        },
+        {
+          "id": "vineyard",
+          "label": "Vineyard Intelligence",
+          "href": "apps/savant-sommelier/vineyard.html"
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "href": "apps/savant-sommelier/settings.html"
         }
       ]
     },

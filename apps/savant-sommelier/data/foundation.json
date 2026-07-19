@@ -2,32 +2,32 @@
   "productId": "savant-sommelier",
   "title": "Savant Sommelier",
   "eyebrow": "Waypoint Studio · Savant Sommelier",
-  "status": "foundation",
-  "lead": "Vineyard intelligence — terrain, climate, soils, and wine landscape literacy without pretension.",
-  "mission": "For growers, students, and curious drinkers who want to understand where vines can thrive.",
+  "status": "recovery",
+  "lead": "Wine intelligence — discover, learn, track, and analyze vineyard potential with explanations.",
+  "mission": "Help people learn wine, find wine, track wine, and understand what could grow on a property today and decades ahead — without Vivino-clone pretension.",
   "principles": [
+    "Every recommendation explains why",
     "Landscape literacy over lifestyle branding",
-    "Soil, slope, aspect, and climate as evidence",
     "No influencer scores or competitive tasting boards",
-    "Property details stay private by default"
+    "Property details stay private by default",
+    "Future climate horizons are labeled scenarios, not precision forecasts"
   ],
   "modules": [
-    { "title": "Property explorer", "status": "foundation", "description": "Explore a site with privacy controls you set." },
-    { "title": "Vineyard suitability", "status": "planned", "description": "Multi-factor suitability with honest confidence labels." },
-    { "title": "Soil & geology", "status": "planned", "description": "Soil and geologic context beside the vines." },
-    { "title": "Terrain · slope · aspect", "status": "planned", "description": "Elevation and aspect that shape ripening and frost risk." },
-    { "title": "Climate & hardiness", "status": "planned", "description": "Climate normals and hardiness overlays." },
-    { "title": "Grape variety guidance", "status": "planned", "description": "Explainable variety suggestions tied to site factors." },
-    { "title": "Winery & wine catalog", "status": "foundation", "description": "Local catalog for wineries, wines, and varietals." },
-    { "title": "Mapping", "status": "planned", "description": "Quiet maps for vineyard geography." }
+    { "title": "Discover", "status": "active", "description": "Explore grapes, regions, and styles with why / flavors / similar / price context." },
+    { "title": "Learn", "status": "active", "description": "Interactive curriculum covering grapes, climate, production, service, and tasting." },
+    { "title": "My Cellar", "status": "active", "description": "Local inventory, drink windows, ratings, notes, wishlist — empty until you add bottles." },
+    { "title": "Vineyard Intelligence", "status": "active", "description": "Property metrics with why-it-matters plus Future Vineyard horizons." },
+    { "title": "Buying architecture", "status": "contract", "description": "Retailer / price / availability seams — not live marketplace." },
+    { "title": "Map overlays", "status": "contract", "description": "Parcel, soils, hydrology, climate, terrain contracts — no unfinished overlays rendered." }
   ],
   "routes": [
-    { "path": "/", "label": "Savant home", "ready": true },
-    { "path": "/explore/", "label": "Property explorer", "ready": false },
-    { "path": "/wineries/", "label": "Winery explorer", "ready": false },
-    { "path": "/wines/", "label": "Wine catalog", "ready": false }
+    { "path": "/", "label": "Discover", "ready": true },
+    { "path": "/learn.html", "label": "Learn", "ready": true },
+    { "path": "/cellar.html", "label": "My Cellar", "ready": true },
+    { "path": "/vineyard.html", "label": "Vineyard Intelligence", "ready": true },
+    { "path": "/settings.html", "label": "Settings", "ready": true }
   ],
-  "dataModel": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought.",
+  "dataModel": "Educational catalogs ship as JSON. Cellar, sites, wishlist, and settings stay in localStorage. No sample cellar inventory.",
   "privacyPhilosophy": "Sites, wineries, and wines stay local. Property privacy is the default — not an afterthought.",
-  "futureDirection": "Suitability, soil, climate overlays, and variety guidance with honest confidence labels — landscape literacy over lifestyle branding."
+  "futureDirection": "Authoritative DEM/climate layers, parcel soils, live retailer adapters, and friends’ recommendations — always with honesty labels."
 }

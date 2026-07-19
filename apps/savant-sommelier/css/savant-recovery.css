@@ -1,0 +1,426 @@
+/**
+ * Savant Sommelier Product Recovery — elegant GIS × quiet product UI
+ */
+
+:root {
+  --ss-ink: #1c2420;
+  --ss-muted: #5a655e;
+  --ss-faint: #7a857e;
+  --ss-line: #d5dbd6;
+  --ss-surface: #ffffff;
+  --ss-bg: #f3f5f3;
+  --ss-bg-deep: #e8ece9;
+  --ss-accent: #2f5d4a;
+  --ss-accent-soft: rgba(47, 93, 74, 0.12);
+  --ss-danger: #8a3b32;
+  --ss-map-1: #c5d0c8;
+  --ss-map-2: #9aaf9f;
+  --ss-map-3: #6f8a78;
+  --ss-font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --ss-font-body: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+.ss-page {
+  color: var(--ss-ink);
+  background:
+    radial-gradient(900px 420px at 0% -10%, rgba(47, 93, 74, 0.08), transparent 55%),
+    radial-gradient(700px 360px at 100% 0%, rgba(90, 110, 120, 0.08), transparent 50%),
+    linear-gradient(180deg, var(--ss-bg), var(--ss-bg-deep));
+  min-height: 70vh;
+}
+
+.ss-task-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.75rem clamp(1rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--ss-line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(243, 245, 243, 0.96));
+  scrollbar-width: thin;
+}
+
+.ss-task-nav__link {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.35rem;
+  border: 1px solid transparent;
+  color: var(--ss-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ss-task-nav__link.is-active,
+.ss-task-nav__link[aria-current="page"] {
+  border-color: var(--ss-line);
+  background: var(--ss-surface);
+  color: var(--ss-ink);
+  font-weight: 600;
+}
+
+.ss-hero {
+  padding: 1.5rem clamp(1rem, 4vw, 2rem) 1rem;
+}
+
+.ss-hero h1 {
+  margin: 0.2rem 0 0.4rem;
+  font-family: var(--ss-font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.ss-lead {
+  margin: 0 0 0.5rem;
+  color: var(--ss-muted);
+  font-size: 1.05rem;
+  max-width: 40rem;
+}
+
+.ss-honesty,
+.ss-freshness {
+  margin: 0.35rem 0 0.75rem;
+  font-size: 0.8rem;
+  color: var(--ss-faint);
+  max-width: 46rem;
+}
+
+.ss-loading,
+.ss-error,
+.ss-empty {
+  padding: 1rem clamp(1rem, 4vw, 2rem);
+  color: var(--ss-muted);
+}
+
+.ss-error {
+  color: var(--ss-danger);
+}
+
+.ss-toolbar,
+.ss-stats,
+.ss-section,
+.ss-results,
+.ss-map-panel {
+  padding: 0.75rem clamp(1rem, 4vw, 2rem) 1.25rem;
+}
+
+.ss-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: end;
+  border-bottom: 1px solid var(--ss-line);
+}
+
+.ss-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: min(100%, 12rem);
+  font-size: 0.8rem;
+  color: var(--ss-muted);
+}
+
+.ss-field input,
+.ss-field select,
+.ss-field textarea,
+.ss-form input,
+.ss-form select,
+.ss-form textarea {
+  font: inherit;
+  color: var(--ss-ink);
+  border: 1px solid var(--ss-line);
+  border-radius: 0.35rem;
+  padding: 0.55rem 0.65rem;
+  background: var(--ss-surface);
+  min-height: 44px;
+}
+
+.ss-field--wide {
+  grid-column: 1 / -1;
+}
+
+.ss-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  font-size: 0.9rem;
+  color: var(--ss-muted);
+}
+
+.ss-card,
+.ss-wine,
+.ss-metric,
+.ss-grape-rec,
+.ss-learn-topic,
+.ss-horizon {
+  background: var(--ss-surface);
+  border: 1px solid var(--ss-line);
+  border-radius: 0.4rem;
+  padding: 1rem 1.1rem;
+  margin: 0 0 0.85rem;
+}
+
+.ss-card h3,
+.ss-wine h3,
+.ss-learn-topic h2 {
+  margin: 0.15rem 0 0.5rem;
+  font-family: var(--ss-font-display);
+  font-weight: 500;
+  font-size: 1.45rem;
+}
+
+.ss-card__kind,
+.ss-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ss-faint);
+}
+
+.ss-card__why {
+  margin: 0.4rem 0;
+  line-height: 1.45;
+}
+
+.ss-card__meta {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--ss-muted);
+}
+
+.ss-form {
+  margin: 0.5rem clamp(1rem, 4vw, 2rem) 1.25rem;
+  padding: 1rem 1.1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--ss-line);
+  border-radius: 0.4rem;
+}
+
+.ss-form--compact {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.ss-form h2 {
+  margin: 0 0 0.75rem;
+  font-family: var(--ss-font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+}
+
+.ss-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.ss-btn {
+  appearance: none;
+  border: 1px solid var(--ss-accent);
+  background: var(--ss-accent);
+  color: #fff;
+  border-radius: 0.35rem;
+  padding: 0.6rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.ss-btn--ghost {
+  background: transparent;
+  color: var(--ss-accent);
+}
+
+.ss-btn--danger {
+  border-color: var(--ss-danger);
+  background: transparent;
+  color: var(--ss-danger);
+}
+
+.ss-wine__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.ss-learn-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0 0 1rem;
+}
+
+.ss-learn-index__link {
+  text-decoration: none;
+  color: var(--ss-accent);
+  border: 1px solid var(--ss-line);
+  background: var(--ss-surface);
+  border-radius: 0.35rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ss-sub {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ss-faint);
+  font-weight: 600;
+}
+
+.ss-visual {
+  padding: 0.75rem 0.9rem;
+  background: var(--ss-accent-soft);
+  border-left: 3px solid var(--ss-accent);
+  color: var(--ss-ink);
+}
+
+.ss-map-panel {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .ss-map-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ss-map {
+  position: relative;
+  min-height: 280px;
+  border-radius: 0.4rem;
+  border: 1px solid var(--ss-line);
+  overflow: hidden;
+  cursor: crosshair;
+  background:
+    linear-gradient(135deg, var(--ss-map-1), var(--ss-map-2) 45%, var(--ss-map-3)),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 24px,
+      rgba(255, 255, 255, 0.08) 24px,
+      rgba(255, 255, 255, 0.08) 25px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 24px,
+      rgba(255, 255, 255, 0.08) 24px,
+      rgba(255, 255, 255, 0.08) 25px
+    );
+  box-shadow: inset 0 0 80px rgba(20, 40, 30, 0.18);
+}
+
+.ss-map__hint {
+  position: absolute;
+  z-index: 2;
+  left: 0.75rem;
+  right: 0.75rem;
+  top: 0.75rem;
+  margin: 0;
+  padding: 0.55rem 0.7rem;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--ss-muted);
+  pointer-events: none;
+}
+
+.ss-map__marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--ss-ink);
+  border: 2px solid #fff;
+  z-index: 3;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.ss-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.75rem;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.ss-metric h3 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ss-muted);
+}
+
+.ss-metric__value {
+  margin: 0.35rem 0;
+  font-family: var(--ss-font-display);
+  font-size: 1.35rem;
+}
+
+.ss-metric__why {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ss-muted);
+}
+
+.ss-horizons {
+  display: grid;
+  gap: 1rem;
+}
+
+.ss-horizon h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--ss-font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.ss-grape-rec h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.ss-contract-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ss-muted);
+}
+
+.ss-wish {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ss-wish li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--ss-line);
+}
+
+#savant-page[aria-busy="true"] .ss-loading {
+  opacity: 0.85;
+}

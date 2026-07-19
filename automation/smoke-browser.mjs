@@ -73,6 +73,10 @@ const PAGES = [
   { name: "waypoint-volunteer-profile", path: "/apps/waypoint-volunteer/profile/", ready: "shell" },
   { name: "waypoint-volunteer-impact", path: "/apps/waypoint-volunteer/impact/", ready: "shell" },
   { name: "savant", path: "/apps/savant-sommelier/", ready: "shell" },
+  { name: "savant-learn", path: "/apps/savant-sommelier/learn.html", ready: "shell" },
+  { name: "savant-cellar", path: "/apps/savant-sommelier/cellar.html", ready: "shell" },
+  { name: "savant-vineyard", path: "/apps/savant-sommelier/vineyard.html", ready: "shell" },
+  { name: "savant-settings", path: "/apps/savant-sommelier/settings.html", ready: "shell" },
   { name: "terrainbound-redirect", path: "/apps/terrainbound/", ready: "shell" },
   { name: "species-profile", path: "/design-system/species/profile.html", ready: "any" }
 ];
