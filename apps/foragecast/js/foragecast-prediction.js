@@ -26,6 +26,16 @@
   }
 
   function fetchJson(url) {
+    if (global.WDS && WDS.platformUi && WDS.platformUi.getJson) {
+      return WDS.platformUi.getJson(url, { providerId: "foragecast-data" }).then(function (pack) {
+        return pack && pack.data != null ? pack.data : pack;
+      });
+    }
+    if (global.ForageCastFetch && ForageCastFetch.getJson) {
+      return ForageCastFetch.getJson(url).then(function (pack) {
+        return pack && pack.data != null ? pack.data : pack;
+      });
+    }
     return fetch(url).then(function (res) {
       if (!res.ok) throw new Error("Failed to load " + url);
       return res.json();

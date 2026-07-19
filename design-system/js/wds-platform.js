@@ -20,6 +20,8 @@
   var vq = versionQuery();
 
   [
+    "platform/wds-platform-resilience.js",
+    "platform/wds-platform-ui.js",
     "wds-us-states.js",
     "wds-geocode-service.js",
     "wds-ip-geolocation.js",

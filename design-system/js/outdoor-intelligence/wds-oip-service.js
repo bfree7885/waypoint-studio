@@ -41,16 +41,33 @@
     ms = ms || DEFAULT_PROVIDER_TIMEOUT_MS;
     return new Promise(function (resolve) {
       var settled = false;
+      var started = Date.now();
       var timer = setTimeout(function () {
         if (settled) return;
         settled = true;
         providerTelemetry.push({ provider: label || "provider", status: "timeout", at: new Date().toISOString() });
+        if (global.WDS && WDS.resilience && WDS.resilience.recordProvider) {
+          WDS.resilience.recordProvider(label || "provider", {
+            status: "timeout",
+            lastFailAt: Date.now(),
+            lastError: "timeout",
+            lastLatencyMs: ms
+          });
+        }
         resolve({ ok: false, reason: "timeout", label: label || "provider" });
       }, ms);
       Promise.resolve(promise).then(function (value) {
         if (settled) return;
         settled = true;
         clearTimeout(timer);
+        if (global.WDS && WDS.resilience && WDS.resilience.recordProvider) {
+          WDS.resilience.recordProvider(label || "provider", {
+            status: "healthy",
+            lastOkAt: Date.now(),
+            lastLatencyMs: Date.now() - started,
+            lastError: null
+          });
+        }
         resolve({ ok: true, value: value, label: label || "provider" });
       }).catch(function (err) {
         if (settled) return;
@@ -62,6 +79,14 @@
           message: err && err.message ? err.message : "failed",
           at: new Date().toISOString()
         });
+        if (global.WDS && WDS.resilience && WDS.resilience.recordProvider) {
+          WDS.resilience.recordProvider(label || "provider", {
+            status: "degraded",
+            lastFailAt: Date.now(),
+            lastError: err && err.message ? err.message : "failed",
+            lastLatencyMs: Date.now() - started
+          });
+        }
         resolve({ ok: false, reason: "error", error: err, label: label || "provider" });
       });
     });
@@ -220,7 +245,7 @@
       location: request.location,
       hints: hints,
       timezone: pkg.timezone || (pkg.daylight && pkg.daylight.timezone),
-      fallback: false
+      fallback: true
     }).catch(function () {
       return null;
     });

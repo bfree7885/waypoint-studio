@@ -42,6 +42,10 @@
 
   MapView.prototype.apply = function () {
     if (!this.stage) return;
+    if (!this._willChangeSet) {
+      this.stage.style.willChange = "transform";
+      this._willChangeSet = true;
+    }
     this.stage.style.transform =
       "translate3d(" + this.tx + "px," + this.ty + "px,0) scale(" + this.scale + ")";
   };
@@ -223,6 +227,10 @@
 
   MapView.prototype.destroy = function () {
     if (!this.viewport) return;
+    if (this.stage) {
+      this.stage.style.willChange = "auto";
+      this._willChangeSet = false;
+    }
     this.viewport.removeEventListener("wheel", this._handlers.wheel);
     this.viewport.removeEventListener("pointerdown", this._handlers.pointerdown);
     this.viewport.removeEventListener("pointermove", this._handlers.pointermove);

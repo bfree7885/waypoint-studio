@@ -109,11 +109,25 @@
       "&current=temperature_2m,precipitation,weather_code,wind_speed_10m" +
       "&hourly=precipitation_probability&daily=sunrise,sunset&timezone=auto&forecast_days=1";
 
-    return fetch(url)
-      .then(function (r) {
-        if (!r.ok) throw new Error("weather http " + r.status);
-        return r.json();
-      })
+    var fetchRaw =
+      global.WDS && WDS.resilience && WDS.resilience.getJson
+        ? WDS.resilience
+            .getJson(url, {
+              providerId: "open-meteo",
+              maxAgeMs: 5 * 60 * 1000,
+              retries: 1,
+              timeoutMs: 8000,
+              persist: true
+            })
+            .then(function (pack) {
+              return pack && pack.data != null ? pack.data : pack;
+            })
+        : fetch(url).then(function (r) {
+            if (!r.ok) throw new Error("weather http " + r.status);
+            return r.json();
+          });
+
+    return fetchRaw
       .then(function (raw) {
         var weather = derive(raw, now);
         return {

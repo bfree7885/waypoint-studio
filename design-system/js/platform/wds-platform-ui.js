@@ -24,6 +24,9 @@
   }
 
   function fetchWithTimeout(url, options) {
+    if (global.WDS && WDS.resilience && WDS.resilience.fetchOnce) {
+      return WDS.resilience.fetchOnce(url, options);
+    }
     options = options || {};
     var timeoutMs = options.timeoutMs != null ? options.timeoutMs : DEFAULT_TIMEOUT_MS;
     var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
@@ -56,6 +59,9 @@
   }
 
   function getJson(url, options) {
+    if (global.WDS && WDS.resilience && WDS.resilience.getJson) {
+      return WDS.resilience.getJson(url, options);
+    }
     options = options || {};
     var cacheKey = options.cacheKey || url;
     var maxAgeMs = options.maxAgeMs != null ? options.maxAgeMs : DEFAULT_MAX_AGE_MS;
@@ -91,8 +97,19 @@
       });
   }
 
-  function clearCache() {
-    memoryCache = {};
+  function clearCache(key) {
+    if (global.WDS && WDS.resilience && WDS.resilience.clearCache) {
+      WDS.resilience.clearCache(key);
+    }
+    if (!key) memoryCache = {};
+    else delete memoryCache[key];
+  }
+
+  function freshnessHtml(freshness) {
+    var label = global.WDS && WDS.resilience && WDS.resilience.formatFreshness
+      ? WDS.resilience.formatFreshness(freshness)
+      : (freshness && freshness.source) || "";
+    return label ? '<p class="wds-honesty wds-freshness">' + escapeHtml(label) + "</p>" : "";
   }
 
   function loadingHtml(msg, opts) {
@@ -190,7 +207,7 @@
   global.WDS = global.WDS || {};
   global.WDS.escapeHtml = escapeHtml;
   global.WDS.platformUi = {
-    version: "1.0.0",
+    version: "1.1.0",
     escapeHtml: escapeHtml,
     getJson: getJson,
     clearCache: clearCache,
@@ -200,6 +217,7 @@
     emptyHtml: emptyHtml,
     errorHtml: errorHtml,
     honestyHtml: honestyHtml,
+    freshnessHtml: freshnessHtml,
     taskNav: taskNav,
     classifyError: classifyError,
     DEFAULT_TIMEOUT_MS: DEFAULT_TIMEOUT_MS,

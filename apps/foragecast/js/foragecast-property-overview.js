@@ -13,6 +13,11 @@
   }
 
   function loadCatalog() {
+    if (global.WDS && WDS.platformUi && WDS.platformUi.getJson) {
+      return WDS.platformUi.getJson("data/property-catalog.json", { providerId: "foragecast-data" }).then(function (pack) {
+        return pack && pack.data != null ? pack.data : pack;
+      });
+    }
     return fetch("data/property-catalog.json").then(function (r) {
       if (!r.ok) throw new Error("catalog");
       return r.json();

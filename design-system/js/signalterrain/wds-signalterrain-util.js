@@ -14,6 +14,18 @@
   }
 
   function loadJson(url) {
+    if (global.WDS && WDS.resilience && WDS.resilience.getJson) {
+      return WDS.resilience
+        .getJson(url, {
+          providerId: "signalterrain",
+          fetchOptions: { credentials: "same-origin" },
+          persist: true,
+          coalesce: true
+        })
+        .then(function (pack) {
+          return pack && pack.data != null ? pack.data : pack;
+        });
+    }
     return fetch(url, { credentials: "same-origin" }).then(function (r) {
       if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();

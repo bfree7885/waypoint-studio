@@ -503,6 +503,13 @@
       "<li>Journal notes stay in local storage on this browser.</li>" +
       "<li>No accounts, no social rankings, no harvest leaderboards.</li>" +
       "</ul>" +
+      (global.WDS && WDS.resilience
+        ? "<h2>Provider health (this session)</h2>" +
+          WDS.resilience.providerHealthHtml() +
+          '<p class="fc-honesty">Network: ' +
+          (WDS.resilience.isOnline() ? "online" : "offline") +
+          "</p>"
+        : "") +
       '<p class="fc-honesty">ForageCast will not invent live forecasts when providers fail.</p></section>'
     );
   }

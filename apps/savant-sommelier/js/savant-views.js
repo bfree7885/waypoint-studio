@@ -266,7 +266,12 @@
       }
 
       ["ss-discover-q", "ss-discover-value", "ss-discover-food"].forEach(function (id) {
-        root.querySelector("#" + id).addEventListener("input", paint);
+        var el = root.querySelector("#" + id);
+        var handler = paint;
+        if (global.WDS && WDS.resilience && WDS.resilience.debounce) {
+          handler = WDS.resilience.debounce(paint, 140);
+        }
+        el.addEventListener("input", handler);
       });
       facetSel.addEventListener("change", paint);
       paint();
@@ -517,7 +522,11 @@
         paint();
       });
 
-      root.querySelector("#ss-cellar-q").addEventListener("input", paint);
+      var cellarHandler = paint;
+      if (global.WDS && WDS.resilience && WDS.resilience.debounce) {
+        cellarHandler = WDS.resilience.debounce(paint, 140);
+      }
+      root.querySelector("#ss-cellar-q").addEventListener("input", cellarHandler);
       root.querySelector("#ss-cellar-fav").addEventListener("change", paint);
 
       root.querySelector("#ss-cellar-list").addEventListener("click", function (ev) {
@@ -785,6 +794,10 @@
       '<section class="ss-section">' +
         "<h2>Platform</h2>" +
         "<p>Savant shares Waypoint shell navigation, foundation patterns, and honesty-first intelligence labeling with ForageCast and other Studio apps.</p>" +
+        (global.WDS && WDS.resilience
+          ? "<h3 class=\"ss-sub\">Provider health (this session)</h3>" + WDS.resilience.providerHealthHtml() +
+            '<p class="ss-honesty">Offline: ' + (WDS.resilience.isOnline() ? "no" : "yes") + "</p>"
+          : "") +
       "</section>";
 
     root.querySelector("#ss-settings-form").addEventListener("submit", function (ev) {

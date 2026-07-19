@@ -31,9 +31,27 @@
     }
   }
 
+  function formatFreshness(freshness) {
+    if (global.WDS && WDS.resilience && WDS.resilience.formatFreshness) {
+      return WDS.resilience.formatFreshness(freshness);
+    }
+    if (global.WDS && WDS.platformUi && WDS.platformUi.freshnessHtml) {
+      // strip tags for plain-text honesty lines
+      var html = WDS.platformUi.freshnessHtml(freshness);
+      return String(html || "").replace(/<[^>]+>/g, "").trim();
+    }
+    freshness = freshness || {};
+    if (freshness.stale) return "Cached · stale";
+    if (freshness.source === "memory-cache") return "Cached";
+    if (freshness.source === "persistent-cache") return "Offline cache";
+    if (freshness.source === "network") return "Live";
+    return freshness.source || "unknown";
+  }
+
   global.ForageCastFetch = {
     getJson: getJson,
     clearCache: clearCache,
+    formatFreshness: formatFreshness,
     DEFAULT_TIMEOUT_MS: (global.WDS && WDS.platformUi && WDS.platformUi.DEFAULT_TIMEOUT_MS) || 8000
   };
 })(typeof window !== "undefined" ? window : globalThis);

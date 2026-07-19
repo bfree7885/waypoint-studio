@@ -13,6 +13,11 @@
   }
 
   function loadPillars() {
+    if (global.WDS && WDS.platformUi && WDS.platformUi.getJson) {
+      return WDS.platformUi.getJson("data/pillars.json", { providerId: "foragecast-data" }).then(function (pack) {
+        return pack && pack.data != null ? pack.data : pack;
+      });
+    }
     return fetch("data/pillars.json").then(function (r) {
       if (!r.ok) throw new Error("pillars");
       return r.json();
