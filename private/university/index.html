@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="description" content="Waypoint University — private lifelong learning system. Not a public Waypoint Studio product.">
+  <title>Waypoint University (Private)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="css/wu.css">
+</head>
+<body>
+  <a class="wu-skip" href="#wu-root" style="position:absolute;left:-9999px">Skip to content</a>
+  <div id="wu-root" aria-busy="true">
+    <p class="wu-boot">Opening Waypoint University…</p>
+  </div>
+  <noscript>
+    <main style="max-width:40rem;margin:2rem auto;font-family:Georgia,serif">
+      <h1>Waypoint University</h1>
+      <p>Enable JavaScript. This private knowledge system stores your learning in IndexedDB on this device.</p>
+    </main>
+  </noscript>
+  <script src="js/wu-schema.js" defer></script>
+  <script src="js/wu-store.js" defer></script>
+  <script src="js/wu-search.js" defer></script>
+  <script src="js/wu-markdown.js" defer></script>
+  <script src="js/wu-graph.js" defer></script>
+  <script src="js/wu-health.js" defer></script>
+  <script src="js/wu-app.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WU && WU.App) {
+        WU.App.mount(document.getElementById("wu-root"));
+      }
+    });
+  </script>
+</body>
+</html>

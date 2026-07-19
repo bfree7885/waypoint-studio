@@ -9,5 +9,6 @@ Disallow: /automation/
 Disallow: /scripts/
 Disallow: /engineering/
 Disallow: /waypoint-importer/
+Disallow: /private/
 
 Sitemap: https://waypointstudio.org/sitemap.xml
