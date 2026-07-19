@@ -111,16 +111,57 @@
     if (!blockStatus) return "provider-unavailable";
     var keys = Object.keys(blockStatus);
     if (!keys.length) return "provider-unavailable";
+    // Critical path for "usable dashboard" — secondary providers must not force Partial
+    var critical = { weather: 1, alerts: 1, airQuality: 1 };
     var live = 0;
     var bad = 0;
+    var criticalLive = 0;
+    var criticalBad = 0;
     keys.forEach(function (k) {
       var v = blockStatus[k];
-      if (v === "live" || v === "empty" || v === "no-nearby") live += 1;
+      var ok =
+        v === "live" ||
+        v === "empty" ||
+        v === "no-nearby" ||
+        v === "skipped" ||
+        v === "pending" ||
+        v === "cached";
+      if (ok) live += 1;
       else bad += 1;
+      if (critical[k]) {
+        if (ok) criticalLive += 1;
+        else if (v !== "skipped" && v !== "pending") criticalBad += 1;
+      }
     });
-    if (live && bad) return "partial";
+    if (criticalLive && criticalBad) return "partial";
+    if (criticalLive && !criticalBad) return "live";
+    if (live && bad && !criticalLive) return "partial";
     if (live && !bad) return "live";
     return "provider-unavailable";
+  }
+
+  function describeProviderFailures(pkg) {
+    if (!pkg || !pkg.meta || !pkg.meta.blockStatus) return "";
+    var labels = {
+      weather: "weather",
+      alerts: "alerts",
+      airQuality: "air quality",
+      elevation: "elevation",
+      usgsWater: "rivers",
+      trailConditions: "trails"
+    };
+    var failed = [];
+    var skipped = [];
+    Object.keys(pkg.meta.blockStatus).forEach(function (k) {
+      var v = pkg.meta.blockStatus[k];
+      var name = labels[k] || k;
+      if (v === "unavailable" || v === "error" || v === "timeout") failed.push(name);
+      else if (v === "skipped" || v === "pending") skipped.push(name);
+    });
+    var parts = [];
+    if (failed.length) parts.push("Unavailable: " + failed.join(", ") + ".");
+    if (skipped.length) parts.push("Waiting on location: " + skipped.join(", ") + ".");
+    return parts.join(" ");
   }
 
   function classifyPackageTrust(pkg) {
@@ -221,6 +262,7 @@
     resolveOperationalState: resolveOperationalState,
     classifyBlockStatus: classifyBlockStatus,
     classifyPackageTrust: classifyPackageTrust,
+    describeProviderFailures: describeProviderFailures,
     applyConnectivityMeta: applyConnectivityMeta,
     ageLabel: ageLabel,
     withDeadline: withDeadline,

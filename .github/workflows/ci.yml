@@ -89,8 +89,11 @@ jobs:
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
 
-      - name: Platform hardening tests
-        run: node automation/test-platform-hardening.mjs
+      - name: Dashboard reliability tests
+        run: node automation/test-dashboard-reliability.mjs
+
+      - name: Dashboard Today Outside tests
+        run: node automation/test-dashboard-today-outside.mjs
 
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs

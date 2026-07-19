@@ -184,6 +184,7 @@
 
     return (
       '<div class="wsky wsky--photography" data-sky-live="true">' +
+        '<p class="wsky-photo__intro">Light quality for making photographs. Clock times for sunrise and sunset live under <strong>Sun &amp; Moon</strong>.</p>' +
         '<div class="wsky-photo__grid">' +
           photoCard("🌅", "Sunrise quality", intel.sunriseQuality) +
           photoCard("🌇", "Sunset quality", intel.sunsetQuality) +

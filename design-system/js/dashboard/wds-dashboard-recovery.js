@@ -15,7 +15,8 @@
     { id: "rivers", label: "Rivers" },
     { id: "air", label: "Air" },
     { id: "sun-moon", label: "Sun & Moon" },
-    { id: "alerts", label: "Alerts" }
+    { id: "alerts", label: "Alerts" },
+    { id: "settings", label: "Settings" }
   ];
 
   /** Widget ids rendered inside each detail tab (not Today). */
@@ -25,7 +26,19 @@
     rivers: ["water-dashboard"],
     air: ["air-quality"],
     "sun-moon": ["sun-moon-dashboard"],
-    alerts: [] // custom HTML from NWS package
+    alerts: [],
+    settings: []
+  };
+
+  var TAB_QUESTIONS = {
+    today: "What is happening outside, and what should I consider today?",
+    weather: "What are the measurable conditions right now and ahead?",
+    photography: "How is the light for making photographs?",
+    rivers: "What are nearby water levels doing?",
+    air: "How is the air to breathe and exert outdoors?",
+    "sun-moon": "When are sunrise, sunset, and moon cues?",
+    alerts: "Are there official weather warnings?",
+    settings: "How do I tune location and dashboard preferences?"
   };
 
   function escapeHtml(str) {
@@ -191,17 +204,41 @@
     );
   }
 
+  function renderSettingsPanel() {
+    return (
+      '<div class="wdb-settings-panel" data-wdb-settings-panel>' +
+        '<p class="wdb-tab-panel__intro">' + escapeHtml(TAB_QUESTIONS.settings) + "</p>" +
+        '<ul class="wdb-settings-panel__list">' +
+          "<li>Use <strong>Use my location</strong> or <strong>Change location</strong> above for place context.</li>" +
+          "<li>Each topic tab answers one outdoor question — Today interprets; Weather holds the gauges.</li>" +
+          "<li>Providers fail independently; usable panels stay available when one feed is down.</li>" +
+        "</ul>" +
+        '<p class="wdb-settings-panel__actions">' +
+          '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" id="wds-dashboard-settings-open">Customize panels</button> ' +
+          '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="../../settings.html">Studio settings</a>' +
+        "</p>" +
+      "</div>"
+    );
+  }
+
   function renderPanel(tabId, activeId, ctx, settings) {
     var on = tabId === activeId;
     var inner = "";
+    var question = TAB_QUESTIONS[tabId];
     if (tabId === "today") {
       var TS = global.WDS && global.WDS.todaySummary;
       inner = TS && TS.renderTodayPanel ? TS.renderTodayPanel(ctx) : "";
     } else if (tabId === "alerts") {
-      inner = renderAlertsPanel(ctx);
+      inner =
+        (question ? '<p class="wdb-tab-panel__intro">' + escapeHtml(question) + "</p>" : "") +
+        renderAlertsPanel(ctx);
+    } else if (tabId === "settings") {
+      inner = renderSettingsPanel();
     } else {
       var ids = TAB_WIDGETS[tabId] || [];
-      inner = '<div class="wdb-tab-panel-inner wdb-grid" data-wds-dashboard-grid="' + escapeHtml(tabId) + '">';
+      inner =
+        (question ? '<p class="wdb-tab-panel__intro">' + escapeHtml(question) + "</p>" : "") +
+        '<div class="wdb-tab-panel-inner wdb-grid" data-wds-dashboard-grid="' + escapeHtml(tabId) + '">';
       ids.forEach(function (wid) {
         var def = getDef(wid);
         if (def) inner += renderWidgetSafe(def, ctx, settings);
@@ -216,7 +253,9 @@
         '" role="tabpanel" id="wdb-panel-' + escapeHtml(tabId) +
         '" aria-labelledby="wdb-tab-btn-' + escapeHtml(tabId) +
         '" data-wdb-tab-panel="' + escapeHtml(tabId) +
-        '" data-wdb-mounted="' + (tabId === "today" || tabId === "alerts" ? "1" : "0") + '"' +
+        '" data-wdb-mounted="' +
+        (tabId === "today" || tabId === "alerts" || tabId === "settings" ? "1" : "0") +
+        '"' +
         (on ? "" : " hidden") + ">" +
         inner +
       "</div>"
@@ -248,9 +287,6 @@
         summaryHtml +
         renderTablist(active) +
         '<div class="wdb-recovery-panels">' + panels + "</div>" +
-        '<div class="wdb-recovery-tools">' +
-          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-dashboard-settings-open">Customize</button>' +
-        "</div>" +
       "</div>"
     );
   }
@@ -262,7 +298,7 @@
   function ensurePanelMounted(root, panel, options) {
     if (!panel || !root) return Promise.resolve();
     var tabId = panel.getAttribute("data-wdb-tab-panel");
-    if (tabId === "today" || tabId === "alerts") {
+    if (tabId === "today" || tabId === "alerts" || tabId === "settings") {
       panel.setAttribute("data-wdb-mounted", "1");
       return Promise.resolve();
     }

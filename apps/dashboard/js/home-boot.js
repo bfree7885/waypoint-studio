@@ -230,6 +230,11 @@
         startDashboard(newLoc);
       }
     }).then(function () {
+      var mount = document.getElementById("wds-content-engine");
+      if (mount) {
+        mount.removeAttribute("aria-busy");
+        mount.classList.add("wdb-content-ready");
+      }
       try {
         if (window.performance && performance.mark) {
           performance.mark("wdb-boot-hydrated");
@@ -244,6 +249,12 @@
         }
       } else if (WDS.locationDebug && WDS.locationDebug.mount) {
         WDS.locationDebug.mount(loc, null, document.getElementById("main"));
+      }
+    }).catch(function () {
+      // One provider failure must not leave the shell forever busy
+      var mount = document.getElementById("wds-content-engine");
+      if (mount && !mount.classList.contains("wdb-content-ready")) {
+        showBootError();
       }
     });
   }
