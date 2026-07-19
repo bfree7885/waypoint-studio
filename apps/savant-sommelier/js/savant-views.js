@@ -72,22 +72,71 @@
     );
   }
 
+  function renderIntelBlock(pkg) {
+    if (!pkg) return "";
+    var recHtml = (pkg.recommendations && pkg.recommendations.items || []).map(function (r) {
+      return (
+        '<article class="ss-intel-item">' +
+          "<h3>" + esc(r.entry.name) + "</h3>" +
+          '<p class="ss-card__why"><span class="ss-label">Why</span> ' + esc(r.why) + "</p>" +
+        "</article>"
+      );
+    }).join("");
+    var discHtml = (pkg.discovery && pkg.discovery.suggestions || []).slice(0, 6).map(function (s) {
+      return (
+        '<article class="ss-intel-item">' +
+          '<p class="ss-card__kind">' + esc(s.kind) + "</p>" +
+          "<h3>" + esc(s.title) + "</h3>" +
+          '<p><span class="ss-label">Why</span> ' + esc(s.why) + "</p>" +
+        "</article>"
+      );
+    }).join("");
+    var edu = (pkg.education && pkg.education.discover || []).map(function (t) {
+      return "<li>" + esc(t) + "</li>";
+    }).join("");
+    return (
+      '<section class="ss-intel" aria-label="Wine intelligence">' +
+        "<h2>For you — explained</h2>" +
+        '<p class="ss-honesty">' + esc(pkg.honesty) + "</p>" +
+        '<p class="ss-freshness">Palate confidence: ' + esc(pkg.palate && pkg.palate.confidence) +
+        (pkg._fromCache ? " · cached" : "") + "</p>" +
+        '<div class="ss-intel-grid">' + recHtml + "</div>" +
+        "<h2>Guided discovery</h2>" +
+        '<div class="ss-intel-grid">' + discHtml + "</div>" +
+        (edu ? "<h2>Teachable moments</h2><ul class=\"ss-teach\">" + edu + "</ul>" : "") +
+      "</section>"
+    );
+  }
+
   function startDiscover(root) {
     root.innerHTML =
       SavantShell.taskNav("discover") +
       '<section class="ss-hero">' +
-        '<p class="wds-eyebrow">Savant Sommelier</p>' +
+        '<p class="wds-eyebrow">Savant Sommelier · Wine Intelligence</p>' +
         "<h1>Discover</h1>" +
-        "<p class="ss-lead">Explore grapes, regions, and styles — every match explains why.</p>" +
+        "<p class=\"ss-lead\">Personal recommendations, guided exploration, and search that explain why.</p>" +
         SavantShell.honestyBanner("Educational catalog for learning. Not a live retailer inventory.") +
       "</section>" +
+      '<div id="ss-discover-intel">' + SavantShell.loadingHtml("Building palate intelligence…") + "</div>" +
       '<section class="ss-toolbar" aria-label="Discover filters">' +
-        '<label class="ss-field"><span>Search</span><input type="search" id="ss-discover-q" placeholder="Grape, region, flavor…" autocomplete="off"></label>' +
+        '<label class="ss-field"><span>Intelligent search</span><input type="search" id="ss-discover-q" placeholder="cab, peeno, burgundy…" autocomplete="off"></label>' +
         '<label class="ss-field"><span>Explore by</span>' +
           '<select id="ss-discover-facet">' +
             '<option value="">All facets</option>' +
           "</select></label>" +
         '<label class="ss-field"><span>Value</span><input id="ss-discover-value" placeholder="e.g. Riesling, Burgundy" autocomplete="off"></label>' +
+        '<label class="ss-field"><span>Pair with food</span><input id="ss-discover-food" placeholder="steak, curry, oysters…" autocomplete="off"></label>' +
+      "</section>" +
+      '<section id="ss-discover-suggest" class="ss-section" hidden></section>' +
+      '<section id="ss-discover-pair" class="ss-section" hidden></section>' +
+      '<section class="ss-section">' +
+        "<h2>Compare two styles</h2>" +
+        '<div class="ss-toolbar">' +
+          '<label class="ss-field"><span>A</span><select id="ss-compare-a"></select></label>' +
+          '<label class="ss-field"><span>B</span><select id="ss-compare-b"></select></label>' +
+          '<button type="button" class="ss-btn" id="ss-compare-go">Compare</button>' +
+        "</div>" +
+        '<div id="ss-compare-out"></div>' +
       "</section>" +
       '<section id="ss-discover-results" class="ss-results" aria-live="polite">' +
         SavantShell.loadingHtml("Loading discovery catalog…") +
@@ -103,26 +152,120 @@
         facetSel.appendChild(opt);
       });
 
+      var pkg = null;
+      if (global.SavantWIE && SavantWIE.engine) {
+        pkg = SavantWIE.engine.evaluate({ catalog: catalog, force: true });
+        root.querySelector("#ss-discover-intel").innerHTML = renderIntelBlock(pkg);
+      } else {
+        root.querySelector("#ss-discover-intel").innerHTML = "";
+      }
+
+      var opts = (catalog.entries || []).map(function (e) {
+        return '<option value="' + esc(e.id) + '">' + esc(e.name) + "</option>";
+      }).join("");
+      root.querySelector("#ss-compare-a").innerHTML = opts;
+      root.querySelector("#ss-compare-b").innerHTML = opts;
+      if (catalog.entries && catalog.entries[1]) root.querySelector("#ss-compare-b").selectedIndex = 1;
+
+      root.querySelector("#ss-compare-go").addEventListener("click", function () {
+        var a = catalog.entries.find(function (e) { return e.id === root.querySelector("#ss-compare-a").value; });
+        var b = catalog.entries.find(function (e) { return e.id === root.querySelector("#ss-compare-b").value; });
+        var cmp = SavantWIE.engine.compare(a, b);
+        var out = root.querySelector("#ss-compare-out");
+        if (!cmp.ok) {
+          out.innerHTML = '<p class="ss-empty">' + esc(cmp.why) + "</p>";
+          return;
+        }
+        out.innerHTML =
+          '<p class="ss-honesty">' + esc(cmp.honesty) + "</p>" +
+          "<p><span class=\"ss-label\">Why compare</span> " + esc(cmp.why) + "</p>" +
+          "<ul>" + cmp.differences.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>" +
+          (cmp.teach ? '<p class="ss-visual">' + esc(cmp.teach) + "</p>" : "");
+      });
+
       function paint() {
         var q = root.querySelector("#ss-discover-q").value;
         var facet = facetSel.value;
         var value = root.querySelector("#ss-discover-value").value;
-        var hits = (catalog.entries || []).filter(function (e) {
-          return matchEntry(e, q, facet, value);
-        });
+        var food = root.querySelector("#ss-discover-food").value;
         var box = root.querySelector("#ss-discover-results");
+        var suggest = root.querySelector("#ss-discover-suggest");
+        var pairBox = root.querySelector("#ss-discover-pair");
+
+        var searchPkg = SavantWIE.engine.search(catalog, q);
+        if (q && searchPkg.suggestions && searchPkg.suggestions.length) {
+          suggest.hidden = false;
+          suggest.innerHTML =
+            "<h2>Suggested searches</h2>" +
+            '<p class="ss-honesty">' + esc(searchPkg.honesty) + "</p>" +
+            "<ul class=\"ss-teach\">" +
+            searchPkg.suggestions.map(function (s) {
+              return "<li><strong>" + esc(s.text) + "</strong> — " + esc(s.why) + "</li>";
+            }).join("") +
+            "</ul>";
+        } else {
+          suggest.hidden = true;
+          suggest.innerHTML = "";
+        }
+
+        if (food) {
+          var paired = SavantWIE.engine.pairFood(catalog, food, pkg && pkg.palate);
+          pairBox.hidden = false;
+          pairBox.innerHTML =
+            "<h2>Food pairing intelligence</h2>" +
+            '<p class="ss-honesty">' + esc(paired.honesty) + "</p>" +
+            (paired.teach ? '<p class="ss-visual">' + esc(paired.teach) + "</p>" : "") +
+            (paired.matches || []).map(function (m) {
+              return (
+                '<article class="ss-intel-item">' +
+                  "<h3>" + esc(m.entry ? m.entry.name : "General guide") + "</h3>" +
+                  '<p><span class="ss-label">Why</span> ' + esc(m.why) + "</p>" +
+                "</article>"
+              );
+            }).join("");
+        } else {
+          pairBox.hidden = true;
+        }
+
+        var hits;
+        if (q && !facet && !value) {
+          hits = (searchPkg.results || []).map(function (r) { return r.entry; });
+        } else {
+          var norm = q && SavantWIE.search ? SavantWIE.search.normalize(q) : q;
+          hits = (catalog.entries || []).filter(function (e) {
+            return matchEntry(e, norm || q, facet, value);
+          });
+        }
+
         if (!hits.length) {
-          box.innerHTML = '<p class="ss-empty">No matches. Try a broader grape, region, or clear filters.</p>';
+          box.innerHTML = '<p class="ss-empty">No matches. Try a synonym, related grape, or clear filters.</p>';
           return;
         }
         box.innerHTML =
           '<p class="ss-freshness">' + hits.length + " result" + (hits.length === 1 ? "" : "s") +
+          (searchPkg.normalized && q && searchPkg.normalized !== q.toLowerCase()
+            ? " · interpreted as “" + esc(searchPkg.normalized) + "”"
+            : "") +
           (res.freshness && res.freshness.source === "memory-cache" ? " · cached" : "") +
           "</p>" +
-          hits.map(function (e) { return renderDiscoverCard(e, catalog); }).join("");
+          hits.map(function (e) {
+            var card = renderDiscoverCard(e, catalog);
+            if (pkg && pkg.palate && SavantWIE.palate) {
+              var aff = SavantWIE.palate.affinityForEntry(pkg.palate, e);
+              if (aff.reasons.length) {
+                card = card.replace(
+                  "</article>",
+                  '<p class="ss-card__why"><span class="ss-label">Personal why</span> ' +
+                    esc(aff.reasons.join(" ")) +
+                    "</p></article>"
+                );
+              }
+            }
+            return card;
+          }).join("");
       }
 
-      ["ss-discover-q", "ss-discover-value"].forEach(function (id) {
+      ["ss-discover-q", "ss-discover-value", "ss-discover-food"].forEach(function (id) {
         root.querySelector("#" + id).addEventListener("input", paint);
       });
       facetSel.addEventListener("change", paint);
@@ -130,6 +273,7 @@
     }).catch(function () {
       root.querySelector("#ss-discover-results").innerHTML =
         SavantShell.errorHtml("Could not load the discovery catalog. Check your connection and retry.");
+      root.querySelector("#ss-discover-intel").innerHTML = "";
     });
   }
 
@@ -147,7 +291,15 @@
     SavantShell.getJson("data/learn-curriculum.json").then(function (res) {
       var topics = res.data.topics || [];
       var body = root.querySelector("#ss-learn-body");
+      var teach = (global.SavantWIE && SavantWIE.education)
+        ? SavantWIE.education.forContext({ page: "discover" }).concat(SavantWIE.education.forContext({ theme: "pinotVsCab" }))
+        : [];
       body.innerHTML =
+        (teach.length
+          ? '<section class="ss-intel"><h2>Teach naturally</h2><ul class="ss-teach">' +
+            teach.filter(function (t, i, a) { return a.indexOf(t) === i; }).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
+            "</ul></section>"
+          : "") +
         '<nav class="ss-learn-index" aria-label="Topics">' +
         topics.map(function (t) {
           return '<a class="ss-learn-index__link" href="#' + esc(t.id) + '">' + esc(t.title) + "</a>";
@@ -282,6 +434,7 @@
           (stats.estimatedSpend ? " · est. spend $" + stats.estimatedSpend : "") +
           "</p>" +
         "</section>" +
+        '<div id="ss-cellar-intel"></div>' +
         '<section class="ss-toolbar">' +
           '<label class="ss-field"><span>Instant search</span><input type="search" id="ss-cellar-q" value="' + esc(q) + '" placeholder="Name, grape, location…"></label>' +
           '<label class="ss-check"><input type="checkbox" id="ss-cellar-fav"' + (favOnly ? " checked" : "") + "> Favorites only</label>" +
@@ -296,6 +449,44 @@
             esc(SavantBuying.COMPARISON_FIELDS.map(function (f) { return f.label; }).join(", ")) +
             "</p></section>"
           : "");
+
+
+      if (global.SavantWIE && SavantWIE.engine) {
+        SavantShell.getJson("data/discover-catalog.json").then(function (res) {
+          var pkg = SavantWIE.engine.evaluate({ catalog: res.data, force: true });
+          var el = root.querySelector("#ss-cellar-intel");
+          if (!el) return;
+          var tasting = pkg.tasting || {};
+          var cellarI = pkg.cellar || {};
+          var purchase = pkg.purchase || {};
+          el.innerHTML =
+            '<section class="ss-intel">' +
+              "<h2>Cellar intelligence</h2>" +
+              '<p class="ss-honesty">' + esc(cellarI.honesty || pkg.honesty) + "</p>" +
+              (cellarI.insights || []).map(function (i) {
+                return '<article class="ss-intel-item"><h3>' + esc(i.text) + '</h3><p><span class="ss-label">Why</span> ' + esc(i.why) + "</p></article>";
+              }).join("") +
+              ((cellarI.suggestions || []).length
+                ? '<h3 class="ss-sub">Suggested improvements</h3>' +
+                  (cellarI.suggestions || []).map(function (s) {
+                    return "<p><strong>" + esc(s.text) + "</strong> — " + esc(s.why) + "</p>";
+                  }).join("")
+                : "") +
+              "<h2>Tasting patterns</h2>" +
+              '<p class="ss-honesty">' + esc(tasting.honesty || "") + "</p>" +
+              (tasting.summary || []).map(function (s) { return "<p>" + esc(s) + "</p>"; }).join("") +
+              (tasting.teach ? '<p class="ss-visual">' + esc(tasting.teach) + "</p>" : "") +
+              "<h2>Purchase intelligence</h2>" +
+              '<p class="ss-honesty">' + esc(purchase.honesty || "") + "</p>" +
+              "<p>Average bottle price: <strong>" + esc(purchase.averageBottlePrice != null ? ("$" + purchase.averageBottlePrice) : "—") +
+              "</strong> · Est. cellar value: <strong>$" + esc(purchase.estimatedCellarValue || 0) + "</strong></p>" +
+              (purchase.recommendations || []).map(function (r) {
+                return '<p><span class="ss-label">Next buy</span> ' + esc(r.text) + " — " + esc(r.why) + "</p>";
+              }).join("") +
+              ((pkg.education && pkg.education.cellar) ? '<ul class="ss-teach">' + pkg.education.cellar.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" : "") +
+            "</section>";
+        }).catch(function () { /* keep cellar usable */ });
+      }
 
       root.querySelector("#ss-cellar-form").addEventListener("submit", function (ev) {
         ev.preventDefault();
@@ -429,24 +620,65 @@
           });
         }
 
+        var eduBits = (global.SavantWIE && SavantWIE.education)
+          ? SavantWIE.education.forContext({ page: "vineyard" })
+          : [];
+        var horizonCmp = (global.SavantWIE && SavantWIE.compare)
+          ? SavantWIE.compare.compareHorizons(future, 0, 25)
+          : null;
+
         out.innerHTML =
           '<p class="ss-honesty">' + esc(analysis.honesty) + "</p>" +
           "<h2>Property analysis</h2>" +
           "<p>" + esc(analysis.summaryWhy) + "</p>" +
           '<p class="ss-freshness">Confidence: ' + esc(analysis.confidence) +
           " · Map contract overlays ready: " + esc(mapReq.spatialRequest.overlays.join(", ")) + "</p>" +
+          (eduBits.length ? '<ul class="ss-teach">' + eduBits.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>" : "") +
+          '<div class="ss-intel-grid">' +
+            '<article class="ss-intel-item"><h3>Major strengths</h3><ul>' +
+              (future.strengths || []).map(function (s) { return "<li>" + esc(s.text) + " — " + esc(s.why) + "</li>"; }).join("") +
+            "</ul></article>" +
+            '<article class="ss-intel-item"><h3>Major risks</h3><ul>' +
+              (future.risks || []).map(function (s) { return "<li>" + esc(s.text) + " — " + esc(s.why) + "</li>"; }).join("") +
+            "</ul></article>" +
+          "</div>" +
           '<div class="ss-metrics">' +
             analysis.metrics.map(function (m) {
+              var teach = global.SavantWIE && SavantWIE.education ? SavantWIE.education.forMetric(m) : null;
               return (
                 '<article class="ss-metric">' +
                   "<h3>" + esc(m.label) + "</h3>" +
                   '<p class="ss-metric__value">' + esc(m.value) + (m.unit ? " " + esc(m.unit) : "") + "</p>" +
                   '<p class="ss-metric__why"><span class="ss-label">Why it matters</span> ' + esc(m.whyItMatters) + "</p>" +
+                  (teach && teach !== m.whyItMatters ? '<p class="ss-card__meta">' + esc(teach) + "</p>" : "") +
                   '<p class="ss-card__meta">' + esc(m.confidence) + "</p>" +
                 "</article>"
               );
             }).join("") +
           "</div>" +
+          "<h2>Climate trajectory</h2>" +
+          '<p class="ss-honesty">' + esc(future.climateTrajectory && future.climateTrajectory.honesty) + "</p>" +
+          '<div class="ss-horizons">' +
+            ((future.climateTrajectory && future.climateTrajectory.byHorizon) || []).map(function (h) {
+              return (
+                '<article class="ss-horizon">' +
+                  "<h3>" + (h.yearsAhead === 0 ? "Today" : h.yearsAhead + " years") + "</h3>" +
+                  "<p>Heat ~" + esc(h.heatAccumulation) + " GDD · season ~" + esc(h.growingSeason) +
+                  " days · disease " + esc(h.diseasePressure) + "</p>" +
+                  "<p><span class=\"ss-label\">Water demand</span> " + esc(h.waterDemand) + "</p>" +
+                  "<p><span class=\"ss-label\">Freeze</span> " + esc(h.freezeProbability) + "</p>" +
+                  "<p><span class=\"ss-label\">Variety pressure</span> " + esc(h.varietyPressure) + "</p>" +
+                  "<p class=\"ss-freshness\">Uncertainty: " + esc(h.uncertainty) + "</p>" +
+                "</article>"
+              );
+            }).join("") +
+          "</div>" +
+          (horizonCmp && horizonCmp.ok
+            ? "<h2>Today vs 25 years</h2><p class=\"ss-honesty\">" + esc(horizonCmp.honesty) + "</p><ul>" +
+              (horizonCmp.changes || []).slice(0, 6).map(function (c) {
+                return "<li><strong>" + esc(c.name) + "</strong> (" + (c.delta > 0 ? "+" : "") + esc(c.delta) + "): " + esc(c.why) + "</li>";
+              }).join("") + "</ul>"
+            : "") +
           "<h2>The Future Vineyard</h2>" +
           '<p class="ss-honesty">' + esc(future.honesty) + "</p>" +
           '<div class="ss-horizons">' +
@@ -457,6 +689,7 @@
                   (h.yearsAhead ? " · +" + esc(h.warmingC) + "°C scenario" : "") +
                   "</h3>" +
                   '<p class="ss-freshness">' + esc(h.honesty) + "</p>" +
+                  "<h4 class=\"ss-sub\">Recommended</h4>" +
                   h.recommended.map(function (g) {
                     return (
                       '<article class="ss-grape-rec">' +
@@ -474,6 +707,17 @@
                       "</article>"
                     );
                   }).join("") +
+                  ((h.notRecommended || []).length
+                    ? "<h4 class=\"ss-sub\">Not strongly recommended</h4>" +
+                      h.notRecommended.map(function (g) {
+                        return (
+                          '<article class="ss-grape-rec ss-grape-rec--not">' +
+                            "<h4>" + esc(g.name) + " · " + esc(g.score) + "%</h4>" +
+                            '<p><span class="ss-label">Why not</span> ' + esc(g.whyNot || g.why) + "</p>" +
+                          "</article>"
+                        );
+                      }).join("")
+                    : "") +
                 "</section>"
               );
             }).join("") +
@@ -560,6 +804,7 @@
     root.querySelector("#ss-clear").addEventListener("click", function () {
       if (confirm("Clear all local Savant cellar, sites, and wishlist data?")) {
         WaypointSavant.clearAllLocal();
+        if (global.SavantWIE && SavantWIE.engine) SavantWIE.engine.clearCache();
         startSettings(root);
       }
     });

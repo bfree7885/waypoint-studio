@@ -2,23 +2,25 @@
   "productId": "savant-sommelier",
   "title": "Savant Sommelier",
   "eyebrow": "Waypoint Studio · Savant Sommelier",
-  "status": "recovery",
-  "lead": "Wine intelligence — discover, learn, track, and analyze vineyard potential with explanations.",
-  "mission": "Help people learn wine, find wine, track wine, and understand what could grow on a property today and decades ahead — without Vivino-clone pretension.",
+  "status": "intelligence",
+  "lead": "Wine intelligence — discover, learn, track, and analyze vineyard potential with explanations that answer why.",
+  "mission": "Help people learn wine, find wine, track wine, and understand what could grow on a property today and decades ahead — powered by an explainable Wine Intelligence Engine.",
   "principles": [
     "Every recommendation explains why",
+    "Palate learning from local ratings, favorites, purchases, and notes",
     "Landscape literacy over lifestyle branding",
     "No influencer scores or competitive tasting boards",
     "Property details stay private by default",
     "Future climate horizons are labeled scenarios, not precision forecasts"
   ],
   "modules": [
-    { "title": "Discover", "status": "active", "description": "Explore grapes, regions, and styles with why / flavors / similar / price context." },
-    { "title": "Learn", "status": "active", "description": "Interactive curriculum covering grapes, climate, production, service, and tasting." },
-    { "title": "My Cellar", "status": "active", "description": "Local inventory, drink windows, ratings, notes, wishlist — empty until you add bottles." },
-    { "title": "Vineyard Intelligence", "status": "active", "description": "Property metrics with why-it-matters plus Future Vineyard horizons." },
+    { "title": "Wine Intelligence Engine", "status": "active", "description": "Layered palate → recommend → discovery → tasting → pairing → cellar → purchase intelligence." },
+    { "title": "Discover", "status": "active", "description": "Personal why, guided discovery, intelligent search, food pairing, comparisons." },
+    { "title": "Learn", "status": "active", "description": "Curriculum plus continuous teachable moments." },
+    { "title": "My Cellar", "status": "active", "description": "Inventory plus cellar, tasting, and purchase intelligence." },
+    { "title": "Vineyard Intelligence", "status": "active", "description": "Why / why-not grapes, strengths, risks, climate trajectory with uncertainty." },
     { "title": "Buying architecture", "status": "contract", "description": "Retailer / price / availability seams — not live marketplace." },
-    { "title": "Map overlays", "status": "contract", "description": "Parcel, soils, hydrology, climate, terrain contracts — no unfinished overlays rendered." }
+    { "title": "Map overlays", "status": "contract", "description": "Parcel, soils, hydrology, climate, terrain contracts." }
   ],
   "routes": [
     { "path": "/", "label": "Discover", "ready": true },

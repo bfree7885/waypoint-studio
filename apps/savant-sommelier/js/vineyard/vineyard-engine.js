@@ -163,6 +163,89 @@
     return parts.join(" ");
   }
 
+  function whyNotRecommended(grape, warmedGdd, ideal, disease, score) {
+    var reasons = [];
+    if (score >= 70) return reasons;
+    if (warmedGdd < ideal[0]) {
+      reasons.push(grape.name + " is not strongly recommended because estimated heat (~" + Math.round(warmedGdd) + " GDD) sits below its preferred " + ideal[0] + "–" + ideal[1] + " window.");
+    }
+    if (warmedGdd > ideal[1]) {
+      reasons.push(grape.name + " is not strongly recommended because excess heat (~" + Math.round(warmedGdd) + " GDD) risks soft acidity and elevated alcohol relative to its preferred window.");
+    }
+    if (grape.diseaseSensitivity === "high" && disease === "elevated") {
+      reasons.push(grape.name + " faces elevated fungal risk on this humidity/rainfall profile, which weighs against thin-skinned or compact-cluster varieties.");
+    }
+    if (grape.frostSensitivity === "high") {
+      reasons.push("Spring frost sensitivity adds operational risk that reduces confidence for " + grape.name + " without mitigation.");
+    }
+    if (!reasons.length) {
+      reasons.push(grape.name + " ranks lower because overall climate fit is only marginal in this educational scenario.");
+    }
+    return reasons;
+  }
+
+  function siteStrengthsRisks(analysis) {
+    var strengths = [];
+    var risks = [];
+    var byId = {};
+    (analysis.metrics || []).forEach(function (m) { byId[m.id] = m; });
+    var gdd = byId.gdd && Number(byId.gdd.value);
+    var slope = byId.slope && Number(byId.slope.value);
+    var disease = byId.diseasePressure && String(byId.diseasePressure.value);
+    var solar = byId.solarExposure && String(byId.solarExposure.value);
+    if (slope >= 4) strengths.push({ text: "Slope supports cold-air drainage.", why: METRIC_WHY.slope });
+    else risks.push({ text: "Gentle/flat terrain may pool cold air.", why: METRIC_WHY.springFrost });
+    if (solar === "high" || solar === "moderate-high") strengths.push({ text: "Solar exposure favors ripening.", why: METRIC_WHY.solarExposure });
+    if (gdd >= 2200 && gdd <= 3200) strengths.push({ text: "Heat accumulation is in a workable teaching band for many vinifera.", why: METRIC_WHY.gdd });
+    else if (gdd < 2000) risks.push({ text: "Cool heat budget may limit late-ripening grapes.", why: METRIC_WHY.gdd });
+    else if (gdd > 3400) risks.push({ text: "High heat may stress cool-climate varieties.", why: METRIC_WHY.heatAccumulation });
+    if (disease === "elevated") risks.push({ text: "Elevated disease pressure likely in humid/wet seasons.", why: METRIC_WHY.diseasePressure });
+    else strengths.push({ text: "Disease pressure heuristics look manageable.", why: METRIC_WHY.diseasePressure });
+    if (!risks.length) {
+      risks.push({
+        text: "Residual uncertainty — wind, soils, and hydrology are not fully modeled yet.",
+        why: "Transparent consulting always states what is unknown alongside what is estimated."
+      });
+    }
+    return { strengths: strengths, risks: risks };
+  }
+
+  function climateTrajectory(analysis, grapeModels) {
+    var perDecade = grapeModels && grapeModels.warmingScenarioCPerDecade != null ? grapeModels.warmingScenarioCPerDecade : 0.25;
+    var gddMetric = (analysis.metrics || []).find(function (m) { return m.id === "gdd"; });
+    var diseaseMetric = (analysis.metrics || []).find(function (m) { return m.id === "diseasePressure"; });
+    var seasonMetric = (analysis.metrics || []).find(function (m) { return m.id === "seasonLength"; });
+    var gdd = gddMetric ? Number(gddMetric.value) : null;
+    return {
+      honesty: "Trajectory uses a simple +" + perDecade + "°C/decade educational heuristic — not a downscaled climate projection. Uncertainty grows with each decade.",
+      today: {
+        heatAccumulation: gdd,
+        growingSeason: seasonMetric ? seasonMetric.value : null,
+        diseasePressure: diseaseMetric ? diseaseMetric.value : null,
+        why: "Today’s estimate is the baseline for comparing later horizons."
+      },
+      byHorizon: [0, 5, 10, 15, 20, 25].map(function (years) {
+        var warmingC = (years / 10) * perDecade;
+        var futureGdd = gdd != null ? Math.round(gdd + warmingC * 180) : null;
+        return {
+          yearsAhead: years,
+          warmingC: Math.round(warmingC * 100) / 100,
+          heatAccumulation: futureGdd,
+          growingSeason: seasonMetric && seasonMetric.value != null
+            ? Math.round(Number(seasonMetric.value) + warmingC * 4)
+            : null,
+          diseasePressure: diseaseMetric ? diseaseMetric.value : null,
+          freezeProbability: years >= 15 ? "uncertain — may ease midwinter extremes locally while spring frost timing remains risky" : "site-dependent; not precisely modeled",
+          waterDemand: years >= 10 ? "likely rising under warmer summers in this scenario" : "near baseline",
+          varietyPressure: years >= 10
+            ? "Warm-preferring grapes may gain; cool-climate grapes may lose freshness unless elevation/aspect buffers heat."
+            : "Limited variety pressure vs today.",
+          uncertainty: years === 0 ? "lowest relative uncertainty" : years <= 10 ? "moderate scenario uncertainty" : "high uncertainty — treat as teaching foresight only"
+        };
+      })
+    };
+  }
+
   function scoreGrape(grape, gdd, disease, humidity, horizonWarmingC) {
     var ideal = grape.idealGddF || [2000, 3000];
     var mid = (ideal[0] + ideal[1]) / 2;
@@ -181,6 +264,7 @@
     var heatStress = warmedGdd > ideal[1] + 200 ? "elevated" : warmedGdd > ideal[1] ? "rising" : "acceptable";
     var freezeRisk = grape.frostSensitivity === "high" ? "watch spring frost" : "moderate";
     var score = clamp(Math.round(heatScore - diseasePenalty), 10, 95);
+    var notReasons = whyNotRecommended(grape, warmedGdd, ideal, disease, score);
 
     return {
       grapeId: grape.id,
@@ -196,6 +280,9 @@
       growingChallenges: challengesFor(grape, warmedGdd, ideal, disease),
       expectedChanges: null,
       why: explainGrape(grape, gdd, warmedGdd, ideal, disease, horizonWarmingC, score),
+      whyNot: notReasons.join(" "),
+      whyNotReasons: notReasons,
+      recommended: score >= 70,
       notes: grape.notes
     };
   }
@@ -271,19 +358,27 @@
         }
       });
 
+      var recommended = scored.filter(function (s) { return s.recommended; }).slice(0, 4);
+      if (!recommended.length) recommended = scored.slice(0, 3);
+      var notRecommended = scored.filter(function (s) { return !s.recommended; }).slice(0, 4);
+
       return {
         yearsAhead: years,
         label: years === 0 ? "Today" : years + " years",
         warmingC: Math.round(warmingC * 100) / 100,
         confidence: "scenario-estimate",
-        honesty: "Future decades use a simple warming heuristic (" + perDecade + "°C/decade), not a full climate model downscaling.",
-        recommended: scored.slice(0, 4),
+        honesty: "Future decades use a simple warming heuristic (" + perDecade + "°C/decade), not a full climate model downscaling. Uncertainty increases with time.",
+        recommended: recommended,
+        notRecommended: notRecommended,
         all: scored
       };
     });
 
+    var sr = siteStrengthsRisks(analysis);
+    var trajectory = climateTrajectory(analysis, grapeModels);
+
     return {
-      version: "1.0.0",
+      version: "1.1.0",
       generatedAt: new Date().toISOString(),
       analysisRef: {
         site: analysis.site,
@@ -291,7 +386,10 @@
       },
       honesty: grapeModels.honesty || "Educational grape climate preference models. Not site-certified agronomy advice.",
       timeline: timeline,
-      explainLayer: "Every grape recommendation includes a why paragraph — never a bare percentage alone."
+      strengths: sr.strengths,
+      risks: sr.risks,
+      climateTrajectory: trajectory,
+      explainLayer: "Every grape recommendation includes why / why-not transparency — never a bare percentage alone."
     };
   }
 
@@ -299,6 +397,8 @@
     METRIC_WHY: METRIC_WHY,
     analyzeProperty: analyzeProperty,
     futureVineyard: futureVineyard,
+    siteStrengthsRisks: siteStrengthsRisks,
+    climateTrajectory: climateTrajectory,
     aspectLabel: aspectLabel,
     estimateGddF: estimateGddF
   };
