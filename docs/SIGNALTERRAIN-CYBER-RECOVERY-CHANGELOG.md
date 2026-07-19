@@ -1,10 +1,45 @@
 # SignalTerrain Cyber Recovery — Detailed Changelog
 
-**Phase:** Product Recovery 1  
-**Date:** 2026-07-18  
+**Phase:** Product Recovery 1 → **2**  
+**Dates:** 2026-07-18 · 2026-07-19  
 **Status:** Uncommitted — owner review
 
 ---
+
+## Phase 2 — Intelligence Engine
+
+### Product
+
+- SignalTerrain begins acting like an analyst layer: enrich → recommend → brief → hide noise.
+- New nav: **Briefings**, **Timeline**, **Trends**.
+- Default views hide low-signal items; optional **Show low-signal**.
+- Cards/detail surface **recommended action + why** and plain-English risk.
+- Persona framework preference (local) for future personalization.
+
+### Engine (`1.1.0` → `1.2.0` + Signal `2.0.0`)
+
+- New `scripts/cyber-signal/signal-engine.mjs`.
+- Per-record: `enrichment`, `recommendation`, `risk`, `noise`, `personas`.
+- Narrative dedupe with `supportingSources`.
+- Correlation graph → `data/cyber/correlation.json`.
+- Operational briefings: morning / evening / weekly / critical.
+- Trend interpretations vs previous artifact.
+- Unified timeline events with filter metadata.
+
+### Docs
+
+- Architecture, signal processing, correlation, benchmarks, V1.0 roadmap, Phase 2 recovery report.
+
+### Verified this session
+
+```
+node scripts/signalterrain-cyber-live-engine.mjs
+→ Live · 294 records · 220 surfaced · 74 hidden · 958 relationships · signal ~56ms
+```
+
+---
+
+## Phase 1 — Interface Recovery
 
 ## Product
 
@@ -32,13 +67,6 @@
 - No sample fallback on live path (unchanged rule, reinforced).
 - No fabricated outages when Azure feed fails — honest unavailable/healthy heartbeat.
 - Peer link prominence for teaching/demo apps reduced.
-
-## Verified this session
-
-```
-node scripts/signalterrain-cyber-live-engine.mjs
-→ trustState: Live · ~294 records · brief bullets populated
-```
 
 ## Outstanding before V1.0
 

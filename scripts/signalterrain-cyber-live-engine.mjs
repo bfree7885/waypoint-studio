@@ -20,6 +20,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  buildSignalIntelligence,
+  writeCorrelationBundle,
+  correlateRecords,
+  SIGNAL_ENGINE_VERSION
+} from "./cyber-signal/signal-engine.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -27,10 +33,10 @@ const OUT_DIR = path.join(ROOT, "data", "cyber");
 const LIVE_PATH = process.env.CYBER_LIVE_OUT || path.join(OUT_DIR, "live.json");
 const HEALTH_PATH = process.env.CYBER_HEALTH_OUT || path.join(OUT_DIR, "health.json");
 const GRAPH_PATH = process.env.CYBER_GRAPH_OUT || path.join(OUT_DIR, "graph.json");
-const ENGINE_VERSION = "1.1.0";
+const ENGINE_VERSION = "1.2.0";
 const HISTORY_PATH = process.env.CYBER_HISTORY_OUT || path.join(OUT_DIR, "history.json");
+const CORRELATION_PATH = process.env.CYBER_CORRELATION_OUT || path.join(OUT_DIR, "correlation.json");
 const MAX_GHSA = Number(process.env.CYBER_MAX_GHSA || 25);
-
 const TIMEOUT_MS = Number(process.env.CYBER_PROVIDER_TIMEOUT_MS || 15000);
 const MAX_KEV = Number(process.env.CYBER_MAX_KEV || 200);
 const MAX_NVD = Number(process.env.CYBER_MAX_NVD || 40);
@@ -1484,44 +1490,99 @@ async function main() {
   else if (okCount === 0 && scored.length) trustState = "Cached";
   else if (errCount > 0) trustState = "Partial";
 
+  const signalStarted = Date.now();
+  const signal = buildSignalIntelligence(scored, {
+    previousRecords: previous?.records || [],
+    providers: providerHealth,
+    previousBrief: previous?.brief || null
+  });
+  const intelligenceRecords = signal.records;
+  const fullCorrelation = correlateRecords(intelligenceRecords);
+  writeCorrelationBundle(
+    Object.assign({}, fullCorrelation, {
+      signalEngineVersion: SIGNAL_ENGINE_VERSION,
+      liveEngineVersion: ENGINE_VERSION
+    }),
+    CORRELATION_PATH
+  );
+
   const byType = {};
-  for (const r of scored) {
+  for (const r of intelligenceRecords) {
     byType[r.type] = (byType[r.type] || 0) + 1;
   }
 
-  const brief = buildBrief(scored, providerHealth);
-  const derived = buildDerivedViews(scored);
+  const brief = buildBrief(intelligenceRecords, providerHealth);
+  // Prefer signal briefings for the Phase-2 home experience while keeping Phase-1 brief compatible
+  if (signal.briefings?.morning) {
+    const active = signal.briefings[signal.briefings.activeKind] || signal.briefings.morning;
+    brief.headline = active.title;
+    brief.title = active.title || brief.title;
+    brief.bullets = (active.whatChanged || []).slice(0, 6).map((text) => ({
+      text,
+      basedOnRecordIds: active.basedOnRecordIds || [],
+      priority: 10
+    }));
+    brief.recommendation =
+      (active.recommendedActions && active.recommendedActions[0] && active.recommendedActions[0].label) ||
+      brief.recommendation;
+    brief.signalKind = signal.briefings.activeKind;
+    brief.whoShouldCare = active.whoShouldCare || [];
+    brief.expectedFuture = active.expectedFuture || [];
+  }
+
+  const derived = buildDerivedViews(intelligenceRecords);
   const history = appendHistory(brief, {
     generatedAt: nowIso(),
     trustState,
-    counts: { records: scored.length }
+    counts: {
+      records: intelligenceRecords.length,
+      surfaced: signal.meta.surfacedByDefault,
+      hidden: signal.meta.hiddenByDefault
+    }
   });
 
   const live = {
     meta: {
       version: ENGINE_VERSION,
+      signalEngineVersion: SIGNAL_ENGINE_VERSION,
       generatedAt: nowIso(),
       trustState,
       engine: "signalterrain-cyber-live-engine",
+      signalProcessingMs: Date.now() - signalStarted,
       principles: [
         "No sample or fixture data in this artifact",
         "Official sources preferred",
         "Transparent priority factors",
         "Defensive awareness only",
-        "Briefing interprets provider facts — never invents incidents"
+        "Briefing interprets provider facts — never invents incidents",
+        "Enrichment and recommendations are decision support, not compliance mandates",
+        "Low-signal items hidden by default (noise reduction)"
       ],
       counts: {
-        records: scored.length,
+        records: intelligenceRecords.length,
         byType,
+        surfacedByDefault: signal.meta.surfacedByDefault,
+        hiddenByDefault: signal.meta.hiddenByDefault,
         providersOk: okCount,
-        providersError: errCount
+        providersError: errCount,
+        correlationEntities: signal.correlation.entityCount,
+        correlationRelationships: signal.correlation.relationshipCount
       }
     },
     brief,
+    signal: {
+      meta: signal.meta,
+      briefings: signal.briefings,
+      trends: signal.trends,
+      timeline: signal.timeline,
+      correlation: signal.correlation,
+      noise: signal.noise,
+      personaFramework: signal.personaFramework
+    },
     derived,
     historyPreview: history,
     providers: providerHealth,
-    records: scored,
+    records: intelligenceRecords,
     howToEvaluate: {
       title: "How SignalTerrain evaluates cyber information",
       points: [
@@ -1533,16 +1594,20 @@ async function main() {
         "Absence of a match does not prove safety.",
         "News reporting is not equivalent to official confirmation.",
         "Outage signals come from public status pages/RSS — customer impact may differ.",
-        "Priority scores explain their factors; they are decision support, not risk scores for your firm."
+        "Priority scores explain their factors; they are decision support, not risk scores for your firm.",
+        "Recommendations explain why — they are not automated remediation.",
+        "ATT&CK technique links are keyword heuristics unless marked otherwise.",
+        "Persona tags are relevance hints for future personalization, not assigned roles."
       ]
     }
   };
 
   // Refuse to write if somehow empty of real providers AND no previous — honest empty
-  if (scored.length === 0 && okCount === 0) {
+  if (intelligenceRecords.length === 0 && okCount === 0) {
     const empty = {
       meta: {
         version: ENGINE_VERSION,
+        signalEngineVersion: SIGNAL_ENGINE_VERSION,
         generatedAt: nowIso(),
         trustState: "Error",
         engine: "signalterrain-cyber-live-engine",
@@ -1568,18 +1633,26 @@ async function main() {
     }
   } else {
     writeJson(LIVE_PATH, live);
-    writeJson(GRAPH_PATH, recordsToGraphBundle(scored));
-    console.error(`Wrote ${scored.length} records → ${LIVE_PATH} (${trustState})`);
+    writeJson(GRAPH_PATH, recordsToGraphBundle(intelligenceRecords));
+    console.error(
+      `Wrote ${intelligenceRecords.length} records (${signal.meta.surfacedByDefault} surfaced) → ${LIVE_PATH} (${trustState})`
+    );
     console.error(`Wrote live graph → ${GRAPH_PATH}`);
+    console.error(`Wrote correlation → ${CORRELATION_PATH} (${fullCorrelation.relationshipCount} relationships)`);
+    console.error(`Signal engine ${SIGNAL_ENGINE_VERSION} in ${signal.meta.processingMs}ms`);
   }
 
   writeJson(HEALTH_PATH, {
     generatedAt: nowIso(),
     engineVersion: ENGINE_VERSION,
+    signalEngineVersion: SIGNAL_ENGINE_VERSION,
     trustState: readJsonSafe(LIVE_PATH)?.meta?.trustState || trustState,
     providers: providerHealth,
     livePath: path.relative(ROOT, LIVE_PATH),
-    recordCount: readJsonSafe(LIVE_PATH)?.records?.length || 0
+    correlationPath: path.relative(ROOT, CORRELATION_PATH),
+    recordCount: readJsonSafe(LIVE_PATH)?.records?.length || 0,
+    signalProcessingMs: signal.meta?.processingMs ?? null,
+    noiseHidden: signal.meta?.hiddenByDefault ?? null
   });
 
   console.error(`Health → ${HEALTH_PATH}`);

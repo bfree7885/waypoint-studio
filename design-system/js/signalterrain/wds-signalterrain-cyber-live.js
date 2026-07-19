@@ -14,11 +14,12 @@
     "ingestion/samples/raw"
   ];
 
-  var CACHE_KEY = "st_cyber_live_cache_v2";
+  var CACHE_KEY = "st_cyber_live_cache_v3";
   var CACHE_TTL_MS = 5 * 60 * 1000;
 
   var NAV = [
     ["brief", "Overview"],
+    ["briefings", "Briefings"],
     ["threats", "Threats"],
     ["vulnerabilities", "Vulnerabilities"],
     ["kev", "KEV"],
@@ -26,11 +27,15 @@
     ["zeroday", "Zero-Day"],
     ["advisories", "Advisories"],
     ["outages", "Outages"],
+    ["timeline", "Timeline"],
+    ["trends", "Trends"],
     ["feeds", "Feeds"],
     ["search", "Search"],
     ["history", "History"],
     ["settings", "Settings"]
   ];
+
+  var PERSONA_KEY = "st_cyber_persona_v1";
 
   function Util() {
     return global.WDS && global.WDS.signalTerrainUtil;
@@ -94,6 +99,7 @@
     if (panel === "providers" || panel === "about") panel = "feeds";
     if (panel === "profile") panel = "settings";
     if (panel === "releases") panel = "advisories";
+    if (panel === "signal") panel = "briefings";
     return { panel: panel, id: parts[1] || null };
   }
 
@@ -208,8 +214,42 @@
         return Object.assign({}, r, { priority: rescore(r, items) });
       })
       .sort(function (a, b) {
+        var hideA = a.noise && a.noise.hideByDefault ? 1 : 0;
+        var hideB = b.noise && b.noise.hideByDefault ? 1 : 0;
+        if (hideA !== hideB) return hideA - hideB;
         return (b.priority.score || 0) - (a.priority.score || 0);
       });
+  }
+
+  function loadPersona() {
+    try {
+      return global.localStorage && global.localStorage.getItem(PERSONA_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function savePersona(id) {
+    try {
+      if (global.localStorage) {
+        if (id) global.localStorage.setItem(PERSONA_KEY, id);
+        else global.localStorage.removeItem(PERSONA_KEY);
+      }
+    } catch (e2) { /* ignore */ }
+  }
+
+  function visibleRecords(records, showNoise) {
+    if (showNoise) return records || [];
+    return (records || []).filter(function (r) {
+      return !(r.noise && r.noise.hideByDefault);
+    });
+  }
+
+  function actionClass(action) {
+    if (action === "patch-immediately" || action === "disable-exposed-service") return "st-live-action st-live-action--urgent";
+    if (action === "increase-monitoring" || action === "review-vendor-advisory") return "st-live-action st-live-action--soon";
+    if (action === "ignore") return "st-live-action st-live-action--quiet";
+    return "st-live-action";
   }
 
   function bandClass(band) {
@@ -225,6 +265,7 @@
 
   function filterRecords(records, state) {
     return (records || []).filter(function (r) {
+      if (!state.showNoise && r.noise && r.noise.hideByDefault) return false;
       if (state.q) {
         var blob = (
           r.title +
@@ -239,7 +280,9 @@
           " " +
           ((r.entities && r.entities.products) || []).join(" ") +
           " " +
-          (r.type || "")
+          (r.type || "") +
+          " " +
+          ((r.recommendation && r.recommendation.label) || "")
         ).toLowerCase();
         if (blob.indexOf(state.q.toLowerCase()) < 0) return false;
       }
@@ -251,6 +294,13 @@
         var lvl = r.priority && r.priority.profileMatch && r.priority.profileMatch.level;
         if (!lvl || lvl === "none") return false;
       }
+      if (state.persona) {
+        var personas = r.personas || [];
+        var hit = personas.some(function (p) {
+          return p.personaId === state.persona;
+        });
+        if (!hit) return false;
+      }
       return true;
     });
   }
@@ -259,9 +309,13 @@
     var cves = ((r.identifiers && r.identifiers.cves) || []).join(", ");
     var vendors = ((r.entities && r.entities.vendors) || []).join(", ");
     var products = ((r.entities && r.entities.products) || []).join(", ");
-    var pm = (r.priority && r.priority.profileMatch) || {};
+    var rec = r.recommendation || {};
+    var risk = r.risk || {};
+    var merged = r.enrichment && r.enrichment.mergedDuplicates;
     return (
-      '<article class="st-live-card">' +
+      '<article class="st-live-card' +
+      (r.noise && r.noise.hideByDefault ? " st-live-card--noise" : "") +
+      '">' +
       '<div class="st-live-card-top">' +
       '<span class="' +
       bandClass(r.priority && r.priority.band) +
@@ -270,6 +324,9 @@
       " · " +
       esc(String((r.priority && r.priority.score) || "—")) +
       "</span>" +
+      (rec.label
+        ? '<span class="' + actionClass(rec.action) + '">' + esc(rec.label) + "</span>"
+        : "") +
       '<span class="st-ws-meta">' +
       esc(r.type) +
       "</span></div>" +
@@ -279,17 +336,21 @@
       esc(r.title) +
       "</a></h3>" +
       "<p>" +
-      esc((r.summary || "").slice(0, 240)) +
-      (r.summary && r.summary.length > 240 ? "…" : "") +
+      esc((risk.plainSummary || r.summary || "").slice(0, 260)) +
+      ((risk.plainSummary || r.summary || "").length > 260 ? "…" : "") +
       "</p>" +
       '<ul class="st-live-meta">' +
       (cves ? "<li><strong>CVE:</strong> " + esc(cves) + "</li>" : "") +
       (vendors || products
         ? "<li><strong>Affects:</strong> " + esc([vendors, products].filter(Boolean).join(" / ")) + "</li>"
         : "") +
-      "<li><strong>Why:</strong> " +
+      (rec.why ? "<li><strong>Action why:</strong> " + esc(rec.why) + "</li>" : "") +
+      "<li><strong>Why ranked:</strong> " +
       esc((r.priority && r.priority.explanation) || "") +
       "</li>" +
+      (merged
+        ? "<li><strong>Sources merged:</strong> " + esc(String(merged + 1)) + " related reports</li>"
+        : "") +
       "<li><strong>Source:</strong> <a href=\"" +
       esc(r.source && r.source.sourceUrl) +
       "\" rel=\"noopener noreferrer\" target=\"_blank\">" +
@@ -299,8 +360,31 @@
     );
   }
 
-  function listPanel(title, lead, list) {
+  function noiseToolbar(state) {
+    var hidden =
+      (state.doc && state.doc.meta && state.doc.meta.counts && state.doc.meta.counts.hiddenByDefault) ||
+      (state.doc && state.doc.signal && state.doc.signal.noise && state.doc.signal.noise.hideByDefaultCount) ||
+      0;
     return (
+      '<div class="st-live-toolbar">' +
+      '<label class="st-live-noise-toggle"><input type="checkbox" id="st-show-noise"' +
+      (state.showNoise ? " checked" : "") +
+      "/> Show low-signal (" +
+      esc(String(hidden)) +
+      " hidden)</label>" +
+      '<span class="st-ws-meta">Signal engine ' +
+      esc(
+        (state.doc && state.doc.meta && state.doc.meta.signalEngineVersion) ||
+          (state.doc && state.doc.signal && state.doc.signal.meta && state.doc.signal.meta.version) ||
+          "—"
+      ) +
+      "</span></div>"
+    );
+  }
+
+  function listPanel(title, lead, list, state) {
+    return (
+      (state ? noiseToolbar(state) : "") +
       "<h1 class=\"st-live-section-title\">" +
       esc(title) +
       "</h1>" +
@@ -339,6 +423,11 @@
       provider: "all",
       kevOnly: false,
       profileOnly: false,
+      showNoise: false,
+      persona: loadPersona() || "",
+      timelineSeverity: "all",
+      timelineCategory: "all",
+      timelineVendor: "",
       doc: null,
       records: [],
       historyDoc: null
@@ -396,31 +485,42 @@
 
         function briefPanel() {
           var brief = state.doc.brief;
+          var signal = state.doc.signal || {};
+          var briefings = signal.briefings || {};
+          var activeKind = briefings.activeKind || "morning";
+          var active = briefings[activeKind] || null;
+          var surfaced = visibleRecords(state.records, state.showNoise);
           var bullets =
             brief && brief.bullets && brief.bullets.length
               ? brief.bullets
               : [{ text: "Brief not present in artifact — showing highest-priority verified items instead." }].concat(
-                  state.records.slice(0, 5).map(function (r) {
+                  surfaced.slice(0, 5).map(function (r) {
                     return { text: r.title };
                   })
                 );
-          var imm = state.records.filter(function (r) {
+          var imm = surfaced.filter(function (r) {
             return r.priority.band === "Immediate";
           }).length;
-          var high = state.records.filter(function (r) {
+          var high = surfaced.filter(function (r) {
             return r.priority.band === "High";
           }).length;
+          var trendsNarrative = ((signal.trends && signal.trends.narrative) || []).slice(0, 3);
           return (
+            noiseToolbar(state) +
             '<section class="st-live-brief" aria-labelledby="st-brief-title">' +
-            '<p class="st-live-brief__eyebrow">Today\'s Cyber Brief</p>' +
-            '<h1 class="st-live-brief__title" id="st-brief-title">What should I pay attention to right now?</h1>' +
+            '<p class="st-live-brief__eyebrow">Operational intelligence · ' +
+            esc((active && active.title) || (brief && brief.title) || "Today's Cyber Brief") +
+            "</p>" +
+            '<h1 class="st-live-brief__title" id="st-brief-title">What deserves attention right now?</h1>' +
             '<p class="st-live-brief__meta">Generated ' +
             esc((brief && brief.generatedAt) || (state.doc.meta && state.doc.meta.generatedAt) || "—") +
             " · " +
             trustBadge(state.doc.meta && state.doc.meta.trustState) +
             " · " +
+            esc(String(surfaced.length)) +
+            " surfaced / " +
             esc(String(state.records.length)) +
-            " verified records</p>" +
+            " total</p>" +
             '<div class="st-live-stats" aria-label="Priority counts">' +
             '<div class="st-live-stat"><strong>' +
             imm +
@@ -431,7 +531,7 @@
             '<div class="st-live-stat"><strong>' +
             esc(
               String(
-                state.records.filter(function (r) {
+                surfaced.filter(function (r) {
                   return r.exploitation && r.exploitation.knownExploited;
                 }).length
               )
@@ -440,7 +540,7 @@
             '<div class="st-live-stat"><strong>' +
             esc(
               String(
-                state.records.filter(function (r) {
+                surfaced.filter(function (r) {
                   return r.type === "service-outage" && !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
                 }).length
               )
@@ -454,23 +554,216 @@
               })
               .join("") +
             "</ul>" +
+            (brief && brief.whoShouldCare && brief.whoShouldCare.length
+              ? '<p class="st-live-brief__rec"><strong>Who should care:</strong> ' +
+                esc(brief.whoShouldCare.join(" · ")) +
+                "</p>"
+              : "") +
             (brief && brief.recommendation
               ? '<p class="st-live-brief__rec"><strong>Recommended priority:</strong> ' +
                 esc(brief.recommendation) +
                 "</p>"
               : "") +
+            (brief && brief.expectedFuture && brief.expectedFuture.length
+              ? '<p class="st-live-lead"><strong>Expected next:</strong> ' +
+                esc(brief.expectedFuture.join(" ")) +
+                "</p>"
+              : "") +
+            (trendsNarrative.length
+              ? '<div class="st-live-trends-snip"><h2 class="st-live-section-title" style="font-size:1.05rem">Trend read</h2><ul class="st-live-brief__list">' +
+                trendsNarrative
+                  .map(function (t) {
+                    return "<li>" + esc(t) + "</li>";
+                  })
+                  .join("") +
+                '</ul><p><a href="#trends">Full trend analysis →</a></p></div>'
+              : "") +
             '<p class="st-live-lead">' +
             esc((brief && brief.method) || "Interpretation of provider-backed records only.") +
-            "</p></section>" +
+            ' <a href="#briefings">All briefings</a></p></section>' +
             listPanel(
-              "Top threats by priority",
-              "Sorted by operational priority score — not chronology.",
-              state.records
+              "Top intelligence by priority",
+              "Sorted by operational priority — low-signal hidden unless enabled.",
+              surfaced
                 .filter(function (r) {
                   return r.type !== "service-outage" || !(r.rawProviderMetadata && r.rawProviderMetadata.healthy);
                 })
                 .slice(0, 8)
             )
+          );
+        }
+
+        function briefingPackHtml(pack) {
+          if (!pack) return "";
+          return (
+            '<section class="st-briefing-pack">' +
+            "<h2>" +
+            esc(pack.title) +
+            "</h2>" +
+            "<h3>What changed</h3><ul class=\"st-live-brief__list\">" +
+            (pack.whatChanged || [])
+              .map(function (t) {
+                return "<li>" + esc(t) + "</li>";
+              })
+              .join("") +
+            "</ul>" +
+            "<h3>Why it matters</h3><ul class=\"st-live-meta\">" +
+            (pack.whyItMatters || [])
+              .map(function (t) {
+                return "<li>" + esc(t) + "</li>";
+              })
+              .join("") +
+            "</ul>" +
+            "<h3>Who should care</h3><ul class=\"st-live-meta\">" +
+            (pack.whoShouldCare || [])
+              .map(function (t) {
+                return "<li>" + esc(t) + "</li>";
+              })
+              .join("") +
+            "</ul>" +
+            "<h3>Recommended actions</h3><ul class=\"st-live-meta\">" +
+            (pack.recommendedActions || [])
+              .map(function (a) {
+                return (
+                  "<li><span class=\"" +
+                  actionClass(a.action) +
+                  "\">" +
+                  esc(a.label) +
+                  "</span> — " +
+                  esc(a.why) +
+                  (a.recordId
+                    ? ' <a href="#record/' + encodeURIComponent(a.recordId) + '">Open</a>'
+                    : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ul>" +
+            "<h3>Expected future developments</h3><ul class=\"st-live-meta\">" +
+            (pack.expectedFuture || [])
+              .map(function (t) {
+                return "<li>" + esc(t) + "</li>";
+              })
+              .join("") +
+            "</ul></section>"
+          );
+        }
+
+        function briefingsPanel() {
+          var b = (state.doc.signal && state.doc.signal.briefings) || {};
+          return (
+            "<h1 class=\"st-live-section-title\">Operational briefings</h1>" +
+            '<p class="st-live-lead">Morning, evening, weekly, and critical views — built from verified records, not headlines.</p>' +
+            briefingPackHtml(b.morning) +
+            briefingPackHtml(b.evening) +
+            briefingPackHtml(b.weekly) +
+            briefingPackHtml(b.critical)
+          );
+        }
+
+        function trendsPanel() {
+          var trends = (state.doc.signal && state.doc.signal.trends) || {};
+          var list = trends.trends || [];
+          return (
+            "<h1 class=\"st-live-section-title\">Trend analysis</h1>" +
+            '<p class="st-live-lead">Interpreted shifts vs the previous live artifact — not raw charts.</p>' +
+            ((trends.narrative || [])
+              .map(function (n) {
+                return '<p class="st-live-brief__rec">' + esc(n) + "</p>";
+              })
+              .join("") ||
+              '<p class="st-live-lead">No interpretive narrative yet (need a prior artifact for deltas).</p>') +
+            '<table class="st-health-table"><thead><tr><th>Theme</th><th>Now</th><th>Prev</th><th>Δ</th><th>Read</th></tr></thead><tbody>' +
+            list
+              .map(function (t) {
+                return (
+                  "<tr><td>" +
+                  esc(t.label) +
+                  "</td><td>" +
+                  esc(String(t.current)) +
+                  "</td><td>" +
+                  esc(String(t.previous)) +
+                  "</td><td>" +
+                  esc(String(t.delta) + " (" + t.direction + ")") +
+                  "</td><td>" +
+                  esc(t.interpretation) +
+                  "</td></tr>"
+                );
+              })
+              .join("") +
+            "</tbody></table>"
+          );
+        }
+
+        function timelinePanel() {
+          var tl = (state.doc.signal && state.doc.signal.timeline) || { events: [] };
+          var events = (tl.events || []).filter(function (e) {
+            if (!state.showNoise && e.hideByDefault) return false;
+            if (state.timelineCategory !== "all" && e.category !== state.timelineCategory) return false;
+            if (state.timelineSeverity !== "all" && String(e.severity).toLowerCase() !== state.timelineSeverity) {
+              return false;
+            }
+            if (state.timelineVendor) {
+              var v = state.timelineVendor.toLowerCase();
+              var hit = (e.vendors || []).some(function (x) {
+                return String(x).toLowerCase().indexOf(v) >= 0;
+              });
+              if (!hit) return false;
+            }
+            return true;
+          });
+          return (
+            noiseToolbar(state) +
+            "<h1 class=\"st-live-section-title\">Unified timeline</h1>" +
+            '<p class="st-live-lead">KEV, vulnerabilities, advisories/patches, outages, ransomware flags — filter to reduce noise.</p>' +
+            '<form id="st-timeline-filter" class="st-ws-form">' +
+            "<label>Category <select name=\"cat\">" +
+            ["all", "kev", "vulnerability", "patch-or-advisory", "outage", "ransomware", "other"]
+              .map(function (c) {
+                return (
+                  "<option value=\"" +
+                  c +
+                  "\"" +
+                  (state.timelineCategory === c ? " selected" : "") +
+                  ">" +
+                  c +
+                  "</option>"
+                );
+              })
+              .join("") +
+            "</select></label>" +
+            "<label>Severity <select name=\"sev\">" +
+            ["all", "critical", "high", "medium", "low", "unknown"]
+              .map(function (s) {
+                return (
+                  "<option" + (state.timelineSeverity === s ? " selected" : "") + ">" + s + "</option>"
+                );
+              })
+              .join("") +
+            "</select></label>" +
+            "<label>Vendor contains <input name=\"vendor\" value=\"" +
+            esc(state.timelineVendor) +
+            "\"/></label>" +
+            '<button type="submit" class="wds-btn wds-btn--primary">Filter</button></form>' +
+            '<ol class="st-timeline">' +
+            events
+              .slice(0, 80)
+              .map(function (e) {
+                return (
+                  "<li><time>" +
+                  esc(String(e.at).slice(0, 10)) +
+                  "</time> <span class=\"st-ws-meta\">" +
+                  esc(e.category) +
+                  "</span> " +
+                  '<a href="#record/' +
+                  encodeURIComponent(e.recordId) +
+                  '">' +
+                  esc(e.title) +
+                  "</a></li>"
+                );
+              })
+              .join("") +
+            "</ol>"
           );
         }
 
@@ -497,21 +790,32 @@
             })
             .join("");
           var who =
+            (r.risk && r.risk.whoIsAffected) ||
             (r.priority && r.priority.profileMatch && r.priority.profileMatch.level === "exact"
               ? "You declared related technology (“" + r.priority.profileMatch.detail + "”) — confirm versions."
               : r.priority && r.priority.profileMatch && r.priority.profileMatch.level === "vendor"
                 ? "Possible vendor overlap with your profile — not proof of exposure."
                 : "No declared profile match. Relevant if you run related products.");
-          var exploit = r.exploitation && r.exploitation.knownExploited
-            ? "Yes — known exploited per connected official sources (" +
-              (r.exploitation.exploitationEvidence || "confirmed") +
-              ")."
-            : "Not asserted as known-exploited in connected sources.";
+          var exploit =
+            (r.risk && r.risk.howLikelyExploitation) ||
+            (r.exploitation && r.exploitation.knownExploited
+              ? "Yes — known exploited per connected official sources (" +
+                (r.exploitation.exploitationEvidence || "confirmed") +
+                ")."
+              : "Not asserted as known-exploited in connected sources.");
           var mitigate =
+            (r.risk && r.risk.howDifficultMitigation) ||
             (r.remediation && (r.remediation.summary || (r.remediation.mitigations || []).join("; "))) ||
             (r.remediation && r.remediation.patchesAvailable
               ? "Vendor patches indicated as available — check the source advisory for builds."
               : "See source advisory for mitigations and patch status.");
+          var rec = r.recommendation || {};
+          var e = r.enrichment || {};
+          var personas = (r.personas || [])
+            .map(function (p) {
+              return esc(p.label);
+            })
+            .join(", ");
           return (
             '<p><a href="#threats">← Threats</a></p>' +
             "<h1 class=\"st-live-section-title\">" +
@@ -524,36 +828,73 @@
             " · score " +
             esc(String((r.priority && r.priority.score) || "—")) +
             "</p>" +
+            (rec.label
+              ? '<p class="st-live-brief__rec"><span class="' +
+                actionClass(rec.action) +
+                '">' +
+                esc(rec.label) +
+                "</span> — " +
+                esc(rec.why || "") +
+                (r.risk
+                  ? " · " +
+                    (r.risk.patchImmediately
+                      ? "Patch now if exposed."
+                      : r.risk.canItWait
+                        ? "Can often wait after confirmation."
+                        : "")
+                  : "") +
+                "</p>"
+              : "") +
             '<div class="st-detail-grid">' +
-            '<div class="st-detail-block"><h2>What is affected</h2><p>' +
-            esc(
-              [((r.entities && r.entities.vendors) || []).join(", "), ((r.entities && r.entities.products) || []).join(", ")]
-                .filter(Boolean)
-                .join(" / ") || "See source — entities not fully parsed from this feed."
-            ) +
+            '<div class="st-detail-block"><h2>Who is affected?</h2><p>' +
+            esc(who) +
             "</p></div>" +
-            '<div class="st-detail-block"><h2>How serious</h2><p>' +
-            esc(
-              (r.severity && r.severity.label ? "Severity: " + r.severity.label : "Severity unknown") +
-                (r.severity && r.severity.cvssScore != null ? " · CVSS " + r.severity.cvssScore : "")
-            ) +
-            ". " +
-            esc((r.priority && r.priority.explanation) || "") +
-            "</p></div>" +
-            '<div class="st-detail-block"><h2>Exploitation occurring?</h2><p>' +
+            '<div class="st-detail-block"><h2>How likely is exploitation?</h2><p>' +
             esc(exploit) +
             (r.exploitation && r.exploitation.ransomwareLinked ? " Flagged with ransomware association in KEV." : "") +
             "</p></div>" +
-            '<div class="st-detail-block"><h2>Who should care</h2><p>' +
-            esc(who) +
-            "</p></div>" +
-            '<div class="st-detail-block"><h2>How to mitigate / patches</h2><p>' +
+            '<div class="st-detail-block"><h2>How difficult is mitigation?</h2><p>' +
             esc(mitigate) +
             (r.remediation && r.remediation.deadline ? " Deadline: " + r.remediation.deadline : "") +
             "</p></div>" +
+            '<div class="st-detail-block"><h2>Enrichment</h2><ul class="st-live-meta">' +
+            "<li>Severity: " +
+            esc(e.severity || (r.severity && r.severity.label) || "—") +
+            "</li>" +
+            "<li>Confidence: " +
+            esc(e.confidence || "—") +
+            "</li>" +
+            "<li>Freshness: " +
+            esc(e.freshness || "—") +
+            "</li>" +
+            "<li>Exploit maturity: " +
+            esc(e.exploitMaturity || "—") +
+            "</li>" +
+            "<li>Patch: " +
+            esc(e.patchAvailability || "—") +
+            " · Mitigation: " +
+            esc(e.mitigationAvailability || "—") +
+            "</li>" +
+            "<li>Platforms: " +
+            esc((e.affectedPlatforms || []).join(", ") || "—") +
+            "</li>" +
+            "<li>Industry relevance: " +
+            esc((e.industryRelevance || []).join(", ") || "general") +
+            "</li>" +
+            "<li>Small-org likelihood: " +
+            esc(String(e.likelihoodSmallOrg != null ? e.likelihoodSmallOrg : "—")) +
+            " · Enterprise: " +
+            esc(String(e.likelihoodEnterprise != null ? e.likelihoodEnterprise : "—")) +
+            "</li>" +
+            "</ul></div>" +
             '<div class="st-detail-block"><h2>Why ranked here</h2><ul class="st-live-meta">' +
             factors +
             "</ul></div>" +
+            (personas
+              ? '<div class="st-detail-block"><h2>Persona relevance</h2><p>' +
+                personas +
+                " <span class=\"st-ws-meta\">(heuristic hooks)</span></p></div>"
+              : "") +
             '<div class="st-detail-block"><h2>References</h2><ul class="st-live-meta"><li><a href="' +
             esc(r.source && r.source.sourceUrl) +
             '" rel="noopener noreferrer" target="_blank">' +
@@ -571,7 +912,7 @@
               })
               .join("") || "") +
             "</ul></div></div>" +
-            '<p class="st-disclaimer">Plain-language sections interpret provider facts. Not a claim that you are compromised.</p>'
+            '<p class="st-disclaimer">Plain-language sections interpret provider facts. Recommendations are decision support — not proof of compromise or a compliance mandate.</p>'
           );
         }
 
@@ -612,9 +953,37 @@
         function settingsPanel() {
           var Inv = Inventory();
           var items = Inv ? Inv.list() : [];
+          var fw =
+            (state.doc.signal && state.doc.signal.personaFramework) || {
+              personas: [],
+              note: "Persona framework not present in this artifact."
+            };
           return (
-            "<h1 class=\"st-live-section-title\">Settings · technology profile</h1>" +
-            '<p class="st-live-lead">Local-only inventory used to re-weight priority. Never leaves this browser.</p>' +
+            "<h1 class=\"st-live-section-title\">Settings · profile &amp; personas</h1>" +
+            '<p class="st-live-lead">Local-only inventory and persona preference. Never leaves this browser. Full adaptive ranking comes later — hooks are live.</p>' +
+            "<h2 class=\"st-live-section-title\" style=\"font-size:1.05rem\">Persona focus</h2>" +
+            '<p class="st-live-lead">' +
+            esc(fw.note || "") +
+            "</p>" +
+            '<form id="st-persona-form" class="st-ws-form">' +
+            "<label>Preferred persona <select name=\"persona\">" +
+            '<option value="">None (show all)</option>' +
+            (fw.personas || [])
+              .map(function (p) {
+                return (
+                  "<option value=\"" +
+                  esc(p.id) +
+                  "\"" +
+                  (state.persona === p.id ? " selected" : "") +
+                  ">" +
+                  esc(p.label) +
+                  "</option>"
+                );
+              })
+              .join("") +
+            "</select></label>" +
+            '<button type="submit" class="wds-btn wds-btn--primary">Save persona</button></form>' +
+            "<h2 class=\"st-live-section-title\" style=\"font-size:1.05rem;margin-top:1rem\">Technology profile</h2>" +
             '<form id="st-live-profile-add" class="st-ws-form">' +
             "<label>Name <input name=\"name\" required placeholder=\"Exchange Server\"/></label>" +
             "<label>Category <select name=\"category\">" +
@@ -731,17 +1100,22 @@
               .map(function (d) {
                 return map[d.id];
               })
-              .filter(Boolean);
+              .filter(Boolean)
+              .filter(function (r) {
+                return state.showNoise || !(r.noise && r.noise.hideByDefault);
+              });
             return listPanel(
               "Ransomware center",
               "KEV entries flagged with ransomware association. Campaign TTPs beyond this flag require additional authoritative sources (not fabricated here).",
-              list
+              list,
+              state
             );
           }
           return listPanel(
             "Ransomware center",
             "No ransomware-associated KEV flags in the current live artifact.",
-            []
+            [],
+            state
           );
         }
 
@@ -752,12 +1126,16 @@
             .map(function (d) {
               return map[d.id];
             })
-            .filter(Boolean);
+            .filter(Boolean)
+            .filter(function (r) {
+              return state.showNoise || !(r.noise && r.noise.hideByDefault);
+            });
           return (
             listPanel(
               "Zero-Day center",
               "Public feeds rarely prove a true zero-day. This view highlights known-exploited, freshly listed, or explicitly labeled items — with honest status tags.",
-              list
+              list,
+              state
             ) +
             (derived.length
               ? '<ul class="st-live-meta">' +
@@ -780,36 +1158,50 @@
 
         function body() {
           var route = parseHash();
+          var view = visibleRecords(state.records, state.showNoise);
+          if (state.persona) {
+            view = view.filter(function (r) {
+              return (r.personas || []).some(function (p) {
+                return p.personaId === state.persona;
+              });
+            });
+          }
           if (route.panel === "record") return recordDetail(route.id);
           if (route.panel === "brief") return briefPanel();
+          if (route.panel === "briefings") return briefingsPanel();
+          if (route.panel === "trends") return trendsPanel();
+          if (route.panel === "timeline") return timelinePanel();
           if (route.panel === "threats") {
             return listPanel(
               "Threats",
-              "Immediate and High priority — ranked by operational score.",
-              state.records.filter(function (r) {
+              "Immediate and High priority — ranked by operational score. Low-signal hidden by default.",
+              view.filter(function (r) {
                 return (
                   (r.priority.band === "Immediate" || r.priority.band === "High") &&
                   r.type !== "service-outage"
                 );
-              })
+              }),
+              state
             );
           }
           if (route.panel === "vulnerabilities") {
             return listPanel(
               "Vulnerabilities",
               "KEV, NVD, and GHSA vulnerability records — priority sorted.",
-              state.records.filter(function (r) {
+              view.filter(function (r) {
                 return r.type === "exploited-vulnerability" || r.type === "vulnerability";
-              })
+              }),
+              state
             );
           }
           if (route.panel === "kev") {
             return listPanel(
               "CISA KEV",
               "Known Exploited Vulnerabilities catalog entries in this artifact.",
-              state.records.filter(function (r) {
+              view.filter(function (r) {
                 return r.exploitation && r.exploitation.knownExploited;
-              })
+              }),
+              state
             );
           }
           if (route.panel === "ransomware") return ransomwarePanel();
@@ -818,18 +1210,20 @@
             return listPanel(
               "Advisories & security releases",
               "Official/authoritative advisories and vendor security release notices.",
-              state.records.filter(function (r) {
+              view.filter(function (r) {
                 return r.type === "security-advisory" || r.type === "software-security-release";
-              })
+              }),
+              state
             );
           }
           if (route.panel === "outages") {
             return listPanel(
               "Outage center",
-              "Public cloud/SaaS status signals (AWS, Azure, GCP, Cloudflare, GitHub, OpenAI). Healthy heartbeats included for honesty.",
-              state.records.filter(function (r) {
+              "Public cloud/SaaS status signals. Healthy heartbeats count as low-signal unless shown.",
+              view.filter(function (r) {
                 return r.type === "service-outage";
-              })
+              }),
+              state
             );
           }
           if (route.panel === "feeds") return feedsPanel();
@@ -893,6 +1287,34 @@
               paint();
             });
           });
+          var noiseToggle = root.querySelector("#st-show-noise");
+          if (noiseToggle) {
+            noiseToggle.addEventListener("change", function () {
+              state.showNoise = !!noiseToggle.checked;
+              paint();
+            });
+          }
+          var personaForm = root.querySelector("#st-persona-form");
+          if (personaForm) {
+            personaForm.addEventListener("submit", function (ev) {
+              ev.preventDefault();
+              var fd = new FormData(personaForm);
+              state.persona = String(fd.get("persona") || "");
+              savePersona(state.persona);
+              paint();
+            });
+          }
+          var tlForm = root.querySelector("#st-timeline-filter");
+          if (tlForm) {
+            tlForm.addEventListener("submit", function (ev) {
+              ev.preventDefault();
+              var fd = new FormData(tlForm);
+              state.timelineCategory = String(fd.get("cat") || "all");
+              state.timelineSeverity = String(fd.get("sev") || "all");
+              state.timelineVendor = String(fd.get("vendor") || "");
+              paint();
+            });
+          }
           root.removeAttribute("aria-busy");
           try {
             if (global.performance && performance.mark) {
