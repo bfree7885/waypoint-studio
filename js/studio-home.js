@@ -27,6 +27,7 @@
 
   function statusLabel(status) {
     if (status === "foundation") return "Foundation";
+    if (status === "active") return "Early access";
     if (status === "planned") return "Planned";
     return "";
   }
@@ -58,7 +59,7 @@
             "<strong>" + esc(app.title) + "</strong>" +
             (chip ? '<span class="was-home__status">' + esc(chip) + "</span>" : "") +
             "<span>" + esc(app.description || "") + "</span>" +
-            "<em>" + (app.status === "foundation" ? "Explore" : "Open") + "</em>" +
+            "<em>" + (app.status === "foundation" || app.status === "active" ? "Explore" : "Open") + "</em>" +
           "</a>"
         );
       }).join("");

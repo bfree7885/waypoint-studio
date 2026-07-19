@@ -117,6 +117,11 @@
   }
 }
 
+html[data-wds-reduce-motion="true"] .wds-skeleton__line,
+html[data-wds-reduce-motion="true"] .wds-loading {
+  animation: none !important;
+}
+
 /* ——— Empty / error / offline / retry ——— */
 .wds-state,
 .wds-empty-inline,
