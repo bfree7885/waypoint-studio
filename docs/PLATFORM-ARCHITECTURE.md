@@ -20,6 +20,7 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 │  Shared platform kernel                                          │
 │  Catalog · Shell · Profile · Locations · Collections · Settings  │
 │  Foundation landings · Future data (disabled)                    │
+│  Platform UI layer (task nav · loading/empty/error · fetchJson)  │
 └───────────────────────────────┬──────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼──────────────────────────────────┐

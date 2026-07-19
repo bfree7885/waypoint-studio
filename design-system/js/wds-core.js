@@ -137,7 +137,18 @@
 
   init();
 
+  function escapeHtml(str) {
+    if (str == null) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   global.WDS = global.WDS || {};
+  global.WDS.escapeHtml = global.WDS.escapeHtml || escapeHtml;
   global.WDS.core = {
     prefersReducedMotion: prefersReducedMotion,
     onMotionPreferenceChange: onMotionPreferenceChange,
@@ -147,6 +158,7 @@
     validateImageFile: validateImageFile,
     getToken: getToken,
     setProduct: setProduct,
-    getProduct: getProduct
+    getProduct: getProduct,
+    escapeHtml: escapeHtml
   };
 })(window);

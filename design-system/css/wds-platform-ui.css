@@ -1,0 +1,264 @@
+/**
+ * Waypoint Studio — Platform UI consistency layer
+ * Shared task nav, loading/empty/error, search field, map chrome touch targets.
+ * Product accents still come from [data-product] tokens.
+ */
+
+/* ——— Shared task navigation (ForageCast / Savant / future apps) ——— */
+.wds-task-nav,
+.fc-task-nav,
+.ss-task-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--wds-space-2, 0.5rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--wds-space-3, 0.75rem) clamp(1rem, 4vw, 2rem);
+  border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.08));
+  background: var(--wds-inset, rgba(0, 0, 0, 0.02));
+  scrollbar-width: thin;
+}
+
+.wds-task-nav__link,
+.fc-task-nav__link,
+.ss-task-nav__link {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--wds-radius-md, 10px);
+  border: 1px solid transparent;
+  color: var(--wds-text-secondary, #555);
+  text-decoration: none;
+  font-size: var(--wds-text-sm, 0.875rem);
+  white-space: nowrap;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  transition:
+    background var(--wds-duration-instant, 120ms) var(--wds-ease-out, ease),
+    border-color var(--wds-duration-instant, 120ms) var(--wds-ease-out, ease),
+    color var(--wds-duration-instant, 120ms) var(--wds-ease-out, ease);
+}
+
+.wds-task-nav__link:hover,
+.wds-task-nav__link:focus-visible,
+.fc-task-nav__link:hover,
+.fc-task-nav__link:focus-visible,
+.ss-task-nav__link:hover,
+.ss-task-nav__link:focus-visible {
+  color: var(--wds-text, #222);
+  background: var(--wds-surface, #fff);
+  outline: none;
+}
+
+.wds-task-nav__link.is-active,
+.wds-task-nav__link[aria-current="page"],
+.fc-task-nav__link.is-active,
+.fc-task-nav__link[aria-current="page"],
+.ss-task-nav__link.is-active,
+.ss-task-nav__link[aria-current="page"] {
+  border-color: var(--wds-border, rgba(0, 0, 0, 0.12));
+  background: var(--wds-surface, #fff);
+  color: var(--wds-text, #222);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--wds-accent, currentColor);
+}
+
+/* ——— Loading / progress ——— */
+.wds-loading,
+.fc-loading,
+.ss-loading,
+.st-loading {
+  margin: 0;
+  padding: var(--wds-space-4, 1rem) clamp(1rem, 4vw, 2rem);
+  color: var(--wds-text-secondary, #555);
+  font-size: var(--wds-text-sm, 0.875rem);
+}
+
+.wds-loading--inline {
+  padding: var(--wds-space-2, 0.5rem) 0;
+}
+
+.wds-skeleton {
+  display: grid;
+  gap: var(--wds-space-3, 0.75rem);
+  padding: var(--wds-space-4, 1rem) clamp(1rem, 4vw, 2rem);
+}
+
+.wds-skeleton__line {
+  height: 0.85rem;
+  border-radius: var(--wds-radius-sm, 6px);
+  background: linear-gradient(
+    90deg,
+    var(--wds-border-subtle, rgba(0, 0, 0, 0.06)) 0%,
+    var(--wds-border, rgba(0, 0, 0, 0.1)) 50%,
+    var(--wds-border-subtle, rgba(0, 0, 0, 0.06)) 100%
+  );
+  background-size: 200% 100%;
+  animation: wds-skeleton-shimmer var(--wds-duration-slow, 480ms) ease-in-out infinite alternate;
+}
+
+.wds-skeleton__line--title {
+  height: 1.35rem;
+  width: min(16rem, 70%);
+}
+
+.wds-skeleton__line--short {
+  width: min(10rem, 45%);
+}
+
+@keyframes wds-skeleton-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wds-skeleton__line {
+    animation: none;
+  }
+}
+
+/* ——— Empty / error / offline / retry ——— */
+.wds-state,
+.wds-empty-inline,
+.fc-empty,
+.ss-empty,
+.coach-empty,
+.st-empty {
+  margin: 0;
+  padding: var(--wds-space-4, 1rem) clamp(1rem, 4vw, 2rem);
+  color: var(--wds-text-secondary, #555);
+  font-size: var(--wds-text-md, 1rem);
+  line-height: var(--wds-leading-normal, 1.55);
+  max-width: var(--wds-max-reading, 42rem);
+}
+
+.wds-error,
+.ss-error,
+.fc-error {
+  color: var(--wds-danger, #8a3b32);
+}
+
+.wds-state__title {
+  margin: 0 0 var(--wds-space-2, 0.5rem);
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-size: var(--wds-text-xl, 1.375rem);
+  font-weight: 500;
+  color: var(--wds-text, #222);
+}
+
+.wds-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wds-space-2, 0.5rem);
+  margin-top: var(--wds-space-3, 0.75rem);
+}
+
+.wds-honesty,
+.fc-honesty,
+.ss-honesty,
+.fc-freshness,
+.ss-freshness {
+  margin: 0.35rem 0 0.75rem;
+  font-size: var(--wds-text-xs, 0.6875rem);
+  color: var(--wds-text-tertiary, #777);
+  max-width: 46rem;
+  line-height: var(--wds-leading-normal, 1.55);
+}
+
+/* ——— Search field ——— */
+.wds-search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wds-space-1, 0.25rem);
+  min-width: min(100%, 14rem);
+}
+
+.wds-search__label {
+  font-size: var(--wds-text-xs, 0.6875rem);
+  letter-spacing: var(--wds-tracking-wide, 0.08em);
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary, #777);
+}
+
+.wds-search__input,
+.wds-field input[type="search"] {
+  min-height: 44px;
+  font: inherit;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--wds-radius-md, 10px);
+  border: 1px solid var(--wds-border, rgba(0, 0, 0, 0.12));
+  background: var(--wds-surface, #fff);
+  color: var(--wds-text, #222);
+}
+
+.wds-search__input:focus-visible {
+  outline: 2px solid var(--wds-focus, var(--wds-accent));
+  outline-offset: 1px;
+}
+
+.wds-search__suggestions {
+  list-style: none;
+  margin: var(--wds-space-2, 0.5rem) 0 0;
+  padding: 0;
+}
+
+.wds-search__suggestions li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.06));
+  font-size: var(--wds-text-sm, 0.875rem);
+  color: var(--wds-text-secondary, #555);
+}
+
+/* ——— Map chrome consistency ——— */
+.wds-map-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.wds-map-loading,
+.wds-map-offline {
+  position: absolute;
+  z-index: 2;
+  left: var(--wds-space-3, 0.75rem);
+  right: var(--wds-space-3, 0.75rem);
+  top: var(--wds-space-3, 0.75rem);
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--wds-radius-md, 10px);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--wds-text-secondary, #555);
+  font-size: var(--wds-text-sm, 0.875rem);
+  pointer-events: none;
+}
+
+/* ——— Section rhythm ——— */
+.wds-page-section {
+  padding: var(--wds-space-5, 1.25rem) clamp(1rem, 4vw, 2rem);
+}
+
+.wds-page-section + .wds-page-section {
+  border-top: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.06));
+}
+
+.wds-page-title {
+  margin: 0.2rem 0 0.4rem;
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-weight: 500;
+  line-height: var(--wds-leading-tight, 1.12);
+}
+
+.wds-page-lead {
+  margin: 0 0 var(--wds-space-3, 0.75rem);
+  color: var(--wds-text-secondary, #555);
+  font-size: var(--wds-text-md, 1rem);
+  max-width: 40rem;
+  line-height: var(--wds-leading-normal, 1.55);
+}
+
+/* Hide legacy duplicate mini-navs when shell local nav is present */
+.was-shell .wv-nav-mini {
+  display: none;
+}

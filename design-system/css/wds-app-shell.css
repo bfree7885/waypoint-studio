@@ -107,9 +107,9 @@
 .was-local__nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
+  min-height: 44px;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--wds-radius-md, 10px);
   text-decoration: none;
   color: var(--wds-text-secondary, #4a4740);
   font-size: 0.9375rem;
@@ -278,7 +278,7 @@
 .was-footer__links a {
   color: var(--wds-text-secondary, #4a4740);
   text-decoration: none;
-  min-height: 40px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
 }

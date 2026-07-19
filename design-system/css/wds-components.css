@@ -12,6 +12,7 @@
   justify-content: center;
   gap: var(--wds-space-2);
   padding: 0.55rem 1rem;
+  min-height: 44px;
   font-family: inherit;
   font-size: var(--wds-text-sm);
   font-weight: 500;
@@ -70,8 +71,9 @@
 }
 
 .wds-btn--sm {
-  padding: 0.35rem 0.75rem;
+  padding: 0.45rem 0.75rem;
   font-size: var(--wds-text-xs);
+  min-height: 44px;
 }
 
 .wds-btn--block {
@@ -619,8 +621,10 @@
 }
 
 .wds-map-btn {
-  width: 2rem;
-  height: 2rem;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;

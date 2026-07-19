@@ -24,31 +24,37 @@
 
   function renderTaskNav(active) {
     var items = [
-      { id: "overview", href: "index.html", label: "Overview" },
-      { id: "conditions", href: "conditions.html", label: "Today’s Conditions" },
-      { id: "species", href: "species.html", label: "Species" },
-      { id: "map", href: "map.html", label: "Map" },
-      { id: "timeline", href: "timeline.html", label: "Season Timeline" },
-      { id: "weather", href: "weather.html", label: "Recent Weather" },
-      { id: "habitats", href: "habitats.html", label: "Habitats" },
-      { id: "learn", href: "learn.html", label: "Learn" },
-      { id: "journal", href: "journal.html", label: "Journal" },
-      { id: "settings", href: "settings.html", label: "Settings" }
+      ["overview", "index.html", "Overview"],
+      ["conditions", "conditions.html", "Today’s Conditions"],
+      ["species", "species.html", "Species"],
+      ["map", "map.html", "Map"],
+      ["timeline", "timeline.html", "Season Timeline"],
+      ["weather", "weather.html", "Recent Weather"],
+      ["habitats", "habitats.html", "Habitats"],
+      ["learn", "learn.html", "Learn"],
+      ["journal", "journal.html", "Journal"],
+      ["settings", "settings.html", "Settings"]
     ];
+    if (window.WDS && WDS.platformUi && WDS.platformUi.taskNav) {
+      return WDS.platformUi.taskNav(items, active, {
+        ariaLabel: "ForageCast tasks",
+        className: "wds-task-nav fc-task-nav"
+      });
+    }
     return (
-      '<nav class="fc-task-nav" aria-label="ForageCast tasks">' +
+      '<nav class="wds-task-nav fc-task-nav" aria-label="ForageCast tasks">' +
       items
         .map(function (item) {
-          var on = item.id === active ? " is-active" : "";
+          var on = item[0] === active ? " is-active" : "";
           return (
-            '<a class="fc-task-nav__link' +
+            '<a class="wds-task-nav__link fc-task-nav__link' +
             on +
             '" href="' +
-            escapeHtml(item.href) +
+            escapeHtml(item[1]) +
             '"' +
             (on ? ' aria-current="page"' : "") +
             ">" +
-            escapeHtml(item.label) +
+            escapeHtml(item[2]) +
             "</a>"
           );
         })

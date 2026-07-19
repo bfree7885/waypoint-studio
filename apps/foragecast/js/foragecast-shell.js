@@ -5,6 +5,8 @@
   "use strict";
 
   function escapeHtml(str) {
+    if (global.WDS && WDS.platformUi) return WDS.platformUi.escapeHtml(str);
+    if (global.WDS && WDS.escapeHtml) return WDS.escapeHtml(str);
     if (str == null) return "";
     return String(str)
       .replace(/&/g, "&amp;")
@@ -29,13 +31,19 @@
       ["journal", "journal.html", "Journal"],
       ["settings", "settings.html", "Settings"]
     ];
+    if (global.WDS && WDS.platformUi && WDS.platformUi.taskNav) {
+      return WDS.platformUi.taskNav(items, active, {
+        ariaLabel: "ForageCast tasks",
+        className: "wds-task-nav fc-task-nav"
+      });
+    }
     return (
-      '<nav class="fc-task-nav" aria-label="ForageCast tasks">' +
+      '<nav class="wds-task-nav fc-task-nav" aria-label="ForageCast tasks">' +
       items
         .map(function (it) {
           var on = it[0] === active ? " is-active" : "";
           return (
-            '<a class="fc-task-nav__link' +
+            '<a class="wds-task-nav__link fc-task-nav__link' +
             on +
             '" href="' +
             it[1] +
@@ -52,6 +60,7 @@
   }
 
   function getJson(url) {
+    if (global.WDS && WDS.platformUi && WDS.platformUi.getJson) return WDS.platformUi.getJson(url);
     if (global.ForageCastFetch) return ForageCastFetch.getJson(url);
     return fetch(url).then(function (r) {
       if (!r.ok) throw new Error(url);
