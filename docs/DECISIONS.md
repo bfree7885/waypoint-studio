@@ -125,6 +125,19 @@ Roadmap: [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) · Architecture: [
 
 ---
 
+## ADR-011 — Live cyber data via server-side engine artifact
+
+**Date:** 2026-07-18  
+**Status:** Accepted  
+
+**Context:** Static GitHub Pages cannot hold NVD API keys; browser mock connectors presented sample data.  
+
+**Decision:** Fetch official sources in `scripts/signalterrain-cyber-live-engine.mjs`, write `data/cyber/live.json` (+ health/graph). Production UI reads only that artifact. Samples remain teaching/test-only.  
+
+**Consequences:** Refresh is operational (manual/cron), not per-browser scraping; no silent sample fallback.
+
+---
+
 ## ADR-010 — MPA + shared IIFE services for now
 
 **Date:** 2026-07  

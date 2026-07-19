@@ -7,6 +7,15 @@ Roadmap: [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) · Architecture: [
 
 ---
 
+## 2026-07-18 — Live cyber intelligence engine (Milestone 2 start)
+
+- Added `scripts/signalterrain-cyber-live-engine.mjs` fetching CISA KEV, NVD, CISA advisories, Chrome, Ubuntu.
+- Production UI: `apps/signalterrain/cyber/live.html` reads `data/cyber/live.json` only (no sample fallback).
+- Teaching samples isolated to `teaching.html`; cyber index redirects to live.
+- Docs: real-data audit, sources, priority model, tech profile, operations, real-data report.
+
+---
+
 ## 2026-07-18 — Master engineering roadmap established
 
 - Added living docs: `SIGNALTERRAIN-ROADMAP.md`, `SIGNALTERRAIN-ARCHITECTURE.md`, `DECISIONS.md`, `CHANGELOG-ARCHITECTURE.md`.

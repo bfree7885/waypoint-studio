@@ -384,8 +384,13 @@
         },
         {
           "id": "cyber",
-          "label": "Cyber Awareness",
-          "href": "apps/signalterrain/cyber/"
+          "label": "Cyber live intelligence",
+          "href": "apps/signalterrain/cyber/live.html"
+        },
+        {
+          "id": "cyber-teaching",
+          "label": "Cyber teaching samples",
+          "href": "apps/signalterrain/cyber/teaching.html"
         },
         {
           "id": "cyber-brief",

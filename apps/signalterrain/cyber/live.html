@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-product="signalterrain">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SignalTerrain Cyber Live — real public cyber intelligence. Not a sample dashboard.">
+  <title>Cyber Live Intelligence — SignalTerrain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
+  <style>
+    .st-live { max-width: 56rem; }
+    .st-live-trust {
+      display: inline-block;
+      margin-left: 0.35rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--st-line, #d2ccc0);
+      padding: 0.15rem 0.4rem;
+    }
+    .st-live-card {
+      margin: 0 0 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--st-line, #d2ccc0);
+    }
+    .st-live-card h3 { font-size: 1.1rem; margin: 0.35rem 0; }
+    .st-live-card-top { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+    .st-live-band {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--st-line, #d2ccc0);
+      padding: 0.1rem 0.35rem;
+      color: var(--st-muted, #5a564e);
+    }
+    .st-live-band--immediate { color: #5c2a2a; border-color: #d2a0a0; background: #f8ecec; }
+    .st-live-band--high { color: #5a4a20; border-color: #c4b48a; background: #f7f1e2; }
+    .st-live-band--monitor { color: #3a5348; border-color: #a8b8b0; background: #eef3f0; }
+    .st-live-meta { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 0.88rem; color: var(--st-muted, #5a564e); }
+    .st-live-meta li { margin: 0.25rem 0; }
+    .st-health-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .st-health-table th, .st-health-table td { border-top: 1px solid var(--st-line,#d2ccc0); padding: 0.55rem 0.4rem; text-align: left; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+    <main id="main" class="wpf-page st-page">
+      <p class="st-cyber-peers">
+        <a class="st-back" href="./live.html">Live intelligence</a>
+        ·
+        <a class="st-back" href="workspace.html">Workspace</a>
+        ·
+        <a class="st-back" href="teaching.html">Teaching samples</a>
+        ·
+        <a class="st-back" href="../">SignalTerrain</a>
+      </p>
+      <noscript>
+        <section>
+          <h1>Cyber Live Intelligence</h1>
+          <p>Enable JavaScript to view verified public cyber intelligence. This page does not embed sample threats.</p>
+        </section>
+      </noscript>
+      <div id="st-live-mount" aria-busy="true">
+        <p class="st-loading">Loading verified cyber intelligence…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-util.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-inventory.js" defer></script>
+  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-live.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
+      }
+      if (window.WDS && WDS.signalTerrainCyberLive) {
+        WDS.signalTerrainCyberLive.mountLive(document.getElementById("st-live-mount"), {
+          liveUrl: "../../../data/cyber/live.json"
+        });
+      }
+    });
+  </script>
+</body>
+</html>

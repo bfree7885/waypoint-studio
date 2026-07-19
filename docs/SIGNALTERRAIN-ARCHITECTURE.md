@@ -63,7 +63,8 @@ Waypoint Studio kernel (WDS, Trust, Knowledge, Constitution)
 | Advisor | `WDS.signalTerrainCyberAdvisor` | Exposure + recommendations |
 | Knowledge | `WDS.signalTerrainCyberKnowledge` | Encyclopedia index + search |
 | Workspace | `WDS.signalTerrainCyberWorkspace` | Operations dashboard |
-| Ingest | `WDS.signalTerrainCyberIngest` | Normalize, provenance, cache (mock live) |
+| Live cyber | `WDS.signalTerrainCyberLive` | Production dashboard over `data/cyber/live.json` |
+| Ingest | `WDS.signalTerrainCyberIngest` | Legacy mock normalizers (tests/teaching) |
 
 ---
 
@@ -86,12 +87,14 @@ Notes, inventory, and precise personal context stay **local** until an explicit 
 
 | Surface | Path |
 |---------|------|
-| Awareness hub | `apps/signalterrain/cyber/` |
-| Daily brief | `cyber/brief.html` |
+| **Live intelligence (production)** | `cyber/live.html` (hub redirects here) |
+| Teaching samples (isolated) | `cyber/teaching.html` |
+| Daily brief | `cyber/brief.html` (educational scenarios; points to live) |
 | Explorer | `cyber/explorer.html` |
 | Advisor | `cyber/advisor.html` |
 | Knowledge | `cyber/knowledge.html` |
 | Operations workspace | `cyber/workspace.html` |
+| Ingest health (internal/mock) | `cyber/ingest-health.html` |
 | Ingest health (internal) | `cyber/ingest-health.html` |
 
 ---
@@ -100,7 +103,7 @@ Notes, inventory, and precise personal context stay **local** until an explicit 
 
 | Area | Posture |
 |------|---------|
-| Data | Schema-first samples; live connectors not yet active |
+| Data | Live artifact `data/cyber/live.json` from official providers; teaching samples isolated |
 | UI | Multi-page app (MPA); calm editorial visual language |
 | Coupling | Surfaces → shared graph/research; avoid per-page stores |
 | Security | Educational HTML escaping; CSP/fonts hardening deferred |

@@ -368,14 +368,31 @@
       knowledge: null
     };
 
+    var teaching =
+      options.allowSamples ||
+      /(?:\?|&)teaching=1(?:&|$)/.test(String(global.location && global.location.search));
+    var liveGraphUrl = options.liveGraphUrl || "../../../data/cyber/graph.json";
+    var graphLoad = teaching
+      ? G.loadBundle(base + "samples/cyber-intelligence.sample.json")
+      : G.loadBundle(liveGraphUrl).catch(function () {
+          return G.loadBundle(base + "samples/cyber-intelligence.sample.json").then(function (packed) {
+            packed._fallbackTeaching = true;
+            return packed;
+          });
+        });
+
     return Promise.all([
-      G.loadBundle(base + "samples/cyber-intelligence.sample.json"),
+      graphLoad,
       loadJson(wsBase + "panels.json"),
       loadJson(wsBase + "investigation-templates.json"),
-      loadJson(wsBase + "samples/workspace.seed.json"),
-      loadJson(base + "samples/research-workspace.sample.json").catch(function () {
-        return { items: [] };
-      }),
+      teaching
+        ? loadJson(wsBase + "samples/workspace.seed.json")
+        : Promise.resolve({ items: [] }),
+      teaching
+        ? loadJson(base + "samples/research-workspace.sample.json").catch(function () {
+            return { items: [] };
+          })
+        : Promise.resolve({ items: [] }),
       loadJson(knowBase + "encyclopedia/index.json").catch(function () {
         return { articles: [] };
       }),

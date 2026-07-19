@@ -84,6 +84,9 @@
         linkedEntityId: null,
         discovery: "manual",
         ownerNotes: "",
+        vendor: null,
+        internetFacing: false,
+        disabled: false,
         updatedAt: new Date().toISOString()
       },
       item,

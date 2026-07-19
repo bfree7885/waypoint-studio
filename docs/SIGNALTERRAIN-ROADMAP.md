@@ -52,7 +52,7 @@ If a proposal conflicts, **redesign before implementation**.
 | Milestone | Goal | Status |
 |-----------|------|--------|
 | **1** Platform foundation | Stable internal architecture | **Largely complete** (prototype) |
-| **2** Live intelligence | Replace demonstration data | **Not started** (mock connectors only) |
+| **2** Live intelligence | Replace demonstration data | **Partial — live engine + dashboard operational** |
 | **3** Personalization | Relevant to the user | **Partial** (profiles, inventory, watchlists, advisor, seasons, brief audiences) |
 | **4** Knowledge platform | Long-term learning | **Partial V0.1** (encyclopedia, playbooks, incidents, paths) |
 | **5** Visual exploration | Explore instead of scroll | **Partial** (explorer, maps, timelines; deepen saved views) |
@@ -64,7 +64,7 @@ If a proposal conflicts, **redesign before implementation**.
 | **11** Public preview | Limited users + feedback | **Not started** |
 | **12** Long-term evolution | Evaluate modules individually | **Backlog only** |
 
-**Recommended next engineering focus:** Milestone **2** (live cited sources) while closing Milestone **1** exit gaps (broader tests, payload/chunking from hardening review). Personalization and knowledge expand in parallel only when they reuse live provenance.
+**Recommended next engineering focus:** Finish Milestone **2** remaining vendor feeds + scheduled refresh, while migrating brief/explorer/advisor defaults fully onto the live artifact.
 
 ---
 

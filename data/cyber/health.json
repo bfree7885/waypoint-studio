@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-07-18T23:50:33.924Z",
+  "engineVersion": "1.0.0",
+  "trustState": "Live",
+  "providers": [
+    {
+      "providerId": "cisa-kev",
+      "providerName": "CISA KEV",
+      "status": "ok",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": "2026-07-18T23:50:33.401Z",
+      "responseMs": 259,
+      "recordCount": 200,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "live",
+      "meta": {
+        "catalogVersion": "2026.07.16",
+        "dateReleased": "2026-07-16T17:00:15.6845Z",
+        "totalInCatalog": 1647,
+        "included": 200,
+        "responseMs": 259,
+        "sourceUrl": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+      }
+    },
+    {
+      "providerId": "nvd",
+      "providerName": "NIST NVD",
+      "status": "ok",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": "2026-07-18T23:50:33.401Z",
+      "responseMs": 141,
+      "recordCount": 40,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "live",
+      "meta": {
+        "totalResults": 367147,
+        "included": 40,
+        "responseMs": 141,
+        "sourceUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=40",
+        "apiKeyConfigured": false,
+        "note": "Recent page of NVD CVE 2.0 API (resultsPerPage capped)."
+      }
+    },
+    {
+      "providerId": "cisa-advisories",
+      "providerName": "CISA Cybersecurity Advisories",
+      "status": "ok",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": "2026-07-18T23:50:33.401Z",
+      "responseMs": 104,
+      "recordCount": 20,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "live",
+      "meta": {
+        "included": 20,
+        "responseMs": 104,
+        "sourceUrl": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+      }
+    },
+    {
+      "providerId": "chrome-releases",
+      "providerName": "Google Chrome Releases",
+      "status": "ok",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": "2026-07-18T23:50:33.401Z",
+      "responseMs": 394,
+      "recordCount": 20,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "live",
+      "meta": {
+        "included": 20,
+        "responseMs": 394,
+        "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default?alt=rss"
+      }
+    },
+    {
+      "providerId": "ubuntu-usn",
+      "providerName": "Ubuntu Security Notices",
+      "status": "ok",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": "2026-07-18T23:50:33.401Z",
+      "responseMs": 415,
+      "recordCount": 10,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "live",
+      "meta": {
+        "included": 10,
+        "responseMs": 415,
+        "sourceUrl": "https://ubuntu.com/security/notices/rss.xml"
+      }
+    },
+    {
+      "providerId": "mozilla-mfsa",
+      "providerName": "Mozilla Foundation Security Advisories",
+      "status": "planned",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": null,
+      "responseMs": null,
+      "recordCount": 0,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "planned",
+      "meta": {
+        "note": "Stable machine-readable MFSA feed URL not confirmed (prior RSS 404) — marked planned, not simulated.",
+        "attemptedUrl": "https://www.mozilla.org/en-US/security/advisories/feed.xml"
+      }
+    },
+    {
+      "providerId": "msrc",
+      "providerName": "Microsoft Security Response Center",
+      "status": "planned",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": null,
+      "responseMs": null,
+      "recordCount": 0,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "planned",
+      "meta": {
+        "note": "MSRC CVRF/API integration planned — not simulated.",
+        "sourceUrl": "https://api.msrc.microsoft.com/cvrf/v3.0/updates"
+      }
+    },
+    {
+      "providerId": "apple-security",
+      "providerName": "Apple Security Releases",
+      "status": "planned",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": null,
+      "responseMs": null,
+      "recordCount": 0,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "planned",
+      "meta": {
+        "note": "No stable machine-readable feed wired yet."
+      }
+    },
+    {
+      "providerId": "cisco-psirt",
+      "providerName": "Cisco Security Advisories",
+      "status": "planned",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": null,
+      "responseMs": null,
+      "recordCount": 0,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "planned",
+      "meta": {
+        "note": "Planned — prefer official advisory API/RSS when confirmed."
+      }
+    },
+    {
+      "providerId": "epss",
+      "providerName": "FIRST EPSS",
+      "status": "planned",
+      "lastAttemptedAt": "2026-07-18T23:50:33.401Z",
+      "lastSuccessfulAt": null,
+      "responseMs": null,
+      "recordCount": 0,
+      "cacheAge": null,
+      "rateLimitState": null,
+      "latestError": null,
+      "resultsMode": "planned",
+      "meta": {
+        "note": "Optional secondary source after required providers stabilize."
+      }
+    }
+  ],
+  "livePath": "data/cyber/live.json",
+  "recordCount": 263
+}
