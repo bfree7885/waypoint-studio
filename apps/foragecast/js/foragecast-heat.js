@@ -65,9 +65,20 @@
 
   function mapMetaTitle(snapshot, location) {
     if (!snapshot || !snapshot.species) return "Terrain field index";
-    var region = location && location.name
-      ? location.name + ", " + (location.stateCode || location.state)
-      : (snapshot.conditions.region && snapshot.conditions.region.county) || "your region";
+    var region = "your region";
+    if (global.ForageCastLocation && ForageCastLocation.formatRegionLabel && location) {
+      region = ForageCastLocation.formatRegionLabel(location);
+    } else if (location) {
+      var n = String(location.displayTitle || location.placeLabel || location.city || location.name || "").trim();
+      if (n && !/^null$/i.test(n)) {
+        var r = location.stateCode || location.state;
+        region = r && n.indexOf(String(r)) === -1 ? n + ", " + r : n;
+      } else if (location.stateCode || location.state) {
+        region = "Location in " + (location.stateCode || location.state);
+      }
+    } else if (snapshot.conditions && snapshot.conditions.region && snapshot.conditions.region.county) {
+      region = snapshot.conditions.region.county;
+    }
     return snapshot.species.name + " · educational index · " + region;
   }
 

@@ -167,7 +167,7 @@
       '<section class="fld-home">' +
         '<header class="fld-hero fld-hero--home">' +
           '<p class="wds-eyebrow">Fieldry</p>' +
-          '<h1 class="fld-hero__title">Your private life list</h1>' +
+          '<h1 class="fld-hero__title">A private life list</h1>' +
           '<p class="fld-hero__lead">' +
             (list.length
               ? "Keep noticing. Record encounters, grow your collection, and revisit what you have seen — at your own pace."

@@ -31,12 +31,13 @@
         </section>
       </noscript>
       <div id="foragecast-home" aria-busy="true">
-        <section class="fc-summary" aria-label="ForageCast">
-          <p class="wds-eyebrow">ForageCast</p>
-          <h1 class="fc-summary__title">Today’s foraging summary</h1>
-          <p class="fc-summary__question">What should I be looking for today, and why?</p>
-          <p class="fc-loading">Opening outdoor intelligence…</p>
-        </section>
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">ForageCast</p>
+          <p class="wds-boot__title">What should I look for today?</p>
+          <p class="wds-boot__detail">Loading seasonal conditions and species windows for your place. Educational estimates — not guarantees.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting ForageCast…</p>
+        </div>
       </div>
     </main>
 
@@ -46,6 +47,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/species/wds-wskb-core.js" defer></script>
   <script src="../../design-system/js/species/wds-wskb-render.js" defer></script>

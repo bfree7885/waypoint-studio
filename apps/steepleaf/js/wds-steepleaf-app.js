@@ -9,13 +9,15 @@
     ["home", "Home"],
     ["brew", "Today's Brew"],
     ["collection", "My Collection"],
-    ["sessions", "Brewing Sessions"],
-    ["journal", "Tea Journal"],
-    ["discover", "Discover"],
+    ["sessions", "Sessions"],
+    ["journal", "Journal"],
+    ["discover", "Tea styles"],
     ["learning", "Learning"],
     ["search", "Search"],
     ["settings", "Settings"]
   ];
+
+  var EXTERNAL_NAV = [{ href: "explore/", label: "Knowledge graph" }];
 
   function Store() {
     return global.WaypointSteepleaf;
@@ -98,9 +100,75 @@
 
   function mount(root) {
     if (!root) return;
+
+    var Boot = global.WDS && global.WDS.platformBoot;
+    var deadline = Date.now() + 12000;
+
+    function failLoad(detail) {
+      if (Boot && Boot.fail) {
+        Boot.fail(root, {
+          product: "Steepleaf",
+          title: "Could not open Steepleaf",
+          detail: detail || "Required scripts did not finish loading.",
+          homeHref: "../../",
+          supportHref: "../../support.html",
+          onRetry: function () {
+            global.location.reload();
+          }
+        });
+      } else {
+        root.innerHTML =
+          '<div class="sl-app" role="alert"><h1>Steepleaf failed to load</h1><p>' +
+          esc(detail || "Check your connection and retry.") +
+          '</p><p><button type="button" class="wds-btn wds-btn--primary" onclick="location.reload()">Retry</button></p></div>';
+        root.removeAttribute("aria-busy");
+      }
+    }
+
+    function begin() {
+      if (!Store() || !Guides() || !Briefing()) {
+        if (Date.now() >= deadline) {
+          failLoad("Tea models or guides are missing. Check script order and try again.");
+          return;
+        }
+        if (Boot && Boot.mount && !root.querySelector("[data-wds-boot]")) {
+          Boot.mount(root, {
+            product: "Steepleaf",
+            title: "Today’s tea briefing",
+            detail: "Loading your private collection and brewing tools.",
+            status: "Starting Steepleaf…"
+          });
+        } else if (Boot && Boot.status) {
+          var missing = [];
+          if (!Store()) missing.push("models");
+          if (!Guides()) missing.push("guides");
+          if (!Briefing()) missing.push("briefing");
+          Boot.status(root, "Loading " + missing.join(", ") + "…");
+        }
+        global.requestAnimationFrame(begin);
+        return;
+      }
+      if (Boot && Boot.clear) Boot.clear(root);
+      runApp();
+    }
+
+    if (Boot && Boot.watch) {
+      Boot.watch(root, {
+        product: "Steepleaf",
+        title: "Could not open Steepleaf",
+        detail: "Startup took too long. Retry, or return to Studio home.",
+        homeHref: "../../",
+        supportHref: "../../support.html",
+        timeoutMs: 15000,
+        onRetry: function () {
+          global.location.reload();
+        }
+      });
+    }
+
+    function runApp() {
     if (!Store()) {
-      root.innerHTML =
-        '<div class="sl-app" role="alert"><h1>Steepleaf failed to load</h1><p>Models are missing. Check script order.</p></div>';
+      failLoad("Models are missing. Check script order.");
       return;
     }
 
@@ -124,9 +192,7 @@
 
     function navHtml() {
       var route = parseHash();
-      return (
-        '<nav class="sl-nav" aria-label="Steepleaf">' +
-        "<ul>" +
+      var items =
         NAV.map(function (p) {
           var cur =
             route.panel === p[0] ||
@@ -142,6 +208,19 @@
             "</a></li>"
           );
         }).join("") +
+        EXTERNAL_NAV.map(function (x) {
+          return (
+            "<li><a class=\"sl-nav__external\" href=\"" +
+            esc(x.href) +
+            "\">" +
+            esc(x.label) +
+            "</a></li>"
+          );
+        }).join("");
+      return (
+        '<nav class="sl-nav" aria-label="Steepleaf">' +
+        "<ul>" +
+        items +
         "</ul></nav>"
       );
     }
@@ -149,17 +228,37 @@
     function homePanel() {
       var brief = Briefing().buildBriefing();
       var rec = brief.recommendation;
+      var teaCount = (brief.counts && brief.counts.teas) || 0;
+      var brewCount = (brief.counts && brief.counts.brews) || 0;
+      var empty = !teaCount;
+
       return (
         '<section class="sl-brief" aria-labelledby="sl-today-title">' +
-        '<p class="sl-eyebrow">Today\'s Tea</p>' +
+        '<p class="sl-eyebrow">Steepleaf · private tea companion</p>' +
         '<h1 id="sl-today-title" class="sl-title">What should I brew today?</h1>' +
+        '<p class="sl-lead">Brew from teas you own, keep tasting notes private on this device, and learn styles without a shop or social feed.</p>' +
         '<p class="sl-meta">' +
         esc(formatDate(brief.generatedAt)) +
         " · " +
-        esc(String((brief.counts && brief.counts.teas) || 0)) +
+        esc(String(teaCount)) +
         " teas · " +
-        esc(String((brief.counts && brief.counts.brews) || 0)) +
+        esc(String(brewCount)) +
         " sessions · private on this device</p>" +
+        (empty
+          ? '<div class="sl-onboard" role="region" aria-label="Getting started">' +
+            "<h2>Start in four steps</h2>" +
+            "<ol class=\"sl-onboard__steps\">" +
+            "<li><strong>Add a tea</strong> you actually own to My Collection.</li>" +
+            "<li><strong>Start Today's Brew</strong> with temperature, leaf, and a timer.</li>" +
+            "<li><strong>Save tasting notes</strong> — aroma, flavor, rating — in your journal.</li>" +
+            "<li><strong>Review sessions</strong> and compare cups over time.</li>" +
+            "</ol>" +
+            '<p class="sl-onboard__aside">Also available: <a href="#learning">Learning</a> for steeping literacy, and the ' +
+            '<a href="explore/">Knowledge graph</a> for labeled educational samples (not your private shelf).</p>' +
+            '<p><a class="wds-btn wds-btn--primary" href="#collection">Add a tea to your collection</a> ' +
+            '<a class="wds-btn wds-btn--ghost" href="#learning">Browse learning</a></p>' +
+            "</div>"
+          : "") +
         '<ul class="sl-brief-list">' +
         (brief.bullets || [])
           .map(function (b) {
@@ -169,7 +268,7 @@
         "</ul>" +
         (rec
           ? '<div class="sl-rec">' +
-            "<p><strong>Recommended:</strong> " +
+            "<p><strong>Recommended today:</strong> " +
             esc(rec.tea.name) +
             "</p>" +
             '<p class="sl-why">' +
@@ -181,15 +280,19 @@
             '<a class="wds-btn wds-btn--ghost" href="#tea/' +
             encodeURIComponent(rec.tea.id) +
             '">View tea</a></p></div>'
-          : '<div class="sl-rec"><p><a class="wds-btn wds-btn--primary" href="#collection">Add a tea to your collection</a></p></div>') +
+          : empty
+            ? ""
+            : '<div class="sl-rec"><p><a class="wds-btn wds-btn--primary" href="#brew">Open Today\'s Brew</a></p></div>') +
         "</section>" +
-        '<section class="sl-quick">' +
-        "<h2>Quick paths</h2>" +
+        '<section class="sl-quick" aria-labelledby="sl-can-do">' +
+        '<h2 id="sl-can-do">What you can do here</h2>' +
         '<div class="sl-quick-grid">' +
-        '<a href="#brew">Today\'s Brew</a>' +
-        '<a href="#collection">My Collection</a>' +
-        '<a href="#sessions">Sessions</a>' +
-        '<a href="#learning">Learning</a>' +
+        '<a href="#brew"><strong>Brew</strong><span>Guided session with timer</span></a>' +
+        '<a href="#collection"><strong>Track teas</strong><span>Private shelf &amp; favorites</span></a>' +
+        '<a href="#journal"><strong>Journal</strong><span>Tasting notes &amp; ratings</span></a>' +
+        '<a href="#discover"><strong>Tea styles</strong><span>Education from your shelf</span></a>' +
+        '<a href="explore/"><strong>Knowledge graph</strong><span>Labeled sample teas</span></a>' +
+        '<a href="#learning"><strong>Learn</strong><span>Water, leaf, vessels</span></a>' +
         "</div></section>"
       );
     }
@@ -206,14 +309,21 @@
         return (
           "<h1 class=\"sl-title\">Today's Brew</h1>" +
           '<p class="sl-lead">Add a tea you own before starting a session. Steepleaf will not invent one for you.</p>' +
-          '<p><a class="wds-btn wds-btn--primary" href="#collection">Open collection</a></p>'
+          '<ol class="sl-onboard__steps">' +
+          "<li>Add the tea in <a href=\"#collection\">My Collection</a>.</li>" +
+          "<li>Return here to set temperature, leaf, and steep time.</li>" +
+          "<li>Start the timer, then save tasting notes to your journal.</li>" +
+          "</ol>" +
+          '<p><a class="wds-btn wds-btn--primary" href="#collection">Add a tea</a> ' +
+          '<a class="wds-btn wds-btn--ghost" href="#learning">Brewing basics</a></p>'
         );
       }
 
       if (!tea) {
         return (
           "<h1 class=\"sl-title\">Today's Brew</h1>" +
-          '<p class="sl-lead">Choose a tea. Guidance explains why — not a single correct taste.</p>' +
+          '<p class="sl-lead">Choose a tea from your shelf. Guidance explains a starting point — not a single correct taste.</p>' +
+          '<p class="sl-meta">Workflow: pick tea → set variables → timer → tasting notes → history.</p>' +
           '<ul class="sl-pick-list">' +
           teas
             .slice(0, 40)
@@ -248,6 +358,13 @@
         esc(tea.name) +
         "</strong>" +
         (tea.type ? " · " + esc(Guides().typeLabel(tea.type)) : "") +
+        ". Adjust variables, run the timer, then record tasting notes.</p>" +
+        '<p class="sl-meta"><a href="#brew">← Choose a different tea</a>' +
+        (prev
+          ? ' · <a href="#session/' +
+            encodeURIComponent(prev.id) +
+            '">Last session</a> · <a href="#sessions">All sessions</a>'
+          : " · <a href=\"#sessions\">Session history</a>") +
         "</p>" +
         (guide
           ? '<div class="sl-guide-card">' +
@@ -523,8 +640,8 @@
     function sessionsPanel() {
       var brews = Store().listBrews();
       return (
-        "<h1 class=\"sl-title\">Brewing Sessions</h1>" +
-        '<p class="sl-lead">History of what you actually steeped — parameters, notes, and change over time.</p>' +
+        "<h1 class=\"sl-title\">Sessions</h1>" +
+        '<p class="sl-lead">History of what you actually steeped — parameters, tasting notes, and how cups change over time.</p>' +
         (brews.length
           ? '<ul class="sl-session-list">' +
             brews
@@ -546,7 +663,7 @@
               })
               .join("") +
             "</ul>"
-          : '<p class="sl-empty">No sessions yet. <a href="#brew">Start today\'s brew</a>.</p>')
+          : '<div class="sl-empty"><p>No brew sessions yet.</p><p>Record a cup from <a href="#brew">Today\'s Brew</a> after you add a tea to <a href="#collection">My Collection</a>.</p></div>')
       );
     }
 
@@ -623,8 +740,8 @@
         return b.notes || (b.flavorNotes && b.flavorNotes.length) || b.mood || b.rating != null;
       });
       return (
-        "<h1 class=\"sl-title\">Tea Journal</h1>" +
-        '<p class="sl-lead">Sessions with notes, mood, flavors, or ratings — your tasting diary.</p>' +
+        "<h1 class=\"sl-title\">Journal</h1>" +
+        '<p class="sl-lead">Tasting notes from sessions you logged — aroma, flavor, mood, and ratings. Never invented for you.</p>' +
         (brews.length
           ? '<ul class="sl-session-list">' +
             brews
@@ -646,7 +763,7 @@
               })
               .join("") +
             "</ul>"
-          : '<p class="sl-empty">No journal entries yet. Finish a brew and add a note — nothing is fabricated for you.</p>')
+          : '<div class="sl-empty"><p>No journal entries yet.</p><p>Finish a brew from <a href="#brew">Today\'s Brew</a>, save tasting notes, and they appear here. Nothing is fabricated for you.</p></div>')
       );
     }
 
@@ -661,8 +778,8 @@
         return { id: id, g: guides[id], owned: ownedTypes[id] || 0 };
       });
       return (
-        "<h1 class=\"sl-title\">Discover</h1>" +
-        '<p class="sl-lead">Explore styles gently. This is not a shop and not a social feed — only education and gaps in <em>your</em> shelf.</p>' +
+        "<h1 class=\"sl-title\">Tea styles</h1>" +
+        '<p class="sl-lead">Educational style notes tied to <em>your</em> shelf — not a shop and not a social feed. For labeled sample teas from the knowledge graph, open <a href="explore/">Knowledge graph</a>.</p>' +
         '<ul class="sl-discover">' +
         styles
           .map(function (s) {
@@ -1120,6 +1237,9 @@
       if (global.performance && performance.mark) performance.mark("sl-mount");
     } catch (e2) { /* noop */ }
     paint();
+    } // end runApp
+
+    begin();
   }
 
   global.WDS = global.WDS || {};

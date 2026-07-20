@@ -70,10 +70,18 @@
 
   function fetchActive(request) {
     request = request || {};
-    var lat = Number(request.lat);
-    var lng = Number(request.lng);
+    // Do not coerce null → 0 (Number(null)===0 caused point=0.0000,0.0000 on Dashboard cold start)
+    if (request.lat == null || request.lng == null || request.lat === "" || request.lng === "") {
+      return Promise.resolve(buildPackage([], null, null, "unavailable", "missing coordinates"));
+    }
+    var lat = typeof request.lat === "number" ? request.lat : Number(request.lat);
+    var lng = typeof request.lng === "number" ? request.lng : Number(request.lng);
     if (!isFinite(lat) || !isFinite(lng)) {
-      return Promise.reject(new Error("WDS.nwsAlerts.fetchActive requires coordinates"));
+      return Promise.resolve(buildPackage([], null, null, "unavailable", "invalid coordinates"));
+    }
+    // Null Island is never a valid user location for this product
+    if (lat === 0 && lng === 0) {
+      return Promise.resolve(buildPackage([], lat, lng, "unavailable", "invalid coordinates"));
     }
 
     var key = cacheKey(lat, lng);

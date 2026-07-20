@@ -6,7 +6,7 @@
   "languageNotes": [
     "Prefer interpretive phrasing: may, suggests, consistent with, possible remnant of.",
     "Do not present taxonomy labels as confirmed land history without supporting evidence.",
-    "Regional applicability varies — Northeast US pasture walls differ from western fencing cues."
+    "Regional applicability varies \u2014 Northeast US pasture walls differ from western fencing cues."
   ],
   "categories": [
     {
@@ -14,15 +14,51 @@
       "label": "Land Use History",
       "description": "Human land-use legacies that still shape vegetation, soils, and structure.",
       "terms": [
-        { "id": "land-use.former-pasture", "label": "Former pasture", "notes": "Often stones, barbed wire remnants, even-aged tree lines along walls." },
-        { "id": "land-use.former-hay-field", "label": "Former hay field", "notes": "Open canopy invasions, linear edges, fewer wall corridors than pasture." },
-        { "id": "land-use.historic-orchard", "label": "Historic orchard", "notes": "Grid spacing, grafted stock, volunteer fruit trees." },
-        { "id": "land-use.old-homestead", "label": "Old homestead", "notes": "Foundation stones, cellar holes, lilac/rhododendron clumps, metal debris." },
-        { "id": "land-use.logging-history", "label": "Logging history", "notes": "Stumps, skid trails, even-aged cohorts, landing scars." },
-        { "id": "land-use.abandoned-road", "label": "Abandoned road", "notes": "Parallel berms, compacted soils, mid-succession corridors." },
-        { "id": "land-use.stone-wall-boundary", "label": "Stone wall boundary", "notes": "Property or pasture divisions; walls alone do not prove pasture." },
-        { "id": "land-use.historic-charcoal", "label": "Historic charcoal production", "notes": "Circular charcoal pits, dark soils, nearby ore/iron contexts in some regions." },
-        { "id": "land-use.mining-influence", "label": "Mining influence", "notes": "Spoil, prospect pits, adits — use extreme caution and legal/safety notes." }
+        {
+          "id": "land-use.former-pasture",
+          "label": "Former pasture",
+          "notes": "Often stones, barbed wire remnants, even-aged tree lines along walls."
+        },
+        {
+          "id": "land-use.former-hay-field",
+          "label": "Former hay field",
+          "notes": "Open canopy invasions, linear edges, fewer wall corridors than pasture."
+        },
+        {
+          "id": "land-use.historic-orchard",
+          "label": "Historic orchard",
+          "notes": "Grid spacing, grafted stock, volunteer fruit trees."
+        },
+        {
+          "id": "land-use.old-homestead",
+          "label": "Old homestead",
+          "notes": "Foundation stones, cellar holes, lilac/rhododendron clumps, metal debris."
+        },
+        {
+          "id": "land-use.logging-history",
+          "label": "Logging history",
+          "notes": "Stumps, skid trails, even-aged cohorts, landing scars."
+        },
+        {
+          "id": "land-use.abandoned-road",
+          "label": "Abandoned road",
+          "notes": "Parallel berms, compacted soils, mid-succession corridors."
+        },
+        {
+          "id": "land-use.stone-wall-boundary",
+          "label": "Stone wall boundary",
+          "notes": "Property or pasture divisions; walls alone do not prove pasture."
+        },
+        {
+          "id": "land-use.historic-charcoal",
+          "label": "Historic charcoal production",
+          "notes": "Circular charcoal pits, dark soils, nearby ore/iron contexts in some regions."
+        },
+        {
+          "id": "land-use.mining-influence",
+          "label": "Mining influence",
+          "notes": "Spoil, prospect pits, adits \u2014 use extreme caution and legal/safety notes."
+        }
       ]
     },
     {
@@ -30,14 +66,46 @@
       "label": "Forest Development",
       "description": "Stand age, structure, and successional stage relative to disturbance.",
       "terms": [
-        { "id": "forest.young-forest", "label": "Young forest", "notes": "Dense stems, limited understory differentiation." },
-        { "id": "forest.even-aged-forest", "label": "Even-aged forest", "notes": "Cohort canopy from shared disturbance or planting." },
-        { "id": "forest.mature-forest", "label": "Mature forest", "notes": "Larger diameters, canopy closure, developing vertical structure." },
-        { "id": "forest.old-growth-indicators", "label": "Old-growth indicators", "notes": "Indicators only — not an official designation claim." },
-        { "id": "forest.early-succession", "label": "Early succession", "notes": "Herb/shrub/pioneer tree dominance after opening." },
-        { "id": "forest.mid-succession", "label": "Mid succession", "notes": "Closing canopy; competition among mid-tolerant species." },
-        { "id": "forest.late-succession", "label": "Late succession", "notes": "Shade-tolerant regeneration, complex deadwood." },
-        { "id": "forest.canopy-gap-dynamics", "label": "Canopy gap dynamics", "notes": "Localized openings from windthrow, mortality, or harvest." }
+        {
+          "id": "forest.young-forest",
+          "label": "Young forest",
+          "notes": "Dense stems, limited understory differentiation."
+        },
+        {
+          "id": "forest.even-aged-forest",
+          "label": "Even-aged forest",
+          "notes": "Cohort canopy from shared disturbance or planting."
+        },
+        {
+          "id": "forest.mature-forest",
+          "label": "Mature forest",
+          "notes": "Larger diameters, canopy closure, developing vertical structure."
+        },
+        {
+          "id": "forest.old-growth-indicators",
+          "label": "Old-growth indicators",
+          "notes": "Indicators only \u2014 not an official designation claim."
+        },
+        {
+          "id": "forest.early-succession",
+          "label": "Early succession",
+          "notes": "Herb/shrub/pioneer tree dominance after opening."
+        },
+        {
+          "id": "forest.mid-succession",
+          "label": "Mid succession",
+          "notes": "Closing canopy; competition among mid-tolerant species."
+        },
+        {
+          "id": "forest.late-succession",
+          "label": "Late succession",
+          "notes": "Shade-tolerant regeneration, complex deadwood."
+        },
+        {
+          "id": "forest.canopy-gap-dynamics",
+          "label": "Canopy gap dynamics",
+          "notes": "Localized openings from windthrow, mortality, or harvest."
+        }
       ]
     },
     {
@@ -45,14 +113,46 @@
       "label": "Water Processes",
       "description": "Hydrologic and wetland processes written into form and vegetation.",
       "terms": [
-        { "id": "water.floodplain", "label": "Floodplain", "notes": "Flat valley bottoms subject to overbank flow." },
-        { "id": "water.seasonal-wetland", "label": "Seasonal wetland", "notes": "Wet-dry cycles; vernal pools may be a subclass later." },
-        { "id": "water.spring-seep", "label": "Spring seep", "notes": "Groundwater discharge; often indicator plants and soft ground." },
-        { "id": "water.beaver-influence", "label": "Beaver influence", "notes": "Dams, lodges, drowned timber, meadow creation/abandonment cycles." },
-        { "id": "water.river-terrace", "label": "River terrace", "notes": "Abandoned flood levels above the active channel." },
-        { "id": "water.oxbow", "label": "Oxbow", "notes": "Cutoff meander lakes or wet depressions." },
-        { "id": "water.headwaters", "label": "Headwaters", "notes": "First-order streams; sensitive cold-water habitat." },
-        { "id": "water.riparian-corridor", "label": "Riparian corridor", "notes": "Stream-adjacent vegetation structure distinct from upland." }
+        {
+          "id": "water.floodplain",
+          "label": "Floodplain",
+          "notes": "Flat valley bottoms subject to overbank flow."
+        },
+        {
+          "id": "water.seasonal-wetland",
+          "label": "Seasonal wetland",
+          "notes": "Wet-dry cycles; vernal pools may be a subclass later."
+        },
+        {
+          "id": "water.spring-seep",
+          "label": "Spring seep",
+          "notes": "Groundwater discharge; often indicator plants and soft ground."
+        },
+        {
+          "id": "water.beaver-influence",
+          "label": "Beaver influence",
+          "notes": "Dams, lodges, drowned timber, meadow creation/abandonment cycles."
+        },
+        {
+          "id": "water.river-terrace",
+          "label": "River terrace",
+          "notes": "Abandoned flood levels above the active channel."
+        },
+        {
+          "id": "water.oxbow",
+          "label": "Oxbow",
+          "notes": "Cutoff meander lakes or wet depressions."
+        },
+        {
+          "id": "water.headwaters",
+          "label": "Headwaters",
+          "notes": "First-order streams; sensitive cold-water habitat."
+        },
+        {
+          "id": "water.riparian-corridor",
+          "label": "Riparian corridor",
+          "notes": "Stream-adjacent vegetation structure distinct from upland."
+        }
       ]
     },
     {
@@ -60,14 +160,46 @@
       "label": "Geological Processes",
       "description": "Landforms and materials from ice, rock, and long time.",
       "terms": [
-        { "id": "geo.glacial-deposits", "label": "Glacial deposits", "notes": "Till and outwash mosaics; regional textbooks first." },
-        { "id": "geo.moraine", "label": "Moraine", "notes": "Ice-margin ridges and unsorted debris." },
-        { "id": "geo.esker", "label": "Esker", "notes": "Sinuous sand/gravel ridges from meltwater tunnels." },
-        { "id": "geo.kettle", "label": "Kettle", "notes": "Closed depressions from buried ice melt." },
-        { "id": "geo.talus-slope", "label": "Talus slope", "notes": "Angular rock below cliffs." },
-        { "id": "geo.ancient-shoreline", "label": "Ancient shoreline", "notes": "Strandlines from former lakes/seas." },
-        { "id": "geo.bedrock-exposure", "label": "Bedrock exposure", "notes": "Outcrops; useful for thin soils and acid communities." },
-        { "id": "geo.karst", "label": "Karst", "notes": "Future — sinkholes, springs in carbonate terranes; regional only." }
+        {
+          "id": "geo.glacial-deposits",
+          "label": "Glacial deposits",
+          "notes": "Till and outwash mosaics; regional textbooks first."
+        },
+        {
+          "id": "geo.moraine",
+          "label": "Moraine",
+          "notes": "Ice-margin ridges and unsorted debris."
+        },
+        {
+          "id": "geo.esker",
+          "label": "Esker",
+          "notes": "Sinuous sand/gravel ridges from meltwater tunnels."
+        },
+        {
+          "id": "geo.kettle",
+          "label": "Kettle",
+          "notes": "Closed depressions from buried ice melt."
+        },
+        {
+          "id": "geo.talus-slope",
+          "label": "Talus slope",
+          "notes": "Angular rock below cliffs."
+        },
+        {
+          "id": "geo.ancient-shoreline",
+          "label": "Ancient shoreline",
+          "notes": "Strandlines from former lakes/seas."
+        },
+        {
+          "id": "geo.bedrock-exposure",
+          "label": "Bedrock exposure",
+          "notes": "Outcrops; useful for thin soils and acid communities."
+        },
+        {
+          "id": "geo.karst",
+          "label": "Karst",
+          "notes": "Future \u2014 sinkholes, springs in carbonate terranes; regional only."
+        }
       ]
     },
     {
@@ -75,40 +207,156 @@
       "label": "Habitat Structure",
       "description": "Present-day arrangement of cover, edges, and composition.",
       "terms": [
-        { "id": "habitat.edge-habitat", "label": "Edge habitat", "notes": "Transitions with high structural contrast." },
-        { "id": "habitat.interior-forest", "label": "Interior forest", "notes": "Away from abrupt openings; microclimate cooler/moister." },
-        { "id": "habitat.shrubland", "label": "Shrubland", "notes": "Persistent or early-mid shrub dominance." },
-        { "id": "habitat.meadow-succession", "label": "Meadow succession", "notes": "Grass/forb openings moving toward woody cover." },
-        { "id": "habitat.conifer-transition", "label": "Conifer transition", "notes": "Increasing conifer share or plantation edges." },
-        { "id": "habitat.hardwood-dominance", "label": "Hardwood dominance", "notes": "Broadleaf canopy character." },
-        { "id": "habitat.mixed-forest", "label": "Mixed forest", "notes": "Conifer and hardwood canopy together." }
+        {
+          "id": "habitat.edge-habitat",
+          "label": "Edge habitat",
+          "notes": "Transitions with high structural contrast."
+        },
+        {
+          "id": "habitat.interior-forest",
+          "label": "Interior forest",
+          "notes": "Away from abrupt openings; microclimate cooler/moister."
+        },
+        {
+          "id": "habitat.shrubland",
+          "label": "Shrubland",
+          "notes": "Persistent or early-mid shrub dominance."
+        },
+        {
+          "id": "habitat.meadow-succession",
+          "label": "Meadow succession",
+          "notes": "Grass/forb openings moving toward woody cover."
+        },
+        {
+          "id": "habitat.conifer-transition",
+          "label": "Conifer transition",
+          "notes": "Increasing conifer share or plantation edges."
+        },
+        {
+          "id": "habitat.hardwood-dominance",
+          "label": "Hardwood dominance",
+          "notes": "Broadleaf canopy character."
+        },
+        {
+          "id": "habitat.mixed-forest",
+          "label": "Mixed forest",
+          "notes": "Conifer and hardwood canopy together."
+        }
       ]
     }
   ],
   "observationTags": [
-    { "id": "stone-wall-present", "label": "Stone wall present" },
-    { "id": "barbed-wire-or-fence-remnant", "label": "Barbed wire or fence remnant" },
-    { "id": "even-aged-tree-line", "label": "Even-aged tree line" },
-    { "id": "foundation-or-cellar-hole", "label": "Foundation or cellar hole" },
-    { "id": "fruit-trees-in-grid", "label": "Fruit trees in grid or grafted stock" },
-    { "id": "stumps-or-skid-trails", "label": "Stumps or skid trails" },
-    { "id": "parallel-road-berms", "label": "Parallel road berms" },
-    { "id": "charcoal-pit-ring", "label": "Possible charcoal pit ring" },
-    { "id": "dense-young-stems", "label": "Dense young stems" },
-    { "id": "large-diameter-canopy", "label": "Large-diameter canopy trees" },
-    { "id": "tip-up-mounds", "label": "Tip-up mounds / pit-and-mound" },
-    { "id": "standing-deadwood", "label": "Standing deadwood / complex snags" },
-    { "id": "seasonal-standing-water", "label": "Seasonal standing water" },
-    { "id": "beaver-sign", "label": "Beaver sign (dams, cuttings, lodge)" },
-    { "id": "soft-seepage-ground", "label": "Soft seepage ground" },
-    { "id": "terrace-step", "label": "Terrace step above channel" },
-    { "id": "unsorted-glacial-debris", "label": "Unsorted glacial debris / erratic" },
-    { "id": "closed-depression", "label": "Closed depression without outlet" },
-    { "id": "talus-or-scree", "label": "Talus or scree" },
-    { "id": "bedrock-outcrop", "label": "Bedrock outcrop" },
-    { "id": "abrupt-cover-edge", "label": "Abrupt cover edge" },
-    { "id": "shrub-thicket", "label": "Shrub thicket" },
-    { "id": "open-meadow-forbs", "label": "Open meadow / forbs" },
-    { "id": "mixed-conifer-hardwood", "label": "Mixed conifer–hardwood canopy" }
+    {
+      "id": "stone-wall-present",
+      "label": "Stone wall present"
+    },
+    {
+      "id": "barbed-wire-or-fence-remnant",
+      "label": "Barbed wire or fence remnant"
+    },
+    {
+      "id": "even-aged-tree-line",
+      "label": "Even-aged tree line"
+    },
+    {
+      "id": "foundation-or-cellar-hole",
+      "label": "Foundation or cellar hole"
+    },
+    {
+      "id": "fruit-trees-in-grid",
+      "label": "Fruit trees in grid or grafted stock"
+    },
+    {
+      "id": "stumps-or-skid-trails",
+      "label": "Stumps or skid trails"
+    },
+    {
+      "id": "parallel-road-berms",
+      "label": "Parallel road berms"
+    },
+    {
+      "id": "charcoal-pit-ring",
+      "label": "Possible charcoal pit ring"
+    },
+    {
+      "id": "dense-young-stems",
+      "label": "Dense young stems"
+    },
+    {
+      "id": "large-diameter-canopy",
+      "label": "Large-diameter canopy trees"
+    },
+    {
+      "id": "tip-up-mounds",
+      "label": "Tip-up mounds / pit-and-mound"
+    },
+    {
+      "id": "standing-deadwood",
+      "label": "Standing deadwood / complex snags"
+    },
+    {
+      "id": "seasonal-standing-water",
+      "label": "Seasonal standing water"
+    },
+    {
+      "id": "beaver-sign",
+      "label": "Beaver sign (dams, cuttings, lodge)"
+    },
+    {
+      "id": "soft-seepage-ground",
+      "label": "Soft seepage ground"
+    },
+    {
+      "id": "terrace-step",
+      "label": "Terrace step above channel"
+    },
+    {
+      "id": "unsorted-glacial-debris",
+      "label": "Unsorted glacial debris / erratic"
+    },
+    {
+      "id": "closed-depression",
+      "label": "Closed depression without outlet"
+    },
+    {
+      "id": "talus-or-scree",
+      "label": "Talus or scree"
+    },
+    {
+      "id": "bedrock-outcrop",
+      "label": "Bedrock outcrop"
+    },
+    {
+      "id": "abrupt-cover-edge",
+      "label": "Abrupt cover edge"
+    },
+    {
+      "id": "shrub-thicket",
+      "label": "Shrub thicket"
+    },
+    {
+      "id": "open-meadow-forbs",
+      "label": "Open meadow / forbs"
+    },
+    {
+      "id": "mixed-conifer-hardwood",
+      "label": "Mixed conifer\u2013hardwood canopy"
+    },
+    {
+      "id": "fire-scar-or-char",
+      "label": "Fire scar, charcoal, or charred wood"
+    },
+    {
+      "id": "mining-spoil-or-pit",
+      "label": "Mining spoil, prospect pit, or adit cue"
+    },
+    {
+      "id": "flood-debris-or-scour",
+      "label": "Flood debris, scour, or wrack line"
+    },
+    {
+      "id": "utility-corridor-or-roadcut",
+      "label": "Utility corridor, roadcut, or graded bench"
+    }
   ]
 }

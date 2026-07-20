@@ -305,7 +305,9 @@
       ],
       "bridgeApps": [
         "fieldry",
-        "dashboard"
+        "dashboard",
+        "sheds",
+        "landscape-interpretation"
       ],
       "unknowns": [
         "Weather call may cancel \u2014 confirm with trust."
@@ -479,7 +481,8 @@
       "bridgeApps": [
         "fieldry",
         "foragecast",
-        "dashboard"
+        "dashboard",
+        "landscape-interpretation"
       ],
       "unknowns": [
         "Species list finalized on-site."
@@ -564,7 +567,8 @@
       ],
       "bridgeApps": [
         "dashboard",
-        "scenes"
+        "scenes",
+        "landscape-interpretation"
       ],
       "unknowns": [
         "Water levels may shift the route."
@@ -807,7 +811,9 @@
       "bridgeApps": [
         "fieldry",
         "scenes",
-        "dashboard"
+        "dashboard",
+        "landscape-interpretation",
+        "sheds"
       ],
       "unknowns": [
         "Species list depends on the morning."
@@ -1046,7 +1052,8 @@
       ],
       "bridgeApps": [
         "fieldry",
-        "foragecast"
+        "foragecast",
+        "landscape-interpretation"
       ],
       "unknowns": [
         "Species mix announced on arrival."

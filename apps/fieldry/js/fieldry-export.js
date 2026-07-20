@@ -70,7 +70,7 @@
     );
   }
 
-  function exportCSV(observations) {
+  function buildCSV(observations) {
     var U = global.FieldryUtil;
     var headers = [
       "id",
@@ -132,16 +132,20 @@
         obs.meta && obs.meta.version
       ].map(csvEscape).join(",");
     });
-    var csv = headers.join(",") + "\n" + rows.join("\n");
+    return headers.join(",") + "\n" + rows.join("\n");
+  }
+
+  function exportCSV(observations) {
     downloadBlob(
       "fieldry-observations-" + stamp() + ".csv",
       "text/csv;charset=utf-8",
-      csv
+      buildCSV(observations)
     );
   }
 
   global.FieldryExport = {
     exportJSON: exportJSON,
-    exportCSV: exportCSV
+    exportCSV: exportCSV,
+    buildCSV: buildCSV
   };
 })(window);

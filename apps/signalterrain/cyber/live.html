@@ -59,6 +59,7 @@
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-util.js" defer></script>
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-inventory.js" defer></script>
@@ -68,12 +69,38 @@
       if (window.WDS && WDS.appShell) {
         WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
       }
-      if (window.WDS && WDS.signalTerrainCyberLive) {
-        WDS.signalTerrainCyberLive.mountLive(document.getElementById("st-live-mount"), {
-          liveUrl: "../../../data/cyber/live.json",
-          historyUrl: "../../../data/cyber/history.json"
-        });
+      var mount = document.getElementById("st-live-mount");
+      var deadline = Date.now() + 12000;
+      function start() {
+        if (window.WDS && WDS.signalTerrainCyberLive && typeof WDS.signalTerrainCyberLive.mountLive === "function") {
+          WDS.signalTerrainCyberLive.mountLive(mount, {
+            liveUrl: "../../../data/cyber/live.json",
+            historyUrl: "../../../data/cyber/history.json"
+          });
+          return;
+        }
+        if (Date.now() >= deadline) {
+          if (window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+            WDS.platformBoot.fail(mount, {
+              product: "SignalTerrain Cyber",
+              title: "Could not open cyber intelligence",
+              detail: "Live scripts did not load. Check your connection and retry.",
+              homeHref: "../",
+              supportHref: "../../../support.html"
+            });
+          } else if (mount) {
+            mount.innerHTML =
+              '<p role="alert">Cyber Live failed to load. <button type="button" onclick="location.reload()">Retry</button></p>';
+            mount.removeAttribute("aria-busy");
+          }
+          return;
+        }
+        if (window.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+          WDS.platformBoot.status(mount, "Waiting for Live scripts…");
+        }
+        requestAnimationFrame(start);
       }
+      start();
     });
   </script>
 </body>

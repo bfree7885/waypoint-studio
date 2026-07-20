@@ -67,7 +67,7 @@
       lng: loc.longitude != null ? loc.longitude : loc.lng,
       taxonLabel: title,
       privacy: (obs.privacy && obs.privacy.visibility) || "private",
-      href: "../fieldry/#/observation/" + encodeURIComponent(obs.id),
+      href: "../fieldry/#/obs/" + encodeURIComponent(obs.id),
       rawRef: { store: FIELDRY_KEY, id: obs.id },
       honesty: "Private Fieldry life-list record on this device."
     });

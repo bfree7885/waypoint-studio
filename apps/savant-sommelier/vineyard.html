@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Savant Sommelier — Vineyard Intelligence. Property analysis and future grape suitability with explanations.">
   <title>Vineyard Intelligence — Savant Sommelier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,15 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="ss-page">
-      <div id="savant-page" aria-busy="true"></div>
+      <div id="savant-page" aria-busy="true">
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">Savant Sommelier</p>
+          <p class="wds-boot__title">Vineyard</p>
+          <p class="wds-boot__detail">Loading this page. Your cellar and notes stay private on this device.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div>
+      </div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -26,6 +34,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="js/savant-fetch.js" defer></script>
   <script src="js/savant-models.js" defer></script>

@@ -441,9 +441,16 @@
   }
 
   function loadSeasonTable(loc) {
+    var mount = document.getElementById("fc-season-table");
     var platformPromise = window.ForageCastBoot && ForageCastBoot.fetchPlatform
-      ? ForageCastBoot.fetchPlatform(loc)
+      ? ForageCastBoot.fetchPlatform(loc).catch(function () {
+          return null;
+        })
       : Promise.resolve(null);
+
+    if (window.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+      WDS.platformBoot.status(mount, "Loading species and conditions…");
+    }
 
     Promise.all([
       fetchJson("data/species-model.json"),
@@ -465,24 +472,79 @@
         ForageCastModel.setCalendarContext(platform.calendar);
       }
       initFromQuery();
+      if (window.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
+        WDS.platformBoot.clear(mount);
+      }
       render();
-      var mount = document.getElementById("fc-season-table");
       if (mount) mount.removeAttribute("aria-busy");
     }).catch(function (err) {
-      var mount = document.getElementById("fc-season-table");
-      if (mount) {
-        mount.innerHTML = "<p>Could not load season table: " + escapeHtml(err.message) + "</p>";
+      if (mount && window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+        WDS.platformBoot.fail(mount, {
+          product: "ForageCast",
+          title: "Could not open the season table",
+          detail: (err && err.message) || "Species or conditions failed to load.",
+          homeHref: "./",
+          supportHref: "../../support.html",
+          onRetry: function () {
+            location.reload();
+          }
+        });
+      } else if (mount) {
+        mount.innerHTML =
+          "<p role=\"alert\">Could not load season table: " +
+          escapeHtml(err && err.message ? err.message : "Unknown error") +
+          ' <button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>';
         mount.removeAttribute("aria-busy");
       }
     });
   }
 
   function init() {
+    var mount = document.getElementById("fc-season-table");
+    if (mount && window.WDS && WDS.platformBoot) {
+      if (WDS.platformBoot.mount) {
+        WDS.platformBoot.mount(mount, {
+          product: "ForageCast",
+          title: "Season table",
+          detail: "Loading educational season timing and terrain zones.",
+          status: "Starting…"
+        });
+      }
+      if (WDS.platformBoot.watch) {
+        WDS.platformBoot.watch(mount, {
+          product: "ForageCast",
+          title: "Season table is taking too long",
+          detail: "Startup did not finish. Retry, or return to ForageCast overview.",
+          homeHref: "./",
+          supportHref: "../../support.html",
+          timeoutMs: 15000,
+          onRetry: function () {
+            location.reload();
+          }
+        });
+      }
+    }
+
+    var started = false;
     function start(loc) {
+      if (started) return;
+      started = true;
       loadSeasonTable(loc);
     }
+
     if (window.ForageCastBoot) {
-      ForageCastBoot.bootstrapLocation().then(start);
+      var timer = setTimeout(function () {
+        start(null);
+      }, 1800);
+      ForageCastBoot.bootstrapLocation()
+        .then(function (loc) {
+          clearTimeout(timer);
+          start(loc);
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          start(null);
+        });
     } else {
       start(null);
     }

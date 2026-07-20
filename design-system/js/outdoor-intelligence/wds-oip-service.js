@@ -172,8 +172,18 @@
   }
 
   function coordsFromRequest(req, pkg) {
-    if (req && req.location && M.isFiniteCoord(req.location.lat) && M.isFiniteCoord(req.location.lng)) {
-      return { lat: Number(req.location.lat), lng: Number(req.location.lng) };
+    if (req && req.location) {
+      var loc = req.location;
+      // Provisional / national educational shells must not drive point APIs
+      if (loc.useNationalFallback || loc.contentMode === "national-educational" || loc.source === "pending") {
+        return null;
+      }
+      if (M.isFiniteCoord(loc.lat) && M.isFiniteCoord(loc.lng)) {
+        var lat = Number(loc.lat);
+        var lng = Number(loc.lng);
+        if (lat === 0 && lng === 0) return null;
+        return { lat: lat, lng: lng };
+      }
     }
     return coordsFromPkg(pkg);
   }
@@ -293,6 +303,7 @@
       M.devLog("stale OIP response ignored", generation, activeGeneration);
       return null;
     }
+    var hadCoords = !!coordsFromRequest(req, pkg);
     activateLocationContext(req || lastRequest, pkg, weatherPkg);
     if (weatherPkg) {
       pkg = M.normalizePackage(S.mergeLayers(pkg, S.fromWeatherPackage(weatherPkg)));
@@ -343,26 +354,54 @@
     pkg.meta.liveFeed = false;
     pkg.meta.moduleSources = {
       weather: weatherPkg && weatherPkg.meta ? weatherPkg.meta.provider + " (user)" : "unavailable",
-      alerts: alertsPkg && alertsPkg.status === "live" ? "nws (user)" : "unavailable",
-      airQuality: airQualityPkg && airQualityPkg.status === "live" ? "open-meteo-aq (user)" : "unavailable",
-      elevation: elevationPkg && elevationPkg.meters != null ? "elevation (user)" : "unavailable",
+      alerts: alertsPkg && alertsPkg.status === "live" ? "nws (user)" :
+        (alertsPkg && alertsPkg.status === "empty" ? "nws-empty (user)" :
+          (hadCoords ? "unavailable" : "skipped-no-coords")),
+      airQuality: airQualityPkg && airQualityPkg.status === "live" ? "open-meteo-aq (user)" :
+        (hadCoords ? "unavailable" : "skipped-no-coords"),
+      elevation: elevationPkg && elevationPkg.meters != null ? "elevation (user)" :
+        (hadCoords ? "unavailable" : "skipped-no-coords"),
       usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "usgs-iv (user)" :
-        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "usgs-no-nearby (user)" : "unavailable"),
+        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "usgs-no-nearby (user)" :
+          (hadCoords ? "unavailable" : "skipped-no-coords")),
       trailConditions: trailPkg && trailPkg.status === "live" ? "openstreetmap-overpass (user)" :
-        (trailPkg && trailPkg.status === "empty" ? "openstreetmap-empty (user)" : "unavailable"),
+        (trailPkg && trailPkg.status === "empty" ? "openstreetmap-empty (user)" : "pending"),
       daylight: weatherPkg ? "oip-derived (user)" : "unavailable",
       photography: "oie-derived (user)"
     };
+    function blockFor(pkgVal, liveTest, emptyStatuses) {
+      if (!hadCoords && !liveTest(pkgVal)) return "skipped";
+      if (liveTest(pkgVal)) return "live";
+      if (pkgVal && emptyStatuses && emptyStatuses.indexOf(pkgVal.status) >= 0) return pkgVal.status;
+      if (!pkgVal) return hadCoords ? "unavailable" : "skipped";
+      if (pkgVal.status === "unavailable") return "unavailable";
+      return "unavailable";
+    }
     pkg.meta.blockStatus = {
       weather: weatherPkg && weatherPkg.meta && !weatherPkg.meta.isPlaceholder ? "live" : "unavailable",
-      alerts: alertsPkg ? (alertsPkg.status === "unavailable" ? "unavailable" : "live") : "unavailable",
-      airQuality: airQualityPkg && airQualityPkg.status === "live" ? "live" : "unavailable",
-      elevation: elevationPkg && elevationPkg.meters != null ? "live" : "unavailable",
-      usgsWater: usgsWaterPkg && usgsWaterPkg.nearest ? "live" :
-        (usgsWaterPkg && usgsWaterPkg.status === "no-nearby" ? "no-nearby" : "unavailable"),
+      alerts: blockFor(alertsPkg, function (p) {
+        return p && (p.status === "live" || p.status === "empty");
+      }, ["empty"]),
+      airQuality: blockFor(airQualityPkg, function (p) {
+        return p && p.status === "live";
+      }),
+      elevation: blockFor(elevationPkg, function (p) {
+        return p && p.meters != null;
+      }),
+      usgsWater: blockFor(usgsWaterPkg, function (p) {
+        return p && p.nearest;
+      }, ["no-nearby"]),
+      // Trails hydrate later — pending must not force Partial on first paint
       trailConditions: trailPkg && trailPkg.status === "live" ? "live" :
-        (trailPkg && trailPkg.status === "empty" ? "empty" : "unavailable")
+        (trailPkg && trailPkg.status === "empty" ? "empty" : "pending")
     };
+    // Normalize no-nearby
+    if (usgsWaterPkg && usgsWaterPkg.status === "no-nearby") {
+      pkg.meta.blockStatus.usgsWater = "no-nearby";
+    }
+    if (alertsPkg && alertsPkg.status === "empty") {
+      pkg.meta.blockStatus.alerts = "empty";
+    }
     if (trailPkg && trailPkg.meta) {
       if (trailPkg.meta.cached || trailPkg.meta.stale) {
         pkg.meta.fromCache = true;

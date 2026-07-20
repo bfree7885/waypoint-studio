@@ -44,11 +44,12 @@ assert("plain-language confidence", /id="plan-stars"/.test(html) && /We’ll sug
 assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
 assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
-assert("layers and notes moved to tools", (() => {
+assert("add note on FAB for field speed", (() => {
   const fab = html.match(/<div class="sheds-fab-rail"[\s\S]*?<\/div>/);
   const tools = html.match(/id="sheet-tools"[\s\S]*?<\/div>\s*<\/div>/);
   if (!fab || !tools) return false;
-  return !/btn-layers|btn-add-obs/.test(fab[0]) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
+  return /btn-add-obs-fab/.test(fab[0]) && /btn-locate/.test(fab[0]) &&
+    !/btn-layers/.test(fab[0]) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
 })());
 assert("legend deferred until heat", /id="heat-legend"/.test(html) && /hidden/.test(html.match(/id="heat-legend"[^>]*/)[0]));
 assert("ethics mentions tile providers", /Map providers|OpenTopoMap|tile/i.test(html));
@@ -64,6 +65,8 @@ assert("offline banner", /map-offline/.test(html) && /syncOfflineBanner/.test(ap
 assert("soft heat layer polish", /\.sheds-heat-layer/.test(css) && /pointer-events:\s*none/.test(css));
 assert("reduced motion respected", /prefers-reduced-motion/.test(css));
 assert("confidence phrase helper", /confidencePhrase/.test(app) && /dayQualityLine/.test(app));
+assert("field briefing helper", /fieldConditionLines/.test(app));
+assert("GPS denial memory", /waypoint-sheds-gps-denied-v1/.test(app));
 assert("no empty star glyphs in empty plan", !/☆☆☆☆☆/.test(app));
 assert("field design system doc", fs.existsSync(path.join(ROOT, "docs/WAYPOINT-FIELD-DESIGN-SYSTEM.md")));
 assert("redesign rationale doc", fs.existsSync(path.join(ROOT, "docs/SHEDS-EXPERIENCE-REDESIGN-V1.md")));

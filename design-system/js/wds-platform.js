@@ -30,6 +30,7 @@
     "platform/wds-platform-graph.js",
     "platform/wds-platform-workflows.js",
     "platform/wds-platform-identity.js",
+    "platform/wds-platform-boot.js",
     "wds-us-states.js",
     "wds-geocode-service.js",
     "wds-ip-geolocation.js",

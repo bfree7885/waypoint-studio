@@ -26,6 +26,18 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           WAYPOINT_BUILD_SOURCE: github-actions
 
+      - name: Validate production assets
+        run: node automation/validate-production-assets.mjs
+
+      - name: Validate production links
+        run: node automation/validate-production-links.mjs
+
+      - name: Production recovery regressions
+        run: node automation/test-production-recovery.mjs
+
+      - name: Production repair regressions
+        run: node automation/test-production-repair.mjs
+
       - name: Install smoke dependency
         run: npm install ws@8.21.0 --no-save
 
@@ -77,8 +89,11 @@ jobs:
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
 
-      - name: Platform hardening tests
-        run: node automation/test-platform-hardening.mjs
+      - name: Dashboard reliability tests
+        run: node automation/test-dashboard-reliability.mjs
+
+      - name: Dashboard Today Outside tests
+        run: node automation/test-dashboard-today-outside.mjs
 
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs

@@ -958,10 +958,14 @@
           escapeHtml(age || (userStamped ? "Last updated " + userStamped : "Last known package on this device.")) +
         "</p>";
     } else if (trust === "partial") {
+      var failDetail = Rel && Rel.describeProviderFailures ? Rel.describeProviderFailures(platform) : "";
       html +=
         '<p class="wdb-live-updated wdb-live-updated--partial" data-wds-live-updated data-trust="partial" role="status">' +
-          '<span class="wdb-live-updated__label">Partial success</span> ' +
-          "Some providers responded; others timed out or failed." +
+          '<span class="wdb-live-updated__label">Partial conditions</span> ' +
+          escapeHtml(
+            failDetail ||
+              "Some outdoor providers responded; others timed out or failed. Usable panels stay available."
+          ) +
           (userStamped ? " · " + escapeHtml(userStamped) : "") +
         "</p>";
     } else if (userStamped) {

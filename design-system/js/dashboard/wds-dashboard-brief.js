@@ -73,8 +73,32 @@
         verdictDetail = verdictDetail + " High UV increases heat stress and harsh shadows — shoot early/late and hydrate on long hikes.";
       }
     }
-    if (temp != null && temp >= 90) cautions.push("Heat");
+    if (temp != null && temp >= 90) {
+      cautions.push("Heat");
+      if (verdict === "go") {
+        verdict = "caution";
+        verdictLabel = "Heat may reduce afternoon hiking comfort";
+        verdictDetail = "Start early, carry extra water, and favor shade after mid-day.";
+      }
+    }
     if (temp != null && temp <= 25) cautions.push("Cold");
+
+    var humidity = cur && parseNum(cur.humidity);
+    if (humidity != null && humidity >= 85 && verdict === "go") {
+      verdictDetail = "Morning fog is possible — humidity is high enough that valleys may hold mist until the sun mixes the air.";
+    }
+
+    var windSpeed = cur && cur.wind
+      ? (typeof cur.wind.speed === "number" ? cur.wind.speed : parseNum(cur.wind.speed && cur.wind.speed.value != null ? cur.wind.speed.value : cur.wind.speed))
+      : null;
+    if (windSpeed != null && windSpeed >= 18 && verdict !== "wait") {
+      if (verdict === "go") verdict = "caution";
+      cautions.push("Wind");
+      if (verdictDetail.indexOf("telephoto") < 0) {
+        verdictDetail = (verdictDetail ? verdictDetail + " " : "") +
+          "Long telephoto wildlife photography may be more difficult in this wind.";
+      }
+    }
 
     var lookFor = "";
     var isNational = platform.meta && platform.meta.contentMode === "national-educational";

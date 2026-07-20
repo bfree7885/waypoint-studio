@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-product="landscape-interpretation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Learn how glaciation, farming, logging, fire, flooding, soils, and infrastructure shape the places you visit.">
+  <title>Learn landscape processes — Landscape Interpretation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="css/lie.css">
+</head>
+<body class="lie-page">
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="landscape-interpretation" data-product-name="Landscape Interpretation" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+    <main id="main" class="lie-app">
+      <header class="lie-hero">
+        <p class="lie-eyebrow">Landscape Interpretation · Learn</p>
+        <h1>Processes that write a place</h1>
+        <p class="lie-lead">Every hillside is a collaboration — ice, water, fire, plants, animals, and people. Use plain clues. Prefer “suggests” over “proves.”</p>
+        <p class="lie-nav"><a href="./">Field reader</a> · <a href="../waypoint-volunteer/discover.html">Volunteer nearby</a> · <a href="../fieldry/">Fieldry</a></p>
+      </header>
+
+      <div class="lie-learn-grid">
+        <article class="lie-learn-card" id="glaciation">
+          <h2>Glaciation</h2>
+          <p>Ice sheets dragged and dropped mixed rock. Erratics, till, kettles, and poorly sorted soils often remain. Ask: is this rock local and angular, or far-travelled and rounded?</p>
+        </article>
+        <article class="lie-learn-card" id="agriculture">
+          <h2>Historic agriculture</h2>
+          <p>Stone walls, fence wire in trees, and even-aged wall lines often mark old fields. Forest that “grew back” after pasture abandonment can look dense and young inside an old enclosure.</p>
+        </article>
+        <article class="lie-learn-card" id="logging">
+          <h2>Logging</h2>
+          <p>Stumps, skid trails, and sudden even-aged cohorts point to cutting. The forest may be healthy — and still tell a harvest story.</p>
+        </article>
+        <article class="lie-learn-card" id="fire">
+          <h2>Fire</h2>
+          <p>Basal scars, charcoal, and patchy deadwood can show fire’s hand. Confirm patterns across a slope before assuming a landscape-scale burn.</p>
+        </article>
+        <article class="lie-learn-card" id="flooding">
+          <h2>Flooding &amp; hydrology</h2>
+          <p>Wrack lines, scour, terraces, and plants that tolerate wet feet record high water. A stream valley that floods repeatedly looks different from an upland seep.</p>
+        </article>
+        <article class="lie-learn-card" id="mining">
+          <h2>Mining</h2>
+          <p>Spoil, pits, and odd metal debris can reshape soils for centuries. Stay out of workings; treat readings as educational, not contamination surveys.</p>
+        </article>
+        <article class="lie-learn-card" id="succession">
+          <h2>Succession</h2>
+          <p>Meadows become shrubs, then trees. Dense young stems beside open forbs often mean an opening is closing — from farm, beaver, blowdown, or cut.</p>
+        </article>
+        <article class="lie-learn-card" id="soils-topo">
+          <h2>Soils &amp; topography</h2>
+          <p>Thin soils over bedrock, soft seepage ground, and terrace steps change what can grow. Form and drainage teach as much as plant lists.</p>
+        </article>
+        <article class="lie-learn-card" id="infrastructure">
+          <h2>Infrastructure</h2>
+          <p>Roadcuts, utility corridors, and graded berms create sharp edges and rewritten drainage — human geometry laid over older landforms.</p>
+        </article>
+        <article class="lie-learn-card" id="observe">
+          <h2>How to observe</h2>
+          <ol class="lie-learn-list">
+            <li>Name what you see before naming a story.</li>
+            <li>Collect two or three independent clues.</li>
+            <li>List alternatives that still fit.</li>
+            <li>Walk one more transect before raising confidence.</li>
+          </ol>
+        </article>
+      </div>
+
+      <section class="lie-bridges">
+        <h2>Related Waypoint tools</h2>
+        <ul>
+          <li><a href="./">Field reader</a> — turn clues into hedged stories</li>
+          <li><a href="../fieldry/">Fieldry</a> — keep private observations</li>
+          <li><a href="../shed-hunting/">Sheds</a> — habitat cover in the field</li>
+          <li><a href="../foragecast/">ForageCast</a> — season and site honesty</li>
+          <li><a href="../scenes/">Scenes</a> — photograph evidence carefully</li>
+          <li><a href="../waypoint-volunteer/">Volunteer</a> — stewardship after understanding</li>
+        </ul>
+      </section>
+    </main>
+    <div data-wds-app-footer data-shell-depth="1"></div>
+  </div>
+  <script src="../../design-system/js/platform/wds-platform-catalog.js" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-stores.js" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.appShell) {
+        WDS.appShell.mount({
+          appId: "landscape-interpretation",
+          productName: "Landscape Interpretation",
+          shellDepth: 1
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,18 +1,18 @@
 {
   "productId": "signalterrain",
   "title": "SignalTerrain",
-  "eyebrow": "Waypoint Studio · Understand the world's signals",
+  "eyebrow": "Waypoint Studio \u00b7 Understand the world's signals",
   "status": "foundation",
-  "lead": "SignalTerrain helps people observe and understand invisible environments — radio spectrum and educational cyber awareness — with evidence, context, and calm summaries. Not a news feed, not a SIEM, not offensive security.",
-  "mission": "People who want to understand what changed in the radio environment or the public cyber landscape, why it matters, who may be affected, and what defensive next steps are worth considering — without hype, fear, or attack tooling.",
+  "lead": "SignalTerrain helps people observe and understand invisible environments \u2014 radio spectrum and educational cyber awareness \u2014 with evidence, context, and calm summaries. Not a news feed, not a SIEM, not offensive security.",
+  "mission": "People who want to understand what changed in the radio environment or the public cyber landscape, why it matters, who may be affected, and what defensive next steps are worth considering \u2014 without hype, fear, or attack tooling.",
   "problems": [
     "Radio and RF conditions are hard to follow without literacy and private logging tools",
-    "Public cyber news is noisy; people need topics, history, and defensive guidance — not exploit kits",
+    "Public cyber news is noisy; people need topics, history, and defensive guidance \u2014 not exploit kits",
     "Infrastructure and research signals lack a calm place to connect evidence over time"
   ],
   "cta": {
-    "href": "summary.html",
-    "label": "Open intelligence summary"
+    "href": "cyber/live.html#brief",
+    "label": "Open today’s cyber brief"
   },
   "capabilityGroups": [
     {
@@ -30,7 +30,7 @@
     {
       "title": "Cyber Awareness",
       "status": "foundation",
-      "description": "Educational defensive awareness only — topics, advisories, and guidance. Not scanning, penetration testing, offense, SOC, IDS, or IPS.",
+      "description": "Educational defensive awareness only \u2014 topics, advisories, and guidance. Not scanning, penetration testing, offense, SOC, IDS, or IPS.",
       "items": [
         "Ransomware campaigns as awareness topics",
         "Zero-day and exploited vulnerability context",
@@ -51,8 +51,8 @@
     "Everything important becomes a topic that evolves",
     "The living knowledge graph accumulates connections over time",
     "Events normalize into Unified Intelligence Objects",
-    "Recommendations guide — they never auto-execute",
-    "Educational cyber awareness only — not scanning, offense, SOC, IDS, or IPS",
+    "Recommendations guide \u2014 they never auto-execute",
+    "Educational cyber awareness only \u2014 not scanning, offense, SOC, IDS, or IPS",
     "Audio, receivers, and precise locations stay local first",
     "Never fabricate signals, incidents, or threat claims"
   ],
@@ -60,17 +60,22 @@
     {
       "title": "Cyber Awareness Intelligence Engine",
       "status": "foundation",
-      "description": "Entity graph, explainable priority, and shared research workspace — educational defensive literacy only."
+      "description": "Entity graph, explainable priority, and shared research workspace \u2014 educational defensive literacy only."
     },
     {
       "title": "Intelligence Core",
       "status": "foundation",
-      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces — architecture first."
+      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces \u2014 architecture first."
     },
     {
-      "title": "Intelligence Summary",
+      "title": "Cyber Live intelligence",
       "status": "live",
-      "description": "Concise daily intelligence prototype — summarizes sample events, does not scroll feeds."
+      "description": "Verified public sources — daily brief with priority, trust, and provider health. Defensive awareness only."
+    },
+    {
+      "title": "Intelligence Summary (samples)",
+      "status": "foundation",
+      "description": "Educational sample UIOs — labeled samples, not live intelligence."
     },
     {
       "title": "Living knowledge graph",
@@ -94,16 +99,57 @@
     }
   ],
   "routes": [
-    { "path": "/", "label": "SignalTerrain home", "ready": true },
-    { "path": "summary.html", "label": "Intelligence summary", "ready": true },
-    { "path": "cyber/", "label": "Cyber Awareness", "ready": true },
-    { "path": "cyber/ingest-health.html", "label": "Cyber ingest health (internal)", "ready": true },
-    { "path": "topics.html", "label": "Topics", "ready": true },
-    { "path": "graph.html", "label": "Knowledge graph", "ready": true },
-    { "path": "/receivers/", "label": "Receivers", "ready": false },
-    { "path": "/incidents/", "label": "Incident timeline", "ready": false },
-    { "path": "/audio/", "label": "Audio library", "ready": false }
+    {
+      "path": "./",
+      "label": "SignalTerrain home",
+      "ready": true
+    },
+    {
+      "path": "cyber/live.html#brief",
+      "label": "Today’s cyber brief (live)",
+      "ready": true
+    },
+    {
+      "path": "cyber/",
+      "label": "Cyber Awareness (live)",
+      "ready": true
+    },
+    {
+      "path": "cyber/ingest-health.html",
+      "label": "Cyber ingest health (internal)",
+      "ready": true
+    },
+    {
+      "path": "topics.html",
+      "label": "Topics (samples)",
+      "ready": true
+    },
+    {
+      "path": "graph.html",
+      "label": "Knowledge graph (samples)",
+      "ready": true
+    },
+    {
+      "path": "summary.html",
+      "label": "Intelligence summary (samples)",
+      "ready": true
+    },
+    {
+      "path": "receivers/",
+      "label": "Receivers (planned)",
+      "ready": false
+    },
+    {
+      "path": "incidents/",
+      "label": "Incident timeline (planned)",
+      "ready": false
+    },
+    {
+      "path": "audio/",
+      "label": "Audio library (planned)",
+      "ready": false
+    }
   ],
-  "privacyPhilosophy": "Receivers, audio, notes, and precise locations stay on your device first. Samples are labeled samples — never presented as live intelligence. Nothing syncs until a path earns trust.",
-  "futureDirection": "Deeper RF observation tools, richer defensive cyber topic coverage, infrastructure awareness when sources exist, and carefully bounded future phases that remain educational — never offensive."
+  "privacyPhilosophy": "Receivers, audio, notes, and precise locations stay on your device first. Samples are labeled samples \u2014 never presented as live intelligence. Nothing syncs until a path earns trust.",
+  "futureDirection": "Deeper RF observation tools, richer defensive cyber topic coverage, infrastructure awareness when sources exist, and carefully bounded future phases that remain educational \u2014 never offensive."
 }

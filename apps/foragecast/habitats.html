@@ -21,7 +21,15 @@
     <div data-wds-app-local data-shell-depth="1"></div>
     <div id="wds-location-prompt"></div>
     <main id="main" class="fc-page">
-      <div id="foragecast-page" aria-busy="true"></div>
+      <div id="foragecast-page" aria-busy="true">
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">ForageCast</p>
+          <p class="wds-boot__title">Habitats</p>
+          <p class="wds-boot__detail">Loading this page. Educational outdoor intelligence — not guarantees.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting…</p>
+        </div>
+      </div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -29,6 +37,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/wds-map-view.js" defer></script>
   <script src="../../design-system/js/wds-platform.js?v=local" defer></script>

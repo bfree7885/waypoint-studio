@@ -58,11 +58,42 @@
     return '<p class="wds-loading ss-loading">' + escapeHtml(msg || "Loading…") + "</p>";
   }
 
-  function errorHtml(msg) {
-    if (ui() && ui().errorHtml) {
-      return ui().errorHtml({ text: msg || "Something went wrong." });
+  function errorHtml(msg, opts) {
+    opts = opts || {};
+    if (msg && typeof msg === "object") {
+      opts = msg;
+      msg = opts.text;
     }
-    return '<p class="wds-error ss-error" role="alert">' + escapeHtml(msg || "Something went wrong.") + "</p>";
+    if (ui() && ui().errorHtml) {
+      return ui().errorHtml({
+        text: msg || "Something went wrong.",
+        title: opts.title,
+        kind: opts.kind,
+        retry: !!opts.retry,
+        retryLabel: opts.retryLabel
+      });
+    }
+    var retry = opts.retry
+      ? '<div class="wds-state__actions"><button type="button" class="wds-btn wds-btn--secondary" data-wds-retry">' +
+        escapeHtml(opts.retryLabel || "Retry") +
+        "</button></div>"
+      : "";
+    return (
+      '<div class="wds-state ss-error" role="alert">' +
+      '<p class="wds-error">' + escapeHtml(msg || "Something went wrong.") + "</p>" +
+      retry +
+      "</div>"
+    );
+  }
+
+  function bindRetry(root, onRetry) {
+    if (!root || typeof onRetry !== "function") return;
+    var btn = root.querySelector("[data-wds-retry]");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        onRetry();
+      });
+    }
   }
 
   function mountShell() {
@@ -93,6 +124,7 @@
     honestyBanner: honestyBanner,
     loadingHtml: loadingHtml,
     errorHtml: errorHtml,
+    bindRetry: bindRetry,
     mountShell: mountShell,
     getJson: getJson
   };

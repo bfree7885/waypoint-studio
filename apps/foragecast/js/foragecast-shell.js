@@ -129,7 +129,27 @@
     var mount = document.getElementById(options.mountId || "foragecast-page");
     if (!mount) return;
     mount.setAttribute("aria-busy", "true");
-    mount.innerHTML = '<p class="fc-loading">Reading outdoor conditions…</p>';
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.html) {
+      mount.innerHTML = WDS.platformBoot.html({
+        product: "ForageCast",
+        title: options.title || "ForageCast",
+        detail: "Reading outdoor conditions for this view. Educational estimates — not guarantees.",
+        status: "Loading…"
+      });
+      if (WDS.platformBoot.watch) {
+        WDS.platformBoot.watch(mount, {
+          product: "ForageCast",
+          title: "Still loading",
+          detail: "This view took longer than expected. You can retry or return home.",
+          timeoutMs: 20000,
+          onRetry: function () {
+            location.reload();
+          }
+        });
+      }
+    } else {
+      mount.innerHTML = '<p class="fc-loading">Reading outdoor conditions…</p>';
+    }
 
     var started = false;
     function run(loc) {
@@ -137,6 +157,7 @@
       started = true;
       loadCore(loc)
         .then(function (ctx) {
+          if (global.WDS && WDS.platformBoot) WDS.platformBoot.clear(mount);
           mount.innerHTML = taskNav(options.active) + options.render(ctx, escapeHtml);
           mount.removeAttribute("aria-busy");
           if (options.afterRender) options.afterRender(ctx, mount);
@@ -149,14 +170,25 @@
           }
         })
         .catch(function (err) {
-          mount.innerHTML =
-            taskNav(options.active) +
-            '<section class="fc-section" role="alert"><p>Could not load this view.</p>' +
-            "<p class=\"wds-caption\">" +
-            escapeHtml(err && err.message ? err.message : "Unknown error") +
-            "</p>" +
-            '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p></section>';
-          mount.removeAttribute("aria-busy");
+          if (global.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+            WDS.platformBoot.fail(mount, {
+              product: "ForageCast",
+              title: "Could not load this view",
+              detail: err && err.message ? err.message : "Unknown error",
+              onRetry: function () {
+                location.reload();
+              }
+            });
+          } else {
+            mount.innerHTML =
+              taskNav(options.active) +
+              '<section class="fc-section" role="alert"><p>Could not load this view.</p>' +
+              "<p class=\"wds-caption\">" +
+              escapeHtml(err && err.message ? err.message : "Unknown error") +
+              "</p>" +
+              '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p></section>';
+            mount.removeAttribute("aria-busy");
+          }
         });
     }
 

@@ -114,91 +114,93 @@
         '<input type="hidden" name="id" value="' + U().escapeHtml(obs.id) + '">' +
         '<input type="hidden" name="knowledgeId" id="fld-knowledge-id" value="' + U().escapeHtml(fieldry.knowledgeId || ext.knowledgeId || "") + '">' +
         '<input type="hidden" name="wskbSpeciesId" value="' + U().escapeHtml(fieldry.wskbSpeciesId || (obs.taxon && obs.taxon.taxonIdSource === "wskb" ? obs.taxon.taxonId : "") || "") + '">' +
+        '<input type="hidden" name="accuracyM" id="fld-accuracy" value="' + U().escapeHtml(obs.location && obs.location.accuracyM != null ? String(obs.location.accuracyM) : "") + '">' +
         '<header class="fld-form__head">' +
           '<a class="fld-form__back" href="#/">← Home</a>' +
           '<h1 class="fld-form__title">' + (isEdit ? "Edit observation" : "Record an observation") + "</h1>" +
-          '<p class="fld-form__lead">What did you encounter? Exact species optional — unidentified records are welcome.</p>' +
+          '<p class="fld-form__lead">Capture fast outdoors. Exact species optional — unidentified records are welcome.</p>' +
+          (options.restoredDraft
+            ? '<p class="fld-form__draft-banner" role="status">Restored an unsaved draft from this device.</p>'
+            : "") +
           '<p class="fld-form__tip">' + U().escapeHtml(U().randomTip()) + "</p>" +
+          '<p class="fld-form__offline" id="fld-offline-banner" hidden role="status">You’re offline — notes still save on this device.</p>' +
         "</header>" +
         '<div class="fld-form__layout">' +
           '<div class="fld-form__main">' +
-            '<fieldset class="fld-form__group">' +
-              '<legend>Subject</legend>' +
-              field("fld-category", "Category", selectOptions("category", categoryOptions(category), category),
-                "Life-list category — birds, mushrooms, rocks, weather, and more.") +
-              field("fld-knowledge-q", "Search species",
-                textInput("fld-knowledge-q", "knowledgeQuery", "", {
-                  placeholder: "Common or scientific name…",
-                  autocomplete: "off",
-                  ariaDescribedBy: "fld-knowledge-status"
-                }) +
-                '<div class="fld-knowledge-status" id="fld-knowledge-status" role="status" aria-live="polite"></div>' +
-                '<ul class="fld-knowledge-results" id="fld-knowledge-results" hidden></ul>' +
-                '<div class="fld-knowledge-selected" id="fld-knowledge-selected" hidden></div>',
-                "Suggestions come from a sample species catalog when available — not a complete field guide.") +
-              field("fld-common", "Common name", textInput("fld-common", "commonName", val(obs, "taxon.commonName") || fieldry.knowledgeCommon || "", {
-                placeholder: "e.g. Eastern bluebird — or Unknown mushroom"
-              })) +
-              field("fld-scientific", "Scientific name <span class='fld-optional'>(optional)</span>",
-                textInput("fld-scientific", "scientificName", val(obs, "taxon.scientificName") || fieldry.knowledgeScientific || "", {
-                  placeholder: "When known"
-                })) +
+            '<fieldset class="fld-form__group fld-form__group--quick">' +
+              "<legend>Quick capture</legend>" +
+              field("fld-category", "Category", selectOptions("category", categoryOptions(category || "other"), category || "other"),
+                "Defaults to Other — change when you know the life-list group.") +
               field("fld-title", "Observation title", textInput("fld-title", "title", val(obs, "taxon.label"), {
                 placeholder: "Short label for this encounter",
                 required: true
               })) +
+              field("fld-common", "Common name <span class='fld-optional'>(optional)</span>", textInput("fld-common", "commonName", val(obs, "taxon.commonName") || fieldry.knowledgeCommon || "", {
+                placeholder: "e.g. Eastern bluebird — or Unknown mushroom"
+              })) +
               field("fld-id-status", "Identification", selectOptions("identificationStatus", ID_STATUS_OPTS, idStatus),
                 "You do not need a confident ID to record an encounter.") +
-              field("fld-confidence", "Confidence", selectOptions("confidence", confidenceOptions(val(obs, "record.confidence", "likely")), val(obs, "record.confidence", "likely"))) +
-              field("fld-count", "Count <span class='fld-optional'>(optional)</span>",
-                textInput("fld-count", "count", countVal === "" || countVal == null ? "" : String(countVal), {
-                  type: "number", min: "0", step: "1", placeholder: "How many?"
-                })) +
-            "</fieldset>" +
-            '<fieldset class="fld-form__group">' +
-              '<legend>When &amp; where</legend>' +
               field("fld-date", "Date", textInput("fld-date", "date", val(obs, "observedAt.date"), { type: "date", required: true })) +
               field("fld-time", "Time <span class='fld-optional'>(optional)</span>", textInput("fld-time", "time", val(obs, "observedAt.time"), { type: "time" })) +
-              field("fld-precision", "Location precision", selectOptions("locationPrecision", LOCATION_PRECISION_OPTS, precision),
-                "Exact coordinates stay on device; regional and hidden protect sensitive places.") +
-              '<input type="hidden" name="privacyLevel" value="private">' +
-              '<p class="fld-hint fld-form__privacy-note">Privacy: private on this device. Sharing is not part of Fieldry yet.</p>' +
-              field("fld-county", "County / region", textInput("fld-county", "county", val(obs, "location.county"))) +
-              field("fld-state", "State", textInput("fld-state", "state", val(obs, "location.state"))) +
-              '<details class="fld-form__advanced">' +
-                "<summary>Coordinates (optional)</summary>" +
-                '<div class="fld-form__advanced-body">' +
-                  field("fld-lat", "Latitude", textInput("fld-lat", "latitude", val(obs, "location.latitude"), { type: "number", step: "any" })) +
-                  field("fld-lon", "Longitude", textInput("fld-lon", "longitude", val(obs, "location.longitude"), { type: "number", step: "any" })) +
-                  '<p class="fld-form__gps"><button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="fld-use-gps">Use current location</button></p>' +
-                "</div>" +
-              "</details>" +
+              '<div class="fld-form__gps-bar">' +
+                '<button type="button" class="wds-btn wds-btn--primary" id="fld-use-gps">Use my GPS</button>' +
+                '<p class="fld-hint" id="fld-gps-status" role="status">' +
+                  (val(obs, "location.latitude") !== "" && val(obs, "location.latitude") != null
+                    ? "Coordinates on file — precision respects your privacy setting."
+                    : "Optional. Captures coordinates and accuracy on this device only.") +
+                "</p>" +
+              "</div>" +
+              field("fld-notes", "Quick notes", textarea("fld-notes", "notes", val(obs, "record.notes"), 3),
+                "Behavior, signs, access — type only what you need.") +
             "</fieldset>" +
-            '<fieldset class="fld-form__group">' +
-              "<legend>Notes &amp; context</legend>" +
-              field("fld-notes", "Notes", textarea("fld-notes", "notes", val(obs, "record.notes"), 5),
-                "Describe what you observed — behavior, signs, context.") +
-              field("fld-tags", "Tags", textInput("fld-tags", "tags", tags, {
-                placeholder: "backyard, dawn, wet bark"
-              }), "Comma-separated.") +
-              field("fld-habitat", "Habitat", textInput("fld-habitat", "habitat", val(obs, "habitat.label"), {
-                placeholder: "e.g. Riparian hardwood"
-              })) +
-              field("fld-type", "Record type <span class='fld-optional'>(optional)</span>",
-                selectOptions("observationType", typeOpts, fieldry.observationType || "")) +
-              '<details class="fld-form__advanced">' +
-                "<summary>Season &amp; phenology</summary>" +
-                '<div class="fld-form__advanced-body">' +
-                  field("fld-season", "Season", textInput("fld-season", "season", val(obs, "context.season"), { placeholder: "e.g. late spring" })) +
-                  field("fld-phenology", "Phenology", textInput("fld-phenology", "phenologyStage", val(obs, "context.phenologyStage"), { placeholder: "e.g. fruiting" })) +
-                  '<div class="wds-field fld-field"><span class="wds-label">Weather snapshot</span>' + weatherReadonly(obs) + "</div>" +
-                "</div>" +
-              "</details>" +
-              field("fld-ethical", "Ethical notes <span class='fld-optional'>(optional)</span>", textarea("fld-ethical", "ethicalNotes", fieldry.ethicalNotes || "", 3)) +
-            "</fieldset>" +
-            '<div class="fld-form__status" id="fld-form-status" role="status" aria-live="polite" hidden></div>' +
+            '<details class="fld-form__advanced">' +
+              "<summary>More details (species, place, tags)</summary>" +
+              '<div class="fld-form__advanced-body">' +
+                field("fld-knowledge-q", "Search species",
+                  textInput("fld-knowledge-q", "knowledgeQuery", "", {
+                    placeholder: "Common or scientific name…",
+                    autocomplete: "off",
+                    ariaDescribedBy: "fld-knowledge-status"
+                  }) +
+                  '<div class="fld-knowledge-status" id="fld-knowledge-status" role="status" aria-live="polite"></div>' +
+                  '<ul class="fld-knowledge-results" id="fld-knowledge-results" hidden></ul>' +
+                  '<div class="fld-knowledge-selected" id="fld-knowledge-selected" hidden></div>',
+                  "Suggestions come from a sample species catalog when available — not a complete field guide.") +
+                field("fld-scientific", "Scientific name <span class='fld-optional'>(optional)</span>",
+                  textInput("fld-scientific", "scientificName", val(obs, "taxon.scientificName") || fieldry.knowledgeScientific || "", {
+                    placeholder: "When known"
+                  })) +
+                field("fld-confidence", "Confidence", selectOptions("confidence", confidenceOptions(val(obs, "record.confidence", "likely")), val(obs, "record.confidence", "likely"))) +
+                field("fld-count", "Count <span class='fld-optional'>(optional)</span>",
+                  textInput("fld-count", "count", countVal === "" || countVal == null ? "" : String(countVal), {
+                    type: "number", min: "0", step: "1", placeholder: "How many?"
+                  })) +
+                field("fld-precision", "Location precision", selectOptions("locationPrecision", LOCATION_PRECISION_OPTS, precision),
+                  "Exact coordinates stay on device; regional and hidden protect sensitive places.") +
+                '<input type="hidden" name="privacyLevel" value="private">' +
+                '<p class="fld-hint fld-form__privacy-note">Privacy: private on this device. Sharing is not part of Fieldry yet.</p>' +
+                field("fld-county", "County / region", textInput("fld-county", "county", val(obs, "location.county"))) +
+                field("fld-state", "State", textInput("fld-state", "state", val(obs, "location.state"))) +
+                field("fld-lat", "Latitude", textInput("fld-lat", "latitude", val(obs, "location.latitude"), { type: "number", step: "any" })) +
+                field("fld-lon", "Longitude", textInput("fld-lon", "longitude", val(obs, "location.longitude"), { type: "number", step: "any" })) +
+                field("fld-tags", "Tags", textInput("fld-tags", "tags", tags, {
+                  placeholder: "backyard, dawn, wet bark"
+                }), "Comma-separated.") +
+                field("fld-habitat", "Habitat", textInput("fld-habitat", "habitat", val(obs, "habitat.label"), {
+                  placeholder: "e.g. Riparian hardwood"
+                })) +
+                field("fld-type", "Record type <span class='fld-optional'>(optional)</span>",
+                  selectOptions("observationType", typeOpts, fieldry.observationType || "")) +
+                field("fld-season", "Season", textInput("fld-season", "season", val(obs, "context.season"), { placeholder: "e.g. late spring" })) +
+                field("fld-phenology", "Phenology", textInput("fld-phenology", "phenologyStage", val(obs, "context.phenologyStage"), { placeholder: "e.g. fruiting" })) +
+                '<div class="wds-field fld-field"><span class="wds-label">Weather snapshot</span>' + weatherReadonly(obs) + "</div>" +
+                field("fld-ethical", "Ethical notes <span class='fld-optional'>(optional)</span>", textarea("fld-ethical", "ethicalNotes", fieldry.ethicalNotes || "", 3)) +
+              "</div>" +
+            "</details>" +
+            '<div class="fld-form__status" id="fld-form-status" role="alert" aria-live="assertive" hidden></div>' +
+            '<p class="fld-draft-status" id="fld-draft-status" role="status" aria-live="polite"></p>' +
             '<footer class="fld-form__foot">' +
-              '<button type="submit" class="wds-btn wds-btn--primary">' + (isEdit ? "Save changes" : "Save observation") + "</button>" +
+              '<button type="submit" class="wds-btn wds-btn--primary fld-form__save">' + (isEdit ? "Save changes" : "Save observation") + "</button>" +
               '<a class="wds-btn wds-btn--ghost" href="#/">Cancel</a>' +
             "</footer>" +
           "</div>" +
@@ -267,6 +269,12 @@
     var lon = fd.get("longitude");
     obs.location.latitude = lat !== "" && lat != null ? Number(lat) : null;
     obs.location.longitude = lon !== "" && lon != null ? Number(lon) : null;
+    var accRaw = fd.get("accuracyM");
+    if (accRaw !== "" && accRaw != null && isFinite(Number(accRaw))) {
+      obs.location.accuracyM = Number(accRaw);
+    } else if (!obs.location.latitude) {
+      obs.location.accuracyM = null;
+    }
     obs.location.county = String(fd.get("county") || "").trim() || obs.location.county;
     obs.location.state = String(fd.get("state") || "").trim() || obs.location.state;
     obs.location.privacy = obs.location.privacy || {};
@@ -470,28 +478,103 @@
     }
   }
 
+  function validateObservationForm(form, obs) {
+    var messages = [];
+    var title = (obs.taxon && obs.taxon.label) || "";
+    var common = (obs.taxon && obs.taxon.commonName) || "";
+    if (!String(title).trim() && !String(common).trim()) {
+      messages.push("Add an observation title or common name.");
+    }
+    if (!obs.observedAt || !obs.observedAt.date) {
+      messages.push("Choose an observation date.");
+    }
+    var lat = obs.location && obs.location.latitude;
+    var lon = obs.location && obs.location.longitude;
+    var hasLat = lat != null && lat !== "" && isFinite(Number(lat));
+    var hasLon = lon != null && lon !== "" && isFinite(Number(lon));
+    if (hasLat !== hasLon) {
+      messages.push("Enter both latitude and longitude, or clear both.");
+    }
+    if (hasLat && (Number(lat) < -90 || Number(lat) > 90)) {
+      messages.push("Latitude must be between -90 and 90.");
+    }
+    if (hasLon && (Number(lon) < -180 || Number(lon) > 180)) {
+      messages.push("Longitude must be between -180 and 180.");
+    }
+    var count = obs.meta && obs.meta.fieldry && obs.meta.fieldry.count;
+    if (count != null && (!isFinite(count) || count < 0)) {
+      messages.push("Count must be zero or a positive number.");
+    }
+    return messages;
+  }
+
+  function syncOfflineBanner(form) {
+    var banner = form.querySelector("#fld-offline-banner");
+    if (!banner) return;
+    if (navigator.onLine === false) banner.removeAttribute("hidden");
+    else banner.setAttribute("hidden", "");
+  }
+
   function bind(form, options) {
     options = options || {};
     var statusEl = form.querySelector("#fld-form-status");
+    var draftEl = form.querySelector("#fld-draft-status");
+    var draftTimer = null;
+    var isEdit = !!options.isEdit;
+
+    function showStatus(text) {
+      if (!statusEl) return;
+      statusEl.hidden = !text;
+      statusEl.textContent = text || "";
+    }
+
+    function persistDraftQuiet() {
+      if (isEdit) return;
+      if (!global.FieldryStorage || !global.FieldryStorage.saveDraft) return;
+      try {
+        var draftObs = readForm(form);
+        var result = global.FieldryStorage.saveDraft(draftObs);
+        if (draftEl) {
+          draftEl.textContent = result.ok
+            ? "Draft autosaved on this device"
+            : (result.error || "Draft not saved");
+        }
+      } catch (e) {
+        if (draftEl) draftEl.textContent = "Draft not saved";
+      }
+    }
+
+    function scheduleDraft() {
+      if (isEdit) return;
+      clearTimeout(draftTimer);
+      draftTimer = setTimeout(persistDraftQuiet, 500);
+    }
+
+    form.addEventListener("input", scheduleDraft);
+    form.addEventListener("change", scheduleDraft);
+    syncOfflineBanner(form);
+    window.addEventListener("online", function () { syncOfflineBanner(form); });
+    window.addEventListener("offline", function () { syncOfflineBanner(form); });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var obs = readForm(form);
-      if (!obs.taxon.label) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please add an observation title or common name.";
-        }
+      if (!obs.meta.fieldry.category) obs.meta.fieldry.category = "other";
+      var catEl = form.querySelector('[name="category"]');
+      if (catEl && !catEl.value) catEl.value = "other";
+
+      var problems = validateObservationForm(form, obs);
+      if (problems.length) {
+        showStatus(problems[0]);
         var titleEl = form.querySelector("#fld-title");
-        if (titleEl) titleEl.focus();
-        return;
-      }
-      if (!form.querySelector('[name="category"]').value) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Choose a category for your life list.";
+        if (titleEl && /title|common name/i.test(problems[0])) titleEl.focus();
+        else if (/date/i.test(problems[0])) {
+          var dateEl = form.querySelector("#fld-date");
+          if (dateEl) dateEl.focus();
+        } else if (/lat|long/i.test(problems[0])) {
+          var latEl = form.querySelector("#fld-lat");
+          if (latEl) latEl.focus();
         }
-        form.querySelector('[name="category"]').focus();
         return;
       }
       try {
@@ -502,34 +585,51 @@
         if (options.onSaved) options.onSaved(obs);
         window.location.hash = "#/obs/" + encodeURIComponent(obs.id);
       } catch (err) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Could not save this observation. Your draft remains on screen — try again.";
-        }
+        showStatus((err && err.message) || "Could not save this observation. Your draft remains on screen — try again.");
       }
     });
 
     var gpsBtn = form.querySelector("#fld-use-gps");
+    var gpsStatus = form.querySelector("#fld-gps-status");
     if (gpsBtn && navigator.geolocation) {
       gpsBtn.addEventListener("click", function () {
         gpsBtn.disabled = true;
         gpsBtn.textContent = "Locating…";
+        if (gpsStatus) gpsStatus.textContent = "Waiting for GPS…";
         navigator.geolocation.getCurrentPosition(function (pos) {
-          form.querySelector('[name="latitude"]').value = Number(pos.coords.latitude.toFixed(6));
-          form.querySelector('[name="longitude"]').value = Number(pos.coords.longitude.toFixed(6));
-          gpsBtn.disabled = false;
-          gpsBtn.textContent = "Use current location";
-        }, function () {
-          gpsBtn.disabled = false;
-          gpsBtn.textContent = "Use current location";
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent = "Could not read GPS — enter coordinates manually or use regional place names.";
+          var latInput = form.querySelector('[name="latitude"]');
+          var lonInput = form.querySelector('[name="longitude"]');
+          var accInput = form.querySelector("#fld-accuracy");
+          var precInput = form.querySelector('[name="locationPrecision"]');
+          if (latInput) latInput.value = Number(pos.coords.latitude.toFixed(6));
+          if (lonInput) lonInput.value = Number(pos.coords.longitude.toFixed(6));
+          if (accInput && pos.coords.accuracy != null) {
+            accInput.value = String(Math.round(pos.coords.accuracy));
           }
-        }, { enableHighAccuracy: true, timeout: 12000 });
+          if (precInput && precInput.value === "county") {
+            precInput.value = "exact";
+          }
+          gpsBtn.disabled = false;
+          gpsBtn.textContent = "Use my GPS";
+          if (gpsStatus) {
+            gpsStatus.textContent = pos.coords.accuracy != null
+              ? ("Location captured · ±" + Math.round(pos.coords.accuracy) + " m · stays on this device")
+              : "Location captured · stays on this device";
+          }
+          scheduleDraft();
+        }, function (err) {
+          gpsBtn.disabled = false;
+          gpsBtn.textContent = "Use my GPS";
+          var msg = "Could not read GPS — enter place names or coordinates manually.";
+          if (err && err.code === 1) msg = "Location permission denied — use county/region or type coordinates.";
+          else if (err && err.code === 3) msg = "GPS timed out — try again under open sky.";
+          if (gpsStatus) gpsStatus.textContent = msg;
+          showStatus(msg);
+        }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 15000 });
       });
     } else if (gpsBtn) {
       gpsBtn.disabled = true;
+      if (gpsStatus) gpsStatus.textContent = "GPS unavailable in this browser.";
     }
 
     bindKnowledgeSearch(form);

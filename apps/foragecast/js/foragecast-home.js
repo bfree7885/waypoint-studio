@@ -63,12 +63,48 @@
     );
   }
 
+  function formatRegionLabel(loc) {
+    if (window.ForageCastLocation && ForageCastLocation.formatRegionLabel) {
+      return ForageCastLocation.formatRegionLabel(loc);
+    }
+    if (!loc) return "your region";
+    var name = loc.displayTitle || loc.placeLabel || loc.city || loc.name;
+    if (name != null) name = String(name).trim();
+    if (!name || /^(null|undefined)$/i.test(name) || /^null\s*,/i.test(name)) {
+      if (loc.stateCode || loc.state) return "Location in " + (loc.stateCode || loc.state);
+      return "your region";
+    }
+    var region = loc.stateCode || loc.state;
+    if (region && name.indexOf(String(region)) === -1) {
+      return name + ", " + region;
+    }
+    return name;
+  }
+
+  function renderReliability(data) {
+    var state =
+      window.ForageCastLocation && ForageCastLocation.reliabilityState
+        ? ForageCastLocation.reliabilityState(data._platform || null, data._location)
+        : null;
+    if (!state) return "";
+    return (
+      '<p class="fc-reliability fc-reliability--' +
+      escapeHtml(state.id) +
+      '" role="status">' +
+      "<strong>" +
+      escapeHtml(state.label) +
+      "</strong> — " +
+      escapeHtml(state.detail) +
+      "</p>"
+    );
+  }
+
   function renderSummary(data) {
     var summary = data._summary;
     if (!summary) return "";
     var loc = data._location;
     var regionLabel = loc
-      ? loc.name + ", " + (loc.stateCode || loc.state)
+      ? formatRegionLabel(loc)
       : (data.region && data.region.county) || "your region";
 
     var opportunities = (summary.opportunities || summary.species || [])
@@ -143,15 +179,16 @@
 
     return (
       '<section class="fc-summary" aria-labelledby="fc-summary-title">' +
-      '<p class="wds-eyebrow">ForageCast · outdoor intelligence engine · ' +
+      '<p class="wds-eyebrow">ForageCast · outdoor intelligence · ' +
       escapeHtml(regionLabel) +
       "</p>" +
       '<h1 class="fc-summary__title" id="fc-summary-title">' +
       escapeHtml(summary.title) +
       "</h1>" +
       '<p class="fc-summary__question">' +
-      escapeHtml(summary.question) +
+      escapeHtml(summary.question || "What should I look for today, and why?") +
       "</p>" +
+      renderReliability(data) +
       freshness +
       '<p class="fc-honesty" role="note">' +
       escapeHtml(summary.honesty) +
@@ -160,12 +197,12 @@
       '<ul class="fc-summary__list">' +
       opportunities +
       "</ul>" +
-      '<h2 class="fc-summary__subtitle">Why conditions are changing</h2>' +
+      '<h2 class="fc-summary__subtitle">Why conditions favor (or limit) them</h2>' +
       '<ul class="fc-summary__list">' +
       conditionRows +
       "</ul>" +
       (forecastRows
-        ? '<h2 class="fc-summary__subtitle">Forecast intelligence</h2><ul class="fc-summary__list">' +
+        ? '<h2 class="fc-summary__subtitle">Near-term outlook</h2><ul class="fc-summary__list">' +
           forecastRows +
           "</ul>"
         : "") +
@@ -474,20 +511,39 @@
         bindHeatZoneEvents(data);
       })
       .catch(function () {
-        mount.innerHTML =
-          '<section class="fc-section" role="alert">' +
-          "<p class=\"wds-body\">Could not load ForageCast. Check your connection and try again.</p>" +
-          '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" id="fc-retry">Retry</button></p>' +
-          "</section>";
-        mount.removeAttribute("aria-busy");
-        var btn = document.getElementById("fc-retry");
-        if (btn) btn.addEventListener("click", function () { location.reload(); });
+        if (window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+          WDS.platformBoot.fail(mount, {
+            product: "ForageCast",
+            title: "Could not load ForageCast",
+            detail: "Check your connection and try again.",
+            onRetry: function () {
+              location.reload();
+            }
+          });
+        } else {
+          mount.innerHTML =
+            '<section class="fc-section" role="alert">' +
+            "<p class=\"wds-body\">Could not load ForageCast. Check your connection and try again.</p>" +
+            '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" id="fc-retry">Retry</button></p>' +
+            "</section>";
+          mount.removeAttribute("aria-busy");
+          var btn = document.getElementById("fc-retry");
+          if (btn) btn.addEventListener("click", function () { location.reload(); });
+        }
       });
   }
 
   function init() {
     var mount = document.getElementById("foragecast-home");
     if (!mount) return;
+    if (window.WDS && WDS.platformBoot && WDS.platformBoot.watch) {
+      WDS.platformBoot.watch(mount, {
+        product: "ForageCast",
+        title: "Still loading",
+        detail: "Outdoor intelligence is taking longer than expected.",
+        timeoutMs: 22000
+      });
+    }
     var started = false;
     function startOnce(loc) {
       if (started) return;

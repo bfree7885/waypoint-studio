@@ -120,6 +120,28 @@ assert(
   Rel.classifyBlockStatus({ weather: "live", airQuality: "live" }) === "live"
 );
 assert(
+  "skipped pending not partial",
+  Rel.classifyBlockStatus({
+    weather: "live",
+    alerts: "skipped",
+    airQuality: "skipped",
+    elevation: "skipped",
+    usgsWater: "skipped",
+    trailConditions: "pending"
+  }) === "live"
+);
+assert(
+  "secondary river fail stays live when critical ok",
+  Rel.classifyBlockStatus({
+    weather: "live",
+    alerts: "live",
+    airQuality: "live",
+    usgsWater: "unavailable",
+    trailConditions: "unavailable",
+    elevation: "unavailable"
+  }) === "live"
+);
+assert(
   "package trust offline",
   Rel.classifyPackageTrust({ meta: { connectivity: "offline", trust: "offline" } }) === "offline"
 );
@@ -128,10 +150,18 @@ assert(
   Rel.classifyPackageTrust({ meta: { fromCache: true, hydratedAt: new Date().toISOString() } }) === "cached"
 );
 assert(
-  "package trust partial",
+  "package trust partial on critical fail",
   Rel.classifyPackageTrust({
-    meta: { blockStatus: { weather: "live", usgsWater: "unavailable" } }
+    meta: { blockStatus: { weather: "live", airQuality: "unavailable" } }
   }) === "partial"
+);
+assert(
+  "describeProviderFailures lists unavailable",
+  /Unavailable:.*air quality/i.test(
+    Rel.describeProviderFailures({
+      meta: { blockStatus: { weather: "live", airQuality: "unavailable", alerts: "skipped" } }
+    })
+  )
 );
 
 const onlinePkg = {

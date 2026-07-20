@@ -2,13 +2,13 @@
 
 :root {
   --sheds-bg: #07120e;
-  --sheds-surface: rgba(8, 22, 16, 0.78);
+  --sheds-surface: rgba(8, 22, 16, 0.92);
   --sheds-surface-solid: #0c1c15;
-  --sheds-text: #f2f6f2;
-  --sheds-muted: rgba(242, 246, 242, 0.64);
+  --sheds-text: #f5f8f4;
+  --sheds-muted: rgba(245, 248, 244, 0.78);
   --sheds-accent: #d8ec5c;
   --sheds-accent-deep: #9bb82e;
-  --sheds-border: rgba(190, 220, 180, 0.14);
+  --sheds-border: rgba(210, 230, 200, 0.22);
   --sheds-danger: #f0b8b0;
   --sheds-info: #8ec0ff;
   --sheds-safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -16,11 +16,11 @@
   --sheds-safe-right: env(safe-area-inset-right, 0px);
   --sheds-safe-left: env(safe-area-inset-left, 0px);
   --sheds-sheet-peek: 6.35rem;
-  --sheds-fab-size: 3.35rem;
+  --sheds-fab-size: 3.5rem;
   --sheds-radius: 16px;
   --sheds-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --sheds-blur: saturate(150%) blur(18px);
-  --wds-field-touch: 44px;
+  --sheds-blur: saturate(140%) blur(12px);
+  --wds-field-touch: 48px;
 }
 
 html, body {
@@ -465,17 +465,26 @@ html, body {
   bottom: calc(var(--sheds-sheet-peek) + 0.75rem + var(--sheds-safe-bottom));
   z-index: 530;
   display: flex;
-  gap: 0.55rem;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.55rem;
   align-items: center;
-  padding: 0.4rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(8, 20, 15, 0.78);
+  max-width: min(92vw, 22rem);
+  padding: 0.45rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(6, 16, 12, 0.94);
   border: 1px solid var(--sheds-border);
   backdrop-filter: var(--sheds-blur);
   -webkit-backdrop-filter: var(--sheds-blur);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
+  color: var(--sheds-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+.sheds-legend-float__status {
+  flex: 1 1 100%;
   color: var(--sheds-muted);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  font-size: 0.62rem;
+  letter-spacing: 0.01em;
 }
 
 .sheds-legend-float[hidden] {
@@ -507,7 +516,7 @@ html, body {
   border-radius: 22px 22px 0 0;
   border: 1px solid var(--sheds-border);
   border-bottom: 0;
-  background: rgba(7, 18, 13, 0.94);
+  background: rgba(7, 18, 13, 0.97);
   backdrop-filter: var(--sheds-blur);
   -webkit-backdrop-filter: var(--sheds-blur);
   box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.42);
@@ -1089,4 +1098,110 @@ html.sheds-sheet-open .sheds-legend-float {
 .reduced-motion .sheds-suggest {
   transition: none;
   animation: none;
+}
+
+/* —— Sprint 6: outdoor readability & one-handed field chrome —— */
+.sheds-here__chip,
+.sheds-hud-chip,
+.sheds-fab {
+  background: rgba(6, 16, 12, 0.94);
+  border-color: rgba(220, 236, 180, 0.28);
+}
+
+.sheds-here__label {
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: var(--sheds-text);
+}
+
+.sheds-suggest__kicker {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.sheds-suggest__glance {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--sheds-text);
+}
+
+.sheds-suggest__conf {
+  color: var(--sheds-accent);
+  font-weight: 600;
+}
+
+.sheds-obs-location {
+  margin: 0 0 0.35rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: rgba(216, 236, 92, 0.1);
+  border: 1px solid rgba(216, 236, 92, 0.22);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sheds-text);
+  word-break: break-word;
+}
+
+.sheds-actions--compact {
+  margin: 0 0 0.75rem;
+  gap: 0.5rem;
+}
+
+.sheds-actions--compact .sheds-btn {
+  min-height: var(--wds-field-touch);
+  font-weight: 600;
+}
+
+.sheds-sheet__panel .sheds-field label,
+.sheds-sheet__panel .sheds-check {
+  font-weight: 600;
+  color: var(--sheds-text);
+}
+
+.sheds-sheet__panel select,
+.sheds-sheet__panel textarea,
+.sheds-sheet__panel input[type="number"],
+.sheds-sheet__panel input[type="text"] {
+  min-height: var(--wds-field-touch);
+  font-size: 1rem;
+  background: #0a1812;
+  color: var(--sheds-text);
+  border: 1px solid rgba(210, 230, 200, 0.28);
+}
+
+.sheds-map-offline {
+  font-weight: 600;
+  background: rgba(12, 22, 18, 0.96);
+  border: 1px solid rgba(216, 236, 92, 0.35);
+  color: var(--sheds-text);
+}
+
+@media (max-width: 480px) {
+  .sheds-fab-rail {
+    gap: 0.45rem;
+  }
+
+  .sheds-fab {
+    width: 3.35rem;
+    height: 3.35rem;
+    min-height: 3.35rem;
+  }
+
+  .sheds-here {
+    max-width: min(78vw, 18rem);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) {
+  .sheds-suggest {
+    max-height: 4.6rem;
+  }
+
+  .sheds-suggest[data-expanded="true"] {
+    max-height: min(88vh, 22rem);
+  }
+
+  .sheds-fab-rail {
+    bottom: calc(5.1rem + var(--sheds-safe-bottom));
+  }
 }

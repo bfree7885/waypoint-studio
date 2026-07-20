@@ -137,7 +137,12 @@
           }).join("")
         : "<li>No property-matched actions yet. Enable related features on your <a href=\"property.html\">property profile</a>.</li>";
 
-      var region = loc ? (loc.name + ", " + (loc.stateCode || loc.state || "")) : "your region";
+      var region = loc
+        ? (global.ForageCastLocation && ForageCastLocation.formatRegionLabel
+            ? ForageCastLocation.formatRegionLabel(loc)
+            : ((loc.displayTitle || loc.placeLabel || loc.city || loc.name || "your region")))
+        : "your region";
+      if (region === "null" || /^null,/i.test(String(region))) region = "your region";
 
       mount.innerHTML =
         '<header class="fc-land-hero">' +

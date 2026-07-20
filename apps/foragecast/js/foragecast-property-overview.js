@@ -78,7 +78,14 @@
         return;
       }
 
-      var region = loc ? (loc.name + ", " + (loc.stateCode || loc.state || "")) : (sum.locationLabel || "Your region");
+      var region = loc
+        ? (global.ForageCastLocation && ForageCastLocation.formatRegionLabel
+            ? ForageCastLocation.formatRegionLabel(loc)
+            : (loc.displayTitle || loc.placeLabel || loc.city || loc.name || sum.locationLabel || "Your region"))
+        : (sum.locationLabel || "Your region");
+      if (!region || /^null$/i.test(String(region)) || /^null,/i.test(String(region))) {
+        region = sum.locationLabel || "Your region";
+      }
       var wx = plan.weather || {};
       var priorities = (plan.actions || []).map(function (a, i) {
         return (

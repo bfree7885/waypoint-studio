@@ -33,7 +33,30 @@
     options = options || {};
     if (!root) return Promise.reject(new Error("mount root required"));
     root.setAttribute("aria-busy", "true");
-    root.innerHTML = '<p class="st-loading">Opening intelligence summary…</p>';
+    var Boot = global.WDS && global.WDS.platformBoot;
+    if (Boot && Boot.mount) {
+      Boot.mount(root, {
+        product: "SignalTerrain",
+        title: "Sample intelligence summary",
+        detail: "Loading labeled educational samples — not live cyber intelligence.",
+        status: "Starting…"
+      });
+      if (Boot.watch) {
+        Boot.watch(root, {
+          product: "SignalTerrain",
+          title: "Summary is taking too long",
+          detail: "Sample summary did not finish loading. For production priorities open Live intelligence.",
+          homeHref: "./",
+          supportHref: "../../support.html",
+          timeoutMs: 15000,
+          onRetry: function () {
+            mountSummary(root, options);
+          }
+        });
+      }
+    } else {
+      root.innerHTML = '<p class="st-loading">Opening intelligence summary…</p>';
+    }
 
     var base = options.base || "../../design-system/signalterrain/intelligence/samples/";
     return Promise.all([
@@ -63,6 +86,8 @@
           root.innerHTML =
             '<div class="st-summary">' +
             '<header class="st-demo-header">' +
+            '<p class="st-badge" role="status">Educational samples only — not live intelligence. ' +
+            '<a href="cyber/live.html#brief">Open today’s cyber brief (live)</a></p>' +
             "<h1>" +
             esc(summary.meta.title || "Intelligence Summary") +
             "</h1>" +
@@ -188,8 +213,8 @@
                 "</p>"
               : '<p class="st-empty">Select a summary item.</p>') +
             "</section></div>" +
-            '<p class="st-muted st-summary-foot">Prototype only · No IDS · No IPS · No live feeds · ' +
-            '<a href="graph.html">Knowledge graph</a> · <a href="topics.html">Topics</a></p>' +
+            '<p class="st-muted st-summary-foot">Labeled samples only · No IDS · No IPS · ' +
+            '<a href="cyber/live.html#brief">Live cyber brief</a> · <a href="graph.html">Knowledge graph</a> · <a href="topics.html">Topics</a></p>' +
             "</div>";
 
           root.querySelectorAll("[data-uio]").forEach(function (btn) {
@@ -200,16 +225,30 @@
           });
         }
 
+        if (Boot && Boot.clear) Boot.clear(root);
         root.removeAttribute("aria-busy");
         paint();
         return { summary: summary, bundle: bundle, recommendations: recs };
       })
       .catch(function (err) {
-        root.removeAttribute("aria-busy");
-        root.innerHTML =
-          '<p class="st-error">Could not open intelligence summary. ' +
-          esc(err && err.message) +
-          "</p>";
+        if (Boot && Boot.fail) {
+          Boot.fail(root, {
+            product: "SignalTerrain",
+            title: "Could not open sample summary",
+            detail: (err && err.message) || "Sample summary failed to load.",
+            homeHref: "./",
+            supportHref: "../../support.html",
+            onRetry: function () {
+              mountSummary(root, options);
+            }
+          });
+        } else {
+          root.removeAttribute("aria-busy");
+          root.innerHTML =
+            '<p class="st-error">Could not open intelligence summary. ' +
+            esc(err && err.message) +
+            ' <a href="cyber/live.html#brief">Open live brief</a></p>';
+        }
         throw err;
       });
   }

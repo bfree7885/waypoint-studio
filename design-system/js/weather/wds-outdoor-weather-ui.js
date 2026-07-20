@@ -96,6 +96,34 @@
     return "wds-weather-icon wds-weather-icon--" + escapeHtml(key);
   }
 
+  function humidityNote(humidity) {
+    var h = parseFloat(humidity);
+    if (!isFinite(h)) return "";
+    if (h >= 85) return "Morning fog is possible in low places.";
+    if (h <= 30) return "Air is dry — hydrate and watch for brittle vegetation.";
+    return "";
+  }
+
+  function windNote(wind) {
+    var mph = null;
+    if (!wind) return "";
+    if (typeof wind.speed === "number") mph = wind.speed;
+    else if (wind.speed && wind.speed.value != null) mph = Number(wind.speed.value);
+    else mph = parseFloat(wind.speed);
+    if (!isFinite(mph)) return "";
+    if (mph >= 18) return "Long telephoto wildlife photography may be more difficult.";
+    if (mph >= 12) return "Expect more leaf motion and a cooler feel on ridges.";
+    return "";
+  }
+
+  function uvNote(uv) {
+    var n = parseFloat(uv);
+    if (!isFinite(n)) return "";
+    if (n >= 6) return "UV becomes strong after mid-morning — shade and sunscreen matter.";
+    if (n >= 3) return "Moderate UV — protection still helps on open ground.";
+    return "UV stays relatively low.";
+  }
+
   function windLine(wind) {
     var ui = WUI();
     if (!wind || !ui) return "—";
@@ -232,6 +260,10 @@
     var updated = formatUpdated(meta);
     var highLowDate = today && today.date ? fmtFullDate(today.date) : fmtFullDate(new Date().toISOString().slice(0, 10));
 
+    var humWhy = humidityNote(cur.humidity);
+    var windWhy = windNote(cur.wind);
+    var uvWhy = uvNote(cur.uvIndex);
+
     return (
       '<div class="wow" data-outdoor-weather-live="true">' +
         '<div class="wow__hero">' +
@@ -244,10 +276,16 @@
             "</div>" +
           "</div>" +
           '<dl class="wow__now-metrics">' +
-            '<div class="wow__metric"><dt>Humidity</dt><dd>' + escapeHtml(fmt(cur.humidity, 0)) + "</dd></div>" +
-            '<div class="wow__metric"><dt>Wind</dt><dd>' + escapeHtml(windLine(cur.wind)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>Humidity</dt><dd>' + escapeHtml(fmt(cur.humidity, 0)) +
+              (humWhy ? '<span class="wow__metric-why">' + escapeHtml(humWhy) + "</span>" : "") +
+            "</dd></div>" +
+            '<div class="wow__metric"><dt>Wind</dt><dd>' + escapeHtml(windLine(cur.wind)) +
+              (windWhy ? '<span class="wow__metric-why">' + escapeHtml(windWhy) + "</span>" : "") +
+            "</dd></div>" +
             '<div class="wow__metric"><dt>Pressure</dt><dd>' + escapeHtml(fmt(cur.pressure, 1)) + "</dd></div>" +
-            '<div class="wow__metric"><dt>UV index</dt><dd>' + escapeHtml(fmt(cur.uvIndex, 0)) + "</dd></div>" +
+            '<div class="wow__metric"><dt>UV index</dt><dd>' + escapeHtml(fmt(cur.uvIndex, 0)) +
+              (uvWhy ? '<span class="wow__metric-why">' + escapeHtml(uvWhy) + "</span>" : "") +
+            "</dd></div>" +
             '<div class="wow__metric"><dt>Cloud cover</dt><dd>' + escapeHtml(fmt(cur.cloudCover, 0)) + "</dd></div>" +
             '<div class="wow__metric"><dt>Visibility</dt><dd>' + escapeHtml(visibilityNote(cur)) + "</dd></div>" +
             '<div class="wow__metric"><dt>Rain chance</dt><dd>' + escapeHtml(rainChance(cur, today)) + "</dd></div>" +
@@ -274,10 +312,10 @@
         (intel
           ? '<section class="wow__outdoor" aria-label="Outdoor guidance">' +
               '<h4 class="wow__section-title">Outdoor conditions</h4>' +
+              '<p class="wow__outdoor-hint">Comfort for walking and hiking. Photography light lives in the Photography tab; sun times in Sun &amp; Moon.</p>' +
               '<div class="wow-outdoor__grid">' +
                 renderOutdoorPanel("Walking", intel.walking) +
                 renderOutdoorPanel("Hiking", intel.hiking) +
-                renderOutdoorPanel("Photography", intel.photography) +
                 renderOutdoorPanel("Wildlife", intel.wildlife) +
               "</div>" +
               renderRecommendation(intel.recommendation) +

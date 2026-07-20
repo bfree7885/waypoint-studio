@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Fieldry — a private life list for observing the natural world. Record encounters, build your collection, and learn without competition.">
   <title>Fieldry — Life List · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,11 +39,13 @@
         </section>
       </noscript>
       <div id="fieldry-app" aria-busy="true">
-        <section class="fld-hero" aria-label="Fieldry">
-          <p class="wds-eyebrow">Fieldry</p>
-          <h1 style="font-family:var(--wds-font-display,Cormorant Garamond,Georgia,serif);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:500;margin:0.35rem 0 0.75rem">A private life list</h1>
-          <p class="fld-hero__lead">Record encounters, build your collection, and learn without competition. Notes stay on this device. Your life list opens when scripts load.</p>
-        </section>
+        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
+          <p class="wds-boot__eyebrow">Fieldry</p>
+          <p class="wds-boot__title">A private life list</p>
+          <p class="wds-boot__detail">Loading your field notebook. Notes stay on this device. No rankings, no social feed.</p>
+          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
+          <p class="wds-boot__status">Starting Fieldry…</p>
+        </div>
       </div>
     </main>
 
@@ -57,6 +59,7 @@
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-places.js?v=local" defer></script>

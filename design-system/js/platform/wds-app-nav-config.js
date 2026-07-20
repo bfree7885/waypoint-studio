@@ -109,7 +109,7 @@
         {
           "id": "photo-library",
           "label": "Library",
-          "href": "apps/scenes/photo-library/",
+          "href": "apps/photo-library/",
           "match": [
             "/apps/scenes/photo-library",
             "/apps/photo-library"
@@ -118,7 +118,7 @@
         {
           "id": "photo-coach",
           "label": "Photo Coach",
-          "href": "apps/scenes/photo-coach/",
+          "href": "apps/photo-coach/",
           "match": [
             "/apps/scenes/photo-coach",
             "/apps/photo-coach/?$",
@@ -128,7 +128,7 @@
         {
           "id": "hidden-landscapes",
           "label": "Hidden Landscapes",
-          "href": "apps/scenes/hidden-landscapes/",
+          "href": "apps/hidden-landscapes/",
           "match": [
             "/apps/scenes/hidden-landscapes",
             "/apps/hidden-landscapes",
@@ -401,29 +401,34 @@
           "href": "apps/signalterrain/"
         },
         {
-          "id": "topics",
-          "label": "Topics",
-          "href": "apps/signalterrain/topics.html"
-        },
-        {
-          "id": "graph",
-          "label": "Knowledge graph",
-          "href": "apps/signalterrain/graph.html"
-        },
-        {
-          "id": "summary",
-          "label": "Intelligence summary",
-          "href": "apps/signalterrain/summary.html"
-        },
-        {
           "id": "cyber",
-          "label": "Cyber intelligence",
-          "href": "apps/signalterrain/cyber/live.html"
+          "label": "Today’s cyber brief",
+          "href": "apps/signalterrain/cyber/live.html#brief"
         },
         {
           "id": "cyber-workspace",
           "label": "Cyber workspace",
           "href": "apps/signalterrain/cyber/workspace.html"
+        },
+        {
+          "id": "cyber-ingest-health",
+          "label": "Cyber ingest (internal)",
+          "href": "apps/signalterrain/cyber/ingest-health.html"
+        },
+        {
+          "id": "topics",
+          "label": "Topics (samples)",
+          "href": "apps/signalterrain/topics.html"
+        },
+        {
+          "id": "graph",
+          "label": "Knowledge graph (samples)",
+          "href": "apps/signalterrain/graph.html"
+        },
+        {
+          "id": "summary",
+          "label": "Intelligence summary (samples)",
+          "href": "apps/signalterrain/summary.html"
         },
         {
           "id": "cyber-teaching",
@@ -449,11 +454,6 @@
           "id": "cyber-knowledge",
           "label": "Cyber knowledge (samples)",
           "href": "apps/signalterrain/cyber/knowledge.html"
-        },
-        {
-          "id": "cyber-ingest-health",
-          "label": "Cyber ingest (internal)",
-          "href": "apps/signalterrain/cyber/ingest-health.html"
         }
       ]
     },
@@ -538,6 +538,31 @@
           "id": "impact",
           "label": "Impact",
           "href": "apps/waypoint-volunteer/impact/"
+        }
+      ]
+    },
+    {
+      "id": "landscape-interpretation",
+      "title": "Landscape Interpretation",
+      "shortTitle": "Landscape",
+      "icon": "terrain",
+      "route": "apps/landscape-interpretation/",
+      "match": [
+        "/apps/landscape-interpretation"
+      ],
+      "category": "outdoor",
+      "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
+      "status": "experimental",
+      "features": [
+        {
+          "id": "field",
+          "label": "Field reader",
+          "href": "apps/landscape-interpretation/"
+        },
+        {
+          "id": "learn",
+          "label": "Learn",
+          "href": "apps/landscape-interpretation/learn.html"
         }
       ]
     }

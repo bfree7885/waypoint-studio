@@ -66,10 +66,17 @@ jobs:
           console.log("deploy metadata verified", { short, source: info.source, run: info.workflowRunId });
           NODE
 
+      - name: Validate production assets (fail deploy if missing)
+        run: node automation/validate-production-assets.mjs
+
+      - name: Validate production links
+        run: node automation/validate-production-links.mjs
+
       - name: Exclude private owner surfaces from Pages
         run: |
           rm -rf private
-          echo "Removed private/ from Pages artifact"
+          rm -rf audits
+          echo "Removed private/ and audits/ from Pages artifact"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

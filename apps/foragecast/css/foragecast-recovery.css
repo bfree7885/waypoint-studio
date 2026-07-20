@@ -225,6 +225,68 @@
   vertical-align: middle;
 }
 
+.fc-reliability {
+  margin: 0 0 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  border: 1px solid var(--wds-border-subtle, #d5ddd6);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.fc-reliability--ready {
+  border-color: #9bb89f;
+  background: rgba(232, 242, 234, 0.9);
+}
+
+.fc-reliability--cached {
+  border-color: #c9b68a;
+  background: rgba(250, 244, 230, 0.95);
+}
+
+.fc-reliability--offline,
+.fc-reliability--provider-unavailable,
+.fc-reliability--location-unavailable {
+  border-color: #c9a39a;
+  background: rgba(250, 236, 232, 0.95);
+}
+
+.fc-species-detail h2 {
+  margin: 1.25rem 0 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--wds-text-tertiary, #6a6a6a);
+}
+
+.fc-species-detail ul {
+  margin: 0.25rem 0 0.5rem;
+  padding-left: 1.15rem;
+}
+
+@media (max-width: 720px) {
+  .fc-task-nav__link,
+  .wds-task-nav__link {
+    min-height: 2.75rem;
+    padding: 0.65rem 0.85rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .fc-summary {
+    padding: 1.15rem 0.9rem 1.5rem;
+  }
+
+  .fc-summary__links .wds-btn {
+    min-height: 2.75rem;
+  }
+
+  .fc-species-card {
+    padding: 0.85rem 0;
+  }
+}
+
 .fc-summary__opportunity {
   margin: 0.35rem 0 0;
   font-size: 1rem;

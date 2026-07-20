@@ -168,11 +168,12 @@
     "landscape-interpretation": {
       "id": "landscape-interpretation",
       "name": "Landscape Interpretation",
-      "status": "architecture",
-      "version": "0.1.0",
+      "status": "experimental",
+      "version": "0.1.1",
       "purpose": "Help people understand why a landscape looks the way it does \u2014 ecology, geology, succession, and land-use history.",
-      "designNotes": "v0.1 schemas, taxonomy, confidence model, and sample rules only. No UI, maps, AI chat, or live evaluator. No fake layers or invented history.",
+      "designNotes": "Sprint 9: educational field reader + offline evaluator over sample Northeast rules. No live GIS layers or AI. Hidden Landscapes remains a separate Scenes photo tool.",
       "package": "design-system/landscape-interpretation/",
+      "toolHref": "apps/landscape-interpretation/",
       "plannedConsumers": [
         "studio",
         "fieldry",

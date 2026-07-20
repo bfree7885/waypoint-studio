@@ -1,0 +1,6 @@
+cd audits/live-site-qa
+npm install
+npx playwright install chromium
+node scripts/run-live-audit.mjs
+# Wall clock ~2026-07-19T13:48:20Z → 13:55:11Z
+# Exit: script completed; tee to artifacts/audit-run.log failed initially (dir race) — results still written.

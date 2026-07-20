@@ -1,0 +1,8 @@
+node_modules/
+package-lock.json
+artifacts/audit-run.log
+desktop/
+mobile/
+*.png
+*.jpg
+*.webp

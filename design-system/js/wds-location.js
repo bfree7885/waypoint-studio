@@ -282,34 +282,55 @@
   function applyPlaceDisplay(state) {
     if (!state) return state;
     var US = global.WDS && global.WDS.usNational;
-    if (state.placeLabel) {
-      state.displayTitle = state.placeLabel;
+    var city = sanitizePlaceLabel(state.city);
+    var county = sanitizePlaceLabel(state.county);
+    var place = sanitizePlaceLabel(state.placeLabel);
+    var statePart = sanitizePlaceLabel(state.stateCode) || sanitizePlaceLabel(state.state);
+    // Drop poisoned labels like "null, NY" from cache / bad geocode.
+    if (place && !isUsablePlacePart(place)) place = "";
+    if (place) {
+      state.placeLabel = place;
+      state.displayTitle = place;
       if (state.source === "ip") {
         state.displayTitle = US && US.displayTitle
           ? US.displayTitle(state)
-          : state.placeLabel + " (approximate)";
+          : place + " (approximate)";
       }
-    } else if (state.city && (state.stateCode || state.state)) {
-      state.placeLabel = state.city + ", " + (state.stateCode || state.state);
+    } else if (city && statePart) {
+      state.placeLabel = city + ", " + statePart;
       state.displayTitle = state.source === "ip"
         ? state.placeLabel + " (approximate)"
         : state.placeLabel;
       state.labelSource = state.labelSource || "city-state";
-    } else if (state.county && (state.stateCode || state.state)) {
-      state.placeLabel = state.county + ", " + (state.stateCode || state.state);
+    } else if (county && statePart) {
+      state.placeLabel = county + ", " + statePart;
       state.displayTitle = state.placeLabel;
       state.labelSource = state.labelSource || "county-state";
-    } else if (state.city) {
-      state.placeLabel = "Near " + state.city + (state.state ? ", " + state.state : "");
+    } else if (city) {
+      state.placeLabel = "Near " + city + (statePart ? ", " + statePart : "");
       state.displayTitle = state.placeLabel;
       state.labelSource = state.labelSource || "city";
     } else if (isValidCoords(state)) {
       state.displayTitle = formatCoords(state.lat, state.lng) +
-        (state.stateCode ? " · " + state.stateCode : state.state ? " · " + state.state : "");
+        (statePart ? " · " + statePart : "");
+      state.placeLabel = state.placeLabel && isUsablePlacePart(state.placeLabel)
+        ? state.placeLabel
+        : state.displayTitle;
       state.labelSource = state.labelSource || "coordinates";
+    } else if (statePart) {
+      state.displayTitle = "Location in " + statePart;
+      state.placeLabel = state.displayTitle;
+      state.labelSource = state.labelSource || "state-only";
     }
     if (US && US.finalizeLocation) {
       state = US.finalizeLocation(state, indexCache);
+    }
+    // Final guard — never leave a displayTitle that stringifies null.
+    if (!isUsablePlacePart(state.displayTitle)) {
+      state.displayTitle = formatRegionLabel(state);
+    }
+    if (state.placeLabel && !isUsablePlacePart(state.placeLabel)) {
+      state.placeLabel = state.displayTitle;
     }
     return state;
   }
@@ -375,10 +396,41 @@
     return region.name + (region.stateCode ? ", " + region.stateCode : "");
   }
 
+  /** Reject null/undefined/NA tokens and composed "null, ST" labels. */
+  function isUsablePlacePart(value) {
+    if (value == null) return false;
+    var s = String(value).trim();
+    if (!s) return false;
+    if (/^(null|undefined|n\/?a|unknown|none)$/i.test(s)) return false;
+    if (/^null\s*,/i.test(s) || /^undefined\s*,/i.test(s)) return false;
+    return true;
+  }
+
+  function sanitizePlaceLabel(value) {
+    if (!isUsablePlacePart(value)) return "";
+    return String(value).trim();
+  }
+
   function formatRegionLabel(loc) {
     if (!loc) return getDefaultLabel();
-    if (loc.displayTitle) return loc.displayTitle;
-    return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
+    var titled = sanitizePlaceLabel(loc.displayTitle);
+    if (titled) return titled;
+    var place = sanitizePlaceLabel(loc.placeLabel);
+    if (place) return place;
+    var city = sanitizePlaceLabel(loc.city);
+    var county = sanitizePlaceLabel(loc.county);
+    var name = sanitizePlaceLabel(loc.name);
+    var region = sanitizePlaceLabel(loc.stateCode) || sanitizePlaceLabel(loc.state);
+    var primary = city || county || name;
+    if (primary && region && primary.toLowerCase().indexOf(region.toLowerCase()) === -1) {
+      return primary + ", " + region;
+    }
+    if (primary) return primary;
+    if (region) return "Location in " + region;
+    if (isValidCoords(loc)) {
+      return formatCoords(loc.lat, loc.lng) + (region ? " · " + region : "");
+    }
+    return getDefaultLabel();
   }
 
   function nearestRegion(index, lat, lng) {
@@ -685,8 +737,9 @@
   function formatStatusLine(loc) {
     if (!loc) return "Location unavailable";
     if (loc.unavailable || loc.source === "unavailable") return "Location unavailable";
-    if (loc.displayTitle) {
-      var line = loc.displayTitle;
+    var titled = sanitizePlaceLabel(loc.displayTitle);
+    if (titled) {
+      var line = titled;
       if (loc.displaySubtitle) line += " — " + loc.displaySubtitle;
       return line;
     }
@@ -694,25 +747,28 @@
       return "Using default region: " + formatRegionLabel(loc);
     }
     if (loc.source === "geo" || loc.source === "ip") {
-      return loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng);
+      return sanitizePlaceLabel(loc.placeLabel) ||
+        (isValidCoords(loc) ? formatCoords(loc.lat, loc.lng) : formatRegionLabel(loc));
     }
-    return loc.name + ", " + (loc.state || loc.stateCode);
+    return formatRegionLabel(loc);
   }
 
   function formatHeroMeta(loc, region, weekOf) {
     region = region || {};
     var weekPart = weekOf ? " · Week of " + weekOf : "";
-    if (loc && loc.displayTitle) {
-      return loc.displayTitle + weekPart + " · " + (loc.useNationalFallback ? "U.S. regional overview" : "local bundle");
+    if (loc && sanitizePlaceLabel(loc.displayTitle)) {
+      return sanitizePlaceLabel(loc.displayTitle) + weekPart + " · " + (loc.useNationalFallback ? "U.S. regional overview" : "local bundle");
     }
     if (!loc || loc.isDefault || loc.source === "default") {
       return "Using default region: " + formatRegionLabel(loc) + weekPart + " · editorial content may not match your county until more bundles ship";
     }
     if (loc.source === "geo" || loc.source === "ip") {
-      return (loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng)) + weekPart +
+      return (sanitizePlaceLabel(loc.placeLabel) ||
+        (isValidCoords(loc) ? formatCoords(loc.lat, loc.lng) : formatRegionLabel(loc))) +
+        weekPart +
         " · " + (loc.useNationalFallback ? "U.S. regional overview" : "local bundle");
     }
-    return (loc.name || region.name) + ", " + (loc.state || region.state) + weekPart;
+    return formatRegionLabel(loc) + weekPart;
   }
 
   function searchRegions(query, index) {
@@ -780,9 +836,13 @@
     if (loc.isDefault || loc.source === "default") {
       statusHtml = "<strong>Using default region:</strong> " + escapeHtml(formatRegionLabel(loc));
     } else if (loc.source === "geo" || loc.source === "ip") {
-      statusHtml = "<strong>Your location:</strong> " + escapeHtml(loc.displayTitle || loc.placeLabel || formatCoords(loc.lat, loc.lng));
+      statusHtml = "<strong>Your location:</strong> " + escapeHtml(
+        sanitizePlaceLabel(loc.displayTitle) ||
+        sanitizePlaceLabel(loc.placeLabel) ||
+        (isValidCoords(loc) ? formatCoords(loc.lat, loc.lng) : formatRegionLabel(loc))
+      );
     } else {
-      statusHtml = "<strong>Region:</strong> " + escapeHtml(loc.displayTitle || (loc.name + ", " + loc.state));
+      statusHtml = "<strong>Region:</strong> " + escapeHtml(formatRegionLabel(loc));
     }
 
     var bundleNote = "";
@@ -1158,8 +1218,11 @@
     searchManualLocation: searchManualLocation,
     resolveFromState: resolveFromState,
     formatCoords: formatCoords,
+    formatRegionLabel: formatRegionLabel,
     formatStatusLine: formatStatusLine,
     formatHeroMeta: formatHeroMeta,
+    isUsablePlacePart: isUsablePlacePart,
+    sanitizePlaceLabel: sanitizePlaceLabel,
     geolocationErrorMessage: geolocationErrorMessage,
     projectToSchematic: projectToSchematic,
     getRegionForProjection: getRegionForProjection,

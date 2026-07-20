@@ -125,23 +125,35 @@
 
   function displayTitle(loc) {
     if (!loc) return "United States";
-    if (loc.displayTitle) return withApproximateLabel(loc.displayTitle, loc);
-    if (loc.placeLabel) return withApproximateLabel(loc.placeLabel, loc);
-    if (loc.city && (loc.stateCode || loc.state)) {
-      return withApproximateLabel(loc.city + ", " + (loc.stateCode || loc.state), loc);
+    function usable(v) {
+      if (v == null) return "";
+      var s = String(v).trim();
+      if (!s || /^(null|undefined|n\/?a|unknown)$/i.test(s) || /^null\s*,/i.test(s)) return "";
+      return s;
     }
-    if (loc.county && (loc.stateCode || loc.state) && !loc.useNationalFallback) {
-      return withApproximateLabel(loc.county + ", " + (loc.stateCode || loc.state), loc);
+    var existing = usable(loc.displayTitle);
+    if (existing) return withApproximateLabel(existing, loc);
+    var place = usable(loc.placeLabel);
+    if (place) return withApproximateLabel(place, loc);
+    var city = usable(loc.city);
+    var county = usable(loc.county);
+    var name = usable(loc.name);
+    var statePart = usable(loc.stateCode) || usable(loc.state);
+    if (city && statePart) {
+      return withApproximateLabel(city + ", " + statePart, loc);
+    }
+    if (county && statePart && !loc.useNationalFallback) {
+      return withApproximateLabel(county + ", " + statePart, loc);
     }
     if ((isLocalBundleEligible(loc) || loc.contentMode === CONTENT_MODE_LOCAL) &&
-        loc.name && loc.source !== "geo" && loc.source !== "ip") {
-      return loc.name + (loc.stateCode ? ", " + loc.stateCode : loc.state ? ", " + loc.state : "");
+        name && loc.source !== "geo" && loc.source !== "ip") {
+      return name + (statePart ? ", " + statePart : "");
     }
-    if (loc.source === "manual" && loc.name && loc.stateCode) {
-      return loc.name + ", " + loc.stateCode;
+    if (loc.source === "manual" && name && statePart) {
+      return name + ", " + statePart;
     }
-    if (loc.source === "manual" && loc.state && !loc.name) {
-      return loc.state;
+    if (loc.source === "manual" && usable(loc.state) && !name) {
+      return usable(loc.state);
     }
     var st = loc.inferredState || inferStateForLoc(loc);
     if (st && loc.lat != null && loc.lng != null) {
@@ -150,7 +162,7 @@
     if (loc.lat != null && loc.lng != null) {
       return formatCoords(loc.lat, loc.lng);
     }
-    return loc.state || "United States";
+    return usable(loc.state) || "United States";
   }
 
   function displaySubtitle(loc) {

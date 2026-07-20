@@ -1,5 +1,5 @@
 /**
- * Product Recovery — Dashboard layout polish (summary + instant tabs).
+ * Product Recovery — Dashboard layout polish (Today Outside + instant tabs).
  */
 
 .wdb-recovery {
@@ -8,7 +8,7 @@
   padding: 0.75rem clamp(0.85rem, 3vw, 1.5rem) 2rem;
 }
 
-/* —— Today's Summary —— */
+/* —— Today Outside —— */
 .wdb-today-summary {
   --wdb-sum-accent: #3d6b4f;
   padding: 1.1rem 1.15rem 1.15rem;
@@ -18,7 +18,7 @@
     linear-gradient(135deg, rgba(61, 107, 79, 0.09), transparent 55%),
     color-mix(in srgb, var(--wds-surface, #f6f4ef) 92%, #fff);
   border: 1px solid color-mix(in srgb, var(--wdb-sum-accent) 22%, transparent);
-  min-height: 6.5rem; /* reduce layout jump while hydrating */
+  min-height: 6.5rem;
   contain: layout;
 }
 
@@ -79,26 +79,57 @@
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.55rem;
 }
 
 .wdb-today-summary__list li {
   position: relative;
-  padding: 0.15rem 0 0.15rem 1.1rem;
-  font-size: 0.98rem;
-  line-height: 1.4;
-  color: var(--wds-text, #1a1c18);
+  padding: 0.2rem 0 0.2rem 1.1rem;
 }
 
 .wdb-today-summary__list li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.55em;
+  top: 0.65em;
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
   background: var(--wdb-sum-accent);
+}
+
+.wdb-today-summary__point {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--wds-text, #1a1c18);
+}
+
+.wdb-today-summary__why {
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--wds-text-secondary, #5c6570);
+}
+
+.wdb-today-summary__why-label {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin-right: 0.35rem;
+  color: color-mix(in srgb, var(--wdb-sum-accent) 70%, var(--wds-text-secondary, #666));
+}
+
+.wdb-today-summary__list--preview {
+  gap: 0.45rem;
+}
+
+.wdb-today-summary__list--preview .wdb-today-summary__why {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .wdb-today-summary__empty {
@@ -144,7 +175,8 @@
   padding: 0.55rem 0.85rem;
   border-radius: 999px;
   cursor: pointer;
-  min-height: 2.5rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
   white-space: nowrap;
   transition: background 0.12s ease, color 0.12s ease;
 }
@@ -166,12 +198,18 @@
 
 .wdb-recovery-panel {
   display: none;
-  min-height: 12rem; /* prevent jump when switching */
+  min-height: 12rem;
   contain: content;
+  animation: wdb-panel-in 0.18s ease;
 }
 
 .wdb-recovery-panel.is-active {
   display: block;
+}
+
+@keyframes wdb-panel-in {
+  from { opacity: 0.65; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
 }
 
 .wdb-tab-panel__intro,
@@ -187,10 +225,23 @@
   margin-top: 0.25rem;
 }
 
-.wdb-recovery-tools {
-  margin-top: 1.25rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid color-mix(in srgb, var(--wds-border, #d8d2c8) 70%, transparent);
+.wdb-settings-panel__list {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  color: var(--wds-text, #1a1c18);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.wdb-settings-panel__list li + li {
+  margin-top: 0.35rem;
+}
+
+.wdb-settings-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
 }
 
 .wdb-alerts-panel--clear .wdb-alerts-panel__clear {
@@ -220,15 +271,30 @@
   color: var(--wds-text-secondary, #5c6570);
 }
 
-/* Quiet experiences / reduce post-dashboard noise */
 .wod__links {
   margin-top: 1.5rem;
   opacity: 0.9;
 }
 
-/* Kill flashy content reveal that feels like layout jump */
 #wds-content-engine.wdb-content-ready {
   animation: none;
+}
+
+.wow__metric-why {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--wds-text-secondary, #5c6570);
+}
+
+.wow__outdoor-hint,
+.wsky-photo__intro {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--wds-text-secondary, #5c6570);
 }
 
 @media (max-width: 640px) {
@@ -251,13 +317,20 @@
   }
 
   .wdb-recovery-tabs__tab {
-    padding: 0.5rem 0.7rem;
+    padding: 0.55rem 0.75rem;
     font-size: 0.86rem;
+    min-height: 2.85rem;
+  }
+
+  .wdb-today-summary__list--preview .wdb-today-summary__why {
+    -webkit-line-clamp: 3;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wdb-recovery-tabs__tab {
+  .wdb-recovery-tabs__tab,
+  .wdb-recovery-panel {
     transition: none;
+    animation: none;
   }
 }
