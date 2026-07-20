@@ -215,8 +215,9 @@
 }
 
 .fc-heatmap__zone-band {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: rgba(228, 234, 244, 0.75);
+  color: #f4f6fb;
+  text-shadow: 0 1px 1px rgba(8, 15, 28, 0.55);
 }

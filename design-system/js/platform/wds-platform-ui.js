@@ -204,13 +204,15 @@
       offline: "You appear to be offline",
       permission: "Permission needed",
       unavailable: "This service is unavailable right now",
-      empty: "No results"
+      empty: "No results",
+      provider: "A data provider is unavailable"
     };
     var hintMap = {
       timeout: "You can retry, or keep browsing with whatever already loaded.",
       offline: "Cached information may still be available. Retry when you reconnect.",
       permission: "Check browser settings, then try again.",
       unavailable: "This is a temporary provider issue — not a problem with your data.",
+      provider: "Live conditions may be delayed. Retry shortly, or continue with cached information if shown.",
       error: "A short wait and retry usually helps."
     };
     var title = opts.title || titleMap[kind] || titleMap.error;
@@ -219,6 +221,25 @@
       (opts.cached
         ? "Showing the last saved information while we try again."
         : hintMap[kind] || "");
+    var provider =
+      opts.provider
+        ? '<p class="wds-honesty" data-wds-provider-status>Provider: ' +
+          escapeHtml(opts.provider) +
+          (opts.providerStatus ? " — " + escapeHtml(opts.providerStatus) : "") +
+          "</p>"
+        : "";
+    var recovery = "";
+    if (opts.recoveryHref && opts.recoveryLabel) {
+      recovery =
+        '<p class="wds-state__hint"><a href="' +
+        escapeHtml(opts.recoveryHref) +
+        '">' +
+        escapeHtml(opts.recoveryLabel) +
+        "</a></p>";
+    } else if (opts.support !== false && (kind === "error" || kind === "unavailable" || kind === "provider")) {
+      recovery =
+        '<p class="wds-state__hint"><a href="/contact.html?category=bug">Report a problem</a> · <a href="/support.html">Support</a></p>';
+    }
     var actions = "";
     if (opts.retry) {
       actions =
@@ -228,7 +249,9 @@
         "</button></div>";
     }
     return (
-      '<div class="wds-state" role="alert">' +
+      '<div class="wds-state" role="alert"' +
+      (opts.busy ? ' aria-busy="true"' : "") +
+      ">" +
       '<p class="wds-state__title">' +
       escapeHtml(title) +
       "</p>" +
@@ -236,9 +259,11 @@
       escapeHtml(opts.text || "Please try again.") +
       "</p>" +
       (hint ? '<p class="wds-state__hint">' + escapeHtml(hint) + "</p>" : "") +
+      provider +
       (opts.cached
         ? '<p class="wds-honesty">Using cached data — may not reflect the latest conditions.</p>'
         : "") +
+      recovery +
       actions +
       "</div>"
     );
@@ -308,6 +333,7 @@
   function classifyError(err) {
     if (!err) return "error";
     if (err.code === "timeout") return "timeout";
+    if (err.code === "provider" || err.provider) return "provider";
     if (typeof navigator !== "undefined" && navigator.onLine === false) return "offline";
     if (err.status === 401 || err.status === 403) return "permission";
     if (err.status === 404 || err.status >= 500) return "unavailable";
@@ -317,7 +343,7 @@
   global.WDS = global.WDS || {};
   global.WDS.escapeHtml = escapeHtml;
   global.WDS.platformUi = {
-    version: "2.0.0",
+    version: "2.1.0",
     escapeHtml: escapeHtml,
     getJson: getJson,
     clearCache: clearCache,

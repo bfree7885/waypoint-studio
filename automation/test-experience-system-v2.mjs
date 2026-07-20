@@ -52,7 +52,7 @@ vm.runInNewContext(
   sandbox
 );
 const UI = sandbox.WDS.platformUi;
-assert("platformUi v2", UI && UI.version === "2.0.0");
+assert("platformUi v2.1", UI && UI.version === "2.1.0");
 assert("emptyPageHtml exists", typeof UI.emptyPageHtml === "function");
 const emptyPage = UI.emptyPageHtml({
   title: "No observations yet",
@@ -64,6 +64,18 @@ assert("empty page has guidance", /No observations yet/.test(emptyPage) && /Open
 const err = UI.errorHtml({ kind: "offline", text: "Weather paused.", cached: true, retry: true });
 assert("error mentions cache", /cached/i.test(err));
 assert("error has retry", /data-wds-retry/.test(err));
+const errProvider = UI.errorHtml({
+  kind: "provider",
+  text: "Weather feed timed out.",
+  provider: "Open-Meteo",
+  providerStatus: "timeout",
+  retry: true
+});
+assert("provider error status", /Open-Meteo/.test(errProvider) && /data-wds-provider-status/.test(errProvider));
+assert("provider recovery links", /contact\.html/.test(errProvider) && /support\.html/.test(errProvider));
+assert("overflow clip polish", /overflow-x:\s*clip/.test(exp));
+assert("muted contrast raised", /--wds-text-muted:\s*rgba\(228,\s*234,\s*244,\s*0\.65\)/.test(tokens));
+assert("muted alias for dashboard", /--wds-muted:\s*var\(--wds-text-muted\)/.test(tokens));
 const load = UI.loadingHtml("Building outdoor summary", { skeleton: true, detail: "Using cache first." });
 assert("loading with skeleton", /wds-skeleton/.test(load) && /Building outdoor summary/.test(load));
 

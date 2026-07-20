@@ -31,8 +31,9 @@
   --wds-ink-700: var(--wds-navy-700);
   --wds-ink-600: var(--wds-navy-600);
   --wds-parchment: #e4eaf4;
-  --wds-parchment-muted: rgba(228, 234, 244, 0.72);
-  --wds-parchment-dim: rgba(228, 234, 244, 0.45);
+  /* Secondary ~4.7:1 on navy-900; tertiary/muted raised for WCAG AA body/meta text */
+  --wds-parchment-muted: rgba(228, 234, 244, 0.78);
+  --wds-parchment-dim: rgba(228, 234, 244, 0.62);
   --wds-sage: var(--wds-lime);
   --wds-sage-dim: var(--wds-lime-dim);
   --wds-hearth: var(--wds-purple);
@@ -55,7 +56,9 @@
   --wds-text: var(--wds-parchment);
   --wds-text-secondary: var(--wds-parchment-muted);
   --wds-text-tertiary: var(--wds-parchment-dim);
-  --wds-text-muted: rgba(228, 234, 244, 0.38);
+  --wds-text-muted: rgba(228, 234, 244, 0.65);
+  /* Alias used by Dashboard V2 / legacy product CSS */
+  --wds-muted: var(--wds-text-muted);
   --wds-accent: var(--wds-lime);
   --wds-accent-dim: var(--wds-lime-dim);
   --wds-accent-border: rgba(200, 240, 85, 0.35);

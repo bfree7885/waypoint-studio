@@ -352,6 +352,8 @@
 
     var V2 = global.WDS && global.WDS.dashboardV2;
     if (V2 && V2.bind) V2.bind(root);
+    var V3 = global.WDS && global.WDS.dashboardV3;
+    if (V3 && V3.bind) V3.bind(root);
 
     host.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-wdb-tab]");

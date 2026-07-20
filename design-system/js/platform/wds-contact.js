@@ -311,6 +311,7 @@
       var err = document.createElement("p");
       err.className = "wcs-status wcs-status--err";
       err.setAttribute("data-wcs-error", field);
+      err.setAttribute("role", "alert");
       err.id = id + "-error";
       err.textContent = message;
       input.setAttribute("aria-describedby", err.id);
