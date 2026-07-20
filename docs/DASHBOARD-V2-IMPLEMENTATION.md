@@ -105,6 +105,7 @@ node automation/test-dashboard-v2.mjs
 - Playwright viewport matrix not in repo (unit coverage only)
 - Incremental DOM patch on OIP tick still full re-render
 - Activity comfort bands exist in prefs defaults but Settings UI for them is deferred
+- Dashboard V3 presentation shell exists under `design-system/js/dashboard/v3/` behind `waypoint-dashboard-v3` (**default off**) — maps Alerts→Emergency and Seasonal→Wildlife when opted in; does not change the Sprint 3 V2 catalog
 
 ## Related docs
 
