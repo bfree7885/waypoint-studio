@@ -234,12 +234,12 @@
       tags: ["thinking-tool", tool.id],
       thinking: {
         tool: tool.id,
-        status: "draft",
+        status: tool.id === "decision-journal" ? "draft" : "draft",
         claim: null,
         supports: null,
         objections: null,
         statement: null,
-        hypothesisStatus: tool.id === "hypothesis" ? "open" : null,
+        hypothesisStatus: tool.id === "hypothesis" ? "proposed" : null,
         question: null,
         options: null,
         chosen: null,
@@ -249,7 +249,17 @@
         next: null,
         focusId: null,
         nodeIds: [],
-        evidenceIds: []
+        evidenceIds: [],
+        decision: null,
+        evidenceUsed: null,
+        alternatives: null,
+        expectedOutcome: null,
+        confidence: null,
+        reviewDate: null,
+        laterObservations: null,
+        supportingEvidence: null,
+        contradictingEvidence: null,
+        experiments: null
       }
     };
   }

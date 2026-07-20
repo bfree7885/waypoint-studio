@@ -1,11 +1,11 @@
 /**
- * Waypoint University — schema 1.4 (Module 5 · daily use).
- * Journal, expanded statuses, owner-ready kinds.
+ * Waypoint University — schema 1.5 (Module 6 · research assistant).
+ * Decision/hypothesis statuses, assist action vocabulary.
  */
 (function (global) {
   "use strict";
 
-  var SCHEMA = "1.4.0";
+  var SCHEMA = "1.5.0";
   var DB_NAME = "waypoint-university-v1";
   var DB_VERSION = 1;
 
@@ -187,6 +187,21 @@
     { id: "active", label: "Active" },
     { id: "draft", label: "Draft" },
     { id: "archived", label: "Archived" }
+  ];
+
+  var HYPOTHESIS_STATUSES = [
+    { id: "proposed", label: "Proposed" },
+    { id: "testing", label: "Testing" },
+    { id: "supported", label: "Supported (tentative)" },
+    { id: "challenged", label: "Challenged" },
+    { id: "retired", label: "Retired" }
+  ];
+
+  var DECISION_STATUSES = [
+    { id: "draft", label: "Draft" },
+    { id: "decided", label: "Decided" },
+    { id: "reviewing", label: "Under review" },
+    { id: "closed", label: "Closed" }
   ];
 
   var RESEARCH_STAGES = [
@@ -402,17 +417,33 @@
       id: "decision-journal",
       kind: "decision",
       label: "Decision journal",
-      blurb: "Options, rationale, and later review.",
-      status: "foundation",
-      fields: ["question", "options", "chosen", "rationale"]
+      blurb: "Decision, reasoning, evidence, alternatives, expected outcome, confidence, review date, later observations.",
+      status: "ready",
+      fields: [
+        "decision",
+        "rationale",
+        "evidenceUsed",
+        "alternatives",
+        "expectedOutcome",
+        "confidence",
+        "reviewDate",
+        "laterObservations"
+      ]
     },
     {
       id: "hypothesis",
       kind: "hypothesis",
       label: "Hypothesis tracking",
-      blurb: "Statement, status, and linked evidence.",
-      status: "foundation",
-      fields: ["statement", "status", "evidenceIds"]
+      blurb: "Statement with supporting and contradicting evidence — never treated as fact.",
+      status: "ready",
+      fields: [
+        "statement",
+        "hypothesisStatus",
+        "supportingEvidence",
+        "contradictingEvidence",
+        "experiments",
+        "confidence"
+      ]
     },
     {
       id: "experiment-plan",
@@ -499,6 +530,8 @@
     MEDIA_KINDS: MEDIA_KINDS,
     QUESTION_STATUSES: QUESTION_STATUSES,
     NODE_STATUSES: NODE_STATUSES,
+    HYPOTHESIS_STATUSES: HYPOTHESIS_STATUSES,
+    DECISION_STATUSES: DECISION_STATUSES,
     RESEARCH_STAGES: RESEARCH_STAGES,
     READING_STATUSES: READING_STATUSES,
     UNDERSTANDING_STAGES: UNDERSTANDING_STAGES,

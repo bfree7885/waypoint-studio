@@ -17,28 +17,32 @@ Research workspaces, sessions, field notes, source reliability, project research
 ### Module 5 — Private access & daily use
 Loopback owner authentication, daily home workspace, journal, path entry management, editor drafts/preview, JSON+Markdown export. Exact access: `private/university/ACCESS.md`. Remote subdomain deferred.
 
+### Module 6 — Intelligent research assistant
+Local Assist engine (`wu-assist.js`), related-on-open, knowledge opportunities, companion/memory hints, decision journal, hypothesis tracking, domain dashboards, writing workspace, multi-note compare, source synthesis, NL search, privacy toggles. Schema **1.5.0**. Docs: `WAYPOINT-UNIVERSITY-BLOCK6.md`.
+
 ---
 
 ## Recommended next modules
 
-### Module 6 — Capture depth & remote private host
+### Module 7 — Capture depth & remote private host
 1. Media blobs + full backup  
 2. DNS/TLS private host or Tailscale/Cloudflare Access for `university.waypointstudio.org`  
-3. Session link pickers  
-4. Hypothesis / decision canvases  
+3. Session link pickers / citation insert into Write  
+4. Decision review-date reminders  
 
-### Module 7 — Scale & craft
+### Module 8 — Scale & craft
 1. Worker-built search + incremental graph/insights  
-2. Virtualized library  
-3. Duplicate merge + revision restore  
-4. Calm whole-graph overview  
+2. Optional local embeddings / on-device LLM behind the same Known–Unknown contract  
+3. Virtualized library  
+4. Duplicate merge + revision restore  
+5. Calm whole-graph overview  
 
-### Module 8 — Review (only when ready)
+### Module 9 — Review (only when ready)
 1. Optional private spaced repetition  
 2. No social / no leaderboards  
 
 ### Explicitly later / maybe never
-- AI tutoring  
+- Cloud tutoring that uploads the library  
 - Public sharing / classrooms / certificates  
 - Multi-user sync (if ever: E2E encrypted)
 
@@ -50,9 +54,12 @@ Loopback owner authentication, daily home workspace, journal, path entry managem
 |------|----------|-------|
 | Knowledge in browser IDB | By design | Export often |
 | No remote private subdomain | High for travel | Needs host ≠ Pages |
-| Media omitted from export | High for V1.0 | Module 6 |
+| Media omitted from export | High for V1.0 | Module 7 |
+| Lexical relatedness O(n) | Medium at scale | Module 8 workers/embeddings |
+| No on-device LLM yet | Medium | Heuristics only; privacy-preserving path designed |
+| Citation insert UX | Low | Architecture only in Write |
 | Automated browser IDB E2E | Medium | Manual journey after setup |
-| Thinking stubs ≠ canvases | By design | Module 6 |
+| Concept/argument canvases | Low | Still stubs |
 
 ---
 
@@ -64,5 +71,6 @@ Loopback owner authentication, daily home workspace, journal, path entry managem
 - Neighborhood **and** calm overview graph  
 - Merge + revision restore  
 - Zero public-suite leakage  
+- Research assistant remains local-first with explicit remote opt-in  
 
-Module 5 makes University **usable today on the owner machine** with real auth and persistence.
+Module 6 makes Scholar a **grounded research partner on the owner machine**. University V1.0 still needs media, remote private access, and scale work.

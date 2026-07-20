@@ -715,3 +715,149 @@ textarea:focus-visible {
     animation: none !important;
   }
 }
+
+/* —— Module 6 · research assistant —— */
+.wu-conf {
+  display: inline-block;
+  font-family: var(--wu-mono, "IBM Plex Mono", ui-monospace, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--wu-line);
+  color: var(--wu-muted);
+  vertical-align: 0.1em;
+}
+
+.wu-conf--known {
+  color: #1f4d36;
+  border-color: #9fc5b0;
+  background: #eef6f1;
+}
+
+.wu-conf--likely {
+  color: #3d4a1f;
+  border-color: #c5c99f;
+  background: #f6f7ee;
+}
+
+.wu-conf--possible {
+  color: #5a4018;
+  border-color: #d4be9a;
+  background: #faf5ee;
+}
+
+.wu-conf--unknown {
+  color: var(--wu-muted);
+  background: #f3f3f2;
+}
+
+.wu-companion {
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border-left: 2px solid var(--wu-line);
+  color: var(--wu-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.wu-companion p {
+  margin: 0.35rem 0;
+}
+
+.wu-item-layout,
+.wu-write-grid,
+.wu-assist-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem);
+  gap: 1.75rem 2rem;
+  align-items: start;
+}
+
+.wu-related {
+  position: sticky;
+  top: 1rem;
+  padding: 0.25rem 0 1rem;
+  border-left: 1px solid var(--wu-line);
+  padding-left: 1.1rem;
+}
+
+.wu-related h2 {
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+}
+
+.wu-related h3 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wu-muted);
+  margin: 1rem 0 0.35rem;
+  font-weight: 600;
+}
+
+.wu-cite-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+
+.wu-cite-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--wu-line);
+  font-size: 0.92rem;
+}
+
+.wu-assist-out {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wu-line);
+}
+
+.wu-assist-out .wu-prose {
+  margin-top: 0.75rem;
+}
+
+.wu-write-head {
+  margin-bottom: 1.25rem;
+}
+
+.wu-editor--long {
+  min-height: 28rem;
+  line-height: 1.65;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+}
+
+.wu-gap {
+  margin: 0 0 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--wu-line);
+}
+
+.wu-gap h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.wu-decision,
+.wu-hypothesis {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 960px) {
+  .wu-item-layout,
+  .wu-write-grid,
+  .wu-assist-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wu-related {
+    position: static;
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--wu-line);
+    padding-top: 1rem;
+  }
+}

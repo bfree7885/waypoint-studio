@@ -223,7 +223,19 @@
         next: thinking.next || null,
         focusId: thinking.focusId || null,
         nodeIds: Array.isArray(thinking.nodeIds) ? thinking.nodeIds : [],
-        evidenceIds: Array.isArray(thinking.evidenceIds) ? thinking.evidenceIds : []
+        evidenceIds: Array.isArray(thinking.evidenceIds) ? thinking.evidenceIds : [],
+        // Decision journal
+        decision: thinking.decision || null,
+        evidenceUsed: thinking.evidenceUsed || null,
+        alternatives: thinking.alternatives || null,
+        expectedOutcome: thinking.expectedOutcome || null,
+        confidence: thinking.confidence != null && thinking.confidence !== "" ? Number(thinking.confidence) : null,
+        reviewDate: thinking.reviewDate || null,
+        laterObservations: thinking.laterObservations || null,
+        // Hypothesis
+        supportingEvidence: thinking.supportingEvidence || null,
+        contradictingEvidence: thinking.contradictingEvidence || null,
+        experiments: thinking.experiments || null
       },
       journal: {
         date: (partial.journal && partial.journal.date) || (partial.kind === "journal" ? now.slice(0, 10) : null)
@@ -313,6 +325,11 @@
         global.WU.Learn.invalidate();
       } catch (e) { /* ignore */ }
     }
+    if (global.WU && global.WU.Assist && global.WU.Assist.invalidate) {
+      try {
+        global.WU.Assist.invalidate();
+      } catch (e2) { /* ignore */ }
+    }
     return n;
   }
 
@@ -335,6 +352,16 @@
     });
     await txDone(tx);
     await setMeta("lastWriteAt", nowIso());
+    if (global.WU && global.WU.Learn && global.WU.Learn.invalidate) {
+      try {
+        global.WU.Learn.invalidate();
+      } catch (e) { /* ignore */ }
+    }
+    if (global.WU && global.WU.Assist && global.WU.Assist.invalidate) {
+      try {
+        global.WU.Assist.invalidate();
+      } catch (e2) { /* ignore */ }
+    }
   }
 
   async function listNodes() {
@@ -356,6 +383,11 @@
         global.WU.Learn.invalidate();
       } catch (e) { /* ignore */ }
     }
+    if (global.WU && global.WU.Assist && global.WU.Assist.invalidate) {
+      try {
+        global.WU.Assist.invalidate();
+      } catch (e2) { /* ignore */ }
+    }
     return e;
   }
 
@@ -364,6 +396,12 @@
     var tx = database.transaction("edges", "readwrite");
     tx.objectStore("edges").delete(id);
     await txDone(tx);
+    await setMeta("lastWriteAt", nowIso());
+    if (global.WU && global.WU.Assist && global.WU.Assist.invalidate) {
+      try {
+        global.WU.Assist.invalidate();
+      } catch (e) { /* ignore */ }
+    }
   }
 
   async function listEdges() {
@@ -485,6 +523,27 @@
 
   async function getLearningGoals() {
     return (await getMeta("learningGoals", [])) || [];
+  }
+
+  async function getAssistPrefs() {
+    return (await getMeta("assistPrefs", { remoteAiEnabled: false, assistEnabled: true })) || {
+      remoteAiEnabled: false,
+      assistEnabled: true
+    };
+  }
+
+  async function setAssistPrefs(prefs) {
+    var next = Object.assign(
+      { remoteAiEnabled: false, assistEnabled: true },
+      prefs || {}
+    );
+    next.remoteAiEnabled = !!next.remoteAiEnabled;
+    next.assistEnabled = next.assistEnabled !== false;
+    await setMeta("assistPrefs", next);
+    if (global.WU && global.WU.Assist && global.WU.Assist.setPrefs) {
+      global.WU.Assist.setPrefs(next);
+    }
+    return next;
   }
 
   async function setLearningGoals(goals) {
@@ -760,6 +819,8 @@
     removeAnnotation: removeAnnotation,
     getLearningGoals: getLearningGoals,
     setLearningGoals: setLearningGoals,
+    getAssistPrefs: getAssistPrefs,
+    setAssistPrefs: setAssistPrefs,
     getActiveSessionId: getActiveSessionId,
     setActiveSessionId: setActiveSessionId,
     startSession: startSession,

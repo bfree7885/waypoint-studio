@@ -1,6 +1,6 @@
 /**
- * Waypoint University — Module 5 application shell.
- * Daily-use private workspace after owner authentication.
+ * Waypoint University — Module 6 application shell.
+ * Intelligent research assistant grounded in the owner's library.
  */
 (function (global) {
   "use strict";
@@ -9,10 +9,14 @@
     ["home", "Home"],
     ["knowledge", "Knowledge"],
     ["scholar", "Research"],
+    ["assist", "Assist"],
+    ["dashboards", "Dashboards"],
+    ["write", "Write"],
     ["paths", "Learning Paths"],
     ["projects", "Projects"],
     ["sources", "Sources"],
     ["questions", "Questions"],
+    ["decisions", "Decisions"],
     ["journal", "Journal"],
     ["graph", "Graph"],
     ["search", "Search"],
@@ -42,6 +46,9 @@
   }
   function Scholar() {
     return global.WU.Scholar;
+  }
+  function Assist() {
+    return global.WU.Assist;
   }
 
   function esc(s) {
@@ -161,7 +168,15 @@
       graphFocus: null,
       graphDepth: 2,
       graphTypes: null,
-      projectFocus: null
+      projectFocus: null,
+      assistPrefs: { remoteAiEnabled: false, assistEnabled: true },
+      assistAction: "summarize",
+      assistFocusId: null,
+      assistResult: null,
+      dashboardLane: "waypoint-studio",
+      compareIds: [],
+      writeFocusId: null,
+      synthIds: []
     };
 
     function rebuild() {
@@ -192,6 +207,8 @@
       state.learningGoals = await Store().getLearningGoals();
       state.lastWriteAt = await Store().getMeta("lastWriteAt", "");
       state.activeSessionId = await Store().getActiveSessionId();
+      state.assistPrefs = await Store().getAssistPrefs();
+      if (Assist() && Assist().setPrefs) Assist().setPrefs(state.assistPrefs);
       rebuild();
     }
 
@@ -286,6 +303,9 @@
             esc(active.title) +
             "</a> · <a href=\"#scholar/end\">End session</a></p>"
           : '<p class="wu-meta"><a href="#scholar/session">Start a research session</a></p>') +
+        (state.assistPrefs.assistEnabled && continueLearning[0]
+          ? companionStrip(continueLearning[0])
+          : "") +
         "</header>" +
         '<section class="wu-card"><h2>Quick capture</h2>' +
         '<form id="wu-home-capture" class="wu-form">' +
@@ -747,7 +767,7 @@
       return (
         '<p><a href="#scholar">← Scholar</a></p>' +
         "<h1 class=\"wu-title\">Thinking tools</h1>" +
-        '<p class="wu-lead">Architectural foundations — concept maps, arguments, decisions, hypotheses, experiment plans. Full canvases grow in later modules.</p>' +
+        '<p class="wu-lead">Decision journal and hypothesis tracking are ready. Concept maps, argument maps, and experiment plans remain lightweight stubs.</p>' +
         '<div class="wu-home-grid">' +
         tools
           .map(function (t) {
@@ -795,7 +815,9 @@
     }
 
     function searchPanel() {
-      var results = state.q ? Search().search(state.index, state.q, { limit: 40 }) : [];
+      var results = state.q
+        ? Assist().naturalSearch(state.q, state.index, state.graphIndex)
+        : [];
       var related = state.q ? Search().relatedToResults(state.graphIndex, results, 8) : [];
       var recent = state.recentIds
         .map(function (id) {
@@ -840,11 +862,11 @@
 
       return (
         "<h1 class=\"wu-title\">Search</h1>" +
-        '<p class="wu-lead">Research assistant — related topics, nearby concepts, projects, and open questions.</p>' +
+        '<p class="wu-lead">Natural language over your library — results explain why they matched. Examples: “Show everything related to spatial computing”, “Find notes mentioning both Linux and networking”, “Show unresolved questions about computer vision”.</p>' +
         '<form id="wu-search-form" class="wu-form wu-form--row">' +
         "<label class=\"wu-grow\">Query <input name=\"q\" value=\"" +
         esc(state.q) +
-        "\" placeholder=\"Titles, body, tags, citations, projects…\" autofocus/></label>" +
+        "\" placeholder=\"Ask in plain language or keywords…\" autofocus/></label>" +
         '<button type="submit" class="wu-btn wu-btn--primary">Search</button></form>' +
         (state.q
           ? '<p class="wu-meta">' +
@@ -1508,9 +1530,25 @@
         '<p class="wu-empty">Export creates a download on this device. Nothing is uploaded. Restore by importing the JSON backup.</p>' +
         (state.flash ? '<p class="wu-flash">' + esc(state.flash) + "</p>" : "") +
         "</div>" +
+        '<div class="wu-card"><h2>Research assistant &amp; privacy</h2>' +
+        '<p class="wu-lead">No research content leaves this environment unless you explicitly enable a remote AI provider (none is configured in Module 6).</p>' +
+        '<form id="wu-assist-prefs" class="wu-form">' +
+        "<label><input type=\"checkbox\" name=\"assistEnabled\"" +
+        (state.assistPrefs.assistEnabled !== false ? " checked" : "") +
+        "/> Enable local research assistant (related knowledge, gaps, Assist actions)</label>" +
+        "<label><input type=\"checkbox\" name=\"remoteAi\"" +
+        (state.assistPrefs.remoteAiEnabled ? " checked" : "") +
+        "/> Allow remote AI (future) — currently refuses to transmit; leave off</label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Save assistant prefs</button></form>' +
+        '<ul class="wu-list">' +
+        "<li><span class=\"wu-meta\">Could transmit externally</span><br/>Only a future remote AI provider, and only if you enable Remote AI. Export downloads stay on-device. Fonts may load from Google Fonts if the network is available (cosmetic).</li>" +
+        "<li><span class=\"wu-meta\">Local-first</span><br/>Assist actions, search, dashboards, and relationship discovery run entirely in the browser against IndexedDB.</li>" +
+        "</ul></div>" +
         '<div class="wu-card"><h2>Appearance</h2>' +
         '<p class="wu-empty">Calm light theme is fixed for deep study. System reduced-motion preferences are respected.</p></div>' +
-        '<div class="wu-card"><h2>Module 5</h2><p>Private access server, daily workspace, journal, durable IndexedDB persistence, export. No public registration.</p></div>'
+        '<div class="wu-card"><h2>Module 6</h2><p>Local research assistant, decision journal, hypotheses, dashboards, writing workspace, compare &amp; synthesis. Schema ' +
+        esc(Schema().SCHEMA) +
+        ".</p></div>"
       );
     }
 
@@ -1708,7 +1746,80 @@
             esc((node.field && node.field.conditions) || "") +
             "\"/></label></fieldset>"
           : "") +
-        (node.thinking && node.thinking.tool
+        (node.kind === "decision" || (node.thinking && node.thinking.tool === "decision-journal")
+          ? "<fieldset><legend>Decision journal</legend>" +
+            "<label>Status <select name=\"tstatus\">" +
+            (Schema().DECISION_STATUSES || []).map(function (s) {
+              return (
+                "<option value=\"" +
+                s.id +
+                "\"" +
+                ((node.thinking && node.thinking.status) === s.id ? " selected" : "") +
+                ">" +
+                esc(s.label) +
+                "</option>"
+              );
+            }).join("") +
+            "</select></label>" +
+            "<label>Decision made <textarea name=\"tdecision\" rows=\"2\">" +
+            esc((node.thinking && node.thinking.decision) || "") +
+            "</textarea></label>" +
+            "<label>Reasoning <textarea name=\"trationale\" rows=\"3\">" +
+            esc((node.thinking && (node.thinking.rationale || node.thinking.chosen)) || "") +
+            "</textarea></label>" +
+            "<label>Evidence used <textarea name=\"tevidence\" rows=\"2\">" +
+            esc((node.thinking && (node.thinking.evidenceUsed || node.thinking.supports)) || "") +
+            "</textarea></label>" +
+            "<label>Alternatives considered <textarea name=\"talts\" rows=\"2\">" +
+            esc((node.thinking && (node.thinking.alternatives || node.thinking.options)) || "") +
+            "</textarea></label>" +
+            "<label>Expected outcome <textarea name=\"texpected\" rows=\"2\">" +
+            esc((node.thinking && node.thinking.expectedOutcome) || "") +
+            "</textarea></label>" +
+            "<label>Confidence (0–5) <input name=\"tconf\" type=\"number\" min=\"0\" max=\"5\" value=\"" +
+            esc(node.thinking && node.thinking.confidence != null ? node.thinking.confidence : "") +
+            "\"/></label>" +
+            "<label>Review date <input name=\"treview\" type=\"date\" value=\"" +
+            esc((node.thinking && node.thinking.reviewDate) || "") +
+            "\"/></label>" +
+            "<label>Later observations <textarea name=\"tlater\" rows=\"3\">" +
+            esc((node.thinking && node.thinking.laterObservations) || "") +
+            "</textarea></label></fieldset>"
+          : node.kind === "hypothesis" || (node.thinking && node.thinking.tool === "hypothesis")
+          ? "<fieldset><legend>Hypothesis (provisional)</legend>" +
+            "<label>Status <select name=\"thypstatus\">" +
+            (Schema().HYPOTHESIS_STATUSES || []).map(function (s) {
+              return (
+                "<option value=\"" +
+                s.id +
+                "\"" +
+                ((node.thinking && node.thinking.hypothesisStatus) === s.id ? " selected" : "") +
+                ">" +
+                esc(s.label) +
+                "</option>"
+              );
+            }).join("") +
+            "</select></label>" +
+            "<label>Statement <textarea name=\"tclaim\" rows=\"3\">" +
+            esc((node.thinking && (node.thinking.statement || node.thinking.claim)) || "") +
+            "</textarea></label>" +
+            "<label>Supporting evidence <textarea name=\"tsupporting\" rows=\"2\">" +
+            esc((node.thinking && (node.thinking.supportingEvidence || node.thinking.supports)) || "") +
+            "</textarea></label>" +
+            "<label>Contradicting evidence <textarea name=\"tcontradict\" rows=\"2\">" +
+            esc((node.thinking && (node.thinking.contradictingEvidence || node.thinking.objections)) || "") +
+            "</textarea></label>" +
+            "<label>Experiments <textarea name=\"texperiments\" rows=\"2\">" +
+            esc((node.thinking && (node.thinking.experiments || node.thinking.method)) || "") +
+            "</textarea></label>" +
+            "<label>Confidence (0–5) <input name=\"tconf\" type=\"number\" min=\"0\" max=\"5\" value=\"" +
+            esc(node.thinking && node.thinking.confidence != null ? node.thinking.confidence : "") +
+            "\"/></label>" +
+            "<label>Questions generated <textarea name=\"tnext\" rows=\"2\">" +
+            esc((node.thinking && node.thinking.next) || "") +
+            "</textarea></label>" +
+            '<p class="wu-meta">Hypotheses are never treated as facts.</p></fieldset>'
+          : node.thinking && node.thinking.tool
           ? "<fieldset><legend>Thinking tool · " +
             esc(node.thinking.tool) +
             "</legend>" +
@@ -1828,11 +1939,16 @@
       var follow = Search().followUps(node, state.graphIndex, 6);
 
       return (
+        '<div class="wu-item-layout">' +
+        '<div class="wu-item-main">' +
+        companionStrip(node) +
         '<p class="wu-crumb"><a href="#library">Library</a> · ' +
         esc(Schema().kindLabel(node.kind)) +
         ' · <a href="#graph/' +
         encodeURIComponent(id) +
-        '">Graph neighborhood</a></p>' +
+        '">Graph neighborhood</a> · <a href="#assist">Assist</a> · <a href="#write/' +
+        encodeURIComponent(id) +
+        '">Write</a></p>' +
         "<h1 class=\"wu-title\">" +
         esc(node.title) +
         (node.bookmarked ? " ★" : "") +
@@ -1900,6 +2016,73 @@
             "</p>" +
             (node.reliability.conflicts
               ? "<p><strong>Conflicting viewpoints</strong><br/>" + esc(node.reliability.conflicts) + "</p>"
+              : "") +
+            "</div>"
+          : "") +
+        (node.kind === "decision" || (node.thinking && node.thinking.tool === "decision-journal")
+          ? '<div class="wu-card"><h2>Decision journal</h2><p class="wu-meta">' +
+            esc((node.thinking && node.thinking.status) || "draft") +
+            (node.thinking && node.thinking.confidence != null
+              ? " · confidence " + node.thinking.confidence
+              : "") +
+            (node.thinking && node.thinking.reviewDate
+              ? " · review " + esc(node.thinking.reviewDate)
+              : "") +
+            "</p>" +
+            (node.thinking && node.thinking.decision
+              ? "<p><strong>Decision</strong><br/>" + esc(node.thinking.decision) + "</p>"
+              : "") +
+            (node.thinking && (node.thinking.rationale || node.thinking.chosen)
+              ? "<p><strong>Reasoning</strong><br/>" +
+                esc(node.thinking.rationale || node.thinking.chosen) +
+                "</p>"
+              : "") +
+            (node.thinking && (node.thinking.evidenceUsed || node.thinking.supports)
+              ? "<p><strong>Evidence</strong><br/>" +
+                esc(node.thinking.evidenceUsed || node.thinking.supports) +
+                "</p>"
+              : "") +
+            (node.thinking && (node.thinking.alternatives || node.thinking.options)
+              ? "<p><strong>Alternatives</strong><br/>" +
+                esc(node.thinking.alternatives || node.thinking.options) +
+                "</p>"
+              : "") +
+            (node.thinking && node.thinking.expectedOutcome
+              ? "<p><strong>Expected outcome</strong><br/>" + esc(node.thinking.expectedOutcome) + "</p>"
+              : "") +
+            (node.thinking && node.thinking.laterObservations
+              ? "<p><strong>Later observations</strong><br/>" +
+                esc(node.thinking.laterObservations) +
+                "</p>"
+              : "") +
+            "</div>"
+          : "") +
+        (node.kind === "hypothesis" || (node.thinking && node.thinking.tool === "hypothesis")
+          ? '<div class="wu-card"><h2>Hypothesis <span class="wu-meta">(not a fact)</span></h2><p class="wu-meta">' +
+            esc((node.thinking && (node.thinking.hypothesisStatus || node.thinking.status)) || "proposed") +
+            (node.thinking && node.thinking.confidence != null
+              ? " · confidence " + node.thinking.confidence
+              : "") +
+            "</p>" +
+            (node.thinking && (node.thinking.statement || node.thinking.claim)
+              ? "<p><strong>Statement</strong><br/>" +
+                esc(node.thinking.statement || node.thinking.claim) +
+                "</p>"
+              : "") +
+            (node.thinking && (node.thinking.supportingEvidence || node.thinking.supports)
+              ? "<p><strong>Supporting</strong><br/>" +
+                esc(node.thinking.supportingEvidence || node.thinking.supports) +
+                "</p>"
+              : "") +
+            (node.thinking && (node.thinking.contradictingEvidence || node.thinking.objections)
+              ? "<p><strong>Contradicting</strong><br/>" +
+                esc(node.thinking.contradictingEvidence || node.thinking.objections) +
+                "</p>"
+              : "") +
+            (node.thinking && (node.thinking.experiments || node.thinking.method)
+              ? "<p><strong>Experiments</strong><br/>" +
+                esc(node.thinking.experiments || node.thinking.method) +
+                "</p>"
               : "") +
             "</div>"
           : "") +
@@ -2035,7 +2218,10 @@
           })
           .join("") +
         "</select></label>" +
-        '<button type="submit" class="wu-btn wu-btn--primary">Add link</button></form></section>'
+        '<button type="submit" class="wu-btn wu-btn--primary">Add link</button></form></section>' +
+        "</div>" +
+        relatedSidebar(node) +
+        "</div>"
       );
     }
 
@@ -2048,10 +2234,597 @@
       );
     }
 
+
+    function confBadge(id) {
+      var c = (Assist().CONFIDENCE && Assist().CONFIDENCE[id]) || { label: id || "—", blurb: "" };
+      return (
+        '<span class="wu-conf wu-conf--' +
+        esc(id || "unknown") +
+        '" title="' +
+        esc(c.blurb || "") +
+        '">' +
+        esc(c.label || id || "—") +
+        "</span>"
+      );
+    }
+
+    function citeList(citations) {
+      citations = citations || [];
+      if (!citations.length) return '<p class="wu-empty">No library citations for this response.</p>';
+      return (
+        '<ul class="wu-cite-list">' +
+        citations
+          .slice(0, 24)
+          .map(function (c) {
+            var n = c.node || (c.id && nodeMap()[c.id]);
+            var title = n ? n.title : c.id || "Unknown";
+            var id = (n && n.id) || c.id;
+            return (
+              "<li>" +
+              confBadge(c.confidence) +
+              " " +
+              (id
+                ? '<a href="#item/' + encodeURIComponent(id) + '">' + esc(title) + "</a>"
+                : esc(title)) +
+              (c.why ? '<span class="wu-meta"> — ' + esc(c.why) + "</span>" : "") +
+              "</li>"
+            );
+          })
+          .join("") +
+        "</ul>"
+      );
+    }
+
+    function relatedSidebar(node) {
+      if (!node || !state.assistPrefs.assistEnabled) return "";
+      var rel = Assist().relatedFor(node, state.graphIndex);
+      function block(title, arr, isProject) {
+        if (!arr || !arr.length) return "";
+        return (
+          "<h3>" +
+          esc(title) +
+          "</h3><ul class=\"wu-list wu-list--dense\">" +
+          arr
+            .slice(0, 6)
+            .map(function (x) {
+              if (isProject) {
+                return (
+                  "<li>" +
+                  confBadge(x.confidence) +
+                  ' <a href="#projects/' +
+                  encodeURIComponent(x.id) +
+                  '">' +
+                  esc(x.label) +
+                  "</a>" +
+                  '<span class="wu-meta"> — ' +
+                  esc(x.why) +
+                  "</span></li>"
+                );
+              }
+              var n = x.node || nodeMap()[x.id];
+              if (!n) return "";
+              return (
+                "<li>" +
+                confBadge(x.confidence) +
+                ' <a href="#item/' +
+                encodeURIComponent(n.id) +
+                '">' +
+                esc(n.title) +
+                "</a>" +
+                '<span class="wu-meta"> — ' +
+                esc(x.why) +
+                "</span></li>"
+              );
+            })
+            .join("") +
+          "</ul>"
+        );
+      }
+      return (
+        '<aside class="wu-related" aria-label="Related knowledge">' +
+        "<h2>Related in your library</h2>" +
+        '<p class="wu-meta">Suggestions are grounded in links and overlap. Labels: Known · Likely · Possible · Unknown.</p>' +
+        block("Notes", rel.notes) +
+        block("Projects", rel.projects, true) +
+        block("Sessions", rel.sessions) +
+        block("Questions", rel.questions) +
+        block("Sources", rel.sources) +
+        block("Learning paths", rel.paths) +
+        block("Recently near", rel.recent) +
+        "</aside>"
+      );
+    }
+
+    function companionStrip(node) {
+      if (!node || !state.assistPrefs.assistEnabled || parseHash().mode === "edit") return "";
+      var hints = Assist().companionHints(node, state.graphIndex);
+      if (!hints.length) return "";
+      return (
+        '<div class="wu-companion" role="note">' +
+        hints
+          .map(function (h) {
+            return (
+              "<p>" +
+              confBadge(h.confidence) +
+              " " +
+              esc(h.text) +
+              (h.nodeId
+                ? ' <a href="#item/' + encodeURIComponent(h.nodeId) + '">Open</a>'
+                : "") +
+              "</p>"
+            );
+          })
+          .join("") +
+        "</div>"
+      );
+    }
+
+    function assistResultHtml(res) {
+      if (!res) return "";
+      return (
+        '<div class="wu-assist-out">' +
+        confBadge(res.confidence) +
+        '<div class="wu-prose">' +
+        Md().render(res.text || "") +
+        "</div>" +
+        "<h3>Citations</h3>" +
+        citeList(res.citations) +
+        (res.privacy
+          ? '<p class="wu-meta">Privacy: ' + esc(res.privacy) + "</p>"
+          : '<p class="wu-meta">Computed locally — nothing left this device.</p>') +
+        "</div>"
+      );
+    }
+
+    function assistPanel() {
+      var focus =
+        (state.assistFocusId && nodeMap()[state.assistFocusId]) ||
+        (state.recentIds[0] && nodeMap()[state.recentIds[0]]) ||
+        state.nodes.filter(function (n) {
+          return n.status !== "archived";
+        })[0];
+      var gaps = state.assistPrefs.assistEnabled
+        ? Assist().knowledgeGaps(state.graphIndex)
+        : { opportunities: [], elapsedMs: 0 };
+      var memory = focus
+        ? Assist().memoryHints(state.graphIndex, focus)
+        : [];
+      return (
+        '<p class="wu-eyebrow">Research assistant</p>' +
+        "<h1 class=\"wu-title\">Assist</h1>" +
+        '<p class="wu-lead">Grounded in your library. Never fabricates knowledge. Every answer carries confidence and citations.</p>' +
+        (!state.assistPrefs.assistEnabled
+          ? '<p class="wu-flash">Assistant is disabled in Settings.</p>'
+          : "") +
+        '<div class="wu-assist-layout">' +
+        '<section class="wu-card">' +
+        "<h2>Ask the library</h2>" +
+        '<form id="wu-assist-form" class="wu-form">' +
+        "<label>Focus note <select name=\"focus\">" +
+        state.nodes
+          .filter(function (n) {
+            return n.status !== "archived";
+          })
+          .sort(function (a, b) {
+            return String(a.title).localeCompare(String(b.title));
+          })
+          .slice(0, 400)
+          .map(function (n) {
+            return (
+              '<option value="' +
+              esc(n.id) +
+              '"' +
+              (focus && focus.id === n.id ? " selected" : "") +
+              ">" +
+              esc(n.title) +
+              " (" +
+              esc(n.kind) +
+              ")</option>"
+            );
+          })
+          .join("") +
+        "</select></label>" +
+        "<label>Action <select name=\"action\">" +
+        Assist().ACTIONS.map(function (a) {
+          return (
+            '<option value="' +
+            esc(a.id) +
+            '"' +
+            (state.assistAction === a.id ? " selected" : "") +
+            ">" +
+            esc(a.label) +
+            "</option>"
+          );
+        }).join("") +
+        "</select></label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Run locally</button></form>' +
+        assistResultHtml(state.assistResult) +
+        "</section>" +
+        '<section class="wu-card">' +
+        "<h2>Knowledge opportunities</h2>" +
+        '<p class="wu-meta">Incomplete areas — framed as openings, not failures. Profiled in ' +
+        esc(String(gaps.elapsedMs || 0)) +
+        " ms.</p>" +
+        (gaps.opportunities && gaps.opportunities.length
+          ? gaps.opportunities
+              .map(function (g) {
+                return (
+                  "<article class=\"wu-gap\"><h3>" +
+                  esc(g.title) +
+                  "</h3><p class=\"wu-meta\">" +
+                  esc(g.blurb || "") +
+                  "</p><ul class=\"wu-list wu-list--dense\">" +
+                  (g.items || [])
+                    .slice(0, 8)
+                    .map(function (it) {
+                      var n = it.node || (it.id && nodeMap()[it.id]);
+                      return (
+                        "<li>" +
+                        confBadge(it.confidence) +
+                        (n
+                          ? ' <a href="#item/' +
+                            encodeURIComponent(n.id) +
+                            '">' +
+                            esc(n.title) +
+                            "</a>"
+                          : "") +
+                        '<span class="wu-meta"> — ' +
+                        esc(it.why || "") +
+                        "</span></li>"
+                      );
+                    })
+                    .join("") +
+                  "</ul></article>"
+                );
+              })
+              .join("")
+          : '<p class="wu-empty">No gaps detected yet — keep capturing and linking.</p>') +
+        "</section></div>" +
+        (memory.length
+          ? '<section class="wu-card"><h2>Long-term memory</h2>' +
+            memory
+              .map(function (h) {
+                return (
+                  "<p>" +
+                  confBadge(h.confidence) +
+                  " " +
+                  esc(h.text) +
+                  (h.nodeId
+                    ? ' <a href="#item/' + encodeURIComponent(h.nodeId) + '">Open</a>'
+                    : "") +
+                  "</p>"
+                );
+              })
+              .join("") +
+            "</section>"
+          : "") +
+        '<p class="wu-actions"><a class="wu-btn" href="#compare">Compare notes</a> ' +
+        '<a class="wu-btn" href="#synthesize">Source synthesis</a> ' +
+        '<a class="wu-btn" href="#write">Writing workspace</a></p>'
+      );
+    }
+
+    function dashboardsPanel() {
+      var laneId = parseHash().id || state.dashboardLane || "waypoint-studio";
+      state.dashboardLane = laneId;
+      var dash = Assist().researchDashboard(laneId, state.graphIndex);
+      return (
+        '<p class="wu-eyebrow">Research dashboards</p>' +
+        "<h1 class=\"wu-title\">" +
+        esc(dash.lane.label) +
+        "</h1>" +
+        '<p class="wu-lead">Calm summaries of current activity — not a noisy command center.</p>' +
+        '<nav class="wu-workspace-nav" aria-label="Research domains"><ul>' +
+        Assist().DASHBOARD_LANES.map(function (l) {
+          return (
+            "<li><a href=\"#dashboards/" +
+            encodeURIComponent(l.id) +
+            "\"" +
+            (l.id === laneId ? ' aria-current="page"' : "") +
+            ">" +
+            esc(l.label) +
+            "</a></li>"
+          );
+        }).join("") +
+        "</ul></nav>" +
+        '<div class="wu-home-grid">' +
+        '<section class="wu-card"><h2>Current activity</h2>' +
+        listHtml(dash.activity, "Nothing tagged to this lane yet.") +
+        "</section>" +
+        '<section class="wu-card"><h2>Recent discoveries</h2>' +
+        listHtml(dash.discoveries, "No recent captures in this lane.") +
+        "</section>" +
+        '<section class="wu-card"><h2>Open questions</h2>' +
+        listHtml(dash.questions, "No open questions here.") +
+        "</section>" +
+        '<section class="wu-card"><h2>Recent sessions</h2>' +
+        listHtml(dash.sessions, "No sessions yet.") +
+        "</section>" +
+        '<section class="wu-card"><h2>Connected projects</h2><ul class="wu-list">' +
+        (dash.projects.length
+          ? dash.projects
+              .map(function (p) {
+                return (
+                  '<li><a href="#projects/' +
+                  encodeURIComponent(p.id) +
+                  '">' +
+                  esc(p.label) +
+                  "</a></li>"
+                );
+              })
+              .join("")
+          : '<li class="wu-empty">—</li>') +
+        "</ul></section>" +
+        '<section class="wu-card"><h2>Priority reading</h2>' +
+        listHtml(dash.reading, "Mark sources as reading or add to the reading queue.") +
+        "</section></div>"
+      );
+    }
+
+    function writePanel() {
+      var id = parseHash().id || state.writeFocusId;
+      var node =
+        (id && nodeMap()[id]) ||
+        state.nodes.filter(function (n) {
+          return n.kind === "research-note" || n.kind === "concept" || n.kind === "journal";
+        }).sort(byUpdated)[0];
+      if (!node) {
+        return (
+          "<h1 class=\"wu-title\">Writing workspace</h1>" +
+          '<p class="wu-lead">Create a note first, then return here for distraction-free drafting.</p>' +
+          '<p><a class="wu-btn wu-btn--primary" href="#new/research-note">New research note</a></p>'
+        );
+      }
+      state.writeFocusId = node.id;
+      return (
+        '<div class="wu-write">' +
+        '<header class="wu-write-head">' +
+        '<p class="wu-eyebrow">Distraction-free writing</p>' +
+        "<h1 class=\"wu-title\">" +
+        esc(node.title) +
+        "</h1>" +
+        '<p class="wu-meta"><a href="#item/' +
+        encodeURIComponent(node.id) +
+        '">Full view</a> · drafts autosave · related stays in the sidebar</p>' +
+        '<form id="wu-write-pick" class="wu-form wu-form--row">' +
+        "<label class=\"wu-grow\">Switch note <select name=\"nid\">" +
+        state.nodes
+          .filter(function (n) {
+            return n.status !== "archived";
+          })
+          .sort(function (a, b) {
+            return String(a.title).localeCompare(String(b.title));
+          })
+          .slice(0, 400)
+          .map(function (n) {
+            return (
+              '<option value="' +
+              esc(n.id) +
+              '"' +
+              (n.id === node.id ? " selected" : "") +
+              ">" +
+              esc(n.title) +
+              "</option>"
+            );
+          })
+          .join("") +
+        '</select></label><button type="submit" class="wu-btn">Open</button></form></header>' +
+        '<div class="wu-write-grid">' +
+        '<div class="wu-write-main">' +
+        editorForm(node, false).replace(
+          'class="wu-editor" id="wu-body"',
+          'class="wu-editor wu-editor--long" id="wu-body" rows="28"'
+        ) +
+        "</div>" +
+        relatedSidebar(node) +
+        "</div></div>"
+      );
+    }
+
+    function comparePanel() {
+      var selected = (state.compareIds || [])
+        .map(function (id) {
+          return nodeMap()[id];
+        })
+        .filter(Boolean);
+      var res =
+        selected.length >= 2 ? Assist().compareNotes(selected, state.graphIndex) : null;
+      return (
+        '<p><a href="#assist">← Assist</a></p>' +
+        "<h1 class=\"wu-title\">Multi-note comparison</h1>" +
+        '<p class="wu-lead">Common concepts, conflicts, shared sources, unique observations, possible duplicates.</p>' +
+        '<form id="wu-compare-form" class="wu-form">' +
+        "<label>Select notes (hold Ctrl/Cmd)<select name=\"ids\" multiple size=\"12\">" +
+        state.nodes
+          .filter(function (n) {
+            return n.status !== "archived";
+          })
+          .sort(function (a, b) {
+            return String(a.title).localeCompare(String(b.title));
+          })
+          .slice(0, 500)
+          .map(function (n) {
+            return (
+              '<option value="' +
+              esc(n.id) +
+              '"' +
+              (state.compareIds.indexOf(n.id) >= 0 ? " selected" : "") +
+              ">" +
+              esc(n.title) +
+              " (" +
+              esc(n.kind) +
+              ")</option>"
+            );
+          })
+          .join("") +
+        "</select></label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Compare</button></form>' +
+        (res ? assistResultHtml(res) : '<p class="wu-empty">Choose two or more notes.</p>')
+      );
+    }
+
+    function synthesizePanel() {
+      var selected = (state.synthIds || [])
+        .map(function (id) {
+          return nodeMap()[id];
+        })
+        .filter(Boolean);
+      var res = selected.length >= 2 ? Assist().synthesizeSources(selected) : null;
+      var sources = state.nodes.filter(function (n) {
+        return Schema().isSourceKind(n.kind) && n.status !== "archived";
+      });
+      return (
+        '<p><a href="#assist">← Assist</a></p>' +
+        "<h1 class=\"wu-title\">Source synthesis</h1>" +
+        '<p class="wu-lead">Where sources agree, disagree, and what remains unanswered — nuance preserved.</p>' +
+        '<form id="wu-synth-form" class="wu-form">' +
+        "<label>Sources<select name=\"ids\" multiple size=\"12\">" +
+        sources
+          .sort(function (a, b) {
+            return String(a.title).localeCompare(String(b.title));
+          })
+          .slice(0, 400)
+          .map(function (n) {
+            return (
+              '<option value="' +
+              esc(n.id) +
+              '"' +
+              (state.synthIds.indexOf(n.id) >= 0 ? " selected" : "") +
+              ">" +
+              esc(n.title) +
+              "</option>"
+            );
+          })
+          .join("") +
+        "</select></label>" +
+        '<button type="submit" class="wu-btn wu-btn--primary">Synthesize</button></form>' +
+        (res ? assistResultHtml(res) : '<p class="wu-empty">Select at least two sources.</p>')
+      );
+    }
+
+    function decisionsPanel() {
+      var mode = parseHash().id || "all";
+      var decisions = state.nodes
+        .filter(function (n) {
+          return n.kind === "decision" || (n.thinking && n.thinking.tool === "decision-journal");
+        })
+        .sort(byUpdated);
+      var hyps = state.nodes
+        .filter(function (n) {
+          return n.kind === "hypothesis" || (n.thinking && n.thinking.tool === "hypothesis");
+        })
+        .sort(byUpdated);
+      function decisionCard(n) {
+        var t = n.thinking || {};
+        return (
+          '<article class="wu-card wu-decision">' +
+          "<h3><a href=\"#item/" +
+          encodeURIComponent(n.id) +
+          '">' +
+          esc(n.title) +
+          "</a></h3>" +
+          '<p class="wu-meta">Status ' +
+          esc(t.status || "draft") +
+          (t.confidence != null ? " · confidence " + t.confidence : "") +
+          (t.reviewDate ? " · review " + esc(t.reviewDate) : "") +
+          "</p>" +
+          (t.decision ? "<p><strong>Decision</strong><br/>" + esc(t.decision) + "</p>" : "") +
+          (t.rationale || t.chosen
+            ? "<p><strong>Reasoning</strong><br/>" + esc(t.rationale || t.chosen) + "</p>"
+            : "") +
+          (t.evidenceUsed || t.supports
+            ? "<p><strong>Evidence</strong><br/>" + esc(t.evidenceUsed || t.supports) + "</p>"
+            : "") +
+          (t.alternatives || t.options
+            ? "<p><strong>Alternatives</strong><br/>" + esc(t.alternatives || t.options) + "</p>"
+            : "") +
+          (t.expectedOutcome
+            ? "<p><strong>Expected outcome</strong><br/>" + esc(t.expectedOutcome) + "</p>"
+            : "") +
+          (t.laterObservations
+            ? "<p><strong>Later observations</strong><br/>" + esc(t.laterObservations) + "</p>"
+            : "") +
+          "</article>"
+        );
+      }
+      function hypCard(n) {
+        var t = n.thinking || {};
+        return (
+          '<article class="wu-card wu-hypothesis">' +
+          "<h3><a href=\"#item/" +
+          encodeURIComponent(n.id) +
+          '">' +
+          esc(n.title) +
+          "</a></h3>" +
+          '<p class="wu-meta">Not a fact · status ' +
+          esc(t.hypothesisStatus || t.status || "proposed") +
+          (t.confidence != null ? " · confidence " + t.confidence : "") +
+          "</p>" +
+          (t.statement || t.claim
+            ? "<p><strong>Statement</strong><br/>" + esc(t.statement || t.claim) + "</p>"
+            : "") +
+          (t.supportingEvidence || t.supports
+            ? "<p><strong>Supporting</strong><br/>" + esc(t.supportingEvidence || t.supports) + "</p>"
+            : "") +
+          (t.contradictingEvidence || t.objections
+            ? "<p><strong>Contradicting</strong><br/>" +
+              esc(t.contradictingEvidence || t.objections) +
+              "</p>"
+            : "") +
+          (t.experiments || t.method
+            ? "<p><strong>Experiments</strong><br/>" + esc(t.experiments || t.method) + "</p>"
+            : "") +
+          "</article>"
+        );
+      }
+      return (
+        "<h1 class=\"wu-title\">Decisions &amp; hypotheses</h1>" +
+        '<p class="wu-lead">Reflect without rewriting history. Hypotheses stay provisional.</p>' +
+        '<nav class="wu-workspace-nav"><ul>' +
+        [
+          ["all", "All"],
+          ["decisions", "Decisions"],
+          ["hypotheses", "Hypotheses"]
+        ]
+          .map(function (p) {
+            return (
+              "<li><a href=\"#decisions/" +
+              p[0] +
+              "\"" +
+              (mode === p[0] ? ' aria-current="page"' : "") +
+              ">" +
+              p[1] +
+              "</a></li>"
+            );
+          })
+          .join("") +
+        '</ul></nav>' +
+        '<p class="wu-actions"><button type="button" class="wu-btn wu-btn--primary" data-thinking-tool="decision-journal">New decision</button> ' +
+        '<button type="button" class="wu-btn" data-thinking-tool="hypothesis">New hypothesis</button></p>' +
+        (mode !== "hypotheses"
+          ? "<h2 class=\"wu-section\">Decision journal</h2>" +
+            (decisions.length
+              ? decisions.map(decisionCard).join("")
+              : '<p class="wu-empty">No decisions yet.</p>')
+          : "") +
+        (mode !== "decisions"
+          ? "<h2 class=\"wu-section\">Hypotheses</h2>" +
+            (hyps.length ? hyps.map(hypCard).join("") : '<p class="wu-empty">No hypotheses yet.</p>')
+          : "")
+      );
+    }
+
+
     function body() {
       var route = parseHash();
       if (route.panel === "home") return homePanel();
       if (route.panel === "scholar" || route.panel === "research") return scholarPanel();
+      if (route.panel === "assist") return assistPanel();
+      if (route.panel === "dashboards") return dashboardsPanel();
+      if (route.panel === "write") return writePanel();
+      if (route.panel === "compare") return comparePanel();
+      if (route.panel === "synthesize") return synthesizePanel();
+      if (route.panel === "decisions") return decisionsPanel();
       if (route.panel === "knowledge" || route.panel === "library") return knowledgePanel();
       if (route.panel === "journal") return journalPanel();
       if (route.panel === "capture") return capturePanel();
@@ -2167,14 +2940,25 @@
           },
           thinking: Object.assign({}, (existing && existing.thinking) || {}, {
             status: fd.get("tstatus") != null ? String(fd.get("tstatus") || "") || null : (existing && existing.thinking && existing.thinking.status) || null,
+            hypothesisStatus: fd.get("thypstatus") != null ? String(fd.get("thypstatus") || "") || null : (existing && existing.thinking && existing.thinking.hypothesisStatus) || null,
             claim: fd.get("tclaim") != null ? String(fd.get("tclaim") || "") || null : (existing && existing.thinking && existing.thinking.claim) || null,
             statement: fd.get("tclaim") != null ? String(fd.get("tclaim") || "") || null : (existing && existing.thinking && existing.thinking.statement) || null,
+            decision: fd.get("tdecision") != null ? String(fd.get("tdecision") || "") || null : (existing && existing.thinking && existing.thinking.decision) || null,
             supports: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.supports) || null,
-            options: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.options) || null,
-            method: fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.method) || null,
-            objections: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.objections) || null,
-            rationale: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.rationale) || null,
+            options: fd.get("talts") != null ? String(fd.get("talts") || "") || null : fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.options) || null,
+            alternatives: fd.get("talts") != null ? String(fd.get("talts") || "") || null : (existing && existing.thinking && existing.thinking.alternatives) || null,
+            method: fd.get("texperiments") != null ? String(fd.get("texperiments") || "") || null : fd.get("tsupports") != null ? String(fd.get("tsupports") || "") || null : (existing && existing.thinking && existing.thinking.method) || null,
+            experiments: fd.get("texperiments") != null ? String(fd.get("texperiments") || "") || null : (existing && existing.thinking && existing.thinking.experiments) || null,
+            objections: fd.get("tcontradict") != null ? String(fd.get("tcontradict") || "") || null : fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.objections) || null,
+            contradictingEvidence: fd.get("tcontradict") != null ? String(fd.get("tcontradict") || "") || null : (existing && existing.thinking && existing.thinking.contradictingEvidence) || null,
+            supportingEvidence: fd.get("tsupporting") != null ? String(fd.get("tsupporting") || "") || null : (existing && existing.thinking && existing.thinking.supportingEvidence) || null,
+            evidenceUsed: fd.get("tevidence") != null ? String(fd.get("tevidence") || "") || null : (existing && existing.thinking && existing.thinking.evidenceUsed) || null,
+            rationale: fd.get("trationale") != null ? String(fd.get("trationale") || "") || null : fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.rationale) || null,
             result: fd.get("tobjections") != null ? String(fd.get("tobjections") || "") || null : (existing && existing.thinking && existing.thinking.result) || null,
+            expectedOutcome: fd.get("texpected") != null ? String(fd.get("texpected") || "") || null : (existing && existing.thinking && existing.thinking.expectedOutcome) || null,
+            confidence: fd.get("tconf") != null && String(fd.get("tconf")) !== "" ? Number(fd.get("tconf")) : (existing && existing.thinking && existing.thinking.confidence),
+            reviewDate: fd.get("treview") != null ? String(fd.get("treview") || "") || null : (existing && existing.thinking && existing.thinking.reviewDate) || null,
+            laterObservations: fd.get("tlater") != null ? String(fd.get("tlater") || "") || null : (existing && existing.thinking && existing.thinking.laterObservations) || null,
             next: fd.get("tnext") != null ? String(fd.get("tnext") || "") || null : (existing && existing.thinking && existing.thinking.next) || null
           }),
           annotations: (existing && existing.annotations) || []
@@ -2366,7 +3150,9 @@
         search.addEventListener("submit", function (ev) {
           ev.preventDefault();
           state.q = String(new FormData(search).get("q") || "");
-          var hits = state.q ? Search().search(state.index, state.q, { limit: 12 }) : [];
+          var hits = state.q
+            ? Assist().naturalSearch(state.q, state.index, state.graphIndex).slice(0, 12)
+            : [];
           Store()
             .recordSearchHits(
               hits.map(function (h) {
@@ -2466,7 +3252,9 @@
         search.addEventListener("submit", function (ev) {
           ev.preventDefault();
           state.q = String(new FormData(search).get("q") || "");
-          var hits = state.q ? Search().search(state.index, state.q, { limit: 12 }) : [];
+          var hits = state.q
+            ? Assist().naturalSearch(state.q, state.index, state.graphIndex).slice(0, 12)
+            : [];
           Store()
             .recordSearchHits(
               hits.map(function (h) {
@@ -2478,6 +3266,83 @@
             })
             .catch(function () {
               paint();
+            });
+        });
+      }
+
+      var assistForm = root.querySelector("#wu-assist-form");
+      if (assistForm) {
+        assistForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(assistForm);
+          state.assistFocusId = String(fd.get("focus") || "");
+          state.assistAction = String(fd.get("action") || "summarize");
+          var node = nodeMap()[state.assistFocusId];
+          var compareNodes = state.compareIds
+            .map(function (id) {
+              return nodeMap()[id];
+            })
+            .filter(Boolean);
+          state.assistResult = Assist().runAction(state.assistAction, {
+            node: node,
+            nodes: state.assistAction === "compare" ? compareNodes : node ? [node] : [],
+            graphIndex: state.graphIndex
+          });
+          paint();
+        });
+      }
+
+      var compareForm = root.querySelector("#wu-compare-form");
+      if (compareForm) {
+        compareForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var sel = compareForm.querySelector('[name="ids"]');
+          state.compareIds = sel
+            ? Array.prototype.slice.call(sel.selectedOptions).map(function (o) {
+                return o.value;
+              })
+            : [];
+          paint();
+        });
+      }
+
+      var synthForm = root.querySelector("#wu-synth-form");
+      if (synthForm) {
+        synthForm.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var sel = synthForm.querySelector('[name="ids"]');
+          state.synthIds = sel
+            ? Array.prototype.slice.call(sel.selectedOptions).map(function (o) {
+                return o.value;
+              })
+            : [];
+          paint();
+        });
+      }
+
+      var writePick = root.querySelector("#wu-write-pick");
+      if (writePick) {
+        writePick.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var nid = String(new FormData(writePick).get("nid") || "");
+          state.writeFocusId = nid;
+          setHash("write", nid);
+        });
+      }
+
+      var assistPrefs = root.querySelector("#wu-assist-prefs");
+      if (assistPrefs) {
+        assistPrefs.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var fd = new FormData(assistPrefs);
+          Store()
+            .setAssistPrefs({
+              assistEnabled: !!fd.get("assistEnabled"),
+              remoteAiEnabled: !!fd.get("remoteAi")
+            })
+            .then(function () {
+              state.flash = "Assistant preferences saved.";
+              return refresh().then(paint);
             });
         });
       }
