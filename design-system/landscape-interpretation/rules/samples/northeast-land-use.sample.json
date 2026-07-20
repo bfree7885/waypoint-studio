@@ -4,10 +4,15 @@
     "version": "0.1.0",
     "title": "Sample Northeast land-use reading rules",
     "status": "sample",
-    "regionalScope": ["northeastern-us", "global-educational"],
-    "authors": ["Waypoint Studio"],
-    "updatedAt": "2026-07-15",
-    "limitations": "Educational samples only. Not evaluated against live GIS. Stone walls alone never prove pasture. Regional geology and settlement patterns differ."
+    "regionalScope": [
+      "northeastern-us",
+      "global-educational"
+    ],
+    "authors": [
+      "Waypoint Studio"
+    ],
+    "updatedAt": "2026-07-19",
+    "limitations": "Educational samples only. Not evaluated against live GIS. Stone walls alone never prove pasture. Regional geology and settlement patterns differ. Fire, mining, and flood readings stay provisional without maps or records."
   },
   "rules": [
     {
@@ -16,7 +21,7 @@
       "category": "land-use-history",
       "priority": 70,
       "if": {
-        "plainLanguage": "If stone walls are present and fence remnants or even-aged tree lines along walls are present…",
+        "plainLanguage": "If stone walls are present and fence remnants or even-aged tree lines along walls are present\u2026",
         "all": [
           {
             "op": "tag",
@@ -25,7 +30,10 @@
           },
           {
             "op": "tagAny",
-            "tags": ["barbed-wire-or-fence-remnant", "even-aged-tree-line"],
+            "tags": [
+              "barbed-wire-or-fence-remnant",
+              "even-aged-tree-line"
+            ],
             "description": "Fence remnant or even-aged wall tree line"
           }
         ]
@@ -34,7 +42,7 @@
         "taxonomyId": "land-use.former-pasture",
         "label": "Former pasture",
         "statementTemplate": "This landscape may have regenerated after agricultural abandonment, with stone walls and fence-line trees consistent with historic pasture.",
-        "plainLanguage": "…this landscape may have regenerated after agricultural abandonment; stone walls likely relate to historic pasture enclosure."
+        "plainLanguage": "\u2026this landscape may have regenerated after agricultural abandonment; stone walls likely relate to historic pasture enclosure."
       },
       "confidenceCeiling": "moderate",
       "evidenceHints": [
@@ -47,13 +55,19 @@
         "Later logging may mimic even-aged cohorts along edges."
       ],
       "fieldChecks": [
-        "Follow the wall continuity — pasture walls often enclose shapes, not only straight property lines.",
+        "Follow the wall continuity \u2014 pasture walls often enclose shapes, not only straight property lines.",
         "Look for wire staples in older trees along the wall.",
         "Compare understory: thorny or browse-resistant shrubs sometimes linger after grazing."
       ],
       "limitations": "Without historic maps or aerials, keep confidence at or below moderate. Do not assert ownership or legal history.",
       "ethicsNotes": "Do not dismantle walls or remove artifacts.",
-      "consumers": ["studio", "fieldry", "shed-hunting", "scenes", "education"]
+      "consumers": [
+        "studio",
+        "fieldry",
+        "shed-hunting",
+        "scenes",
+        "education"
+      ]
     },
     {
       "id": "lie_stone_wall_boundary_only",
@@ -61,7 +75,7 @@
       "category": "land-use-history",
       "priority": 40,
       "if": {
-        "plainLanguage": "If a stone wall is present without stronger pasture corroboration…",
+        "plainLanguage": "If a stone wall is present without stronger pasture corroboration\u2026",
         "all": [
           {
             "op": "tag",
@@ -73,11 +87,13 @@
       "then": {
         "taxonomyId": "land-use.stone-wall-boundary",
         "label": "Stone wall boundary",
-        "statementTemplate": "These stone walls likely indicate a historic boundary — pasture, woodlot, or property division — but wall presence alone does not specify the land use.",
-        "plainLanguage": "…these stone walls likely indicate a historic boundary; look further before naming pasture."
+        "statementTemplate": "These stone walls likely indicate a historic boundary \u2014 pasture, woodlot, or property division \u2014 but wall presence alone does not specify the land use.",
+        "plainLanguage": "\u2026these stone walls likely indicate a historic boundary; look further before naming pasture."
       },
       "confidenceCeiling": "low",
-      "evidenceHints": ["Presence of dry-laid or rubble stone alignment"],
+      "evidenceHints": [
+        "Presence of dry-laid or rubble stone alignment"
+      ],
       "alternatives": [
         "Former pasture (needs fence, vegetation, or map corroboration).",
         "Woodlot boundary or ornamental landscape feature.",
@@ -89,7 +105,12 @@
         "Ask whether the wall closes a shape or only runs a ridge line."
       ],
       "limitations": "This rule teaches humility: walls are evidence of people, not a finished story.",
-      "consumers": ["studio", "fieldry", "scenes", "education"]
+      "consumers": [
+        "studio",
+        "fieldry",
+        "scenes",
+        "education"
+      ]
     },
     {
       "id": "lie_early_succession_after_opening",
@@ -97,7 +118,7 @@
       "category": "forest-development",
       "priority": 55,
       "if": {
-        "plainLanguage": "If dense young stems and open-meadow or shrub signals co-occur…",
+        "plainLanguage": "If dense young stems and open-meadow or shrub signals co-occur\u2026",
         "all": [
           {
             "op": "tag",
@@ -106,7 +127,11 @@
           },
           {
             "op": "tagAny",
-            "tags": ["open-meadow-forbs", "shrub-thicket", "abrupt-cover-edge"],
+            "tags": [
+              "open-meadow-forbs",
+              "shrub-thicket",
+              "abrupt-cover-edge"
+            ],
             "description": "Open meadow, shrub thicket, or abrupt edge"
           }
         ]
@@ -114,8 +139,8 @@
       "then": {
         "taxonomyId": "forest.early-succession",
         "label": "Early succession",
-        "statementTemplate": "Structure here is consistent with early succession after an opening — field abandonment, blowdown, cut, or beaver meadow dynamics may all apply.",
-        "plainLanguage": "…this area may be early succession regenerating after an opening."
+        "statementTemplate": "Structure here is consistent with early succession after an opening \u2014 field abandonment, blowdown, cut, or beaver meadow dynamics may all apply.",
+        "plainLanguage": "\u2026this area may be early succession regenerating after an opening."
       },
       "confidenceCeiling": "moderate",
       "evidenceHints": [
@@ -133,7 +158,12 @@
         "Note invasive shrubs that stall succession."
       ],
       "limitations": "Successional labels are relative to local climate and seed sources.",
-      "consumers": ["foragecast", "fieldry", "shed-hunting", "education"]
+      "consumers": [
+        "foragecast",
+        "fieldry",
+        "shed-hunting",
+        "education"
+      ]
     },
     {
       "id": "lie_beaver_influence",
@@ -141,7 +171,7 @@
       "category": "water-processes",
       "priority": 75,
       "if": {
-        "plainLanguage": "If beaver sign is present with seasonal water or drowned timber cues…",
+        "plainLanguage": "If beaver sign is present with seasonal water or drowned timber cues\u2026",
         "all": [
           {
             "op": "tag",
@@ -160,11 +190,13 @@
       "then": {
         "taxonomyId": "water.beaver-influence",
         "label": "Beaver influence",
-        "statementTemplate": "Wetland and meadow patterning here may reflect beaver influence — dams and water-table changes that create and abandon open habitat over decades.",
-        "plainLanguage": "…beaver activity may help explain wet openings and drowned timber."
+        "statementTemplate": "Wetland and meadow patterning here may reflect beaver influence \u2014 dams and water-table changes that create and abandon open habitat over decades.",
+        "plainLanguage": "\u2026beaver activity may help explain wet openings and drowned timber."
       },
       "confidenceCeiling": "moderate",
-      "evidenceHints": ["Cuttings, dams, lodges, drowned standing timber"],
+      "evidenceHints": [
+        "Cuttings, dams, lodges, drowned standing timber"
+      ],
       "alternatives": [
         "Human impoundment or road-related ponding.",
         "Seasonal wetland without beaver.",
@@ -177,7 +209,382 @@
       ],
       "limitations": "Beaver systems cycle; absence of a dam today does not erase recent influence.",
       "ethicsNotes": "Observe without destroying lodges or dams; follow local wildlife rules.",
-      "consumers": ["fieldry", "foragecast", "scenes", "education"]
+      "consumers": [
+        "fieldry",
+        "foragecast",
+        "scenes",
+        "education"
+      ]
+    },
+    {
+      "id": "lie_glacial_unsorted_debris",
+      "title": "Glacial deposit cues",
+      "category": "geological-processes",
+      "priority": 65,
+      "if": {
+        "plainLanguage": "If unsorted glacial debris or erratics are present\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "unsorted-glacial-debris",
+            "description": "Unsorted glacial debris / erratic"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "geo.glacial-deposits",
+        "label": "Glacial deposits",
+        "statementTemplate": "Scattered mixed rocks and odd boulders here are consistent with glacial deposits \u2014 ice once moved and dropped this material, shaping soils and drainage long before today's forest.",
+        "plainLanguage": "\u2026glacial ice likely left this mix of rock and till."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Mixed sizes without clear stream sorting",
+        "Isolated large erratics"
+      ],
+      "alternatives": [
+        "Human fill or road spoil mimicking till.",
+        "Local bedrock collapse with angular talus instead of rounded erratics.",
+        "Outwash sorted by meltwater rather than till."
+      ],
+      "fieldChecks": [
+        "Compare rock shapes: rounded far-travelled vs angular local.",
+        "Note closed ponds or kettles nearby.",
+        "Ask whether soils feel stony and unsorted."
+      ],
+      "limitations": "Regional textbooks and maps refine glacial stories; tags alone stay educational.",
+      "ethicsNotes": "Do not move erratics from protected sites.",
+      "consumers": [
+        "fieldry",
+        "education",
+        "scenes",
+        "shed-hunting"
+      ]
+    },
+    {
+      "id": "lie_flood_valley_activity",
+      "title": "Repeated flood activity in a stream valley",
+      "category": "water-processes",
+      "priority": 68,
+      "if": {
+        "plainLanguage": "If flood debris or scour appears with seasonal standing water or a terrace step\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "flood-debris-or-scour",
+            "description": "Flood debris or scour"
+          }
+        ],
+        "any": [
+          {
+            "op": "tag",
+            "tag": "seasonal-standing-water",
+            "description": "Seasonal standing water"
+          },
+          {
+            "op": "tag",
+            "tag": "terrace-step",
+            "description": "Terrace step"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "water.floodplain",
+        "label": "Floodplain / repeated flood activity",
+        "statementTemplate": "The stream valley shows signs of repeated flood activity \u2014 wrack, scour, or stepped terraces that record high water moving sediment and resetting vegetation.",
+        "plainLanguage": "\u2026this valley likely floods again and again."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Wrack lines or lodged debris",
+        "Scoured banks",
+        "Flat bottoms beside channels"
+      ],
+      "alternatives": [
+        "Single storm damage without a true floodplain.",
+        "Beaver ponding raising water without overbank floods.",
+        "Road washouts concentrating flow artificially."
+      ],
+      "fieldChecks": [
+        "Look for layered fine sediments on the flat.",
+        "Note plant species that tolerate brief inundation.",
+        "Compare terrace height to today's channel."
+      ],
+      "limitations": "Do not treat this as a flood-insurance determination.",
+      "ethicsNotes": "Stay off unstable banks; respect private land.",
+      "consumers": [
+        "fieldry",
+        "foragecast",
+        "education",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "lie_logging_history",
+      "title": "Logging history cues",
+      "category": "land-use-history",
+      "priority": 60,
+      "if": {
+        "plainLanguage": "If stumps or skid trails are present with even-aged stems or dense young growth\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "stumps-or-skid-trails",
+            "description": "Stumps or skid trails"
+          }
+        ],
+        "any": [
+          {
+            "op": "tag",
+            "tag": "dense-young-stems",
+            "description": "Dense young stems"
+          },
+          {
+            "op": "tag",
+            "tag": "even-aged-tree-line",
+            "description": "Even-aged tree line"
+          },
+          {
+            "op": "tag",
+            "tag": "abrupt-cover-edge",
+            "description": "Abrupt cover edge"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "land-use.logging-history",
+        "label": "Logging history",
+        "statementTemplate": "Stumps, skid lines, and even-aged regrowth suggest logging history \u2014 a cut that reset the stand, not necessarily the end of the forest story.",
+        "plainLanguage": "\u2026this stand likely regrew after cutting."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Cut stumps",
+        "Compacted skid corridors",
+        "Cohort canopy"
+      ],
+      "alternatives": [
+        "Windthrow followed by salvage looking like a harvest.",
+        "Plantation rows rather than natural regeneration.",
+        "Fuelwood cutting without commercial logging."
+      ],
+      "fieldChecks": [
+        "Count stump diameters and estimate cut age.",
+        "Follow compacted corridors for equipment width.",
+        "Note species favored after opening."
+      ],
+      "limitations": "Age of stumps matters; old charcoal eras differ from recent cuts.",
+      "consumers": [
+        "fieldry",
+        "shed-hunting",
+        "education"
+      ]
+    },
+    {
+      "id": "lie_fire_influence",
+      "title": "Fire influence cues",
+      "category": "forest-development",
+      "priority": 62,
+      "if": {
+        "plainLanguage": "If fire scars or char are present with canopy gaps or early succession cues\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "fire-scar-or-char",
+            "description": "Fire scar or char"
+          }
+        ],
+        "any": [
+          {
+            "op": "tag",
+            "tag": "dense-young-stems",
+            "description": "Dense young stems"
+          },
+          {
+            "op": "tag",
+            "tag": "abrupt-cover-edge",
+            "description": "Abrupt cover edge"
+          },
+          {
+            "op": "tag",
+            "tag": "standing-deadwood",
+            "description": "Standing deadwood"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "forest.canopy-gap-dynamics",
+        "label": "Fire-influenced structure",
+        "statementTemplate": "Char and fire scars with open or young structure suggest fire helped shape this place \u2014 sometimes as a reset, sometimes as a patchy thinning that favored certain trees.",
+        "plainLanguage": "\u2026fire likely played a role in how this stand looks."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Basal fire scars",
+        "Charcoal in soil or on wood",
+        "Patchy mortality"
+      ],
+      "alternatives": [
+        "Campfire or pile burn with limited stand effect.",
+        "Lightning scar without broader burn.",
+        "Drought mortality darkening wood without fire."
+      ],
+      "fieldChecks": [
+        "Look upslope and downslope for continuous char patterns.",
+        "Note sprouting hardwoods vs fire-killed pines.",
+        "Ask whether fuels and slope would carry fire."
+      ],
+      "limitations": "Without burn-year records, keep language provisional.",
+      "ethicsNotes": "Never ignite fuels to 'test' a reading.",
+      "consumers": [
+        "fieldry",
+        "education",
+        "scenes"
+      ]
+    },
+    {
+      "id": "lie_mining_influence",
+      "title": "Mining influence cues",
+      "category": "land-use-history",
+      "priority": 58,
+      "if": {
+        "plainLanguage": "If mining spoil or prospect pits are present\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "mining-spoil-or-pit",
+            "description": "Mining spoil or pit"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "land-use.mining-influence",
+        "label": "Mining influence",
+        "statementTemplate": "Spoil piles or prospect pits suggest mining influence \u2014 people moved earth for ore or stone, leaving soils and drainage that vegetation still answers to.",
+        "plainLanguage": "\u2026mining likely left lasting ground scars here."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Unnatural mounds of rock",
+        "Collapsed pits",
+        "Odd metal debris"
+      ],
+      "alternatives": [
+        "Quarry or borrow pit for road fill, not metal mining.",
+        "Root cellars or farm dumps mistaken for pits.",
+        "Military or dump trenches."
+      ],
+      "fieldChecks": [
+        "Stay outside unstable pits and adits.",
+        "Note vegetation that prefers disturbed mineral soils.",
+        "Compare spoil rock to local bedrock."
+      ],
+      "limitations": "Safety first \u2014 never enter adits. Not a contamination assessment.",
+      "ethicsNotes": "Do not dig, collect, or enter workings.",
+      "consumers": [
+        "fieldry",
+        "education",
+        "scenes"
+      ]
+    },
+    {
+      "id": "lie_infrastructure_corridor",
+      "title": "Infrastructure reshaping topography",
+      "category": "habitat-structure",
+      "priority": 50,
+      "if": {
+        "plainLanguage": "If utility corridors, roadcuts, or parallel berms are present\u2026",
+        "all": [
+          {
+            "op": "tagAny",
+            "tags": [
+              "utility-corridor-or-roadcut",
+              "parallel-road-berms"
+            ],
+            "description": "Corridor or berms"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "habitat.edge-habitat",
+        "label": "Infrastructure edge",
+        "statementTemplate": "Graded benches, road berms, or utility clearings create sharp edges \u2014 human infrastructure rewriting light, drainage, and plant communities along a corridor.",
+        "plainLanguage": "\u2026roads or utilities help explain this abrupt edge."
+      },
+      "confidenceCeiling": "moderate",
+      "evidenceHints": [
+        "Straight cleared lanes",
+        "Cut slopes",
+        "Compacted parallel berms"
+      ],
+      "alternatives": [
+        "Abandoned farm lane still serving as habitat edge.",
+        "Natural landslide scarp.",
+        "Pipeline ROW vs powerline with different maintenance."
+      ],
+      "fieldChecks": [
+        "Follow the line \u2014 does it stay ruler-straight?",
+        "Note mowing or herbicide maintenance clues.",
+        "Watch how water sheds off the cut."
+      ],
+      "limitations": "Do not trespass on active rights-of-way.",
+      "consumers": [
+        "fieldry",
+        "education",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "lie_kettle_depression",
+      "title": "Kettle / closed depression",
+      "category": "geological-processes",
+      "priority": 55,
+      "if": {
+        "plainLanguage": "If a closed depression without outlet co-occurs with glacial debris cues\u2026",
+        "all": [
+          {
+            "op": "tag",
+            "tag": "closed-depression",
+            "description": "Closed depression"
+          },
+          {
+            "op": "tagAny",
+            "tags": [
+              "unsorted-glacial-debris",
+              "seasonal-standing-water"
+            ],
+            "description": "Glacial debris or seasonal water"
+          }
+        ]
+      },
+      "then": {
+        "taxonomyId": "geo.kettle",
+        "label": "Kettle depression",
+        "statementTemplate": "A bowl without an outlet, especially amid glacial deposits, may be a kettle \u2014 a hollow left where buried ice melted, now holding seasonal water or wetland plants.",
+        "plainLanguage": "\u2026this closed bowl may be a glacial kettle."
+      },
+      "confidenceCeiling": "low",
+      "evidenceHints": [
+        "No stream outlet",
+        "Seasonal ponding",
+        "Nearby till or outwash"
+      ],
+      "alternatives": [
+        "Sinkhole in carbonate rock (karst).",
+        "Human borrow pit.",
+        "Beaver meadow abandoned to a wet depression."
+      ],
+      "fieldChecks": [
+        "Walk the rim looking for an outlet channel.",
+        "Note plant rings that track wetter centers.",
+        "Compare with regional kettle lake maps if available."
+      ],
+      "limitations": "Low confidence without regional glacial context.",
+      "consumers": [
+        "education",
+        "fieldry",
+        "foragecast"
+      ]
     }
   ]
 }

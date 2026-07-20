@@ -433,12 +433,87 @@
   color: var(--wv-ink);
 }
 
-.wv-filters input[type="number"] {
+.wv-filters input[type="number"],
+.wv-filters input[type="search"] {
   font: inherit;
+  font-size: 16px;
   border: 1px solid var(--wv-line);
   background: var(--wv-panel);
-  padding: 0.35rem 0.45rem;
+  padding: 0.45rem 0.55rem;
+  min-height: 44px;
+  width: 100%;
+  max-width: 18rem;
+  box-sizing: border-box;
+}
+
+.wv-filters input[type="number"] {
   width: 5.5rem;
+  max-width: none;
+}
+
+.wv-search {
+  grid-column: 1 / -1;
+}
+
+.wv-place {
+  font-size: 0.9rem;
+  color: var(--wv-muted, #5c6758);
+  margin: 0.5rem 0 0;
+}
+
+.wv-linkish {
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0.35rem 0.15rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.wv-bridges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.wv-bridges a,
+.wv-citizen-links a {
+  color: inherit;
+}
+
+.wv-citizen {
+  border: 1px solid var(--wv-line);
+  background: var(--wv-panel);
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+}
+
+.wv-citizen h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+}
+
+.wv-citizen ul {
+  margin: 0.5rem 0;
+  padding-left: 1.1rem;
+}
+
+.wv-view-toggle button,
+.wv-btn,
+.wv-chip,
+.wv-card {
+  min-height: 44px;
+}
+
+.wv-filters select {
+  font-size: 16px;
+  min-height: 44px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -456,7 +531,16 @@
   }
 
   .wv-map {
-    height: 200px;
+    height: 220px;
+  }
+
+  .wv-filters {
+    gap: 0.65rem;
+  }
+
+  .wv-detail,
+  .wv-list {
+    font-size: 1rem;
   }
 }
 

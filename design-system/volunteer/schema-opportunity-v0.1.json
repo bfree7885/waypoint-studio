@@ -22,117 +22,256 @@
   "properties": {
     "meta": {
       "type": "object",
-      "required": ["version", "schema", "status"],
+      "required": [
+        "version",
+        "schema",
+        "status"
+      ],
       "additionalProperties": false,
       "properties": {
-        "version": { "type": "string", "const": "0.1.0" },
+        "version": {
+          "type": "string",
+          "const": "0.1.0"
+        },
         "schema": {
           "type": "string",
           "const": "https://waypoint.studio/schemas/volunteer/opportunity/v0.1"
         },
         "status": {
           "type": "string",
-          "enum": ["sample", "draft", "active", "archived"]
+          "enum": [
+            "sample",
+            "draft",
+            "active",
+            "archived"
+          ]
         },
-        "disclaimer": { "type": "string", "maxLength": 1024 }
+        "disclaimer": {
+          "type": "string",
+          "maxLength": 1024
+        }
       }
     },
     "id": {
       "type": "string",
       "pattern": "^vo_[a-z0-9]+(?:-[a-z0-9]+)*$"
     },
-    "title": { "type": "string", "maxLength": 200 },
-    "description": { "type": "string", "maxLength": 4000 },
+    "title": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
     "organizationId": {
       "type": "string",
       "pattern": "^org_"
     },
     "location": {
       "type": "object",
-      "required": ["label"],
+      "required": [
+        "label"
+      ],
       "additionalProperties": false,
       "properties": {
-        "label": { "type": "string", "maxLength": 256 },
-        "regionHint": { "type": ["string", "null"] },
-        "notes": { "type": ["string", "null"], "maxLength": 400 },
+        "label": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "regionHint": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        },
         "lat": {
-          "type": ["number", "null"],
-          "description": "Approximate demo coordinates only — never precise private addresses."
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Approximate demo coordinates only \u2014 never precise private addresses."
         },
         "lon": {
-          "type": ["number", "null"],
-          "description": "Approximate demo coordinates only — never precise private addresses."
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Approximate demo coordinates only \u2014 never precise private addresses."
         },
         "precision": {
-          "type": ["string", "null"],
-          "enum": ["site", "neighborhood", "city", "county", "region", null]
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "site",
+            "neighborhood",
+            "city",
+            "county",
+            "region",
+            null
+          ]
         }
       }
     },
     "setting": {
       "type": "string",
-      "enum": ["indoor", "outdoor", "mixed"]
+      "enum": [
+        "indoor",
+        "outdoor",
+        "mixed"
+      ]
     },
     "schedule": {
       "type": "object",
-      "required": ["kind"],
+      "required": [
+        "kind"
+      ],
       "additionalProperties": false,
       "properties": {
         "kind": {
           "type": "string",
-          "enum": ["one-time", "recurring"]
+          "enum": [
+            "one-time",
+            "recurring"
+          ]
         },
-        "whenLabel": { "type": ["string", "null"], "maxLength": 200 },
-        "recurrenceNote": { "type": ["string", "null"], "maxLength": 400 }
+        "whenLabel": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "recurrenceNote": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 400
+        }
       }
     },
     "estimatedDuration": {
       "type": "object",
-      "required": ["minutes", "label"],
+      "required": [
+        "minutes",
+        "label"
+      ],
       "additionalProperties": false,
       "properties": {
-        "minutes": { "type": "integer", "minimum": 15, "maximum": 1440 },
-        "label": { "type": "string", "maxLength": 64 }
+        "minutes": {
+          "type": "integer",
+          "minimum": 15,
+          "maximum": 1440
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 64
+        }
       }
     },
     "physicalEffort": {
       "type": "string",
-      "enum": ["light", "moderate", "strenuous"]
+      "enum": [
+        "light",
+        "moderate",
+        "strenuous"
+      ]
     },
     "accessibility": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "maxLength": 800,
-      "description": "Honest accessibility notes — never invent compliance claims."
+      "description": "Honest accessibility notes \u2014 never invent compliance claims."
     },
-    "weatherSensitive": { "type": "boolean" },
+    "weatherSensitive": {
+      "type": "boolean"
+    },
     "seasonal": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "maxLength": 200
     },
     "ageRequirements": {
-      "type": ["string", "null"],
+      "type": [
+        "string",
+        "null"
+      ],
       "maxLength": 400
     },
-    "familyFriendly": { "type": "boolean" },
+    "familyFriendly": {
+      "type": "boolean"
+    },
     "intelligence": {
       "type": "object",
-      "description": "Soft Opportunity Intelligence facets for Today recommendations — never public scores or leaderboards.",
+      "description": "Soft Opportunity Intelligence facets for Today recommendations \u2014 never public scores or leaderboards.",
       "additionalProperties": false,
       "properties": {
-        "serviceImpact": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "travelEffort": { "type": "string", "enum": ["low", "moderate", "high"] },
-        "outdoorSuitability": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "accessibilityFit": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "kidFriendly": { "type": "boolean" },
-        "seniorFriendly": { "type": "boolean" },
-        "dogFriendly": { "type": "boolean" },
-        "wheelchairFriendly": { "type": "boolean" },
-        "dropInFriendly": { "type": "boolean" },
-        "remote": { "type": "boolean" },
-        "virtual": { "type": "boolean" },
+        "serviceImpact": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "travelEffort": {
+          "type": "string",
+          "enum": [
+            "low",
+            "moderate",
+            "high"
+          ]
+        },
+        "outdoorSuitability": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "accessibilityFit": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "kidFriendly": {
+          "type": "boolean"
+        },
+        "seniorFriendly": {
+          "type": "boolean"
+        },
+        "dogFriendly": {
+          "type": "boolean"
+        },
+        "wheelchairFriendly": {
+          "type": "boolean"
+        },
+        "dropInFriendly": {
+          "type": "boolean"
+        },
+        "remote": {
+          "type": "boolean"
+        },
+        "virtual": {
+          "type": "boolean"
+        },
         "skillRequirement": {
           "type": "string",
-          "enum": ["none", "light", "trained", "licensed"]
+          "enum": [
+            "none",
+            "light",
+            "trained",
+            "licensed"
+          ]
         },
         "causeTags": {
           "type": "array",
@@ -164,50 +303,94 @@
           "additionalProperties": false,
           "description": "Optional private impact hints when a volunteer marks completed (demo labels only).",
           "properties": {
-            "hours": { "type": "number", "minimum": 0 },
-            "trailMiles": { "type": "number", "minimum": 0 },
-            "treesPlanted": { "type": "integer", "minimum": 0 },
-            "mealsPacked": { "type": "integer", "minimum": 0 },
-            "animalsHelped": { "type": "integer", "minimum": 0 },
-            "observations": { "type": "integer", "minimum": 0 }
+            "hours": {
+              "type": "number",
+              "minimum": 0
+            },
+            "trailMiles": {
+              "type": "number",
+              "minimum": 0
+            },
+            "treesPlanted": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "mealsPacked": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "animalsHelped": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "observations": {
+              "type": "integer",
+              "minimum": 0
+            }
           }
         }
       }
     },
     "requiredSkills": {
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Skill ids from skills.json — may be empty when no special skills required."
+      "items": {
+        "type": "string"
+      },
+      "description": "Skill ids from skills.json \u2014 may be empty when no special skills required."
     },
     "suggestedClothing": {
       "type": "array",
-      "items": { "type": "string", "maxLength": 120 }
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      }
     },
     "suggestedEquipment": {
       "type": "array",
-      "items": { "type": "string", "maxLength": 120 }
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      }
     },
     "categories": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "todayOutsideHints": {
       "type": "array",
-      "items": { "type": "string", "maxLength": 200 },
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      },
       "description": "Optional calm glance lines for Dashboard / Today Outside."
     },
     "bridgeApps": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["fieldry", "scenes", "foragecast", "signalterrain", "dashboard", "photo-coach"]
+        "enum": [
+          "fieldry",
+          "scenes",
+          "foragecast",
+          "signalterrain",
+          "dashboard",
+          "photo-coach",
+          "sheds",
+          "landscape-interpretation",
+          "hidden-landscapes"
+        ]
       },
-      "description": "Suggested Waypoint apps for related learning — not deep integrations yet."
+      "description": "Suggested Waypoint apps for related learning \u2014 not deep integrations yet."
     },
     "unknowns": {
       "type": "array",
-      "items": { "type": "string", "maxLength": 400 }
+      "items": {
+        "type": "string",
+        "maxLength": 400
+      }
     }
   }
 }

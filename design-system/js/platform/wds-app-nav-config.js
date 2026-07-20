@@ -540,6 +540,31 @@
           "href": "apps/waypoint-volunteer/impact/"
         }
       ]
+    },
+    {
+      "id": "landscape-interpretation",
+      "title": "Landscape Interpretation",
+      "shortTitle": "Landscape",
+      "icon": "terrain",
+      "route": "apps/landscape-interpretation/",
+      "match": [
+        "/apps/landscape-interpretation"
+      ],
+      "category": "outdoor",
+      "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
+      "status": "experimental",
+      "features": [
+        {
+          "id": "field",
+          "label": "Field reader",
+          "href": "apps/landscape-interpretation/"
+        },
+        {
+          "id": "learn",
+          "label": "Learn",
+          "href": "apps/landscape-interpretation/learn.html"
+        }
+      ]
     }
   ]
 };

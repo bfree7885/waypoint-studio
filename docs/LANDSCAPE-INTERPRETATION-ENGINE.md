@@ -1,10 +1,10 @@
 # Landscape Interpretation Engine v0.1
 
-**Status:** Architecture / schemas (no runtime evaluator, no UI, no maps)  
-**Package:** `design-system/landscape-interpretation/`  
+**Status:** Experimental educational runtime (Sprint 9) — field reader UI + offline evaluator over sample rules; still no live GIS layers or maps  
+**Package:** `design-system/landscape-interpretation/` · **App:** `/apps/landscape-interpretation/`  
 **Mission question:** *Why does this place look the way it does?*
 
-This is **not** species identification, **not** GIS analysis, and **not** archival historical research. It is a reusable **reasoning layer** that turns environmental clues into understandable, hedged landscape stories for many Waypoint Studio apps.
+This is **not** species identification, **not** GIS analysis, and **not** archival historical research. It is a reusable **reasoning layer** that turns environmental clues into understandable, hedged landscape stories for many Waypoint Studio apps. **Hidden Landscapes** (Scenes) remains a separate creative photography tool.
 
 ---
 
