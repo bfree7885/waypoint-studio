@@ -6,18 +6,16 @@
 (function (global) {
   "use strict";
 
-  /* V3 category architecture — ids align with dashboardV3Categories */
+  /* RC2 Sprint 3 taxonomy — V3 maps alerts→emergency, seasonal→wildlife when enabled */
   var CATEGORIES = [
-    { id: "photography", label: "Photography", order: 10 },
-    { id: "weather", label: "Weather", order: 20 },
-    { id: "hiking", label: "Hiking", order: 30 },
-    { id: "rivers", label: "Rivers", order: 40 },
-    { id: "air", label: "Air Quality", order: 50 },
-    { id: "astronomy", label: "Astronomy", order: 60 },
-    { id: "wildlife", label: "Wildlife", order: 70 },
-    { id: "travel", label: "Travel", order: 80 },
-    { id: "emergency", label: "Emergency", order: 90 },
-    { id: "favorites", label: "Favorites", order: 100 }
+    { id: "weather", label: "Weather", order: 10 },
+    { id: "astronomy", label: "Astronomy", order: 20 },
+    { id: "photography", label: "Photography", order: 30 },
+    { id: "hiking", label: "Hiking and Outdoor Activity", order: 40 },
+    { id: "rivers", label: "Rivers and Water", order: 50 },
+    { id: "air", label: "Air and Environment", order: 60 },
+    { id: "alerts", label: "Alerts and Safety", order: 70 },
+    { id: "seasonal", label: "Seasonal Intelligence", order: 80 }
   ];
 
   /**
@@ -38,7 +36,7 @@
     { id: "wx-temp-trend", category: "weather", name: "Temp Trend", description: "How temperature shifts across the next hours.", availability: "derived", defaultEnabled: false, defaultOrder: 60, tab: "weather" },
     { id: "wx-humidity", category: "weather", name: "Humidity / Dew", description: "Relative humidity; dew point when available.", availability: "live", defaultEnabled: false, defaultOrder: 70, tab: "weather" },
     { id: "wx-visibility", category: "weather", name: "Visibility", description: "Reported visibility distance.", availability: "live", defaultEnabled: false, defaultOrder: 80, tab: "weather" },
-    { id: "wx-severe", category: "emergency", name: "Severe Alerts", description: "Active NWS weather alerts for the area.", availability: "live", defaultEnabled: true, defaultOrder: 90, tab: "alerts" },
+    { id: "wx-severe", category: "alerts", name: "Severe Alerts", description: "Active NWS weather alerts for the area.", availability: "live", defaultEnabled: true, defaultOrder: 90, tab: "alerts" },
 
     /* ——— Astronomy ——— */
     { id: "astro-sun", category: "astronomy", name: "Sunrise / Sunset", description: "Today’s sunrise and sunset times.", availability: "derived", defaultEnabled: true, defaultOrder: 10, tab: "sun-moon" },
@@ -77,7 +75,7 @@
     { id: "river-nearby", category: "rivers", name: "Nearby River Gauges", description: "Closest USGS gauges with stage/flow when live.", availability: "live", defaultEnabled: true, defaultOrder: 10, tab: "rivers" },
     { id: "river-level", category: "rivers", name: "River Level", description: "Gage height at the nearest live site.", availability: "live", defaultEnabled: false, defaultOrder: 20, tab: "rivers" },
     { id: "river-trend", category: "rivers", name: "Level Trend", description: "Rising, falling, or stable stage interpretation.", availability: "live", defaultEnabled: false, defaultOrder: 30, tab: "rivers" },
-    { id: "river-flood", category: "emergency", name: "Flood Risk", description: "Flood-related NWS alerts plus gauge context.", availability: "derived", defaultEnabled: false, defaultOrder: 40, tab: "alerts" },
+    { id: "river-flood", category: "alerts", name: "Flood Risk", description: "Flood-related NWS alerts plus gauge context.", availability: "derived", defaultEnabled: false, defaultOrder: 40, tab: "alerts" },
     { id: "river-temp", category: "rivers", name: "Water Temperature", description: "Water temp when a gauge reports it.", availability: "planned", defaultEnabled: false, defaultOrder: 50, tab: "rivers" },
     { id: "river-rain", category: "rivers", name: "Rainfall Impact", description: "Recent rainfall that may affect runoff.", availability: "experimental", defaultEnabled: false, defaultOrder: 60, tab: "rivers" },
     { id: "river-freshness", category: "rivers", name: "Gauge Freshness", description: "How recently nearby gauges reported.", availability: "live", defaultEnabled: false, defaultOrder: 70, tab: "rivers" },
@@ -89,34 +87,25 @@
     { id: "air-smoke", category: "air", name: "Smoke", description: "Wildfire smoke feed — pending; AQI is the proxy.", availability: "planned", defaultEnabled: false, defaultOrder: 40, tab: "air" },
     { id: "air-uv", category: "air", name: "UV Index", description: "Current UV index from the weather feed.", availability: "live", defaultEnabled: true, defaultOrder: 50, tab: "weather" },
     { id: "air-visibility", category: "air", name: "Visibility (Air)", description: "Atmospheric visibility distance.", availability: "live", defaultEnabled: false, defaultOrder: 60, tab: "air" },
-    { id: "air-env-alerts", category: "emergency", name: "Environmental Alerts", description: "Heat, air, and related official cautions.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "alerts" },
+    { id: "air-env-alerts", category: "alerts", name: "Environmental Alerts", description: "Heat, air, and related official cautions.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "alerts" },
 
-    /* ——— Emergency (ex-Alerts) ——— */
-    { id: "alert-nws", category: "emergency", name: "NWS Alerts", description: "Official National Weather Service alerts.", availability: "live", defaultEnabled: true, defaultOrder: 10, tab: "alerts" },
-    { id: "alert-flood", category: "emergency", name: "Flood Alerts", description: "Flood watches and warnings when issued.", availability: "live", defaultEnabled: false, defaultOrder: 20, tab: "alerts" },
-    { id: "alert-heat", category: "emergency", name: "Heat Alerts", description: "Heat advisories and excessive heat warnings.", availability: "live", defaultEnabled: false, defaultOrder: 30, tab: "alerts" },
-    { id: "alert-aqi", category: "emergency", name: "AQI Caution", description: "Elevated air quality concern summary.", availability: "derived", defaultEnabled: false, defaultOrder: 40, tab: "air" },
-    { id: "alert-fire", category: "emergency", name: "Fire Weather", description: "Fire weather watches/warnings when issued.", availability: "live", defaultEnabled: false, defaultOrder: 50, tab: "alerts" },
-    { id: "alert-storm", category: "emergency", name: "Lightning / Storm", description: "Severe thunderstorm and lightning-related alerts.", availability: "live", defaultEnabled: false, defaultOrder: 60, tab: "alerts" },
-    { id: "alert-local", category: "emergency", name: "Local Hazard Summary", description: "Combined local hazard picture from live inputs.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "alerts" },
+    /* ——— Alerts ——— */
+    { id: "alert-nws", category: "alerts", name: "NWS Alerts", description: "Official National Weather Service alerts.", availability: "live", defaultEnabled: true, defaultOrder: 10, tab: "alerts" },
+    { id: "alert-flood", category: "alerts", name: "Flood Alerts", description: "Flood watches and warnings when issued.", availability: "live", defaultEnabled: false, defaultOrder: 20, tab: "alerts" },
+    { id: "alert-heat", category: "alerts", name: "Heat Alerts", description: "Heat advisories and excessive heat warnings.", availability: "live", defaultEnabled: false, defaultOrder: 30, tab: "alerts" },
+    { id: "alert-aqi", category: "alerts", name: "AQI Caution", description: "Elevated air quality concern summary.", availability: "derived", defaultEnabled: false, defaultOrder: 40, tab: "air" },
+    { id: "alert-fire", category: "alerts", name: "Fire Weather", description: "Fire weather watches/warnings when issued.", availability: "live", defaultEnabled: false, defaultOrder: 50, tab: "alerts" },
+    { id: "alert-storm", category: "alerts", name: "Lightning / Storm", description: "Severe thunderstorm and lightning-related alerts.", availability: "live", defaultEnabled: false, defaultOrder: 60, tab: "alerts" },
+    { id: "alert-local", category: "alerts", name: "Local Hazard Summary", description: "Combined local hazard picture from live inputs.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "alerts" },
 
-    /* ——— Wildlife (ex-Seasonal + wildlife cues) ——— */
-    { id: "season-leaf", category: "wildlife", name: "Leaf / Phenology", description: "Seasonal leaf and plant timing — planned.", availability: "planned", defaultEnabled: false, defaultOrder: 10, tab: "today" },
-    { id: "season-frost", category: "wildlife", name: "Frost", description: "Frost risk cues from overnight lows.", availability: "experimental", defaultEnabled: false, defaultOrder: 20, tab: "weather" },
-    { id: "season-snow", category: "wildlife", name: "Snow", description: "Snow/ice language from conditions and alerts.", availability: "derived", defaultEnabled: false, defaultOrder: 30, tab: "weather" },
-    { id: "season-mushroom", category: "wildlife", name: "Mushroom", description: "Foraging moisture cues — experimental.", availability: "experimental", defaultEnabled: false, defaultOrder: 40, tab: "today" },
-    { id: "season-wildlife", category: "wildlife", name: "Wildlife Activity", description: "Seasonal wildlife activity cues.", availability: "planned", defaultEnabled: false, defaultOrder: 50, tab: "today" },
-    { id: "season-migration", category: "wildlife", name: "Migration", description: "Bird migration glance — planned without eBird key.", availability: "planned", defaultEnabled: false, defaultOrder: 60, tab: "today" },
-    { id: "season-summary", category: "wildlife", name: "Seasonal Change Summary", description: "Calendar season context for the location.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "today" },
-
-    /* ——— Travel (architecture stubs — not fully populated) ——— */
-    { id: "travel-weekend", category: "travel", name: "Weekend Outlook", description: "Weekend trip readiness from forecast cues.", availability: "derived", defaultEnabled: false, defaultOrder: 10, tab: "today" },
-    { id: "travel-road", category: "travel", name: "Road / Access", description: "Road and access advisories — planned.", availability: "planned", defaultEnabled: false, defaultOrder: 20, tab: "today" },
-    { id: "travel-parking", category: "travel", name: "Trailhead Parking", description: "Parking and access pressure — planned.", availability: "planned", defaultEnabled: false, defaultOrder: 30, tab: "today" },
-
-    /* ——— Favorites (user-pinned surface hooks) ——— */
-    { id: "fav-pinned", category: "favorites", name: "Pinned Summary", description: "Quick view of your enabled essentials.", availability: "derived", defaultEnabled: false, defaultOrder: 10, tab: "today", size: "lg" },
-    { id: "fav-saved-place", category: "favorites", name: "Saved Place", description: "Remembered place context — planned for accounts later.", availability: "planned", defaultEnabled: false, defaultOrder: 20, tab: "today" }
+    /* ——— Seasonal ——— */
+    { id: "season-leaf", category: "seasonal", name: "Leaf / Phenology", description: "Seasonal leaf and plant timing — planned.", availability: "planned", defaultEnabled: false, defaultOrder: 10, tab: "today" },
+    { id: "season-frost", category: "seasonal", name: "Frost", description: "Frost risk cues from overnight lows.", availability: "experimental", defaultEnabled: false, defaultOrder: 20, tab: "weather" },
+    { id: "season-snow", category: "seasonal", name: "Snow", description: "Snow/ice language from conditions and alerts.", availability: "derived", defaultEnabled: false, defaultOrder: 30, tab: "weather" },
+    { id: "season-mushroom", category: "seasonal", name: "Mushroom", description: "Foraging moisture cues — experimental.", availability: "experimental", defaultEnabled: false, defaultOrder: 40, tab: "today" },
+    { id: "season-wildlife", category: "seasonal", name: "Wildlife Activity", description: "Seasonal wildlife activity cues.", availability: "planned", defaultEnabled: false, defaultOrder: 50, tab: "today" },
+    { id: "season-migration", category: "seasonal", name: "Migration", description: "Bird migration glance — planned without eBird key.", availability: "planned", defaultEnabled: false, defaultOrder: 60, tab: "today" },
+    { id: "season-summary", category: "seasonal", name: "Seasonal Change Summary", description: "Calendar season context for the location.", availability: "derived", defaultEnabled: false, defaultOrder: 70, tab: "today" },
   ];
 
   var DEFAULT_ENABLED = [

@@ -68,12 +68,12 @@
   function render(ctx, opts) {
     if (!isEnabled()) return "";
     var V3 = global.WDS && global.WDS.dashboardV3;
-    if (V3 && V3.isEnabled && V3.isEnabled() && V3.render && !global.WDS._wdbV3ForceV2) {
+    if (V3 && V3.isEnabled && V3.isEnabled() && V3.render) {
       return V3.render(ctx, opts || {});
     }
     var Engine = global.WDS && global.WDS.dashboardV2Engine;
-    if (Engine && Engine.renderBoard && !global.WDS._wdbV3ForceV2) {
-      /* Engine may route to V3 — use local V2 composition below when forcing V2 */
+    if (Engine && Engine.renderBoard) {
+      return Engine.renderBoard(ctx, opts || {});
     }
     var payload = buildPayload(ctx);
     if (!payload) return "";
@@ -95,7 +95,7 @@
 
   function refresh(root) {
     if (!root) return;
-    var host = root.querySelector("[data-wdb-v2]");
+    var host = root.querySelector("[data-wdb-v3]") || root.querySelector("[data-wdb-v2]");
     if (!host) return;
     var DE = global.WDS && global.WDS.dashboardEngine;
     var opts = root._wdbMountOpts || {};
@@ -138,7 +138,7 @@
 
   function bind(root) {
     if (!root) return;
-    var host = root.querySelector("[data-wdb-v2]");
+    var host = root.querySelector("[data-wdb-v3]") || root.querySelector("[data-wdb-v2]");
     if (!host) return;
 
     var payloadModel = null;

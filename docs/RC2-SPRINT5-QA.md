@@ -58,7 +58,7 @@ Axe source: `audits/live-site-qa/node_modules/axe-core` (install there if missin
 | `node automation/mobile-layout.mjs` (fast matrix: 320/390/768/1440 × critical routes) | **PASS** |
 | `MOBILE_LAYOUT_FULL=1` | Available for extended matrix; not required for merge |
 | `node automation/a11y-smoke.mjs` | **PASS** (home, about, contact, support, knowledge, settings, dashboard, scenes, fieldry, foragecast) |
-| Firefox 152 spot-check (390×844) | Documented at commit time — no horizontal scroll on home/contact/knowledge/dashboard |
+| Firefox 152 | System browser present; Playwright Firefox binary not installed in this environment — Chromium automation is the gate. Manual Firefox spot-check recommended before public RC. |
 | Chromium (Playwright + system `/usr/bin/chromium-browser`) | Primary automation browser |
 
 Contrast remediation during this sprint reduced Knowledge axe serious nodes from ~48 → 0 and Dashboard from ~38 → 0 on the smoke set (after token alias + Knowledge dark surfaces + recovery-tab colors).
