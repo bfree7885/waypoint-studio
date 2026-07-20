@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Waypoint Studio Production Audit — Owner Review</title>
+<style>
+@page { margin: 18mm; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #111; }
+h1 { font-size: 22px; }
+.meta { color:#444; font-size:12px; margin-bottom: 18px; }
+hr { border:0; border-top:1px solid #ccc; margin: 22px 0; }
+.banner { background:#111; color:#f5f0e6; padding:14px 16px; border-radius:8px; }
+</style></head><body>
+<div class="banner"><strong>Waypoint Studio — Production Website Verification</strong><br>
+Generated 2026-07-20 04:33 UTC · NOT COMMITTED · NOT PUSHED · OWNER REVIEW REQUIRED</div>
+<p class="meta">Primary finding: production serves build <code>761b202</code> while GitHub <code>origin/main</code> is <code>081965d</code>. GitHub Pages deploys have failed since 2026-07-19 because Steepleaf <code>/explore/</code> breaks the link validator.</p>
+<pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:12px;line-height:1.45"># Production Owner Review — Waypoint Studio
+
+**Date:** 2026-07-20 04:33 UTC  
+**Live site:** https://waypointstudio.org
+
+## Plain answers
+
+1. **Is the latest code live?** No. `origin/main`=`081965d`; production=`761b202`.
+2. **Visible changes?** Only through `761b202` (Dashboard Today Outside era and earlier).
+3. **Not visible?** Everything after `761b202`: outdoor recoveries, LI, Volunteer strengthen, Dashboard/Experience V2, Scholar/University, Contact hero gate.
+4. **Failing links?** LI/Scholar/University 404; Contact hero missing (Contact page itself works).
+5. **Working apps?** Dashboard, Scenes, Sheds, ForageCast, Fieldry, Steepleaf, Savant, SignalTerrain, Volunteer — older build.
+6. **Only look complete?** Anything “fixed in tree” in recent docs but not redeployed.
+7. **Problem type?** **Deployment/release engineering** (one code defect blocking CI). Features exist on GitHub.
+8. **Fix first?** Steepleaf `/explore/` → green Pages → confirm new SHA → smoke LI/Contact/Dashboard.
+9. **Publicly showable?** Older public alpha only; not “latest closed beta.”
+10. **Owner verify after fix?** `waypoint-build` ≠ `761b202`; LI not 404; Contact in hero; Dashboard loads.
+
+| Expected change | Production now | Why | Next |
+| --- | --- | --- | --- |
+| Latest main live | Still `761b202` | Pages failing | Fix Steepleaf + redeploy |
+| Landscape Interpretation | 404 | Never deployed | Block 1 |
+| Contact on home hero | Missing | Undeployed | Redeploy |
+| App recoveries | Old | Undeployed | Redeploy |
+| Dashboard V2 | Absent | Undeployed | Redeploy |
+
+**Bottom line:** The site is behind GitHub. One Steepleaf path breaks the deploy validator and freezes production at `761b202`.
+</pre>
+<hr>
+<pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:12px;line-height:1.45"># Production Release Engineering Audit (Phase 1)
+
+**Generated:** 2026-07-20 04:33 UTC
+
+## Authoritative paths
+
+| Layer | Value | Evidence |
+| --- | --- | --- |
+| Audit repo path | `/home/bryan/Projects/waypoint-studio-site/.tmp-audit/waypoint-studio` | cwd |
+| Remote | https://github.com/bfree7885/waypoint-studio.git | `git remote -v` |
+| `origin/main` | `081965d` | `git rev-parse origin/main` |
+| Local HEAD | `03290f5` (ahead 1 checkpoint) | `git status` |
+| Production | `761b202` | `&lt;meta name=&quot;waypoint-build&quot; content=&quot;761b202&quot;&gt;` |
+| Hosting | GitHub Pages via Actions | DNS 185.199.*; `pages.yml`; `server: GitHub.com` |
+| www | 301 → https://waypointstudio.org/ | curl -I |
+| http | 301 → https | curl -I |
+
+## Expected path health
+
+`local → commit → origin/main → Actions pages.yml → Pages CDN → waypointstudio.org`
+
+| Stage | Functioning? |
+| --- | --- |
+| Local → Git | Yes (code on remote) |
+| Push to main | Yes |
+| Pages build job | **No** (link validator exit 1) |
+| Pages deploy | **No** (blocked by build) |
+| Production update | **No** (stale `761b202`) |
+
+## Separate clone note
+`/home/bryan/Projects/waypoint-studio-site` is a **different** GitHub repo (`waypoint-studio-site`) and is **not** the production source of truth for waypointstudio.org (CNAME + Pages workflow live in `waypoint-studio`).
+</pre>
+<hr>
+<pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:12px;line-height:1.45"># Production Expected-Change Traceability
+
+**Generated:** 2026-07-20 04:33 UTC
+
+| Commit | Message (short) | Intended user-visible | Local | Remote | Production | Status | Why |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 761b202 | Dashboard Today Outside | Dashboard briefing | Yes | Yes | **Yes** | Visible and working | Last successful Pages deploy |
+| c5a44d4 | Steepleaf reliable companion | Steepleaf recovery | Yes | Yes | **No** | Pushed but deployment failed | Pages fail (also introduced `/explore/` break) |
+| d14c9dc | ForageCast honest locations | ForageCast recovery | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| 810a4c1 | SignalTerrain Live | Cyber Live | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| cbbceb8 | Sheds field-first | Sheds recovery | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| d80a682 | Fieldry dependable | Fieldry recovery | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| f0bcccc | Savant reliable | Savant recovery | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| 96f3963 | LI + Volunteer | LI app + Volunteer | Yes | Yes | **No** | Deployment failed | LI 404 |
+| ff2f392 | Scholar Module 6 | Scholar | Yes | Yes | **No** | Deployment failed | 404 |
+| d091e1e | Dashboard V2 | Today Outside V2 | Yes | Yes | **No** | Deployment failed | Stale Dashboard |
+| cfb8bcc | Experience System V2 | Cohesion/a11y shell | Yes | Yes | **No** | Deployment failed | Deploy freeze |
+| 081965d | RC1 assessment + gates | Contact hero + LI resilience + reports | Yes | Yes | **No** | Deployment failed | Contact hero missing; reports are docs-only |
+
+## Answer to “Why am I not seeing changes?”
+
+**Primary:** GitHub Pages deploy has failed on every push after `761b202` because `validate-production-links.mjs` rejects Steepleaf `/explore/`. Production therefore remains the older artifact.
+</pre>
+<hr>
+<pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:12px;line-height:1.45"># Production Release Scorecard
+
+**Generated:** 2026-07-20 04:33 UTC  
+Scores vs **live production** (`761b202`), not local `main`.
+
+| Area | Score | Evidence |
+| --- | ---: | --- |
+| Deployment integrity | **18** | Pages failing after `761b202` |
+| Route integrity | **55** | Core 200; LI/Scholar/University 404 |
+| Navigation | **60** | Launchers work; LI/Contact hero gaps |
+| Functional correctness | **58** | Spot OK; sprint depth missing |
+| Dashboard reliability | **62** | Loads; V2 absent |
+| App workflow completeness | **45** | Recoveries undeployed |
+| Mobile usability | **65** | 390px spot loads |
+| Accessibility | **40** | Prior contrast ceiling |
+| Performance | **55** | Responds; historically heavy Dashboard |
+| Visual consistency | **60** | Experience V2 absent |
+| Content accuracy | **50** | Under-represents finished work |
+| Observability | **35** | Mixed `local`/SHA markers |
+| Release confidence | **20** | Push≠live |
+
+**Classification: Internal alpha**
+
+Top blockers: deploy freeze; SHA mismatch; LI 404; undeployed recoveries; weak fingerprinting.
+</pre>
+<hr>
+<pre style="white-space:pre-wrap;font-family:Georgia,serif;font-size:12px;line-height:1.45"># Production Defect Register
+
+**Generated:** 2026-07-20 04:33 UTC
+
+| Severity | Count |
+| --- | ---: |
+| Blocker | 1 |
+| Critical | 3 |
+| High | 6 |
+| Medium | 4 |
+| Low | 3 |
+
+### PROD-001 — GitHub Pages deploy frozen by link validator (Blocker / P0)
+Evidence: Pages successes stop at `761b202`; later runs fail at Validate production links on Steepleaf `/explore/`.  
+Fix: make explore route app-relative; redeploy.  
+Verify: production `waypoint-build` equals deployed short SHA.
+
+### PROD-002 — Production does not match origin/main (Critical)
+Production `761b202` vs `origin/main` `081965d`. Consequence of PROD-001.
+
+### PROD-003 — Landscape Interpretation 404 (Critical)
+https://waypointstudio.org/apps/landscape-interpretation/ → 404 (desktop+mobile screenshots). Never deployed.
+
+### PROD-004 — Home Contact hero gate missing (Critical)
+Production home HTML lacks `contact.html` in hero row; present on `main`. Footer/shell may still expose Contact via JS.
+
+### PROD-005 — Dashboard V2 / Experience System V2 not live (High)
+Commits `d091e1e`, `cfb8bcc` on remote; production still `761b202`.
+
+### PROD-006 — Field/outdoor recovery sprints not live (High)
+Commits after `761b202` through Savant/SignalTerrain/Sheds/Fieldry/ForageCast/Steepleaf failed Pages deploy.
+
+### PROD-007 — Scholar / University 404 (High)
+`/apps/scholar/`, `/apps/university/` probes 404.
+
+### PROD-008 — Mixed build metadata (Medium)
+Some pages show `waypoint-build=local` on production.
+
+### PROD-009 — Steepleaf absolute `/explore/` (High; blocks release)
+`apps/steepleaf/data/foundation.json` path `/explore/`.
+
+### PROD-010 — Accessibility contrast debt (Medium)
+Best evidence remains Jul 19 live axe (~102 contrast routes); not fully re-scanned this pass.
+
+### PROD-011 — No Firefox/WebKit matrix (Low; audit limit)
+Chromium only.
+
+### PROD-012 — Local checkpoint commit ahead of origin (Low)
+Local HEAD `03290f5` ahead of `081965d`.
+
+### PROD-013 — “Unchanged site” perception (Medium)
+Deploy freeze, not missing implementation.
+
+### PROD-014 — Full interactive matrix not exhausted (Low; audit limit)
+Spot checks + crawl, not every control on every app.
+</pre>
+</body></html>
