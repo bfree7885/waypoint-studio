@@ -171,6 +171,7 @@
         U().ethicsHtml() +
         '<footer class="fld-detail__foot">' +
           '<a class="wds-btn wds-btn--primary" href="#/edit/' + encodeURIComponent(obs.id) + '">Edit record</a>' +
+          '<button type="button" class="wds-btn wds-btn--ghost" id="fld-duplicate-obs">Duplicate</button>' +
           '<button type="button" class="wds-btn wds-btn--ghost fld-detail__delete" data-delete-id="' + U().escapeHtml(obs.id) + '">Delete</button>' +
         "</footer>" +
       "</article>"

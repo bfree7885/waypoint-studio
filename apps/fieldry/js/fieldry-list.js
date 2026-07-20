@@ -64,6 +64,7 @@
     if (options.favorites === "1") bits.push("favorites");
     if (options.collection) bits.push("collection");
     if (options.subject) bits.push("subject");
+    if (options.fromDate || options.toDate) bits.push("date range");
     return (
       '<div class="fld-empty">' +
         '<p class="fld-empty__title">No matching observations</p>' +
@@ -84,7 +85,9 @@
       (options.privacy && options.privacy !== "all") ||
       options.favorites === "1" ||
       options.collection ||
-      options.subject
+      options.subject ||
+      options.fromDate ||
+      options.toDate
     );
   }
 
@@ -104,7 +107,7 @@
     return (
       '<form class="fld-filters" id="fld-history-filters">' +
         '<div class="wds-field"><label class="wds-label" for="fld-hist-q">Search</label>' +
-          '<input class="wds-input" id="fld-hist-q" name="q" type="search" value="' + U().escapeHtml(options.query || "") + '" placeholder="Title, species, notes">' +
+          '<input class="wds-input" id="fld-hist-q" name="q" type="search" value="' + U().escapeHtml(options.query || "") + '" placeholder="Title, species, notes" autocomplete="off">' +
         "</div>" +
         '<div class="wds-field"><label class="wds-label" for="fld-hist-cat">Category</label>' +
           '<select class="wds-select" id="fld-hist-cat" name="category">' +
@@ -120,6 +123,12 @@
             '<option value="identified"' + (options.identified === "identified" ? " selected" : "") + ">Identified</option>" +
             '<option value="unidentified"' + (options.identified === "unidentified" ? " selected" : "") + ">Unidentified</option>" +
           "</select>" +
+        "</div>" +
+        '<div class="wds-field"><label class="wds-label" for="fld-hist-from">From date</label>' +
+          '<input class="wds-input" id="fld-hist-from" name="from" type="date" value="' + U().escapeHtml(options.fromDate || "") + '">' +
+        "</div>" +
+        '<div class="wds-field"><label class="wds-label" for="fld-hist-to">To date</label>' +
+          '<input class="wds-input" id="fld-hist-to" name="to" type="date" value="' + U().escapeHtml(options.toDate || "") + '">' +
         "</div>" +
         '<div class="wds-field fld-filters__check">' +
           '<label><input type="checkbox" name="favorites" value="1"' +
@@ -159,6 +168,8 @@
       favorites: options.favorites || "",
       collection: options.collection || "",
       subject: options.subject || "",
+      fromDate: options.from || options.fromDate || "",
+      toDate: options.to || options.toDate || "",
       favoriteIds: null
     };
     if (options.favorites === "1") {
@@ -174,6 +185,8 @@
           query: filterOpts.query,
           identified: filterOpts.identified,
           privacy: filterOpts.privacy,
+          fromDate: filterOpts.fromDate || null,
+          toDate: filterOpts.toDate || null,
           favoriteIds: filterOpts.favoriteIds
         })
       : (observations || []);
@@ -216,7 +229,11 @@
       var id = btn.getAttribute("data-delete-id");
       if (!id) return;
       if (window.confirm("Delete this observation from your device? This cannot be undone.")) {
-        onDelete(id);
+        try {
+          onDelete(id);
+        } catch (err) {
+          window.alert((err && err.message) || "Could not delete this observation.");
+        }
       }
     });
   }
@@ -224,11 +241,12 @@
   function bindFilters(mount) {
     var form = mount.querySelector("#fld-history-filters");
     if (!form) return;
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    var timer = null;
+
+    function applyFromForm() {
       var fd = new FormData(form);
       var parts = [];
-      ["q", "category", "identified"].forEach(function (key) {
+      ["q", "category", "identified", "from", "to"].forEach(function (key) {
         var v = String(fd.get(key) || "").trim();
         if (!v || v === "all") return;
         parts.push(key + "=" + encodeURIComponent(v));
@@ -236,7 +254,32 @@
       if (form.querySelector('[name="favorites"]') && form.querySelector('[name="favorites"]').checked) {
         parts.push("favorites=1");
       }
-      window.location.hash = "#/history" + (parts.length ? "?" + parts.join("&") : "");
+      var next = "#/history" + (parts.length ? "?" + parts.join("&") : "");
+      if (window.location.hash !== next) {
+        window.location.hash = next;
+      }
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      applyFromForm();
+    });
+
+    form.addEventListener("input", function (e) {
+      var t = e.target;
+      if (!t) return;
+      if (t.name === "q" || t.name === "from" || t.name === "to") {
+        clearTimeout(timer);
+        timer = setTimeout(applyFromForm, 280);
+      }
+    });
+
+    form.addEventListener("change", function (e) {
+      var t = e.target;
+      if (!t) return;
+      if (t.name === "category" || t.name === "identified" || t.name === "favorites" || t.name === "from" || t.name === "to") {
+        applyFromForm();
+      }
     });
   }
 

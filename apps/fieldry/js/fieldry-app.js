@@ -16,6 +16,7 @@
     if (parts[0] === "new") return { view: "new" };
     if (parts[0] === "edit" && parts[1]) return { view: "edit", id: decodeURIComponent(parts[1]) };
     if (parts[0] === "obs" && parts[1]) return { view: "detail", id: decodeURIComponent(parts[1]) };
+    if (parts[0] === "observation" && parts[1]) return { view: "detail", id: decodeURIComponent(parts[1]) };
     if (parts[0] === "life" || parts[0] === "life-list") return { view: "life" };
     if (parts[0] === "history" || parts[0] === "ledger") return { view: "history" };
     if (parts[0] === "stats") return { view: "stats" };
@@ -134,17 +135,27 @@
   }
 
   function renderNew() {
-    var obs = global.FieldryStorage.createDraft(state.platform, state.loc);
+    var restored = false;
+    var obs = null;
+    if (global.FieldryStorage.loadDraft) {
+      obs = global.FieldryStorage.loadDraft();
+      if (obs) restored = true;
+    }
+    if (!obs) obs = global.FieldryStorage.createDraft(state.platform, state.loc);
     if (!obs) {
       mountEl.innerHTML =
         '<section class="fld-empty"><p class="fld-empty__title">Unable to start a record</p>' +
-        '<p class="fld-empty__text">Observation tools did not load. Refresh the page and try again.</p></section>';
+        '<p class="fld-empty__text">Observation tools did not load. Refresh the page and try again. Fieldry needs the shared observation standard (WOS) scripts.</p></section>';
       return;
     }
-    mountEl.innerHTML = global.FieldryForm.render(obs, { isEdit: false });
+    if (restored && state.platform) {
+      obs = global.FieldryStorage.hydrateFromContext(obs, state.platform, state.loc);
+    }
+    mountEl.innerHTML = global.FieldryForm.render(obs, { isEdit: false, restoredDraft: restored });
     global.FieldryForm.bind(mountEl.querySelector("#fld-observation-form"), {
       platform: state.platform,
-      loc: state.loc
+      loc: state.loc,
+      isEdit: false
     });
   }
 
@@ -157,7 +168,8 @@
     mountEl.innerHTML = global.FieldryForm.render(obs, { isEdit: true });
     global.FieldryForm.bind(mountEl.querySelector("#fld-observation-form"), {
       platform: state.platform,
-      loc: state.loc
+      loc: state.loc,
+      isEdit: true
     });
   }
 
@@ -171,8 +183,23 @@
     if (del) {
       del.addEventListener("click", function () {
         if (window.confirm("Delete this observation from your device?")) {
-          global.FieldryStorage.remove(id);
-          window.location.hash = "#/history";
+          try {
+            global.FieldryStorage.remove(id);
+            window.location.hash = "#/history";
+          } catch (err) {
+            window.alert((err && err.message) || "Could not delete this observation.");
+          }
+        }
+      });
+    }
+    var dup = mountEl.querySelector("#fld-duplicate-obs");
+    if (dup && obs) {
+      dup.addEventListener("click", function () {
+        try {
+          var copy = global.FieldryStorage.duplicate(obs.id);
+          if (copy) window.location.hash = "#/edit/" + encodeURIComponent(copy.id);
+        } catch (err) {
+          window.alert((err && err.message) || "Could not duplicate this observation.");
         }
       });
     }

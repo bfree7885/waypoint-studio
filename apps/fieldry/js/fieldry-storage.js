@@ -9,7 +9,8 @@
   var STORAGE_KEY = "waypoint-fieldry-observations-v1";
   var DEVICE_KEY = "waypoint-fieldry-device-id";
   var MIGRATION_KEY = "waypoint-fieldry-migration-v2";
-  var APP_VERSION = "1.1.0-mvp";
+  var DRAFT_KEY = "waypoint-fieldry-draft-v1";
+  var APP_VERSION = "1.2.0-sprint7";
   var SCHEMA_VERSION = 2;
 
   var TYPE_TO_CATEGORY = {
@@ -212,7 +213,72 @@
   }
 
   function writeAll(list) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      return { ok: true };
+    } catch (e) {
+      var quota = e && (e.name === "QuotaExceededError" || e.code === 22 || e.code === 1014);
+      return {
+        ok: false,
+        error: quota
+          ? "Storage is full on this device. Export or delete observations, then try again."
+          : "Could not write observations (storage blocked or unavailable)."
+      };
+    }
+  }
+
+  function saveDraft(obs) {
+    if (!obs) return { ok: false, error: "Nothing to draft." };
+    try {
+      var payload = ensureFieldryExtension(ensureFieldryMeta(JSON.parse(JSON.stringify(obs))));
+      payload.meta = payload.meta || {};
+      payload.meta.draftSavedAt = new Date().toISOString();
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+      return { ok: true, savedAt: payload.meta.draftSavedAt };
+    } catch (e) {
+      var quota = e && (e.name === "QuotaExceededError" || e.code === 22 || e.code === 1014);
+      return {
+        ok: false,
+        error: quota
+          ? "Draft could not be saved — storage is full."
+          : "Draft could not be saved on this device."
+      };
+    }
+  }
+
+  function loadDraft() {
+    try {
+      var raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return null;
+      var obs = JSON.parse(raw);
+      if (!obs || typeof obs !== "object") return null;
+      return ensureFieldryExtension(ensureFieldryMeta(normalize(obs)));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function clearDraft() {
+    try {
+      localStorage.removeItem(DRAFT_KEY);
+    } catch (e) { /* ignore */ }
+  }
+
+  function duplicate(id) {
+    var src = get(id);
+    var O = wos();
+    if (!src || !O) return null;
+    var copy = JSON.parse(JSON.stringify(src));
+    copy.id = O.generateId("obs");
+    copy.meta = copy.meta || {};
+    copy.meta.createdAt = new Date().toISOString();
+    copy.meta.updatedAt = copy.meta.createdAt;
+    copy.meta.revision = 1;
+    copy.revisions = [];
+    if (copy.taxon && copy.taxon.label) {
+      copy.taxon.label = String(copy.taxon.label).replace(/\s*\(copy\)\s*$/i, "") + " (copy)";
+    }
+    return save(copy);
   }
 
   function get(id) {
@@ -271,7 +337,7 @@
     });
     obs = hydrateFromContext(obs, platform, loc);
     obs.meta.fieldry = {
-      category: "",
+      category: "other",
       observationType: null,
       unidentified: false,
       identificationStatus: "identified",
@@ -312,13 +378,24 @@
     obs.meta.updatedAt = now;
     if (idx >= 0) list[idx] = obs;
     else list.unshift(obs);
-    writeAll(list);
+    var written = writeAll(list);
+    if (!written.ok) {
+      var err = new Error(written.error || "Could not save observation.");
+      err.code = "STORAGE_WRITE_FAILED";
+      throw err;
+    }
+    clearDraft();
     return obs;
   }
 
   function remove(id) {
     var list = readAll().filter(function (o) { return o.id !== id; });
-    writeAll(list);
+    var written = writeAll(list);
+    if (!written.ok) {
+      var err = new Error(written.error || "Could not delete observation.");
+      err.code = "STORAGE_WRITE_FAILED";
+      throw err;
+    }
   }
 
   function getStats() {
@@ -383,6 +460,7 @@
     APP_VERSION: APP_VERSION,
     STORAGE_KEY: STORAGE_KEY,
     DEVICE_KEY: DEVICE_KEY,
+    DRAFT_KEY: DRAFT_KEY,
     SCHEMA_VERSION: SCHEMA_VERSION,
     getDeviceId: getDeviceId,
     list: readAll,
@@ -393,6 +471,10 @@
     ensureFieldryExtension: ensureFieldryExtension,
     save: save,
     remove: remove,
+    duplicate: duplicate,
+    saveDraft: saveDraft,
+    loadDraft: loadDraft,
+    clearDraft: clearDraft,
     getStats: getStats,
     migrateAll: migrateAll
   };
