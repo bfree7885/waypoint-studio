@@ -104,19 +104,44 @@
       : { platform: opts.platform || null, location: opts.location || null, bundle: opts.bundle || {} };
     var Engine = global.WDS && global.WDS.dashboardV2Engine;
     var kiosk = Engine && Engine.isKioskMode ? Engine.isKioskMode() : false;
+    var payload = buildPayload(ctx);
+    var fingerprint = payloadFingerprint(payload, kiosk);
+    var hostKiosk = host.getAttribute("data-wdb-v3-kiosk") === "1" || host.classList.contains("wdb-v3--kiosk");
+    if (root._wdbV2Fingerprint === fingerprint && hostKiosk === kiosk) {
+      /* Skip DOM replace when model/trust/selection unchanged — clock ticks separately in kiosk. */
+      var KioskSkip = global.WDS && global.WDS.dashboardV3Kiosk;
+      if (KioskSkip && KioskSkip.tickClock) KioskSkip.tickClock();
+      if (KioskSkip && KioskSkip.updateConnectivityBanner) KioskSkip.updateConnectivityBanner();
+      return;
+    }
     var html = render(ctx, { kiosk: kiosk });
     if (!html) return;
-    var payload = buildPayload(ctx);
     var tmp = document.createElement("div");
     tmp.innerHTML = html;
     var next = tmp.firstElementChild;
     host.replaceWith(next);
     root._wdbV2Model = payload && payload.model;
+    root._wdbV2Fingerprint = fingerprint;
     bind(root);
     var Custom = global.WDS && global.WDS.dashboardV2Customize;
     if (Custom && Custom.bind) Custom.bind(root);
     var V3 = global.WDS && global.WDS.dashboardV3;
     if (V3 && V3.bind) V3.bind(root);
+  }
+
+  function payloadFingerprint(payload, kiosk) {
+    if (!payload || !payload.model) return String(kiosk) + "|empty";
+    var m = payload.model;
+    var bullets = payload.take && payload.take.bullets ? payload.take.bullets.join("|") : "";
+    var ids = (payload.selectedIds || []).join(",");
+    return [
+      kiosk ? "1" : "0",
+      m.provider && m.provider.hydratedAt,
+      m.provider && m.provider.trust,
+      m.location && m.location.label,
+      ids,
+      bullets
+    ].join("::");
   }
 
   function toggleKiosk() {
@@ -168,6 +193,11 @@
         if (!Engine || !Engine.setKioskMode) return;
         if (!document.fullscreenElement) Engine.setKioskMode(false);
         else Engine.setKioskMode(true);
+        /* Re-render once so shell picks up kiosk chrome (clock, sticky Brief). */
+        try {
+          var recovery = document.querySelector("[data-wdb-recovery]") || document.getElementById("wds-content-engine");
+          if (recovery) refresh(recovery);
+        } catch (errFs) { /* noop */ }
       });
     }
 

@@ -43,6 +43,12 @@
    * @returns {{ bullets: string[], traces: object[], trustNote: string|null, count: number }}
    */
   function generateWaypointsTake(input) {
+    /* Prefer Outdoor Brief Intelligence Engine when loaded (RC2.5 Sprint 3). */
+    var Engine = global.WDS && global.WDS.outdoorBriefEngine;
+    if (Engine && Engine.generateWaypointsTake) {
+      return Engine.generateWaypointsTake(input);
+    }
+
     input = input || {};
     var model = input.model || input;
     var weather = input.weather || model.weather || {};

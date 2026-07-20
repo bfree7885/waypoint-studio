@@ -7,7 +7,7 @@
   "use strict";
 
   var FLAG_KEY = "waypoint-dashboard-v3";
-  var VERSION = "3.0.0";
+  var VERSION = "3.1.0";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -79,19 +79,44 @@
           Layout && Layout.sizeFor
             ? Layout.sizeFor(layout, id, widget)
             : widget.size || "md";
+        var intel = body.intel || null;
+        var IntelApi = api("dashboardV2WidgetIntel");
+        if (!intel && IntelApi && IntelApi.forWidget) {
+          try {
+            intel = IntelApi.forWidget(widget.id, model);
+          } catch (e2) {
+            intel = null;
+          }
+        }
+        var Engine = api("outdoorBriefEngine");
+        var engineTakes =
+          Engine && Engine.takesForModule
+            ? Engine.takesForModule(widget.category, { model: model }, 2)
+            : [];
+        var bodyHasTake = !!(body.html && /data-wdb-v2-widget-take/.test(body.html));
+        var widgetTakes =
+          bodyHasTake
+            ? []
+            : intel && intel.take && intel.take.length
+              ? intel.take.slice(0, 3)
+              : engineTakes;
         return Contract.normalize({
           id: widget.id,
           category: widget.category,
           title: widget.name,
           description: widget.description,
           icon: categoryIcon(widget.category),
-          primaryValue: extractPrimary(widget, body),
+          primaryValue: (intel && intel.headline) || extractPrimary(widget, body),
+          secondaryDetails: intel && intel.opportunity ? [intel.opportunity] : [],
           availability: body.state,
           bodyHtml: body.html,
           lastUpdated: model.provider && model.provider.hydratedAt,
           expandTab: widget.tab,
           size: size,
-          tab: widget.tab
+          tab: widget.tab,
+          take: widgetTakes,
+          providers: intel && intel.providers ? intel.providers : [],
+          confidence: intel && intel.confidence ? intel.confidence : null
         });
       })
       .filter(Boolean);
@@ -221,8 +246,18 @@
       Layout.registerDnDHooks(host.querySelector("[data-wdb-v3-layout]") || host);
     }
 
-    var Custom = api("dashboardV2Customize");
-    if (Custom && Custom.bind) Custom.bind(root);
+    var CustomV3 = api("dashboardV3Customize");
+    if (CustomV3 && CustomV3.bind) CustomV3.bind(root);
+    else {
+      var Custom = api("dashboardV2Customize");
+      if (Custom && Custom.bind) Custom.bind(root);
+    }
+
+    var Kiosk = api("dashboardV3Kiosk");
+    if (Kiosk && Kiosk.bind) Kiosk.bind(root);
+
+    var WR = api("dashboardV2WidgetRender");
+    if (WR && WR.bindExpand) WR.bindExpand(host);
 
     if (host._wdbV3Bound) return;
     host._wdbV3Bound = true;
@@ -239,6 +274,13 @@
       var refreshBtn = e.target.closest("[data-wdb-v3-widget-refresh]");
       if (refreshBtn && host.contains(refreshBtn)) {
         e.preventDefault();
+        var card = refreshBtn.closest("[data-wdb-v3-widget], [data-wdb-v2-widget]");
+        if (card) {
+          card.classList.add("wdb-v3-widget--refreshing");
+          global.setTimeout(function () {
+            card.classList.remove("wdb-v3-widget--refreshing");
+          }, 900);
+        }
         if (global.WDS && global.WDS.outdoorIntelligence && global.WDS.outdoorIntelligence.refresh) {
           global.WDS.outdoorIntelligence.refresh({ force: true });
         }

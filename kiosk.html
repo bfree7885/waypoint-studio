@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/kiosk.css">
 </head>
 <body>
-  <div id="swk" class="swk" aria-live="polite">
+  <div id="swk" class="swk swk--dashboard" aria-live="polite">
     <header class="swk-topbar" aria-label="Status bar">
       <div class="swk-topbar__brand">
         <span class="swk-topbar__mark" aria-hidden="true"></span>
@@ -40,7 +40,18 @@
       </div>
     </header>
 
-    <main class="swk-grid" aria-label="Outdoor operations dashboard">
+    <section class="swk-brief" data-swk-brief aria-labelledby="swk-brief-title">
+      <div class="swk-brief__intro">
+        <p class="swk-brief__eyebrow">Interpretation over information</p>
+        <h2 class="swk-brief__title" id="swk-brief-title">Today’s Outdoor Brief</h2>
+        <p class="swk-brief__subtitle" id="swk-brief-sub">What you should know before heading outside.</p>
+      </div>
+      <ul class="swk-brief__list" id="swk-brief-list">
+        <li>Waiting for live outdoor cues…</li>
+      </ul>
+    </section>
+
+    <main class="swk-grid" aria-label="Outdoor conditions dashboard">
       <section class="swk-panel swk-panel--weather" aria-label="Weather">
         <h2 class="swk-panel__title">Weather</h2>
         <p class="swk-weather__temp" id="swk-temp">—</p>

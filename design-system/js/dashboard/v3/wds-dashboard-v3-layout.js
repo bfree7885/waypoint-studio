@@ -1,13 +1,16 @@
 /**
  * Dashboard V3 — layout engine.
- * Responsive grid, ordering, variable sizes, and hooks for future
- * drag-and-drop / saved layouts (DnD not fully implemented this sprint).
+ * Responsive grid, ordering, variable sizes, DnD hooks, and kiosk rotation presets.
  */
 (function (global) {
   "use strict";
 
   var LAYOUT_KEY = "waypoint-dashboard-v3-layout-v1";
   var SIZES = ["sm", "md", "lg", "xl"];
+  /** User-facing resize control (small / medium / large) */
+  var DISPLAY_SIZES = ["sm", "md", "lg"];
+  var SIZE_LABELS = { sm: "Small", md: "Medium", lg: "Large", xl: "Extra large" };
+  var DENSIFY = ["comfortable", "compact", "spacious"];
 
   function defaultLayout(widgetIds) {
     return {
@@ -99,15 +102,45 @@
     });
   }
 
+  function setSize(widgetId, size, widgetIds) {
+    var layout = load(widgetIds);
+    if (SIZES.indexOf(size) < 0) size = "md";
+    layout.sizes = layout.sizes || {};
+    layout.sizes[widgetId] = size;
+    return save(layout);
+  }
+
+  function cycleSize(widgetId, widgetIds) {
+    var layout = load(widgetIds);
+    var cur = sizeFor(layout, widgetId);
+    var idx = DISPLAY_SIZES.indexOf(cur);
+    if (idx < 0) idx = 1;
+    var next = DISPLAY_SIZES[(idx + 1) % DISPLAY_SIZES.length];
+    return setSize(widgetId, next, widgetIds);
+  }
+
+  function moveInOrder(widgetId, direction, widgetIds) {
+    var layout = load(widgetIds);
+    var order = layout.order.slice();
+    var idx = order.indexOf(widgetId);
+    if (idx < 0) return layout;
+    var swap = direction === "up" ? idx - 1 : idx + 1;
+    if (swap < 0 || swap >= order.length) return layout;
+    var tmp = order[idx];
+    order[idx] = order[swap];
+    order[swap] = tmp;
+    layout.order = order;
+    return save(layout);
+  }
+
   /**
-   * Future DnD hook — registers drop targets without implementing full drag UI.
-   * Sprint 2+ can bind pointer handlers to [data-layout-item].
+   * DnD architecture hook — drop targets ready; full pointer DnD can enable later.
    */
   function registerDnDHooks(root, handlers) {
     if (!root) return function () {};
     handlers = handlers || {};
     root.setAttribute("data-wdb-v3-dnd-ready", "1");
-    root.setAttribute("data-wdb-v3-dnd-enabled", "0");
+    root.setAttribute("data-wdb-v3-dnd-enabled", handlers.enable ? "1" : "0");
     if (handlers.onReady) handlers.onReady(root);
     return function unregister() {
       try {
@@ -147,20 +180,46 @@
     );
   }
 
+  /**
+   * Kiosk / saved-layout rotation profiles (architecture for Sprint 5+).
+   * Consumers: WDS.dashboardV3Kiosk.applyPreset
+   */
+  function rotationProfiles() {
+    return [
+      { id: "brief-first", densify: "comfortable", groupByCategory: true },
+      { id: "dense-conditions", densify: "compact", groupByCategory: true },
+      { id: "flat-grid", densify: "comfortable", groupByCategory: false }
+    ];
+  }
+
+  function applyDensify(layout, densify) {
+    layout = layout || defaultLayout();
+    if (DENSIFY.indexOf(densify) >= 0) layout.densify = densify;
+    return layout;
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.dashboardV3Layout = {
-    VERSION: "3.0.0",
+    VERSION: "3.1.0",
     LAYOUT_KEY: LAYOUT_KEY,
     SIZES: SIZES,
+    DISPLAY_SIZES: DISPLAY_SIZES,
+    SIZE_LABELS: SIZE_LABELS,
+    DENSIFY: DENSIFY,
     defaultLayout: defaultLayout,
     load: load,
     save: save,
     reset: reset,
     normalize: normalize,
     sizeFor: sizeFor,
+    setSize: setSize,
+    cycleSize: cycleSize,
+    moveInOrder: moveInOrder,
     orderedIds: orderedIds,
     registerDnDHooks: registerDnDHooks,
     renderGrid: renderGrid,
-    wrapItem: wrapItem
+    wrapItem: wrapItem,
+    rotationProfiles: rotationProfiles,
+    applyDensify: applyDensify
   };
 })(window);

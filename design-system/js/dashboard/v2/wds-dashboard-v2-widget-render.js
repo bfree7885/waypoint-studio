@@ -113,6 +113,134 @@
     return { headline: "Fog unlikely", detail: "Humidity and sky do not strongly favor radiation fog." };
   }
 
+  function loadingBody(msg) {
+    return (
+      '<p class="wdb-v2-widget__muted wdb-v2-widget__loading" role="status" aria-live="polite">' +
+      esc(msg || "Loading outdoor cues…") +
+      "</p>"
+    );
+  }
+
+  function attributionHtml(providers) {
+    if (!providers || !providers.length) return "";
+    return (
+      '<p class="wdb-v2-widget__attrib" data-wdb-widget-attrib>' +
+      "<span>Sources: </span>" +
+      esc(providers.join(" · ")) +
+      "</p>"
+    );
+  }
+
+  function decisionSupportHtml(intel, detailRowsHtml) {
+    if (!intel) return detailRowsHtml || "";
+    if (intel.stub) {
+      return (
+        '<div class="wdb-v2-widget__decision wdb-v2-widget__decision--stub" data-wdb-decision-support>' +
+        '<p class="wdb-v2-widget__headline">' +
+        esc(intel.headline) +
+        "</p>" +
+        '<p class="wdb-v2-widget__empty">' +
+        esc(intel.stubNote || (intel.take && intel.take[0]) || "Architecture placeholder — no live values.") +
+        "</p>" +
+        attributionHtml(intel.providers) +
+        "</div>"
+      );
+    }
+    if (intel.empty || intel.error) {
+      return (
+        '<div class="wdb-v2-widget__decision" data-wdb-decision-support>' +
+        '<p class="wdb-v2-widget__empty" role="status">' +
+        esc(intel.error || intel.headline || "Data unavailable.") +
+        "</p>" +
+        (intel.take && intel.take[0]
+          ? '<p class="wdb-v2-widget__muted">' + esc(intel.take[0]) + "</p>"
+          : "") +
+        attributionHtml(intel.providers) +
+        "</div>"
+      );
+    }
+
+    var factors =
+      intel.factors && intel.factors.length
+        ? '<ul class="wdb-v2-widget__factors" data-wdb-decision-factors>' +
+          intel.factors
+            .slice(0, 8)
+            .map(function (f) {
+              return (
+                "<li><span>" +
+                esc(f.label) +
+                "</span> <strong>" +
+                esc(f.value) +
+                "</strong></li>"
+              );
+            })
+            .join("") +
+          "</ul>"
+        : "";
+    var windows =
+      intel.windows && intel.windows.length
+        ? '<ul class="wdb-v2-widget__windows">' +
+          intel.windows
+            .slice(0, 4)
+            .map(function (w) {
+              return "<li>" + esc(w) + "</li>";
+            })
+            .join("") +
+          "</ul>"
+        : "";
+    var take =
+      intel.take && intel.take.length
+        ? '<div class="wdb-v2-widget__take" data-wdb-v2-widget-take>' +
+          '<p class="wdb-v2-widget__take-label">Waypoint’s Take</p>' +
+          "<ul>" +
+          intel.take
+            .slice(0, 3)
+            .map(function (t) {
+              return "<li>" + esc(t) + "</li>";
+            })
+            .join("") +
+          "</ul></div>"
+        : "";
+
+    var detailsId = "wdb-detail-" + Math.random().toString(36).slice(2, 9);
+    var detailsInner = factors + windows + (detailRowsHtml || "") + take + attributionHtml(intel.providers);
+    var expand =
+      detailsInner
+        ? '<div class="wdb-v2-widget__expand">' +
+          '<button type="button" class="wdb-v2-widget__expand-btn wds-btn wds-btn--ghost wds-btn--sm" data-wdb-widget-expand aria-expanded="false" aria-controls="' +
+          detailsId +
+          '">Show details</button>' +
+          '<div id="' +
+          detailsId +
+          '" class="wdb-v2-widget__details" data-wdb-widget-details hidden>' +
+          detailsInner +
+          "</div></div>"
+        : "";
+
+    return (
+      '<div class="wdb-v2-widget__decision" data-wdb-decision-support data-confidence="' +
+      esc(intel.confidence || "Low") +
+      '">' +
+      '<p class="wdb-v2-widget__headline">' +
+      esc(intel.headline) +
+      "</p>" +
+      (intel.opportunity
+        ? '<p class="wdb-v2-widget__opportunity">' + esc(intel.opportunity) + "</p>"
+        : "") +
+      '<p class="wdb-v2-widget__confidence"><span class="visually-hidden">Confidence: </span>' +
+      esc(intel.confidence || "Low") +
+      "</p>" +
+      expand +
+      "</div>"
+    );
+  }
+
+  function focusIntel(widget, model) {
+    var Intel = global.WDS && global.WDS.dashboardV2WidgetIntel;
+    if (!Intel || !Intel.forWidget) return null;
+    return Intel.forWidget(widget.id, model);
+  }
+
   function renderBody(widget, model) {
     var Cat = global.WDS && global.WDS.dashboardV2Widgets;
     var state = Cat && Cat.resolveAvailability ? Cat.resolveAvailability(widget, model) : widget.availability;
@@ -121,50 +249,75 @@
     var daily = (model.weather && model.weather.daily) || [];
     var alerts = (model.alerts && model.alerts.items) || [];
     var id = widget.id;
+    var intel = focusIntel(widget, model);
 
-    if (state === "planned") return { state: state, html: plannedBody(widget.name) };
+    if (state === "planned" || (intel && intel.stub)) {
+      if (intel && intel.stub) {
+        return { state: "planned", html: decisionSupportHtml(intel), intel: intel };
+      }
+      return { state: state, html: plannedBody(widget.name) };
+    }
 
     switch (id) {
       case "wx-current":
-        if (!model.weather.live && c.tempF == null) return { state: "unavailable", html: unavailableBody("Waiting on live weather.") };
+        if (!model.weather.live && c.tempF == null) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Waiting on live weather."),
+            intel: intel
+          };
+        }
         return {
           state: state,
-          html: dl(
-            kv("Temp", c.tempF != null ? Math.round(c.tempF) + "°F" : null) +
-              kv("Feels like", c.feelsF != null ? Math.round(c.feelsF) + "°F" : null) +
-              kv("Sky", c.conditions || null) +
-              kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : null) +
-              kv("Humidity", c.humidity != null ? Math.round(c.humidity) + "%" : null)
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("Temp", c.tempF != null ? Math.round(c.tempF) + "°F" : null) +
+                kv("Feels like", c.feelsF != null ? Math.round(c.feelsF) + "°F" : null) +
+                kv("Sky", c.conditions || null) +
+                kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : null) +
+                kv("Humidity", c.humidity != null ? Math.round(c.humidity) + "%" : null)
+            )
+          ),
+          intel: intel
         };
 
       case "wx-hourly":
-        if (!hourly.length) return { state: "unavailable", html: unavailableBody("Hourly forecast not available yet.") };
+        if (!hourly.length) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Hourly forecast not available yet."),
+            intel: intel
+          };
+        }
         return {
           state: state,
-          html:
+          html: decisionSupportHtml(
+            intel || null,
             '<ul class="wdb-v2-widget__list wdb-v2-widget__list--compact">' +
-            hourly
-              .slice(0, 6)
-              .map(function (h) {
-                var t = h.time || h.timestamp;
-                var label = t
-                  ? new Date(t).toLocaleTimeString(undefined, { hour: "numeric" })
-                  : "—";
-                var temp = num(h.temperature != null ? h.temperature : h.temp);
-                var pop = h.precipitation ? num(h.precipitation.probability) : num(h.precipProb);
-                return (
-                  "<li><span>" +
-                  esc(label) +
-                  "</span> <strong>" +
-                  (temp != null ? Math.round(temp) + "°" : "—") +
-                  "</strong>" +
-                  (pop != null ? ' · rain ' + Math.round(pop) + "%" : "") +
-                  "</li>"
-                );
-              })
-              .join("") +
-            "</ul>"
+              hourly
+                .slice(0, 6)
+                .map(function (h) {
+                  var t = h.time || h.timestamp;
+                  var label = t
+                    ? new Date(t).toLocaleTimeString(undefined, { hour: "numeric" })
+                    : "—";
+                  var temp = num(h.temperature != null ? h.temperature : h.temp);
+                  var pop = h.precipitation ? num(h.precipitation.probability) : num(h.precipProb);
+                  return (
+                    "<li><span>" +
+                    esc(label) +
+                    "</span> <strong>" +
+                    (temp != null ? Math.round(temp) + "°" : "—") +
+                    "</strong>" +
+                    (pop != null ? " · rain " + Math.round(pop) + "%" : "") +
+                    "</li>"
+                  );
+                })
+                .join("") +
+              "</ul>"
+          ),
+          intel: intel
         };
 
       case "wx-multiday":
@@ -251,37 +404,78 @@
       case "astro-sun":
         return {
           state: model.daylight.sunrise || model.daylight.sunset ? state : "unavailable",
-          html: dl(kv("Sunrise", model.daylight.sunrise || "—") + kv("Sunset", model.daylight.sunset || "—"))
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Sunrise", model.daylight.sunrise || "—") + kv("Sunset", model.daylight.sunset || "—"))
+          ),
+          intel: intel
         };
 
       case "astro-twilight":
-        if (!model.daylight.civilTwilightEnd) return { state: "unavailable", html: unavailableBody("Twilight end not in daylight package yet.") };
-        return { state: state, html: dl(kv("Civil twilight ends", model.daylight.civilTwilightEnd)) };
+        if (!model.daylight.civilTwilightEnd) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Twilight end not in daylight package yet."),
+            intel: intel
+          };
+        }
+        return {
+          state: state,
+          html: decisionSupportHtml(intel || null, dl(kv("Civil twilight ends", model.daylight.civilTwilightEnd))),
+          intel: intel
+        };
 
       case "astro-golden":
         return {
           state: model.daylight.goldenHour || model.daylight.blueHour ? state : "unavailable",
-          html: dl(kv("Golden hour", model.daylight.goldenHour || "—") + kv("Blue hour", model.daylight.blueHour || "—"))
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Golden hour", model.daylight.goldenHour || "—") + kv("Blue hour", model.daylight.blueHour || "—"))
+          ),
+          intel: intel
         };
 
       case "astro-moon-phase":
         return {
           state: model.moon.phase ? state : "unavailable",
-          html: dl(
-            kv("Phase", model.moon.phase || "—") +
-              kv("Illumination", model.moon.illumination != null ? Math.round(model.moon.illumination) + "%" : null)
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("Phase", model.moon.phase || "—") +
+                kv("Illumination", model.moon.illumination != null ? Math.round(model.moon.illumination) + "%" : null)
+            )
+          ),
+          intel: intel
         };
 
       case "astro-moon-times":
-        if (!model.moon.rise && !model.moon.set) return { state: "unavailable", html: unavailableBody("Moonrise/set not available yet.") };
-        return { state: state, html: dl(kv("Moonrise", model.moon.rise || "—") + kv("Moonset", model.moon.set || "—")) };
+        if (!model.moon.rise && !model.moon.set) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Moonrise/set not available yet."),
+            intel: intel
+          };
+        }
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Moonrise", model.moon.rise || "—") + kv("Moonset", model.moon.set || "—"))
+          ),
+          intel: intel
+        };
 
       case "astro-night-sky":
       case "astro-cloud-stargaze": {
         var cloud = c.cloudPct;
         var illum = model.moon.illumination;
-        if (cloud == null && !model.weather.live) return { state: "unavailable", html: unavailableBody("Need cloud cover for stargazing cues.") };
+        if (cloud == null && !model.weather.live) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Need cloud cover for stargazing cues."),
+            intel: intel
+          };
+        }
         var skyNote =
           cloud != null && cloud <= 30 && (illum == null || illum < 40)
             ? "Favorable for stars"
@@ -290,7 +484,11 @@
               : "Mixed — check local horizon";
         return {
           state: state,
-          html: dl(kv("Cloud cover", cloud != null ? Math.round(cloud) + "%" : "—") + kv("Outlook", skyNote) + kv("Moon", model.moon.phase || null))
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Cloud cover", cloud != null ? Math.round(cloud) + "%" : "—") + kv("Outlook", skyNote) + kv("Moon", model.moon.phase || null))
+          ),
+          intel: intel
         };
       }
 
@@ -298,15 +496,23 @@
       case "photo-landscape":
       case "photo-light":
         if (!model.photography.live && !model.photography.summary) {
-          return { state: "unavailable", html: unavailableBody("Photography cues need live weather.") };
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Photography cues need live weather."),
+            intel: intel
+          };
         }
         return {
           state: state,
-          html: dl(
-            kv("Summary", model.photography.summary || "—") +
-              kv("Level", model.photography.level || null) +
-              kv("Detail", model.photography.detail ? String(model.photography.detail).slice(0, 160) : null)
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("Summary", model.photography.summary || "—") +
+                kv("Level", model.photography.level || null) +
+                kv("Detail", model.photography.detail ? String(model.photography.detail).slice(0, 160) : null)
+            )
+          ),
+          intel: intel
         };
 
       case "photo-wildlife":
@@ -314,7 +520,13 @@
       case "photo-sunrise":
       case "photo-sunset":
       case "photo-night": {
-        if (!model.weather.live) return { state: "unavailable", html: unavailableBody("Needs live weather.") };
+        if (!model.weather.live) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Needs live weather."),
+            intel: intel
+          };
+        }
         var tip =
           id === "photo-macro"
             ? c.cloudPct != null && c.cloudPct >= 40
@@ -329,82 +541,170 @@
                 : id === "photo-sunset"
                   ? "Evening window near " + (model.daylight.sunset || "sunset")
                   : "Use soft side-light and watch wind for subject motion";
-        return { state: state, html: dl(kv("Cue", tip) + kv("Sky", c.conditions || null) + kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : null)) };
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Cue", tip) + kv("Sky", c.conditions || null) + kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : null))
+          ),
+          intel: intel
+        };
       }
 
       case "photo-fog": {
         var fog = fogIntel(model);
-        if (!fog) return { state: "unavailable", html: unavailableBody("Fog heuristic needs humidity/sky data.") };
-        return { state: "experimental", html: dl(kv("Outlook", fog.headline || fog.level || "—") + kv("Detail", fog.detail || null)) };
+        if (!fog) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Fog heuristic needs humidity/sky data."),
+            intel: intel
+          };
+        }
+        return {
+          state: "experimental",
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Outlook", fog.headline || fog.level || "—") + kv("Detail", fog.detail || null))
+          ),
+          intel: intel
+        };
       }
 
       case "photo-wind":
       case "hike-wind":
         return {
           state: c.windMph != null ? state : "unavailable",
-          html: dl(
-            kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : "—") +
-              kv(
-                "Impact",
-                c.windMph == null
-                  ? null
-                  : c.windMph >= 20
-                    ? "High — exposed ridges and long lenses suffer"
-                    : c.windMph >= 12
-                      ? "Moderate — watch subject motion"
-                      : "Low — generally manageable"
-              )
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : "—") +
+                kv(
+                  "Impact",
+                  c.windMph == null
+                    ? null
+                    : c.windMph >= 20
+                      ? "High — exposed ridges and long lenses suffer"
+                      : c.windMph >= 12
+                        ? "Moderate — watch subject motion"
+                        : "Low — generally manageable"
+                )
+            )
+          ),
+          intel: intel
         };
 
       case "hike-conditions":
       case "hike-comfort": {
         var hike = hikingIntel(model);
-        if (!hike) return { state: "unavailable", html: unavailableBody("Hiking comfort needs live weather.") };
-        return { state: state, html: dl(kv("Level", hike.level || "—") + kv("Summary", hike.summary || "—") + kv("Notes", hike.detail || null)) };
+        if (!hike && !(intel && !intel.empty)) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Hiking comfort needs live weather."),
+            intel: intel
+          };
+        }
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            hike
+              ? dl(kv("Level", hike.level || "—") + kv("Summary", hike.summary || "—") + kv("Notes", hike.detail || null))
+              : ""
+          ),
+          intel: intel
+        };
       }
 
       case "hike-heat-cold": {
-        if (c.feelsF == null) return { state: "unavailable", html: unavailableBody("Needs feels-like temperature.") };
+        if (c.feelsF == null) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Needs feels-like temperature."),
+            intel: intel
+          };
+        }
         var band =
           c.feelsF >= 90 ? "Heat stress likely" : c.feelsF >= 82 ? "Warm — hydrate" : c.feelsF <= 20 ? "Severe cold stress" : c.feelsF <= 35 ? "Cold — layer up" : "Within a moderate band";
-        return { state: state, html: dl(kv("Feels like", Math.round(c.feelsF) + "°F") + kv("Stress", band)) };
+        return {
+          state: state,
+          html: decisionSupportHtml(intel || null, dl(kv("Feels like", Math.round(c.feelsF) + "°F") + kv("Stress", band))),
+          intel: intel
+        };
       }
 
       case "hike-rain":
         return {
           state: state,
-          html:
+          html: decisionSupportHtml(
+            intel || null,
             dl(kv("Precip chance", c.precipProb != null ? Math.round(c.precipProb) + "%" : "—")) +
-            listAlerts(alertFilter(alerts, /thunder|storm|tornado|flood/), "No storm/flood alerts.")
+              listAlerts(alertFilter(alerts, /thunder|storm|tornado|flood/), "No storm/flood alerts.")
+          ),
+          intel: intel
         };
 
       case "hike-daylight": {
-        if (!model.daylight.sunset) return { state: "unavailable", html: unavailableBody("Sunset time needed.") };
-        return { state: state, html: dl(kv("Sunset", model.daylight.sunset) + kv("Sunrise", model.daylight.sunrise || null)) };
+        if (!model.daylight.sunset) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Sunset time needed."),
+            intel: intel
+          };
+        }
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Sunset", model.daylight.sunset) + kv("Sunrise", model.daylight.sunrise || null))
+          ),
+          intel: intel
+        };
       }
 
       case "hike-mud": {
         var rain = model.rainfall && model.rainfall.recent;
-        if (!rain && c.precipProb == null) return { state: "unavailable", html: unavailableBody("No recent rainfall context yet.") };
+        if (!rain && c.precipProb == null) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("No recent rainfall context yet."),
+            intel: intel
+          };
+        }
         var mud =
           rain && num(rain.amount) > 0.5
             ? "Trails may be muddy after recent rain"
             : c.precipProb != null && c.precipProb >= 50
               ? "Wet footing possible if showers arrive"
               : "Mud risk looks limited from available rain cues";
-        return { state: "experimental", html: dl(kv("Outlook", mud) + kv("Recent", rain ? rain.amount + " " + (rain.unit || "in") : null)) };
+        return {
+          state: "experimental",
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Outlook", mud) + kv("Recent", rain ? rain.amount + " " + (rain.unit || "in") : null))
+          ),
+          intel: intel
+        };
       }
 
       case "hike-uv":
       case "air-uv":
-        if (c.uv == null) return { state: "unavailable", html: unavailableBody("UV index not reported yet.") };
+        if (c.uv == null) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("UV index not reported yet."),
+            intel: intel
+          };
+        }
         return {
           state: state,
-          html: dl(
-            kv("UV", Math.round(c.uv)) +
-              kv("Guidance", c.uv >= 8 ? "Very high — minimize midday sun" : c.uv >= 6 ? "High — protect skin" : "Moderate or lower")
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("UV", Math.round(c.uv)) +
+                kv("Guidance", c.uv >= 8 ? "Very high — minimize midday sun" : c.uv >= 6 ? "High — protect skin" : "Moderate or lower")
+            )
+          ),
+          intel: intel
         };
 
       case "river-nearby":
@@ -412,55 +712,114 @@
       case "river-trend":
       case "river-freshness": {
         if (!model.rivers.live || !model.rivers.sites.length) {
-          return { state: "unavailable", html: unavailableBody("No nearby USGS gauges reporting for this location.") };
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("No nearby USGS gauges reporting for this location."),
+            intel: intel
+          };
         }
         if (id === "river-nearby") {
           return {
             state: state,
-            html:
+            html: decisionSupportHtml(
+              intel || null,
               '<ul class="wdb-v2-widget__list">' +
-              model.rivers.sites
-                .slice(0, 4)
-                .map(function (s) {
-                  return (
-                    "<li><strong>" +
-                    esc(s.name) +
-                    "</strong>" +
-                    (s.distanceMi != null ? " · " + s.distanceMi.toFixed(1) + " mi" : "") +
-                    (s.stageFt != null ? " · " + s.stageFt.toFixed(1) + " ft" : "") +
-                    (s.trend ? " · " + esc(s.trend) : "") +
-                    "</li>"
-                  );
-                })
-                .join("") +
-              "</ul>"
+                model.rivers.sites
+                  .slice(0, 4)
+                  .map(function (s) {
+                    return (
+                      "<li><strong>" +
+                      esc(s.name) +
+                      "</strong>" +
+                      (s.distanceMi != null ? " · " + s.distanceMi.toFixed(1) + " mi" : "") +
+                      (s.stageFt != null ? " · " + s.stageFt.toFixed(1) + " ft" : "") +
+                      (s.trend ? " · " + esc(s.trend) : "") +
+                      "</li>"
+                    );
+                  })
+                  .join("") +
+                "</ul>"
+            ),
+            intel: intel
           };
         }
         var site = model.rivers.sites[0];
-        if (id === "river-level") return { state: state, html: dl(kv("Site", site.name) + kv("Stage", site.stageFt != null ? site.stageFt.toFixed(1) + " ft" : "—") + kv("Flow", site.flowCfs != null ? Math.round(site.flowCfs) + " cfs" : null)) };
-        if (id === "river-trend") return { state: state, html: dl(kv("Site", site.name) + kv("Trend", site.trend || "Not interpreted") ) };
+        if (id === "river-level") {
+          return {
+            state: state,
+            html: decisionSupportHtml(
+              intel || null,
+              dl(kv("Site", site.name) + kv("Stage", site.stageFt != null ? site.stageFt.toFixed(1) + " ft" : "—") + kv("Flow", site.flowCfs != null ? Math.round(site.flowCfs) + " cfs" : null))
+            ),
+            intel: intel
+          };
+        }
+        if (id === "river-trend") {
+          return {
+            state: state,
+            html: decisionSupportHtml(intel || null, dl(kv("Site", site.name) + kv("Trend", site.trend || "Not interpreted"))),
+            intel: intel
+          };
+        }
         return {
           state: state,
-          html: dl(
-            kv("Site", site.name) +
-              kv("Observed", site.observedAt ? new Date(site.observedAt).toLocaleString() : "—") +
-              kv("Stale", site.stale ? "Yes — treat cautiously" : "No")
-          )
+          html: decisionSupportHtml(
+            intel || null,
+            dl(
+              kv("Site", site.name) +
+                kv("Observed", site.observedAt ? new Date(site.observedAt).toLocaleString() : "—") +
+                kv("Stale", site.stale ? "Yes — treat cautiously" : "No")
+            )
+          ),
+          intel: intel
         };
       }
 
       case "river-flood":
-        return { state: state, html: listAlerts(alertFilter(alerts, /flood/), "No flood alerts. Gauge detail is in Rivers widgets when live.") };
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            listAlerts(alertFilter(alerts, /flood/), "No flood alerts. Gauge detail is in Rivers widgets when live.")
+          ),
+          intel: intel
+        };
 
       case "river-rain": {
         var rr = model.rainfall && model.rainfall.recent;
-        if (!rr) return { state: "unavailable", html: unavailableBody("Recent rainfall package not available.") };
-        return { state: "experimental", html: dl(kv("Recent", rr.amount + " " + (rr.unit || "in")) + kv("Period", (rr.periodDays || 7) + " days") + kv("Note", "Runoff impact is inferred, not a forecast hydrograph.")) };
+        if (!rr) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Recent rainfall package not available."),
+            intel: intel
+          };
+        }
+        return {
+          state: "experimental",
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("Recent", rr.amount + " " + (rr.unit || "in")) + kv("Period", (rr.periodDays || 7) + " days") + kv("Note", "Runoff impact is inferred, not a forecast hydrograph."))
+          ),
+          intel: intel
+        };
       }
 
       case "air-aqi":
-        if (!model.air.live || model.air.aqi == null) return { state: "unavailable", html: unavailableBody("Air quality not live yet.") };
-        return { state: state, html: dl(kv("US AQI", Math.round(model.air.aqi)) + kv("Category", model.air.category || "—") + kv("PM2.5", model.air.pm25 != null ? model.air.pm25 : null)) };
+        if (!model.air.live || model.air.aqi == null) {
+          return {
+            state: "unavailable",
+            html: intel ? decisionSupportHtml(intel) : unavailableBody("Air quality not live yet."),
+            intel: intel
+          };
+        }
+        return {
+          state: state,
+          html: decisionSupportHtml(
+            intel || null,
+            dl(kv("US AQI", Math.round(model.air.aqi)) + kv("Category", model.air.category || "—") + kv("PM2.5", model.air.pm25 != null ? model.air.pm25 : null))
+          ),
+          intel: intel
+        };
 
       case "air-env-alerts":
       case "alert-local": {
@@ -567,14 +926,21 @@
   function renderWidget(widget, model) {
     var body = renderBody(widget, model);
     var tab = widget.tab || "today";
+    var intel = body.intel || null;
     return (
       '<article class="wdb-v2-widget" data-wdb-v2-widget="' +
       esc(widget.id) +
       '" data-availability="' +
       esc(body.state) +
+      '"' +
+      (intel && intel.confidence ? ' data-confidence="' + esc(intel.confidence) + '"' : "") +
+      ' aria-labelledby="wdb-title-' +
+      esc(widget.id) +
       '">' +
       '<header class="wdb-v2-widget__head">' +
-      '<h4 class="wdb-v2-widget__title">' +
+      '<h4 class="wdb-v2-widget__title" id="wdb-title-' +
+      esc(widget.id) +
+      '">' +
       esc(widget.name) +
       "</h4>" +
       availBadge(body.state) +
@@ -590,6 +956,24 @@
       '">Open detail</button>' +
       "</article>"
     );
+  }
+
+  function bindExpand(root) {
+    if (!root || root._wdbWidgetExpandBound) return;
+    root._wdbWidgetExpandBound = true;
+    root.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-wdb-widget-expand]");
+      if (!btn || !root.contains(btn)) return;
+      e.preventDefault();
+      var panel = btn.parentNode && btn.parentNode.querySelector("[data-wdb-widget-details]");
+      if (!panel) return;
+      var open = btn.getAttribute("aria-expanded") === "true";
+      var next = !open;
+      btn.setAttribute("aria-expanded", next ? "true" : "false");
+      btn.textContent = next ? "Hide details" : "Show details";
+      if (next) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+    });
   }
 
   function renderGrouped(selectedIds, model) {
@@ -620,9 +1004,11 @@
           esc(cat.label) +
           "</h3>" +
           '<div class="wdb-v2-cat__grid">' +
-          list.map(function (w) {
-            return renderWidget(w, model);
-          }).join("") +
+          list
+            .map(function (w) {
+              return renderWidget(w, model);
+            })
+            .join("") +
           "</div>" +
           "</section>"
         );
@@ -645,6 +1031,8 @@
   global.WDS.dashboardV2WidgetRender = {
     renderWidget: renderWidget,
     renderGrouped: renderGrouped,
-    renderBody: renderBody
+    renderBody: renderBody,
+    decisionSupportHtml: decisionSupportHtml,
+    bindExpand: bindExpand
   };
 })(window);

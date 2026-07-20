@@ -37,12 +37,23 @@ const sandbox = {
   console,
   document: {
     createElement() {
-      return { innerHTML: "", firstElementChild: null, replaceWith() {} };
+      return { innerHTML: "", firstElementChild: null, replaceWith() {}, classList: { toggle() {}, contains() { return false; } }, setAttribute() {}, getAttribute() { return null; }, querySelector() { return null; }, addEventListener() {}, removeEventListener() {} };
     },
     fullscreenElement: null,
     exitFullscreen() {},
-    documentElement: { requestFullscreen() {}, classList: { toggle() {}, contains() { return false; } } }
+    documentElement: {
+      requestFullscreen() {},
+      classList: { toggle() {}, contains() { return false; } },
+      setAttribute() {},
+      getAttribute() { return null; }
+    },
+    addEventListener() {},
+    removeEventListener() {},
+    hidden: false,
+    querySelector() { return null; }
   },
+  addEventListener() {},
+  removeEventListener() {},
   CustomEvent: function CustomEvent(type, init) {
     this.type = type;
     this.detail = init && init.detail;
@@ -64,6 +75,9 @@ const sandbox = {
 };
 sandbox.window = sandbox;
 sandbox.globalThis = sandbox;
+sandbox.setInterval = () => 1;
+sandbox.clearInterval = () => {};
+sandbox.matchMedia = () => ({ matches: false, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {} });
 sandbox.WDS = {
   outdoorWeatherIntel: {
     hikingComfort() {
@@ -112,6 +126,7 @@ sandbox.WDS = {
   "design-system/js/dashboard/v3/wds-dashboard-v3-layout.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-brief.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-shell.js",
+  "design-system/js/dashboard/v3/wds-dashboard-v3-kiosk.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3.js"
 ].forEach((f) => load(f, sandbox));
 
@@ -257,6 +272,46 @@ sandbox.WDS.dashboardV3.setEnabled(true);
 
 const summary = sandbox.WDS.dashboardV3Brief.renderSummaryList(["Pack layers"], { title: "Cues", id: "c1" });
 assert("reusable summary list", /Pack layers/.test(summary) && /Cues/.test(summary));
+
+/* Sprint 5 — kiosk / polish */
+const Kiosk = sandbox.WDS.dashboardV3Kiosk;
+assert("kiosk controller present", !!Kiosk);
+assert("kiosk layout presets", Kiosk.layoutPresets().length >= 3);
+assert("layout rotation profiles", sandbox.WDS.dashboardV3Layout.rotationProfiles().length >= 3);
+Kiosk.applyPreset("dense-conditions");
+const afterPreset = sandbox.WDS.dashboardV3Layout.load(["wx-current", "air-aqi"]);
+assert("preset densify compact", afterPreset.densify === "compact");
+
+const kioskHtml = sandbox.WDS.dashboardV3.render(ctx, { kiosk: true });
+assert("kiosk render flag", /data-wdb-v3-kiosk="1"/.test(kioskHtml));
+assert("kiosk has clock", /data-wdb-v3-clock/.test(kioskHtml));
+assert("kiosk sticky brief", /wdb-v3-brief--sticky/.test(kioskHtml));
+assert("kiosk hides customize bar", !/data-wdb-v3-customize-bar/.test(kioskHtml));
+assert("kiosk has connectivity slot", /data-wdb-v3-connectivity/.test(kioskHtml));
+assert("kiosk exit control", /Exit kiosk|Exit full screen/i.test(kioskHtml));
+
+sandbox.navigator.onLine = false;
+const offlineHtml = sandbox.WDS.dashboardV3Shell.render(
+  { model: { location: { label: "Milford, PA" }, provider: { trust: "offline", hydratedAt: new Date().toISOString() } }, brief: brief, widgetsHtml: "", providers: [] },
+  { kiosk: true }
+);
+assert("offline banner copy", /Offline/.test(offlineHtml));
+sandbox.navigator.onLine = true;
+
+const stickyBrief = sandbox.WDS.dashboardV3Brief.render(brief, { sticky: true });
+assert("sticky brief class", /wdb-v3-brief--sticky/.test(stickyBrief));
+
+const css = fs.readFileSync(path.join(ROOT, "design-system/css/wds-dashboard-v3.css"), "utf8");
+assert("v3 css has brief styles", /\.wdb-v3-brief\b/.test(css));
+assert("v3 css has kiosk styles", /\.wdb-v3--kiosk\b/.test(css));
+assert("v3 css reduced motion", /prefers-reduced-motion/.test(css));
+assert("v3 css mobile breakpoint", /max-width:\s*480px/.test(css));
+
+const wdsLoader = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
+assert("wds loads kiosk module", /wds-dashboard-v3-kiosk\.js/.test(wdsLoader));
+
+const kioskPage = fs.readFileSync(path.join(ROOT, "kiosk.html"), "utf8");
+assert("standalone kiosk has Outdoor Brief", /swk-brief|Outdoor Brief/i.test(kioskPage));
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {

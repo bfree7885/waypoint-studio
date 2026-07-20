@@ -36,11 +36,15 @@
       loading: !!partial.loading,
       error: partial.error || null,
       take: Array.isArray(partial.take) ? partial.take : partial.take ? [partial.take] : [],
+      takeSource: partial.takeSource || "rules",
       expandTab: partial.expandTab || partial.tab || null,
       size: partial.size || "md",
       bodyHtml: partial.bodyHtml || "",
       refreshable: partial.refreshable !== false,
-      expandable: partial.expandable !== false
+      expandable: partial.expandable !== false,
+      providers: Array.isArray(partial.providers) ? partial.providers : [],
+      confidence: partial.confidence || null,
+      decisionHeadline: partial.decisionHeadline || null
     };
   }
 
@@ -101,9 +105,21 @@
     }
 
     var takeHtml = "";
-    if (view.take.length) {
+    var Take = global.WDS && global.WDS.dashboardV3Take;
+    if (Take && Take.render) {
+      takeHtml = Take.render(
+        {
+          title: "Waypoint’s Take",
+          bullets: view.take,
+          source: view.takeSource || "rules",
+          scope: "widget",
+          widgetId: view.id
+        },
+        { max: 3, className: "wdb-v3-widget__take", showEmpty: true }
+      );
+    } else if (view.take.length) {
       takeHtml =
-        '<div class="wdb-v3-widget__take" data-wdb-v3-widget-take>' +
+        '<div class="wdb-v3-widget__take" data-wdb-v3-widget-take data-wdb-v3-take>' +
         '<p class="wdb-v3-widget__take-label">Waypoint’s Take</p>' +
         "<ul>" +
         view.take
@@ -113,16 +129,21 @@
           })
           .join("") +
         "</ul></div>";
+    } else {
+      takeHtml =
+        '<div class="wdb-v3-widget__take" data-wdb-v3-widget-take data-wdb-v3-take data-take-source="rules">' +
+        '<p class="wdb-v3-widget__take-label">Waypoint’s Take</p>' +
+        '<p class="wdb-v3-take__empty">Interpretation pending.</p></div>';
     }
 
     var actions = '<div class="wdb-v3-widget__actions">';
     if (view.refreshable) {
       actions +=
-        '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-wdb-v3-widget-refresh="' +
+        '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm wdb-v3-widget__refresh" data-wdb-v3-widget-refresh="' +
         esc(view.id) +
         '" aria-label="Refresh ' +
         esc(view.title) +
-        '">Refresh</button>';
+        '"><span class="wdb-v3-widget__refresh-label">Refresh</span></button>';
     }
     if (view.expandable && view.expandTab) {
       actions +=
@@ -130,12 +151,20 @@
         esc(view.expandTab) +
         '" data-wdb-v3-widget-expand="' +
         esc(view.id) +
-        '">Expand</button>';
+        '">Open detail</button>';
     }
     actions += "</div>";
 
+    var attrib = "";
+    if (view.providers.length) {
+      attrib =
+        '<p class="wdb-v3-widget__attrib" data-wdb-widget-attrib><span>Sources: </span>' +
+        esc(view.providers.join(" · ")) +
+        "</p>";
+    }
+
     var body = view.loading
-      ? '<p class="wdb-v3-widget__muted" role="status">Loading…</p>'
+      ? '<p class="wdb-v3-widget__muted wdb-v3-widget__loading" role="status" aria-live="polite">Loading outdoor cues…</p>'
       : view.error
         ? '<p class="wdb-v3-widget__error" role="alert">' + esc(String(view.error)) + "</p>"
         : view.bodyHtml || primary + secondary;
@@ -153,12 +182,16 @@
       esc(avail) +
       '" data-layout-item="' +
       esc(view.id) +
+      '" aria-labelledby="wdb-v3-title-' +
+      esc(view.id) +
       '">' +
       '<header class="wdb-v3-widget__head wdb-v2-widget__head">' +
       '<span class="wdb-v3-widget__icon" aria-hidden="true" data-icon="' +
       esc(view.icon) +
       '"></span>' +
-      '<h4 class="wdb-v3-widget__title wdb-v2-widget__title">' +
+      '<h4 class="wdb-v3-widget__title wdb-v2-widget__title" id="wdb-v3-title-' +
+      esc(view.id) +
+      '">' +
       esc(view.title) +
       "</h4>" +
       '<span class="wdb-v3-widget__avail wdb-v2-widget__avail wdb-v2-widget__avail--' +
@@ -180,6 +213,7 @@
           esc(updated) +
           "</time></p>"
         : "") +
+      attrib +
       takeHtml +
       actions +
       "</article>"

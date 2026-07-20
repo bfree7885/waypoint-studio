@@ -31,6 +31,7 @@
       version: 1,
       enabled: enabled.slice(),
       order: order,
+      hidden: [],
       activities: DEFAULT_ACTIVITIES.slice(),
       tempComfortMinF: 50,
       tempComfortMaxF: 78,
@@ -73,6 +74,11 @@
             return allIds.indexOf(id) >= 0;
           }) : base.enabled;
           base.order = normalizeOrder(parsed.order, allIds);
+          base.hidden = Array.isArray(parsed.hidden)
+            ? parsed.hidden.filter(function (id) {
+                return allIds.indexOf(id) >= 0;
+              })
+            : [];
           return base;
         }
       }
@@ -116,6 +122,9 @@
       return allIds.indexOf(id) >= 0;
     });
     next.order = normalizeOrder(next.order, allIds);
+    next.hidden = (next.hidden || []).filter(function (id) {
+      return allIds.indexOf(id) >= 0 && next.enabled.indexOf(id) >= 0;
+    });
     try {
       if (global.localStorage) {
         global.localStorage.setItem(
@@ -123,7 +132,8 @@
           JSON.stringify({
             version: 1,
             enabled: next.enabled,
-            order: next.order
+            order: next.order,
+            hidden: next.hidden
           })
         );
       }
@@ -147,13 +157,89 @@
     (prefs.enabled || []).forEach(function (id) {
       enabled[id] = true;
     });
+    var hidden = {};
+    (prefs.hidden || []).forEach(function (id) {
+      hidden[id] = true;
+    });
     return (prefs.order || []).filter(function (id) {
-      return enabled[id];
+      return enabled[id] && !hidden[id];
     });
   }
 
   function enabledCount(prefs) {
     return (prefs && prefs.enabled ? prefs.enabled : []).length;
+  }
+
+  function addWidget(id, prefs) {
+    prefs = prefs || load();
+    if ((prefs.enabled || []).indexOf(id) < 0) prefs.enabled.push(id);
+    prefs.hidden = (prefs.hidden || []).filter(function (h) {
+      return h !== id;
+    });
+    if ((prefs.order || []).indexOf(id) < 0) prefs.order.push(id);
+    return save(prefs);
+  }
+
+  function removeWidget(id, prefs) {
+    prefs = prefs || load();
+    prefs.enabled = (prefs.enabled || []).filter(function (e) {
+      return e !== id;
+    });
+    prefs.hidden = (prefs.hidden || []).filter(function (h) {
+      return h !== id;
+    });
+    return save(prefs);
+  }
+
+  function hideWidget(id, prefs) {
+    prefs = prefs || load();
+    if ((prefs.enabled || []).indexOf(id) < 0) prefs.enabled.push(id);
+    if ((prefs.hidden || []).indexOf(id) < 0) {
+      prefs.hidden = prefs.hidden || [];
+      prefs.hidden.push(id);
+    }
+    return save(prefs);
+  }
+
+  function restoreWidget(id, prefs) {
+    prefs = prefs || load();
+    prefs.hidden = (prefs.hidden || []).filter(function (h) {
+      return h !== id;
+    });
+    if ((prefs.enabled || []).indexOf(id) < 0) prefs.enabled.push(id);
+    return save(prefs);
+  }
+
+  function restoreAllHidden(prefs) {
+    prefs = prefs || load();
+    prefs.hidden = [];
+    return save(prefs);
+  }
+
+  function reorder(fromId, toId, prefs) {
+    prefs = prefs || load();
+    var order = (prefs.order || []).slice();
+    var from = order.indexOf(fromId);
+    var to = order.indexOf(toId);
+    if (from < 0 || to < 0 || from === to) return save(prefs);
+    order.splice(from, 1);
+    order.splice(to, 0, fromId);
+    prefs.order = order;
+    return save(prefs);
+  }
+
+  function move(id, direction, prefs) {
+    prefs = prefs || load();
+    var order = (prefs.order || []).slice();
+    var idx = order.indexOf(id);
+    if (idx < 0) return save(prefs);
+    var swap = direction === "up" ? idx - 1 : idx + 1;
+    if (swap < 0 || swap >= order.length) return save(prefs);
+    var tmp = order[idx];
+    order[idx] = order[swap];
+    order[swap] = tmp;
+    prefs.order = order;
+    return save(prefs);
   }
 
   global.WDS = global.WDS || {};
@@ -164,6 +250,13 @@
     save: save,
     reset: reset,
     selectedIds: selectedIds,
-    enabledCount: enabledCount
+    enabledCount: enabledCount,
+    addWidget: addWidget,
+    removeWidget: removeWidget,
+    hideWidget: hideWidget,
+    restoreWidget: restoreWidget,
+    restoreAllHidden: restoreAllHidden,
+    reorder: reorder,
+    move: move
   };
 })(window);

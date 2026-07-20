@@ -331,6 +331,80 @@
     }
   }
 
+  function renderBrief(userLoc, mods, userWx, wxReady, statusMessage) {
+    var list = $("swk-brief-list");
+    var sub = $("swk-brief-sub");
+    if (!list) return;
+
+    var place = resolveLocationLabel(userLoc);
+    if (sub) {
+      sub.textContent = "What you should know before heading outside near " + place + ".";
+    }
+
+    var bullets = [];
+    if (statusMessage && !wxReady) {
+      bullets.push(statusMessage);
+    }
+    if (wxReady && userWx && userWx.current) {
+      var cur = userWx.current;
+      var cond = cur.conditions || "Current conditions";
+      if (cur.temperatureF != null) {
+        bullets.push(cond + " at " + cur.temperatureF + "°" + (cur.feelsLikeF != null ? " (feels like " + cur.feelsLikeF + "°)" : "") + ".");
+      } else {
+        bullets.push(cond + ".");
+      }
+      if (cur.uvIndex != null && cur.uvIndex >= 6) {
+        bullets.push("UV is elevated (index " + cur.uvIndex + ") — plan sun protection.");
+      }
+      if (userWx.forecast && userWx.forecast.precipProbability != null && userWx.forecast.precipProbability >= 40) {
+        bullets.push("Rain chance about " + userWx.forecast.precipProbability + "% — pack a shell.");
+      }
+    }
+    var aqi = mods && mods.airQuality;
+    if (aqi && aqi.usAqi != null && aqi.usAqi >= 100) {
+      bullets.push("Air quality is elevated (AQI " + aqi.usAqi + "). Ease exertion outdoors.");
+    }
+    var alerts = mods && mods.alerts;
+    if (alerts && alerts.items && alerts.items.length) {
+      bullets.push("Active weather alert: " + (alerts.items[0].event || alerts.items[0].headline || "check alerts panel") + ".");
+    }
+    if (!bullets.length) {
+      bullets.push("Shell is ready — live outdoor cues will fill this brief as providers respond.");
+    }
+
+    /* Prefer shared dashboard brief engine when loaded (same data model). */
+    var Brief = window.WDS && window.WDS.dashboardV3Brief;
+    if (Brief && Brief.build && Brief.render) {
+      try {
+        var built = Brief.build({
+          model: {
+            location: { label: place },
+            weather: {
+              live: wxReady,
+              current: userWx && userWx.current
+                ? {
+                    temperature: userWx.current.temperatureF,
+                    uv: userWx.current.uvIndex,
+                    conditions: { summary: userWx.current.conditions }
+                  }
+                : null
+            },
+            air: aqi,
+            alerts: alerts,
+            provider: { trust: wxReady ? "live" : "partial" }
+          }
+        });
+        if (built && built.bullets && built.bullets.length) {
+          bullets = built.bullets.slice(0, 5);
+        }
+      } catch (err) { /* keep local bullets */ }
+    }
+
+    list.innerHTML = bullets.slice(0, 5).map(function (b) {
+      return "<li>" + esc(b) + "</li>";
+    }).join("");
+  }
+
   function render(live, health) {
     live = live || lastLive || {};
     health = health || lastHealth || {};
@@ -413,6 +487,8 @@
     setHtml("swk-river", safeRender(function () { return renderRiver(mods.usgsWater); }, "swk-river", "River gauge"));
     setHtml("swk-wildlife", renderWildlife());
     setHtml("swk-alerts", safeRender(function () { return renderAlerts(mods.alerts); }, "swk-alerts", "Alerts"));
+
+    renderBrief(userLoc, mods, userWx, wxReady, statusMessage);
 
     setText("swk-engine-version", live.engineVersion || health.engineVersion || "—");
     var blockStatus = window.__WAYPOINT_KIOSK_NORMALIZED__ && window.__WAYPOINT_KIOSK_NORMALIZED__.blockStatus;

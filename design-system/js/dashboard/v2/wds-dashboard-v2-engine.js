@@ -34,8 +34,13 @@
     try {
       if (document && document.documentElement) {
         document.documentElement.classList.toggle("wdb-v2-kiosk", !!on);
+        document.documentElement.classList.toggle("wdb-v3-kiosk", !!on);
+        document.documentElement.setAttribute("data-wdb-kiosk", on ? "1" : "0");
       }
     } catch (e2) { /* noop */ }
+    try {
+      global.dispatchEvent(new CustomEvent("wds:dashboard-kiosk-change", { detail: { kiosk: !!on } }));
+    } catch (e3) { /* noop */ }
     return !!on;
   }
 
