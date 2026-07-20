@@ -1,7 +1,7 @@
 /**
  * Dashboard V3 — Outdoor Intelligence foundation orchestrator.
  * Presentation shell over preserved V2 model / prefs / take / widget data.
- * Feature flag: localStorage waypoint-dashboard-v3 (default on; "0" falls back to V2 board).
+ * Feature flag: localStorage waypoint-dashboard-v3 (default off; set "1" for V3 shell).
  */
 (function (global) {
   "use strict";
@@ -16,10 +16,10 @@
   function isEnabled() {
     try {
       var v = global.localStorage && global.localStorage.getItem(FLAG_KEY);
-      if (v === "0") return false;
       if (v === "1") return true;
+      if (v === "0") return false;
     } catch (e) { /* noop */ }
-    return true;
+    return false;
   }
 
   function setEnabled(on) {

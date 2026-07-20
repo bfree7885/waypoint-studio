@@ -19,7 +19,7 @@
     { id: "favorites", label: "Favorites", order: 100, icon: "star", description: "Pinned widgets and saved preferences." }
   ];
 
-  /** Map legacy V2 category ids → V3 ids */
+  /** Map V2 Sprint 3 category ids → V3 presentation ids when V3 shell is enabled */
   var LEGACY_MAP = {
     alerts: "emergency",
     seasonal: "wildlife",
