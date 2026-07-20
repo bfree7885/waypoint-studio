@@ -444,3 +444,92 @@
   border-style: dashed;
 }
 
+/* Sprint 8 — wine-through-place learning */
+.ss-chain {
+  margin: 0.75rem 0 0;
+  max-width: 46rem;
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--ss-accent, #7a5c3e);
+  background: color-mix(in srgb, var(--ss-surface, #f7f3ec) 88%, #7a5c3e);
+  color: var(--ss-ink, #1c1712);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.ss-card__place {
+  margin: 0.55rem 0;
+  line-height: 1.45;
+}
+
+.ss-card__links {
+  margin: 0.65rem 0 0;
+  font-size: 0.88rem;
+}
+
+.ss-card__links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ss-path {
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ss-line);
+  border-radius: 0.5rem;
+  background: var(--ss-surface);
+}
+
+.ss-path__list {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.25rem;
+  line-height: 1.55;
+}
+
+.ss-path__why {
+  color: var(--ss-muted);
+  font-size: 0.88rem;
+}
+
+.ss-learn-index {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.ss-learn-index__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--ss-line);
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--ss-surface);
+}
+
+.ss-field input,
+.ss-field select,
+.ss-btn {
+  min-height: 44px;
+  font-size: 16px;
+}
+
+@media (max-width: 720px) {
+  .ss-toolbar {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .ss-task-nav {
+    gap: 0.35rem;
+  }
+
+  .ss-task-nav__link {
+    min-height: 44px;
+    padding: 0.45rem 0.7rem;
+  }
+}
+

@@ -47,6 +47,109 @@
     return blob.indexOf(q) !== -1;
   }
 
+  var LEARN_PATH = [
+    "grape-varieties",
+    "wine-regions",
+    "climate-terroir",
+    "growing-conditions",
+    "tasting-method",
+    "food-pairing"
+  ];
+
+  var FACET_SKIP = {
+    producer: 1,
+    vintage: 1,
+    blend: 1,
+    price: 1,
+    ava: 1,
+    subregion: 1
+  };
+
+  function usableFacets(catalog) {
+    return (catalog.facets || []).filter(function (f) { return !FACET_SKIP[f]; });
+  }
+
+  function placeStory(entry) {
+    var regions = entry.regionHints || [];
+    var countries = entry.countryHints || [];
+    var place = regions.slice(0, 2).join(" and ");
+    if (entry.kind === "grape" && place) {
+      return "Often linked with " + place +
+        (countries[0] ? " (" + countries[0] + ")" : "") +
+        ". Climate and soils shape ripeness, acidity, and aroma as much as the grape name — place is the teacher.";
+    }
+    if (entry.kind === "region") {
+      return (entry.unique
+        ? entry.unique + " "
+        : "") +
+        "Regional identity comes from climate class, elevation, and geology working together — not from labels alone.";
+    }
+    if (entry.kind === "style") {
+      return "Style reflects both growing conditions and cellar choices. Trace a grape or region next, then taste with those place cues in mind.";
+    }
+    return "Wine through place: connect climate, site, and tasting notes instead of memorizing trivia.";
+  }
+
+  function learningChainHtml() {
+    return (
+      '<p class="ss-chain" role="note">' +
+      "<strong>Learning chain:</strong> Wine → producer notes → site → region → climate → geology → growing conditions → tasting characteristics. " +
+      "Savant links these with educational labels today — not a complete producer/site graph yet." +
+      "</p>"
+    );
+  }
+
+  function viewBootMeta(view) {
+    var map = {
+      discover: {
+        title: "Discover",
+        detail: "Loading grapes, regions, and styles with place-based explanations."
+      },
+      learn: {
+        title: "Learn",
+        detail: "Loading the wine-through-place curriculum."
+      },
+      cellar: {
+        title: "My Cellar",
+        detail: "Opening your private cellar on this device."
+      },
+      vineyard: {
+        title: "Vineyard Intelligence",
+        detail: "Preparing educational site analysis tools."
+      },
+      settings: {
+        title: "Settings",
+        detail: "Opening local Savant preferences."
+      }
+    };
+    return map[view] || map.discover;
+  }
+
+  function finishBoot(root) {
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.clear) {
+      WDS.platformBoot.clear(root);
+    }
+    if (root) root.setAttribute("aria-busy", "false");
+  }
+
+  function failBoot(root, view, detail) {
+    if (root) root.setAttribute("aria-busy", "false");
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
+      WDS.platformBoot.fail(root, {
+        product: "Savant Sommelier",
+        title: "Could not finish loading",
+        detail: detail || "Something took too long or failed. Retry when your connection is ready.",
+        onRetry: function () { global.SavantViews.start(view); }
+      });
+      return;
+    }
+    root.innerHTML = SavantShell.taskNav(view) + SavantShell.errorHtml({
+      text: detail || "Could not load this page.",
+      retry: true
+    });
+    SavantShell.bindRetry(root, function () { global.SavantViews.start(view); });
+  }
+
   function renderDiscoverCard(entry, catalog) {
     var similar = (entry.similar || []).map(function (id) {
       var s = (catalog.entries || []).find(function (e) { return e.id === id; });
@@ -65,8 +168,15 @@
         (entry.foodPairing && entry.foodPairing.length
           ? '<p><span class="ss-label">Food pairing</span> ' + esc(entry.foodPairing.join(", ")) + "</p>"
           : "") +
+        '<p class="ss-card__place"><span class="ss-label">Why place matters</span> ' + esc(placeStory(entry)) + "</p>" +
         '<p class="ss-card__meta">' +
           esc((entry.regionHints || []).slice(0, 3).join(" · ")) +
+          ((entry.countryHints || []).length ? " · " + esc(entry.countryHints.slice(0, 2).join(", ")) : "") +
+        "</p>" +
+        '<p class="ss-card__links">' +
+          '<a href="learn.html#climate-terroir">Climate &amp; terroir</a> · ' +
+          '<a href="vineyard.html">Study a site</a> · ' +
+          '<a href="learn.html#tasting-method">Tasting method</a>' +
         "</p>" +
       "</article>"
     );
@@ -109,43 +219,46 @@
   }
 
   function startDiscover(root) {
-    root.innerHTML =
-      SavantShell.taskNav("discover") +
-      '<section class="ss-hero">' +
-        '<p class="wds-eyebrow">Savant Sommelier · Wine Intelligence</p>' +
-        "<h1>Discover</h1>" +
-        "<p class=\"ss-lead\">Personal recommendations, guided exploration, and search that explain why.</p>" +
-        SavantShell.honestyBanner("Educational catalog for learning. Not a live retailer inventory.") +
-      "</section>" +
-      '<div id="ss-discover-intel">' + SavantShell.loadingHtml("Building palate intelligence…") + "</div>" +
-      '<section class="ss-toolbar" aria-label="Discover filters">' +
-        '<label class="ss-field"><span>Intelligent search</span><input type="search" id="ss-discover-q" placeholder="cab, peeno, burgundy…" autocomplete="off"></label>' +
-        '<label class="ss-field"><span>Explore by</span>' +
-          '<select id="ss-discover-facet">' +
-            '<option value="">All facets</option>' +
-          "</select></label>" +
-        '<label class="ss-field"><span>Value</span><input id="ss-discover-value" placeholder="e.g. Riesling, Burgundy" autocomplete="off"></label>' +
-        '<label class="ss-field"><span>Pair with food</span><input id="ss-discover-food" placeholder="steak, curry, oysters…" autocomplete="off"></label>' +
-      "</section>" +
-      '<section id="ss-discover-suggest" class="ss-section" hidden></section>' +
-      '<section id="ss-discover-pair" class="ss-section" hidden></section>' +
-      '<section class="ss-section">' +
-        "<h2>Compare two styles</h2>" +
-        '<div class="ss-toolbar">' +
-          '<label class="ss-field"><span>A</span><select id="ss-compare-a"></select></label>' +
-          '<label class="ss-field"><span>B</span><select id="ss-compare-b"></select></label>' +
-          '<button type="button" class="ss-btn" id="ss-compare-go">Compare</button>' +
-        "</div>" +
-        '<div id="ss-compare-out"></div>' +
-      "</section>" +
-      '<section id="ss-discover-results" class="ss-results" aria-live="polite">' +
-        SavantShell.loadingHtml("Loading discovery catalog…") +
-      "</section>";
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+      WDS.platformBoot.status(root, "Loading discovery catalog…");
+    }
 
     SavantShell.getJson("data/discover-catalog.json").then(function (res) {
+      finishBoot(root);
+      root.innerHTML =
+        SavantShell.taskNav("discover") +
+        '<section class="ss-hero">' +
+          '<p class="wds-eyebrow">Savant Sommelier · Wine Intelligence</p>' +
+          "<h1>Discover</h1>" +
+          "<p class=\"ss-lead\">Understand wine through place — climate, soils, and growing conditions that shape flavor.</p>" +
+          SavantShell.honestyBanner("Educational catalog for learning. Not a live retailer inventory.") +
+          learningChainHtml() +
+        "</section>" +
+        '<div id="ss-discover-intel"></div>' +
+        '<section class="ss-toolbar" aria-label="Discover filters">' +
+          '<label class="ss-field"><span>Intelligent search</span><input type="search" id="ss-discover-q" placeholder="cab, peeno, burgundy…" autocomplete="off"></label>' +
+          '<label class="ss-field"><span>Explore by</span>' +
+            '<select id="ss-discover-facet">' +
+              '<option value="">All facets</option>' +
+            "</select></label>" +
+          '<label class="ss-field"><span>Value</span><input id="ss-discover-value" placeholder="e.g. Riesling, Burgundy" autocomplete="off"></label>' +
+          '<label class="ss-field"><span>Pair with food</span><input id="ss-discover-food" placeholder="steak, curry, oysters…" autocomplete="off"></label>' +
+        "</section>" +
+        '<section id="ss-discover-suggest" class="ss-section" hidden></section>' +
+        '<section id="ss-discover-pair" class="ss-section" hidden></section>' +
+        '<section class="ss-section">' +
+          "<h2>Compare two styles</h2>" +
+          '<div class="ss-toolbar">' +
+            '<label class="ss-field"><span>A</span><select id="ss-compare-a"></select></label>' +
+            '<label class="ss-field"><span>B</span><select id="ss-compare-b"></select></label>' +
+            '<button type="button" class="ss-btn" id="ss-compare-go">Compare</button>' +
+          "</div>" +
+          '<div id="ss-compare-out"></div>' +
+        "</section>" +
+        '<section id="ss-discover-results" class="ss-results" aria-live="polite"></section>';
       var catalog = res.data;
       var facetSel = root.querySelector("#ss-discover-facet");
-      (catalog.facets || []).forEach(function (f) {
+      usableFacets(catalog).forEach(function (f) {
         var opt = document.createElement("option");
         opt.value = f;
         opt.textContent = f;
@@ -192,7 +305,9 @@
         var suggest = root.querySelector("#ss-discover-suggest");
         var pairBox = root.querySelector("#ss-discover-pair");
 
-        var searchPkg = SavantWIE.engine.search(catalog, q);
+        var searchPkg = (global.SavantWIE && SavantWIE.engine && SavantWIE.engine.search)
+          ? SavantWIE.engine.search(catalog, q)
+          : { results: (catalog.entries || []).map(function (e) { return { entry: e }; }), suggestions: [], honesty: "Basic catalog search.", normalized: (q || "").toLowerCase() };
         if (q && searchPkg.suggestions && searchPkg.suggestions.length) {
           suggest.hidden = false;
           suggest.innerHTML =
@@ -227,13 +342,10 @@
           pairBox.hidden = true;
         }
 
-        var hits;
-        if (q && !facet && !value) {
-          hits = (searchPkg.results || []).map(function (r) { return r.entry; });
-        } else {
-          var norm = q && SavantWIE.search ? SavantWIE.search.normalize(q) : q;
-          hits = (catalog.entries || []).filter(function (e) {
-            return matchEntry(e, norm || q, facet, value);
+        var hits = (searchPkg.results || []).map(function (r) { return r.entry; });
+        if (facet && value) {
+          hits = hits.filter(function (e) {
+            return matchEntry(e, "", facet, value);
           });
         }
 
@@ -276,126 +388,92 @@
       facetSel.addEventListener("change", paint);
       paint();
     }).catch(function () {
-      root.querySelector("#ss-discover-results").innerHTML =
-        SavantShell.errorHtml("Could not load the discovery catalog. Check your connection and retry.");
-      root.querySelector("#ss-discover-intel").innerHTML = "";
+      failBoot(root, "discover", "Could not load the discovery catalog. Check your connection and retry.");
     });
   }
 
   function startLearn(root) {
-    root.innerHTML =
-      SavantShell.taskNav("learn") +
-      '<section class="ss-hero">' +
-        '<p class="wds-eyebrow">Savant Sommelier</p>' +
-        "<h1>Learn</h1>" +
-        "<p class=\"ss-lead\">Visual, interactive wine education — not a Wikipedia dump.</p>" +
-        SavantShell.honestyBanner("Curriculum authored for Savant. Prefer tasting practice over trivia contests.") +
-      "</section>" +
-      '<div id="ss-learn-body">' + SavantShell.loadingHtml("Loading curriculum…") + "</div>";
+    if (global.WDS && WDS.platformBoot && WDS.platformBoot.status) {
+      WDS.platformBoot.status(root, "Loading curriculum…");
+    }
 
     SavantShell.getJson("data/learn-curriculum.json").then(function (res) {
+      finishBoot(root);
       var topics = res.data.topics || [];
-      var body = root.querySelector("#ss-learn-body");
+      var byId = {};
+      topics.forEach(function (t) { byId[t.id] = t; });
+      var pathTopics = LEARN_PATH.map(function (id) { return byId[id]; }).filter(Boolean);
       var teach = (global.SavantWIE && SavantWIE.education)
         ? SavantWIE.education.forContext({ page: "discover" }).concat(SavantWIE.education.forContext({ theme: "pinotVsCab" }))
         : [];
-      body.innerHTML =
-        (teach.length
-          ? '<section class="ss-intel"><h2>Teach naturally</h2><ul class="ss-teach">' +
-            teach.filter(function (t, i, a) { return a.indexOf(t) === i; }).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
-            "</ul></section>"
-          : "") +
-        '<nav class="ss-learn-index" aria-label="Topics">' +
-        topics.map(function (t) {
-          return '<a class="ss-learn-index__link" href="#' + esc(t.id) + '">' + esc(t.title) + "</a>";
-        }).join("") +
-        "</nav>" +
-        topics.map(function (t) {
-          return (
-            '<article class="ss-learn-topic" id="' + esc(t.id) + '">' +
-              '<p class="ss-card__kind">' + esc(t.category) + "</p>" +
-              "<h2>" + esc(t.title) + "</h2>" +
-              '<h3 class="ss-sub">Overview</h3><p>' + esc(t.overview) + "</p>" +
-              '<h3 class="ss-sub">Visual aid</h3><p class="ss-visual">' + esc(t.visualAid) + "</p>" +
-              '<h3 class="ss-sub">Interesting facts</h3><ul>' +
-                (t.facts || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") +
-              "</ul>" +
-              '<h3 class="ss-sub">Common misconceptions</h3><ul>' +
-                (t.misconceptions || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") +
-              "</ul>" +
-              (t.similarGrapes ? '<p><span class="ss-label">Similar grapes</span> ' + esc(t.similarGrapes.join(", ")) + "</p>" : "") +
-              (t.similarRegions ? '<p><span class="ss-label">Similar regions</span> ' + esc(t.similarRegions.join(", ")) + "</p>" : "") +
-              '<p><span class="ss-label">Related learning</span> ' +
-                (t.related || []).map(function (id) {
-                  return '<a href="#' + esc(id) + '">' + esc(id.replace(/-/g, " ")) + "</a>";
-                }).join(" · ") +
-              "</p>" +
-            "</article>"
-          );
-        }).join("");
+
+      root.innerHTML =
+        SavantShell.taskNav("learn") +
+        '<section class="ss-hero">' +
+          '<p class="wds-eyebrow">Savant Sommelier</p>' +
+          "<h1>Learn</h1>" +
+          "<p class=\"ss-lead\">A guided path from grapes and regions to climate, growing conditions, and tasting.</p>" +
+          SavantShell.honestyBanner("Curriculum authored for Savant. Prefer tasting practice over trivia contests.") +
+          learningChainHtml() +
+        "</section>" +
+        '<div id="ss-learn-body">' +
+          (pathTopics.length
+            ? '<section class="ss-path" aria-label="Suggested learning path">' +
+              "<h2>Start here</h2>" +
+              '<ol class="ss-path__list">' +
+              pathTopics.map(function (t, i) {
+                return (
+                  "<li><a href=\"#" + esc(t.id) + "\">" + esc((i + 1) + ". " + t.title) + "</a>" +
+                  '<span class="ss-path__why"> — builds the wine-through-place chain</span></li>'
+                );
+              }).join("") +
+              "</ol>" +
+              '<p class="ss-card__links"><a href="index.html">Explore Discover</a> · <a href="vineyard.html">Study a vineyard site</a></p>' +
+            "</section>"
+            : "") +
+          (teach.length
+            ? '<section class="ss-intel"><h2>Teach naturally</h2><ul class="ss-teach">' +
+              teach.filter(function (t, i, a) { return a.indexOf(t) === i; }).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") +
+              "</ul></section>"
+            : "") +
+          '<nav class="ss-learn-index" aria-label="Topics">' +
+          topics.map(function (t) {
+            return '<a class="ss-learn-index__link" href="#' + esc(t.id) + '">' + esc(t.title) + "</a>";
+          }).join("") +
+          "</nav>" +
+          topics.map(function (t) {
+            return (
+              '<article class="ss-learn-topic" id="' + esc(t.id) + '">' +
+                '<p class="ss-card__kind">' + esc(t.category) + "</p>" +
+                "<h2>" + esc(t.title) + "</h2>" +
+                '<h3 class="ss-sub">Overview</h3><p>' + esc(t.overview) + "</p>" +
+                '<h3 class="ss-sub">Visual aid</h3><p class="ss-visual">' + esc(t.visualAid) + "</p>" +
+                '<h3 class="ss-sub">Interesting facts</h3><ul>' +
+                  (t.facts || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") +
+                "</ul>" +
+                '<h3 class="ss-sub">Common misconceptions</h3><ul>' +
+                  (t.misconceptions || []).map(function (f) { return "<li>" + esc(f) + "</li>"; }).join("") +
+                "</ul>" +
+                (t.similarGrapes ? '<p><span class="ss-label">Similar grapes</span> ' + esc(t.similarGrapes.join(", ")) + "</p>" : "") +
+                (t.similarRegions ? '<p><span class="ss-label">Similar regions</span> ' + esc(t.similarRegions.join(", ")) + "</p>" : "") +
+                '<p><span class="ss-label">Related learning</span> ' +
+                  (t.related || []).map(function (id) {
+                    var title = byId[id] ? byId[id].title : id.replace(/-/g, " ");
+                    return '<a href="#' + esc(id) + '">' + esc(title) + "</a>";
+                  }).join(" · ") +
+                "</p>" +
+                '<p class="ss-card__links">' +
+                  '<a href="index.html">Open in Discover</a> · ' +
+                  '<a href="vineyard.html">Apply on a site</a> · ' +
+                  '<a href="learn.html#tasting-method">Practice tasting</a>' +
+                "</p>" +
+              "</article>"
+            );
+          }).join("") +
+        "</div>";
     }).catch(function () {
-      root.querySelector("#ss-learn-body").innerHTML =
-        SavantShell.errorHtml("Could not load the learning curriculum.");
+      failBoot(root, "learn", "Could not load the learning curriculum.");
     });
-  }
-
-  function cellarFormHtml() {
-    return (
-      '<form class="ss-form" id="ss-cellar-form" autocomplete="on">' +
-        "<h2>Add a bottle</h2>" +
-        '<div class="ss-form-grid">' +
-          '<label class="ss-field"><span>Name</span><input name="name" required placeholder="Wine name"></label>' +
-          '<label class="ss-field"><span>Varietal / grape</span><input name="varietal" placeholder="e.g. Pinot Noir"></label>' +
-          '<label class="ss-field"><span>Region</span><input name="region"></label>' +
-          '<label class="ss-field"><span>Country</span><input name="country"></label>' +
-          '<label class="ss-field"><span>Producer</span><input name="wineryName"></label>' +
-          '<label class="ss-field"><span>Vintage</span><input name="vintage" inputmode="numeric"></label>' +
-          '<label class="ss-field"><span>Style</span><input name="style" placeholder="red / white / sparkling…"></label>' +
-          '<label class="ss-field"><span>Quantity</span><input name="quantity" type="number" min="1" value="1"></label>' +
-          '<label class="ss-field"><span>Purchase price</span><input name="purchasePrice" type="number" min="0" step="0.01"></label>' +
-          '<label class="ss-field"><span>Purchase date</span><input name="purchaseDate" type="date"></label>' +
-          '<label class="ss-field"><span>Bottle location</span><input name="location" placeholder="Rack A / fridge"></label>' +
-          '<label class="ss-field"><span>Drink from</span><input name="drinkFrom" placeholder="2026"></label>' +
-          '<label class="ss-field"><span>Drink to</span><input name="drinkTo" placeholder="2030"></label>' +
-          '<label class="ss-field"><span>Rating (1–100)</span><input name="rating" type="number" min="1" max="100"></label>' +
-          '<label class="ss-field ss-field--wide"><span>Notes</span><textarea name="notes" rows="2"></textarea></label>' +
-          '<label class="ss-field ss-field--wide"><span>Food pairings</span><input name="foodPairings" placeholder="Comma-separated"></label>' +
-          '<label class="ss-check"><input type="checkbox" name="favorite"> Favorite</label>' +
-        "</div>" +
-        '<button type="submit" class="ss-btn">Save to cellar</button>' +
-      "</form>"
-    );
-  }
-
-  function renderWineRow(w) {
-    return (
-      '<article class="ss-wine" data-id="' + esc(w.id) + '">' +
-        "<header>" +
-          "<h3>" + esc(w.name) + (w.favorite ? " ★" : "") + "</h3>" +
-          '<p class="ss-card__meta">' +
-            esc([w.vintage, w.varietal, w.region, w.country].filter(Boolean).join(" · ")) +
-          "</p>" +
-        "</header>" +
-        "<p>" +
-          "<span class=\"ss-label\">Bottles</span> " + esc(w.quantity) +
-          (w.location ? ' · <span class="ss-label">Location</span> ' + esc(w.location) : "") +
-          (w.purchasePrice != null ? ' · <span class="ss-label">Paid</span> $' + esc(w.purchasePrice) : "") +
-        "</p>" +
-        (w.drinkFrom || w.drinkTo
-          ? '<p><span class="ss-label">Drink window</span> ' + esc(w.drinkFrom || "?") + " – " + esc(w.drinkTo || "?") + "</p>"
-          : "") +
-        (w.rating != null ? '<p><span class="ss-label">Rating</span> ' + esc(w.rating) + "</p>" : "") +
-        (w.notes ? "<p>" + esc(w.notes) + "</p>" : "") +
-        (w.foodPairings && w.foodPairings.length
-          ? '<p><span class="ss-label">Pairings</span> ' + esc(w.foodPairings.join(", ")) + "</p>"
-          : "") +
-        '<div class="ss-wine__actions">' +
-          '<button type="button" class="ss-btn ss-btn--ghost" data-action="fav">Toggle favorite</button>' +
-          '<button type="button" class="ss-btn ss-btn--ghost" data-action="wish">Add to wishlist</button>' +
-          '<button type="button" class="ss-btn ss-btn--danger" data-action="remove">Remove</button>' +
-        "</div>" +
-      "</article>"
-    );
   }
 
   function startCellar(root) {
@@ -412,7 +490,8 @@
 
       var listHtml = wines.length
         ? wines.map(renderWineRow).join("")
-        : '<p class="ss-empty">Your cellar is empty — add a bottle to begin. No sample inventory is planted for you.</p>';
+        : '<p class="ss-empty">Your cellar is empty — add a bottle to begin. No sample inventory is planted for you.</p>' +
+          '<p class="ss-card__links"><a href="learn.html#grape-varieties">Learn grape varieties</a> · <a href="index.html">Explore Discover</a></p>';
 
       var wishHtml = wish.length
         ? '<ul class="ss-wish">' + wish.map(function (i) {
@@ -737,7 +816,13 @@
             }).join("") +
           "</ul></section>";
       }).catch(function (err) {
-        out.innerHTML = SavantShell.errorHtml(String(err && err.message || err));
+        out.innerHTML = SavantShell.errorHtml({
+          text: String(err && err.message || err),
+          retry: true
+        });
+        SavantShell.bindRetry(out, function () {
+          global.SavantViews.start("vineyard");
+        });
       });
     }
 
@@ -831,16 +916,45 @@
     SavantShell.mountShell();
     var root = document.getElementById("savant-page");
     if (!root) return;
+    view = view || "discover";
     root.setAttribute("aria-busy", "true");
+
+    var meta = viewBootMeta(view);
+    if (global.WDS && WDS.platformBoot) {
+      if (!root.querySelector("[data-wds-boot]")) {
+        WDS.platformBoot.mount(root, {
+          product: "Savant Sommelier",
+          title: meta.title,
+          detail: meta.detail,
+          status: "Starting Savant…"
+        });
+      } else if (WDS.platformBoot.status) {
+        WDS.platformBoot.status(root, "Starting Savant…");
+      }
+      WDS.platformBoot.watch(root, {
+        timeoutMs: 18000,
+        product: "Savant Sommelier",
+        title: "Savant is taking longer than expected",
+        detail: "Catalog or curriculum may be slow or offline. Retry when ready — your cellar stays on this device.",
+        onRetry: function () { global.SavantViews.start(view); }
+      });
+    }
+
     try {
       if (view === "discover") startDiscover(root);
       else if (view === "learn") startLearn(root);
-      else if (view === "cellar") startCellar(root);
-      else if (view === "vineyard") startVineyard(root);
-      else if (view === "settings") startSettings(root);
-      else startDiscover(root);
-    } finally {
-      root.setAttribute("aria-busy", "false");
+      else if (view === "cellar") {
+        finishBoot(root);
+        startCellar(root);
+      } else if (view === "vineyard") {
+        finishBoot(root);
+        startVineyard(root);
+      } else if (view === "settings") {
+        finishBoot(root);
+        startSettings(root);
+      } else startDiscover(root);
+    } catch (err) {
+      failBoot(root, view, String(err && err.message || err || "Startup failed."));
     }
   }
 
