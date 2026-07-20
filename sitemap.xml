@@ -35,4 +35,6 @@
   <url><loc>https://waypointstudio.org/apps/waypoint-volunteer/saved/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://waypointstudio.org/apps/waypoint-volunteer/profile/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://waypointstudio.org/apps/waypoint-volunteer/impact/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://waypointstudio.org/articles/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://waypointstudio.org/articles/samples/reading-todays-conditions.html</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>

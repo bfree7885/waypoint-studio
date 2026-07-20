@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "brand": {
     "name": "Waypoint Studio",
     "homeRoute": "./"
@@ -70,6 +70,22 @@
           "label": "Photography",
           "href": "#wdb-section-photography"
         }
+      ],
+      "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
+      "maturity": "Live",
+      "startHere": {
+        "label": "Open Today Outside",
+        "href": "apps/dashboard/"
+      },
+      "journeys": [
+        "observe",
+        "understand"
+      ],
+      "related": [
+        "scenes",
+        "fieldry",
+        "foragecast",
+        "sheds"
       ]
     },
     {
@@ -87,7 +103,7 @@
         "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+      "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
       "status": "live",
       "features": [
         {
@@ -162,6 +178,22 @@
             "/apps/photo-coach/guide"
           ]
         }
+      ],
+      "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
+      "maturity": "Live",
+      "startHere": {
+        "label": "Open Photo Coach",
+        "href": "apps/photo-coach/"
+      },
+      "journeys": [
+        "observe",
+        "understand",
+        "create",
+        "share"
+      ],
+      "related": [
+        "dashboard",
+        "fieldry"
       ]
     },
     {
@@ -182,6 +214,21 @@
           "label": "Overview",
           "href": "apps/shed-hunting/"
         }
+      ],
+      "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
+      "maturity": "Foundation",
+      "startHere": {
+        "label": "Open field map",
+        "href": "apps/shed-hunting/map/"
+      },
+      "journeys": [
+        "observe",
+        "understand"
+      ],
+      "related": [
+        "dashboard",
+        "fieldry",
+        "landscape-interpretation"
       ]
     },
     {
@@ -194,7 +241,7 @@
         "/apps/foragecast"
       ],
       "category": "outdoor",
-      "description": "Outdoor intelligence \u2014 what to look for today and why, across foraging and land care.",
+      "description": "Outdoor intelligence — what to look for today and why, across foraging and land care.",
       "status": "live",
       "features": [
         {
@@ -278,6 +325,21 @@
             "settings.html"
           ]
         }
+      ],
+      "purpose": "Seasonal outdoor intelligence — what to look for today across foraging and land care.",
+      "maturity": "Live",
+      "startHere": {
+        "label": "Open ForageCast",
+        "href": "apps/foragecast/"
+      },
+      "journeys": [
+        "observe",
+        "understand"
+      ],
+      "related": [
+        "dashboard",
+        "fieldry",
+        "landscape-interpretation"
       ]
     },
     {
@@ -336,6 +398,23 @@
           "href": "apps/fieldry/#/collections",
           "hash": "#/collections"
         }
+      ],
+      "purpose": "A private life list and field notebook for what you encounter outdoors.",
+      "maturity": "Live",
+      "startHere": {
+        "label": "Record an encounter",
+        "href": "apps/fieldry/#/new"
+      },
+      "journeys": [
+        "observe",
+        "create"
+      ],
+      "related": [
+        "dashboard",
+        "scenes",
+        "sheds",
+        "foragecast",
+        "waypoint-volunteer"
       ]
     },
     {
@@ -348,7 +427,7 @@
         "/apps/steepleaf"
       ],
       "category": "outdoor",
-      "description": "Tea companion \u2014 today\u2019s brew, private collection, sessions, and knowledge graph.",
+      "description": "Tea companion — today’s brew, private collection, sessions, and knowledge graph.",
       "status": "active",
       "features": [
         {
@@ -391,6 +470,20 @@
           "label": "Settings",
           "href": "apps/steepleaf/#settings"
         }
+      ],
+      "purpose": "Private tea companion — today’s brew, collection, sessions, and calm tasting notes.",
+      "maturity": "Early access",
+      "startHere": {
+        "label": "Open today’s brew",
+        "href": "apps/steepleaf/#brew"
+      },
+      "journeys": [
+        "observe",
+        "understand",
+        "create"
+      ],
+      "related": [
+        "savant-sommelier"
       ]
     },
     {
@@ -403,7 +496,7 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness \u2014 observe and understand signals without offense.",
+      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
       "status": "foundation",
       "features": [
         {
@@ -456,6 +549,19 @@
           "label": "Cyber ingest (internal)",
           "href": "apps/signalterrain/cyber/ingest-health.html"
         }
+      ],
+      "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype.",
+      "maturity": "Foundation",
+      "startHere": {
+        "label": "Open today’s cyber brief",
+        "href": "apps/signalterrain/cyber/live.html#brief"
+      },
+      "journeys": [
+        "observe",
+        "understand"
+      ],
+      "related": [
+        "dashboard"
       ]
     },
     {
@@ -468,7 +574,7 @@
         "/apps/savant-sommelier"
       ],
       "category": "lifestyle",
-      "description": "Wine intelligence \u2014 discover, learn, cellar, and vineyard suitability with explanations.",
+      "description": "Wine intelligence — discover, learn, cellar, and vineyard suitability with explanations.",
       "status": "active",
       "features": [
         {
@@ -500,6 +606,21 @@
           "label": "Settings",
           "href": "apps/savant-sommelier/settings.html"
         }
+      ],
+      "purpose": "Wine-through-place literacy — discover, learn, cellar, and vineyard context with explanations.",
+      "maturity": "Early access",
+      "startHere": {
+        "label": "Discover wines",
+        "href": "apps/savant-sommelier/"
+      },
+      "journeys": [
+        "observe",
+        "understand",
+        "create"
+      ],
+      "related": [
+        "steepleaf",
+        "dashboard"
       ]
     },
     {
@@ -512,7 +633,7 @@
         "/apps/waypoint-volunteer"
       ],
       "category": "outdoor",
-      "description": "What good can I do today? \u2014 discover community opportunities without gamification.",
+      "description": "What good can I do today? — discover community opportunities without gamification.",
       "status": "foundation",
       "features": [
         {
@@ -540,7 +661,86 @@
           "label": "Impact",
           "href": "apps/waypoint-volunteer/impact/"
         }
+      ],
+      "purpose": "Discover community good you can do today — without management software or gamification.",
+      "maturity": "Foundation",
+      "startHere": {
+        "label": "What good can I do today?",
+        "href": "apps/waypoint-volunteer/discover.html"
+      },
+      "journeys": [
+        "observe",
+        "understand",
+        "share"
+      ],
+      "related": [
+        "fieldry",
+        "landscape-interpretation",
+        "dashboard"
       ]
+    },
+    {
+      "id": "landscape-interpretation",
+      "title": "Landscape Interpretation",
+      "shortTitle": "Landscape",
+      "icon": "terrain",
+      "route": "apps/landscape-interpretation/",
+      "match": [
+        "/apps/landscape-interpretation"
+      ],
+      "category": "outdoor",
+      "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
+      "status": "experimental",
+      "purpose": "Read why a place looks the way it does from field clues — ecology, geology, and land use.",
+      "maturity": "Experimental",
+      "startHere": {
+        "label": "Open field reader",
+        "href": "apps/landscape-interpretation/"
+      },
+      "journeys": [
+        "observe",
+        "understand"
+      ],
+      "related": [
+        "dashboard",
+        "fieldry",
+        "foragecast",
+        "waypoint-volunteer"
+      ],
+      "features": [
+        {
+          "id": "field",
+          "label": "Field reader",
+          "href": "apps/landscape-interpretation/"
+        },
+        {
+          "id": "learn",
+          "label": "Learn",
+          "href": "apps/landscape-interpretation/learn.html"
+        }
+      ]
+    }
+  ],
+  "journeys": [
+    {
+      "id": "observe",
+      "label": "Observe",
+      "blurb": "See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments."
+    },
+    {
+      "id": "understand",
+      "label": "Understand",
+      "blurb": "Learn why it matters — calm explanations with uncertainty labeled, never hype."
+    },
+    {
+      "id": "create",
+      "label": "Create",
+      "blurb": "Optional making — photography craft, journals, and personal collections without competition."
+    },
+    {
+      "id": "share",
+      "label": "Share",
+      "blurb": "Intentional sharing only — exports and contributions you choose, never engagement traps."
     }
   ]
 }

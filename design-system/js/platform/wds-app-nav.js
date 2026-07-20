@@ -88,6 +88,39 @@
     }).filter(function (g) { return g.apps.length > 0; });
   }
 
+  function listJourneys() {
+    return (config().journeys || []).slice();
+  }
+
+  function appsByJourney() {
+    var journeys = listJourneys();
+    var apps = listApps();
+    if (!journeys.length) return [];
+    return journeys.map(function (j) {
+      return {
+        id: j.id,
+        label: j.label,
+        blurb: j.blurb || "",
+        apps: apps.filter(function (a) {
+          return (a.journeys || []).indexOf(j.id) >= 0;
+        })
+      };
+    }).filter(function (g) { return g.apps.length > 0; });
+  }
+
+  function startHereHref(app, depth) {
+    if (!app) return "#";
+    var sh = app.startHere;
+    if (sh && sh.href) return resolveRoute(sh.href, depth);
+    return resolveRoute(app.route, depth);
+  }
+
+  function relatedApps(appId) {
+    var app = byId(appId);
+    if (!app || !app.related || !app.related.length) return [];
+    return app.related.map(byId).filter(Boolean);
+  }
+
   function byId(id) {
     var apps = listApps();
     for (var i = 0; i < apps.length; i += 1) {
@@ -176,7 +209,11 @@
     config: config,
     listApps: listApps,
     listCategories: listCategories,
+    listJourneys: listJourneys,
     appsByCategory: appsByCategory,
+    appsByJourney: appsByJourney,
+    relatedApps: relatedApps,
+    startHereHref: startHereHref,
     byId: byId,
     detectApp: detectApp,
     detectFeature: detectFeature,

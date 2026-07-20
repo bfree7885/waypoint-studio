@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Studio articles — Share category.">
+  <title>Share — Articles · Waypoint Studio</title>
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+    <main id="main" class="was-home">
+      <header class="was-home__hero">
+        <p class="wds-eyebrow">Articles · Category</p>
+        <h1>Share</h1>
+        <p class="was-home__lead"><a href="../../">All articles</a> · <a href="../../../">Studio home</a></p>
+      </header>
+      <div id="was-articles-category" data-category="share" aria-busy="true"></div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="0"></div>
+  </div>
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-articles.js?v=local" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var el = document.getElementById("was-articles-category");
+      if (window.WDS && WDS.articles && el) {
+        WDS.articles.mountCategory(el, el.getAttribute("data-category"), { depth: 0, base: "../../" });
+      }
+    });
+  </script>
+</body>
+</html>

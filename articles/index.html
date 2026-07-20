@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Studio Articles — editorial architecture for Observe, Understand, Create, and Share.">
+  <title>Articles — Waypoint Studio</title>
+  <link rel="stylesheet" href="../design-system/css/wds.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+    <main id="main" class="was-home">
+      <header class="was-home__hero">
+        <p class="wds-eyebrow">Articles</p>
+        <h1>Editorial architecture</h1>
+        <p class="was-home__lead">This is the articles scaffold — categories, templates, routing, search prep, and metadata. It is not a full library yet. Sample pieces demonstrate structure only.</p>
+        <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
+          <a href="../">Studio home</a>
+          <a href="../knowledge.html">Knowledge</a>
+          <a href="templates/article.html">Template</a>
+        </p>
+        <div class="was-home__search" role="search">
+          <label class="wds-visually-hidden" for="was-article-search">Search articles</label>
+          <input type="search" id="was-article-search" placeholder="Search article titles and tags…" autocomplete="off">
+          <div id="was-article-search-results" class="was-home__search-results" aria-live="polite"></div>
+        </div>
+      </header>
+      <div id="was-articles-hub" aria-busy="true">
+        <p class="wds-honesty">Loading article index…</p>
+      </div>
+    </main>
+    <div data-wds-app-footer data-shell-depth="0"></div>
+  </div>
+  <script src="../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-articles.js?v=local" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.articles) WDS.articles.mountHub(document.getElementById("was-articles-hub"), { depth: 0 });
+    });
+  </script>
+</body>
+</html>

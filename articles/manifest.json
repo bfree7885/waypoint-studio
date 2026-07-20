@@ -1,0 +1,62 @@
+{
+  "version": "0.1.0",
+  "title": "Waypoint Studio Articles",
+  "description": "Architecture scaffold for editorial articles — categories, templates, routing, search prep, and metadata. Not a full content library yet.",
+  "routing": {
+    "hub": "/articles/",
+    "category": "/articles/categories/{slug}/",
+    "article": "/articles/samples/{slug}.html",
+    "template": "/articles/templates/article.html"
+  },
+  "search": {
+    "providerId": "articles",
+    "indexFields": ["title", "summary", "tags", "category", "apps"],
+    "honesty": "Editorial index — sample articles only until the library grows."
+  },
+  "categories": [
+    {
+      "id": "observe",
+      "label": "Observe",
+      "summary": "Noticing weather, seasons, wildlife sign, light, and places."
+    },
+    {
+      "id": "understand",
+      "label": "Understand",
+      "summary": "Calm explanations with uncertainty labeled."
+    },
+    {
+      "id": "create",
+      "label": "Create",
+      "summary": "Craft, journals, and personal making without competition."
+    },
+    {
+      "id": "share",
+      "label": "Share",
+      "summary": "Intentional contribution and export — never engagement traps."
+    },
+    {
+      "id": "field-craft",
+      "label": "Field craft",
+      "summary": "Practical outdoor literacy across Studio apps."
+    },
+    {
+      "id": "outdoor-intelligence",
+      "label": "Outdoor intelligence",
+      "summary": "Conditions, seasons, and place-based decision support."
+    }
+  ],
+  "articles": [
+    {
+      "id": "reading-todays-conditions",
+      "slug": "reading-todays-conditions",
+      "title": "Reading today’s conditions",
+      "summary": "How Dashboard, ForageCast, and Fieldry work together before you go outside.",
+      "category": "outdoor-intelligence",
+      "tags": ["dashboard", "weather", "trails"],
+      "apps": ["dashboard", "foragecast", "fieldry"],
+      "status": "sample",
+      "path": "samples/reading-todays-conditions.html",
+      "published": "2026-07-20"
+    }
+  ]
+}

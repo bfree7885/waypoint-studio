@@ -22,7 +22,13 @@
 | `fieldry-to-scenes` | Fieldry → Scenes | Encounters inspire photography |
 | `sheds-to-fieldry` | Sheds → Fieldry | Sign notes belong on a life list |
 | `foragecast-to-fieldry` | ForageCast → Fieldry | Seasonal cues + private vouchers |
+| `dashboard-to-scenes` | Dashboard → Scenes / Photo Coach | Light + outdoor conditions ↔ photography |
+| `dashboard-to-fieldry` | Dashboard → Fieldry | Trail / hiking notes |
+| `dashboard-to-foragecast` | Dashboard → ForageCast | Rivers / seasonal land cues |
 | `dashboard-to-any` | Dashboard → Studio | Hub to directory |
+| `sheds-to-dashboard` | Sheds → Dashboard | Check conditions before field work |
+| `scenes-to-dashboard` | Scenes → Dashboard | Light and outdoor context |
+| `photo-coach-to-dashboard` | Photo Coach → Dashboard | Light before coaching |
 | `signalterrain-to-dashboard` | SignalTerrain → Dashboard | Signal literacy beside outdoor context |
 | `volunteer-to-fieldry` | Volunteer → Fieldry | Stewardship in personal history |
 | `savant-to-places` | Savant → Studio places | Vineyard sites as shared places |

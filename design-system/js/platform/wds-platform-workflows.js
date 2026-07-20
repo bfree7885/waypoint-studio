@@ -50,12 +50,66 @@
       when: "after-conditions"
     },
     {
+      id: "dashboard-to-scenes",
+      from: "dashboard",
+      to: "scenes",
+      label: "Open photography in Scenes",
+      why: "Light and outdoor conditions pair with careful looking.",
+      pathFromRoot: "apps/photo-coach/",
+      when: "always"
+    },
+    {
+      id: "dashboard-to-fieldry",
+      from: "dashboard",
+      to: "fieldry",
+      label: "Record a hike or trail note in Fieldry",
+      why: "Trail and hiking conditions become lasting private observations.",
+      pathFromRoot: "apps/fieldry/#/new",
+      when: "always"
+    },
+    {
+      id: "dashboard-to-foragecast",
+      from: "dashboard",
+      to: "foragecast",
+      label: "Check rivers and seasonal land cues",
+      why: "Water and weather context deepen ForageCast seasonal guidance.",
+      pathFromRoot: "apps/foragecast/",
+      when: "always"
+    },
+    {
       id: "dashboard-to-any",
       from: "dashboard",
       to: "studio",
-      label: "Open another Studio app",
+      label: "Browse all Studio apps",
       why: "Dashboard is the outdoor hub; Studio home lists every experience.",
       pathFromRoot: "./",
+      when: "always"
+    },
+    {
+      id: "sheds-to-dashboard",
+      from: "shed-hunting",
+      to: "dashboard",
+      label: "Check outdoor conditions first",
+      why: "Weather and light help plan a careful field day.",
+      pathFromRoot: "apps/dashboard/",
+      when: "always"
+    },
+    {
+      id: "scenes-to-dashboard",
+      from: "scenes",
+      to: "dashboard",
+      label: "Check light and outdoor conditions",
+      why: "Photography decisions improve with live outdoor context.",
+      pathFromRoot: "apps/dashboard/",
+      when: "always"
+    },
+    {
+      id: "photo-coach-to-dashboard",
+      from: "photo-coach",
+      to: "dashboard",
+      label: "Check light and outdoor conditions",
+      why: "Coaching pairs with knowing today’s light.",
+      pathFromRoot: "apps/dashboard/",
       when: "always"
     },
     {
@@ -183,7 +237,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.platformWorkflows = {
-    version: "1.0.0",
+    version: "1.1.0",
     list: list,
     forApp: forApp,
     href: function (id, depth) {

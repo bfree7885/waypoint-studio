@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Waypoint Studio builds software that helps people observe, understand, create, and share — across nature, photography, outdoor intelligence, land stewardship, volunteer service, signal intelligence, and lifelong learning.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/">
@@ -35,13 +35,18 @@
       <header class="was-home__hero">
         <p class="wds-eyebrow">Waypoint Studio</p>
         <h1>Observe. Understand. Create. Share.</h1>
-        <p class="was-home__lead">Waypoint Studio builds software that helps people notice the world more carefully — across nature, photography, environmental observation, outdoor intelligence, land stewardship, volunteer service, signal intelligence, and lifelong learning. Private by default. No engagement traps. New here? Start with <a href="apps/dashboard/">Dashboard</a> or <a href="apps/fieldry/">Fieldry</a>. Apps marked Foundation or Early access are unfinished.</p>
+        <p class="was-home__lead">Calm tools for careful observers — private by default, no engagement traps. Each app card shows purpose, maturity, and the best place to start. New here? Launch <a href="apps/dashboard/">Dashboard</a> or <a href="apps/fieldry/#/new">record in Fieldry</a> in one click.</p>
+        <ul class="was-home__pillars" aria-label="Studio journeys">
+          <li><a href="#was-home-observe">Observe</a></li>
+          <li><a href="#was-home-understand">Understand</a></li>
+          <li><a href="#was-home-create">Create</a></li>
+          <li><a href="#was-home-share">Share</a></li>
+        </ul>
         <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
-          <a href="settings.html">Settings</a>
+          <a href="articles/">Articles</a>
           <a href="knowledge.html">Knowledge</a>
           <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
-          <a href="support.html">Support</a>
+          <a href="settings.html">Settings</a>
         </p>
         <div class="was-home__search" role="search">
           <label class="wds-visually-hidden" for="was-studio-search">Search Studio</label>
@@ -50,39 +55,43 @@
         </div>
       </header>
       <div id="was-home-apps" aria-busy="true">
-        <section class="was-home__section" aria-labelledby="was-home-core-static">
-          <h2 id="was-home-core-static">Core</h2>
+        <section class="was-home__section was-home__journey" aria-labelledby="was-home-observe">
+          <h2 id="was-home-observe">Observe</h2>
+          <p class="was-home__journey-blurb">See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments.</p>
           <div class="was-home__grid">
-            <a class="was-home__card" href="apps/dashboard/"><strong>Dashboard</strong><span>Weather, light, trails, and outdoor conditions for your region.</span><em>Open</em></a>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/dashboard/">Dashboard</a></h3></div><p class="was-home__purpose">Regional outdoor briefing so you know conditions before you go outside.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open Today Outside</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/dashboard/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/scenes/">Scenes</a></h3></div><p class="was-home__purpose">One photography platform for careful looking and quieter visual growth.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open Photo Coach</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/photo-coach/">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/scenes/">Overview</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/fieldry/">Fieldry</a></h3></div><p class="was-home__purpose">A private life list and field notebook for outdoor encounters.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Record an encounter</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/fieldry/#/new">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/fieldry/">Overview</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/foragecast/">ForageCast</a></h3></div><p class="was-home__purpose">Seasonal outdoor intelligence across foraging and land care.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open ForageCast</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/foragecast/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/shed-hunting/">Sheds</a></h3><span class="was-home__status">Foundation</span></div><p class="was-home__purpose">Wildlife sign and private finds without trophy culture.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open field map</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/shed-hunting/map/">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/shed-hunting/">Overview</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/signalterrain/">SignalTerrain</a></h3><span class="was-home__status">Foundation</span></div><p class="was-home__purpose">Radio spectrum and educational cyber awareness without offense.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open today’s cyber brief</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/signalterrain/cyber/live.html#brief">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/signalterrain/">Overview</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/waypoint-volunteer/">Waypoint Volunteer</a></h3><span class="was-home__status">Foundation</span></div><p class="was-home__purpose">Discover community good without gamification.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> What good can I do today?</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/waypoint-volunteer/discover.html">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/waypoint-volunteer/">Overview</a></div></article>
           </div>
         </section>
-        <section class="was-home__section" aria-labelledby="was-home-photo-static">
-          <h2 id="was-home-photo-static">Photography</h2>
+        <section class="was-home__section was-home__journey" aria-labelledby="was-home-understand">
+          <h2 id="was-home-understand">Understand</h2>
+          <p class="was-home__journey-blurb">Learn why it matters — calm explanations with uncertainty labeled, never hype.</p>
           <div class="was-home__grid">
-            <a class="was-home__card" href="apps/scenes/"><strong>Scenes</strong><span>One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Profile, and Library.</span><em>Open</em></a>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/dashboard/">Dashboard</a></h3></div><p class="was-home__purpose">Conditions explained for calm outdoor decisions.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open Today Outside</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/dashboard/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/landscape-interpretation/">Landscape Interpretation</a></h3><span class="was-home__status">Experimental</span></div><p class="was-home__purpose">Read why a place looks the way it does from field clues.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open field reader</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/landscape-interpretation/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/savant-sommelier/">Savant Sommelier</a></h3><span class="was-home__status">Early access</span></div><p class="was-home__purpose">Wine-through-place literacy with explanations.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Discover wines</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/savant-sommelier/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/steepleaf/">Steepleaf</a></h3><span class="was-home__status">Early access</span></div><p class="was-home__purpose">Private tea companion with calm tasting guidance.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open today’s brew</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/steepleaf/#brew">Launch</a><a class="wds-btn wds-btn--ghost wds-btn--sm" href="apps/steepleaf/">Overview</a></div></article>
           </div>
         </section>
-        <section class="was-home__section" aria-labelledby="was-home-outdoor-static">
-          <h2 id="was-home-outdoor-static">Outdoor</h2>
+        <section class="was-home__section was-home__journey" aria-labelledby="was-home-create">
+          <h2 id="was-home-create">Create</h2>
+          <p class="was-home__journey-blurb">Optional making — photography craft, journals, and personal collections without competition.</p>
           <div class="was-home__grid">
-            <a class="was-home__card" href="apps/shed-hunting/"><strong>Sheds</strong><span class="was-home__status">Foundation</span><span>Wildlife sign, seasonality, and private finds without trophy culture.</span><em>Explore</em></a>
-            <a class="was-home__card" href="apps/foragecast/"><strong>ForageCast</strong><span>Seasonal land companion across foraging, orchard, garden, and land care.</span><em>Open</em></a>
-            <a class="was-home__card" href="apps/fieldry/"><strong>Fieldry</strong><span>A private life list for what you encounter outdoors.</span><em>Open</em></a>
-            <a class="was-home__card" href="apps/steepleaf/"><strong>Steepleaf</strong><span class="was-home__status">Early access</span><span>Tea discovery — catalog, brew journal, and sensory notes.</span><em>Explore</em></a>
-            <a class="was-home__card" href="apps/waypoint-volunteer/"><strong>Waypoint Volunteer</strong><span class="was-home__status">Foundation</span><span>What good can I do today? — discover community opportunities without gamification.</span><em>Explore</em></a>
-            <a class="was-home__card" href="apps/landscape-interpretation/"><strong>Landscape Interpretation</strong><span class="was-home__status">Experimental</span><span>Educational field reader for land processes — not verified GIS history.</span><em>Explore</em></a>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/scenes/">Scenes</a></h3></div><p class="was-home__purpose">Photo Coach and quieter creation paths inside one photography product.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open Photo Coach</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/photo-coach/">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/fieldry/">Fieldry</a></h3></div><p class="was-home__purpose">Build a private life list as you record encounters.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Record an encounter</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/fieldry/#/new">Launch</a></div></article>
           </div>
         </section>
-        <section class="was-home__section" aria-labelledby="was-home-intel-static">
-          <h2 id="was-home-intel-static">Intelligence</h2>
+        <section class="was-home__section was-home__journey" aria-labelledby="was-home-share">
+          <h2 id="was-home-share">Share</h2>
+          <p class="was-home__journey-blurb">Intentional sharing only — exports and contributions you choose, never engagement traps.</p>
           <div class="was-home__grid">
-            <a class="was-home__card" href="apps/signalterrain/"><strong>SignalTerrain</strong><span class="was-home__status">Foundation</span><span>Radio &amp; Spectrum Intelligence and educational Cyber Awareness.</span><em>Explore</em></a>
-          </div>
-        </section>
-        <section class="was-home__section" aria-labelledby="was-home-life-static">
-          <h2 id="was-home-life-static">Lifestyle</h2>
-          <div class="was-home__grid">
-            <a class="was-home__card" href="apps/savant-sommelier/"><strong>Savant Sommelier</strong><span class="was-home__status">Early access</span><span>Vineyard intelligence — terrain, climate, and wine landscape literacy.</span><em>Explore</em></a>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/waypoint-volunteer/">Waypoint Volunteer</a></h3><span class="was-home__status">Foundation</span></div><p class="was-home__purpose">Contribute locally — discovery without public activity feeds.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> What good can I do today?</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/waypoint-volunteer/discover.html">Launch</a></div></article>
+            <article class="was-home__card"><div class="was-home__card-head"><h3 class="was-home__card-title"><a href="apps/scenes/">Scenes</a></h3></div><p class="was-home__purpose">Optional export paths — never a follower graph.</p><p class="was-home__start"><span class="was-home__start-label">Start here</span> Open Photo Coach</p><div class="was-home__card-actions"><a class="wds-btn wds-btn--primary wds-btn--sm" href="apps/photo-coach/">Launch</a></div></article>
           </div>
         </section>
       </div>
@@ -100,10 +109,12 @@
   <script src="design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-places.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-search.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-articles.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-notifications.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-graph.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="js/studio-home.js?v=local" defer></script>
 </body>

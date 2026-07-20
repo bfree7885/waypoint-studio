@@ -1,5 +1,5 @@
 /**
- * Waypoint Studio home — application directory from nav config.
+ * Waypoint Studio home — Observe / Understand / Create / Share directory.
  */
 (function (global) {
   "use strict";
@@ -25,11 +25,40 @@
       .replace(/"/g, "&quot;");
   }
 
-  function statusLabel(status) {
-    if (status === "foundation") return "Foundation";
-    if (status === "active") return "Early access";
-    if (status === "planned") return "Planned";
-    return "";
+  function maturityLabel(app) {
+    if (app.maturity) return app.maturity;
+    if (app.status === "foundation") return "Foundation";
+    if (app.status === "active") return "Early access";
+    if (app.status === "experimental") return "Experimental";
+    if (app.status === "planned") return "Planned";
+    return "Live";
+  }
+
+  function renderCard(app, Nav) {
+    var overview = Nav.resolveRoute(app.route, 0);
+    var launch = Nav.startHereHref ? Nav.startHereHref(app, 0) : overview;
+    var start = app.startHere || {};
+    var startLabel = start.label || ("Open " + (app.shortTitle || app.title));
+    var purpose = app.purpose || app.description || "";
+    var chip = maturityLabel(app);
+    var showChip = chip && chip !== "Live";
+    return (
+      '<article class="was-home__card">' +
+        '<div class="was-home__card-head">' +
+          '<h3 class="was-home__card-title"><a href="' + esc(overview) + '">' + esc(app.title) + "</a></h3>" +
+          (showChip ? '<span class="was-home__status">' + esc(chip) + "</span>" : "") +
+        "</div>" +
+        '<p class="was-home__purpose">' + esc(purpose) + "</p>" +
+        '<p class="was-home__start"><span class="was-home__start-label">Start here</span> ' +
+          esc(startLabel) + "</p>" +
+        '<div class="was-home__card-actions">' +
+          '<a class="wds-btn wds-btn--primary wds-btn--sm" href="' + esc(launch) + '">Launch</a>' +
+          (launch !== overview
+            ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="' + esc(overview) + '">Overview</a>'
+            : "") +
+        "</div>" +
+      "</article>"
+    );
   }
 
   function renderFallback(mount) {
@@ -38,9 +67,9 @@
         "<p>Applications could not load. Check your connection and try again.</p>" +
         '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
         '<p class="wds-caption"><a href="apps/dashboard/">Open Dashboard</a> · ' +
-        '<a href="apps/fieldry/">Fieldry</a> · <a href="apps/foragecast/">ForageCast</a> · ' +
-        '<a href="apps/scenes/">Scenes</a> · <a href="apps/signalterrain/">SignalTerrain</a> · ' +
-        '<a href="apps/waypoint-volunteer/">Volunteer</a></p>' +
+        '<a href="apps/fieldry/#/new">Fieldry</a> · <a href="apps/foragecast/">ForageCast</a> · ' +
+        '<a href="apps/photo-coach/">Photo Coach</a> · <a href="apps/signalterrain/cyber/live.html#brief">SignalTerrain</a> · ' +
+        '<a href="apps/waypoint-volunteer/discover.html">Volunteer</a></p>' +
       "</div>";
     mount.removeAttribute("aria-busy");
   }
@@ -49,23 +78,15 @@
     var mount = document.getElementById("was-home-apps");
     var Nav = global.WDS && global.WDS.appNav;
     if (!mount || !Nav) return false;
-    var groups = Nav.appsByCategory();
+    var groups = Nav.appsByJourney ? Nav.appsByJourney() : Nav.appsByCategory();
     mount.innerHTML = groups.map(function (g) {
       var cards = g.apps.map(function (app) {
-        var href = Nav.resolveRoute(app.route, 0);
-        var chip = statusLabel(app.status);
-        return (
-          '<a class="was-home__card" href="' + esc(href) + '">' +
-            "<strong>" + esc(app.title) + "</strong>" +
-            (chip ? '<span class="was-home__status">' + esc(chip) + "</span>" : "") +
-            "<span>" + esc(app.description || "") + "</span>" +
-            "<em>" + (app.status === "foundation" || app.status === "active" ? "Explore" : "Open") + "</em>" +
-          "</a>"
-        );
+        return renderCard(app, Nav);
       }).join("");
       return (
-        '<section class="was-home__section" aria-labelledby="was-home-' + esc(g.id) + '">' +
+        '<section class="was-home__section was-home__journey" aria-labelledby="was-home-' + esc(g.id) + '">' +
           '<h2 id="was-home-' + esc(g.id) + '">' + esc(g.label) + "</h2>" +
+          (g.blurb ? '<p class="was-home__journey-blurb">' + esc(g.blurb) + "</p>" : "") +
           '<div class="was-home__grid">' + cards + "</div>" +
         "</section>"
       );

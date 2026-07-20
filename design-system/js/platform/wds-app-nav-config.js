@@ -6,566 +6,749 @@
   "use strict";
   global.WDS = global.WDS || {};
   global.WDS.APP_NAV_CONFIG = {
-  "version": "2.0.0",
-  "brand": {
-    "name": "Waypoint Studio",
-    "homeRoute": "./"
-  },
-  "categories": [
-    {
-      "id": "core",
-      "label": "Core"
+    "version": "2.1.0",
+    "brand": {
+      "name": "Waypoint Studio",
+      "homeRoute": "./"
     },
-    {
-      "id": "photography",
-      "label": "Photography"
-    },
-    {
-      "id": "outdoor",
-      "label": "Outdoor"
-    },
-    {
-      "id": "intelligence",
-      "label": "Intelligence"
-    },
-    {
-      "id": "lifestyle",
-      "label": "Lifestyle"
-    }
-  ],
-  "apps": [
-    {
-      "id": "dashboard",
-      "title": "Dashboard",
-      "shortTitle": "Dashboard",
-      "icon": "dashboard",
-      "route": "apps/dashboard/",
-      "match": [
-        "/apps/dashboard"
-      ],
-      "category": "core",
-      "description": "Weather, light, trails, and outdoor conditions for your region.",
-      "status": "live",
-      "features": [
-        {
-          "id": "today",
-          "label": "Today",
-          "href": "#outdoor-dashboard"
+    "categories": [
+      {
+        "id": "core",
+        "label": "Core"
+      },
+      {
+        "id": "photography",
+        "label": "Photography"
+      },
+      {
+        "id": "outdoor",
+        "label": "Outdoor"
+      },
+      {
+        "id": "intelligence",
+        "label": "Intelligence"
+      },
+      {
+        "id": "lifestyle",
+        "label": "Lifestyle"
+      }
+    ],
+    "apps": [
+      {
+        "id": "dashboard",
+        "title": "Dashboard",
+        "shortTitle": "Dashboard",
+        "icon": "dashboard",
+        "route": "apps/dashboard/",
+        "match": [
+          "/apps/dashboard"
+        ],
+        "category": "core",
+        "description": "Weather, light, trails, and outdoor conditions for your region.",
+        "status": "live",
+        "features": [
+          {
+            "id": "today",
+            "label": "Today",
+            "href": "#outdoor-dashboard"
+          },
+          {
+            "id": "conditions",
+            "label": "Conditions",
+            "href": "#wdb-section-conditions"
+          },
+          {
+            "id": "sun-moon",
+            "label": "Sun & Moon",
+            "href": "#wdb-section-sun-moon"
+          },
+          {
+            "id": "safety",
+            "label": "Safety",
+            "href": "#wdb-section-safety"
+          },
+          {
+            "id": "water",
+            "label": "Water",
+            "href": "#wdb-section-water"
+          },
+          {
+            "id": "photography",
+            "label": "Photography",
+            "href": "#wdb-section-photography"
+          }
+        ],
+        "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
+        "maturity": "Live",
+        "startHere": {
+          "label": "Open Today Outside",
+          "href": "apps/dashboard/"
         },
-        {
-          "id": "conditions",
-          "label": "Conditions",
-          "href": "#wdb-section-conditions"
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "scenes",
+          "fieldry",
+          "foragecast",
+          "sheds"
+        ]
+      },
+      {
+        "id": "scenes",
+        "title": "Scenes",
+        "shortTitle": "Scenes",
+        "icon": "scenes",
+        "route": "apps/scenes/",
+        "match": [
+          "/apps/scenes",
+          "/apps/photo-coach",
+          "/apps/waypoint-scenes",
+          "/apps/animal-vision",
+          "/apps/hidden-landscapes",
+          "/apps/photo-library"
+        ],
+        "category": "photography",
+        "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+        "status": "live",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/scenes/",
+            "match": [
+              "/apps/scenes/?$",
+              "/apps/scenes/index"
+            ]
+          },
+          {
+            "id": "photo-library",
+            "label": "Library",
+            "href": "apps/photo-library/",
+            "match": [
+              "/apps/scenes/photo-library",
+              "/apps/photo-library"
+            ]
+          },
+          {
+            "id": "photo-coach",
+            "label": "Photo Coach",
+            "href": "apps/photo-coach/",
+            "match": [
+              "/apps/scenes/photo-coach",
+              "/apps/photo-coach/?$",
+              "/apps/photo-coach/index"
+            ]
+          },
+          {
+            "id": "hidden-landscapes",
+            "label": "Hidden Landscapes",
+            "href": "apps/hidden-landscapes/",
+            "match": [
+              "/apps/scenes/hidden-landscapes",
+              "/apps/hidden-landscapes",
+              "/apps/animal-vision"
+            ]
+          },
+          {
+            "id": "living-scenes",
+            "label": "Living Scenes",
+            "href": "apps/scenes/living-scenes/",
+            "match": [
+              "/apps/scenes/living-scenes"
+            ]
+          },
+          {
+            "id": "scene-builder",
+            "label": "Scene Builder",
+            "href": "apps/scenes/scene-builder/",
+            "match": [
+              "/apps/scenes/scene-builder",
+              "/apps/waypoint-scenes"
+            ]
+          },
+          {
+            "id": "photographer-profile",
+            "label": "Profile",
+            "href": "apps/scenes/photographer-profile/",
+            "match": [
+              "/apps/scenes/photographer-profile",
+              "/apps/photo-coach/profile"
+            ]
+          },
+          {
+            "id": "guide",
+            "label": "Field guide",
+            "href": "apps/photo-coach/guide/",
+            "match": [
+              "/apps/photo-coach/guide"
+            ]
+          }
+        ],
+        "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
+        "maturity": "Live",
+        "startHere": {
+          "label": "Open Photo Coach",
+          "href": "apps/photo-coach/"
         },
-        {
-          "id": "sun-moon",
-          "label": "Sun & Moon",
-          "href": "#wdb-section-sun-moon"
+        "journeys": [
+          "observe",
+          "understand",
+          "create",
+          "share"
+        ],
+        "related": [
+          "dashboard",
+          "fieldry"
+        ]
+      },
+      {
+        "id": "sheds",
+        "title": "Sheds",
+        "shortTitle": "Sheds",
+        "icon": "sheds",
+        "route": "apps/shed-hunting/",
+        "match": [
+          "/apps/shed-hunting"
+        ],
+        "category": "outdoor",
+        "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
+        "status": "foundation",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/shed-hunting/"
+          }
+        ],
+        "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
+        "maturity": "Foundation",
+        "startHere": {
+          "label": "Open field map",
+          "href": "apps/shed-hunting/map/"
         },
-        {
-          "id": "safety",
-          "label": "Safety",
-          "href": "#wdb-section-safety"
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "dashboard",
+          "fieldry",
+          "landscape-interpretation"
+        ]
+      },
+      {
+        "id": "foragecast",
+        "title": "ForageCast",
+        "shortTitle": "ForageCast",
+        "icon": "foragecast",
+        "route": "apps/foragecast/",
+        "match": [
+          "/apps/foragecast"
+        ],
+        "category": "outdoor",
+        "description": "Outdoor intelligence — what to look for today and why, across foraging and land care.",
+        "status": "live",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/foragecast/",
+            "match": [
+              "/apps/foragecast/?$",
+              "/apps/foragecast/index"
+            ]
+          },
+          {
+            "id": "conditions",
+            "label": "Today's Conditions",
+            "href": "apps/foragecast/conditions.html",
+            "match": [
+              "conditions.html"
+            ]
+          },
+          {
+            "id": "species",
+            "label": "Species",
+            "href": "apps/foragecast/species.html",
+            "match": [
+              "species.html"
+            ]
+          },
+          {
+            "id": "map",
+            "label": "Map",
+            "href": "apps/foragecast/map.html",
+            "match": [
+              "map.html"
+            ]
+          },
+          {
+            "id": "timeline",
+            "label": "Season Timeline",
+            "href": "apps/foragecast/timeline.html",
+            "match": [
+              "timeline.html"
+            ]
+          },
+          {
+            "id": "weather",
+            "label": "Recent Weather",
+            "href": "apps/foragecast/weather.html",
+            "match": [
+              "weather.html"
+            ]
+          },
+          {
+            "id": "habitats",
+            "label": "Habitats",
+            "href": "apps/foragecast/habitats.html",
+            "match": [
+              "habitats.html"
+            ]
+          },
+          {
+            "id": "learn",
+            "label": "Learn",
+            "href": "apps/foragecast/learn.html",
+            "match": [
+              "learn.html"
+            ]
+          },
+          {
+            "id": "journal",
+            "label": "Journal",
+            "href": "apps/foragecast/journal.html",
+            "match": [
+              "journal.html"
+            ]
+          },
+          {
+            "id": "settings",
+            "label": "Settings",
+            "href": "apps/foragecast/settings.html",
+            "match": [
+              "settings.html"
+            ]
+          }
+        ],
+        "purpose": "Seasonal outdoor intelligence — what to look for today across foraging and land care.",
+        "maturity": "Live",
+        "startHere": {
+          "label": "Open ForageCast",
+          "href": "apps/foragecast/"
         },
-        {
-          "id": "water",
-          "label": "Water",
-          "href": "#wdb-section-water"
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "dashboard",
+          "fieldry",
+          "landscape-interpretation"
+        ]
+      },
+      {
+        "id": "fieldry",
+        "title": "Fieldry",
+        "shortTitle": "Fieldry",
+        "icon": "fieldry",
+        "route": "apps/fieldry/",
+        "match": [
+          "/apps/fieldry",
+          "/apps/terrainbound"
+        ],
+        "category": "outdoor",
+        "description": "A private life list for what you encounter outdoors.",
+        "status": "live",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/fieldry/#/",
+            "hash": "#/"
+          },
+          {
+            "id": "record",
+            "label": "Record",
+            "href": "apps/fieldry/#/new",
+            "hash": "#/new"
+          },
+          {
+            "id": "observations",
+            "label": "Observations",
+            "href": "apps/fieldry/#/history",
+            "hash": "#/history"
+          },
+          {
+            "id": "life",
+            "label": "Life list",
+            "href": "apps/fieldry/#/life",
+            "hash": "#/life"
+          },
+          {
+            "id": "explore",
+            "label": "Explore",
+            "href": "apps/fieldry/#/browse",
+            "hash": "#/browse"
+          },
+          {
+            "id": "stats",
+            "label": "Stats",
+            "href": "apps/fieldry/#/stats",
+            "hash": "#/stats"
+          },
+          {
+            "id": "collections",
+            "label": "Collections",
+            "href": "apps/fieldry/#/collections",
+            "hash": "#/collections"
+          }
+        ],
+        "purpose": "A private life list and field notebook for what you encounter outdoors.",
+        "maturity": "Live",
+        "startHere": {
+          "label": "Record an encounter",
+          "href": "apps/fieldry/#/new"
         },
-        {
-          "id": "photography",
-          "label": "Photography",
-          "href": "#wdb-section-photography"
-        }
-      ]
-    },
-    {
-      "id": "scenes",
-      "title": "Scenes",
-      "shortTitle": "Scenes",
-      "icon": "scenes",
-      "route": "apps/scenes/",
-      "match": [
-        "/apps/scenes",
-        "/apps/photo-coach",
-        "/apps/waypoint-scenes",
-        "/apps/animal-vision",
-        "/apps/hidden-landscapes",
-        "/apps/photo-library"
-      ],
-      "category": "photography",
-      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
-      "status": "live",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/scenes/",
-          "match": [
-            "/apps/scenes/?$",
-            "/apps/scenes/index"
-          ]
-        },
-        {
-          "id": "photo-library",
-          "label": "Library",
-          "href": "apps/photo-library/",
-          "match": [
-            "/apps/scenes/photo-library",
-            "/apps/photo-library"
-          ]
-        },
-        {
-          "id": "photo-coach",
-          "label": "Photo Coach",
-          "href": "apps/photo-coach/",
-          "match": [
-            "/apps/scenes/photo-coach",
-            "/apps/photo-coach/?$",
-            "/apps/photo-coach/index"
-          ]
-        },
-        {
-          "id": "hidden-landscapes",
-          "label": "Hidden Landscapes",
-          "href": "apps/hidden-landscapes/",
-          "match": [
-            "/apps/scenes/hidden-landscapes",
-            "/apps/hidden-landscapes",
-            "/apps/animal-vision"
-          ]
-        },
-        {
-          "id": "living-scenes",
-          "label": "Living Scenes",
-          "href": "apps/scenes/living-scenes/",
-          "match": [
-            "/apps/scenes/living-scenes"
-          ]
-        },
-        {
-          "id": "scene-builder",
-          "label": "Scene Builder",
-          "href": "apps/scenes/scene-builder/",
-          "match": [
-            "/apps/scenes/scene-builder",
-            "/apps/waypoint-scenes"
-          ]
-        },
-        {
-          "id": "photographer-profile",
-          "label": "Profile",
-          "href": "apps/scenes/photographer-profile/",
-          "match": [
-            "/apps/scenes/photographer-profile",
-            "/apps/photo-coach/profile"
-          ]
-        },
-        {
-          "id": "guide",
-          "label": "Field guide",
-          "href": "apps/photo-coach/guide/",
-          "match": [
-            "/apps/photo-coach/guide"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sheds",
-      "title": "Sheds",
-      "shortTitle": "Sheds",
-      "icon": "sheds",
-      "route": "apps/shed-hunting/",
-      "match": [
-        "/apps/shed-hunting"
-      ],
-      "category": "outdoor",
-      "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
-      "status": "foundation",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/shed-hunting/"
-        }
-      ]
-    },
-    {
-      "id": "foragecast",
-      "title": "ForageCast",
-      "shortTitle": "ForageCast",
-      "icon": "foragecast",
-      "route": "apps/foragecast/",
-      "match": [
-        "/apps/foragecast"
-      ],
-      "category": "outdoor",
-      "description": "Outdoor intelligence \u2014 what to look for today and why, across foraging and land care.",
-      "status": "live",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/foragecast/",
-          "match": [
-            "/apps/foragecast/?$",
-            "/apps/foragecast/index"
-          ]
-        },
-        {
-          "id": "conditions",
-          "label": "Today's Conditions",
-          "href": "apps/foragecast/conditions.html",
-          "match": ["conditions.html"]
-        },
-        {
-          "id": "species",
-          "label": "Species",
-          "href": "apps/foragecast/species.html",
-          "match": ["species.html"]
-        },
-        {
-          "id": "map",
-          "label": "Map",
-          "href": "apps/foragecast/map.html",
-          "match": ["map.html"]
-        },
-        {
-          "id": "timeline",
-          "label": "Season Timeline",
-          "href": "apps/foragecast/timeline.html",
-          "match": ["timeline.html"]
-        },
-        {
-          "id": "weather",
-          "label": "Recent Weather",
-          "href": "apps/foragecast/weather.html",
-          "match": ["weather.html"]
-        },
-        {
-          "id": "habitats",
-          "label": "Habitats",
-          "href": "apps/foragecast/habitats.html",
-          "match": ["habitats.html"]
-        },
-        {
-          "id": "learn",
-          "label": "Learn",
-          "href": "apps/foragecast/learn.html",
-          "match": ["learn.html"]
-        },
-        {
-          "id": "journal",
-          "label": "Journal",
-          "href": "apps/foragecast/journal.html",
-          "match": ["journal.html"]
-        },
-        {
-          "id": "settings",
-          "label": "Settings",
-          "href": "apps/foragecast/settings.html",
-          "match": ["settings.html"]
-        }
-      ]
-    },
-    {
-      "id": "fieldry",
-      "title": "Fieldry",
-      "shortTitle": "Fieldry",
-      "icon": "fieldry",
-      "route": "apps/fieldry/",
-      "match": [
-        "/apps/fieldry",
-        "/apps/terrainbound"
-      ],
-      "category": "outdoor",
-      "description": "A private life list for what you encounter outdoors.",
-      "status": "live",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/fieldry/#/",
-          "hash": "#/"
-        },
-        {
-          "id": "record",
-          "label": "Record",
-          "href": "apps/fieldry/#/new",
-          "hash": "#/new"
-        },
-        {
-          "id": "observations",
-          "label": "Observations",
-          "href": "apps/fieldry/#/history",
-          "hash": "#/history"
-        },
-        {
-          "id": "life",
-          "label": "Life list",
-          "href": "apps/fieldry/#/life",
-          "hash": "#/life"
-        },
-        {
-          "id": "explore",
-          "label": "Explore",
-          "href": "apps/fieldry/#/browse",
-          "hash": "#/browse"
-        },
-        {
-          "id": "stats",
-          "label": "Stats",
-          "href": "apps/fieldry/#/stats",
-          "hash": "#/stats"
-        },
-        {
-          "id": "collections",
-          "label": "Collections",
-          "href": "apps/fieldry/#/collections",
-          "hash": "#/collections"
-        }
-      ]
-    },
-    {
-      "id": "steepleaf",
-      "title": "Steepleaf",
-      "shortTitle": "Steepleaf",
-      "icon": "steepleaf",
-      "route": "apps/steepleaf/",
-      "match": [
-        "/apps/steepleaf"
-      ],
-      "category": "outdoor",
-      "description": "Tea companion — today’s brew, private collection, sessions, and knowledge graph.",
-      "status": "active",
-      "features": [
-        {
-          "id": "home",
-          "label": "Home",
-          "href": "apps/steepleaf/#home"
-        },
-        {
-          "id": "brew",
-          "label": "Today's Brew",
+        "journeys": [
+          "observe",
+          "create"
+        ],
+        "related": [
+          "dashboard",
+          "scenes",
+          "sheds",
+          "foragecast",
+          "waypoint-volunteer"
+        ]
+      },
+      {
+        "id": "steepleaf",
+        "title": "Steepleaf",
+        "shortTitle": "Steepleaf",
+        "icon": "steepleaf",
+        "route": "apps/steepleaf/",
+        "match": [
+          "/apps/steepleaf"
+        ],
+        "category": "outdoor",
+        "description": "Tea companion — today’s brew, private collection, sessions, and knowledge graph.",
+        "status": "active",
+        "features": [
+          {
+            "id": "home",
+            "label": "Home",
+            "href": "apps/steepleaf/#home"
+          },
+          {
+            "id": "brew",
+            "label": "Today's Brew",
+            "href": "apps/steepleaf/#brew"
+          },
+          {
+            "id": "collection",
+            "label": "My Collection",
+            "href": "apps/steepleaf/#collection"
+          },
+          {
+            "id": "sessions",
+            "label": "Sessions",
+            "href": "apps/steepleaf/#sessions"
+          },
+          {
+            "id": "journal",
+            "label": "Journal",
+            "href": "apps/steepleaf/#journal"
+          },
+          {
+            "id": "learning",
+            "label": "Learning",
+            "href": "apps/steepleaf/#learning"
+          },
+          {
+            "id": "explore",
+            "label": "Knowledge graph",
+            "href": "apps/steepleaf/explore/"
+          },
+          {
+            "id": "settings",
+            "label": "Settings",
+            "href": "apps/steepleaf/#settings"
+          }
+        ],
+        "purpose": "Private tea companion — today’s brew, collection, sessions, and calm tasting notes.",
+        "maturity": "Early access",
+        "startHere": {
+          "label": "Open today’s brew",
           "href": "apps/steepleaf/#brew"
         },
-        {
-          "id": "collection",
-          "label": "My Collection",
-          "href": "apps/steepleaf/#collection"
-        },
-        {
-          "id": "sessions",
-          "label": "Sessions",
-          "href": "apps/steepleaf/#sessions"
-        },
-        {
-          "id": "journal",
-          "label": "Journal",
-          "href": "apps/steepleaf/#journal"
-        },
-        {
-          "id": "learning",
-          "label": "Learning",
-          "href": "apps/steepleaf/#learning"
-        },
-        {
-          "id": "explore",
-          "label": "Knowledge graph",
-          "href": "apps/steepleaf/explore/"
-        },
-        {
-          "id": "settings",
-          "label": "Settings",
-          "href": "apps/steepleaf/#settings"
-        }
-      ]
-    },
-    {
-      "id": "signalterrain",
-      "title": "SignalTerrain",
-      "shortTitle": "SignalTerrain",
-      "icon": "signalterrain",
-      "route": "apps/signalterrain/",
-      "match": [
-        "/apps/signalterrain"
-      ],
-      "category": "intelligence",
-      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
-      "status": "foundation",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/signalterrain/"
-        },
-        {
-          "id": "cyber",
-          "label": "Today’s cyber brief",
+        "journeys": [
+          "observe",
+          "understand",
+          "create"
+        ],
+        "related": [
+          "savant-sommelier"
+        ]
+      },
+      {
+        "id": "signalterrain",
+        "title": "SignalTerrain",
+        "shortTitle": "SignalTerrain",
+        "icon": "signalterrain",
+        "route": "apps/signalterrain/",
+        "match": [
+          "/apps/signalterrain"
+        ],
+        "category": "intelligence",
+        "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
+        "status": "foundation",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/signalterrain/"
+          },
+          {
+            "id": "topics",
+            "label": "Topics",
+            "href": "apps/signalterrain/topics.html"
+          },
+          {
+            "id": "graph",
+            "label": "Knowledge graph",
+            "href": "apps/signalterrain/graph.html"
+          },
+          {
+            "id": "summary",
+            "label": "Intelligence summary",
+            "href": "apps/signalterrain/summary.html"
+          },
+          {
+            "id": "cyber",
+            "label": "Cyber Awareness",
+            "href": "apps/signalterrain/cyber/"
+          },
+          {
+            "id": "cyber-brief",
+            "label": "Daily cyber brief",
+            "href": "apps/signalterrain/cyber/brief.html"
+          },
+          {
+            "id": "cyber-explorer",
+            "label": "Cyber intelligence explorer",
+            "href": "apps/signalterrain/cyber/explorer.html"
+          },
+          {
+            "id": "cyber-advisor",
+            "label": "Adaptive defense advisor",
+            "href": "apps/signalterrain/cyber/advisor.html"
+          },
+          {
+            "id": "cyber-knowledge",
+            "label": "Defensive knowledge",
+            "href": "apps/signalterrain/cyber/knowledge.html"
+          },
+          {
+            "id": "cyber-ingest-health",
+            "label": "Cyber ingest (internal)",
+            "href": "apps/signalterrain/cyber/ingest-health.html"
+          }
+        ],
+        "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype.",
+        "maturity": "Foundation",
+        "startHere": {
+          "label": "Open today’s cyber brief",
           "href": "apps/signalterrain/cyber/live.html#brief"
         },
-        {
-          "id": "cyber-workspace",
-          "label": "Cyber workspace",
-          "href": "apps/signalterrain/cyber/workspace.html"
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "dashboard"
+        ]
+      },
+      {
+        "id": "savant-sommelier",
+        "title": "Savant Sommelier",
+        "shortTitle": "Savant",
+        "icon": "savant",
+        "route": "apps/savant-sommelier/",
+        "match": [
+          "/apps/savant-sommelier"
+        ],
+        "category": "lifestyle",
+        "description": "Wine intelligence — discover, learn, cellar, and vineyard suitability with explanations.",
+        "status": "active",
+        "features": [
+          {
+            "id": "discover",
+            "label": "Discover",
+            "href": "apps/savant-sommelier/",
+            "match": [
+              "/apps/savant-sommelier/?$",
+              "/apps/savant-sommelier/index"
+            ]
+          },
+          {
+            "id": "learn",
+            "label": "Learn",
+            "href": "apps/savant-sommelier/learn.html"
+          },
+          {
+            "id": "cellar",
+            "label": "My Cellar",
+            "href": "apps/savant-sommelier/cellar.html"
+          },
+          {
+            "id": "vineyard",
+            "label": "Vineyard Intelligence",
+            "href": "apps/savant-sommelier/vineyard.html"
+          },
+          {
+            "id": "settings",
+            "label": "Settings",
+            "href": "apps/savant-sommelier/settings.html"
+          }
+        ],
+        "purpose": "Wine-through-place literacy — discover, learn, cellar, and vineyard context with explanations.",
+        "maturity": "Early access",
+        "startHere": {
+          "label": "Discover wines",
+          "href": "apps/savant-sommelier/"
         },
-        {
-          "id": "cyber-ingest-health",
-          "label": "Cyber ingest (internal)",
-          "href": "apps/signalterrain/cyber/ingest-health.html"
-        },
-        {
-          "id": "topics",
-          "label": "Topics (samples)",
-          "href": "apps/signalterrain/topics.html"
-        },
-        {
-          "id": "graph",
-          "label": "Knowledge graph (samples)",
-          "href": "apps/signalterrain/graph.html"
-        },
-        {
-          "id": "summary",
-          "label": "Intelligence summary (samples)",
-          "href": "apps/signalterrain/summary.html"
-        },
-        {
-          "id": "cyber-teaching",
-          "label": "Cyber teaching (samples)",
-          "href": "apps/signalterrain/cyber/teaching.html"
-        },
-        {
-          "id": "cyber-brief",
-          "label": "Cyber brief demo (samples)",
-          "href": "apps/signalterrain/cyber/brief.html"
-        },
-        {
-          "id": "cyber-explorer",
-          "label": "Cyber explorer (samples)",
-          "href": "apps/signalterrain/cyber/explorer.html"
-        },
-        {
-          "id": "cyber-advisor",
-          "label": "Cyber advisor (samples)",
-          "href": "apps/signalterrain/cyber/advisor.html"
-        },
-        {
-          "id": "cyber-knowledge",
-          "label": "Cyber knowledge (samples)",
-          "href": "apps/signalterrain/cyber/knowledge.html"
-        }
-      ]
-    },
-    {
-      "id": "savant-sommelier",
-      "title": "Savant Sommelier",
-      "shortTitle": "Savant",
-      "icon": "savant",
-      "route": "apps/savant-sommelier/",
-      "match": [
-        "/apps/savant-sommelier"
-      ],
-      "category": "lifestyle",
-      "description": "Wine intelligence — discover, learn, cellar, and vineyard suitability with explanations.",
-      "status": "active",
-      "features": [
-        {
-          "id": "discover",
-          "label": "Discover",
-          "href": "apps/savant-sommelier/",
-          "match": [
-            "/apps/savant-sommelier/?$",
-            "/apps/savant-sommelier/index"
-          ]
-        },
-        {
-          "id": "learn",
-          "label": "Learn",
-          "href": "apps/savant-sommelier/learn.html"
-        },
-        {
-          "id": "cellar",
-          "label": "My Cellar",
-          "href": "apps/savant-sommelier/cellar.html"
-        },
-        {
-          "id": "vineyard",
-          "label": "Vineyard Intelligence",
-          "href": "apps/savant-sommelier/vineyard.html"
-        },
-        {
-          "id": "settings",
-          "label": "Settings",
-          "href": "apps/savant-sommelier/settings.html"
-        }
-      ]
-    },
-    {
-      "id": "waypoint-volunteer",
-      "title": "Waypoint Volunteer",
-      "shortTitle": "Volunteer",
-      "icon": "volunteer",
-      "route": "apps/waypoint-volunteer/",
-      "match": [
-        "/apps/waypoint-volunteer"
-      ],
-      "category": "outdoor",
-      "description": "What good can I do today? — discover community opportunities without gamification.",
-      "status": "foundation",
-      "features": [
-        {
-          "id": "overview",
-          "label": "Overview",
-          "href": "apps/waypoint-volunteer/"
-        },
-        {
-          "id": "discover",
-          "label": "Discover",
+        "journeys": [
+          "observe",
+          "understand",
+          "create"
+        ],
+        "related": [
+          "steepleaf",
+          "dashboard"
+        ]
+      },
+      {
+        "id": "waypoint-volunteer",
+        "title": "Waypoint Volunteer",
+        "shortTitle": "Volunteer",
+        "icon": "volunteer",
+        "route": "apps/waypoint-volunteer/",
+        "match": [
+          "/apps/waypoint-volunteer"
+        ],
+        "category": "outdoor",
+        "description": "What good can I do today? — discover community opportunities without gamification.",
+        "status": "foundation",
+        "features": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "href": "apps/waypoint-volunteer/"
+          },
+          {
+            "id": "discover",
+            "label": "Discover",
+            "href": "apps/waypoint-volunteer/discover.html"
+          },
+          {
+            "id": "saved",
+            "label": "Saved",
+            "href": "apps/waypoint-volunteer/saved/"
+          },
+          {
+            "id": "profile",
+            "label": "Profile",
+            "href": "apps/waypoint-volunteer/profile/"
+          },
+          {
+            "id": "impact",
+            "label": "Impact",
+            "href": "apps/waypoint-volunteer/impact/"
+          }
+        ],
+        "purpose": "Discover community good you can do today — without management software or gamification.",
+        "maturity": "Foundation",
+        "startHere": {
+          "label": "What good can I do today?",
           "href": "apps/waypoint-volunteer/discover.html"
         },
-        {
-          "id": "saved",
-          "label": "Saved",
-          "href": "apps/waypoint-volunteer/saved/"
-        },
-        {
-          "id": "profile",
-          "label": "Profile",
-          "href": "apps/waypoint-volunteer/profile/"
-        },
-        {
-          "id": "impact",
-          "label": "Impact",
-          "href": "apps/waypoint-volunteer/impact/"
-        }
-      ]
-    },
-    {
-      "id": "landscape-interpretation",
-      "title": "Landscape Interpretation",
-      "shortTitle": "Landscape",
-      "icon": "terrain",
-      "route": "apps/landscape-interpretation/",
-      "match": [
-        "/apps/landscape-interpretation"
-      ],
-      "category": "outdoor",
-      "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
-      "status": "experimental",
-      "features": [
-        {
-          "id": "field",
-          "label": "Field reader",
+        "journeys": [
+          "observe",
+          "understand",
+          "share"
+        ],
+        "related": [
+          "fieldry",
+          "landscape-interpretation",
+          "dashboard"
+        ]
+      },
+      {
+        "id": "landscape-interpretation",
+        "title": "Landscape Interpretation",
+        "shortTitle": "Landscape",
+        "icon": "terrain",
+        "route": "apps/landscape-interpretation/",
+        "match": [
+          "/apps/landscape-interpretation"
+        ],
+        "category": "outdoor",
+        "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
+        "status": "experimental",
+        "purpose": "Read why a place looks the way it does from field clues — ecology, geology, and land use.",
+        "maturity": "Experimental",
+        "startHere": {
+          "label": "Open field reader",
           "href": "apps/landscape-interpretation/"
         },
-        {
-          "id": "learn",
-          "label": "Learn",
-          "href": "apps/landscape-interpretation/learn.html"
-        }
-      ]
-    }
-  ]
-};
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "dashboard",
+          "fieldry",
+          "foragecast",
+          "waypoint-volunteer"
+        ],
+        "features": [
+          {
+            "id": "field",
+            "label": "Field reader",
+            "href": "apps/landscape-interpretation/"
+          },
+          {
+            "id": "learn",
+            "label": "Learn",
+            "href": "apps/landscape-interpretation/learn.html"
+          }
+        ]
+      }
+    ],
+    "journeys": [
+      {
+        "id": "observe",
+        "label": "Observe",
+        "blurb": "See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments."
+      },
+      {
+        "id": "understand",
+        "label": "Understand",
+        "blurb": "Learn why it matters — calm explanations with uncertainty labeled, never hype."
+      },
+      {
+        "id": "create",
+        "label": "Create",
+        "blurb": "Optional making — photography craft, journals, and personal collections without competition."
+      },
+      {
+        "id": "share",
+        "label": "Share",
+        "blurb": "Intentional sharing only — exports and contributions you choose, never engagement traps."
+      }
+    ]
+  };
 })(typeof window !== "undefined" ? window : globalThis);
