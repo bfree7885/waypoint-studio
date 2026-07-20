@@ -205,7 +205,7 @@ assert("rejects 0,0 coords", sandbox.WDS.dashboardV2Model.isValidCoords(0, 0) ==
 assert("valid coords accepted", model.location.coordsOk === true);
 
 const Cat = sandbox.WDS.dashboardV2Widgets;
-assert("widget catalog has categories", Cat.categories().length === 8);
+assert("widget catalog has categories", Cat.categories().length === 10);
 assert("every widget has exactly one category", Cat.all().every((w) => Cat.categoryById(w.category)));
 assert("default enabled is curated", Cat.defaultEnabledIds().length <= 12);
 assert("current conditions is live", Cat.byId("wx-current").availability === "live");

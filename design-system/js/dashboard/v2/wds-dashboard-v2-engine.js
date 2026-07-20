@@ -134,7 +134,7 @@
     var root = host.closest("[data-wdb-recovery]") || host;
     var V2 = api("dashboardV2");
     if (V2 && V2.bind) V2.bind(root);
-    return host.querySelector("[data-wdb-v2]");
+    return host.querySelector("[data-wdb-v3]") || host.querySelector("[data-wdb-v2]");
   }
 
   global.WDS = global.WDS || {};

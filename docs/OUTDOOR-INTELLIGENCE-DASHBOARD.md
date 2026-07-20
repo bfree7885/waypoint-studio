@@ -5,7 +5,7 @@
 Product question: *“I’m heading outside today. What should I know?”*  
 Goal: interpretation over information, readable in under 30 seconds.
 
-Related (historical): `docs/DASHBOARD-V2-WIDGETS.md`, `docs/dashboard-v2/*` — data/model/take engines remain; V3 owns shell + layout + widget contract.
+Related: [`docs/DASHBOARD-V2.md`](./DASHBOARD-V2.md), [`docs/DASHBOARD-V2-IMPLEMENTATION.md`](./DASHBOARD-V2-IMPLEMENTATION.md), `docs/dashboard-v2/*` — V2 owns the Sprint 3 catalog/prefs/take/engine; V3 is an optional presentation shell over the same model.
 
 ---
 
@@ -25,7 +25,7 @@ Feature flags:
 
 | Key | Default | Effect |
 |-----|---------|--------|
-| `waypoint-dashboard-v3` | on | V3 shell (Brief-first). Set `"0"` for V2 board layout. |
+| `waypoint-dashboard-v3` | **off** | Opt-in V3 shell (Brief-first). Set `"1"` to enable; unset/`"0"` keeps the Sprint 3 V2 board. |
 | `waypoint-dashboard-v2` | on | Entire customizable board. Set `"0"` for V1 summary shell. |
 
 ---
