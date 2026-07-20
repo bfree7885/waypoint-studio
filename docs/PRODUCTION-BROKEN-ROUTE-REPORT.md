@@ -3,12 +3,12 @@
 **Generated:** 2026-07-20
 
 - Checked: **1705**
-- Broken: **1**
+- Broken: **0**
 - Warnings: **6**
 
 ## Broken
 
-- `apps/dashboard/index.html` → `../../design-system/css/wds-dashboard-v3.css` (design-system/css/wds-dashboard-v3.css)
+None.
 
 ## Warnings
 
