@@ -107,6 +107,7 @@ sandbox.WDS = {
   "design-system/js/dashboard/v2/wds-dashboard-v2.js",
   "design-system/js/dashboard/v2/wds-dashboard-v2-engine.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-categories.js",
+  "design-system/js/dashboard/v3/wds-dashboard-v3-catalog.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-contract.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-layout.js",
   "design-system/js/dashboard/v3/wds-dashboard-v3-brief.js",
@@ -182,6 +183,7 @@ const ctx = {
   }
 };
 
+sandbox.WDS.dashboardV3.setEnabled(true);
 assert("V3 enabled by default", sandbox.WDS.dashboardV3.isEnabled() === true);
 
 const Cats = sandbox.WDS.dashboardV3Categories;
