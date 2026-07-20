@@ -21,11 +21,13 @@
 | Steepleaf | `/apps/steepleaf/` | Early access |
 | Savant | `/apps/savant-sommelier/` | Early access |
 | Volunteer | `/apps/waypoint-volunteer/` | Foundation |
+| Landscape Interpretation | `/apps/landscape-interpretation/` | Experimental educational reader (Sprint 9) |
 
 ## Redirects / aliases
 
 | Legacy / duplicate | Target |
 |---|---|
+| `/map/` | `/apps/shed-hunting/map/` |
 | `/apps/scenes/photo-coach/` | `/apps/photo-coach/` |
 | `/apps/scenes/hidden-landscapes/` | `/apps/hidden-landscapes/` |
 | `/apps/scenes/photo-library/` | `/apps/photo-library/` |
@@ -40,4 +42,5 @@ Paths in `foundation.json` are **app-relative** (no leading `/` for in-app links
 ## Do not advertise (not ready)
 
 - Sheds `species/`, `finds/`, `forecast/` (`ready: false`)
-- Landscape Interpretation product UI (docs only)
+- Landscape Interpretation as GIS / verified land-history (field reader is educational only)
+- Volunteer as live regional feeds (demo catalog)

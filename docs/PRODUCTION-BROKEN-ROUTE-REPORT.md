@@ -1,11 +1,11 @@
 # Broken Route Report
 
-**Generated:** 2026-07-19
+**Generated:** 2026-07-20
 
-- Checked: **1575**
-- Broken: **0**
+- Checked: **1609**
+- Broken: **1**
 - Warnings: **0**
 
 ## Broken
 
-None.
+- `apps/steepleaf/data/foundation.json` → `/explore/` (ready route still absolute site-root style)
