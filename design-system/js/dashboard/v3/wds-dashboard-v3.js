@@ -1,7 +1,7 @@
 /**
  * Dashboard V3 — Outdoor Intelligence foundation orchestrator.
  * Presentation shell over preserved V2 model / prefs / take / widget data.
- * Feature flag: localStorage waypoint-dashboard-v3 (default off; set "1" for V3 shell).
+ * Feature flag: localStorage waypoint-dashboard-v3 (RC2.5 Sprint 1: default on; set "0" for V2 board).
  */
 (function (global) {
   "use strict";
@@ -16,10 +16,11 @@
   function isEnabled() {
     try {
       var v = global.localStorage && global.localStorage.getItem(FLAG_KEY);
-      if (v === "1") return true;
       if (v === "0") return false;
+      if (v === "1") return true;
     } catch (e) { /* noop */ }
-    return false;
+    /* RC2.5 Sprint 1 — Outdoor Intelligence Dashboard Foundation defaults on */
+    return true;
   }
 
   function setEnabled(on) {
@@ -184,6 +185,8 @@
   }
 
   function render(ctx, opts) {
+    var Catalog = api("dashboardV3Catalog");
+    if (Catalog && Catalog.apply) Catalog.apply();
     if (!isEnabled()) {
       var V2 = api("dashboardV2");
       if (V2 && V2.render) {
