@@ -235,7 +235,9 @@
     };
     var active = readStoredTab();
     var TS = global.WDS && global.WDS.todaySummary;
-    var summaryHtml = TS && TS.render ? TS.render(ctx) : "";
+    var V2 = global.WDS && global.WDS.dashboardV2;
+    var v2Html = V2 && V2.isEnabled && V2.isEnabled() && V2.render ? V2.render(ctx) : "";
+    var summaryHtml = v2Html || (TS && TS.render ? TS.render(ctx) : "");
 
     var panels = TABS.map(function (t) {
       return renderPanel(t.id, active, ctx, settings);
@@ -311,6 +313,9 @@
     var host = root.querySelector("[data-wdb-recovery]") || root;
     if (host._wdbRecoveryBound) return;
     host._wdbRecoveryBound = true;
+
+    var V2 = global.WDS && global.WDS.dashboardV2;
+    if (V2 && V2.bind) V2.bind(root);
 
     host.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-wdb-tab]");
