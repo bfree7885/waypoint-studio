@@ -182,13 +182,13 @@
 }
 
 .wdb-recovery-tabs__tab:hover {
-  color: var(--wds-text, #1a1c18);
-  background: color-mix(in srgb, var(--wds-text, #1a1c18) 6%, transparent);
+  color: var(--wds-text, #e4eaf4);
+  background: color-mix(in srgb, var(--wds-text, #e4eaf4) 8%, transparent);
 }
 
 .wdb-recovery-tabs__tab.is-active {
-  color: var(--wds-text, #1a1c18);
-  background: color-mix(in srgb, var(--wdb-sum-accent, #3d6b4f) 16%, #fff);
+  color: var(--wds-text, #e4eaf4);
+  background: color-mix(in srgb, var(--wdb-sum-accent, var(--wds-accent, #c8f055)) 22%, var(--wds-surface, #0c1628));
 }
 
 .wdb-recovery-tabs__tab:focus-visible {

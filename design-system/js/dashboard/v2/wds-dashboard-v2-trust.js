@@ -42,6 +42,7 @@
           key: cacheKey(model),
           storedAt: new Date().toISOString(),
           briefing: payload.briefing || null,
+          take: payload.take || null,
           modelMeta: {
             locationLabel: model.location.label,
             trust: model.provider.trust
