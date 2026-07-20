@@ -280,6 +280,7 @@
   font-size: 0.8125rem;
 }
 
+.pc-shell .wds-btn--secondary,
 .pc-shell .btn-secondary {
   opacity: 1;
   color: var(--coach-text);
@@ -287,12 +288,15 @@
   background: var(--coach-surface);
 }
 
+.pc-shell .wds-btn--secondary:hover:not(:disabled),
 .pc-shell .btn-secondary:hover:not(:disabled) {
   border-color: var(--coach-accent);
   background: var(--coach-surface-raised);
 }
 
 .pc-shell .btn:disabled,
+.pc-shell .wds-btn--primary:disabled,
+.pc-shell .wds-btn--secondary:disabled,
 .pc-shell .btn-primary:disabled,
 .pc-shell .btn-secondary:disabled {
   opacity: 0.55;
@@ -1011,6 +1015,7 @@
     padding-bottom: 2.5rem;
   }
 
+  .pc-shell .coach-drop-zone .wds-btn--primary,
   .pc-shell .coach-drop-zone .btn-primary {
     width: 100%;
   }

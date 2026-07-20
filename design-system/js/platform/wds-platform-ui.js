@@ -112,18 +112,12 @@
     return label ? '<p class="wds-honesty wds-freshness">' + escapeHtml(label) + "</p>" : "";
   }
 
-  function loadingHtml(msg, opts) {
-    opts = opts || {};
-    var cls = opts.inline ? "wds-loading wds-loading--inline" : "wds-loading";
-    return '<p class="' + cls + '"' + (opts.busy !== false ? ' aria-busy="true"' : "") + ">" +
-      escapeHtml(msg || "Loading…") + "</p>";
-  }
-
   function skeletonHtml(lines) {
     lines = lines || 3;
     var html = '<div class="wds-skeleton" aria-hidden="true">';
     for (var i = 0; i < lines; i++) {
-      var extra = i === 0 ? " wds-skeleton__line--title" : i === lines - 1 ? " wds-skeleton__line--short" : "";
+      var extra =
+        i === 0 ? " wds-skeleton__line--title" : i === lines - 1 ? " wds-skeleton__line--short" : "";
       html += '<div class="wds-skeleton__line' + extra + '"></div>';
     }
     return html + "</div>";
@@ -132,9 +126,72 @@
   function emptyHtml(opts) {
     opts = opts || {};
     if (typeof opts === "string") opts = { text: opts };
-    var title = opts.title ? '<p class="wds-state__title">' + escapeHtml(opts.title) + "</p>" : "";
-    var text = '<p class="wds-state wds-empty-inline">' + escapeHtml(opts.text || "Nothing here yet.") + "</p>";
-    return '<div class="wds-state" role="status">' + title + text + "</div>";
+    var title = opts.title
+      ? '<p class="wds-state__title">' + escapeHtml(opts.title) + "</p>"
+      : "";
+    var text =
+      '<p class="wds-state wds-empty-inline">' +
+      escapeHtml(opts.text || "Nothing here yet.") +
+      "</p>";
+    var hint = opts.hint
+      ? '<p class="wds-state__hint">' + escapeHtml(opts.hint) + "</p>"
+      : "";
+    var actions = "";
+    if (opts.actionHref && opts.actionLabel) {
+      actions =
+        '<div class="wds-state__actions">' +
+        '<a class="wds-btn wds-btn--primary" href="' +
+        escapeHtml(opts.actionHref) +
+        '">' +
+        escapeHtml(opts.actionLabel) +
+        "</a></div>";
+    }
+    return (
+      '<div class="wds-state" role="status">' + title + text + hint + actions + "</div>"
+    );
+  }
+
+  /**
+   * Full-page empty guidance (preferred over blank main).
+   */
+  function emptyPageHtml(opts) {
+    opts = opts || {};
+    var actions = "";
+    if (opts.actionHref && opts.actionLabel) {
+      actions =
+        '<div class="wds-empty-page__actions">' +
+        '<a class="wds-btn wds-btn--primary" href="' +
+        escapeHtml(opts.actionHref) +
+        '">' +
+        escapeHtml(opts.actionLabel) +
+        "</a>";
+      if (opts.secondaryHref && opts.secondaryLabel) {
+        actions +=
+          '<a class="wds-btn wds-btn--ghost" href="' +
+          escapeHtml(opts.secondaryHref) +
+          '">' +
+          escapeHtml(opts.secondaryLabel) +
+          "</a>";
+      }
+      actions += "</div>";
+    }
+    return (
+      '<div class="wds-empty-page" role="status">' +
+      (opts.eyebrow
+        ? '<p class="wds-empty-page__eyebrow">' + escapeHtml(opts.eyebrow) + "</p>"
+        : "") +
+      '<h2 class="wds-empty-page__title">' +
+      escapeHtml(opts.title || "Nothing here yet") +
+      "</h2>" +
+      '<p class="wds-empty-page__text">' +
+      escapeHtml(
+        opts.text ||
+          "When you add something, it will appear here. You can also explore related Studio apps from the Apps menu."
+      ) +
+      "</p>" +
+      actions +
+      "</div>"
+    );
   }
 
   function errorHtml(opts) {
@@ -143,27 +200,80 @@
     var kind = opts.kind || "error";
     var titleMap = {
       error: "Something went wrong",
-      timeout: "Request timed out",
+      timeout: "This is taking longer than expected",
       offline: "You appear to be offline",
       permission: "Permission needed",
-      unavailable: "Service unavailable",
+      unavailable: "This service is unavailable right now",
       empty: "No results"
     };
+    var hintMap = {
+      timeout: "You can retry, or keep browsing with whatever already loaded.",
+      offline: "Cached information may still be available. Retry when you reconnect.",
+      permission: "Check browser settings, then try again.",
+      unavailable: "This is a temporary provider issue — not a problem with your data.",
+      error: "A short wait and retry usually helps."
+    };
     var title = opts.title || titleMap[kind] || titleMap.error;
+    var hint =
+      opts.hint ||
+      (opts.cached
+        ? "Showing the last saved information while we try again."
+        : hintMap[kind] || "");
     var actions = "";
     if (opts.retry) {
       actions =
         '<div class="wds-state__actions">' +
         '<button type="button" class="wds-btn wds-btn--secondary" data-wds-retry>' +
-        escapeHtml(opts.retryLabel || "Retry") +
+        escapeHtml(opts.retryLabel || "Try again") +
         "</button></div>";
     }
     return (
       '<div class="wds-state" role="alert">' +
-      '<p class="wds-state__title">' + escapeHtml(title) + "</p>" +
-      '<p class="wds-error">' + escapeHtml(opts.text || "Please try again.") + "</p>" +
+      '<p class="wds-state__title">' +
+      escapeHtml(title) +
+      "</p>" +
+      '<p class="wds-error">' +
+      escapeHtml(opts.text || "Please try again.") +
+      "</p>" +
+      (hint ? '<p class="wds-state__hint">' + escapeHtml(hint) + "</p>" : "") +
+      (opts.cached
+        ? '<p class="wds-honesty">Using cached data — may not reflect the latest conditions.</p>'
+        : "") +
       actions +
       "</div>"
+    );
+  }
+
+  function loadingHtml(msg, opts) {
+    opts = opts || {};
+    var cls = opts.inline ? "wds-loading wds-loading--inline" : "wds-loading";
+    var detail = opts.detail
+      ? '<p class="wds-state__hint">' + escapeHtml(opts.detail) + "</p>"
+      : "";
+    if (opts.skeleton) {
+      return (
+        '<div class="' +
+        cls +
+        '" role="status" aria-live="polite"' +
+        (opts.busy !== false ? ' aria-busy="true"' : "") +
+        ">" +
+        '<p>' +
+        escapeHtml(msg || "Loading…") +
+        "</p>" +
+        detail +
+        skeletonHtml(opts.lines || 4) +
+        "</div>"
+      );
+    }
+    return (
+      '<p class="' +
+      cls +
+      '"' +
+      (opts.busy !== false ? ' aria-busy="true"' : "") +
+      ">" +
+      escapeHtml(msg || "Loading…") +
+      "</p>" +
+      detail
     );
   }
 
@@ -207,7 +317,7 @@
   global.WDS = global.WDS || {};
   global.WDS.escapeHtml = escapeHtml;
   global.WDS.platformUi = {
-    version: "1.1.0",
+    version: "2.0.0",
     escapeHtml: escapeHtml,
     getJson: getJson,
     clearCache: clearCache,
@@ -215,6 +325,7 @@
     loadingHtml: loadingHtml,
     skeletonHtml: skeletonHtml,
     emptyHtml: emptyHtml,
+    emptyPageHtml: emptyPageHtml,
     errorHtml: errorHtml,
     honestyHtml: honestyHtml,
     freshnessHtml: freshnessHtml,

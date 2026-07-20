@@ -121,8 +121,8 @@
           "</div>" +
         "</button>" +
         '<div class="photo-hero-actions">' +
-          '<button type="button" class="btn btn-secondary btn-sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
-          '<button type="button" class="btn btn-ghost btn-sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
+          '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
+          '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
         "</div>" +
       "</section>";
   }
@@ -295,8 +295,8 @@
             fieldPanel +
             tagsHtml +
             '<div class="photo-modal-actions">' +
-              '<button type="button" class="btn btn-primary btn-sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
-              '<button type="button" class="btn btn-secondary btn-sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
+              '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" data-action="living-scene" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.living) + "</button>" +
+              '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" data-action="parallax" data-photo-id="' + escapeHtml(photo.id) + '">' + escapeHtml(labels.parallax) + "</button>" +
             "</div>" +
           "</aside>" +
         "</div>" +

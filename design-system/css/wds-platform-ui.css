@@ -15,7 +15,7 @@
   -webkit-overflow-scrolling: touch;
   padding: var(--wds-space-3, 0.75rem) clamp(1rem, 4vw, 2rem);
   border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.08));
-  background: var(--wds-inset, rgba(0, 0, 0, 0.02));
+  background: var(--wds-inset);
   scrollbar-width: thin;
 }
 
@@ -26,7 +26,7 @@
   padding: 0.55rem 0.85rem;
   border-radius: var(--wds-radius-md, 10px);
   border: 1px solid transparent;
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   text-decoration: none;
   font-size: var(--wds-text-sm, 0.875rem);
   white-space: nowrap;
@@ -45,8 +45,8 @@
 .fc-task-nav__link:focus-visible,
 .ss-task-nav__link:hover,
 .ss-task-nav__link:focus-visible {
-  color: var(--wds-text, #222);
-  background: var(--wds-surface, #fff);
+  color: var(--wds-text);
+  background: var(--wds-surface);
   outline: none;
 }
 
@@ -57,8 +57,8 @@
 .ss-task-nav__link.is-active,
 .ss-task-nav__link[aria-current="page"] {
   border-color: var(--wds-border, rgba(0, 0, 0, 0.12));
-  background: var(--wds-surface, #fff);
-  color: var(--wds-text, #222);
+  background: var(--wds-surface);
+  color: var(--wds-text);
   font-weight: 600;
   box-shadow: inset 0 0 0 1px var(--wds-accent, currentColor);
 }
@@ -70,7 +70,7 @@
 .st-loading {
   margin: 0;
   padding: var(--wds-space-4, 1rem) clamp(1rem, 4vw, 2rem);
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   font-size: var(--wds-text-sm, 0.875rem);
 }
 
@@ -131,7 +131,7 @@ html[data-wds-reduce-motion="true"] .wds-loading {
 .st-empty {
   margin: 0;
   padding: var(--wds-space-4, 1rem) clamp(1rem, 4vw, 2rem);
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   font-size: var(--wds-text-md, 1rem);
   line-height: var(--wds-leading-normal, 1.55);
   max-width: var(--wds-max-reading, 42rem);
@@ -148,7 +148,7 @@ html[data-wds-reduce-motion="true"] .wds-loading {
   font-family: var(--wds-font-display, Georgia, serif);
   font-size: var(--wds-text-xl, 1.375rem);
   font-weight: 500;
-  color: var(--wds-text, #222);
+  color: var(--wds-text);
 }
 
 .wds-state__actions {
@@ -192,8 +192,8 @@ html[data-wds-reduce-motion="true"] .wds-loading {
   padding: 0.55rem 0.75rem;
   border-radius: var(--wds-radius-md, 10px);
   border: 1px solid var(--wds-border, rgba(0, 0, 0, 0.12));
-  background: var(--wds-surface, #fff);
-  color: var(--wds-text, #222);
+  background: var(--wds-surface);
+  color: var(--wds-text);
 }
 
 .wds-search__input:focus-visible {
@@ -211,7 +211,7 @@ html[data-wds-reduce-motion="true"] .wds-loading {
   padding: 0.45rem 0;
   border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.06));
   font-size: var(--wds-text-sm, 0.875rem);
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
 }
 
 /* ——— Map chrome consistency ——— */
@@ -233,7 +233,7 @@ html[data-wds-reduce-motion="true"] .wds-loading {
   padding: 0.55rem 0.75rem;
   border-radius: var(--wds-radius-md, 10px);
   background: rgba(255, 255, 255, 0.92);
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   font-size: var(--wds-text-sm, 0.875rem);
   pointer-events: none;
 }
@@ -257,7 +257,7 @@ html[data-wds-reduce-motion="true"] .wds-loading {
 
 .wds-page-lead {
   margin: 0 0 var(--wds-space-3, 0.75rem);
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   font-size: var(--wds-text-md, 1rem);
   max-width: 40rem;
   line-height: var(--wds-leading-normal, 1.55);
@@ -292,7 +292,7 @@ html[data-wds-offline="true"] .was-global {
 .wds-provider-health {
   margin: 0.5rem 0 1rem;
   padding-left: 1.1rem;
-  color: var(--wds-text-secondary, #555);
+  color: var(--wds-text-secondary);
   font-size: var(--wds-text-sm, 0.875rem);
 }
 

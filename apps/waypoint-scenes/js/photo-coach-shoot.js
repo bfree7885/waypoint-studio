@@ -1289,7 +1289,7 @@
         '<div class="pc-batch-progress__fill" style="width:' + pct + '%"></div>' +
       "</div>" +
       (state.status === "running" || state.status === "cancelling"
-        ? '<button type="button" class="btn btn-secondary pc-batch-progress__cancel" id="pc-queue-cancel">Cancel remaining</button>'
+        ? '<button type="button" class="wds-btn wds-btn--secondary pc-batch-progress__cancel" id="pc-queue-cancel">Cancel remaining</button>'
         : "") +
     "</div>";
   }

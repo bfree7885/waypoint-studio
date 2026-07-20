@@ -247,7 +247,7 @@
             '<input type="text" data-action="correct-subjects" placeholder="Correct subjects (comma-separated)" value="' +
             esc(corrected || "") +
             '" />' +
-            '<button type="button" class="btn btn-secondary" data-action="apply-correction">Save correction</button>' +
+            '<button type="button" class="wds-btn wds-btn--secondary" data-action="apply-correction">Save correction</button>' +
             "</div>" +
             "</li>"
           );
@@ -262,10 +262,10 @@
       "<h3>Recent photos</h3>" +
       (photos.length ? photoHtml : '<p class="pp-empty">No photos stored yet.</p>') +
       '<div class="pp-actions">' +
-      '<button type="button" class="btn btn-primary" id="pp-recalculate">Recalculate profile</button>' +
-      '<button type="button" class="btn btn-secondary" id="pp-reset-computed">Reset profile view</button>' +
-      '<button type="button" class="btn btn-secondary" id="pp-reset-learning">Reset learning flags</button>' +
-      '<button type="button" class="btn btn-secondary" id="pp-seed-demo">Load demo corpus</button>' +
+      '<button type="button" class="wds-btn wds-btn--primary" id="pp-recalculate">Recalculate profile</button>' +
+      '<button type="button" class="wds-btn wds-btn--secondary" id="pp-reset-computed">Reset profile view</button>' +
+      '<button type="button" class="wds-btn wds-btn--secondary" id="pp-reset-learning">Reset learning flags</button>' +
+      '<button type="button" class="wds-btn wds-btn--secondary" id="pp-seed-demo">Load demo corpus</button>' +
       "</div>" +
       '<p class="pp-muted">Corrections influence future profile learning without deleting the original critique. Reset profile view clears computed fields only; reset learning flags clears exclusions, experimentation marks, and corrections.</p>' +
       "</div>"
@@ -300,13 +300,13 @@
                 : "") +
               "</div>" +
               '<div class="pp-coach-actions">' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="hide" data-family="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="hide" data-family="' +
               esc(f.family) +
               '">Hide theme</button> ' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="want-more" data-family="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="want-more" data-family="' +
               esc(f.family) +
               '">More guidance</button> ' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="intentional" data-family="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="intentional" data-family="' +
               esc(f.family) +
               '">This was intentional</button>' +
               "</div></li>"
@@ -375,13 +375,13 @@
               esc(r.recommendation) +
               "</p>" +
               '<div class="pp-coach-actions">' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="helpful" data-uuid="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="helpful" data-uuid="' +
               esc(r.uuid) +
               '">Helpful</button> ' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="not-relevant" data-uuid="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="not-relevant" data-uuid="' +
               esc(r.uuid) +
               '">Not relevant</button> ' +
-              '<button type="button" class="btn btn-secondary" data-coach-action="intentional-rec" data-uuid="' +
+              '<button type="button" class="wds-btn wds-btn--secondary" data-coach-action="intentional-rec" data-uuid="' +
               esc(r.uuid) +
               '" data-family="' +
               esc(r.coachingTheme || "") +
@@ -401,7 +401,7 @@
             return (
               "<li>" +
               esc(Pers.familyLabel(f)) +
-              ' <button type="button" class="btn btn-secondary" data-coach-action="restore" data-family="' +
+              ' <button type="button" class="wds-btn wds-btn--secondary" data-coach-action="restore" data-family="' +
               esc(f) +
               '">Restore</button></li>'
             );

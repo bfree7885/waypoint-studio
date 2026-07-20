@@ -196,6 +196,53 @@
   --wds-product-glow: rgba(120, 120, 180, 0.18);
 }
 
+[data-product="dashboard"] {
+  --wds-accent: #c8f055;
+  --wds-accent-dim: rgba(200, 240, 85, 0.12);
+  --wds-warm: #9b8fd9;
+  --wds-product-glow: rgba(155, 143, 217, 0.2);
+}
+
+[data-product="waypoint-volunteer"] {
+  --wds-accent: #b8e070;
+  --wds-accent-dim: rgba(184, 224, 112, 0.12);
+  --wds-warm: #8aa8c8;
+  --wds-product-glow: rgba(138, 168, 200, 0.2);
+}
+
+[data-product="landscape-interpretation"] {
+  --wds-accent: #c4a574;
+  --wds-accent-dim: rgba(196, 165, 116, 0.14);
+  --wds-warm: #7a9e8a;
+  --wds-product-glow: rgba(122, 158, 138, 0.18);
+  /* Distinctive display voice, still on shared token rails */
+  --wds-font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --wds-font-body: "DM Sans", "Inter", system-ui, sans-serif;
+}
+
+[data-product="studio-home"],
+[data-product="studio"] {
+  --wds-accent: #c8f055;
+  --wds-accent-dim: rgba(200, 240, 85, 0.12);
+  --wds-warm: #9b8fd9;
+  --wds-product-glow: rgba(155, 143, 217, 0.22);
+}
+
+[data-product="photo-coach"],
+[data-product="photo-library"] {
+  --wds-accent: #d4e86a;
+  --wds-accent-dim: rgba(212, 232, 106, 0.12);
+  --wds-warm: #a898d8;
+  --wds-product-glow: rgba(168, 152, 216, 0.2);
+}
+
+/* Experience System V2 layout helpers */
+:root {
+  --wds-touch-min: 44px;
+  --wds-card-pad: var(--wds-space-5);
+  --wds-section-gap: var(--wds-space-8);
+}
+
 /* Legacy alias map (Waypoint Scenes) */
 :root {
   --ws-bg: var(--wds-bg);

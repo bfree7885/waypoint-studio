@@ -24,3 +24,6 @@
 @import url("wds-dashboard-widgets.css");
 @import url("wds-dashboard-recovery.css");
 @import url("wds-app-shell.css");
+@import url("wds-platform-ui.css");
+@import url("wds-platform-boot.css");
+@import url("wds-experience-v2.css");

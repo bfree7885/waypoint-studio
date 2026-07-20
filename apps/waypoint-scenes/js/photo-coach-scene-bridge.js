@@ -45,7 +45,7 @@
           '<p>' + escapeHtml(opt.desc) + "</p>" +
         "</div>";
       if (opt.status === "live") {
-        html += '<button type="button" class="btn btn-secondary btn-sm coach-scene-btn" data-scene-action="' +
+        html += '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm coach-scene-btn" data-scene-action="' +
           escapeHtml(opt.id) + '">Open</button>';
       }
       html += "</li>";
@@ -58,7 +58,7 @@
         '<li><span class="coach-trust coach-trust--pending">Later</span> Animated water, stars, aurora</li>' +
         '<li><span class="coach-trust coach-trust--pending">Later</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
       "</ul>" +
-      '<button type="button" class="btn btn-primary coach-scene-primary" id="btn-coach-send-builder">' +
+      '<button type="button" class="wds-btn wds-btn--primary coach-scene-primary" id="btn-coach-send-builder">' +
         "Create Living Scene</button>" +
       "</section>";
     return html;

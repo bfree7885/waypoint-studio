@@ -22,8 +22,8 @@
     <div data-wds-app-local data-shell-depth="1"></div>
 
     <div class="was-builder-bar" aria-label="Scene Builder actions">
-      <button type="button" class="btn btn-ghost btn-sm" id="btn-coach-nav">Coach mode</button>
-      <button type="button" class="btn btn-ghost btn-sm" id="btn-upload-nav">Scene Builder</button>
+      <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="btn-coach-nav">Coach mode</button>
+      <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="btn-upload-nav">Scene Builder</button>
     </div>
 
     <section class="hero" id="hero">
@@ -34,8 +34,8 @@
         <h1 class="hero-title">Upload. Notice. Understand.</h1>
         <p class="hero-lead">Photo Coach helps you notice what a photograph is doing. Scene Builder lets you try quiet atmosphere tools on the same frames.</p>
         <div class="hero-actions">
-          <button type="button" class="btn btn-primary btn-lg" id="btn-mode-coach-hero">Open Photo Coach</button>
-          <button type="button" class="btn btn-secondary btn-lg" id="btn-mode-builder-hero">Try Scene Builder</button>
+          <button type="button" class="wds-btn wds-btn--primary wds-btn--lg" id="btn-mode-coach-hero">Open Photo Coach</button>
+          <button type="button" class="wds-btn wds-btn--secondary wds-btn--lg" id="btn-mode-builder-hero">Try Scene Builder</button>
           <p class="hero-hint">JPG, PNG, WebP · up to 20 MB · stays on your device</p>
         </div>
       </div>
@@ -64,14 +64,14 @@
             <div class="coach-empty" id="coach-empty">
               <p class="coach-empty__title">Drop photos here</p>
               <p class="coach-empty__text">1–20 images · JPG, PNG, WebP · drag, browse, or paste (Ctrl+V)</p>
-              <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photos</button>
+              <button type="button" class="wds-btn wds-btn--primary" id="btn-coach-upload-empty">Choose photos</button>
             </div>
             <div class="coach-preview-frame" id="coach-preview-frame" hidden>
               <img id="coach-preview-img" class="coach-preview-img" alt="" hidden>
               <p class="coach-file-name" id="coach-file-name"></p>
             </div>
           </div>
-          <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload more</button>
+          <button type="button" class="wds-btn wds-btn--secondary" style="width:100%" id="btn-coach-upload">Upload more</button>
           <div id="coach-signals-mount" class="coach-signals-mount" aria-live="polite" hidden></div>
           <div id="coach-exif-mount" class="coach-exif-mount" aria-live="polite"></div>
           <div id="coach-field-mount" class="coach-field-mount" aria-live="polite"></div>
@@ -127,7 +127,7 @@
                 </div>
                 <p class="preview-empty-title">Set a frame on the easel</p>
                 <p class="preview-empty-text">Fog drifts. Light changes. The day continues.</p>
-                <button type="button" class="btn btn-secondary" id="btn-upload-empty">Unpack a frame</button>
+                <button type="button" class="wds-btn wds-btn--secondary" id="btn-upload-empty">Unpack a frame</button>
               </div>
 
               <div class="scene-frame" id="scene-frame" hidden>
@@ -194,7 +194,7 @@
                 </div>
                 <p class="preview-empty-title">Lean into the frame</p>
                 <p class="preview-empty-text">Presence, not weather — like looking through a cabin window.</p>
-                <button type="button" class="btn btn-secondary" id="btn-upload-parallax-empty">Unpack a frame</button>
+                <button type="button" class="wds-btn wds-btn--secondary" id="btn-upload-parallax-empty">Unpack a frame</button>
               </div>
 
               <div class="parallax-frame" id="parallax-frame" hidden>
@@ -228,7 +228,7 @@
               </header>
 
               <div class="parallax-upload-row">
-                <button type="button" class="btn btn-secondary btn-sm" id="btn-upload-parallax">Unpack</button>
+                <button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" id="btn-upload-parallax">Unpack</button>
                 <input type="file" id="parallax-file-input" accept="image/jpeg,image/png,image/webp,image/svg+xml" hidden>
               </div>
 
@@ -292,7 +292,7 @@
               </label>
               <p class="parallax-tilt-hint muted" id="parallax-tilt-hint" hidden></p>
 
-              <button type="button" class="btn btn-ghost btn-sm parallax-reset-btn" id="btn-parallax-reset">Restore</button>
+              <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm parallax-reset-btn" id="btn-parallax-reset">Restore</button>
             </section>
           </aside>
         </div>
@@ -354,7 +354,7 @@
               <p class="export-empty-note muted" id="export-empty-note">Bring a Living Scene to the hearth first.</p>
             </div>
             <div class="export-actions">
-              <button type="button" class="btn btn-primary" id="btn-export-download" disabled>Save this moment</button>
+              <button type="button" class="wds-btn wds-btn--primary" id="btn-export-download" disabled>Save this moment</button>
             </div>
             <p class="export-roadmap-note muted">Need a quieter still? <button type="button" class="inline-link learn-goto" data-tab="learn">Open the Field Guide</button></p>
           </section>

@@ -228,6 +228,7 @@
   margin-top: 0.45rem;
 }
 
+.pp-coach-actions .wds-btn,
 .pp-coach-actions .btn {
   font-size: 0.78rem;
   padding: 0.3rem 0.55rem;
@@ -254,6 +255,7 @@
 }
 
 @media (max-width: 640px) {
+  .pp-actions .wds-btn,
   .pp-actions .btn {
     width: 100%;
   }

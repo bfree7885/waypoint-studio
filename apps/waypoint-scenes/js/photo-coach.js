@@ -600,7 +600,7 @@
       renderLearning(critique) +
       renderTechnicalDetails(critique) +
       '<div class="coach-actions coach-actions--center">' +
-        '<button type="button" class="btn btn-secondary" id="btn-coach-save-session">Save session</button>' +
+        '<button type="button" class="wds-btn wds-btn--secondary" id="btn-coach-save-session">Save session</button>' +
       "</div>";
   }
 

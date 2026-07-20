@@ -8,10 +8,13 @@
   --lie-moss-deep: #2a4030;
   --lie-sand: #e8e1d2;
   --lie-bg: #dfe6d8;
+  /* Experience System V2 — product fonts ride shared token rails */
+  --wds-font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --wds-font-body: "DM Sans", "Inter", system-ui, sans-serif;
 }
 
 .lie-page {
-  font-family: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  font-family: var(--wds-font-display);
   color: var(--lie-ink);
   min-height: 100vh;
   background:
@@ -29,7 +32,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.72rem;
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   color: var(--lie-moss);
   margin: 0 0 0.35rem;
 }
@@ -87,7 +90,7 @@
 
 .lie-chip,
 .lie-btn {
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   font-size: 0.9rem;
   min-height: 44px;
   padding: 0.55rem 0.85rem;
@@ -109,7 +112,7 @@
 }
 
 .lie-group legend {
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 0.35rem;
@@ -124,7 +127,7 @@
   margin: 0.35rem 0;
   min-height: 44px;
   padding: 0.25rem 0;
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
 }
 
 .lie-check input {
@@ -158,7 +161,7 @@
 }
 
 .lie-ix__cat {
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -172,7 +175,7 @@
 }
 
 .lie-ix h4 {
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -185,7 +188,7 @@
 }
 
 .lie-label {
-  font-family: "DM Sans", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;

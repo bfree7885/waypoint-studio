@@ -16,7 +16,7 @@
 </head>
 <body class="pc-shell">
   <a class="wds-skip" href="#coach-drop-zone">Skip to upload</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="photo-coach" data-product-name="Photo Coach" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
 
@@ -54,15 +54,15 @@
                 <p class="coach-empty__title">Drop today’s photos here</p>
                 <p class="coach-empty__text">1–20 images · click to browse · paste with Ctrl+V</p>
                 <p class="coach-empty__formats">JPG, PNG, WebP · max 20 MB each</p>
-                <button type="button" class="btn btn-primary" id="btn-coach-upload-empty">Choose photos</button>
-                <button type="button" class="btn btn-secondary" id="btn-coach-folder" style="margin-top:0.5rem">Choose folder</button>
+                <button type="button" class="wds-btn wds-btn--primary" id="btn-coach-upload-empty">Choose photos</button>
+                <button type="button" class="wds-btn wds-btn--secondary" id="btn-coach-folder" style="margin-top:0.5rem">Choose folder</button>
               </div>
               <div class="coach-preview-frame" id="coach-preview-frame" hidden>
                 <img id="coach-preview-img" class="coach-preview-img" alt="" hidden>
                 <p class="coach-file-name" id="coach-file-name"></p>
               </div>
             </div>
-            <button type="button" class="btn btn-secondary btn-block" id="btn-coach-upload">Upload more</button>
+            <button type="button" class="wds-btn wds-btn--secondary" style="width:100%" id="btn-coach-upload">Upload more</button>
             <p class="upload-error" id="coach-upload-error" role="alert" hidden></p>
             <input type="file" id="coach-file-input" accept="image/jpeg,image/png,image/webp" multiple hidden>
             <input type="file" id="coach-folder-input" accept="image/jpeg,image/png,image/webp" multiple webkitdirectory directory hidden>
