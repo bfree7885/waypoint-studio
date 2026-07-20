@@ -21,6 +21,7 @@
   var COARSE_COLS = 10;
   var SPECIES_LABEL = "Whitetail deer";
   var DEFAULT_HEAT_OPACITY = 0.42;
+  var GPS_DENIED_KEY = "waypoint-sheds-gps-denied-v1";
 
   var state = {
     locationStatus: "idle",
@@ -32,9 +33,11 @@
     filterTypes: null,
     elevCache: null,
     elevKey: "",
+    elevAbort: null,
     weather: null,
     recomputeTimer: null,
     recomputeGen: 0,
+    heatPhase: "idle",
     firstEthicsShown: false,
     tracking: false,
     activeSessionId: null,
@@ -122,7 +125,83 @@
     return "Limited inputs — walk carefully";
   }
 
-  function dayQualityLine(coverage, band) {
+  function wasGpsDenied() {
+    try {
+      return localStorage.getItem(GPS_DENIED_KEY) === "1";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function rememberGpsDenied(denied) {
+    try {
+      if (denied) localStorage.setItem(GPS_DENIED_KEY, "1");
+      else localStorage.removeItem(GPS_DENIED_KEY);
+    } catch (e) { /* private mode */ }
+  }
+
+  /** Interpret weather + season into field language (not raw mm / kph). */
+  function fieldConditionLines(weather, season) {
+    var lines = [];
+    var wx = weather;
+    if (wx) {
+      var snow = wx.snowMm;
+      var temp = wx.tempC;
+      var windMs = wx.windSpeedMs;
+      if (snow != null && snow > 8 && temp != null && temp > 0) {
+        lines.push("Recent snowmelt may expose south-facing slopes and bare edges.");
+      } else if (snow != null && snow > 25) {
+        lines.push("Deeper snow can hide antlers — favor wind-scoured ridges and openings.");
+      } else if (snow != null && snow > 0.5) {
+        lines.push("Light snow can improve ground contrast for spotting sheds.");
+      }
+      if (windMs != null && windMs >= 8) {
+        lines.push("Stronger winds may concentrate antlers along fence lines and lee edges.");
+      } else if (windMs != null && windMs >= 4) {
+        lines.push("Breezes can move light debris — check fence lines and travel corridors.");
+      }
+      if (temp != null && temp >= 12) {
+        lines.push("Mild weather and green-up may reduce visibility — slow down under cover.");
+      } else if (temp != null && temp <= -5) {
+        lines.push("Hard freeze can lock snow crust — look where deer travel and bed.");
+      }
+    }
+    if (season && season.phaseId === "peak_shed") {
+      lines.push("Seasonal timing looks closer to peak shed for this latitude.");
+    } else if (season && season.phaseId === "late_shed") {
+      lines.push("Later-season window — prioritize overlooked pockets and pressure edges.");
+    } else if (season && (season.phaseId === "pre_shed" || season.phaseId === "early_shed")) {
+      lines.push("Early window — treat every mark as reconnaissance, not a find map.");
+    } else if (season && season.phaseId === "post_shed") {
+      lines.push("Post-peak window — leftover sheds favor tough cover and missed edges.");
+    }
+    if (!lines.length) {
+      if (navigator.onLine === false || state.offlineForced) {
+        lines.push("Working from local notes and season rules — weather feed unavailable.");
+      } else {
+        lines.push("Conditions look ordinary — lean on terrain, sign, and your coverage marks.");
+      }
+    }
+    return lines.slice(0, 3);
+  }
+
+  function dayQualityLine(coverage, band, weather, season) {
+    var wx = weather || state.weather;
+    if (wx) {
+      if (wx.snowMm != null && wx.snowMm > 8 && wx.tempC != null && wx.tempC > 0) {
+        return "Snowmelt favors open slopes";
+      }
+      if (wx.windSpeedMs != null && wx.windSpeedMs >= 8) {
+        return "Wind may load fence lines";
+      }
+      if (wx.tempC != null && wx.tempC >= 12) {
+        return "Green-up lowers visibility";
+      }
+      if (wx.snowMm != null && wx.snowMm > 25) {
+        return "Deep snow — pick open ground";
+      }
+    }
+    if (season && season.phaseId === "peak_shed") return "Peak-shed window nearby";
     var level = (coverage && coverage.level) || "limited";
     if (level === "strong" && (band === "higher" || band === "moderate")) return "Looking favorable nearby";
     if (level === "moderate") return "Worth searching nearby";
@@ -130,11 +209,26 @@
     return "Guidance with limited inputs";
   }
 
+  function currentSeasonProfile() {
+    if (!Bio) return null;
+    var center = map ? map.getCenter() : null;
+    var lat = state.userLatLng ? state.userLatLng.lat : (center && center.lat) || 44;
+    return Bio.seasonProfile(new Date(), lat, state.prefs || {});
+  }
+
   function syncHeatLegend() {
     var legend = $("heat-legend");
     if (!legend) return;
     var on = !!(state.prefs && state.prefs.heatVisible !== false && state.lastGrid);
     legend.hidden = !on;
+    var status = $("heat-legend-status");
+    if (status) {
+      if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
+      else if (state.heatPhase === "refine") status.textContent = "Updated for this view";
+      else if (state.heatPhase === "zoom") status.textContent = "Zoom in for heat";
+      else if (state.offlineForced || navigator.onLine === false) status.textContent = "Limited / offline scoring";
+      else status.textContent = "Lower → higher walk priority";
+    }
   }
 
   function updateNavMeta() {
@@ -243,8 +337,16 @@
   function syncOfflineBanner() {
     var el = $("map-offline");
     if (!el) return;
-    if (navigator.onLine === false) el.removeAttribute("hidden");
-    else el.setAttribute("hidden", "");
+    var offline = navigator.onLine === false;
+    var forced = !!state.offlineForced;
+    if (offline || forced) {
+      el.removeAttribute("hidden");
+      el.textContent = offline
+        ? "You’re offline. Cached tiles may still show; heat refinement and weather need a connection. Local notes still save."
+        : "Limited-data mode on. Heat uses local notes and season rules only — not live elevation or weather.";
+    } else {
+      el.setAttribute("hidden", "");
+    }
   }
 
   function invalidateMapSize() {
@@ -435,6 +537,12 @@
     if (state.elevKey === key && state.elevCache) {
       return Promise.resolve(state.elevCache);
     }
+    if (state.elevAbort) {
+      try { state.elevAbort.abort(); } catch (e) { /* */ }
+      state.elevAbort = null;
+    }
+    var ac = typeof AbortController !== "undefined" ? new AbortController() : null;
+    state.elevAbort = ac;
     var west = bounds.getWest();
     var east = bounds.getEast();
     var south = bounds.getSouth();
@@ -461,10 +569,15 @@
     setModelCoverageNote("Updating elevation samples…");
     return chunks.reduce(function (chain, ch) {
       return chain.then(function (acc) {
+        if (ac && ac.signal && ac.signal.aborted) {
+          return Promise.reject(Object.assign(new Error("aborted"), { name: "AbortError" }));
+        }
         var url = "https://api.open-meteo.com/v1/elevation?latitude=" +
           ch.lat.map(function (n) { return n.toFixed(5); }).join(",") +
           "&longitude=" + ch.lng.map(function (n) { return n.toFixed(5); }).join(",");
-        return fetch(url, { credentials: "omit" }).then(function (res) {
+        var opts = { credentials: "omit" };
+        if (ac && ac.signal) opts.signal = ac.signal;
+        return fetch(url, opts).then(function (res) {
           if (!res.ok) throw new Error("elevation " + res.status);
           return res.json();
         }).then(function (data) {
@@ -473,10 +586,13 @@
         });
       });
     }, Promise.resolve([])).then(function (allElev) {
+      if (state.elevAbort === ac) state.elevAbort = null;
       state.elevCache = allElev;
       state.elevKey = key;
       return allElev;
-    }).catch(function () {
+    }).catch(function (err) {
+      if (state.elevAbort === ac) state.elevAbort = null;
+      if (err && err.name === "AbortError") return null;
       state.elevCache = null;
       state.elevKey = "";
       return null;
@@ -584,6 +700,10 @@
   function recomputeHeat() {
     if (!map || !Model) return;
     var gen = ++state.recomputeGen;
+    if (state.elevAbort) {
+      try { state.elevAbort.abort(); } catch (e) { /* */ }
+      state.elevAbort = null;
+    }
     var t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
     if (heatLayer) {
       heatLayer.setHeatVisible(!!state.prefs.heatVisible);
@@ -591,12 +711,14 @@
     }
     var bounds = map.getBounds();
     if (map.getZoom() < 9) {
+      state.heatPhase = "zoom";
       setModelCoverageNote("Zoom in to compute a local search-priority surface.");
       if (heatLayer) {
         heatLayer.setGrid({ cells: [], bounds: { west: 0, east: 0, south: 0, north: 0 }, rows: 0, cols: 0 });
       }
       updateCoverageUi({ level: "limited", label: "Limited input coverage — zoom for local analysis" });
       updatePlanner(null);
+      syncHeatLegend();
       return;
     }
 
@@ -604,6 +726,7 @@
     try {
       var coarse = Model.buildGrid(bounds, COARSE_ROWS, COARSE_COLS, buildContext(null, COARSE_ROWS, COARSE_COLS, "unavailable"));
       if (gen !== state.recomputeGen) return;
+      state.heatPhase = "coarse";
       applyGridToUi(coarse, {
         label: "Coarse heat (limited terrain)",
         elevNote: "Refining with elevation when available…"
@@ -625,9 +748,14 @@
       var t1 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
       var grid = Model.buildGrid(bounds, GRID_ROWS, GRID_COLS, buildContext(elev, GRID_ROWS, GRID_COLS, elev ? "live-or-cached" : "unavailable"));
       if (gen !== state.recomputeGen) return;
+      state.heatPhase = "refine";
       applyGridToUi(grid, {
         label: "Refined biological heat",
-        elevNote: "Elevation: " + (elev ? "sampled (Open-Meteo)" : "unavailable") + "."
+        elevNote: elev
+          ? "Elevation sampled for this view."
+          : (state.offlineForced || navigator.onLine === false
+            ? "Elevation skipped (offline / limited-data)."
+            : "Elevation unavailable — using season and local notes.")
       });
       state.lastPerf.refineMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t1;
       state.lastPerf.totalMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
@@ -689,6 +817,7 @@
     var glance = els.planGlance || els.planBody;
     var conf = $("plan-stars");
     var stats = $("plan-stats");
+    var season = currentSeasonProfile();
     if (!plan || !plan.ok || !plan.recommendation) {
       els.planCard.dataset.hasPlan = "false";
       if (els.planTitle) els.planTitle.textContent = "Start here";
@@ -698,12 +827,18 @@
         else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
       }
       if (glance) glance.textContent = empty;
+      var emptyBrief = fieldConditionLines(state.weather, season);
       if (els.planBody) {
         els.planBody.textContent =
-          "Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee of antlers.";
+          emptyBrief[0] +
+          " Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee of antlers.";
       }
-      if (els.planWhy) els.planWhy.textContent = "";
-      if (els.planMeta) els.planMeta.textContent = "";
+      if (els.planWhy) els.planWhy.textContent = emptyBrief.slice(1).join(" ");
+      if (els.planMeta) {
+        els.planMeta.textContent = state.weather
+          ? "Field briefing from season + recent weather context."
+          : "Field briefing uses season and what you have already marked.";
+      }
       if (conf) {
         conf.textContent = "We’ll suggest where to look";
         conf.setAttribute("aria-label", "No recommendation yet");
@@ -725,7 +860,7 @@
     if (whyOn) whyOn.hidden = false;
     var r = plan.recommendation;
     var coverage = plan.coverage || (state.lastGrid && state.lastGrid.coverage);
-    if (els.planTitle) els.planTitle.textContent = dayQualityLine(coverage, r.band);
+    if (els.planTitle) els.planTitle.textContent = dayQualityLine(coverage, r.band, state.weather, season);
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
     var glanceText = [dir, dist].filter(Boolean).join(" · ");
@@ -741,41 +876,38 @@
       if ($("plan-stat-dir")) $("plan-stat-dir").textContent = dir || "—";
       if ($("plan-stat-dist")) $("plan-stat-dist").textContent = dist || "—";
       if ($("plan-stat-area")) $("plan-stat-area").textContent = "~" + r.suggestedRadiusM + " m";
-      if ($("plan-stat-band")) $("plan-stat-band").textContent = r.band || "—";
+      if ($("plan-stat-band")) {
+        var bandLabel = r.band === "higher" ? "Higher priority"
+          : r.band === "moderate" ? "Moderate"
+          : r.band === "lower" ? "Lower"
+          : (r.band || "—");
+        $("plan-stat-band").textContent = bandLabel;
+      }
     }
+    var conditions = fieldConditionLines(state.weather, season);
     if (els.planBody) {
       var walk = r.walkingHint || glanceText;
       els.planBody.textContent =
+        conditions[0] +
+        " " +
         walk +
-        ". Relative priority: " +
-        (r.band || "mixed") +
-        ". This is walk guidance — not a claim that antlers are present.";
+        " Relative walk guidance only — not a claim that antlers are present.";
     }
-    if (els.planWhy) els.planWhy.textContent = r.explanation || "";
+    var whyParts = [];
+    if (conditions.length > 1) whyParts = whyParts.concat(conditions.slice(1));
+    if (r.explanation) whyParts.push(r.explanation);
+    whyParts.push(confidencePhrase(coverage, r.band) + ".");
+    if (els.planWhy) els.planWhy.textContent = whyParts.join(" ");
     var meta = [];
-    if (dir) meta.push(dir);
-    if (dist) meta.push(dist);
-    meta.push("Search ~" + r.suggestedRadiusM + " m");
-    if (state.weather) {
-      if (state.weather.snowMm != null) meta.push("Snow context ~" + state.weather.snowMm + " mm");
-      if (state.weather.windSpeedMs != null) {
-        meta.push("Wind ~" + Math.round(state.weather.windSpeedMs * 3.6) + " kph");
-      }
-    }
-    if (plan.coverage) {
-      meta.push(plan.coverage.searchedPercentLabel);
-      var thoroughShare = plan.coverage.cellsInView
-        ? Math.round((plan.coverage.thoroughCells / plan.coverage.cellsInView) * 100)
-        : 0;
-      meta.push("~" + thoroughShare + "% marked thorough in view");
-    }
-    if (plan.remainingHighCount != null) {
+    meta.push("Why: " + (conditions[0] || "local terrain and notes"));
+    meta.push("Confidence: " + confidencePhrase(coverage, r.band));
+    if (plan.remainingHighCount != null && plan.remainingHighCount > 0) {
       meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
     }
     if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Suggested place: " + glanceText + ". " + (r.explanation || "")
+      "Suggested place: " + glanceText + ". " + (conditions[0] || "") + " " + (r.explanation || "")
     );
     updateNavMeta();
     syncHeatLegend();
@@ -941,18 +1073,34 @@
       setLocStatus("unavailable", "browser has no geolocation");
       return;
     }
+    if (!opts.force && wasGpsDenied()) {
+      setLocStatus("denied", "permission was denied — tap Locate to try again");
+      return;
+    }
+    if (navigator.onLine === false && !opts.force) {
+      setLocStatus("unavailable", "offline — GPS may still work; tap Locate");
+    }
     setLocStatus("finding");
     navigator.geolocation.getCurrentPosition(function (pos) {
+      rememberGpsDenied(false);
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
       state.userLatLng = ll;
       state.accuracyM = pos.coords.accuracy;
       if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
-      setLocStatus("available", state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "");
+      var accDetail = state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "";
+      if (state.accuracyM != null && state.accuracyM > 80) {
+        accDetail += " · approximate";
+      }
+      setLocStatus("available", accDetail);
       upsertUserMarker(ll, state.accuracyM, state.headingDeg);
       if (opts.center !== false) {
         state.followUser = true;
         map.setView(ll, Math.max(map.getZoom(), 13), { animate: !document.documentElement.classList.contains("reduced-motion") });
         syncRecenterBtn();
+      }
+      syncObsLocationHint();
+      if (typeof opts.onSuccess === "function") {
+        try { opts.onSuccess(ll, pos); } catch (e) { /* */ }
       }
       fetchWeatherSoft(ll.lat, ll.lng).then(function (w) {
         state.weather = w;
@@ -960,11 +1108,33 @@
       });
       scheduleRecompute(100);
     }, function (err) {
-      if (err && err.code === 1) setLocStatus("denied", "map stays usable — explore manually");
-      else if (err && err.code === 3) setLocStatus("timeout", "try Locate again");
-      else setLocStatus("unavailable");
-      if (!Store.loadMapView()) setLocStatus(state.locationStatus === "denied" ? "denied" : "manual");
+      if (err && err.code === 1) {
+        rememberGpsDenied(true);
+        setLocStatus("denied", "permission denied — map stays usable; explore manually");
+      } else if (err && err.code === 3) {
+        setLocStatus("timeout", "GPS timed out — move to clearer sky and try Locate");
+      } else {
+        setLocStatus("unavailable", "GPS unavailable — pan the map or try Locate again");
+      }
+      if (!Store.loadMapView() && state.locationStatus !== "denied") {
+        setLocStatus(state.locationStatus === "timeout" ? "timeout" : "manual");
+      }
     }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
+  }
+
+  function syncObsLocationHint() {
+    var hint = $("obs-location-hint");
+    if (!hint || !clickLatLng) return;
+    var acc = "";
+    if (state.userLatLng && state.accuracyM != null &&
+        Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
+        Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6) {
+      acc = state.accuracyM != null ? (" · GPS ±" + Math.round(state.accuracyM) + " m") : " · at you";
+    } else {
+      acc = " · map pin";
+    }
+    hint.textContent =
+      "Saving at " + clickLatLng.lat.toFixed(5) + ", " + clickLatLng.lng.toFixed(5) + acc;
   }
 
   /* —— Sheets —— */
@@ -1019,9 +1189,12 @@
     els.obsId.value = "";
     els.obsMode.value = "create";
     $("obs-type").value = "deer_sign";
+    $("obs-confidence").value = "probable";
     $("sheds-extra").hidden = true;
+    if ($("obs-habitat")) $("obs-habitat").value = "";
     $("obs-form-title").textContent = "Add observation";
     $("obs-delete").hidden = true;
+    syncObsLocationHint();
     openSheet(els.sheetObs);
   }
 
@@ -1035,6 +1208,9 @@
     $("obs-note").value = obs.note || "";
     $("obs-confidence").value = obs.confidence || "uncertain";
     $("obs-quantity").value = obs.quantity != null ? obs.quantity : "";
+    if ($("obs-habitat")) {
+      $("obs-habitat").value = (obs.details && obs.details.habitat) || "";
+    }
     toggleShedExtra(obs.type);
     if (obs.type === "shed_found" && obs.details) {
       $("shed-side").value = obs.details.side || "unknown";
@@ -1044,6 +1220,7 @@
     }
     $("obs-form-title").textContent = "Edit observation";
     $("obs-delete").hidden = false;
+    syncObsLocationHint();
     openSheet(els.sheetObs);
   }
 
@@ -1054,22 +1231,31 @@
   function saveObservation(ev) {
     ev.preventDefault();
     var type = $("obs-type").value;
+    var habitat = $("obs-habitat") ? $("obs-habitat").value : "";
+    var atMe = !!(state.userLatLng && clickLatLng &&
+      Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
+      Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6);
     var payload = {
       type: type,
       speciesId: Store.SPECIES_WHITETAIL,
-      location: { lat: clickLatLng.lat, lng: clickLatLng.lng },
+      location: {
+        lat: clickLatLng.lat,
+        lng: clickLatLng.lng,
+        precision: atMe ? "gps" : "map"
+      },
       note: $("obs-note").value.trim(),
       confidence: $("obs-confidence").value,
       quantity: $("obs-quantity").value,
       details: {}
     };
+    if (habitat) payload.details.habitat = habitat;
     if (type === "shed_found") {
-      payload.details = {
+      payload.details = Object.assign({}, payload.details, {
         side: $("shed-side").value,
         freshness: $("shed-freshness").value,
         antlerCount: Number($("shed-count").value) || 1,
         collected: $("shed-collected").checked
-      };
+      });
     }
     var mode = els.obsMode.value;
     var result = mode === "edit"
@@ -1316,10 +1502,16 @@
     els.historyBody.textContent = lines.join("\n");
   }
 
+  function openAddObservationFlow() {
+    closeAllSheets();
+    var ll = state.userLatLng || (map && map.getCenter());
+    if (ll) openNewObservation(ll);
+  }
+
   function bindControls() {
-    $("btn-locate").addEventListener("click", function () { locateUser({ center: true }); });
+    $("btn-locate").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     if ($("btn-here-chip")) {
-      $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true }); });
+      $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     }
     els.btnTrack = $("btn-track");
     if (els.btnTrack) {
@@ -1342,10 +1534,25 @@
       });
     }
     if ($("btn-add-obs")) {
-      $("btn-add-obs").addEventListener("click", function () {
-        closeSheet(els.sheetTools);
-        var ll = state.userLatLng || (map && map.getCenter());
-        if (ll) openNewObservation(ll);
+      $("btn-add-obs").addEventListener("click", openAddObservationFlow);
+    }
+    if ($("btn-add-obs-fab")) {
+      $("btn-add-obs-fab").addEventListener("click", openAddObservationFlow);
+    }
+    if ($("btn-obs-use-gps")) {
+      $("btn-obs-use-gps").addEventListener("click", function () {
+        locateUser({
+          center: false,
+          force: true,
+          onSuccess: function (ll) {
+            clickLatLng = ll;
+            syncObsLocationHint();
+          }
+        });
+        if (state.userLatLng && state.locationStatus === "available") {
+          clickLatLng = state.userLatLng;
+          syncObsLocationHint();
+        }
       });
     }
     if ($("btn-status")) {
@@ -1499,6 +1706,7 @@
     if ($("offline-forced")) {
       $("offline-forced").addEventListener("change", function () {
         state.offlineForced = $("offline-forced").checked;
+        syncOfflineBanner();
         scheduleRecompute(80);
       });
     }
@@ -1680,7 +1888,11 @@
     } else {
       syncSessionPill("", false);
     }
-    locateUser({ center: !Store.loadMapView() });
+    if (wasGpsDenied()) {
+      setLocStatus("denied", "permission was denied — tap Locate to try again");
+    } else {
+      locateUser({ center: !Store.loadMapView() });
+    }
     setPlanExpanded(false);
     syncHeatLegend();
     $("ethics-ack").addEventListener("click", onEthicsAck);
