@@ -40,6 +40,7 @@ apps/dashboard/
 design-system/js/dashboard/
   v3/                     # ★ V3 presentation foundation
     wds-dashboard-v3-categories.js
+    wds-dashboard-v3-catalog.js   # runtime bridge/remap + stubs
     wds-dashboard-v3-contract.js
     wds-dashboard-v3-layout.js
     wds-dashboard-v3-brief.js

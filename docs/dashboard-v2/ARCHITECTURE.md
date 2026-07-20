@@ -39,3 +39,5 @@ OIP parallel providers → incremental hydrate
 ## Migration
 
 V2 is additive. No URL changes. Disable via `localStorage.setItem('waypoint-dashboard-v2','0')`.
+
+> Superseded for **presentation shell** by V3 — see `docs/OUTDOOR-INTELLIGENCE-DASHBOARD.md`. Model/briefing modules below remain relevant.
