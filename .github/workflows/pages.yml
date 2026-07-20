@@ -93,3 +93,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  verify:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Verify production fingerprint and critical routes
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          WAYPOINT_PROD_URL: https://waypointstudio.org
+          WAYPOINT_VERIFY_RETRIES: "16"
+          WAYPOINT_VERIFY_DELAY_MS: "15000"
+        run: node automation/verify-production-deploy.mjs
