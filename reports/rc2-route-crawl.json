@@ -1,0 +1,493 @@
+{
+  "pages": [
+    {
+      "url": "https://waypointstudio.org/",
+      "status": 200,
+      "title": "Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 17
+    },
+    {
+      "url": "https://waypointstudio.org/kiosk.html",
+      "status": 200,
+      "title": "Waypoint Studio \u2014 Kiosk",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 0
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/support.html",
+      "status": 200,
+      "title": "Support \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 21
+    },
+    {
+      "url": "https://waypointstudio.org/about.html",
+      "status": 200,
+      "title": "About \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/privacy.html",
+      "status": 200,
+      "title": "Privacy \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/knowledge.html",
+      "status": 200,
+      "title": "Waypoint Knowledge \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/settings.html",
+      "status": 200,
+      "title": "Settings \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/map/",
+      "status": 200,
+      "title": "Redirecting to Sheds map \u2014 Waypoint Studio",
+      "build": null,
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/dashboard/",
+      "status": 200,
+      "title": "Dashboard \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/apps/fieldry/",
+      "status": 200,
+      "title": "Fieldry \u2014 Life List \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/",
+      "status": 200,
+      "title": "Waypoint Scenes \u2014 Photography \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 19
+    },
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/",
+      "status": 200,
+      "title": "Sheds \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/foragecast/",
+      "status": 200,
+      "title": "ForageCast \u2014 What should I look for today?",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/steepleaf/",
+      "status": 200,
+      "title": "Steepleaf \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/apps/waypoint-volunteer/",
+      "status": 200,
+      "title": "Waypoint Volunteer \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 3
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/",
+      "status": 200,
+      "title": "SignalTerrain \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 7
+    },
+    {
+      "url": "https://waypointstudio.org/apps/savant-sommelier/",
+      "status": 200,
+      "title": "Discover \u2014 Savant Sommelier",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=bug&subject=Bug%20report&includeTech=1",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=feature&subject=Feature%20request",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=scientific&subject=Scientific%20correction",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=bug&includeTech=1&subject=Bug%20report",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/dashboard.html",
+      "status": 200,
+      "title": "Dashboard \u2014 redirect",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/photo-coach/",
+      "status": 200,
+      "title": "Photo Coach \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
+      "status": 200,
+      "title": "",
+      "build": null,
+      "class": "Working",
+      "links": 0
+    },
+    {
+      "url": "https://waypointstudio.org/docs/WAYPOINT-EDITORIAL-STANDARDS.md",
+      "status": 200,
+      "title": "",
+      "build": null,
+      "class": "Working",
+      "links": 0
+    },
+    {
+      "url": "https://waypointstudio.org/index.html",
+      "status": 200,
+      "title": "Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 17
+    },
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/map/",
+      "status": 200,
+      "title": "Sheds \u2014 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 8
+    },
+    {
+      "url": "https://waypointstudio.org/apps/hidden-landscapes/",
+      "status": 200,
+      "title": "Hidden Landscapes Studio \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 6
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/living-scenes/",
+      "status": 200,
+      "title": "Living Scenes \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 8
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/scene-builder/",
+      "status": 200,
+      "title": "Scene Builder \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 9
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/photographer-profile/",
+      "status": 200,
+      "title": "Photographer Profile \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 10
+    },
+    {
+      "url": "https://waypointstudio.org/apps/photo-library/",
+      "status": 200,
+      "title": "Photo Library \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/steepleaf/explore/",
+      "status": 200,
+      "title": "Explore \u2014 Steepleaf",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/steepleaf/entity/?id=stl_tea-longjing-shifeng",
+      "status": 200,
+      "title": "Entity \u2014 Steepleaf",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html",
+      "status": 200,
+      "title": "What good can I do today? \u2014 Waypoint Volunteer",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/live.html",
+      "status": 200,
+      "title": "Cyber Intelligence \u2014 SignalTerrain",
+      "build": "local",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/",
+      "status": 200,
+      "title": "Cyber Awareness \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/topics.html",
+      "status": 200,
+      "title": "Topics \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 3
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/graph.html",
+      "status": 200,
+      "title": "Knowledge Graph \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 3
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/summary.html",
+      "status": 200,
+      "title": "Intelligence Summary \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=bug&app=shed-hunting&includeTech=1&subject=Sheds%20bug%20report",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/contact.html?category=feature&app=shed-hunting&subject=Sheds%20feature%20request",
+      "status": 200,
+      "title": "Contact \u2014 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 5
+    },
+    {
+      "url": "https://waypointstudio.org/apps/hidden-landscapes/gallery.html",
+      "status": 200,
+      "title": "Gallery \u2014 Hidden Landscapes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/apps/hidden-landscapes/learn.html",
+      "status": 200,
+      "title": "Learn \u2014 Hidden Landscapes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 4
+    },
+    {
+      "url": "https://waypointstudio.org/apps/animal-vision/",
+      "status": 200,
+      "title": "Animal Vision \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "local",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/photo-coach/",
+      "status": 200,
+      "title": "Photo Coach \u2014 Redirect",
+      "build": "local",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scenes/hidden-landscapes/",
+      "status": 200,
+      "title": "Hidden Landscapes \u2014 Redirect",
+      "build": "local",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/waypoint-scenes/",
+      "status": 200,
+      "title": "Waypoint Scenes \u2014 Bring Nature to Life",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 1
+    },
+    {
+      "url": "https://waypointstudio.org/apps/photo-coach/profile/",
+      "status": 200,
+      "title": "Photographer Profile \u2014 Waypoint Scenes \u00b7 Waypoint Studio",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 2
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html",
+      "status": 200,
+      "title": "Cyber Operations Workspace \u2014 SignalTerrain",
+      "build": "local",
+      "class": "Working",
+      "links": 6
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/teaching.html",
+      "status": 200,
+      "title": "Cyber Teaching Samples \u2014 SignalTerrain",
+      "build": "local",
+      "class": "Working",
+      "links": 3
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html",
+      "status": 200,
+      "title": "Daily Cyber Brief \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 7
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/explorer.html",
+      "status": 200,
+      "title": "Cyber Intelligence Explorer \u2014 SignalTerrain",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 7
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/advisor.html",
+      "status": 200,
+      "title": "Adaptive Defense Advisor \u2014 SignalTerrain",
+      "build": "local",
+      "class": "Working",
+      "links": 6
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/knowledge.html",
+      "status": 200,
+      "title": "Defensive Knowledge \u2014 SignalTerrain",
+      "build": "local",
+      "class": "Working",
+      "links": 6
+    },
+    {
+      "url": "https://waypointstudio.org/apps/signalterrain/cyber/ingest-health.html",
+      "status": 200,
+      "title": "Cyber Ingest Health \u2014 SignalTerrain (internal)",
+      "build": "8be5ce5",
+      "class": "Working",
+      "links": 3
+    },
+    {
+      "url": "https://waypointstudio.org/apps/scholar/",
+      "status": 404,
+      "title": "",
+      "build": null,
+      "class": "Broken",
+      "links": 0,
+      "note": "probe"
+    },
+    {
+      "url": "https://waypointstudio.org/apps/university/",
+      "status": 404,
+      "title": "",
+      "build": null,
+      "class": "Broken",
+      "links": 0,
+      "note": "probe"
+    }
+  ],
+  "broken": [
+    {
+      "url": "https://waypointstudio.org/apps/scholar/",
+      "status": 404
+    },
+    {
+      "url": "https://waypointstudio.org/apps/university/",
+      "status": 404
+    }
+  ],
+  "dead": [],
+  "builds": [
+    "8be5ce5",
+    "local"
+  ]
+}

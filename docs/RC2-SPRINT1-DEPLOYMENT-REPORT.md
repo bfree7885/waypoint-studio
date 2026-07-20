@@ -29,10 +29,13 @@
 
 ## Deployment evidence
 
-Documented after push + Actions completion in the same sprint log / Sprint 2 handoff:
-
-- Expected: production `meta[name=waypoint-build]` equals short SHA of deployed commit  
-- Critical routes including Landscape Interpretation must return 200  
+- Push: `081965d..8be5ce5` → `origin/main`
+- Actions: https://github.com/bfree7885/waypoint-studio/actions/runs/29752081675  
+  - build: success  
+  - deploy: success  
+  - verify: success  
+- Live: `https://waypointstudio.org/` meta `waypoint-build` = **`8be5ce5`**
+- `node automation/verify-production-deploy.mjs` with `EXPECTED_SHORT=8be5ce5` → OK
 
 ## Remaining risks
 

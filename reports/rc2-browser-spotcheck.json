@@ -1,0 +1,102 @@
+[
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200,
+    "hasContact": 4,
+    "hasLI": 2
+  },
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/apps/dashboard/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/apps/landscape-interpretation/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/contact.html",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/apps/steepleaf/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "desktop",
+    "url": "https://waypointstudio.org/apps/scenes/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200,
+    "hasContact": 4,
+    "hasLI": 2
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/apps/dashboard/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/apps/landscape-interpretation/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/contact.html",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/apps/steepleaf/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  },
+  {
+    "label": "mobile",
+    "url": "https://waypointstudio.org/apps/scenes/",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failed": [],
+    "status": 200
+  }
+]
