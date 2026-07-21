@@ -1,0 +1,141 @@
+/**
+ * Photo Library — photography folio presentation.
+ */
+
+html[data-product="photo-library"],
+.was-shell[data-product="scenes"] .pl-page {
+  --pl-ink: #f4f1ea;
+  --pl-muted: rgba(244, 241, 234, 0.7);
+  --wds-font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+}
+
+.was-shell[data-product="scenes"]:has(.pl-page) {
+  background: #0c1018;
+  color: var(--pl-ink, #f4f1ea);
+}
+
+.pl-page {
+  max-width: 96rem;
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: 4rem;
+  font-family: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+}
+
+.pl-hero {
+  margin-bottom: 1.75rem;
+}
+
+.pl-hero__title {
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  max-width: 14ch;
+  letter-spacing: -0.02em;
+}
+
+.pl-hero__lead {
+  font-size: 1.05rem;
+  max-width: 34rem;
+  line-height: 1.6;
+  color: var(--pl-muted, var(--wds-text-secondary));
+}
+
+.pl-trust {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: rgba(244, 241, 234, 0.5);
+  border-left: 2px solid rgba(168, 196, 138, 0.55);
+  padding-left: 0.75rem;
+}
+
+.pl-toolbar {
+  gap: 0.65rem;
+  margin: 1.35rem 0 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(244, 241, 234, 0.1);
+}
+
+.pl-search,
+.pl-sort {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(244, 241, 234, 0.16);
+  color: inherit;
+  border-radius: 999px;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+}
+
+.pl-drop {
+  border-style: solid;
+  border-radius: 1rem;
+  padding: 1.35rem 1.15rem;
+  margin-bottom: 1.15rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(244, 241, 234, 0.14);
+  color: var(--pl-muted, var(--wds-text-secondary));
+}
+
+.pl-drop.is-dragover {
+  border-color: #a8c48a;
+  background: rgba(168, 196, 138, 0.08);
+}
+
+.pl-results--grid {
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .pl-results--grid {
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0.9rem;
+  }
+}
+
+.pl-card {
+  aspect-ratio: 4 / 5;
+  border-radius: 0.55rem;
+  background: #05070c;
+  border: 1px solid rgba(244, 241, 234, 0.08);
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.pl-card:hover,
+.pl-card:focus-visible,
+.pl-card.is-active {
+  border-color: rgba(168, 196, 138, 0.55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pl-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.pl-card__caption {
+  background: linear-gradient(180deg, transparent, rgba(5, 7, 12, 0.88));
+  color: rgba(244, 241, 234, 0.85);
+  font-size: 0.72rem;
+}
+
+.pl-chip {
+  border-radius: 999px;
+  border-color: rgba(244, 241, 234, 0.16);
+  color: var(--pl-muted, inherit);
+}
+
+.pl-chip.is-active {
+  border-color: #a8c48a;
+  background: rgba(168, 196, 138, 0.12);
+  color: #f4f1ea;
+}
+
+@media (max-width: 640px) {
+  .pl-results--grid {
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 0.55rem;
+  }
+
+  .pl-toolbar .wds-btn {
+    flex: 1 1 auto;
+  }
+}
