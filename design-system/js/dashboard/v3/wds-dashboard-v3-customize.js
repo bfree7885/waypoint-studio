@@ -170,7 +170,7 @@
       '<dialog class="wdb-v2-custom wdb-v3-custom" id="wdb-v2-customize" data-wdb-v3-customize aria-labelledby="wdb-v2-customize-title">' +
       '<form method="dialog" class="wdb-v2-custom__form" id="wdb-v2-customize-form">' +
       '<header class="wdb-v2-custom__head">' +
-      '<h2 id="wdb-v2-customize-title">Customize Dashboard</h2>' +
+      '<h2 id="wdb-v2-customize-title">Adjust what you see</h2>' +
       '<p class="wdb-v2-custom__lead">Personalize widgets, sizes, and saved layouts. No two boards need look the same.</p>' +
       "</header>" +
       '<div class="wdb-v2-custom__body wdb-v3-custom__body">' +

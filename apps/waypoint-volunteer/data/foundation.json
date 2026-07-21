@@ -16,9 +16,9 @@
   },
   "capabilityGroups": [
     {
-      "title": "Opportunity Intelligence",
+      "title": "Finding good nearby",
       "status": "live",
-      "description": "Soft private scores with plain-language reasons \u2014 weather, season, distance, accessibility, and causes.",
+      "description": "Soft private cues with plain-language reasons — weather, season, distance, accessibility, and causes.",
       "items": [
         "Today recommendation panel",
         "Explained alternatives",
@@ -53,7 +53,7 @@
     {
       "title": "Discovery: What good can I do today?",
       "status": "live",
-      "description": "Today panel, filters, map, and explained Opportunity Intelligence ranking over sample opportunities."
+      "description": "Today panel, filters, map, and explained ranking over sample opportunities."
     },
     {
       "title": "Private profile & saved lists",

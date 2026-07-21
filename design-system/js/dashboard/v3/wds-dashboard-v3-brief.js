@@ -52,19 +52,28 @@
     var bullets = (take.bullets || []).slice(0, 8);
     if (!bullets.length) {
       bullets = [
-        "Shell is ready — live outdoor cues will fill this brief as providers respond. [Low]",
-        "Open Customize Dashboard to choose the widgets that matter for today’s plans. [Low]",
-        "Slow providers never block this page; each widget loads on its own. [High]"
+        "Outdoor readings are still arriving — this brief will fill as sources respond. [Low]",
+        "Until then, treat any numbers as incomplete. Prefer Refresh when you have a connection. [High]",
+        "Each cue loads on its own so a slow source never blocks the whole page. [High]"
       ];
     }
 
     var place = model && model.location && model.location.label ? model.location.label : "your area";
+    var trust = model && model.provider && model.provider.trust;
+    var trustNote = take.trustNote || null;
+    if (!trustNote && trust === "cached") {
+      trustNote = "Showing cached readings from this device — not guaranteed current.";
+    } else if (!trustNote && trust === "offline") {
+      trustNote = "Offline — reconnect to refresh outdoor readings.";
+    } else if (!trustNote && (trust === "provider-unavailable" || trust === "partial")) {
+      trustNote = "Some outdoor sources are unavailable or incomplete — uncertainty stays labeled.";
+    }
     return {
       title: "Today’s Outdoor Brief",
       subtitle: "What you should know before heading outside near " + place + ".",
       bullets: bullets,
       items: take.items || null,
-      trustNote: take.trustNote || null,
+      trustNote: trustNote,
       generatedAt: take.generatedAt || new Date().toISOString(),
       count: bullets.length,
       engine: take.engine || null
@@ -126,7 +135,7 @@
       idPrefix +
       '-title">' +
       '<div class="wdb-v3-brief__intro">' +
-      '<p class="wdb-v3-brief__eyebrow">How is today?</p>' +
+      '<p class="wdb-v3-brief__eyebrow">Before you leave</p>' +
       '<h2 class="wdb-v3-brief__title" id="' +
       idPrefix +
       '-title">' +

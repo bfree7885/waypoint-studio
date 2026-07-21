@@ -17,7 +17,8 @@
       cached: { label: "Cached", cls: "wdb-v2-status--cached" },
       partial: { label: "Partial", cls: "wdb-v2-status--partial" },
       offline: { label: "Offline", cls: "wdb-v2-status--offline" },
-      "provider-unavailable": { label: "Provider Unavailable", cls: "wdb-v2-status--partial" }
+      estimated: { label: "Estimated", cls: "wdb-v2-status--partial" },
+      "provider-unavailable": { label: "Unavailable", cls: "wdb-v2-status--partial" }
     };
     return map[trust] || map.partial;
   }
@@ -121,11 +122,11 @@
       '<div class="wdb-v3-header__actions wdb-v2-header__actions">' +
       (kiosk
         ? ""
-        : '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" id="wdb-v2-customize-open" aria-haspopup="dialog">Customize Dashboard</button>') +
+        : '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm" id="wdb-v2-customize-open" aria-haspopup="dialog">Adjust what you see</button>') +
       (kiosk
         ? ""
-        : '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-location-change" aria-label="Change location">Change location</button>') +
-      '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wdb-v2-refresh" aria-label="Refresh dashboard data">Refresh</button>' +
+        : '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wds-location-change" aria-label="Change location">Change place</button>') +
+      '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="wdb-v2-refresh" aria-label="Refresh outdoor readings">Refresh</button>' +
       kioskBtn +
       "</div>";
 
@@ -142,7 +143,7 @@
       "</h2>" +
       (kiosk
         ? ""
-        : '<p class="wdb-v3-header__promise">A calm outdoor brief — not a wall of widgets.</p>') +
+        : '<p class="wdb-v3-header__promise">A calm outdoor brief — readings may be live, cached, estimated, or unavailable.</p>') +
       '<p class="wdb-v3-header__loc wdb-v2-header__loc" aria-live="polite">' +
       '<span class="wdb-v2-header__pin" aria-hidden="true">◎</span> ' +
       esc(model.location && model.location.label ? model.location.label : "Locating…") +
@@ -181,7 +182,7 @@
       "<h3>Deeper tools</h3>" +
       "<p>Only if you need them — arrange what matters for today’s plans. Preferences stay on this device.</p>" +
       "</div>" +
-      '<button type="button" class="wds-btn wds-btn--secondary" id="wdb-v3-customize-open" data-wdb-v3-customize-trigger>Customize Dashboard</button>' +
+      '<button type="button" class="wds-btn wds-btn--secondary" id="wdb-v3-customize-open" data-wdb-v3-customize-trigger>Adjust what you see</button>' +
       "</section>"
     );
   }

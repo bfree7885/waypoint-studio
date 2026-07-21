@@ -29,7 +29,7 @@
     },
     scenes: {
       title: "Photograph",
-      line: "Continue yesterday’s work — review and grow.",
+      line: "Review today’s shoot — then grow.",
       go: "Review today’s shoot",
       quiet: "Craft"
     },

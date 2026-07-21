@@ -1,38 +1,38 @@
 {
   "version": 1,
-  "note": "Replace seasonal files with owner photography. Set placeholder false when ready.",
+  "note": "Seasonal home photography. Prefer assets/images/identity/manifest.json for Studio identity. Mark placeholder true until owner files replace identical stand-ins.",
   "default": {
-    "src": "assets/images/home/hero.jpg",
-    "alt": "Soft light over quiet hills — outdoor landscape",
-    "credit": "Waypoint Studio",
-    "placeholder": false
+    "src": "assets/images/identity/placeholders/home-sky.svg",
+    "alt": "Soft morning sky — temporary placeholder",
+    "credit": "Placeholder · owner sky photography later",
+    "placeholder": true
   },
   "seasons": {
     "spring": {
-      "src": "assets/images/home/seasons/spring.jpg",
-      "alt": "Placeholder — spring outdoor landscape pending owner photography",
-      "credit": "Placeholder (Scenes mist stand-in)",
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder spring sky — owner photography pending",
+      "credit": "Placeholder",
       "placeholder": true,
       "months": [3, 4, 5]
     },
     "summer": {
-      "src": "assets/images/home/seasons/summer.jpg",
-      "alt": "Warm light across open country",
-      "credit": "Waypoint Scenes",
-      "placeholder": false,
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder summer sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
       "months": [6, 7, 8]
     },
     "autumn": {
-      "src": "assets/images/home/seasons/autumn.jpg",
-      "alt": "Mist settling in a quiet valley",
-      "credit": "Waypoint Scenes",
-      "placeholder": false,
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder autumn sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
       "months": [9, 10, 11]
     },
     "winter": {
-      "src": "assets/images/home/seasons/winter.jpg",
-      "alt": "Placeholder — winter outdoor landscape pending owner photography",
-      "credit": "Placeholder (Scenes mist stand-in)",
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder winter sky — owner photography pending",
+      "credit": "Placeholder",
       "placeholder": true,
       "months": [12, 1, 2]
     }

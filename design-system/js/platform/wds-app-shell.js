@@ -68,12 +68,15 @@
     var groups = NavApi.appsByCategory();
     var sections = groups.map(function (g) {
       var cards = g.apps.map(function (app) {
-        var href = NavApi.resolveRoute(app.route, depth);
+        var href = NavApi.startHereHref
+          ? NavApi.startHereHref(app, depth)
+          : NavApi.resolveRoute(app.route, depth);
+        if (!href) href = NavApi.resolveRoute(app.route, depth);
         var current = app.id === activeId;
         var status = app.status || "live";
         var statusChip = "";
-        if (status === "foundation") statusChip = '<span class="was-launcher__status">Foundation</span>';
-        else if (status === "planned") statusChip = '<span class="was-launcher__status">Planned</span>';
+        if (status === "foundation") statusChip = '<span class="was-launcher__status">Early look</span>';
+        else if (status === "planned") statusChip = '<span class="was-launcher__status">Coming later</span>';
         else if (status !== "live") statusChip = '<span class="was-launcher__status">' + esc(status) + "</span>";
         return (
           '<a class="was-launcher__app' + (current ? " is-current" : "") + '" href="' + esc(href) + '"' +
@@ -82,7 +85,7 @@
             '<span class="was-launcher__app-copy">' +
               "<strong>" + esc(app.shortTitle || app.title) + "</strong>" +
               statusChip +
-              "<span>" + esc(app.description || "") + "</span>" +
+              "<span>" + esc(app.purpose || app.description || "") + "</span>" +
             "</span>" +
           "</a>"
         );
@@ -100,8 +103,8 @@
         '<div class="was-launcher__backdrop" data-was-close tabindex="-1"></div>' +
         '<div class="was-launcher__panel" role="dialog" aria-modal="true" aria-labelledby="was-launcher-title">' +
           '<header class="was-launcher__head">' +
-            '<h2 id="was-launcher-title">Applications</h2>' +
-            '<button type="button" class="was-launcher__close" data-was-close aria-label="Close applications">Close</button>' +
+            '<h2 id="was-launcher-title">Explore</h2>' +
+            '<button type="button" class="was-launcher__close" data-was-close aria-label="Close explore menu">Close</button>' +
           "</header>" +
           '<div class="was-launcher__body">' + sections + "</div>" +
         "</div>" +
@@ -158,7 +161,7 @@
             ? ""
             : '<div class="was-global__actions">' +
               '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
-                '<span class="was-apps-btn__label">Apps</span>' +
+                '<span class="was-apps-btn__label">Explore</span>' +
               "</button>" +
             "</div>") +
         "</div>" +
@@ -234,9 +237,9 @@
         '<p class="was-footer__links">' +
           '<a href="' + esc(studioPageHref(home, "contact.html")) + '">Contact</a>' +
           '<a href="' + esc(studioPageHref(home, "support.html")) + '">Support</a>' +
-          '<a href="' + esc(studioPageHref(home, "incubator/")) + '">Incubator</a>' +
-          '<a href="' + esc(contactBug) + '">Report bug</a>' +
-          '<a href="' + esc(contactFeature) + '">Request feature</a>' +
+          '<a href="' + esc(studioPageHref(home, "incubator/")) + '">Coming later</a>' +
+          '<a href="' + esc(contactBug) + '">Something wrong?</a>' +
+          '<a href="' + esc(contactFeature) + '">Suggest an idea</a>' +
           '<a href="' + esc(studioPageHref(home, "about.html")) + '">About</a>' +
           '<a href="' + esc(studioPageHref(home, "privacy.html")) + '">Privacy</a>' +
         "</p>" +

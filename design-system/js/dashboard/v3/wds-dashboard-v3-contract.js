@@ -53,13 +53,15 @@
     if (Cat && Cat.availabilityLabel) return Cat.availabilityLabel(availability);
     var map = {
       live: "Live",
-      derived: "Derived",
-      planned: "Planned",
-      experimental: "Experimental",
-      unavailable: "Data unavailable",
-      loading: "Loading",
-      error: "Error",
+      derived: "Estimated",
+      planned: "Coming later",
+      experimental: "Early look",
+      unavailable: "Unavailable",
+      loading: "Updating…",
+      error: "Unavailable",
       cached: "Cached",
+      offline: "Offline",
+      estimated: "Estimated",
       partial: "Partial"
     };
     return map[availability] || availability || "Unknown";
@@ -209,10 +211,14 @@
       (updated
         ? '<p class="wdb-v3-widget__updated"><time datetime="' +
           esc(view.lastUpdated) +
-          '">Updated ' +
+          '">Last updated ' +
           esc(updated) +
           "</time></p>"
-        : "") +
+        : avail === "cached" || avail === "unavailable" || avail === "offline" || avail === "estimated"
+          ? '<p class="wdb-v3-widget__updated wdb-v3-widget__updated--trust">' +
+            esc(statusLabel(avail)) +
+            " — do not treat as current certainty.</p>"
+          : "") +
       attrib +
       takeHtml +
       actions +

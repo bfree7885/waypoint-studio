@@ -19,15 +19,16 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="wpf-page sheds-page">
-      <header class="xp-stage xp-stage--forest" aria-label="Today’s hunt">
+      <header class="xp-stage xp-stage--forest" data-identity-stage="sheds" aria-label="Today’s hunt">
         <p class="xp-stage__eyebrow">Morning</p>
         <h1 class="xp-stage__title">Where should I search?</h1>
         <p class="xp-stage__lead">
-          The woods first. Tools second. Start with ground worth walking — conditions, finds, and learning follow.
+          The woods first. Tools second. Start with ground worth walking.
         </p>
         <p class="xp-stage__cta">
           <a class="wds-btn wds-btn--primary" href="map/">Open today’s search</a>
         </p>
+        <p class="xp-stage__credit" data-identity-credit="sheds" hidden></p>
       </header>
 
       <section class="xp-secondary" aria-labelledby="sheds-next">
@@ -75,9 +76,11 @@
   <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
   <script src="js/sheds-models.js" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.experienceIdentity) WDS.experienceIdentity.mount("sheds");
       var el = document.getElementById("sheds-workflows");
       if (el && window.WDS && WDS.platformWorkflows) {
         el.innerHTML = WDS.platformWorkflows.renderLinksHtml("shed-hunting", { depth: 1, when: "after-observation" });

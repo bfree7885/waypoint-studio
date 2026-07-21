@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/images/home/hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/identity/placeholders/home-sky.svg" fetchpriority="high">
   <link rel="stylesheet" href="design-system/css/wds.css">
   <link rel="stylesheet" href="design-system/css/wds-studio-home.css?v=local">
   <link rel="stylesheet" href="design-system/css/wds-contact.css?v=local">
@@ -37,10 +37,11 @@
       <div class="was-home-hero__media" aria-hidden="true">
         <img
           data-home-hero-img
-          src="assets/images/home/hero.jpg"
-          alt=""
+          data-identity-img="home"
+          src="assets/images/identity/placeholders/home-sky.svg"
+          alt="Soft morning sky — temporary placeholder until owner photography"
           width="1920"
-          height="1280"
+          height="1080"
           decoding="async"
           fetchpriority="high"
         >
@@ -98,6 +99,7 @@
   <script src="design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-take.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
   <script src="js/home-hero.js?v=local" defer></script>
   <script src="js/studio-home.js?v=local" defer></script>
 </body>

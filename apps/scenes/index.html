@@ -19,19 +19,28 @@
 
     <header class="scenes-stage" aria-label="Scenes photography">
       <div class="scenes-stage__media">
-        <img src="assets/media/hero.jpg" alt="" width="1600" height="1067" decoding="async" fetchpriority="high">
+        <img
+          data-identity-img="scenes"
+          src="../../assets/images/identity/placeholders/scenes-craft.svg"
+          alt="Photographic craft atmosphere — temporary placeholder"
+          width="1920"
+          height="1080"
+          decoding="async"
+          fetchpriority="high"
+        >
         <div class="scenes-stage__veil" aria-hidden="true"></div>
       </div>
       <div class="scenes-stage__copy">
         <p class="scenes-stage__eyebrow">Photography · today’s craft</p>
-        <h1 class="scenes-stage__title">Continue yesterday’s work</h1>
+        <h1 class="scenes-stage__title">Review today’s shoot</h1>
         <p class="scenes-stage__lead">
-          Import, review, choose your best frames, then learn — Hidden Landscapes waits when you’re curious.
+          Import, choose your best frames, then learn — Hidden Landscapes waits when you’re curious.
         </p>
         <p class="scenes-stage__cta">
           <a href="../photo-coach/">Review today’s shoot</a>
           <a class="scenes-stage__cta--quiet" href="../photo-library/">Import photographs</a>
         </p>
+        <p class="scenes-stage__credit" data-identity-credit="scenes" hidden></p>
       </div>
     </header>
 
@@ -41,8 +50,8 @@
         <ol class="scenes-journey__list">
           <li class="scenes-journey__item--primary">
             <a href="../photo-coach/">
-              <strong>Continue yesterday’s work</strong>
-              <span>Pick up the shoot still on your mind</span>
+              <strong>Review today’s shoot</strong>
+              <span>The clear next step with the frames in front of you</span>
             </a>
           </li>
           <li>
@@ -122,11 +131,17 @@
   <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
   <script src="js/engines/scene-engine.js" defer></script>
   <script src="js/engines/vision-engine.js" defer></script>
   <script src="js/engines/coach-engine.js" defer></script>
   <script src="js/engines/profile-engine.js" defer></script>
   <script src="js/engines/animation-engine.js" defer></script>
   <script src="js/engines/registry.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.experienceIdentity) WDS.experienceIdentity.mount("scenes");
+    });
+  </script>
 </body>
 </html>

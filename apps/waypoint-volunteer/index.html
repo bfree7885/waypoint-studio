@@ -29,16 +29,17 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
     <main id="main" class="wpf-page volunteer-page">
-      <header class="xp-stage xp-stage--stewardship" aria-label="Volunteer">
+      <header class="xp-stage xp-stage--stewardship" data-identity-stage="volunteer" aria-label="Volunteer">
         <p class="xp-stage__eyebrow">Today</p>
         <h1 class="xp-stage__title">What good can I do today?</h1>
         <p class="xp-stage__lead">
           A hopeful next step nearby — trails, conservation, citizen science, animal care.
-          No streaks. No guilt. No management software.
+          No streaks. No guilt.
         </p>
         <p class="xp-stage__cta">
           <a class="wds-btn wds-btn--primary" href="discover.html">See nearby opportunities</a>
         </p>
+        <p class="xp-stage__credit" data-identity-credit="volunteer" hidden></p>
       </header>
 
       <section class="xp-secondary" aria-labelledby="vol-then">
@@ -83,5 +84,11 @@
   <script src="../../design-system/js/platform/wds-platform-places.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.experienceIdentity) WDS.experienceIdentity.mount("volunteer");
+    });
+  </script>
 </body>
 </html>

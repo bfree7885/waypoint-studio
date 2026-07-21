@@ -13,10 +13,10 @@
     },
     "studioPrimaryNav": [
       { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "How is today?" },
-      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Photograph" },
-      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/", "hint": "Where to search" },
-      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/", "hint": "What good today?" },
-      { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn in context" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
+      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
+      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
+      { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
       { "id": "about", "label": "About", "href": "about.html" }
     ],
     "homePrimary": ["dashboard", "scenes", "sheds", "volunteer"],
@@ -25,7 +25,7 @@
     "categories": [
       {
         "id": "core",
-        "label": "Core"
+        "label": "Today outside"
       },
       {
         "id": "photography",
@@ -33,15 +33,15 @@
       },
       {
         "id": "outdoor",
-        "label": "Outdoor"
+        "label": "In the field"
       },
       {
         "id": "intelligence",
-        "label": "Intelligence"
+        "label": "Reading the land"
       },
       {
         "id": "lifestyle",
-        "label": "Lifestyle"
+        "label": "Nearby"
       }
     ],
     "apps": [
@@ -637,7 +637,7 @@
           {
             "id": "overview",
             "label": "About Volunteer",
-            "href": "apps/waypoint-volunteer/"
+            "href": "apps/waypoint-volunteer/?about=1"
           },
           {
             "id": "impact",

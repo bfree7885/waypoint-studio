@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder forest for shed hunting">
+  <defs>
+    <linearGradient id="canopy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3324"/>
+      <stop offset="100%" stop-color="#0c1410"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#canopy)"/>
+  <g fill="#243d2c" opacity="0.85">
+    <path d="M120 1080 L220 320 L320 1080 Z"/>
+    <path d="M380 1080 L520 180 L660 1080 Z"/>
+    <path d="M700 1080 L860 260 L1020 1080 Z"/>
+    <path d="M1080 1080 L1240 200 L1400 1080 Z"/>
+    <path d="M1480 1080 L1620 300 L1760 1080 Z"/>
+  </g>
+  <rect x="0" y="900" width="1920" height="180" fill="#142018" opacity="0.7"/>
+  <text x="64" y="1000" fill="#dce8d8" font-family="Georgia, serif" font-size="28" opacity="0.55">Temporary forest · owner photography later</text>
+</svg>

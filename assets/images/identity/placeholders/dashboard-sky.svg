@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder outdoor sky for todays brief">
+  <defs>
+    <linearGradient id="dsky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a3350"/>
+      <stop offset="50%" stop-color="#3d6a8a"/>
+      <stop offset="100%" stop-color="#a8c4d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#dsky)"/>
+  <circle cx="1520" cy="260" r="90" fill="#f7e7c5" opacity="0.85"/>
+  <path d="M0 820 C500 760 900 880 1300 800 C1600 740 1800 800 1920 780 L1920 1080 L0 1080 Z" fill="#1c2430" opacity="0.55"/>
+  <text x="64" y="1000" fill="#f4f1ea" font-family="Georgia, serif" font-size="28" opacity="0.5">Temporary sky · todays outdoors</text>
+</svg>

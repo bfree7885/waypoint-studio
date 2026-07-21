@@ -16,10 +16,19 @@
 }
 
 .xp-stage--forest {
-  background:
-    radial-gradient(120% 90% at 10% 0%, rgba(90, 120, 70, 0.35), transparent 55%),
-    linear-gradient(165deg, rgba(28, 42, 28, 0.95), rgba(12, 18, 14, 0.98));
+  background-color: #0c1410;
+  background-image:
+    linear-gradient(165deg, rgba(12, 20, 16, 0.55), rgba(12, 20, 16, 0.82)),
+    radial-gradient(120% 90% at 10% 0%, rgba(90, 120, 70, 0.35), transparent 55%);
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(244, 241, 234, 0.1);
+}
+
+.xp-stage__credit {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: rgba(244, 241, 234, 0.45);
 }
 
 .xp-stage__eyebrow {
