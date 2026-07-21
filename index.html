@@ -12,51 +12,69 @@
   <meta property="og:title" content="Waypoint Studio — Observe. Discover. Understand.">
   <meta property="og:description" content="Capture what you find. Learn why it matters. Calm outdoor tools — private by default.">
   <meta property="og:url" content="https://waypointstudio.org/">
-  <meta property="og:image" content="https://waypointstudio.org/assets/images/hero.jpg">
+  <meta property="og:image" content="https://waypointstudio.org/assets/images/home/hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Waypoint Studio">
   <meta name="twitter:description" content="Observe. Discover. Understand. Capture what you find. Learn why it matters.">
-  <meta name="twitter:image" content="https://waypointstudio.org/assets/images/hero.jpg">
+  <meta name="twitter:image" content="https://waypointstudio.org/assets/images/home/hero.jpg">
   <title>Waypoint Studio — Observe. Discover. Understand.</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/home/hero.jpg" fetchpriority="high">
   <link rel="stylesheet" href="design-system/css/wds.css">
+  <link rel="stylesheet" href="design-system/css/wds-studio-home.css?v=local">
   <link rel="stylesheet" href="design-system/css/wds-contact.css?v=local">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-hide-apps="true" data-shell-depth="0">
     <div data-wds-app-global data-shell-depth="0"></div>
 
-    <main id="main" class="was-home">
-      <header class="was-home__hero">
-        <p class="wds-eyebrow">Outdoor exploration platform</p>
+    <header class="was-home-hero" data-home-hero data-season="auto">
+      <div class="was-home-hero__media" aria-hidden="true">
+        <img
+          data-home-hero-img
+          src="assets/images/home/hero.jpg"
+          alt=""
+          width="1920"
+          height="1280"
+          decoding="async"
+          fetchpriority="high"
+        >
+        <div class="was-home-hero__overlay"></div>
+      </div>
+      <div class="was-home-hero__content">
+        <p class="was-home-hero__eyebrow">Waypoint Studio</p>
         <h1>Observe. Discover. Understand.</h1>
         <p class="was-home__tagline">Capture what you find. Learn why it matters.</p>
         <p class="was-home__lead">
-          Plan today’s outdoors, deepen photography craft, read the field with care,
-          and find ways to give back — with calm tools that interpret conditions, not just list them.
+          Step outside with clearer eyes — conditions, craft, field reading, and a quiet way to help.
           Private by default. No engagement traps.
         </p>
-        <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
-          <a href="apps/dashboard/">Dashboard</a>
-          <a href="apps/scenes/">Scenes</a>
-          <a href="apps/shed-hunting/">Sheds</a>
-          <a href="apps/waypoint-volunteer/">Volunteer</a>
-          <a href="articles/">Articles</a>
-          <a href="about.html">About</a>
+        <p class="was-home-hero__cta">
+          <a href="apps/dashboard/">See today’s outdoors</a>
         </p>
+        <p class="was-home-hero__meta">
+          <span data-home-hero-credit hidden></span>
+          <span class="was-home-hero__placeholder" data-home-hero-placeholder hidden>Placeholder seasonal photo</span>
+        </p>
+      </div>
+    </header>
+
+    <main id="main" class="was-home">
+      <div id="was-home-apps" aria-busy="true">
+        <p class="wds-honesty">Loading…</p>
+      </div>
+
+      <div class="was-home__search-dock" id="was-home-search-dock">
         <div class="was-home__search" role="search">
           <label class="wds-visually-hidden" for="was-studio-search">Search Studio</label>
-          <input type="search" id="was-studio-search" placeholder="Search apps, places, observations…" autocomplete="off">
+          <input type="search" id="was-studio-search" placeholder="Search places, observations, articles…" autocomplete="off">
           <div id="was-studio-search-results" class="was-home__search-results" aria-live="polite"></div>
         </div>
-      </header>
-      <div id="was-home-apps" aria-busy="true">
-        <p class="wds-honesty">Loading products…</p>
       </div>
     </main>
 
@@ -80,6 +98,7 @@
   <script src="design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-take.js?v=local" defer></script>
+  <script src="js/home-hero.js?v=local" defer></script>
   <script src="js/studio-home.js?v=local" defer></script>
 </body>
 </html>

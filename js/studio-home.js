@@ -1,5 +1,5 @@
 /**
- * Waypoint Studio home — RC3 primary product hierarchy.
+ * Waypoint Studio home — immersive outdoor landing (RC3 IA preserved).
  * Observe. Discover. Understand.
  */
 (function (global) {
@@ -14,6 +14,40 @@
   })();
 
   var BOOT_DEADLINE = Date.now() + 4000;
+
+  /** Experience-first copy — honest, not marketing fluff. */
+  var EXPERIENCE = {
+    dashboard: {
+      title: "Dashboard",
+      line: "Today’s outdoor conditions.",
+      go: "Open Dashboard",
+      quiet: "Free"
+    },
+    scenes: {
+      title: "Scenes",
+      line: "Photography that teaches you to see.",
+      go: "Open Scenes",
+      quiet: "Flagship"
+    },
+    sheds: {
+      title: "Sheds",
+      line: "Find more than antlers.",
+      go: "Open Sheds",
+      quiet: "Flagship"
+    },
+    volunteer: {
+      title: "Volunteer",
+      line: "Find a way to help today.",
+      go: "Open Volunteer",
+      quiet: "Free"
+    },
+    "waypoint-volunteer": {
+      title: "Volunteer",
+      line: "Find a way to help today.",
+      go: "Open Volunteer",
+      quiet: "Free"
+    }
+  };
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -38,43 +72,24 @@
     return null;
   }
 
-  function renderCard(app, Nav, opts) {
-    opts = opts || {};
+  function renderExperienceCard(app, Nav, exp) {
     var overview = Nav.resolveRoute(app.route, 0);
     var launch = Nav.startHereHref ? Nav.startHereHref(app, 0) : overview;
-    var start = app.startHere || {};
-    var startLabel = start.label || ("Open " + (app.shortTitle || app.title));
-    var purpose = app.purpose || app.description || "";
-    var chip = maturityLabel(app);
-    var showChip = chip && chip !== "Live";
-    var badge = opts.badge
-      ? '<span class="was-home__status">' + esc(opts.badge) + "</span>"
-      : showChip
-        ? '<span class="was-home__status">' + esc(chip) + "</span>"
-        : "";
+    var href = launch || overview;
     return (
-      '<article class="was-home__card' + (opts.primary ? " was-home__card--primary" : "") + '">' +
-        '<div class="was-home__card-head">' +
-          '<h3 class="was-home__card-title"><a href="' + esc(overview) + '">' + esc(app.title) + "</a></h3>" +
-          badge +
-        "</div>" +
-        '<p class="was-home__purpose">' + esc(purpose) + "</p>" +
-        '<p class="was-home__start"><span class="was-home__start-label">Start here</span> ' +
-          esc(startLabel) + "</p>" +
-        '<div class="was-home__card-actions">' +
-          '<a class="wds-btn wds-btn--primary wds-btn--sm" href="' + esc(launch) + '">Open</a>' +
-          (launch !== overview
-            ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="' + esc(overview) + '">Overview</a>'
-            : "") +
-        "</div>" +
-      "</article>"
+      '<a class="was-home__card was-home__card--experience was-home__card--primary" href="' + esc(href) + '">' +
+        '<p class="was-home__quiet-badge">' + esc(exp.quiet || "") + "</p>" +
+        '<h3 class="was-home__card-title">' + esc(exp.title || app.shortTitle || app.title) + "</h3>" +
+        '<p class="was-home__experience">' + esc(exp.line) + "</p>" +
+        '<span class="was-home__card-go">' + esc(exp.go || "Open") + "</span>" +
+      "</a>"
     );
   }
 
   function renderFallback(mount) {
     mount.innerHTML =
       '<div class="was-home__error" role="alert">' +
-        "<p>Applications could not load. Check your connection and try again.</p>" +
+        "<p>Experiences could not load. Check your connection and try again.</p>" +
         '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
         '<p class="wds-caption"><a href="apps/dashboard/">Dashboard</a> · ' +
         '<a href="apps/scenes/">Scenes</a> · <a href="apps/shed-hunting/">Sheds</a> · ' +
@@ -101,16 +116,21 @@
         var lookup = id === "volunteer" ? "waypoint-volunteer" : id;
         var app = byId(Nav, lookup);
         if (!app) return "";
-        var badge = lookup === "scenes" || lookup === "sheds" ? "Flagship" : "Free";
-        return renderCard(app, Nav, { primary: true, badge: badge });
+        var exp = EXPERIENCE[lookup] || EXPERIENCE[id] || {
+          title: app.shortTitle || app.title,
+          line: app.purpose || app.description || "",
+          go: "Open",
+          quiet: ""
+        };
+        return renderExperienceCard(app, Nav, exp);
       })
       .join("");
 
     var html = "";
     html +=
       '<section class="was-home__section" aria-labelledby="was-home-primary">' +
-        '<h2 id="was-home-primary">Primary products</h2>' +
-        '<p class="was-home__journey-blurb">Four ways to begin. Working tools on this platform — not a directory of every prototype.</p>' +
+        '<h2 id="was-home-primary">Four ways outside</h2>' +
+        '<p class="was-home__journey-blurb">Working tools — not a directory of every prototype.</p>' +
         '<div class="was-home__grid was-home__grid--primary">' + primaryCards + "</div>" +
       "</section>";
 
@@ -123,8 +143,8 @@
     html +=
       '<section class="was-home__section" aria-labelledby="was-home-articles">' +
         '<h2 id="was-home-articles">Articles</h2>' +
-        '<p class="was-home__journey-blurb">Shared learning that supports every flagship experience — not a separate product.</p>' +
-        '<p><a class="wds-btn wds-btn--secondary wds-btn--sm" href="articles/">Browse Articles</a></p>' +
+        '<p class="was-home__journey-blurb">Quiet learning that deepens the field — supporting every primary experience.</p>' +
+        '<p><a class="was-home__articles-link" href="articles/">Browse Articles</a></p>' +
       "</section>";
 
     var incLinks = incubatorIds.map(function (id) {
@@ -136,7 +156,7 @@
     html +=
       '<section class="was-home__section was-home__incubator" aria-labelledby="was-home-incubator">' +
         '<h2 id="was-home-incubator">Incubator</h2>' +
-        '<p class="was-home__journey-blurb">Future products, held quietly — not primary Launch peers.</p>' +
+        '<p class="was-home__journey-blurb">Future products, held quietly.</p>' +
         "<ul>" + incLinks + "</ul>" +
         '<p><a href="incubator/">View Incubator</a></p>' +
       "</section>";
@@ -149,9 +169,8 @@
 
     html +=
       '<section class="was-home__section was-home__supporting" aria-labelledby="was-home-supporting">' +
-        '<h2 id="was-home-supporting" class="was-home__quiet-title">Supporting capabilities</h2>' +
-        '<p class="was-home__journey-blurb">Preserved and reachable, not flagship peers: ' +
-          sup + ".</p>" +
+        '<h2 id="was-home-supporting" class="was-home__quiet-title">Also nearby</h2>' +
+        '<p class="was-home__journey-blurb">' + sup + "</p>" +
       "</section>";
 
     mount.innerHTML = html;

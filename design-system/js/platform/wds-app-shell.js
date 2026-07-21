@@ -153,13 +153,15 @@
           (primary
             ? '<nav class="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
             : "") +
-          '<div class="was-global__actions">' +
-            '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
-              '<span class="was-apps-btn__label">Apps</span>' +
-            "</button>" +
-          "</div>" +
+          (options.hideApps
+            ? ""
+            : '<div class="was-global__actions">' +
+              '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
+                '<span class="was-apps-btn__label">Apps</span>' +
+              "</button>" +
+            "</div>") +
         "</div>" +
-        renderLauncher(depth, activeId) +
+        (options.hideApps ? "" : renderLauncher(depth, activeId)) +
       "</header>"
     );
   }
@@ -370,7 +372,8 @@
       appId: appId,
       productName: el.getAttribute("data-product-name"),
       depth: depthAttr != null ? Number(depthAttr) : undefined,
-      hideLocal: el.getAttribute("data-hide-local") === "true"
+      hideLocal: el.getAttribute("data-hide-local") === "true",
+      hideApps: el.getAttribute("data-hide-apps") === "true"
     });
   }
 
