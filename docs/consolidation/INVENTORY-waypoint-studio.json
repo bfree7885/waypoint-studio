@@ -1,0 +1,332 @@
+{
+  "repo": "bfree7885/waypoint-studio",
+  "path": "/home/bryan/Projects/waypoint-studio",
+  "head": "f68c5b2ef1a1d40eaa979ea71088451096fb5c33",
+  "file_count": 1548,
+  "by_extension": {
+    ".md": 479,
+    ".js": 370,
+    ".json": 237,
+    ".html": 112,
+    ".mjs": 103,
+    ".css": 69,
+    ".png": 51,
+    ".py": 33,
+    ".yaml": 22,
+    ".svg": 13,
+    ".sh": 13,
+    ".jpg": 9,
+    "(none)": 8,
+    ".jpeg": 6,
+    ".txt": 5,
+    ".example": 3,
+    ".pdf": 2,
+    ".service": 2,
+    ".desktop": 2,
+    ".mdc": 2,
+    ".yml": 2,
+    ".xml": 1,
+    ".webmanifest": 1,
+    ".csv": 1,
+    ".path": 1,
+    ".zip": 1
+  },
+  "counts": {
+    "html": 112,
+    "css": 69,
+    "js": 473,
+    "json": 237,
+    "md": 479,
+    "images": 79,
+    "workflows": 2,
+    "testish": 69
+  },
+  "apps_dirs": [
+    "animal-vision",
+    "dashboard",
+    "fieldry",
+    "foragecast",
+    "hidden-landscapes",
+    "landscape-interpretation",
+    "photo-coach",
+    "photo-library",
+    "photo-pipeline",
+    "savant-sommelier",
+    "scenes",
+    "shed-hunting",
+    "signalterrain",
+    "steepleaf",
+    "terrainbound",
+    "waypoint-scenes",
+    "waypoint-volunteer"
+  ],
+  "largest_files": [
+    {
+      "bytes": 26440356,
+      "path": "apps/waypoint-scenes/assets/Images.zip"
+    },
+    {
+      "bytes": 13479436,
+      "path": "apps/waypoint-scenes/assets/Images_extracted/Edited-8190413.JPG"
+    },
+    {
+      "bytes": 13479436,
+      "path": "apps/waypoint-scenes/assets/Images/Edited-8190413.JPG"
+    },
+    {
+      "bytes": 7131185,
+      "path": "apps/waypoint-scenes/assets/wetland.jpg"
+    },
+    {
+      "bytes": 7131185,
+      "path": "apps/waypoint-scenes/assets/bog.jpg"
+    },
+    {
+      "bytes": 7131185,
+      "path": "apps/waypoint-scenes/assets/Images_extracted/image0.jpeg"
+    },
+    {
+      "bytes": 7131185,
+      "path": "apps/waypoint-scenes/assets/Images/image0.jpeg"
+    },
+    {
+      "bytes": 5881056,
+      "path": "apps/waypoint-scenes/assets/fogforest.jpg"
+    },
+    {
+      "bytes": 5881056,
+      "path": "apps/waypoint-scenes/assets/Images_extracted/image4.jpeg"
+    },
+    {
+      "bytes": 2143111,
+      "path": "data/cyber/live.json"
+    },
+    {
+      "bytes": 1010492,
+      "path": "docs/PLATFORM-AUDIT-2026-07.pdf"
+    },
+    {
+      "bytes": 913061,
+      "path": "audits/live-site-qa/route-results.json"
+    },
+    {
+      "bytes": 896500,
+      "path": "reports/sheds-field-ux-v1/04-android.png"
+    },
+    {
+      "bytes": 896500,
+      "path": "reports/sheds-experience-redesign-v1/after/04-android.png"
+    },
+    {
+      "bytes": 834363,
+      "path": "docs/screenshots/volunteer-discover-today.png"
+    },
+    {
+      "bytes": 779179,
+      "path": "reports/sheds-field-ux-v1/01-fresh-load-phone.png"
+    },
+    {
+      "bytes": 779179,
+      "path": "reports/sheds-experience-redesign-v1/after/01-fresh-load-phone.png"
+    },
+    {
+      "bytes": 752473,
+      "path": "reports/sheds-field-ux-2026-07/01-fresh-load.png"
+    },
+    {
+      "bytes": 749789,
+      "path": "reports/sheds-field-ux-v1/05-desktop.png"
+    },
+    {
+      "bytes": 749789,
+      "path": "reports/sheds-experience-redesign-v1/after/05-desktop.png"
+    },
+    {
+      "bytes": 661359,
+      "path": "reports/sheds-field-ux-v1/03-sheet-expanded.png"
+    },
+    {
+      "bytes": 661359,
+      "path": "reports/sheds-experience-redesign-v1/after/03-sheet-expanded.png"
+    },
+    {
+      "bytes": 597105,
+      "path": "data/cyber/graph.json"
+    },
+    {
+      "bytes": 594629,
+      "path": "reports/sheds-field-ux-2026-07/03-suggest-expanded.png"
+    },
+    {
+      "bytes": 525560,
+      "path": "reports/screenshots/production-audit/desktop-scenes.png"
+    }
+  ],
+  "duplicate_pairs_sample": [
+    {
+      "sha256": "e8d70b9a496b",
+      "a": "apps/waypoint-scenes/assets/Images/mist-valley.jpg",
+      "b": "apps/scenes/assets/media/mist-valley.jpg"
+    },
+    {
+      "sha256": "e8d70b9a496b",
+      "a": "apps/waypoint-scenes/assets/Images/mist-valley.jpg",
+      "b": "apps/scenes/assets/media/hero.jpg"
+    },
+    {
+      "sha256": "c3bd0c6a186f",
+      "a": "reports/deploy-verify-2026-07/prod-studio-home.png",
+      "b": "reports/nav-refactor-2026-07/studio-home-desktop.png"
+    },
+    {
+      "sha256": "f11fc7049bbc",
+      "a": "reports/deploy-verify-2026-07/prod-scenes.png",
+      "b": "reports/nav-refactor-2026-07/scenes-desktop.png"
+    },
+    {
+      "sha256": "ec16003031b5",
+      "a": "reports/sheds-field-ux-v1/02-tools-sheet.png",
+      "b": "reports/sheds-experience-redesign-v1/after/02-tools-sheet.png"
+    },
+    {
+      "sha256": "6253b94ea1c3",
+      "a": "reports/sheds-field-ux-v1/01-fresh-load-phone.png",
+      "b": "reports/sheds-experience-redesign-v1/after/01-fresh-load-phone.png"
+    },
+    {
+      "sha256": "c7ccdc80f8ef",
+      "a": "reports/sheds-field-ux-v1/04-android.png",
+      "b": "reports/sheds-experience-redesign-v1/after/04-android.png"
+    },
+    {
+      "sha256": "be70315f8cff",
+      "a": "reports/sheds-field-ux-v1/03-sheet-expanded.png",
+      "b": "reports/sheds-experience-redesign-v1/after/03-sheet-expanded.png"
+    },
+    {
+      "sha256": "db1762c8387f",
+      "a": "reports/sheds-field-ux-v1/05-desktop.png",
+      "b": "reports/sheds-experience-redesign-v1/after/05-desktop.png"
+    },
+    {
+      "sha256": "e8d70b9a496b",
+      "a": "apps/waypoint-scenes/assets/Images/mist-valley.jpg",
+      "b": "assets/images/hero.jpg"
+    }
+  ],
+  "duplicate_pair_count": 10,
+  "html_paths": [
+    "404.html",
+    "about.html",
+    "apps/animal-vision/index.html",
+    "apps/dashboard/index.html",
+    "apps/fieldry/index.html",
+    "apps/foragecast/conditions.html",
+    "apps/foragecast/foraging.html",
+    "apps/foragecast/habitats.html",
+    "apps/foragecast/index.html",
+    "apps/foragecast/journal.html",
+    "apps/foragecast/learn.html",
+    "apps/foragecast/map.html",
+    "apps/foragecast/pillar.html",
+    "apps/foragecast/property-setup.html",
+    "apps/foragecast/property.html",
+    "apps/foragecast/season-table.html",
+    "apps/foragecast/settings.html",
+    "apps/foragecast/species.html",
+    "apps/foragecast/timeline.html",
+    "apps/foragecast/weather.html",
+    "apps/hidden-landscapes/gallery.html",
+    "apps/hidden-landscapes/index.html",
+    "apps/hidden-landscapes/learn.html",
+    "apps/landscape-interpretation/index.html",
+    "apps/landscape-interpretation/learn.html",
+    "apps/photo-coach/guide/index.html",
+    "apps/photo-coach/index.html",
+    "apps/photo-coach/profile/index.html",
+    "apps/photo-library/index.html",
+    "apps/photo-pipeline/index.html",
+    "apps/savant-sommelier/cellar.html",
+    "apps/savant-sommelier/index.html",
+    "apps/savant-sommelier/learn.html",
+    "apps/savant-sommelier/settings.html",
+    "apps/savant-sommelier/vineyard.html",
+    "apps/scenes/hidden-landscapes/index.html",
+    "apps/scenes/index.html",
+    "apps/scenes/living-scenes/index.html",
+    "apps/scenes/photo-coach/index.html",
+    "apps/scenes/photo-library/index.html",
+    "apps/scenes/photographer-profile/index.html",
+    "apps/scenes/scene-builder/index.html",
+    "apps/shed-hunting/index.html",
+    "apps/shed-hunting/map/index.html",
+    "apps/signalterrain/cyber/advisor.html",
+    "apps/signalterrain/cyber/brief.html",
+    "apps/signalterrain/cyber/explorer.html",
+    "apps/signalterrain/cyber/index.html",
+    "apps/signalterrain/cyber/ingest-health.html",
+    "apps/signalterrain/cyber/knowledge.html",
+    "apps/signalterrain/cyber/live.html",
+    "apps/signalterrain/cyber/teaching.html",
+    "apps/signalterrain/cyber/workspace.html",
+    "apps/signalterrain/graph.html",
+    "apps/signalterrain/index.html",
+    "apps/signalterrain/summary.html",
+    "apps/signalterrain/topics.html",
+    "apps/steepleaf/entity/index.html",
+    "apps/steepleaf/explore/index.html",
+    "apps/steepleaf/index.html",
+    "apps/terrainbound/index.html",
+    "apps/waypoint-scenes/index.html",
+    "apps/waypoint-volunteer/discover.html",
+    "apps/waypoint-volunteer/impact/index.html",
+    "apps/waypoint-volunteer/index.html",
+    "apps/waypoint-volunteer/profile/index.html",
+    "apps/waypoint-volunteer/saved/index.html",
+    "articles/categories/create/index.html",
+    "articles/categories/field-craft/index.html",
+    "articles/categories/observe/index.html",
+    "articles/categories/outdoor-intelligence/index.html",
+    "articles/categories/share/index.html",
+    "articles/categories/understand/index.html",
+    "articles/index.html",
+    "articles/samples/reading-todays-conditions.html",
+    "articles/templates/article.html",
+    "contact.html",
+    "dashboard.html",
+    "debug.html",
+    "design-system/content-engine/demo.html",
+    "design-system/ecosystem/product-home-shell.html",
+    "design-system/field-guide/index.html",
+    "design-system/field-guide/templates/ecosystem-guide.html",
+    "design-system/field-guide/templates/equipment-guide.html",
+    "design-system/field-guide/templates/field-investigation.html",
+    "design-system/field-guide/templates/geology-guide.html",
+    "design-system/field-guide/templates/habitat-guide.html",
+    "design-system/field-guide/templates/outdoor-challenge.html",
+    "design-system/field-guide/templates/photography-guide.html",
+    "design-system/field-guide/templates/research-brief.html",
+    "design-system/field-guide/templates/seasonal-journal.html",
+    "design-system/field-guide/templates/species-guide.html",
+    "design-system/field-guide/templates/weather-guide.html",
+    "design-system/homepage/index.html",
+    "design-system/patterns/evidence-card.html",
+    "design-system/patterns/guide-card.html",
+    "design-system/patterns/product-shell.html",
+    "design-system/patterns/reference.html",
+    "design-system/patterns/signal-intelligence-dashboard.html",
+    "design-system/patterns/worth-noticing.html",
+    "design-system/species/profile.html",
+    "index.html",
+    "kiosk.html",
+    "knowledge.html",
+    "map/index.html",
+    "privacy.html",
+    "private/university/index.html",
+    "reports/WaypointStudio_ExpertCouncil_Review_V2.html",
+    "reports/owner-production-audit.html",
+    "settings.html",
+    "status.html",
+    "support.html"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "note": "Owner photography replaces placeholders. Set placeholder false and point src at your files under assets/images/identity/owner/ when ready. Do not hardcode permanent stock.",
+  "experiences": {
+    "home": {
+      "label": "Waypoint Studio",
+      "mood": "sky",
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Soft morning sky over quiet hills — temporary placeholder",
+      "credit": "Placeholder · replace with owner sky photography",
+      "placeholder": true
+    },
+    "dashboard": {
+      "label": "Today’s outdoors",
+      "mood": "sky",
+      "src": "assets/images/identity/placeholders/dashboard-sky.svg",
+      "alt": "Open sky for today’s outdoor brief — temporary placeholder",
+      "credit": "Placeholder · replace with owner sky photography",
+      "placeholder": true
+    },
+    "scenes": {
+      "label": "Photography",
+      "mood": "craft",
+      "src": "assets/images/identity/placeholders/scenes-craft.svg",
+      "alt": "Photographic light and quiet landscape — temporary placeholder",
+      "credit": "Placeholder · replace with owner photography",
+      "placeholder": true
+    },
+    "sheds": {
+      "label": "Forest",
+      "mood": "forest",
+      "src": "assets/images/identity/placeholders/sheds-forest.svg",
+      "alt": "Forest edge and soft understory — temporary placeholder",
+      "credit": "Placeholder · replace with owner forest photography",
+      "placeholder": true
+    },
+    "volunteer": {
+      "label": "Stewardship",
+      "mood": "stewardship",
+      "src": "assets/images/identity/placeholders/volunteer-care.svg",
+      "alt": "People caring for trails and land — temporary placeholder",
+      "credit": "Placeholder · replace with owner stewardship photography",
+      "placeholder": true
+    }
+  }
+}

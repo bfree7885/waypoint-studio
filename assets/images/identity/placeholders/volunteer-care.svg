@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder stewardship atmosphere">
+  <defs>
+    <linearGradient id="warm" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#6a5a48"/>
+      <stop offset="55%" stop-color="#3a342c"/>
+      <stop offset="100%" stop-color="#1a1814"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#warm)"/>
+  <path d="M0 640 C400 580 700 700 1000 620 C1300 540 1600 640 1920 600 L1920 1080 L0 1080 Z" fill="#2f4a38" opacity="0.55"/>
+  <g fill="#f4f1ea" opacity="0.35">
+    <circle cx="820" cy="520" r="28"/>
+    <circle cx="900" cy="500" r="34"/>
+    <circle cx="980" cy="525" r="26"/>
+    <rect x="860" y="548" width="80" height="120" rx="12"/>
+  </g>
+  <text x="64" y="1000" fill="#f4f1ea" font-family="Georgia, serif" font-size="28" opacity="0.5">Temporary stewardship · owner photography later</text>
+</svg>

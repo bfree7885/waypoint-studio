@@ -1,0 +1,73 @@
+# Inventory summary — waypoint-studio-site rc3 @ 508b783
+- Files walked (excl .tmp-audit/node_modules): **167**
+- HTML files: 47
+
+## RC3 key path existence
+- `OK` docs/RC3-CONSTITUTION.md
+- `OK` docs/PRODUCTS.md
+- `OK` docs/NAVIGATION-PLAN.md
+- `OK` docs/INCUBATOR.md
+- `OK` docs/AURORA-DESIGN-SYSTEM.md
+- `OK` docs/DASHBOARD-3.md
+- `OK` docs/SHEDS-3.md
+- `OK` styles/aurora-tokens.css
+- `OK` styles/aurora.css
+- `OK` styles/dashboard.css
+- `OK` styles/sheds.css
+- `OK` dashboard/index.html
+- `OK` sheds/index.html
+- `OK` incubator/index.html
+- `OK` design-system/index.html
+- `OK` index.html
+- `OK` education/index.html
+- `OK` volunteer/index.html
+- `OK` waypoint-scenes/index.html
+
+## HTML routes
+- `404.html`
+- `about/index.html`
+- `contact/index.html`
+- `dashboard/index.html`
+- `design-system/index.html`
+- `docs/MASTER-PLATFORM-AUDIT-2026-07.html`
+- `education/articles/index.html`
+- `education/index.html`
+- `education/podcast/index.html`
+- `education/topics/birding/index.html`
+- `education/topics/ecology/index.html`
+- `education/topics/forest-farming/index.html`
+- `education/topics/hand-tool-woodworking/index.html`
+- `education/topics/homesteading/index.html`
+- `education/topics/index.html`
+- `education/topics/orchards/index.html`
+- `education/topics/permaculture/index.html`
+- `education/topics/plant-based-living/index.html`
+- `education/topics/wildlife-biology/index.html`
+- `education/topics/wildlife-photography/index.html`
+- `fieldry/index.html`
+- `foragecast/education/black-trumpet/index.html`
+- `foragecast/education/blueberry/index.html`
+- `foragecast/education/chanterelle/index.html`
+- `foragecast/education/index.html`
+- `foragecast/education/morel/index.html`
+- `foragecast/education/ramps/index.html`
+- `foragecast/index.html`
+- `gallery/index.html`
+- `incubator/index.html`
+- `index.html`
+- `privacy/index.html`
+- `projects/index.html`
+- `projects/sheds/index.html`
+- `projects/waypoint-scenes/index.html`
+- `projects/waypoint-scenes/ws0001/camera.html`
+- `projects/waypoint-scenes/ws0001/index.html`
+- `projects/waypoint-scenes/ws0001/mobile.html`
+- `sheds/index.html`
+- `support/index.html`
+- `volunteer/index.html`
+- `volunteer/opportunity/index.html`
+- `volunteer/organization/index.html`
+- `volunteer/saved/index.html`
+- `waypoint-scenes/experience.html`
+- `waypoint-scenes/index.html`
+- `workshop/index.html`

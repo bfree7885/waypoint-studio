@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "note": "Seasonal home photography. Prefer assets/images/identity/manifest.json for Studio identity. Mark placeholder true until owner files replace identical stand-ins.",
+  "default": {
+    "src": "assets/images/identity/placeholders/home-sky.svg",
+    "alt": "Soft morning sky — temporary placeholder",
+    "credit": "Placeholder · owner sky photography later",
+    "placeholder": true
+  },
+  "seasons": {
+    "spring": {
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder spring sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
+      "months": [3, 4, 5]
+    },
+    "summer": {
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder summer sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
+      "months": [6, 7, 8]
+    },
+    "autumn": {
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder autumn sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
+      "months": [9, 10, 11]
+    },
+    "winter": {
+      "src": "assets/images/identity/placeholders/home-sky.svg",
+      "alt": "Placeholder winter sky — owner photography pending",
+      "credit": "Placeholder",
+      "placeholder": true,
+      "months": [12, 1, 2]
+    }
+  }
+}

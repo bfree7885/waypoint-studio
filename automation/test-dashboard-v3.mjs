@@ -256,7 +256,7 @@ const html = sandbox.WDS.dashboardV3.render(ctx);
 assert("render version 3", /data-dashboard-version="3"/.test(html));
 assert("render includes Brief", /Today’s Outdoor Brief|Today's Outdoor Brief/.test(html));
 assert("render Brief before widgets area", html.indexOf("wdb-v3-brief") < html.indexOf("wdb-v3-widgets-area"));
-assert("render Customize Dashboard", /Customize Dashboard/.test(html));
+assert("render Adjust what you see", /Adjust what you see/.test(html));
 assert("render widget area", /wdb-v3-widgets-area/.test(html));
 assert("render footer", /wdb-v3-footer/.test(html));
 assert("render Current Conditions", /Current Conditions/.test(html));

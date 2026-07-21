@@ -1,9 +1,9 @@
 {
   "productId": "waypoint-volunteer",
-  "title": "Waypoint Volunteer",
-  "eyebrow": "Waypoint Studio \u00b7 What good can I do today?",
-  "status": "foundation",
-  "lead": "A hopeful discovery platform with Opportunity Intelligence \u2014 prioritized, explained suggestions that adapt to weather, time, and private preferences. Not volunteer management, not registration, not social media.",
+  "title": "Volunteer",
+  "eyebrow": "Primary product \u00b7 What good can I do today?",
+  "status": "free",
+  "lead": "A hopeful discovery platform for nearby outdoor good \u2014 trails, conservation, citizen science, and animal care. Prioritized, explained suggestions that adapt to weather, time, and private preferences. Not volunteer management, not registration, not social media.",
   "mission": "Anyone who wants a calm answer to \u201cWhat good can I do today?\u201d \u2014 neighbors, families, outdoor people, and careful observers looking for a place to help without pressure, rankings, or gamification.",
   "problems": [
     "Good opportunities are scattered across calendars and websites",
@@ -16,9 +16,9 @@
   },
   "capabilityGroups": [
     {
-      "title": "Opportunity Intelligence",
+      "title": "Finding good nearby",
       "status": "live",
-      "description": "Soft private scores with plain-language reasons \u2014 weather, season, distance, accessibility, and causes.",
+      "description": "Soft private cues with plain-language reasons — weather, season, distance, accessibility, and causes.",
       "items": [
         "Today recommendation panel",
         "Explained alternatives",
@@ -53,7 +53,7 @@
     {
       "title": "Discovery: What good can I do today?",
       "status": "live",
-      "description": "Today panel, filters, map, and explained Opportunity Intelligence ranking over sample opportunities."
+      "description": "Today panel, filters, map, and explained ranking over sample opportunities."
     },
     {
       "title": "Private profile & saved lists",

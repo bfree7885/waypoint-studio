@@ -11,10 +11,21 @@
       "name": "Waypoint Studio",
       "homeRoute": "./"
     },
+    "studioPrimaryNav": [
+      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "How is today?" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
+      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
+      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
+      { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
+      { "id": "about", "label": "About", "href": "about.html" }
+    ],
+    "homePrimary": ["dashboard", "scenes", "sheds", "volunteer"],
+    "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
+    "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {
         "id": "core",
-        "label": "Core"
+        "label": "Today outside"
       },
       {
         "id": "photography",
@@ -22,15 +33,15 @@
       },
       {
         "id": "outdoor",
-        "label": "Outdoor"
+        "label": "In the field"
       },
       {
         "id": "intelligence",
-        "label": "Intelligence"
+        "label": "Reading the land"
       },
       {
         "id": "lifestyle",
-        "label": "Lifestyle"
+        "label": "Nearby"
       }
     ],
     "apps": [
@@ -44,27 +55,29 @@
           "/apps/dashboard"
         ],
         "category": "core",
-        "description": "Weather, light, trails, and outdoor conditions for your region.",
+        "description": "Free Today Outside briefing — weather, light, trails, and outdoor conditions with Waypoint’s Take.",
         "status": "live",
+        "maturity": "Live",
+        "purpose": "Plan today’s outdoor adventure: observe conditions, discover what matters nearby, understand with calm interpretation.",
         "features": [
           {
             "id": "today",
-            "label": "Today",
+            "label": "Today’s brief",
             "href": "#outdoor-dashboard"
           },
           {
             "id": "conditions",
-            "label": "Conditions",
+            "label": "What matters",
             "href": "#wdb-section-conditions"
           },
           {
             "id": "sun-moon",
-            "label": "Sun & Moon",
+            "label": "Light",
             "href": "#wdb-section-sun-moon"
           },
           {
             "id": "safety",
-            "label": "Safety",
+            "label": "What to know",
             "href": "#wdb-section-safety"
           },
           {
@@ -74,14 +87,12 @@
           },
           {
             "id": "photography",
-            "label": "Photography",
+            "label": "Photograph?",
             "href": "#wdb-section-photography"
           }
         ],
-        "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
-        "maturity": "Live",
         "startHere": {
-          "label": "Open Today Outside",
+          "label": "How is today?",
           "href": "apps/dashboard/"
         },
         "journeys": [
@@ -110,12 +121,12 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
         "status": "live",
         "features": [
           {
             "id": "overview",
-            "label": "Overview",
+            "label": "Today",
             "href": "apps/scenes/",
             "match": [
               "/apps/scenes/?$",
@@ -123,17 +134,8 @@
             ]
           },
           {
-            "id": "photo-library",
-            "label": "Library",
-            "href": "apps/photo-library/",
-            "match": [
-              "/apps/scenes/photo-library",
-              "/apps/photo-library"
-            ]
-          },
-          {
             "id": "photo-coach",
-            "label": "Photo Coach",
+            "label": "Review a shoot",
             "href": "apps/photo-coach/",
             "match": [
               "/apps/scenes/photo-coach",
@@ -142,61 +144,35 @@
             ]
           },
           {
+            "id": "photo-library",
+            "label": "Your photographs",
+            "href": "apps/photo-library/",
+            "match": [
+              "/apps/scenes/photo-library",
+              "/apps/photo-library"
+            ]
+          },
+          {
             "id": "hidden-landscapes",
-            "label": "Hidden Landscapes",
+            "label": "Other ways of seeing",
             "href": "apps/hidden-landscapes/",
             "match": [
               "/apps/scenes/hidden-landscapes",
               "/apps/hidden-landscapes",
               "/apps/animal-vision"
             ]
-          },
-          {
-            "id": "living-scenes",
-            "label": "Living Scenes",
-            "href": "apps/scenes/living-scenes/",
-            "match": [
-              "/apps/scenes/living-scenes"
-            ]
-          },
-          {
-            "id": "scene-builder",
-            "label": "Scene Builder",
-            "href": "apps/scenes/scene-builder/",
-            "match": [
-              "/apps/scenes/scene-builder",
-              "/apps/waypoint-scenes"
-            ]
-          },
-          {
-            "id": "photographer-profile",
-            "label": "Profile",
-            "href": "apps/scenes/photographer-profile/",
-            "match": [
-              "/apps/scenes/photographer-profile",
-              "/apps/photo-coach/profile"
-            ]
-          },
-          {
-            "id": "guide",
-            "label": "Field guide",
-            "href": "apps/photo-coach/guide/",
-            "match": [
-              "/apps/photo-coach/guide"
-            ]
           }
         ],
-        "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
-        "maturity": "Live",
+        "purpose": "Observe carefully, discover what to look for, understand how you see — Create and Share stay inside the craft workflow.",
+        "maturity": "Flagship",
         "startHere": {
-          "label": "Open Photo Coach",
+          "label": "Review today’s shoot",
           "href": "apps/photo-coach/"
         },
         "journeys": [
           "observe",
-          "understand",
-          "create",
-          "share"
+          "discover",
+          "understand"
         ],
         "related": [
           "dashboard",
@@ -213,19 +189,24 @@
           "/apps/shed-hunting"
         ],
         "category": "outdoor",
-        "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
-        "status": "foundation",
+        "description": "Flagship shed hunting — map, GPS, field workflow, and privacy-first observations.",
+        "status": "live",
         "features": [
           {
+            "id": "field-map",
+            "label": "Where to search",
+            "href": "apps/shed-hunting/map/"
+          },
+          {
             "id": "overview",
-            "label": "Overview",
+            "label": "About today’s hunt",
             "href": "apps/shed-hunting/"
           }
         ],
-        "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
-        "maturity": "Foundation",
+        "purpose": "A day’s hunt — where to search, conditions, finds, and learning without trophy culture.",
+        "maturity": "Flagship",
         "startHere": {
-          "label": "Open field map",
+          "label": "Where should I search?",
           "href": "apps/shed-hunting/map/"
         },
         "journeys": [
@@ -640,37 +621,37 @@
           "/apps/waypoint-volunteer"
         ],
         "category": "outdoor",
-        "description": "What good can I do today? — discover community opportunities without gamification.",
-        "status": "foundation",
+        "description": "Free primary product — What good can I do today? Nearby outdoor stewardship without management software.",
+        "status": "live",
         "features": [
           {
-            "id": "overview",
-            "label": "Overview",
-            "href": "apps/waypoint-volunteer/"
-          },
-          {
             "id": "discover",
-            "label": "Discover",
+            "label": "What good today?",
             "href": "apps/waypoint-volunteer/discover.html"
           },
           {
             "id": "saved",
-            "label": "Saved",
+            "label": "Nearby saved",
             "href": "apps/waypoint-volunteer/saved/"
           },
           {
-            "id": "profile",
-            "label": "Profile",
-            "href": "apps/waypoint-volunteer/profile/"
+            "id": "overview",
+            "label": "About Volunteer",
+            "href": "apps/waypoint-volunteer/?about=1"
           },
           {
             "id": "impact",
-            "label": "Impact",
+            "label": "My impact",
             "href": "apps/waypoint-volunteer/impact/"
+          },
+          {
+            "id": "profile",
+            "label": "My interests",
+            "href": "apps/waypoint-volunteer/profile/"
           }
         ],
-        "purpose": "Discover community good you can do today — without management software or gamification.",
-        "maturity": "Foundation",
+        "purpose": "What good can I do today? — nearby outdoor stewardship without management software.",
+        "maturity": "Free",
         "startHere": {
           "label": "What good can I do today?",
           "href": "apps/waypoint-volunteer/discover.html"
@@ -732,23 +713,22 @@
       {
         "id": "observe",
         "label": "Observe",
-        "blurb": "See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments."
+        "blurb": "See what is happening outdoors — conditions, light, wildlife sign, and stewardship opportunities."
+      },
+      {
+        "id": "discover",
+        "label": "Discover",
+        "blurb": "Find places, photographs, and ways to care for the natural world."
       },
       {
         "id": "understand",
         "label": "Understand",
         "blurb": "Learn why it matters — calm explanations with uncertainty labeled, never hype."
-      },
-      {
-        "id": "create",
-        "label": "Create",
-        "blurb": "Optional making — photography craft, journals, and personal collections without competition."
-      },
-      {
-        "id": "share",
-        "label": "Share",
-        "blurb": "Intentional sharing only — exports and contributions you choose, never engagement traps."
       }
-    ]
+    ],
+    "mission": {
+      "lines": ["Observe.", "Discover.", "Understand."],
+      "tagline": "Capture what you find. Learn why it matters."
+    }
   };
 })(typeof window !== "undefined" ? window : globalThis);

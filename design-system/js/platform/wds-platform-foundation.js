@@ -15,6 +15,8 @@
 
   function statusLabel(status) {
     if (status === "live") return "Available now";
+    if (status === "flagship") return "Flagship";
+    if (status === "free") return "Free";
     if (status === "foundation") return "Foundation";
     if (status === "ready") return "In progress";
     if (status === "planned" || status === "next") return "Coming later";

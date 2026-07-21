@@ -1,0 +1,137 @@
+/**
+ * Sheds overview — morning hunt atmosphere (emotion before tools).
+ */
+
+.sheds-page {
+  max-width: 42rem;
+}
+
+.xp-stage {
+  position: relative;
+  margin: 0 0 2.25rem;
+  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1.25rem, 4vw, 2rem);
+  border-radius: 1.15rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.xp-stage--forest {
+  background-color: #0c1410;
+  background-image:
+    linear-gradient(165deg, rgba(12, 20, 16, 0.55), rgba(12, 20, 16, 0.82)),
+    radial-gradient(120% 90% at 10% 0%, rgba(90, 120, 70, 0.35), transparent 55%);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(244, 241, 234, 0.1);
+}
+
+.xp-stage__credit {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: rgba(244, 241, 234, 0.45);
+}
+
+.xp-stage__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.55);
+}
+
+.xp-stage__title {
+  margin: 0 0 0.65rem;
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  line-height: 1.15;
+  color: #f4f1ea;
+}
+
+.xp-stage__lead {
+  margin: 0 0 1.25rem;
+  max-width: 34rem;
+  line-height: 1.55;
+  color: rgba(244, 241, 234, 0.78);
+}
+
+.xp-stage__cta {
+  margin: 0;
+}
+
+.xp-secondary {
+  margin: 0 0 2rem;
+}
+
+.xp-secondary__title,
+.xp-later__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.5));
+}
+
+.xp-secondary__list,
+.xp-later__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.xp-secondary__list li + li {
+  margin-top: 0.35rem;
+}
+
+.xp-secondary__list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.xp-secondary__list a:hover,
+.xp-secondary__list a:focus-visible {
+  color: var(--wds-accent, #c8f055);
+  outline: none;
+}
+
+.xp-secondary__list strong {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.xp-secondary__list span {
+  font-size: 0.92rem;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.65));
+}
+
+.xp-later {
+  margin: 1.5rem 0 2rem;
+  padding-top: 0.5rem;
+}
+
+.xp-later__list li {
+  padding: 0.4rem 0;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.65));
+  font-size: 0.95rem;
+}
+
+.xp-later__note {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.5));
+}
+
+.sheds-page .wds-take {
+  margin: 0 0 1.75rem;
+}
+
+.sheds-workflows:empty {
+  display: none;
+}

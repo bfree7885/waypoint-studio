@@ -1,9 +1,9 @@
 {
   "productId": "sheds",
   "title": "Sheds",
-  "eyebrow": "Waypoint Studio \u00b7 Sheds",
-  "status": "foundation",
-  "lead": "A calm place for antler shed hunting \u2014 species knowledge, private finds, and seasonal timing without trophy culture.",
+  "eyebrow": "Waypoint Studio \u00b7 Sheds \u00b7 Flagship",
+  "status": "flagship",
+  "lead": "Map-first shed hunting \u2014 species knowledge, private finds, GPS field workflow, and seasonal timing without trophy culture.",
   "mission": "For hunters and naturalists who want to read sign, learn cervid ecology, and keep find locations private.",
   "principles": [
     "No leaderboards or find rankings",

@@ -83,7 +83,7 @@ function run() {
   assert("nav categories", Nav.appsByCategory().length >= 4);
 
   const topbar = global.WDS.appShell.renderGlobalHeader({ depth: 1, app: Nav.byId("fieldry") });
-  assert("shell apps launcher control", /was-apps-btn/.test(topbar) && /Applications/.test(topbar));
+  assert("shell explore launcher control", /was-apps-btn/.test(topbar) && /Explore/.test(topbar));
   const local = global.WDS.appShell.renderLocalNav({ depth: 1, app: Nav.byId("fieldry"), feature: Nav.byId("fieldry").features[0] });
   assert("shell local nav", /was-local__nav/.test(local) && /Fieldry/.test(local));
   assert("shell marks current feature", /aria-current="page"/.test(local));

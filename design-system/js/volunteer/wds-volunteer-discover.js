@@ -596,11 +596,11 @@
           root.innerHTML =
             '<div class="wv-discover">' +
             '<header class="wv-header">' +
-            '<p class="wv-eyebrow">Waypoint Volunteer · Opportunity Intelligence</p>' +
+            '<p class="wv-eyebrow">Nearby ways to help</p>' +
             "<h1>What good can I do today?</h1>" +
-            '<p class="wv-lead">Nearby ways to help — conservation, trails, shelters, citizen science, cleanup, restoration, and education. Discovery only.</p>' +
+            '<p class="wv-lead">Conservation, trails, shelters, citizen science, cleanup, restoration, and education. Discovery only — no rankings.</p>' +
             '<p class="wv-nav-mini">' +
-            '<a href="saved/">Saved</a> · <a href="profile/">Profile</a> · <a href="impact/">Impact</a> · <a href="./">Overview</a>' +
+            '<a href="saved/">Saved</a> · <a href="profile/">Interests</a> · <a href="impact/">Impact</a> · <a href="./?about=1">About</a>' +
             "</p>" +
             '<p class="wv-place" aria-live="polite">' +
             honestyBadge(ctx.locationHonesty || "sample-region") +

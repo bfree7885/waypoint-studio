@@ -1,14 +1,20 @@
 # Waypoint Studio Constitution
 
+> **Superseded for mission & product hierarchy (RC3):** see **[RC3-CONSTITUTION.md](RC3-CONSTITUTION.md)** — Observe. Discover. Understand.  
+> Keep this file for historical privacy/feature-test detail that still applies unless RC3 contradicts it.
+
 **Complements:** [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md) (shared decision OS) · [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md)
 
-This document is **product law**: mission, rooms, privacy, feature test, and visual character.
+This document was **product law**: mission, rooms, privacy, feature test, and visual character. RC3 constitution is now the source of truth for mission, primary products, incubator, and honesty rules.
 
-Decision principles that govern every AI interaction and recommendation live in [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md). Both apply. On judgment, autonomy, evidence, attention, and ethics, the Waypoint Constitution leads. On product shape and privacy defaults, this document leads.
+Decision principles that govern every AI interaction and recommendation live in [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md). Both apply. On judgment, autonomy, evidence, attention, and ethics, the Waypoint Constitution leads. On product shape and privacy defaults after RC3, prefer [RC3-CONSTITUTION.md](RC3-CONSTITUTION.md).
 
 ## Mission
 
-Observe. Understand. Create. Share.
+**Current (RC3):** Observe. Discover. Understand.  
+*Tagline:* Capture what you find. Learn why it matters.
+
+**Historical (pre-RC3):** Observe. Understand. Create. Share. — Create and Share remain workflow verbs inside Scenes, not equal company pillars.
 
 Waypoint Studio exists to help people rediscover the natural world.
 

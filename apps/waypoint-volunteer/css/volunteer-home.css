@@ -1,0 +1,113 @@
+/**
+ * Volunteer overview — hopeful stewardship atmosphere.
+ */
+
+.volunteer-page {
+  max-width: 42rem;
+}
+
+.xp-stage--stewardship {
+  background-color: #1a1814;
+  background-image:
+    linear-gradient(165deg, rgba(26, 24, 20, 0.55), rgba(14, 16, 18, 0.85)),
+    radial-gradient(110% 80% at 90% 10%, rgba(120, 90, 60, 0.28), transparent 50%);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(244, 241, 234, 0.1);
+  margin: 0 0 2.25rem;
+  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1.25rem, 4vw, 2rem);
+  border-radius: 1.15rem;
+}
+
+.volunteer-page .xp-stage__credit {
+  margin: 1rem 0 0;
+  font-size: 0.75rem;
+  color: rgba(244, 241, 234, 0.45);
+}
+
+.volunteer-page .xp-stage__eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 234, 0.55);
+}
+
+.volunteer-page .xp-stage__title {
+  margin: 0 0 0.65rem;
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  line-height: 1.15;
+  color: #f4f1ea;
+}
+
+.volunteer-page .xp-stage__lead {
+  margin: 0 0 1.25rem;
+  max-width: 34rem;
+  line-height: 1.55;
+  color: rgba(244, 241, 234, 0.78);
+}
+
+.volunteer-page .xp-stage__cta {
+  margin: 0;
+}
+
+.volunteer-page .xp-secondary {
+  margin: 0 0 2rem;
+}
+
+.volunteer-page .xp-secondary__title,
+.volunteer-page .xp-later__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.5));
+}
+
+.volunteer-page .xp-secondary__list,
+.volunteer-page .xp-later__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.volunteer-page .xp-secondary__list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.volunteer-page .xp-secondary__list a:hover,
+.volunteer-page .xp-secondary__list a:focus-visible {
+  color: var(--wds-accent, #c8f055);
+  outline: none;
+}
+
+.volunteer-page .xp-secondary__list strong {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.volunteer-page .xp-secondary__list span {
+  font-size: 0.92rem;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.65));
+}
+
+.volunteer-page .xp-later__note {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.55));
+}
+
+.volunteer-page .wds-take {
+  margin: 0 0 1.75rem;
+}

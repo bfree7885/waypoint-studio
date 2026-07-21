@@ -124,10 +124,16 @@
 
   var AVAIL_LABEL = {
     live: "Live",
-    derived: "Derived",
-    planned: "Planned",
-    experimental: "Experimental",
-    unavailable: "Data unavailable"
+    derived: "Estimated",
+    planned: "Coming later",
+    experimental: "Early look",
+    unavailable: "Unavailable",
+    cached: "Cached",
+    offline: "Offline",
+    estimated: "Estimated",
+    partial: "Partial",
+    loading: "Updating…",
+    error: "Unavailable"
   };
 
   function byId(id) {
@@ -188,7 +194,7 @@
          widget.id === "wx-precip" || widget.id === "wx-wind" || widget.id === "wx-humidity" ||
          widget.id === "wx-visibility" || widget.id === "wx-temp-trend") &&
         model && model.weather && !model.weather.live) {
-      return model.provider && model.provider.fromCache ? "live" : "unavailable";
+      return model.provider && model.provider.fromCache ? "cached" : "unavailable";
     }
 
     if ((widget.id === "air-aqi") && model && model.air && !model.air.live) {

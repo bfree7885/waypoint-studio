@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Studio Articles — editorial architecture for Observe, Understand, Create, and Share.">
+  <meta name="description" content="Waypoint Studio Articles — shared learning that supports Dashboard, Scenes, Sheds, and Volunteer. Observe. Discover. Understand.">
   <title>Articles — Waypoint Studio</title>
+  <link rel="canonical" href="https://waypointstudio.org/articles/">
   <link rel="stylesheet" href="../design-system/css/wds.css">
 </head>
 <body>
@@ -14,13 +15,16 @@
     <div data-wds-app-global data-shell-depth="0"></div>
     <main id="main" class="was-home">
       <header class="was-home__hero">
-        <p class="wds-eyebrow">Articles</p>
-        <h1>Editorial architecture</h1>
-        <p class="was-home__lead">This is the articles scaffold — categories, templates, routing, search prep, and metadata. It is not a full library yet. Sample pieces demonstrate structure only.</p>
+        <p class="wds-eyebrow">Learn while you’re out</p>
+        <h1>Articles</h1>
+        <p class="was-home__tagline">Quiet reading that deepens the field.</p>
+        <p class="was-home__lead">Educational writing beside Dashboard, Scenes, Sheds, and Volunteer — not a separate classroom product.</p>
         <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
-          <a href="../">Studio home</a>
+          <a href="../apps/dashboard/">Dashboard</a>
+          <a href="../apps/scenes/">Scenes</a>
+          <a href="../apps/shed-hunting/">Sheds</a>
+          <a href="../apps/waypoint-volunteer/">Volunteer</a>
           <a href="../knowledge.html">Knowledge</a>
-          <a href="templates/article.html">Template</a>
         </p>
         <div class="was-home__search" role="search">
           <label class="wds-visually-hidden" for="was-article-search">Search articles</label>
@@ -40,7 +44,11 @@
   <script src="../design-system/js/platform/wds-articles.js?v=local" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.articles) WDS.articles.mountHub(document.getElementById("was-articles-hub"), { depth: 0 });
+      if (window.WDS && WDS.articles) {
+        WDS.articles.mountHub(document.getElementById("was-articles-hub"), {
+          url: "manifest.json"
+        });
+      }
     });
   </script>
 </body>

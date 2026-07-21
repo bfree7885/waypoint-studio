@@ -1,0 +1,315 @@
+/**
+ * Photo Coach — photography folio presentation layer.
+ * Does not change analysis behavior; softens software chrome.
+ */
+
+.pc-shell {
+  --coach-accent: #a8c48a;
+  --coach-accent-dim: rgba(168, 196, 138, 0.14);
+  --coach-surface: rgba(255, 255, 255, 0.045);
+  --coach-surface-raised: rgba(255, 255, 255, 0.07);
+  --coach-border: rgba(255, 255, 255, 0.12);
+  --coach-border-strong: rgba(255, 255, 255, 0.22);
+  --wds-font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+  font-family: var(--wds-font-body);
+}
+
+.pc-shell .was-shell,
+.pc-shell.pc-shell {
+  background:
+    radial-gradient(90% 60% at 50% -5%, rgba(11, 26, 58, 0.45), transparent 55%),
+    #0c1018;
+}
+
+.pc-page .mode-coach {
+  max-width: 76rem;
+  padding-top: 1.25rem;
+  padding-bottom: 4rem;
+}
+
+.pc-hero {
+  margin-bottom: 1.35rem;
+  padding-bottom: 0.25rem;
+}
+
+.pc-hero__title,
+.pc-shell .coach-hero__title {
+  font-weight: 400;
+  font-size: clamp(2.15rem, 5vw, 3.1rem);
+  letter-spacing: -0.015em;
+  max-width: 16ch;
+}
+
+.pc-shell .coach-hero__lead {
+  font-size: 1.08rem;
+  max-width: 34rem;
+  line-height: 1.6;
+}
+
+.pc-trust {
+  background: transparent;
+  border: 0;
+  border-left: 2px solid color-mix(in srgb, var(--coach-accent) 55%, transparent);
+  border-radius: 0;
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.pc-disclosure {
+  margin-bottom: 1.75rem;
+}
+
+.pc-disclosure__body {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Upload as a photographic stage */
+.pc-shell .coach-drop-zone {
+  min-height: 18rem;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(165deg, rgba(155, 126, 212, 0.08), transparent 45%),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.pc-shell .coach-drop-zone:hover,
+.pc-shell .coach-drop-zone:focus-visible {
+  border-color: color-mix(in srgb, var(--coach-accent) 55%, var(--coach-border-strong));
+  background:
+    linear-gradient(165deg, rgba(168, 196, 138, 0.1), transparent 50%),
+    rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+  transform: none;
+}
+
+.pc-shell .coach-drop-zone.is-dragover {
+  border-color: var(--coach-accent);
+  background: rgba(168, 196, 138, 0.1);
+}
+
+.pc-shell .coach-empty__title {
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 400;
+  margin: 0 0 0.45rem;
+}
+
+.pc-shell .coach-empty__text,
+.pc-shell .coach-empty__formats {
+  color: var(--coach-text-muted);
+  font-size: 0.9rem;
+}
+
+.pc-shell .coach-preview-frame {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.pc-shell .coach-preview-img {
+  width: 100%;
+  max-height: min(52vh, 28rem);
+  object-fit: contain;
+  border-radius: 0.65rem;
+  background: #05070c;
+  display: block;
+  margin: 0 auto;
+}
+
+.pc-shell .coach-file-name {
+  text-align: center;
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--coach-text-muted);
+}
+
+.pc-shell #btn-coach-upload {
+  margin-top: 0.75rem;
+  border-radius: 999px;
+}
+
+/* Filmstrip → contact sheet */
+.pc-filmstrip-mount,
+.pc-shoot-summary-mount {
+  max-width: 76rem;
+  margin-bottom: 1.35rem;
+}
+
+.pc-filmstrip {
+  padding: 1rem 1.05rem 1.1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pc-filmstrip__meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.pc-filmstrip__track {
+  gap: 0.65rem;
+  padding-bottom: 0.35rem;
+}
+
+.pc-filmstrip__item {
+  width: 5.75rem;
+  min-height: 4.75rem;
+  border-width: 1px;
+  border-radius: 0.55rem;
+  background: #05070c;
+}
+
+.pc-filmstrip__item.is-active {
+  border-color: var(--coach-accent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--coach-accent) 35%, transparent);
+}
+
+.pc-filmstrip__thumb {
+  height: 4.35rem;
+  object-fit: cover;
+}
+
+/* Shoot review — editorial */
+.pc-shoot-summary {
+  padding: 1.35rem 1.25rem 1.5rem;
+  border-radius: 1.05rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pc-shoot-summary__head {
+  margin-bottom: 1rem;
+}
+
+.pc-shoot-summary__head h2,
+.pc-shoot-summary h2 {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  margin: 0 0 0.35rem;
+}
+
+.pc-shoot-summary__lede {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-style: italic;
+  font-size: 1.12rem;
+  color: var(--coach-text);
+  max-width: 36rem;
+}
+
+.pc-shoot-summary__letter {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+}
+
+.pc-shoot-summary__score--quiet .pc-shoot-summary__letter {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.pc-shoot-summary__strong {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #05070c;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pc-shoot-summary__thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.pc-shoot-summary__grid {
+  gap: 1rem;
+}
+
+.pc-bestof__item {
+  gap: 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pc-group {
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.18);
+  border-color: rgba(255, 255, 255, 0.1);
+  padding: 0.45rem 0.75rem 0.7rem;
+}
+
+.pc-group__thumb {
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 0.4rem;
+}
+
+/* Analysis center — less dashboard, more reading room */
+.pc-shell .coach-dashboard {
+  gap: 1.5rem 1.75rem;
+}
+
+.pc-shell .coach-col--center {
+  min-width: 0;
+}
+
+.pc-preview {
+  border-radius: 1rem;
+  padding: 1.35rem 1.25rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pc-preview__badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--coach-text-muted);
+  margin-bottom: 0.65rem;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.pc-preview__title {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: 1.55rem;
+}
+
+.pc-preview__letter {
+  font-family: var(--wds-font-display, Georgia, serif);
+  font-weight: 400;
+}
+
+@media (max-width: 840px) {
+  .pc-shell .coach-dashboard,
+  .pc-shell .coach-dashboard.has-results {
+    grid-template-columns: 1fr;
+  }
+
+  .pc-shell .coach-col--left {
+    position: static;
+  }
+
+  .pc-shell .coach-drop-zone {
+    min-height: 14rem;
+  }
+
+  .pc-filmstrip__item {
+    width: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-shell .coach-drop-zone {
+    transition: none;
+  }
+}
