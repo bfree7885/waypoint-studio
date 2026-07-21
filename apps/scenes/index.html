@@ -14,9 +14,8 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-hide-local="true" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
-    <div data-wds-app-local data-shell-depth="1"></div>
 
     <header class="scenes-stage" aria-label="Scenes photography">
       <div class="scenes-stage__media">
@@ -29,76 +28,53 @@
         <p class="scenes-stage__lead">
           A quieter place to look at your photographs — and go back outside with clearer eyes.
         </p>
-        <p class="scenes-stage__cta">
-          <a href="../photo-coach/">Open Photo Coach</a>
-          <a class="scenes-stage__cta--quiet" href="../photo-library/">Photo Library</a>
-        </p>
       </div>
     </header>
 
     <main id="main" class="scenes-page">
-      <section class="scenes-feature" aria-labelledby="scenes-feature-title">
-        <a class="scenes-feature__frame" href="../photo-coach/">
-          <img src="assets/media/mist-valley.jpg" alt="" loading="lazy" decoding="async">
-          <div class="scenes-feature__caption">
-            <p class="scenes-feature__kicker">Start here</p>
-            <h2 id="scenes-feature-title">Photo Coach</h2>
-            <p>Bring today’s frames. Learn what the light already told you.</p>
-          </div>
-        </a>
+      <section class="scenes-primary" aria-labelledby="scenes-primary-title">
+        <p class="scenes-primary__kicker">The heart of Scenes</p>
+        <h2 id="scenes-primary-title">Photo Coach</h2>
+        <p class="scenes-primary__lead">
+          Bring today’s frames. Shoot Review helps you see patterns, keepers, and what to try next —
+          privately, on this device.
+        </p>
+        <p class="scenes-primary__actions">
+          <a class="scenes-primary__btn" href="../photo-coach/">Open Photo Coach</a>
+          <a class="scenes-primary__link" href="../photo-library/">Photo Library</a>
+        </p>
       </section>
 
-      <section class="scenes-folio" aria-label="More in Scenes">
-        <article class="scenes-folio__item">
-          <a href="../hidden-landscapes/">
-            <img src="assets/media/mist-valley.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 55%">
-            <div>
-              <h2>Hidden Landscapes</h2>
-              <p>How nature might look beyond ordinary vision.</p>
-              <span>Experimental</span>
-            </div>
-          </a>
-        </article>
-        <article class="scenes-folio__item">
-          <a href="../photo-library/">
-            <img src="assets/media/hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 65%">
-            <div>
-              <h2>Photo Library</h2>
-              <p>Your photographs, once — local and private.</p>
-              <span>Available</span>
-            </div>
-          </a>
-        </article>
-        <article class="scenes-folio__item scenes-folio__item--quiet">
-          <a href="living-scenes/">
-            <img src="assets/media/mist-valley.jpg" alt="" loading="lazy" decoding="async" style="object-position:30% 60%">
-            <div>
-              <h2>Living Scenes</h2>
-              <p>Subtle motion for still photographs — coming later.</p>
-              <span>Preview</span>
-            </div>
-          </a>
-        </article>
-        <article class="scenes-folio__item scenes-folio__item--quiet">
-          <a href="scene-builder/">
-            <img src="assets/media/hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:70% 45%">
-            <div>
-              <h2>Scene Builder</h2>
-              <p>Interactive photographic environments — early surface.</p>
-              <span>Preview</span>
-            </div>
-          </a>
-        </article>
-        <article class="scenes-folio__item scenes-folio__item--quiet">
-          <a href="photographer-profile/">
-            <img src="assets/media/hero.jpg" alt="" loading="lazy" decoding="async" style="object-position:center 70%">
-            <div>
-              <h2>Photographer Profile</h2>
-              <p>A quieter record of how your seeing grows.</p>
-              <span>Preview</span>
-            </div>
-          </a>
-        </article>
+      <section class="scenes-secondary" aria-labelledby="scenes-secondary-title">
+        <p class="scenes-secondary__kicker">Also explore</p>
+        <h2 id="scenes-secondary-title"><a href="../hidden-landscapes/">Hidden Landscapes</a></h2>
+        <p class="scenes-secondary__lead">
+          How nature might look beyond ordinary vision — spectral ideas, animal perception, quieter experiments.
+        </p>
+        <p class="scenes-secondary__meta">Experimental · not the main path</p>
+      </section>
+
+      <section class="scenes-elsewhere" aria-labelledby="scenes-elsewhere-title">
+        <h2 id="scenes-elsewhere-title" class="scenes-elsewhere__title">Coming later</h2>
+        <ul class="scenes-elsewhere__list">
+          <li>
+            <a href="living-scenes/">Living Scenes</a>
+            <span>Subtle motion for still photographs</span>
+          </li>
+          <li>
+            <a href="scene-builder/">Scene Builder</a>
+            <span>Interactive photographic environments</span>
+          </li>
+          <li>
+            <a href="photographer-profile/">Photographer Profile</a>
+            <span>How your seeing grows over time</span>
+          </li>
+        </ul>
+        <p class="scenes-elsewhere__nav">
+          Jump: <a href="../photo-coach/">Photo Coach</a> ·
+          <a href="../photo-library/">Library</a> ·
+          <a href="../hidden-landscapes/">Hidden Landscapes</a>
+        </p>
       </section>
 
       <section class="wds-take scenes-take" data-wds-take data-take-surface="scenes">
