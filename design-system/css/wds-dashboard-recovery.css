@@ -4,8 +4,12 @@
 
 .wdb-recovery {
   max-width: var(--wds-max-content, 72rem);
+  width: 100%;
   margin: 0 auto;
   padding: 0.75rem clamp(0.85rem, 3vw, 1.5rem) 2rem;
+  box-sizing: border-box;
+  overflow-x: clip;
+  min-width: 0;
 }
 
 /* —— Today Outside —— */
@@ -145,6 +149,8 @@
   z-index: 4;
   margin: 0 0 0.75rem;
   padding: 0.35rem 0;
+  max-width: 100%;
+  min-width: 0;
   background: color-mix(in srgb, var(--wds-bg, #faf8f4) 88%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid color-mix(in srgb, var(--wds-border, #d8d2c8) 80%, transparent);
@@ -153,6 +159,7 @@
 .wdb-recovery-tabs__list {
   display: flex;
   gap: 0.25rem;
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;

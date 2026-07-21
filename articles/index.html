@@ -44,7 +44,11 @@
   <script src="../design-system/js/platform/wds-articles.js?v=local" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.articles) WDS.articles.mountHub(document.getElementById("was-articles-hub"), { depth: 0 });
+      if (window.WDS && WDS.articles) {
+        WDS.articles.mountHub(document.getElementById("was-articles-hub"), {
+          url: "manifest.json"
+        });
+      }
     });
   </script>
 </body>

@@ -171,7 +171,9 @@ html[data-product="waypoint-volunteer"],
   .was-primary-nav {
     justify-content: flex-start;
     order: 3;
+    flex: 1 1 100%;
     width: 100%;
+    max-width: 100%;
     padding-top: 0.35rem;
   }
 }
