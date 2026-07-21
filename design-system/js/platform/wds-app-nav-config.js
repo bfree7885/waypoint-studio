@@ -12,11 +12,11 @@
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/" },
-      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/" },
-      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/" },
-      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/" },
-      { "id": "articles", "label": "Articles", "href": "articles/" },
+      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "How is today?" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Photograph" },
+      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/", "hint": "Where to search" },
+      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/", "hint": "What good today?" },
+      { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn in context" },
       { "id": "about", "label": "About", "href": "about.html" }
     ],
     "homePrimary": ["dashboard", "scenes", "sheds", "volunteer"],
@@ -121,7 +121,7 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "Flagship photography — Photo Coach, Shoot Review, Hidden Landscapes, and quieter craft growth.",
+        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
         "status": "live",
         "features": [
           {

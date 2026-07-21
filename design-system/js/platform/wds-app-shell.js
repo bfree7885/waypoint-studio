@@ -138,6 +138,7 @@
         (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
       return (
         '<a class="was-primary-nav__link" href="' + esc(href) + '"' +
+          (item.hint ? ' title="' + esc(item.hint) + '"' : "") +
           (current ? ' aria-current="page"' : "") +
           ">" + esc(item.label) + "</a>"
       );

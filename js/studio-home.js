@@ -15,37 +15,41 @@
 
   var BOOT_DEADLINE = Date.now() + 4000;
 
-  /** Experience-first copy — honest, not marketing fluff. */
+  /**
+   * Human thoughts — not module marketing.
+   * Dashboard is the lead; other paths are progressively quieter.
+   */
   var EXPERIENCE = {
     dashboard: {
-      title: "Dashboard",
-      line: "Today’s outdoor conditions.",
-      go: "Open Dashboard",
-      quiet: "Free"
+      title: "How is today?",
+      line: "Conditions, light, and a calm read before you leave.",
+      go: "See today’s outdoors",
+      quiet: "Start here",
+      lead: true
     },
     scenes: {
-      title: "Scenes",
-      line: "Photography that teaches you to see.",
-      go: "Open Scenes",
-      quiet: "Flagship"
+      title: "Photograph",
+      line: "Import, review a shoot, learn to see.",
+      go: "Review today’s shoot",
+      quiet: "Craft"
     },
     sheds: {
-      title: "Sheds",
-      line: "Find more than antlers.",
-      go: "Open Sheds",
-      quiet: "Flagship"
+      title: "Hunt",
+      line: "Where should I search today?",
+      go: "Open today’s search",
+      quiet: "Field"
     },
     volunteer: {
-      title: "Volunteer",
-      line: "Find a way to help today.",
-      go: "Open Volunteer",
-      quiet: "Free"
+      title: "Help",
+      line: "What good can I do today?",
+      go: "See nearby opportunities",
+      quiet: "Stewardship"
     },
     "waypoint-volunteer": {
-      title: "Volunteer",
-      line: "Find a way to help today.",
-      go: "Open Volunteer",
-      quiet: "Free"
+      title: "Help",
+      line: "What good can I do today?",
+      go: "See nearby opportunities",
+      quiet: "Stewardship"
     }
   };
 
@@ -76,8 +80,9 @@
     var overview = Nav.resolveRoute(app.route, 0);
     var launch = Nav.startHereHref ? Nav.startHereHref(app, 0) : overview;
     var href = launch || overview;
+    var leadClass = exp.lead ? " was-home__card--lead" : " was-home__card--next";
     return (
-      '<a class="was-home__card was-home__card--experience was-home__card--primary" href="' + esc(href) + '">' +
+      '<a class="was-home__card was-home__card--experience was-home__card--primary' + leadClass + '" href="' + esc(href) + '">' +
         '<p class="was-home__quiet-badge">' + esc(exp.quiet || "") + "</p>" +
         '<h3 class="was-home__card-title">' + esc(exp.title || app.shortTitle || app.title) + "</h3>" +
         '<p class="was-home__experience">' + esc(exp.line) + "</p>" +
@@ -111,39 +116,45 @@
     var incubatorIds = cfgIds(cfg, "homeIncubator", ["signalterrain", "steepleaf", "savant-sommelier"]);
     var supportingIds = cfgIds(cfg, "homeSupporting", ["foragecast", "fieldry", "landscape-interpretation"]);
 
-    var primaryCards = primaryIds
-      .map(function (id) {
-        var lookup = id === "volunteer" ? "waypoint-volunteer" : id;
-        var app = byId(Nav, lookup);
-        if (!app) return "";
-        var exp = EXPERIENCE[lookup] || EXPERIENCE[id] || {
-          title: app.shortTitle || app.title,
-          line: app.purpose || app.description || "",
-          go: "Open",
-          quiet: ""
-        };
-        return renderExperienceCard(app, Nav, exp);
-      })
-      .join("");
+    var leadHtml = "";
+    var nextHtml = "";
+    primaryIds.forEach(function (id) {
+      var lookup = id === "volunteer" ? "waypoint-volunteer" : id;
+      var app = byId(Nav, lookup);
+      if (!app) return;
+      var exp = EXPERIENCE[lookup] || EXPERIENCE[id] || {
+        title: app.shortTitle || app.title,
+        line: app.purpose || app.description || "",
+        go: "Open",
+        quiet: ""
+      };
+      var card = renderExperienceCard(app, Nav, exp);
+      if (exp.lead) leadHtml += card;
+      else nextHtml += card;
+    });
 
     var html = "";
     html +=
       '<section class="was-home__section" aria-labelledby="was-home-primary">' +
-        '<h2 id="was-home-primary">Four ways outside</h2>' +
-        '<p class="was-home__journey-blurb">Working tools — not a directory of every prototype.</p>' +
-        '<div class="was-home__grid was-home__grid--primary">' + primaryCards + "</div>" +
+        '<h2 id="was-home-primary">What brings you outside?</h2>' +
+        '<p class="was-home__journey-blurb">Start with the day. Photograph, hunt, and help when you’re ready — not a directory of software modules.</p>' +
+        '<div class="was-home__journey-lead">' + leadHtml + "</div>" +
+        (nextHtml
+          ? '<p class="was-home__journey-then">Then</p><div class="was-home__grid was-home__grid--next">' + nextHtml + "</div>"
+          : "") +
       "</section>";
 
     html +=
       '<section class="was-home__section was-home__take-wrap" aria-labelledby="was-home-take">' +
         '<h2 id="was-home-take">Waypoint’s Take</h2>' +
+        '<p class="was-home__journey-blurb">A calm outdoor companion — facts, interpretation, suggestions, and uncertainty labeled.</p>' +
         '<div class="wds-take" data-wds-take data-take-surface="homepage"></div>' +
       "</section>";
 
     html +=
       '<section class="was-home__section" aria-labelledby="was-home-articles">' +
-        '<h2 id="was-home-articles">Articles</h2>' +
-        '<p class="was-home__journey-blurb">Quiet learning that deepens the field — supporting every primary experience.</p>' +
+        '<h2 id="was-home-articles">Learn while you’re out</h2>' +
+        '<p class="was-home__journey-blurb">Articles are context for every journey — not a separate product you must leave the trail for.</p>' +
         '<p><a class="was-home__articles-link" href="articles/">Browse Articles</a></p>' +
       "</section>";
 
