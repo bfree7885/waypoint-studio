@@ -134,10 +134,15 @@
       (kiosk ? " wdb-v3-header--kiosk" : "") +
       '" data-wdb-v3-header data-wdb-v2-header>' +
       '<div class="wdb-v3-header__main wdb-v2-header__main">' +
-      '<p class="wdb-v3-header__eyebrow wdb-v2-header__eyebrow">Waypoint Studio · Outdoor Intelligence</p>' +
+      '<p class="wdb-v3-header__eyebrow wdb-v2-header__eyebrow">' +
+      (kiosk ? "Waypoint Studio · Outdoor briefing" : "This morning") +
+      "</p>" +
       '<h2 class="wdb-v3-header__title wdb-v2-header__title" id="wdb-v3-dashboard-title">' +
-      (kiosk ? "Outdoor Intelligence" : "Dashboard") +
+      (kiosk ? "Outdoor briefing" : "How is today?") +
       "</h2>" +
+      (kiosk
+        ? ""
+        : '<p class="wdb-v3-header__promise">A calm outdoor brief — not a wall of widgets.</p>') +
       '<p class="wdb-v3-header__loc wdb-v2-header__loc" aria-live="polite">' +
       '<span class="wdb-v2-header__pin" aria-hidden="true">◎</span> ' +
       esc(model.location && model.location.label ? model.location.label : "Locating…") +
@@ -171,12 +176,12 @@
   function renderCustomizeBar(kiosk) {
     if (kiosk) return "";
     return (
-      '<section class="wdb-v3-customize-bar" data-wdb-v3-customize-bar aria-label="Customize Dashboard">' +
+      '<section class="wdb-v3-customize-bar" data-wdb-v3-customize-bar aria-label="Deeper tools">' +
       '<div class="wdb-v3-customize-bar__copy">' +
-      "<h3>Customize Dashboard</h3>" +
-      "<p>Choose categories and widgets that match today’s plans. Layout preferences stay on this device.</p>" +
+      "<h3>Deeper tools</h3>" +
+      "<p>Only if you need them — arrange what matters for today’s plans. Preferences stay on this device.</p>" +
       "</div>" +
-      '<button type="button" class="wds-btn wds-btn--secondary" id="wdb-v3-customize-open" data-wdb-v3-customize-trigger>Customize widgets</button>' +
+      '<button type="button" class="wds-btn wds-btn--secondary" id="wdb-v3-customize-open" data-wdb-v3-customize-trigger>Customize Dashboard</button>' +
       "</section>"
     );
   }
@@ -194,7 +199,7 @@
     if (R && R.renderTrust) trustHtml = R.renderTrust(providers);
     return (
       '<footer class="wdb-v3-footer" data-wdb-v3-footer>' +
-      '<p class="wdb-v3-footer__note">Widgets load independently. Cached readings show first; slow providers never block this page.</p>' +
+      '<p class="wdb-v3-footer__note">Glanceable cues load on their own. Cached readings show first; slow sources never block this brief.</p>' +
       trustHtml +
       "</footer>"
     );
@@ -224,7 +229,7 @@
       '<a class="wdb-v2-jump wdb-v3-jump" href="#wdb-v3-brief-title">Skip to Today’s Outdoor Brief</a>' +
       briefHtml +
       '<section class="wdb-v3-widgets-area" data-wdb-v3-widgets-area aria-labelledby="wdb-v3-widgets-title">' +
-      '<h3 class="wdb-v3-widgets-area__title" id="wdb-v3-widgets-title">Conditions &amp; cues</h3>' +
+      '<h3 class="wdb-v3-widgets-area__title" id="wdb-v3-widgets-title">What conditions matter?</h3>' +
       widgetsHtml +
       "</section>" +
       renderCustomizeBar(kiosk) +

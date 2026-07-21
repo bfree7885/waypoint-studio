@@ -62,22 +62,22 @@
         "features": [
           {
             "id": "today",
-            "label": "Today",
+            "label": "Today’s brief",
             "href": "#outdoor-dashboard"
           },
           {
             "id": "conditions",
-            "label": "Conditions",
+            "label": "What matters",
             "href": "#wdb-section-conditions"
           },
           {
             "id": "sun-moon",
-            "label": "Sun & Moon",
+            "label": "Light",
             "href": "#wdb-section-sun-moon"
           },
           {
             "id": "safety",
-            "label": "Safety",
+            "label": "What to know",
             "href": "#wdb-section-safety"
           },
           {
@@ -87,12 +87,12 @@
           },
           {
             "id": "photography",
-            "label": "Photography",
+            "label": "Photograph?",
             "href": "#wdb-section-photography"
           }
         ],
         "startHere": {
-          "label": "Open Today Outside",
+          "label": "How is today?",
           "href": "apps/dashboard/"
         },
         "journeys": [

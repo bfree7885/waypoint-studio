@@ -4,54 +4,64 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sheds — flagship antler shed hunting. Map, GPS, field workflow, and privacy-first observations. Observe. Discover. Understand.">
-  <title>Sheds — Flagship field craft · Waypoint Studio</title>
+  <meta name="description" content="Sheds — today’s hunt. Where should I search? Conditions, field navigation, and private finds. Observe. Discover. Understand.">
+  <title>Sheds — Today’s hunt · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="css/sheds-home.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app was-shell" data-wds-app-shell data-product="shed-hunting" data-product-name="Sheds" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>
-    <main id="main" class="wpf-page">
-      <div class="sheds-launch" style="max-width:40rem;margin:0 auto 1rem;padding:0 1rem;">
-        <p class="wds-eyebrow" style="margin-bottom:0.5rem">Today’s hunt</p>
-        <h2 style="font-family:var(--wds-font-display);font-weight:400;margin:0 0 0.5rem;font-size:1.65rem">Where should I search?</h2>
-        <p style="color:var(--wds-text-secondary);margin:0 0 1rem;line-height:1.5">Start on the field map. Conditions, finds, and learning come after you’ve chosen ground.</p>
-        <p><a class="wds-btn wds-btn--primary" href="map/">Open today’s search</a></p>
-        <div id="sheds-workflows"></div>
-      </div>
-      <div id="wds-foundation-mount" aria-busy="true" data-foundation-src="data/foundation.json">
-        <header class="wpf-hero">
-          <p class="wds-eyebrow">Sheds · a day’s hunt</p>
-          <p class="wpf-status">Flagship</p>
-          <h1>Sheds</h1>
-          <p class="wpf-lead">Where should I search? What are today’s conditions? What have I found? What should I learn? Review my season — without trophy culture.</p>
-        </header>
-        <aside class="wds-take" data-take-surface="sheds" style="margin:1rem 0">
-          <p class="wds-take__body">Open the field map when you are ready to observe sign in place. Predictions and education explain seasonality — they are not guarantees of a find.</p>
-          <p class="wds-take__meta">Interpretation · uncertainty labeled · privacy-first</p>
-          <p class="wds-take__sources"><a href="../../articles/">Articles</a> · <a href="map/">Where to search</a></p>
-        </aside>
-        <section class="wpf-section">
-          <h2>A day’s path</h2>
-          <ul class="wpf-principles">
-            <li>Where should I search? — field map with private observations</li>
-            <li>What are today’s conditions? — seasonality and weather cues</li>
-            <li>What have I found? — private finds you control</li>
-            <li>What should I learn? — species and habitat notes</li>
-          </ul>
-        </section>
-        <section class="wpf-section">
-          <h2>Privacy</h2>
-          <p>Exact find coordinates stay private. No leaderboards or find rankings.</p>
-        </section>
-        <div data-wds-related-apps="sheds" data-shell-depth="1"></div>
-      </div>
+    <main id="main" class="wpf-page sheds-page">
+      <header class="xp-stage xp-stage--forest" aria-label="Today’s hunt">
+        <p class="xp-stage__eyebrow">Morning</p>
+        <h1 class="xp-stage__title">Where should I search?</h1>
+        <p class="xp-stage__lead">
+          The woods first. Tools second. Start with ground worth walking — conditions, finds, and learning follow.
+        </p>
+        <p class="xp-stage__cta">
+          <a class="wds-btn wds-btn--primary" href="map/">Open today’s search</a>
+        </p>
+      </header>
+
+      <section class="xp-secondary" aria-labelledby="sheds-next">
+        <h2 id="sheds-next" class="xp-secondary__title">Then</h2>
+        <ul class="xp-secondary__list">
+          <li>
+            <a href="../dashboard/"><strong>Today’s conditions</strong><span>How is the day before you leave?</span></a>
+          </li>
+          <li>
+            <a href="map/"><strong>Field navigation</strong><span>Move with the map once you’re searching</span></a>
+          </li>
+          <li>
+            <a href="../../articles/"><strong>Learn</strong><span>Quiet field reading beside the hunt</span></a>
+          </li>
+        </ul>
+      </section>
+
+      <aside class="wds-take" data-take-surface="sheds">
+        <p class="wds-take__body">Open the field map when you are ready to observe sign in place. Seasonality explains possibility — it never guarantees a find.</p>
+        <p class="wds-take__meta">Interpretation · uncertainty labeled · privacy-first</p>
+        <p class="wds-take__sources"><a href="map/">Where to search</a> · <a href="../../articles/">Learn</a></p>
+      </aside>
+
+      <section class="xp-later" aria-labelledby="sheds-later">
+        <h2 id="sheds-later" class="xp-later__title">Later</h2>
+        <ul class="xp-later__list">
+          <li>Log discoveries — private finds you control</li>
+          <li>Review your season — when the days accumulate</li>
+        </ul>
+        <p class="xp-later__note">Exact find coordinates stay private. No leaderboards.</p>
+      </section>
+
+      <div id="sheds-workflows" class="sheds-workflows"></div>
+      <div data-wds-related-apps="sheds" data-shell-depth="1"></div>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -65,8 +75,6 @@
   <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-foundation.js" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-foundation-boot.js" defer></script>
   <script src="js/sheds-models.js" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {

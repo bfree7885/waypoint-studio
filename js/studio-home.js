@@ -22,20 +22,20 @@
   var EXPERIENCE = {
     dashboard: {
       title: "How is today?",
-      line: "Conditions, light, and a calm read before you leave.",
-      go: "See today’s outdoors",
+      line: "A trusted morning brief before you leave.",
+      go: "Open today’s brief",
       quiet: "Start here",
       lead: true
     },
     scenes: {
       title: "Photograph",
-      line: "Import, review a shoot, learn to see.",
+      line: "Continue yesterday’s work — review and grow.",
       go: "Review today’s shoot",
       quiet: "Craft"
     },
     sheds: {
       title: "Hunt",
-      line: "Where should I search today?",
+      line: "The woods first. Where should I search?",
       go: "Open today’s search",
       quiet: "Field"
     },
@@ -43,13 +43,13 @@
       title: "Help",
       line: "What good can I do today?",
       go: "See nearby opportunities",
-      quiet: "Stewardship"
+      quiet: "Hope"
     },
     "waypoint-volunteer": {
       title: "Help",
       line: "What good can I do today?",
       go: "See nearby opportunities",
-      quiet: "Stewardship"
+      quiet: "Hope"
     }
   };
 

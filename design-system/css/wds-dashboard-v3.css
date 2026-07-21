@@ -89,6 +89,21 @@
   letter-spacing: -0.01em;
 }
 
+.wdb-v3-header__promise {
+  margin: 0.35rem 0 0;
+  max-width: 28rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--wds-text-secondary, rgba(244, 241, 234, 0.72));
+}
+
+.wdb-v3[data-wdb-v3] {
+  /* Soft sky atmosphere behind the morning brief */
+  background:
+    radial-gradient(90% 50% at 50% -5%, rgba(90, 130, 170, 0.14), transparent 55%),
+    transparent;
+}
+
 .wdb-v3-header__actions .wds-btn {
   min-height: var(--wds-touch-min, 44px);
 }

@@ -126,7 +126,7 @@
       idPrefix +
       '-title">' +
       '<div class="wdb-v3-brief__intro">' +
-      '<p class="wdb-v3-brief__eyebrow">Interpretation over information</p>' +
+      '<p class="wdb-v3-brief__eyebrow">How is today?</p>' +
       '<h2 class="wdb-v3-brief__title" id="' +
       idPrefix +
       '-title">' +
