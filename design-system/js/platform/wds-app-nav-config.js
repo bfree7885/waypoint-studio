@@ -11,6 +11,17 @@
       "name": "Waypoint Studio",
       "homeRoute": "./"
     },
+    "studioPrimaryNav": [
+      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/" },
+      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/" },
+      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/" },
+      { "id": "articles", "label": "Articles", "href": "articles/" },
+      { "id": "about", "label": "About", "href": "about.html" }
+    ],
+    "homePrimary": ["dashboard", "scenes", "sheds", "volunteer"],
+    "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
+    "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {
         "id": "core",
@@ -44,8 +55,10 @@
           "/apps/dashboard"
         ],
         "category": "core",
-        "description": "Weather, light, trails, and outdoor conditions for your region.",
+        "description": "Free Today Outside briefing — weather, light, trails, and outdoor conditions with Waypoint’s Take.",
         "status": "live",
+        "maturity": "Live",
+        "purpose": "Plan today’s outdoor adventure: observe conditions, discover what matters nearby, understand with calm interpretation.",
         "features": [
           {
             "id": "today",
@@ -78,8 +91,6 @@
             "href": "#wdb-section-photography"
           }
         ],
-        "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
-        "maturity": "Live",
         "startHere": {
           "label": "Open Today Outside",
           "href": "apps/dashboard/"
@@ -110,7 +121,7 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+        "description": "Flagship photography — Photo Coach, Shoot Review, Hidden Landscapes, and quieter craft growth.",
         "status": "live",
         "features": [
           {
@@ -186,8 +197,8 @@
             ]
           }
         ],
-        "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
-        "maturity": "Live",
+        "purpose": "Observe carefully, discover what to look for, understand how you see — Create and Share stay inside the craft workflow.",
+        "maturity": "Flagship",
         "startHere": {
           "label": "Open Photo Coach",
           "href": "apps/photo-coach/"
@@ -213,8 +224,8 @@
           "/apps/shed-hunting"
         ],
         "category": "outdoor",
-        "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
-        "status": "foundation",
+        "description": "Flagship shed hunting — map, GPS, field workflow, and privacy-first observations.",
+        "status": "live",
         "features": [
           {
             "id": "overview",
@@ -222,8 +233,8 @@
             "href": "apps/shed-hunting/"
           }
         ],
-        "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
-        "maturity": "Foundation",
+        "purpose": "Map-first shed hunting — sign, seasonality, and finds without trophy culture.",
+        "maturity": "Flagship",
         "startHere": {
           "label": "Open field map",
           "href": "apps/shed-hunting/map/"
@@ -640,8 +651,8 @@
           "/apps/waypoint-volunteer"
         ],
         "category": "outdoor",
-        "description": "What good can I do today? — discover community opportunities without gamification.",
-        "status": "foundation",
+        "description": "Free primary product — What good can I do today? Nearby outdoor stewardship without management software.",
+        "status": "live",
         "features": [
           {
             "id": "overview",
@@ -670,7 +681,7 @@
           }
         ],
         "purpose": "Discover community good you can do today — without management software or gamification.",
-        "maturity": "Foundation",
+        "maturity": "Free",
         "startHere": {
           "label": "What good can I do today?",
           "href": "apps/waypoint-volunteer/discover.html"
@@ -732,23 +743,22 @@
       {
         "id": "observe",
         "label": "Observe",
-        "blurb": "See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments."
+        "blurb": "See what is happening outdoors — conditions, light, wildlife sign, and stewardship opportunities."
+      },
+      {
+        "id": "discover",
+        "label": "Discover",
+        "blurb": "Find places, photographs, and ways to care for the natural world."
       },
       {
         "id": "understand",
         "label": "Understand",
         "blurb": "Learn why it matters — calm explanations with uncertainty labeled, never hype."
-      },
-      {
-        "id": "create",
-        "label": "Create",
-        "blurb": "Optional making — photography craft, journals, and personal collections without competition."
-      },
-      {
-        "id": "share",
-        "label": "Share",
-        "blurb": "Intentional sharing only — exports and contributions you choose, never engagement traps."
       }
-    ]
+    ],
+    "mission": {
+      "lines": ["Observe.", "Discover.", "Understand."],
+      "tagline": "Capture what you find. Learn why it matters."
+    }
   };
 })(typeof window !== "undefined" ? window : globalThis);

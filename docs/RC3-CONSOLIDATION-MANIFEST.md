@@ -22,42 +22,42 @@ Action vocabulary:
 
 ## Area classifications
 
-| Area | Action | Notes |
-|------|--------|-------|
-| Homepage | MERGE CONCEPTS | Port RC3 hierarchy/mission; keep WDS home components & deep Launch targets |
-| Navigation | ADAPT | Apply RC3 primary six (Dashboard, Scenes, Sheds, Volunteer, Articles, About) + quiet Incubator |
-| Mission | PORT | Observe. Discover. Understand. |
-| Tagline | PORT | Capture what you find. Learn why it matters. |
-| Dashboard | MERGE CONCEPTS | Keep `apps/dashboard` + OIE/Take; adopt RC3 customize/kiosk/brief clarity where stronger |
-| Scenes | PRESERVE + MERGE CONCEPTS | Keep Photo Coach / scenes apps; adopt RC3 educational Observe→Discover→Understand language |
-| Photo Coach | PRESERVE | Canonical deeper — DO NOT COPY site Scenes over it |
-| Shoot Review | PRESERVE | Lives under Scenes/Photo Coach in A |
-| Sheds | MERGE CONCEPTS | Keep `apps/shed-hunting`; port Sheds 3.0 education/Take/seasonality/layer concepts |
-| Volunteer | MERGE CONCEPTS | Keep `apps/waypoint-volunteer`; align messaging with RC3 free stewardship framing |
-| Articles | MERGE CONCEPTS | Keep `articles/`; adopt RC3 category framework from `education/` |
-| Waypoint’s Take | PRESERVE + ADAPT | Canonical Take engines stay; ensure every primary surface uses the pattern |
-| Incubator | PORT | Demote SignalTerrain/Steepleaf/Savant Sommelier from primary Launch row |
-| SignalTerrain | RETIRE FROM PRIMARY UI | PRESERVE app tree under Incubator |
-| Steepleaf | RETIRE FROM PRIMARY UI | PRESERVE app |
-| Savant Sommelier | RETIRE FROM PRIMARY UI | PRESERVE app |
-| ForageCast | RETIRE FROM PRIMARY UI | Supporting capability — PRESERVE app |
-| Fieldry | RETIRE FROM PRIMARY UI | Supporting — PRESERVE app |
-| Landscape Interpretation | RETIRE FROM PRIMARY UI | Experimental — PRESERVE app |
-| Hidden Landscapes | PRESERVE | Future under Scenes — not primary nav |
-| Design tokens | ADAPT | Map Aurora tokens into WDS variables; do not delete WDS |
-| Shared CSS | ADAPT | Import selected Aurora component ideas into `design-system/css` |
-| JavaScript services | PRESERVE | Canonical platform services stay |
-| Provider integrations | PRESERVE | Open-Meteo etc. in A |
-| Offline systems | PRESERVE | Canonical offline patterns |
-| Tests | PRESERVE + ADAPT | Keep automation/*; add assertions for RC3 IA when ported |
-| Workflows | PRESERVE | `ci.yml`, `pages.yml` — do not copy site smoke as replacement |
-| CNAME | PRESERVE | **DO NOT CHANGE** `waypointstudio.org` |
-| robots.txt | PRESERVE | Review after IA changes |
-| sitemap.xml | ADAPT | Reflect primary routes after IA port |
-| Contact / Support | PRESERVE | Canonical pages deeper |
-| Documentation | PORT | RC3 constitution + product/nav/incubator/Aurora docs into `docs/` |
-| Assets | DO NOT COPY | Site boardwalk/fogforest megabytes not needed for IA port |
-| Incomplete Scenes WIP (site untracked) | REQUIRES OWNER REVIEW | `waypoint-scenes/js/*` |
+| Area | Action | Status | Notes |
+|------|--------|--------|-------|
+| Homepage | MERGE CONCEPTS | COMPLETE | RC3 hierarchy/mission; WDS home + deep Launch targets |
+| Navigation | ADAPT | COMPLETE | Primary six + quiet Incubator in footer |
+| Mission | PORT | COMPLETE | Observe. Discover. Understand. |
+| Tagline | PORT | COMPLETE | Capture what you find. Learn why it matters. |
+| Dashboard | MERGE CONCEPTS | PARTIAL | Framing + existing Take preserved; no shallow RC3 replace |
+| Scenes | PRESERVE + MERGE CONCEPTS | COMPLETE | Photo Coach preserved; mission language aligned |
+| Photo Coach | PRESERVE | COMPLETE | DO NOT COPY site Scenes |
+| Shoot Review | PRESERVE | COMPLETE | Under Scenes/Photo Coach |
+| Sheds | MERGE CONCEPTS | PARTIAL | Framing + Take; map/GPS preserved; full Sheds 3.0 education port deferred |
+| Volunteer | MERGE CONCEPTS | COMPLETE | Free primary framing; discovery mission preserved |
+| Articles | MERGE CONCEPTS | PARTIAL | Hub reframed; category Create/Share labels still historical |
+| Waypoint’s Take | PRESERVE + ADAPT | COMPLETE | Shared `wds-take.js` + product surfaces; Dashboard engines preserved |
+| Incubator | PORT | COMPLETE | Page + demotion from primary Launch |
+| SignalTerrain | RETIRE FROM PRIMARY UI | COMPLETE | App preserved |
+| Steepleaf | RETIRE FROM PRIMARY UI | COMPLETE | App preserved |
+| Savant Sommelier | RETIRE FROM PRIMARY UI | COMPLETE | App preserved |
+| ForageCast | RETIRE FROM PRIMARY UI | COMPLETE | Supporting section only |
+| Fieldry | RETIRE FROM PRIMARY UI | COMPLETE | Supporting section only |
+| Landscape Interpretation | RETIRE FROM PRIMARY UI | COMPLETE | Supporting section only |
+| Hidden Landscapes | PRESERVE | COMPLETE | Under Scenes — not primary nav |
+| Design tokens | ADAPT | COMPLETE | Aurora bridge into WDS |
+| Shared CSS | ADAPT | COMPLETE | Bridge CSS; no parallel DS |
+| JavaScript services | PRESERVE | COMPLETE | Platform services untouched |
+| Provider integrations | PRESERVE | COMPLETE | |
+| Offline systems | PRESERVE | COMPLETE | |
+| Tests | PRESERVE + ADAPT | PARTIAL | Existing validators pass; Chrome smoke blocked (`ws` missing) |
+| Workflows | PRESERVE | COMPLETE | |
+| CNAME | PRESERVE | COMPLETE | Unchanged `waypointstudio.org` |
+| robots.txt | PRESERVE | COMPLETE | No change required this pass |
+| sitemap.xml | ADAPT | COMPLETE | Primary elevated; demoted products lowered |
+| Contact / Support | PRESERVE | COMPLETE | |
+| Documentation | PORT | COMPLETE | RC3 constitution set + implementation report |
+| Assets | DO NOT COPY | COMPLETE | No site megabyte assets imported |
+| Incomplete Scenes WIP (site untracked) | REQUIRES OWNER REVIEW | OWNER REVIEW REQUIRED | Not copied into canonical |
 
 ---
 

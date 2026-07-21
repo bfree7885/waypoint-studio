@@ -10,12 +10,18 @@ with implementation convenience.
 
 # Mission
 
-Waypoint Studio exists to help people observe more, understand more, create
-with confidence, and share meaningful discoveries.
+Waypoint Studio helps people observe what is happening, discover what matters,
+and understand why — with Create and Share as craft workflows inside Scenes, not
+equal company pillars.
 
 Our mission is summarized as:
 
-**Observe. Understand. Create. Share.**
+**Observe. Discover. Understand.**
+
+*Capture what you find. Learn why it matters.*
+
+> Historical phrasing “Observe. Understand. Create. Share.” is superseded for
+> company-level framing; see `docs/RC3-CONSTITUTION.md`.
 
 Technology should deepen human curiosity—not replace it.
 

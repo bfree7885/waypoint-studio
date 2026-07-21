@@ -117,6 +117,31 @@
     var brandName = (NavApi && NavApi.config().brand && NavApi.config().brand.name) || "Waypoint Studio";
     var active = options.app || (NavApi ? NavApi.detectApp() : null);
     var activeId = active && active.id;
+    var cfg = NavApi && NavApi.config ? NavApi.config() : {};
+    var primary = (cfg.studioPrimaryNav || []).map(function (item) {
+      var href = NavApi.resolveRoute
+        ? (item.href.indexOf("apps/") === 0 || item.href.indexOf("articles") === 0 || /\.html$/.test(item.href)
+            ? NavApi.resolveRoute(item.href.indexOf("apps/") === 0 ? item.href : item.href, depth)
+            : (NavApi.studioHomeHref(depth) + item.href.replace(/^\.\//, "")))
+        : item.href;
+      // Fix non-apps routes relative to studio home
+      if (item.href.indexOf("apps/") !== 0) {
+        href = String(brandHref).replace(/\/?$/, "/") + item.href.replace(/^\.\//, "");
+        if (brandHref === "./" || brandHref === ".") href = item.href;
+      } else {
+        href = NavApi.resolveRoute(item.href, depth);
+      }
+      var current =
+        (item.id === "dashboard" && activeId === "dashboard") ||
+        (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
+        (item.id === "sheds" && activeId === "sheds") ||
+        (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
+      return (
+        '<a class="was-primary-nav__link" href="' + esc(href) + '"' +
+          (current ? ' aria-current="page"' : "") +
+          ">" + esc(item.label) + "</a>"
+      );
+    }).join("");
 
     return (
       '<header class="was-global" data-was-global>' +
@@ -125,6 +150,9 @@
             '<span class="was-brand__mark" aria-hidden="true"></span>' +
             '<span class="was-brand__name">' + esc(brandName) + "</span>" +
           "</a>" +
+          (primary
+            ? '<nav class="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
+            : "") +
           '<div class="was-global__actions">' +
             '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
               '<span class="was-apps-btn__label">Apps</span>' +
@@ -203,6 +231,7 @@
         '<p class="was-footer__links">' +
           '<a href="' + esc(studioPageHref(home, "contact.html")) + '">Contact</a>' +
           '<a href="' + esc(studioPageHref(home, "support.html")) + '">Support</a>' +
+          '<a href="' + esc(studioPageHref(home, "incubator/")) + '">Incubator</a>' +
           '<a href="' + esc(contactBug) + '">Report bug</a>' +
           '<a href="' + esc(contactFeature) + '">Request feature</a>' +
           '<a href="' + esc(studioPageHref(home, "about.html")) + '">About</a>' +

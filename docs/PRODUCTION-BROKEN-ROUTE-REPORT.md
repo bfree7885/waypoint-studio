@@ -1,8 +1,8 @@
 # Broken Route Report
 
-**Generated:** 2026-07-20
+**Generated:** 2026-07-21
 
-- Checked: **1705**
+- Checked: **1694**
 - Broken: **0**
 - Warnings: **6**
 
