@@ -12,14 +12,14 @@
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "dashboard", "label": "Outside", "href": "apps/dashboard/", "hint": "What is happening outside today?" },
+      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "Your outdoor workspace and Today Outside" },
       { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
       { "id": "about", "label": "About", "href": "about.html" }
     ],
-    "homePrimary": ["dashboard", "scenes", "sheds", "volunteer"],
+    "homePrimary": ["dashboard", "scenes", "sheds"],
     "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
@@ -47,21 +47,52 @@
     "apps": [
       {
         "id": "dashboard",
-        "title": "Outside",
-        "shortTitle": "Outside",
+        "title": "Dashboard",
+        "shortTitle": "Dashboard",
         "icon": "dashboard",
         "route": "apps/dashboard/",
         "match": [
           "/apps/dashboard"
         ],
         "category": "core",
-        "description": "What is happening outside near you today, what matters most, and what to do about it.",
+        "description": "Customizable outdoor workspace — Today Outside summary plus instruments you choose.",
         "status": "live",
         "maturity": "Live",
-        "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
-        "features": [],
+        "purpose": "Assemble your view of conditions near you; glance Today Outside; go deeper when you choose.",
+        "features": [
+          {
+            "id": "workspace",
+            "label": "Workspace",
+            "href": "apps/dashboard/",
+            "hash": "#/",
+            "match": [
+              "/apps/dashboard/?$",
+              "/apps/dashboard/index"
+            ]
+          },
+          {
+            "id": "customize",
+            "label": "Customize",
+            "href": "apps/dashboard/",
+            "hash": "#/customize",
+            "match": [
+              "#/customize",
+              "#customize"
+            ]
+          },
+          {
+            "id": "kiosk",
+            "label": "Kiosk",
+            "href": "apps/dashboard/",
+            "hash": "#/kiosk",
+            "match": [
+              "#/kiosk",
+              "#kiosk"
+            ]
+          }
+        ],
         "startHere": {
-          "label": "Open Outside",
+          "label": "Open Dashboard",
           "href": "apps/dashboard/"
         },
         "journeys": [
@@ -70,8 +101,6 @@
         ],
         "related": [
           "scenes",
-          "fieldry",
-          "foragecast",
           "sheds"
         ]
       },

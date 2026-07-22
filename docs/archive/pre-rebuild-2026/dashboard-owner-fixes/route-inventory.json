@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-07-22T06:26:02.218Z",
+  "routes": [
+    {
+      "label": "Brand / Waypoint Studio",
+      "source": "quiet global header + footer",
+      "destination": "../../",
+      "scope": "internal",
+      "shell": "current",
+      "notes": "Rebuilt studio home"
+    },
+    {
+      "label": "Contact",
+      "source": "dashboard footer",
+      "destination": "contact.html",
+      "scope": "internal",
+      "shell": "current-dashboard",
+      "notes": "apps/dashboard/contact.html quiet shell"
+    },
+    {
+      "label": "Something wrong?",
+      "source": "dashboard footer",
+      "destination": "contact.html?category=bug",
+      "scope": "internal",
+      "shell": "current-dashboard",
+      "notes": "Same Contact page"
+    },
+    {
+      "label": "Suggest an idea",
+      "source": "dashboard footer",
+      "destination": "contact.html?category=feature",
+      "scope": "internal",
+      "shell": "current-dashboard",
+      "notes": "Same Contact page"
+    },
+    {
+      "label": "Support",
+      "source": "dashboard footer",
+      "destination": "../../support.html",
+      "scope": "internal",
+      "shell": "current-studio",
+      "notes": "Intentional studio Support page"
+    },
+    {
+      "label": "About",
+      "source": "dashboard footer",
+      "destination": "../../about.html",
+      "scope": "internal",
+      "shell": "current-studio",
+      "notes": "Intentional studio About page"
+    },
+    {
+      "label": "Privacy",
+      "source": "dashboard footer",
+      "destination": "../../privacy.html",
+      "scope": "internal",
+      "shell": "current-studio",
+      "notes": "Intentional studio Privacy page"
+    },
+    {
+      "label": "Coming later",
+      "source": "dashboard footer",
+      "destination": "../../incubator/",
+      "scope": "internal",
+      "shell": "current-studio",
+      "notes": "Incubator index"
+    },
+    {
+      "label": "Noscript Contact",
+      "source": "apps/dashboard/index.html",
+      "destination": "./contact.html",
+      "scope": "internal",
+      "shell": "current-dashboard",
+      "notes": "Fixed from ../../contact.html"
+    },
+    {
+      "label": "Noscript Outside",
+      "source": "apps/dashboard/index.html",
+      "destination": "./",
+      "scope": "internal",
+      "shell": "current-dashboard",
+      "notes": "Stays in Outside"
+    },
+    {
+      "label": "Studio Contact",
+      "source": "studio-home footer",
+      "destination": "contact.html",
+      "scope": "internal",
+      "shell": "current-studio",
+      "notes": "Root contact remains for studio directory"
+    }
+  ]
+}

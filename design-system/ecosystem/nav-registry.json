@@ -29,21 +29,52 @@
   "apps": [
     {
       "id": "dashboard",
-      "title": "Outside",
-      "shortTitle": "Outside",
+      "title": "Dashboard",
+      "shortTitle": "Dashboard",
       "icon": "dashboard",
       "route": "apps/dashboard/",
       "match": [
         "/apps/dashboard"
       ],
       "category": "core",
-      "description": "What is happening outside near you today, what matters most, and what to do about it.",
+      "description": "Customizable outdoor workspace — Today Outside summary plus instruments you choose.",
       "status": "live",
-      "features": [],
-      "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
+      "features": [
+        {
+          "id": "workspace",
+          "label": "Workspace",
+          "href": "apps/dashboard/",
+          "hash": "#/",
+          "match": [
+            "/apps/dashboard/?$",
+            "/apps/dashboard/index"
+          ]
+        },
+        {
+          "id": "customize",
+          "label": "Customize",
+          "href": "apps/dashboard/",
+          "hash": "#/customize",
+          "match": [
+            "#/customize",
+            "#customize"
+          ]
+        },
+        {
+          "id": "kiosk",
+          "label": "Kiosk",
+          "href": "apps/dashboard/",
+          "hash": "#/kiosk",
+          "match": [
+            "#/kiosk",
+            "#kiosk"
+          ]
+        }
+      ],
+      "purpose": "Assemble your view of conditions near you; glance Today Outside; go deeper when you choose.",
       "maturity": "Live",
       "startHere": {
-        "label": "Open Outside",
+        "label": "Open Dashboard",
         "href": "apps/dashboard/"
       },
       "journeys": [
@@ -52,8 +83,6 @@
       ],
       "related": [
         "scenes",
-        "fieldry",
-        "foragecast",
         "sheds"
       ]
     },

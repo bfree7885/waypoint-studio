@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-22T20:24:33.722Z",
+  "base": "http://127.0.0.1:8765",
+  "phase": "after",
+  "meta": {
+    "hasActionsNav": false,
+    "hasToday": true,
+    "hasWorkspace": true,
+    "phaseText": "",
+    "widgetCount": 6,
+    "sampleStatus": "Waiting for weather data.",
+    "localNav": [
+      "Workspace",
+      "Customize",
+      "Kiosk"
+    ]
+  }
+}

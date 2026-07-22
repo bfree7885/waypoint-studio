@@ -183,16 +183,20 @@
   }
 
   function buildDoFallback(model) {
+    var Copy = global.WDS && global.WDS.dashboardOSCopy;
+    var alt = Copy && Copy.alternateLine
+      ? Copy.alternateLine("A short sheltered look nearby remains available")
+      : "Also worth noticing: A short sheltered look nearby remains available";
     var alert = buildAlert(model);
     if (alert) {
       return {
-        primary: clipWords("Postpone exposed travel until the alert eases", 16),
-        alternate: "Alternate: short sheltered check of conditions nearby",
+        primary: clipWords("Exposed travel looks poor until the alert eases", 16),
+        alternate: alt,
         rationale: [alert.items[0].event || "Official alert"]
       };
     }
     return {
-      primary: "Step outside briefly to read conditions firsthand",
+      primary: "A brief look outside helps read conditions firsthand",
       alternate: null,
       rationale: []
     };

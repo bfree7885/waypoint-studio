@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-22T06:27:09.282Z",
+  "base": "http://127.0.0.1:8765",
+  "briefing": {
+    "label": "Best window",
+    "primary": "Tomorrow morning looks more promising",
+    "alternate": "Also worth noticing: Tonight remains quiet and overcast",
+    "mode": "briefing",
+    "hasDoThis": false,
+    "footerContact": "contact.html"
+  },
+  "contact": {
+    "title": "Contact — Outside · Waypoint",
+    "quiet": true,
+    "form": true,
+    "brandHref": "../../"
+  }
+}

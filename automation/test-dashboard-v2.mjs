@@ -393,6 +393,7 @@ const briefing = sandbox.WDS.dashboardV2Briefing.build(model, sandbox.WDS.dashbo
 assert("legacy briefing still builds", Object.keys(briefing.sections).length === 5);
 
 /* Outdoor OS presentation (product path) — V2 model/payload retained */
+load("design-system/js/dashboard/os/wds-dashboard-os-copy.js", sandbox);
 load("design-system/js/dashboard/os/wds-dashboard-os-interpret.js", sandbox);
 load("design-system/js/dashboard/os/wds-dashboard-os-compose.js", sandbox);
 load("design-system/js/dashboard/os/wds-dashboard-os-render.js", sandbox);
@@ -404,7 +405,8 @@ assert("OS has do primary", !!(osView.do && osView.do.primary));
 const osHtml = sandbox.WDS.dashboardOSRender.renderScreen(osView);
 assert("OS render Outside brand", /wdb-os__brand/.test(osHtml) && /Outside/.test(osHtml));
 assert("OS render What matters", /What matters/.test(osHtml));
-assert("OS render Do this", /Do this/.test(osHtml));
+assert("OS render Best window", /Best window/.test(osHtml));
+assert("OS render no Do this label", !/>Do this</.test(osHtml) && !/aria-label="Do this"/.test(osHtml));
 assert("OS location panel exists", /Location/.test(sandbox.WDS.dashboardOSRender.renderPanel("location", osView)));
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");

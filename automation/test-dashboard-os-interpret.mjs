@@ -89,6 +89,7 @@ sandbox.WDS = {
   "design-system/js/dashboard/v2/wds-dashboard-v2-observe.js",
   "design-system/js/dashboard/v2/wds-dashboard-v2-trust.js",
   "design-system/js/dashboard/v2/wds-dashboard-v2.js",
+  "design-system/js/dashboard/os/wds-dashboard-os-copy.js",
   "design-system/js/dashboard/os/wds-dashboard-os-interpret.js",
   "design-system/js/dashboard/os/wds-dashboard-os-compose.js"
 ].forEach((f) => load(f, sandbox));
@@ -191,7 +192,7 @@ function baseWx(cur) {
   const model = modelFrom(platform);
   const out = Interpret.synthesize({ model, flags: { now: DAY, storm: true } });
   assert("alert matters first", /Thunderstorm|alert|Storm/i.test(out.matters[0].text), out.matters[0].text);
-  assert("safety do", /Postpone|shelter/i.test(out.do.primary), out.do.primary);
+  assert("safety do", /exposed travel looks poor|shelter|storms pass/i.test(out.do.primary), out.do.primary);
   assert("matters not padded past 2 on alert", out.matters.length <= 2);
 }
 
@@ -231,7 +232,7 @@ function baseWx(cur) {
     out.matters.some((m) => /poor air|Good light/i.test(m.text)),
     out.matters.map((m) => m.text).join(" | ")
   );
-  assert("conflict do skips long photo", /short|skip long photo/i.test(out.do.primary), out.do.primary);
+  assert("conflict do prefers brief look", /brief outdoor look|photo session/i.test(out.do.primary), out.do.primary);
 }
 
 // Night labeling
@@ -240,7 +241,8 @@ function baseWx(cur) {
   const model = modelFrom(platform);
   const out = Interpret.synthesize({ model, flags: { now: NIGHT } });
   assert("night happening", /night|clear night/i.test(out.happening.headline + " " + out.happening.support));
-  assert("night do tonight", /Tonight/i.test(out.do.primary), out.do.primary);
+  assert("night best window tomorrow", /Tomorrow morning looks more promising/i.test(out.do.primary), out.do.primary);
+  assert("night secondary quiet", /Tonight remains quiet/i.test(out.do.alternate || ""), out.do.alternate);
   assert("no UV matter at night", !out.matters.some((m) => /UV/i.test(m.text)));
 }
 
@@ -282,7 +284,7 @@ function baseWx(cur) {
   const view = Compose.compose(payload);
   assert("compose uses interpret intelligence", !!(view.intelligence && view.intelligence.traces));
   assert("compose fog character", /Fog/i.test(view.happening.headline), view.happening.headline);
-  assert("compose fog do", /familiar|visibility|Short/i.test(view.do.primary), view.do.primary);
+  assert("compose fog do", /familiar|visibility/i.test(view.do.primary), view.do.primary);
 }
 
 // No fabricate when weather pending
@@ -334,7 +336,7 @@ function assertVoice(name, out) {
   model.photography = { live: true, level: "good", summary: "Bright clear light" };
   const out = Interpret.synthesize({ model, flags: { now: DAY } });
   assert("calm day not photo primary", !/photograp/i.test(out.do.primary), out.do.primary);
-  assert("calm day prefers walk", /walk/i.test(out.do.primary), out.do.primary);
+  assert("calm day prefers walk", /walk|window|conditions favor/i.test(out.do.primary), out.do.primary);
   assertVoice("calm", out);
 }
 
@@ -370,7 +372,7 @@ function assertVoice(name, out) {
   const out = Interpret.synthesize({ model, flags: { now: DAY, floodWatch: true } });
   assert(
     "flood watch precautionary do",
-    /Avoid low crossings and check local updates/i.test(out.do.primary),
+    /low crossings|local updates|streams/i.test(out.do.primary),
     out.do.primary
   );
   assert(
@@ -397,7 +399,7 @@ function assertVoice(name, out) {
   });
   assert(
     "flood warning escalated do",
-    /flooded roads|low crossings|Stay clear/i.test(out.do.primary),
+    /flooded roads|low crossings|remain unsafe/i.test(out.do.primary),
     out.do.primary
   );
   assertVoice("flood-warning", out);
@@ -504,7 +506,7 @@ function assertVoice(name, out) {
   );
   assert(
     "practical heat window",
-    /early morning|after 4 PM|shaded walk/i.test(out.do.primary),
+    /early morning|after 4 PM|shade/i.test(out.do.primary),
     out.do.primary
   );
 }
@@ -525,7 +527,7 @@ function assertVoice(name, out) {
     model,
     flags: { now: DAY, storm: true, excellentPhotography: true }
   });
-  assert("safety over photo", /Postpone|shelter/i.test(out.do.primary), out.do.primary);
+  assert("safety over photo", /exposed travel looks poor|shelter|storms pass/i.test(out.do.primary), out.do.primary);
   assert("not photo when storm", !/photograp/i.test(out.do.primary), out.do.primary);
   assertVoice("safety-override", out);
 }

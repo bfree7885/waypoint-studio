@@ -87,7 +87,7 @@ Everything required for the Decision Contract (except Sources detail) **must fit
 [C] Place · time             — ALWAYS
 [D] Happening (character)    — ALWAYS when place known; else empty-state body
 [E] What matters             — ALWAYS when place known (1–3 items)
-[F] Do this                  — ALWAYS when place known (1 primary + 0–1 alternate)
+[F] Best window              — ALWAYS when place known (1 primary + 0–1 alternate)
 [G] Atmosphere field         — ALWAYS as ambient plane (not a content card)
 [H] Day arc peek             — OPTIONAL on fold if space; otherwise first pixel of scroll
 [I] Sources cue              — QUIET affordance (not a content block)
@@ -167,12 +167,12 @@ No other regions may insert above [F] on a personalized briefing.
 | **Selection rules** | Alert-driven concerns win over opportunities. Conflict days must state the tension in item text. Never pad to 3 with trivia. Prefer 1 true item over 3 weak ones. |
 | **Why** | Priority is the product |
 
-#### [F] Do this
+#### [F] Best window
 
 | Spec | Rule |
 |------|------|
 | **Purpose** | The decision — how to spend time outside today |
-| **Label** | “Do this” (fixed) |
+| **Label** | “Best window” (fixed) |
 | **Primary** | One imperative or clear posture, ≤16 words. Must include a window when timing matters (e.g. “mid-afternoon → early evening”). |
 | **Alternate** | Optional second line, quieter, ≤14 words, prefixed “Alternate:” or equivalent quiet cue |
 | **Total words** | ≤35 including labels |
@@ -271,7 +271,7 @@ Intended scan path in ≤10 seconds:
 2. **Place · time** — “this is mine / today”  
 3. **Happening headline** — feel the day  
 4. **What matters #1** — weight  
-5. **Do this** — agency  
+5. **Best window** — possibility without homework  
 6. (Optional) Day arc best beat — timing  
 
 If eye path is forced into a grid of equal tiles, the viewport fails this specification.
@@ -283,7 +283,7 @@ If eye path is forced into a grid of equal tiles, the viewport fails this specif
 | Place · time | 8 |
 | Happening | 30 |
 | What matters (all) | 45 |
-| Do this (all) | 35 |
+| Best window (all) | 35 |
 | Day arc peek | 40 |
 | Sources cue | 6 |
 | **Visible total** | **≈90–120** (prefer ≤90 without day arc on fold) |
@@ -476,7 +476,7 @@ All detail panels share:
 
 | Field | Specification |
 |-------|---------------|
-| **Purpose** | Tune what “Do this” optimizes for |
+| **Purpose** | Tune what “Best window” prefers |
 | **Content** | Activity preferences (walk, hike, photo, fish, etc.) · sensitivities (air, heat, UV) · units |
 | **Interaction** | Toggles/choices; save local |
 | **Exit** | Close; Outside may re-rank Do/Matters |

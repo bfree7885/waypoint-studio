@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-22T06:00:02.219Z",
-  "dataUpdatedAt": "2026-07-22T06:00:02.219Z",
-  "nextScheduledRun": "2026-07-22T06:30:00.000Z",
-  "lastPublishAt": "2026-07-10T16:00:43.841Z",
-  "lastPublishedDataAt": "2026-07-10T16:00:01.659Z",
-  "lastPublishCommit": "d03fbcd",
-  "lastPublishStatus": "failed",
-  "lastPublishMessage": "Command failed: git fetch origin integration/dashboard-os-m3\nfatal: couldn't find remote ref integration/dashboard-os-m3\n"
+  "lastEngineRun": "2026-07-22T21:00:01.796Z",
+  "dataUpdatedAt": "2026-07-22T21:00:01.796Z",
+  "nextScheduledRun": "2026-07-22T21:30:00.000Z",
+  "lastPublishAt": "2026-07-22T06:00:44.719Z",
+  "lastPublishedDataAt": "2026-07-22T06:00:02.219Z",
+  "lastPublishCommit": "bba5424",
+  "lastPublishStatus": "skipped",
+  "lastPublishMessage": "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
 }

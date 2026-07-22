@@ -88,11 +88,21 @@
     );
   }
 
+  function bestWindowLabel() {
+    var Copy = global.WDS && global.WDS.dashboardOSCopy;
+    return (Copy && Copy.LABELS && Copy.LABELS.bestWindow) || "Best window";
+  }
+
   function renderDo(plan) {
     if (!plan) return "";
+    var label = bestWindowLabel();
     return (
-      '<section class="wdb-os__do" data-wdb-os-region="do" aria-label="Do this">' +
-        '<h2 class="wdb-os__label">Do this</h2>' +
+      '<section class="wdb-os__do" data-wdb-os-region="do" aria-label="' +
+        esc(label) +
+        '">' +
+        '<h2 class="wdb-os__label">' +
+        esc(label) +
+        "</h2>" +
         '<button type="button" class="wdb-os__do-primary" data-wdb-os-open="plan">' +
         esc(plan.primary) +
         "</button>" +
@@ -506,7 +516,7 @@
       var catalog = ["walk", "hike", "run", "photography", "wildlife", "birding", "fishing", "stargazing"];
       return panelShell(
         "Preferences",
-        "<p class=\"wdb-os-panel__meta\">Tune what “Do this” prefers. Local only — no account.</p>" +
+        "<p class=\"wdb-os-panel__meta\">Tune what “Best window” prefers. Local only — no account.</p>" +
           '<form class="wdb-os-prefs" data-wdb-os-prefs>' +
           catalog
             .map(function (aid) {

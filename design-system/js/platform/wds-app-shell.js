@@ -221,26 +221,71 @@
     return String(home).replace(/\/?$/, "/") + page;
   }
 
+  /**
+   * Product-scoped Contact: Outside keeps Contact inside the quiet Dashboard shell.
+   * Other products keep studio-root contact.html (current App Shell, not legacy chrome).
+   */
+  function contactPageHref(options, query) {
+    options = options || {};
+    var NavApi = Nav();
+    var depth = options.depth != null ? options.depth : (NavApi ? NavApi.depthFromPath() : 1);
+    var app =
+      Object.prototype.hasOwnProperty.call(options, "app")
+        ? options.app
+        : NavApi
+          ? NavApi.detectApp()
+          : null;
+    var productSlug = (app && app.id) || options.product || "";
+    var home = NavApi ? NavApi.studioHomeHref(depth) : "../../";
+    var q = query ? String(query) : "";
+    if (q && q.charAt(0) !== "?") q = "?" + q;
+    if (productSlug === "dashboard") {
+      var pathNow = "";
+      try {
+        pathNow = String((global.location && global.location.pathname) || "");
+      } catch (e) { /* noop */ }
+      if (/\/apps\/dashboard(\/|$)/.test(pathNow)) {
+        return "contact.html" + q;
+      }
+      var dash =
+        NavApi && NavApi.resolveRoute
+          ? NavApi.resolveRoute("apps/dashboard/", depth)
+          : studioPageHref(home, "apps/dashboard/");
+      return studioPageHref(dash, "contact.html") + q;
+    }
+    return studioPageHref(home, "contact.html") + q;
+  }
+
   function renderFooter(options) {
     options = options || {};
     var NavApi = Nav();
     var depth = options.depth != null ? options.depth : (NavApi ? NavApi.depthFromPath() : 1);
-    var app = options.app || (NavApi ? NavApi.detectApp() : null);
+    var app =
+      Object.prototype.hasOwnProperty.call(options, "app")
+        ? options.app
+        : NavApi
+          ? NavApi.detectApp()
+          : null;
     var productName = (app && app.title) || options.productName || "Waypoint Studio";
     var home = NavApi ? NavApi.studioHomeHref(depth) : "../../";
     var productSlug = (app && app.id) || options.product || "";
-    var contactBug = studioPageHref(home, "contact.html") +
-      "?category=bug&includeTech=1" +
+    var contactBase = contactPageHref(options, "");
+    var contactBug =
+      contactBase +
+      (contactBase.indexOf("?") >= 0 ? "&" : "?") +
+      "category=bug&includeTech=1" +
       (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
-    var contactFeature = studioPageHref(home, "contact.html") +
-      "?category=feature" +
+    var contactFeature =
+      contactBase +
+      (contactBase.indexOf("?") >= 0 ? "&" : "?") +
+      "category=feature" +
       (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
     return (
       '<footer class="was-footer wds-footer">' +
         "<p>" + esc(productName) + " · Private by default · " +
         '<a href="' + esc(home) + '">Waypoint Studio</a></p>' +
         '<p class="was-footer__links">' +
-          '<a href="' + esc(studioPageHref(home, "contact.html")) + '">Contact</a>' +
+          '<a href="' + esc(contactBase) + '">Contact</a>' +
           '<a href="' + esc(studioPageHref(home, "support.html")) + '">Support</a>' +
           '<a href="' + esc(studioPageHref(home, "incubator/")) + '">Coming later</a>' +
           '<a href="' + esc(contactBug) + '">Something wrong?</a>' +
@@ -400,6 +445,7 @@
     renderGlobalHeader: renderGlobalHeader,
     renderLocalNav: renderLocalNav,
     renderFooter: renderFooter,
+    contactPageHref: contactPageHref,
     updateLocalCurrent: updateLocalCurrent,
     setLauncher: setLauncher
   };

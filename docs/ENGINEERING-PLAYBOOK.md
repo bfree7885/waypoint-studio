@@ -5,14 +5,12 @@ mirrors the hard gates in `.cursor/rules/engineering-playbook.mdc`.
 
 Product philosophy (trust, privacy, education, AI honesty) lives in
 `docs/PRODUCT_STANDARDS.md` and `.cursor/rules/product-standards.mdc`.
-Dashboard product soul (Outdoor OS briefing, not weather/widgets):
-`docs/DASHBOARD-PRODUCT-MANIFESTO.md`.
-Dashboard exact screen blueprint (build from this; no code in the doc):
-`docs/DASHBOARD-SCREEN-SPECIFICATION.md`.
-Dashboard Outdoor OS Milestone 1 owner review:
-`docs/DASHBOARD-OS-MILESTONE1-OWNER-REVIEW.md`.
-Dashboard Outdoor OS implementation Owner Review (current):
-`docs/DASHBOARD-OS-OWNER-REVIEW.md`.
+
+**Product / Dashboard architecture authority (2026 Rebuild):**
+`docs/rebuild-2026/` (awaiting owner approval). Outdoor OS Manifesto,
+Screen Spec, Reset, and Recovery/V2/V3 vision docs are **superseded** and
+archived at `docs/archive/pre-rebuild-2026/` — historical only; do not
+treat them as binding.
 
 ---
 
@@ -139,6 +137,49 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Dashboard Phase 1 polish (presentation)
+
+**Artifact:** `docs/rebuild-2026/dashboard-phase1-polish-owner-review.md`  
+**Screenshots:** `docs/rebuild-2026/phase1-polish/{before,after}/`
+
+1. **Duplicate nav is a composition bug** — when app shell already owns
+   Workspace/Customize/Kiosk, an in-shell actions bar reads as unfinished
+   prototype; keep one source of truth.
+2. **Developer empty copy blocks product feel** — “Instrument not connected
+   yet” / “Phase 1 shell” teach engineering, not outdoors; use Waiting +
+   “will appear here” while staying honest (no fake numbers).
+3. **Compact Today Outside ≠ empty Today Outside** — a short premium panel
+   with honest bullets orients without becoming an editorial weather page;
+   Workspace must still dominate the viewport.
+4. **Anticipate categories with placeholders only** — expand catalog
+   families (Astronomy, Photography, Rivers, …) for layout readiness without
+   starting Phase 2 provider work.
+
+### 2026-07-22 — Dashboard Rebuild Phase 1 shell
+
+**Artifact:** `docs/rebuild-2026/dashboard-phase1-owner-review.md`  
+**Code home:** `design-system/js/dashboard/rebuild/`
+
+1. **Replace the entry, archive the era** — `/apps/dashboard/` mounts Rebuild
+   shell; Outdoor OS modules may remain loadable without being product law.
+2. **Shell without providers** — Phase 1 paints workspace + Today Outside
+   container before OIP; do not reintroduce contentEngine Outdoor OS boot.
+3. **Placeholders must stay honest** — registry `ph-*` widgets return
+   Unavailable; never invent numbers to “look finished.”
+4. **Stop at framework** — do not continue into real widgets until owner
+   approves Phase 1 review.
+
+### 2026-07-22 — Waypoint Studio 2026 Rebuild architecture baseline (docs)
+
+**Artifact:** `docs/rebuild-2026/` (+ archive `docs/archive/pre-rebuild-2026/`)
+
+1. **Owner reversal must be written as new authority** — otherwise agents
+   correctly keep rebuilding Outdoor OS from Manifesto/Screen Spec/Reset.
+2. **Newer is not canonical** — Outdoor OS shipped after Recovery/V2/V3 and
+   still lost to the Rebuild decision (widgets + Today Outside + three products).
+3. **Do not merge eras** — briefing philosophy and widget workspace are
+   different products; archive the old vision rather than hybridizing it.
+
 ### 2026-07-22 — Outdoor OS M3 publish gate (legacy fallthrough)
 
 **Artifact:** `docs/dashboard-os-m3-publish/`  
@@ -187,6 +228,23 @@ continuously improves.
    trap, inert sheet, restore opener, reduced-motion instant path.
 5. **GitHub Pages can succeed while CI fails** by design in this repo — do not
    treat CI green as a deploy prerequisite when reporting production SHA.
+
+### 2026-07-22 — Dashboard owner fixes (Contact shell + observational Best window)
+
+**Artifact:** `docs/dashboard-owner-fixes/OWNER-REVIEW.md`
+
+1. **Product-scoped footer links beat shared studio-root Contact.** Quiet Outside
+   felt like an “old site exit” when Contact jumped to depth-0 studio Contact.
+   Prefer in-product `apps/dashboard/contact.html` when `product === dashboard`.
+2. **Explicit `options.app = null` must not fall through `|| detectApp()`.**
+   Falsy null re-detects from `location.pathname` and breaks studio-vs-product
+   footer tests; use `hasOwnProperty` (or equivalent) for optional app override.
+3. **Label renames without generator rewrites leave homework copy alive.**
+   “Best window” UI + night/default string banks + `dashboardOSCopy` bans must
+   ship together or the next hydrate regenerates “Do this” / “then rest”.
+4. **Owner voice is observational possibility, not softened imperatives.**
+   “Take a walk” → “Conditions favor a walk…”; safety stays clear without
+   assignment verbs (Finish / Postpone / You should).
 
 ### 2026-07-22 — Outdoor OS Milestone 2 closeout (owner decisions)
 

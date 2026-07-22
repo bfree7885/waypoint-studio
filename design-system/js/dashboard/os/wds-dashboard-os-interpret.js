@@ -1,6 +1,6 @@
 /**
  * Outdoor OS — Waypoint Intelligence (Milestone 2).
- * PriorityRanker + interpretation: Happening / What matters / Do this.
+ * PriorityRanker + interpretation: Happening / What matters / Best window.
  *
  * Deterministic, traced, never fabricates. Voice: quiet outdoor guide.
  * Spec budgets: Happening ≤30 words; Matters ≤3 × ≤14 words; Do primary ≤16 + alt ≤14.
@@ -317,7 +317,7 @@
       id: "D7",
       domain: "do",
       name: "Night Do horizon",
-      detail: "At night, primary is tonight posture; alternate may be tomorrow’s first window."
+      detail: "At night, primary names tomorrow’s stronger window; alternate may describe tonight’s quieter conditions."
     },
     {
       id: "D8",
@@ -364,7 +364,7 @@
       domain: "voice",
       name: "Calm field voice",
       detail:
-        "Calm, direct, specific, literate, brief, scientifically honest. Ban: Perfect/Amazing/Ideal (unless unusually strong evidence)/You should definitely/Don’t miss/Adventure/promotional filler. Pattern: Observation → consequence → practical action."
+        "Calm, observational, specific, literate, brief, scientifically honest. Ban: Perfect/Amazing/Ideal (unless unusually strong evidence)/You should/Don’t miss/Adventure/homework/assignment/Do this/promotional filler. Pattern: Observation → consequence → possible window. Never assign tasks."
     }
   ];
 
@@ -1114,7 +1114,7 @@
     var traj = extracted.trajectory;
 
     if (night) {
-      support = "Night near you — tonight’s check or tomorrow’s first window.";
+      support = "Night near you — tonight stays quiet, or tomorrow’s first window may stand out.";
       traces.push({ rule: "H5", note: "night", inputs: {} });
     } else if (top && top.kind === "flood-warning") {
       support = "Flooding risk is elevated — treat low ground as off-limits.";
@@ -1314,7 +1314,11 @@
     return { matters: matters, traces: traces };
   }
 
-  /* ─── Do this ─── */
+  /* ─── Best window (observational; never homework) ─── */
+
+  function CopyApi() {
+    return global.WDS && global.WDS.dashboardOSCopy;
+  }
 
   function pickActivity(activities, preferIds) {
     activities = activities || [];
@@ -1339,10 +1343,36 @@
   }
 
   function soften(text, unc) {
+    var Copy = CopyApi();
+    if (Copy && Copy.softenObservational) {
+      var softened = Copy.softenObservational(text, unc);
+      return unc && unc.level === "high" ? clipWords(softened, 16) : softened;
+    }
     if (!unc || unc.level === "low") return text;
-    if (/based on|if (the )?forecast|provisional|verify/i.test(text)) return text;
+    if (/based on|if (the )?forecast|provisional|if conditions hold|may /i.test(text)) return text;
     if (unc.level === "high") return clipWords("If conditions hold: " + text.replace(/^If conditions hold:\s*/i, ""), 16);
     return text;
+  }
+
+  function altLine(text) {
+    var Copy = CopyApi();
+    if (Copy && Copy.alternateLine) return Copy.alternateLine(text);
+    if (!text) return null;
+    return "Also worth noticing: " + String(text).replace(/^alternate:\s*/i, "");
+  }
+
+  function packPlan(primary, alternate, rationale, traces) {
+    var alt = null;
+    if (alternate) {
+      alt = altLine(alternate);
+      if (alt) alt = clipWords(alt, 16);
+    }
+    return {
+      primary: primary,
+      alternate: alt,
+      rationale: rationale || [],
+      traces: traces || []
+    };
   }
 
   function preferDaytimeWindow(label, model) {
@@ -1395,59 +1425,60 @@
     if (hasFloodWarningOrActive()) {
       traces.push({ rule: "D3", note: "flood-warning", inputs: top && top.inputs });
       traces.push({ rule: "D9", note: "escalated" });
-      return {
-        primary: clipWords(soften("Stay clear of flooded roads and low crossings", unc), 16),
-        alternate: "Alternate: check official local updates before any stream travel",
-        rationale: ["Flood Warning or active high water outranks recreation."],
-        traces: traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
-      };
+      return packPlan(
+        clipWords(soften("Flooded roads and low crossings remain unsafe", unc), 16),
+        "Official local updates matter before any stream travel",
+        ["Flood Warning or active high water outranks recreation."],
+        traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
+      );
     }
 
     // Flood Watch alone — precautionary (not stay-home)
     if (hasFloodWatch() && !hasKind("storm")) {
       traces.push({ rule: "D9", note: "flood-watch-precaution", inputs: top && top.inputs });
-      return {
-        primary: clipWords(
-          soften("Avoid low crossings and check local updates before heading near streams", unc),
+      return packPlan(
+        clipWords(
+          soften("Low crossings warrant caution — local updates matter near streams", unc),
           16
         ),
-        alternate: "Alternate: choose high-ground walks away from creeks",
-        rationale: ["Flood Watch is precautionary — not a stay-home order."],
-        traces: traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
-      };
+        "High-ground walks away from creeks look quieter",
+        ["Flood Watch is precautionary — not a stay-home order."],
+        traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
+      );
     }
 
     // Alert / storm safety (non-flood-watch)
     if (hasKind("alert") || hasKind("storm")) {
-      var primary = "Postpone exposed travel until the alert eases";
+      var primary = "Exposed travel looks poor until the alert eases";
       if (hasKind("storm") && !hasKind("alert")) {
-        primary = "Keep outings short and near shelter while storms pass";
+        primary = "Short outings near shelter fit while storms pass";
       }
       traces.push({ rule: "D3", note: "safety", inputs: top && top.inputs });
-      return {
-        primary: clipWords(soften(primary, unc), 16),
-        alternate: "Alternate: short sheltered check nearby",
-        rationale: [top && top.consequence, "Safety outranks opportunity today."].filter(Boolean),
-        traces: traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
-      };
+      return packPlan(
+        clipWords(soften(primary, unc), 16),
+        "A short sheltered look nearby remains available",
+        [top && top.consequence, "Safety outranks opportunity today."].filter(Boolean),
+        traces.concat([{ rule: "D1", note: "primary" }, { rule: "D2", note: "alternate" }])
+      );
     }
 
     if (night) {
       var dl = model.daylight || {};
-      var tonight =
+      var nightAlt =
         model.moon && model.moon.phase
-          ? clipWords("Tonight: quiet outdoor check under " + String(model.moon.phase), 16)
-          : "Tonight: short outdoor check, then rest";
-      var alt = dl.sunrise
-        ? clipWords("Alternate: Tomorrow after sunrise (" + String(dl.sunrise) + ")", 14)
-        : "Alternate: Tomorrow morning window";
-      traces.push({ rule: "D7", note: "night", inputs: { sunrise: dl.sunrise, phase: model.moon && model.moon.phase } });
-      return {
-        primary: clipWords(tonight, 16),
-        alternate: alt,
-        rationale: ["Night briefing — plans named as tonight or tomorrow."],
-        traces: traces
-      };
+          ? clipWords("Tonight remains quiet under " + String(model.moon.phase), 14)
+          : "Tonight remains quiet and overcast";
+      traces.push({
+        rule: "D7",
+        note: "night",
+        inputs: { sunrise: dl.sunrise, phase: model.moon && model.moon.phase }
+      });
+      return packPlan(
+        "Tomorrow morning looks more promising",
+        nightAlt,
+        ["Night briefing — tomorrow’s window stands out over tonight."],
+        traces
+      );
     }
 
     // Conflict air vs light — safety outranks attractive opportunity
@@ -1459,12 +1490,12 @@
       })[0];
       traces.push({ rule: "M6", note: "do-resolve-air-light", inputs: cAir && cAir.inputs });
       traces.push({ rule: "R1", note: "safety-over-opportunity" });
-      return {
-        primary: clipWords(soften("Short outdoor look only — skip long photo time", unc), 16),
-        alternate: "Alternate: wait for cleaner air another day",
-        rationale: ["Light is good; air is not.", "Air quality wins the tradeoff."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("A brief outdoor look fits better than a long photo session", unc), 16),
+        "Cleaner air another day may open a stronger photo window",
+        ["Light is good; air is not.", "Air quality wins the tradeoff."],
+        traces
+      );
     }
 
     // Conflict sky vs water
@@ -1473,12 +1504,12 @@
     })) {
       traces.push({ rule: "M6", note: "do-resolve-sky-water", inputs: top && top.inputs });
       traces.push({ rule: "R1", note: "safety-over-opportunity" });
-      return {
-        primary: clipWords(soften("Walk high ground; skip fords and low crossings", unc), 16),
-        alternate: "Alternate: viewpoint look from a safe bank only",
-        rationale: ["Clear sky does not make crossings safe."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("High ground looks safer than fords and low crossings", unc), 16),
+        "A viewpoint from a safe bank remains an option",
+        ["Clear sky does not make crossings safe."],
+        traces
+      );
     }
 
     // Severe AQI / smoke
@@ -1489,58 +1520,63 @@
       var aqiVal = aqiSig && aqiSig.inputs && aqiSig.inputs.aqi;
       var severe = aqiVal != null && aqiVal >= 150;
       traces.push({ rule: "D3", note: "air", inputs: aqiSig && aqiSig.inputs });
-      return {
-        primary: clipWords(
-          soften(severe ? "Skip long outdoor exertion until air improves" : "Keep outdoor effort short and easy today", unc),
+      return packPlan(
+        clipWords(
+          soften(
+            severe
+              ? "Long outdoor exertion looks poor until air improves"
+              : "Short, easy outdoor effort fits today’s air",
+            unc
+          ),
           16
         ),
-        alternate: severe ? null : "Alternate: brief outdoor check, then indoors",
-        rationale: [aqiSig && aqiSig.consequence, "Air quality is the binding constraint."].filter(Boolean),
-        traces: traces
-      };
+        severe ? null : "A quieter indoor stretch may follow a brief look",
+        [aqiSig && aqiSig.consequence, "Air quality is the binding constraint."].filter(Boolean),
+        traces
+      );
     }
 
     // Rising water without watch/warning alert path already handled
     if (hasKind("flood") || hasKind("flood-active")) {
       traces.push({ rule: "D3", note: "water", inputs: top && top.inputs });
-      return {
-        primary: clipWords(soften("Walk high ground; skip fords and low crossings", unc), 16),
-        alternate: "Alternate: viewpoint look from a safe bank only",
-        rationale: ["Nearby water is elevated.", "Clear sky does not make crossings safe."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("High ground looks safer than fords and low crossings", unc), 16),
+        "A viewpoint from a safe bank remains an option",
+        ["Nearby water is elevated.", "Clear sky does not make crossings safe."],
+        traces
+      );
     }
 
     // Fog
     if (hasKind("fog")) {
       traces.push({ rule: "D4", note: "fog", inputs: top && top.inputs });
-      return {
-        primary: clipWords(soften("Short familiar walk until visibility improves", unc), 16),
-        alternate: "Alternate: wait for lift, then a longer outing",
-        rationale: ["Low visibility favors short known routes."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Familiar short routes fit until visibility improves", unc), 16),
+        "A longer outing may open once fog lifts",
+        ["Low visibility favors short known routes."],
+        traces
+      );
     }
 
     if (hasKind("fog-uncertain")) {
       traces.push({ rule: "T4", note: "fog-uncertain-do", inputs: top && top.inputs });
-      return {
-        primary: clipWords(soften("Verify visibility locally before a long drive or hike", unc), 16),
-        alternate: "Alternate: keep the first outing short and familiar",
-        rationale: ["Fog is possible, not confirmed."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Local visibility is worth confirming before a long drive or hike", unc), 16),
+        "A short familiar first outing remains the quieter choice",
+        ["Fog is possible, not confirmed."],
+        traces
+      );
     }
 
     // Snow
     if (hasKind("snow")) {
       traces.push({ rule: "D4", note: "snow", inputs: top && top.inputs });
-      return {
-        primary: clipWords(soften("Slow walk on treated or packed paths only", unc), 16),
-        alternate: "Alternate: postpone until surfaces settle",
-        rationale: ["Snow/ice underfoot drives footing risk."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Treated or packed paths look more reliable underfoot", unc), 16),
+        "Surfaces may settle into a stronger window later",
+        ["Snow/ice underfoot drives footing risk."],
+        traces
+      );
     }
 
     // Heat
@@ -1548,12 +1584,12 @@
       traces.push({ rule: "D1", note: "heat-window" });
       traces.push({ rule: "D8", note: "practical-window" });
       traces.push({ rule: "R2", note: "heat-primary" });
-      return {
-        primary: clipWords(soften("Shaded walk early morning or after 4 PM", unc), 16),
-        alternate: "Alternate: indoor plan through midday heat",
-        rationale: ["Heat stress risk midday."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Shade favors early morning or after 4 PM", unc), 16),
+        "Midday heat favors a quieter indoor stretch",
+        ["Heat stress risk midday."],
+        traces
+      );
     }
 
     // Rain later — practical window
@@ -1565,12 +1601,12 @@
       if (rainHr <= 12) beforeBand = "through late morning";
       else if (rainHr <= 14) beforeBand = "before noon";
       else if (rainHr <= 17) beforeBand = "early afternoon";
-      return {
-        primary: clipWords(soften("Finish outdoor time " + beforeBand + " before rain builds", unc), 16),
-        alternate: "Alternate: short covered walk if showers arrive",
-        rationale: ["Hourly rain risk rises later.", "Earlier window is the safer plan."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("The stronger outdoor window looks " + beforeBand + ", before rain builds", unc), 16),
+        "A short covered walk remains if showers arrive",
+        ["Hourly rain risk rises later.", "Earlier window is the safer plan."],
+        traces
+      );
     }
 
     if (hasKind("rain")) {
@@ -1578,18 +1614,20 @@
         return s.id === "rain-heavy";
       });
       traces.push({ rule: "D4", note: heavy ? "rain-heavy" : "rain-now" });
-      return {
-        primary: clipWords(
+      return packPlan(
+        clipWords(
           soften(
-            heavy ? "Wait out the heaviest rain; short covered walks only" : "Short rain-ready walk or wait for a dry gap",
+            heavy
+              ? "Heaviest rain favors short covered walks only"
+              : "A rain-ready short walk, or a dry gap later",
             unc
           ),
           16
         ),
-        alternate: "Alternate: indoor plan until showers ease",
-        rationale: [heavy ? "Heavy rain shortens every outdoor window." : "Active precipitation shortens outdoor windows."],
-        traces: traces
-      };
+        "An indoor stretch until showers ease remains available",
+        [heavy ? "Heavy rain shortens every outdoor window." : "Active precipitation shortens outdoor windows."],
+        traces
+      );
     }
 
     // Photography — ONLY when genuinely notable (excellent / notable advantage). R1/D6.
@@ -1597,12 +1635,12 @@
     var photoPoor = hasKind("photo-poor") || flags.poorPhotography;
     if (photoPoor) {
       traces.push({ rule: "D6", note: "no-photo" });
-      return {
-        primary: clipWords(soften("Take a walk during the mildest part of the day", unc), 16),
-        alternate: null,
-        rationale: ["No standout light window — not pitching photography."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Mildest hours look like the stronger window", unc), 16),
+        null,
+        ["No standout light window — not pitching photography."],
+        traces
+      );
     }
 
     if (photoExcellent) {
@@ -1614,39 +1652,39 @@
       traces.push({ rule: "D6", note: "photo-earned" });
       traces.push({ rule: "R1", note: "notable-photo" });
       traces.push({ rule: "D8", note: "near-sunset" });
-      return {
-        primary: clipWords(soften("Photography near sunset while light stays soft", unc), 16),
-        alternate: "Alternate: easy walk while air and sky stay kind",
-        rationale: [model.photography && model.photography.summary, "Notable light advantage."].filter(Boolean),
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Soft light near sunset is worth noticing for photography", unc), 16),
+        "An easy walk while air and sky stay kind",
+        [model.photography && model.photography.summary, "Notable light advantage."].filter(Boolean),
+        traces
+      );
     }
 
     // Drought — still go outdoors; pack water (never avoid-outdoors for drought alone)
     if (hasKind("drought")) {
       traces.push({ rule: "D4", note: "drought" });
       traces.push({ rule: "R2", note: "drought-not-avoid" });
-      return {
-        primary: clipWords(soften("Walk or easy hike; pack extra water", unc), 16),
-        alternate: "Alternate: shorter loop near reliable shade",
-        rationale: ["Dry spell — personal water matters more; outdoors still fine."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Walk or easy hike looks fine — extra water helps in dry air", unc), 16),
+        "A shorter loop near reliable shade remains available",
+        ["Dry spell — personal water matters more; outdoors still fine."],
+        traces
+      );
     }
 
     // High UV without heat — shade counsel, still go
     if (hasKind("uv") && !hasKind("heat")) {
       traces.push({ rule: "D4", note: "uv-shade" });
       traces.push({ rule: "R1", note: "outdoor-action" });
-      return {
-        primary: clipWords(soften("Take a walk through late morning; seek shade after midday", unc), 16),
-        alternate: "Alternate: shorter shaded loop if UV feels sharp",
-        rationale: ["UV is meaningful; heat is not the binding limit."],
-        traces: traces
-      };
+      return packPlan(
+        clipWords(soften("Late morning looks open; shade matters after midday", unc), 16),
+        "A shorter shaded loop if UV feels sharp",
+        ["UV is meaningful; heat is not the binding limit."],
+        traces
+      );
     }
 
-    // Default: broadly useful outdoor action — walk first (R1); never default to photography
+    // Default: broadly useful outdoor possibility — walk first (R1); never default to photography
     var topAct = pickActivity(activities, ["walk", "hike"]);
     var windowLabel = null;
     if (windows && windows.length && windows[0].display) windowLabel = windows[0].display;
@@ -1655,12 +1693,14 @@
 
     var primaryDo;
     if (hasKind("wind")) {
-      primaryDo = prac ? "Walk with cover " + prac : "Walk with cover on open ground";
+      primaryDo = prac
+        ? "Cover favors a walk " + prac
+        : "Cover favors a walk on open ground";
       traces.push({ rule: "R1", note: "wind-walk" });
     } else {
       primaryDo = prac
-        ? "Take a walk " + prac
-        : "Take a walk during the mildest part of the day";
+        ? "Conditions favor a walk " + prac
+        : "Mildest hours look like the stronger window";
       traces.push({ rule: "R1", note: "calm-walk" });
     }
     primaryDo = clipWords(soften(primaryDo, unc), 16);
@@ -1673,7 +1713,7 @@
         if (altA.id === "photography") continue;
         if (altA.suitability === "good" || altA.suitability === "excellent" || altA.suitability === "fair") {
           alternate = clipWords(
-            "Alternate: " + altA.label + (altA.bestWindow ? " " + practicalWindow(altA.bestWindow, model) : ""),
+            altA.label + (altA.bestWindow ? " " + practicalWindow(altA.bestWindow, model) : "") + " may also fit",
             14
           );
           break;
@@ -1700,12 +1740,7 @@
     if (prac) traces.push({ rule: "D8", note: "practical-window", inputs: { practical: prac } });
     if (unc.level !== "low") traces.push({ rule: "D5", note: "softened", inputs: unc });
 
-    return {
-      primary: primaryDo,
-      alternate: alternate,
-      rationale: rationale.slice(0, 4),
-      traces: traces
-    };
+    return packPlan(primaryDo, alternate, rationale.slice(0, 4), traces);
   }
 
   /* ─── Constraints (conflict days) ─── */
@@ -1716,7 +1751,7 @@
     })[0];
     if (!conflict) return null;
     return {
-      text: clipWords("If you still go: " + conflict.consequence, 30),
+      text: clipWords("Worth knowing: " + conflict.consequence, 30),
       signalId: conflict.id
     };
   }

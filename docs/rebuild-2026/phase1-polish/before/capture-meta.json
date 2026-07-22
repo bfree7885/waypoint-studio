@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-22T20:18:39.787Z",
+  "base": "http://127.0.0.1:8765",
+  "phase": "before",
+  "meta": {
+    "hasActionsNav": true,
+    "hasToday": true,
+    "hasWorkspace": true,
+    "phaseText": "Dashboard rebuild · Phase 1 shell",
+    "widgetCount": 3,
+    "sampleStatus": "Instrument not connected yet.",
+    "localNav": [
+      "Workspace",
+      "Customize",
+      "Kiosk"
+    ]
+  }
+}
