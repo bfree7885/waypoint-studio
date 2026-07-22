@@ -29,52 +29,21 @@
   "apps": [
     {
       "id": "dashboard",
-      "title": "Dashboard",
-      "shortTitle": "Dashboard",
+      "title": "Outside",
+      "shortTitle": "Outside",
       "icon": "dashboard",
       "route": "apps/dashboard/",
       "match": [
         "/apps/dashboard"
       ],
       "category": "core",
-      "description": "Weather, light, trails, and outdoor conditions for your region.",
+      "description": "What is happening outside near you today, what matters most, and what to do about it.",
       "status": "live",
-      "features": [
-        {
-          "id": "today",
-          "label": "Today",
-          "href": "#outdoor-dashboard"
-        },
-        {
-          "id": "conditions",
-          "label": "Conditions",
-          "href": "#wdb-section-conditions"
-        },
-        {
-          "id": "sun-moon",
-          "label": "Sun & Moon",
-          "href": "#wdb-section-sun-moon"
-        },
-        {
-          "id": "safety",
-          "label": "Safety",
-          "href": "#wdb-section-safety"
-        },
-        {
-          "id": "water",
-          "label": "Water",
-          "href": "#wdb-section-water"
-        },
-        {
-          "id": "photography",
-          "label": "Photography",
-          "href": "#wdb-section-photography"
-        }
-      ],
+      "features": [],
       "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
       "maturity": "Live",
       "startHere": {
-        "label": "Open Today Outside",
+        "label": "Open Outside",
         "href": "apps/dashboard/"
       },
       "journeys": [

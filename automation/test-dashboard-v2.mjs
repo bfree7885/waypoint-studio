@@ -392,6 +392,21 @@ sandbox.WDS.dashboardV2.setEnabled(true);
 const briefing = sandbox.WDS.dashboardV2Briefing.build(model, sandbox.WDS.dashboardV2Prefs.load());
 assert("legacy briefing still builds", Object.keys(briefing.sections).length === 5);
 
+/* Outdoor OS presentation (product path) — V2 model/payload retained */
+load("design-system/js/dashboard/os/wds-dashboard-os-interpret.js", sandbox);
+load("design-system/js/dashboard/os/wds-dashboard-os-compose.js", sandbox);
+load("design-system/js/dashboard/os/wds-dashboard-os-render.js", sandbox);
+const osPayload = sandbox.WDS.dashboardV2.buildPayload(ctx);
+const osView = sandbox.WDS.dashboardOSCompose.compose(osPayload);
+assert("OS view has happening", !!(osView.happening && osView.happening.headline));
+assert("OS matters max 3", (osView.matters || []).length <= 3);
+assert("OS has do primary", !!(osView.do && osView.do.primary));
+const osHtml = sandbox.WDS.dashboardOSRender.renderScreen(osView);
+assert("OS render Outside brand", /wdb-os__brand/.test(osHtml) && /Outside/.test(osHtml));
+assert("OS render What matters", /What matters/.test(osHtml));
+assert("OS render Do this", /Do this/.test(osHtml));
+assert("OS location panel exists", /Location/.test(sandbox.WDS.dashboardOSRender.renderPanel("location", osView)));
+
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {
   failures.forEach((f) => console.error(" -", f));

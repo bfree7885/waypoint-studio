@@ -1,0 +1,729 @@
+/**
+ * Outdoor OS — Outside screen styles
+ * Spec: DASHBOARD-SCREEN-SPECIFICATION.md §1, §6, §7
+ * M1.5: readability, hierarchy, presence (calm trailhead briefing — scan, don't read).
+ * Justification: one composition; Happening dominant; no cards/grids/tabs.
+ */
+
+.wdb-os {
+  --wdb-os-ink: #1c1a16;
+  --wdb-os-ink-quiet: rgba(28, 26, 22, 0.58);
+  --wdb-os-ink-faint: rgba(28, 26, 22, 0.38);
+  --wdb-os-paper: #f0ebe1;
+  --wdb-os-line: rgba(28, 26, 22, 0.1);
+  --wdb-os-alert: #7a2e24;
+  --wdb-os-alert-bg: #f0ddd6;
+  --wdb-os-accent: #3d5a40;
+  --wdb-os-gap: clamp(1.65rem, 4vw, 2.5rem);
+  --wdb-os-gap-tight: clamp(0.85rem, 2vw, 1.15rem);
+  --wdb-os-measure: 36rem;
+  --wdb-os-sheet-pad-x: clamp(1.15rem, 3.5vw, 1.75rem);
+  position: relative;
+  color: var(--wdb-os-ink);
+  min-height: 70vh;
+  isolation: isolate;
+  background: var(--wdb-os-paper);
+  /* Spec §7: Outside is its own composition — do not inherit shell dark theme */
+  color-scheme: light;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Atmosphere: felt, not read; layered time-of-day presence ── */
+.wdb-os__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(95% 55% at 18% -8%, rgba(255, 255, 255, 0.42), transparent 58%),
+    radial-gradient(70% 45% at 88% 8%, rgba(210, 224, 236, 0.35), transparent 55%),
+    linear-gradient(180deg, #d4dde6 0%, #e8e4db 42%, var(--wdb-os-paper) 72%, #e4dccf 100%);
+  opacity: 1;
+}
+
+.wdb-os__atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 55%,
+    rgba(28, 26, 22, 0.03) 100%
+  );
+  pointer-events: none;
+}
+
+.wdb-os[data-wdb-os-atmosphere="clear"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(90% 60% at 72% -5%, rgba(255, 232, 170, 0.5), transparent 52%),
+    radial-gradient(60% 40% at 12% 20%, rgba(255, 255, 255, 0.35), transparent 50%),
+    linear-gradient(180deg, #aecfe6 0%, #e4eef4 38%, #f0ebe3 68%, #ebe4d6 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="partly"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(80% 50% at 40% 0%, rgba(255, 255, 255, 0.28), transparent 55%),
+    linear-gradient(180deg, #b9c6d2 0%, #dde3e4 45%, #e8e3d8 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="overcast"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(100% 60% at 50% -10%, rgba(255, 255, 255, 0.18), transparent 50%),
+    linear-gradient(180deg, #8f9ba6 0%, #c8c6c0 48%, #d9d3c6 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="rain"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(70% 50% at 30% 0%, rgba(180, 198, 210, 0.4), transparent 55%),
+    linear-gradient(180deg, #6f8190 0%, #b8c2c8 52%, #d2cdc4 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="storm"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(90% 55% at 60% -5%, rgba(90, 100, 112, 0.45), transparent 55%),
+    linear-gradient(180deg, #4a5360 0%, #9aa3ab 48%, #cdc8bf 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="fog"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(100% 70% at 50% 10%, rgba(255, 255, 255, 0.45), transparent 60%),
+    linear-gradient(180deg, #c4c9c4 0%, #dddcd4 55%, #ebe6da 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="snow"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(80% 55% at 50% 0%, rgba(255, 255, 255, 0.65), transparent 55%),
+    linear-gradient(180deg, #d5e0ea 0%, #eef1f4 48%, #ebe7de 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="night"] .wdb-os__atmosphere {
+  background:
+    radial-gradient(85% 55% at 82% -5%, rgba(140, 165, 200, 0.28), transparent 58%),
+    radial-gradient(65% 48% at 8% 22%, rgba(55, 75, 110, 0.32), transparent 52%),
+    radial-gradient(120% 40% at 50% 100%, rgba(0, 0, 0, 0.35), transparent 55%),
+    linear-gradient(180deg, #121820 0%, #2a3544 40%, #1e2632 100%);
+}
+.wdb-os[data-wdb-os-atmosphere="night"] {
+  --wdb-os-ink: #f3efe7;
+  --wdb-os-ink-quiet: rgba(243, 239, 231, 0.68);
+  --wdb-os-ink-faint: rgba(243, 239, 231, 0.42);
+  --wdb-os-line: rgba(243, 239, 231, 0.11);
+  --wdb-os-alert: #f0c4bc;
+  --wdb-os-alert-bg: #5a3430;
+  --wdb-os-accent: #b4d0b5;
+  --wdb-os-paper: #161c24;
+  color-scheme: dark;
+}
+.wdb-os[data-wdb-os-atmosphere="night"] .wdb-os__atmosphere::after {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 48%,
+    rgba(0, 0, 0, 0.28) 100%
+  );
+}
+
+/* One field, not a boxed webpage — shell follows Outside atmosphere */
+body:has([data-wdb-os]) {
+  background: #f0ebe1;
+}
+body:has([data-wdb-os-atmosphere="night"]),
+.was-shell--quiet:has([data-wdb-os-atmosphere="night"]) {
+  background: #121820;
+  color: #f3efe7;
+}
+.was-shell--quiet:has(.wdb-os) {
+  background: transparent;
+}
+.was-shell--quiet:has(.wdb-os) #main {
+  background: transparent;
+}
+
+/* Reading column — measure capped; atmosphere edge-to-edge behind */
+.wdb-os__sheet {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0.85rem var(--wdb-os-sheet-pad-x) 3.25rem;
+}
+
+.wdb-os__chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.wdb-os__brand {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--wdb-os-ink-faint);
+}
+
+.wdb-os__chrome-actions {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.wdb-os__quiet-btn,
+.wdb-os__gateway,
+.wdb-os__sources-cue,
+.wdb-os__prefs-foot,
+.wdb-os__matters-btn,
+.wdb-os__notice-btn,
+.wdb-os__happening-btn,
+.wdb-os__do-primary,
+.wdb-os__do-alt,
+.wdb-os__dayarc,
+.wdb-os__place-time,
+.wdb-os__alert {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.wdb-os__quiet-btn {
+  font-size: 0.8rem;
+  color: var(--wdb-os-ink-faint);
+  padding: 0.35rem 0.4rem;
+  letter-spacing: 0.01em;
+}
+.wdb-os__quiet-btn:hover,
+.wdb-os__quiet-btn:focus-visible {
+  color: var(--wdb-os-ink-quiet);
+}
+
+.wdb-os__alert {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--wdb-os-alert-bg);
+  color: var(--wdb-os-alert);
+  border-radius: 0;
+  min-height: 3rem;
+  /* Screen Spec §1.3 [A] — calm severity tone; keep readable on night atmosphere */
+  border-left: 3px solid var(--wdb-os-alert);
+}
+
+.wdb-os__alert-text {
+  display: block;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.wdb-os__alert-more {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+.wdb-os__place-time {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: var(--wdb-os-ink-quiet);
+  font-weight: 400;
+  display: inline-block;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+/* Composition rhythm — asymmetric gaps: breathe after Happening, settle into Do */
+.wdb-os__composition {
+  display: flex;
+  flex-direction: column;
+  gap: var(--wdb-os-gap);
+  padding-bottom: 1.75rem;
+}
+
+.wdb-os__happening {
+  max-width: var(--wdb-os-measure);
+  padding-top: 0.15rem;
+}
+
+.wdb-os__happening-btn {
+  display: block;
+  width: 100%;
+}
+
+.wdb-os__happening-headline {
+  margin: 0 0 0.7rem;
+  font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, serif;
+  font-size: clamp(1.85rem, 5.8vw, 2.65rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  color: var(--wdb-os-ink);
+  max-width: 18ch;
+}
+
+.wdb-os__happening-support {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--wdb-os-ink-quiet);
+  max-width: 32rem;
+  font-weight: 400;
+}
+
+.wdb-os__label {
+  margin: 0 0 0.55rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--wdb-os-ink-faint);
+  font-weight: 500;
+}
+
+.wdb-os__matters {
+  max-width: var(--wdb-os-measure);
+}
+
+.wdb-os__matters-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.wdb-os__matters-btn {
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--wdb-os-ink-quiet);
+  font-weight: 400;
+}
+
+.wdb-os__matters-item.is-primary .wdb-os__matters-btn {
+  font-size: 1.08rem;
+  font-weight: 550;
+  color: var(--wdb-os-ink);
+  letter-spacing: -0.01em;
+}
+
+.wdb-os__matters-item:not(.is-primary) .wdb-os__matters-btn {
+  font-size: 0.94rem;
+  color: var(--wdb-os-ink-quiet);
+}
+
+/* Do this — co-equal decision weight; quiet accent, not a marketing CTA */
+.wdb-os__do {
+  max-width: var(--wdb-os-measure);
+  padding-left: 0.85rem;
+  border-left: 2px solid var(--wdb-os-accent);
+}
+
+.wdb-os__do-primary {
+  display: block;
+  font-size: clamp(1.15rem, 2.9vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  color: var(--wdb-os-ink);
+  max-width: 30rem;
+}
+
+.wdb-os__do-alt {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--wdb-os-ink-quiet);
+  font-weight: 400;
+}
+
+.wdb-os__composition .wdb-os__dayarc {
+  margin-top: 0.35rem;
+  max-width: var(--wdb-os-measure);
+  opacity: 0.92;
+}
+
+.wdb-os__composition .wdb-os__sources-cue {
+  margin-top: 0.15rem;
+  padding-top: 0.15rem;
+}
+
+/* After-scroll: confirmation depth — quieter type, soft separation */
+.wdb-os__after {
+  display: flex;
+  flex-direction: column;
+  gap: 1.55rem;
+  padding-top: 1.55rem;
+  margin-top: 0.85rem;
+  border-top: 1px solid var(--wdb-os-line);
+  max-width: var(--wdb-os-measure);
+  opacity: 0.94;
+}
+.wdb-os__after .wdb-os__notice-btn,
+.wdb-os__after .wdb-os__constraints,
+.wdb-os__after .wdb-os__gateway,
+.wdb-os__after .wdb-os__prefs-foot {
+  color: var(--wdb-os-ink-quiet);
+}
+
+.wdb-os__after .wdb-os__label {
+  margin-bottom: 0.45rem;
+}
+
+.wdb-os__dayarc {
+  display: block;
+  width: 100%;
+}
+
+.wdb-os__dayarc-beats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
+  align-items: baseline;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: var(--wdb-os-ink-quiet);
+  letter-spacing: 0.01em;
+}
+
+.wdb-os__beat {
+  white-space: nowrap;
+}
+
+.wdb-os__beat.is-best {
+  color: var(--wdb-os-accent);
+  font-weight: 500;
+}
+
+.wdb-os__beat-sep {
+  opacity: 0.4;
+  font-weight: 400;
+}
+
+.wdb-os__notice-btn,
+.wdb-os__constraints {
+  font-size: 0.9rem;
+  color: var(--wdb-os-ink-quiet);
+  line-height: 1.45;
+  margin: 0;
+  max-width: 34rem;
+}
+
+.wdb-os__gateway-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.15rem;
+}
+
+.wdb-os__gateway {
+  font-size: 0.875rem;
+  color: var(--wdb-os-ink-quiet);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.05rem;
+}
+.wdb-os__gateway:hover,
+.wdb-os__gateway:focus-visible {
+  color: var(--wdb-os-ink);
+  border-bottom-color: var(--wdb-os-line);
+}
+
+.wdb-os__sources-cue {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--wdb-os-ink-faint);
+  align-self: flex-start;
+  opacity: 0.9;
+}
+.wdb-os__sources-cue:hover,
+.wdb-os__sources-cue:focus-visible {
+  color: var(--wdb-os-ink-quiet);
+}
+
+.wdb-os__prefs-foot {
+  font-size: 0.8rem;
+  color: var(--wdb-os-ink-faint);
+  align-self: flex-start;
+  margin-top: 0.15rem;
+}
+.wdb-os__prefs-foot:hover,
+.wdb-os__prefs-foot:focus-visible {
+  color: var(--wdb-os-ink-quiet);
+}
+
+.wdb-os__empty {
+  padding: 2.25rem 0 3rem;
+  max-width: 28rem;
+}
+
+.wdb-os__empty-title {
+  font-family: "Cormorant Garamond", "Palatino Linotype", Palatino, serif;
+  font-size: clamp(1.65rem, 4.2vw, 2.1rem);
+  margin: 0 0 1.35rem;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+
+.wdb-os__empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.1rem;
+}
+
+.wdb-os__btn {
+  font: inherit;
+  border: 1px solid var(--wdb-os-ink);
+  background: var(--wdb-os-ink);
+  color: var(--wdb-os-paper);
+  padding: 0.55rem 0.95rem;
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.wdb-os__btn--ghost {
+  background: transparent;
+  color: var(--wdb-os-ink);
+}
+
+.wdb-os__empty-note {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--wdb-os-ink-quiet);
+}
+
+.wdb-os__loading-copy {
+  font-size: 1.05rem;
+  margin: 0 0 1.1rem;
+  letter-spacing: -0.01em;
+}
+
+.wdb-os__loading-detail {
+  font-size: 0.88rem;
+  color: var(--wdb-os-ink-quiet);
+  line-height: 1.4;
+}
+
+.wdb-os__skel-block {
+  height: 1.05rem;
+  width: min(22rem, 90%);
+  margin-bottom: 0.85rem;
+  background: rgba(28, 26, 22, 0.07);
+  border-radius: 2px;
+}
+
+.wdb-os[data-wdb-os-atmosphere="night"] .wdb-os__skel-block {
+  background: rgba(243, 239, 231, 0.08);
+}
+
+.wdb-os__skel-block--sm {
+  width: min(16rem, 70%);
+}
+
+.wdb-os__panel-host {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(20, 18, 14, 0.38);
+  padding: 0;
+}
+
+.wdb-os__panel-host[hidden] {
+  display: none !important;
+}
+
+.wdb-os-panel {
+  width: min(40rem, 100%);
+  max-height: min(85vh, 52rem);
+  overflow: auto;
+  background: #f7f3eb;
+  color: #1c1a16;
+  padding: 1.1rem 1.2rem 1.6rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  box-shadow: 0 -10px 42px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .wdb-os__panel-host {
+    align-items: center;
+    padding: 1.5rem;
+  }
+  .wdb-os-panel {
+    border-radius: 0.5rem;
+    max-height: min(80vh, 44rem);
+  }
+}
+
+.wdb-os-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.95rem;
+}
+
+.wdb-os-panel__title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-family: "Cormorant Garamond", Palatino, serif;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+}
+
+.wdb-os-panel__close {
+  border: 0;
+  background: transparent;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.35rem;
+  color: rgba(28, 26, 22, 0.55);
+}
+
+.wdb-os-panel__list {
+  margin: 0 0 1rem;
+  padding-left: 1.1rem;
+  line-height: 1.45;
+}
+
+.wdb-os-panel__block {
+  margin-bottom: 1.05rem;
+}
+
+.wdb-os-panel__lead {
+  font-size: 1.12rem;
+  font-weight: 560;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.wdb-os-panel__meta {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: rgba(28, 26, 22, 0.58);
+}
+
+.wdb-os-loc-search__row {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.45rem 0 0.75rem;
+  align-items: center;
+}
+.wdb-os-loc-search__row input {
+  flex: 1;
+  font: inherit;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid rgba(28, 26, 22, 0.25);
+  background: #fff;
+  color: #1c1a16;
+}
+.wdb-os-loc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0.75rem 0;
+}
+
+.wdb-os-prefs__row {
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 960px) {
+  .wdb-os__sheet {
+    padding-top: 1.5rem;
+    padding-bottom: 4.25rem;
+  }
+  .wdb-os__happening-headline {
+    max-width: 20ch;
+  }
+  .wdb-os__composition {
+    gap: clamp(1.85rem, 3vw, 2.65rem);
+  }
+  /* Extra breath after the visual anchor on wide screens */
+  .wdb-os__happening {
+    margin-bottom: 0.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wdb-os__sheet {
+    padding-top: 0.55rem;
+    padding-bottom: 2.75rem;
+  }
+  .wdb-os__composition {
+    gap: clamp(1.45rem, 5.5vw, 1.85rem);
+  }
+  .wdb-os__happening-support {
+    font-size: 0.98rem;
+  }
+  .wdb-os__do {
+    padding-left: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-os__atmosphere {
+    transition: none;
+  }
+}
+
+/* Hide legacy recovery/widget chrome if a stale shell paints briefly */
+.wdb-os ~ .wdb-recovery,
+[data-wdb-os] .wdb-v2-panels,
+[data-wdb-os] .wdb-recovery-tabs {
+  display: none !important;
+}
+
+/* Outdoor OS quiet shell — brand subordinate to briefing (Screen Spec §1.3 [B] / IQ-1) */
+.was-shell--quiet .was-global,
+.was-global--quiet {
+  border-bottom: none;
+  background: transparent;
+}
+.was-global--quiet .was-global__inner {
+  min-height: 2.25rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+.was-global--quiet .was-brand__name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  opacity: 0.55;
+  letter-spacing: 0.01em;
+}
+.was-global--quiet .was-brand__mark {
+  width: 0.62rem;
+  height: 0.62rem;
+  opacity: 0.55;
+}
+[data-product="dashboard"] .was-local {
+  display: none !important;
+}
+
+/* Footer / utility chrome stays below the briefing, visually quiet */
+.was-shell--quiet .was-footer,
+.was-shell--quiet .wds-footer {
+  opacity: 0.72;
+  font-size: 0.8rem;
+}
+.was-shell--quiet .was-footer a,
+.was-shell--quiet .wds-footer a {
+  color: inherit;
+  opacity: 0.85;
+}

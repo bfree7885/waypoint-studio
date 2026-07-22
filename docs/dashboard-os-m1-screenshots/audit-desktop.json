@@ -1,0 +1,28 @@
+{
+  "regions": [
+    "chrome",
+    "composition",
+    "place-time",
+    "happening",
+    "matters",
+    "do",
+    "day-arc",
+    "sources",
+    "after-scroll",
+    "notice",
+    "gateways"
+  ],
+  "cards": 0,
+  "tabs": 0,
+  "gauges": 0,
+  "volunteer": false,
+  "apps": false,
+  "happening": "Overcast, warm outside",
+  "matters": 1,
+  "doPrimary": "Tonight: short outdoor check, then rest",
+  "doAlt": "Alternate: Tomorrow morning window",
+  "sources": "Live",
+  "wordCountComposition": 64,
+  "brand": "Outside",
+  "quietChrome": true
+}

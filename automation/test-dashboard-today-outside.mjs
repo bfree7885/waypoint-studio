@@ -105,12 +105,46 @@ const panel = TS.renderTodayPanel({
 });
 assert("panel has why label", /wdb-today-summary__why-label/.test(panel));
 
-const recoverySrc = fs.readFileSync(
+const osCompose = fs.readFileSync(
+  path.join(ROOT, "design-system/js/dashboard/os/wds-dashboard-os-compose.js"),
+  "utf8"
+);
+const osRender = fs.readFileSync(
+  path.join(ROOT, "design-system/js/dashboard/os/wds-dashboard-os-render.js"),
+  "utf8"
+);
+assert("Outdoor OS compose present", /dashboardOSCompose/.test(osCompose));
+assert(
+  "Outdoor OS interpret present",
+  fs.existsSync(path.join(ROOT, "design-system/js/dashboard/os/wds-dashboard-os-interpret.js"))
+);
+const osInterpret = fs.readFileSync(
+  path.join(ROOT, "design-system/js/dashboard/os/wds-dashboard-os-interpret.js"),
+  "utf8"
+);
+assert("Outdoor OS PriorityRanker API", /dashboardOSInterpret/.test(osInterpret));
+assert("Outdoor OS location panel", /id === "location"/.test(osRender) || /=== \"location\"/.test(osRender));
+assert(
+  "obsolete Recovery presentation gone",
+  !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-recovery.js.obsolete"))
+);
+assert(
+  "obsolete V2 render gone",
+  !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/v2/wds-dashboard-v2-render.js.obsolete")) &&
+    !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/v2/wds-dashboard-v2-render.js"))
+);
+assert(
+  "obsolete customize gone",
+  !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-customize.js.obsolete")) &&
+    !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-customize.js"))
+);
+const recoveryStub = fs.readFileSync(
   path.join(ROOT, "design-system/js/dashboard/wds-dashboard-recovery.js"),
   "utf8"
 );
-assert("settings tab present", /id: "settings"/.test(recoverySrc));
-assert("customize moved to settings", /Customize panels/.test(recoverySrc));
+assert("Recovery stub disabled", /isEnabled:\s*function\s*\(\)\s*\{\s*return false/.test(recoveryStub));
+assert("quiet chrome attribute on Outside", fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8").includes('data-quiet-chrome="true"'));
+assert("Volunteer not in OS prefs catalog UI", !/value="volunteer"/.test(osRender));
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s)");

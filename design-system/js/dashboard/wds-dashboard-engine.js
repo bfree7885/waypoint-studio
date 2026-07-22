@@ -206,6 +206,13 @@
   }
 
   function renderDashboard(options) {
+    // Outdoor OS is the product presentation (Screen Spec + Manifesto).
+    // Legacy Recovery / widget-grid paths are not used when OS is available.
+    var OS = global.WDS && global.WDS.dashboardOS;
+    if (OS && OS.renderDashboard) {
+      return OS.renderDashboard(options);
+    }
+
     var Recovery = global.WDS && global.WDS.dashboardRecovery;
     if (Recovery && Recovery.isEnabled && Recovery.isEnabled() && Recovery.renderDashboard) {
       return Recovery.renderDashboard(options);
@@ -273,7 +280,12 @@
     if (!root) return Promise.resolve();
     options = options || {};
 
-    // Product Recovery: only mount specialty UIs in the active tab panel.
+    var OS = global.WDS && global.WDS.dashboardOS;
+    if (OS && OS.mount && root.querySelector && root.querySelector("[data-wdb-os]")) {
+      return OS.mount(root, options);
+    }
+
+    // Legacy Recovery: only mount specialty UIs in the active tab panel.
     var Recovery = global.WDS && global.WDS.dashboardRecovery;
     if (Recovery && Recovery.isEnabled && Recovery.isEnabled() &&
         root.querySelector && root.querySelector("[data-wdb-recovery], [data-wdb-tab-panel]")) {

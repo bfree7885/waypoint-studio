@@ -280,7 +280,7 @@
     if (mount) {
       mount.innerHTML =
         '<div class="wdb-boot-error" role="alert">' +
-          "<p>We couldn't load your dashboard. Check your connection and try again.</p>" +
+          "<p>We couldn't load Outside. Check your connection and try again.</p>" +
           '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button>' +
         "</div>";
       mount.removeAttribute("aria-busy");

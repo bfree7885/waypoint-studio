@@ -120,8 +120,12 @@
     var brandName = (NavApi && NavApi.config().brand && NavApi.config().brand.name) || "Waypoint Studio";
     var active = options.app || (NavApi ? NavApi.detectApp() : null);
     var activeId = active && active.id;
+    var quiet = !!options.quietChrome;
+    var hideChrome = quiet || !!options.hideApps;
     var cfg = NavApi && NavApi.config ? NavApi.config() : {};
-    var primary = (cfg.studioPrimaryNav || []).map(function (item) {
+    var primary = quiet
+      ? ""
+      : (cfg.studioPrimaryNav || []).map(function (item) {
       var href = NavApi.resolveRoute
         ? (item.href.indexOf("apps/") === 0 || item.href.indexOf("articles") === 0 || /\.html$/.test(item.href)
             ? NavApi.resolveRoute(item.href.indexOf("apps/") === 0 ? item.href : item.href, depth)
@@ -148,7 +152,8 @@
     }).join("");
 
     return (
-      '<header class="was-global" data-was-global>' +
+      '<header class="was-global' + (quiet ? " was-global--quiet" : "") + '" data-was-global' +
+        (quiet ? ' data-was-quiet-chrome="1"' : "") + ">" +
         '<div class="was-global__inner">' +
           '<a class="was-brand" href="' + esc(brandHref) + '">' +
             '<span class="was-brand__mark" aria-hidden="true"></span>' +
@@ -157,7 +162,7 @@
           (primary
             ? '<nav class="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
             : "") +
-          (options.hideApps
+          (hideChrome
             ? ""
             : '<div class="was-global__actions">' +
               '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
@@ -165,7 +170,7 @@
               "</button>" +
             "</div>") +
         "</div>" +
-        (options.hideApps ? "" : renderLauncher(depth, activeId)) +
+        (hideChrome ? "" : renderLauncher(depth, activeId)) +
       "</header>"
     );
   }
@@ -377,7 +382,8 @@
       productName: el.getAttribute("data-product-name"),
       depth: depthAttr != null ? Number(depthAttr) : undefined,
       hideLocal: el.getAttribute("data-hide-local") === "true",
-      hideApps: el.getAttribute("data-hide-apps") === "true"
+      hideApps: el.getAttribute("data-hide-apps") === "true",
+      quietChrome: el.getAttribute("data-quiet-chrome") === "true"
     });
   }
 

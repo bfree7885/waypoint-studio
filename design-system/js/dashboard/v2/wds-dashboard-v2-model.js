@@ -114,6 +114,7 @@
         tempF: num(cur.temperature),
         feelsF: num(cur.feelsLike) != null ? num(cur.feelsLike) : num(cur.temperature),
         humidity: num(cur.humidity),
+        dewPointF: num(cur.dewPoint != null ? cur.dewPoint : cur.dewPointF),
         windMph: cur.wind ? num(cur.wind.speed) : null,
         windGust: cur.wind ? num(cur.wind.gust) : null,
         cloudPct: num(cur.cloudCover),
