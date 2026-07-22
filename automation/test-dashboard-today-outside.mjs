@@ -155,6 +155,121 @@ assert("Recovery stub disabled", /isEnabled:\s*function\s*\(\)\s*\{\s*return fal
 assert("quiet chrome attribute on Outside", fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8").includes('data-quiet-chrome="true"'));
 assert("Volunteer not in OS prefs catalog UI", !/value="volunteer"/.test(osRender));
 
+/* Legacy presentation must not become the normal production Outside route */
+const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
+const navConfig = fs.readFileSync(
+  path.join(ROOT, "design-system/js/platform/wds-app-nav-config.js"),
+  "utf8"
+);
+const navRegistry = fs.readFileSync(
+  path.join(ROOT, "design-system/ecosystem/nav-registry.json"),
+  "utf8"
+);
+assert("Outside entry loads Outdoor OS CSS", /wds-dashboard-os\.css/.test(dashHtml));
+assert("Outside entry does not load V2/V3 CSS", !/wds-dashboard-v2\.css|wds-dashboard-v3\.css/.test(dashHtml));
+assert(
+  "Outside entry has no Recovery/V2/V3 product chrome markers",
+  !/data-wdb-recovery|data-wdb-v2|data-wdb-v3|Customize widgets|How is today/.test(dashHtml)
+);
+assert(
+  "engine refuses legacy fallthrough on Outside",
+  /isOutsideProductSurface/.test(engineSrc) && /outdoorOsUnavailableHtml/.test(engineSrc)
+);
+assert(
+  "dashboard nav features empty (no Recovery/V2 tabs)",
+  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navConfig) &&
+    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navRegistry)
+);
+assert(
+  "dashboard product titled Outside",
+  /"title":\s*"Outside"/.test(navConfig) && /"title":\s*"Outside"/.test(navRegistry)
+);
+assert(
+  "V2/V3 localStorage flags are not consulted by engine renderDashboard",
+  !/waypoint-dashboard-v2/.test(engineSrc) && !/waypoint-dashboard-v3/.test(engineSrc)
+);
+assert(
+  "home-boot Outside sections are outdoor-dashboard only",
+  /sections:\s*\[["']outdoor-dashboard["']\]/.test(
+    fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8")
+  )
+);
+
+/* Runtime: stale V2/V3 flags must not change product render when OS is present */
+const rt = { window: {}, console, document: { documentElement: { getAttribute: () => "dashboard" } }, location: { pathname: "/apps/dashboard/" } };
+rt.window = rt;
+rt.WDS = {
+  dashboardOS: {
+    renderDashboard() {
+      return '<div data-wdb-os class="wdb-os"><p class="wdb-os__brand">Outside</p></div>';
+    },
+    mount() {
+      return Promise.resolve();
+    }
+  },
+  dashboardRecovery: {
+    isEnabled() {
+      return true;
+    },
+    renderDashboard() {
+      return '<div data-wdb-recovery>RECOVERY</div>';
+    }
+  },
+  dashboardWidgets: { all() { return []; } },
+  dashboardSettings: {
+    load() { return {}; },
+    enabledWidgets() { return []; },
+    favoriteWidgets() { return []; },
+    customGroupSections() { return []; },
+    enabledWidgetsBySection() { return []; }
+  }
+};
+vm.runInNewContext(
+  fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-engine.js"), "utf8"),
+  rt,
+  { filename: "wds-dashboard-engine.js" }
+);
+const osHtml = rt.WDS.dashboardEngine.renderDashboard({});
+assert("runtime OS wins even if Recovery claims enabled", /data-wdb-os/.test(osHtml) && !/RECOVERY|data-wdb-recovery/.test(osHtml));
+
+const rtNoOs = {
+  window: {},
+  console,
+  document: { documentElement: { getAttribute: () => "dashboard" } },
+  location: { pathname: "/apps/dashboard/" }
+};
+rtNoOs.window = rtNoOs;
+rtNoOs.WDS = {
+  dashboardRecovery: {
+    isEnabled() {
+      return true;
+    },
+    renderDashboard() {
+      return '<div data-wdb-recovery>RECOVERY</div>';
+    }
+  },
+  dashboardWidgets: { all() { return []; } },
+  dashboardSettings: {
+    load() { return {}; },
+    enabledWidgets() { return [{ tier: "vital" }]; },
+    favoriteWidgets() { return []; },
+    customGroupSections() { return []; },
+    enabledWidgetsBySection() { return []; }
+  }
+};
+vm.runInNewContext(
+  fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-engine.js"), "utf8"),
+  rtNoOs,
+  { filename: "wds-dashboard-engine.js" }
+);
+const missingOsHtml = rtNoOs.WDS.dashboardEngine.renderDashboard({});
+assert(
+  "Outside without OS does not fall through to Recovery/widgets",
+  /data-wdb-os/.test(missingOsHtml) &&
+    /unavailable|could not load/i.test(missingOsHtml) &&
+    !/RECOVERY|data-wdb-recovery|wdb-vitals|wdb-grid/.test(missingOsHtml)
+);
+
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s)");
   process.exit(1);

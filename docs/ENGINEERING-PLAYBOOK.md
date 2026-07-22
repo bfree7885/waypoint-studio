@@ -139,6 +139,19 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Outdoor OS M3 publish gate (legacy fallthrough)
+
+**Artifact:** `docs/dashboard-os-m3-publish/`  
+**Branch:** `integration/dashboard-os-m3`
+
+1. **Preferring OS is not enough if OS fails to register.** Outside must
+   short-circuit to an honest unavailable state — never Recovery/widget-grid
+   fallthrough — regardless of localStorage V2/V3 flags.
+2. **Keep V2 modular tests at RC3 counts** when modules remain for shared
+   models/kiosk; document the 58 baseline instead of deleting coverage.
+3. **Day Arc fold is content-dependent.** Audit viewports; do not compress
+   Happening/Matters/Do to force Day Arc above the fold.
+
 ### 2026-07-22 — Outdoor OS M3 reconciliation onto RC3 origin/main
 
 **Artifact:** `docs/dashboard-os-m3-reconcile/OWNER-REVIEW.md`  

@@ -2,6 +2,10 @@
  * Dashboard Version 2 — customizable category widgets + Waypoint’s Take.
  * Feature flag: localStorage waypoint-dashboard-v2 (default on; set "0" for V1-only shell).
  * Dashboard and Kiosk share WDS.dashboardV2Engine for prefs / registry / trust / cache.
+ *
+ * NOT a production Outside presentation. Product `/apps/dashboard/` always uses Outdoor OS
+ * via dashboardEngine → dashboardOS. V2 `render()` remains for modular tests / kiosk only;
+ * `buildPayload()` is shared by Outdoor OS compose/interpret.
  */
 (function (global) {
   "use strict";

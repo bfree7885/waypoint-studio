@@ -1046,7 +1046,12 @@
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
     var DE = global.WDS && global.WDS.dashboardEngine;
     var OS = global.WDS && global.WDS.dashboardOS;
-    var useOutdoorOS = !!(OS && OS.renderDashboard);
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    // Outside always uses Outdoor OS; never rehydrate Recovery/V2 chrome from prefs.
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     if (!mount.querySelector("[data-wds-dashboard-root]") || !DE || !DE.refreshDashboard) {
       return renderIntoMount(mount, data, loc, base, options, platform);
     }
@@ -1117,7 +1122,11 @@
     };
     var DE = global.WDS && global.WDS.dashboardEngine;
     var OS = global.WDS && global.WDS.dashboardOS;
-    var useOutdoorOS = !!(OS && OS.renderDashboard);
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     if (DE) {
       mount._wdbMountOpts = mountOpts;
       wireLatePlatformHydration(mount, loc, base, data);
@@ -1162,7 +1171,11 @@
     var renderOpts = Object.assign({}, options, { base: base });
     // Outdoor OS owns place/trust chrome (Screen Spec §1). Skip legacy briefing header + system health banners.
     var OS = global.WDS && global.WDS.dashboardOS;
-    var useOutdoorOS = !!(OS && OS.renderDashboard);
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
     var briefingHtml = "";
     var liveUpdatedHtml = "";
