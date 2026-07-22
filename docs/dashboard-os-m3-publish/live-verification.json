@@ -1,0 +1,63 @@
+{
+  "capturedAt": "2026-07-22T05:50:54.011Z",
+  "baseUrl": "https://waypointstudio.org",
+  "expectedBuild": "45dc889",
+  "desktop": {
+    "ok": true,
+    "partialFinding": true,
+    "mode": "briefing",
+    "headline": "Finding today\u2019s conditions",
+    "doPrimary": "Tonight: short outdoor check, then rest",
+    "matters": 1,
+    "brand": "Outside",
+    "build": "45dc889",
+    "legacy": false,
+    "quiet": true,
+    "sources": true,
+    "dayArc": false,
+    "title": "Outside \u00b7 Pike County, PA \u2014 Waypoint"
+  },
+  "mobile": {
+    "ok": true,
+    "partialFinding": true,
+    "mode": "briefing",
+    "headline": "Finding today\u2019s conditions",
+    "doPrimary": "Tonight: short outdoor check, then rest",
+    "matters": 1,
+    "brand": "Outside",
+    "build": "45dc889",
+    "legacy": false,
+    "quiet": true,
+    "sources": true,
+    "dayArc": false,
+    "title": "Outside \u00b7 Pike County, PA \u2014 Waypoint"
+  },
+  "scenes": {
+    "title": "Scenes \u2014 Continue yesterday\u2019s work \u00b7 Waypoint Studio",
+    "shell": true
+  },
+  "sheds": {
+    "title": "Sheds \u2014 Today\u2019s hunt \u00b7 Waypoint Studio",
+    "shell": true
+  },
+  "home": {
+    "title": "Waypoint Studio \u2014 Observe. Discover. Understand.",
+    "cards": 4
+  },
+  "consoleErrors": [],
+  "checks": {
+    "outdoorOS": true,
+    "buildMatches": true,
+    "quietChrome": true,
+    "sourcesDayArc": false,
+    "mobileOS": true,
+    "scenesOk": true,
+    "shedsOk": true,
+    "homeOk": true,
+    "noConsoleErrors": true,
+    "sourcesPanel": true,
+    "dayArcWhenWeatherLive": "deferred \u2014 empty while weather.live false / honest Finding state",
+    "noLegacyChrome": true
+  },
+  "weatherNote": "Headless live session observed Open-Meteo/NWS/AQ requests HTTP 200; OIP may still report weather unavailable during first paint so Happening stays Finding and Day Arc peek omitted until weather.live. This is honest partial loading, not Recovery/V2 chrome."
+}
