@@ -198,6 +198,19 @@
     };
   }
 
+  function compactClockLabel(raw) {
+    var s = String(raw || "").trim();
+    if (!s) return "";
+    // M3 polish: never treat prose (e.g. photo "Diffuse light") as a beat clock.
+    if (!/^\d{1,2}(:\d{2})?\s*(a\.?m\.?|p\.?m\.?|a|p)?$/i.test(s)) return "";
+    return s
+      .toLowerCase()
+      .replace(/\s/g, "")
+      .replace(":00", "")
+      .replace(/a\.?m\.?/, "a")
+      .replace(/p\.?m\.?/, "p");
+  }
+
   function buildDayArc(timeline) {
     var beats = [];
     (timeline || []).forEach(function (ev) {
@@ -206,21 +219,12 @@
       if (ev.time) {
         try {
           // Spec §1.3 [H] — compact beats: "1p · 7:40p" not "2:00 PM"
-          t = new Date(ev.time)
-            .toLocaleTimeString(undefined, { hour: "numeric" })
-            .toLowerCase()
-            .replace(/\s/g, "")
-            .replace(":00", "")
-            .replace("am", "a")
-            .replace("pm", "p");
+          t = compactClockLabel(
+            new Date(ev.time).toLocaleTimeString(undefined, { hour: "numeric" })
+          );
         } catch (e) { /* noop */ }
       } else if (ev.timeLabel) {
-        t = String(ev.timeLabel)
-          .toLowerCase()
-          .replace(/\s/g, "")
-          .replace(":00", "")
-          .replace("am", "a")
-          .replace("pm", "p");
+        t = compactClockLabel(ev.timeLabel);
       }
       var label = clipWords(ev.label || "", 4);
       if (!label) return;

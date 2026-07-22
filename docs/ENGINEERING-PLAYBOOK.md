@@ -139,6 +139,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Outdoor OS Milestone 3 (professional polish + production verify)
+
+**Artifact:** `docs/dashboard-os-m3-review/OWNER-REVIEW.md`  
+**Harness:** `automation/capture-dashboard-os-m3-screenshots.mjs`,  
+`automation/capture-dashboard-os-m3-production-compare.mjs`
+
+1. **Production status ≠ git status.** Live `meta[name=waypoint-build]` +
+   `data/build-info.json` + Pages workflow SHA are the source of truth; local
+   HEAD can be ahead/behind/diverged without production knowing.
+2. **`:focus-visible` won’t show in CDP `.focus()` screenshots.** Keyboard Tab
+   is the real a11y proof; document the headless limitation instead of chasing
+   rings that never paint under programmatic focus.
+3. **Timeline `timeLabel` falling back to `detail` glues prose into Day Arc
+   clocks** (“Diffuse light” → `diffuselight`). Compact only labels that look
+   like clocks; never strip spaces from arbitrary strings.
+4. **Panel craft is mostly host state + focus restore**, not new IA — backdrop,
+   trap, inert sheet, restore opener, reduced-motion instant path.
+5. **GitHub Pages can succeed while CI fails** by design in this repo — do not
+   treat CI green as a deploy prerequisite when reporting production SHA.
+
 ### 2026-07-22 — Outdoor OS Milestone 2 closeout (owner decisions)
 
 **Artifact:** `docs/dashboard-os-m2-review/OWNER-REVIEW.md`  

@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-07-22T05:03:11.710Z",
+  "localUrl": "http://127.0.0.1:8799/apps/dashboard/",
+  "productionUrl": "https://waypointstudio.org/apps/dashboard/",
+  "local": {
+    "ok": true,
+    "mode": "briefing",
+    "headline": "Soft overcast, mild",
+    "doPrimary": "Tonight: short outdoor check, then rest",
+    "build": "local"
+  },
+  "production": {
+    "ok": false,
+    "title": "Outdoor Dashboard · Pike County, PA — Waypoint Studio",
+    "build": "63fc457",
+    "hasOs": false,
+    "hasV2": true
+  },
+  "productionMobile": {
+    "ok": false,
+    "title": "Outdoor Dashboard · Pike County, PA — Waypoint Studio",
+    "build": "63fc457",
+    "hasOs": false,
+    "hasV2": true
+  }
+}

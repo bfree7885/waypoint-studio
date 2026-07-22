@@ -113,13 +113,17 @@
         '<span class="wdb-os__dayarc-beats">' +
         beats
           .map(function (b) {
+            var clock = b.time
+              ? '<span class="wdb-os__beat-time">' + esc(b.time) + "</span> "
+              : "";
             return (
               '<span class="wdb-os__beat' +
               (b.best ? " is-best" : "") +
               '">' +
-              esc(b.time) +
-              " " +
+              clock +
+              '<span class="wdb-os__beat-label">' +
               esc(b.label) +
+              "</span>" +
               "</span>"
             );
           })
@@ -241,15 +245,22 @@
   }
 
   function panelShell(title, bodyHtml) {
+    var titleId = "wdb-os-panel-title";
     return (
-      '<div class="wdb-os-panel" role="dialog" aria-modal="true" aria-label="' +
-      esc(title) +
+      '<button type="button" class="wdb-os__panel-backdrop" data-wdb-os-panel-backdrop tabindex="-1" aria-label="Close panel"></button>' +
+      '<div class="wdb-os-panel" role="dialog" aria-modal="true" aria-labelledby="' +
+      titleId +
       '">' +
+        '<div class="wdb-os-panel__handle" aria-hidden="true"></div>' +
         '<header class="wdb-os-panel__head">' +
-          "<h2 class=\"wdb-os-panel__title\">" +
+          '<h2 class="wdb-os-panel__title" id="' +
+          titleId +
+          '">' +
           esc(title) +
           "</h2>" +
-          '<button type="button" class="wdb-os-panel__close" data-wdb-os-panel-close aria-label="Close">✕</button>' +
+          '<button type="button" class="wdb-os-panel__close" data-wdb-os-panel-close aria-label="Close">' +
+          '<span aria-hidden="true">×</span>' +
+          "</button>" +
         "</header>" +
         '<div class="wdb-os-panel__body">' +
         bodyHtml +
@@ -374,16 +385,24 @@
       }
       return panelShell(
         "Day arc",
-        "<ol class=\"wdb-os-panel__list\">" +
+        '<ol class="wdb-os-panel__timeline">' +
           beats
             .map(function (b) {
               return (
-                "<li>" +
-                esc(b.time) +
-                " — " +
+                '<li class="wdb-os-panel__beat' +
+                (b.best ? " is-best" : "") +
+                '">' +
+                (b.time
+                  ? '<span class="wdb-os-panel__beat-time">' + esc(b.time) + "</span>"
+                  : '<span class="wdb-os-panel__beat-time is-empty" aria-hidden="true">—</span>') +
+                '<span class="wdb-os-panel__beat-copy">' +
+                '<span class="wdb-os-panel__beat-label">' +
                 esc(b.label) +
-                (b.detail ? " (" + esc(b.detail) + ")" : "") +
-                "</li>"
+                "</span>" +
+                (b.detail
+                  ? '<span class="wdb-os-panel__beat-detail">' + esc(b.detail) + "</span>"
+                  : "") +
+                "</span></li>"
               );
             })
             .join("") +
@@ -407,10 +426,13 @@
       var rows = view.providers || [];
       var trust = view.trust || {};
       var head =
-        "<p><strong>" +
+        '<p class="wdb-os-panel__trust">' +
+        '<span class="wdb-os-panel__trust-status">' +
         esc(trust.status || "Partial") +
-        "</strong>" +
-        (trust.detail ? " · " + esc(trust.detail) : "") +
+        "</span>" +
+        (trust.detail
+          ? '<span class="wdb-os-panel__trust-detail">' + esc(trust.detail) + "</span>"
+          : "") +
         "</p>";
       if (!rows.length) {
         return panelShell("Sources", head + "<p>Provider detail will appear when the briefing hydrates.</p>");
@@ -418,16 +440,26 @@
       return panelShell(
         "Sources",
         head +
-          "<ul class=\"wdb-os-panel__list\">" +
+          '<ul class="wdb-os-panel__sources">' +
           rows
             .map(function (r) {
+              var st = String(r.status || "").toLowerCase();
+              var tone = /live|fresh|ok/.test(st)
+                ? "is-live"
+                : /unavail|error|fail|offline|stale|missing/.test(st)
+                  ? "is-quiet"
+                  : "is-partial";
               return (
-                "<li>" +
+                '<li class="wdb-os-panel__source ' +
+                tone +
+                '">' +
+                '<span class="wdb-os-panel__source-name">' +
                 esc(r.provider || r.id) +
-                " — " +
+                "</span>" +
+                '<span class="wdb-os-panel__source-meta">' +
                 esc(r.status) +
-                (r.age && r.age !== "—" ? " (" + esc(r.age) + ")" : "") +
-                "</li>"
+                (r.age && r.age !== "—" ? " · " + esc(r.age) : "") +
+                "</span></li>"
               );
             })
             .join("") +
