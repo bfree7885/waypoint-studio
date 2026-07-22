@@ -139,6 +139,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Outdoor OS M3 reconciliation onto RC3 origin/main
+
+**Artifact:** `docs/dashboard-os-m3-reconcile/OWNER-REVIEW.md`  
+**Branches:** `backup/dashboard-os-m3-pre-reconcile`, `recovery/dashboard-os-m3-reconcile`,
+`integration/dashboard-os-m3`
+
+1. **Cherry-pick OS onto origin/main, never rewrite production tip first.**
+   Preserve Pages/nav/Scenes infra; resolve Dashboard entry to Outdoor OS.
+2. **modify/delete on legacy render ≠ automatic delete.** Keeping
+   `wds-dashboard-v2-render.js` for V2/V3/kiosk while engine prefers OS is valid;
+   update tests to assert product path, not file absence.
+3. **Quiet chrome must merge with Explore, not replace it.** Outside uses
+   `data-quiet-chrome`; other apps keep RC3 primary nav + Explore.
+4. **Test count rises when RC3 modular suites are retained** (V2 ~21 → 58) —
+   document, don’t “fix” by deleting coverage.
+
 ### 2026-07-22 — Outdoor OS Milestone 3 (professional polish + production verify)
 
 **Artifact:** `docs/dashboard-os-m3-review/OWNER-REVIEW.md`  

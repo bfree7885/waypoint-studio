@@ -128,10 +128,19 @@ assert(
   "obsolete Recovery presentation gone",
   !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/wds-dashboard-recovery.js.obsolete"))
 );
+const engineSrc = fs.readFileSync(
+  path.join(ROOT, "design-system/js/dashboard/wds-dashboard-engine.js"),
+  "utf8"
+);
 assert(
-  "obsolete V2 render gone",
-  !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/v2/wds-dashboard-v2-render.js.obsolete")) &&
-    !fs.existsSync(path.join(ROOT, "design-system/js/dashboard/v2/wds-dashboard-v2-render.js"))
+  "product engine prefers Outdoor OS over V2/Recovery",
+  /var OS = global\.WDS && global\.WDS\.dashboardOS/.test(engineSrc) &&
+    /OS\.renderDashboard/.test(engineSrc) &&
+    engineSrc.indexOf("dashboardOS") < engineSrc.indexOf("dashboardRecovery")
+);
+assert(
+  "V2 render not on product Outside page",
+  !fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8").includes("wds-dashboard-v2-render")
 );
 assert(
   "obsolete customize gone",
