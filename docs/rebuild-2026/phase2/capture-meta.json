@@ -1,0 +1,25 @@
+{
+  "capturedAt": "2026-07-22T21:27:22.920Z",
+  "base": "http://127.0.0.1:8765",
+  "phase": "phase2",
+  "desktopMeta": {
+    "place": "Pike County, PA",
+    "facts": 4,
+    "today": "76°F under sunny.\nWinds around 9 mph.\nGolden hour begins at 7:18 PM.\nSunset is at 8:18 PM.\nAir quality is Good.\nThe moon is a waxing gibbous.",
+    "hydrated": true,
+    "statuses": [
+      "Photography windows coming soon.",
+      "River status coming soon."
+    ]
+  },
+  "phoneMeta": {
+    "place": "Pike County, PA",
+    "facts": 4,
+    "today": "76°F under sunny.\nWinds around 9 mph.\nGolden hour begins at 7:18 PM.\nSunset is at 8:18 PM.\nAir quality is Good.\nThe moon is a waxing gibbous.",
+    "hydrated": true,
+    "statuses": [
+      "Photography windows coming soon.",
+      "River status coming soon."
+    ]
+  }
+}

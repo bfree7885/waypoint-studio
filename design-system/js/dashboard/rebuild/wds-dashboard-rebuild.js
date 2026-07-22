@@ -1,12 +1,12 @@
 /**
- * Dashboard Rebuild — product shell (Phase 1).
- * Workspace + Today Outside + Customize + Kiosk routing — no live widgets.
+ * Dashboard Rebuild — product shell (Phase 2).
+ * Workspace + Today Outside + Customize + Kiosk; OIP hydrates four live widgets.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "1.1.0-phase1-polish";
+  var VERSION = "2.0.0-phase2";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -31,10 +31,33 @@
       .replace(/"/g, "&quot;");
   }
 
+  function todayContext(options) {
+    options = options || {};
+    var ctx = options.placeContext || {};
+    var platform = options.platform || null;
+    var Data = api("dashboardRebuildData");
+    var pack = Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx) : null;
+    var trust = ctx.trust || "waiting";
+    var lines = null;
+    if (pack && pack.today) {
+      trust = pack.today.trust || trust;
+      lines = pack.today.lines;
+    }
+    if (!platform && (trust === "pending" || ctx.source === "pending")) trust = "waiting";
+    return {
+      placeLabel: ctx.placeLabel || ctx.displayTitle || ctx.name,
+      trust: trust,
+      now: options.now,
+      lines: lines,
+      platform: platform
+    };
+  }
+
   function renderShell(options) {
     options = options || {};
     var view = options.view || "workspace";
     var ctx = options.placeContext || {};
+    var platform = options.platform || null;
     var Today = api("dashboardRebuildToday");
     var Workspace = api("dashboardRebuildWorkspace");
     var Customize = api("dashboardRebuildCustomize");
@@ -44,13 +67,7 @@
     var kioskActive = view === "kiosk";
 
     var todayHtml =
-      Today && Today.render
-        ? Today.render({
-            placeLabel: ctx.placeLabel || ctx.displayTitle || ctx.name,
-            trust: ctx.trust || (ctx.source === "pending" ? "pending" : "unavailable"),
-            now: options.now
-          })
-        : "";
+      Today && Today.render ? Today.render(todayContext(options)) : "";
 
     var mainHtml = "";
     if (view === "customize") {
@@ -64,7 +81,8 @@
         (Workspace && Workspace.renderWorkspace
           ? Workspace.renderWorkspace({
               prefs: prefs,
-              customize: false
+              customize: false,
+              platform: platform
             })
           : "");
     }
@@ -75,6 +93,7 @@
       escapeHtml(view) +
       '"' +
       (kioskActive ? ' data-kiosk="true"' : "") +
+      (platform ? ' data-hydrated="true"' : "") +
       ">" +
       todayHtml +
       mainHtml +
@@ -86,6 +105,7 @@
     host: null,
     view: "workspace",
     placeContext: null,
+    platform: null,
     bound: false
   };
 
@@ -98,7 +118,13 @@
           root: mountState.host && mountState.host.querySelector("[data-wdb-r]"),
           applyPreset: false,
           onRefresh: function () {
-            paint();
+            try {
+              var OIP = api("outdoorIntelligence");
+              if (OIP && OIP.refresh) OIP.refresh();
+              else paint();
+            } catch (e) {
+              paint();
+            }
           }
         });
       }
@@ -112,6 +138,7 @@
     var html = renderShell({
       view: mountState.view,
       placeContext: mountState.placeContext || {},
+      platform: mountState.platform || null,
       now: new Date()
     });
     mountState.host.innerHTML = html;
@@ -127,7 +154,11 @@
     try {
       global.dispatchEvent(
         new CustomEvent("wds:dashboard-rebuild-paint", {
-          detail: { view: mountState.view, version: VERSION }
+          detail: {
+            view: mountState.view,
+            version: VERSION,
+            hydrated: !!mountState.platform
+          }
         })
       );
     } catch (e) {
@@ -158,6 +189,11 @@
     paint();
   }
 
+  function setPlatform(platform) {
+    mountState.platform = platform || null;
+    paint();
+  }
+
   function onHashChange() {
     var next = parseView();
     if (next !== mountState.view) {
@@ -179,6 +215,7 @@
     if (!host) return null;
     mountState.host = host;
     mountState.placeContext = options.placeContext || null;
+    mountState.platform = options.platform || null;
     mountState.view = parseView(options.view || (global.location && global.location.hash) || "#/");
     bindRouting();
     paint();
@@ -192,6 +229,7 @@
       mountState.host.innerHTML = "";
       mountState.host = null;
     }
+    mountState.platform = null;
   }
 
   global.WDS = global.WDS || {};
@@ -203,9 +241,13 @@
     unmount: unmount,
     setView: setView,
     setPlaceContext: setPlaceContext,
+    setPlatform: setPlatform,
     paint: paint,
     getView: function () {
       return mountState.view;
+    },
+    getPlatform: function () {
+      return mountState.platform;
     }
   };
 })(typeof window !== "undefined" ? window : global);

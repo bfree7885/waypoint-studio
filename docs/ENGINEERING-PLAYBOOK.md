@@ -137,6 +137,25 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Dashboard Phase 2 (first four live widgets)
+
+**Artifact:** `docs/rebuild-2026/dashboard-phase2-owner-review.md`
+**Screenshots:** `docs/rebuild-2026/phase2/`
+
+1. **OIP once, widgets many** — hydrate via `outdoorIntelligence.get`, then
+   registry adapters; never let each widget fetch providers (duplicates cache
+   and invents race trust).
+2. **Primary weather can 429** — Open-Meteo daily limits return placeholders;
+   Dashboard boot recovers with NWS for live conditions while still refusing
+   to publish placeholder numbers as Live.
+3. **Moon times are often absent** — label illumination Computed and moonrise
+   Not reported; never invent rise/set.
+4. **Today Outside is a composer, not a coach** — max eight observational
+   bullets from implemented widgets; ban recommendation voice in the line
+   builder and in tests.
+5. **Keep ph-* ids for prefs continuity** — replacing placeholders in place
+   preserves `waypoint-dashboard-rebuild-prefs-v1` without a migration.
+
 ### 2026-07-22 — Dashboard Phase 1 polish (presentation)
 
 **Artifact:** `docs/rebuild-2026/dashboard-phase1-polish-owner-review.md`  

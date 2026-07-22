@@ -1,5 +1,5 @@
 /**
- * Dashboard Rebuild Phase 1 — shell boot.
+ * Dashboard Rebuild Phase 2 — shell boot + OIP hydrate for four live widgets.
  * Mounts rebuild workspace immediately; does not boot Outdoor OS.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
  */
@@ -19,6 +19,8 @@
 
   var BOOT_DEADLINE = Date.now() + 15000;
   var mounted = false;
+  var hydrateBound = false;
+  var hydrateGen = 0;
 
   function placeContextFromLoc(loc) {
     if (!loc) {
@@ -40,7 +42,10 @@
       trust: loc.source === "unavailable" ? "unavailable" : "cached",
       source: loc.source || "unknown",
       lat: loc.lat,
-      lng: loc.lng
+      lng: loc.lng,
+      timezone: loc.timezone || null,
+      displayTitle: loc.displayTitle || loc.name || null,
+      name: loc.name || null
     };
   }
 
@@ -83,6 +88,9 @@
     } else if (!mounted) {
       mountShell(ctx);
     }
+    if (isSafeEarlyLocation(loc)) {
+      hydratePlatform(loc);
+    }
   }
 
   function isSafeEarlyLocation(loc) {
@@ -100,8 +108,133 @@
     return true;
   }
 
+  function configurePlatform() {
+    if (!window.WDS || !WDS.outdoorIntelligence) return;
+    if (WDS.outdoorIntelligence.configure) {
+      WDS.outdoorIntelligence.configure({
+        contentEngineBase: ENGINE_BASE,
+        includeWeather: true
+      });
+    }
+    if (WDS.weather && WDS.weather.configure) {
+      /* Prefer Open-Meteo; NWS recovery runs if the primary package is a placeholder. */
+      WDS.weather.configure({ provider: "open-meteo", fallback: true });
+    }
+  }
+
+  function enrichPlatformWeather(platform, loc) {
+    if (!platform || !window.WDS || !WDS.weather || !WDS.weather.getForecast) {
+      return Promise.resolve(platform);
+    }
+    var wx = platform.weatherRef;
+    var needsRecovery = !wx || (wx.meta && wx.meta.isPlaceholder);
+    if (!needsRecovery) return Promise.resolve(platform);
+
+    var prev = null;
+    try {
+      if (WDS.weather.getActiveProvider) {
+        var active = WDS.weather.getActiveProvider();
+        prev = active && active.id ? active.id : "open-meteo";
+      }
+      if (WDS.weather.setProvider) WDS.weather.setProvider("nws");
+    } catch (e) {
+      return Promise.resolve(platform);
+    }
+
+    return WDS.weather
+      .getForecast({
+        location: loc,
+        lat: loc && loc.lat,
+        lng: loc && loc.lng,
+        timezone: (loc && loc.timezone) || (platform.daylight && platform.daylight.timezone),
+        fallback: false
+      })
+      .then(function (liveWx) {
+        if (liveWx && liveWx.meta && !liveWx.meta.isPlaceholder) {
+          platform.weatherRef = liveWx;
+          liveWx.meta = liveWx.meta || {};
+          liveWx.meta.fallbackFrom = liveWx.meta.fallbackFrom || "open-meteo";
+          liveWx.meta.fallbackReason = liveWx.meta.fallbackReason || "primary-unavailable";
+          if (WDS.daylightUtils && WDS.daylightUtils.enrichFromWeather) {
+            platform.daylight = WDS.daylightUtils.enrichFromWeather(
+              liveWx,
+              platform.daylight || {}
+            );
+          }
+          if (platform.meta && platform.meta.blockStatus) {
+            platform.meta.blockStatus.weather = "live";
+          }
+        }
+        return platform;
+      })
+      .catch(function () {
+        return platform;
+      })
+      .then(function (pkg) {
+        try {
+          if (WDS.weather.setProvider) WDS.weather.setProvider(prev || "open-meteo");
+        } catch (e2) {
+          /* noop */
+        }
+        return pkg;
+      });
+  }
+
+  function applyPlatform(platform) {
+    if (!window.WDS || !WDS.dashboardRebuild || !WDS.dashboardRebuild.setPlatform) return;
+    WDS.dashboardRebuild.setPlatform(platform || null);
+    try {
+      if (window.performance && performance.mark) {
+        performance.mark("wdb-rebuild-platform-ready");
+      }
+    } catch (e) {
+      /* noop */
+    }
+  }
+
+  function hydratePlatform(loc) {
+    if (!window.WDS || !WDS.outdoorIntelligence || !WDS.outdoorIntelligence.get) return;
+    if (!isSafeEarlyLocation(loc)) return;
+    configurePlatform();
+    var gen = ++hydrateGen;
+    WDS.outdoorIntelligence
+      .get({
+        location: loc,
+        contentEngineBase: ENGINE_BASE,
+        includeWeather: true
+      })
+      .then(function (platform) {
+        return enrichPlatformWeather(platform, loc);
+      })
+      .then(function (platform) {
+        if (gen !== hydrateGen) return;
+        applyPlatform(platform);
+      })
+      .catch(function () {
+        if (gen !== hydrateGen) return;
+        /* Keep shell honest — widgets show unavailable without inventing. */
+        applyPlatform(null);
+      });
+  }
+
+  function bindHydrateListeners() {
+    if (hydrateBound || !window.WDS) return;
+    hydrateBound = true;
+    if (WDS.outdoorIntelligence && WDS.outdoorIntelligence.onChange) {
+      WDS.outdoorIntelligence.onChange(function (platform) {
+        applyPlatform(platform);
+      });
+    }
+    if (WDS.location && WDS.location.onChange) {
+      WDS.location.onChange(function (loc) {
+        if (loc) updatePlace(loc);
+      });
+    }
+  }
+
   function bootstrapPlace() {
     if (!window.WDS || !WDS.location || !WDS.location.bootstrap) return;
+    bindHydrateListeners();
     var early = WDS.location.readStored ? WDS.location.readStored() : null;
     if (isSafeEarlyLocation(early)) {
       updatePlace(early);
@@ -117,7 +250,10 @@
       (location.hash || "").indexOf("kiosk") >= 0 ||
       (document.documentElement &&
         document.documentElement.getAttribute("data-wdb-r-kiosk") === "true");
-    if (kiosk) return;
+    if (kiosk) {
+      if (isSafeEarlyLocation(early)) hydratePlatform(early);
+      return;
+    }
     WDS.location
       .bootstrap({
         base: ENGINE_BASE,

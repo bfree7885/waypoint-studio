@@ -1,6 +1,6 @@
 /**
- * Dashboard Rebuild — widget registry (Phase 1: placeholders only).
- * Catalog anticipates future families; no live instruments yet.
+ * Dashboard Rebuild — widget registry (Phase 2: four live instruments).
+ * Conditions · Light · Air · Astronomy hydrate from OIP; other families stay coming-soon.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
@@ -8,8 +8,8 @@
 
   var SIZES = ["sm", "md", "lg", "anchor"];
 
-  /** Placeholder catalog — validates framework; anticipates widget families. */
-  var PLACEHOLDERS = [
+  /** Catalog — Phase 2 live ids keep ph-* keys for local prefs continuity. */
+  var CATALOG = [
     {
       id: "ph-conditions",
       title: "Conditions",
@@ -17,6 +17,7 @@
       size: "md",
       defaultVisible: true,
       defaultOrder: 10,
+      live: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Temperature, sky, precip, and wind near you.",
       emptyMessage: "Waiting for weather data."
@@ -28,6 +29,7 @@
       size: "md",
       defaultVisible: true,
       defaultOrder: 20,
+      live: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Sun, moon, and observational light windows.",
       emptyMessage: "Light windows will appear here."
@@ -39,9 +41,10 @@
       size: "sm",
       defaultVisible: true,
       defaultOrder: 30,
+      live: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Air quality with honest uncertainty.",
-      emptyMessage: "Connect a provider to display conditions."
+      emptyMessage: "Air quality unavailable for this place right now."
     },
     {
       id: "ph-astronomy",
@@ -50,6 +53,7 @@
       size: "md",
       defaultVisible: true,
       defaultOrder: 40,
+      live: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Night sky context and celestial timing.",
       emptyMessage: "Sky context will appear here."
@@ -61,9 +65,10 @@
       size: "md",
       defaultVisible: true,
       defaultOrder: 50,
+      live: false,
       kiosk: { show: true, chrome: "minimal" },
       description: "Light quality and photography windows.",
-      emptyMessage: "Photography windows will appear here."
+      emptyMessage: "Photography windows coming soon."
     },
     {
       id: "ph-rivers",
@@ -72,9 +77,10 @@
       size: "sm",
       defaultVisible: true,
       defaultOrder: 60,
+      live: false,
       kiosk: { show: true, chrome: "minimal" },
       description: "Nearby gauges and river status when relevant.",
-      emptyMessage: "River status will appear here."
+      emptyMessage: "River status coming soon."
     },
     {
       id: "ph-wildlife",
@@ -83,9 +89,10 @@
       size: "md",
       defaultVisible: false,
       defaultOrder: 70,
+      live: false,
       kiosk: { show: true, chrome: "minimal" },
       description: "Observational wildlife context for your place.",
-      emptyMessage: "Wildlife notes will appear here."
+      emptyMessage: "Wildlife notes coming soon."
     },
     {
       id: "ph-alerts",
@@ -94,6 +101,7 @@
       size: "sm",
       defaultVisible: false,
       defaultOrder: 80,
+      live: false,
       kiosk: { show: true, chrome: "minimal" },
       description: "Official alerts — shown only when they matter.",
       emptyMessage: "No alerts to show yet."
@@ -105,19 +113,24 @@
       size: "md",
       defaultVisible: false,
       defaultOrder: 90,
+      live: false,
       kiosk: { show: true, chrome: "minimal" },
       description: "Trail surface and access context when available.",
-      emptyMessage: "Trail conditions will appear here."
+      emptyMessage: "Trail conditions coming soon."
     }
   ];
 
   var byId = Object.create(null);
-  PLACEHOLDERS.forEach(function (w) {
+  CATALOG.forEach(function (w) {
     byId[w.id] = w;
   });
 
+  function Data() {
+    return global.WDS && global.WDS.dashboardRebuildData;
+  }
+
   function all() {
-    return PLACEHOLDERS.slice().sort(function (a, b) {
+    return CATALOG.slice().sort(function (a, b) {
       return (a.defaultOrder || 0) - (b.defaultOrder || 0);
     });
   }
@@ -146,10 +159,31 @@
     return SIZES.indexOf(size) >= 0 ? size : "md";
   }
 
+  function trustChipLabel(trust) {
+    var t = String(trust || "waiting").toLowerCase();
+    if (t === "live") return "Live";
+    if (t === "cached") return "Cached";
+    if (t === "partial") return "Partial";
+    if (t === "offline") return "Offline";
+    if (t === "estimated") return "Estimated";
+    if (t === "unavailable") return "Unavailable";
+    if (t === "pending" || t === "waiting") return "Waiting";
+    return "Waiting";
+  }
+
+  function trustAttr(trust) {
+    var t = String(trust || "waiting").toLowerCase();
+    if (t === "pending") return "waiting";
+    if (t === "estimated") return "estimated";
+    if (t === "unavailable") return "unavailable";
+    return t || "waiting";
+  }
+
   /**
-   * Honest placeholder payload — never invents live numbers.
+   * Honest payload — live widgets use OIP adapters; others stay coming-soon.
    */
-  function getData(id) {
+  function getData(id, options) {
+    options = options || {};
     var widget = get(id);
     if (!widget) {
       return {
@@ -158,36 +192,76 @@
         message: "Widget coming soon."
       };
     }
+
+    if (widget.live) {
+      var DataApi = Data();
+      if (DataApi && DataApi.buildWidgetPayload) {
+        return DataApi.buildWidgetPayload(id, options.platform || null);
+      }
+    }
+
     return {
       trust: "waiting",
       status: "placeholder",
-      message: widget.emptyMessage || "Data will appear here.",
+      message: widget.emptyMessage || "Coming soon.",
       widgetId: widget.id,
       category: widget.category
     };
   }
 
-  function trustChipLabel(trust) {
-    var t = String(trust || "waiting").toLowerCase();
-    if (t === "live") return "Live";
-    if (t === "cached") return "Cached";
-    if (t === "partial") return "Partial";
-    if (t === "offline") return "Offline";
-    if (t === "pending" || t === "waiting") return "Waiting";
-    return "Waiting";
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
   }
 
-  function renderPlaceholder(widget, data) {
+  function renderFacts(facts) {
+    if (!facts || !facts.length) return "";
+    return (
+      '<dl class="wdb-r-widget__facts">' +
+      facts
+        .map(function (f) {
+          return (
+            '<div class="wdb-r-widget__fact">' +
+            "<dt>" +
+            escapeHtml(f.label) +
+            "</dt>" +
+            "<dd>" +
+            escapeHtml(f.value) +
+            (f.note
+              ? ' <span class="wdb-r-widget__note">' + escapeHtml(f.note) + "</span>"
+              : "") +
+            "</dd>" +
+            "</div>"
+          );
+        })
+        .join("") +
+      "</dl>"
+    );
+  }
+
+  function renderBody(widget, data) {
     widget = widget || {};
     data = data || getData(widget.id);
-    var trust = data.trust || "waiting";
+    var trust = trustAttr(data.trust || "waiting");
+    var inner = "";
+    if (data.facts && data.facts.length) {
+      inner = renderFacts(data.facts);
+    } else {
+      inner =
+        '<p class="wdb-r-widget__status">' +
+        escapeHtml(data.message || widget.emptyMessage || "Data will appear here.") +
+        "</p>";
+    }
     return (
       '<div class="wdb-r-widget__body" data-trust="' +
-      String(trust) +
-      '">' +
-      '<p class="wdb-r-widget__status">' +
-      escapeHtml(data.message || "Data will appear here.") +
-      "</p>" +
+      escapeHtml(trust) +
+      '"' +
+      (data.status ? ' data-status="' + escapeHtml(data.status) + '"' : "") +
+      ">" +
+      inner +
       '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="' +
       escapeHtml(trust) +
       '">' +
@@ -197,12 +271,8 @@
     );
   }
 
-  function escapeHtml(s) {
-    return String(s == null ? "" : s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
+  function renderPlaceholder(widget, data) {
+    return renderBody(widget, data);
   }
 
   function kioskEligibleIds() {
@@ -217,7 +287,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "1.1.0-phase1-polish",
+    version: "2.0.0-phase2",
     sizes: SIZES.slice(),
     all: all,
     get: get,
@@ -225,7 +295,9 @@
     defaultOrderIds: defaultOrderIds,
     normalizeSize: normalizeSize,
     getData: getData,
+    render: renderBody,
     renderPlaceholder: renderPlaceholder,
+    trustChipLabel: trustChipLabel,
     kioskEligibleIds: kioskEligibleIds
   };
 })(typeof window !== "undefined" ? window : global);

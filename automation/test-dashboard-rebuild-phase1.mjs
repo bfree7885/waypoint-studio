@@ -38,6 +38,7 @@ assert("index keeps contact local", /href="\.\/contact\.html"/.test(indexHtml));
 assert("index no Do this / homework chrome", !/Do this|homework|You should/i.test(indexHtml));
 
 const modules = [
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
@@ -146,14 +147,17 @@ assert("shell loaded", !!(Shell && Shell.mount));
 const all = Reg.all();
 assert("placeholder widgets registered", all.length >= 3, String(all.length));
 assert(
-  "placeholders only (ph- prefix)",
+  "catalog ids stable (ph- prefix for prefs)",
   all.every(function (w) {
     return String(w.id).indexOf("ph-") === 0;
   })
 );
 
 const data = Reg.getData("ph-conditions");
-assert("placeholder data is unavailable/placeholder", data.trust === "unavailable" || data.status === "placeholder");
+assert(
+  "live widget waiting without platform",
+  data.trust === "waiting" || data.status === "waiting" || data.status === "placeholder" || data.trust === "unavailable"
+);
 assert("placeholder does not invent numbers", !/\d+\s*°|AQI\s*\d+/i.test(JSON.stringify(data)));
 
 const prefs = Prefs.load();
@@ -165,9 +169,9 @@ assert("prefs reset restores defaults", Prefs.load().enabled.indexOf("ph-conditi
 
 const todayHtml = Today.render({ placeLabel: "Test Place", trust: "unavailable" });
 assert("today outside title present", /Today Outside/.test(todayHtml));
-assert("today outside honest empty bullets", /Summary coming soon/.test(todayHtml) && /Conditions will appear here/.test(todayHtml));
+assert("today outside honest empty bullets", /Conditions will appear here/.test(todayHtml));
 assert("today outside no OS Do this", !/Do this|Happening|Matters most/i.test(todayHtml));
-assert("today outside product trust label", /Waiting/.test(todayHtml));
+assert("today outside product trust label", /Waiting|Unavailable/.test(todayHtml));
 
 const ws = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace has widget frames", /data-widget-id="ph-conditions"/.test(ws));
@@ -175,7 +179,7 @@ assert("workspace heading", /Workspace/.test(ws));
 assert("workspace anticipates photography", /data-widget-id="ph-photography"/.test(ws));
 assert("workspace anticipates rivers", /data-widget-id="ph-rivers"/.test(ws));
 assert("no developer instrument copy", !/Instrument not connected yet/.test(ws));
-assert("product waiting copy", /Waiting for weather data|Data will appear here|Widget coming soon/.test(ws));
+assert("product waiting copy", /Waiting for weather data|Data will appear here|Widget coming soon|coming soon/i.test(ws));
 
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");

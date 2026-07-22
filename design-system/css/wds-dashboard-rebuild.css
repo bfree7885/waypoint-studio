@@ -1,6 +1,6 @@
 /**
- * Dashboard Rebuild — Phase 1 polished presentation.
- * Today Outside (compact) + Workspace (dominant) + placeholder widgets.
+ * Dashboard Rebuild — Phase 2 presentation (Phase 1 layout locked).
+ * Today Outside + Workspace; four live widgets; coming-soon placeholders.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 07-design-system.md
  */
 
@@ -241,6 +241,41 @@
   color: var(--wdb-r-muted);
 }
 
+.wdb-r-widget__facts {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem 0.75rem;
+}
+
+.wdb-r-widget__fact {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 34%) 1fr;
+  gap: 0.35rem 0.65rem;
+  align-items: baseline;
+}
+
+.wdb-r-widget__fact dt {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wdb-r-faint);
+}
+
+.wdb-r-widget__fact dd {
+  margin: 0;
+  font-size: var(--wds-text-sm, 0.8125rem);
+  line-height: var(--wds-leading-snug, 1.35);
+  color: var(--wdb-r-ink);
+}
+
+.wdb-r-widget__note {
+  font-size: 0.6875rem;
+  color: var(--wdb-r-faint);
+  font-weight: 500;
+}
+
 .wdb-r-widget__trust {
   margin: 0;
 }
@@ -425,6 +460,19 @@
 .wdb-r .wds-trust-chip[data-trust="live"] {
   border-color: color-mix(in srgb, var(--wds-accent, #c8f055) 45%, transparent);
   color: var(--wds-accent, #c8f055);
+}
+
+.wdb-r .wds-trust-chip[data-trust="estimated"],
+.wdb-r .wds-trust-chip[data-trust="partial"],
+.wdb-r .wds-trust-chip[data-trust="cached"] {
+  border-color: color-mix(in srgb, var(--wds-warm, #e8b86d) 45%, transparent);
+  color: var(--wds-warm, #e8b86d);
+}
+
+.wdb-r .wds-trust-chip[data-trust="unavailable"],
+.wdb-r .wds-trust-chip[data-trust="offline"] {
+  border-color: color-mix(in srgb, #e0a090 40%, transparent);
+  color: color-mix(in srgb, #e0a090 90%, var(--wdb-r-muted));
 }
 
 .wdb-r .wds-trust-chip[data-trust="waiting"],

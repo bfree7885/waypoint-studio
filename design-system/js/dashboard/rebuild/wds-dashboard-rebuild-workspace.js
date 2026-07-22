@@ -1,6 +1,6 @@
 /**
- * Dashboard Rebuild — widget workspace layout framework (Phase 1).
- * Renders frames + placeholders; progressive hydrate hooks only.
+ * Dashboard Rebuild — widget workspace layout framework (Phase 2).
+ * Frames + registry render; live widgets hydrate from OIP independently.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
@@ -31,12 +31,14 @@
       "md";
     if (reg && reg.normalizeSize) size = reg.normalizeSize(size);
     var data = reg && reg.getData
-      ? reg.getData(widget.id)
+      ? reg.getData(widget.id, { platform: options.platform || null })
       : { trust: "waiting", message: "Data will appear here." };
     var body =
-      reg && reg.renderPlaceholder
-        ? reg.renderPlaceholder(widget, data)
-        : '<p class="wdb-r-widget__status">Data will appear here.</p>';
+      reg && reg.render
+        ? reg.render(widget, data)
+        : reg && reg.renderPlaceholder
+          ? reg.renderPlaceholder(widget, data)
+          : '<p class="wdb-r-widget__status">Data will appear here.</p>';
     var customize = !!options.customize;
     var controls = "";
     if (customize) {
@@ -102,7 +104,14 @@
     var widgets = [];
     ids.forEach(function (id) {
       var w = reg && reg.get ? reg.get(id) : null;
-      if (w) widgets.push(renderWidgetFrame(w, prefs, { customize: customize }));
+      if (w) {
+        widgets.push(
+          renderWidgetFrame(w, prefs, {
+            customize: customize,
+            platform: options.platform || null
+          })
+        );
+      }
     });
     var empty = "";
     if (!widgets.length) {
@@ -139,7 +148,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildWorkspace = {
-    version: "1.0.0-phase1",
+    version: "2.0.0-phase2",
     renderWorkspace: renderWorkspace,
     renderWidgetFrame: renderWidgetFrame,
     mount: mount

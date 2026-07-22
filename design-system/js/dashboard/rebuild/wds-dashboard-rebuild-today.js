@@ -1,6 +1,6 @@
 /**
- * Dashboard Rebuild — Today Outside summary container (Phase 1 shell).
- * Compact premium panel; honest empty — no intelligence or OS briefing.
+ * Dashboard Rebuild — Today Outside summary (Phase 2).
+ * Compact panel; observational lines from live widget data — never coaching.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
@@ -43,6 +43,8 @@
     if (t === "cached") return "Cached";
     if (t === "partial") return "Partial";
     if (t === "offline") return "Offline";
+    if (t === "estimated") return "Estimated";
+    if (t === "unavailable") return "Unavailable";
     if (t === "pending" || t === "waiting") return "Waiting";
     return "Waiting";
   }
@@ -50,18 +52,41 @@
   function trustAttr(trust) {
     var t = String(trust || "waiting").toLowerCase();
     if (t === "pending") return "waiting";
-    if (t === "unavailable") return "waiting";
+    if (t === "unavailable") return "unavailable";
     return t || "waiting";
   }
 
-  /**
-   * Phase 1: compact honest-empty summary — product language, not engineering.
-   */
+  function defaultLines() {
+    var Data = global.WDS && global.WDS.dashboardRebuildData;
+    if (Data && Data.waitingTodayLines) return Data.waitingTodayLines();
+    return [
+      "Summary settling as place and weather arrive.",
+      "Conditions will appear here.",
+      "Light and air settle independently."
+    ];
+  }
+
+  function resolveLines(ctx) {
+    ctx = ctx || {};
+    if (Array.isArray(ctx.lines) && ctx.lines.length) {
+      return ctx.lines.slice(0, 8).filter(function (line) {
+        return line && !/you should|do this|try |remember to|homework|assignment/i.test(String(line));
+      });
+    }
+    var Data = global.WDS && global.WDS.dashboardRebuildData;
+    if (ctx.platform && Data && Data.composeTodayLines) {
+      var composed = Data.composeTodayLines(ctx.platform);
+      if (composed && composed.length) return composed;
+    }
+    return defaultLines();
+  }
+
   function render(ctx) {
     ctx = ctx || {};
     var place = placeLabel(ctx);
     var when = timeContext(ctx.now);
     var trust = trustAttr(ctx.trust || "waiting");
+    var lines = resolveLines(ctx);
     return (
       '<section class="wdb-r-today" data-wdb-r-today aria-labelledby="wdb-r-today-title">' +
       '<header class="wdb-r-today__header">' +
@@ -86,10 +111,11 @@
       "</header>" +
       '<div class="wdb-r-today__body" data-wdb-r-today-body>' +
       '<ul class="wdb-r-today__lines">' +
-      "<li>Summary coming soon</li>" +
-      "<li>Conditions will appear here</li>" +
-      "<li>Photography window placeholder</li>" +
-      "<li>River status placeholder</li>" +
+      lines
+        .map(function (line) {
+          return "<li>" + escapeHtml(line) + "</li>";
+        })
+        .join("") +
       "</ul>" +
       "</div>" +
       '<div class="wdb-r-today__alerts" data-wdb-r-today-alerts hidden></div>' +
@@ -105,10 +131,11 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "1.1.0-phase1-polish",
+    version: "2.0.0-phase2",
     render: render,
     mount: mount,
     placeLabel: placeLabel,
-    timeContext: timeContext
+    timeContext: timeContext,
+    resolveLines: resolveLines
   };
 })(typeof window !== "undefined" ? window : global);
