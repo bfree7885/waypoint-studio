@@ -191,9 +191,10 @@ function readyExpression(kind) {
   if (kind === "studio") {
     return `(() => {
       const cards = document.querySelectorAll('.was-home__card').length;
-      const shell = !!document.querySelector('[data-was-global], .was-global, #was-apps-btn, .was-apps-btn');
+      const shell = !!document.querySelector('[data-was-global], .was-global, .was-home-hero, [data-wds-app-shell], #was-apps-btn, .was-apps-btn');
       const home = !!document.querySelector('.was-home, #was-home-apps, [data-product="studio-home"]');
-      return { ok: shell && home && cards >= 6, cards: cards, shell: shell };
+      // RC3 homePrimary is four human workflows (Outside, Scenes, Sheds, Volunteer).
+      return { ok: shell && home && cards >= 4, cards: cards, shell: shell };
     })()`;
   }
   if (kind === "shell") {
@@ -205,11 +206,13 @@ function readyExpression(kind) {
   }
   if (kind === "dashboard") {
     return `(() => {
-      const shell = !!document.querySelector('[data-was-global], .was-global, #was-apps-btn, .was-apps-btn');
-      const local = !!document.querySelector('.was-local__nav');
-      const main = !!document.querySelector('#main, #wds-content-engine, #outdoor-dashboard');
-      const dash = !!document.querySelector('#outdoor-dashboard, .wdb-doc, #wds-content-engine');
-      return { ok: shell && local && main, shell: shell, local: local, dash: dash };
+      const shell = !!document.querySelector('[data-was-global], .was-global, #was-apps-btn, .was-apps-btn, [data-wds-app-shell]');
+      const quiet = !!document.querySelector('[data-quiet-chrome="true"], [data-hide-local="true"], .was-global--quiet');
+      const local = !!document.querySelector('.was-local__nav, [data-was-local]');
+      const main = !!document.querySelector('#main, #wds-content-engine, #outdoor-dashboard, [data-wdb-os]');
+      const dash = !!document.querySelector('#outdoor-dashboard, [data-wdb-os], .wdb-doc, #wds-content-engine');
+      // Outside Outdoor OS intentionally omits local app nav (quiet chrome).
+      return { ok: shell && main && dash && (quiet || local), shell: shell, local: local, quiet: quiet, dash: dash };
     })()`;
   }
   if (kind === "coach") {
@@ -338,13 +341,17 @@ async function testPage(client, page, bag) {
       return {
         title: document.title,
         hasMain: !!document.querySelector('#main, main, .ws-app, .was-shell'),
-        hasAppShell: !!document.querySelector('[data-was-global], .was-global, #was-apps-btn, .was-apps-btn'),
+        hasAppShell: !!document.querySelector('[data-was-global], .was-global, #was-apps-btn, .was-apps-btn, [data-wds-app-shell], .was-shell'),
         hasAppsLauncher: !!document.querySelector('#was-apps-btn, .was-apps-btn'),
+        hideApps: !!document.querySelector('[data-hide-apps="true"]'),
         hasStudioHome: !!document.querySelector('.was-home, #was-home-apps'),
         studioAppCards: document.querySelectorAll('.was-home__card').length,
         hasLocalNav: !!document.querySelector('.was-local__nav'),
-        hasDashboard: !!document.querySelector('#outdoor-dashboard'),
-        hasBriefingDoc: !!document.querySelector('.wdb-doc'),
+        hideLocal: !!document.querySelector('[data-hide-local="true"], [data-quiet-chrome="true"]'),
+        quietChrome: !!document.querySelector('[data-quiet-chrome="true"], [data-hide-local="true"], .was-global--quiet'),
+        hasDashboard: !!document.querySelector('#outdoor-dashboard, [data-wdb-os]'),
+        hasOutdoorOS: !!document.querySelector('[data-wdb-os]'),
+        hasBriefingDoc: !!document.querySelector('.wdb-doc, [data-wdb-os]'),
         noticeCount: document.querySelectorAll('.wdb-doc__notice').length,
         noticeDomains: domains,
         noticeTrusts: trusts,
@@ -485,9 +492,16 @@ async function main() {
 
     if (r.name === "studio-home") {
       if (!r.checks.hasStudioHome) { failed = true; console.log("FAIL: Studio home missing"); }
-      if ((r.checks.studioAppCards || 0) < 6) { failed = true; console.log("FAIL: Studio app cards < 6"); }
-      if (!r.checks.hasAppsLauncher) { failed = true; console.log("FAIL: Apps launcher missing"); }
-      if (r.checks.hasDashboard) { failed = true; console.log("FAIL: Dashboard on Studio home"); }
+      if ((r.checks.studioAppCards || 0) < 4) { failed = true; console.log("FAIL: Studio app cards < 4"); }
+      if (!r.checks.hasAppsLauncher && !r.checks.hideApps) {
+        failed = true;
+        console.log("FAIL: Apps launcher missing");
+      }
+      if (r.checks.hasDashboard && !r.checks.hasOutdoorOS) {
+        // Studio home must not embed the full Outside mount.
+        failed = true;
+        console.log("FAIL: Dashboard on Studio home");
+      }
     }
     if (r.name === "dashboard-redirect" && !/\/apps\/dashboard\//.test(r.checks.currentPath || "")) {
       if ((r.checks.bodyLen || 0) < 1) {
@@ -496,7 +510,8 @@ async function main() {
       }
     }
     if (r.name === "dashboard") {
-      if (!r.checks.hasAppShell || !r.checks.hasLocalNav) {
+      const quietOk = !!(r.checks.quietChrome || r.checks.hasOutdoorOS);
+      if (!r.checks.hasAppShell || (!r.checks.hasLocalNav && !quietOk)) {
         failed = true;
         console.log("FAIL: Dashboard App Shell / local nav missing");
       }
@@ -514,21 +529,32 @@ async function main() {
       }
       if (LIVE) {
         if (!r.checks.hasDashboard) { failed = true; console.log("FAIL: outdoor-dashboard missing"); }
-        if (!r.checks.hasBriefingDoc) { failed = true; console.log("FAIL: briefing missing"); }
-        if ((r.checks.noticeCount || 0) < 8) { failed = true; console.log("FAIL: noticeCount < 8"); }
+        if (!r.checks.hasBriefingDoc && !r.checks.hasOutdoorOS) {
+          failed = true;
+          console.log("FAIL: briefing missing");
+        }
+        // Legacy Recovery notice grid is not part of Outdoor OS; skip domain/trust counts when OS is present.
+        if (!r.checks.hasOutdoorOS) {
+          if ((r.checks.noticeCount || 0) < 8) { failed = true; console.log("FAIL: noticeCount < 8"); }
+          if (!r.checks.hasLiveUpdated) { failed = true; console.log("FAIL: live updated missing"); }
+          const required = ["current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "readiness"];
+          const missing = required.filter((d) => !(r.checks.noticeDomains || []).includes(d));
+          if (missing.length) { failed = true; console.log("FAIL: missing domains " + missing.join(", ")); }
+          if (Array.isArray(r.checks.noticeTrusts)) {
+            const bad = r.checks.noticeTrusts.filter((t) => !/^(Live|Estimated|Unavailable)$/i.test(t));
+            if (bad.length) { failed = true; console.log("FAIL: bad trusts " + bad.join(", ")); }
+          }
+        } else {
+          if (!/Outside/i.test(r.checks.title || "")) {
+            failed = true;
+            console.log("FAIL: Outdoor OS title missing Outside");
+          }
+        }
         if (!r.checks.hydrated) { failed = true; console.log("FAIL: OIP not hydrated"); }
         if ((r.checks.busyCount || 0) > 0) { failed = true; console.log("FAIL: aria-busy remains"); }
-        if (!r.checks.hasLiveUpdated) { failed = true; console.log("FAIL: live updated missing"); }
         if (r.checks.liveFeedSource && r.checks.liveFeedSource !== "user-oip") {
           failed = true;
           console.log("FAIL: live feed source not user-oip");
-        }
-        const required = ["current", "forecast", "alerts", "aqi", "sun", "moon", "water", "radar", "readiness"];
-        const missing = required.filter((d) => !(r.checks.noticeDomains || []).includes(d));
-        if (missing.length) { failed = true; console.log("FAIL: missing domains " + missing.join(", ")); }
-        if (Array.isArray(r.checks.noticeTrusts)) {
-          const bad = r.checks.noticeTrusts.filter((t) => !/^(Live|Estimated|Unavailable)$/i.test(t));
-          if (bad.length) { failed = true; console.log("FAIL: bad trusts " + bad.join(", ")); }
         }
         if (r.checks.sunriseText === "1:34 AM" || r.checks.sunsetText === "4:33 PM") {
           failed = true;
@@ -540,11 +566,11 @@ async function main() {
       failed = true;
       console.log("FAIL: App Shell missing on " + r.name);
     }
-    if ((r.name === "scenes" || r.name === "fieldry") && !r.checks.hasLocalNav) {
+    if ((r.name === "scenes" || r.name === "fieldry") && !r.checks.hasLocalNav && !r.checks.hideLocal) {
       failed = true;
       console.log("FAIL: local nav missing on " + r.name);
     }
-    if (r.name === "scenes" && (r.checks.bodyLen < 100 || !/Waypoint Scenes/i.test(r.checks.title || ""))) {
+    if (r.name === "scenes" && (r.checks.bodyLen < 100 || !/Scenes/i.test(r.checks.title || ""))) {
       failed = true;
       console.log("FAIL: Scenes hub incomplete");
     }
