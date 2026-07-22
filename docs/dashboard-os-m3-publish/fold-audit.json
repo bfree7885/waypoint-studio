@@ -1,0 +1,307 @@
+{
+  "generatedAt": "2026-07-22T05:27:37.975Z",
+  "baseUrl": "http://127.0.0.1:8799",
+  "policy": "Priority order Happening → What Matters → Do This must stay visible in first viewport when content allows. Day Arc may sit below fold on short screens. Do not compress primary briefing to force Day Arc above fold.",
+  "results": [
+    {
+      "viewport": {
+        "name": "desktop-1440x900",
+        "width": 1440,
+        "height": 900,
+        "mobile": false
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, mild",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 900,
+      "happening": {
+        "top": 243,
+        "bottom": 328,
+        "height": 86,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 373,
+        "bottom": 443,
+        "height": 70,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 485,
+        "bottom": 608,
+        "height": 123,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 399,
+        "bottom": 443,
+        "height": 44,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    },
+    {
+      "viewport": {
+        "name": "desktop-1366x768",
+        "width": 1366,
+        "height": 768,
+        "mobile": false
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, mild",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 768,
+      "happening": {
+        "top": 241,
+        "bottom": 327,
+        "height": 86,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 370,
+        "bottom": 440,
+        "height": 70,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 481,
+        "bottom": 604,
+        "height": 123,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 396,
+        "bottom": 440,
+        "height": 44,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    },
+    {
+      "viewport": {
+        "name": "desktop-1280x720",
+        "width": 1280,
+        "height": 720,
+        "mobile": false
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, warm",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 720,
+      "happening": {
+        "top": 239,
+        "bottom": 324,
+        "height": 86,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 365,
+        "bottom": 435,
+        "height": 70,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 473,
+        "bottom": 596,
+        "height": 123,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 391,
+        "bottom": 435,
+        "height": 44,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    },
+    {
+      "viewport": {
+        "name": "tablet-1024x768",
+        "width": 1024,
+        "height": 768,
+        "mobile": false
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, warm",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 768,
+      "happening": {
+        "top": 231,
+        "bottom": 316,
+        "height": 86,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 350,
+        "bottom": 419,
+        "height": 70,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 450,
+        "bottom": 573,
+        "height": 123,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 375,
+        "bottom": 419,
+        "height": 44,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    },
+    {
+      "viewport": {
+        "name": "mobile-390x844",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, warm",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 844,
+      "happening": {
+        "top": 200,
+        "bottom": 294,
+        "height": 94,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 317,
+        "bottom": 391,
+        "height": 74,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 415,
+        "bottom": 542,
+        "height": 127,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 343,
+        "bottom": 391,
+        "height": 48,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    },
+    {
+      "viewport": {
+        "name": "mobile-large-430x932",
+        "width": 430,
+        "height": 932,
+        "mobile": true
+      },
+      "hydrated": {
+        "ok": true,
+        "mode": "briefing",
+        "headline": "Soft overcast, warm",
+        "doPrimary": "Tonight: short outdoor check, then rest",
+        "matters": 1
+      },
+      "viewportHeight": 932,
+      "happening": {
+        "top": 201,
+        "bottom": 294,
+        "height": 94,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "matters": {
+        "top": 318,
+        "bottom": 392,
+        "height": 74,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "do": {
+        "top": 416,
+        "bottom": 539,
+        "height": 123,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "dayArc": {
+        "top": 344,
+        "bottom": 392,
+        "height": 48,
+        "fullyAboveFold": true,
+        "partiallyAboveFold": true
+      },
+      "priorityOrderOk": true,
+      "primaryBriefingVisibleInFirstViewport": true,
+      "dayArcFullyAboveFold": true,
+      "dayArcPartiallyAboveFold": true,
+      "legacyChrome": false
+    }
+  ],
+  "summary": {
+    "allPriorityOrderOk": true,
+    "allPrimaryVisible": true,
+    "anyLegacyChrome": false,
+    "dayArcBelowFoldOn": []
+  }
+}

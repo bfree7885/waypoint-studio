@@ -1,0 +1,2859 @@
+{
+  "generatedAt": "2026-07-22T04:46:54.108Z",
+  "scenarioCount": 32,
+  "rules": [
+    {
+      "id": "H1",
+      "domain": "happening",
+      "name": "Character from sky + feel + air motion",
+      "detail": "Headline uses sensory outdoor character (sky, temp band, wind), never raw provider sentence dump. Max 8 words."
+    },
+    {
+      "id": "H2",
+      "domain": "happening",
+      "name": "Support is consequence, not echo",
+      "detail": "Support line (≤18 words) states what the character means for being outside — trajectory or constraint — not a second weather label."
+    },
+    {
+      "id": "H3",
+      "domain": "happening",
+      "name": "Trajectory over snapshot",
+      "detail": "When hourly POP/temp/cloud show a clear shift (rain starting, clearing, heat peak), support names the shift."
+    },
+    {
+      "id": "H4",
+      "domain": "happening",
+      "name": "Hazard character wins",
+      "detail": "Storm, smoke/AQI, fog, flood-elevated water, or extreme heat/cold reshape the headline before mild comfort language."
+    },
+    {
+      "id": "H5",
+      "domain": "happening",
+      "name": "Night labeling",
+      "detail": "After dark, character and support speak to tonight vs tomorrow — never a noon picnic."
+    },
+    {
+      "id": "H6",
+      "domain": "happening",
+      "name": "Honest pending",
+      "detail": "Without live weather (and no usable cached feel), say conditions are still arriving — never invent sky."
+    },
+    {
+      "id": "M1",
+      "domain": "matters",
+      "name": "Alert outranks opportunity",
+      "detail": "Official NWS alerts always claim Matters #1 when present. Prefer ≤2 matters on alert-dominant days."
+    },
+    {
+      "id": "M2",
+      "domain": "matters",
+      "name": "Safety > change > opportunity",
+      "detail": "Rank: alerts → storms → flood/water → AQI/smoke → heat/cold → wind → UV/rain timing → light/photo → ordinary timing."
+    },
+    {
+      "id": "M3",
+      "domain": "matters",
+      "name": "Consequence phrasing",
+      "detail": "Each matter answers why care (limit exertion, avoid crossings, shade, wait for light) — not weather echo."
+    },
+    {
+      "id": "M4",
+      "domain": "matters",
+      "name": "Max three; prefer fewer",
+      "detail": "Never pad to 3 with trivia. Conflict days may use one item to name the tension."
+    },
+    {
+      "id": "M5",
+      "domain": "matters",
+      "name": "Omit unknown domains",
+      "detail": "No air/water/photo matter without live or honest derived signal for that domain."
+    },
+    {
+      "id": "M6",
+      "domain": "matters",
+      "name": "Conflict naming",
+      "detail": "When opportunity and hazard coexist (good light + poor air, clear + rising water), name the tension explicitly."
+    },
+    {
+      "id": "R1",
+      "domain": "ranking",
+      "name": "Activity ranking order",
+      "detail": "Safety/constraints → exceptional time-sensitive opportunity → broadly useful outdoor action → photography ONLY when genuinely notable photo advantage (light/cloud/fog/wildlife/seasonal/visibility/water). Ordinary calm days prefer a general outdoor recommendation (walk). No activity-preference UI in M2."
+    },
+    {
+      "id": "R2",
+      "domain": "ranking",
+      "name": "Heat primary threshold (conservative band)",
+      "detail": "Heat is primary when trusted feels/temp ≥90°F, or Heat Advisory/Excessive Heat Warning is active, or humid oppressive air (derived/provider dew ≥70°F) coincides with feels ≥88°F. Warm days below that band are not framed as heat limitation. Drought alone never equals avoid-outdoors."
+    },
+    {
+      "id": "D1",
+      "domain": "do",
+      "name": "One primary posture",
+      "detail": "Single imperative ≤16 words; include a practical timing window when timing drives the decision."
+    },
+    {
+      "id": "D2",
+      "domain": "do",
+      "name": "Alternate optional",
+      "detail": "At most one quieter alternate ≤14 words, prefixed Alternate:."
+    },
+    {
+      "id": "D3",
+      "domain": "do",
+      "name": "Safety-first Do on alert/storm/severe AQI",
+      "detail": "Storm Warning / Flood Warning / active flooding / severe AQI: postpone or constrain firmly. Flood Watch alone: precautionary water language — never stay-home unless warning or observed flooding justifies escalation."
+    },
+    {
+      "id": "D4",
+      "domain": "do",
+      "name": "Evidence from activity + signals",
+      "detail": "Primary Do must trace to activity suitability and/or ranked signals — never invented confidence."
+    },
+    {
+      "id": "D5",
+      "domain": "do",
+      "name": "Admit uncertainty",
+      "detail": "Material provider disagreement (timing/severity/safety/action) → plain uncertainty + resilient action. Minor differences stay silent in the triad (precedence/confidence only). Never name providers in Happening/Matters/Do."
+    },
+    {
+      "id": "D6",
+      "domain": "do",
+      "name": "No fake photo pitch",
+      "detail": "Do not recommend photography on ordinary calm/good-light days. Photography only when excellent/notable photo advantage is evidenced."
+    },
+    {
+      "id": "D7",
+      "domain": "do",
+      "name": "Night Do horizon",
+      "detail": "At night, primary is tonight posture; alternate may be tomorrow’s first window."
+    },
+    {
+      "id": "D8",
+      "domain": "do",
+      "name": "Practical timing windows",
+      "detail": "Windows only when data supports. Use practical bands (early morning, through late morning, before noon, early afternoon, after 4 PM, near sunset, this evening). Exact astronomical sunrise/sunset OK. No false precision (8:13–9:47)."
+    },
+    {
+      "id": "D9",
+      "domain": "do",
+      "name": "Flood Watch precautionary wording",
+      "detail": "Preferred Flood Watch Do: Avoid low crossings and check local updates before heading near streams. Escalate only for Flood Warning or observed active flooding."
+    },
+    {
+      "id": "T1",
+      "domain": "trust",
+      "name": "Never fabricate",
+      "detail": "Missing domains omitted. No invented AQI, hometown, Live label, or golden-hour pitch."
+    },
+    {
+      "id": "T2",
+      "domain": "trust",
+      "name": "Provider conflict is information",
+      "detail": "Material disagreement → uncertainty language in triad without provider names. Minor differences → no triad clutter. Sources panel only for provider identity."
+    },
+    {
+      "id": "T3",
+      "domain": "trust",
+      "name": "Traces required",
+      "detail": "Every Happening/Matters/Do decision records rule ids and input keys used."
+    },
+    {
+      "id": "T4",
+      "domain": "trust",
+      "name": "Dew point honesty",
+      "detail": "Prefer trusted provider dew point. Else calculate only from fresh valid temp+RH; mark derived internally; never present as observed; use qualitative copy (e.g. humid air may support fog); skip if stale/invalid."
+    },
+    {
+      "id": "V1",
+      "domain": "voice",
+      "name": "Calm field voice",
+      "detail": "Calm, direct, specific, literate, brief, scientifically honest. Ban: Perfect/Amazing/Ideal (unless unusually strong evidence)/You should definitely/Don’t miss/Adventure/promotional filler. Pattern: Observation → consequence → practical action."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "sunny-calm",
+      "title": "Sunny, calm, mild",
+      "covers": [
+        "calm ordinary day",
+        "sunny"
+      ],
+      "happening": {
+        "headline": "Clear, warm, light air",
+        "support": "An easy day to be outside if you mind the usual sun and timing.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "UV climbs after late morning — shade for longer walks",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk through late morning; seek shade after midday",
+        "alternate": "Alternate: shorter shaded loop if UV feels sharp",
+        "rationale": [
+          "UV is meaningful; heat is not the binding limit."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 49,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D4",
+        "R1"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: calm",
+        "M2: uv-high",
+        "M4: count",
+        "D4: uv-shade",
+        "R1: outdoor-action"
+      ],
+      "influencingInputs": [
+        {
+          "id": "uv-high",
+          "kind": "uv",
+          "weight": 62,
+          "inputs": {
+            "uv": 7
+          }
+        },
+        {
+          "id": "photo-ordinary",
+          "kind": "photo-ordinary",
+          "weight": 32,
+          "inputs": {
+            "level": "good",
+            "summary": "Bright clear light"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 18,
+        "matters": 10,
+        "doPrimary": 10,
+        "doAlternate": 8
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "overcast-mild",
+      "title": "Soft overcast, mild",
+      "covers": [
+        "overcast"
+      ],
+      "happening": {
+        "headline": "Heavy overcast, mild, light air",
+        "support": "Light quality is the quiet advantage of the day.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Notable light advantage near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Photography near sunset while light stays soft",
+        "alternate": "Alternate: easy walk while air and sky stay kind",
+        "rationale": [
+          "Diffuse overcast light",
+          "Notable light advantage."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 54,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D4",
+        "D6",
+        "R1",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: photo",
+        "M2: photo-good",
+        "M4: count",
+        "D4: photo-notable",
+        "D6: photo-earned",
+        "R1: notable-photo",
+        "D8: near-sunset"
+      ],
+      "influencingInputs": [
+        {
+          "id": "photo-good",
+          "kind": "photo-excellent",
+          "weight": 66,
+          "inputs": {
+            "level": "excellent",
+            "summary": "Diffuse overcast light",
+            "goldenHour": "7:40–8:05 PM",
+            "notable": true
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 14,
+        "matters": 5,
+        "doPrimary": 7,
+        "doAlternate": 9
+      },
+      "atmosphere": "overcast",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "rain-now",
+      "title": "Light rain",
+      "covers": [
+        "light rain",
+        "rain"
+      ],
+      "happening": {
+        "headline": "Rainy, mild outside",
+        "support": "Wet ground and short windows — keep plans flexible.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light rain — wet surfaces and shorter outdoor windows",
+          "panel": "conditions",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Short rain-ready walk or wait for a dry gap",
+        "alternate": "Alternate: indoor plan until showers ease",
+        "rationale": [
+          "Active precipitation shortens outdoor windows."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 54,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: rain-now",
+        "M2: rain-now",
+        "M4: count",
+        "D4: rain-now"
+      ],
+      "influencingInputs": [
+        {
+          "id": "rain-now",
+          "kind": "rain",
+          "weight": 78,
+          "inputs": {
+            "conditions": "Light rain",
+            "precipProb": 80,
+            "heavy": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 9,
+        "doPrimary": 9,
+        "doAlternate": 6
+      },
+      "atmosphere": "rain",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "rain-later",
+      "title": "Dry now, rain later",
+      "covers": [
+        "rain"
+      ],
+      "happening": {
+        "headline": "Broken cloud, warm",
+        "support": "A dry window closes as showers build later.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Rain risk rises later — plan an earlier window",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Finish outdoor time early afternoon before rain builds",
+        "alternate": "Alternate: short covered walk if showers arrive",
+        "rationale": [
+          "Hourly rain risk rises later.",
+          "Earlier window is the safer plan."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 53,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "M2",
+        "M5",
+        "M4",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: rain-later",
+        "M2: rain-later",
+        "M5: light-window",
+        "M4: count",
+        "H3: do-before-rain",
+        "D8: practical-window"
+      ],
+      "influencingInputs": [
+        {
+          "id": "rain-later",
+          "kind": "rain",
+          "weight": 72,
+          "inputs": {
+            "rainStart": "2026-07-22T21:00:00.000Z"
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 11,
+        "matters": 13,
+        "doPrimary": 8,
+        "doAlternate": 7
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "thunderstorms",
+      "title": "Thunderstorms",
+      "covers": [
+        "thunderstorm risk",
+        "storms"
+      ],
+      "happening": {
+        "headline": "Stormy, hot, breezy",
+        "support": "Exposed travel can wait until the hazard eases.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Severe Thunderstorm Warning shapes today’s plan",
+          "panel": "alerts",
+          "rank": 1
+        },
+        {
+          "text": "Storm timing — stay near shelter while cells pass",
+          "panel": "conditions",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Postpone exposed travel until the alert eases",
+        "alternate": "Alternate: short sheltered check nearby",
+        "rationale": [
+          "Severe Thunderstorm Warning shapes today’s plan",
+          "Safety outranks opportunity today."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 69,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M1",
+        "M2",
+        "M4",
+        "D3",
+        "D1",
+        "D2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: alert",
+        "M1: alert",
+        "M2: storm",
+        "M4: count",
+        "D3: safety",
+        "D1: primary",
+        "D2: alternate"
+      ],
+      "influencingInputs": [
+        {
+          "id": "alert",
+          "kind": "alert",
+          "weight": 100,
+          "inputs": {
+            "event": "Severe Thunderstorm Warning",
+            "severity": "Severe",
+            "headline": "Severe thunderstorms until 6 PM",
+            "floodClass": null
+          }
+        },
+        {
+          "id": "storm",
+          "kind": "storm",
+          "weight": 95,
+          "inputs": {
+            "conditions": "Thunderstorm"
+          }
+        },
+        {
+          "id": "breeze",
+          "kind": "wind",
+          "weight": 48,
+          "inputs": {
+            "windMph": 18
+          }
+        },
+        {
+          "id": "muggy",
+          "kind": "humidity",
+          "weight": 42,
+          "inputs": {
+            "dewPointF": 69,
+            "humidity": 75,
+            "derived": true,
+            "source": "calculated",
+            "observed": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 11,
+        "matters": 15,
+        "doPrimary": 7,
+        "doAlternate": 5
+      },
+      "atmosphere": "storm",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "snow-ice",
+      "title": "Snow / icy surfaces",
+      "covers": [
+        "snow"
+      ],
+      "happening": {
+        "headline": "Snowy, cold outside",
+        "support": "Footing and travel time matter more than the forecast text.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Hard cold — layer for wind and keep outings short",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Snow or ice underfoot — slow travel and watch footing",
+          "panel": "conditions",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Slow walk on treated or packed paths only",
+        "alternate": "Alternate: postpone until surfaces settle",
+        "rationale": [
+          "Snow/ice underfoot drives footing risk."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Cold exposure risk — layer for wind and wet surfaces"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 20,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M2",
+        "M4",
+        "D4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: snow",
+        "M2: cold",
+        "M2: snow",
+        "M4: count",
+        "D4: snow"
+      ],
+      "influencingInputs": [
+        {
+          "id": "cold",
+          "kind": "cold",
+          "weight": 87,
+          "inputs": {
+            "feelsF": 22
+          }
+        },
+        {
+          "id": "snow",
+          "kind": "snow",
+          "weight": 86,
+          "inputs": {
+            "conditions": "Snow"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 13,
+        "matters": 20,
+        "doPrimary": 8,
+        "doAlternate": 5
+      },
+      "atmosphere": "snow",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "fog",
+      "title": "Dense fog",
+      "covers": [
+        "fog likely",
+        "fog"
+      ],
+      "happening": {
+        "headline": "Foggy, mild, light air",
+        "support": "Near views only until the fog lifts.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Low visibility — keep routes short and familiar",
+          "panel": "conditions",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Short familiar walk until visibility improves",
+        "alternate": "Alternate: wait for lift, then a longer outing",
+        "rationale": [
+          "Low visibility favors short known routes."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 51,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M2",
+        "M4",
+        "D4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: fog",
+        "M2: fog",
+        "M4: count",
+        "D4: fog"
+      ],
+      "influencingInputs": [
+        {
+          "id": "fog",
+          "kind": "fog",
+          "weight": 74,
+          "inputs": {
+            "conditions": "Fog",
+            "visibilityMi": 0.4
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 11,
+        "matters": 8,
+        "doPrimary": 6,
+        "doAlternate": 8
+      },
+      "atmosphere": "fog",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "wildfire-smoke",
+      "title": "Wildfire smoke",
+      "covers": [
+        "wildfire smoke",
+        "poor AQI"
+      ],
+      "happening": {
+        "headline": "Smoke-hazed, warm outside",
+        "support": "Long exertion outdoors asks more of your lungs today.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Smoke-thick air (AQI 168) — limit outdoor exertion",
+          "panel": "air",
+          "rank": 1
+        },
+        {
+          "text": "UV climbs after late morning — shade for longer walks",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Skip long outdoor exertion until air improves",
+        "alternate": null,
+        "rationale": [
+          "Smoke-thick air (AQI 168) — limit outdoor exertion",
+          "Air quality is the binding constraint."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Elevated air quality index (168) — sensitive groups may want shorter exertion"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 46,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M2",
+        "M4",
+        "D3"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: air",
+        "M2: aqi-poor",
+        "M2: uv-high",
+        "M4: count",
+        "D3: air"
+      ],
+      "influencingInputs": [
+        {
+          "id": "aqi-poor",
+          "kind": "wildfire-smoke",
+          "weight": 92,
+          "inputs": {
+            "aqi": 168,
+            "smoke": true,
+            "category": "Unhealthy"
+          }
+        },
+        {
+          "id": "uv-high",
+          "kind": "uv",
+          "weight": 62,
+          "inputs": {
+            "uv": 6
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 18,
+        "doPrimary": 7,
+        "doAlternate": 0
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "poor-aqi",
+      "title": "Poor AQI (no smoke label)",
+      "covers": [
+        "poor AQI"
+      ],
+      "happening": {
+        "headline": "Cloudy, mild outside",
+        "support": "Long exertion outdoors asks more of your lungs today.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Poor air (AQI 155) — limit outdoor exertion",
+          "panel": "air",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Skip long outdoor exertion until air improves",
+        "alternate": null,
+        "rationale": [
+          "Poor air (AQI 155) — limit outdoor exertion",
+          "Air quality is the binding constraint."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 51,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M2",
+        "M4",
+        "D3"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: air",
+        "M2: aqi-poor",
+        "M4: count",
+        "D3: air"
+      ],
+      "influencingInputs": [
+        {
+          "id": "aqi-poor",
+          "kind": "aqi",
+          "weight": 92,
+          "inputs": {
+            "aqi": 155,
+            "smoke": false,
+            "category": "Unhealthy"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 8,
+        "doPrimary": 7,
+        "doAlternate": 0
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "elevated-aqi",
+      "title": "Elevated AQI (sensitive)",
+      "covers": [
+        "poor AQI"
+      ],
+      "happening": {
+        "headline": "Cloudy, mild outside",
+        "support": "Long exertion outdoors asks more of your lungs today.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Elevated AQI (112) — ease longer efforts",
+          "panel": "air",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Keep outdoor effort short and easy today",
+        "alternate": "Alternate: brief outdoor check, then indoors",
+        "rationale": [
+          "Elevated AQI (112) — ease longer efforts",
+          "Air quality is the binding constraint."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 51,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M2",
+        "M4",
+        "D3"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: air",
+        "M2: aqi-elevated",
+        "M4: count",
+        "D3: air"
+      ],
+      "influencingInputs": [
+        {
+          "id": "aqi-elevated",
+          "kind": "aqi",
+          "weight": 84,
+          "inputs": {
+            "aqi": 112,
+            "smoke": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 7,
+        "doPrimary": 7,
+        "doAlternate": 6
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "flood-watch",
+      "title": "Flood Watch",
+      "covers": [
+        "Flood Watch",
+        "flood watch"
+      ],
+      "happening": {
+        "headline": "Broken cloud, mild",
+        "support": "Water deserves caution more than the sky does today.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Flood Watch shapes today’s plan",
+          "panel": "alerts",
+          "rank": 1
+        },
+        {
+          "text": "Nearby water rising or high — avoid low crossings",
+          "panel": "water",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Avoid low crossings and check local updates before heading near streams",
+        "alternate": "Alternate: choose high-ground walks away from creeks",
+        "rationale": [
+          "Flood Watch is precautionary — not a stay-home order."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 56,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M1",
+        "M2",
+        "M4",
+        "D9",
+        "D1",
+        "D2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: water",
+        "M1: alert",
+        "M2: river-high",
+        "M4: count",
+        "D9: flood-watch-precaution",
+        "D1: primary",
+        "D2: alternate"
+      ],
+      "influencingInputs": [
+        {
+          "id": "alert",
+          "kind": "flood-watch",
+          "weight": 100,
+          "inputs": {
+            "event": "Flood Watch",
+            "severity": "Moderate",
+            "headline": "Flood Watch for low-lying areas",
+            "floodClass": "flood-watch"
+          }
+        },
+        {
+          "id": "river-high",
+          "kind": "flood",
+          "weight": 90,
+          "inputs": {
+            "site": "Shohola Creek",
+            "trend": "Rising rapidly",
+            "stageFt": 6.8,
+            "activeFlooding": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 14,
+        "doPrimary": 11,
+        "doAlternate": 7
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "drought",
+      "title": "Drought / low water",
+      "covers": [
+        "low-water or drought conditions",
+        "drought"
+      ],
+      "happening": {
+        "headline": "Clear, hot outside",
+        "support": "The day near you sets the tone for time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Very high UV — shade longer midday walks",
+          "panel": "light",
+          "rank": 1
+        },
+        {
+          "text": "Low water nearby — expect exposed banks and warm shallows",
+          "panel": "water",
+          "rank": 2
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 3
+        }
+      ],
+      "do": {
+        "primary": "Walk or easy hike; pack extra water",
+        "alternate": "Alternate: shorter loop near reliable shade",
+        "rationale": [
+          "Dry spell — personal water matters more; outdoors still fine."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Very high UV — sun protection important midday"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 49,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M5",
+        "M4",
+        "D4",
+        "R2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: default",
+        "M2: uv-very-high",
+        "M5: river-low",
+        "M5: light-window",
+        "M4: count",
+        "D4: drought",
+        "R2: drought-not-avoid"
+      ],
+      "influencingInputs": [
+        {
+          "id": "uv-very-high",
+          "kind": "uv",
+          "weight": 70,
+          "inputs": {
+            "uv": 8,
+            "at": "2026-07-22T22:00:00.000Z"
+          }
+        },
+        {
+          "id": "river-low",
+          "kind": "drought",
+          "weight": 45,
+          "inputs": {
+            "site": "Delaware River at Milford",
+            "trend": "Below normal / drought"
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 13,
+        "matters": 22,
+        "doPrimary": 7,
+        "doAlternate": 6
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "excellent-photography",
+      "title": "Excellent photography light",
+      "covers": [
+        "excellent photography conditions",
+        "exceptional photography morning",
+        "excellent photography"
+      ],
+      "happening": {
+        "headline": "Broken cloud, mild, light air",
+        "support": "Light quality is the quiet advantage of the day.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Notable light advantage near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Photography near sunset while light stays soft",
+        "alternate": "Alternate: easy walk while air and sky stay kind",
+        "rationale": [
+          "Soft directional light, gentle cloud",
+          "Notable light advantage."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 48,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D4",
+        "D6",
+        "R1",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: photo",
+        "M2: photo-good",
+        "M4: count",
+        "D4: photo-notable",
+        "D6: photo-earned",
+        "R1: notable-photo",
+        "D8: near-sunset"
+      ],
+      "influencingInputs": [
+        {
+          "id": "photo-good",
+          "kind": "photo-excellent",
+          "weight": 66,
+          "inputs": {
+            "level": "excellent",
+            "summary": "Soft directional light, gentle cloud",
+            "goldenHour": "7:40–8:05 PM",
+            "notable": true
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 14,
+        "matters": 5,
+        "doPrimary": 7,
+        "doAlternate": 9
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "poor-photography",
+      "title": "Poor photography / hard light",
+      "covers": [
+        "poor photography"
+      ],
+      "happening": {
+        "headline": "Clear, hot, light air",
+        "support": "Midday heat will cut into how long you can comfortably stay out.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Heat stress risk — shade, water, and shorter midday effort",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Very high UV — shade longer midday walks",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Shaded walk early morning or after 4 PM",
+        "alternate": "Alternate: indoor plan through midday heat",
+        "rationale": [
+          "Heat stress risk midday."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Heat stress possible — hydrate and seek shade"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 61,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D1",
+        "D8",
+        "R2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: heat",
+        "M2: heat",
+        "M2: uv-very-high",
+        "M4: count",
+        "D1: heat-window",
+        "D8: practical-window",
+        "R2: heat-primary"
+      ],
+      "influencingInputs": [
+        {
+          "id": "heat",
+          "kind": "heat",
+          "weight": 88,
+          "inputs": {
+            "feelsF": 90,
+            "dewPointF": 61,
+            "dewDerived": true,
+            "heatAlert": false
+          }
+        },
+        {
+          "id": "uv-very-high",
+          "kind": "uv",
+          "weight": 70,
+          "inputs": {
+            "uv": 9,
+            "at": "2026-07-22T22:00:00.000Z"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 16,
+        "matters": 18,
+        "doPrimary": 8,
+        "doAlternate": 6
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "high-uncertainty",
+      "title": "Stale provider data",
+      "covers": [
+        "stale provider data",
+        "high uncertainty"
+      ],
+      "happening": {
+        "headline": "Cloudy, mild outside",
+        "support": "Signals are incomplete — treat today’s plan as provisional.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Forecast confidence is limited — treat plans as provisional",
+          "panel": "sources",
+          "rank": 1
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "If conditions hold: Take a walk early afternoon",
+        "alternate": "Alternate: Hike early afternoon",
+        "rationale": [
+          "Comfortable temperature",
+          "Uncertainty: cached, low-forecast-confidence"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "high",
+        "reasons": [
+          "cached",
+          "low-forecast-confidence"
+        ],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": null,
+      "rulesApplied": [
+        "H1",
+        "T2",
+        "M5",
+        "M4",
+        "R1",
+        "D4",
+        "D8",
+        "D5"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "T2: uncertainty",
+        "T2: uncertainty",
+        "M5: light-window",
+        "M4: count",
+        "R1: calm-walk",
+        "D4: activity",
+        "D8: practical-window",
+        "D5: softened"
+      ],
+      "influencingInputs": [
+        {
+          "id": "uncertainty",
+          "kind": "uncertainty",
+          "weight": 76,
+          "inputs": {
+            "level": "high",
+            "reasons": [
+              "cached",
+              "low-forecast-confidence"
+            ]
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 13,
+        "doPrimary": 8,
+        "doAlternate": 4
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "conflicting-providers",
+      "title": "Conflicting providers (material)",
+      "covers": [
+        "conflicting providers"
+      ],
+      "happening": {
+        "headline": "Rainy, warm outside",
+        "support": "Wet ground and short windows — keep plans flexible.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light rain — wet surfaces and shorter outdoor windows",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Sources disagree on timing — keep plans flexible",
+          "panel": "sources",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "If conditions hold: Short rain-ready walk or wait for a dry gap",
+        "alternate": "Alternate: indoor plan until showers ease",
+        "rationale": [
+          "Active precipitation shortens outdoor windows."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "high",
+        "reasons": [
+          "provider-conflict",
+          "low-forecast-confidence",
+          "precip-signal-conflict"
+        ],
+        "materialConflict": true,
+        "minorDiff": false
+      },
+      "dewPointF": 55,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "T2",
+        "M4",
+        "D4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: rain-now",
+        "M2: rain-now",
+        "T2: uncertainty",
+        "M4: count",
+        "D4: rain-now"
+      ],
+      "influencingInputs": [
+        {
+          "id": "rain-now",
+          "kind": "rain",
+          "weight": 78,
+          "inputs": {
+            "conditions": "Rain",
+            "precipProb": 15,
+            "heavy": false
+          }
+        },
+        {
+          "id": "uncertainty",
+          "kind": "uncertainty",
+          "weight": 76,
+          "inputs": {
+            "level": "high",
+            "reasons": [
+              "provider-conflict",
+              "low-forecast-confidence",
+              "precip-signal-conflict"
+            ],
+            "material": true
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 12,
+        "matters": 17,
+        "doPrimary": 12,
+        "doAlternate": 6
+      },
+      "atmosphere": "rain",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "heat-wave",
+      "title": "Meaningful heat limitation",
+      "covers": [
+        "meaningful heat limitation",
+        "heat"
+      ],
+      "happening": {
+        "headline": "Clear, hot, muggy",
+        "support": "Midday heat will cut into how long you can comfortably stay out.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Heat stress risk — shade, water, and shorter midday effort",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Very high UV — shade longer midday walks",
+          "panel": "light",
+          "rank": 2
+        },
+        {
+          "text": "Oppressive humidity — lighter effort and more water",
+          "panel": "conditions",
+          "rank": 3
+        }
+      ],
+      "do": {
+        "primary": "Shaded walk early morning or after 4 PM",
+        "alternate": "Alternate: indoor plan through midday heat",
+        "rationale": [
+          "Heat stress risk midday."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Heat stress possible — hydrate and seek shade"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 77,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M3",
+        "M4",
+        "D1",
+        "D8",
+        "R2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: heat",
+        "M2: heat",
+        "M2: uv-very-high",
+        "M3: oppressive-humid",
+        "M4: count",
+        "D1: heat-window",
+        "D8: practical-window",
+        "R2: heat-primary"
+      ],
+      "influencingInputs": [
+        {
+          "id": "heat",
+          "kind": "heat",
+          "weight": 88,
+          "inputs": {
+            "feelsF": 102,
+            "dewPointF": 77,
+            "dewDerived": true,
+            "heatAlert": false
+          }
+        },
+        {
+          "id": "uv-very-high",
+          "kind": "uv",
+          "weight": 70,
+          "inputs": {
+            "uv": 10,
+            "at": "2026-07-22T19:00:00.000Z"
+          }
+        },
+        {
+          "id": "oppressive-humid",
+          "kind": "humidity",
+          "weight": 58,
+          "inputs": {
+            "dewPointF": 77,
+            "humidity": 55,
+            "derived": true,
+            "source": "calculated",
+            "observed": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 26,
+        "doPrimary": 8,
+        "doAlternate": 6
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "high-wind",
+      "title": "High wind",
+      "covers": [
+        "strong wind",
+        "wind"
+      ],
+      "happening": {
+        "headline": "Broken cloud, mild, hard wind",
+        "support": "Open ground will ask more effort — use cover when you can.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Strong wind (~28 mph) on open ground",
+          "panel": "conditions",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Walk with cover early afternoon",
+        "alternate": "Alternate: Hike early afternoon",
+        "rationale": [
+          "Strong wind (28 mph)"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 36,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "R1",
+        "D4",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: wind",
+        "M2: wind",
+        "M4: count",
+        "R1: wind-walk",
+        "D4: activity",
+        "D8: practical-window"
+      ],
+      "influencingInputs": [
+        {
+          "id": "wind",
+          "kind": "wind",
+          "weight": 82,
+          "inputs": {
+            "windMph": 28,
+            "windGust": 40
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 17,
+        "matters": 7,
+        "doPrimary": 5,
+        "doAlternate": 4
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "conflict-air-light",
+      "title": "Conflict: good light + poor air",
+      "covers": [
+        "safety constraint overriding an attractive opportunity",
+        "conflicted",
+        "poor AQI",
+        "excellent photography"
+      ],
+      "happening": {
+        "headline": "Clear, warm, light air",
+        "support": "Opportunity and constraint share the same hours — pick the safer side.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Good light, poor air — short looks only, skip long shoots",
+          "panel": "air",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Short outdoor look only — skip long photo time",
+        "alternate": "Alternate: wait for cleaner air another day",
+        "rationale": [
+          "Light is good; air is not.",
+          "Air quality wins the tradeoff."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Good light, poor air — short looks only, skip long shoots",
+        "signalId": "conflict-air-light"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 48,
+      "rulesApplied": [
+        "H1",
+        "M6",
+        "M4",
+        "R1"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "M6: conflict-support",
+        "M6: conflict-air-light",
+        "M4: count",
+        "M6: do-resolve-air-light",
+        "R1: safety-over-opportunity"
+      ],
+      "influencingInputs": [
+        {
+          "id": "conflict-air-light",
+          "kind": "conflict",
+          "weight": 93,
+          "inputs": {
+            "tension": "light-vs-air",
+            "aqi": 140,
+            "photoLevel": "excellent"
+          }
+        },
+        {
+          "id": "aqi-elevated",
+          "kind": "aqi",
+          "weight": 84,
+          "inputs": {
+            "aqi": 140,
+            "smoke": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 16,
+        "matters": 11,
+        "doPrimary": 9,
+        "doAlternate": 7
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "conflict-sky-water",
+      "title": "Conflict: clear sky + rising water",
+      "covers": [
+        "conflicted",
+        "flood watch"
+      ],
+      "happening": {
+        "headline": "Clear, warm, light air",
+        "support": "Opportunity and constraint share the same hours — pick the safer side.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Clear sky, rising water — enjoy views; skip crossings",
+          "panel": "water",
+          "rank": 1
+        },
+        {
+          "text": "UV climbs after late morning — shade for longer walks",
+          "panel": "light",
+          "rank": 2
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 3
+        }
+      ],
+      "do": {
+        "primary": "Walk high ground; skip fords and low crossings",
+        "alternate": "Alternate: viewpoint look from a safe bank only",
+        "rationale": [
+          "Clear sky does not make crossings safe."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Clear sky, rising water — enjoy views; skip crossings",
+        "signalId": "conflict-sky-water"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 49,
+      "rulesApplied": [
+        "H1",
+        "M6",
+        "M2",
+        "M5",
+        "M4",
+        "R1"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "M6: conflict-support",
+        "M6: conflict-sky-water",
+        "M2: uv-high",
+        "M5: light-window",
+        "M4: count",
+        "M6: do-resolve-sky-water",
+        "R1: safety-over-opportunity"
+      ],
+      "influencingInputs": [
+        {
+          "id": "conflict-sky-water",
+          "kind": "conflict",
+          "weight": 94,
+          "inputs": {
+            "tension": "sky-vs-water"
+          }
+        },
+        {
+          "id": "river-high",
+          "kind": "flood",
+          "weight": 90,
+          "inputs": {
+            "site": "Bush Kill",
+            "trend": "Rising",
+            "stageFt": 5.9,
+            "activeFlooding": false
+          }
+        },
+        {
+          "id": "uv-high",
+          "kind": "uv",
+          "weight": 62,
+          "inputs": {
+            "uv": 6
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 16,
+        "matters": 23,
+        "doPrimary": 8,
+        "doAlternate": 8
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "night-clear",
+      "title": "Clear night",
+      "covers": [
+        "nighttime briefing",
+        "night"
+      ],
+      "happening": {
+        "headline": "Clear night, mild, light air",
+        "support": "Night near you — tonight’s check or tomorrow’s first window.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Tonight is quiet — tomorrow’s window matters more",
+          "panel": "day-arc",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Tonight: quiet outdoor check under Full moon",
+        "alternate": "Alternate: Tomorrow after sunrise (5:52 AM)",
+        "rationale": [
+          "Night briefing — plans named as tonight or tomorrow."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 41,
+      "rulesApplied": [
+        "H1",
+        "H5",
+        "M4",
+        "D7"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H5: night",
+        "M4: ordinary",
+        "M4: count",
+        "D7: night"
+      ],
+      "influencingInputs": [
+        {
+          "id": "ordinary",
+          "kind": "ordinary",
+          "weight": 20,
+          "inputs": {
+            "conditions": "Clear",
+            "temp": 53
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 8,
+        "doPrimary": 7,
+        "doAlternate": 6
+      },
+      "atmosphere": "night",
+      "placeTime": "Tonight · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "oppressive-humidity",
+      "title": "Oppressive humidity / dew point",
+      "covers": [
+        "humidity",
+        "dew-point derived"
+      ],
+      "happening": {
+        "headline": "Broken cloud, hot, light air, muggy",
+        "support": "Midday heat will cut into how long you can comfortably stay out.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Heat stress risk — shade, water, and shorter midday effort",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "UV climbs after late morning — shade for longer walks",
+          "panel": "light",
+          "rank": 2
+        },
+        {
+          "text": "Oppressive humidity — lighter effort and more water",
+          "panel": "conditions",
+          "rank": 3
+        }
+      ],
+      "do": {
+        "primary": "Shaded walk early morning or after 4 PM",
+        "alternate": "Alternate: indoor plan through midday heat",
+        "rationale": [
+          "Heat stress risk midday."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Heat stress possible — hydrate and seek shade"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 82,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M3",
+        "M4",
+        "D1",
+        "D8",
+        "R2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: heat",
+        "M2: heat",
+        "M2: uv-high",
+        "M3: oppressive-humid",
+        "M4: count",
+        "D1: heat-window",
+        "D8: practical-window",
+        "R2: heat-primary"
+      ],
+      "influencingInputs": [
+        {
+          "id": "heat",
+          "kind": "heat",
+          "weight": 88,
+          "inputs": {
+            "feelsF": 94,
+            "dewPointF": 82,
+            "dewDerived": true,
+            "heatAlert": false
+          }
+        },
+        {
+          "id": "uv-high",
+          "kind": "uv",
+          "weight": 62,
+          "inputs": {
+            "uv": 7
+          }
+        },
+        {
+          "id": "oppressive-humid",
+          "kind": "humidity",
+          "weight": 58,
+          "inputs": {
+            "dewPointF": 82,
+            "humidity": 88,
+            "derived": true,
+            "source": "calculated",
+            "observed": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 18,
+        "matters": 28,
+        "doPrimary": 8,
+        "doAlternate": 6
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "warm-safe-afternoon",
+      "title": "Warm but safe afternoon",
+      "covers": [
+        "warm but safe afternoon"
+      ],
+      "happening": {
+        "headline": "Clear, warm outside",
+        "support": "Clouds should thin later — afternoons open up for longer time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk early afternoon",
+        "alternate": "Alternate: Walk early afternoon",
+        "rationale": [
+          "Activity often peaks near sunrise (5:52 AM)"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 55,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "M5",
+        "M4",
+        "R1",
+        "D4",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: clearing",
+        "M5: light-window",
+        "M4: count",
+        "R1: calm-walk",
+        "D4: activity",
+        "D8: practical-window"
+      ],
+      "influencingInputs": [
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 4,
+        "doPrimary": 5,
+        "doAlternate": 4
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "high-uv-mild",
+      "title": "High UV without excessive heat",
+      "covers": [
+        "high UV without excessive heat"
+      ],
+      "happening": {
+        "headline": "Clear, warm, light air",
+        "support": "An easy day to be outside if you mind the usual sun and timing.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Very high UV — shade longer midday walks",
+          "panel": "light",
+          "rank": 1
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Take a walk through late morning; seek shade after midday",
+        "alternate": "Alternate: shorter shaded loop if UV feels sharp",
+        "rationale": [
+          "UV is meaningful; heat is not the binding limit."
+        ]
+      },
+      "constraints": {
+        "text": "If you still go: Very high UV — sun protection important midday"
+      },
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 45,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M5",
+        "M4",
+        "D4",
+        "R1"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: calm",
+        "M2: uv-very-high",
+        "M5: light-window",
+        "M4: count",
+        "D4: uv-shade",
+        "R1: outdoor-action"
+      ],
+      "influencingInputs": [
+        {
+          "id": "uv-very-high",
+          "kind": "uv",
+          "weight": 70,
+          "inputs": {
+            "uv": 9,
+            "at": "2026-07-22T19:00:00.000Z"
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 18,
+        "matters": 12,
+        "doPrimary": 10,
+        "doAlternate": 8
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "fog-uncertain",
+      "title": "Fog uncertain",
+      "covers": [
+        "fog uncertain"
+      ],
+      "happening": {
+        "headline": "Soft overcast, mild, light air",
+        "support": "Humid air may support fog — check visibility before you commit.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Humid air may support fog — verify visibility before long drives",
+          "panel": "conditions",
+          "rank": 1
+        },
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Verify visibility locally before a long drive or hike",
+        "alternate": "Alternate: keep the first outing short and familiar",
+        "rationale": [
+          "Fog is possible, not confirmed."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 53,
+      "rulesApplied": [
+        "H1",
+        "T4",
+        "M3",
+        "M5",
+        "M4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "T4: fog-uncertain",
+        "M3: fog-uncertain",
+        "M5: light-window",
+        "M4: count",
+        "T4: fog-uncertain-do"
+      ],
+      "influencingInputs": [
+        {
+          "id": "fog-uncertain",
+          "kind": "fog-uncertain",
+          "weight": 55,
+          "inputs": {
+            "dewPointF": 53,
+            "dewDerived": true,
+            "humidity": 96,
+            "visibilityMi": 4
+          }
+        },
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 16,
+        "matters": 15,
+        "doPrimary": 9,
+        "doAlternate": 8
+      },
+      "atmosphere": "overcast",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "heavy-rain",
+      "title": "Heavy rain",
+      "covers": [
+        "heavy rain"
+      ],
+      "happening": {
+        "headline": "Rainy, mild outside",
+        "support": "Heavy rain will shorten every outdoor window.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Heavy rain — expect pooling water and poor footing",
+          "panel": "conditions",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Wait out the heaviest rain; short covered walks only",
+        "alternate": "Alternate: indoor plan until showers ease",
+        "rationale": [
+          "Heavy rain shortens every outdoor window."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 59,
+      "rulesApplied": [
+        "H1",
+        "H2",
+        "M2",
+        "M4",
+        "D4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H2: rain-heavy",
+        "M2: rain-heavy",
+        "M4: count",
+        "D4: rain-heavy"
+      ],
+      "influencingInputs": [
+        {
+          "id": "rain-heavy",
+          "kind": "rain",
+          "weight": 85,
+          "inputs": {
+            "conditions": "Heavy rain",
+            "precipProb": 95,
+            "heavy": true
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 10,
+        "matters": 9,
+        "doPrimary": 9,
+        "doAlternate": 6
+      },
+      "atmosphere": "rain",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "flood-warning",
+      "title": "Flood Warning / active flooding",
+      "covers": [
+        "active flooding or Flood Warning"
+      ],
+      "happening": {
+        "headline": "Rainy, mild outside",
+        "support": "Flooding risk is elevated — treat low ground as off-limits.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Flood Warning shapes today’s plan",
+          "panel": "alerts",
+          "rank": 1
+        },
+        {
+          "text": "Active high water — avoid flooded roads and crossings",
+          "panel": "water",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Stay clear of flooded roads and low crossings",
+        "alternate": "Alternate: check official local updates before any stream travel",
+        "rationale": [
+          "Flood Warning or active high water outranks recreation."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 58,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M1",
+        "M2",
+        "M4",
+        "D3",
+        "D9",
+        "D1",
+        "D2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: flood-warning",
+        "M1: alert",
+        "M2: river-high",
+        "M4: count",
+        "D3: flood-warning",
+        "D9: escalated",
+        "D1: primary",
+        "D2: alternate"
+      ],
+      "influencingInputs": [
+        {
+          "id": "alert",
+          "kind": "flood-warning",
+          "weight": 100,
+          "inputs": {
+            "event": "Flood Warning",
+            "severity": "Severe",
+            "headline": "Flooding ongoing along low-lying streams",
+            "floodClass": "flood-warning"
+          }
+        },
+        {
+          "id": "river-high",
+          "kind": "flood-active",
+          "weight": 90,
+          "inputs": {
+            "site": "Shohola Creek",
+            "trend": "Above flood stage",
+            "stageFt": 9.2,
+            "activeFlooding": true
+          }
+        },
+        {
+          "id": "rain-now",
+          "kind": "rain",
+          "weight": 78,
+          "inputs": {
+            "conditions": "Rain",
+            "precipProb": 70,
+            "heavy": false
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 13,
+        "matters": 14,
+        "doPrimary": 8,
+        "doAlternate": 9
+      },
+      "atmosphere": "rain",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "partial-provider-failure",
+      "title": "Partial provider failure",
+      "covers": [
+        "partial provider failure"
+      ],
+      "happening": {
+        "headline": "Cloudy, mild outside",
+        "support": "Clouds should thin later — afternoons open up for longer time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk early afternoon",
+        "alternate": "Alternate: Hike early afternoon",
+        "rationale": [
+          "Comfortable temperature",
+          "Uncertainty: trust-partial, partial-provider-failure"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "moderate",
+        "reasons": [
+          "trust-partial",
+          "partial-provider-failure"
+        ],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 51,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "M5",
+        "M4",
+        "R1",
+        "D4",
+        "D8",
+        "D5"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: clearing",
+        "M5: light-window",
+        "M4: count",
+        "R1: calm-walk",
+        "D4: activity",
+        "D8: practical-window",
+        "D5: softened"
+      ],
+      "influencingInputs": [
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 4,
+        "doPrimary": 5,
+        "doAlternate": 4
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "no-superior-opportunity",
+      "title": "No clearly superior outdoor opportunity",
+      "covers": [
+        "no clearly superior outdoor opportunity"
+      ],
+      "happening": {
+        "headline": "Soft overcast, mild",
+        "support": "Clouds should thin later — afternoons open up for longer time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "No standout light window — skip a photo outing",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk during the mildest part of the day",
+        "alternate": null,
+        "rationale": [
+          "No standout light window — not pitching photography."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 45,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "D6",
+        "M4"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: clearing",
+        "D6: photo-poor",
+        "M4: count",
+        "D6: no-photo"
+      ],
+      "influencingInputs": [
+        {
+          "id": "photo-poor",
+          "kind": "photo-poor",
+          "weight": 28,
+          "inputs": {
+            "level": "poor",
+            "summary": "Flat gray light"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 9,
+        "doPrimary": 10,
+        "doAlternate": 0
+      },
+      "atmosphere": "overcast",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "excellent-walking",
+      "title": "Excellent general walking conditions",
+      "covers": [
+        "excellent general walking conditions"
+      ],
+      "happening": {
+        "headline": "Broken cloud, mild, light air",
+        "support": "Clouds should thin later — afternoons open up for longer time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk early afternoon",
+        "alternate": "Alternate: Hike early afternoon",
+        "rationale": [
+          "Comfortable temperature"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 46,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "M5",
+        "M4",
+        "R1",
+        "D4",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: clearing",
+        "M5: light-window",
+        "M4: count",
+        "R1: calm-walk",
+        "D4: activity",
+        "D8: practical-window"
+      ],
+      "influencingInputs": [
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 17,
+        "matters": 4,
+        "doPrimary": 5,
+        "doAlternate": 4
+      },
+      "atmosphere": "partly",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "safety-overrides-photo",
+      "title": "Safety overrides attractive photo opportunity",
+      "covers": [
+        "safety constraint overriding an attractive opportunity"
+      ],
+      "happening": {
+        "headline": "Stormy, warm, breezy",
+        "support": "Exposed travel can wait until the hazard eases.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Severe Thunderstorm Warning shapes today’s plan",
+          "panel": "alerts",
+          "rank": 1
+        },
+        {
+          "text": "Storm timing — stay near shelter while cells pass",
+          "panel": "conditions",
+          "rank": 2
+        }
+      ],
+      "do": {
+        "primary": "Postpone exposed travel until the alert eases",
+        "alternate": "Alternate: short sheltered check nearby",
+        "rationale": [
+          "Severe Thunderstorm Warning shapes today’s plan",
+          "Safety outranks opportunity today."
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [],
+        "materialConflict": false,
+        "minorDiff": false
+      },
+      "dewPointF": 60,
+      "rulesApplied": [
+        "H1",
+        "H4",
+        "M1",
+        "M2",
+        "M4",
+        "D3",
+        "D1",
+        "D2"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H4: alert",
+        "M1: alert",
+        "M2: storm",
+        "M4: count",
+        "D3: safety",
+        "D1: primary",
+        "D2: alternate"
+      ],
+      "influencingInputs": [
+        {
+          "id": "alert",
+          "kind": "alert",
+          "weight": 100,
+          "inputs": {
+            "event": "Severe Thunderstorm Warning",
+            "severity": "Severe",
+            "headline": "Damaging winds and lightning",
+            "floodClass": null
+          }
+        },
+        {
+          "id": "storm",
+          "kind": "storm",
+          "weight": 95,
+          "inputs": {
+            "conditions": "Thunderstorm"
+          }
+        },
+        {
+          "id": "breeze",
+          "kind": "wind",
+          "weight": 48,
+          "inputs": {
+            "windMph": 22
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 11,
+        "matters": 15,
+        "doPrimary": 7,
+        "doAlternate": 5
+      },
+      "atmosphere": "storm",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    },
+    {
+      "id": "minor-provider-diff",
+      "title": "Minor provider differences",
+      "covers": [
+        "minor provider differences"
+      ],
+      "happening": {
+        "headline": "Cloudy, warm outside",
+        "support": "Clouds should thin later — afternoons open up for longer time outside.",
+        "panel": "conditions"
+      },
+      "matters": [
+        {
+          "text": "Light softens near sunset",
+          "panel": "light",
+          "rank": 1
+        }
+      ],
+      "do": {
+        "primary": "Take a walk early afternoon",
+        "alternate": "Alternate: Hike early afternoon",
+        "rationale": [
+          "Comfortable temperature"
+        ]
+      },
+      "constraints": null,
+      "uncertainty": {
+        "level": "low",
+        "reasons": [
+          "minor-provider-diff"
+        ],
+        "materialConflict": false,
+        "minorDiff": true
+      },
+      "dewPointF": 51,
+      "rulesApplied": [
+        "H1",
+        "H3",
+        "M5",
+        "M4",
+        "R1",
+        "D4",
+        "D8"
+      ],
+      "whyEngineProducedIt": [
+        "H1: character",
+        "H3: clearing",
+        "M5: light-window",
+        "M4: count",
+        "R1: calm-walk",
+        "D4: activity",
+        "D8: practical-window"
+      ],
+      "influencingInputs": [
+        {
+          "id": "light-window",
+          "kind": "light",
+          "weight": 36,
+          "inputs": {
+            "goldenHour": "7:40–8:05 PM"
+          }
+        }
+      ],
+      "wordCounts": {
+        "happening": 15,
+        "matters": 4,
+        "doPrimary": 5,
+        "doAlternate": 4
+      },
+      "atmosphere": "clear",
+      "placeTime": "Wednesday · Near Milford, Pike County, PA"
+    }
+  ]
+}

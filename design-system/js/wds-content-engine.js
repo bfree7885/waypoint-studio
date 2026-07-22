@@ -324,8 +324,8 @@
 
     return (
       '<section class="wod" id="outdoor-dashboard" aria-labelledby="wod-title">' +
-        '<h1 class="wds-sr-only" id="wod-title">Outdoor dashboard</h1>' +
-        '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outdoor intelligence">' + dashboardHtml + "</div>" +
+        '<h1 class="wds-sr-only" id="wod-title">Outside</h1>' +
+        '<div class="wod__body wdb-dashboard-enter" data-wds-dashboard-root aria-label="Outside briefing">' + dashboardHtml + "</div>" +
       "</section>"
     );
   }
@@ -1045,6 +1045,13 @@
   function hydrateDashboardInPlace(mount, data, loc, base, options, platform) {
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
     var DE = global.WDS && global.WDS.dashboardEngine;
+    var OS = global.WDS && global.WDS.dashboardOS;
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    // Outside always uses Outdoor OS; never rehydrate Recovery/V2 chrome from prefs.
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     if (!mount.querySelector("[data-wds-dashboard-root]") || !DE || !DE.refreshDashboard) {
       return renderIntoMount(mount, data, loc, base, options, platform);
     }
@@ -1052,7 +1059,11 @@
       loc.elevationMeters = platform.location.elevationMeters;
       loc.elevation = platform.location.elevation || loc.elevation;
     }
-    if (Briefing && Briefing.render) {
+    if (useOutdoorOS) {
+      // Remove legacy briefing / customize chrome if a prior render left it.
+      var legacy = mount.querySelectorAll("header.wdb-briefing, [data-wds-live-updated], [data-wds-engine-health], #wds-dashboard-settings-open");
+      for (var i = 0; i < legacy.length; i++) legacy[i].remove();
+    } else if (Briefing && Briefing.render) {
       var header = mount.querySelector("header.wdb-briefing");
       if (header) {
         var wrap = document.createElement("div");
@@ -1068,8 +1079,13 @@
         }
       }
     }
-    updateBannerNodes(mount, platform);
-    if (loc && loc.displayTitle) {
+    if (!useOutdoorOS) updateBannerNodes(mount, platform);
+    if (useOutdoorOS) {
+      document.title = "Outside — Waypoint";
+      if (loc && loc.displayTitle && loc.displayTitle.indexOf("Finding") < 0) {
+        document.title = "Outside · " + loc.displayTitle + " — Waypoint";
+      }
+    } else if (loc && loc.displayTitle) {
       document.title = "Outdoor Dashboard · " + loc.displayTitle + " — Waypoint Studio";
     } else if (loc && loc.name) {
       document.title = "Outdoor Dashboard · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";
@@ -1105,23 +1121,33 @@
       package: platform && platform.weatherRef
     };
     var DE = global.WDS && global.WDS.dashboardEngine;
+    var OS = global.WDS && global.WDS.dashboardOS;
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     if (DE) {
       mount._wdbMountOpts = mountOpts;
       wireLatePlatformHydration(mount, loc, base, data);
-      DE.bindInteractions(mount);
-      if (!mount._wdbSettingsBound) {
-        mount._wdbSettingsBound = true;
-        DE.bindSettings(mount, function () {
-          var opts = mount._wdbMountOpts || mountOpts;
-          DE.refreshDashboard(mount, Object.assign({}, opts, {
-            settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
-          }));
-        });
+      if (!useOutdoorOS) {
+        DE.bindInteractions(mount);
+        if (!mount._wdbSettingsBound) {
+          mount._wdbSettingsBound = true;
+          DE.bindSettings(mount, function () {
+            var opts = mount._wdbMountOpts || mountOpts;
+            DE.refreshDashboard(mount, Object.assign({}, opts, {
+              settings: global.WDS.dashboardSettings && global.WDS.dashboardSettings.load()
+            }));
+          });
+        }
       }
       DE.mountWidgets(mount, mountOpts).then(function () {
+        if (useOutdoorOS) return;
         var BP = global.WDS && global.WDS.briefingPackage;
         if (BP && BP.bind) BP.bind(mount, mountOpts);
       }).catch(function () {
+        if (useOutdoorOS) return;
         var BP = global.WDS && global.WDS.briefingPackage;
         if (BP && BP.bind) BP.bind(mount, mountOpts);
       });
@@ -1143,24 +1169,41 @@
       loc.elevation = platform.location.elevation || loc.elevation;
     }
     var renderOpts = Object.assign({}, options, { base: base });
+    // Outdoor OS owns place/trust chrome (Screen Spec §1). Skip legacy briefing header + system health banners.
+    var OS = global.WDS && global.WDS.dashboardOS;
+    var onOutside =
+      !!(global.document && global.document.documentElement &&
+        global.document.documentElement.getAttribute("data-product") === "dashboard") ||
+      /\/apps\/dashboard\/?/.test(String((global.location && global.location.pathname) || ""));
+    var useOutdoorOS = onOutside || !!(OS && OS.renderDashboard);
     var Briefing = global.WDS && global.WDS.dashboardBriefing;
-    var briefingHtml = Briefing && Briefing.render ? Briefing.render(loc, platform) : renderLocationBar(loc);
-    var liveUpdatedHtml = renderLiveUpdatedBanner(platform);
+    var briefingHtml = "";
+    var liveUpdatedHtml = "";
+    if (!useOutdoorOS) {
+      briefingHtml = Briefing && Briefing.render ? Briefing.render(loc, platform) : renderLocationBar(loc);
+      liveUpdatedHtml = renderLiveUpdatedBanner(platform);
+    }
     var inner = briefingHtml + liveUpdatedHtml + renderHome(data, renderOpts);
     mount.innerHTML = options.wrapMain !== false ? '<main id="main">' + inner + "</main>" : inner;
     mount.removeAttribute("aria-busy");
     mount.classList.add("wdb-content-ready");
-    if (!(Briefing && Briefing.bind)) {
-      bindLocationBar(mount, options);
+    if (!useOutdoorOS) {
+      if (!(Briefing && Briefing.bind)) {
+        bindLocationBar(mount, options);
+      }
+      if (Briefing && Briefing.bind) {
+        Briefing.bind(mount, loc, {
+          base: base,
+          platform: platform,
+          onLocationChange: options && options.onLocationChange
+        });
+      }
     }
-    if (Briefing && Briefing.bind) {
-      Briefing.bind(mount, loc, {
-        base: base,
-        platform: platform,
-        onLocationChange: options && options.onLocationChange
-      });
-    }
-    if (loc && loc.displayTitle) {
+    if (loc && loc.displayTitle && loc.displayTitle.indexOf("Finding") < 0 && useOutdoorOS) {
+      document.title = "Outside · " + loc.displayTitle + " — Waypoint";
+    } else if (useOutdoorOS) {
+      document.title = "Outside — Waypoint";
+    } else if (loc && loc.displayTitle) {
       document.title = "Outdoor Dashboard · " + loc.displayTitle + " — Waypoint Studio";
     } else if (loc && loc.name) {
       document.title = "Outdoor Dashboard · " + loc.name + ", " + (loc.stateCode || loc.state) + " — Waypoint Studio";

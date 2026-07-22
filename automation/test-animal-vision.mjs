@@ -30,7 +30,7 @@ function loadScript(rel, sandbox) {
 const species = JSON.parse(fs.readFileSync(path.join(AV, "data/species.json"), "utf8"));
 assert("config version", species.version === 1);
 assert("exactly three MVP species", species.species.length === 3);
-assert("disclaimer present", /research-informed educational visualization/i.test(species.disclaimer));
+assert("disclaimer present", /research-informed interpretive visualization/i.test(species.disclaimer));
 assert("privacy note", /never uploaded/i.test(species.privacyNote));
 
 const ids = species.species.map((s) => s.id).sort();

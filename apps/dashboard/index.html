@@ -7,62 +7,77 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="description" content="Dashboard — free Today Outside briefing. Observe conditions, discover what matters, understand with Waypoint’s Take. Private by default.">
-  <title>Dashboard — Today Outside · Waypoint Studio</title>
+  <meta name="description" content="Outside — what is happening near you today, what matters most, and what to do about it.">
+  <title>Outside — Waypoint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Non-blocking fonts: shell paints with fallbacks first -->
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-home.css">
-  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-v2.css">
-  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-v3.css">
-  <link rel="stylesheet" href="../../css/home-dashboard.css">
+  <!-- Outdoor OS presentation (Screen Spec). Legacy dashboard CSS kept only for shared tokens/shell bleed. -->
+  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-os.css?v=os-m3-1">
+  <link rel="stylesheet" href="../../design-system/css/wds-dashboard-home.css?v=os-m3-1">
+  <link rel="stylesheet" href="../../css/home-dashboard.css?v=os-m3-1">
   <style>
-    /* Critical shell — visible before full CSS graph settles; colors from Experience System V2 */
+    /* Spec §5.1 — calm structure, no tab skeleton */
     #wds-content-engine { min-height: 70vh; }
-    .wdb-page-loading { padding: 1rem 1.1rem 2rem; max-width: 72rem; margin: 0 auto; }
-    .wdb-skel { height: 0.85rem; width: 100%; margin-bottom: 0.45rem; }
-    .wdb-skel--title { height: 1.6rem; width: min(18rem, 70%); margin-bottom: 0.6rem; }
-    .wdb-skel--sub { height: 0.9rem; width: min(24rem, 90%); margin-bottom: 1rem; }
-    .wdb-skel--hero { height: 8.5rem; width: 100%; margin-bottom: 0.85rem; }
-    .wdb-skel--tabs { height: 2.5rem; width: 100%; margin-bottom: 0.85rem; border-radius: 999px; }
-    .wdb-skel--line { height: 0.85rem; width: 100%; margin-bottom: 0.45rem; }
+    .wdb-os-boot {
+      max-width: 46rem;
+      margin: 0 auto;
+      padding: 0.75rem 1.15rem 2rem;
+    }
+    .wdb-os-boot__brand {
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      color: rgba(28, 26, 22, 0.62);
+    }
+    .wdb-os-boot__copy {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+    }
+    .wdb-os-boot__detail {
+      margin: 0 0 1.25rem;
+      font-size: 0.9rem;
+      color: rgba(28, 26, 22, 0.62);
+    }
+    .wdb-os-boot__skel {
+      height: 1rem;
+      width: min(22rem, 90%);
+      margin-bottom: 0.75rem;
+      background: rgba(28, 26, 22, 0.08);
+    }
+    .wdb-os-boot__skel--lg { height: 2rem; width: min(28rem, 95%); }
+    .wdb-os-boot__skel--md { width: min(16rem, 70%); }
   </style>
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="dashboard" data-product-name="Dashboard" data-shell-depth="1">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="dashboard" data-product-name="Outside" data-shell-depth="1" data-hide-local="true" data-quiet-chrome="true">
     <div data-wds-app-global data-shell-depth="1"></div>
-    <div data-wds-app-local data-shell-depth="1"></div>
+    <!-- Local app nav intentionally omitted (Screen Spec / owner IQ-1). -->
+    <div data-wds-app-local data-shell-depth="1" hidden></div>
 
     <div id="wds-location-prompt"></div>
 
     <main id="main">
       <noscript>
         <section style="max-width:40rem;margin:0 auto;padding:1.5rem 1rem 2rem">
-          <p class="wds-eyebrow">This morning</p>
-          <h1>How is today?</h1>
-          <p>A trusted outdoor brief — weather, light, and what matters nearby before you leave.</p>
+          <p>Outside</p>
+          <h1>Outdoor briefing</h1>
+          <p>Enable JavaScript to see what’s happening near you today, what matters most, and what to do about it.</p>
           <p><a href="../../">Studio home</a> · <a href="../../about.html">About</a> · <a href="../../contact.html">Contact</a></p>
         </section>
       </noscript>
-      <h1 class="wds-sr-only">Dashboard</h1>
+      <h1 class="wds-sr-only">Outside</h1>
       <div id="wds-content-engine" data-wds-region="us-national" aria-busy="true">
-        <div class="wdb-page-loading" role="status">
-          <div class="wdb-page-loading__skeleton" aria-hidden="true">
-            <div class="wdb-skel wdb-skel--line wdb-skel--title"></div>
-            <div class="wdb-skel wdb-skel--line wdb-skel--sub"></div>
-            <div class="wdb-skel wdb-skel--hero"></div>
-            <div class="wdb-skel wdb-skel--tabs"></div>
-            <div class="wdb-skel wdb-skel--line"></div>
-            <div class="wdb-skel wdb-skel--line" style="width:88%"></div>
-            <div class="wdb-skel wdb-skel--line" style="width:76%"></div>
-            <div class="wdb-skel wdb-skel--line" style="width:82%"></div>
-          </div>
-          <p class="wdb-page-loading__text">How is today? — preparing your outdoor brief</p>
-          <p class="wdb-page-loading__detail">Emotion first — live conditions fill in without blocking the page.</p>
+        <div class="wdb-os-boot" role="status">
+          <p class="wdb-os-boot__brand">Outside</p>
+          <p class="wdb-os-boot__copy">Finding today’s conditions…</p>
+          <p class="wdb-os-boot__detail">Live data will fill in without freezing.</p>
+          <div class="wdb-os-boot__skel wdb-os-boot__skel--lg" aria-hidden="true"></div>
+          <div class="wdb-os-boot__skel" aria-hidden="true"></div>
+          <div class="wdb-os-boot__skel wdb-os-boot__skel--md" aria-hidden="true"></div>
         </div>
       </div>
     </main>
@@ -74,7 +89,7 @@
   </script>
   <script src="../../design-system/js/wds-build.js?v=local"></script>
   <!-- Nav/shell modules load via wds.js — do not duplicate (double-bind risk). -->
-  <script src="../../design-system/js/wds.js?v=local" defer></script>
-  <script src="js/home-boot.js?v=local" defer></script>
+  <script src="../../design-system/js/wds.js?v=os-m3-1" defer></script>
+  <script src="js/home-boot.js?v=os-m3-1" defer></script>
 </body>
 </html>

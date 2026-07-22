@@ -109,6 +109,18 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Architectural Lessons
 
+### 2026-07-21 — Outdoor OS: preserve pipes, delete widget IA
+
+- **Context:** Architecture-only Dashboard product reset
+- **Category:** Architecture (secondary: Product)
+- **Lesson:** Briefing/recovery layers on top of a widget catalog and peer
+  domain tabs still read as a weather console. Reuse OIP, location, providers,
+  and rule engines; replace presentation IA entirely.
+- **Evidence:** `docs/OUTDOOR-OS-DASHBOARD-RESET.md`; Recovery tabs + V2
+  overview panels in `wds-dashboard-recovery.js` / `wds-dashboard-v2-render.js`
+- **Prevention:** Default path must not mount `WidgetGrid`, Recovery tablist,
+  or gauge overview strips; rank Matters/Do instead of listing instruments
+
 ### 2026-07-15 — Do not apply coverage penalties twice
 
 - **Context:** Biological Model Integration v1.1 planner audit
@@ -292,6 +304,17 @@ lessons are ticket-shaped (“fixed Pike County flicker once”).
 
 # Product Lessons
 
+### 2026-07-21 — “Widgets live” ≠ Outdoor OS success
+
+- **Context:** Dashboard reset architecture audit of sprint/persona reviews
+- **Category:** Product
+- **Lesson:** Provider coverage is infrastructure health. Product success is
+  whether the first viewport answers happening → matters → do without a grid.
+- **Evidence:** `docs/OUTDOOR-OS-DASHBOARD-RESET.md`; sprint reviews scoring
+  live widgets; `DASHBOARD_PLAYBOOK.md` multi-widget concession
+- **Prevention:** When rebuilding, measure comprehension of the mission
+  question—not widget count or tab completeness
+
 ### 2026-07-14 — Trust vocabulary is product surface
 
 - **Context:** Tags and operational panels teach users whether to believe a card
@@ -312,6 +335,22 @@ commits (see Security Playbook).
 ------------------------------------------------------------------------
 
 # Release Lessons
+
+### 2026-07-22 — Outdoor OS M1: hydrate before screenshot closeout
+
+- **Context:** Headless Dashboard captures often showed only “Finding today’s…” / loading skeletons and were mistaken for product evidence
+- **Category:** QA / Release
+- **Lesson:** Milestone screenshot closeout must wait for `data-wdb-os-mode=briefing` with Happening + Do text (real place seeded), and document any console-injected edge states (alert/partial) in the screenshot index
+- **Evidence:** `automation/capture-dashboard-os-m1-screenshots.mjs`; `docs/dashboard-os-m1-screenshots/SCREENSHOT-INDEX.md`
+- **Prevention:** Do not accept loading-only stubs as M1 briefing proof; prefer CDP wait loops over virtual-time alone
+
+### 2026-07-22 — Reset interactive controls that inherit UA button chrome
+
+- **Context:** `.wdb-os__place-time` was a `<button>` missing the transparent-button reset; night atmosphere made a gray UA button look like a broken search bar
+- **Category:** UX / Accessibility
+- **Lesson:** Every OS text control that is a button must share the transparent `appearance:none` reset; audit night ink on default UA backgrounds
+- **Evidence:** Closeout audit of `01-desktop-hydrated.png` white bar → CSS fix in `wds-dashboard-os.css`
+- **Prevention:** Include place-time / notice / matters controls in the shared button reset list when adding new tappable text
 
 ### 2026-07-14 — Exclude dirty operational noise from commits
 

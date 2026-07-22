@@ -19,6 +19,33 @@
     return String(status || "").replace(/-/g, " ");
   }
 
+  /**
+   * Product Outside (`/apps/dashboard/`) must never present Recovery, V2, V3,
+   * or the old widget console — even if localStorage flags / stale prefs exist.
+   * V2/V3 modules remain loaded for shared models + kiosk/tests only.
+   */
+  function isOutsideProductSurface() {
+    try {
+      var doc = global.document;
+      var el = doc && doc.documentElement;
+      if (el && el.getAttribute("data-product") === "dashboard") return true;
+      var path = String((global.location && global.location.pathname) || "");
+      return /\/apps\/dashboard\/?/.test(path);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function outdoorOsUnavailableHtml() {
+    return (
+      '<div class="wdb-os wdb-os--unavailable" data-wdb-os data-wdb-os-mode="unavailable" role="status">' +
+        '<p class="wdb-os__brand">Outside</p>' +
+        "<p>Outside could not load its briefing surface.</p>" +
+        "<p>Refresh the page. Legacy dashboard presentations are not available here.</p>" +
+      "</div>"
+    );
+  }
+
   function renderList(items) {
     if (!items || !items.length) return "";
     return (
@@ -206,6 +233,17 @@
   }
 
   function renderDashboard(options) {
+    // Outdoor OS is the product presentation (Screen Spec + Manifesto).
+    // Outside product route never falls through to Recovery / V2 / widget grid,
+    // regardless of query params, hashes, or localStorage feature flags.
+    var OS = global.WDS && global.WDS.dashboardOS;
+    if (OS && OS.renderDashboard) {
+      return OS.renderDashboard(options);
+    }
+    if (isOutsideProductSurface()) {
+      return outdoorOsUnavailableHtml();
+    }
+
     var Recovery = global.WDS && global.WDS.dashboardRecovery;
     if (Recovery && Recovery.isEnabled && Recovery.isEnabled() && Recovery.renderDashboard) {
       return Recovery.renderDashboard(options);
@@ -273,7 +311,17 @@
     if (!root) return Promise.resolve();
     options = options || {};
 
-    // Product Recovery: only mount specialty UIs in the active tab panel.
+    var OS = global.WDS && global.WDS.dashboardOS;
+    if (OS && OS.mount && root.querySelector && root.querySelector("[data-wdb-os]")) {
+      return OS.mount(root, options);
+    }
+    // Outside product: never mount Recovery / legacy specialty chrome.
+    if (isOutsideProductSurface()) {
+      return Promise.resolve();
+    }
+
+    // Legacy Recovery: only mount specialty UIs in the active tab panel.
+    // Not used by product Outside (Recovery stub isEnabled → false).
     var Recovery = global.WDS && global.WDS.dashboardRecovery;
     if (Recovery && Recovery.isEnabled && Recovery.isEnabled() &&
         root.querySelector && root.querySelector("[data-wdb-recovery], [data-wdb-tab-panel]")) {

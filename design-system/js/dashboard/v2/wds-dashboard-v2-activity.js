@@ -25,8 +25,7 @@
     { id: "fishing", label: "Fishing observation" },
     { id: "shed", label: "Shed searching" },
     { id: "foraging", label: "Foraging exploration" },
-    { id: "stargazing", label: "Stargazing" },
-    { id: "volunteer", label: "Outdoor volunteering" }
+    { id: "stargazing", label: "Stargazing" }
   ];
 
   function cond(model) {

@@ -2,6 +2,9 @@
  * Dashboard V3 — Outdoor Intelligence foundation orchestrator.
  * Presentation shell over preserved V2 model / prefs / take / widget data.
  * Feature flag: localStorage waypoint-dashboard-v3 (RC2.5 Sprint 1: default on; set "0" for V2 board).
+ *
+ * NOT a production Outside presentation. Product `/apps/dashboard/` always uses Outdoor OS.
+ * V3 remains for modular tests / kiosk surfaces that call dashboardV3.render directly.
  */
 (function (global) {
   "use strict";

@@ -12,7 +12,7 @@
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "How is today?" },
+      { "id": "dashboard", "label": "Outside", "href": "apps/dashboard/", "hint": "What is happening outside today?" },
       { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
@@ -47,52 +47,21 @@
     "apps": [
       {
         "id": "dashboard",
-        "title": "Dashboard",
-        "shortTitle": "Dashboard",
+        "title": "Outside",
+        "shortTitle": "Outside",
         "icon": "dashboard",
         "route": "apps/dashboard/",
         "match": [
           "/apps/dashboard"
         ],
         "category": "core",
-        "description": "Free Today Outside briefing — weather, light, trails, and outdoor conditions with Waypoint’s Take.",
+        "description": "What is happening outside near you today, what matters most, and what to do about it.",
         "status": "live",
         "maturity": "Live",
-        "purpose": "Plan today’s outdoor adventure: observe conditions, discover what matters nearby, understand with calm interpretation.",
-        "features": [
-          {
-            "id": "today",
-            "label": "Today’s brief",
-            "href": "#outdoor-dashboard"
-          },
-          {
-            "id": "conditions",
-            "label": "What matters",
-            "href": "#wdb-section-conditions"
-          },
-          {
-            "id": "sun-moon",
-            "label": "Light",
-            "href": "#wdb-section-sun-moon"
-          },
-          {
-            "id": "safety",
-            "label": "What to know",
-            "href": "#wdb-section-safety"
-          },
-          {
-            "id": "water",
-            "label": "Water",
-            "href": "#wdb-section-water"
-          },
-          {
-            "id": "photography",
-            "label": "Photograph?",
-            "href": "#wdb-section-photography"
-          }
-        ],
+        "purpose": "Regional outdoor briefing so you know conditions before you go outside.",
+        "features": [],
         "startHere": {
-          "label": "How is today?",
+          "label": "Open Outside",
           "href": "apps/dashboard/"
         },
         "journeys": [
