@@ -1,6 +1,7 @@
 /**
  * Dashboard Rebuild — product shell (Phase 3).
- * Workspace + Today Outside + library Customize + Kiosk; OIP hydrates live widgets.
+ * Workspace + Today Outside + library Customize; OIP hydrates live widgets.
+ * Internal glance mode (#/kiosk) retained without user-facing Kiosk chrome.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
  */
 (function (global) {
@@ -113,7 +114,7 @@
       deepenHtml = Deepen && Deepen.render ? Deepen.render() : "";
     }
 
-    /* Local nav (Workspace · Customize · Kiosk) lives in app shell — no duplicate bar. */
+    /* Local nav (Workspace · Customize) lives in app shell — no duplicate bar. */
     return (
       '<div class="wdb-r" data-wdb-r data-view="' +
       escapeHtml(view) +

@@ -137,6 +137,20 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Home RC1.1 navigation & duplicate mode fix
+
+**Artifact:** `docs/rebuild-2026/home-rc1.1-navigation-owner-review.md`
+**Evidence:** `docs/rebuild-2026/home-rc1.1/`
+
+1. **Duplicate modes confuse more than they help** — Workspace and Kiosk
+   shared the same Rebuild surface; removing user-facing Kiosk (nav, chrome,
+   Customize preset label) while keeping the module for hash/tests is enough.
+2. **Nav config and nav-registry drift** — `wds-app-nav-config.js` is runtime
+   truth; keep `nav-registry.json` in sync when editing features/`startHere`.
+3. **Deepener sample copy can reintroduce “Dashboard”** — fix
+   `articles/manifest.json` summaries and sample CTAs when Home is the public
+   name, not only shell/nav strings.
+
 ### 2026-07-23 — Home RC1 final production audit
 
 **Artifact:** `docs/rebuild-2026/home-rc1-final-audit.md`

@@ -61,23 +61,13 @@
             "#/customize",
             "#customize"
           ]
-        },
-        {
-          "id": "kiosk",
-          "label": "Kiosk",
-          "href": "apps/dashboard/",
-          "hash": "#/kiosk",
-          "match": [
-            "#/kiosk",
-            "#kiosk"
-          ]
         }
       ],
       "purpose": "Assemble your view of conditions near you; glance Today Outside; go deeper when you choose.",
       "maturity": "Live",
       "startHere": {
-        "label": "Open Dashboard",
-        "href": "apps/dashboard/"
+        "label": "Open Home",
+        "href": "./"
       },
       "journeys": [
         "observe",

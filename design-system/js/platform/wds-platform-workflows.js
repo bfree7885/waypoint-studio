@@ -81,7 +81,7 @@
       from: "dashboard",
       to: "studio",
       label: "Browse all Studio apps",
-      why: "Dashboard is the outdoor hub; Studio home lists every experience.",
+      why: "Home is the outdoor workspace; incubator lists experiences still maturing.",
       pathFromRoot: "./",
       when: "always"
     },

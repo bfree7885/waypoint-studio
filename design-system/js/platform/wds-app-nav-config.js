@@ -72,7 +72,8 @@
               "^/$",
               "^/index\\.html$"
             ]
-          },          {
+          },
+          {
             "id": "customize",
             "label": "Customize",
             "href": "apps/dashboard/",
@@ -81,21 +82,11 @@
               "#/customize",
               "#customize"
             ]
-          },
-          {
-            "id": "kiosk",
-            "label": "Kiosk",
-            "href": "apps/dashboard/",
-            "hash": "#/kiosk",
-            "match": [
-              "#/kiosk",
-              "#kiosk"
-            ]
           }
         ],
         "startHere": {
-          "label": "Open workspace",
-          "href": "apps/dashboard/"
+          "label": "Open Home",
+          "href": "./"
         },
         "journeys": [
           "observe",

@@ -1,0 +1,55 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "place": "Pike County, PA",
+  "captures": [
+    {
+      "file": "01-desktop-home-workspace.png",
+      "entry": "/",
+      "viewport": "desktop",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "localNav": [
+          "Workspace",
+          "Customize"
+        ],
+        "hasKioskNav": false,
+        "hasKioskChrome": false,
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nSupport\nComing later\nSomething wrong?\nSuggest an idea\nAbout\nPrivacy"
+      }
+    },
+    {
+      "file": "02-desktop-home-customize.png",
+      "entry": "/#/customize",
+      "viewport": "desktop",
+      "meta": {
+        "hasKioskLayout": false,
+        "hasKioskWord": false,
+        "toolbar": "Customize workspace\n\nDefault\nMinimal\nRestore defaults\nDone\nColumns\n1\n2\n3\n\nPreset: default · 3 columns · Favorites rise to the top · Saved on this device."
+      }
+    },
+    {
+      "file": "03-phone-home-workspace.png",
+      "entry": "/",
+      "viewport": "phone",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "localNav": [
+          "Workspace",
+          "Customize"
+        ],
+        "hasKioskNav": false,
+        "hasKioskChrome": false,
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nSupport\nComing later\nSomething wrong?\nSuggest an idea\nAbout\nPrivacy"
+      }
+    },
+    {
+      "file": "04-phone-home-customize.png",
+      "entry": "/#/customize",
+      "viewport": "phone"
+    }
+  ]
+}

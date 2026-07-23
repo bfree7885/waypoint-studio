@@ -43,7 +43,7 @@ assert("dashboard contact quiet shell", /data-quiet-chrome="true"/.test(dashCont
 assert("dashboard contact product dashboard", /data-product="dashboard"/.test(dashContactHtml));
 assert("dashboard contact uses was-shell", /data-wds-app-shell/.test(dashContactHtml));
 assert("dashboard contact has form", /id="wcs-contact-form"/.test(dashContactHtml));
-assert("dashboard contact back to Dashboard", /href="\.\/"/.test(dashContactHtml) && /Back to Dashboard/.test(dashContactHtml));
+assert("dashboard contact back to Home", /href="\.\/"/.test(dashContactHtml) && /Back to Home/.test(dashContactHtml));
 assert("dashboard contact not legacy redirect", !/meta[^>]+http-equiv=["']refresh/i.test(dashContactHtml));
 assert("dashboard contact canonical in apps/dashboard", /apps\/dashboard\/contact\.html/.test(dashContactHtml));
 

@@ -64,7 +64,7 @@
     var title = options.title || "Could not finish loading";
     var detail =
       options.detail ||
-      "Something took too long or failed. You can retry, or return to Studio home.";
+      "Something took too long or failed. You can retry, or return to Home.";
     var retryLabel = options.retryLabel || "Retry";
     var homeHref = options.homeHref || "../../";
     var supportHref = options.supportHref || "../../support.html";
@@ -86,7 +86,7 @@
       "</button> " +
       '<a class="wds-btn wds-btn--secondary wds-btn--sm" href="' +
       esc(homeHref) +
-      '">Studio home</a> ' +
+      '">Home</a> ' +
       '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="' +
       esc(supportHref) +
       '">Support</a>' +

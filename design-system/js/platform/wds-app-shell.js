@@ -224,7 +224,7 @@
   }
 
   /**
-   * Product-scoped Contact: Outside keeps Contact inside the quiet Dashboard shell.
+   * Product-scoped Contact: Home keeps Contact inside the quiet Rebuild shell.
    * Other products keep studio-root contact.html (current App Shell, not legacy chrome).
    */
   function contactPageHref(options, query) {

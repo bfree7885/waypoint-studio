@@ -205,7 +205,6 @@
       '<div class="wdb-r-customize-bar__actions">' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="default">Default</button>' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="minimal">Minimal</button>' +
-      '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="kiosk">Kiosk layout</button>' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="reset">Restore defaults</button>' +
       '<a class="wdb-r-btn wdb-r-btn--link" href="#/">Done</a>' +
       "</div>" +

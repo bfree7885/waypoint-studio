@@ -53,6 +53,14 @@ assert("primary nav is Home·Scenes·Sheds·Articles·About", /"id": "home".*"Sc
 assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 800)));
 const primaryNavBlock = (navCfg.match(/"studioPrimaryNav"\s*:\s*\[[\s\S]*?\]/) || [""])[0];
 assert("primary nav omits SignalTerrain", !/signalterrain|SignalTerrain|Volunteer/i.test(primaryNavBlock));
+assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
+assert("startHere is Open Home", /"label":\s*"Open Home"/.test(navCfg));
+assert("contact back link is Home", /Back to Home/.test(fs.readFileSync(path.join(ROOT, "apps/dashboard/contact.html"), "utf8")));
+assert("customize omits Kiosk layout button", !/Kiosk layout/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js"), "utf8")));
+assert("kiosk chrome has no user Kiosk label", !/>Kiosk</.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")) && !/Exit kiosk/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")));
+assert("404 links Home architecture", /<a href="\/">Home<\/a>/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")) && !/SignalTerrain|Waypoint Volunteer|ForageCast/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")));
+assert("about primary is Home not Dashboard", /<strong>Home<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && !/<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
+assert("support experiences are Home architecture", /Coming later/.test(supportHtml) && !/Waypoint Volunteer/.test(supportHtml));
 assert("dashboard match includes root", /\^\/\$/.test(navCfg));
 assert("wds loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(wdsJs));
 assert("studio constitution Home lock", /Home is the canonical Waypoint Studio experience/.test(studioConst));
@@ -153,6 +161,7 @@ const customize = Rebuild.renderShell({ view: "customize", placeContext: { place
 assert("customize omits deepeners", !/data-wdb-r-deepen/.test(customize));
 const kiosk = Rebuild.renderShell({ view: "kiosk", placeContext: { placeLabel: "Test", trust: "waiting" } });
 assert("kiosk omits deepeners", !/data-wdb-r-deepen/.test(kiosk));
+assert("kiosk shell has no user-facing Kiosk chrome", !/>Kiosk</.test(kiosk) && !/Exit kiosk/i.test(kiosk));
 
 const primary = sandbox.WDS.APP_NAV_CONFIG.studioPrimaryNav.map(function (i) {
   return i.label;

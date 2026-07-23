@@ -1,7 +1,7 @@
 /**
- * Dashboard Rebuild — kiosk framework (Phase 1).
- * Mode flag, layout constraints, refresh hooks — no polish / no rotation product.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md (Kiosk mode)
+ * Dashboard Rebuild — internal glance / auto-refresh framework.
+ * Kept for hash/deep-link and tests; not user-facing (Workspace is canonical).
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
   "use strict";
@@ -148,17 +148,12 @@
     };
   }
 
+  /**
+   * No user-facing Kiosk chrome — Workspace is the only public mode label.
+   * Internal mode still applies constraints / refresh via enter().
+   */
   function renderChrome() {
-    var c = constraints();
-    return (
-      '<div class="wdb-r-kiosk-chrome" data-wdb-r-kiosk-chrome>' +
-      '<p class="wdb-r-kiosk-chrome__label">Kiosk</p>' +
-      '<p class="wdb-r-kiosk-chrome__meta">Refreshes every ' +
-      Math.round(c.refreshMs / 60000) +
-      " min · Set place before entering · Customize stays hidden</p>" +
-      '<a class="wdb-r-btn wdb-r-btn--link" href="#/">Exit kiosk</a>' +
-      "</div>"
-    );
+    return "";
   }
 
   global.WDS = global.WDS || {};
