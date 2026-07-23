@@ -137,6 +137,21 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-22 — Home RC1.2 footer simplification
+
+**Artifact:** `docs/rebuild-2026/home-rc1.2-footer-owner-review.md`
+**Evidence:** `docs/rebuild-2026/home-rc1.2/`
+
+1. **Footer SoT is `renderFooter` in the shared app shell** — there is no
+   separate Home footer config; simplifying Home’s trust footer correctly
+   updates every quiet/shell host. Prefer that over forking Scenes/Sheds.
+2. **Footer tests drift from labels** — contact-platform still asserted
+   “Report bug / Request feature / support.html” after UI had moved to
+   “Something wrong? / Suggest an idea”; assert against the footer function
+   body and the KEEP list, not stale synonyms.
+3. **Terms can be a honest placeholder** — match Privacy page shell/CSS lightly;
+   say it is unfinished rather than inventing a faux legal document.
+
 ### 2026-07-22 — Home RC1.1 navigation & duplicate mode fix
 
 **Artifact:** `docs/rebuild-2026/home-rc1.1-navigation-owner-review.md`

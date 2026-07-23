@@ -108,12 +108,19 @@ assert("about refuses ads/rankings", /Advertising|rankings|engagement/i.test(abo
 assert("about links contact", /contact\.html/.test(aboutHtml));
 
 const shell = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-shell.js"), "utf8");
-assert("footer exposes Contact", /Contact/.test(shell) && /support\.html/.test(shell));
-assert("footer exposes Report bug", /Report bug/.test(shell));
-assert("footer exposes Request feature", /Request feature/.test(shell));
-assert("footer exposes Privacy", /privacy\.html/.test(shell));
-assert("footer bug deep-links category", /category=bug/.test(shell));
-assert("footer feature deep-links category", /category=feature/.test(shell));
+const footerFn = (shell.match(/function renderFooter\([\s\S]*?\n  \}/) || [""])[0];
+assert("footer exposes Contact", /Contact/.test(footerFn));
+assert("footer exposes Privacy Policy", /privacy\.html/.test(footerFn) && /Privacy Policy/.test(footerFn));
+assert("footer exposes Terms of Service", /terms\.html/.test(footerFn) && /Terms of Service/.test(footerFn));
+assert(
+  "footer omits historical site IA",
+  !/support\.html/.test(footerFn) &&
+    !/about\.html/.test(footerFn) &&
+    !/incubator\//.test(footerFn) &&
+    !/Something wrong|Suggest an idea|Coming later|Report bug|Request feature/.test(footerFn)
+);
+const termsHtml = fs.readFileSync(path.join(ROOT, "terms.html"), "utf8");
+assert("terms placeholder page exists", /Terms of Service/.test(termsHtml) && /data-wds-app-footer/.test(termsHtml));
 
 const css = fs.readFileSync(path.join(ROOT, "design-system/css/wds-contact.css"), "utf8");
 assert("honeypot visually hidden", /wcs-honeypot/.test(css));
@@ -324,8 +331,8 @@ assert(
 assert("sheds map feature link", /category=feature/.test(shedsMap));
 
 const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-assert("home links about/contact", /about\.html/.test(home) && /contact\.html/.test(home));
-assert("home links support", /support\.html/.test(home));
+assert("home noscript links about/contact", /about\.html/.test(home) && /contact\.html/.test(home));
+assert("home static markup omits support footer path", !/support\.html/.test(home));
 
 const shellCss = fs.readFileSync(path.join(ROOT, "design-system/css/wds-app-shell.css"), "utf8");
 assert("footer links styled in shell css", /was-footer__links/.test(shellCss));

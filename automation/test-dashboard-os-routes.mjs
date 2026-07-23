@@ -84,29 +84,25 @@ const contactHref = Shell.contactPageHref({ depth: 1, app: dashApp });
 assert("dashboard Contact href in-product", /contact\.html$/.test(contactHref) && !/\.\.\/\.\.\/contact\.html$/.test(contactHref), contactHref);
 assert("dashboard Contact not studio-root only", contactHref.indexOf("apps/") >= 0 || contactHref === "contact.html" || /^\.\/contact\.html/.test(contactHref), contactHref);
 
-const footer = Shell.renderFooter({ depth: 1, app: dashApp, productName: "Dashboard" });
+const footer = Shell.renderFooter({ depth: 1, app: dashApp, productName: "Home" });
 assert("footer Contact points to dashboard contact", /href="contact\.html"|href="\.\/contact\.html"|apps\/dashboard\/contact\.html/.test(footer), footer.slice(0, 400));
 assert("footer Contact not ../../contact.html alone", !/href="\.\.\/\.\.\/contact\.html"/.test(footer), footer);
-assert("footer brand home rebuilt studio", /href="\.\.\/\.\.\/"/.test(footer) || /Waypoint Studio/.test(footer));
-assert("footer Support studio page", /support\.html/.test(footer));
-assert("footer About studio page", /about\.html/.test(footer));
-assert("footer Privacy studio page", /privacy\.html/.test(footer));
-assert("footer Something wrong uses dashboard contact", /category=bug/.test(footer) && /contact\.html/.test(footer));
+assert("footer brand text present", /Waypoint Studio/.test(footer) && /Private by default/.test(footer));
+assert("footer Privacy Policy studio page", /privacy\.html/.test(footer) && /Privacy Policy/.test(footer));
+assert("footer Terms of Service studio page", /terms\.html/.test(footer) && /Terms of Service/.test(footer));
+assert("footer omits historical site IA", !/support\.html/.test(footer) && !/about\.html/.test(footer) && !/incubator\//.test(footer) && !/Something wrong|Suggest an idea|Coming later/.test(footer));
+assert("footer has no Home/brand href in links", !/<a[^>]*>Waypoint Studio<\/a>/.test(footer) && !/>Home<\/a>/.test(footer));
 
 const studioFooter = Shell.renderFooter({ depth: 0, app: null, productName: "Waypoint Studio" });
 assert("studio Contact stays root contact.html", /href="contact\.html"/.test(studioFooter) || /href="\.\/contact\.html"/.test(studioFooter), studioFooter.slice(0, 300));
+assert("studio footer minimal links only", (studioFooter.match(/was-footer__links[\s\S]*?<\/p>/) || [""])[0].split("<a ").length - 1 === 3, studioFooter.slice(0, 400));
 
 const inventory = [
-  { label: "Brand / Waypoint Studio", source: "quiet global header + footer", destination: Nav.studioHomeHref(1), scope: "internal", shell: "current", notes: "Rebuilt studio home" },
-  { label: "Contact", source: "dashboard footer", destination: contactHref, scope: "internal", shell: "current-dashboard", notes: "apps/dashboard/contact.html quiet shell" },
-  { label: "Something wrong?", source: "dashboard footer", destination: contactHref + "?category=bug", scope: "internal", shell: "current-dashboard", notes: "Same Contact page" },
-  { label: "Suggest an idea", source: "dashboard footer", destination: contactHref + "?category=feature", scope: "internal", shell: "current-dashboard", notes: "Same Contact page" },
-  { label: "Support", source: "dashboard footer", destination: "../../support.html", scope: "internal", shell: "current-studio", notes: "Intentional studio Support page" },
-  { label: "About", source: "dashboard footer", destination: "../../about.html", scope: "internal", shell: "current-studio", notes: "Intentional studio About page" },
-  { label: "Privacy", source: "dashboard footer", destination: "../../privacy.html", scope: "internal", shell: "current-studio", notes: "Intentional studio Privacy page" },
-  { label: "Coming later", source: "dashboard footer", destination: "../../incubator/", scope: "internal", shell: "current-studio", notes: "Incubator index" },
+  { label: "Contact", source: "home footer", destination: contactHref, scope: "internal", shell: "current-home", notes: "Product-scoped Contact (quiet shell)" },
+  { label: "Privacy Policy", source: "home footer", destination: "../../privacy.html", scope: "internal", shell: "current-studio", notes: "Studio Privacy page" },
+  { label: "Terms of Service", source: "home footer", destination: "../../terms.html", scope: "internal", shell: "current-studio", notes: "Studio Terms placeholder (Home RC1.2)" },
   { label: "Noscript Contact", source: "apps/dashboard/index.html", destination: "./contact.html", scope: "internal", shell: "current-dashboard", notes: "Fixed from ../../contact.html" },
-  { label: "Noscript Dashboard", source: "apps/dashboard/index.html", destination: "./", scope: "internal", shell: "current-dashboard", notes: "Stays in Dashboard" },
+  { label: "Noscript Dashboard", source: "apps/dashboard/index.html", destination: "./", scope: "internal", shell: "current-dashboard", notes: "Stays in Dashboard / Home alias" },
   { label: "Studio Contact", source: "studio-home footer", destination: "contact.html", scope: "internal", shell: "current-studio", notes: "Root contact remains for studio directory" }
 ];
 

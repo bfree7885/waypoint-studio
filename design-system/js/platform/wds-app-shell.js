@@ -270,30 +270,16 @@
           : null;
     var productName = (app && app.title) || options.productName || "Waypoint Studio";
     var home = NavApi ? NavApi.studioHomeHref(depth) : "../../";
-    var productSlug = (app && app.id) || options.product || "";
     var contactBase = contactPageHref(options, "");
-    var contactBug =
-      contactBase +
-      (contactBase.indexOf("?") >= 0 ? "&" : "?") +
-      "category=bug&includeTech=1" +
-      (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
-    var contactFeature =
-      contactBase +
-      (contactBase.indexOf("?") >= 0 ? "&" : "?") +
-      "category=feature" +
-      (productSlug ? "&app=" + encodeURIComponent(productSlug) : "");
+    // Home RC1.2 — minimal trust footer (Contact · Privacy Policy · Terms).
+    // Brand/home live in header/nav; do not reintroduce historical site IA here.
     return (
       '<footer class="was-footer wds-footer">' +
-        "<p>" + esc(productName) + " · Private by default · " +
-        '<a href="' + esc(home) + '">Waypoint Studio</a></p>' +
+        "<p>" + esc(productName) + " · Private by default · Waypoint Studio</p>" +
         '<p class="was-footer__links">' +
           '<a href="' + esc(contactBase) + '">Contact</a>' +
-          '<a href="' + esc(studioPageHref(home, "support.html")) + '">Support</a>' +
-          '<a href="' + esc(studioPageHref(home, "incubator/")) + '">Coming later</a>' +
-          '<a href="' + esc(contactBug) + '">Something wrong?</a>' +
-          '<a href="' + esc(contactFeature) + '">Suggest an idea</a>' +
-          '<a href="' + esc(studioPageHref(home, "about.html")) + '">About</a>' +
-          '<a href="' + esc(studioPageHref(home, "privacy.html")) + '">Privacy</a>' +
+          '<a href="' + esc(studioPageHref(home, "privacy.html")) + '">Privacy Policy</a>' +
+          '<a href="' + esc(studioPageHref(home, "terms.html")) + '">Terms of Service</a>' +
         "</p>" +
       "</footer>"
     );

@@ -1,69 +1,29 @@
 {
-  "generatedAt": "2026-07-22T19:33:50.252Z",
+  "generatedAt": "2026-07-23T04:00:47.125Z",
   "routes": [
     {
-      "label": "Brand / Waypoint Studio",
-      "source": "quiet global header + footer",
-      "destination": "../../",
-      "scope": "internal",
-      "shell": "current",
-      "notes": "Rebuilt studio home"
-    },
-    {
       "label": "Contact",
-      "source": "dashboard footer",
+      "source": "home footer",
       "destination": "contact.html",
       "scope": "internal",
-      "shell": "current-dashboard",
-      "notes": "apps/dashboard/contact.html quiet shell"
+      "shell": "current-home",
+      "notes": "Product-scoped Contact (quiet shell)"
     },
     {
-      "label": "Something wrong?",
-      "source": "dashboard footer",
-      "destination": "contact.html?category=bug",
-      "scope": "internal",
-      "shell": "current-dashboard",
-      "notes": "Same Contact page"
-    },
-    {
-      "label": "Suggest an idea",
-      "source": "dashboard footer",
-      "destination": "contact.html?category=feature",
-      "scope": "internal",
-      "shell": "current-dashboard",
-      "notes": "Same Contact page"
-    },
-    {
-      "label": "Support",
-      "source": "dashboard footer",
-      "destination": "../../support.html",
-      "scope": "internal",
-      "shell": "current-studio",
-      "notes": "Intentional studio Support page"
-    },
-    {
-      "label": "About",
-      "source": "dashboard footer",
-      "destination": "../../about.html",
-      "scope": "internal",
-      "shell": "current-studio",
-      "notes": "Intentional studio About page"
-    },
-    {
-      "label": "Privacy",
-      "source": "dashboard footer",
+      "label": "Privacy Policy",
+      "source": "home footer",
       "destination": "../../privacy.html",
       "scope": "internal",
       "shell": "current-studio",
-      "notes": "Intentional studio Privacy page"
+      "notes": "Studio Privacy page"
     },
     {
-      "label": "Coming later",
-      "source": "dashboard footer",
-      "destination": "../../incubator/",
+      "label": "Terms of Service",
+      "source": "home footer",
+      "destination": "../../terms.html",
       "scope": "internal",
       "shell": "current-studio",
-      "notes": "Incubator index"
+      "notes": "Studio Terms placeholder (Home RC1.2)"
     },
     {
       "label": "Noscript Contact",
@@ -79,7 +39,7 @@
       "destination": "./",
       "scope": "internal",
       "shell": "current-dashboard",
-      "notes": "Stays in Dashboard"
+      "notes": "Stays in Dashboard / Home alias"
     },
     {
       "label": "Studio Contact",

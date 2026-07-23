@@ -1,0 +1,90 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "place": "Pike County, PA",
+  "captures": [
+    {
+      "file": "01-desktop-home-footer.png",
+      "entry": "/",
+      "viewport": "desktop",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nPrivacy Policy\nTerms of Service",
+        "footerLinks": [
+          {
+            "label": "Contact",
+            "href": "./apps/dashboard/contact.html"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "privacy.html"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "terms.html"
+          }
+        ],
+        "linkLabels": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ]
+      }
+    },
+    {
+      "file": "02-phone-home-footer.png",
+      "entry": "/",
+      "viewport": "phone",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nPrivacy Policy\nTerms of Service",
+        "footerLinks": [
+          {
+            "label": "Contact",
+            "href": "./apps/dashboard/contact.html"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "privacy.html"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "terms.html"
+          }
+        ],
+        "linkLabels": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ]
+      }
+    }
+  ],
+  "linkChecks": [
+    {
+      "viewport": "desktop",
+      "label": "Contact",
+      "href": "./apps/dashboard/contact.html",
+      "ok": true,
+      "status": 200,
+      "url": "http://127.0.0.1:8765/apps/dashboard/contact.html"
+    },
+    {
+      "viewport": "desktop",
+      "label": "Privacy Policy",
+      "href": "privacy.html",
+      "ok": true,
+      "status": 200,
+      "url": "http://127.0.0.1:8765/privacy.html"
+    },
+    {
+      "viewport": "desktop",
+      "label": "Terms of Service",
+      "href": "terms.html",
+      "ok": true,
+      "status": 200,
+      "url": "http://127.0.0.1:8765/terms.html"
+    }
+  ]
+}

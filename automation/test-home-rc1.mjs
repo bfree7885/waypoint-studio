@@ -68,6 +68,19 @@ assert("support no Outdoor overview", !/Outdoor overview/i.test(supportHtml));
 assert("dashboard.html redirects to Home root", /url=\.\/|location\.replace\("\.\/"/.test(dashRedirect));
 assert("manifest start_url Home", /"start_url":\s*"\/"/.test(manifest));
 
+const shellSrc = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-shell.js"), "utf8");
+const footerFn = (shellSrc.match(/function renderFooter\([\s\S]*?\n  \}/) || [""])[0];
+assert("footer keeps Contact", /Contact/.test(footerFn));
+assert("footer keeps Privacy Policy", /Privacy Policy/.test(footerFn) && /privacy\.html/.test(footerFn));
+assert("footer keeps Terms of Service", /Terms of Service/.test(footerFn) && /terms\.html/.test(footerFn));
+assert(
+  "footer removes historical navigation",
+  !/support\.html|about\.html|incubator\//.test(footerFn) &&
+    !/Something wrong|Suggest an idea|Coming later|>About<|>Support<|>Privacy</.test(footerFn)
+);
+assert("terms.html placeholder exists", fs.existsSync(path.join(ROOT, "terms.html")));
+assert("terms.html uses app shell footer", /data-wds-app-footer/.test(fs.readFileSync(path.join(ROOT, "terms.html"), "utf8")));
+
 const sandbox = {
   window: global,
   console,
