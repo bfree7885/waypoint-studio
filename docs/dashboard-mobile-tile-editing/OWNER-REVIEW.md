@@ -4,7 +4,7 @@
 **Date:** 2026-07-23  
 **Branch:** `fix/mobile-tile-editing`  
 **Base:** `integration/dashboard-phase2-publish`  
-**Final commit SHA:** `26b3f32b6188095e793c9a2df73d8e4d70dd63f6` (repair); branch tip `5bbacb3` (docs SHA note)
+**Final commit SHA:** `26b3f32b6188095e793c9a2df73d8e4d70dd63f6` (repair); branch tip `0b7efd1d86ed95a0b3548bc61700c010ead4db50`
 
 ---
 
@@ -140,4 +140,4 @@ node automation/capture-dashboard-mobile-tile-editing.mjs http://127.0.0.1:8765
 
 ## Final commit SHA
 
-`26b3f32b6188095e793c9a2df73d8e4d70dd63f6` on `fix/mobile-tile-editing`.
+`26b3f32b6188095e793c9a2df73d8e4d70dd63f6` (repair commit) on `fix/mobile-tile-editing`; tip `0b7efd1d86ed95a0b3548bc61700c010ead4db50`.
