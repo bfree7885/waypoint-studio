@@ -22,10 +22,12 @@
 | Step | Result |
 |------|--------|
 | Pages workflow | [29977825511](https://github.com/bfree7885/waypoint-studio/actions/runs/29977825511) — **completed / success** |
-| Live `data/build-info.json` | **`shortCommit`: `5c4121f`** · `source`: `github-pages` · `builtAt`: `2026-07-23T03:46:04.731Z` |
-| Deploy verify harness | `EXPECTED_SHA=5c4121f node automation/verify-production-deploy.mjs` — **OK** (home fingerprint match, **0** failed critical routes) |
+| Live `data/build-info.json` (product gate) | **`shortCommit`: `5c4121f`** · `source`: `github-pages` · `builtAt`: `2026-07-23T03:46:04.731Z` · run [29977825511](https://github.com/bfree7885/waypoint-studio/actions/runs/29977825511) |
+| Deploy verify harness (product) | `EXPECTED_SHA=5c4121f` — **OK** (fingerprint match, **0** failed critical routes) |
+| Docs follow-up commit | **`04f445f`** (`04f445f7590d2cb2dad741fd94ac45446e768eef`) — this report + live screenshots |
+| Live after docs follow-up | **`04f445f`** · run [29978007660](https://github.com/bfree7885/waypoint-studio/actions/runs/29978007660) · re-verify **OK**; Home RC1.1 behavior unchanged |
 
-Product release SHA and live build SHA matched at verification time: **`5c4121f`**.
+Product release verified live at **`5c4121f`**. Tip after docs evidence: **`04f445f`**.
 
 ---
 
