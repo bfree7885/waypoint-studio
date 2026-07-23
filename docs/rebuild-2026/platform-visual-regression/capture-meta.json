@@ -1,0 +1,12 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "capturedAt": "2026-07-23T04:36:21.266Z",
+  "checks": {},
+  "assetStatus": {
+    "/assets/images/home/hero.jpg": 200,
+    "/apps/scenes/assets/media/hero.jpg": 200,
+    "/apps/waypoint-scenes/assets/fogforest.jpg": 200,
+    "/apps/waypoint-scenes/assets/wetland.jpg": 200,
+    "/assets/images/identity/manifest.json": 200
+  }
+}

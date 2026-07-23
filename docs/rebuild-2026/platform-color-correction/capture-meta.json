@@ -1,0 +1,312 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "capturedAt": "2026-07-23T04:55:42.614Z",
+  "checks": {
+    "homeDefault": {
+      "title": "Home — Waypoint Studio",
+      "featuredSrc": "http://127.0.0.1:8765/assets/images/featured/bog-bridge-evergreens.jpg",
+      "featuredPlaceholder": null,
+      "featuredCaption": "Bog Bridge Through the Evergreens — Bog bridges lead through moss, roots, and standing timber. — Field capture — Field capture · iPhone XR",
+      "scenesSrc": null,
+      "scenesCredit": null,
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": [
+        {
+          "id": "ph-conditions",
+          "cat": "conditions",
+          "border": "color(srgb 0.301961 0.639216 0.878431 / 0.72)",
+          "shadow": "color(srgb 0.301961 0.639216 0.878431 / 0.28) 0px 0px 0px 1px, color(srgb 0.301961 0.639216 0.878431 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-light",
+          "cat": "light",
+          "border": "color(srgb 0.909804 0.658824 0.219608 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.658824 0.219608 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.658824 0.219608 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-air",
+          "cat": "air",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-astronomy",
+          "cat": "astronomy",
+          "border": "color(srgb 0.654902 0.545098 0.980392 / 0.72)",
+          "shadow": "color(srgb 0.654902 0.545098 0.980392 / 0.28) 0px 0px 0px 1px, color(srgb 0.654902 0.545098 0.980392 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-alerts",
+          "cat": "alerts",
+          "border": "color(srgb 0.545098 0.607843 0.690196 / 0.72)",
+          "shadow": "color(srgb 0.545098 0.607843 0.690196 / 0.28) 0px 0px 0px 1px, color(srgb 0.545098 0.607843 0.690196 / 0.48) 0px 0px 36p"
+        }
+      ]
+    },
+    "homeColorProof": {
+      "title": "Home — Waypoint Studio",
+      "featuredSrc": "http://127.0.0.1:8765/assets/images/featured/bog-bridge-evergreens.jpg",
+      "featuredPlaceholder": null,
+      "featuredCaption": "Bog Bridge Through the Evergreens — Bog bridges lead through moss, roots, and standing timber. — Field capture — Field capture · iPhone XR",
+      "scenesSrc": null,
+      "scenesCredit": null,
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": [
+        {
+          "id": "ph-conditions",
+          "cat": "conditions",
+          "border": "color(srgb 0.301961 0.639216 0.878431 / 0.72)",
+          "shadow": "color(srgb 0.301961 0.639216 0.878431 / 0.28) 0px 0px 0px 1px, color(srgb 0.301961 0.639216 0.878431 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-light",
+          "cat": "light",
+          "border": "color(srgb 0.909804 0.658824 0.219608 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.658824 0.219608 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.658824 0.219608 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-air",
+          "cat": "air",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-astronomy",
+          "cat": "astronomy",
+          "border": "color(srgb 0.654902 0.545098 0.980392 / 0.72)",
+          "shadow": "color(srgb 0.654902 0.545098 0.980392 / 0.28) 0px 0px 0px 1px, color(srgb 0.654902 0.545098 0.980392 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-photography",
+          "cat": "photography",
+          "border": "color(srgb 0.909804 0.47451 0.784314 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.47451 0.784314 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.47451 0.784314 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-rivers",
+          "cat": "rivers",
+          "border": "color(srgb 0.176471 0.831372 0.74902 / 0.72)",
+          "shadow": "color(srgb 0.176471 0.831373 0.74902 / 0.28) 0px 0px 0px 1px, color(srgb 0.176471 0.831373 0.74902 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-wildlife",
+          "cat": "wildlife",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-alerts",
+          "cat": "alerts",
+          "border": "color(srgb 0.545098 0.607843 0.690196 / 0.72)",
+          "shadow": "color(srgb 0.545098 0.607843 0.690196 / 0.28) 0px 0px 0px 1px, color(srgb 0.545098 0.607843 0.690196 / 0.48) 0px 0px 36p"
+        }
+      ]
+    },
+    "featuredPhoto": {
+      "title": "Home — Waypoint Studio",
+      "featuredSrc": "http://127.0.0.1:8765/assets/images/featured/bog-bridge-evergreens.jpg",
+      "featuredPlaceholder": null,
+      "featuredCaption": "Bog Bridge Through the Evergreens — Bog bridges lead through moss, roots, and standing timber. — Field capture — Field capture · iPhone XR",
+      "scenesSrc": null,
+      "scenesCredit": null,
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": [
+        {
+          "id": "ph-conditions",
+          "cat": "conditions",
+          "border": "color(srgb 0.301961 0.639216 0.878431 / 0.72)",
+          "shadow": "color(srgb 0.301961 0.639216 0.878431 / 0.28) 0px 0px 0px 1px, color(srgb 0.301961 0.639216 0.878431 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-light",
+          "cat": "light",
+          "border": "color(srgb 0.909804 0.658824 0.219608 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.658824 0.219608 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.658824 0.219608 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-air",
+          "cat": "air",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-astronomy",
+          "cat": "astronomy",
+          "border": "color(srgb 0.654902 0.545098 0.980392 / 0.72)",
+          "shadow": "color(srgb 0.654902 0.545098 0.980392 / 0.28) 0px 0px 0px 1px, color(srgb 0.654902 0.545098 0.980392 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-photography",
+          "cat": "photography",
+          "border": "color(srgb 0.909804 0.47451 0.784314 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.47451 0.784314 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.47451 0.784314 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-rivers",
+          "cat": "rivers",
+          "border": "color(srgb 0.176471 0.831372 0.74902 / 0.72)",
+          "shadow": "color(srgb 0.176471 0.831373 0.74902 / 0.28) 0px 0px 0px 1px, color(srgb 0.176471 0.831373 0.74902 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-wildlife",
+          "cat": "wildlife",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-alerts",
+          "cat": "alerts",
+          "border": "color(srgb 0.545098 0.607843 0.690196 / 0.72)",
+          "shadow": "color(srgb 0.545098 0.607843 0.690196 / 0.28) 0px 0px 0px 1px, color(srgb 0.545098 0.607843 0.690196 / 0.48) 0px 0px 36p"
+        }
+      ]
+    },
+    "scenesHero": {
+      "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+      "featuredSrc": null,
+      "featuredPlaceholder": null,
+      "featuredCaption": null,
+      "scenesSrc": "http://127.0.0.1:8765/assets/images/scenes/old-growth-cedar.jpg",
+      "scenesCredit": "Boardwalk Under Canopy · Field capture · Olympus E-M10",
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": []
+    },
+    "attribution": {
+      "title": "Home — Waypoint Studio",
+      "featuredSrc": "http://127.0.0.1:8765/assets/images/featured/bog-bridge-evergreens.jpg",
+      "featuredPlaceholder": null,
+      "featuredCaption": "Bog Bridge Through the Evergreens — Bog bridges lead through moss, roots, and standing timber. — Field capture — Field capture · iPhone XR",
+      "scenesSrc": null,
+      "scenesCredit": null,
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": [
+        {
+          "id": "ph-conditions",
+          "cat": "conditions",
+          "border": "color(srgb 0.301961 0.639216 0.878431 / 0.72)",
+          "shadow": "color(srgb 0.301961 0.639216 0.878431 / 0.28) 0px 0px 0px 1px, color(srgb 0.301961 0.639216 0.878431 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-light",
+          "cat": "light",
+          "border": "color(srgb 0.909804 0.658824 0.219608 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.658824 0.219608 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.658824 0.219608 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-air",
+          "cat": "air",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-astronomy",
+          "cat": "astronomy",
+          "border": "color(srgb 0.654902 0.545098 0.980392 / 0.72)",
+          "shadow": "color(srgb 0.654902 0.545098 0.980392 / 0.28) 0px 0px 0px 1px, color(srgb 0.654902 0.545098 0.980392 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-photography",
+          "cat": "photography",
+          "border": "color(srgb 0.909804 0.47451 0.784314 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.47451 0.784314 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.47451 0.784314 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-rivers",
+          "cat": "rivers",
+          "border": "color(srgb 0.176471 0.831372 0.74902 / 0.72)",
+          "shadow": "color(srgb 0.176471 0.831373 0.74902 / 0.28) 0px 0px 0px 1px, color(srgb 0.176471 0.831373 0.74902 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-wildlife",
+          "cat": "wildlife",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-alerts",
+          "cat": "alerts",
+          "border": "color(srgb 0.545098 0.607843 0.690196 / 0.72)",
+          "shadow": "color(srgb 0.545098 0.607843 0.690196 / 0.28) 0px 0px 0px 1px, color(srgb 0.545098 0.607843 0.690196 / 0.48) 0px 0px 36p"
+        }
+      ]
+    },
+    "homeMobile": {
+      "title": "Home — Waypoint Studio",
+      "featuredSrc": "http://127.0.0.1:8765/assets/images/featured/bog-bridge-evergreens.jpg",
+      "featuredPlaceholder": null,
+      "featuredCaption": "Bog Bridge Through the Evergreens — Bog bridges lead through moss, roots, and standing timber. — Field capture — Field capture · iPhone XR",
+      "scenesSrc": null,
+      "scenesCredit": null,
+      "locationPromptOpen": false,
+      "placeholderCopyHits": [],
+      "brokenImgs": [],
+      "widgets": [
+        {
+          "id": "ph-conditions",
+          "cat": "conditions",
+          "border": "color(srgb 0.301961 0.639216 0.878431 / 0.72)",
+          "shadow": "color(srgb 0.301961 0.639216 0.878431 / 0.28) 0px 0px 0px 1px, color(srgb 0.301961 0.639216 0.878431 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-light",
+          "cat": "light",
+          "border": "color(srgb 0.909804 0.658824 0.219608 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.658824 0.219608 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.658824 0.219608 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-air",
+          "cat": "air",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-astronomy",
+          "cat": "astronomy",
+          "border": "color(srgb 0.654902 0.545098 0.980392 / 0.72)",
+          "shadow": "color(srgb 0.654902 0.545098 0.980392 / 0.28) 0px 0px 0px 1px, color(srgb 0.654902 0.545098 0.980392 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-photography",
+          "cat": "photography",
+          "border": "color(srgb 0.909804 0.47451 0.784314 / 0.72)",
+          "shadow": "color(srgb 0.909804 0.47451 0.784314 / 0.28) 0px 0px 0px 1px, color(srgb 0.909804 0.47451 0.784314 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-rivers",
+          "cat": "rivers",
+          "border": "color(srgb 0.176471 0.831372 0.74902 / 0.72)",
+          "shadow": "color(srgb 0.176471 0.831373 0.74902 / 0.28) 0px 0px 0px 1px, color(srgb 0.176471 0.831373 0.74902 / 0.48) 0px 0px 36px "
+        },
+        {
+          "id": "ph-wildlife",
+          "cat": "wildlife",
+          "border": "color(srgb 0.560784 0.819608 0.290196 / 0.72)",
+          "shadow": "color(srgb 0.560784 0.819608 0.290196 / 0.28) 0px 0px 0px 1px, color(srgb 0.560784 0.819608 0.290196 / 0.48) 0px 0px 36p"
+        },
+        {
+          "id": "ph-alerts",
+          "cat": "alerts",
+          "border": "color(srgb 0.545098 0.607843 0.690196 / 0.72)",
+          "shadow": "color(srgb 0.545098 0.607843 0.690196 / 0.28) 0px 0px 0px 1px, color(srgb 0.545098 0.607843 0.690196 / 0.48) 0px 0px 36p"
+        }
+      ]
+    }
+  },
+  "assetStatus": {
+    "/assets/images/featured/bog-bridge-evergreens.jpg": 200,
+    "/assets/images/scenes/old-growth-cedar.jpg": 200,
+    "/assets/images/featured/fog-forest.jpg": 200,
+    "/apps/scenes/assets/media/hero.jpg": 200,
+    "/assets/images/identity/manifest.json": 200
+  }
+}

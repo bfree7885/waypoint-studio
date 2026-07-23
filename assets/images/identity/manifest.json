@@ -1,46 +1,59 @@
 {
-  "version": 1,
-  "note": "Owner photography replaces placeholders. Set placeholder false and point src at your files under assets/images/identity/owner/ when ready. Do not hardcode permanent stock.",
+  "version": 2,
+  "note": "Field photography restored for Featured Photography and Scenes hero. Mist-valley / hero.jpg (MD5 717cfdc…) is an Unsplash landscape stand-in — not used on those surfaces. Legacy photography-data.js titles (e.g. Elk at Dawn for image0.jpeg) do not match pixel content; captions below describe the actual frames. Anthony Mucarri is not present in git/EXIF.",
   "experiences": {
     "home": {
-      "label": "Waypoint Studio",
-      "mood": "sky",
-      "src": "assets/images/identity/placeholders/home-sky.svg",
-      "alt": "Soft morning sky over quiet hills — temporary placeholder",
-      "credit": "Placeholder · replace with owner sky photography",
-      "placeholder": true
+      "label": "Bog Bridge Through the Evergreens",
+      "mood": "forest",
+      "src": "assets/images/featured/bog-bridge-evergreens.jpg",
+      "alt": "Wooden bog bridges on a mossy trail through dense evergreen forest",
+      "caption": "Bog bridges lead through moss, roots, and standing timber.",
+      "location": "",
+      "credit": "Field capture · iPhone XR",
+      "placeholder": false,
+      "sourceOriginal": "apps/waypoint-scenes/assets/Images/image0.jpeg"
     },
     "dashboard": {
-      "label": "Today’s outdoors",
-      "mood": "sky",
-      "src": "assets/images/identity/placeholders/dashboard-sky.svg",
-      "alt": "Open sky for today’s outdoor brief — temporary placeholder",
-      "credit": "Placeholder · replace with owner sky photography",
-      "placeholder": true
+      "label": "Bog Bridge Through the Evergreens",
+      "mood": "forest",
+      "src": "assets/images/featured/bog-bridge-evergreens.jpg",
+      "alt": "Wooden bog bridges on a mossy trail through dense evergreen forest",
+      "caption": "Bog bridges lead through moss, roots, and standing timber.",
+      "location": "",
+      "credit": "Field capture · iPhone XR",
+      "placeholder": false,
+      "sourceOriginal": "apps/waypoint-scenes/assets/Images/image0.jpeg"
     },
     "scenes": {
-      "label": "Photography",
-      "mood": "craft",
-      "src": "assets/images/identity/placeholders/scenes-craft.svg",
-      "alt": "Photographic light and quiet landscape — temporary placeholder",
-      "credit": "Placeholder · replace with owner photography",
-      "placeholder": true
+      "label": "Boardwalk Under Canopy",
+      "mood": "forest",
+      "src": "assets/images/scenes/old-growth-cedar.jpg",
+      "alt": "Wooden boardwalk path through sun-dappled forest understory",
+      "caption": "A boardwalk path under filtered canopy light.",
+      "location": "",
+      "credit": "Boardwalk Under Canopy · Field capture · Olympus E-M10",
+      "placeholder": false,
+      "sourceOriginal": "apps/waypoint-scenes/assets/Images/Edited-8190413.JPG"
     },
     "sheds": {
-      "label": "Forest",
+      "label": "Fog Among the Firs",
       "mood": "forest",
-      "src": "assets/images/identity/placeholders/sheds-forest.svg",
-      "alt": "Forest edge and soft understory — temporary placeholder",
-      "credit": "Placeholder · replace with owner forest photography",
-      "placeholder": true
+      "src": "assets/images/featured/fog-forest.jpg",
+      "alt": "Fog among evergreen trees with fern understory — field photography",
+      "caption": "Fog settling through firs and ferns.",
+      "credit": "Field capture · Panasonic DMC-LX7",
+      "placeholder": false,
+      "sourceOriginal": "apps/waypoint-scenes/assets/fogforest.jpg"
     },
     "volunteer": {
-      "label": "Stewardship",
+      "label": "Fog Among the Firs",
       "mood": "stewardship",
-      "src": "assets/images/identity/placeholders/volunteer-care.svg",
-      "alt": "People caring for trails and land — temporary placeholder",
-      "credit": "Placeholder · replace with owner stewardship photography",
-      "placeholder": true
+      "src": "assets/images/featured/fog-forest.jpg",
+      "alt": "Fog among evergreen trees with fern understory — field photography",
+      "caption": "Fog settling through firs and ferns.",
+      "credit": "Field capture · Panasonic DMC-LX7",
+      "placeholder": false,
+      "sourceOriginal": "apps/waypoint-scenes/assets/fogforest.jpg"
     }
   }
 }

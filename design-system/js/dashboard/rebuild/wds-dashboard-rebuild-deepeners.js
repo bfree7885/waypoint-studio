@@ -61,7 +61,7 @@
       '<section class="wdb-r-deepen__section" data-deepen="photo" aria-labelledby="wdb-r-photo-title">' +
       '<header class="wdb-r-deepen__header">' +
       '<h2 class="wdb-r-deepen__title" id="wdb-r-photo-title">Featured Photography</h2>' +
-      '<p class="wdb-r-deepen__lede">Owner photography when available — never stock theater.</p>' +
+      '<p class="wdb-r-deepen__lede">Frames from the field — captioned and credited.</p>' +
       "</header>" +
       '<div class="wdb-r-deepen__body" data-deepen-body="photo" aria-busy="true">' +
       '<p class="wdb-r-deepen__status" role="status">Loading photograph…</p>' +
@@ -205,17 +205,33 @@
         if (exp.placeholder && credit && credit.indexOf("Placeholder") < 0) {
           credit = "Placeholder · " + credit;
         }
+        var title = exp.label || "";
+        var caption = exp.caption || "";
+        var location = exp.location || "";
+        var capParts = [];
+        if (title) {
+          capParts.push("<strong>" + escapeHtml(title) + "</strong>");
+        }
+        if (caption) {
+          capParts.push(escapeHtml(caption));
+        }
+        if (location) {
+          capParts.push("<em>" + escapeHtml(location) + "</em>");
+        }
+        if (credit) {
+          capParts.push(escapeHtml(credit));
+        }
         el.innerHTML =
           '<figure class="wdb-r-deepen__figure">' +
           '<img class="wdb-r-deepen__img" src="' +
           escapeHtml(src) +
           '" alt="' +
-          escapeHtml(exp.alt || "Featured photography") +
+          escapeHtml(exp.alt || title || "Featured photography") +
           '" width="1280" height="720" loading="lazy" decoding="async"' +
           (exp.placeholder ? ' data-placeholder="true"' : "") +
           ">" +
-          (credit
-            ? '<figcaption class="wdb-r-deepen__caption">' + escapeHtml(credit) + "</figcaption>"
+          (capParts.length
+            ? '<figcaption class="wdb-r-deepen__caption">' + capParts.join(" — ") + "</figcaption>"
             : "") +
           "</figure>";
         el.removeAttribute("aria-busy");

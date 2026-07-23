@@ -137,6 +137,42 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Photography + widget color correction
+
+**Artifact:** `docs/rebuild-2026/platform-photography-and-widget-color-correction-owner-review.md`  
+**Evidence:** `docs/rebuild-2026/platform-color-correction/`
+
+1. **Unsplash stand-ins are not “restored photography”** — identical MD5
+   across `hero.jpg` / seasons / Scenes mist-valley meant prior “restore”
+   only swapped SVG for stock; field JPGs under `apps/waypoint-scenes/assets/`
+   were the real recovery target.
+2. **Gallery metadata can lie** — `photography-data.js` titled `image0.jpeg`
+   “Elk at Dawn” but pixels are a bog-bridge forest trail; caption from
+   pixels + EXIF camera, never invent subjects or Mucarri credits.
+3. **Category color fails if only a 1–3px top edge changes** — use full
+   perimeter border + wide outer glow + tint wash + label/pill accents via
+   centralized `--category-*` tokens; prove with screenshots at normal scale.
+4. **Capture location seeding must use `wds-location-v3` + prompted flag** —
+   v1-only seeds leave the region modal covering Featured Photography.
+
+### 2026-07-23 — Platform photography + visual regression
+
+**Artifact:** `docs/rebuild-2026/platform-photography-and-visual-regression-owner-review.md` (**SUPERSEDED**)  
+**Evidence:** `docs/rebuild-2026/platform-visual-regression/`
+
+1. **Missing photography was a manifest rewire, not deleted binaries** —
+   `b264a13` SVG identity slots orphaned JPGs still on disk; restore by
+   pointing manifests/HTML at existing paths before hunting archives.
+2. **Named photographer credits need repo evidence** — Anthony Mucarri appears
+   in production anecdotes but nowhere in git/EXIF; do not invent attribution.
+3. **Product landings can override shared shell into “old site” feel** —
+   Scenes moss/olive and Sheds forest wash defeated navy foundation; keep
+   product accents on CTAs/nav/stage only.
+4. **Category presence is additive CSS** — strengthen border/glow/tint/label
+   via `--wdb-r-cat-*` without touching widget geometry or trust-chip semantics.
+   *(Follow-up: prior “stronger” treatment still failed owner distance test —
+   see correction lesson above.)*
+
 ### 2026-07-23 — Home RC1.2 footer production delivery check
 
 **Artifact:** `docs/rebuild-2026/home-rc1.2-footer-production-incident.md`  

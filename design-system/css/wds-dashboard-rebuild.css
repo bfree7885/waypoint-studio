@@ -18,6 +18,35 @@
     0 8px 28px rgba(4, 8, 18, 0.35);
   --wdb-r-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
     0 14px 36px rgba(4, 8, 18, 0.45);
+  /* Category presence — atmospheric, luminous (not filled neon) */
+  /* Semantic category tokens — luminous identity at normal viewing distance */
+  --category-weather: #4da3e0;
+  --category-light: #e8a838;
+  --category-nature: #8fd14a;
+  --category-astronomy: #a78bfa;
+  --category-photography: #e879c8;
+  --category-water: #2dd4bf;
+  --category-hiking: #3d8f5a;
+  --category-earth: #d97757;
+  --category-alerts: #8b9bb0;
+  --category-alerts-active: #ef5350;
+  --category-travel: #9bb0c8;
+  /* Widget aliases map onto semantic tokens */
+  --wdb-r-cat-conditions: var(--category-weather);
+  --wdb-r-cat-light: var(--category-light);
+  --wdb-r-cat-air: var(--category-nature);
+  --wdb-r-cat-wildlife: var(--category-nature);
+  --wdb-r-cat-astronomy: var(--category-astronomy);
+  --wdb-r-cat-photography: var(--category-photography);
+  --wdb-r-cat-rivers: var(--category-water);
+  --wdb-r-cat-water: var(--category-water);
+  --wdb-r-cat-trails: var(--category-hiking);
+  --wdb-r-cat-hiking: var(--category-hiking);
+  --wdb-r-cat-flora: var(--category-earth);
+  --wdb-r-cat-mushrooms: var(--category-earth);
+  --wdb-r-cat-earth: var(--category-earth);
+  --wdb-r-cat-alerts: var(--category-alerts);
+  --wdb-r-cat-travel: var(--category-travel);
   max-width: 74rem;
   margin: 0 auto;
   padding: var(--wds-space-4, 1rem) clamp(1rem, 3vw, 1.75rem) var(--wds-space-12, 3rem);
@@ -336,37 +365,107 @@
   border-top: 1px solid var(--wdb-r-line);
 }
 
-/* Category readiness cue (visual anticipation only) */
+/* Category presence — full outline + wide glow + tinted wash + label/pill accent */
 .wdb-r-widget[data-category="conditions"] {
-  border-top: 2px solid color-mix(in srgb, var(--wdb-r-accent) 70%, transparent);
+  --wdb-r-cat: var(--category-weather);
 }
 .wdb-r-widget[data-category="light"] {
-  border-top: 2px solid color-mix(in srgb, var(--wds-warm, #e8b86d) 75%, transparent);
+  --wdb-r-cat: var(--category-light);
 }
-.wdb-r-widget[data-category="air"] {
-  border-top: 2px solid color-mix(in srgb, #8ec5d8 70%, transparent);
+.wdb-r-widget[data-category="air"],
+.wdb-r-widget[data-category="wildlife"],
+.wdb-r-widget[data-category="nature"] {
+  --wdb-r-cat: var(--category-nature);
 }
 .wdb-r-widget[data-category="astronomy"] {
-  border-top: 2px solid color-mix(in srgb, #a8b4e0 70%, transparent);
+  --wdb-r-cat: var(--category-astronomy);
 }
 .wdb-r-widget[data-category="photography"] {
-  border-top: 2px solid color-mix(in srgb, #d4b48a 70%, transparent);
+  --wdb-r-cat: var(--category-photography);
 }
 .wdb-r-widget[data-category="rivers"],
 .wdb-r-widget[data-category="water"] {
-  border-top: 2px solid color-mix(in srgb, #6ea8c9 75%, transparent);
+  --wdb-r-cat: var(--category-water);
 }
-.wdb-r-widget[data-category="wildlife"] {
-  border-top: 2px solid color-mix(in srgb, #8faf7a 70%, transparent);
+.wdb-r-widget[data-category="trails"],
+.wdb-r-widget[data-category="hiking"] {
+  --wdb-r-cat: var(--category-hiking);
 }
-.wdb-r-widget[data-category="alerts"] {
-  border-top: 2px solid color-mix(in srgb, #e0a090 70%, transparent);
-}
-.wdb-r-widget[data-category="trails"] {
-  border-top: 2px solid color-mix(in srgb, #9aaf8a 70%, transparent);
+.wdb-r-widget[data-category="flora"],
+.wdb-r-widget[data-category="mushrooms"],
+.wdb-r-widget[data-category="earth"] {
+  --wdb-r-cat: var(--category-earth);
 }
 .wdb-r-widget[data-category="travel"] {
-  border-top: 2px solid color-mix(in srgb, #9bb0c8 70%, transparent);
+  --wdb-r-cat: var(--category-travel);
+}
+/* Alerts: muted slate until an active alert — never alarm-red by default */
+.wdb-r-widget[data-category="alerts"] {
+  --wdb-r-cat: var(--category-alerts);
+}
+.wdb-r-widget[data-category="alerts"][data-alert-active="true"] {
+  --wdb-r-cat: var(--category-alerts-active);
+}
+
+.wdb-r-widget[data-category] {
+  border: 2px solid color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 72%, transparent);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 24%, transparent) 0%,
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 10%, var(--wdb-r-surface)) 38%,
+      var(--wdb-r-surface) 72%
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
+    0 0 36px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 48%, transparent),
+    0 0 72px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 42%, transparent),
+    inset 0 0 28px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 14%, transparent),
+    var(--wdb-r-shadow);
+}
+
+.wdb-r-widget[data-category]:hover,
+.wdb-r-widget[data-category]:focus-within {
+  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 88%, transparent);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 30%, transparent) 0%,
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 12%, var(--wdb-r-hover)) 40%,
+      var(--wdb-r-hover) 75%
+    );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 40%, transparent),
+    0 0 44px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 55%, transparent),
+    0 0 88px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 32%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 50%, transparent),
+    inset 0 0 32px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 16%, transparent),
+    var(--wdb-r-shadow-hover);
+}
+
+.wdb-r-widget[data-category] .wdb-r-widget__cat {
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 88%, #fff 12%);
+}
+
+.wdb-r-widget[data-category] .wdb-r-widget__note {
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 58%, var(--wdb-r-faint));
+}
+
+.wdb-r-widget[data-category] .wds-trust-chip {
+  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 55%, transparent);
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 82%, var(--wdb-r-ink));
+  background: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 14%, var(--wdb-r-panel));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-r-widget[data-category] {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 32%, transparent),
+      0 0 24px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 36%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 36%, transparent),
+      var(--wdb-r-shadow);
+  }
 }
 
 /* ——— Customize ——— */

@@ -39,7 +39,7 @@
   width: 1.35rem;
   height: 1.35rem;
   border-radius: 0.35rem;
-  background: var(--wds-accent, #3d5a40);
+  background: var(--wds-accent, #6ea8c9);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
@@ -66,13 +66,13 @@
 
 .was-apps-btn:hover,
 .was-apps-btn:focus-visible {
-  border-color: var(--wds-accent, #3d5a40);
+  border-color: var(--wds-accent, #6ea8c9);
   outline: none;
 }
 
 .was-apps-btn[aria-expanded="true"] {
-  background: var(--wds-accent-dim, rgba(61, 90, 64, 0.1));
-  border-color: var(--wds-accent, #3d5a40);
+  background: var(--wds-accent-dim, rgba(110, 168, 201, 0.12));
+  border-color: var(--wds-accent, #6ea8c9);
 }
 
 /* Local app navigation */
@@ -127,7 +127,7 @@
 .was-local__nav a.is-current {
   color: var(--wds-text, #1c1b19);
   background: var(--wds-surface, #fff);
-  box-shadow: inset 0 0 0 1px var(--wds-accent, #3d5a40);
+  box-shadow: inset 0 0 0 1px var(--wds-accent, #6ea8c9);
   font-weight: 550;
 }
 
@@ -229,8 +229,8 @@
 }
 
 .was-launcher__app.is-current {
-  border-color: var(--wds-accent, #3d5a40);
-  background: var(--wds-accent-dim, rgba(61, 90, 64, 0.08));
+  border-color: var(--wds-accent, #6ea8c9);
+  background: var(--wds-accent-dim, rgba(110, 168, 201, 0.08));
 }
 
 .was-app-icon {
@@ -243,8 +243,8 @@
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--wds-accent, #3d5a40);
-  background: var(--wds-accent-dim, rgba(61, 90, 64, 0.12));
+  color: var(--wds-accent, #6ea8c9);
+  background: var(--wds-accent-dim, rgba(110, 168, 201, 0.12));
 }
 
 .was-launcher__app-copy {
@@ -499,7 +499,7 @@ article.was-home__card {
 
 .was-home__card:hover,
 .was-home__card:focus-visible {
-  border-color: var(--wds-accent, #3d5a40);
+  border-color: var(--wds-accent, #6ea8c9);
   outline: none;
 }
 
@@ -520,7 +520,7 @@ article.was-home__card {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--wds-accent, #3d5a40);
+  color: var(--wds-accent, #6ea8c9);
 }
 
 .was-home__search {
@@ -574,7 +574,7 @@ article.was-home__card {
 }
 
 .was-home__error a {
-  color: var(--wds-accent, #3d5a40);
+  color: var(--wds-accent, #6ea8c9);
 }
 
 /* Scene Builder secondary actions (not app navigation) */
@@ -618,10 +618,52 @@ article.was-home__card {
 
 .was-home__pillars a:hover,
 .was-home__pillars a:focus-visible {
-  border-color: var(--wds-accent, #3d5a40);
+  border-color: var(--wds-accent, #6ea8c9);
   outline: none;
 }
 
 article.was-home__card {
   text-decoration: none;
+}
+
+/* Quiet chrome — Home/Rebuild (moved from retired OS stylesheet) */
+.was-shell--quiet .was-global,
+.was-global--quiet {
+  border-bottom: none;
+  background: transparent;
+}
+
+.was-global--quiet .was-global__inner {
+  min-height: 2.25rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.was-global--quiet .was-brand__name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  opacity: 0.55;
+  letter-spacing: 0.01em;
+}
+
+.was-global--quiet .was-brand__mark {
+  width: 0.62rem;
+  height: 0.62rem;
+  opacity: 0.55;
+}
+
+[data-product="dashboard"] .was-local {
+  display: none !important;
+}
+
+.was-shell--quiet .was-footer,
+.was-shell--quiet .wds-footer {
+  opacity: 0.72;
+  font-size: 0.8rem;
+}
+
+.was-shell--quiet .was-footer a,
+.was-shell--quiet .wds-footer a {
+  color: inherit;
+  opacity: 0.85;
 }
