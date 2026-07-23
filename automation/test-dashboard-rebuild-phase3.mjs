@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
@@ -139,7 +139,7 @@ const Kiosk = sandbox.WDS.dashboardRebuildKiosk;
 const Shell = sandbox.WDS.dashboardRebuild;
 const Data = sandbox.WDS.dashboardRebuildData;
 
-assert("registry phase3", !!(Reg && Reg.version && /phase3/.test(Reg.version)));
+assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6/.test(Reg.version)));
 assert("prefs key preserved", Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1");
 assert("prefs exposes favorites API", typeof Prefs.toggleFavorite === "function");
 assert("prefs exposes columns API", typeof Prefs.setGridColumns === "function");
@@ -242,7 +242,8 @@ if (emptyPrefs.enabled.length === 0) {
   const emptyWs = Workspace.renderWorkspace({ prefs: emptyPrefs, customize: false });
   assert(
     "empty workspace copy",
-    /No widgets yet\. Open Customize to build your workspace\./.test(emptyWs)
+    /Your workspace is empty/.test(emptyWs) &&
+      /Open Customize to choose the outdoor instruments/.test(emptyWs)
   );
 } else {
   /* normalize restores defaults when empty — simulate empty via ids override */
@@ -253,7 +254,8 @@ if (emptyPrefs.enabled.length === 0) {
   });
   assert(
     "empty workspace copy",
-    /No widgets yet\. Open Customize to build your workspace\./.test(emptyWs)
+    /Your workspace is empty/.test(emptyWs) &&
+      /Open Customize to choose the outdoor instruments/.test(emptyWs)
   );
   const emptyCustom = Workspace.renderWorkspace({
     prefs: emptyPrefs,
@@ -262,7 +264,8 @@ if (emptyPrefs.enabled.length === 0) {
   });
   assert(
     "empty customize copy",
-    /No widgets yet\. Add instruments from the library below\./.test(emptyCustom)
+    /Your workspace is empty/.test(emptyCustom) &&
+      /Add instruments from the library below/.test(emptyCustom)
   );
 }
 
@@ -394,6 +397,9 @@ const lazyHtml = Workspace.renderWorkspace({
 });
 assert("lazy frames pending", /data-lazy="pending"/.test(lazyHtml));
 assert("lazy reserved settling copy", /Settling…/.test(lazyHtml));
+assert("lazy skeleton placeholders", /wdb-r-skeleton/.test(lazyHtml));
+assert("workspace family grouping", /wdb-r-group__label/.test(Workspace.renderWorkspace({ prefs: Prefs.load(), platform })));
+assert("widget family attrs", /data-family="environmental"/.test(Workspace.renderWorkspace({ prefs: Prefs.load(), platform })));
 
 assert("kiosk constraints unchanged", Kiosk.constraints().hideCustomize === true);
 

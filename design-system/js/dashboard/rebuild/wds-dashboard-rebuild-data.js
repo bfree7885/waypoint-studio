@@ -135,7 +135,9 @@
       return {
         trust: platform ? "unavailable" : "waiting",
         status: platform ? "unavailable" : "waiting",
-        message: "Light windows will appear here.",
+        message: platform
+          ? "Light windows unavailable for this place right now."
+          : "Sunrise and light windows will appear here.",
         facts: null
       };
     }

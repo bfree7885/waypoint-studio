@@ -137,6 +137,21 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Dashboard RC2.5 Sprint 6 (experience polish)
+
+**Artifact:** `docs/dashboard-rc25-sprint6/OWNER-REVIEW.md`
+**Branch:** `polish/dashboard-rc25-sprint6`
+
+1. **Family grouping beats category noise** — Quiet ENVIRONMENTAL / ASTRONOMY /
+   PHOTOGRAPHY labels + default order (Conditions→Air→Alerts→Astronomy→Light)
+   make related instruments read as one system without a redesign.
+2. **Skeletons > “Settling…”** — Keep screen-reader settling copy; show
+   shimmer lines for visual calm and CLS-safe pending frames.
+3. **Soften category glow for premium density** — Luminous borders stay; reduce
+   neon bloom so cards feel like morning instruments, not admin neon.
+4. **Empty states need a title + guidance** — “Your workspace is empty” plus
+   one honest next step outperforms a single flat sentence.
+
 ### 2026-07-23 — Mobile tile editing (iPhone Customize)
 
 **Artifact:** `docs/dashboard-mobile-tile-editing/OWNER-REVIEW.md`  
