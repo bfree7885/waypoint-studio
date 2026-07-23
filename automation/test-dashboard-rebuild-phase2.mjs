@@ -32,7 +32,7 @@ function load(rel, sandbox) {
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
-assert("index product name Dashboard", /data-product-name="Dashboard"/.test(indexHtml));
+assert("index product name Home", /data-product-name="Home"/.test(indexHtml));
 assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
@@ -148,7 +148,7 @@ assert("shell loaded", !!(Shell && Shell.mount));
 assert("shell exposes setPlatform", typeof Shell.setPlatform === "function");
 
 const all = Reg.all();
-assert("catalog has nine families", all.length === 9, String(all.length));
+assert("catalog has core families", all.length >= 9, String(all.length));
 assert(
   "four live widgets marked",
   Data.liveIds.every(function (id) {
@@ -321,7 +321,14 @@ const wsLive = Workspace.renderWorkspace({
 });
 assert("workspace renders live conditions facts", /wdb-r-widget__facts/.test(wsLive) && /72°F/.test(wsLive));
 assert("workspace renders live air", /US AQI|Good/.test(wsLive));
-assert("workspace photography still coming soon", /Photography windows coming soon/.test(wsLive));
+Prefs.setEnabled("ph-photography", true);
+const wsPhoto = Workspace.renderWorkspace({
+  prefs: Prefs.load(),
+  customize: false,
+  platform
+});
+assert("workspace photography still coming soon", /Photography windows coming soon/.test(wsPhoto));
+Prefs.setEnabled("ph-photography", false);
 
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");

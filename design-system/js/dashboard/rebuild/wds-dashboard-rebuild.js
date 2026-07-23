@@ -1,15 +1,23 @@
 /**
- * Dashboard Rebuild — product shell (Phase 2).
- * Workspace + Today Outside + Customize + Kiosk; OIP hydrates four live widgets.
+ * Dashboard Rebuild — product shell (Phase 3).
+ * Workspace + Today Outside + library Customize + Kiosk; OIP hydrates live widgets.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "2.0.0-phase2";
+  var VERSION = "3.0.0-phase3";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
+  }
+
+  function prefersReducedMotion() {
+    try {
+      return !!(global.matchMedia && global.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    } catch (e) {
+      return false;
+    }
   }
 
   function parseView(hash) {
@@ -65,6 +73,8 @@
     var Prefs = api("dashboardRebuildPrefs");
     var prefs = Prefs && Prefs.load ? Prefs.load() : null;
     var kioskActive = view === "kiosk";
+    var lazy = options.lazy === true;
+    var animate = options.animate === true && !prefersReducedMotion();
 
     var todayHtml =
       Today && Today.render ? Today.render(todayContext(options)) : "";
@@ -73,7 +83,15 @@
     if (view === "customize") {
       mainHtml =
         Customize && Customize.render
-          ? Customize.render({ prefs: prefs })
+          ? Customize.render({
+              prefs: prefs,
+              platform: platform,
+              libraryFilter:
+                options.libraryFilter ||
+                (Customize.getLibraryFilter && Customize.getLibraryFilter()) ||
+                "all",
+              animate: animate
+            })
           : "";
     } else {
       mainHtml =
@@ -82,9 +100,17 @@
           ? Workspace.renderWorkspace({
               prefs: prefs,
               customize: false,
-              platform: platform
+              platform: platform,
+              lazy: lazy,
+              animate: animate
             })
           : "");
+    }
+
+    var deepenHtml = "";
+    if (view === "workspace") {
+      var Deepen = api("dashboardRebuildDeepeners");
+      deepenHtml = Deepen && Deepen.render ? Deepen.render() : "";
     }
 
     /* Local nav (Workspace · Customize · Kiosk) lives in app shell — no duplicate bar. */
@@ -97,6 +123,7 @@
       ">" +
       todayHtml +
       mainHtml +
+      deepenHtml +
       "</div>"
     );
   }
@@ -106,7 +133,8 @@
     view: "workspace",
     placeContext: null,
     platform: null,
-    bound: false
+    bound: false,
+    libraryFilter: "all"
   };
 
   function applyKioskMode(view) {
@@ -133,23 +161,55 @@
     }
   }
 
-  function paint() {
+  function paint(options) {
+    options = options || {};
     if (!mountState.host) return;
+    var animate = options.animate !== false && !prefersReducedMotion();
     var html = renderShell({
       view: mountState.view,
       placeContext: mountState.placeContext || {},
       platform: mountState.platform || null,
-      now: new Date()
+      now: new Date(),
+      lazy: mountState.view !== "customize",
+      animate: animate,
+      libraryFilter: mountState.libraryFilter
     });
     mountState.host.innerHTML = html;
     mountState.host.removeAttribute("aria-busy");
     mountState.host.classList.add("wdb-r-ready");
+    if (animate) {
+      if (mountState.host.classList && typeof mountState.host.classList.add === "function") {
+        mountState.host.classList.add("wdb-r--settling");
+      }
+      var clearSettling = function () {
+        if (!mountState.host || !mountState.host.classList) return;
+        if (typeof mountState.host.classList.remove === "function") {
+          mountState.host.classList.remove("wdb-r--settling");
+        }
+      };
+      if (typeof global.requestAnimationFrame === "function") {
+        global.requestAnimationFrame(clearSettling);
+      } else {
+        clearSettling();
+      }
+    }
     applyKioskMode(mountState.view);
     var Customize = api("dashboardRebuildCustomize");
+    var Workspace = api("dashboardRebuildWorkspace");
     if (mountState.view === "customize" && Customize && Customize.bind) {
-      Customize.bind(mountState.host, function () {
-        paint();
+      Customize.bind(mountState.host, function (_next, meta) {
+        if (meta && meta.filter) mountState.libraryFilter = meta.filter;
+        paint({ animate: true });
       });
+    }
+    if (Workspace && Workspace.bindLazy && mountState.view !== "customize") {
+      Workspace.bindLazy(mountState.host, { platform: mountState.platform || null });
+    }
+    if (mountState.view === "workspace") {
+      var Deepen = api("dashboardRebuildDeepeners");
+      if (Deepen && Deepen.bind) {
+        Deepen.bind(mountState.host, {});
+      }
     }
     try {
       global.dispatchEvent(
@@ -181,7 +241,7 @@
         }
       }
     }
-    paint();
+    paint({ animate: true });
   }
 
   function setPlaceContext(ctx) {
@@ -198,7 +258,7 @@
     var next = parseView();
     if (next !== mountState.view) {
       mountState.view = next;
-      paint();
+      paint({ animate: true });
     } else {
       applyKioskMode(next);
     }
@@ -217,8 +277,9 @@
     mountState.placeContext = options.placeContext || null;
     mountState.platform = options.platform || null;
     mountState.view = parseView(options.view || (global.location && global.location.hash) || "#/");
+    mountState.libraryFilter = "all";
     bindRouting();
-    paint();
+    paint({ animate: false });
     return host.querySelector("[data-wdb-r]");
   }
 

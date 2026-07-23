@@ -82,14 +82,14 @@
     return el;
   }
 
-  /** Homepage default — calm outdoor companion, not a product map. */
+  /** Homepage / Home default — calm outdoor companion, not a product map. */
   function homepageDefault() {
     return {
       body:
         "Begin with the day outside. Notice conditions before you leave, then photograph, search, or help when you’re ready — without rushing into every tool at once.",
       meta: "Interpretation · not a score · uncertainty welcome",
       sources: [
-        { label: "How is today?", href: "apps/dashboard/" },
+        { label: "Home workspace", href: "./" },
         { label: "Articles", href: "articles/" }
       ]
     };

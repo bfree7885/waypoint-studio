@@ -31,11 +31,20 @@ function load(rel, sandbox) {
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
-assert("index product name Dashboard", /data-product-name="Dashboard"/.test(indexHtml));
-assert("index title Dashboard", /<title>Dashboard/.test(indexHtml));
+assert("index product name Home", /data-product-name="Home"/.test(indexHtml));
+assert("index title Home", /<title>Home/.test(indexHtml));
 assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 assert("index keeps contact local", /href="\.\/contact\.html"/.test(indexHtml));
 assert("index no Do this / homework chrome", !/Do this|homework|You should/i.test(indexHtml));
+assert("index does not revive Outdoor OS", !/Outdoor OS|wds-dashboard-os\.css/i.test(indexHtml));
+assert("index does not revive studio-home marketing", !/was-home-hero|studio-home\.js/i.test(indexHtml));
+
+const rootHtml = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+assert("root index mounts Rebuild", /wds-dashboard-rebuild\.css/.test(rootHtml));
+assert("root index product Home", /data-product-name="Home"/.test(rootHtml));
+assert("root index boots shared home-boot", /apps\/dashboard\/js\/home-boot\.js/.test(rootHtml));
+assert("root index quiet chrome", /data-quiet-chrome="true"/.test(rootHtml));
+assert("root index no marketing hero", !/was-home-hero|studio-home\.js/i.test(rootHtml));
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
@@ -45,6 +54,7 @@ const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-workspace.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild.js"
 ];
 modules.forEach(function (rel) {
@@ -176,8 +186,13 @@ assert("today outside product trust label", /Waiting|Unavailable/.test(todayHtml
 const ws = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace has widget frames", /data-widget-id="ph-conditions"/.test(ws));
 assert("workspace heading", /Workspace/.test(ws));
-assert("workspace anticipates photography", /data-widget-id="ph-photography"/.test(ws));
-assert("workspace anticipates rivers", /data-widget-id="ph-rivers"/.test(ws));
+assert("workspace anticipates conditions", /data-widget-id="ph-conditions"/.test(ws));
+assert("workspace anticipates light", /data-widget-id="ph-light"/.test(ws));
+assert("workspace anticipates air", /data-widget-id="ph-air"/.test(ws));
+assert("workspace anticipates astronomy", /data-widget-id="ph-astronomy"/.test(ws));
+assert("workspace anticipates alerts", /data-widget-id="ph-alerts"/.test(ws));
+assert("workspace omits coming-soon photography by default", !/data-widget-id="ph-photography"/.test(ws));
+assert("workspace omits coming-soon rivers by default", !/data-widget-id="ph-rivers"/.test(ws));
 assert("no developer instrument copy", !/Instrument not connected yet/.test(ws));
 assert("product waiting copy", /Waiting for weather data|Data will appear here|Widget coming soon|coming soon/i.test(ws));
 
@@ -252,11 +267,11 @@ load("design-system/js/platform/wds-app-nav.js", navSandbox);
 
 const Nav = navSandbox.WDS.appNav;
 const dash = Nav.byId("dashboard");
-assert("nav title Dashboard", dash && dash.title === "Dashboard");
+assert("nav title Home", dash && dash.title === "Home");
 assert("nav has workspace feature", dash.features.some((f) => f.id === "workspace"));
 assert("nav has customize feature", dash.features.some((f) => f.id === "customize"));
 assert("nav has kiosk feature", dash.features.some((f) => f.id === "kiosk"));
-assert("homePrimary is three products", (navSandbox.WDS.APP_NAV_CONFIG.homePrimary || []).join(",") === "dashboard,scenes,sheds");
+assert("homePrimary is three products", (navSandbox.WDS.APP_NAV_CONFIG.homePrimary || []).join(",") === "home,scenes,sheds");
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {

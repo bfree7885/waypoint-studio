@@ -6,20 +6,19 @@
   "use strict";
   global.WDS = global.WDS || {};
   global.WDS.APP_NAV_CONFIG = {
-    "version": "2.1.0",
+    "version": "2.2.0-home-rc1",
     "brand": {
       "name": "Waypoint Studio",
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "Your outdoor workspace and Today Outside" },
-      { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
+      { "id": "home", "label": "Home", "href": "./", "hint": "What’s happening outside today" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
-      { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
       { "id": "about", "label": "About", "href": "about.html" }
     ],
-    "homePrimary": ["dashboard", "scenes", "sheds"],
+    "homePrimary": ["home", "scenes", "sheds"],
     "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
@@ -47,12 +46,14 @@
     "apps": [
       {
         "id": "dashboard",
-        "title": "Dashboard",
-        "shortTitle": "Dashboard",
+        "title": "Home",
+        "shortTitle": "Home",
         "icon": "dashboard",
         "route": "apps/dashboard/",
         "match": [
-          "/apps/dashboard"
+          "/apps/dashboard",
+          "^/index\\.html$",
+          "^/$"
         ],
         "category": "core",
         "description": "Customizable outdoor workspace — Today Outside summary plus instruments you choose.",
@@ -67,10 +68,11 @@
             "hash": "#/",
             "match": [
               "/apps/dashboard/?$",
-              "/apps/dashboard/index"
+              "/apps/dashboard/index",
+              "^/$",
+              "^/index\\.html$"
             ]
-          },
-          {
+          },          {
             "id": "customize",
             "label": "Customize",
             "href": "apps/dashboard/",
@@ -92,7 +94,7 @@
           }
         ],
         "startHere": {
-          "label": "Open Dashboard",
+          "label": "Open workspace",
           "href": "apps/dashboard/"
         },
         "journeys": [

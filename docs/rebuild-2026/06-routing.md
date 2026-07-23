@@ -50,10 +50,11 @@ If the owner later renames `shed-hunting` → `sheds`, do it with permanent redi
 
 | Surface | Path | Role |
 |---------|------|------|
-| Studio Home | `/` | Brand + launch three products |
+| **Home** (canonical) | `/` | Rebuild shell — Today Outside + Workspace + below-fold deepeners |
+| Home alias | `/apps/dashboard/` | Permanent bookmark/share path; same Rebuild implementation |
 | Settings / Places | `/settings.html` (or successor) | Shared prefs, places |
 | Contact / Support / About / Privacy | root HTML | Trust & support — footer SoT |
-| Articles / education | `/education/` (if retained) | Supporting content — not primary product |
+| Articles / education | `/articles/` | Supporting content — deepens Home; not primary product |
 
 ---
 

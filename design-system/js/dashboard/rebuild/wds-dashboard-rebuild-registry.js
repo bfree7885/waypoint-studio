@@ -1,5 +1,5 @@
 /**
- * Dashboard Rebuild — widget registry (Phase 2: four live instruments).
+ * Dashboard Rebuild — widget registry (Phase 3: library categories + favorites).
  * Conditions · Light · Air · Astronomy hydrate from OIP; other families stay coming-soon.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
@@ -8,12 +8,27 @@
 
   var SIZES = ["sm", "md", "lg", "anchor"];
 
+  /** Library filter groups (Phase 3 Customize). Favorites is prefs-driven. */
+  var LIBRARY_CATEGORIES = [
+    { id: "weather", label: "Weather" },
+    { id: "photography", label: "Photography" },
+    { id: "astronomy", label: "Astronomy" },
+    { id: "hiking", label: "Hiking" },
+    { id: "water", label: "Water" },
+    { id: "travel", label: "Travel" },
+    { id: "nature", label: "Nature" },
+    { id: "safety", label: "Safety" },
+    { id: "favorites", label: "Favorites" }
+  ];
+
   /** Catalog — Phase 2 live ids keep ph-* keys for local prefs continuity. */
   var CATALOG = [
     {
       id: "ph-conditions",
       title: "Conditions",
       category: "conditions",
+      libraryCategory: "weather",
+      icon: "weather",
       size: "md",
       defaultVisible: true,
       defaultOrder: 10,
@@ -26,6 +41,8 @@
       id: "ph-light",
       title: "Light",
       category: "light",
+      libraryCategory: "photography",
+      icon: "compass",
       size: "md",
       defaultVisible: true,
       defaultOrder: 20,
@@ -38,6 +55,8 @@
       id: "ph-air",
       title: "Air",
       category: "air",
+      libraryCategory: "weather",
+      icon: "weather",
       size: "sm",
       defaultVisible: true,
       defaultOrder: 30,
@@ -50,6 +69,8 @@
       id: "ph-astronomy",
       title: "Astronomy",
       category: "astronomy",
+      libraryCategory: "astronomy",
+      icon: "species",
       size: "md",
       defaultVisible: true,
       defaultOrder: 40,
@@ -62,8 +83,10 @@
       id: "ph-photography",
       title: "Photography",
       category: "photography",
+      libraryCategory: "photography",
+      icon: "camera",
       size: "md",
-      defaultVisible: true,
+      defaultVisible: false,
       defaultOrder: 50,
       live: false,
       kiosk: { show: true, chrome: "minimal" },
@@ -74,8 +97,10 @@
       id: "ph-rivers",
       title: "Rivers",
       category: "rivers",
+      libraryCategory: "water",
+      icon: "map",
       size: "sm",
-      defaultVisible: true,
+      defaultVisible: false,
       defaultOrder: 60,
       live: false,
       kiosk: { show: true, chrome: "minimal" },
@@ -86,6 +111,8 @@
       id: "ph-wildlife",
       title: "Wildlife",
       category: "wildlife",
+      libraryCategory: "nature",
+      icon: "leaf",
       size: "md",
       defaultVisible: false,
       defaultOrder: 70,
@@ -98,8 +125,10 @@
       id: "ph-alerts",
       title: "Alerts",
       category: "alerts",
+      libraryCategory: "safety",
+      icon: "book",
       size: "sm",
-      defaultVisible: false,
+      defaultVisible: true,
       defaultOrder: 80,
       live: false,
       kiosk: { show: true, chrome: "minimal" },
@@ -110,6 +139,8 @@
       id: "ph-trails",
       title: "Trail Conditions",
       category: "trails",
+      libraryCategory: "hiking",
+      icon: "terrain",
       size: "md",
       defaultVisible: false,
       defaultOrder: 90,
@@ -117,6 +148,20 @@
       kiosk: { show: true, chrome: "minimal" },
       description: "Trail surface and access context when available.",
       emptyMessage: "Trail conditions coming soon."
+    },
+    {
+      id: "ph-travel",
+      title: "Travel",
+      category: "travel",
+      libraryCategory: "travel",
+      icon: "compass",
+      size: "md",
+      defaultVisible: false,
+      defaultOrder: 100,
+      live: false,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "Place-to-place outdoor context when available.",
+      emptyMessage: "Travel context coming soon."
     }
   ];
 
@@ -157,6 +202,49 @@
 
   function normalizeSize(size) {
     return SIZES.indexOf(size) >= 0 ? size : "md";
+  }
+
+  function availability(widget) {
+    if (widget && widget.live) {
+      return { id: "available", label: "Available" };
+    }
+    return { id: "coming-soon", label: "Coming Soon" };
+  }
+
+  function libraryCategories() {
+    return LIBRARY_CATEGORIES.slice();
+  }
+
+  function byLibraryCategory(categoryId, prefs) {
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (categoryId === "favorites") {
+      var favs =
+        prefs && prefs.favorites
+          ? prefs.favorites.slice()
+          : Prefs && Prefs.load
+            ? Prefs.load().favorites || []
+            : [];
+      return favs
+        .map(function (id) {
+          return get(id);
+        })
+        .filter(Boolean);
+    }
+    if (!categoryId || categoryId === "all") return all();
+    return all().filter(function (w) {
+      return w.libraryCategory === categoryId;
+    });
+  }
+
+  function iconHtml(widget) {
+    var Icons = global.WDS && global.WDS.icons;
+    var name = (widget && widget.icon) || "compass";
+    if (Icons && Icons.svg) {
+      var svg = Icons.svg(name, { className: "wdb-r-catalog__icon-svg", decorative: true });
+      if (svg) return svg;
+    }
+    var letter = String((widget && widget.title) || "?").charAt(0).toUpperCase();
+    return '<span class="wdb-r-catalog__icon-fallback" aria-hidden="true">' + letter + "</span>";
   }
 
   function trustChipLabel(trust) {
@@ -287,13 +375,17 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "2.0.0-phase2",
+    version: "3.0.0-phase3",
     sizes: SIZES.slice(),
+    libraryCategories: libraryCategories,
     all: all,
     get: get,
     defaultVisibleIds: defaultVisibleIds,
     defaultOrderIds: defaultOrderIds,
     normalizeSize: normalizeSize,
+    availability: availability,
+    byLibraryCategory: byLibraryCategory,
+    iconHtml: iconHtml,
     getData: getData,
     render: renderBody,
     renderPlaceholder: renderPlaceholder,

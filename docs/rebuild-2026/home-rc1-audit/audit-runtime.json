@@ -1,0 +1,476 @@
+{
+  "capturedAt": "2026-07-23T03:12:33.236Z",
+  "base": "http://127.0.0.1:8765",
+  "entries": {
+    "desktop-root|/": {
+      "entry": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "name": "desktop-root"
+      },
+      "deepenTopDelta": 0,
+      "consoleErrors": [],
+      "networkFails": [],
+      "focusSkip": {
+        "tag": "A",
+        "cls": "wds-skip",
+        "text": "Skip to content"
+      },
+      "focusAfterTab": {
+        "tag": "A",
+        "cls": "was-brand",
+        "text": "Waypoint Studio",
+        "outline": "rgb(200, 240, 85) solid 2px"
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "product": "Home",
+        "productId": "dashboard",
+        "quiet": "true",
+        "canonical": "https://waypointstudio.org/",
+        "ariaBusy": null,
+        "hasSkip": true,
+        "skipHref": "#main",
+        "h1": "Home",
+        "headings": [
+          "H1:Home",
+          "H2:Today Outside",
+          "H2:Workspace",
+          "H3:Conditions",
+          "H3:Light",
+          "H3:Air",
+          "H3:Astronomy",
+          "H3:Alerts",
+          "H2:Latest Articles",
+          "H2:Waypoint’s Take",
+          "H2:Featured Photography",
+          "H2:Scenes",
+          "H2:Sheds"
+        ],
+        "widgets": [
+          "Conditions",
+          "Light",
+          "Air",
+          "Astronomy",
+          "Alerts"
+        ],
+        "primaryNav": [],
+        "localNav": [],
+        "fold": {
+          "vh": 900,
+          "vw": 1440,
+          "todayBottom": 233,
+          "workspaceTop": 253,
+          "workspaceBottom": 706,
+          "articlesTop": 755,
+          "deepenTop": 746
+        },
+        "legacy": {
+          "outdoorOS": false,
+          "outdoorOverview": false,
+          "volunteer": false,
+          "signalTerrain": false,
+          "steepleaf": false,
+          "savant": false,
+          "fieldry": true,
+          "dashboard": true,
+          "dashboardSnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you"
+          ],
+          "fieldrySnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you go outside."
+          ]
+        },
+        "deepenOrder": [
+          "Latest Articles",
+          "Waypoint’s Take",
+          "Featured Photography",
+          "Scenes",
+          "Sheds"
+        ],
+        "focusables": 17,
+        "bootGone": true,
+        "rebuildMounted": true
+      },
+      "screenshot": "01-desktop-root.png"
+    },
+    "desktop-alias|/apps/dashboard/": {
+      "entry": "/apps/dashboard/",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "name": "desktop-alias"
+      },
+      "deepenTopDelta": 0,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)",
+        "Failed to load resource: the server responded with a status of 404 (File not found)"
+      ],
+      "networkFails": [],
+      "focusSkip": {
+        "tag": "A",
+        "cls": "wds-skip",
+        "text": "Skip to content"
+      },
+      "focusAfterTab": {
+        "tag": "A",
+        "cls": "was-brand",
+        "text": "Waypoint Studio",
+        "outline": "rgb(200, 240, 85) solid 2px"
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "product": "Home",
+        "productId": "dashboard",
+        "quiet": "true",
+        "canonical": "https://waypointstudio.org/",
+        "ariaBusy": null,
+        "hasSkip": true,
+        "skipHref": "#main",
+        "h1": "Home",
+        "headings": [
+          "H1:Home",
+          "H2:Today Outside",
+          "H2:Workspace",
+          "H3:Conditions",
+          "H3:Light",
+          "H3:Air",
+          "H3:Astronomy",
+          "H3:Alerts",
+          "H2:Latest Articles",
+          "H2:Waypoint’s Take",
+          "H2:Featured Photography",
+          "H2:Scenes",
+          "H2:Sheds"
+        ],
+        "widgets": [
+          "Conditions",
+          "Light",
+          "Air",
+          "Astronomy",
+          "Alerts"
+        ],
+        "primaryNav": [],
+        "localNav": [],
+        "fold": {
+          "vh": 900,
+          "vw": 1440,
+          "todayBottom": 233,
+          "workspaceTop": 253,
+          "workspaceBottom": 706,
+          "articlesTop": 755,
+          "deepenTop": 746
+        },
+        "legacy": {
+          "outdoorOS": false,
+          "outdoorOverview": false,
+          "volunteer": false,
+          "signalTerrain": false,
+          "steepleaf": false,
+          "savant": false,
+          "fieldry": true,
+          "dashboard": true,
+          "dashboardSnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you"
+          ],
+          "fieldrySnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you go outside."
+          ]
+        },
+        "deepenOrder": [
+          "Latest Articles",
+          "Waypoint’s Take",
+          "Featured Photography",
+          "Scenes",
+          "Sheds"
+        ],
+        "focusables": 17,
+        "bootGone": true,
+        "rebuildMounted": true
+      },
+      "screenshot": "01-desktop-alias.png"
+    },
+    "desktop-alias-index|/apps/dashboard/index.html": {
+      "entry": "/apps/dashboard/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "name": "desktop-alias-index"
+      },
+      "deepenTopDelta": 0,
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (File not found)"
+      ],
+      "networkFails": [],
+      "focusSkip": {
+        "tag": "A",
+        "cls": "wds-skip",
+        "text": "Skip to content"
+      },
+      "focusAfterTab": {
+        "tag": "A",
+        "cls": "was-brand",
+        "text": "Waypoint Studio",
+        "outline": "rgb(200, 240, 85) solid 2px"
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "product": "Home",
+        "productId": "dashboard",
+        "quiet": "true",
+        "canonical": "https://waypointstudio.org/",
+        "ariaBusy": null,
+        "hasSkip": true,
+        "skipHref": "#main",
+        "h1": "Home",
+        "headings": [
+          "H1:Home",
+          "H2:Today Outside",
+          "H2:Workspace",
+          "H3:Conditions",
+          "H3:Light",
+          "H3:Air",
+          "H3:Astronomy",
+          "H3:Alerts",
+          "H2:Latest Articles",
+          "H2:Waypoint’s Take",
+          "H2:Featured Photography",
+          "H2:Scenes",
+          "H2:Sheds"
+        ],
+        "widgets": [
+          "Conditions",
+          "Light",
+          "Air",
+          "Astronomy",
+          "Alerts"
+        ],
+        "primaryNav": [],
+        "localNav": [],
+        "fold": {
+          "vh": 900,
+          "vw": 1440,
+          "todayBottom": 233,
+          "workspaceTop": 253,
+          "workspaceBottom": 706,
+          "articlesTop": 755,
+          "deepenTop": 746
+        },
+        "legacy": {
+          "outdoorOS": false,
+          "outdoorOverview": false,
+          "volunteer": false,
+          "signalTerrain": false,
+          "steepleaf": false,
+          "savant": false,
+          "fieldry": true,
+          "dashboard": true,
+          "dashboardSnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you"
+          ],
+          "fieldrySnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you go outside."
+          ]
+        },
+        "deepenOrder": [
+          "Latest Articles",
+          "Waypoint’s Take",
+          "Featured Photography",
+          "Scenes",
+          "Sheds"
+        ],
+        "focusables": 17,
+        "bootGone": true,
+        "rebuildMounted": true
+      },
+      "screenshot": "01-desktop-alias-index.png"
+    },
+    "tablet-root|/": {
+      "entry": "/",
+      "viewport": {
+        "width": 834,
+        "height": 1112,
+        "name": "tablet-root"
+      },
+      "deepenTopDelta": 0,
+      "consoleErrors": [],
+      "networkFails": [],
+      "focusSkip": {
+        "tag": "A",
+        "cls": "wds-skip",
+        "text": "Skip to content"
+      },
+      "focusAfterTab": {
+        "tag": "A",
+        "cls": "was-brand",
+        "text": "Waypoint Studio",
+        "outline": "rgb(200, 240, 85) solid 2px"
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "product": "Home",
+        "productId": "dashboard",
+        "quiet": "true",
+        "canonical": "https://waypointstudio.org/",
+        "ariaBusy": null,
+        "hasSkip": true,
+        "skipHref": "#main",
+        "h1": "Home",
+        "headings": [
+          "H1:Home",
+          "H2:Today Outside",
+          "H2:Workspace",
+          "H3:Conditions",
+          "H3:Light",
+          "H3:Air",
+          "H3:Astronomy",
+          "H3:Alerts",
+          "H2:Latest Articles",
+          "H2:Waypoint’s Take",
+          "H2:Featured Photography",
+          "H2:Scenes",
+          "H2:Sheds"
+        ],
+        "widgets": [
+          "Conditions",
+          "Light",
+          "Air",
+          "Astronomy",
+          "Alerts"
+        ],
+        "primaryNav": [],
+        "localNav": [],
+        "fold": {
+          "vh": 1112,
+          "vw": 834,
+          "todayBottom": 287,
+          "workspaceTop": 307,
+          "workspaceBottom": 771,
+          "articlesTop": 820,
+          "deepenTop": 811
+        },
+        "legacy": {
+          "outdoorOS": false,
+          "outdoorOverview": false,
+          "volunteer": false,
+          "signalTerrain": false,
+          "steepleaf": false,
+          "savant": false,
+          "fieldry": true,
+          "dashboard": true,
+          "dashboardSnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you"
+          ],
+          "fieldrySnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you go outside."
+          ]
+        },
+        "deepenOrder": [
+          "Latest Articles",
+          "Waypoint’s Take",
+          "Featured Photography",
+          "Scenes",
+          "Sheds"
+        ],
+        "focusables": 17,
+        "bootGone": true,
+        "rebuildMounted": true
+      },
+      "screenshot": "01-tablet-root.png"
+    },
+    "phone-root|/": {
+      "entry": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "name": "phone-root"
+      },
+      "deepenTopDelta": 0,
+      "consoleErrors": [],
+      "networkFails": [],
+      "focusSkip": {
+        "tag": "A",
+        "cls": "wds-skip",
+        "text": "Skip to content"
+      },
+      "focusAfterTab": {
+        "tag": "A",
+        "cls": "was-brand",
+        "text": "Waypoint Studio",
+        "outline": "rgb(200, 240, 85) solid 2px"
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "product": "Home",
+        "productId": "dashboard",
+        "quiet": "true",
+        "canonical": "https://waypointstudio.org/",
+        "ariaBusy": null,
+        "hasSkip": true,
+        "skipHref": "#main",
+        "h1": "Home",
+        "headings": [
+          "H1:Home",
+          "H2:Today Outside",
+          "H2:Workspace",
+          "H3:Conditions",
+          "H3:Light",
+          "H3:Air",
+          "H3:Astronomy",
+          "H3:Alerts",
+          "H2:Latest Articles",
+          "H2:Waypoint’s Take",
+          "H2:Featured Photography",
+          "H2:Scenes",
+          "H2:Sheds"
+        ],
+        "widgets": [
+          "Conditions",
+          "Light",
+          "Air",
+          "Astronomy",
+          "Alerts"
+        ],
+        "primaryNav": [],
+        "localNav": [],
+        "fold": {
+          "vh": 844,
+          "vw": 390,
+          "todayBottom": 356,
+          "workspaceTop": 376,
+          "workspaceBottom": 1249,
+          "articlesTop": 1290,
+          "deepenTop": 1281
+        },
+        "legacy": {
+          "outdoorOS": false,
+          "outdoorOverview": false,
+          "volunteer": false,
+          "signalTerrain": false,
+          "steepleaf": false,
+          "savant": false,
+          "fieldry": true,
+          "dashboard": true,
+          "dashboardSnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you"
+          ],
+          "fieldrySnips": [
+            "How Dashboard, ForageCast, and Fieldry work together before you go outside."
+          ]
+        },
+        "deepenOrder": [
+          "Latest Articles",
+          "Waypoint’s Take",
+          "Featured Photography",
+          "Scenes",
+          "Sheds"
+        ],
+        "focusables": 17,
+        "bootGone": true,
+        "rebuildMounted": true
+      },
+      "screenshot": "01-phone-root.png"
+    }
+  }
+}

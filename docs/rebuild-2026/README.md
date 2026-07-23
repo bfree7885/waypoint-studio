@@ -21,10 +21,12 @@
 - **Outdoor OS era** — historical, not canonical
 - **Recovery / V2 / V3 Dashboard eras** — historical, not canonical
 - **New canonical:** Waypoint Studio 2026 Rebuild
-- **Only three products:** Dashboard · Scenes · Sheds
+- **Home Vision Lock:** [home-vision-lock-owner-review.md](./home-vision-lock-owner-review.md) — public `/` is **Home** = Rebuild Phase 2; `dashboard` remains an internal module name; `/apps/dashboard/` is a permanent alias
+- **Only three products:** Home (internal: Dashboard) · Scenes · Sheds
 - Do **not** merge product philosophies
 - Do **not** preserve Outdoor OS because it is newer
+- Do **not** restore historical homepage / Outdoor OS / Recovery as product faces
 
 Archived prior vision/spec docs: [`docs/archive/pre-rebuild-2026/`](../archive/pre-rebuild-2026/).
 
-Product philosophy that still applies across products: [`docs/PRODUCT_STANDARDS.md`](../PRODUCT_STANDARDS.md) (trust, privacy, honesty, observational education). Rebuild docs govern product IA and architecture; Product Standards govern feel and non-negotiables.
+Product philosophy that still applies across products: [`docs/PRODUCT_STANDARDS.md`](../PRODUCT_STANDARDS.md) (trust, privacy, honesty, observational education). Rebuild docs govern product IA and architecture; Product Standards govern feel and non-negotiables. **Home Vision Lock** is binding for public IA after owner approval.

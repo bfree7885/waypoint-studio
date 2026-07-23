@@ -1,5 +1,5 @@
 /**
- * Dashboard Rebuild Phase 2 — widget data adapters + Today Outside lines.
+ * Dashboard Rebuild Phase 3 — widget data adapters + Today Outside lines.
  * Reads OIP / weather / daylight / air; never fabricates live numbers.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
@@ -249,7 +249,7 @@
   }
 
   function bannedLine(line) {
-    return /you should|do this|try |remember to|best activity|homework|assignment|go now|coaching/i.test(
+    return /you should|don't forget|do not forget|dont forget|great day for|perfect day for|do this|try |remember to|best activity|homework|assignment|go now|coaching/i.test(
       String(line || "")
     );
   }
@@ -269,9 +269,16 @@
       if (c.tempF != null && c.conditions) {
         lines.push(Math.round(c.tempF) + "°F under " + String(c.conditions).toLowerCase() + ".");
       } else if (c.tempF != null) {
-        lines.push("Temperature is " + Math.round(c.tempF) + "°F.");
+        lines.push("Air temperature reads " + Math.round(c.tempF) + "°F.");
       } else if (c.conditions) {
-        lines.push("Sky is " + String(c.conditions).toLowerCase() + ".");
+        lines.push("Sky looks " + String(c.conditions).toLowerCase() + ".");
+      }
+      if (
+        c.feelsF != null &&
+        c.tempF != null &&
+        Math.abs(Math.round(c.feelsF) - Math.round(c.tempF)) >= 3
+      ) {
+        lines.push("It feels closer to " + Math.round(c.feelsF) + "°F.");
       }
       var wind = windLabel(c.windMph);
       if (wind === "light") lines.push("Winds remain light.");
@@ -279,6 +286,12 @@
         lines.push("Winds around " + Math.round(c.windMph) + " mph.");
       } else if (wind === "strong" && c.windMph != null) {
         lines.push("Winds near " + Math.round(c.windMph) + " mph.");
+      }
+      if (c.humidity != null && c.humidity >= 70) {
+        lines.push("Humidity sits near " + Math.round(c.humidity) + "%.");
+      }
+      if (c.cloudPct != null && c.cloudPct >= 60) {
+        lines.push("Cloud cover near " + Math.round(c.cloudPct) + "%.");
       }
       if (c.precipProb != null && c.precipProb >= 40) {
         lines.push("Precip chance near " + Math.round(c.precipProb) + "%.");
@@ -290,25 +303,32 @@
       var ghStart = rangeStart(dl.goldenHourEvening);
       if (ghStart) lines.push("Golden hour begins at " + ghStart + ".");
       else if (dl.goldenHour) lines.push("Golden hour: " + String(dl.goldenHour) + ".");
+      var bhStart = rangeStart(dl.blueHourEvening);
+      if (bhStart) lines.push("Blue hour softens around " + bhStart + ".");
       var sunset = dl.sunsetFormatted || dl.sunset;
       if (sunset) lines.push("Sunset is at " + String(sunset) + ".");
+      var sunrise = dl.sunriseFormatted || dl.sunrise;
+      if (sunrise && lines.length < 5) {
+        lines.push("Sunrise was at " + String(sunrise) + ".");
+      }
     }
 
     if (air.status === "live" && air.air && air.air.category) {
       lines.push("Air quality is " + String(air.air.category) + ".");
+      if (air.air.aqi != null) {
+        lines.push("US AQI reads " + Math.round(air.air.aqi) + ".");
+      }
     }
 
     if (astro.status === "live") {
       if (astro.moon && astro.moon.phase) {
         lines.push("The moon is a " + String(astro.moon.phase).toLowerCase() + ".");
       }
+      if (astro.moon && astro.moon.illumination != null) {
+        lines.push("Moon illumination near " + Math.round(astro.moon.illumination) + "%.");
+      }
       if (astro.moon && astro.moon.rise) {
-        var rise = String(astro.moon.rise);
-        if (/12:|00:|after midnight|AM/i.test(rise) && /AM|midnight/i.test(rise)) {
-          lines.push("The moon rises at " + rise + ".");
-        } else {
-          lines.push("The moon rises at " + rise + ".");
-        }
+        lines.push("The moon rises at " + String(astro.moon.rise) + ".");
       }
       if (astro.nightSky) lines.push(astro.nightSky + ".");
     }
@@ -364,13 +384,14 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildData = {
-    version: "2.0.0-phase2",
+    version: "3.0.0-phase3",
     liveIds: LIVE_IDS.slice(),
     isLiveWidget: isLiveWidget,
     fromPlatform: fromPlatform,
     buildWidgetPayload: buildWidgetPayload,
     composeTodayLines: composeTodayLines,
     waitingTodayLines: waitingTodayLines,
-    platformTrust: platformTrust
+    platformTrust: platformTrust,
+    bannedLine: bannedLine
   };
 })(typeof window !== "undefined" ? window : global);

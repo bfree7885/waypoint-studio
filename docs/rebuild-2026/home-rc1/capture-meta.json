@@ -1,0 +1,140 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "place": "Pike County, PA",
+  "captures": [
+    {
+      "file": "01-desktop-home-root.png",
+      "entry": "/",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "mobile": false
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "deepen": true,
+        "articles": true,
+        "widgets": [
+          "ph-conditions",
+          "ph-light",
+          "ph-air",
+          "ph-astronomy",
+          "ph-alerts"
+        ],
+        "place": "Pike County, PA",
+        "today": "63°F under overcast.\nIt feels closer to 60°F.\nWinds around 8 mph.\nCloud cover near 100%.\nGolden hour begins at 7:27 PM.\nBlue hour softens around 8:27 PM.\nSunset is at 8:27 PM.\nAir quality is Good."
+      }
+    },
+    {
+      "file": "04-desktop-home-deepeners.png",
+      "entry": "/#deepeners",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "mobile": false
+      }
+    },
+    {
+      "file": "02-tablet-home-root.png",
+      "entry": "/",
+      "viewport": {
+        "name": "tablet",
+        "width": 834,
+        "height": 1112,
+        "mobile": true
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "deepen": true,
+        "articles": true,
+        "widgets": [
+          "ph-conditions",
+          "ph-light",
+          "ph-air",
+          "ph-astronomy",
+          "ph-alerts"
+        ],
+        "place": "Pike County, PA",
+        "today": "63°F under overcast.\nIt feels closer to 60°F.\nWinds around 8 mph.\nCloud cover near 100%.\nGolden hour begins at 7:27 PM.\nBlue hour softens around 8:27 PM.\nSunset is at 8:27 PM.\nAir quality is Good."
+      }
+    },
+    {
+      "file": "05-tablet-home-deepeners.png",
+      "entry": "/#deepeners",
+      "viewport": {
+        "name": "tablet",
+        "width": 834,
+        "height": 1112,
+        "mobile": true
+      }
+    },
+    {
+      "file": "03-phone-home-root.png",
+      "entry": "/",
+      "viewport": {
+        "name": "phone",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "deepen": true,
+        "articles": true,
+        "widgets": [
+          "ph-conditions",
+          "ph-light",
+          "ph-air",
+          "ph-astronomy",
+          "ph-alerts"
+        ],
+        "place": "Pike County, PA",
+        "today": "63°F under overcast.\nIt feels closer to 60°F.\nWinds around 8 mph.\nCloud cover near 100%.\nGolden hour begins at 7:27 PM.\nBlue hour softens around 8:27 PM.\nSunset is at 8:27 PM.\nAir quality is Good."
+      }
+    },
+    {
+      "file": "06-phone-home-deepeners.png",
+      "entry": "/#deepeners",
+      "viewport": {
+        "name": "phone",
+        "width": 390,
+        "height": 844,
+        "mobile": true
+      }
+    },
+    {
+      "file": "07-desktop-alias-dashboard.png",
+      "entry": "/apps/dashboard/",
+      "viewport": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "mobile": false
+      },
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "productName": "Home",
+        "rebuild": true,
+        "deepen": true,
+        "articles": true,
+        "widgets": [
+          "ph-conditions",
+          "ph-light",
+          "ph-air",
+          "ph-astronomy",
+          "ph-alerts"
+        ],
+        "place": "Pike County, PA",
+        "today": "63°F under overcast.\nIt feels closer to 60°F.\nWinds around 8 mph.\nCloud cover near 100%.\nGolden hour begins at 7:27 PM.\nBlue hour softens around 8:27 PM.\nSunset is at 8:27 PM.\nAir quality is Good."
+      }
+    }
+  ]
+}

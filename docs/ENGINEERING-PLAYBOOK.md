@@ -137,6 +137,80 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Home RC1 final production audit
+
+**Artifact:** `docs/rebuild-2026/home-rc1-final-audit.md`
+**Evidence:** `docs/rebuild-2026/home-rc1-audit/`
+**Re-verify:** same-day refresh re-ran Home/P1/P2/P3/constitution/routes + CDP
+captures; verdict unchanged (**READY TO SHIP**, no blockers).
+
+1. **Local READY TO SHIP ≠ live Home** — production `/` can still be
+   marketing `studio-home` while local hosts pass every RC gate; constitution
+   delivery honesty requires ordinary-URL multi-UA verify after deploy.
+2. **Shorter default grids peek deepeners** — five RC1 defaults (vs Phase 2’s
+   six) can let “Latest Articles” enter the first desktop/tablet viewport;
+   phone stacking still keeps deepeners below fold. Measure fold with seeded
+   prefs, not screenshot height alone.
+3. **Sample editorial can reintroduce banned product names** — Home chrome
+   may be clean while `articles/manifest.json` summaries still say Dashboard /
+   Fieldry; scan deepener-visible copy, not only shell/nav.
+
+### 2026-07-22 — Home Implementation RC1
+
+**Artifact:** `docs/rebuild-2026/home-implementation-rc1-owner-review.md`
+**Vision lock:** `docs/rebuild-2026/home-vision-lock-owner-review.md`
+
+1. **Strategy A beats redirect for “Home is the app”** — root `index.html` as a
+   thin Rebuild host sharing `apps/dashboard/js/home-boot.js` keeps one
+   implementation without teaching users a subdirectory.
+2. **Root match patterns must be exact** — `/?$` as a RegExp matches every path
+   because `/` is optional; use `^/$` (and `^/index\\.html$`) so About/Support
+   do not detect as Home.
+3. **Deepeners belong in workspace paint only** — Customize/Kiosk stay instrument-
+   focused; append-only sections must not compete with Phase 2 chrome.
+4. **Banned-word chrome scans catch honest copy** — “not a homework list” failed
+   Phase 1 banned-term checks; prefer “to-do list” / “assignment” avoidance in
+   product chrome.
+5. **Production `/` stays marketing until deploy** — local Home RC1 success ≠
+   public delivery; keep dual-URL verify after ship.
+
+### 2026-07-23 — Dashboard public delivery incident
+
+**Artifact:** `docs/rebuild-2026/dashboard-public-delivery-incident.md`
+**Harness:** `automation/verify-dashboard-production.mjs`
+
+1. **Ordinary URL is authoritative** — cache-bust / `Cache-Control: no-cache` curl
+   proves origin capability, not what Android Chrome or a frozen tab serves.
+2. **Name the surface** — `/` (studio-home) and `support.html` (“Outdoor overview”)
+   are not `/apps/dashboard/`; conflating them falsely indicts Dashboard deploy.
+3. **HTTP beats meta** — Dashboard HTML meta `no-cache` does not override Pages/Fastly
+   `cache-control: max-age=600`; assert response headers every time.
+4. **Multi-hash gate** — a delivery verifier must fail on more than one ordinary HTML
+   body hash and on Recovery/Outdoor OS markers, not only on route HTTP 200.
+5. **SW absence is testable** — probe `/sw.js` etc. and repo `serviceWorker.register`;
+   do not hand-wave. Manifest `start_url: "/"` still steers PWAs to homepage.
+
+### 2026-07-22 — Dashboard Phase 3 (widget library & personalization)
+
+**Artifact:** `docs/rebuild-2026/dashboard-phase3-owner-review.md`
+**Screenshots:** `docs/rebuild-2026/phase3/`
+
+1. **Extend prefs carefully, never rename the key** — add `favorites` /
+   `gridColumns` with defaults inside `normalize()` so
+   `waypoint-dashboard-rebuild-prefs-v1` loads without a migration.
+2. **Library taxonomy ≠ widget `category`** — keep instrument categories for
+   card accents; map `libraryCategory` for Customize filters (Weather,
+   Photography, …) so Phase 1/2 CSS stays intact.
+3. **Lazy hydrate must eager-fill the viewport** — IntersectionObserver alone
+   can leave above-the-fold widgets on “Settling…” in headless; fill laid-out
+   frames immediately and keep reserved min-height / content-visibility for CLS.
+4. **Columns via data attributes, not a new grid system** — `data-columns` on
+   the existing 12-col workspace preserves Phase 1 card chrome while remembering
+   1/2/3 preference.
+5. **Ban instructional Today voice in the composer and tests** — extend the
+   filter beyond “you should” to “great day for” / “don’t forget” or coaching
+   reappears as soon as lines get richer.
+
 ### 2026-07-22 — Dashboard Phase 2 (first four live widgets)
 
 **Artifact:** `docs/rebuild-2026/dashboard-phase2-owner-review.md`
@@ -158,7 +232,7 @@ continuously improves.
 
 ### 2026-07-22 — Dashboard Phase 1 polish (presentation)
 
-**Artifact:** `docs/rebuild-2026/dashboard-phase1-polish-owner-review.md`  
+**Artifact:** `docs/rebuild-2026/dashboard-phase1-polish-owner-review.md`
 **Screenshots:** `docs/rebuild-2026/phase1-polish/{before,after}/`
 
 1. **Duplicate nav is a composition bug** — when app shell already owns
@@ -176,7 +250,7 @@ continuously improves.
 
 ### 2026-07-22 — Dashboard Rebuild Phase 1 shell
 
-**Artifact:** `docs/rebuild-2026/dashboard-phase1-owner-review.md`  
+**Artifact:** `docs/rebuild-2026/dashboard-phase1-owner-review.md`
 **Code home:** `design-system/js/dashboard/rebuild/`
 
 1. **Replace the entry, archive the era** — `/apps/dashboard/` mounts Rebuild
@@ -201,7 +275,7 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS M3 publish gate (legacy fallthrough)
 
-**Artifact:** `docs/dashboard-os-m3-publish/`  
+**Artifact:** `docs/dashboard-os-m3-publish/`
 **Branch:** `integration/dashboard-os-m3`
 
 1. **Preferring OS is not enough if OS fails to register.** Outside must
@@ -214,7 +288,7 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS M3 reconciliation onto RC3 origin/main
 
-**Artifact:** `docs/dashboard-os-m3-reconcile/OWNER-REVIEW.md`  
+**Artifact:** `docs/dashboard-os-m3-reconcile/OWNER-REVIEW.md`
 **Branches:** `backup/dashboard-os-m3-pre-reconcile`, `recovery/dashboard-os-m3-reconcile`,
 `integration/dashboard-os-m3`
 
@@ -230,8 +304,8 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS Milestone 3 (professional polish + production verify)
 
-**Artifact:** `docs/dashboard-os-m3-review/OWNER-REVIEW.md`  
-**Harness:** `automation/capture-dashboard-os-m3-screenshots.mjs`,  
+**Artifact:** `docs/dashboard-os-m3-review/OWNER-REVIEW.md`
+**Harness:** `automation/capture-dashboard-os-m3-screenshots.mjs`,
 `automation/capture-dashboard-os-m3-production-compare.mjs`
 
 1. **Production status ≠ git status.** Live `meta[name=waypoint-build]` +
@@ -267,8 +341,8 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS Milestone 2 closeout (owner decisions)
 
-**Artifact:** `docs/dashboard-os-m2-review/OWNER-REVIEW.md`  
-**Harness:** `automation/capture-dashboard-os-m2-scenarios.mjs` (32 fixtures)  
+**Artifact:** `docs/dashboard-os-m2-review/OWNER-REVIEW.md`
+**Harness:** `automation/capture-dashboard-os-m2-scenarios.mjs` (32 fixtures)
 **Tests:** `automation/test-dashboard-os-interpret.mjs` (79)
 
 1. **“Good photo” ≠ Do photography.** Without an activity-preference UI, ordinary
@@ -287,7 +361,7 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS Milestone 2 (Waypoint Intelligence)
 
-**Artifact:** `docs/dashboard-os-m2-review/OWNER-REVIEW.md`  
+**Artifact:** `docs/dashboard-os-m2-review/OWNER-REVIEW.md`
 **Harness:** `automation/capture-dashboard-os-m2-scenarios.mjs` (22 fixtures → 32 at closeout)
 
 1. **Interpretation belongs in a PriorityRanker module, not compose string pasting.**
@@ -309,7 +383,7 @@ continuously improves.
 
 ### 2026-07-22 — Outdoor OS Milestone 1.5 (readability / hierarchy / presence)
 
-**Artifact:** `docs/dashboard-os-m1.5-review/OWNER-REVIEW.md`  
+**Artifact:** `docs/dashboard-os-m1.5-review/OWNER-REVIEW.md`
 **Scope:** CSS + minimal scan copy only; IA/interaction locked.
 
 1. **Capture before screenshots before touching CSS.** Night vs day atmosphere
@@ -324,7 +398,7 @@ continuously improves.
 
 ### 2026-07-21 — Outdoor OS Dashboard architecture reset (docs only)
 
-**Artifact:** `docs/OUTDOOR-OS-DASHBOARD-RESET.md`  
+**Artifact:** `docs/OUTDOOR-OS-DASHBOARD-RESET.md`
 **No implementation** in this block.
 
 1. **Layering briefing UI on a widget/tab IA does not yield an Outdoor OS.**
@@ -337,7 +411,7 @@ continuously improves.
 
 ### 2026-07-14 — Scene Builder dimming & dashboard progressive hydrate
 
-**Commits:** `bccb8d4`, `1a2d851`  
+**Commits:** `bccb8d4`, `1a2d851`
 **Session report:** `docs/SESSION-STABILIZATION-2026-07-14.md`
 
 1. **`display:` author rules beat UA `[hidden]`.** Any full-viewport overlay

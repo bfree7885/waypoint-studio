@@ -35,6 +35,13 @@ function run() {
   assert("constitution core principle", /never replace the user.s judgment/i.test(constitution));
   assert("constitution self-check", /Have I left the \*\*decision\*\* to the user/i.test(constitution));
 
+  const studio = read("docs/WAYPOINT-STUDIO-CONSTITUTION.md");
+  assert("studio constitution has Home lock", /Home is the canonical Waypoint Studio experience/i.test(studio));
+  assert("studio constitution locks Phase 2 visual", /Rebuild Phase 2 visual language is permanently locked/i.test(studio));
+  assert("studio constitution Dashboard is internal name", /Dashboard is an internal name/i.test(studio));
+  assert("studio constitution anti-Outdoor OS", /Outdoor OS.*not product authority|Historical eras are references only/i.test(studio));
+  assert("constitution map points to Home lock", /Home lock/i.test(constitution));
+
   const principles = read("docs/WAYPOINT-AI-PRINCIPLES.md");
   assert("AI principles inherit constitution", /WAYPOINT-CONSTITUTION/.test(principles));
   assert("AI principles self-check", /Have I helped the user observe/i.test(principles));

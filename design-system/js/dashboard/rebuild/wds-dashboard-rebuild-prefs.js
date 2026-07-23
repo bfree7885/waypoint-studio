@@ -1,12 +1,14 @@
 /**
- * Dashboard Rebuild — local-first layout / widget preferences.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md (Customize · Persist local-first)
+ * Dashboard Rebuild — local-first layout / widget preferences (Phase 3).
+ * Extends waypoint-dashboard-rebuild-prefs-v1 carefully (favorites, grid columns).
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
   "use strict";
 
   var STORAGE_KEY = "waypoint-dashboard-rebuild-prefs-v1";
   var PRESETS = ["default", "minimal", "kiosk"];
+  var COLUMN_OPTIONS = [1, 2, 3];
 
   function Registry() {
     return global.WDS && global.WDS.dashboardRebuildRegistry;
@@ -27,6 +29,8 @@
       enabled: enabled.slice(),
       order: order.slice(),
       sizes: sizes,
+      favorites: [],
+      gridColumns: 3,
       preset: "default",
       kioskRefreshMs: 5 * 60 * 1000
     };
@@ -55,6 +59,22 @@
     return next;
   }
 
+  function normalizeFavorites(favorites, ids) {
+    var seen = Object.create(null);
+    var next = [];
+    (favorites || []).forEach(function (id) {
+      if (seen[id] || ids.indexOf(id) < 0) return;
+      seen[id] = true;
+      next.push(id);
+    });
+    return next;
+  }
+
+  function normalizeColumns(raw) {
+    var n = Number(raw);
+    return COLUMN_OPTIONS.indexOf(n) >= 0 ? n : 3;
+  }
+
   function normalize(prefs) {
     var base = defaults();
     var ids = allIds();
@@ -81,6 +101,10 @@
       enabled: enabled,
       order: order,
       sizes: sizes,
+      favorites: normalizeFavorites(prefs.favorites, ids),
+      gridColumns: normalizeColumns(
+        prefs.gridColumns != null ? prefs.gridColumns : base.gridColumns
+      ),
       preset: preset,
       kioskRefreshMs: refresh
     };
@@ -138,6 +162,9 @@
         .map(function (w) {
           return w.id;
         });
+      prefs.favorites = prefs.favorites.filter(function (id) {
+        return prefs.enabled.indexOf(id) >= 0;
+      });
       prefs.preset = "minimal";
     } else if (presetId === "kiosk") {
       prefs.enabled =
@@ -161,9 +188,20 @@
     prefs.enabled.forEach(function (id) {
       enabled[id] = true;
     });
-    return prefs.order.filter(function (id) {
+    var fav = Object.create(null);
+    (prefs.favorites || []).forEach(function (id) {
+      fav[id] = true;
+    });
+    var ordered = prefs.order.filter(function (id) {
       return enabled[id];
     });
+    var tops = [];
+    var rest = [];
+    ordered.forEach(function (id) {
+      if (fav[id]) tops.push(id);
+      else rest.push(id);
+    });
+    return tops.concat(rest);
   }
 
   function setEnabled(id, on) {
@@ -198,11 +236,41 @@
     return save(prefs);
   }
 
+  function isFavorite(id, prefs) {
+    prefs = prefs || load();
+    return (prefs.favorites || []).indexOf(id) >= 0;
+  }
+
+  function setFavorite(id, on) {
+    var prefs = load();
+    var ids = allIds();
+    if (ids.indexOf(id) < 0) return prefs;
+    var idx = prefs.favorites.indexOf(id);
+    if (on) {
+      if (idx < 0) prefs.favorites.push(id);
+      if (prefs.enabled.indexOf(id) < 0) prefs.enabled.push(id);
+    } else if (idx >= 0) {
+      prefs.favorites.splice(idx, 1);
+    }
+    return save(prefs);
+  }
+
+  function toggleFavorite(id) {
+    return setFavorite(id, !isFavorite(id));
+  }
+
+  function setGridColumns(columns) {
+    var prefs = load();
+    prefs.gridColumns = normalizeColumns(columns);
+    return save(prefs);
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildPrefs = {
-    version: "1.0.0-phase1",
+    version: "3.0.0-phase3",
     storageKey: STORAGE_KEY,
     presets: PRESETS.slice(),
+    columnOptions: COLUMN_OPTIONS.slice(),
     defaults: defaults,
     load: load,
     save: save,
@@ -212,6 +280,10 @@
     visibleOrdered: visibleOrdered,
     setEnabled: setEnabled,
     setSize: setSize,
-    move: move
+    move: move,
+    isFavorite: isFavorite,
+    setFavorite: setFavorite,
+    toggleFavorite: toggleFavorite,
+    setGridColumns: setGridColumns
   };
 })(typeof window !== "undefined" ? window : global);

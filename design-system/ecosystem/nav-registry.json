@@ -29,12 +29,14 @@
   "apps": [
     {
       "id": "dashboard",
-      "title": "Dashboard",
-      "shortTitle": "Dashboard",
+      "title": "Home",
+      "shortTitle": "Home",
       "icon": "dashboard",
       "route": "apps/dashboard/",
       "match": [
-        "/apps/dashboard"
+        "/apps/dashboard",
+        "^/index\\.html$",
+        "^/$"
       ],
       "category": "core",
       "description": "Customizable outdoor workspace — Today Outside summary plus instruments you choose.",

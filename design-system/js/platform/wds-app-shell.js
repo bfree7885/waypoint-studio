@@ -139,9 +139,11 @@
         href = NavApi.resolveRoute(item.href, depth);
       }
       var current =
-        (item.id === "dashboard" && activeId === "dashboard") ||
+        ((item.id === "home" || item.id === "dashboard") && activeId === "dashboard") ||
         (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
         (item.id === "sheds" && activeId === "sheds") ||
+        (item.id === "articles" && /\/articles(\/|$)/.test(String((global.location && global.location.pathname) || ""))) ||
+        (item.id === "about" && /about\.html$/i.test(String((global.location && global.location.pathname) || ""))) ||
         (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
       return (
         '<a class="was-primary-nav__link" href="' + esc(href) + '"' +

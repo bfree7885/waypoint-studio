@@ -28,7 +28,7 @@ We improve their understanding.
 | Document | Governs |
 |----------|---------|
 | **This file** | Shared decision principles (the OS) |
-| [Waypoint Studio Constitution](WAYPOINT-STUDIO-CONSTITUTION.md) | Product shape, privacy, feature test, rooms |
+| [Waypoint Studio Constitution](WAYPOINT-STUDIO-CONSTITUTION.md) | Product shape, privacy, feature test, rooms; **Home lock** (public entry `/`) |
 | [Waypoint AI Principles](WAYPOINT-AI-PRINCIPLES.md) | How product AI applies these principles |
 | [Waypoint AI Guide](WAYPOINT-AI-GUIDE.md) | Product-AI voice (park-ranger companion) |
 | [Waypoint Guide Experience](WAYPOINT-GUIDE-EXPERIENCE.md) | How information is presented |

@@ -184,6 +184,19 @@ If not, do not build it yet.
 
 Also evaluate against the [Waypoint Outdoor Ethics Standard](WAYPOINT-OUTDOOR-ETHICS-STANDARD.md) (`WDS.outdoorEthics.evaluateFeature`) when the feature touches field action, data sharing, maps, foraging, or wildlife.
 
+## Home lock (owner permanent — 2026-07-22)
+
+Authority: [Home Vision Lock](rebuild-2026/home-vision-lock-owner-review.md).
+
+1. **Home is the canonical Waypoint Studio experience.** Public entry is `/`. There is one primary product face.
+2. **The approved Rebuild Phase 2 visual language is permanently locked.** Functionality expands; visual redesign requires explicit owner approval.
+3. **Home replaces the historical homepage.** Marketing-landing IA is retired as product authority.
+4. **Future products integrate into Home rather than replacing it.** Scenes and Sheds remain dedicated apps linked from Home; they do not become Home.
+5. **Dashboard is an internal name.** Users say Home; code may say `dashboard` / `apps/dashboard/`.
+6. **Observational, not instructional.** No homework, coaching, or Outdoor OS briefing as Home law.
+7. **Historical eras are references only.** Outdoor OS, Recovery, and Explore multi-app homepage are not product authority.
+8. **Delivery honesty.** Ordinary URL multi-UA verification is required before claiming production success; homepage ≠ Home experience until unified.
+
 ## Final Rule
 
 Together with [The Waypoint Constitution](WAYPOINT-CONSTITUTION.md), this document is highest authority for Waypoint Studio products.

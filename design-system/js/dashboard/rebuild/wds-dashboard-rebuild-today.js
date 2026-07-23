@@ -1,5 +1,5 @@
 /**
- * Dashboard Rebuild — Today Outside summary (Phase 2).
+ * Dashboard Rebuild — Today Outside summary (Phase 3).
  * Compact panel; observational lines from live widget data — never coaching.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
@@ -66,11 +66,14 @@
     ];
   }
 
+  var BANNED_LINE =
+    /you should|don't forget|do not forget|dont forget|great day for|perfect day for|do this|try |remember to|homework|assignment|go now|coaching|best activity/i;
+
   function resolveLines(ctx) {
     ctx = ctx || {};
     if (Array.isArray(ctx.lines) && ctx.lines.length) {
       return ctx.lines.slice(0, 8).filter(function (line) {
-        return line && !/you should|do this|try |remember to|homework|assignment/i.test(String(line));
+        return line && !BANNED_LINE.test(String(line));
       });
     }
     var Data = global.WDS && global.WDS.dashboardRebuildData;
@@ -131,7 +134,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "2.0.0-phase2",
+    version: "3.0.0-phase3",
     render: render,
     mount: mount,
     placeLabel: placeLabel,
