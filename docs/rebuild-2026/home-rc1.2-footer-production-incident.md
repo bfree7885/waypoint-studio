@@ -23,12 +23,12 @@ Reported “live still shows previous footer” was **not reproducible** against
 |------|--------|
 | Local branch (investigation) | `integration/dashboard-phase2-publish` |
 | Local HEAD | `00cddd32236a652ad8721979055bb0611a1d9bd0` (`00cddd3`) |
-| `origin/main` | `00cddd32236a652ad8721979055bb0611a1d9bd0` (`00cddd3`) |
-| `00cddd3` ancestor of `origin/main`? | **Yes** (identical) |
+| `origin/main` | `495ebb63b59cb95e752877fbfdfdae1c0f1318c9` (`495ebb6`) |
+| `00cddd3` ancestor of `origin/main`? | **Yes** |
 | Release / intended ship | **`00cddd3`** |
-| Pages workflow checkout SHA | **`00cddd3`** (run [29978803630](https://github.com/bfree7885/waypoint-studio/actions/runs/29978803630)) |
-| Deployed artifact / live build SHA | **`00cddd3`** (`data/build-info.json`, `source=github-pages`, `workflowRunId=29978803630`) |
-| Docs follow-up (this incident) | **`f63c867`** (`f63c867c2db60e33100f938f06528e0ed6128544`) — descendant of `00cddd3` |
+| Pages workflow checkout SHA (release) | **`00cddd3`** (run [29978803630](https://github.com/bfree7885/waypoint-studio/actions/runs/29978803630)) |
+| Deployed artifact / live build SHA (release) | **`00cddd3`** at investigation — `workflowRunId=29978803630` |
+| Docs follow-up tip / current live | **`495ebb6`** (`495ebb63b59cb95e752877fbfdfdae1c0f1318c9`) — Pages [29979159309](https://github.com/bfree7885/waypoint-studio/actions/runs/29979159309); descendant of `00cddd3`; footer unchanged |
 
 ---
 
@@ -144,7 +144,7 @@ No footer redesign, no extra links, no Home styling changes, no second Home impl
 | Retained links resolve (200, no loops) | **PASS** |
 | Desktop + mobile footer correct | **PASS** |
 | `/apps/dashboard/` no retired footer | **PASS** |
-| Live build SHA is `00cddd3` or documented descendant | **PASS** (`00cddd3`; docs follow-up documented after push) |
+| Live build SHA is `00cddd3` or documented descendant | **PASS** (live `495ebb6` ⊃ `00cddd3`) |
 | Shared Home / shell implementation preserved | **PASS** (`renderFooter` only) |
 
 ---
