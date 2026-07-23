@@ -5,7 +5,7 @@
 **Sprint:** Dashboard Experience Polish & Product Quality (not a feature sprint)  
 **Branch:** `polish/dashboard-rc25-sprint6`  
 **Base:** `fix/mobile-tile-editing` (`a349e68`)  
-**Final commit SHA:** `efe2e0a` (tip; polish `4478365`)  
+**Final commit SHA:** `8ca5bd823d905b4d2b4a9ea3dd20386ef7f1d94b` (tip; polish `4478365`)  
 **Deployment status:** **Not deployed** — branch pushed for owner review only; no merge to main / no production publish in this block.
 
 ---
