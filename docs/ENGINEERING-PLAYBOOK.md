@@ -137,6 +137,24 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Photography Library RC1 owner review (design only)
+
+**Artifact:** `docs/rebuild-2026/photography-library-rc1-owner-review.md`  
+**Status:** Awaiting owner approval — no implementation this block.
+
+1. **Public photography needs a Featured gate, not “approved = public”** —
+   `photo_pipeline` approve/`data/media/catalog.json` and identity
+   `manifest.json` are different layers; Home/Scenes heroes must read
+   owner-curated Featured only, never all imports.
+2. **Three parallel photo systems already exist** — identity slots,
+   private disk library + pipeline, browser IndexedDB Photo Library.
+   RC1 must designate one public SoT and treat the others as private or
+   cutover shims, not invent a fourth disconnected rotator.
+3. **Baseline screenshots ≠ after shots** — reuse
+   `platform-color-correction/` and `platform-visual-regression/` captures
+   labeled current state; never fake implementation screenshots in a
+   design-only review.
+
 ### 2026-07-23 — Photography + widget color correction
 
 **Artifact:** `docs/rebuild-2026/platform-photography-and-widget-color-correction-owner-review.md`  
