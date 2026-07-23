@@ -28,7 +28,7 @@ Reported “live still shows previous footer” was **not reproducible** against
 | Release / intended ship | **`00cddd3`** |
 | Pages workflow checkout SHA | **`00cddd3`** (run [29978803630](https://github.com/bfree7885/waypoint-studio/actions/runs/29978803630)) |
 | Deployed artifact / live build SHA | **`00cddd3`** (`data/build-info.json`, `source=github-pages`, `workflowRunId=29978803630`) |
-| Docs follow-up (this incident) | *(filled after push — descendant of `00cddd3`)* |
+| Docs follow-up (this incident) | **`f63c867`** (`f63c867c2db60e33100f938f06528e0ed6128544`) — descendant of `00cddd3` |
 
 ---
 
