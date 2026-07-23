@@ -4,7 +4,7 @@
 **Date:** 2026-07-23  
 **Branch:** `fix/mobile-tile-editing`  
 **Base:** `integration/dashboard-phase2-publish`  
-**Final commit SHA:** `26b3f32b6188095e793c9a2df73d8e4d70dd63f6`
+**Final commit SHA:** `26b3f32b6188095e793c9a2df73d8e4d70dd63f6` (repair); branch tip `5bbacb3` (docs SHA note)
 
 ---
 
