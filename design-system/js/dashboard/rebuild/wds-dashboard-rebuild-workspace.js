@@ -82,12 +82,12 @@
         escapeHtml(widget.id) +
         '" aria-label="Move ' +
         escapeHtml(widget.title) +
-        ' earlier">Earlier</button>' +
+        ' up">Move up</button>' +
         '<button type="button" class="wdb-r-btn" data-wdb-r-action="move-down" data-widget-id="' +
         escapeHtml(widget.id) +
         '" aria-label="Move ' +
         escapeHtml(widget.title) +
-        ' later">Later</button>' +
+        ' down">Move down</button>' +
         '<button type="button" class="wdb-r-btn" data-wdb-r-action="size-cycle" data-widget-id="' +
         escapeHtml(widget.id) +
         '" aria-label="Change size for ' +
@@ -234,6 +234,10 @@
           : "No widgets yet. Open Customize to build your workspace.") +
         "</p>";
     }
+    var customizeEntry = customize
+      ? ""
+      : '<a class="wdb-r-btn wdb-r-btn--customize" href="#/customize" data-wdb-r-customize-entry>' +
+        "Customize</a>";
     return (
       '<section class="wdb-r-workspace" data-wdb-r-workspace aria-labelledby="wdb-r-workspace-title"' +
       (customize ? ' data-customize="true"' : "") +
@@ -243,6 +247,7 @@
       '<h2 id="wdb-r-workspace-title" class="wdb-r-workspace__title">Workspace</h2>' +
       '<p class="wdb-r-workspace__lede">Your outdoor instruments — facts first, each settling on its own.</p>' +
       "</div>" +
+      customizeEntry +
       "</header>" +
       '<div class="wdb-r-workspace__grid' +
       (animate ? " wdb-r-workspace__grid--animate" : "") +

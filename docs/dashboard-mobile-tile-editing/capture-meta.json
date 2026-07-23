@@ -1,0 +1,76 @@
+{
+  "capturedAt": "2026-07-23T16:31:09.861Z",
+  "base": "http://127.0.0.1:8765",
+  "consoleNotes": [],
+  "results": [
+    {
+      "id": "phone-workspace",
+      "localDisplay": "block",
+      "localLink": [
+        "Workspace",
+        "Customize"
+      ],
+      "hasEntry": true,
+      "entryH": 44,
+      "entryW": 96.46875,
+      "overflow": false,
+      "customizeVersion": "3.1.0-mobile-customize",
+      "view": "workspace"
+    },
+    {
+      "id": "phone-customize",
+      "hasBar": true,
+      "hasSave": true,
+      "hasCancel": true,
+      "hasMoveUp": true,
+      "saveInView": true,
+      "overflow": false,
+      "drafting": true,
+      "view": "customize"
+    },
+    {
+      "id": "phone-after-save-disable",
+      "view": "workspace",
+      "enabledHasAstro": false,
+      "domHasAstro": false,
+      "drafting": false
+    },
+    {
+      "id": "desktop-workspace",
+      "localDisplay": "block",
+      "hasEntry": true,
+      "localLinks": [
+        "Workspace",
+        "Customize"
+      ]
+    },
+    {
+      "id": "desktop-customize",
+      "hasSave": true,
+      "hasCancel": true,
+      "hasCatalog": true,
+      "overflow": false
+    },
+    {
+      "id": "viewport-320",
+      "width": 320,
+      "hasSave": true,
+      "overflow": false,
+      "saveH": 44
+    },
+    {
+      "id": "viewport-375",
+      "width": 375,
+      "hasSave": true,
+      "overflow": false,
+      "saveH": 44
+    },
+    {
+      "id": "viewport-430",
+      "width": 430,
+      "hasSave": true,
+      "overflow": false,
+      "saveH": 44
+    }
+  ]
+}

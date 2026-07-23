@@ -200,20 +200,23 @@
   function renderToolbar(prefs) {
     prefs = prefs || {};
     return (
-      '<div class="wdb-r-customize-bar" data-wdb-r-customize-bar>' +
-      '<p class="wdb-r-customize-bar__label">Customize workspace</p>' +
-      '<div class="wdb-r-customize-bar__actions">' +
+      '<div class="wdb-r-customize-bar" data-wdb-r-customize-bar tabindex="-1">' +
+      '<p class="wdb-r-customize-bar__label" id="wdb-r-customize-heading">Customize workspace</p>' +
+      '<div class="wdb-r-customize-bar__actions" role="group" aria-label="Layout presets">' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="default">Default</button>' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="minimal">Minimal</button>' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="reset">Restore defaults</button>' +
-      '<a class="wdb-r-btn wdb-r-btn--link" href="#/">Done</a>' +
       "</div>" +
       renderColumnPicker(prefs) +
       '<p class="wdb-r-customize-bar__hint">Preset: ' +
       escapeHtml(prefs.preset || "default") +
       " · " +
       escapeHtml(String(prefs.gridColumns || 3)) +
-      " columns · Favorites rise to the top · Saved on this device.</p>" +
+      " columns · Favorites rise to the top · Changes save when you tap Save.</p>" +
+      '<div class="wdb-r-customize-bar__commit" role="group" aria-label="Save or cancel customization">' +
+      '<button type="button" class="wdb-r-btn wdb-r-btn--primary" data-wdb-r-action="save">Save</button>' +
+      '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="cancel">Cancel</button>' +
+      "</div>" +
       "</div>"
     );
   }
@@ -280,26 +283,76 @@
       return prefsApi.applyPreset(preset || "default");
     }
     if (action === "reset") return prefsApi.reset();
+    if (action === "save") {
+      if (prefsApi.commitDraft) prefsApi.commitDraft();
+      return { __navigate: "workspace", __commit: true };
+    }
+    if (action === "cancel") {
+      if (prefsApi.discardDraft) prefsApi.discardDraft();
+      return { __navigate: "workspace", __discard: true };
+    }
     return null;
   }
 
-  function bind(root, onChange) {
-    if (!root || root.__wdbRCustomizeBound) return;
-    root.__wdbRCustomizeBound = true;
-    root.addEventListener("click", function (ev) {
-      var t = ev.target;
-      if (!t || !t.closest) return;
-      var btn = t.closest("[data-wdb-r-action]");
-      if (!btn || !root.contains(btn)) return;
-      var action = btn.getAttribute("data-wdb-r-action");
-      if (!action) return;
-      if (btn.tagName === "A") return;
-      ev.preventDefault();
-      var next = handleAction(action, btn);
-      if (typeof onChange === "function") {
-        onChange(next, { action: action, filter: libraryFilterState });
+  function focusEditor(root) {
+    if (!root || typeof root.querySelector !== "function") return;
+    var bar = root.querySelector("[data-wdb-r-customize-bar]");
+    if (bar && typeof bar.focus === "function") {
+      try {
+        bar.focus({ preventScroll: true });
+      } catch (e) {
+        try {
+          bar.focus();
+        } catch (e2) {
+          /* noop */
+        }
       }
-    });
+    }
+  }
+
+  function bind(root, onChange) {
+    if (!root) return;
+    if (!root.__wdbRCustomizeBound) {
+      root.__wdbRCustomizeBound = true;
+      root.addEventListener("click", function (ev) {
+        var t = ev.target;
+        if (!t || !t.closest) return;
+        var btn = t.closest("[data-wdb-r-action]");
+        if (!btn || !root.contains(btn)) return;
+        var action = btn.getAttribute("data-wdb-r-action");
+        if (!action) return;
+        if (btn.tagName === "A") return;
+        ev.preventDefault();
+        var next = handleAction(action, btn);
+        if (typeof onChange === "function") {
+          onChange(next, {
+            action: action,
+            filter: libraryFilterState,
+            navigate: next && next.__navigate ? next.__navigate : null
+          });
+        }
+      });
+      root.addEventListener("keydown", function (ev) {
+        if (!ev || ev.key !== "Escape") return;
+        if (!root.querySelector("[data-wdb-r-customize]")) return;
+        ev.preventDefault();
+        var next = handleAction("cancel", null);
+        if (typeof onChange === "function") {
+          onChange(next, {
+            action: "cancel",
+            filter: libraryFilterState,
+            navigate: "workspace"
+          });
+        }
+      });
+    }
+    if (typeof global.requestAnimationFrame === "function") {
+      global.requestAnimationFrame(function () {
+        focusEditor(root);
+      });
+    } else {
+      focusEditor(root);
+    }
   }
 
   function getLibraryFilter() {
@@ -313,12 +366,13 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildCustomize = {
-    version: "3.0.0-phase3",
+    version: "3.1.0-mobile-customize",
     render: render,
     renderCatalog: renderCatalog,
     renderToolbar: renderToolbar,
     handleAction: handleAction,
     bind: bind,
+    focusEditor: focusEditor,
     cycleSize: cycleSize,
     getLibraryFilter: getLibraryFilter,
     setLibraryFilter: setLibraryFilter

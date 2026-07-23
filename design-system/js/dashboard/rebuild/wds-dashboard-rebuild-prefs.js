@@ -9,6 +9,12 @@
   var STORAGE_KEY = "waypoint-dashboard-rebuild-prefs-v1";
   var PRESETS = ["default", "minimal", "kiosk"];
   var COLUMN_OPTIONS = [1, 2, 3];
+  /** In-memory customize session — mutations stay here until commit/discard. */
+  var draftPrefs = null;
+
+  function clonePrefs(prefs) {
+    return normalize(JSON.parse(JSON.stringify(prefs || defaults())));
+  }
 
   function Registry() {
     return global.WDS && global.WDS.dashboardRebuildRegistry;
@@ -110,7 +116,7 @@
     };
   }
 
-  function load() {
+  function loadFromStorage() {
     try {
       var raw = global.localStorage && global.localStorage.getItem(STORAGE_KEY);
       if (!raw) return defaults();
@@ -122,7 +128,12 @@
     }
   }
 
-  function save(prefs) {
+  function load() {
+    if (draftPrefs) return clonePrefs(draftPrefs);
+    return loadFromStorage();
+  }
+
+  function persist(prefs) {
     var next = normalize(prefs);
     try {
       if (global.localStorage) {
@@ -141,13 +152,62 @@
     return next;
   }
 
+  function save(prefs) {
+    var next = normalize(prefs);
+    if (draftPrefs) {
+      draftPrefs = next;
+      try {
+        global.dispatchEvent(
+          new CustomEvent("wds:dashboard-rebuild-prefs", { detail: next })
+        );
+      } catch (e) {
+        /* noop */
+      }
+      return clonePrefs(next);
+    }
+    return persist(next);
+  }
+
+  function isDrafting() {
+    return !!draftPrefs;
+  }
+
+  function beginDraft() {
+    draftPrefs = clonePrefs(loadFromStorage());
+    return clonePrefs(draftPrefs);
+  }
+
+  function commitDraft() {
+    if (!draftPrefs) return loadFromStorage();
+    var next = persist(draftPrefs);
+    draftPrefs = null;
+    return next;
+  }
+
+  function discardDraft() {
+    draftPrefs = null;
+    return loadFromStorage();
+  }
+
   function reset() {
     try {
       if (global.localStorage) global.localStorage.removeItem(STORAGE_KEY);
     } catch (e) {
       /* noop */
     }
-    return save(defaults());
+    var next = defaults();
+    if (draftPrefs) {
+      draftPrefs = next;
+      try {
+        global.dispatchEvent(
+          new CustomEvent("wds:dashboard-rebuild-prefs", { detail: next })
+        );
+      } catch (e2) {
+        /* noop */
+      }
+      return clonePrefs(next);
+    }
+    return persist(next);
   }
 
   function applyPreset(presetId) {
@@ -267,7 +327,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildPrefs = {
-    version: "3.0.0-phase3",
+    version: "3.1.0-mobile-customize",
     storageKey: STORAGE_KEY,
     presets: PRESETS.slice(),
     columnOptions: COLUMN_OPTIONS.slice(),
@@ -284,6 +344,11 @@
     isFavorite: isFavorite,
     setFavorite: setFavorite,
     toggleFavorite: toggleFavorite,
-    setGridColumns: setGridColumns
+    setGridColumns: setGridColumns,
+    isDrafting: isDrafting,
+    beginDraft: beginDraft,
+    commitDraft: commitDraft,
+    discardDraft: discardDraft,
+    loadFromStorage: loadFromStorage
   };
 })(typeof window !== "undefined" ? window : global);

@@ -7,10 +7,39 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.0.0-phase3";
+  var VERSION = "3.1.0-mobile-customize";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
+  }
+
+  function ensureCustomizeDraft(view) {
+    var Prefs = api("dashboardRebuildPrefs");
+    if (!Prefs) return;
+    if (view === "customize") {
+      if (Prefs.beginDraft && (!Prefs.isDrafting || !Prefs.isDrafting())) {
+        Prefs.beginDraft();
+      }
+    } else if (Prefs.isDrafting && Prefs.isDrafting() && Prefs.discardDraft) {
+      /* Leaving customize without Save discards unsaved draft. */
+      Prefs.discardDraft();
+    }
+  }
+
+  function focusCustomizeEntry(host) {
+    if (!host || typeof host.querySelector !== "function") return;
+    var entry = host.querySelector("[data-wdb-r-customize-entry]");
+    if (entry && typeof entry.focus === "function") {
+      try {
+        entry.focus({ preventScroll: true });
+      } catch (e) {
+        try {
+          entry.focus();
+        } catch (e2) {
+          /* noop */
+        }
+      }
+    }
   }
 
   function prefersReducedMotion() {
@@ -165,6 +194,7 @@
   function paint(options) {
     options = options || {};
     if (!mountState.host) return;
+    ensureCustomizeDraft(mountState.view);
     var animate = options.animate !== false && !prefersReducedMotion();
     var html = renderShell({
       view: mountState.view,
@@ -200,6 +230,17 @@
     if (mountState.view === "customize" && Customize && Customize.bind) {
       Customize.bind(mountState.host, function (_next, meta) {
         if (meta && meta.filter) mountState.libraryFilter = meta.filter;
+        if (meta && meta.navigate === "workspace") {
+          setView("workspace");
+          if (typeof global.requestAnimationFrame === "function") {
+            global.requestAnimationFrame(function () {
+              focusCustomizeEntry(mountState.host);
+            });
+          } else {
+            focusCustomizeEntry(mountState.host);
+          }
+          return;
+        }
         paint({ animate: true });
       });
     }
@@ -228,7 +269,12 @@
   }
 
   function setView(view) {
-    mountState.view = parseView(view === "workspace" || view === "customize" || view === "kiosk" ? "#/" + (view === "workspace" ? "" : view) : view);
+    var nextView = parseView(
+      view === "workspace" || view === "customize" || view === "kiosk"
+        ? "#/" + (view === "workspace" ? "" : view)
+        : view
+    );
+    mountState.view = nextView;
     if (global.history && global.location) {
       var nextHash =
         mountState.view === "workspace"

@@ -137,6 +137,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Mobile tile editing (iPhone Customize)
+
+**Artifact:** `docs/dashboard-mobile-tile-editing/OWNER-REVIEW.md`  
+**Branch:** `fix/mobile-tile-editing`
+
+1. **Do not transplant Outdoor OS quiet-chrome wholesale onto Rebuild Home** —
+   `[data-product="dashboard"] .was-local { display: none }` hid the only
+   Workspace · Customize entry. Soften labels; keep feature nav.
+2. **Customize needs an in-page entry as well as local nav** — phone users
+   benefit from a ≥44px Customize control beside the Workspace heading.
+3. **Draft before persist** — live preview in memory (`beginDraft` /
+   `commitDraft` / `discardDraft`) gives honest Save/Cancel without a second
+   prefs store; leaving Customize without Save discards.
+4. **CDP verify must wait for mount** — probing before `[data-wdb-r]` paints
+   falsely reports missing controls even when scripts are correct.
+
 ### 2026-07-23 — Photography Library RC1 owner review (design only)
 
 **Artifact:** `docs/rebuild-2026/photography-library-rc1-owner-review.md`  

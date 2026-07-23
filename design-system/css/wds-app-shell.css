@@ -652,8 +652,15 @@ article.was-home__card {
   opacity: 0.55;
 }
 
-[data-product="dashboard"] .was-local {
-  display: none !important;
+/*
+ * Quiet Home keeps Workspace · Customize local feature nav visible.
+ * Outdoor OS used to hide .was-local entirely; Rebuild Home depends on it
+ * as the primary Customize entry (especially on touch / iPhone).
+ * Soften the product label only — do not remove the feature links.
+ */
+.was-shell--quiet[data-product="dashboard"] .was-local__app {
+  opacity: 0.55;
+  font-weight: 500;
 }
 
 .was-shell--quiet .was-footer,
