@@ -4,7 +4,7 @@
 **Date:** 2026-07-23  
 **Branch:** `fix/mobile-tile-editing`  
 **Base:** `integration/dashboard-phase2-publish`  
-**Final commit SHA:** _(filled after commit)_
+**Final commit SHA:** `26b3f32b6188095e793c9a2df73d8e4d70dd63f6`
 
 ---
 
@@ -140,4 +140,4 @@ node automation/capture-dashboard-mobile-tile-editing.mjs http://127.0.0.1:8765
 
 ## Final commit SHA
 
-See git log on `fix/mobile-tile-editing` after commit (recorded in parent return + this section on commit).
+`26b3f32b6188095e793c9a2df73d8e4d70dd63f6` on `fix/mobile-tile-editing`.
