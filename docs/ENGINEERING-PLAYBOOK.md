@@ -137,6 +137,21 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-23 — Home RC1.2 footer production delivery check
+
+**Artifact:** `docs/rebuild-2026/home-rc1.2-footer-production-incident.md`  
+**Evidence:** `docs/rebuild-2026/home-rc1.2-footer-production/`
+
+1. **Green Pages + matching `build-info` is not enough alone for footer claims** —
+   also inspect rendered `.was-footer` link labels/hrefs and the live
+   `wds-app-shell.js` hash; the footer is JS-composed, not static HTML.
+2. **Do not open a delivery incident until Pages verify finishes** — `00cddd3`
+   deployed in ~1 minute; a check during that window looks like “push didn’t
+   ship” when the pipeline is healthy.
+3. **Primary nav ≠ trust footer** — Home · Scenes · Sheds · Articles · About in
+   chrome is expected; only the shared `renderFooter()` KEEP list is the RC1.2
+   contract.
+
 ### 2026-07-22 — Home RC1.2 footer simplification
 
 **Artifact:** `docs/rebuild-2026/home-rc1.2-footer-owner-review.md`

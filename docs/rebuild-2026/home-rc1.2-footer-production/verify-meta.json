@@ -1,0 +1,155 @@
+{
+  "base": "https://waypointstudio.org",
+  "verifiedAt": "2026-07-23T04:14:36.868Z",
+  "captures": [
+    {
+      "file": "01-desktop-home-footer.png",
+      "viewport": "desktop",
+      "entry": "/",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "build": "00cddd3",
+        "url": "https://waypointstudio.org/?cb=incident-1784780076872",
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nPrivacy Policy\nTerms of Service",
+        "footerHTML": "<footer class=\"was-footer wds-footer\"><p>Home · Private by default · Waypoint Studio</p><p class=\"was-footer__links\"><a href=\"./apps/dashboard/contact.html\">Contact</a><a href=\"privacy.html\">Privacy Policy</a><a href=\"terms.html\">Terms of Service</a></p></footer>",
+        "links": [
+          {
+            "label": "Contact",
+            "href": "./apps/dashboard/contact.html",
+            "abs": "https://waypointstudio.org/apps/dashboard/contact.html"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "privacy.html",
+            "abs": "https://waypointstudio.org/privacy.html"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "terms.html",
+            "abs": "https://waypointstudio.org/terms.html"
+          }
+        ],
+        "linkLabels": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "hasBanned": false,
+        "aboutFooter": false,
+        "shellLoaded": true
+      }
+    },
+    {
+      "file": "02-phone-home-footer.png",
+      "viewport": "phone",
+      "entry": "/",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "build": "00cddd3",
+        "url": "https://waypointstudio.org/?cb=incident-1784780085453",
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nPrivacy Policy\nTerms of Service",
+        "footerHTML": "<footer class=\"was-footer wds-footer\"><p>Home · Private by default · Waypoint Studio</p><p class=\"was-footer__links\"><a href=\"./apps/dashboard/contact.html\">Contact</a><a href=\"privacy.html\">Privacy Policy</a><a href=\"terms.html\">Terms of Service</a></p></footer>",
+        "links": [
+          {
+            "label": "Contact",
+            "href": "./apps/dashboard/contact.html",
+            "abs": "https://waypointstudio.org/apps/dashboard/contact.html"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "privacy.html",
+            "abs": "https://waypointstudio.org/privacy.html"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "terms.html",
+            "abs": "https://waypointstudio.org/terms.html"
+          }
+        ],
+        "linkLabels": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "hasBanned": false,
+        "aboutFooter": false,
+        "shellLoaded": true
+      }
+    },
+    {
+      "entry": "/apps/dashboard/",
+      "viewport": "desktop",
+      "meta": {
+        "title": "Home — Waypoint Studio",
+        "build": "00cddd3",
+        "url": "https://waypointstudio.org/apps/dashboard/?cb=incident-1784780093619",
+        "footerText": "Home · Private by default · Waypoint Studio\n\nContact\nPrivacy Policy\nTerms of Service",
+        "footerHTML": "<footer class=\"was-footer wds-footer\"><p>Home · Private by default · Waypoint Studio</p><p class=\"was-footer__links\"><a href=\"contact.html\">Contact</a><a href=\"../../privacy.html\">Privacy Policy</a><a href=\"../../terms.html\">Terms of Service</a></p></footer>",
+        "links": [
+          {
+            "label": "Contact",
+            "href": "contact.html",
+            "abs": "https://waypointstudio.org/apps/dashboard/contact.html"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "../../privacy.html",
+            "abs": "https://waypointstudio.org/privacy.html"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "../../terms.html",
+            "abs": "https://waypointstudio.org/terms.html"
+          }
+        ],
+        "linkLabels": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "hasBanned": false,
+        "aboutFooter": false,
+        "shellLoaded": true
+      }
+    }
+  ],
+  "checks": [
+    {
+      "route": "/",
+      "label": "Contact",
+      "href": "./apps/dashboard/contact.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://waypointstudio.org/apps/dashboard/contact.html"
+    },
+    {
+      "route": "/",
+      "label": "Privacy Policy",
+      "href": "privacy.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://waypointstudio.org/privacy.html"
+    },
+    {
+      "route": "/",
+      "label": "Terms of Service",
+      "href": "terms.html",
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://waypointstudio.org/terms.html"
+    }
+  ],
+  "buildInfo": {
+    "commit": "00cddd32236a652ad8721979055bb0611a1d9bd0",
+    "shortCommit": "00cddd3",
+    "builtAt": "2026-07-23T04:09:14.138Z",
+    "workflowRunId": "29978803630",
+    "source": "github-pages",
+    "commitFull": "00cddd32236a652ad8721979055bb0611a1d9bd0",
+    "deployedAt": "2026-07-23T04:09:14.138Z",
+    "locationSchema": 4,
+    "loaderVersion": 2,
+    "migrationEpoch": 3,
+    "minRecoveryBuild": "cf51ce4"
+  }
+}
