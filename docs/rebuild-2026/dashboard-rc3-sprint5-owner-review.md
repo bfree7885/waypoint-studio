@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprint 4 owner review  
 **Base:** `feature/dashboard-rc3-sprint4-discovery` @ `d9bce29` (Sprint 4 docs tip; feature `11c1a6f`)  
 **Branch:** `feature/dashboard-rc3-sprint5-personal-workspace`  
-**Final commit SHA:** `dbebeae1c0e1f0754e06a46cc01c2e8a3592a16e` (feature; tip `120d9d2fb5c953e05ff3e60f2966d268e800f6e6`)  
+**Final commit SHA:** `dbebeae1c0e1f0754e06a46cc01c2e8a3592a16e` (feature; tip `b1e9848c89d89c8dddcb7710bdfa4562069fbb99`)  
 **Deployment status:** **Not deployed**
 
 ---
