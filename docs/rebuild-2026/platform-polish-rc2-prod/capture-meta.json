@@ -1,0 +1,169 @@
+{
+  "capturedAt": "2026-07-24T03:19:35.309Z",
+  "base": "https://waypointstudio.org",
+  "results": [
+    {
+      "file": "01-desktop-workspace.png",
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 0,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 1425,
+        "clientWidth": 1425,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    },
+    {
+      "file": "02-desktop-customize.png",
+      "customizeNav": {
+        "clicked": true,
+        "text": "Customize"
+      },
+      "probe": {
+        "meta": "3d28fb6",
+        "hasSave": true,
+        "hasCancel": true,
+        "libraryHints": true,
+        "overflow": false,
+        "drafting": null
+      }
+    },
+    {
+      "file": "03-desktop-kiosk.png",
+      "probe": {
+        "meta": "3d28fb6",
+        "kioskActive": false,
+        "hasCustomizeChrome": false,
+        "widgets": 5,
+        "userKioskLabel": false
+      }
+    },
+    {
+      "file": "04-phone-workspace.png",
+      "width": 390,
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 7,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    },
+    {
+      "file": "05-phone-customize.png",
+      "probe": {
+        "hasSave": true,
+        "hasCancel": true,
+        "moveControls": 10,
+        "overflow": false,
+        "safeArea": "checked-via-css",
+        "fixedBar": true
+      }
+    },
+    {
+      "file": "06-phone-320-workspace.png",
+      "width": 320,
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 4,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    },
+    {
+      "file": "07-phone-375-workspace.png",
+      "width": 375,
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 4,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    },
+    {
+      "file": "08-phone-430-workspace.png",
+      "width": 430,
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 7,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    },
+    {
+      "file": "09-tablet-768-workspace.png",
+      "width": 768,
+      "probe": {
+        "meta": "3d28fb6",
+        "pending": 0,
+        "facts": 7,
+        "hasToday": true,
+        "customizeBtn": true,
+        "product": "dashboard",
+        "title": "Home — Waypoint Studio",
+        "overflow": false,
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "groups": 3,
+        "widgets": 5,
+        "bodyTextHasToday": true,
+        "hasSkeletonCss": true,
+        "cacheBust": 2
+      }
+    }
+  ],
+  "consoleNotes": [],
+  "allConsoleCount": 7
+}

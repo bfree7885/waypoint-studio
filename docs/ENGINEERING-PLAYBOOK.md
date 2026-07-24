@@ -584,3 +584,20 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    double-binding; load platform modules once.
 8. **Regression insurance:** static pattern tests plus a short CDP smoke for
    overlay coverage and shell-ready timing beat reliance on manual repro alone.
+
+### 2026-07-24 — Dashboard RC2.5 Sprint 6 polish deploy
+
+**Merge:** `3d28fb6` (integration `e6a76d9` onto `a349e68`)
+**Report:** `docs/rebuild-2026/platform-polish-rc2-deployment-review.md`
+
+1. **Verify the exact approved integration tip before merge.** Owner gate was
+   `e6a76d9`; silently accepting a newer tip is forbidden.
+2. **Local `main` can diverge while `origin/main` is correct.** Sync with
+   local `reset --hard origin/main` only — never force-push main to “fix”
+   a stale local tip.
+3. **Pages injects `build-info` — do not fabricate pre-push.** Product gate is
+   live `data/build-info.json` + ordinary HTML fingerprint, not workflow green
+   alone.
+4. **Documented follow-ups do not block merge** when baselines are disclosed
+   (`home-rc1` support assert; stale Outdoor OS today-outside suite).
+
