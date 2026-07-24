@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-24T15:30:01.291Z",
-  "nextScheduledUpdate": "2026-07-24T16:00:00.000Z",
+  "updatedAt": "2026-07-24T16:00:02.119Z",
+  "nextScheduledUpdate": "2026-07-24T16:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 72,
-    "feelsLikeF": 77,
-    "humidity": 94,
-    "windMph": 8,
+    "temperatureF": 70,
+    "feelsLikeF": 74,
+    "humidity": 95,
+    "windMph": 10,
     "windGustMph": 14,
     "cloudCover": 100,
-    "uvIndex": 5.1,
+    "uvIndex": 5.9,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-07-24T10:30"
+    "observedAt": "2026-07-24T11:00"
   },
   "forecast": {
     "highF": 87,
@@ -40,7 +40,7 @@
         "time": "2026-07-24T12:00",
         "temperatureF": 73,
         "precipProbability": 0,
-        "conditions": "Partly cloudy"
+        "conditions": "Overcast"
       },
       {
         "time": "2026-07-24T13:00",
@@ -70,7 +70,7 @@
         "time": "2026-07-24T17:00",
         "temperatureF": 86,
         "precipProbability": 0,
-        "conditions": "Mainly clear"
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 72,
-    "phaseValue": 0.359,
+    "phaseValue": 0.36,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 54,
-    "pm25": 11.2,
+    "usAqi": 53,
+    "pm25": 11,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 276.87370777130127,
+        "generationtime_ms": 465.8137559890747,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-24T10:30",
+          "time": "2026-07-24T11:00",
           "interval": 900,
-          "temperature_2m": 71.9,
-          "relative_humidity_2m": 94,
-          "apparent_temperature": 76.5,
+          "temperature_2m": 70.4,
+          "relative_humidity_2m": 95,
+          "apparent_temperature": 73.8,
           "weather_code": 3,
-          "wind_speed_10m": 8,
-          "wind_direction_10m": 162,
-          "wind_gusts_10m": 13.9,
+          "wind_speed_10m": 9.7,
+          "wind_direction_10m": 165,
+          "wind_gusts_10m": 13.6,
           "cloud_cover": 100,
-          "surface_pressure": 948.5,
-          "uv_index": 5.05,
+          "surface_pressure": 948.1,
+          "uv_index": 5.85,
           "precipitation": 0
         },
         "hourly_units": {
@@ -220,7 +220,7 @@
             74.7,
             73.9,
             73.1,
-            71.7,
+            72.6,
             70.5,
             70.1,
             69.4,
@@ -255,12 +255,12 @@
             45,
             3,
             3,
-            2,
+            3,
             1,
             1,
             1,
             1,
-            1,
+            0,
             0,
             0,
             0,
@@ -457,21 +457,21 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 72,
-        "phaseValue": 0.359,
+        "phaseValue": 0.36,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 54,
-        "pm25": 11.2,
+        "usAqi": 53,
+        "pm25": 11,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 5.1,
+        "uvIndex": 5.9,
         "status": "live"
       }
     },
@@ -541,19 +541,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-24T15:30:01.291Z",
+    "generatedAt": "2026-07-24T16:00:02.119Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
