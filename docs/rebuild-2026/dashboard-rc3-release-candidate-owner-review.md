@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprints 1–5 owner reviews  
 **Release candidate branch:** `release/dashboard-rc3`  
 **Base tip:** Sprint 5 stack (`feature/dashboard-rc3-sprint5-personal-workspace`) — linear S1→S5 feature commits  
-**Stabilization commit SHA:** `b4d44eb` (feature stabilize; tip `c715187` / `c715187037a5033de64afccceff8a809a84caca9`)  
+**Stabilization commit SHA:** `b4d44eb` (feature stabilize; tip `2e78844` / `2e78844a084da21f067734b0d5e422880d07bb7e`)  
 **Deployment status:** **Not deployed**
 
 ---
@@ -173,6 +173,6 @@ Evidence: linear S1–S5 stack on `release/dashboard-rc3`, Sprint 6 stabilizatio
 |-------|--------|
 | Branch | `release/dashboard-rc3` |
 | Stabilization SHA | `b4d44eb` |
-| Tip SHA | `c715187` |
+| Tip SHA | `2e78844` |
 | Push | **OK** — `origin/release/dashboard-rc3` |
 | Deployment status | **Not deployed** |
