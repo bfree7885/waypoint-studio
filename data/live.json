@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-24T11:30:01.326Z",
-  "nextScheduledUpdate": "2026-07-24T12:00:00.000Z",
+  "updatedAt": "2026-07-24T12:00:01.417Z",
+  "nextScheduledUpdate": "2026-07-24T12:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,15 +18,15 @@
   "current": {
     "temperatureF": 68,
     "feelsLikeF": 71,
-    "humidity": 97,
-    "windMph": 8,
-    "windGustMph": 15,
+    "humidity": 100,
+    "windMph": 7,
+    "windGustMph": 13,
     "cloudCover": 100,
-    "uvIndex": 0,
+    "uvIndex": 0.2,
     "precipIn": 0,
     "conditions": "Fog",
     "weatherCode": 45,
-    "observedAt": "2026-07-24T06:30"
+    "observedAt": "2026-07-24T07:00"
   },
   "forecast": {
     "highF": 87,
@@ -64,7 +64,7 @@
         "time": "2026-07-24T12:00",
         "temperatureF": 76,
         "precipProbability": 1,
-        "conditions": "Overcast"
+        "conditions": "Partly cloudy"
       },
       {
         "time": "2026-07-24T13:00",
@@ -90,7 +90,7 @@
   },
   "airQuality": {
     "usAqi": 54,
-    "pm25": 12.5,
+    "pm25": 12,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 715.5656814575195,
+        "generationtime_ms": 433.25066566467285,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-24T06:30",
+          "time": "2026-07-24T07:00",
           "interval": 900,
           "temperature_2m": 67.6,
-          "relative_humidity_2m": 97,
-          "apparent_temperature": 70.7,
+          "relative_humidity_2m": 100,
+          "apparent_temperature": 71.3,
           "weather_code": 45,
-          "wind_speed_10m": 7.5,
+          "wind_speed_10m": 7,
           "wind_direction_10m": 171,
-          "wind_gusts_10m": 14.5,
+          "wind_gusts_10m": 12.5,
           "cloud_cover": 100,
-          "surface_pressure": 947.4,
-          "uv_index": 0,
+          "surface_pressure": 947.1,
+          "uv_index": 0.2,
           "precipitation": 0
         },
         "hourly_units": {
@@ -214,9 +214,9 @@
             86.9,
             86.3,
             84.3,
-            80.4,
-            78.3,
-            77.1,
+            80.3,
+            78.2,
+            76.4,
             76,
             74.9,
             73.8,
@@ -255,9 +255,9 @@
             45,
             3,
             3,
-            3,
             2,
-            3,
+            2,
+            2,
             1,
             0,
             0,
@@ -431,7 +431,7 @@
           ],
           "uv_index_max": [
             8.2,
-            8.1
+            8.2
           ],
           "sunrise": [
             "2026-07-24T06:26",
@@ -464,14 +464,14 @@
     "air_quality": {
       "data": {
         "usAqi": 54,
-        "pm25": 12.5,
+        "pm25": 12,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 0,
+        "uvIndex": 0.2,
         "status": "live"
       }
     },
@@ -541,19 +541,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-24T11:30:01.326Z",
+    "generatedAt": "2026-07-24T12:00:01.417Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
