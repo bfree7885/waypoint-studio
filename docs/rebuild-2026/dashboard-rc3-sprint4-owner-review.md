@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprint 3 owner review  
 **Base:** `feature/dashboard-rc3-sprint3-daily-brief` @ `72e30e4` (Sprint 3 docs tip; feature `335bcf2`)  
 **Branch:** `feature/dashboard-rc3-sprint4-discovery`  
-**Final commit SHA:** `11c1a6fed02628e29649eedeee9105aca22e149c` (feature; see branch tip after push)
+**Final commit SHA:** `11c1a6fed02628e29649eedeee9105aca22e149c` (feature; tip `b56f5535a993cd6021eabeefdaa54e1973118846`)
 **Deployment status:** **Not deployed**
 
 ---
