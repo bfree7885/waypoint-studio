@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprint 2 owner review  
 **Base:** `feature/dashboard-rc3-sprint2-refinement` @ `0034cf5` (Sprint 2 docs tip; feature `e155991`)  
 **Branch:** `feature/dashboard-rc3-sprint3-daily-brief`  
-**Final commit SHA:** _(pinned after commit)_  
+**Final commit SHA:** `335bcf24161ac8de83fabbcb628a7d75227ac62d` (feature; docs pin may follow)  
 **Deployment status:** **Not deployed**
 
 ---
