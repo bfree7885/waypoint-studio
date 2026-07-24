@@ -197,6 +197,91 @@
     );
   }
 
+  function renderInterests(prefs) {
+    var prefsApi = Prefs();
+    var catalog =
+      prefsApi && prefsApi.interestCatalog
+        ? prefsApi.interestCatalog()
+        : [];
+    var enabled = Object.create(null);
+    var order = (prefs && prefs.interests) || (prefsApi && prefsApi.defaultInterests ? prefsApi.defaultInterests() : ["general"]);
+    order.forEach(function (id) {
+      enabled[id] = true;
+    });
+    var priorityPreview = order
+      .map(function (id, i) {
+        var label = (prefsApi && prefsApi.interestLabels && prefsApi.interestLabels[id]) || id;
+        return escapeHtml(String(i + 1) + ". " + label);
+      })
+      .join(" · ");
+
+    var rows = catalog
+      .map(function (item) {
+        var on = !!enabled[item.id];
+        var rank = order.indexOf(item.id);
+        var rankLabel = on ? String(rank + 1) : "—";
+        return (
+          '<li class="wdb-r-interests__item' +
+          (on ? " is-on" : "") +
+          '" data-interest-id="' +
+          escapeHtml(item.id) +
+          '">' +
+          '<div class="wdb-r-interests__meta">' +
+          '<span class="wdb-r-interests__rank" aria-hidden="true">' +
+          escapeHtml(rankLabel) +
+          "</span>" +
+          "<strong>" +
+          escapeHtml(item.label) +
+          "</strong>" +
+          "</div>" +
+          '<div class="wdb-r-interests__actions">' +
+          '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interest-toggle" data-interest-id="' +
+          escapeHtml(item.id) +
+          '" aria-pressed="' +
+          (on ? "true" : "false") +
+          '" aria-label="' +
+          (on ? "Disable " : "Enable ") +
+          escapeHtml(item.label) +
+          '">' +
+          (on ? "On" : "Off") +
+          "</button>" +
+          '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interest-up" data-interest-id="' +
+          escapeHtml(item.id) +
+          '" aria-label="Raise priority of ' +
+          escapeHtml(item.label) +
+          '"' +
+          (on && rank > 0 ? "" : " disabled") +
+          ">Up</button>" +
+          '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interest-down" data-interest-id="' +
+          escapeHtml(item.id) +
+          '" aria-label="Lower priority of ' +
+          escapeHtml(item.label) +
+          '"' +
+          (on && rank >= 0 && rank < order.length - 1 ? "" : " disabled") +
+          ">Down</button>" +
+          "</div>" +
+          "</li>"
+        );
+      })
+      .join("");
+
+    return (
+      '<section class="wdb-r-interests" data-wdb-r-interests aria-labelledby="wdb-r-interests-title">' +
+      '<div class="wdb-r-interests__head">' +
+      '<h2 id="wdb-r-interests-title">My interests</h2>' +
+      '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interests-reset">Restore interest defaults</button>' +
+      "</div>" +
+      '<p class="wdb-r-interests__lede">Shape Today Outside emphasis — photo windows, wildlife cues, astronomy darkness, and more. Enable several and rank your priorities. Alerts and public safety stay first.</p>' +
+      '<p class="wdb-r-interests__preview" role="status" aria-live="polite"><span class="wdb-r-interests__preview-label">Priority preview</span> ' +
+      (priorityPreview || "General Outdoors") +
+      "</p>" +
+      '<ul class="wdb-r-interests__list" role="list">' +
+      rows +
+      "</ul>" +
+      "</section>"
+    );
+  }
+
   function renderToolbar(prefs) {
     prefs = prefs || {};
     return (
@@ -242,6 +327,7 @@
     return (
       '<div class="wdb-r-customize" data-wdb-r-customize>' +
       renderToolbar(prefs) +
+      renderInterests(prefs) +
       workspaceHtml +
       renderCatalog(prefs, { libraryFilter: filter }) +
       "</div>"
@@ -260,6 +346,7 @@
     var prefsApi = Prefs();
     if (!prefsApi) return null;
     var id = el && el.getAttribute("data-widget-id");
+    var interestId = el && el.getAttribute("data-interest-id");
     if (action === "show" && id) return prefsApi.setEnabled(id, true);
     if (action === "hide" && id) return prefsApi.setEnabled(id, false);
     if (action === "move-up" && id) return prefsApi.move(id, -1);
@@ -283,6 +370,14 @@
       return prefsApi.applyPreset(preset || "default");
     }
     if (action === "reset") return prefsApi.reset();
+    if (action === "interest-toggle" && interestId) {
+      var cur = prefsApi.load();
+      var on = (cur.interests || []).indexOf(interestId) >= 0;
+      return prefsApi.setInterestEnabled(interestId, !on);
+    }
+    if (action === "interest-up" && interestId) return prefsApi.moveInterest(interestId, -1);
+    if (action === "interest-down" && interestId) return prefsApi.moveInterest(interestId, 1);
+    if (action === "interests-reset") return prefsApi.resetInterests();
     if (action === "save") {
       if (prefsApi.commitDraft) prefsApi.commitDraft();
       return { __navigate: "workspace", __commit: true };
@@ -366,10 +461,11 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildCustomize = {
-    version: "3.1.0-mobile-customize",
+    version: "3.2.0-rc3-s5",
     render: render,
     renderCatalog: renderCatalog,
     renderToolbar: renderToolbar,
+    renderInterests: renderInterests,
     handleAction: handleAction,
     bind: bind,
     focusEditor: focusEditor,

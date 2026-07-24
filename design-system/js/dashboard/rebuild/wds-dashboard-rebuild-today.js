@@ -2,7 +2,7 @@
  * Dashboard Rebuild — Today Outside (RC3 Outdoor Intelligence surface).
  * Flagship briefing: summary + Daily Brief + Discovery + Outdoor Score + activities + windows.
  * Evolves the Phase 3 panel — does not create a competing section.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 4
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 5
  */
 (function (global) {
   "use strict";
@@ -86,7 +86,12 @@
     var Intel = intelligence();
     if (Intel && Intel.generate && ctx.platform) {
       try {
-        return Intel.generate(ctx.platform, { now: ctx.now });
+        var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+        var interests =
+          ctx.interests ||
+          (Prefs && Prefs.load ? Prefs.load().interests : null) ||
+          Intel.DEFAULT_INTERESTS;
+        return Intel.generate(ctx.platform, { now: ctx.now, interests: interests });
       } catch (e) {
         return null;
       }
@@ -625,7 +630,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "4.3.0-rc3-s4",
+    version: "4.4.0-rc3-s5",
     render: render,
     mount: mount,
     placeLabel: placeLabel,

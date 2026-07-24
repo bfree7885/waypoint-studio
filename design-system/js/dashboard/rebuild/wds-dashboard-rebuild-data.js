@@ -359,10 +359,15 @@
       widgets[id] = buildWidgetPayload(id, platform);
     });
     var Intel = global.WDS && global.WDS.dashboardRebuildIntelligence;
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    var interests =
+      options.interests ||
+      (Prefs && Prefs.load ? Prefs.load().interests : null) ||
+      (Intel && Intel.DEFAULT_INTERESTS ? Intel.DEFAULT_INTERESTS : ["general"]);
     var brief = null;
     if (platform && Intel && Intel.generate) {
       try {
-        brief = Intel.generate(platform, { now: options.now });
+        brief = Intel.generate(platform, { now: options.now, interests: interests });
       } catch (e) {
         brief = null;
       }

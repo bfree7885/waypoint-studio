@@ -137,6 +137,25 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 5 (Personal Workspace)
+
+**Branch:** `feature/dashboard-rc3-sprint5-personal-workspace`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint5-owner-review.md`
+
+1. **Extend the existing prefs key — do not invent a second store.** Interests
+   ride `waypoint-dashboard-rebuild-prefs-v1` beside tiles so mobile Customize
+   Save/Cancel/draft semantics stay identical.
+2. **Reorder, never hide.** Personalization sorts activities / Discovery /
+   opportunities; unsupported Discovery cards still omit; alert watch items
+   always stay first.
+3. **Pass interests once through `fromPlatform` → `generate`.** Avoid a second
+   generate on Today Outside render; options.interests keeps determinism for
+   tests and kiosk clocks.
+4. **Avoid Outdoor OS banned tokens in new Customize copy.** Phase 3 asserts
+   reject `Matters most` / Happening — phrase interest ledes carefully.
+5. **Default = General Outdoors.** Empty or corrupt interest arrays normalize to
+   balanced emphasis so existing installs do not suddenly feel skewed.
+
 ### 2026-07-24 — Dashboard RC3 Sprint 4 (Discovery Engine)
 
 **Branch:** `feature/dashboard-rc3-sprint4-discovery`  

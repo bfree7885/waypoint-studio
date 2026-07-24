@@ -1,0 +1,62 @@
+{
+  "capturedAt": "2026-07-24T16:54:43.907Z",
+  "base": "http://127.0.0.1:8765",
+  "sprint": "dashboard-rc3-sprint5",
+  "mode": "fixture-platform",
+  "desktopMeta": {
+    "score": true,
+    "brief": true,
+    "discovery": true,
+    "edu": true,
+    "week": true,
+    "cards": 6,
+    "outlook": true,
+    "take": true,
+    "activities": 10,
+    "firstActivity": "◇\nPhotography\nExceptional\n\nBest time:\nNear Sunset\nModerate\n\nRarely this favorabl",
+    "firstCard": "photography",
+    "interests": [
+      "photography",
+      "hiking"
+    ],
+    "place": "Pike County, PA",
+    "takeText": "WAYPOINT'S TAKE\n\nA fine day to step outside under partly cloudy. The conditions invite unhurried time in the open. If you go out, photography around near sunset is among the stronger bets. For photography, late light is worth a glance.\n\nModerate confidence",
+    "discoverText": "DISCOVERY\nPHOTOGRAPHY NOTES\n\ngolden hour around 7:20–8:20 PM; mixed clouds often soften contrast for unhurried frames.\n\nModerate confidence\n\nSKY TODAY\n\nSky reads partly cloudy, with mixed cloud cover near 40% and little rain signal in the near outlook.\n\nHigh confidence\n\nNATURE TODAY\n\nlighter air helps hearing birdsong "
+  },
+  "customizeMeta": {
+    "customize": true,
+    "interests": true,
+    "interestRows": 10,
+    "preview": "Priority preview 1. Photography · 2. Hiking",
+    "save": true,
+    "cancel": true
+  },
+  "phoneMeta": {
+    "score": true,
+    "brief": true,
+    "discovery": true,
+    "edu": true,
+    "week": true,
+    "cards": 6,
+    "outlook": true,
+    "take": true,
+    "activities": 10,
+    "firstActivity": "✦\nAstronomy\nExcellent\n\nBest time:\nThis Evening\nModerate\n\nStrong conditions for a",
+    "firstCard": "astronomy",
+    "interests": [
+      "astronomy",
+      "wildlife"
+    ],
+    "place": "Pike County, PA",
+    "takeText": "WAYPOINT'S TAKE\n\nA fine day to step outside under partly cloudy. The conditions invite unhurried time in the open. If you go out, astronomy around this evening is among the stronger bets. Astronomy hinges on darkness, moon, and evening cloud gaps.\n\nModerate confidence",
+    "discoverText": "DISCOVERY\nASTRONOMY NOTES\n\nmixed clouds may open and close the night sky; moon light is modest (Waxing Crescent) — darker sky helps.\n\nModerate confidence\n\nSKY TODAY\n\nSky reads partly cloudy, with mixed cloud cover near 40% and little rain signal in the near outlook.\n\nHigh confidence\n\nNATURE TODAY\n\nlighter air helps hea"
+  },
+  "phoneCustomize": {
+    "customize": true,
+    "interests": true,
+    "interestRows": 10,
+    "preview": "Priority preview 1. Astronomy · 2. Wildlife",
+    "save": true,
+    "cancel": true
+  }
+}

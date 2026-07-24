@@ -269,6 +269,35 @@ assert(
   Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1"
 );
 
+/* Sprint 5: interests live in same prefs key; Save/Cancel draft still applies */
+Prefs.reset();
+const withInterests = Customize.render({ prefs: Prefs.load() });
+assert("mobile customize includes interests", /data-wdb-r-interests/.test(withInterests));
+assert("mobile customize interests Save/Cancel preserved", /data-wdb-r-action="save"/.test(withInterests));
+Prefs.beginDraft();
+Prefs.setInterests(["photography", "wildlife"]);
+assert("draft interests do not persist until Save", (() => {
+  const raw = JSON.parse(sandbox.localStorage.getItem(Prefs.storageKey) || "{}");
+  return !raw.interests || raw.interests[0] === "general";
+})());
+Prefs.commitDraft();
+assert(
+  "saved interests persist on same key",
+  Prefs.loadFromStorage().interests.join(",") === "photography,wildlife"
+);
+Prefs.beginDraft();
+Prefs.setInterests(["astronomy"]);
+Prefs.discardDraft();
+assert(
+  "cancel discards interest draft",
+  Prefs.load().interests.join(",") === "photography,wildlife"
+);
+Prefs.resetInterests();
+Prefs.beginDraft();
+Prefs.resetInterests();
+Prefs.commitDraft();
+assert("restore interest defaults", Prefs.loadFromStorage().interests.join(",") === "general");
+
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");
   process.exit(1);

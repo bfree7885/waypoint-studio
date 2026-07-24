@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Dashboard RC3 Sprint 4 — Discovery Engine & Outdoor Intelligence contracts.
+ * Dashboard RC3 Sprint 5 — Personal Workspace & Outdoor Intelligence contracts.
  * Run: node automation/test-dashboard-rebuild-intelligence.mjs
  */
 import fs from "fs";
@@ -58,6 +58,8 @@ assert("css has daily brief styles", /\.wdb-r-today__brief/.test(css));
 assert("css has brief list styles", /\.wdb-r-today__brief-list/.test(css));
 assert("css has discovery styles", /\.wdb-r-today__discover/.test(css));
 assert("css has discovery cards", /\.wdb-r-today__discover-cards/.test(css));
+assert("css has interests styles", /\.wdb-r-interests/.test(css));
+assert("css has interests list", /\.wdb-r-interests__list/.test(css));
 assert("css discovery beside brief on wide", /wdb-r-today__discover[\s\S]*grid-column:\s*2/.test(css));
 assert("css respects reduced motion", /prefers-reduced-motion/.test(css));
 assert("css stacks activities on tablet", /wdb-r-today__activity-list[\s\S]*grid-template-columns:\s*1fr/.test(css));
@@ -69,7 +71,7 @@ assert("css has activity icon", /\.wdb-r-today__activity-icon/.test(css));
 assert("css has activity window", /\.wdb-r-today__activity-window/.test(css));
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
-assert("index cache-bust rc3 s4", /dash-rc3-s4/.test(indexHtml));
+assert("index cache-bust rc3 s5", /dash-rc3-s5/.test(indexHtml));
 
 const sandbox = {
   window: {},
@@ -133,9 +135,17 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Shell = sandbox.WDS.dashboardRebuild;
 
 assert("intelligence loaded", !!(Intel && Intel.generate));
-assert("sprint4 version", /rc3-s4/.test(Intel.version));
-assert("today sprint4 version", /rc3-s4/.test(Today.version));
+assert("sprint5 version", /rc3-s5/.test(Intel.version));
+assert("today sprint5 version", /rc3-s5/.test(Today.version));
 assert("discovery composer exported", typeof Intel.composeDiscovery === "function");
+assert("interest normalize exported", typeof Intel.normalizeInterestProfile === "function");
+assert("prioritize activities exported", typeof Intel.prioritizeActivities === "function");
+assert("prioritize discovery exported", typeof Intel.prioritizeDiscoveryCards === "function");
+assert("ten interest profiles", Intel.INTEREST_IDS.length === 10);
+assert(
+  "default interests balanced general",
+  JSON.stringify(Intel.DEFAULT_INTERESTS) === JSON.stringify(["general"])
+);
 assert("educational moment exported", typeof Intel.composeEducationalMoment === "function");
 assert("this week outside exported", typeof Intel.composeThisWeekOutside === "function");
 assert("score weights documented", Intel.SCORE_WEIGHTS.temperature === 18 && Intel.SCORE_WEIGHTS.aqi === 14);
@@ -707,6 +717,171 @@ assert("heat hiking leans early morning", heatHike && /Early Morning/i.test(heat
 assert(
   "heat watch mentions heat or uv",
   heat.dailyBrief.watch.some((w) => /heat|UV|uv|shade/i.test(w))
+);
+
+/* ——— RC3 Sprint 5: Personal Workspace ——— */
+const Prefs = sandbox.WDS.dashboardRebuildPrefs;
+const Customize = sandbox.WDS.dashboardRebuildCustomize;
+assert("prefs interest catalog", Prefs.interestCatalog().length === 10);
+assert("prefs default interests general", Prefs.defaultInterests()[0] === "general");
+assert(
+  "prefs normalize empty → default",
+  JSON.stringify(Prefs.normalizeInterests([])) === JSON.stringify(["general"])
+);
+assert(
+  "prefs normalize drops unknown",
+  Prefs.normalizeInterests(["photography", "nope", "astronomy"]).join(",") ===
+    "photography,astronomy"
+);
+assert("prefs load includes interests", Array.isArray(Prefs.load().interests));
+
+Prefs.beginDraft();
+Prefs.setInterests(["photography", "astronomy", "hiking"]);
+assert(
+  "prefs set interests ordered",
+  Prefs.load().interests.join(",") === "photography,astronomy,hiking"
+);
+Prefs.moveInterest("astronomy", -1);
+assert(
+  "prefs move interest up",
+  Prefs.load().interests.join(",") === "astronomy,photography,hiking"
+);
+Prefs.setInterestEnabled("wildlife", true);
+assert("prefs enable interest", Prefs.load().interests.indexOf("wildlife") >= 0);
+Prefs.setInterestEnabled("hiking", false);
+assert("prefs disable interest", Prefs.load().interests.indexOf("hiking") < 0);
+Prefs.resetInterests();
+assert(
+  "prefs restore interest defaults",
+  Prefs.load().interests.join(",") === "general"
+);
+Prefs.discardDraft();
+
+const photoPack = Intel.generate(fairPlatform, {
+  now: fairNow,
+  interests: ["photography", "hiking"]
+});
+const wildlifePack = Intel.generate(fairPlatform, {
+  now: fairNow,
+  interests: ["wildlife", "birding"]
+});
+const astroPack = Intel.generate(fairPlatform, {
+  now: fairNow,
+  interests: ["astronomy"]
+});
+const generalPack = Intel.generate(fairPlatform, {
+  now: fairNow,
+  interests: ["general"]
+});
+
+assert("photo pack personalization flag", photoPack.personalization.balanced === false);
+assert("general pack balanced", generalPack.personalization.balanced === true);
+assert(
+  "photo activities prioritize photography",
+  photoPack.activities[0].id === "photography" ||
+    photoPack.activities.findIndex((a) => a.id === "photography") <= 2
+);
+assert(
+  "wildlife activities prioritize wildlife/birding",
+  wildlifePack.activities.findIndex((a) => a.id === "wildlife" || a.id === "birding") <=
+    photoPack.activities.findIndex((a) => a.id === "wildlife" || a.id === "birding")
+);
+assert(
+  "astronomy discovery cards lead with astronomy/sky",
+  astroPack.discovery.cards.length === 0 ||
+    ["astronomy", "sky"].indexOf(astroPack.discovery.cards[0].id) >= 0
+);
+assert(
+  "photo discovery emphasizes photography or sky",
+  photoPack.discovery.cards.length === 0 ||
+    ["photography", "sky"].indexOf(photoPack.discovery.cards[0].id) >= 0 ||
+    photoPack.discovery.cards.some((c, i) => c.id === "photography" && i <= 2)
+);
+assert(
+  "interest reorder never drops discovery cards",
+  photoPack.discovery.cards.length === generalPack.discovery.cards.length
+);
+assert(
+  "interest reorder never drops activities",
+  photoPack.activities.length === generalPack.activities.length
+);
+assert(
+  "photo take adapts calmly",
+  /photograph|light|cloud/i.test(photoPack.take.text)
+);
+assert(
+  "astro take mentions darkness/moon/evening or astronomy",
+  /astronomy|dark|moon|evening|star|cloud/i.test(astroPack.take.text)
+);
+assert(
+  "outlook encourages exploration beyond interest",
+  /lens|explore|beyond|noticing/i.test(photoPack.dailyBrief.outlook)
+);
+assert(
+  "alerts still dominate storm take with interests",
+  (() => {
+    const stormI = Intel.generate(stormPlatform, {
+      now: fairNow,
+      interests: ["photography"]
+    });
+    return /alert/i.test(stormI.take.text) && /alert/i.test(stormI.dailyBrief.watch[0] || "");
+  })()
+);
+assert(
+  "alerts always first in watch with interests",
+  (() => {
+    const stormI = Intel.generate(stormPlatform, {
+      now: fairNow,
+      interests: ["wildlife", "astronomy"]
+    });
+    return /alert/i.test(stormI.dailyBrief.watch[0] || "");
+  })()
+);
+
+const customizeHtml = Customize.render({ prefs: Prefs.load() });
+assert("customize renders interests", /data-wdb-r-interests/.test(customizeHtml));
+assert("customize interest toggle controls", /data-wdb-r-action="interest-toggle"/.test(customizeHtml));
+assert("customize interest priority up", /data-wdb-r-action="interest-up"/.test(customizeHtml));
+assert("customize interest priority down", /data-wdb-r-action="interest-down"/.test(customizeHtml));
+assert("customize interest restore", /data-wdb-r-action="interests-reset"/.test(customizeHtml));
+assert("customize interest preview", /Priority preview/.test(customizeHtml));
+assert("customize still has Save/Cancel", /data-wdb-r-action="save"/.test(customizeHtml) && /data-wdb-r-action="cancel"/.test(customizeHtml));
+assert(
+  "ten interest labels in customize",
+  Prefs.interestCatalog().every((item) => {
+    const plain = item.label;
+    const escaped = plain.replace(/&/g, "&amp;");
+    return customizeHtml.indexOf(plain) >= 0 || customizeHtml.indexOf(escaped) >= 0;
+  })
+);
+
+Prefs.beginDraft();
+Prefs.setInterests(["photography"]);
+const draftInterests = Prefs.load().interests.slice();
+assert("draft interests photography", draftInterests[0] === "photography");
+Prefs.discardDraft();
+assert(
+  "discard restores stored interests",
+  Prefs.load().interests.join(",") === "general" || Prefs.loadFromStorage().interests[0] === "general"
+);
+
+const packWithPrefs = Data.fromPlatform(fairPlatform, { name: "Pike" }, {
+  now: fairNow,
+  interests: ["astronomy"]
+});
+assert(
+  "data pack respects interests option",
+  packWithPrefs.today.intelligence.interests[0] === "astronomy"
+);
+
+assert(
+  "personalization deterministic",
+  JSON.stringify(
+    Intel.generate(fairPlatform, { now: fairNow, interests: ["wildlife", "rivers"] }).discovery.cards
+  ) ===
+    JSON.stringify(
+      Intel.generate(fairPlatform, { now: fairNow, interests: ["wildlife", "rivers"] }).discovery.cards
+    )
 );
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");

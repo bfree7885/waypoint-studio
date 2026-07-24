@@ -1,19 +1,21 @@
 /**
- * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (Sprint 4 Discovery).
+ * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (Sprint 5 Personal Workspace).
  * Pure, deterministic interpretation of OIP platform data for Today Outside.
  * Never fabricates live numbers; missing inputs lower confidence and redistribute weights.
  * Discovery reuses the same generate() pack — no second network pass.
+ * Interests reorder emphasis only — never hide alerts / public safety.
  *
  * Algorithm authority:
  *   docs/rebuild-2026/dashboard-rc3-sprint1-owner-review.md
  *   docs/rebuild-2026/dashboard-rc3-sprint2-owner-review.md
  *   docs/rebuild-2026/dashboard-rc3-sprint3-owner-review.md
  *   docs/rebuild-2026/dashboard-rc3-sprint4-owner-review.md
+ *   docs/rebuild-2026/dashboard-rc3-sprint5-owner-review.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "1.3.0-rc3-s4";
+  var VERSION = "1.4.0-rc3-s5";
   var LEVELS = ["Exceptional", "Excellent", "Good", "Mixed", "Challenging"];
   var CONFIDENCE = ["High", "Moderate", "Limited"];
 
@@ -99,6 +101,91 @@
     gardening: "hiking",
     fishing: "hiking",
     generalOutdoor: "hiking"
+  };
+
+  /** Personal Workspace interest profiles (presentation priority only). */
+  var INTEREST_IDS = [
+    "photography",
+    "hiking",
+    "wildlife",
+    "birding",
+    "astronomy",
+    "gardening",
+    "fishing",
+    "rivers",
+    "weather",
+    "general"
+  ];
+
+  var INTEREST_LABELS = {
+    photography: "Photography",
+    hiking: "Hiking",
+    wildlife: "Wildlife",
+    birding: "Birding",
+    astronomy: "Astronomy",
+    gardening: "Gardening",
+    fishing: "Fishing",
+    rivers: "Rivers & Water",
+    weather: "Weather",
+    general: "General Outdoors"
+  };
+
+  var DEFAULT_INTERESTS = ["general"];
+
+  /** Interest → activity ids that should rise when that interest is enabled. */
+  var INTEREST_ACTIVITY_MAP = {
+    photography: ["photography"],
+    hiking: ["hiking", "trailRunning", "camping"],
+    wildlife: ["wildlife"],
+    birding: ["birding"],
+    astronomy: ["astronomy"],
+    gardening: ["gardening"],
+    fishing: ["fishing"],
+    rivers: ["fishing"],
+    weather: ["generalOutdoor"],
+    general: ["generalOutdoor", "hiking", "photography", "wildlife"]
+  };
+
+  /** Interest → discovery card ids to emphasize (still never invent cards). */
+  var INTEREST_DISCOVERY_MAP = {
+    photography: ["photography", "sky"],
+    hiking: ["nature", "seasonal", "sky"],
+    wildlife: ["nature", "seasonal", "water"],
+    birding: ["nature", "seasonal"],
+    astronomy: ["astronomy", "sky"],
+    gardening: ["seasonal", "nature"],
+    fishing: ["water", "nature"],
+    rivers: ["water", "nature"],
+    weather: ["sky", "seasonal"],
+    general: []
+  };
+
+  /** Interest → window ids. */
+  var INTEREST_WINDOW_MAP = {
+    photography: ["photography"],
+    hiking: ["hiking"],
+    wildlife: ["wildlife"],
+    birding: ["wildlife"],
+    astronomy: ["stargazing"],
+    gardening: ["hiking"],
+    fishing: ["hiking"],
+    rivers: ["hiking"],
+    weather: ["hiking", "photography"],
+    general: []
+  };
+
+  /** Educational topic preference by interest. */
+  var INTEREST_EDU_MAP = {
+    photography: ["clouds", "uv", "moon"],
+    hiking: ["humidity", "uv", "wind"],
+    wildlife: ["wind", "aqi", "rivers"],
+    birding: ["wind", "humidity"],
+    astronomy: ["moon", "clouds"],
+    gardening: ["humidity", "uv", "aqi"],
+    fishing: ["rivers", "wind"],
+    rivers: ["rivers", "humidity"],
+    weather: ["clouds", "uv", "wind", "aqi"],
+    general: []
   };
 
   var BANNED =
@@ -1172,6 +1259,175 @@
     });
   }
 
+  /* ——— Personal Workspace (RC3 Sprint 5) ———
+   * Interests reorder presentation emphasis only. Alerts / public safety stay
+   * highest priority. Cards and activities are never hidden for missing interests.
+   */
+
+  function normalizeInterestProfile(raw) {
+    var seen = Object.create(null);
+    var next = [];
+    (Array.isArray(raw) ? raw : []).forEach(function (id) {
+      id = String(id || "");
+      if (!id || seen[id] || INTEREST_IDS.indexOf(id) < 0) return;
+      seen[id] = true;
+      next.push(id);
+    });
+    if (!next.length) return DEFAULT_INTERESTS.slice();
+    return next;
+  }
+
+  function isBalancedInterests(interests) {
+    interests = normalizeInterestProfile(interests);
+    return interests.length === 1 && interests[0] === "general";
+  }
+
+  function interestPriorityIndex(id, interests) {
+    var i = (interests || []).indexOf(id);
+    return i < 0 ? 999 : i;
+  }
+
+  function bestMappedPriority(mappedIds, interests) {
+    var best = 999;
+    (mappedIds || []).forEach(function (mid) {
+      var p = interestPriorityIndex(mid, interests);
+      if (p < best) best = p;
+    });
+    return best;
+  }
+
+  function activityInterestPriority(activityId, interests) {
+    var best = 999;
+    (interests || []).forEach(function (interest, idx) {
+      var mapped = INTEREST_ACTIVITY_MAP[interest] || [];
+      if (mapped.indexOf(activityId) >= 0 && idx < best) best = idx;
+    });
+    return best;
+  }
+
+  function discoveryInterestPriority(cardId, interests) {
+    var best = 999;
+    (interests || []).forEach(function (interest, idx) {
+      var mapped = INTEREST_DISCOVERY_MAP[interest] || [];
+      if (mapped.indexOf(cardId) >= 0 && idx < best) best = idx;
+    });
+    return best;
+  }
+
+  function windowInterestPriority(windowId, interests) {
+    var best = 999;
+    (interests || []).forEach(function (interest, idx) {
+      var mapped = INTEREST_WINDOW_MAP[interest] || [];
+      if (mapped.indexOf(windowId) >= 0 && idx < best) best = idx;
+    });
+    return best;
+  }
+
+  function prioritizeActivities(activities, interests) {
+    interests = normalizeInterestProfile(interests);
+    if (isBalancedInterests(interests)) {
+      return (activities || []).slice().sort(function (a, b) {
+        return (b.score || 0) - (a.score || 0);
+      });
+    }
+    return (activities || [])
+      .slice()
+      .sort(function (a, b) {
+        var pa = activityInterestPriority(a.id, interests);
+        var pb = activityInterestPriority(b.id, interests);
+        if (pa !== pb) return pa - pb;
+        return (b.score || 0) - (a.score || 0);
+      });
+  }
+
+  function prioritizeWindows(windows, interests) {
+    interests = normalizeInterestProfile(interests);
+    if (isBalancedInterests(interests)) return (windows || []).slice();
+    return (windows || [])
+      .slice()
+      .sort(function (a, b) {
+        var pa = windowInterestPriority(a.id, interests);
+        var pb = windowInterestPriority(b.id, interests);
+        if (pa !== pb) return pa - pb;
+        return String(a.id).localeCompare(String(b.id));
+      });
+  }
+
+  function prioritizeDiscoveryCards(cards, interests) {
+    interests = normalizeInterestProfile(interests);
+    if (isBalancedInterests(interests)) return (cards || []).slice();
+    return (cards || [])
+      .slice()
+      .sort(function (a, b) {
+        var pa = discoveryInterestPriority(a.id, interests);
+        var pb = discoveryInterestPriority(b.id, interests);
+        if (pa !== pb) return pa - pb;
+        return String(a.id).localeCompare(String(b.id));
+      });
+  }
+
+  function opportunityKeyInterest(key) {
+    if (!key) return null;
+    if (key.indexOf("act-") === 0) {
+      var act = key.slice(4);
+      if (act === "photography") return "photography";
+      if (act === "hiking" || act === "trailRunning" || act === "camping") return "hiking";
+      if (act === "wildlife") return "wildlife";
+      if (act === "birding") return "birding";
+      if (act === "astronomy") return "astronomy";
+      if (act === "gardening") return "gardening";
+      if (act === "fishing") return "fishing";
+      if (act === "generalOutdoor") return "general";
+      return null;
+    }
+    if (key === "golden" || key === "soft-light") return "photography";
+    if (key === "calm-wind") return "wildlife";
+    if (key === "stars") return "astronomy";
+    if (key === "river") return "rivers";
+    if (key === "clean-air") return "weather";
+    return null;
+  }
+
+  function primaryInterestLabel(interests) {
+    interests = normalizeInterestProfile(interests);
+    var id = interests[0];
+    if (!id || id === "general") return null;
+    return INTEREST_LABELS[id] || id;
+  }
+
+  function interestEmphasisCue(interests, signals) {
+    interests = normalizeInterestProfile(interests);
+    if (isBalancedInterests(interests)) return null;
+    var top = interests[0];
+    if (top === "photography") {
+      return signals && signals.goldenHourEvening
+        ? "For photography, late light is worth a glance."
+        : "For photography, watch how light and cloud texture shift.";
+    }
+    if (top === "wildlife") {
+      return "Wildlife noticing often rewards quieter edges and calmer air.";
+    }
+    if (top === "birding") {
+      return "Birding often benefits from lighter wind and unhurried listening.";
+    }
+    if (top === "astronomy") {
+      return "Astronomy hinges on darkness, moon, and evening cloud gaps.";
+    }
+    if (top === "hiking") {
+      return "Hiking comfort follows air, sun, and flexible timing.";
+    }
+    if (top === "gardening") {
+      return "Gardening days turn on sun strength, moisture, and gentle air.";
+    }
+    if (top === "fishing" || top === "rivers") {
+      return "Water plans stay grounded in gauge context and local judgment.";
+    }
+    if (top === "weather") {
+      return "Weather watching starts with sky, air, and any official alerts.";
+    }
+    return null;
+  }
+
   function skyPhrase(signals) {
     var cond = String(signals.conditions || "").toLowerCase().trim();
     if (cond) return cond;
@@ -1196,9 +1452,11 @@
   /**
    * Waypoint's Take — short editorial from an experienced outdoor guide.
    * Avoids repeating activity-card explanations; speaks to the whole day.
+   * Interests subtly shift emphasis; alerts always lead when present.
    */
-  function waypointTake(signals, score, activities, dailyBrief) {
+  function waypointTake(signals, score, activities, dailyBrief, interests) {
     signals = signals || {};
+    interests = normalizeInterestProfile(interests);
     if (!signals.weatherLive) {
       return {
         text: "Conditions are still arriving for this place. Nothing here is invented while weather and air settle — check back once the instruments hydrate.",
@@ -1215,6 +1473,9 @@
       })
       .slice()
       .sort(function (a, b) {
+        var pa = activityInterestPriority(a.id, interests);
+        var pb = activityInterestPriority(b.id, interests);
+        if (pa !== pb) return pa - pb;
         return (b.score || 0) - (a.score || 0);
       });
 
@@ -1281,6 +1542,11 @@
       );
     }
 
+    var cue = interestEmphasisCue(interests, signals);
+    if (cue && signals.alertCount === 0) {
+      parts.push(cue);
+    }
+
     if (signals.aqi != null && signals.aqi > 100) {
       parts.push("Ease prolonged exertion if you are sensitive to the air.");
     } else if (signals.uv != null && signals.uv >= 7) {
@@ -1307,7 +1573,8 @@
     return { text: text, confidence: conf };
   }
 
-  function composeOutlook(signals, score) {
+  function composeOutlook(signals, score, interests) {
+    interests = normalizeInterestProfile(interests);
     if (!signals.weatherLive) {
       return calm(
         "Today's outlook is waiting on live weather for this place — nothing is invented while instruments settle."
@@ -1363,12 +1630,21 @@
     if (signals.alertCount > 0) {
       close =
         " — official alerts are active, so treat this outlook as secondary to that guidance.";
+    } else if (!isBalancedInterests(interests)) {
+      var label = primaryInterestLabel(interests);
+      if (label) {
+        close =
+          " — worth noticing through a " +
+          String(label).toLowerCase() +
+          " lens, while still leaving room to explore beyond it.";
+      }
     }
 
     return calm(lead + close);
   }
 
-  function composeOpportunities(signals, score, activities, windows) {
+  function composeOpportunities(signals, score, activities, windows, interests) {
+    interests = normalizeInterestProfile(interests);
     var items = [];
     var seen = {};
     var usedNotes = {};
@@ -1377,7 +1653,7 @@
       var c = calm(text);
       if (!c || seen[key || c]) return;
       seen[key || c] = true;
-      items.push(c);
+      items.push({ text: c, key: key || c });
     }
 
     var ranked = (activities || [])
@@ -1390,6 +1666,9 @@
       })
       .slice()
       .sort(function (a, b) {
+        var pa = activityInterestPriority(a.id, interests);
+        var pb = activityInterestPriority(b.id, interests);
+        if (pa !== pb) return pa - pb;
         return (b.score || 0) - (a.score || 0);
       });
 
@@ -1464,7 +1743,23 @@
       push("General outdoor time remains workable if you keep plans flexible.", "general");
     }
 
-    return items.slice(0, 5);
+    if (!isBalancedInterests(interests) && items.length > 1) {
+      items.sort(function (a, b) {
+        var ia = opportunityKeyInterest(a.key);
+        var ib = opportunityKeyInterest(b.key);
+        var pa = ia != null ? interestPriorityIndex(ia, interests) : 50;
+        var pb = ib != null ? interestPriorityIndex(ib, interests) : 50;
+        /* Unmapped exploration items stay available but after matched ones. */
+        if (ia == null) pa = 40 + String(a.key).length % 9;
+        if (ib == null) pb = 40 + String(b.key).length % 9;
+        if (pa !== pb) return pa - pb;
+        return 0;
+      });
+    }
+
+    return items.slice(0, 5).map(function (row) {
+      return row.text;
+    });
   }
 
   function composeWatchList(signals, score, activities) {
@@ -1563,40 +1858,53 @@
   /**
    * One observation a hurried glance might miss — always grounded in present signals.
    */
-  function composeInteresting(signals, score, activities, windows) {
+  function composeInteresting(signals, score, activities, windows, interests) {
+    interests = normalizeInterestProfile(interests);
     if (!signals.weatherLive) {
       return calm("Once live weather arrives, look for the quiet detail that does not shout from the headline numbers.");
     }
 
     var candidates = [];
 
+    function pushCandidate(text, interestIds) {
+      var c = calm(text);
+      if (!c) return;
+      candidates.push({
+        text: c,
+        priority: bestMappedPriority(interestIds || [], interests)
+      });
+    }
+
     if (
       signals.feelsF != null &&
       signals.tempF != null &&
       Math.abs(signals.feelsF - signals.tempF) >= 4
     ) {
-      candidates.push(
+      pushCandidate(
         "It feels closer to " +
           round(signals.feelsF) +
           "°F than the " +
           round(signals.tempF) +
-          "°F reading — that gap often shapes how long you want to stay out."
+          "°F reading — that gap often shapes how long you want to stay out.",
+        ["weather", "hiking", "general"]
       );
     }
 
     if (signals.humidity != null && signals.humidity >= 70 && signals.feelsF != null && signals.feelsF >= 65) {
-      candidates.push(
+      pushCandidate(
         "Humidity near " +
           round(signals.humidity) +
-          "% can make the air feel heavier than the thermometer alone suggests."
+          "% can make the air feel heavier than the thermometer alone suggests.",
+        ["weather", "gardening", "hiking"]
       );
     }
 
     if (signals.cloudPct != null && signals.cloudPct >= 35 && signals.cloudPct <= 65 && signals.uv != null && signals.uv >= 5) {
-      candidates.push(
+      pushCandidate(
         "Broken clouds with UV near " +
           round(signals.uv) +
-          " can surprise you — shade comes and goes more than a clear or overcast day."
+          " can surprise you — shade comes and goes more than a clear or overcast day.",
+        ["photography", "weather", "hiking"]
       );
     }
 
@@ -1605,8 +1913,9 @@
         return a.id === "wildlife" || a.id === "birding";
       })[0];
       if (wildlife && (wildlife.level === "Excellent" || wildlife.level === "Good" || wildlife.level === "Exceptional")) {
-        candidates.push(
-          "With light wind, early sound carries farther — a small advantage for noticing birds and edge movement."
+        pushCandidate(
+          "With light wind, early sound carries farther — a small advantage for noticing birds and edge movement.",
+          ["wildlife", "birding"]
         );
       }
     }
@@ -1614,10 +1923,11 @@
     if (signals.goldenHourEvening) {
       var gh = rangeStart(signals.goldenHourEvening);
       if (gh) {
-        candidates.push(
+        pushCandidate(
           "Golden hour begins around " +
             gh +
-            " — color deepens quickly, and the best light often lasts less than an hour."
+            " — color deepens quickly, and the best light often lasts less than an hour.",
+          ["photography"]
         );
       }
     }
@@ -1628,16 +1938,18 @@
       signals.moonIllumination != null &&
       signals.moonIllumination < 35
     ) {
-      candidates.push(
-        "A dimmer moon under clearer skies is easy to overlook at breakfast — it quietly improves the night sky later."
+      pushCandidate(
+        "A dimmer moon under clearer skies is easy to overlook at breakfast — it quietly improves the night sky later.",
+        ["astronomy"]
       );
     }
 
     if (signals.uv != null && signals.uv >= 7 && signals.feelsF != null && signals.feelsF < 75) {
-      candidates.push(
+      pushCandidate(
         "The air may feel mild while UV still runs high (" +
           round(signals.uv) +
-          ") — sun strength is not the same as heat."
+          ") — sun strength is not the same as heat.",
+        ["weather", "gardening", "hiking"]
       );
     }
 
@@ -1645,28 +1957,31 @@
       return w.id === "hiking";
     })[0];
     if (hikeWin && hikeWin.precision === "range" && hikeWin.window) {
-      candidates.push(
+      pushCandidate(
         "Hourly cues currently lean toward " +
           hikeWin.window +
-          " for trail time — still a guide, not an appointment."
+          " for trail time — still a guide, not an appointment.",
+        ["hiking"]
       );
     }
 
     if (signals.riverLive && signals.riverNote && signals.riverTrend) {
-      candidates.push(
+      pushCandidate(
         "The " +
           signals.riverNote +
           " gauge currently reads " +
           String(signals.riverTrend) +
-          " — a local detail that rarely shows up in a sky summary."
+          " — a local detail that rarely shows up in a sky summary.",
+        ["rivers", "fishing", "wildlife"]
       );
     }
 
     if (!candidates.length && score && score.value != null) {
-      candidates.push(
+      pushCandidate(
         "Outdoor Score " +
           score.display +
-          " summarizes many quiet inputs — expanding Explain why shows which ones carried the most weight."
+          " summarizes many quiet inputs — expanding Explain why shows which ones carried the most weight.",
+        ["general", "weather"]
       );
     }
 
@@ -1674,23 +1989,36 @@
       return calm("Even ordinary days hide a detail worth noticing once you are outside.");
     }
 
-    /* Prefer a stable pick from available candidates (deterministic). */
+    candidates.sort(function (a, b) {
+      if (a.priority !== b.priority) return a.priority - b.priority;
+      return 0;
+    });
+
+    /* Prefer interest-aligned candidates; keep a deterministic exploration fallback. */
+    var pool = candidates;
+    if (!isBalancedInterests(interests)) {
+      var matched = candidates.filter(function (c) {
+        return c.priority < 999;
+      });
+      if (matched.length) pool = matched;
+    }
     var idx = 0;
-    if (signals.tempF != null) idx = Math.abs(round(signals.tempF)) % candidates.length;
-    else if (signals.cloudPct != null) idx = Math.abs(round(signals.cloudPct)) % candidates.length;
-    return calm(candidates[idx]);
+    if (signals.tempF != null) idx = Math.abs(round(signals.tempF)) % pool.length;
+    else if (signals.cloudPct != null) idx = Math.abs(round(signals.cloudPct)) % pool.length;
+    return calm(pool[idx].text);
   }
 
   /**
    * Compact Daily Brief — insight layer on top of calibrated Outdoor Intelligence.
    * Every statement is derived from present signals / score / activities / windows.
    */
-  function composeDailyBrief(signals, score, activities, windows) {
+  function composeDailyBrief(signals, score, activities, windows, interests) {
     signals = signals || {};
-    var outlook = composeOutlook(signals, score);
-    var opportunities = composeOpportunities(signals, score, activities, windows);
+    interests = normalizeInterestProfile(interests);
+    var outlook = composeOutlook(signals, score, interests);
+    var opportunities = composeOpportunities(signals, score, activities, windows, interests);
     var watch = composeWatchList(signals, score, activities);
-    var interesting = composeInteresting(signals, score, activities, windows);
+    var interesting = composeInteresting(signals, score, activities, windows, interests);
     var ready = !!signals.weatherLive;
 
     return {
@@ -2234,8 +2562,9 @@
     }
   ];
 
-  function composeEducationalMoment(signals, score, activities) {
+  function composeEducationalMoment(signals, score, activities, interests) {
     signals = signals || {};
+    interests = normalizeInterestProfile(interests);
     var eligible = EDUCATIONAL_TOPICS.filter(function (topic) {
       return topic.eligible(signals);
     });
@@ -2250,7 +2579,18 @@
       };
     }
     var doy = dayOfYear(signals.now);
-    var topic = eligible[doy % eligible.length];
+    var preferred = [];
+    if (!isBalancedInterests(interests)) {
+      interests.forEach(function (interest) {
+        (INTEREST_EDU_MAP[interest] || []).forEach(function (topicId) {
+          eligible.forEach(function (topic) {
+            if (topic.id === topicId && preferred.indexOf(topic) < 0) preferred.push(topic);
+          });
+        });
+      });
+    }
+    var pool = preferred.length ? preferred : eligible;
+    var topic = pool[doy % pool.length];
     var variantFn = topic.variants[doy % topic.variants.length];
     /* Offset variant by topic index so the same day+topic never collides with another topic’s wording. */
     var alt = topic.variants[(doy + topic.id.length) % topic.variants.length];
@@ -2389,11 +2729,16 @@
 
   /**
    * Discovery pack — complements Daily Brief; never replaces it.
+   * Interests reorder cards; unsupported cards stay omitted (never invented).
    */
-  function composeDiscovery(signals, score, activities, windows, dailyBrief) {
+  function composeDiscovery(signals, score, activities, windows, dailyBrief, interests) {
     signals = signals || {};
-    var cards = composeDiscoveryCards(signals, score, activities, windows);
-    var educationalMoment = composeEducationalMoment(signals, score, activities);
+    interests = normalizeInterestProfile(interests);
+    var cards = prioritizeDiscoveryCards(
+      composeDiscoveryCards(signals, score, activities, windows),
+      interests
+    );
+    var educationalMoment = composeEducationalMoment(signals, score, activities, interests);
     var thisWeekOutside = composeThisWeekOutside(signals, score);
     var ready = !!signals.weatherLive && (cards.length > 0 || !!(educationalMoment && educationalMoment.ready));
 
@@ -2642,15 +2987,18 @@
   function generate(platform, options) {
     options = options || {};
     var now = options.now ? new Date(options.now) : new Date();
+    var interests = normalizeInterestProfile(options.interests);
     var signals = normalizeSignals(platform, now);
     var score = computeOutdoorScore(signals);
     var activities = recommendActivities(signals);
     var windows = bestTimeWindows(signals);
     activities = attachActivityWindows(activities, windows);
-    var dailyBrief = composeDailyBrief(signals, score, activities, windows);
-    var take = waypointTake(signals, score, activities, dailyBrief);
+    activities = prioritizeActivities(activities, interests);
+    windows = prioritizeWindows(windows, interests);
+    var dailyBrief = composeDailyBrief(signals, score, activities, windows, interests);
+    var take = waypointTake(signals, score, activities, dailyBrief, interests);
     dailyBrief.take = take;
-    var discovery = composeDiscovery(signals, score, activities, windows, dailyBrief);
+    var discovery = composeDiscovery(signals, score, activities, windows, dailyBrief, interests);
     var lines = composeSummaryLines(signals, score, activities, windows);
     var explanation = buildExplanation(signals, score, activities, windows, take);
 
@@ -2666,6 +3014,11 @@
       take: take,
       explanation: explanation,
       confidence: score.confidence,
+      interests: interests.slice(),
+      personalization: {
+        interests: interests.slice(),
+        balanced: isBalancedInterests(interests)
+      },
       signals: {
         weatherLive: signals.weatherLive,
         fromCache: signals.fromCache,
@@ -2691,6 +3044,9 @@
     ACTIVITY_ICONS: ACTIVITY_ICONS,
     LEVELS: LEVELS.slice(),
     CONFIDENCE: CONFIDENCE.slice(),
+    INTEREST_IDS: INTEREST_IDS.slice(),
+    INTEREST_LABELS: INTEREST_LABELS,
+    DEFAULT_INTERESTS: DEFAULT_INTERESTS.slice(),
     extractSignals: extractSignals,
     computeOutdoorScore: computeOutdoorScore,
     recommendActivities: recommendActivities,
@@ -2702,6 +3058,10 @@
     waypointTake: waypointTake,
     composeSummaryLines: composeSummaryLines,
     buildExplanation: buildExplanation,
+    normalizeInterestProfile: normalizeInterestProfile,
+    prioritizeActivities: prioritizeActivities,
+    prioritizeWindows: prioritizeWindows,
+    prioritizeDiscoveryCards: prioritizeDiscoveryCards,
     generate: generate,
     levelFromScore: levelFromScore,
     hourBand: hourBand,

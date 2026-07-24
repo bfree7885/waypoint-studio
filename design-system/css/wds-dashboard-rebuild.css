@@ -1147,6 +1147,114 @@
   margin-top: 0.85rem;
 }
 
+/* ——— Personal Workspace interests (RC3 Sprint 5) ——— */
+.wdb-r-interests {
+  margin: 0 0 var(--wds-space-4, 1rem);
+  padding: 0.85rem 1rem 1rem;
+  border: 1px solid var(--wdb-r-line-strong);
+  border-radius: var(--wdb-r-radius);
+  background: var(--wdb-r-surface);
+  box-shadow: var(--wdb-r-shadow);
+}
+
+.wdb-r-interests__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.wdb-r-interests__head h2 {
+  margin: 0;
+  font-size: var(--wds-text-md, 1rem);
+  font-weight: 600;
+}
+
+.wdb-r-interests__lede {
+  margin: 0 0 0.65rem;
+  font-size: var(--wds-text-sm, 0.8125rem);
+  color: var(--wdb-r-muted);
+  max-width: 42rem;
+}
+
+.wdb-r-interests__preview {
+  margin: 0 0 0.75rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: calc(var(--wdb-r-radius) - 2px);
+  background: color-mix(in srgb, var(--wdb-r-accent, #6b9bd1) 10%, transparent);
+  font-size: var(--wds-text-sm, 0.8125rem);
+  color: var(--wdb-r-ink, inherit);
+}
+
+.wdb-r-interests__preview-label {
+  font-weight: 600;
+  margin-right: 0.35rem;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-interests__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.wdb-r-interests__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--wdb-r-line, rgba(127, 140, 160, 0.28));
+  border-radius: calc(var(--wdb-r-radius) - 2px);
+  opacity: 0.72;
+}
+
+.wdb-r-interests__item.is-on {
+  opacity: 1;
+  border-color: color-mix(in srgb, var(--wdb-r-accent, #6b9bd1) 35%, var(--wdb-r-line, rgba(127, 140, 160, 0.28)));
+}
+
+.wdb-r-interests__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.wdb-r-interests__rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--wdb-r-muted);
+  background: color-mix(in srgb, var(--wdb-r-ink, #111) 6%, transparent);
+}
+
+.wdb-r-interests__item.is-on .wdb-r-interests__rank {
+  color: var(--wdb-r-ink, inherit);
+  background: color-mix(in srgb, var(--wdb-r-accent, #6b9bd1) 18%, transparent);
+}
+
+.wdb-r-interests__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.wdb-r-interests__actions .wdb-r-btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .wdb-r-btn--primary {
   border-color: color-mix(in srgb, var(--wdb-r-accent) 55%, var(--wdb-r-line-strong));
   background: color-mix(in srgb, var(--wdb-r-accent) 18%, transparent);
@@ -1554,7 +1662,8 @@ html.wdb-r-kiosk .wdb-r,
   .wdb-r-catalog__actions .wdb-r-btn,
   .wdb-r-customize-bar .wdb-r-btn,
   .wdb-r-library__tab,
-  .wdb-r-btn--customize {
+  .wdb-r-btn--customize,
+  .wdb-r-interests__actions .wdb-r-btn {
     min-height: 2.75rem;
     min-width: 2.75rem;
     padding: 0.45rem 0.85rem;

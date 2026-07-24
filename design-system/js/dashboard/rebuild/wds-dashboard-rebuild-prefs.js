@@ -1,6 +1,7 @@
 /**
- * Dashboard Rebuild — local-first layout / widget preferences (Phase 3).
- * Extends waypoint-dashboard-rebuild-prefs-v1 carefully (favorites, grid columns).
+ * Dashboard Rebuild — local-first layout / widget preferences (Phase 3 + RC3 S5).
+ * Extends waypoint-dashboard-rebuild-prefs-v1 carefully (favorites, grid columns,
+ * interest profiles). Same key family — mobile Customize Save/Cancel unchanged.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
@@ -9,6 +10,33 @@
   var STORAGE_KEY = "waypoint-dashboard-rebuild-prefs-v1";
   var PRESETS = ["default", "minimal", "kiosk"];
   var COLUMN_OPTIONS = [1, 2, 3];
+  /** Ordered interest catalog — Personal Workspace profiles (RC3 Sprint 5). */
+  var INTEREST_IDS = [
+    "photography",
+    "hiking",
+    "wildlife",
+    "birding",
+    "astronomy",
+    "gardening",
+    "fishing",
+    "rivers",
+    "weather",
+    "general"
+  ];
+  var INTEREST_LABELS = {
+    photography: "Photography",
+    hiking: "Hiking",
+    wildlife: "Wildlife",
+    birding: "Birding",
+    astronomy: "Astronomy",
+    gardening: "Gardening",
+    fishing: "Fishing",
+    rivers: "Rivers & Water",
+    weather: "Weather",
+    general: "General Outdoors"
+  };
+  /** Default = balanced General Outdoors only. */
+  var DEFAULT_INTERESTS = ["general"];
   /** In-memory customize session — mutations stay here until commit/discard. */
   var draftPrefs = null;
 
@@ -18,6 +46,29 @@
 
   function Registry() {
     return global.WDS && global.WDS.dashboardRebuildRegistry;
+  }
+
+  function interestCatalog() {
+    return INTEREST_IDS.map(function (id) {
+      return { id: id, label: INTEREST_LABELS[id] || id };
+    });
+  }
+
+  function defaultInterests() {
+    return DEFAULT_INTERESTS.slice();
+  }
+
+  function normalizeInterests(raw) {
+    var seen = Object.create(null);
+    var next = [];
+    (Array.isArray(raw) ? raw : []).forEach(function (id) {
+      id = String(id || "");
+      if (!id || seen[id] || INTEREST_IDS.indexOf(id) < 0) return;
+      seen[id] = true;
+      next.push(id);
+    });
+    if (!next.length) return defaultInterests();
+    return next;
   }
 
   function defaults() {
@@ -38,7 +89,8 @@
       favorites: [],
       gridColumns: 3,
       preset: "default",
-      kioskRefreshMs: 5 * 60 * 1000
+      kioskRefreshMs: 5 * 60 * 1000,
+      interests: defaultInterests()
     };
   }
 
@@ -112,7 +164,10 @@
         prefs.gridColumns != null ? prefs.gridColumns : base.gridColumns
       ),
       preset: preset,
-      kioskRefreshMs: refresh
+      kioskRefreshMs: refresh,
+      interests: normalizeInterests(
+        prefs.interests != null ? prefs.interests : base.interests
+      )
     };
   }
 
@@ -325,12 +380,57 @@
     return save(prefs);
   }
 
+  function setInterests(orderedIds) {
+    var prefs = load();
+    prefs.interests = normalizeInterests(orderedIds);
+    return save(prefs);
+  }
+
+  function setInterestEnabled(id, on) {
+    var prefs = load();
+    var interests = (prefs.interests || []).slice();
+    var idx = interests.indexOf(id);
+    if (on) {
+      if (INTEREST_IDS.indexOf(id) < 0) return prefs;
+      if (idx < 0) interests.push(id);
+    } else if (idx >= 0) {
+      interests.splice(idx, 1);
+    }
+    prefs.interests = normalizeInterests(interests);
+    return save(prefs);
+  }
+
+  function moveInterest(id, direction) {
+    var prefs = load();
+    var order = (prefs.interests || []).slice();
+    var i = order.indexOf(id);
+    if (i < 0) return prefs;
+    var j = direction < 0 ? i - 1 : i + 1;
+    if (j < 0 || j >= order.length) return prefs;
+    var tmp = order[i];
+    order[i] = order[j];
+    order[j] = tmp;
+    prefs.interests = normalizeInterests(order);
+    return save(prefs);
+  }
+
+  function resetInterests() {
+    var prefs = load();
+    prefs.interests = defaultInterests();
+    return save(prefs);
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildPrefs = {
-    version: "3.1.0-mobile-customize",
+    version: "3.2.0-rc3-s5",
     storageKey: STORAGE_KEY,
     presets: PRESETS.slice(),
     columnOptions: COLUMN_OPTIONS.slice(),
+    interestIds: INTEREST_IDS.slice(),
+    interestLabels: INTEREST_LABELS,
+    interestCatalog: interestCatalog,
+    defaultInterests: defaultInterests,
+    normalizeInterests: normalizeInterests,
     defaults: defaults,
     load: load,
     save: save,
@@ -345,6 +445,10 @@
     setFavorite: setFavorite,
     toggleFavorite: toggleFavorite,
     setGridColumns: setGridColumns,
+    setInterests: setInterests,
+    setInterestEnabled: setInterestEnabled,
+    moveInterest: moveInterest,
+    resetInterests: resetInterests,
     isDrafting: isDrafting,
     beginDraft: beginDraft,
     commitDraft: commitDraft,

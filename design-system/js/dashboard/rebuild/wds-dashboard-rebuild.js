@@ -74,7 +74,14 @@
     var ctx = options.placeContext || {};
     var platform = options.platform || null;
     var Data = api("dashboardRebuildData");
-    var pack = Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx, { now: options.now }) : null;
+    var Prefs = api("dashboardRebuildPrefs");
+    var interests =
+      options.interests ||
+      (Prefs && Prefs.load ? Prefs.load().interests : null);
+    var pack =
+      Data && Data.fromPlatform
+        ? Data.fromPlatform(platform, ctx, { now: options.now, interests: interests })
+        : null;
     var trust = ctx.trust || "waiting";
     var lines = null;
     if (pack && pack.today) {
@@ -88,6 +95,7 @@
       now: options.now,
       lines: lines,
       platform: platform,
+      interests: interests,
       /* Reuse brief from fromPlatform — avoid a second generate() on render. */
       intelligence: pack && pack.today ? pack.today.intelligence : null
     };
