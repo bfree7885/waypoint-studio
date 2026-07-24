@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-24T10:00:01.876Z",
-  "nextScheduledUpdate": "2026-07-24T10:30:00.000Z",
+  "updatedAt": "2026-07-24T10:30:01.482Z",
+  "nextScheduledUpdate": "2026-07-24T11:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -17,31 +17,25 @@
   "timezone": "America/Chicago",
   "current": {
     "temperatureF": 68,
-    "feelsLikeF": 71,
+    "feelsLikeF": 72,
     "humidity": 98,
-    "windMph": 6,
+    "windMph": 5,
     "windGustMph": 13,
-    "cloudCover": 100,
+    "cloudCover": 99,
     "uvIndex": 0,
     "precipIn": 0,
-    "conditions": "Fog",
-    "weatherCode": 45,
-    "observedAt": "2026-07-24T05:00"
+    "conditions": "Overcast",
+    "weatherCode": 3,
+    "observedAt": "2026-07-24T05:30"
   },
   "forecast": {
     "highF": 87,
     "lowF": 67,
     "precipProbability": 36,
-    "summary": "Fog · High 87° / Low 67°"
+    "summary": "Overcast · High 87° / Low 67°"
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-07-24T06:00",
-        "temperatureF": 68,
-        "precipProbability": 21,
-        "conditions": "Fog"
-      },
       {
         "time": "2026-07-24T07:00",
         "temperatureF": 68,
@@ -71,6 +65,12 @@
         "temperatureF": 73,
         "precipProbability": 1,
         "conditions": "Overcast"
+      },
+      {
+        "time": "2026-07-24T12:00",
+        "temperatureF": 76,
+        "precipProbability": 1,
+        "conditions": "Partly cloudy"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -89,8 +89,8 @@
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 52,
-    "pm25": 7.6,
+    "usAqi": 55,
+    "pm25": 12.7,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 599.1641283035278,
+        "generationtime_ms": 306.4568042755127,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-24T05:00",
+          "time": "2026-07-24T05:30",
           "interval": 900,
           "temperature_2m": 67.5,
           "relative_humidity_2m": 98,
-          "apparent_temperature": 71.4,
-          "weather_code": 45,
-          "wind_speed_10m": 5.9,
-          "wind_direction_10m": 151,
-          "wind_gusts_10m": 13.4,
-          "cloud_cover": 100,
-          "surface_pressure": 947.2,
+          "apparent_temperature": 71.6,
+          "weather_code": 3,
+          "wind_speed_10m": 5.4,
+          "wind_direction_10m": 142,
+          "wind_gusts_10m": 12.8,
+          "cloud_cover": 99,
+          "surface_pressure": 947.3,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -463,8 +463,8 @@
     },
     "air_quality": {
       "data": {
-        "usAqi": 52,
-        "pm25": 7.6,
+        "usAqi": 55,
+        "pm25": 12.7,
         "category": "Moderate",
         "status": "live"
       }
@@ -526,7 +526,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 100,
+        "cloudCover": 99,
         "score": 48,
         "summary": "Moderate outdoor light conditions",
         "sunrise": "6:26 AM",
@@ -553,7 +553,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-24T10:00:01.876Z",
+    "generatedAt": "2026-07-24T10:30:01.482Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
