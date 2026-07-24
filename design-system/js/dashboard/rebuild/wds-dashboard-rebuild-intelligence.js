@@ -1,17 +1,19 @@
 /**
- * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (Sprint 3 Daily Brief).
+ * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (Sprint 4 Discovery).
  * Pure, deterministic interpretation of OIP platform data for Today Outside.
  * Never fabricates live numbers; missing inputs lower confidence and redistribute weights.
+ * Discovery reuses the same generate() pack — no second network pass.
  *
  * Algorithm authority:
  *   docs/rebuild-2026/dashboard-rc3-sprint1-owner-review.md
  *   docs/rebuild-2026/dashboard-rc3-sprint2-owner-review.md
  *   docs/rebuild-2026/dashboard-rc3-sprint3-owner-review.md
+ *   docs/rebuild-2026/dashboard-rc3-sprint4-owner-review.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "1.2.0-rc3-s3";
+  var VERSION = "1.3.0-rc3-s4";
   var LEVELS = ["Exceptional", "Excellent", "Good", "Mixed", "Challenging"];
   var CONFIDENCE = ["High", "Moderate", "Limited"];
 
@@ -294,7 +296,35 @@
       blueHourEvening: dl.blueHourEvening || null,
       moonPhase: dl.moonPhase || null,
       moonIllumination: dl.moonIllumination != null ? num(dl.moonIllumination) : null,
-      hourly: (wx && Array.isArray(wx.hourly) ? wx.hourly : []).slice(0, 48)
+      hourly: (wx && Array.isArray(wx.hourly) ? wx.hourly : []).slice(0, 48),
+      /* Multi-day rows already in the weather package — no extra fetch. */
+      dailyRows: (wx && Array.isArray(wx.daily) ? wx.daily : []).slice(0, 7).map(function (d) {
+        if (!d) return null;
+        return {
+          precipProb: d.precipitation
+            ? num(d.precipitation.probability)
+            : num(d.precipProbability) != null
+              ? num(d.precipProbability)
+              : num(d.precipitationProbability),
+          tempMax:
+            num(d.temperatureMax) != null
+              ? num(d.temperatureMax)
+              : num(d.high) != null
+                ? num(d.high)
+                : num(d.tempMax),
+          tempMin:
+            num(d.temperatureMin) != null
+              ? num(d.temperatureMin)
+              : num(d.low) != null
+                ? num(d.low)
+                : num(d.tempMin),
+          uv: num(d.uvIndex) != null ? num(d.uvIndex) : num(d.uv),
+          conditions:
+            (d.conditions && (d.conditions.summary || d.conditions)) ||
+            d.summary ||
+            null
+        };
+      }).filter(Boolean)
     };
   }
 
@@ -1673,6 +1703,711 @@
     };
   }
 
+  /* ——— Discovery (RC3 Sprint 4) ———
+   * Quiet naturalist layer beside Daily Brief. Cards appear only when signals
+   * support them. Educational Moment rotates one topic per local day.
+   * This Week Outside reports only meaningful near-term / multi-day changes
+   * already present in the weather package — never invents a forecast.
+   */
+
+  function dayKey(now) {
+    now = now || new Date();
+    var y = now.getFullYear();
+    var m = now.getMonth() + 1;
+    var d = now.getDate();
+    return (
+      String(y) +
+      "-" +
+      (m < 10 ? "0" : "") +
+      m +
+      "-" +
+      (d < 10 ? "0" : "") +
+      d
+    );
+  }
+
+  function dayOfYear(now) {
+    now = now || new Date();
+    var start = new Date(now.getFullYear(), 0, 0);
+    return Math.floor((now.getTime() - start.getTime()) / 86400000);
+  }
+
+  function wordCount(text) {
+    return String(text || "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length;
+  }
+
+  function trimWords(text, max) {
+    var parts = String(text || "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    if (parts.length <= max) return parts.join(" ");
+    return parts.slice(0, max).join(" ");
+  }
+
+  function activityById(activities, id) {
+    return (activities || []).filter(function (a) {
+      return a && a.id === id;
+    })[0];
+  }
+
+  function seasonLabel(now) {
+    var m = (now || new Date()).getMonth();
+    if (m >= 2 && m <= 4) return "spring";
+    if (m >= 5 && m <= 7) return "summer";
+    if (m >= 8 && m <= 10) return "autumn";
+    return "winter";
+  }
+
+  function pushCard(cards, id, title, text, confidence) {
+    var t = calm(text);
+    if (!t || t.length < 18) return;
+    cards.push({
+      id: id,
+      title: title,
+      text: t,
+      confidence: confidence || "Moderate"
+    });
+  }
+
+  function composeSkyCard(signals) {
+    if (!signals.weatherLive) return null;
+    var bits = [];
+    if (signals.conditions) bits.push(String(signals.conditions).toLowerCase());
+    if (signals.cloudPct != null) {
+      if (signals.cloudPct <= 25) bits.push("mostly clear overhead");
+      else if (signals.cloudPct <= 60) bits.push("mixed cloud cover near " + round(signals.cloudPct) + "%");
+      else bits.push("heavier cloud cover near " + round(signals.cloudPct) + "%");
+    }
+    if (signals.precipProb != null && signals.precipProb >= 35) {
+      bits.push("precip chance near " + round(signals.precipProb) + "%");
+    } else if (signals.precipProb != null && signals.precipProb < 20) {
+      bits.push("little rain signal in the near outlook");
+    }
+    if (!bits.length) return null;
+    return {
+      text:
+        "Sky reads " +
+        bits[0] +
+        (bits.length > 1 ? ", with " + bits.slice(1).join(" and ") : "") +
+        ".",
+      confidence: signals.cloudPct != null || signals.precipProb != null ? "High" : "Moderate"
+    };
+  }
+
+  function composeNatureCard(signals, activities) {
+    if (!signals.weatherLive) return null;
+    var bird = activityById(activities, "birding");
+    var wild = activityById(activities, "wildlife");
+    var bits = [];
+    if (signals.windMph != null && signals.windMph < 8) {
+      bits.push("lighter air helps hearing birdsong and soft movement");
+    } else if (signals.windMph != null && signals.windMph >= 18) {
+      bits.push("breezier air can quiet birdsong on open ridges");
+    }
+    if (signals.sunrise) bits.push("wildlife often concentrates near sunrise (" + signals.sunrise + ")");
+    if (
+      bird &&
+      (bird.level === "Excellent" || bird.level === "Exceptional" || bird.level === "Good")
+    ) {
+      bits.push("birding guidance looks workable from present signals");
+    } else if (
+      wild &&
+      (wild.level === "Excellent" || wild.level === "Exceptional" || wild.level === "Good")
+    ) {
+      bits.push("wildlife windows look workable from present signals");
+    }
+    if (signals.humidity != null && signals.humidity >= 75) {
+      bits.push("humid air can make scent and insects more noticeable");
+    }
+    if (!bits.length) return null;
+    return {
+      text: bits.slice(0, 2).join("; ") + ".",
+      confidence: signals.sunrise || signals.windMph != null ? "Moderate" : "Limited"
+    };
+  }
+
+  function composePhotographyCard(signals, activities, windows) {
+    if (!signals.weatherLive) return null;
+    if (signals.cloudPct == null && !signals.goldenHourEvening && !signals.goldenHour) {
+      return null;
+    }
+    var photo = activityById(activities, "photography");
+    var photoWin = (windows || []).filter(function (w) {
+      return w.id === "photography";
+    })[0];
+    var bits = [];
+    if (signals.goldenHourEvening) {
+      bits.push("golden hour around " + signals.goldenHourEvening);
+    }
+    if (signals.cloudPct != null && signals.cloudPct >= 30 && signals.cloudPct <= 70) {
+      bits.push("mixed clouds often soften contrast for unhurried frames");
+    } else if (signals.cloudPct != null && signals.cloudPct <= 25) {
+      bits.push("clearer skies mean stronger midday contrast and sharper shadows");
+    }
+    if (photoWin && photoWin.window) {
+      bits.push(
+        photoWin.precision === "range"
+          ? "photo window near " + photoWin.window
+          : "photo window leans " + String(photoWin.window).toLowerCase()
+      );
+    }
+    if (!bits.length) return null;
+    return {
+      text: bits.slice(0, 2).join("; ") + ".",
+      confidence: signals.goldenHourEvening || signals.cloudPct != null ? "Moderate" : "Limited"
+    };
+  }
+
+  function composeAstronomyCard(signals, activities) {
+    if (signals.cloudPct == null && signals.moonIllumination == null && !signals.moonPhase) {
+      return null;
+    }
+    var bits = [];
+    if (signals.cloudPct != null) {
+      if (signals.cloudPct <= 30) bits.push("clearer skies favor stars later");
+      else if (signals.cloudPct >= 70) bits.push("cloud cover will mute the night sky");
+      else bits.push("mixed clouds may open and close the night sky");
+    }
+    if (signals.moonIllumination != null) {
+      if (signals.moonIllumination > 70) {
+        bits.push("a brighter moon (" + round(signals.moonIllumination) + "% lit) washes fainter stars");
+      } else if (signals.moonIllumination < 40) {
+        bits.push(
+          "moon light is modest" +
+            (signals.moonPhase ? " (" + signals.moonPhase + ")" : "") +
+            " — darker sky helps"
+        );
+      } else if (signals.moonPhase) {
+        bits.push("moon phase reads " + signals.moonPhase);
+      }
+    } else if (signals.moonPhase) {
+      bits.push("moon phase reads " + signals.moonPhase);
+    }
+    if (!bits.length) return null;
+    return {
+      text: bits.slice(0, 2).join("; ") + ".",
+      confidence:
+        signals.cloudPct != null || signals.moonIllumination != null ? "Moderate" : "Limited"
+    };
+  }
+
+  function composeSeasonalCard(signals) {
+    if (!signals.weatherLive && signals.tempF == null) return null;
+    var season = seasonLabel(signals.now);
+    var doy = dayOfYear(signals.now);
+    var variants = {
+      spring: [
+        "Spring light lengthens quickly — early walks catch cooler air before midday warmth.",
+        "This stretch of spring often mixes cool mornings with softer afternoon light."
+      ],
+      summer: [
+        "Midsummer days run long; shade and earlier starts usually feel kinder than peak heat.",
+        "Summer light holds late — golden hour arrives after a long afternoon."
+      ],
+      autumn: [
+        "Autumn days shorten; cooler air and lower sun angles change what stands out outdoors.",
+        "Fall light arrives at a lower angle — surfaces and color often read more clearly."
+      ],
+      winter: [
+        "Winter days stay short; low sun and cooler air shape what feels inviting outside.",
+        "Winter light stays low — brief clear windows can feel especially useful."
+      ]
+    };
+    var pool = variants[season] || variants.summer;
+    var text = pool[doy % pool.length];
+    if (signals.tempF != null) {
+      text +=
+        " Air is near " +
+        round(signals.tempF) +
+        "°F in the present reading.";
+    }
+    return { text: text, confidence: signals.weatherLive ? "Moderate" : "Limited" };
+  }
+
+  function composeWaterCard(signals) {
+    if (!signals.riverLive) return null;
+    var trend = String(signals.riverTrend || "").toLowerCase();
+    var site = signals.riverNote || "a nearby gauge";
+    var text;
+    if (/flood|rapid|high|rise|rising|danger/.test(trend)) {
+      text =
+        site +
+        " suggests elevated or rising flow — useful context before water plans, not a substitute for local judgment.";
+    } else if (/fall|falling|low|normal|stable|steady/.test(trend)) {
+      text =
+        site +
+        " reads " +
+        (trend || "manageable") +
+        " — helpful context before shoreline or fishing plans.";
+    } else {
+      text =
+        "A nearby river gauge (" +
+        site +
+        ") is in this package — check it before water plans.";
+    }
+    return { text: text, confidence: trend ? "Moderate" : "Limited" };
+  }
+
+  function composeDiscoveryCards(signals, score, activities, windows) {
+    signals = signals || {};
+    var cards = [];
+    var sky = composeSkyCard(signals);
+    if (sky) pushCard(cards, "sky", "Sky Today", sky.text, sky.confidence);
+    var nature = composeNatureCard(signals, activities);
+    if (nature) pushCard(cards, "nature", "Nature Today", nature.text, nature.confidence);
+    var seasonal = composeSeasonalCard(signals);
+    if (seasonal) pushCard(cards, "seasonal", "Seasonal Notes", seasonal.text, seasonal.confidence);
+    var photo = composePhotographyCard(signals, activities, windows);
+    if (photo) pushCard(cards, "photography", "Photography Notes", photo.text, photo.confidence);
+    var astro = composeAstronomyCard(signals, activities);
+    if (astro) pushCard(cards, "astronomy", "Astronomy Notes", astro.text, astro.confidence);
+    var water = composeWaterCard(signals);
+    if (water) pushCard(cards, "water", "Water Notes", water.text, water.confidence);
+    return cards;
+  }
+
+  /**
+   * Educational Moment bank — each topic has multiple phrasings so consecutive
+   * days never share identical wording when the same topic rotates back.
+   * A topic is eligible only when its supporting signal is present.
+   */
+  var EDUCATIONAL_TOPICS = [
+    {
+      id: "humidity",
+      eligible: function (s) {
+        return s.humidity != null;
+      },
+      variants: [
+        function (s) {
+          return s.humidity >= 70
+            ? "Higher humidity can make mild temperatures feel heavier on longer walks — pace and shade often matter more than the thermometer alone."
+            : s.humidity <= 35
+              ? "Drier air can feel crisp; skin and airways may notice it sooner than the temperature suggests."
+              : "Humidity sits in a comfortable middle range today, so air usually feels close to what the thermometer implies.";
+        },
+        function (s) {
+          return (
+            "Relative humidity near " +
+            round(s.humidity) +
+            "% shapes how warm or cool a stroll feels — moisture in the air changes comfort without changing the reading on the dial."
+          );
+        },
+        function (s) {
+          return s.humidity >= 75
+            ? "Very humid air holds heat and can quiet scent trails for wildlife; shorter loops often feel kinder."
+            : "Moisture in the air is moderate — a useful quiet cue when noticing how conditions feel on skin.";
+        }
+      ]
+    },
+    {
+      id: "clouds",
+      eligible: function (s) {
+        return s.cloudPct != null;
+      },
+      variants: [
+        function (s) {
+          return s.cloudPct >= 70
+            ? "Heavy cloud cover softens midday light and can mute night-sky views — useful when planning photography or stargazing."
+            : s.cloudPct <= 25
+              ? "Clearer skies mean stronger sun and sharper shadows midday — even light often arrives earlier or later instead."
+              : "Mixed clouds often give pleasant, even light for walking and noticing — contrast stays gentler than under hard sun.";
+        },
+        function (s) {
+          return (
+            "Cloud cover near " +
+            round(s.cloudPct) +
+            "% changes how color and texture read outdoors — a quiet cue for both walks and photographs."
+          );
+        },
+        function (s) {
+          return s.cloudPct >= 50
+            ? "More cloud than clear usually softens highlights; look for openings if you want stronger directional light."
+            : "Fewer clouds leave light more directional — shadows become part of what you notice.";
+        }
+      ]
+    },
+    {
+      id: "wind",
+      eligible: function (s) {
+        return s.windMph != null;
+      },
+      variants: [
+        function (s) {
+          return s.windMph >= 18
+            ? "Breezier air can quiet birdsong and make ridges feel cooler than the valley — listening often works better in sheltered edges."
+            : "Lighter wind helps hearing wildlife and keeps open water calmer — a small advantage for unhurried noticing.";
+        },
+        function (s) {
+          return (
+            "Winds near " +
+            round(s.windMph) +
+            " mph change how sound carries and how warm a hillside feels compared with a sheltered hollow."
+          );
+        },
+        function (s) {
+          return s.windMph < 8
+            ? "Still air lets soft sounds travel farther — a good day to pause and listen before moving on."
+            : "Moving air reshapes comfort on open ground; leeward edges often feel different from the forecast number alone.";
+        }
+      ]
+    },
+    {
+      id: "uv",
+      eligible: function (s) {
+        return s.uv != null;
+      },
+      variants: [
+        function (s) {
+          return s.uv >= 7
+            ? "Higher UV builds toward midday — shade, cover, and shorter exposed stretches help even when air feels mild."
+            : "UV is modest enough that shade is optional for many short outings, though midday still concentrates exposure.";
+        },
+        function (s) {
+          return (
+            "UV near " +
+            round(s.uv) +
+            " is a quiet midday factor — it rises with sun angle even when temperature feels comfortable."
+          );
+        },
+        function (s) {
+          return s.uv >= 6
+            ? "Sun strength matters separately from heat; brief shade breaks keep longer walks more comfortable."
+            : "Lower UV leaves more flexibility for open paths — still worth noticing as the sun climbs.";
+        }
+      ]
+    },
+    {
+      id: "rivers",
+      eligible: function (s) {
+        return !!s.riverLive;
+      },
+      variants: [
+        function (s) {
+          return s.riverNote
+            ? "A nearby gauge (" +
+                s.riverNote +
+                ") is in this package — useful context before water plans, not a substitute for local judgment."
+            : "A nearby river gauge is in this package — useful context before shoreline or fishing plans.";
+        },
+        function (s) {
+          return (
+            "River readings change with recent rain upstream. " +
+            (s.riverTrend
+              ? "Present trend language reads “" + s.riverTrend + ".”"
+              : "Check the gauge before committing to water edges.")
+          );
+        },
+        function (s) {
+          return (
+            "Water notes here come from an actual gauge" +
+            (s.riverNote ? " at " + s.riverNote : "") +
+            " — treat them as context, then verify conditions where you stand."
+          );
+        }
+      ]
+    },
+    {
+      id: "moon",
+      eligible: function (s) {
+        return s.moonIllumination != null || !!s.moonPhase;
+      },
+      variants: [
+        function (s) {
+          return s.moonIllumination != null && s.moonIllumination > 70
+            ? "A brighter moon washes fainter stars; planets and brighter landmarks still stand out when clouds allow."
+            : s.moonIllumination != null && s.moonIllumination < 40
+              ? "With modest moonlight, darker skies help faint stars — cloud gaps become the practical limit."
+              : "Moon phase shapes night contrast" +
+                (s.moonPhase ? " (" + s.moonPhase + ")" : "") +
+                " — useful when deciding whether stargazing is worth a short wait.";
+        },
+        function (s) {
+          return (
+            "Night-sky noticing depends on both clouds and moonlight" +
+            (s.moonIllumination != null
+              ? " (about " + round(s.moonIllumination) + "% lit)"
+              : "") +
+            " — neither alone tells the whole story."
+          );
+        },
+        function (s) {
+          return s.moonPhase
+            ? "Moon phase reads " + s.moonPhase + " — a calm cue for how bright the night ground will feel."
+            : "Moonlight level changes what the eye can pick out after dark without inventing a forecast.";
+        }
+      ]
+    },
+    {
+      id: "aqi",
+      eligible: function (s) {
+        return s.aqi != null;
+      },
+      variants: [
+        function (s) {
+          return s.aqi <= 50
+            ? "Air quality looks clean on the US AQI scale — a quiet green light for longer outdoor time when other signals agree."
+            : s.aqi > 100
+              ? "Elevated US AQI suggests shorter or gentler outdoor plans for sensitive people — check official guidance if you notice irritation."
+              : "Moderate air quality is present — sensitive people may prefer shorter loops or lower effort.";
+        },
+        function (s) {
+          return (
+            "US AQI near " +
+            round(s.aqi) +
+            " is an independent signal from temperature — useful when deciding how hard or how long to stay outside."
+          );
+        },
+        function (s) {
+          return s.aqiCategory
+            ? "Air quality category reads “" +
+                s.aqiCategory +
+                "” — trust official sources if you have respiratory sensitivity."
+            : "Air quality is part of today’s package so outdoor comfort is not judged by temperature alone.";
+        }
+      ]
+    },
+    {
+      id: "golden",
+      eligible: function (s) {
+        return !!(s.goldenHourEvening || s.goldenHour);
+      },
+      variants: [
+        function (s) {
+          var gh = s.goldenHourEvening || s.goldenHour;
+          return (
+            "Golden hour around " +
+            gh +
+            " softens contrast and warms color — a practical window for unhurried looking or photographs."
+          );
+        },
+        function (s) {
+          var gh = s.goldenHourEvening || s.goldenHour;
+          return (
+            "Low sun near " +
+            gh +
+            " often makes textures and edges easier to notice than under harsh midday light."
+          );
+        },
+        function (s) {
+          return (
+            "Evening golden light is timed in this package" +
+            (s.goldenHourEvening ? " (" + s.goldenHourEvening + ")" : "") +
+            " — a small, dependable cue when the day otherwise feels ordinary."
+          );
+        }
+      ]
+    },
+    {
+      id: "precip",
+      eligible: function (s) {
+        return s.precipProb != null;
+      },
+      variants: [
+        function (s) {
+          return s.precipProb >= 45
+            ? "A precip chance near " +
+                round(s.precipProb) +
+                "% does not guarantee rain where you stand — it does invite flexible timing and a light layer."
+            : s.precipProb < 20
+              ? "Rain signal is low in the present outlook — still watch sky changes, since local cells can differ from the percentage."
+              : "Precip chance near " +
+                round(s.precipProb) +
+                "% is a modest cue — useful for packing, not a reason to cancel curiosity.";
+        },
+        function (s) {
+          return (
+            "Precipitation probability near " +
+            round(s.precipProb) +
+            "% is a planning cue, not a promise — short outdoor windows often still work between showers."
+          );
+        },
+        function (s) {
+          return s.precipProb >= 60
+            ? "Elevated rain chances favor shorter loops and covered pauses rather than long exposed stretches."
+            : "Lower rain odds leave more room for open paths — keep an eye on cloud motion anyway.";
+        }
+      ]
+    }
+  ];
+
+  function composeEducationalMoment(signals, score, activities) {
+    signals = signals || {};
+    var eligible = EDUCATIONAL_TOPICS.filter(function (topic) {
+      return topic.eligible(signals);
+    });
+    if (!eligible.length) {
+      return {
+        ready: false,
+        topic: null,
+        title: "Educational Moment",
+        text: null,
+        dayKey: dayKey(signals.now),
+        wordCount: 0
+      };
+    }
+    var doy = dayOfYear(signals.now);
+    var topic = eligible[doy % eligible.length];
+    var variantFn = topic.variants[doy % topic.variants.length];
+    /* Offset variant by topic index so the same day+topic never collides with another topic’s wording. */
+    var alt = topic.variants[(doy + topic.id.length) % topic.variants.length];
+    var raw = calm((variantFn || alt)(signals, score, activities));
+    if (!raw) raw = calm(alt(signals, score, activities));
+    var text = trimWords(raw, 74);
+    if (wordCount(text) > 75) text = trimWords(text, 75);
+    return {
+      ready: !!text,
+      topic: topic.id,
+      title: "Educational Moment",
+      text: text || null,
+      dayKey: dayKey(signals.now),
+      wordCount: wordCount(text)
+    };
+  }
+
+  function hourlyTrendNotes(signals) {
+    var hourly = signals.hourly || [];
+    if (hourly.length < 4) return [];
+    var notes = [];
+    var first = hourly[0];
+    var mid = hourly[Math.min(hourly.length - 1, 6)];
+    var later = hourly[Math.min(hourly.length - 1, 18)];
+    var p0 = first && first.precipitation ? num(first.precipitation.probability) : null;
+    var p1 = later && later.precipitation ? num(later.precipitation.probability) : null;
+    if (p0 != null && p1 != null && p1 - p0 >= 25) {
+      notes.push("Rain chances look higher later in the available hourly window.");
+    } else if (p0 != null && p1 != null && p0 - p1 >= 25) {
+      notes.push("Rain chances look lower later in the available hourly window.");
+    }
+    var t0 = first ? num(first.temperature) != null ? num(first.temperature) : num(first.feelsLike) : null;
+    var t1 = mid ? num(mid.temperature) != null ? num(mid.temperature) : num(mid.feelsLike) : null;
+    if (t0 != null && t1 != null && t1 - t0 >= 8) {
+      notes.push("Temperatures trend warmer through the next several forecast hours.");
+    } else if (t0 != null && t1 != null && t0 - t1 >= 8) {
+      notes.push("Temperatures trend cooler through the next several forecast hours.");
+    }
+    var c0 = first ? num(first.cloudCover) : null;
+    var c1 = later ? num(later.cloudCover) : null;
+    if (c0 != null && c1 != null && c0 - c1 >= 25) {
+      notes.push("Cloud cover looks like it may thin later in the hourly coverage.");
+    } else if (c0 != null && c1 != null && c1 - c0 >= 25) {
+      notes.push("Cloud cover looks like it may build later in the hourly coverage.");
+    }
+    return notes;
+  }
+
+  function dailyTrendNotes(signals) {
+    var rows = signals.dailyRows || [];
+    if (rows.length < 2) return [];
+    var notes = [];
+    var today = rows[0];
+    var next = rows[1];
+    var weekend = rows[Math.min(rows.length - 1, 2)];
+    if (today.tempMax != null && next.tempMax != null && next.tempMax - today.tempMax >= 6) {
+      notes.push("Tomorrow looks warmer at the daily high than today.");
+    } else if (today.tempMax != null && next.tempMax != null && today.tempMax - next.tempMax >= 6) {
+      notes.push("Tomorrow looks cooler at the daily high than today.");
+    }
+    if (today.precipProb != null && next.precipProb != null && next.precipProb - today.precipProb >= 25) {
+      notes.push("Tomorrow carries a meaningfully higher precip chance than today.");
+    } else if (
+      today.precipProb != null &&
+      next.precipProb != null &&
+      today.precipProb - next.precipProb >= 25
+    ) {
+      notes.push("Tomorrow looks drier than today’s precip chance.");
+    }
+    if (
+      weekend &&
+      weekend !== next &&
+      today.tempMax != null &&
+      weekend.tempMax != null &&
+      Math.abs(weekend.tempMax - today.tempMax) >= 8
+    ) {
+      notes.push(
+        weekend.tempMax > today.tempMax
+          ? "Later in the multi-day package trends warmer than today."
+          : "Later in the multi-day package trends cooler than today."
+      );
+    }
+    return notes;
+  }
+
+  function composeThisWeekOutside(signals, score) {
+    signals = signals || {};
+    var changes = [];
+    hourlyTrendNotes(signals).forEach(function (n) {
+      var c = calm(n);
+      if (c && changes.indexOf(c) < 0) changes.push(c);
+    });
+    dailyTrendNotes(signals).forEach(function (n) {
+      var c = calm(n);
+      if (c && changes.indexOf(c) < 0) changes.push(c);
+    });
+    changes = changes.slice(0, 3);
+
+    var season = seasonLabel(signals.now);
+    var summary = null;
+    if (changes.length) {
+      summary =
+        "Near-term changes stand out from the forecast hours already in this package — only shifts large enough to notice are listed.";
+    } else if (signals.weatherLive && (signals.hourly || []).length >= 4) {
+      summary =
+        "Available hourly coverage does not show a large swing in temperature, clouds, or precip — conditions look comparatively steady.";
+    } else if ((signals.dailyRows || []).length >= 2) {
+      summary =
+        "The multi-day package does not show a large day-to-day swing worth calling out yet.";
+    } else if (signals.weatherLive) {
+      summary =
+        "Weekly detail is limited in this load — seasonal rhythm for " +
+        season +
+        " still shapes daylight and outdoor pacing.";
+    } else {
+      return {
+        ready: false,
+        title: "This Week Outside",
+        summary: null,
+        changes: []
+      };
+    }
+
+    return {
+      ready: true,
+      title: "This Week Outside",
+      summary: calm(summary),
+      changes: changes,
+      confidence: changes.length
+        ? (signals.dailyRows || []).length >= 2 || (signals.hourly || []).length >= 12
+          ? "Moderate"
+          : "Limited"
+        : "Limited"
+    };
+  }
+
+  /**
+   * Discovery pack — complements Daily Brief; never replaces it.
+   */
+  function composeDiscovery(signals, score, activities, windows, dailyBrief) {
+    signals = signals || {};
+    var cards = composeDiscoveryCards(signals, score, activities, windows);
+    var educationalMoment = composeEducationalMoment(signals, score, activities);
+    var thisWeekOutside = composeThisWeekOutside(signals, score);
+    var ready = !!signals.weatherLive && (cards.length > 0 || !!(educationalMoment && educationalMoment.ready));
+
+    return {
+      ready: ready,
+      cards: cards,
+      educationalMoment: educationalMoment,
+      thisWeekOutside: thisWeekOutside,
+      confidence: (score && score.confidence) || (signals.weatherLive ? "Moderate" : "Limited"),
+      /* dailyBrief passed for callers/tests — Discovery must not duplicate Brief prose. */
+      briefInteresting: dailyBrief && dailyBrief.interesting ? dailyBrief.interesting : null
+    };
+  }
+
   function composeSummaryLines(signals, score, activities, windows) {
     var lines = [];
     if (!signals.weatherLive) {
@@ -1915,6 +2650,7 @@
     var dailyBrief = composeDailyBrief(signals, score, activities, windows);
     var take = waypointTake(signals, score, activities, dailyBrief);
     dailyBrief.take = take;
+    var discovery = composeDiscovery(signals, score, activities, windows, dailyBrief);
     var lines = composeSummaryLines(signals, score, activities, windows);
     var explanation = buildExplanation(signals, score, activities, windows, take);
 
@@ -1926,6 +2662,7 @@
       activities: activities,
       windows: windows,
       dailyBrief: dailyBrief,
+      discovery: discovery,
       take: take,
       explanation: explanation,
       confidence: score.confidence,
@@ -1939,7 +2676,8 @@
         uv: signals.uv,
         alertCount: signals.alertCount,
         riverLive: signals.riverLive,
-        hourlyCount: signals.hourly ? signals.hourly.length : 0
+        hourlyCount: signals.hourly ? signals.hourly.length : 0,
+        dailyCount: signals.dailyRows ? signals.dailyRows.length : 0
       }
     };
   }
@@ -1958,12 +2696,18 @@
     recommendActivities: recommendActivities,
     bestTimeWindows: bestTimeWindows,
     composeDailyBrief: composeDailyBrief,
+    composeDiscovery: composeDiscovery,
+    composeEducationalMoment: composeEducationalMoment,
+    composeThisWeekOutside: composeThisWeekOutside,
     waypointTake: waypointTake,
     composeSummaryLines: composeSummaryLines,
     buildExplanation: buildExplanation,
     generate: generate,
     levelFromScore: levelFromScore,
     hourBand: hourBand,
-    formatClockRange: formatClockRange
+    formatClockRange: formatClockRange,
+    dayKey: dayKey,
+    dayOfYear: dayOfYear,
+    wordCount: wordCount
   };
 })(typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global);

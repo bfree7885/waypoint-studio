@@ -1,0 +1,32 @@
+{
+  "capturedAt": "2026-07-24T16:38:50.341Z",
+  "base": "http://127.0.0.1:8765",
+  "sprint": "dashboard-rc3-sprint4",
+  "mode": "fixture-platform",
+  "desktopMeta": {
+    "score": true,
+    "brief": true,
+    "discovery": true,
+    "edu": true,
+    "week": true,
+    "cards": 6,
+    "outlook": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA",
+    "discoverText": "DISCOVERY\nSKY TODAY\n\nSky reads partly cloudy, with mixed cloud cover near 40% and little rain signal in the near outlook.\n\nHigh confidence\n\nNATURE TODAY\n\nlighter air helps hearing birdsong and soft movement; wildlife often concentrates near sunrise (5:55 AM).\n\nModerate confidence\n\nSEASONAL NOTES\n\nSummer light holds lat"
+  },
+  "phoneMeta": {
+    "score": true,
+    "brief": true,
+    "discovery": true,
+    "edu": true,
+    "week": true,
+    "cards": 6,
+    "outlook": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA",
+    "discoverText": "DISCOVERY\nSKY TODAY\n\nSky reads partly cloudy, with mixed cloud cover near 40% and little rain signal in the near outlook.\n\nHigh confidence\n\nNATURE TODAY\n\nlighter air helps hearing birdsong and soft movement; wildlife often concentrates near sunrise (5:55 AM).\n\nModerate confidence\n\nSEASONAL NOTES\n\nSummer light holds lat"
+  }
+}

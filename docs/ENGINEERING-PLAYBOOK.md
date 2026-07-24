@@ -137,6 +137,25 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 4 (Discovery Engine)
+
+**Branch:** `feature/dashboard-rc3-sprint4-discovery`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint4-owner-review.md`
+
+1. **Discovery is composition, not a second engine.** Cards, Educational Moment,
+   and This Week Outside reuse the same `generate()` pack as Daily Brief — never
+   a second network pass or invented forecast.
+2. **Omit unsupported cards.** Photography / astronomy / water require present
+   signals (clouds, moon, gauge); activity level alone must not invent a card.
+3. **Rotate Educational Moment by local day.** One insight, &lt;75 words, topic +
+   variant indexed by day-of-year so consecutive days never share identical
+   wording when signals allow.
+4. **This Week Outside reports only meaningful deltas** from hourly / multi-day
+   rows already in the weather package — steady coverage gets an honest “no
+   large swing” summary, not filler.
+5. **Beside Brief on wide, stacked on phone.** CSS grid places Discovery next to
+   Daily Brief above 52rem; tablet/phone stack — no redesign of Today Outside.
+
 ### 2026-07-24 — Dashboard RC3 Sprint 3 (Daily Brief & Waypoint's Take)
 
 **Branch:** `feature/dashboard-rc3-sprint3-daily-brief`  

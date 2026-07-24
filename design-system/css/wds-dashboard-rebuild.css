@@ -344,6 +344,84 @@
   max-width: 42rem;
 }
 
+/* ——— Discovery (RC3 Sprint 4) ——— */
+.wdb-r-today__discover {
+  margin: 0;
+  padding: 0.55rem 0 0.1rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 55%, transparent);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.wdb-r-today__discover-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.45rem 0.75rem;
+}
+
+.wdb-r-today__discover-card {
+  margin: 0;
+  padding: 0.35rem 0 0.15rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 35%, transparent);
+  max-width: 28rem;
+}
+
+.wdb-r-today__discover-card:first-child {
+  border-top-color: transparent;
+  padding-top: 0;
+}
+
+.wdb-r-today__discover-edu,
+.wdb-r-today__discover-week {
+  margin: 0;
+  padding-top: 0.3rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 40%, transparent);
+  max-width: 42rem;
+}
+
+.wdb-r-today__discover-week-list {
+  margin-top: 0.25rem;
+}
+
+@media (min-width: 52.01rem) {
+  .wdb-r-today__intel {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
+  }
+
+  .wdb-r-today__score {
+    grid-column: 1 / -1;
+  }
+
+  .wdb-r-today__brief {
+    grid-column: 1;
+  }
+
+  .wdb-r-today__discover {
+    grid-column: 2;
+    border-top: none;
+    padding-top: 0.15rem;
+    margin-top: 0;
+    padding-left: 0.85rem;
+    border-left: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 50%, transparent);
+  }
+
+  .wdb-r-today__activities,
+  .wdb-r-today__windows,
+  .wdb-r-today__explain {
+    grid-column: 1 / -1;
+  }
+
+  .wdb-r-today__discover-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .wdb-r-today__discover-card:first-child {
+    border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 35%, transparent);
+    padding-top: 0.35rem;
+  }
+}
+
 .wdb-r-today__activity-list,
 .wdb-r-today__window-list,
 .wdb-r-today__explain-list {
@@ -1416,7 +1494,8 @@ html.wdb-r-kiosk .wdb-r,
   }
 
   .wdb-r-today__activity-list,
-  .wdb-r-today__window-list {
+  .wdb-r-today__window-list,
+  .wdb-r-today__discover-cards {
     grid-template-columns: 1fr;
   }
 

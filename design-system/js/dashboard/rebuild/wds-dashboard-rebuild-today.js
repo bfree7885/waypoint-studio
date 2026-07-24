@@ -1,8 +1,8 @@
 /**
  * Dashboard Rebuild — Today Outside (RC3 Outdoor Intelligence surface).
- * Flagship briefing: summary + Daily Brief + Outdoor Score + activities + windows.
+ * Flagship briefing: summary + Daily Brief + Discovery + Outdoor Score + activities + windows.
  * Evolves the Phase 3 panel — does not create a competing section.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 3
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 4
  */
 (function (global) {
   "use strict";
@@ -266,6 +266,100 @@
     );
   }
 
+  function renderDiscovery(discovery) {
+    if (!discovery) return "";
+    var cards = Array.isArray(discovery.cards) ? discovery.cards : [];
+    var edu = discovery.educationalMoment;
+    var week = discovery.thisWeekOutside;
+    var hasEdu = edu && edu.ready && edu.text;
+    var hasWeek = week && week.ready && (week.summary || (week.changes && week.changes.length));
+    if (!cards.length && !hasEdu && !hasWeek) return "";
+
+    var cardHtml = cards
+      .map(function (card) {
+        if (!card || !card.text) return "";
+        return (
+          '<article class="wdb-r-today__discover-card" role="listitem" data-discover-card="' +
+          escapeHtml(card.id || "") +
+          '">' +
+          '<h4 class="wdb-r-today__brief-h" id="wdb-r-discover-' +
+          escapeHtml(card.id || "card") +
+          '-title">' +
+          escapeHtml(card.title || "Note") +
+          "</h4>" +
+          '<p class="wdb-r-today__brief-text" aria-labelledby="wdb-r-discover-' +
+          escapeHtml(card.id || "card") +
+          '-title">' +
+          escapeHtml(card.text) +
+          "</p>" +
+          (card.confidence
+            ? '<p class="wdb-r-today__conf" data-confidence="' +
+              escapeHtml(confClass(card.confidence)) +
+              '">' +
+              escapeHtml(card.confidence) +
+              " confidence</p>"
+            : "") +
+          "</article>"
+        );
+      })
+      .join("");
+
+    var eduHtml = hasEdu
+      ? '<div class="wdb-r-today__discover-edu" data-wdb-r-edu data-topic="' +
+        escapeHtml(edu.topic || "") +
+        '">' +
+        '<h4 class="wdb-r-today__brief-h" id="wdb-r-today-edu-title">' +
+        escapeHtml(edu.title || "Educational Moment") +
+        "</h4>" +
+        '<p class="wdb-r-today__brief-text" aria-labelledby="wdb-r-today-edu-title">' +
+        escapeHtml(edu.text) +
+        "</p>" +
+        "</div>"
+      : "";
+
+    var weekChanges =
+      hasWeek && week.changes && week.changes.length
+        ? '<ul class="wdb-r-today__brief-list wdb-r-today__discover-week-list" aria-labelledby="wdb-r-today-week-title">' +
+          week.changes
+            .map(function (c) {
+              return "<li>" + escapeHtml(c) + "</li>";
+            })
+            .join("") +
+          "</ul>"
+        : "";
+    var weekHtml = hasWeek
+      ? '<div class="wdb-r-today__discover-week" data-wdb-r-week>' +
+        '<h4 class="wdb-r-today__brief-h" id="wdb-r-today-week-title">' +
+        escapeHtml(week.title || "This Week Outside") +
+        "</h4>" +
+        (week.summary
+          ? '<p class="wdb-r-today__brief-text" aria-labelledby="wdb-r-today-week-title">' +
+            escapeHtml(week.summary) +
+            "</p>"
+          : "") +
+        weekChanges +
+        (week.confidence
+          ? '<p class="wdb-r-today__conf" data-confidence="' +
+            escapeHtml(confClass(week.confidence)) +
+            '">' +
+            escapeHtml(week.confidence) +
+            " confidence</p>"
+          : "") +
+        "</div>"
+      : "";
+
+    return (
+      '<section class="wdb-r-today__discover" data-wdb-r-discover aria-labelledby="wdb-r-today-discover-title">' +
+      '<h3 class="wdb-r-today__subhead" id="wdb-r-today-discover-title">Discovery</h3>' +
+      (cardHtml
+        ? '<div class="wdb-r-today__discover-cards" role="list">' + cardHtml + "</div>"
+        : "") +
+      eduHtml +
+      weekHtml +
+      "</section>"
+    );
+  }
+
   function renderActivities(activities) {
     if (!activities || !activities.length) return "";
     var items = activities
@@ -470,6 +564,7 @@
       '<div class="wdb-r-today__intel" data-wdb-r-intel>' +
       renderScore(brief.score) +
       renderDailyBrief(brief.dailyBrief, brief.take) +
+      renderDiscovery(brief.discovery) +
       renderActivities(brief.activities) +
       renderWindows(brief.windows) +
       renderExplain(brief.explanation, brief.score) +
@@ -530,7 +625,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "4.2.0-rc3-s3",
+    version: "4.3.0-rc3-s4",
     render: render,
     mount: mount,
     placeLabel: placeLabel,
