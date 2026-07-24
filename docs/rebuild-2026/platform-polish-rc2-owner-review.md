@@ -29,7 +29,7 @@ Sprint 6 is a **dashboard experience quality pass** on Rebuild Home: quieter den
 | Original Sprint 6 branch tip | `8ba9fac832f1ed393a79b398b9154a040c12e59e` | Polish + tip-SHA docs + prior Platform RC2 walkthrough docs commit |
 | `backup/dashboard-rc25-sprint6-pre-reconcile` | `8ba9fac832f1ed393a79b398b9154a040c12e59e` | Safety copy of polish tip before reconcile |
 | `integration/dashboard-rc25-sprint6` (pre-review) | `794e7f210ad5df81111d597f40eac00aae913f45` | Cherry-pick of `4478365` onto `a349e68` |
-| This merge-gate review commit | *(filled after commit — see tip of integration branch)* | Rewrites this file as the merge-gate package |
+| This merge-gate review commit | `3125c20cc04780463b7d1675f5aa7627adf1a772` | Rewrites this file as the merge-gate package |
 | Production live | `a349e68` | Confirmed via `https://waypointstudio.org/data/build-info.json` |
 
 **Phase 1 dirty tree (preserved, not in integration):** Unrelated modified HTML/JS/JSON (privacy/nav/RC2-ish) + untracked phase2/phase3 docs were stashed as `stash@{0}` (`wip: unrelated privacy/RC2/phase docs before sprint6 merge-gate reconcile …`) before branch work. Do not drop that stash without restoring onto a non-integration branch.
