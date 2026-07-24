@@ -7,7 +7,7 @@
 **Starting SHA:** `3e64ab0879fbae36821319495f8744278994da49` (`origin/release/dashboard-rc3` tip — S1–S5 + RC stabilize)  
 **Backup branch:** `backup/dashboard-rc3-pre-sprint6-functional` @ starting SHA  
 **Branch:** `feature/dashboard-rc3-sprint6-functional-catalog`  
-**Ending SHA:** `9a3d14983444be6914672f7451a8ae6831547af0` (branch tip; feature `accd50df1d9e483b8445741c04188657b890e63d`)
+**Ending SHA:** `234bd6b9e34759b83ddd5d021385cd17e1234bcc` (branch tip; feature `accd50df1d9e483b8445741c04188657b890e63d`)
 **Deployment status:** **Not deployed**  
 **Merge status:** **Not merged**
 
