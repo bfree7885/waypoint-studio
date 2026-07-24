@@ -137,6 +137,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 6 (Mobile Recovery & Functional Catalog)
+
+**Branch:** `feature/dashboard-rc3-sprint6-functional-catalog`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint6-owner-review.md`
+
+1. **Half-width on phone is usually specificity, not “missing media query”.**
+   Base `data-columns="2" { span 6 }` beats a later phone `span 12` unless the
+   phone rule repeats the columns attribute — or switch the grid to one column.
+2. **Overlap reads as collapse.** Even full-width cards look broken when
+   category `nowrap` fights the title; stack the head under ~40rem and allow
+   wrap on title/values.
+3. **Never ship Coming Soon beside live tiles.** Remove stubs from registry,
+   picker, defaults, and Today Outside — or implement honest OIP adapters.
+4. **Extend existing OIP slices before inventing APIs.** Hourly/daily/wind/rain/
+   UV/alerts/USGS already ride the platform package used by Live Engine.
+5. **Soft-migrate retired ids in prefs normalize.** Map renames (`ph-astronomy`
+   → `ph-moon`) and drop unknowns so saved layouts never leave empty gaps.
+6. **Today Outside must filter by enabled tiles.** Intelligence briefs are
+   broader; summary bullets should come from `composeTodayLines({ enabled })`.
+
 ### 2026-07-24 — Dashboard RC3 Sprint 6 (Release Candidate)
 
 **Branch:** `release/dashboard-rc3`  
@@ -158,6 +178,7 @@ continuously improves.
    `debug.html` churn during local servers — stage only stabilization paths.
 
 ### 2026-07-24 — Dashboard RC3 Sprint 5 (Personal Workspace)
+
 
 **Branch:** `feature/dashboard-rc3-sprint5-personal-workspace`  
 **Report:** `docs/rebuild-2026/dashboard-rc3-sprint5-owner-review.md`

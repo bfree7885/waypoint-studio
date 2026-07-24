@@ -1,0 +1,217 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "capturedAt": "2026-07-24T19:13:15.556Z",
+  "viewports": [
+    {
+      "viewport": "320x568",
+      "file": "phone-320x568-workspace.png",
+      "metrics": {
+        "widgetCount": 9,
+        "widths": [
+          293,
+          293,
+          293,
+          293,
+          293,
+          293,
+          293,
+          293,
+          293
+        ],
+        "minW": 293,
+        "maxW": 293,
+        "gridW": 293,
+        "comingSoon": false,
+        "hScroll": false,
+        "halfWidth": false,
+        "titles": [
+          "Conditions",
+          "Hourly",
+          "Alerts",
+          "Air Quality",
+          "Sunrise & Sunset",
+          "Moon",
+          "River Gauge",
+          "Wind"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "viewport": "375x667",
+      "file": "phone-375x667-workspace.png",
+      "metrics": {
+        "widgetCount": 9,
+        "widths": [
+          348,
+          348,
+          348,
+          348,
+          348,
+          348,
+          348,
+          348,
+          348
+        ],
+        "minW": 348,
+        "maxW": 348,
+        "gridW": 348,
+        "comingSoon": false,
+        "hScroll": false,
+        "halfWidth": false,
+        "titles": [
+          "Conditions",
+          "Hourly",
+          "Alerts",
+          "Air Quality",
+          "Sunrise & Sunset",
+          "Moon",
+          "River Gauge",
+          "Wind"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "viewport": "390x844",
+      "file": "phone-390x844-workspace.png",
+      "metrics": {
+        "widgetCount": 9,
+        "widths": [
+          363,
+          363,
+          363,
+          363,
+          363,
+          363,
+          363,
+          363,
+          363
+        ],
+        "minW": 363,
+        "maxW": 363,
+        "gridW": 363,
+        "comingSoon": false,
+        "hScroll": false,
+        "halfWidth": false,
+        "titles": [
+          "Conditions",
+          "Hourly",
+          "Alerts",
+          "Air Quality",
+          "Sunrise & Sunset",
+          "Moon",
+          "River Gauge",
+          "Wind"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "viewport": "393x852",
+      "file": "phone-393x852-workspace.png",
+      "metrics": {
+        "widgetCount": 9,
+        "widths": [
+          366,
+          366,
+          366,
+          366,
+          366,
+          366,
+          366,
+          366,
+          366
+        ],
+        "minW": 366,
+        "maxW": 366,
+        "gridW": 366,
+        "comingSoon": false,
+        "hScroll": false,
+        "halfWidth": false,
+        "titles": [
+          "Conditions",
+          "Hourly",
+          "Alerts",
+          "Air Quality",
+          "Sunrise & Sunset",
+          "Moon",
+          "River Gauge",
+          "Wind"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "viewport": "430x932",
+      "file": "phone-430x932-workspace.png",
+      "metrics": {
+        "widgetCount": 9,
+        "widths": [
+          403,
+          403,
+          403,
+          403,
+          403,
+          403,
+          403,
+          403,
+          403
+        ],
+        "minW": 403,
+        "maxW": 403,
+        "gridW": 403,
+        "comingSoon": false,
+        "hScroll": false,
+        "halfWidth": false,
+        "titles": [
+          "Conditions",
+          "Hourly",
+          "Alerts",
+          "Air Quality",
+          "Sunrise & Sunset",
+          "Moon",
+          "River Gauge",
+          "Wind"
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "gates": [
+    {
+      "id": "320x568",
+      "pass": true,
+      "reason": "full-width tiles, no Coming Soon, no h-scroll"
+    },
+    {
+      "id": "375x667",
+      "pass": true,
+      "reason": "full-width tiles, no Coming Soon, no h-scroll"
+    },
+    {
+      "id": "390x844",
+      "pass": true,
+      "reason": "full-width tiles, no Coming Soon, no h-scroll"
+    },
+    {
+      "id": "393x852",
+      "pass": true,
+      "reason": "full-width tiles, no Coming Soon, no h-scroll"
+    },
+    {
+      "id": "430x932",
+      "pass": true,
+      "reason": "full-width tiles, no Coming Soon, no h-scroll"
+    },
+    {
+      "id": "customize-390",
+      "pass": true,
+      "reason": "{\"comingSoon\":false,\"catalogCount\":15}"
+    }
+  ],
+  "customize": {
+    "comingSoon": false,
+    "catalogCount": 15
+  }
+}

@@ -160,15 +160,22 @@ const Prefs = sandbox.WDS.dashboardRebuildPrefs;
 const defaults = Prefs.defaults ? Prefs.defaults() : Prefs.load();
 const enabled = defaults.enabled || [];
 assert(
-  "defaults include Conditions Light Air Astronomy",
-  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy"].every(function (id) {
+  "defaults include Conditions Hourly Light Air Moon",
+  ["ph-conditions", "ph-hourly", "ph-light", "ph-air", "ph-moon"].every(function (id) {
     return enabled.indexOf(id) >= 0;
   })
 );
 assert("defaults include Alerts when available", enabled.indexOf("ph-alerts") >= 0);
-assert("defaults omit coming-soon Photography", enabled.indexOf("ph-photography") < 0);
-assert("defaults omit coming-soon Rivers", enabled.indexOf("ph-rivers") < 0);
+assert("defaults omit optional Photo Conditions", enabled.indexOf("ph-photo") < 0);
+assert("defaults omit optional Rivers", enabled.indexOf("ph-rivers") < 0);
 assert("no separate Weather widget required", !Reg.get("weather") || !Reg.get("ph-weather"));
+assert("catalog has twelve-plus live tiles", Reg.all().length >= 12);
+assert(
+  "catalog has no Coming Soon tiles",
+  Reg.all().every(function (w) {
+    return w.live === true;
+  })
+);
 
 const Deepen = sandbox.WDS.dashboardRebuildDeepeners;
 const deepenHtml = Deepen.render();

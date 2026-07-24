@@ -99,28 +99,43 @@
     return null;
   }
 
+  function resolveEnabled(ctx) {
+    ctx = ctx || {};
+    if (Array.isArray(ctx.enabled) && ctx.enabled.length) return ctx.enabled;
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (Prefs && Prefs.load) {
+      var prefs = Prefs.load();
+      if (prefs && Array.isArray(prefs.enabled)) return prefs.enabled;
+    }
+    return null;
+  }
+
   function resolveLines(ctx, brief) {
     ctx = ctx || {};
-    /* Prefer intelligence brief lines when ready — flagship surface owns summary. */
-    if (brief && brief.ready && Array.isArray(brief.lines) && brief.lines.length) {
-      return brief.lines.filter(function (line) {
-        return line && !BANNED_LINE.test(String(line));
-      });
-    }
+    var Data = global.WDS && global.WDS.dashboardRebuildData;
+    var enabled = resolveEnabled(ctx);
+    /*
+     * Sprint 6: summarize active tiles only. Prefer composed lines from enabled
+     * widgets over the broader intelligence brief so unselected tiles stay quiet.
+     */
     if (Array.isArray(ctx.lines) && ctx.lines.length) {
       return ctx.lines.slice(0, 8).filter(function (line) {
-        return line && !BANNED_LINE.test(String(line));
+        return line && !BANNED_LINE.test(String(line)) && !/coming soon/i.test(String(line));
+      });
+    }
+    if (ctx.platform && Data && Data.composeTodayLines) {
+      var composed = Data.composeTodayLines(ctx.platform, { enabled: enabled });
+      if (composed && composed.length) return composed;
+    }
+    if (brief && brief.ready && Array.isArray(brief.lines) && brief.lines.length) {
+      return brief.lines.filter(function (line) {
+        return line && !BANNED_LINE.test(String(line)) && !/coming soon/i.test(String(line));
       });
     }
     if (brief && Array.isArray(brief.lines) && brief.lines.length) {
       return brief.lines.filter(function (line) {
-        return line && !BANNED_LINE.test(String(line));
+        return line && !BANNED_LINE.test(String(line)) && !/coming soon/i.test(String(line));
       });
-    }
-    var Data = global.WDS && global.WDS.dashboardRebuildData;
-    if (ctx.platform && Data && Data.composeTodayLines) {
-      var composed = Data.composeTodayLines(ctx.platform);
-      if (composed && composed.length) return composed;
     }
     return defaultLines();
   }

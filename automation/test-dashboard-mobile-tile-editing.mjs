@@ -158,28 +158,28 @@ const before = Prefs.load();
 assert("starts not drafting", Prefs.isDrafting() === false);
 Prefs.beginDraft();
 assert("beginDraft enters draft", Prefs.isDrafting() === true);
-Prefs.setEnabled("ph-astronomy", false);
+Prefs.setEnabled("ph-moon", false);
 const draftState = Prefs.load();
-assert("draft disables astronomy", draftState.enabled.indexOf("ph-astronomy") < 0);
+assert("draft disables moon", draftState.enabled.indexOf("ph-moon") < 0);
 const storedRaw = sandbox.localStorage.getItem(Prefs.storageKey);
 const stored = JSON.parse(storedRaw);
 assert(
-  "storage still has astronomy until Save",
-  stored.enabled.indexOf("ph-astronomy") >= 0,
+  "storage still has moon until Save",
+  stored.enabled.indexOf("ph-moon") >= 0,
   JSON.stringify(stored.enabled)
 );
 Prefs.commitDraft();
 assert("commit clears drafting", Prefs.isDrafting() === false);
 const afterSave = Prefs.load();
-assert("saved prefs omit astronomy", afterSave.enabled.indexOf("ph-astronomy") < 0);
+assert("saved prefs omit moon", afterSave.enabled.indexOf("ph-moon") < 0);
 const remount = Prefs.loadFromStorage();
-assert("reload retains disabled astronomy", remount.enabled.indexOf("ph-astronomy") < 0);
+assert("reload retains disabled moon", remount.enabled.indexOf("ph-moon") < 0);
 
 /* Re-enable + Save */
 Prefs.beginDraft();
-Prefs.setEnabled("ph-astronomy", true);
+Prefs.setEnabled("ph-moon", true);
 Prefs.commitDraft();
-assert("re-enable persists", Prefs.load().enabled.indexOf("ph-astronomy") >= 0);
+assert("re-enable persists", Prefs.load().enabled.indexOf("ph-moon") >= 0);
 
 /* Cancel discards */
 Prefs.reset();

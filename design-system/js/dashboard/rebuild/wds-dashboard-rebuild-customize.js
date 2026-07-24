@@ -159,7 +159,7 @@
       escapeHtml(filter) +
       '" aria-labelledby="wdb-r-catalog-title">' +
       '<h2 id="wdb-r-catalog-title">Widget library</h2>' +
-      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Available widgets settle with live data; others stay Coming Soon.</p>' +
+      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Every tile in this library settles with real outdoor data when available.</p>' +
       renderFilterTabs(prefs, filter) +
       '<ul class="wdb-r-catalog__list" role="list">' +
       list +

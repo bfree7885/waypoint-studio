@@ -189,12 +189,13 @@ assert("workspace heading", /Workspace/.test(ws));
 assert("workspace anticipates conditions", /data-widget-id="ph-conditions"/.test(ws));
 assert("workspace anticipates light", /data-widget-id="ph-light"/.test(ws));
 assert("workspace anticipates air", /data-widget-id="ph-air"/.test(ws));
-assert("workspace anticipates astronomy", /data-widget-id="ph-astronomy"/.test(ws));
+assert("workspace anticipates moon", /data-widget-id="ph-moon"/.test(ws));
 assert("workspace anticipates alerts", /data-widget-id="ph-alerts"/.test(ws));
-assert("workspace omits coming-soon photography by default", !/data-widget-id="ph-photography"/.test(ws));
-assert("workspace omits coming-soon rivers by default", !/data-widget-id="ph-rivers"/.test(ws));
+assert("workspace anticipates hourly", /data-widget-id="ph-hourly"/.test(ws));
+assert("workspace omits optional rivers by default", !/data-widget-id="ph-rivers"/.test(ws));
+assert("workspace omits optional photo by default", !/data-widget-id="ph-photo"/.test(ws));
 assert("no developer instrument copy", !/Instrument not connected yet/.test(ws));
-assert("product waiting copy", /Waiting for weather data|Data will appear here|Widget coming soon|coming soon/i.test(ws));
+assert("product waiting copy", /Waiting for weather data|Data will appear here|Hourly forecast will appear here/i.test(ws));
 
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");
@@ -209,6 +210,7 @@ assert("shell no phase footer", !/Phase 1 shell|Dashboard rebuild/.test(shellWs)
 const shellCustom = Shell.renderShell({ view: "customize" });
 assert("customize includes catalog", /data-wdb-r-catalog/.test(shellCustom));
 assert("customize no phase-1 engineering lede", !/Phase 1 validates/.test(shellCustom));
+assert("customize has no Coming Soon badge", !/Coming Soon/i.test(shellCustom));
 
 const kioskEnter = Kiosk.enter({ applyPreset: false });
 assert("kiosk enter active", kioskEnter.active === true);
@@ -220,17 +222,26 @@ assert("kiosk exit clears", Kiosk.isActive() === false);
 const categories = Reg.all().map((w) => w.category);
 [
   "conditions",
+  "hourly",
+  "daily",
   "light",
   "air",
-  "astronomy",
-  "photography",
+  "uv",
+  "moon",
+  "stargazing",
+  "photo",
   "rivers",
-  "wildlife",
   "alerts",
-  "trails"
+  "wind",
+  "rain",
+  "golden",
+  "blue"
 ].forEach(function (cat) {
-  assert("catalog anticipates " + cat, categories.indexOf(cat) >= 0);
+  assert("catalog includes " + cat, categories.indexOf(cat) >= 0);
 });
+assert("catalog has no wildlife placeholder", categories.indexOf("wildlife") < 0);
+assert("catalog has no trails placeholder", categories.indexOf("trails") < 0);
+assert("catalog has no travel placeholder", categories.indexOf("travel") < 0);
 
 const bannedDev = [
   "instrument not connected",

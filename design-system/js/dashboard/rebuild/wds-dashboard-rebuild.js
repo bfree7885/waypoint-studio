@@ -96,6 +96,11 @@
       lines: lines,
       platform: platform,
       interests: interests,
+      enabled: pack && pack.today && pack.today.enabled
+        ? pack.today.enabled
+        : Prefs && Prefs.load
+          ? Prefs.load().enabled
+          : null,
       /* Reuse brief from fromPlatform — avoid a second generate() on render. */
       intelligence: pack && pack.today ? pack.today.intelligence : null
     };

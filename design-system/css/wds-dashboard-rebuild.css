@@ -833,6 +833,7 @@
   justify-content: space-between;
   gap: 0.45rem;
   margin-bottom: 0.5rem;
+  min-width: 0;
 }
 
 .wdb-r-widget__title-row {
@@ -840,6 +841,7 @@
   align-items: center;
   gap: 0.45rem;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .wdb-r-widget__icon {
@@ -869,21 +871,29 @@
 
 .wdb-r-widget__title {
   margin: 0;
+  min-width: 0;
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--wdb-r-ink);
   line-height: 1.2;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .wdb-r-widget__cat {
   margin: 0;
+  flex: 0 1 auto;
+  max-width: 42%;
   font-size: 0.625rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--wdb-r-faint);
-  white-space: nowrap;
+  white-space: normal;
+  text-align: right;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
 }
 
 .wdb-r-widget__body {
@@ -945,9 +955,12 @@
 
 .wdb-r-widget__fact dd {
   margin: 0;
+  min-width: 0;
   font-size: var(--wds-text-sm, 0.8125rem);
   line-height: var(--wds-leading-snug, 1.35);
   color: var(--wdb-r-ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .wdb-r-widget__note {
@@ -1616,7 +1629,7 @@ html.wdb-r-kiosk .wdb-r,
   }
 }
 
-/* Phone */
+/* Phone + small handset (320–640px CSS) — every standard tile full width */
 @media (max-width: 40rem) {
   .wdb-r {
     padding-left: max(0.85rem, env(safe-area-inset-left, 0px));
@@ -1629,17 +1642,50 @@ html.wdb-r-kiosk .wdb-r,
     align-items: flex-start;
   }
 
+  .wdb-r-workspace__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .wdb-r-widget,
   .wdb-r-widget--sm,
   .wdb-r-widget--md,
   .wdb-r-widget--lg,
-  .wdb-r-widget--anchor {
-    grid-column: span 12;
+  .wdb-r-widget--anchor,
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget,
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--sm,
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--md,
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--lg,
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--anchor,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--sm,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--md,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--lg,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--anchor,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget--sm,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget--md,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget--lg,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget--anchor {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     min-height: 7rem;
   }
 
+  .wdb-r-widget__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+
+  .wdb-r-widget__cat {
+    max-width: 100%;
+    text-align: left;
+  }
+
   .wdb-r-widget__fact {
-    grid-template-columns: minmax(4.5rem, 36%) 1fr;
+    grid-template-columns: minmax(4.5rem, 36%) minmax(0, 1fr);
   }
 
   .wdb-r-group {
@@ -1700,18 +1746,11 @@ html.wdb-r-kiosk .wdb-r,
     flex: 1 1 auto;
   }
 
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--sm,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--md,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--lg,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--anchor {
-    grid-column: span 12;
-  }
-
   /* Prevent horizontal page scroll while editing */
   .wdb-r-customize,
   .wdb-r-catalog__list,
-  .wdb-r-library__tabs {
+  .wdb-r-library__tabs,
+  .wdb-r-workspace__grid {
     max-width: 100%;
     overflow-x: hidden;
   }

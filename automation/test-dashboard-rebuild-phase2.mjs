@@ -151,18 +151,25 @@ assert("shell loaded", !!(Shell && Shell.mount));
 assert("shell exposes setPlatform", typeof Shell.setPlatform === "function");
 
 const all = Reg.all();
-assert("catalog has core families", all.length >= 9, String(all.length));
+assert("catalog has functional breadth", all.length >= 12, String(all.length));
 assert(
-  "four live widgets marked",
-  Data.liveIds.every(function (id) {
-    const w = Reg.get(id);
+  "all catalog widgets are live",
+  all.every(function (w) {
     return w && w.live === true;
   })
 );
 assert(
-  "non-live remain placeholders",
-  ["ph-photography", "ph-rivers", "ph-wildlife", "ph-alerts", "ph-trails"].every(function (id) {
-    return Reg.get(id) && Reg.get(id).live === false;
+  "live ids cover catalog",
+  Data.liveIds.length >= 12 &&
+    Data.liveIds.every(function (id) {
+      const w = Reg.get(id);
+      return w && w.live === true;
+    })
+);
+assert(
+  "placeholder tiles removed",
+  ["ph-photography", "ph-wildlife", "ph-trails", "ph-travel", "ph-astronomy"].every(function (id) {
+    return !Reg.get(id);
   })
 );
 
@@ -170,12 +177,12 @@ const waiting = Reg.getData("ph-conditions");
 assert("conditions waiting without platform", waiting.trust === "waiting" || waiting.status === "waiting");
 assert("waiting does not invent numbers", !/\d+\s*°|AQI\s*\d+/i.test(JSON.stringify(waiting)));
 
-const comingSoon = Reg.getData("ph-photography");
-assert("photography still placeholder", comingSoon.status === "placeholder");
-assert("photography coming soon copy", /coming soon/i.test(comingSoon.message || ""));
+const riversWaiting = Reg.getData("ph-rivers");
+assert("rivers honest without platform", riversWaiting.trust === "waiting" || riversWaiting.status === "waiting");
+assert("rivers no coming soon copy", !/coming soon/i.test(riversWaiting.message || ""));
 
 const platform = {
-  meta: { fromCache: false, blockStatus: { weather: "live", airQuality: "live", daylight: "live" } },
+  meta: { fromCache: false, blockStatus: { weather: "live", airQuality: "live", daylight: "live", alerts: "live" } },
   weatherRef: {
     meta: { isPlaceholder: false, provider: "open-meteo", fetchedAt: new Date().toISOString() },
     current: {
@@ -183,14 +190,36 @@ const platform = {
       feelsLike: 70,
       humidity: 55,
       cloudCover: 20,
+      uvIndex: 6,
       wind: { speed: 4, gust: 7 },
-      precipitation: { probability: 10 },
+      precipitation: { probability: 10, amount: 0 },
       conditions: { summary: "Partly cloudy" },
       sunrise: "2026-07-22T09:52:00Z",
       sunset: "2026-07-23T00:24:00Z"
     },
-    hourly: [],
-    daily: []
+    hourly: [
+      {
+        time: "2026-07-22T15:00:00-04:00",
+        temperature: 73,
+        precipitation: { probability: 15 },
+        conditions: { summary: "Partly cloudy" }
+      },
+      {
+        time: "2026-07-22T16:00:00-04:00",
+        temperature: 74,
+        precipitation: { probability: 20 },
+        conditions: { summary: "Mostly cloudy" }
+      }
+    ],
+    daily: [
+      {
+        temperatureHigh: 78,
+        temperatureLow: 58,
+        precipitation: { probability: 25 },
+        conditions: { summary: "Partly cloudy" },
+        uvIndex: 7
+      }
+    ]
   },
   daylight: {
     status: "live",
@@ -212,6 +241,12 @@ const platform = {
     aqi: 42,
     category: "Good",
     pm25: 8
+  },
+  alerts: { status: "live", items: [], count: 0 },
+  usgsWater: {
+    status: "live",
+    trust: "Live",
+    nearest: { name: "Delaware River at Port Jervis", stageFt: 3.4, flowCfs: 2100, trend: "steady" }
   }
 };
 
@@ -222,8 +257,12 @@ assert("conditions trust live", condLive.trust === "live");
 
 const lightLive = Reg.getData("ph-light", { platform });
 assert("light live with platform", lightLive.status === "live");
-assert("light golden hour fact", (lightLive.facts || []).some((f) => /Golden/i.test(f.label)));
-assert("light trust estimated", lightLive.trust === "estimated");
+assert("light sunrise fact", (lightLive.facts || []).some((f) => /Sunrise/i.test(f.label)));
+assert("light trust live", lightLive.trust === "live");
+
+const goldenLive = Reg.getData("ph-golden", { platform });
+assert("golden live with platform", goldenLive.status === "live");
+assert("golden estimated trust", goldenLive.trust === "estimated");
 
 const airLive = Reg.getData("ph-air", { platform });
 assert("air live with platform", airLive.status === "live");
@@ -235,16 +274,40 @@ const airMissing = Reg.getData("ph-air", {
 assert("air unavailable when provider fails", airMissing.status === "unavailable");
 assert("air unavailable does not invent AQI", !/AQI\s*\d+/i.test(JSON.stringify(airMissing)));
 
-const astroLive = Reg.getData("ph-astronomy", { platform });
-assert("astronomy live with moon phase", astroLive.status === "live");
+const moonLive = Reg.getData("ph-moon", { platform });
+assert("moon live with moon phase", moonLive.status === "live");
 assert(
-  "astronomy labels missing moonrise honestly",
-  (astroLive.facts || []).some((f) => f.label === "Moonrise" && /Not reported/i.test(f.value))
+  "moon labels missing moonrise honestly",
+  (moonLive.facts || []).some((f) => f.label === "Moonrise" && /Not reported/i.test(f.value))
 );
 assert(
-  "astronomy marks illumination computed",
-  (astroLive.facts || []).some((f) => f.label === "Illumination" && f.note === "Computed")
+  "moon marks illumination computed",
+  (moonLive.facts || []).some((f) => f.label === "Illumination" && f.note === "Computed")
 );
+
+const hourlyLive = Reg.getData("ph-hourly", { platform });
+assert("hourly live with platform", hourlyLive.status === "live");
+assert("hourly has hour facts", (hourlyLive.facts || []).length >= 1);
+
+const dailyLive = Reg.getData("ph-daily", { platform });
+assert("daily live with high", (dailyLive.facts || []).some((f) => /78/.test(f.value)));
+
+const windLive = Reg.getData("ph-wind", { platform });
+assert("wind live with speed", (windLive.facts || []).some((f) => /4 mph/.test(f.value)));
+
+const rainLive = Reg.getData("ph-rain", { platform });
+assert("rain live with chance", (rainLive.facts || []).some((f) => /10%/.test(f.value)));
+
+const uvLive = Reg.getData("ph-uv", { platform });
+assert("uv live with index", (uvLive.facts || []).some((f) => /6/.test(f.value)));
+
+const alertsLive = Reg.getData("ph-alerts", { platform });
+assert("alerts live with empty feed", alertsLive.status === "live");
+assert("alerts no active copy", (alertsLive.facts || []).some((f) => /No active alerts/i.test(f.value)));
+
+const riversLive = Reg.getData("ph-rivers", { platform });
+assert("rivers live with gauge", riversLive.status === "live");
+assert("rivers stage fact", (riversLive.facts || []).some((f) => /3\.4 ft/.test(f.value)));
 
 const lines = Data.composeTodayLines(platform);
 assert("today lines max 8", lines.length <= 8 && lines.length >= 1, String(lines.length));
@@ -263,6 +326,20 @@ assert(
 assert(
   "today no coaching voice",
   !lines.some((l) => /you should|do this|try |remember to|homework|assignment/i.test(l))
+);
+
+const linesEnabled = Data.composeTodayLines(platform, { enabled: ["ph-conditions", "ph-wind"] });
+assert(
+  "today respects enabled tiles — includes conditions",
+  linesEnabled.some((l) => /72°F|Partly cloudy|Winds remain light/i.test(l))
+);
+assert(
+  "today respects enabled tiles — omits air when off",
+  !linesEnabled.some((l) => /Air quality/i.test(l))
+);
+assert(
+  "today respects enabled tiles — omits moon when off",
+  !linesEnabled.some((l) => /moon/i.test(l))
 );
 
 const stalePlatform = {
@@ -300,6 +377,27 @@ assert("prefs persist size", Prefs.load().sizes["ph-conditions"] === "lg");
 Prefs.reset();
 assert("prefs reset restores defaults", Prefs.load().enabled.indexOf("ph-conditions") >= 0);
 
+/* Soft-migrate retired astronomy id */
+sandbox.localStorage.setItem(
+  Prefs.storageKey,
+  JSON.stringify({
+    version: 1,
+    enabled: ["ph-conditions", "ph-astronomy"],
+    order: ["ph-conditions", "ph-astronomy", "ph-photography"],
+    sizes: { "ph-conditions": "md", "ph-astronomy": "lg" },
+    favorites: ["ph-astronomy"],
+    gridColumns: 3,
+    preset: "default",
+    kioskRefreshMs: 300000
+  })
+);
+const migrated = Prefs.load();
+assert("migrate astronomy → moon enabled", migrated.enabled.indexOf("ph-moon") >= 0);
+assert("migrate drops photography placeholder", migrated.enabled.indexOf("ph-photography") < 0);
+assert("migrate astronomy → moon favorite", migrated.favorites.indexOf("ph-moon") >= 0);
+assert("migrate astronomy size → moon", migrated.sizes["ph-moon"] === "lg");
+Prefs.reset();
+
 const todayWaiting = Today.render({ placeLabel: "Test Place", trust: "waiting" });
 assert("today outside title present", /Today Outside/.test(todayWaiting));
 assert("today waiting lines honest", /Conditions will appear here/.test(todayWaiting));
@@ -309,18 +407,20 @@ const todayLive = Today.render({
   placeLabel: "Pike County, PA",
   trust: "partial",
   platform,
+  enabled: ["ph-conditions", "ph-air", "ph-light", "ph-moon", "ph-alerts", "ph-hourly"],
   now: new Date("2026-07-22T14:00:00-04:00")
 });
-assert("today live bullets render", /Air quality is Good|Outdoor Score/i.test(todayLive));
+assert("today live bullets render", /Air quality is Good|Outdoor Score|72°F/i.test(todayLive));
 assert("today live place label", /Pike County, PA/.test(todayLive));
 assert("today intelligence score present", /Outdoor Score/.test(todayLive));
 assert("today waypoint take present", /Waypoint's Take/.test(todayLive));
 assert("today explain why present", /Explain why/.test(todayLive));
 assert("today no Outdoor OS Do this", !/Do this|Happening|Matters most/i.test(todayLive));
+assert("today no Coming Soon copy", !/Coming Soon/i.test(todayLive));
 
 const wsWaiting = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace has widget frames", /data-widget-id="ph-conditions"/.test(wsWaiting));
-assert("workspace waiting copy", /Waiting for weather data|coming soon/i.test(wsWaiting));
+assert("workspace waiting copy", /Waiting for weather data|Hourly forecast will appear here/i.test(wsWaiting));
 
 const wsLive = Workspace.renderWorkspace({
   prefs: Prefs.load(),
@@ -329,14 +429,15 @@ const wsLive = Workspace.renderWorkspace({
 });
 assert("workspace renders live conditions facts", /wdb-r-widget__facts/.test(wsLive) && /72°F/.test(wsLive));
 assert("workspace renders live air", /US AQI|Good/.test(wsLive));
-Prefs.setEnabled("ph-photography", true);
-const wsPhoto = Workspace.renderWorkspace({
+assert("workspace has no Coming Soon", !/Coming Soon|coming soon/i.test(wsLive));
+Prefs.setEnabled("ph-rivers", true);
+const wsRivers = Workspace.renderWorkspace({
   prefs: Prefs.load(),
   customize: false,
   platform
 });
-assert("workspace photography still coming soon", /Photography windows coming soon/.test(wsPhoto));
-Prefs.setEnabled("ph-photography", false);
+assert("workspace rivers live facts", /3\.4 ft|Delaware River/i.test(wsRivers));
+Prefs.setEnabled("ph-rivers", false);
 
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");
@@ -365,17 +466,25 @@ assert("kiosk exit clears", Kiosk.isActive() === false);
 const categories = Reg.all().map((w) => w.category);
 [
   "conditions",
+  "hourly",
+  "daily",
   "light",
   "air",
-  "astronomy",
-  "photography",
+  "uv",
+  "moon",
+  "stargazing",
+  "photo",
   "rivers",
-  "wildlife",
   "alerts",
-  "trails"
+  "wind",
+  "rain",
+  "golden",
+  "blue"
 ].forEach(function (cat) {
-  assert("catalog anticipates " + cat, categories.indexOf(cat) >= 0);
+  assert("catalog includes " + cat, categories.indexOf(cat) >= 0);
 });
+assert("catalog has no wildlife placeholder", categories.indexOf("wildlife") < 0);
+assert("catalog has no trails placeholder", categories.indexOf("trails") < 0);
 
 const banned = ["you should", "do this", "homework", "assignment"];
 const chromeBlobLower = (shellWs + shellCustom + todayLive + wsLive).toLowerCase();

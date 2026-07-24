@@ -84,7 +84,7 @@ const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), 
 assert("index cache-bust rc3", /dash-rc3/.test(indexHtml));
 assert(
   "index cache-bust unified",
-  !/dash-rc25-s6|dash-rc3-s5/.test(indexHtml) && (indexHtml.match(/\?v=dash-rc3/g) || []).length >= 4
+  /dash-rc3-s6/.test(indexHtml) && (indexHtml.match(/\?v=dash-rc3-s6/g) || []).length >= 4
 );
 
 const sandbox = {

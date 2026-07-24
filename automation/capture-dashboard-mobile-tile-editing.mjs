@@ -228,10 +228,10 @@ async function main() {
   results.push({ id: "phone-customize", ...phoneCustom });
   await shot("02-phone-customize.png");
 
-  // Disable Astronomy + Save
+  // Disable Moon + Save
   await evalExpr(`(function () {
     var hide = Array.prototype.slice.call(document.querySelectorAll('[data-wdb-r-action="hide"]'))
-      .find(function (b) { return b.getAttribute('data-widget-id') === 'ph-astronomy'; });
+      .find(function (b) { return b.getAttribute('data-widget-id') === 'ph-moon'; });
     if (hide) hide.click();
     return !!hide;
   })()`);
@@ -246,11 +246,11 @@ async function main() {
   const afterSave = await evalExpr(`(function () {
     var Prefs = window.WDS && WDS.dashboardRebuildPrefs;
     var prefs = Prefs && Prefs.loadFromStorage ? Prefs.loadFromStorage() : Prefs.load();
-    var hasAstro = !!document.querySelector('[data-widget-id="ph-astronomy"]');
+    var hasMoon = !!document.querySelector('[data-widget-id="ph-moon"]');
     return {
       view: (window.WDS && WDS.dashboardRebuild && WDS.dashboardRebuild.getView && WDS.dashboardRebuild.getView()) || null,
-      enabledHasAstro: prefs.enabled.indexOf('ph-astronomy') >= 0,
-      domHasAstro: hasAstro,
+      enabledHasMoon: prefs.enabled.indexOf('ph-moon') >= 0,
+      domHasMoon: hasMoon,
       drafting: Prefs.isDrafting && Prefs.isDrafting()
     };
   })()`);
@@ -329,8 +329,8 @@ async function main() {
   if (!phoneCustom.hasSave || !phoneCustom.hasCancel) hardFails.push("missing Save/Cancel");
   if (!phoneCustom.hasMoveUp) hardFails.push("missing Move up");
   if (phoneCustom.overflow) hardFails.push("phone customize horizontal overflow");
-  if (afterSave.enabledHasAstro) hardFails.push("astronomy still enabled after save");
-  if (afterSave.domHasAstro) hardFails.push("astronomy still in DOM after save");
+  if (afterSave.enabledHasMoon) hardFails.push("moon still enabled after save");
+  if (afterSave.domHasMoon) hardFails.push("moon still in DOM after save");
   if (!desk.hasEntry || desk.localDisplay === "none") hardFails.push("desktop entry/nav regression");
   if (!deskCustom.hasSave || !deskCustom.hasCatalog) hardFails.push("desktop customize regression");
 

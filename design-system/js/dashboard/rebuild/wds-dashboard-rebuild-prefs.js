@@ -133,21 +133,56 @@
     return COLUMN_OPTIONS.indexOf(n) >= 0 ? n : 3;
   }
 
+  /**
+   * Soft-migrate retired tile ids so saved layouts do not leave empty gaps.
+   * ph-astronomy → ph-moon; other placeholders drop silently via id filter.
+   */
+  function migrateRetiredIds(list) {
+    var next = [];
+    var seen = Object.create(null);
+    (Array.isArray(list) ? list : []).forEach(function (id) {
+      id = id === "ph-astronomy" ? "ph-moon" : id;
+      if (!id || seen[id]) return;
+      seen[id] = true;
+      next.push(id);
+    });
+    return next;
+  }
+
+  function migrateSizes(sizes) {
+    var next = {};
+    var key;
+    sizes = sizes && typeof sizes === "object" ? sizes : {};
+    for (key in sizes) {
+      if (Object.prototype.hasOwnProperty.call(sizes, key) && key !== "ph-astronomy") {
+        next[key] = sizes[key];
+      }
+    }
+    if (sizes["ph-astronomy"] && !next["ph-moon"]) {
+      next["ph-moon"] = sizes["ph-astronomy"];
+    }
+    return next;
+  }
+
   function normalize(prefs) {
     var base = defaults();
     var ids = allIds();
     prefs = prefs || {};
+    var migratedEnabled = migrateRetiredIds(prefs.enabled);
+    var migratedOrder = migrateRetiredIds(prefs.order || base.order);
+    var migratedFavorites = migrateRetiredIds(prefs.favorites);
+    var migratedSizes = migrateSizes(prefs.sizes);
     var enabled = Array.isArray(prefs.enabled)
-      ? prefs.enabled.filter(function (id) {
+      ? migratedEnabled.filter(function (id) {
           return ids.indexOf(id) >= 0;
         })
       : base.enabled;
     if (!enabled.length && base.enabled.length) enabled = base.enabled.slice();
-    var order = normalizeOrder(prefs.order || base.order, ids);
+    var order = normalizeOrder(migratedOrder, ids);
     var sizes = {};
     var reg = Registry();
     ids.forEach(function (id) {
-      var raw = prefs.sizes && prefs.sizes[id];
+      var raw = migratedSizes && migratedSizes[id];
       var fallback = (base.sizes && base.sizes[id]) || "md";
       sizes[id] = reg && reg.normalizeSize ? reg.normalizeSize(raw || fallback) : raw || fallback;
     });
@@ -159,7 +194,7 @@
       enabled: enabled,
       order: order,
       sizes: sizes,
-      favorites: normalizeFavorites(prefs.favorites, ids),
+      favorites: normalizeFavorites(migratedFavorites, ids),
       gridColumns: normalizeColumns(
         prefs.gridColumns != null ? prefs.gridColumns : base.gridColumns
       ),

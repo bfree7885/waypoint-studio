@@ -147,31 +147,43 @@ assert("customize library API", typeof Customize.renderCatalog === "function");
 assert("workspace lazy API", typeof Workspace.bindLazy === "function");
 
 const all = Reg.all();
-assert("catalog includes travel", !!Reg.get("ph-travel"));
-assert("catalog still has phase2 live four", Data.liveIds.length === 4);
+assert("catalog has at least 12 functional tiles", all.length >= 12, String(all.length));
+assert("catalog live ids >= 12", Data.liveIds.length >= 12, String(Data.liveIds.length));
 assert(
-  "library categories complete",
+  "library categories functional",
   Reg.libraryCategories()
     .map((c) => c.id)
-    .join(",") === "weather,photography,astronomy,hiking,water,travel,nature,safety,favorites"
+    .join(",") === "weather,photography,astronomy,water,safety,favorites"
 );
 
 [
   ["ph-conditions", "weather", "Available"],
+  ["ph-hourly", "weather", "Available"],
+  ["ph-daily", "weather", "Available"],
   ["ph-light", "photography", "Available"],
+  ["ph-golden", "photography", "Available"],
+  ["ph-blue", "photography", "Available"],
+  ["ph-photo", "photography", "Available"],
   ["ph-air", "weather", "Available"],
-  ["ph-astronomy", "astronomy", "Available"],
-  ["ph-photography", "photography", "Coming Soon"],
-  ["ph-rivers", "water", "Coming Soon"],
-  ["ph-trails", "hiking", "Coming Soon"],
-  ["ph-travel", "travel", "Coming Soon"],
-  ["ph-wildlife", "nature", "Coming Soon"],
-  ["ph-alerts", "safety", "Coming Soon"]
+  ["ph-uv", "weather", "Available"],
+  ["ph-moon", "astronomy", "Available"],
+  ["ph-stargazing", "astronomy", "Available"],
+  ["ph-rivers", "water", "Available"],
+  ["ph-alerts", "safety", "Available"],
+  ["ph-wind", "weather", "Available"],
+  ["ph-rain", "weather", "Available"]
 ].forEach(function (row) {
   const w = Reg.get(row[0]);
   assert(row[0] + " library category", w && w.libraryCategory === row[1]);
   assert(row[0] + " availability badge", Reg.availability(w).label === row[2]);
+  assert(row[0] + " is live", w && w.live === true);
 });
+
+assert("placeholder photography removed", !Reg.get("ph-photography"));
+assert("placeholder wildlife removed", !Reg.get("ph-wildlife"));
+assert("placeholder trails removed", !Reg.get("ph-trails"));
+assert("placeholder travel removed", !Reg.get("ph-travel"));
+assert("retired astronomy id removed", !Reg.get("ph-astronomy"));
 
 Prefs.reset();
 assert("defaults gridColumns 3", Prefs.load().gridColumns === 3);
@@ -184,16 +196,16 @@ assert("persist gridColumns 1", Prefs.load().gridColumns === 1);
 Prefs.setGridColumns(99);
 assert("invalid columns normalize to 3", Prefs.load().gridColumns === 3);
 
-Prefs.toggleFavorite("ph-astronomy");
-assert("favorite persists", Prefs.isFavorite("ph-astronomy"));
-assert("favorite auto-enables", Prefs.load().enabled.indexOf("ph-astronomy") >= 0);
+Prefs.toggleFavorite("ph-moon");
+assert("favorite persists", Prefs.isFavorite("ph-moon"));
+assert("favorite auto-enables", Prefs.load().enabled.indexOf("ph-moon") >= 0);
 Prefs.setEnabled("ph-conditions", true);
 Prefs.setEnabled("ph-air", true);
-Prefs.setEnabled("ph-astronomy", true);
+Prefs.setEnabled("ph-moon", true);
 const ordered = Prefs.visibleOrdered();
 assert(
   "favorites rise to top",
-  ordered[0] === "ph-astronomy",
+  ordered[0] === "ph-moon",
   ordered.join(",")
 );
 
@@ -216,15 +228,20 @@ assert("legacy prefs keep enabled", legacy.enabled.indexOf("ph-conditions") >= 0
 
 Prefs.reset();
 Prefs.setEnabled("ph-conditions", false);
+Prefs.setEnabled("ph-hourly", false);
 Prefs.setEnabled("ph-light", false);
 Prefs.setEnabled("ph-air", false);
-Prefs.setEnabled("ph-astronomy", false);
-Prefs.setEnabled("ph-photography", false);
-Prefs.setEnabled("ph-rivers", false);
-Prefs.setEnabled("ph-wildlife", false);
+Prefs.setEnabled("ph-moon", false);
 Prefs.setEnabled("ph-alerts", false);
-Prefs.setEnabled("ph-trails", false);
-Prefs.setEnabled("ph-travel", false);
+Prefs.setEnabled("ph-rivers", false);
+Prefs.setEnabled("ph-photo", false);
+Prefs.setEnabled("ph-wind", false);
+Prefs.setEnabled("ph-rain", false);
+Prefs.setEnabled("ph-daily", false);
+Prefs.setEnabled("ph-uv", false);
+Prefs.setEnabled("ph-golden", false);
+Prefs.setEnabled("ph-blue", false);
+Prefs.setEnabled("ph-stargazing", false);
 /* After clearing all, normalize may restore defaults if empty — force empty via save */
 Prefs.save({
   version: 1,
@@ -278,15 +295,19 @@ const lib = Customize.renderCatalog(Prefs.load(), { libraryFilter: "weather" });
 assert("library title", /Widget library/.test(lib));
 assert("library filter weather", /data-filter="weather"/.test(lib));
 assert("library shows Available badge", /wdb-r-badge--available/.test(lib));
-assert("library shows Coming Soon in all", /Coming Soon/.test(Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" })));
+assert(
+  "library has no Coming Soon badge",
+  !/Coming Soon/i.test(Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" }))
+);
 assert("library weather includes Conditions", /Conditions/.test(lib));
+assert("library weather includes Hourly", /Hourly/.test(lib));
 assert("library weather excludes Trails", !/Trail Conditions/.test(lib));
 assert("library has icons", /wdb-r-catalog__icon/.test(lib));
 assert("library favorite control", /data-wdb-r-action="favorite"/.test(lib));
 assert("library category filter group", /role="group"[^>]*aria-label="Widget library categories"/.test(lib));
 
-const hiking = Customize.renderCatalog(Prefs.load(), { libraryFilter: "hiking" });
-assert("hiking category has trails", /Trail Conditions/.test(hiking));
+const water = Customize.renderCatalog(Prefs.load(), { libraryFilter: "water" });
+assert("water category has river gauge", /River Gauge/.test(water));
 
 const favFilter = Customize.renderCatalog(
   Object.assign(Prefs.load(), { favorites: ["ph-air"] }),
