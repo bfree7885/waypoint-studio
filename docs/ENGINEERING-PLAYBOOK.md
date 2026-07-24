@@ -585,6 +585,23 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 8. **Regression insurance:** static pattern tests plus a short CDP smoke for
    overlay coverage and shell-ready timing beat reliance on manual repro alone.
 
+### 2026-07-24 — Dashboard RC3 Sprint 1 (Outdoor Intelligence Engine)
+
+**Branch:** `feature/dashboard-rc3-sprint1-intelligence`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint1-owner-review.md`
+
+1. **Evolve Today Outside; do not add a sibling “intelligence” hero.** A second
+   top section competes with the flagship and breaks Rebuild hierarchy.
+2. **Keep scoring pure and documented.** Weights + renormalize-on-missing beats
+   opaque magic numbers; Explain why must surface the same math the UI uses.
+3. **Practical time bands over clock precision.** Minute ranges imply false
+   confidence; reuse Outdoor OS interpret band language (`early morning`,
+   `near sunset`) and label Limited when hourly rows are thin.
+4. **Activity ratings need confidence + availability.** Fishing without gauges
+   should stay Limited/unavailable — never invent river safety.
+5. **Calm voice filters still apply** when guidance is allowed (score / take /
+   activities). Ban perfect/amazing/homework/go-now even in editorial Take.
+
 ### 2026-07-24 — Dashboard RC2.5 Sprint 6 polish deploy
 
 **Merge:** `3d28fb6` (integration `e6a76d9` onto `a349e68`)

@@ -37,6 +37,7 @@ assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intelligence.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
@@ -51,6 +52,7 @@ modules.forEach(function (rel) {
 
 const wdsJs = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
 assert("wds.js loads rebuild data", /dashboard\/rebuild\/wds-dashboard-rebuild-data\.js/.test(wdsJs));
+assert("wds.js loads rebuild intelligence", /dashboard\/rebuild\/wds-dashboard-rebuild-intelligence\.js/.test(wdsJs));
 assert("wds.js loads rebuild shell", /dashboard\/rebuild\/wds-dashboard-rebuild\.js/.test(wdsJs));
 
 const homeBoot = fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8");
@@ -139,6 +141,7 @@ const Data = sandbox.WDS.dashboardRebuildData;
 
 assert("registry loaded", !!(Reg && Reg.all));
 assert("data adapter loaded", !!(Data && Data.fromPlatform));
+assert("intelligence loaded", !!(sandbox.WDS.dashboardRebuildIntelligence && sandbox.WDS.dashboardRebuildIntelligence.generate));
 assert("prefs loaded", !!(Prefs && Prefs.load));
 assert("today loaded", !!(Today && Today.render));
 assert("workspace loaded", !!(Workspace && Workspace.renderWorkspace));
@@ -305,10 +308,15 @@ assert("today outside no OS Do this", !/Do this|Happening|Matters most/i.test(to
 const todayLive = Today.render({
   placeLabel: "Pike County, PA",
   trust: "partial",
-  platform
+  platform,
+  now: new Date("2026-07-22T14:00:00-04:00")
 });
-assert("today live bullets render", /Air quality is Good/.test(todayLive));
+assert("today live bullets render", /Air quality is Good|Outdoor Score/i.test(todayLive));
 assert("today live place label", /Pike County, PA/.test(todayLive));
+assert("today intelligence score present", /Outdoor Score/.test(todayLive));
+assert("today waypoint take present", /Waypoint's Take/.test(todayLive));
+assert("today explain why present", /Explain why/.test(todayLive));
+assert("today no Outdoor OS Do this", !/Do this|Happening|Matters most/i.test(todayLive));
 
 const wsWaiting = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace has widget frames", /data-widget-id="ph-conditions"/.test(wsWaiting));

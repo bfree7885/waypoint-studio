@@ -7,7 +7,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.1.0-mobile-customize";
+  var VERSION = "4.0.0-rc3-s1-intelligence";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;

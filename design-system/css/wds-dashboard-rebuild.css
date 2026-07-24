@@ -154,6 +154,266 @@
   background: color-mix(in srgb, var(--wdb-r-accent) 70%, transparent);
 }
 
+/* ——— Today Outside intelligence (RC3) ——— */
+.wdb-r-today__intel {
+  margin-top: 0.65rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 70%, transparent);
+  display: grid;
+  gap: 0.65rem;
+}
+
+.wdb-r-today__subhead {
+  margin: 0 0 0.3rem;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: var(--wds-text-sm, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+}
+
+.wdb-r-today__score-label {
+  margin: 0;
+  flex: 0 0 100%;
+  font-size: var(--wds-text-xs, 0.75rem);
+  color: var(--wdb-r-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.wdb-r-today__score-value {
+  margin: 0;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--wdb-r-ink);
+}
+
+.wdb-r-today__score-den {
+  font-size: 0.7em;
+  opacity: 0.55;
+  margin-left: 0.05rem;
+}
+
+.wdb-r-today__score-meta,
+.wdb-r-today__score-note {
+  margin: 0;
+  font-size: var(--wds-text-xs, 0.75rem);
+  color: var(--wdb-r-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.55rem;
+}
+
+.wdb-r-today__pill {
+  display: inline-block;
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 80%, transparent);
+  color: var(--wdb-r-ink);
+  background: color-mix(in srgb, var(--wdb-r-panel) 88%, transparent);
+}
+
+.wdb-r-today__pill[data-level="excellent"] {
+  border-color: color-mix(in srgb, #2f6b4f 45%, var(--wdb-r-line-strong));
+  color: #1f4d38;
+}
+
+.wdb-r-today__pill[data-level="good"] {
+  border-color: color-mix(in srgb, #3d6e8c 40%, var(--wdb-r-line-strong));
+  color: #2a5166;
+}
+
+.wdb-r-today__pill[data-level="fair"] {
+  border-color: color-mix(in srgb, #8a6d3b 40%, var(--wdb-r-line-strong));
+  color: #5c4a28;
+}
+
+.wdb-r-today__pill[data-level="poor"] {
+  border-color: color-mix(in srgb, #8b4a3f 40%, var(--wdb-r-line-strong));
+  color: #6b322a;
+}
+
+.wdb-r-today__conf {
+  margin: 0.15rem 0 0;
+  font-size: 0.7rem;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__conf[data-confidence="high"] {
+  color: color-mix(in srgb, var(--wdb-r-ink) 70%, #2f6b4f);
+}
+
+.wdb-r-today__conf[data-confidence="limited"] {
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.wdb-r-today__take-text {
+  margin: 0;
+  font-size: var(--wds-text-sm, 0.8125rem);
+  line-height: var(--wds-leading-snug, 1.4);
+  color: var(--wdb-r-ink);
+  max-width: 42rem;
+}
+
+.wdb-r-today__activity-list,
+.wdb-r-today__window-list,
+.wdb-r-today__explain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wdb-r-today__activity-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  gap: 0.4rem 0.75rem;
+}
+
+.wdb-r-today__activity,
+.wdb-r-today__window {
+  margin: 0;
+  padding: 0.35rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 45%, transparent);
+}
+
+.wdb-r-today__activity-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.5rem;
+}
+
+.wdb-r-today__activity-name {
+  font-size: var(--wds-text-sm, 0.8125rem);
+  font-weight: 550;
+  color: var(--wdb-r-ink);
+}
+
+.wdb-r-today__activity-why {
+  margin: 0.15rem 0 0;
+  font-size: var(--wds-text-xs, 0.75rem);
+  line-height: 1.35;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__activity[data-limited="true"] {
+  opacity: 0.78;
+}
+
+.wdb-r-today__window-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  gap: 0.35rem 0.85rem;
+}
+
+.wdb-r-today__window-band {
+  font-size: var(--wds-text-xs, 0.75rem);
+  font-weight: 600;
+  color: var(--wdb-r-ink);
+  text-transform: lowercase;
+}
+
+.wdb-r-today__explain {
+  margin: 0.15rem 0 0;
+  font-size: var(--wds-text-sm, 0.8125rem);
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__explain > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.25rem;
+  padding: 0.2rem 0;
+  color: var(--wdb-r-ink);
+  font-weight: 550;
+}
+
+.wdb-r-today__explain > summary::-webkit-details-marker {
+  display: none;
+}
+
+.wdb-r-today__explain > summary::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+  opacity: 0.7;
+}
+
+.wdb-r-today__explain[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.wdb-r-today__explain-body {
+  padding: 0.35rem 0 0.2rem;
+}
+
+.wdb-r-today__explain-summary,
+.wdb-r-today__explain-missing,
+.wdb-r-today__explain-weights,
+.wdb-r-today__explain-note {
+  margin: 0 0 0.4rem;
+  font-size: var(--wds-text-xs, 0.75rem);
+  line-height: 1.4;
+}
+
+.wdb-r-today__explain-h {
+  margin: 0.35rem 0 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__explain-list li {
+  margin: 0 0 0.25rem;
+  font-size: var(--wds-text-xs, 0.75rem);
+  line-height: 1.35;
+  padding-left: 0.1rem;
+}
+
+.wds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-r-today__explain > summary::before {
+    transition: none;
+  }
+}
+
 /* ——— Workspace: dominant field ——— */
 .wdb-r-workspace {
   margin-top: var(--wds-space-1, 0.25rem);
@@ -1042,6 +1302,11 @@ html.wdb-r-kiosk .wdb-r,
   .wdb-r-today__lines {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .wdb-r-today__activity-list,
+  .wdb-r-today__window-list {
+    grid-template-columns: 1fr;
   }
 
   .wdb-r-workspace__header {

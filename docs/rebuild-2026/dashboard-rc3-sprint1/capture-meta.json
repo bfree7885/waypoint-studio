@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-07-24T03:33:34.561Z",
+  "base": "http://127.0.0.1:8765",
+  "sprint": "dashboard-rc3-sprint1",
+  "mode": "fixture-platform",
+  "desktopMeta": {
+    "score": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA"
+  },
+  "phoneMeta": {
+    "score": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA"
+  }
+}

@@ -357,7 +357,21 @@
     LIVE_IDS.forEach(function (id) {
       widgets[id] = buildWidgetPayload(id, platform);
     });
-    var lines = platform ? composeTodayLines(platform) : waitingTodayLines();
+    var Intel = global.WDS && global.WDS.dashboardRebuildIntelligence;
+    var brief = null;
+    if (platform && Intel && Intel.generate) {
+      try {
+        brief = Intel.generate(platform);
+      } catch (e) {
+        brief = null;
+      }
+    }
+    var lines =
+      brief && brief.lines && brief.lines.length
+        ? brief.lines
+        : platform
+          ? composeTodayLines(platform)
+          : waitingTodayLines();
     if (!lines.length) lines = waitingTodayLines();
     var trust = platform ? platformTrust(platform) : "waiting";
     if (platform && lines === waitingTodayLines()) {
@@ -377,7 +391,8 @@
         lines: lines,
         trust: trust,
         placeLabel:
-          (location && (location.displayTitle || location.placeLabel || location.name)) || null
+          (location && (location.displayTitle || location.placeLabel || location.name)) || null,
+        intelligence: brief
       },
       platform: platform || null,
       location: location || null
