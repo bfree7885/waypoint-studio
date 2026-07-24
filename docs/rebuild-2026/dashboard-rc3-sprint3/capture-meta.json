@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-07-24T16:14:30.452Z",
+  "base": "http://127.0.0.1:8765",
+  "sprint": "dashboard-rc3-sprint3",
+  "mode": "fixture-platform",
+  "desktopMeta": {
+    "score": true,
+    "brief": true,
+    "outlook": true,
+    "opportunities": true,
+    "watch": true,
+    "interesting": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA",
+    "briefText": "DAILY BRIEF\nTODAY'S OUTLOOK\n\n68°F with partly cloudy, light wind, a low rain chance, clean-leaning air — a comfortable stretch for unhurried time outside.\n\nOPPORTUNITY HIGHLIGHTS\nPhotography stands out — soft, diffuse light · best around Near Sunset.\nBirding looks strong — calm a"
+  },
+  "phoneMeta": {
+    "score": true,
+    "brief": true,
+    "outlook": true,
+    "opportunities": true,
+    "watch": true,
+    "interesting": true,
+    "take": true,
+    "activities": 10,
+    "place": "Pike County, PA",
+    "briefText": "DAILY BRIEF\nTODAY'S OUTLOOK\n\n68°F with partly cloudy, light wind, a low rain chance, clean-leaning air — a comfortable stretch for unhurried time outside.\n\nOPPORTUNITY HIGHLIGHTS\nPhotography stands out — soft, diffuse light · best around Near Sunset.\nBirding looks strong — calm a"
+  }
+}

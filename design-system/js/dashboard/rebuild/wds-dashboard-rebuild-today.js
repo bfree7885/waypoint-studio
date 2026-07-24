@@ -1,8 +1,8 @@
 /**
  * Dashboard Rebuild — Today Outside (RC3 Outdoor Intelligence surface).
- * Flagship briefing: summary bullets + Outdoor Score + activities + windows + Take.
+ * Flagship briefing: summary + Daily Brief + Outdoor Score + activities + windows.
  * Evolves the Phase 3 panel — does not create a competing section.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 2
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 3
  */
 (function (global) {
   "use strict";
@@ -175,22 +175,94 @@
     );
   }
 
-  function renderTake(take) {
-    if (!take || !take.text) return "";
+  function renderListBlock(titleId, title, items, listClass, emptyText) {
+    var rows = (items || [])
+      .filter(Boolean)
+      .map(function (item) {
+        return "<li>" + escapeHtml(item) + "</li>";
+      })
+      .join("");
+    if (!rows && emptyText) {
+      rows = "<li>" + escapeHtml(emptyText) + "</li>";
+    }
+    if (!rows) return "";
     return (
-      '<div class="wdb-r-today__take" data-wdb-r-take>' +
-      '<h3 class="wdb-r-today__subhead" id="wdb-r-today-take-title">Waypoint\'s Take</h3>' +
-      '<p class="wdb-r-today__take-text">' +
-      escapeHtml(take.text) +
-      "</p>" +
-      (take.confidence
-        ? '<p class="wdb-r-today__conf" data-confidence="' +
-          escapeHtml(confClass(take.confidence)) +
-          '">' +
-          escapeHtml(take.confidence) +
-          " confidence</p>"
-        : "") +
+      '<div class="wdb-r-today__brief-block">' +
+      '<h4 class="wdb-r-today__brief-h" id="' +
+      escapeHtml(titleId) +
+      '">' +
+      escapeHtml(title) +
+      "</h4>" +
+      '<ul class="wdb-r-today__brief-list ' +
+      escapeHtml(listClass || "") +
+      '" aria-labelledby="' +
+      escapeHtml(titleId) +
+      '">' +
+      rows +
+      "</ul>" +
       "</div>"
+    );
+  }
+
+  function renderDailyBrief(dailyBrief, take) {
+    if (!dailyBrief && !(take && take.text)) return "";
+    var db = dailyBrief || {};
+    var takeObj = (db.take && db.take.text ? db.take : null) || take || null;
+    var outlook =
+      db.outlook ||
+      (!dailyBrief ? null : "Outlook settles once live weather arrives for this place.");
+
+    return (
+      '<section class="wdb-r-today__brief" data-wdb-r-brief aria-labelledby="wdb-r-today-brief-title">' +
+      '<h3 class="wdb-r-today__subhead" id="wdb-r-today-brief-title">Daily Brief</h3>' +
+      (outlook
+        ? '<div class="wdb-r-today__brief-block wdb-r-today__brief-outlook">' +
+          '<h4 class="wdb-r-today__brief-h" id="wdb-r-today-outlook-title">Today\'s Outlook</h4>' +
+          '<p class="wdb-r-today__brief-text" aria-labelledby="wdb-r-today-outlook-title">' +
+          escapeHtml(outlook) +
+          "</p>" +
+          "</div>"
+        : "") +
+      renderListBlock(
+        "wdb-r-today-opportunities-title",
+        "Opportunity Highlights",
+        db.opportunities,
+        "wdb-r-today__brief-list--opportunities",
+        dailyBrief && dailyBrief.ready
+          ? "No standout opportunities from the signals currently available."
+          : null
+      ) +
+      renderListBlock(
+        "wdb-r-today-watch-title",
+        "Things to Watch",
+        db.watch,
+        "wdb-r-today__brief-list--watch",
+        null
+      ) +
+      (db.interesting
+        ? '<div class="wdb-r-today__brief-block">' +
+          '<h4 class="wdb-r-today__brief-h" id="wdb-r-today-interesting-title">Why Today Is Interesting</h4>' +
+          '<p class="wdb-r-today__brief-text" aria-labelledby="wdb-r-today-interesting-title">' +
+          escapeHtml(db.interesting) +
+          "</p>" +
+          "</div>"
+        : "") +
+      (takeObj && takeObj.text
+        ? '<div class="wdb-r-today__take" data-wdb-r-take>' +
+          '<h4 class="wdb-r-today__brief-h" id="wdb-r-today-take-title">Waypoint\'s Take</h4>' +
+          '<p class="wdb-r-today__take-text">' +
+          escapeHtml(takeObj.text) +
+          "</p>" +
+          (takeObj.confidence
+            ? '<p class="wdb-r-today__conf" data-confidence="' +
+              escapeHtml(confClass(takeObj.confidence)) +
+              '">' +
+              escapeHtml(takeObj.confidence) +
+              " confidence</p>"
+            : "") +
+          "</div>"
+        : "") +
+      "</section>"
     );
   }
 
@@ -397,7 +469,7 @@
     return (
       '<div class="wdb-r-today__intel" data-wdb-r-intel>' +
       renderScore(brief.score) +
-      renderTake(brief.take) +
+      renderDailyBrief(brief.dailyBrief, brief.take) +
       renderActivities(brief.activities) +
       renderWindows(brief.windows) +
       renderExplain(brief.explanation, brief.score) +
@@ -458,7 +530,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "4.1.0-rc3-s2",
+    version: "4.2.0-rc3-s3",
     render: render,
     mount: mount,
     placeLabel: placeLabel,

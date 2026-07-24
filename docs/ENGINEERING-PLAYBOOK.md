@@ -137,6 +137,24 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 3 (Daily Brief & Waypoint's Take)
+
+**Branch:** `feature/dashboard-rc3-sprint3-daily-brief`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint3-owner-review.md`
+
+1. **Insight is a composition of existing signals, not a second generate.** Daily
+   Brief reuses score / activities / windows / daylight already computed in
+   `generate()` — never invent facts or fire extra APIs.
+2. **Deduplicate voice across sections.** Take must not paste “Why Today Is
+   Interesting” or activity explanations; Opportunity Highlights must skip the
+   shared base note (“comfortable temperatures”) when every activity inherits it.
+3. **Calm-voice tests need word boundaries.** `/AI/i` matches inside “rain” —
+   use `\bAI\b` / `\bLLM\b` when auditing editorial copy.
+4. **Nest Take inside Daily Brief.** One Waypoint’s Take heading; keep hierarchy
+   h2 → h3 Daily Brief → h4 subsections; do not revive Outdoor OS chrome.
+5. **Branch from the Sprint 2 feature tip (`0034cf5`), not a tip polluted by
+   live-engine publish commits** sitting atop the same branch name.
+
 ### 2026-07-24 — Dashboard RC3 Sprint 2 (Outdoor Intelligence Refinement)
 
 **Branch:** `feature/dashboard-rc3-sprint2-refinement`  

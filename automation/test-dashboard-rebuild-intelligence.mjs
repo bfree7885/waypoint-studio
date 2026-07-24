@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Dashboard RC3 Sprint 2 — Outdoor Intelligence refinement contracts.
+ * Dashboard RC3 Sprint 3 — Daily Brief & Outdoor Intelligence contracts.
  * Run: node automation/test-dashboard-rebuild-intelligence.mjs
  */
 import fs from "fs";
@@ -54,6 +54,8 @@ assert(
 const css = fs.readFileSync(path.join(ROOT, "design-system/css/wds-dashboard-rebuild.css"), "utf8");
 assert("css has intelligence score styles", /\.wdb-r-today__score/.test(css));
 assert("css has explain details", /\.wdb-r-today__explain/.test(css));
+assert("css has daily brief styles", /\.wdb-r-today__brief/.test(css));
+assert("css has brief list styles", /\.wdb-r-today__brief-list/.test(css));
 assert("css respects reduced motion", /prefers-reduced-motion/.test(css));
 assert("css stacks activities on tablet", /wdb-r-today__activity-list[\s\S]*grid-template-columns:\s*1fr/.test(css));
 assert("css has exceptional pill", /data-level="exceptional"/.test(css));
@@ -63,7 +65,7 @@ assert("css has activity icon", /\.wdb-r-today__activity-icon/.test(css));
 assert("css has activity window", /\.wdb-r-today__activity-window/.test(css));
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
-assert("index cache-bust rc3 s2", /dash-rc3-s2/.test(indexHtml));
+assert("index cache-bust rc3 s3", /dash-rc3-s3/.test(indexHtml));
 
 const sandbox = {
   window: {},
@@ -127,7 +129,8 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Shell = sandbox.WDS.dashboardRebuild;
 
 assert("intelligence loaded", !!(Intel && Intel.generate));
-assert("sprint2 version", /rc3-s2/.test(Intel.version));
+assert("sprint3 version", /rc3-s3/.test(Intel.version));
+assert("today sprint3 version", /rc3-s3/.test(Today.version));
 assert("score weights documented", Intel.SCORE_WEIGHTS.temperature === 18 && Intel.SCORE_WEIGHTS.aqi === 14);
 assert(
   "score weights sum 100",
@@ -152,6 +155,8 @@ assert(
   "missing activities limited confidence",
   missingBrief.activities.every((a) => a.confidence === "Limited")
 );
+assert("missing daily brief present", !!(missingBrief.dailyBrief && missingBrief.dailyBrief.outlook));
+assert("missing daily brief not ready", missingBrief.dailyBrief.ready === false);
 
 function makeHourly(count, baseIso) {
   const rows = [];
@@ -225,6 +230,10 @@ assert(
   "today lines calm voice",
   !fair.lines.some((l) => /perfect|amazing|homework|you should|go now/i.test(l))
 );
+assert(
+  "today lines avoid robotic score paren",
+  !fair.lines.some((l) => /Outdoor Score \d+\/100 \(/i.test(l))
+);
 
 assert("activities length 10", fair.activities.length === 10);
 assert(
@@ -242,6 +251,10 @@ assert(
 assert(
   "activities avoid label-only tone",
   !fair.activities.some((a) => /^(Hiking|Photography):\s*(Good|Excellent)$/i.test(a.explanation))
+);
+assert(
+  "activities avoid An excellent day for",
+  !fair.activities.some((a) => /^An excellent day for/i.test(a.explanation))
 );
 assert(
   "activities have icons",
@@ -304,9 +317,45 @@ assert(
     .every((w) => /\d{1,2}(?::\d{2})?\s*(?:AM|PM)?\s*[–—-]\s*\d{1,2}(?::\d{2})?\s*(AM|PM)/i.test(w.window))
 );
 
+/* ——— Daily Brief ——— */
+assert("daily brief attached", !!(fair.dailyBrief && fair.dailyBrief.ready));
+assert("daily brief outlook", fair.dailyBrief.outlook && fair.dailyBrief.outlook.length > 24);
+assert(
+  "daily brief outlook calm",
+  !/\bperfect\b|\bamazing\b|\bepic\b|must[- ]see|homework|go now|\bAI\b|\bLLM\b/i.test(fair.dailyBrief.outlook)
+);
+assert(
+  "daily brief opportunities 3-5",
+  fair.dailyBrief.opportunities.length >= 3 && fair.dailyBrief.opportunities.length <= 5,
+  String(fair.dailyBrief.opportunities.length)
+);
+assert(
+  "daily brief opportunities grounded",
+  fair.dailyBrief.opportunities.every((o) => o && o.length > 12)
+);
+assert(
+  "daily brief watch present",
+  Array.isArray(fair.dailyBrief.watch) && fair.dailyBrief.watch.length >= 1
+);
+assert(
+  "daily brief watch calm",
+  !fair.dailyBrief.watch.some((w) => /danger|deadly|catastrophe|panic|you must/i.test(w))
+);
+assert("daily brief interesting", fair.dailyBrief.interesting && fair.dailyBrief.interesting.length > 20);
+assert("daily brief includes take", !!(fair.dailyBrief.take && fair.dailyBrief.take.text));
+assert("daily brief confidence", /High|Moderate|Limited/.test(fair.dailyBrief.confidence));
+assert(
+  "daily brief opportunities no hype",
+  !fair.dailyBrief.opportunities.some((o) => /perfect|amazing|don't miss|go now/i.test(o))
+);
+
 assert("waypoint take present", fair.take && fair.take.text.length > 20);
 assert("take calm voice", !/perfect|amazing|epic|don't miss|AI|LLM|hallucin/i.test(fair.take.text));
 assert("take not too long", fair.take.text.length <= 360);
+assert(
+  "take does not dump activity explanation verbatim",
+  !fair.activities.some((a) => a.explanation && fair.take.text.indexOf(a.explanation) >= 0)
+);
 assert("explanation panel data", fair.explanation && fair.explanation.contributing.length >= 1);
 assert("explanation lists weights", fair.explanation.weights.precipitation === 16);
 assert("explanation inputs honest", fair.explanation.inputs.weatherLive === true);
@@ -358,6 +407,7 @@ assert(
   ideal.score.label !== "Exceptional" || ideal.score.value >= 95,
   ideal.score.label + " " + ideal.score.value
 );
+assert("ideal daily brief opportunities", ideal.dailyBrief.opportunities.length >= 3);
 
 const stormPlatform = {
   meta: {},
@@ -390,6 +440,14 @@ assert(
 assert("storm take mentions alerts", /alert/i.test(storm.take.text));
 assert("storm lines mention alert", storm.lines.some((l) => /alert/i.test(l)));
 assert("alerts cap exceptional", storm.score.value <= 84);
+assert(
+  "storm watch prioritizes alerts",
+  storm.dailyBrief.watch.some((w) => /alert/i.test(w))
+);
+assert(
+  "storm outlook secondary to alerts",
+  /alert/i.test(storm.dailyBrief.outlook)
+);
 
 const cachedPlatform = JSON.parse(JSON.stringify(fairPlatform));
 cachedPlatform.meta.fromCache = true;
@@ -417,7 +475,14 @@ const todayLive = Today.render({
 });
 assert("today still one section", (todayLive.match(/class="wdb-r-today"/g) || []).length === 1);
 assert("today score rendered", /Outdoor Score/.test(todayLive) && /data-wdb-r-score/.test(todayLive));
+assert("today daily brief rendered", /Daily Brief/.test(todayLive) && /data-wdb-r-brief/.test(todayLive));
+assert("today outlook rendered", /Today's Outlook/.test(todayLive));
+assert("today opportunities rendered", /Opportunity Highlights/.test(todayLive));
+assert("today watch rendered", /Things to Watch/.test(todayLive));
+assert("today interesting rendered", /Why Today Is Interesting/.test(todayLive));
 assert("today take rendered", /Waypoint's Take/.test(todayLive));
+assert("today take nested in brief", /data-wdb-r-brief[\s\S]*data-wdb-r-take/.test(todayLive));
+assert("today take not duplicated outside brief", (todayLive.match(/Waypoint's Take/g) || []).length === 1);
 assert("today activities rendered", /Activity guide/.test(todayLive) && /Photography/.test(todayLive));
 assert("today activity icons rendered", /wdb-r-today__activity-icon/.test(todayLive));
 assert("today activity windows rendered", /wdb-r-today__activity-window/.test(todayLive));
@@ -426,7 +491,8 @@ assert("today explain details", /<details class="wdb-r-today__explain"/.test(tod
 assert("today explain keyboard summary", /<summary>Explain why/.test(todayLive));
 assert("today explain educational heading", /What the instruments suggest/.test(todayLive));
 assert("today explain confidence why", /Why confidence is/.test(todayLive));
-assert("today headings hierarchy", /id="wdb-r-today-title"/.test(todayLive) && /wdb-r-today-take-title/.test(todayLive));
+assert("today headings hierarchy", /id="wdb-r-today-title"/.test(todayLive) && /wdb-r-today-brief-title/.test(todayLive));
+assert("today brief heading hierarchy", /wdb-r-today-outlook-title/.test(todayLive) && /wdb-r-today-take-title/.test(todayLive));
 assert("today confidence chips", /data-confidence=/.test(todayLive));
 assert("today place retained", /Pike County, PA/.test(todayLive));
 assert("sr-only score context", /wds-sr-only/.test(todayLive));
@@ -435,6 +501,7 @@ assert("today uses Mixed or Excellent pills", /data-level="(exceptional|excellen
 /* Brief reuse: pack intelligence passed through avoids needing platform regenerate path. */
 const pack = Data.fromPlatform(fairPlatform, { placeLabel: "Here" });
 assert("data pack includes intelligence", !!(pack.today && pack.today.intelligence));
+assert("data pack includes daily brief", !!(pack.today.intelligence.dailyBrief && pack.today.intelligence.dailyBrief.outlook));
 assert("data pack lines from intelligence", pack.today.lines.some((l) => /Outdoor Score|°F/i.test(l)));
 
 const reused = Today.render({
@@ -445,6 +512,7 @@ const reused = Today.render({
   now: fairNow
 });
 assert("today reuses hydrated brief without platform", /Outdoor Score/.test(reused) && /data-wdb-r-intel/.test(reused));
+assert("today reused daily brief", /data-wdb-r-brief/.test(reused) && /Today's Outlook/.test(reused));
 
 const shell = Shell.renderShell({
   view: "workspace",
@@ -453,6 +521,7 @@ const shell = Shell.renderShell({
   now: fairNow
 });
 assert("shell today intelligence present", /data-wdb-r-intel/.test(shell));
+assert("shell daily brief present", /data-wdb-r-brief/.test(shell));
 assert("shell activity icons", /wdb-r-today__activity-icon/.test(shell));
 assert("shell workspace preserved", /data-wdb-r-workspace/.test(shell));
 assert("shell no outdoor OS root", !/data-wdb-os/.test(shell));
@@ -466,6 +535,8 @@ const a = Intel.generate(fairPlatform, { now: fairNow });
 const b = Intel.generate(fairPlatform, { now: fairNow });
 assert("score deterministic", a.score.value === b.score.value);
 assert("take deterministic", a.take.text === b.take.text);
+assert("daily brief deterministic", a.dailyBrief.outlook === b.dailyBrief.outlook);
+assert("daily brief interesting deterministic", a.dailyBrief.interesting === b.dailyBrief.interesting);
 assert("windows deterministic", a.windows[0].window === b.windows[0].window);
 
 /* Edge: heat day prefers early morning band when hourly thin */
@@ -477,6 +548,10 @@ heatPlatform.weatherRef.hourly = [];
 const heat = Intel.generate(heatPlatform, { now: fairNow });
 const heatHike = heat.windows.find((w) => w.id === "hiking");
 assert("heat hiking leans early morning", heatHike && /Early Morning/i.test(heatHike.window));
+assert(
+  "heat watch mentions heat or uv",
+  heat.dailyBrief.watch.some((w) => /heat|UV|uv|shade/i.test(w))
+);
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {

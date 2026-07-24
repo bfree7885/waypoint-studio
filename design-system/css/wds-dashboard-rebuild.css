@@ -269,11 +269,78 @@
   font-style: italic;
 }
 
+/* ——— Daily Brief (RC3 Sprint 3) ——— */
+.wdb-r-today__brief {
+  margin: 0;
+  padding: 0.55rem 0 0.15rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 55%, transparent);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.wdb-r-today__brief-block {
+  margin: 0;
+  max-width: 44rem;
+}
+
+.wdb-r-today__brief-h {
+  margin: 0 0 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-today__brief-text,
 .wdb-r-today__take-text {
   margin: 0;
   font-size: var(--wds-text-sm, 0.8125rem);
   line-height: var(--wds-leading-snug, 1.4);
   color: var(--wdb-r-ink);
+  max-width: 42rem;
+}
+
+.wdb-r-today__brief-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.28rem;
+}
+
+.wdb-r-today__brief-list li {
+  margin: 0;
+  padding: 0.05rem 0 0.05rem 0.75rem;
+  position: relative;
+  font-size: var(--wds-text-sm, 0.8125rem);
+  line-height: var(--wds-leading-snug, 1.4);
+  color: var(--wdb-r-ink);
+}
+
+.wdb-r-today__brief-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--wdb-r-accent) 65%, transparent);
+}
+
+.wdb-r-today__brief-list--watch li::before {
+  background: color-mix(in srgb, #8a6d3b 70%, var(--wdb-r-accent));
+}
+
+.wdb-r-today__brief-conf {
+  margin-top: 0.1rem;
+}
+
+.wdb-r-today__take {
+  margin: 0.1rem 0 0;
+  padding-top: 0.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 40%, transparent);
   max-width: 42rem;
 }
 
