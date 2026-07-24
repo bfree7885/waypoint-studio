@@ -394,6 +394,8 @@
       if (INTEREST_IDS.indexOf(id) < 0) return prefs;
       if (idx < 0) interests.push(id);
     } else if (idx >= 0) {
+      /* Keep at least one interest — never silently snap away from the last On. */
+      if (interests.length <= 1) return prefs;
       interests.splice(idx, 1);
     }
     prefs.interests = normalizeInterests(interests);
@@ -422,7 +424,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildPrefs = {
-    version: "3.2.0-rc3-s5",
+    version: "3.2.0-rc3",
     storageKey: STORAGE_KEY,
     presets: PRESETS.slice(),
     columnOptions: COLUMN_OPTIONS.slice(),

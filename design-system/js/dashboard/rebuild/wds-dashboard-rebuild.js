@@ -7,7 +7,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "4.1.0-rc3-s2-refinement";
+  var VERSION = "4.2.0-rc3";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -174,7 +174,9 @@
     placeContext: null,
     platform: null,
     bound: false,
-    libraryFilter: "all"
+    libraryFilter: "all",
+    customizeFocusOnce: false,
+    customizeFocusMeta: null
   };
 
   function applyKioskMode(view) {
@@ -238,21 +240,39 @@
     var Customize = api("dashboardRebuildCustomize");
     var Workspace = api("dashboardRebuildWorkspace");
     if (mountState.view === "customize" && Customize && Customize.bind) {
-      Customize.bind(mountState.host, function (_next, meta) {
-        if (meta && meta.filter) mountState.libraryFilter = meta.filter;
-        if (meta && meta.navigate === "workspace") {
-          setView("workspace");
-          if (typeof global.requestAnimationFrame === "function") {
-            global.requestAnimationFrame(function () {
+      var focusOnce = !mountState.customizeFocusOnce;
+      var focusMeta = mountState.customizeFocusMeta;
+      mountState.customizeFocusOnce = true;
+      mountState.customizeFocusMeta = null;
+      Customize.bind(
+        mountState.host,
+        function (_next, meta) {
+          if (meta && meta.filter) mountState.libraryFilter = meta.filter;
+          if (meta && meta.navigate === "workspace") {
+            mountState.customizeFocusOnce = false;
+            mountState.customizeFocusMeta = null;
+            setView("workspace");
+            if (typeof global.requestAnimationFrame === "function") {
+              global.requestAnimationFrame(function () {
+                focusCustomizeEntry(mountState.host);
+              });
+            } else {
               focusCustomizeEntry(mountState.host);
-            });
-          } else {
-            focusCustomizeEntry(mountState.host);
+            }
+            return;
           }
-          return;
+          mountState.customizeFocusMeta = meta || null;
+          paint({ animate: true });
+        },
+        {
+          focusBar: focusOnce,
+          restoreFocus: !focusOnce && !!focusMeta,
+          focusMeta: focusMeta
         }
-        paint({ animate: true });
-      });
+      );
+    } else {
+      mountState.customizeFocusOnce = false;
+      mountState.customizeFocusMeta = null;
     }
     if (Workspace && Workspace.bindLazy && mountState.view !== "customize") {
       Workspace.bindLazy(mountState.host, { platform: mountState.platform || null });

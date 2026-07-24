@@ -33,7 +33,7 @@
     var tabs =
       '<button type="button" class="wdb-r-library__tab' +
       (filter === "all" ? " is-active" : "") +
-      '" data-wdb-r-action="library-filter" data-filter="all" role="tab" aria-selected="' +
+      '" data-wdb-r-action="library-filter" data-filter="all" aria-pressed="' +
       (filter === "all" ? "true" : "false") +
       '">All</button>';
     cats.forEach(function (cat) {
@@ -43,14 +43,14 @@
         (on ? " is-active" : "") +
         '" data-wdb-r-action="library-filter" data-filter="' +
         escapeHtml(cat.id) +
-        '" role="tab" aria-selected="' +
+        '" aria-pressed="' +
         (on ? "true" : "false") +
         '">' +
         escapeHtml(cat.label) +
         "</button>";
     });
     return (
-      '<div class="wdb-r-library__tabs" role="tablist" aria-label="Widget library categories">' +
+      '<div class="wdb-r-library__tabs" role="group" aria-label="Widget library categories">' +
       tabs +
       "</div>"
     );
@@ -220,6 +220,11 @@
         var on = !!enabled[item.id];
         var rank = order.indexOf(item.id);
         var rankLabel = on ? String(rank + 1) : "—";
+        var lastOn = on && order.length === 1;
+        var toggleLabel =
+          (on ? "Disable " : "Enable ") +
+          item.label +
+          (on ? ", priority " + rankLabel : "");
         return (
           '<li class="wdb-r-interests__item' +
           (on ? " is-on" : "") +
@@ -240,9 +245,10 @@
           '" aria-pressed="' +
           (on ? "true" : "false") +
           '" aria-label="' +
-          (on ? "Disable " : "Enable ") +
-          escapeHtml(item.label) +
-          '">' +
+          escapeHtml(toggleLabel) +
+          '"' +
+          (lastOn ? " disabled title=\"General Outdoors stays on when it is the only interest\"" : "") +
+          ">" +
           (on ? "On" : "Off") +
           "</button>" +
           '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interest-up" data-interest-id="' +
@@ -269,7 +275,7 @@
       '<section class="wdb-r-interests" data-wdb-r-interests aria-labelledby="wdb-r-interests-title">' +
       '<div class="wdb-r-interests__head">' +
       '<h2 id="wdb-r-interests-title">My interests</h2>' +
-      '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interests-reset">Restore interest defaults</button>' +
+      '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="interests-reset">Reset interests</button>' +
       "</div>" +
       '<p class="wdb-r-interests__lede">Shape Today Outside emphasis — photo windows, wildlife cues, astronomy darkness, and more. Enable several and rank your priorities. Alerts and public safety stay first.</p>' +
       '<p class="wdb-r-interests__preview" role="status" aria-live="polite"><span class="wdb-r-interests__preview-label">Priority preview</span> ' +
@@ -286,11 +292,11 @@
     prefs = prefs || {};
     return (
       '<div class="wdb-r-customize-bar" data-wdb-r-customize-bar tabindex="-1">' +
-      '<p class="wdb-r-customize-bar__label" id="wdb-r-customize-heading">Customize workspace</p>' +
+      '<h2 class="wdb-r-customize-bar__label" id="wdb-r-customize-heading">Customize workspace</h2>' +
       '<div class="wdb-r-customize-bar__actions" role="group" aria-label="Layout presets">' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="default">Default</button>' +
       '<button type="button" class="wdb-r-btn" data-wdb-r-action="preset" data-preset="minimal">Minimal</button>' +
-      '<button type="button" class="wdb-r-btn" data-wdb-r-action="reset">Restore defaults</button>' +
+      '<button type="button" class="wdb-r-btn" data-wdb-r-action="reset">Reset layout</button>' +
       "</div>" +
       renderColumnPicker(prefs) +
       '<p class="wdb-r-customize-bar__hint">Preset: ' +
@@ -405,8 +411,48 @@
     }
   }
 
-  function bind(root, onChange) {
+  function restoreActionFocus(root, meta) {
+    if (!root || !meta) return;
+    var sel = null;
+    if (meta.action === "library-filter" && meta.filter) {
+      sel = '[data-wdb-r-action="library-filter"][data-filter="' + meta.filter + '"]';
+    } else if (meta.interestId) {
+      sel =
+        '[data-interest-id="' +
+        meta.interestId +
+        '"] [data-wdb-r-action="' +
+        meta.action +
+        '"]';
+    } else if (meta.widgetId) {
+      sel =
+        '[data-widget-id="' +
+        meta.widgetId +
+        '"] [data-wdb-r-action="' +
+        meta.action +
+        '"]';
+    } else if (meta.action) {
+      sel = '[data-wdb-r-action="' + meta.action + '"]';
+      if (meta.preset) sel += '[data-preset="' + meta.preset + '"]';
+      if (meta.columns) sel += '[data-columns="' + meta.columns + '"]';
+    }
+    if (!sel) return;
+    var el = root.querySelector(sel);
+    if (el && typeof el.focus === "function" && !el.disabled) {
+      try {
+        el.focus({ preventScroll: true });
+      } catch (e) {
+        try {
+          el.focus();
+        } catch (e2) {
+          /* noop */
+        }
+      }
+    }
+  }
+
+  function bind(root, onChange, options) {
     if (!root) return;
+    options = options || {};
     if (!root.__wdbRCustomizeBound) {
       root.__wdbRCustomizeBound = true;
       root.addEventListener("click", function (ev) {
@@ -423,7 +469,11 @@
           onChange(next, {
             action: action,
             filter: libraryFilterState,
-            navigate: next && next.__navigate ? next.__navigate : null
+            navigate: next && next.__navigate ? next.__navigate : null,
+            interestId: btn.getAttribute("data-interest-id") || null,
+            widgetId: btn.getAttribute("data-widget-id") || null,
+            preset: btn.getAttribute("data-preset") || null,
+            columns: btn.getAttribute("data-columns") || null
           });
         }
       });
@@ -441,12 +491,23 @@
         }
       });
     }
-    if (typeof global.requestAnimationFrame === "function") {
-      global.requestAnimationFrame(function () {
+    /* Focus customize bar only on first enter — never steal focus after each paint. */
+    if (options.focusBar) {
+      if (typeof global.requestAnimationFrame === "function") {
+        global.requestAnimationFrame(function () {
+          focusEditor(root);
+        });
+      } else {
         focusEditor(root);
-      });
-    } else {
-      focusEditor(root);
+      }
+    } else if (options.restoreFocus && options.focusMeta) {
+      if (typeof global.requestAnimationFrame === "function") {
+        global.requestAnimationFrame(function () {
+          restoreActionFocus(root, options.focusMeta);
+        });
+      } else {
+        restoreActionFocus(root, options.focusMeta);
+      }
     }
   }
 
@@ -461,7 +522,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildCustomize = {
-    version: "3.2.0-rc3-s5",
+    version: "3.2.0-rc3",
     render: render,
     renderCatalog: renderCatalog,
     renderToolbar: renderToolbar,
@@ -469,6 +530,7 @@
     handleAction: handleAction,
     bind: bind,
     focusEditor: focusEditor,
+    restoreActionFocus: restoreActionFocus,
     cycleSize: cycleSize,
     getLibraryFilter: getLibraryFilter,
     setLibraryFilter: setLibraryFilter

@@ -1,5 +1,5 @@
 /**
- * Dashboard Rebuild — RC2.5 Sprint 6 presentation polish.
+ * Dashboard Rebuild — RC3 release candidate presentation.
  * Today Outside + Workspace; library Customize; family grouping; calm density.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 07-design-system.md
  */
@@ -228,30 +228,35 @@
 }
 
 .wdb-r-today__pill[data-level="exceptional"] {
-  border-color: color-mix(in srgb, #1f5c42 50%, var(--wdb-r-line-strong));
-  color: #164432;
+  border-color: color-mix(in srgb, #7dcea0 55%, var(--wdb-r-line-strong));
+  color: #b8ebc8;
+  background: color-mix(in srgb, #1f5c42 28%, var(--wdb-r-panel));
 }
 
 .wdb-r-today__pill[data-level="excellent"] {
-  border-color: color-mix(in srgb, #2f6b4f 45%, var(--wdb-r-line-strong));
-  color: #1f4d38;
+  border-color: color-mix(in srgb, #6fb890 50%, var(--wdb-r-line-strong));
+  color: #a8dfb8;
+  background: color-mix(in srgb, #2f6b4f 24%, var(--wdb-r-panel));
 }
 
 .wdb-r-today__pill[data-level="good"] {
-  border-color: color-mix(in srgb, #3d6e8c 40%, var(--wdb-r-line-strong));
-  color: #2a5166;
+  border-color: color-mix(in srgb, #6ea8c9 50%, var(--wdb-r-line-strong));
+  color: #a8d4ea;
+  background: color-mix(in srgb, #2a5166 26%, var(--wdb-r-panel));
 }
 
 .wdb-r-today__pill[data-level="mixed"],
 .wdb-r-today__pill[data-level="fair"] {
-  border-color: color-mix(in srgb, #8a6d3b 40%, var(--wdb-r-line-strong));
-  color: #5c4a28;
+  border-color: color-mix(in srgb, #d4b56a 45%, var(--wdb-r-line-strong));
+  color: #e8d29a;
+  background: color-mix(in srgb, #5c4a28 28%, var(--wdb-r-panel));
 }
 
 .wdb-r-today__pill[data-level="challenging"],
 .wdb-r-today__pill[data-level="poor"] {
-  border-color: color-mix(in srgb, #8b4a3f 40%, var(--wdb-r-line-strong));
-  color: #6b322a;
+  border-color: color-mix(in srgb, #d49286 45%, var(--wdb-r-line-strong));
+  color: #ebc0b6;
+  background: color-mix(in srgb, #6b322a 28%, var(--wdb-r-panel));
 }
 
 .wdb-r-today__conf {
@@ -331,10 +336,6 @@
 
 .wdb-r-today__brief-list--watch li::before {
   background: color-mix(in srgb, #8a6d3b 70%, var(--wdb-r-accent));
-}
-
-.wdb-r-today__brief-conf {
-  margin-top: 0.1rem;
 }
 
 .wdb-r-today__take {
@@ -417,8 +418,8 @@
   }
 
   .wdb-r-today__discover-card:first-child {
-    border-top: 1px solid color-mix(in srgb, var(--wdb-r-line-strong) 35%, transparent);
-    padding-top: 0.35rem;
+    border-top-color: transparent;
+    padding-top: 0;
   }
 }
 
@@ -531,10 +532,16 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem;
-  min-height: 2.25rem;
-  padding: 0.2rem 0;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.15rem;
   color: var(--wdb-r-ink);
   font-weight: 550;
+  border-radius: var(--wds-radius-sm, 6px);
+}
+
+.wdb-r-today__explain > summary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--wdb-r-accent) 45%, transparent);
 }
 
 .wdb-r-today__explain > summary::-webkit-details-marker {
@@ -1112,6 +1119,9 @@
   margin: 0 0 0.55rem;
   font-size: var(--wds-text-md, 1rem);
   font-weight: 600;
+  font-family: inherit;
+  line-height: 1.35;
+  color: inherit;
 }
 
 .wdb-r-customize-bar__actions {
@@ -1211,12 +1221,16 @@
   padding: 0.45rem 0.55rem;
   border: 1px solid var(--wdb-r-line, rgba(127, 140, 160, 0.28));
   border-radius: calc(var(--wdb-r-radius) - 2px);
-  opacity: 0.72;
+  background: color-mix(in srgb, var(--wdb-r-panel) 40%, transparent);
+}
+
+.wdb-r-interests__item:not(.is-on) .wdb-r-interests__actions {
+  opacity: 0.78;
 }
 
 .wdb-r-interests__item.is-on {
-  opacity: 1;
   border-color: color-mix(in srgb, var(--wdb-r-accent, #6b9bd1) 35%, var(--wdb-r-line, rgba(127, 140, 160, 0.28)));
+  background: color-mix(in srgb, var(--wdb-r-accent) 8%, var(--wdb-r-panel));
 }
 
 .wdb-r-interests__meta {
@@ -1300,8 +1314,9 @@
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  min-height: 2rem;
-  padding: 0.3rem 0.65rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.4rem 0.75rem;
   border: 1px solid var(--wdb-r-line-strong);
   border-radius: var(--wds-radius-sm, 6px);
   background: transparent;
@@ -1451,8 +1466,9 @@
   font: inherit;
   font-size: var(--wds-text-sm, 0.8125rem);
   font-weight: 500;
-  min-height: 2.25rem;
-  padding: 0.35rem 0.75rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.45rem 0.85rem;
   border: 1px solid var(--wdb-r-line-strong);
   border-radius: var(--wds-radius-sm, 6px);
   background: color-mix(in srgb, var(--wdb-r-panel) 70%, transparent);
@@ -1483,11 +1499,6 @@
 
 .wdb-r-btn:focus-visible {
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--wdb-r-accent) 45%, transparent);
-}
-
-.wdb-r-btn--link {
-  display: inline-flex;
-  align-items: center;
 }
 
 /* Trust chip — quiet instrument label */
@@ -1533,25 +1544,6 @@ html.wdb-r-kiosk .wdb-r,
   max-width: none;
   padding: 1.25rem clamp(1rem, 3vw, 2rem) 2.5rem;
   font-size: 1.125rem;
-}
-
-.wdb-r-kiosk-chrome {
-  margin-bottom: 1.15rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--wdb-r-line-strong);
-  border-radius: var(--wds-radius-md, 10px);
-  background: var(--wdb-r-surface);
-}
-
-.wdb-r-kiosk-chrome__label {
-  margin: 0 0 0.25rem;
-  font-weight: 600;
-}
-
-.wdb-r-kiosk-chrome__meta {
-  margin: 0 0 0.65rem;
-  font-size: var(--wds-text-sm, 0.8125rem);
-  color: var(--wdb-r-muted);
 }
 
 /* Boot */

@@ -17,10 +17,6 @@
     return isFinite(n) ? n : null;
   }
 
-  function isLiveWidget(id) {
-    return LIVE_IDS.indexOf(id) >= 0;
-  }
-
   function platformTrust(platform) {
     var Rel = global.WDS && global.WDS.dashboardReliability;
     if (Rel && Rel.classifyPackageTrust) {
@@ -407,9 +403,8 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildData = {
-    version: "3.0.0-phase3",
+    version: "3.2.0-rc3",
     liveIds: LIVE_IDS.slice(),
-    isLiveWidget: isLiveWidget,
     fromPlatform: fromPlatform,
     buildWidgetPayload: buildWidgetPayload,
     composeTodayLines: composeTodayLines,

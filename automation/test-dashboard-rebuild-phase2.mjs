@@ -37,9 +37,9 @@ assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
-  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intelligence.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intelligence.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-workspace.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",

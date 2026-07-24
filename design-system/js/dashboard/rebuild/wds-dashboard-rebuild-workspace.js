@@ -95,6 +95,10 @@
         : "";
     var controls = "";
     if (customize) {
+      var orderIndex = typeof options.orderIndex === "number" ? options.orderIndex : -1;
+      var orderLength = typeof options.orderLength === "number" ? options.orderLength : 0;
+      var canUp = orderIndex > 0;
+      var canDown = orderIndex >= 0 && orderIndex < orderLength - 1;
       controls =
         '<div class="wdb-r-widget__controls">' +
         '<button type="button" class="wdb-r-btn wdb-r-btn--quiet' +
@@ -113,12 +117,16 @@
         escapeHtml(widget.id) +
         '" aria-label="Move ' +
         escapeHtml(widget.title) +
-        ' up">Move up</button>' +
+        ' up"' +
+        (canUp ? "" : " disabled") +
+        ">Move up</button>" +
         '<button type="button" class="wdb-r-btn" data-wdb-r-action="move-down" data-widget-id="' +
         escapeHtml(widget.id) +
         '" aria-label="Move ' +
         escapeHtml(widget.title) +
-        ' down">Move down</button>' +
+        ' down"' +
+        (canDown ? "" : " disabled") +
+        ">Move down</button>" +
         '<button type="button" class="wdb-r-btn" data-wdb-r-action="size-cycle" data-widget-id="' +
         escapeHtml(widget.id) +
         '" aria-label="Change size for ' +
@@ -249,6 +257,11 @@
     var lazy = options.lazy === true;
     var widgets = [];
     var lastFamily = null;
+    var visibleCount = 0;
+    ids.forEach(function (id) {
+      if (reg && reg.get && reg.get(id)) visibleCount += 1;
+    });
+    var orderCursor = 0;
     ids.forEach(function (id) {
       var w = reg && reg.get ? reg.get(id) : null;
       if (!w) return;
@@ -265,9 +278,12 @@
           customize: customize,
           platform: options.platform || null,
           lazy: lazy,
-          eager: options.eager === true
+          eager: options.eager === true,
+          orderIndex: orderCursor,
+          orderLength: visibleCount
         })
       );
+      orderCursor += 1;
     });
     var empty = "";
     if (!widgets.length) {
@@ -322,7 +338,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildWorkspace = {
-    version: "3.2.0-rc25-s6",
+    version: "3.2.0-rc3",
     renderWorkspace: renderWorkspace,
     renderWidgetFrame: renderWidgetFrame,
     mount: mount,

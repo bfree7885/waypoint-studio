@@ -30,9 +30,9 @@ function load(rel, sandbox) {
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
-  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intelligence.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intelligence.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-workspace.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",
@@ -46,6 +46,10 @@ modules.forEach(function (rel) {
 });
 
 const wdsJs = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
+assert(
+  "wds.js loads prefs before intelligence",
+  /rebuild-prefs\.js[\s\S]*rebuild-intelligence\.js/.test(wdsJs)
+);
 assert(
   "wds.js loads intelligence before today",
   /rebuild-intelligence\.js[\s\S]*rebuild-today\.js/.test(wdsJs)
@@ -67,11 +71,21 @@ assert("css stacks discovery cards on tablet", /wdb-r-today__discover-cards[\s\S
 assert("css has exceptional pill", /data-level="exceptional"/.test(css));
 assert("css has mixed pill", /data-level="mixed"/.test(css));
 assert("css has challenging pill", /data-level="challenging"/.test(css));
+assert("css level pills use light ink", /color:\s*#b8ebc8/.test(css));
+assert("css explain summary focus ring", /wdb-r-today__explain > summary:focus-visible/.test(css));
+assert("css touch targets 2.75rem baseline", /\.wdb-r-btn[\s\S]*min-height:\s*2\.75rem/.test(css));
 assert("css has activity icon", /\.wdb-r-today__activity-icon/.test(css));
 assert("css has activity window", /\.wdb-r-today__activity-window/.test(css));
+assert("css drops dead brief-conf", !/\.wdb-r-today__brief-conf/.test(css));
+assert("css drops dead kiosk-chrome", !/\.wdb-r-kiosk-chrome/.test(css));
+assert("css drops dead btn--link", !/\.wdb-r-btn--link/.test(css));
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
-assert("index cache-bust rc3 s5", /dash-rc3-s5/.test(indexHtml));
+assert("index cache-bust rc3", /dash-rc3/.test(indexHtml));
+assert(
+  "index cache-bust unified",
+  !/dash-rc25-s6|dash-rc3-s5/.test(indexHtml) && (indexHtml.match(/\?v=dash-rc3/g) || []).length >= 4
+);
 
 const sandbox = {
   window: {},
@@ -135,8 +149,9 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Shell = sandbox.WDS.dashboardRebuild;
 
 assert("intelligence loaded", !!(Intel && Intel.generate));
-assert("sprint5 version", /rc3-s5/.test(Intel.version));
-assert("today sprint5 version", /rc3-s5/.test(Today.version));
+assert("sprint5 version", /rc3/.test(Intel.version));
+assert("today sprint5 version", /rc3/.test(Today.version));
+assert("shell rc3 version", /rc3/.test(Shell.version));
 assert("discovery composer exported", typeof Intel.composeDiscovery === "function");
 assert("interest normalize exported", typeof Intel.normalizeInterestProfile === "function");
 assert("prioritize activities exported", typeof Intel.prioritizeActivities === "function");
@@ -844,6 +859,10 @@ assert("customize interest toggle controls", /data-wdb-r-action="interest-toggle
 assert("customize interest priority up", /data-wdb-r-action="interest-up"/.test(customizeHtml));
 assert("customize interest priority down", /data-wdb-r-action="interest-down"/.test(customizeHtml));
 assert("customize interest restore", /data-wdb-r-action="interests-reset"/.test(customizeHtml));
+assert("customize reset interests copy", /Reset interests/.test(customizeHtml));
+assert("customize reset layout copy", /Reset layout/.test(customizeHtml));
+assert("customize library filter group", /role="group"[^>]*Widget library categories/.test(customizeHtml));
+assert("customize heading is h2", /<h2 class="wdb-r-customize-bar__label"/.test(customizeHtml));
 assert("customize interest preview", /Priority preview/.test(customizeHtml));
 assert("customize still has Save/Cancel", /data-wdb-r-action="save"/.test(customizeHtml) && /data-wdb-r-action="cancel"/.test(customizeHtml));
 assert(

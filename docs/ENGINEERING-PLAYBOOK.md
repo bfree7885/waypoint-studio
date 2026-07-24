@@ -137,6 +137,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 6 (Release Candidate)
+
+**Branch:** `release/dashboard-rc3`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-release-candidate-owner-review.md`
+
+1. **Unify cache-bust on both HTML shells.** Alias `apps/dashboard/index.html`
+   drifted to `dash-rc25-s6` while root used `dash-rc3-s5` — mixed tokens leave
+   alias users on stale shell/boot. One RC token (`dash-rc3`) on every asset.
+2. **Load prefs before intelligence.** Interest catalog must have a single
+   writer; normalize at call time through Prefs so Sprint 5 maps cannot drift.
+3. **Never focus the Customize bar on every paint.** Full `innerHTML` +
+   `focusEditor` steals keyboard focus from On/Off/Up/Down — focus once on
+   enter, restore to the acted control after.
+4. **Incomplete tab widgets fail a11y.** Prefer honest `role="group"` +
+   `aria-pressed` over `tablist` without arrow-key APG.
+5. **Dark ink on dark panels fails contrast.** Level pills need light tints on
+   dark UI; text labels stay the source of meaning (not color alone).
+6. **Leave publish/engine dirt out of RC commits.** `data/*`, `status.html`,
+   `debug.html` churn during local servers — stage only stabilization paths.
+
 ### 2026-07-24 — Dashboard RC3 Sprint 5 (Personal Workspace)
 
 **Branch:** `feature/dashboard-rc3-sprint5-personal-workspace`  

@@ -15,7 +15,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "1.4.0-rc3-s5";
+  var VERSION = "1.4.0-rc3";
   var LEVELS = ["Exceptional", "Excellent", "Good", "Mixed", "Challenging"];
   var CONFIDENCE = ["High", "Moderate", "Limited"];
 
@@ -103,8 +103,8 @@
     generalOutdoor: "hiking"
   };
 
-  /** Personal Workspace interest profiles (presentation priority only). */
-  var INTEREST_IDS = [
+  /** Personal Workspace — prefer Prefs catalog when available (single source). */
+  var INTEREST_IDS_FALLBACK = [
     "photography",
     "hiking",
     "wildlife",
@@ -117,7 +117,7 @@
     "general"
   ];
 
-  var INTEREST_LABELS = {
+  var INTEREST_LABELS_FALLBACK = {
     photography: "Photography",
     hiking: "Hiking",
     wildlife: "Wildlife",
@@ -130,7 +130,30 @@
     general: "General Outdoors"
   };
 
-  var DEFAULT_INTERESTS = ["general"];
+  var DEFAULT_INTERESTS_FALLBACK = ["general"];
+
+  function interestIds() {
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (Prefs && Prefs.interestIds && Prefs.interestIds.length) return Prefs.interestIds;
+    return INTEREST_IDS_FALLBACK;
+  }
+
+  function interestLabels() {
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (Prefs && Prefs.interestLabels) return Prefs.interestLabels;
+    return INTEREST_LABELS_FALLBACK;
+  }
+
+  function defaultInterests() {
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (Prefs && Prefs.defaultInterests) return Prefs.defaultInterests();
+    return DEFAULT_INTERESTS_FALLBACK.slice();
+  }
+
+  /** @deprecated local aliases kept for map keys / export shape */
+  var INTEREST_IDS = INTEREST_IDS_FALLBACK;
+  var INTEREST_LABELS = INTEREST_LABELS_FALLBACK;
+  var DEFAULT_INTERESTS = DEFAULT_INTERESTS_FALLBACK;
 
   /** Interest → activity ids that should rise when that interest is enabled. */
   var INTEREST_ACTIVITY_MAP = {
@@ -1265,15 +1288,18 @@
    */
 
   function normalizeInterestProfile(raw) {
+    var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
+    if (Prefs && Prefs.normalizeInterests) return Prefs.normalizeInterests(raw);
+    var ids = interestIds();
     var seen = Object.create(null);
     var next = [];
     (Array.isArray(raw) ? raw : []).forEach(function (id) {
       id = String(id || "");
-      if (!id || seen[id] || INTEREST_IDS.indexOf(id) < 0) return;
+      if (!id || seen[id] || ids.indexOf(id) < 0) return;
       seen[id] = true;
       next.push(id);
     });
-    if (!next.length) return DEFAULT_INTERESTS.slice();
+    if (!next.length) return defaultInterests();
     return next;
   }
 
@@ -1392,7 +1418,8 @@
     interests = normalizeInterestProfile(interests);
     var id = interests[0];
     if (!id || id === "general") return null;
-    return INTEREST_LABELS[id] || id;
+    var labels = interestLabels();
+    return labels[id] || id;
   }
 
   function interestEmphasisCue(interests, signals) {
@@ -3044,9 +3071,9 @@
     ACTIVITY_ICONS: ACTIVITY_ICONS,
     LEVELS: LEVELS.slice(),
     CONFIDENCE: CONFIDENCE.slice(),
-    INTEREST_IDS: INTEREST_IDS.slice(),
-    INTEREST_LABELS: INTEREST_LABELS,
-    DEFAULT_INTERESTS: DEFAULT_INTERESTS.slice(),
+    INTEREST_IDS: INTEREST_IDS_FALLBACK.slice(),
+    INTEREST_LABELS: INTEREST_LABELS_FALLBACK,
+    DEFAULT_INTERESTS: DEFAULT_INTERESTS_FALLBACK.slice(),
     extractSignals: extractSignals,
     computeOutdoorScore: computeOutdoorScore,
     recommendActivities: recommendActivities,

@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6/.test(indexHtml));
+assert("index cache-bust rc3", /dash-rc3/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
@@ -139,7 +139,7 @@ const Kiosk = sandbox.WDS.dashboardRebuildKiosk;
 const Shell = sandbox.WDS.dashboardRebuild;
 const Data = sandbox.WDS.dashboardRebuildData;
 
-assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6/.test(Reg.version)));
+assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|rc3/.test(Reg.version)));
 assert("prefs key preserved", Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1");
 assert("prefs exposes favorites API", typeof Prefs.toggleFavorite === "function");
 assert("prefs exposes columns API", typeof Prefs.setGridColumns === "function");
@@ -283,7 +283,7 @@ assert("library weather includes Conditions", /Conditions/.test(lib));
 assert("library weather excludes Trails", !/Trail Conditions/.test(lib));
 assert("library has icons", /wdb-r-catalog__icon/.test(lib));
 assert("library favorite control", /data-wdb-r-action="favorite"/.test(lib));
-assert("library category tabs", /role="tablist"/.test(lib));
+assert("library category filter group", /role="group"[^>]*aria-label="Widget library categories"/.test(lib));
 
 const hiking = Customize.renderCatalog(Prefs.load(), { libraryFilter: "hiking" });
 assert("hiking category has trails", /Trail Conditions/.test(hiking));
@@ -295,7 +295,7 @@ const favFilter = Customize.renderCatalog(
 assert("favorites filter lists pinned", /data-widget-id="ph-air"/.test(favFilter));
 
 const toolbar = Customize.renderToolbar(Prefs.load());
-assert("toolbar restore defaults", /Restore defaults/.test(toolbar));
+assert("toolbar reset layout", /Reset layout/.test(toolbar));
 assert("toolbar column picker", /data-wdb-r-action="columns"/.test(toolbar));
 assert("toolbar a11y columns group", /aria-label="Workspace columns"/.test(toolbar));
 

@@ -158,7 +158,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildKiosk = {
-    version: "1.0.0-phase1",
+    version: "1.0.0-rc3",
     enter: enter,
     exit: exit,
     isActive: isActive,

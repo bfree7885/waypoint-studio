@@ -257,7 +257,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildDeepeners = {
-    version: "1.0.0-home-rc1",
+    version: "1.0.0-rc3",
     render: renderSkeleton,
     bind: bind,
     depthFromPath: depthFromPath

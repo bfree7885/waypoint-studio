@@ -446,7 +446,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "3.2.0-rc25-s6",
+    version: "3.2.0-rc3",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
     all: all,

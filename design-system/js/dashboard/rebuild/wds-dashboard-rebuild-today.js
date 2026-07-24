@@ -617,7 +617,6 @@
       "</ul>" +
       intelHtml +
       "</div>" +
-      '<div class="wdb-r-today__alerts" data-wdb-r-today-alerts hidden></div>' +
       "</section>"
     );
   }
@@ -630,7 +629,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "4.4.0-rc3-s5",
+    version: "4.4.0-rc3",
     render: render,
     mount: mount,
     placeLabel: placeLabel,
