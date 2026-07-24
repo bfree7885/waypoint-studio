@@ -1,0 +1,60 @@
+{
+  "capturedAt": "2026-07-24T03:04:20.582Z",
+  "base": "http://127.0.0.1:8765",
+  "sprint": "dashboard-rc25-sprint6",
+  "desktopMeta": {
+    "place": "Pike County, PA",
+    "facts": 4,
+    "today": "62°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 43.\nThe moon is a waxing gibbous.",
+    "hydrated": true,
+    "pending": 0,
+    "statuses": [
+      "No active alerts for this place."
+    ]
+  },
+  "phoneMeta": {
+    "place": "Pike County, PA",
+    "facts": 4,
+    "today": "62°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 43.\nThe moon is a waxing gibbous.",
+    "hydrated": true,
+    "pending": 0,
+    "statuses": [
+      "No active alerts for this place."
+    ]
+  },
+  "overflowChecks": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "groups": 3,
+      "widgets": 5,
+      "overflow": false
+    },
+    {
+      "width": 375,
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "groups": 3,
+      "widgets": 5,
+      "overflow": false
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "groups": 3,
+      "widgets": 5,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "scrollWidth": 753,
+      "clientWidth": 753,
+      "groups": 3,
+      "widgets": 5,
+      "overflow": false
+    }
+  ],
+  "notes": "Polish capture: family groups, denser cards, skeletons. Customize seeds favorite Astronomy + columns."
+}

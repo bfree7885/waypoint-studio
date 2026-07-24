@@ -1,6 +1,6 @@
 /**
- * Dashboard Rebuild — widget workspace (Phase 3).
- * Columns preference, favorites ordering, empty states, CLS-safe lazy paint.
+ * Dashboard Rebuild — widget workspace (RC2.5 Sprint 6 polish).
+ * Columns, favorites, family grouping, skeletons, CLS-safe lazy paint.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
@@ -30,6 +30,33 @@
       .replace(/"/g, "&quot;");
   }
 
+  function renderGroupHeader(family) {
+    if (!family || !family.id || !family.label) return "";
+    return (
+      '<div class="wdb-r-group" data-family="' +
+      escapeHtml(family.id) +
+      '" role="presentation">' +
+      '<p class="wdb-r-group__label">' +
+      escapeHtml(family.label) +
+      "</p>" +
+      "</div>"
+    );
+  }
+
+  function renderSkeletonBody() {
+    return (
+      '<div class="wdb-r-widget__body wdb-r-widget__body--pending" data-lazy-slot data-trust="waiting" aria-busy="true">' +
+      '<p class="wdb-r-widget__status wdb-r-sr-only">Settling…</p>' +
+      '<div class="wdb-r-skeleton" aria-hidden="true">' +
+      '<span class="wdb-r-skeleton__line wdb-r-skeleton__line--lg"></span>' +
+      '<span class="wdb-r-skeleton__line"></span>' +
+      '<span class="wdb-r-skeleton__line wdb-r-skeleton__line--sm"></span>' +
+      "</div>" +
+      '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="waiting">Waiting</span></p>' +
+      "</div>"
+    );
+  }
+
   function renderWidgetFrame(widget, prefs, options) {
     options = options || {};
     var reg = Registry();
@@ -43,11 +70,7 @@
     var data = null;
     var body = "";
     if (lazy) {
-      body =
-        '<div class="wdb-r-widget__body wdb-r-widget__body--pending" data-lazy-slot data-trust="waiting" aria-busy="true">' +
-        '<p class="wdb-r-widget__status">Settling…</p>' +
-        '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="waiting">Waiting</span></p>' +
-        "</div>";
+      body = renderSkeletonBody();
     } else {
       data = reg && reg.getData
         ? reg.getData(widget.id, { platform: options.platform || null })
@@ -62,6 +85,14 @@
     var customize = !!options.customize;
     var fav =
       prefsApi && prefsApi.isFavorite ? prefsApi.isFavorite(widget.id, prefs) : false;
+    var family =
+      reg && reg.familyFor
+        ? reg.familyFor(widget)
+        : { id: widget.category || "", label: widget.category || "" };
+    var icon =
+      reg && reg.iconHtml
+        ? '<span class="wdb-r-widget__icon" aria-hidden="true">' + reg.iconHtml(widget) + "</span>"
+        : "";
     var controls = "";
     if (customize) {
       controls =
@@ -110,6 +141,8 @@
       escapeHtml(widget.id) +
       '" data-category="' +
       escapeHtml(widget.category || "") +
+      '" data-family="' +
+      escapeHtml(family.id || "") +
       '" data-size="' +
       escapeHtml(size) +
       '"' +
@@ -117,12 +150,15 @@
       (lazy ? ' data-lazy="pending"' : ' data-lazy="ready"') +
       ">" +
       '<header class="wdb-r-widget__head">' +
+      '<div class="wdb-r-widget__title-row">' +
+      icon +
       "<h3 class=\"wdb-r-widget__title\">" +
       escapeHtml(widget.title) +
       "</h3>" +
+      "</div>" +
       '<p class="wdb-r-widget__cat">' +
-      escapeHtml(widget.category || "") +
-      (fav ? ' · Favorite' : "") +
+      escapeHtml(family.label || widget.category || "") +
+      (fav ? " · Favorite" : "") +
       "</p>" +
       "</header>" +
       body +
@@ -212,27 +248,38 @@
     var animate = !!options.animate && !reduce;
     var lazy = options.lazy === true;
     var widgets = [];
+    var lastFamily = null;
     ids.forEach(function (id) {
       var w = reg && reg.get ? reg.get(id) : null;
-      if (w) {
-        widgets.push(
-          renderWidgetFrame(w, prefs, {
-            customize: customize,
-            platform: options.platform || null,
-            lazy: lazy,
-            eager: options.eager === true
-          })
-        );
+      if (!w) return;
+      var family = reg && reg.familyFor ? reg.familyFor(w) : null;
+      var familyId = family && family.id ? family.id : "";
+      if (familyId && familyId !== lastFamily && !customize) {
+        widgets.push(renderGroupHeader(family));
+        lastFamily = familyId;
+      } else if (familyId) {
+        lastFamily = familyId;
       }
+      widgets.push(
+        renderWidgetFrame(w, prefs, {
+          customize: customize,
+          platform: options.platform || null,
+          lazy: lazy,
+          eager: options.eager === true
+        })
+      );
     });
     var empty = "";
     if (!widgets.length) {
       empty =
-        '<p class="wdb-r-workspace__empty" role="status">' +
+        '<div class="wdb-r-workspace__empty" role="status">' +
+        '<p class="wdb-r-workspace__empty-title">Your workspace is empty</p>' +
+        "<p>" +
         (customize
-          ? "No widgets yet. Add instruments from the library below."
-          : "No widgets yet. Open Customize to build your workspace.") +
-        "</p>";
+          ? "Add instruments from the library below. Changes stay draft until you Save."
+          : "Open Customize to choose the outdoor instruments you want each morning.") +
+        "</p>" +
+        "</div>";
     }
     var customizeEntry = customize
       ? ""
@@ -245,7 +292,7 @@
       '<header class="wdb-r-workspace__header">' +
       "<div>" +
       '<h2 id="wdb-r-workspace-title" class="wdb-r-workspace__title">Workspace</h2>' +
-      '<p class="wdb-r-workspace__lede">Your outdoor instruments — facts first, each settling on its own.</p>' +
+      '<p class="wdb-r-workspace__lede">Outdoor instruments for this place — facts first, each settling on its own.</p>' +
       "</div>" +
       customizeEntry +
       "</header>" +
@@ -275,7 +322,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildWorkspace = {
-    version: "3.0.0-phase3",
+    version: "3.2.0-rc25-s6",
     renderWorkspace: renderWorkspace,
     renderWidgetFrame: renderWidgetFrame,
     mount: mount,
