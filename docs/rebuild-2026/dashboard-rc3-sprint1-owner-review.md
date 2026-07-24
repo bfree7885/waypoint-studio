@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture (`docs/rebuild-2026/03-dashboard-architecture.md`)  
 **Base:** `origin/main` @ `0be5f9fb23f0b0f024794ea2542df502416537f1` (RC2.5 Sprint 6 tip)  
 **Branch:** `feature/dashboard-rc3-sprint1-intelligence`  
-**Final commit SHA:** _(recorded after commit — see tip of branch)_  
+**Final commit SHA:** `8f14cb86a5807ea4dd7b7c4662c93ee665c30361`  
 **Deployment status:** **Not deployed**
 
 ---
@@ -181,7 +181,7 @@ Coverage: Today Outside generation, Outdoor Score weights/redistribution, activi
 |------|-------|
 | Branch | `feature/dashboard-rc3-sprint1-intelligence` |
 | Base | `origin/main` @ `0be5f9f` |
-| Final commit SHA | _(update after commit)_ |
+| Final commit SHA | `8f14cb86a5807ea4dd7b7c4662c93ee665c30361` |
 | Merged to main? | **No** |
 | Deployed? | **Not deployed** |
 
