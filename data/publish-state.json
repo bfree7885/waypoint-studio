@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-24T05:30:01.403Z",
-  "dataUpdatedAt": "2026-07-24T05:30:01.403Z",
-  "nextScheduledRun": "2026-07-24T06:00:00.000Z",
-  "lastPublishAt": "2026-07-24T05:00:46.255Z",
-  "lastPublishedDataAt": "2026-07-24T05:00:01.832Z",
-  "lastPublishCommit": "38f94d5",
+  "lastEngineRun": "2026-07-24T06:00:01.934Z",
+  "dataUpdatedAt": "2026-07-24T06:00:01.934Z",
+  "nextScheduledRun": "2026-07-24T06:30:00.000Z",
+  "lastPublishAt": "2026-07-24T05:30:33.790Z",
+  "lastPublishedDataAt": "2026-07-24T05:30:01.403Z",
+  "lastPublishCommit": "99893e0",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed 38f94d5 to origin/feature/dashboard-rc3-sprint2-refinement"
+  "lastPublishMessage": "Pushed 99893e0 to origin/feature/dashboard-rc3-sprint2-refinement"
 }
