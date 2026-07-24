@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprint 3 owner review  
 **Base:** `feature/dashboard-rc3-sprint3-daily-brief` @ `72e30e4` (Sprint 3 docs tip; feature `335bcf2`)  
 **Branch:** `feature/dashboard-rc3-sprint4-discovery`  
-**Final commit SHA:** `11c1a6fed02628e29649eedeee9105aca22e149c` (feature; tip `6955a7fad2ab7f087341a08e9ab4e20fc87fd7bf`)  
+**Final commit SHA:** `11c1a6fed02628e29649eedeee9105aca22e149c` (feature)  
 **Deployment status:** **Not deployed**
 
 ---
@@ -125,7 +125,7 @@ Fixture CDP (`http://127.0.0.1:8765`, Pike County platform seed):
 ## Final commit SHA
 
 Feature: `11c1a6fed02628e29649eedeee9105aca22e149c`  
-Branch tip: `6955a7fad2ab7f087341a08e9ab4e20fc87fd7bf`
+Branch tip: `2da16b67bf3ec11e0483ef965e20c503efd4e8eb` (pre-stabilize; see git log for latest docs tip)
 
 ## Deployment status
 
