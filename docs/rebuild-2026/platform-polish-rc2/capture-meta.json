@@ -1,0 +1,328 @@
+{
+  "capturedAt": "2026-07-23T05:26:45.508Z",
+  "base": "http://127.0.0.1:8765",
+  "results": [
+    {
+      "route": "/",
+      "file": "01-desktop-home.png",
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/",
+        "nav": [],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Home"
+      }
+    },
+    {
+      "route": "/",
+      "file": "02-desktop-home-featured.png",
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/",
+        "nav": [],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Home"
+      }
+    },
+    {
+      "route": "/apps/scenes/",
+      "file": "03-desktop-scenes.png",
+      "probe": {
+        "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+        "href": "http://127.0.0.1:8765/apps/scenes/",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Review today’s shoot"
+      }
+    },
+    {
+      "route": "/apps/shed-hunting/",
+      "file": "04-desktop-sheds.png",
+      "probe": {
+        "title": "Sheds — Today’s hunt · Waypoint Studio",
+        "href": "http://127.0.0.1:8765/apps/shed-hunting/",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Where should I search?"
+      }
+    },
+    {
+      "route": "/articles/",
+      "file": "05-desktop-articles.png",
+      "probe": {
+        "title": "Articles — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/articles/",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Articles"
+      }
+    },
+    {
+      "route": "/about.html",
+      "file": "06-desktop-about.png",
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/about.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "About"
+      }
+    },
+    {
+      "route": "/contact.html",
+      "file": "07-desktop-contact.png",
+      "probe": {
+        "title": "Contact — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/contact.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Contact"
+      }
+    },
+    {
+      "route": "/privacy.html",
+      "file": "08-desktop-privacy.png",
+      "probe": {
+        "title": "Privacy — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/privacy.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Privacy"
+      }
+    },
+    {
+      "route": "/terms.html",
+      "file": "09-desktop-terms.png",
+      "probe": {
+        "title": "Terms of Service — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/terms.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Terms of Service"
+      }
+    },
+    {
+      "route": "/support.html",
+      "file": "10-desktop-support.png",
+      "probe": {
+        "title": "Support — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/support.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Support"
+      }
+    },
+    {
+      "route": "/incubator/",
+      "file": "11-desktop-incubator.png",
+      "probe": {
+        "title": "Incubator — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/incubator/",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": true,
+        "legacySamples": [
+          "SignalTerrain"
+        ],
+        "brokenImgs": [],
+        "h1": "Future products, held quietly"
+      }
+    },
+    {
+      "route": "/",
+      "file": "12-phone-home.png",
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/",
+        "nav": [],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "Home"
+      }
+    },
+    {
+      "route": "/about.html",
+      "file": "13-phone-about.png",
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "href": "http://127.0.0.1:8765/about.html",
+        "nav": [
+          "Home",
+          "Scenes",
+          "Sheds",
+          "Articles",
+          "About"
+        ],
+        "footer": [
+          "Contact",
+          "Privacy Policy",
+          "Terms of Service"
+        ],
+        "legacyHit": false,
+        "legacySamples": [],
+        "brokenImgs": [],
+        "h1": "About"
+      }
+    }
+  ],
+  "consoleNotes": [
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    },
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    },
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    },
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    },
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    },
+    {
+      "type": "warning",
+      "text": "[Waypoint location] Object"
+    }
+  ]
+}
