@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Dashboard RC3 Sprint 1 — Outdoor Intelligence Engine contracts.
+ * Dashboard RC3 Sprint 2 — Outdoor Intelligence refinement contracts.
  * Run: node automation/test-dashboard-rebuild-intelligence.mjs
  */
 import fs from "fs";
@@ -56,9 +56,14 @@ assert("css has intelligence score styles", /\.wdb-r-today__score/.test(css));
 assert("css has explain details", /\.wdb-r-today__explain/.test(css));
 assert("css respects reduced motion", /prefers-reduced-motion/.test(css));
 assert("css stacks activities on tablet", /wdb-r-today__activity-list[\s\S]*grid-template-columns:\s*1fr/.test(css));
+assert("css has exceptional pill", /data-level="exceptional"/.test(css));
+assert("css has mixed pill", /data-level="mixed"/.test(css));
+assert("css has challenging pill", /data-level="challenging"/.test(css));
+assert("css has activity icon", /\.wdb-r-today__activity-icon/.test(css));
+assert("css has activity window", /\.wdb-r-today__activity-window/.test(css));
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
-assert("index cache-bust rc3 s1", /dash-rc3-s1/.test(indexHtml));
+assert("index cache-bust rc3 s2", /dash-rc3-s2/.test(indexHtml));
 
 const sandbox = {
   window: {},
@@ -122,12 +127,22 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Shell = sandbox.WDS.dashboardRebuild;
 
 assert("intelligence loaded", !!(Intel && Intel.generate));
+assert("sprint2 version", /rc3-s2/.test(Intel.version));
 assert("score weights documented", Intel.SCORE_WEIGHTS.temperature === 18 && Intel.SCORE_WEIGHTS.aqi === 14);
 assert(
   "score weights sum 100",
   Object.values(Intel.SCORE_WEIGHTS).reduce((a, b) => a + b, 0) === 100
 );
 assert("ten activities catalogued", Intel.ACTIVITY_IDS.length === 10);
+assert(
+  "level bands sprint2",
+  Intel.levelFromScore(97) === "Exceptional" &&
+    Intel.levelFromScore(90) === "Excellent" &&
+    Intel.levelFromScore(75) === "Good" &&
+    Intel.levelFromScore(60) === "Mixed" &&
+    Intel.levelFromScore(40) === "Challenging"
+);
+assert("legacy fair maps via Mixed band", Intel.LEVELS.indexOf("Mixed") >= 0);
 
 const missingBrief = Intel.generate(null);
 assert("missing platform not ready", missingBrief.ready === false);
@@ -138,10 +153,28 @@ assert(
   missingBrief.activities.every((a) => a.confidence === "Limited")
 );
 
+function makeHourly(count, baseIso) {
+  const rows = [];
+  const base = new Date(baseIso).getTime();
+  for (let i = 0; i < count; i++) {
+    const t = new Date(base + i * 3600000);
+    const hour = t.getHours();
+    rows.push({
+      time: t.toISOString().replace("Z", "-04:00"),
+      temperature: hour < 10 ? 62 : hour > 17 ? 68 : 78,
+      feelsLike: hour < 10 ? 62 : hour > 17 ? 68 : 78,
+      cloudCover: hour >= 17 ? 55 : 40,
+      precipitation: { probability: hour >= 14 && hour <= 16 ? 40 : 10 },
+      wind: { speed: hour < 9 ? 4 : 8 }
+    });
+  }
+  return rows;
+}
+
 const fairPlatform = {
   meta: { fromCache: false },
   weatherRef: {
-    meta: { isPlaceholder: false, provider: "open-meteo" },
+    meta: { isPlaceholder: false, provider: "open-meteo", observedAt: "2026-07-23T08:30:00-04:00" },
     current: {
       temperature: 68,
       feelsLike: 67,
@@ -152,32 +185,7 @@ const fairPlatform = {
       conditions: { summary: "Partly cloudy" },
       uvIndex: 5
     },
-    hourly: [
-      {
-        time: "2026-07-23T10:00:00-04:00",
-        temperature: 66,
-        feelsLike: 66,
-        cloudCover: 45,
-        precipitation: { probability: 10 },
-        wind: { speed: 5 }
-      },
-      {
-        time: "2026-07-23T18:00:00-04:00",
-        temperature: 70,
-        feelsLike: 70,
-        cloudCover: 55,
-        precipitation: { probability: 20 },
-        wind: { speed: 7 }
-      },
-      {
-        time: "2026-07-23T22:00:00-04:00",
-        temperature: 60,
-        feelsLike: 60,
-        cloudCover: 20,
-        precipitation: { probability: 5 },
-        wind: { speed: 4 }
-      }
-    ],
+    hourly: makeHourly(3, "2026-07-23T10:00:00-04:00"),
     daily: [{ uvIndex: 5 }]
   },
   daylight: {
@@ -195,12 +203,22 @@ const fairNow = new Date("2026-07-23T09:00:00-04:00");
 const fair = Intel.generate(fairPlatform, { now: fairNow });
 
 assert("fair brief ready", fair.ready === true);
-assert("outdoor score numeric", typeof fair.score.value === "number" && fair.score.value >= 70 && fair.score.value <= 100, String(fair.score.value));
+assert(
+  "pleasant day lands Excellent not Exceptional",
+  fair.score.value >= 85 && fair.score.value <= 94,
+  String(fair.score.value) + " " + fair.score.label
+);
 assert("outdoor score display", /\/100/.test(fair.score.display));
+assert("outdoor score label Excellent", fair.score.label === "Excellent", fair.score.label);
 assert("outdoor score has factors", fair.score.factors.length >= 5);
+assert("factor labels human", fair.score.factors.every((f) => f.label && f.label.length > 2));
 assert("alerts factor known zero", fair.score.factors.some((f) => f.id === "alerts" && f.score >= 90));
 assert("aqi factor present", fair.score.factors.some((f) => f.id === "aqi"));
 assert("score confidence high or moderate", /High|Moderate/.test(fair.score.confidence));
+assert(
+  "score confidence reasons present",
+  Array.isArray(fair.score.confidenceReasons) && fair.score.confidenceReasons.length >= 1
+);
 assert("today lines max 8", fair.lines.length >= 1 && fair.lines.length <= 8);
 assert("today lines include score or temp", fair.lines.some((l) => /°F|Outdoor Score/i.test(l)));
 assert(
@@ -210,16 +228,33 @@ assert(
 
 assert("activities length 10", fair.activities.length === 10);
 assert(
-  "activities have levels",
-  fair.activities.every((a) => /Excellent|Good|Fair|Poor/.test(a.level))
+  "activities use sprint2 levels",
+  fair.activities.every((a) => /Exceptional|Excellent|Good|Mixed|Challenging/.test(a.level))
 );
 assert(
   "activities have confidence",
   fair.activities.every((a) => /High|Moderate|Limited/.test(a.confidence))
 );
 assert(
-  "activities have explanation",
-  fair.activities.every((a) => a.explanation && a.explanation.length > 4)
+  "activities have field-guide explanation",
+  fair.activities.every((a) => a.explanation && a.explanation.length > 12)
+);
+assert(
+  "activities avoid label-only tone",
+  !fair.activities.some((a) => /^(Hiking|Photography):\s*(Good|Excellent)$/i.test(a.explanation))
+);
+assert(
+  "activities have icons",
+  fair.activities.every((a) => a.icon && String(a.icon).length >= 1)
+);
+assert(
+  "activities have best window",
+  fair.activities.every((a) => a.bestWindow && String(a.bestWindow).length >= 3)
+);
+const hiking = fair.activities.find((a) => a.id === "hiking");
+assert(
+  "hiking explanation natural",
+  hiking && /hiking|trail/i.test(hiking.explanation) && !/^Hiking:\s/i.test(hiking.explanation)
 );
 const fishing = fair.activities.find((a) => a.id === "fishing");
 assert("fishing limited without rivers", fishing && fishing.available === false);
@@ -232,9 +267,14 @@ assert("fishing available with gauge", fishingLive && fishingLive.available === 
 
 assert("four time windows", fair.windows.length === 4);
 assert(
-  "windows use practical bands",
+  "thin hourly uses band fallback",
+  fair.windows.every((w) => w.precision === "band"),
+  fair.windows.map((w) => w.window + "/" + w.precision).join(", ")
+);
+assert(
+  "band windows titled calmly",
   fair.windows.every((w) =>
-    /early morning|late morning|before noon|early afternoon|after 4|near sunset|this evening/i.test(
+    /Early Morning|Late Morning|Before Noon|Early Afternoon|Afternoon|Late Afternoon|Near Sunset|This Evening/i.test(
       w.window
     )
   )
@@ -243,16 +283,81 @@ assert(
   "windows mark confidence",
   fair.windows.every((w) => /High|Moderate|Limited/.test(w.confidence))
 );
+
+/* Rich hourly → clock ranges (no false precision when thin). */
+const richPlatform = JSON.parse(JSON.stringify(fairPlatform));
+richPlatform.weatherRef.hourly = makeHourly(18, "2026-07-23T09:00:00-04:00");
+const rich = Intel.generate(richPlatform, { now: fairNow });
 assert(
-  "windows avoid fake minute precision",
-  !fair.windows.some((w) => /\d{1,2}:\d{2}\s*[-–—]\s*\d{1,2}:\d{2}/.test(w.window))
+  "rich hourly can emit clock ranges",
+  rich.windows.some((w) => w.precision === "range" && /\d/.test(w.window)),
+  rich.windows.map((w) => w.window + "/" + w.precision).join(", ")
+);
+assert(
+  "range windows still carry confidence",
+  rich.windows.filter((w) => w.precision === "range").every((w) => /High|Moderate/.test(w.confidence))
+);
+assert(
+  "range format practical",
+  rich.windows
+    .filter((w) => w.precision === "range")
+    .every((w) => /\d{1,2}(?::\d{2})?\s*(?:AM|PM)?\s*[–—-]\s*\d{1,2}(?::\d{2})?\s*(AM|PM)/i.test(w.window))
 );
 
 assert("waypoint take present", fair.take && fair.take.text.length > 20);
 assert("take calm voice", !/perfect|amazing|epic|don't miss|AI|LLM|hallucin/i.test(fair.take.text));
+assert("take not too long", fair.take.text.length <= 360);
 assert("explanation panel data", fair.explanation && fair.explanation.contributing.length >= 1);
 assert("explanation lists weights", fair.explanation.weights.precipitation === 16);
 assert("explanation inputs honest", fair.explanation.inputs.weatherLive === true);
+assert(
+  "explanation educational cues",
+  Array.isArray(fair.explanation.educational) && fair.explanation.educational.length >= 1
+);
+assert(
+  "explanation confidence reasons",
+  Array.isArray(fair.explanation.confidenceReasons) && fair.explanation.confidenceReasons.length >= 1
+);
+
+/* Ideal day → Exceptional possible but not automatic. */
+const idealPlatform = {
+  meta: { fromCache: false },
+  weatherRef: {
+    meta: { isPlaceholder: false, observedAt: "2026-07-23T08:00:00-04:00" },
+    current: {
+      temperature: 63,
+      feelsLike: 62,
+      humidity: 48,
+      cloudCover: 45,
+      wind: { speed: 4 },
+      precipitation: { probability: 5 },
+      conditions: { summary: "Partly cloudy" },
+      uvIndex: 2
+    },
+    hourly: makeHourly(18, "2026-07-23T09:00:00-04:00"),
+    daily: [{ uvIndex: 2 }]
+  },
+  daylight: {
+    sunriseFormatted: "5:50 AM",
+    sunsetFormatted: "8:25 PM",
+    goldenHourEvening: "7:25–8:25 PM",
+    moonIllumination: 20
+  },
+  airQuality: { status: "live", usAqi: 28, category: "Good" },
+  alerts: { items: [] },
+  rivers: { sites: [{ name: "Local Creek", trend: "stable" }] }
+};
+const ideal = Intel.generate(idealPlatform, { now: fairNow });
+assert(
+  "ideal day can reach Exceptional or top Excellent",
+  ideal.score.value >= 90,
+  String(ideal.score.value) + " " + ideal.score.label
+);
+assert(
+  "exceptional reserved for 95+",
+  ideal.score.label !== "Exceptional" || ideal.score.value >= 95,
+  ideal.score.label + " " + ideal.score.value
+);
 
 const stormPlatform = {
   meta: {},
@@ -277,12 +382,14 @@ const stormPlatform = {
 };
 const storm = Intel.generate(stormPlatform, { now: fairNow });
 assert("storm score lower", storm.score.value != null && storm.score.value < fair.score.value, String(storm.score.value));
+assert("storm score challenging or mixed", storm.score.value < 70, String(storm.score.value));
 assert(
-  "storm activities not excellent dominant",
-  storm.activities.filter((a) => a.level === "Excellent").length <= 1
+  "storm activities not exceptional dominant",
+  storm.activities.filter((a) => a.level === "Exceptional").length === 0
 );
 assert("storm take mentions alerts", /alert/i.test(storm.take.text));
 assert("storm lines mention alert", storm.lines.some((l) => /alert/i.test(l)));
+assert("alerts cap exceptional", storm.score.value <= 84);
 
 const cachedPlatform = JSON.parse(JSON.stringify(fairPlatform));
 cachedPlatform.meta.fromCache = true;
@@ -292,6 +399,10 @@ const cached = Intel.generate(cachedPlatform, { now: fairNow });
 assert("cached lowers or moderates confidence", /Moderate|Limited/.test(cached.score.confidence));
 assert("missing aqi listed", cached.score.missing.indexOf("aqi") >= 0);
 assert("missing alerts redistributed", cached.score.missing.indexOf("alerts") >= 0);
+assert(
+  "cached confidence explains cache",
+  cached.score.confidenceReasons.some((r) => /cache/i.test(r))
+);
 
 const todayWaiting = Today.render({ placeLabel: "Test Place", trust: "waiting" });
 assert("today title preserved", /Today Outside/.test(todayWaiting));
@@ -308,17 +419,32 @@ assert("today still one section", (todayLive.match(/class="wdb-r-today"/g) || []
 assert("today score rendered", /Outdoor Score/.test(todayLive) && /data-wdb-r-score/.test(todayLive));
 assert("today take rendered", /Waypoint's Take/.test(todayLive));
 assert("today activities rendered", /Activity guide/.test(todayLive) && /Photography/.test(todayLive));
+assert("today activity icons rendered", /wdb-r-today__activity-icon/.test(todayLive));
+assert("today activity windows rendered", /wdb-r-today__activity-window/.test(todayLive));
 assert("today windows rendered", /Best time windows/.test(todayLive) && /Stargazing/.test(todayLive));
 assert("today explain details", /<details class="wdb-r-today__explain"/.test(todayLive));
 assert("today explain keyboard summary", /<summary>Explain why/.test(todayLive));
+assert("today explain educational heading", /What the instruments suggest/.test(todayLive));
+assert("today explain confidence why", /Why confidence is/.test(todayLive));
 assert("today headings hierarchy", /id="wdb-r-today-title"/.test(todayLive) && /wdb-r-today-take-title/.test(todayLive));
 assert("today confidence chips", /data-confidence=/.test(todayLive));
 assert("today place retained", /Pike County, PA/.test(todayLive));
 assert("sr-only score context", /wds-sr-only/.test(todayLive));
+assert("today uses Mixed or Excellent pills", /data-level="(exceptional|excellent|good|mixed|challenging)"/.test(todayLive));
 
+/* Brief reuse: pack intelligence passed through avoids needing platform regenerate path. */
 const pack = Data.fromPlatform(fairPlatform, { placeLabel: "Here" });
 assert("data pack includes intelligence", !!(pack.today && pack.today.intelligence));
 assert("data pack lines from intelligence", pack.today.lines.some((l) => /Outdoor Score|°F/i.test(l)));
+
+const reused = Today.render({
+  placeLabel: "Here",
+  trust: pack.today.trust,
+  lines: pack.today.lines,
+  intelligence: pack.today.intelligence,
+  now: fairNow
+});
+assert("today reuses hydrated brief without platform", /Outdoor Score/.test(reused) && /data-wdb-r-intel/.test(reused));
 
 const shell = Shell.renderShell({
   view: "workspace",
@@ -327,6 +453,7 @@ const shell = Shell.renderShell({
   now: fairNow
 });
 assert("shell today intelligence present", /data-wdb-r-intel/.test(shell));
+assert("shell activity icons", /wdb-r-today__activity-icon/.test(shell));
 assert("shell workspace preserved", /data-wdb-r-workspace/.test(shell));
 assert("shell no outdoor OS root", !/data-wdb-os/.test(shell));
 assert("shell customize path untouched", !/data-wdb-r-catalog/.test(shell));
@@ -339,6 +466,17 @@ const a = Intel.generate(fairPlatform, { now: fairNow });
 const b = Intel.generate(fairPlatform, { now: fairNow });
 assert("score deterministic", a.score.value === b.score.value);
 assert("take deterministic", a.take.text === b.take.text);
+assert("windows deterministic", a.windows[0].window === b.windows[0].window);
+
+/* Edge: heat day prefers early morning band when hourly thin */
+const heatPlatform = JSON.parse(JSON.stringify(fairPlatform));
+heatPlatform.weatherRef.current.feelsLike = 88;
+heatPlatform.weatherRef.current.temperature = 90;
+heatPlatform.weatherRef.current.uvIndex = 9;
+heatPlatform.weatherRef.hourly = [];
+const heat = Intel.generate(heatPlatform, { now: fairNow });
+const heatHike = heat.windows.find((w) => w.id === "hiking");
+assert("heat hiking leans early morning", heatHike && /Early Morning/i.test(heatHike.window));
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {

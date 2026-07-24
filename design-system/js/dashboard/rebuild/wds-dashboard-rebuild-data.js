@@ -352,7 +352,8 @@
     ];
   }
 
-  function fromPlatform(platform, location) {
+  function fromPlatform(platform, location, options) {
+    options = options || {};
     var widgets = Object.create(null);
     LIVE_IDS.forEach(function (id) {
       widgets[id] = buildWidgetPayload(id, platform);
@@ -361,7 +362,7 @@
     var brief = null;
     if (platform && Intel && Intel.generate) {
       try {
-        brief = Intel.generate(platform);
+        brief = Intel.generate(platform, { now: options.now });
       } catch (e) {
         brief = null;
       }

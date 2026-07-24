@@ -137,6 +137,24 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Dashboard RC3 Sprint 2 (Outdoor Intelligence Refinement)
+
+**Branch:** `feature/dashboard-rc3-sprint2-refinement`  
+**Report:** `docs/rebuild-2026/dashboard-rc3-sprint2-owner-review.md`
+
+1. **Calibrate with fixtures, not vibes.** Document every factor-curve change and
+   keep soft ceilings (alerts, weak factors) so Exceptional stays rare.
+2. **Clock ranges only when hourly coverage earns them.** Otherwise titled bands
+   (Early Morning / Near Sunset) plus confidence — false precision erodes trust.
+3. **Generate once per hydrate.** Pass `intelligence` from `fromPlatform` into
+   Today Outside; include `now` in that generate so tests and kiosk clocks stay
+   deterministic without a second `generate()` on render.
+4. **Field-guide sentences beat label:level chips.** Activity copy should read
+   like a naturalist note (“thanks to mild trail temperatures”), never
+   “Hiking: Good”.
+5. **Confidence needs reasons.** Completeness, hourly coverage, cache, freshness,
+   and alerts should appear in Explain why — not only a High/Moderate/Limited chip.
+
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
 **Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  

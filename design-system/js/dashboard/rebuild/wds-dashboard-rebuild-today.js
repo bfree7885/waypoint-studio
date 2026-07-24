@@ -2,7 +2,7 @@
  * Dashboard Rebuild — Today Outside (RC3 Outdoor Intelligence surface).
  * Flagship briefing: summary bullets + Outdoor Score + activities + windows + Take.
  * Evolves the Phase 3 panel — does not create a competing section.
- * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 1
+ * Authority: docs/rebuild-2026/03-dashboard-architecture.md + RC3 Sprint 2
  */
 (function (global) {
   "use strict";
@@ -74,8 +74,15 @@
     return global.WDS && global.WDS.dashboardRebuildIntelligence;
   }
 
+  /**
+   * Prefer a hydrated brief from the data pack (one generate per hydrate).
+   * Fall back to generate only when platform is present without a brief.
+   */
   function resolveBrief(ctx) {
     ctx = ctx || {};
+    if (ctx.intelligence && ctx.intelligence.version) {
+      return ctx.intelligence;
+    }
     var Intel = intelligence();
     if (Intel && Intel.generate && ctx.platform) {
       try {
@@ -115,11 +122,12 @@
 
   function levelClass(level) {
     var l = String(level || "").toLowerCase();
+    if (l === "exceptional") return "exceptional";
     if (l === "excellent") return "excellent";
     if (l === "good") return "good";
-    if (l === "fair") return "fair";
-    if (l === "poor") return "poor";
-    return "fair";
+    if (l === "mixed" || l === "fair") return "mixed";
+    if (l === "challenging" || l === "poor") return "challenging";
+    return "mixed";
   }
 
   function confClass(conf) {
@@ -201,8 +209,13 @@
           (avail ? "" : ' data-limited="true"') +
           ">" +
           '<div class="wdb-r-today__activity-row">' +
+          '<span class="wdb-r-today__activity-lead">' +
+          '<span class="wdb-r-today__activity-icon" aria-hidden="true">' +
+          escapeHtml(a.icon || "○") +
+          "</span>" +
           '<span class="wdb-r-today__activity-name">' +
           escapeHtml(a.label) +
+          "</span>" +
           "</span>" +
           '<span class="wdb-r-today__pill" data-level="' +
           escapeHtml(levelClass(a.level)) +
@@ -210,8 +223,21 @@
           escapeHtml(a.level) +
           "</span>" +
           "</div>" +
+          (a.bestWindow
+            ? '<p class="wdb-r-today__activity-window">' +
+              '<span class="wds-sr-only">Best time: </span>' +
+              escapeHtml(a.bestWindow) +
+              (a.bestWindowConfidence
+                ? ' <span class="wdb-r-today__conf" data-confidence="' +
+                  escapeHtml(confClass(a.bestWindowConfidence)) +
+                  '">' +
+                  escapeHtml(a.bestWindowConfidence) +
+                  "</span>"
+                : "") +
+              "</p>"
+            : "") +
           '<p class="wdb-r-today__activity-why">' +
-          escapeHtml(a.explanation || "") +
+          escapeHtml(a.explanation || a.recommendation || "") +
           "</p>" +
           '<p class="wdb-r-today__conf" data-confidence="' +
           escapeHtml(confClass(a.confidence)) +
@@ -236,9 +262,13 @@
     if (!windows || !windows.length) return "";
     var items = windows
       .map(function (w) {
+        var precisionNote =
+          w.precision === "range" ? "hourly range" : "practical band";
         return (
           '<li class="wdb-r-today__window" data-window="' +
           escapeHtml(w.id) +
+          '" data-precision="' +
+          escapeHtml(w.precision || "band") +
           '">' +
           '<div class="wdb-r-today__activity-row">' +
           '<span class="wdb-r-today__activity-name">' +
@@ -255,7 +285,9 @@
           escapeHtml(confClass(w.confidence)) +
           '">' +
           escapeHtml(w.confidence) +
-          " confidence · practical band</p>" +
+          " confidence · " +
+          escapeHtml(precisionNote) +
+          "</p>" +
           "</li>"
         );
       })
@@ -276,7 +308,7 @@
       .map(function (f) {
         return (
           "<li><strong>" +
-          escapeHtml(f.factor) +
+          escapeHtml(f.label || f.factor) +
           "</strong> (weight ~" +
           escapeHtml(String(f.weightShare)) +
           "%): " +
@@ -285,6 +317,22 @@
           escapeHtml(f.note || "") +
           "</li>"
         );
+      })
+      .join("");
+    var educational = (explanation.educational || [])
+      .map(function (e) {
+        return (
+          "<li><strong>" +
+          escapeHtml(e.label || e.id) +
+          "</strong> — " +
+          escapeHtml(e.text || "") +
+          "</li>"
+        );
+      })
+      .join("");
+    var confReasons = (explanation.confidenceReasons || (score && score.confidenceReasons) || [])
+      .map(function (r) {
+        return "<li>" + escapeHtml(r) + "</li>";
       })
       .join("");
     var missing =
@@ -315,9 +363,21 @@
       '<p class="wdb-r-today__explain-summary">' +
       escapeHtml(explanation.summary || "") +
       "</p>" +
+      (confReasons
+        ? '<h4 class="wdb-r-today__explain-h">Why confidence is ' +
+          escapeHtml((score && score.confidence) || explanation.confidence || "Limited") +
+          "</h4><ul class=\"wdb-r-today__explain-list\">" +
+          confReasons +
+          "</ul>"
+        : "") +
       (factors
         ? '<h4 class="wdb-r-today__explain-h">Contributing factors</h4><ul class="wdb-r-today__explain-list">' +
           factors +
+          "</ul>"
+        : "") +
+      (educational
+        ? '<h4 class="wdb-r-today__explain-h">What the instruments suggest</h4><ul class="wdb-r-today__explain-list">' +
+          educational +
           "</ul>"
         : "") +
       missing +
@@ -326,7 +386,7 @@
           weights +
           ". Missing factors are dropped and remaining weights renormalized.</p>"
         : "") +
-      '<p class="wdb-r-today__explain-note">Time windows use practical bands (not minute-level precision). Low confidence is stated when hourly or river data is thin.</p>' +
+      '<p class="wdb-r-today__explain-note">Clock ranges appear only when hourly coverage is reliable; otherwise windows use broader bands (Early Morning, Near Sunset). Low confidence is stated when hourly or river data is thin.</p>' +
       "</div>" +
       "</details>"
     );
@@ -398,7 +458,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "4.0.0-rc3-s1",
+    version: "4.1.0-rc3-s2",
     render: render,
     mount: mount,
     placeLabel: placeLabel,

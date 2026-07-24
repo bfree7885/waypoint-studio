@@ -7,7 +7,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "4.0.0-rc3-s1-intelligence";
+  var VERSION = "4.1.0-rc3-s2-refinement";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -74,7 +74,7 @@
     var ctx = options.placeContext || {};
     var platform = options.platform || null;
     var Data = api("dashboardRebuildData");
-    var pack = Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx) : null;
+    var pack = Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx, { now: options.now }) : null;
     var trust = ctx.trust || "waiting";
     var lines = null;
     if (pack && pack.today) {
@@ -87,7 +87,9 @@
       trust: trust,
       now: options.now,
       lines: lines,
-      platform: platform
+      platform: platform,
+      /* Reuse brief from fromPlatform — avoid a second generate() on render. */
+      intelligence: pack && pack.today ? pack.today.intelligence : null
     };
   }
 

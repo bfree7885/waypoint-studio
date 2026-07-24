@@ -1,20 +1,23 @@
 /**
- * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (v1).
+ * Dashboard Rebuild RC3 — Outdoor Intelligence Engine (Sprint 2 refinement).
  * Pure, deterministic interpretation of OIP platform data for Today Outside.
  * Never fabricates live numbers; missing inputs lower confidence and redistribute weights.
  *
- * Algorithm authority: docs/rebuild-2026/dashboard-rc3-sprint1-owner-review.md
+ * Algorithm authority:
+ *   docs/rebuild-2026/dashboard-rc3-sprint1-owner-review.md
+ *   docs/rebuild-2026/dashboard-rc3-sprint2-owner-review.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "1.0.0-rc3-s1";
-  var LEVELS = ["Excellent", "Good", "Fair", "Poor"];
+  var VERSION = "1.1.0-rc3-s2";
+  var LEVELS = ["Exceptional", "Excellent", "Good", "Mixed", "Challenging"];
   var CONFIDENCE = ["High", "Moderate", "Limited"];
 
   /**
    * Outdoor Score factor weights (sum = 100 when all present).
    * Missing factors are dropped and remaining weights renormalized.
+   * Sprint 2: weights unchanged; factor curves recalibrated (see owner review).
    */
   var SCORE_WEIGHTS = {
     temperature: 18,
@@ -26,6 +29,18 @@
     aqi: 14,
     alerts: 12,
     rivers: 8
+  };
+
+  var FACTOR_LABELS = {
+    temperature: "Air temperature",
+    precipitation: "Precipitation",
+    wind: "Wind",
+    humidity: "Humidity",
+    clouds: "Cloud cover",
+    uv: "UV index",
+    aqi: "Air quality",
+    alerts: "Weather alerts",
+    rivers: "Nearby rivers"
   };
 
   var ACTIVITY_IDS = [
@@ -54,10 +69,41 @@
     generalOutdoor: "General Outdoor Time"
   };
 
+  /** Compact decorative marks (not emoji) — paired with aria-hidden in UI. */
+  var ACTIVITY_ICONS = {
+    photography: "◇",
+    birding: "◠",
+    wildlife: "◎",
+    hiking: "△",
+    trailRunning: "▹",
+    fishing: "≀",
+    gardening: "∗",
+    camping: "⌂",
+    astronomy: "✦",
+    generalOutdoor: "○"
+  };
+
   var WINDOW_IDS = ["hiking", "photography", "wildlife", "stargazing"];
+
+  var ACTIVITY_WINDOW_MAP = {
+    hiking: "hiking",
+    trailRunning: "hiking",
+    photography: "photography",
+    birding: "wildlife",
+    wildlife: "wildlife",
+    astronomy: "stargazing",
+    camping: "hiking",
+    gardening: "hiking",
+    fishing: "hiking",
+    generalOutdoor: "hiking"
+  };
 
   var BANNED =
     /\bperfect\b|\bamazing\b|\bepic\b|\bmust[- ]see\b|don['’]t miss|you should definitely|homework|assignment|go now|do this\b/i;
+
+  /** Minimum hourly rows before clock-range precision is offered. */
+  var HOURLY_PRECISION_MIN = 6;
+  var HOURLY_HIGH_CONF_MIN = 12;
 
   function num(val) {
     if (val == null) return null;
@@ -82,12 +128,17 @@
     return s;
   }
 
+  /**
+   * Score bands (Sprint 2):
+   * 95–100 Exceptional · 85–94 Excellent · 70–84 Good · 55–69 Mixed · <55 Challenging
+   */
   function levelFromScore(score) {
-    if (score == null) return "Fair";
+    if (score == null) return "Mixed";
+    if (score >= 95) return "Exceptional";
     if (score >= 85) return "Excellent";
     if (score >= 70) return "Good";
-    if (score >= 50) return "Fair";
-    return "Poor";
+    if (score >= 55) return "Mixed";
+    return "Challenging";
   }
 
   function confidenceLabel(key) {
@@ -98,15 +149,37 @@
 
   function hourBand(hr) {
     if (hr == null || !isFinite(hr)) return null;
-    if (hr < 8) return "early morning";
-    if (hr < 11) return "through late morning";
-    if (hr < 12) return "before noon";
-    if (hr < 14) return "early afternoon";
-    if (hr < 16) return "early afternoon";
-    if (hr < 17) return "after 4 PM";
-    if (hr < 19) return "near sunset";
-    if (hr < 21) return "near sunset";
-    return "this evening";
+    if (hr < 8) return "Early Morning";
+    if (hr < 11) return "Late Morning";
+    if (hr < 12) return "Before Noon";
+    if (hr < 14) return "Early Afternoon";
+    if (hr < 16) return "Afternoon";
+    if (hr < 17) return "Late Afternoon";
+    if (hr < 19) return "Near Sunset";
+    if (hr < 21) return "Near Sunset";
+    return "This Evening";
+  }
+
+  function formatClock(date) {
+    if (!date || isNaN(date.getTime())) return null;
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var suffix = h >= 12 ? "PM" : "AM";
+    var hr12 = h % 12;
+    if (hr12 === 0) hr12 = 12;
+    if (m === 0) return String(hr12) + " " + suffix;
+    return String(hr12) + ":" + (m < 10 ? "0" : "") + m + " " + suffix;
+  }
+
+  function formatClockRange(start, end) {
+    var a = formatClock(start);
+    var b = formatClock(end);
+    if (!a || !b) return null;
+    var samePeriod = /\b(AM|PM)$/i.test(a) && a.slice(-2) === b.slice(-2);
+    if (samePeriod) {
+      a = a.replace(/\s*(AM|PM)$/i, "");
+    }
+    return a + "–" + b;
   }
 
   function parseClockHour(label) {
@@ -173,10 +246,21 @@
       else if (site.siteName) riverNote = String(site.siteName);
     }
 
+    var observedAt =
+      (wx && wx.meta && (wx.meta.observedAt || wx.meta.fetchedAt || wx.meta.updatedAt)) ||
+      (platform && platform.meta && platform.meta.fetchedAt) ||
+      null;
+    var ageHours = null;
+    if (observedAt) {
+      var obsMs = new Date(observedAt).getTime();
+      if (!isNaN(obsMs)) ageHours = (now.getTime() - obsMs) / 3600000;
+    }
+
     return {
       now: now,
       weatherLive: weatherLive,
       fromCache: !!(platform && platform.meta && platform.meta.fromCache),
+      ageHours: ageHours,
       tempF: num(cur.temperature),
       feelsF: num(cur.feelsLike) != null ? num(cur.feelsLike) : num(cur.temperature),
       humidity: num(cur.humidity),
@@ -213,104 +297,114 @@
     };
   }
 
+  /* ——— Factor curves (Sprint 2 calibration) ———
+   * Peak scores reserved for narrow ideal bands so Exceptional (95+) is rare.
+   * Mid “pleasant” bands land roughly Excellent / Good, not inflated near 95.
+   * Documented in dashboard-rc3-sprint2-owner-review.md.
+   */
+
   function factorScoreTemperature(s) {
     var t = s.feelsF != null ? s.feelsF : s.tempF;
     if (t == null) return null;
-    if (t >= 55 && t <= 72) return { score: 96, note: "Comfortable air temperatures" };
-    if (t >= 48 && t <= 78) return { score: 84, note: "Mild outdoor temperatures" };
-    if (t >= 38 && t <= 85) return { score: 68, note: "Workable with layers or shade" };
-    if (t >= 28 && t <= 90) return { score: 48, note: "Hot or cold enough to shorten outings" };
-    return { score: 28, note: "Extreme heat or cold limits outdoor time" };
+    if (t >= 58 && t <= 68) return { score: 100, note: "Sweet-spot air temperatures" };
+    if (t >= 55 && t <= 72) return { score: 88, note: "Comfortable air temperatures" };
+    if (t >= 48 && t <= 78) return { score: 76, note: "Mild outdoor temperatures" };
+    if (t >= 38 && t <= 85) return { score: 62, note: "Workable with layers or shade" };
+    if (t >= 28 && t <= 90) return { score: 44, note: "Hot or cold enough to shorten outings" };
+    return { score: 24, note: "Extreme heat or cold limits outdoor time" };
   }
 
   function factorScorePrecip(s) {
     var p = s.precipProb;
     var cond = String(s.conditions || "").toLowerCase();
     if (/thunder|lightning|storm/.test(cond)) {
-      return { score: 18, note: "Storm language in current conditions" };
+      return { score: 16, note: "Storm language in current conditions" };
     }
     if (p == null && !cond) return null;
     if (p == null) {
-      if (/rain|shower|drizzle/.test(cond)) return { score: 42, note: "Precipitation in the sky summary" };
-      return { score: 78, note: "No strong rain signal in the sky summary" };
+      if (/rain|shower|drizzle/.test(cond)) return { score: 40, note: "Precipitation in the sky summary" };
+      return { score: 72, note: "No strong rain signal in the sky summary" };
     }
-    if (p < 15) return { score: 95, note: "Low precip chance (" + round(p) + "%)" };
-    if (p < 35) return { score: 78, note: "Modest precip chance (" + round(p) + "%)" };
-    if (p < 55) return { score: 55, note: "Precip chance near " + round(p) + "%" };
-    if (p < 75) return { score: 35, note: "Elevated precip chance (" + round(p) + "%)" };
-    return { score: 18, note: "High precip chance (" + round(p) + "%)" };
+    if (p < 8) return { score: 100, note: "Very low precip chance (" + round(p) + "%)" };
+    if (p < 15) return { score: 88, note: "Low precip chance (" + round(p) + "%)" };
+    if (p < 35) return { score: 72, note: "Modest precip chance (" + round(p) + "%)" };
+    if (p < 55) return { score: 52, note: "Precip chance near " + round(p) + "%" };
+    if (p < 75) return { score: 32, note: "Elevated precip chance (" + round(p) + "%)" };
+    return { score: 16, note: "High precip chance (" + round(p) + "%)" };
   }
 
   function factorScoreWind(s) {
     if (s.windMph == null) return null;
     var w = s.windMph;
-    if (w < 8) return { score: 94, note: "Light winds" };
-    if (w < 15) return { score: 78, note: "Moderate breeze (" + round(w) + " mph)" };
-    if (w < 22) return { score: 55, note: "Breezy (" + round(w) + " mph)" };
-    if (w < 30) return { score: 35, note: "Strong wind (" + round(w) + " mph)" };
-    return { score: 18, note: "Very strong wind (" + round(w) + " mph)" };
+    if (w < 5) return { score: 98, note: "Very light winds" };
+    if (w < 8) return { score: 88, note: "Light winds" };
+    if (w < 15) return { score: 74, note: "Moderate breeze (" + round(w) + " mph)" };
+    if (w < 22) return { score: 52, note: "Breezy (" + round(w) + " mph)" };
+    if (w < 30) return { score: 32, note: "Strong wind (" + round(w) + " mph)" };
+    return { score: 16, note: "Very strong wind (" + round(w) + " mph)" };
   }
 
   function factorScoreHumidity(s) {
     if (s.humidity == null) return null;
     var h = s.humidity;
-    if (h >= 35 && h <= 65) return { score: 92, note: "Comfortable humidity" };
-    if (h < 35) return { score: 72, note: "Dry air (" + round(h) + "%)" };
-    if (h <= 80) return { score: 62, note: "Humid air (" + round(h) + "%)" };
-    return { score: 40, note: "Very humid (" + round(h) + "%)" };
+    if (h >= 40 && h <= 60) return { score: 96, note: "Comfortable humidity" };
+    if (h >= 35 && h <= 65) return { score: 86, note: "Pleasant humidity" };
+    if (h < 35) return { score: 70, note: "Dry air (" + round(h) + "%)" };
+    if (h <= 80) return { score: 58, note: "Humid air (" + round(h) + "%)" };
+    return { score: 36, note: "Very humid (" + round(h) + "%)" };
   }
 
   function factorScoreClouds(s) {
     if (s.cloudPct == null) return null;
     var c = s.cloudPct;
-    /* Neutral-friendly: mixed clouds often pleasant; extremes slightly lower. */
-    if (c >= 25 && c <= 70) return { score: 88, note: "Mixed cloud cover" };
-    if (c < 25) return { score: 80, note: "Mostly clear skies" };
-    if (c < 85) return { score: 70, note: "Mostly cloudy" };
-    return { score: 55, note: "Heavy cloud cover" };
+    if (c >= 30 && c <= 60) return { score: 92, note: "Balanced cloud cover" };
+    if (c >= 25 && c <= 70) return { score: 82, note: "Mixed cloud cover" };
+    if (c < 25) return { score: 76, note: "Mostly clear skies" };
+    if (c < 85) return { score: 66, note: "Mostly cloudy" };
+    return { score: 50, note: "Heavy cloud cover" };
   }
 
   function factorScoreUv(s) {
     if (s.uv == null) return null;
     var u = s.uv;
-    if (u < 3) return { score: 90, note: "Low UV (" + round(u) + ")" };
-    if (u < 6) return { score: 78, note: "Moderate UV (" + round(u) + ")" };
-    if (u < 8) return { score: 58, note: "High UV (" + round(u) + ") — shade helps midday" };
-    if (u < 11) return { score: 40, note: "Very high UV (" + round(u) + ")" };
-    return { score: 25, note: "Extreme UV (" + round(u) + ")" };
+    if (u < 3) return { score: 95, note: "Low UV (" + round(u) + ")" };
+    if (u < 6) return { score: 74, note: "Moderate UV (" + round(u) + ")" };
+    if (u < 8) return { score: 54, note: "High UV (" + round(u) + ") — shade helps midday" };
+    if (u < 11) return { score: 36, note: "Very high UV (" + round(u) + ")" };
+    return { score: 22, note: "Extreme UV (" + round(u) + ")" };
   }
 
   function factorScoreAqi(s) {
     if (s.aqi == null) return null;
     var a = s.aqi;
-    if (a <= 50) return { score: 95, note: "Good air quality (US AQI " + round(a) + ")" };
-    if (a <= 100) return { score: 72, note: "Moderate air quality (US AQI " + round(a) + ")" };
-    if (a <= 150) return { score: 45, note: "Unhealthy for sensitive groups (US AQI " + round(a) + ")" };
-    if (a <= 200) return { score: 25, note: "Unhealthy air (US AQI " + round(a) + ")" };
-    return { score: 12, note: "Very unhealthy air (US AQI " + round(a) + ")" };
+    if (a <= 40) return { score: 98, note: "Clean air (US AQI " + round(a) + ")" };
+    if (a <= 50) return { score: 90, note: "Good air quality (US AQI " + round(a) + ")" };
+    if (a <= 100) return { score: 68, note: "Moderate air quality (US AQI " + round(a) + ")" };
+    if (a <= 150) return { score: 42, note: "Unhealthy for sensitive groups (US AQI " + round(a) + ")" };
+    if (a <= 200) return { score: 22, note: "Unhealthy air (US AQI " + round(a) + ")" };
+    return { score: 10, note: "Very unhealthy air (US AQI " + round(a) + ")" };
   }
 
   function factorScoreAlerts(s) {
     if (s.alertCount == null) return null;
-    /* Explicit zero is informative when alerts feed is present; unknown stays null. */
     if (s.alertCount === 0 && s._alertsKnown) {
-      return { score: 96, note: "No active weather alerts" };
+      return { score: 98, note: "No active weather alerts" };
     }
     if (s.alertCount === 0) return null;
-    if (s.alertCount === 1) return { score: 28, note: "One active alert — read official guidance" };
-    return { score: 12, note: s.alertCount + " active alerts — prioritize official guidance" };
+    if (s.alertCount === 1) return { score: 26, note: "One active alert — read official guidance" };
+    return { score: 10, note: s.alertCount + " active alerts — prioritize official guidance" };
   }
 
   function factorScoreRivers(s) {
     if (!s.riverLive) return null;
     var t = String(s.riverTrend || "");
     if (/flood|rapid|high|rise|rising|danger/.test(t)) {
-      return { score: 22, note: "Nearby gauge suggests elevated or rising flow" };
+      return { score: 20, note: "Nearby gauge suggests elevated or rising flow" };
     }
     if (/fall|falling|low|normal|stable|steady/.test(t)) {
-      return { score: 82, note: "Nearby gauge reads manageable (" + (s.riverNote || "local site") + ")" };
+      return { score: 88, note: "Nearby gauge reads manageable (" + (s.riverNote || "local site") + ")" };
     }
-    return { score: 65, note: "River gauge available — check locally before water plans" };
+    return { score: 62, note: "River gauge available — check locally before water plans" };
   }
 
   var FACTOR_FNS = {
@@ -325,6 +419,76 @@
     rivers: factorScoreRivers
   };
 
+  function assessConfidence(signals, presentCount, missing, hourlyCount) {
+    var reasons = [];
+    var totalKeys = Object.keys(SCORE_WEIGHTS).length;
+    var keyMissing = missing.filter(function (m) {
+      return m === "aqi" || m === "precipitation" || m === "temperature" || m === "uv";
+    });
+
+    if (!signals.weatherLive) {
+      reasons.push("Live weather has not settled yet");
+      return { label: "Limited", reasons: reasons };
+    }
+    if (presentCount < 4) {
+      reasons.push("Only " + presentCount + " of " + totalKeys + " score factors are present");
+      return { label: "Limited", reasons: reasons };
+    }
+
+    var score = 0;
+    if (presentCount >= 7) {
+      score += 2;
+      reasons.push(presentCount + " of " + totalKeys + " factors present");
+    } else if (presentCount >= 5) {
+      score += 1;
+      reasons.push(presentCount + " of " + totalKeys + " factors present");
+    } else {
+      reasons.push("Thin factor set (" + presentCount + " of " + totalKeys + ")");
+    }
+
+    if (hourlyCount >= HOURLY_HIGH_CONF_MIN) {
+      score += 2;
+      reasons.push("Hourly forecast covers " + hourlyCount + " hours");
+    } else if (hourlyCount >= HOURLY_PRECISION_MIN) {
+      score += 1;
+      reasons.push("Hourly forecast covers " + hourlyCount + " hours");
+    } else if (hourlyCount > 0) {
+      reasons.push("Hourly coverage is thin (" + hourlyCount + " rows)");
+    } else {
+      reasons.push("No hourly forecast rows in this load");
+    }
+
+    if (signals.fromCache) {
+      score -= 1;
+      reasons.push("Weather package is from cache");
+    } else {
+      score += 1;
+      reasons.push("Weather package is live (not cache)");
+    }
+
+    if (signals.ageHours != null && signals.ageHours > 6) {
+      score -= 1;
+      reasons.push("Observations are more than 6 hours old");
+    } else if (signals.ageHours != null && signals.ageHours <= 2) {
+      score += 1;
+      reasons.push("Observations look fresh");
+    }
+
+    if (signals.alertCount > 0) {
+      reasons.push("Active alerts lower certainty for outdoor plans");
+      score -= 1;
+    }
+
+    if (keyMissing.length) {
+      reasons.push("Missing key inputs: " + keyMissing.join(", "));
+      score -= 1;
+    }
+
+    if (score >= 4) return { label: "High", reasons: reasons };
+    if (score >= 1) return { label: "Moderate", reasons: reasons };
+    return { label: "Limited", reasons: reasons };
+  }
+
   /**
    * Outdoor Score 0–100 from weighted factors. Documents each contribution.
    */
@@ -334,6 +498,7 @@
     var weightSum = 0;
     var weighted = 0;
     var missing = [];
+    var weakest = null;
 
     Object.keys(SCORE_WEIGHTS).forEach(function (key) {
       var fn = FACTOR_FNS[key];
@@ -343,14 +508,17 @@
         missing.push(key);
         return;
       }
+      var sc = clamp(result.score, 0, 100);
       factors.push({
         id: key,
+        label: FACTOR_LABELS[key] || key,
         weight: weight,
-        score: clamp(result.score, 0, 100),
+        score: sc,
         note: result.note
       });
       weightSum += weight;
       weighted += result.score * weight;
+      if (!weakest || sc < weakest.score) weakest = { id: key, score: sc };
     });
 
     if (!weightSum || !factors.length) {
@@ -359,6 +527,7 @@
         display: "—",
         label: "Unavailable",
         confidence: "Limited",
+        confidenceReasons: ["Outdoor Score needs live weather before it can settle."],
         factors: [],
         missing: missing.slice(),
         algorithm: SCORE_WEIGHTS,
@@ -367,20 +536,43 @@
     }
 
     var value = round(weighted / weightSum);
-    var presentCount = factors.length;
-    var totalKeys = Object.keys(SCORE_WEIGHTS).length;
-    var conf = "High";
-    if (presentCount < 4 || !signals.weatherLive) conf = "Limited";
-    else if (presentCount < 6 || signals.fromCache || missing.indexOf("aqi") >= 0) conf = "Moderate";
+
+    /* Soft ceilings — Exceptional requires broad strength, not one lucky factor. */
+    if (signals.alertCount > 0 && value > 84) value = 84;
+    if (weakest && weakest.score < 40 && value >= 95) value = 94;
+    if (factors.length < 5 && value >= 95) value = 94;
+
+    var hourlyCount = signals.hourly ? signals.hourly.length : 0;
+    var conf = assessConfidence(signals, factors.length, missing, hourlyCount);
+
+    var summary;
+    if (conf.label === "Limited") {
+      summary = "Score is provisional — several inputs are still settling.";
+    } else if (conf.label === "Moderate") {
+      var limiter =
+        conf.reasons.filter(function (r) {
+          return /thin|missing|cache|old|alert|No hourly|not settled/i.test(r);
+        })[0] ||
+        conf.reasons[0] ||
+        "some inputs are thinner than a full load";
+      summary =
+        "Weighted from available weather, air, UV, and alert signals. Confidence is moderate because " +
+        String(limiter).toLowerCase() +
+        ".";
+    } else {
+      summary = "Weighted from available weather, air, UV, and alert signals with solid coverage.";
+    }
 
     return {
       value: value,
       display: String(value) + "/100",
       label: levelFromScore(value),
-      confidence: conf,
+      confidence: conf.label,
+      confidenceReasons: conf.reasons.slice(0, 5),
       factors: factors.map(function (f) {
         return {
           id: f.id,
+          label: f.label,
           weight: f.weight,
           weightShare: round((f.weight / weightSum) * 100),
           score: f.score,
@@ -389,15 +581,12 @@
       }),
       missing: missing,
       algorithm: SCORE_WEIGHTS,
-      summary:
-        conf === "Limited"
-          ? "Score is provisional — several inputs are still settling."
-          : "Weighted from available weather, air, UV, and alert signals."
+      summary: summary
     };
   }
 
   function activityBase(signals) {
-    var score = 72;
+    var score = 70;
     var notes = [];
     var limits = [];
     var cond = String(signals.conditions || "").toLowerCase();
@@ -432,7 +621,7 @@
     }
     if (signals.feelsF != null && signals.feelsF >= 55 && signals.feelsF <= 75) {
       score += 8;
-      notes.push("Comfortable temperatures");
+      notes.push("comfortable temperatures");
     }
     if (signals.feelsF != null && signals.feelsF >= 88) {
       score -= 16;
@@ -446,6 +635,66 @@
     return { score: score, notes: notes, limits: limits };
   }
 
+  function articleFor(level) {
+    if (level === "Exceptional" || level === "Excellent") return "An";
+    if (level === "Good" || level === "Mixed" || level === "Challenging") return "A";
+    return "A";
+  }
+
+  function fieldGuideSentence(id, label, level, notes, limits, available, signals) {
+    if (!available) {
+      return calm(
+        label +
+          " stays provisional here — " +
+          (limits[0] ? limits[0].toLowerCase() : "supporting data has not arrived") +
+          "."
+      );
+    }
+    if (!signals.weatherLive) {
+      return calm(label + " guidance is waiting on live weather for this place.");
+    }
+
+    var thanks = notes[0] || null;
+    var watch = limits[0] || null;
+    var levelWord = String(level || "Mixed").toLowerCase();
+
+    if (level === "Exceptional" || level === "Excellent") {
+      return calm(
+        articleFor(level) +
+          " " +
+          levelWord +
+          " day for " +
+          label.toLowerCase() +
+          (thanks ? " thanks to " + thanks : "") +
+          (watch ? " — watch for " + watch.toLowerCase() : "") +
+          "."
+      );
+    }
+    if (level === "Good") {
+      return calm(
+        "A good stretch for " +
+          label.toLowerCase() +
+          (thanks ? " with " + thanks : "") +
+          (watch ? ". " + watch + " may shape timing" : "") +
+          "."
+      );
+    }
+    if (level === "Mixed") {
+      return calm(
+        "Mixed conditions for " +
+          label.toLowerCase() +
+          (watch ? " — " + watch.toLowerCase() : thanks ? " despite " + thanks : "") +
+          "."
+      );
+    }
+    return calm(
+      "Challenging for " +
+        label.toLowerCase() +
+        (watch ? " because of " + watch.toLowerCase() : "") +
+        ". Shorter plans and flexible timing help."
+    );
+  }
+
   function tuneActivity(id, signals, base) {
     var score = base.score;
     var notes = base.notes.slice();
@@ -456,27 +705,27 @@
     if (id === "photography") {
       if (signals.cloudPct != null && signals.cloudPct >= 35 && signals.cloudPct <= 80) {
         score += 12;
-        notes.push("Soft, diffuse light likely");
+        notes.push("soft, diffuse light");
       } else if (signals.cloudPct != null && signals.cloudPct < 20) {
         score -= 6;
-        notes.push("Hard midday contrast on clear skies");
+        notes.push("hard midday contrast on clear skies");
       }
       if (signals.goldenHourEvening || signals.goldenHour) {
         score += 8;
-        notes.push("Golden hour window available");
+        notes.push("a golden-hour window on the daylight schedule");
       }
       if (/fog|mist/.test(String(signals.conditions || "").toLowerCase())) {
         score += 14;
-        notes.push("Fog softens woodland and water scenes");
+        notes.push("fog softening woodland and water scenes");
       }
     }
 
     if (id === "birding" || id === "wildlife") {
       if (signals.windMph != null && signals.windMph < 10) {
         score += 10;
-        notes.push("Calm air helps hearing and movement cues");
+        notes.push("calm air for hearing and movement cues");
       }
-      if (signals.sunrise) notes.push("Activity often peaks near sunrise");
+      if (signals.sunrise) notes.push("movement often peaking near sunrise");
       if (signals.precipProb != null && signals.precipProb >= 50) {
         score -= 8;
         limits.push("Rain may quiet wildlife");
@@ -487,7 +736,11 @@
     if (id === "hiking") {
       if (signals.feelsF != null && signals.feelsF >= 45 && signals.feelsF <= 72) {
         score += 10;
-        notes.push("Mild trail temperatures");
+        notes.push("mild trail temperatures");
+      }
+      if (signals.feelsF != null && signals.feelsF >= 82) {
+        score -= 8;
+        notes.push("cooler morning hours before heat");
       }
       if (signals.windMph != null && signals.windMph >= 22) {
         score -= 10;
@@ -498,11 +751,12 @@
     if (id === "trailRunning") {
       if (signals.feelsF != null && signals.feelsF >= 40 && signals.feelsF <= 68) {
         score += 10;
-        notes.push("Cooler air favors exertion");
+        notes.push("cooler air that favors exertion");
       }
       if (signals.feelsF != null && signals.feelsF >= 82) {
         score -= 14;
         limits.push("Heat raises exertion stress");
+        notes.push("morning before heat");
       }
       if (signals.humidity != null && signals.humidity >= 75) score -= 6;
     }
@@ -515,7 +769,9 @@
         limits = ["No nearby river gauge in this package"];
         score = 50;
       } else {
-        notes.push("Gauge data available" + (signals.riverNote ? " (" + signals.riverNote + ")" : ""));
+        notes.push(
+          "gauge data available" + (signals.riverNote ? " (" + signals.riverNote + ")" : "")
+        );
         if (/flood|rapid|high|rise|rising/.test(String(signals.riverTrend || ""))) {
           score -= 25;
           limits.push("Elevated flow — verify before entering water");
@@ -532,7 +788,7 @@
     if (id === "gardening") {
       if (signals.feelsF != null && signals.feelsF >= 50 && signals.feelsF <= 80) {
         score += 8;
-        notes.push("Workable outdoor temperatures");
+        notes.push("workable outdoor temperatures");
       }
       if (signals.precipProb != null && signals.precipProb >= 50) {
         score -= 10;
@@ -540,14 +796,20 @@
       }
       if (signals.uv != null && signals.uv >= 8) {
         score -= 6;
-        notes.push("High UV — shade breaks help");
+        notes.push("high UV — shade breaks help");
       }
     }
 
     if (id === "camping") {
-      if (signals.precipProb != null && signals.precipProb < 30 && signals.feelsF != null && signals.feelsF >= 45 && signals.feelsF <= 78) {
+      if (
+        signals.precipProb != null &&
+        signals.precipProb < 30 &&
+        signals.feelsF != null &&
+        signals.feelsF >= 45 &&
+        signals.feelsF <= 78
+      ) {
         score += 10;
-        notes.push("Dry, mild overnight setup looks reasonable");
+        notes.push("dry, mild overnight setup looking reasonable");
       }
       if (signals.precipProb != null && signals.precipProb >= 55) {
         score -= 16;
@@ -563,7 +825,7 @@
     if (id === "astronomy") {
       if (signals.cloudPct != null && signals.cloudPct <= 30) {
         score += 14;
-        notes.push("Clearer skies favor stars");
+        notes.push("clearer skies favoring stars");
       } else if (signals.cloudPct != null && signals.cloudPct >= 70) {
         score -= 22;
         limits.push("Clouds will limit the night sky");
@@ -573,7 +835,7 @@
         limits.push("Bright moon washes faint stars");
       } else if (signals.moonIllumination != null && signals.moonIllumination < 40) {
         score += 8;
-        notes.push("Lower moon brightness helps dark-sky views");
+        notes.push("lower moon brightness helping dark-sky views");
       }
       if (signals.cloudPct == null && signals.moonIllumination == null) confKey = "limited";
     }
@@ -581,33 +843,42 @@
     if (id === "generalOutdoor") {
       if (signals.feelsF != null && signals.feelsF >= 50 && signals.feelsF <= 78) {
         score += 8;
-        notes.push("Pleasant for unhurried outdoor time");
+        notes.push("pleasant air for unhurried outdoor time");
       }
     }
 
     score = clamp(score, 5, 98);
     var level = levelFromScore(score);
     if (!signals.weatherLive) {
-      level = "Fair";
+      level = "Mixed";
       confKey = "limited";
       limits = limits.length ? limits : ["Live weather not available yet"];
     }
 
-    var explanation =
-      notes[0] ||
-      limits[0] ||
-      (available ? "Based on current weather and air signals" : "Waiting on supporting data");
+    var label = ACTIVITY_LABELS[id] || id;
+    var explanation = fieldGuideSentence(
+      id,
+      label,
+      level,
+      notes,
+      limits,
+      available,
+      signals
+    );
 
     return {
       id: id,
-      label: ACTIVITY_LABELS[id] || id,
+      label: label,
+      icon: ACTIVITY_ICONS[id] || "○",
       level: level,
       score: score,
       confidence: confidenceLabel(confKey),
-      explanation: calm(explanation) || "Based on available conditions",
+      explanation: explanation || calm("Based on available conditions"),
+      recommendation: explanation,
       notes: notes.slice(0, 3).map(calm).filter(Boolean),
       limits: limits.slice(0, 3).map(calm).filter(Boolean),
       available: available,
+      bestWindow: null,
       inputs: {
         tempF: signals.tempF,
         precipProb: signals.precipProb,
@@ -650,7 +921,6 @@
     }
     if (id === "wildlife") {
       if (wind != null && wind < 10) score += 12;
-      /* Prefer dawn/dusk hours when time known */
       if (hour._localHour != null) {
         var h = hour._localHour;
         if (h >= 5 && h <= 9) score += 14;
@@ -667,11 +937,10 @@
     return score;
   }
 
-  function practicalFromHourly(id, signals) {
+  function scoredHourlyRows(id, signals) {
     var hourly = signals.hourly || [];
-    if (!hourly.length) return null;
     var nowMs = signals.now ? signals.now.getTime() : Date.now();
-    var best = null;
+    var rows = [];
     hourly.forEach(function (h) {
       var t = h.time ? new Date(h.time) : null;
       if (!t || isNaN(t.getTime())) return;
@@ -680,6 +949,7 @@
       var localHour = t.getHours();
       var row = {
         time: h.time,
+        date: t,
         precipitation: h.precipitation,
         wind: h.wind,
         cloudCover: h.cloudCover,
@@ -687,16 +957,59 @@
         temperature: h.temperature,
         _localHour: localHour
       };
-      var sc = hourlyScoreFor(id, row, signals);
-      if (!best || sc > best.score) {
-        best = { score: sc, hour: localHour, time: t };
-      }
+      row.score = hourlyScoreFor(id, row, signals);
+      rows.push(row);
     });
-    if (!best) return null;
+    return rows;
+  }
+
+  /**
+   * When hourly coverage is reliable, return a practical clock range from the
+   * best contiguous stretch. Otherwise null (caller uses band fallback).
+   */
+  function practicalFromHourly(id, signals) {
+    var rows = scoredHourlyRows(id, signals);
+    var hourlyLen = (signals.hourly || []).length;
+    if (rows.length < 2 || hourlyLen < HOURLY_PRECISION_MIN) return null;
+
+    var bestIdx = 0;
+    rows.forEach(function (r, i) {
+      if (r.score > rows[bestIdx].score) bestIdx = i;
+    });
+
+    var startIdx = bestIdx;
+    var endIdx = bestIdx;
+    while (startIdx > 0 && rows[startIdx - 1].score >= rows[bestIdx].score - 8) {
+      startIdx -= 1;
+    }
+    while (endIdx < rows.length - 1 && rows[endIdx + 1].score >= rows[bestIdx].score - 8) {
+      endIdx += 1;
+    }
+
+    /* Prefer a 1–3 hour practical window centered on the peak. */
+    if (endIdx - startIdx > 2) {
+      startIdx = Math.max(0, bestIdx - 1);
+      endIdx = Math.min(rows.length - 1, bestIdx + 1);
+    }
+
+    var start = rows[startIdx].date;
+    var end = new Date(rows[endIdx].date.getTime() + 60 * 60000);
+    var range = formatClockRange(start, end);
+    if (!range) return null;
+
+    var conf = "Moderate";
+    if (hourlyLen >= HOURLY_HIGH_CONF_MIN && signals.weatherLive && !signals.fromCache) {
+      conf = "High";
+    } else if (hourlyLen < HOURLY_PRECISION_MIN) {
+      conf = "Limited";
+    }
+
     return {
-      band: hourBand(best.hour),
-      confidence: hourly.length >= 6 ? "Moderate" : "Limited",
-      source: "hourly"
+      band: range,
+      confidence: conf,
+      source: "hourly",
+      precision: "range",
+      detail: calm("Practical range from the hourly forecast — still a guide, not an appointment.")
     };
   }
 
@@ -706,24 +1019,27 @@
       if (gh) {
         var phr = parseClockHour(gh);
         return {
-          band: phr != null ? hourBand(phr) : "near sunset",
+          band: phr != null ? hourBand(phr) : "Near Sunset",
           confidence: "Moderate",
           source: "daylight",
+          precision: "band",
           detail: calm("Golden hour softens color and shadow.")
         };
       }
       return {
-        band: "near sunset",
+        band: "Near Sunset",
         confidence: "Limited",
         source: "heuristic",
+        precision: "band",
         detail: calm("Without hourly light data, late-day light is the usual photography window.")
       };
     }
     if (id === "wildlife") {
       return {
-        band: signals.sunrise ? "early morning" : "early morning",
+        band: "Early Morning",
         confidence: signals.sunrise ? "Moderate" : "Limited",
         source: signals.sunrise ? "daylight" : "heuristic",
+        precision: "band",
         detail: calm(
           signals.sunrise
             ? "Wildlife movement often concentrates near sunrise (" + signals.sunrise + ")."
@@ -741,33 +1057,36 @@
         detail = "Cloud cover will likely limit stars tonight.";
       }
       return {
-        band: signals.sunset ? "this evening" : "this evening",
+        band: "This Evening",
         confidence: conf,
         source: signals.cloudPct != null ? "conditions" : "heuristic",
+        precision: "band",
         detail: calm(detail)
       };
     }
-    /* hiking */
     if (signals.feelsF != null && signals.feelsF >= 82) {
       return {
-        band: "early morning",
+        band: "Early Morning",
         confidence: signals.weatherLive ? "Moderate" : "Limited",
         source: "temperature",
+        precision: "band",
         detail: calm("Cooler morning hours ease heat on the trail.")
       };
     }
     if (signals.precipProb != null && signals.precipProb >= 45) {
       return {
-        band: "early morning",
+        band: "Early Morning",
         confidence: "Moderate",
         source: "precipitation",
+        precision: "band",
         detail: calm("Earlier hours often stay drier when rain risk rises later.")
       };
     }
     return {
-      band: "through late morning",
+      band: "Late Morning",
       confidence: signals.weatherLive ? "Moderate" : "Limited",
       source: "heuristic",
+      precision: "band",
       detail: calm("Mild late-morning hours are a practical hiking default when hourly detail is thin.")
     };
   }
@@ -780,7 +1099,7 @@
       var chosen = fromHourly || fb;
       var confidence = chosen.confidence || "Limited";
       if (!signals.weatherLive) confidence = "Limited";
-      if (fromHourly && fromHourly.confidence === "Limited") confidence = "Limited";
+      if (!fromHourly && fb.confidence === "Limited") confidence = "Limited";
       var label =
         id === "hiking"
           ? "Hiking"
@@ -789,17 +1108,36 @@
             : id === "wildlife"
               ? "Wildlife"
               : "Stargazing";
+      var precision = chosen.precision || (fromHourly ? "range" : "band");
       return {
         id: id,
         label: label,
         window: chosen.band,
         confidence: confidence,
         explanation:
-          calm((fb && fb.detail) || "") ||
-          calm("Practical timing band from available forecast cues — not a precise appointment."),
-        precision: "band",
+          calm((chosen && chosen.detail) || (fb && fb.detail) || "") ||
+          calm("Practical timing from available forecast cues — not a precise appointment."),
+        precision: precision,
         source: chosen.source || "heuristic"
       };
+    });
+  }
+
+  function attachActivityWindows(activities, windows) {
+    var byId = {};
+    (windows || []).forEach(function (w) {
+      byId[w.id] = w;
+    });
+    return (activities || []).map(function (a) {
+      var mapId = ACTIVITY_WINDOW_MAP[a.id] || "hiking";
+      var w = byId[mapId];
+      var next = Object.assign({}, a);
+      if (w) {
+        next.bestWindow = w.window;
+        next.bestWindowConfidence = w.confidence;
+        next.bestWindowPrecision = w.precision;
+      }
+      return next;
     });
   }
 
@@ -814,7 +1152,10 @@
 
     var top = (activities || [])
       .filter(function (a) {
-        return a.available !== false && (a.level === "Excellent" || a.level === "Good");
+        return (
+          a.available !== false &&
+          (a.level === "Exceptional" || a.level === "Excellent" || a.level === "Good")
+        );
       })
       .slice()
       .sort(function (a, b) {
@@ -824,35 +1165,57 @@
     var parts = [];
     if (signals.alertCount > 0) {
       parts.push(
-        "Official alerts are active nearby — read those first, then treat the rest of this briefing as secondary."
+        "Official alerts are active nearby — read those first, then treat the rest of this briefing as secondary context."
       );
-    } else if (score && score.value != null && score.value >= 80) {
+    } else if (score && score.value != null && score.value >= 95) {
       parts.push(
-        "A strong day for unhurried outdoor time" +
+        "An exceptional stretch for unhurried outdoor time" +
+          (signals.conditions ? " under " + String(signals.conditions).toLowerCase() : "") +
+          " — the kind of day that rewards slow noticing."
+      );
+    } else if (score && score.value != null && score.value >= 85) {
+      parts.push(
+        "An excellent day for being outside" +
           (signals.conditions ? " under " + String(signals.conditions).toLowerCase() : "") +
           "."
       );
-    } else if (score && score.value != null && score.value >= 60) {
-      parts.push("A workable outdoor day with a few tradeoffs to watch.");
+    } else if (score && score.value != null && score.value >= 70) {
+      parts.push("A good outdoor day with a few tradeoffs worth watching.");
+    } else if (score && score.value != null && score.value >= 55) {
+      parts.push("A mixed outdoor day — shorter routes and flexible timing keep it enjoyable.");
     } else if (score && score.value != null) {
       parts.push("Outdoor plans benefit from shorter routes and flexible timing today.");
     } else {
       parts.push("Outdoor guidance is provisional while key signals settle.");
     }
 
-    if (top[0]) {
-      parts.push(top[0].label + " looks " + top[0].level.toLowerCase() + " — " + top[0].explanation + ".");
+    if (top[0] && top[0].explanation) {
+      parts.push(top[0].explanation);
+    } else if (top[0]) {
+      parts.push(
+        top[0].label + " looks " + String(top[0].level).toLowerCase() + " on today's signals."
+      );
     }
+
     if (signals.aqi != null && signals.aqi > 100) {
       parts.push("Air quality is elevated; ease prolonged exertion if you are sensitive.");
     } else if (signals.uv != null && signals.uv >= 7) {
-      parts.push("UV is elevated midday — shade and cover help.");
+      parts.push("UV runs high toward midday — shade and cover help.");
+    } else if (signals.feelsF != null && signals.feelsF >= 82) {
+      parts.push("Heat builds later — morning hours are usually kinder.");
     }
 
     var text = calm(parts.join(" "));
     if (!text) {
       text = "Read the instruments below; guidance stays provisional when signals conflict.";
     }
+    /* Keep Take short — naturalist, not lecture. */
+    if (text.length > 320) {
+      var cut = text.slice(0, 300);
+      var last = Math.max(cut.lastIndexOf("."), cut.lastIndexOf("—"));
+      text = last > 120 ? cut.slice(0, last + 1) : cut.replace(/\s+\S*$/, "") + ".";
+    }
+
     var conf = "Moderate";
     if (score && score.confidence === "High" && signals.aqiLive) conf = "High";
     if (score && score.confidence === "Limited") conf = "Limited";
@@ -911,13 +1274,17 @@
       return w.id === "hiking";
     })[0];
     if (hikeWin && hikeWin.window) {
-      lines.push("Hiking window leans " + hikeWin.window + ".");
+      lines.push(
+        hikeWin.precision === "range"
+          ? "Hiking window around " + hikeWin.window + "."
+          : "Hiking window leans " + String(hikeWin.window).toLowerCase() + "."
+      );
     }
 
     var photo = (activities || []).filter(function (a) {
       return a.id === "photography";
     })[0];
-    if (photo && (photo.level === "Excellent" || photo.level === "Good")) {
+    if (photo && (photo.level === "Exceptional" || photo.level === "Excellent" || photo.level === "Good")) {
       lines.push("Photography looks " + photo.level.toLowerCase() + ".");
     }
 
@@ -952,6 +1319,7 @@
     var contributing = (score && score.factors ? score.factors : []).map(function (f) {
       return {
         factor: f.id,
+        label: f.label || FACTOR_LABELS[f.id] || f.id,
         weightShare: f.weightShare,
         score: f.score,
         note: f.note
@@ -963,17 +1331,83 @@
         id: a.id,
         level: a.level,
         confidence: a.confidence,
-        explanation: a.explanation
+        explanation: a.explanation,
+        bestWindow: a.bestWindow
       };
     });
+
+    var educational = [];
+    if (signals) {
+      if (signals.humidity != null) {
+        educational.push({
+          id: "humidity",
+          label: "Humidity",
+          text:
+            signals.humidity >= 70
+              ? "Higher humidity can make mild temperatures feel heavier on longer walks."
+              : signals.humidity <= 35
+                ? "Drier air can feel crisp; skin and airways may notice it sooner."
+                : "Humidity is in a comfortable middle range for most unhurried outings."
+        });
+      }
+      if (signals.cloudPct != null) {
+        educational.push({
+          id: "clouds",
+          label: "Cloud cover",
+          text:
+            signals.cloudPct >= 70
+              ? "Heavy cloud cover softens light and can mute night-sky views."
+              : signals.cloudPct <= 25
+                ? "Clearer skies mean stronger sun and sharper shadows midday."
+                : "Mixed clouds often give pleasant, even light for walking and noticing."
+        });
+      }
+      if (signals.windMph != null) {
+        educational.push({
+          id: "wind",
+          label: "Wind",
+          text:
+            signals.windMph >= 18
+              ? "Breezier air can quiet birdsong and make ridges feel cooler than the valley."
+              : "Lighter wind helps hearing wildlife and keeps open water calmer."
+        });
+      }
+      if (signals.uv != null) {
+        educational.push({
+          id: "uv",
+          label: "UV",
+          text:
+            signals.uv >= 7
+              ? "Higher UV builds toward midday — shade, cover, and shorter exposed stretches help."
+              : "UV is modest enough that shade is optional for many short outings."
+        });
+      }
+      if (signals.riverLive) {
+        educational.push({
+          id: "rivers",
+          label: "Rivers",
+          text: signals.riverNote
+            ? "A nearby gauge (" +
+              signals.riverNote +
+              ") is in this package — useful context before water plans, not a substitute for local judgment."
+            : "A nearby river gauge is in this package — useful context before water plans."
+        });
+      }
+    }
+
+    var confReasons =
+      (score && score.confidenceReasons) ||
+      [];
 
     return {
       title: "Explain why",
       confidence: (score && score.confidence) || "Limited",
+      confidenceReasons: confReasons,
       summary:
         (score && score.summary) ||
         "Guidance uses only the signals present in this load — missing inputs are listed, not invented.",
       contributing: contributing,
+      educational: educational.slice(0, 5),
       missing: missing,
       weights: SCORE_WEIGHTS,
       activities: activityTop,
@@ -1021,6 +1455,7 @@
     var score = computeOutdoorScore(signals);
     var activities = recommendActivities(signals);
     var windows = bestTimeWindows(signals);
+    activities = attachActivityWindows(activities, windows);
     var take = waypointTake(signals, score, activities);
     var lines = composeSummaryLines(signals, score, activities, windows);
     var explanation = buildExplanation(signals, score, activities, windows, take);
@@ -1044,7 +1479,8 @@
         aqi: signals.aqi,
         uv: signals.uv,
         alertCount: signals.alertCount,
-        riverLive: signals.riverLive
+        riverLive: signals.riverLive,
+        hourlyCount: signals.hourly ? signals.hourly.length : 0
       }
     };
   }
@@ -1053,7 +1489,9 @@
   global.WDS.dashboardRebuildIntelligence = {
     version: VERSION,
     SCORE_WEIGHTS: SCORE_WEIGHTS,
+    FACTOR_LABELS: FACTOR_LABELS,
     ACTIVITY_IDS: ACTIVITY_IDS.slice(),
+    ACTIVITY_ICONS: ACTIVITY_ICONS,
     LEVELS: LEVELS.slice(),
     CONFIDENCE: CONFIDENCE.slice(),
     extractSignals: extractSignals,
@@ -1065,6 +1503,7 @@
     buildExplanation: buildExplanation,
     generate: generate,
     levelFromScore: levelFromScore,
-    hourBand: hourBand
+    hourBand: hourBand,
+    formatClockRange: formatClockRange
   };
 })(typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global);
