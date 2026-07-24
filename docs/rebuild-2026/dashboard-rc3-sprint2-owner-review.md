@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprint 1 owner review  
 **Base:** `feature/dashboard-rc3-sprint1-intelligence` @ `9f21540` (RC3 Sprint 1 tip)  
 **Branch:** `feature/dashboard-rc3-sprint2-refinement`  
-**Final commit SHA:** _(filled after commit)_  
+**Final commit SHA:** `e155991d0554b0a5c41adec14c03ab25e8154170` (feature tip; docs pin may follow)  
 **Deployment status:** **Not deployed**
 
 ---
@@ -206,7 +206,7 @@ Coverage added/expanded: score bands + calibration fixtures, confidence reasons,
 |------|-------|
 | Branch | `feature/dashboard-rc3-sprint2-refinement` |
 | Base | Sprint 1 tip `9f21540` |
-| Final commit SHA | _(filled after commit)_ |
+| Final commit SHA | `e155991d0554b0a5c41adec14c03ab25e8154170` (feature; docs pin follows) |
 | Merged to main? | **No** |
 | Deployed? | **Not deployed** |
 
