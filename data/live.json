@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-24T04:00:01.968Z",
-  "nextScheduledUpdate": "2026-07-24T04:30:00.000Z",
+  "updatedAt": "2026-07-24T04:30:01.405Z",
+  "nextScheduledUpdate": "2026-07-24T05:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,7 +18,7 @@
   "current": {
     "temperatureF": 67,
     "feelsLikeF": 68,
-    "humidity": 88,
+    "humidity": 89,
     "windMph": 10,
     "windGustMph": 22,
     "cloudCover": 100,
@@ -26,7 +26,7 @@
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-07-23T23:00"
+    "observedAt": "2026-07-23T23:30"
   },
   "forecast": {
     "highF": 72,
@@ -36,12 +36,6 @@
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-07-24T00:00",
-        "temperatureF": 67,
-        "precipProbability": 27,
-        "conditions": "Overcast"
-      },
       {
         "time": "2026-07-24T01:00",
         "temperatureF": 67,
@@ -71,6 +65,12 @@
         "temperatureF": 67,
         "precipProbability": 19,
         "conditions": "Fog"
+      },
+      {
+        "time": "2026-07-24T06:00",
+        "temperatureF": 67,
+        "precipProbability": 15,
+        "conditions": "Fog"
       }
     ],
     "note": "Rain chance 47% around 1:00 AM"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 69,
-    "phaseValue": 0.343,
+    "phaseValue": 0.344,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 582.0611715316772,
+        "generationtime_ms": 440.73331356048584,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-23T23:00",
+          "time": "2026-07-23T23:30",
           "interval": 900,
           "temperature_2m": 67.3,
-          "relative_humidity_2m": 88,
-          "apparent_temperature": 68.1,
+          "relative_humidity_2m": 89,
+          "apparent_temperature": 68.2,
           "weather_code": 3,
-          "wind_speed_10m": 9.7,
-          "wind_direction_10m": 103,
-          "wind_gusts_10m": 21.7,
+          "wind_speed_10m": 9.9,
+          "wind_direction_10m": 115,
+          "wind_gusts_10m": 21.9,
           "cloud_cover": 100,
-          "surface_pressure": 948.3,
+          "surface_pressure": 948.8,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 69,
-        "phaseValue": 0.343,
+        "phaseValue": 0.344,
         "trust": "Estimated"
       }
     },
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-24T04:00:01.968Z",
+    "generatedAt": "2026-07-24T04:30:01.405Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
