@@ -137,10 +137,29 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Sprint 6 polish merge-gate recovery
+
+**Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  
+**Branch:** `integration/dashboard-rc25-sprint6`  
+**Backup:** `backup/dashboard-rc25-sprint6-pre-reconcile`
+
+1. **When polish already sits on main’s tip, cherry-pick the product commit
+   only** — tip-SHA docs churn and unrelated walkthrough commits dilute the
+   merge package; keep backup of the original branch tip.
+2. **Canonical merge-gate path can reuse a filename** — rewrite
+   `platform-polish-rc2-owner-review.md` as the Sprint 6 gate when that is the
+   agreed owner path; point supporting `OWNER-REVIEW.md` at it so links stay
+   honest.
+3. **Stash unrelated dirty trees before integrate** — privacy/RC2 HTML must
+   not ride the polish cherry-pick; restore later on a non-integration branch.
+4. **Re-verify baseline failures on `origin/main`** before blaming the sprint
+   (`home-rc1` support assert + stale `today-outside` Outdoor OS suite).
+
 ### 2026-07-23 — Dashboard RC2.5 Sprint 6 (experience polish)
 
-**Artifact:** `docs/dashboard-rc25-sprint6/OWNER-REVIEW.md`
-**Branch:** `polish/dashboard-rc25-sprint6`
+**Artifact:** `docs/dashboard-rc25-sprint6/OWNER-REVIEW.md` (supporting);  
+merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
+**Branch:** `polish/dashboard-rc25-sprint6` → `integration/dashboard-rc25-sprint6`
 
 1. **Family grouping beats category noise** — Quiet ENVIRONMENTAL / ASTRONOMY /
    PHOTOGRAPHY labels + default order (Conditions→Air→Alerts→Astronomy→Light)

@@ -1,11 +1,11 @@
 {
-  "capturedAt": "2026-07-23T23:43:48.544Z",
+  "capturedAt": "2026-07-24T03:04:20.582Z",
   "base": "http://127.0.0.1:8765",
   "sprint": "dashboard-rc25-sprint6",
   "desktopMeta": {
     "place": "Pike County, PA",
     "facts": 4,
-    "today": "72°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 48.\nThe moon is a waxing gibbous.",
+    "today": "62°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 43.\nThe moon is a waxing gibbous.",
     "hydrated": true,
     "pending": 0,
     "statuses": [
@@ -14,14 +14,12 @@
   },
   "phoneMeta": {
     "place": "Pike County, PA",
-    "facts": 2,
-    "today": "72°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 48.\nThe moon is a waxing gibbous.",
+    "facts": 4,
+    "today": "62°F under clear sky.\nWinds remain light.\nGolden hour begins at 7:26 PM.\nBlue hour softens around 8:26 PM.\nSunset is at 8:26 PM.\nAir quality is Good.\nUS AQI reads 43.\nThe moon is a waxing gibbous.",
     "hydrated": true,
     "pending": 0,
     "statuses": [
-      "No active alerts for this place.",
-      "Sky context will appear here.",
-      "Sunrise and light windows will appear here."
+      "No active alerts for this place."
     ]
   },
   "overflowChecks": [

@@ -1,12 +1,17 @@
-# Dashboard RC2.5 Sprint 6 — Owner Review
+# Dashboard RC2.5 Sprint 6 — Owner Review (supporting)
+
+**Merge-gate authority:** Superseded for merge decision by  
+[`docs/rebuild-2026/platform-polish-rc2-owner-review.md`](../rebuild-2026/platform-polish-rc2-owner-review.md).
 
 **Status:** Polish complete on branch — **not deployed to production**  
-**Date:** 2026-07-23  
+**Date:** 2026-07-23 (supporting); merge-gate refresh 2026-07-24  
 **Sprint:** Dashboard Experience Polish & Product Quality (not a feature sprint)  
-**Branch:** `polish/dashboard-rc25-sprint6`  
-**Base:** `fix/mobile-tile-editing` (`a349e68`)  
-**Final commit SHA:** _(filled after commit)_  
-**Deployment status:** **Not deployed** — branch pushed for owner review only; no merge to main / no production publish in this block.
+**Original branch:** `polish/dashboard-rc25-sprint6`  
+**Integration branch:** `integration/dashboard-rc25-sprint6`  
+**Base:** `origin/main` (`a349e68`, includes mobile tile editing)  
+**Original polish SHA:** `447836524aefa77c3c2e88c5161d212ad17dd3d1`  
+**Cherry-pick on integration:** `794e7f210ad5df81111d597f40eac00aae913f45`  
+**Deployment status:** **Not deployed** — no merge to main / no production publish in this block.
 
 ---
 
