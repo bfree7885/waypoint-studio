@@ -174,5 +174,5 @@ Evidence: linear S1–S5 stack on `release/dashboard-rc3`, Sprint 6 stabilizatio
 | Branch | `release/dashboard-rc3` |
 | Stabilization SHA | `b4d44eb` |
 | Tip SHA | `c1fd0ce` (docs pin) |
-| Push | pending |
+| Push | **OK** —  |
 | Deployment status | **Not deployed** |
