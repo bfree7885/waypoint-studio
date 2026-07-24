@@ -6,7 +6,7 @@
 **Authority:** Product standards · Engineering playbook · Rebuild architecture · Sprints 1–5 owner reviews  
 **Release candidate branch:** `release/dashboard-rc3`  
 **Base tip:** Sprint 5 stack (`feature/dashboard-rc3-sprint5-personal-workspace`) — linear S1→S5 feature commits  
-**Stabilization commit SHA:** _(filled after commit)_  
+**Stabilization commit SHA:**  ()  
 **Deployment status:** **Not deployed**
 
 ---
