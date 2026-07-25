@@ -14,7 +14,7 @@
 | **Repository** | `/home/bryan/Projects/waypoint-studio` |
 | **Branch** | `feature/scenes-sprint3-scene-library` |
 | **Starting SHA** | `e8258e187b7c72c31110327888fb4274207b851b` |
-| **Ending SHA** | _(filled after commit)_ |
+| **Ending SHA** | `0c2ae2ac2cb9f303ff47dd755c8629e4f7ee160e` |
 | **Working-tree status** | Sprint 3 committed and pushed on the feature branch. |
 
 ### Base-branch note
