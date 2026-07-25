@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: b3b8e8e
-2) Build date/time: 2026-07-25T07:00:18.173Z
+1) Current deployed commit hash: 40c4238
+2) Build date/time: 2026-07-25T07:30:43.485Z
 3) Active page title: Waypoint Studio
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -21,13 +21,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: HEALTHY
 Snapshot source: server pre-render
-Snapshot captured at: 2026-07-25T07:00:01.235Z
+Snapshot captured at: 2026-07-25T07:30:01.915Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;b3b8e8e&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-25T07:00:18.173Z&quot;,
+  &quot;commitHash&quot;: &quot;40c4238&quot;,
+  &quot;buildTime&quot;: &quot;2026-07-25T07:30:43.485Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-25T07:00:01.235Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-07-25T07:30:01.915Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -61,7 +61,7 @@ Raw snapshot:
       &quot;stale&quot;: false
     },
     &quot;river_gauges&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
+      &quot;status&quot;: &quot;fallback&quot;,
       &quot;stale&quot;: false
     },
     &quot;ebird&quot;: {
@@ -85,8 +85,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "b3b8e8e";
-  var FALLBACK_BUILD = "2026-07-25T07:00:18.173Z";
+  var FALLBACK_COMMIT = "40c4238";
+  var FALLBACK_BUILD = "2026-07-25T07:30:43.485Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -156,7 +156,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"b3b8e8e","buildTime":"2026-07-25T07:00:18.173Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-07-25T07:00:01.235Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"live","stale":false},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"40c4238","buildTime":"2026-07-25T07:30:43.485Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-07-25T07:30:01.915Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":false},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
