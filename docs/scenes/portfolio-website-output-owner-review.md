@@ -5,7 +5,7 @@
 **Cut from:** `feature/scenes-portfolio-health`  
 **Starting SHA:** `6a38dbb72bebe95584cc531f23af13caa07c8d78` (matches brief expectation)  
 **Implementation commit:** `bf51af4c239e700b08029c217153ead1a3d2e7d8`  
-**Final / tip SHA:** `bf51af4c239e700b08029c217153ead1a3d2e7d8` (docs stamp may advance tip)  
+**Final / tip SHA:** `e8404ee0b57169c8792ee87db55156fa851ae462` (docs stamp tip after implementation `bf51af4c239e700b08029c217153ead1a3d2e7d8`)  
 **Base health tip:** `6a38dbb` · **Base builder:** `09a2146` · **Base coach:** `ef7ed25` · **Base assistant:** `5780d05` · **Base foundation:** `4f8d18c`  
 **Deployment status:** **Not deployed** · **Not merged**  
 **Dashboard / Sheds:** **Untouched**
