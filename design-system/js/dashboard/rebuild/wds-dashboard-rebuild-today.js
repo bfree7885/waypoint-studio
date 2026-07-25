@@ -188,8 +188,12 @@
       '<span class="wdb-r-today__conf" data-confidence="' +
       escapeHtml(confClass(score.confidence)) +
       '">' +
-      escapeHtml(score.confidence) +
-      " confidence</span>" +
+      escapeHtml(
+        confClass(score.confidence) === "limited"
+          ? "Limited confidence — some inputs still settling"
+          : score.confidence + " confidence"
+      ) +
+      "</span>" +
       "</p>" +
       "</div>"
     );

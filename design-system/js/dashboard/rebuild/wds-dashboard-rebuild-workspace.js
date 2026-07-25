@@ -52,7 +52,7 @@
       '<span class="wdb-r-skeleton__line"></span>' +
       '<span class="wdb-r-skeleton__line wdb-r-skeleton__line--sm"></span>' +
       "</div>" +
-      '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="waiting">Waiting</span></p>' +
+      '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="waiting">Settling</span></p>' +
       "</div>"
     );
   }

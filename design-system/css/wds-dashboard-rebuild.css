@@ -1251,6 +1251,15 @@
   align-items: center;
   gap: 0.55rem;
   min-width: 0;
+  flex: 1 1 auto;
+}
+
+.wdb-r-interests__actions {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 0 0 auto;
 }
 
 .wdb-r-interests__rank {
@@ -1269,12 +1278,6 @@
 .wdb-r-interests__item.is-on .wdb-r-interests__rank {
   color: var(--wdb-r-ink, inherit);
   background: color-mix(in srgb, var(--wdb-r-accent, #6b9bd1) 18%, transparent);
-}
-
-.wdb-r-interests__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
 }
 
 .wdb-r-interests__actions .wdb-r-btn[disabled] {
