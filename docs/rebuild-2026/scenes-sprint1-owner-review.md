@@ -14,7 +14,7 @@
 | **Repository** | `/home/bryan/Projects/waypoint-studio` |
 | **Branch** | `feature/scenes-sprint1-four-pillar-foundation` |
 | **Starting SHA** | _(filled after commit)_ |
-| **Ending SHA** | `dff8ff80fd8099464e5447ec9290ee1a07e98ba6` |
+| **Ending SHA** | `d277ec5c1410da70c898789f347abde8c68dfac3` |
 | **Working-tree status** | Sprint 1 changes committed on the feature branch. Pre-existing identity placeholder SVG edits under `assets/images/identity/placeholders/` left **uncommitted** (unrelated). |
 
 ---
