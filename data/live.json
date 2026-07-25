@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-25T05:30:01.715Z",
-  "nextScheduledUpdate": "2026-07-25T06:00:00.000Z",
+  "updatedAt": "2026-07-25T06:00:01.889Z",
+  "nextScheduledUpdate": "2026-07-25T06:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 75,
+    "temperatureF": 74,
     "feelsLikeF": 82,
-    "humidity": 91,
-    "windMph": 5,
-    "windGustMph": 10,
+    "humidity": 93,
+    "windMph": 4,
+    "windGustMph": 9,
     "cloudCover": 0,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-25T00:30"
+    "observedAt": "2026-07-25T01:00"
   },
   "forecast": {
     "highF": 103,
@@ -50,27 +50,27 @@
       },
       {
         "time": "2026-07-25T04:00",
-        "temperatureF": 72,
+        "temperatureF": 73,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-25T05:00",
-        "temperatureF": 72,
+        "temperatureF": 73,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-25T06:00",
-        "temperatureF": 71,
-        "precipProbability": 1,
-        "conditions": "Mainly clear"
+        "temperatureF": 72,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
       },
       {
         "time": "2026-07-25T07:00",
         "temperatureF": 71,
         "precipProbability": 0,
-        "conditions": "Fog"
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 76,
-    "phaseValue": 0.379,
+    "phaseValue": 0.38,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 50,
-    "pm25": 7.5,
+    "usAqi": 49,
+    "pm25": 7.6,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 326.8781900405884,
+        "generationtime_ms": 749.7537136077881,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-25T00:30",
+          "time": "2026-07-25T01:00",
           "interval": 900,
-          "temperature_2m": 74.8,
-          "relative_humidity_2m": 91,
-          "apparent_temperature": 81.6,
+          "temperature_2m": 74.3,
+          "relative_humidity_2m": 93,
+          "apparent_temperature": 81.8,
           "weather_code": 0,
-          "wind_speed_10m": 5.2,
-          "wind_direction_10m": 70,
-          "wind_gusts_10m": 9.8,
+          "wind_speed_10m": 4.1,
+          "wind_direction_10m": 103,
+          "wind_gusts_10m": 9.2,
           "cloud_cover": 0,
-          "surface_pressure": 946.1,
+          "surface_pressure": 945.7,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -194,23 +194,23 @@
           ],
           "temperature_2m": [
             75.4,
-            74.2,
+            74.3,
             73.4,
             73,
-            72.2,
-            71.6,
-            71.1,
-            70.8,
-            72.8,
+            72.6,
+            72.6,
+            71.9,
+            71.4,
+            74.8,
             79.2,
-            83.7,
-            86.8,
-            90.8,
-            94.7,
-            98.5,
-            101,
-            102.5,
-            102.9,
+            82.5,
+            86.1,
+            90.2,
+            94.3,
+            98.2,
+            100.8,
+            102.1,
+            102.6,
             102.3,
             100.2,
             95,
@@ -236,11 +236,11 @@
             106.2,
             108.1,
             109.5,
-            105.4,
-            105.7,
+            109.7,
+            105.9,
+            99.1,
             98.4,
-            98.4,
-            98
+            96.4
           ],
           "weather_code": [
             0,
@@ -249,36 +249,36 @@
             0,
             0,
             0,
-            1,
-            45,
-            45,
-            2,
-            2,
-            3,
-            3,
-            3,
-            3,
-            3,
-            0,
-            1,
             0,
             0,
             0,
             0,
-            0,
-            3,
             3,
             2,
-            0,
+            3,
+            3,
+            3,
             3,
             1,
             3,
-            3,
-            3,
+            0,
+            0,
+            0,
+            0,
+            0,
             3,
             3,
             2,
             0,
+            3,
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            2,
+            0,
             0,
             0,
             1,
@@ -287,7 +287,7 @@
             3,
             3,
             1,
-            3,
+            0,
             0,
             0,
             0
@@ -299,12 +299,12 @@
             0,
             0,
             0,
-            1,
             0,
             0,
-            1,
-            1,
             0,
+            1,
+            1,
+            1,
             0,
             0,
             0,
@@ -410,15 +410,15 @@
             "2026-07-26"
           ],
           "weather_code": [
-            45,
+            3,
             3
           ],
           "temperature_2m_max": [
-            102.9,
-            109.5
+            102.6,
+            109.7
           ],
           "temperature_2m_min": [
-            70.8,
+            71.4,
             77
           ],
           "precipitation_probability_max": [
@@ -430,7 +430,7 @@
             0
           ],
           "uv_index_max": [
-            7.45,
+            7.65,
             8.25
           ],
           "sunrise": [
@@ -457,14 +457,14 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 76,
-        "phaseValue": 0.379,
+        "phaseValue": 0.38,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 50,
-        "pm25": 7.5,
+        "usAqi": 49,
+        "pm25": 7.6,
         "category": "Good",
         "status": "live"
       }
@@ -518,7 +518,7 @@
           {
             "event": "Heat Advisory",
             "severity": "Moderate",
-            "headline": "Heat Advisory issued July 24 at 2:11PM CDT until July 27 at 10:00PM CDT by NWS Hastings NE"
+            "headline": "Heat Advisory issued July 25 at 12:43AM CDT until July 27 at 10:00PM CDT by NWS Hastings NE"
           }
         ]
       }
@@ -553,7 +553,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-25T05:30:01.715Z",
+    "generatedAt": "2026-07-25T06:00:01.889Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
