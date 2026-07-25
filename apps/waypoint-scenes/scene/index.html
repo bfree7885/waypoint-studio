@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="scene-detail">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shoot Review Workspace — open a Scene, review the photographs, and launch Photo Coach, Portfolio Advisor, Living Scenes, or Outdoor Journals from the same place.">
+  <title>Scene · Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-foundation.css">
+  <link rel="stylesheet" href="../css/scene-library.css">
+</head>
+<body>
+  <a class="wds-skip" href="#sd-main">Skip to Scene</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="sd-main" class="sd-main">
+      <header class="sd-hero" id="sd-hero" aria-labelledby="sd-hero-title"></header>
+
+      <div class="sd-cols">
+        <section id="sd-summary-mount" aria-labelledby="sd-summary-title"></section>
+        <section id="sd-actions-mount" aria-labelledby="sd-actions-title"></section>
+      </div>
+
+      <section aria-labelledby="sd-grid-title">
+        <div class="sd-grid-head">
+          <h2 class="sd-section-title" id="sd-grid-title">Photographs</h2>
+          <div>
+            <label class="wds-sr-only" for="sd-thumb-size">Thumbnail size</label>
+            <select id="sd-thumb-size" class="sl-select" aria-label="Thumbnail size">
+              <option value="sm">Small</option>
+              <option value="md" selected>Medium</option>
+              <option value="lg">Large</option>
+            </select>
+          </div>
+        </div>
+        <p class="sd-grid-meta" id="sd-grid-meta" aria-live="polite"></p>
+        <div class="sd-grid-scroll" id="sd-grid-scroll">
+          <div id="sd-grid"></div>
+        </div>
+      </section>
+
+      <section class="sd-detail" id="sd-detail" aria-label="Photograph details" hidden></section>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+
+  <script src="../js/scene-library/scene-models.js"></script>
+  <script src="../js/scene-library/scene-store.js"></script>
+  <script src="../js/scene-library/scene-engine.js"></script>
+  <script src="../js/scene-library/scene-demo.js"></script>
+  <script src="../js/scene-library/scene-ingest.js"></script>
+  <script src="../js/scene-library/scene-format.js"></script>
+  <script src="../js/scene-library/scene-detail-ui.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointSceneDetailUI) window.WaypointSceneDetailUI.mount();
+    });
+  </script>
+</body>
+</html>

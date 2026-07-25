@@ -46,7 +46,7 @@
         <a href="../../photo-coach/">Photo Coach</a>.
       </p>
       <div class="sf-foundation__actions">
-        <a class="wds-btn wds-btn--primary" href="../">Back to Scenes</a>
+        <a class="wds-btn wds-btn--primary" id="oj-back" href="../library/">Back to Scene Library</a>
         <button type="button" class="wds-btn wds-btn--secondary" disabled aria-disabled="true">
           Start a journal (not available yet)
         </button>
@@ -62,5 +62,21 @@
   <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script>
+    (function () {
+      try {
+        var id = new URLSearchParams(location.search).get("sceneId");
+        if (!id) return;
+        var note = document.querySelector(".sf-foundation__note");
+        if (note) {
+          note.innerHTML = "<strong>Foundation in progress.</strong> Linked Scene: <code>" +
+            id.replace(/[<>&\"']/g, "") +
+            "</code>. When journals ship, they will read this Scene directly — no re-upload.";
+        }
+        var back = document.getElementById("oj-back");
+        if (back) back.href = "../scene/?id=" + encodeURIComponent(id);
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </body>
 </html>

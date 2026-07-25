@@ -103,7 +103,7 @@
         "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "Flagship photography \u2014 Learn, Create, Remember, Explore.",
+      "description": "Flagship photography \u2014 every shoot becomes a Scene. Learn, Create, Remember, Explore.",
       "status": "live",
       "features": [
         {
@@ -114,6 +114,15 @@
             "/apps/waypoint-scenes/?$",
             "/apps/waypoint-scenes/index",
             "/apps/scenes/?$"
+          ]
+        },
+        {
+          "id": "scene-library",
+          "label": "Scene Library",
+          "href": "apps/waypoint-scenes/library/",
+          "match": [
+            "/apps/waypoint-scenes/library",
+            "/apps/waypoint-scenes/scene"
           ]
         },
         {
@@ -141,6 +150,14 @@
           ]
         },
         {
+          "id": "portfolio-advisor",
+          "label": "Portfolio Advisor",
+          "href": "apps/waypoint-scenes/portfolio/",
+          "match": [
+            "/apps/waypoint-scenes/portfolio"
+          ]
+        },
+        {
           "id": "hidden-landscapes",
           "label": "Hidden Landscapes",
           "href": "apps/waypoint-scenes/explore/",
@@ -161,8 +178,8 @@
       "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
       "maturity": "Live",
       "startHere": {
-        "label": "Enter Scenes",
-        "href": "apps/waypoint-scenes/"
+        "label": "Open Scene Library",
+        "href": "apps/waypoint-scenes/library/"
       },
       "journeys": [
         "observe",

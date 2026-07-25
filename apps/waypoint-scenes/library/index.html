@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="library">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Scene Library — every imported shoot becomes a Scene. Open, review, and grow from one workspace.">
+  <title>Scene Library · Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-foundation.css">
+  <link rel="stylesheet" href="../css/scene-library.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="sl-page">
+      <header class="sl-head">
+        <div>
+          <p class="sl-head__eyebrow"><a href="../">Scenes</a> · Library</p>
+          <h1 class="sl-head__title">Scene Library</h1>
+          <p class="sl-head__lead">
+            Every imported shoot becomes a Scene. Open one once — Photo Coach, Portfolio Advisor,
+            Living Scenes, and Outdoor Journals all grow from it. No re-uploading.
+          </p>
+        </div>
+        <button type="button" class="wds-btn wds-btn--primary" id="sl-import-btn">Import a folder</button>
+        <input type="file" id="sl-folder-input" accept="image/jpeg,image/png,image/webp,image/heic" multiple webkitdirectory directory hidden>
+      </header>
+
+      <div class="sl-controls" role="search">
+        <label class="wds-sr-only" for="sl-search">Search Scenes</label>
+        <input type="search" id="sl-search" class="sl-search" placeholder="Search by title, camera, lens, location, notes…" autocomplete="off">
+        <label class="wds-sr-only" for="sl-sort">Sort</label>
+        <select id="sl-sort" class="sl-select" aria-label="Sort Scenes">
+          <option value="recent">Recent</option>
+          <option value="alpha">Alphabetical</option>
+          <option value="capture">Capture date</option>
+          <option value="camera">Camera</option>
+          <option value="location">Location</option>
+          <option value="favorites">Favorites</option>
+        </select>
+        <label class="sl-check">
+          <input type="checkbox" id="sl-filter-favorites">
+          Favorites only
+        </label>
+        <span class="sl-count" id="sl-count" aria-live="polite"></span>
+      </div>
+
+      <p class="sl-status" id="sl-status" role="status" hidden></p>
+
+      <div class="sl-drop" id="sl-drop">
+        <div class="sl-grid" id="sl-grid" aria-label="Scenes"></div>
+      </div>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+
+  <script src="../js/scene-library/scene-models.js"></script>
+  <script src="../js/scene-library/scene-store.js"></script>
+  <script src="../js/scene-library/scene-engine.js"></script>
+  <script src="../js/scene-library/scene-demo.js"></script>
+  <script src="../js/scene-library/scene-ingest.js"></script>
+  <script src="../js/scene-library/scene-format.js"></script>
+  <script src="../js/scene-library/scene-library-ui.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointSceneLibraryUI) window.WaypointSceneLibraryUI.mount();
+    });
+  </script>
+</body>
+</html>

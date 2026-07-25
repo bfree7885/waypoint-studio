@@ -36,6 +36,7 @@
         <p class="pc-trust" role="note">
           Analysis runs in your browser. Guidance only — private labels never leave this device.
         </p>
+        <p class="pc-trust" id="pc-scene-link" role="status" hidden></p>
 
         <details class="pc-disclosure">
           <summary>About shoot review</summary>
@@ -155,5 +156,17 @@
   <script src="../waypoint-scenes/js/scene-context.js"></script>
   <script src="../waypoint-scenes/js/photo-coach.js"></script>
   <script src="js/photo-coach-critique-boot.js"></script>
+  <script>
+    (function () {
+      try {
+        var id = new URLSearchParams(location.search).get("sceneId");
+        var el = document.getElementById("pc-scene-link");
+        if (!id || !el) return;
+        el.hidden = false;
+        el.innerHTML = "Opened from a Scene. Full Scene-aware Coach (reading frames from the Scene without re-upload) lands next — " +
+          '<a href="../waypoint-scenes/scene/?id=' + encodeURIComponent(id) + '">return to Scene</a> or upload below for now.';
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </body>
 </html>

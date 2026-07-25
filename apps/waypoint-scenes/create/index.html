@@ -30,7 +30,9 @@
 
 <div class="was-builder-bar" aria-label="Living Scenes actions">
       <a class="wds-btn wds-btn--ghost wds-btn--sm" href="../">Back to Scenes</a>
+      <a class="wds-btn wds-btn--ghost wds-btn--sm" href="../library/">Scene Library</a>
       <a class="wds-btn wds-btn--ghost wds-btn--sm" href="../../photo-coach/">Photo Coach</a>
+      <span id="ls-scene-note" class="hero-hint" hidden></span>
     </div>
 
     <section class="hero" id="hero">
@@ -366,5 +368,17 @@
   <script src="../js/scene-context.js"></script>
   <script src="../js/tabs.js"></script>
   <script src="../js/app.js"></script>
+  <script>
+    (function () {
+      try {
+        var id = new URLSearchParams(location.search).get("sceneId");
+        var el = document.getElementById("ls-scene-note");
+        if (!id || !el) return;
+        el.hidden = false;
+        el.innerHTML = 'Linked Scene — <a href="../scene/?id=' + encodeURIComponent(id) +
+          '">open Shoot Review</a>. Scene-native frame handoff lands next; open a photograph below for now.';
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </body>
 </html>

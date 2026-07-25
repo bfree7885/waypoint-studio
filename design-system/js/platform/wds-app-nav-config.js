@@ -136,6 +136,15 @@
             ]
           },
           {
+            "id": "scene-library",
+            "label": "Scene Library",
+            "href": "apps/waypoint-scenes/library/",
+            "match": [
+              "/apps/waypoint-scenes/library",
+              "/apps/waypoint-scenes/scene"
+            ]
+          },
+          {
             "id": "photo-coach",
             "label": "Photo Coach",
             "href": "apps/photo-coach/",
@@ -164,6 +173,14 @@
             ]
           },
           {
+            "id": "portfolio-advisor",
+            "label": "Portfolio Advisor",
+            "href": "apps/waypoint-scenes/portfolio/",
+            "match": [
+              "/apps/waypoint-scenes/portfolio"
+            ]
+          },
+          {
             "id": "hidden-landscapes",
             "label": "Hidden Landscapes",
             "href": "apps/waypoint-scenes/explore/",
@@ -184,11 +201,11 @@
             ]
           }
         ],
-        "purpose": "Observe carefully, discover what to look for, understand how you see — Learn, Create, Remember, Explore.",
+        "purpose": "Observe carefully, discover what to look for, understand how you see — every shoot becomes a Scene.",
         "maturity": "Flagship",
         "startHere": {
-          "label": "Enter Scenes",
-          "href": "apps/waypoint-scenes/"
+          "label": "Open Scene Library",
+          "href": "apps/waypoint-scenes/library/"
         },
         "journeys": [
           "observe",
