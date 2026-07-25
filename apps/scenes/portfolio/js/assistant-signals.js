@@ -162,8 +162,8 @@
   }
 
   /**
-   * @param {{type:string, ref?:string}} spec
-   * @param {{libraryImages:object[], collections?:object[], portfolios?:object[]}} ctx
+   * @param {{type:string, ref?:string, imageIds?:string[]}} spec
+   * @param {{libraryImages:object[], collections?:object[], portfolios?:object[], candidateSessions?:object[]}} ctx
    * @returns {{type,ref,label,imageIds,images}}
    */
   function resolveSource(spec, ctx) {
@@ -188,6 +188,14 @@
     } else if (spec.type === "shoot" && spec.ref) {
       images = imagesByShoot(lib, spec.ref);
       label = "Shoot · " + String(spec.ref).slice(0, 12);
+    } else if (spec.type === "candidate-session" && spec.ref) {
+      var cs = (ctx.candidateSessions || []).filter(function (s) { return s.id === spec.ref; })[0];
+      var csIds = cs ? cs.imageIds || [] : [];
+      images = csIds.map(function (id) { return byId[id]; }).filter(Boolean);
+      label = cs ? "Candidate review · " + (cs.title || cs.id.slice(0, 8)) : "Candidate review";
+    } else if (spec.type === "selected" && Array.isArray(spec.imageIds)) {
+      images = spec.imageIds.map(function (id) { return byId[id]; }).filter(Boolean);
+      label = "Selected library photographs (" + images.length + ")";
     } else {
       images = lib.slice();
       label = "Your Photo Library";
@@ -224,6 +232,18 @@
     });
     Object.keys(shoots).forEach(function (sid) {
       if (shoots[sid] > 0) out.push({ type: "shoot", ref: sid, label: "Shoot " + sid.slice(0, 8), count: shoots[sid] });
+    });
+
+    (ctx.candidateSessions || []).forEach(function (s) {
+      var n = (s.imageIds || []).length;
+      if (n > 0) {
+        out.push({
+          type: "candidate-session",
+          ref: s.id,
+          label: "Candidate review · " + (s.title || s.id.slice(0, 8)),
+          count: n
+        });
+      }
     });
 
     return out;

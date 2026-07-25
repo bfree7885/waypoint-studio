@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="portfolio-builder">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Auto Portfolio Builder — turn a real group of photographs into a coherent suggested first draft. Local-first; you edit and approve.">
+  <title>Auto Portfolio Builder — Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="css/scenes-portfolio.css">
+  <link rel="stylesheet" href="css/scenes-portfolio-builder.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to portfolio builder</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="pf-page pfb-page">
+      <header class="pf-hero">
+        <p class="wds-eyebrow">
+          <a href="../">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          <a href="./">Portfolios</a>
+          <span aria-hidden="true"> · </span>
+          Auto Portfolio Builder
+        </p>
+        <h1 class="pf-hero__title">Suggested draft</h1>
+        <p class="pf-hero__lead">
+          Build a coherent first-draft portfolio from photographs already on this device —
+          strong frames, useful variety, and a proposed sequence. The system suggests; you edit and approve.
+        </p>
+        <p class="pf-trust" role="note">Private by default. No uploads. Originals stay in Photo Library.</p>
+      </header>
+
+      <p class="pf-status" id="pfb-status" role="status" aria-live="polite" hidden></p>
+
+      <!-- Setup -->
+      <section id="pfb-setup" class="pfb-setup" aria-label="Start a portfolio draft">
+        <div class="pfb-setup__panel">
+          <h2 class="pf-section-title">1. Choose a source</h2>
+          <p class="pf-hint">Use a real group from your library, a shoot, a collection, an existing portfolio, or a candidate review — never invented photographs.</p>
+          <div class="pfb-field">
+            <label for="pfb-source">Source</label>
+            <select id="pfb-source" class="pfb-select"></select>
+          </div>
+
+          <h2 class="pf-section-title">2. Purpose</h2>
+          <div class="pfb-field">
+            <label for="pfb-purpose">Purpose</label>
+            <select id="pfb-purpose" class="pfb-select"></select>
+            <p class="pf-hint" id="pfb-purpose-summary"></p>
+          </div>
+
+          <h2 class="pf-section-title">3. Approximate size</h2>
+          <div class="pfb-field">
+            <label for="pfb-size">Size guide</label>
+            <select id="pfb-size" class="pfb-select"></select>
+            <p class="pf-hint" id="pfb-size-guide"></p>
+          </div>
+          <div class="pfb-field" id="pfb-custom-wrap" hidden>
+            <label for="pfb-custom-count">Custom count</label>
+            <input id="pfb-custom-count" class="pfb-input" type="number" min="1" max="80" value="12">
+          </div>
+
+          <h2 class="pf-section-title">4. Save destination</h2>
+          <div class="pfb-field">
+            <label for="pfb-save-mode">When you approve</label>
+            <select id="pfb-save-mode" class="pfb-select">
+              <option value="new">Save as a new portfolio</option>
+              <option value="rebuild">Apply approved changes to an existing portfolio</option>
+            </select>
+          </div>
+          <div class="pfb-field" id="pfb-target-wrap" hidden>
+            <label for="pfb-target">Existing portfolio</label>
+            <select id="pfb-target" class="pfb-select"></select>
+          </div>
+
+          <div class="pfb-limitations" id="pfb-setup-limitations" role="note">
+            <h3 class="pfb-limitations__title">Signal limitations</h3>
+            <ul class="pfb-limitations__list">
+              <li>No pixel sharpness or aesthetic scoring — drafts use your labels, ratings, and analysis when present.</li>
+              <li>Similarity is metadata-based (fingerprint, burst timing, framing), not perceptual hashing.</li>
+              <li>Seasonal or location balance appears only when capture dates (or tags) exist.</li>
+            </ul>
+          </div>
+
+          <div class="pfb-setup__actions">
+            <button type="button" class="wds-btn wds-btn--primary" id="pfb-generate">Generate suggested draft</button>
+            <a class="wds-btn wds-btn--ghost" href="./">Back to portfolios</a>
+          </div>
+          <p class="pf-hint" id="pfb-empty-lib" hidden>
+            Your Photo Library looks empty on this device.
+            <a href="../../photo-library/">Import photographs</a> first — the builder never invents photographs.
+          </p>
+        </div>
+
+        <div class="pfb-resume" id="pfb-resume" hidden>
+          <h2 class="pf-section-title">Continue a draft</h2>
+          <ul class="pfb-resume__list" id="pfb-resume-list"></ul>
+        </div>
+      </section>
+
+      <!-- Workspace -->
+      <section id="pfb-workspace" class="pfb-workspace" hidden aria-label="Portfolio draft workspace">
+        <div class="pfb-bar">
+          <div class="pfb-bar__meta">
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfb-new">New draft</button>
+            <span class="pfb-bar__source" id="pfb-source-label"></span>
+          </div>
+          <div class="pfb-bar__controls">
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfb-regen-remaining">Regenerate remaining</button>
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfb-rebuild">Rebuild from scratch…</button>
+          </div>
+        </div>
+
+        <p class="pf-hint" id="pfb-session-message" aria-live="polite"></p>
+        <div class="pfb-limitations" id="pfb-draft-limitations" hidden role="note">
+          <h3 class="pfb-limitations__title">Limitations for this draft</h3>
+          <ul class="pfb-limitations__list" id="pfb-draft-limitations-list"></ul>
+        </div>
+
+        <div class="pfb-tabs" role="tablist" aria-label="Draft review steps">
+          <button type="button" class="pfb-tab" role="tab" id="pfb-tab-selection" aria-controls="pfb-panel-selection" aria-selected="true" data-tab="selection">Selection</button>
+          <button type="button" class="pfb-tab" role="tab" id="pfb-tab-sequence" aria-controls="pfb-panel-sequence" aria-selected="false" data-tab="sequence">Sequence</button>
+          <button type="button" class="pfb-tab" role="tab" id="pfb-tab-alternatives" aria-controls="pfb-panel-alternatives" aria-selected="false" data-tab="alternatives">Alternatives</button>
+          <button type="button" class="pfb-tab" role="tab" id="pfb-tab-save" aria-controls="pfb-panel-save" aria-selected="false" data-tab="save">Save</button>
+        </div>
+
+        <div class="pfb-panels">
+          <div class="pfb-panel" id="pfb-panel-selection" role="tabpanel" aria-labelledby="pfb-tab-selection" data-panel="selection">
+            <div class="pfb-grid" id="pfb-selection-grid"></div>
+            <details class="pfb-omitted" id="pfb-omitted">
+              <summary>Omitted high-ranking / similar frames</summary>
+              <div id="pfb-omitted-list"></div>
+            </details>
+          </div>
+
+          <div class="pfb-panel" id="pfb-panel-sequence" role="tabpanel" aria-labelledby="pfb-tab-sequence" data-panel="sequence" hidden>
+            <div class="pfb-seq-toolbar">
+              <button type="button" class="wds-btn wds-btn--ghost" id="pfb-apply-seq">Apply proposed sequence</button>
+              <button type="button" class="wds-btn wds-btn--ghost" id="pfb-undo-seq">Undo to previous order</button>
+              <button type="button" class="wds-btn wds-btn--ghost" id="pfb-regen-unpinned">Regenerate unpinned</button>
+            </div>
+            <p class="pf-hint">Drag on desktop, or use Move up / Move down (keyboard and mobile). Pin positions to keep them through regeneration.</p>
+            <ol class="pfb-sequence" id="pfb-sequence-list"></ol>
+          </div>
+
+          <div class="pfb-panel" id="pfb-panel-alternatives" role="tabpanel" aria-labelledby="pfb-tab-alternatives" data-panel="alternatives" hidden>
+            <div id="pfb-alternatives-list"></div>
+          </div>
+
+          <div class="pfb-panel" id="pfb-panel-save" role="tabpanel" aria-labelledby="pfb-tab-save" data-panel="save" hidden>
+            <form class="pfb-save-form" id="pfb-save-form" onsubmit="return false;">
+              <div class="pfb-field">
+                <label for="pfb-save-title">Portfolio title</label>
+                <input id="pfb-save-title" class="pfb-input" type="text" maxlength="120" required>
+              </div>
+              <div class="pfb-field">
+                <label for="pfb-save-desc">Description</label>
+                <textarea id="pfb-save-desc" class="pfb-input" rows="2" maxlength="2000"></textarea>
+              </div>
+              <div class="pfb-field">
+                <label for="pfb-save-notes">Private notes</label>
+                <textarea id="pfb-save-notes" class="pfb-input" rows="2" maxlength="4000"></textarea>
+              </div>
+              <div class="pfb-rebuild-preview" id="pfb-rebuild-preview" hidden>
+                <h3 class="pf-section-title">Rebuild preview</h3>
+                <p class="pf-hint" id="pfb-rebuild-summary"></p>
+                <p class="pf-hint">Nothing changes until you confirm. Cancel leaves the existing portfolio untouched.</p>
+              </div>
+              <div class="pfb-setup__actions">
+                <button type="button" class="wds-btn wds-btn--primary" id="pfb-save-confirm">Save approved draft</button>
+                <button type="button" class="wds-btn wds-btn--ghost" id="pfb-save-cancel">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <p class="pf-links">
+        <a href="./">Back to portfolios</a>
+        · <a href="assistant.html">Candidate review</a>
+        · Drafts store ids and explanations only — originals never leave this device unless you export them yourself.
+      </p>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../photo-library/js/pl-models.js" defer></script>
+  <script src="../../photo-library/js/pl-store.js" defer></script>
+  <script src="js/portfolio-models.js" defer></script>
+  <script src="js/portfolio-store.js" defer></script>
+  <script src="js/portfolio-candidates.js" defer></script>
+  <script src="js/portfolio-engine.js" defer></script>
+  <script src="js/assistant-signals.js" defer></script>
+  <script src="js/assistant-recommend.js" defer></script>
+  <script src="js/assistant-session.js" defer></script>
+  <script src="js/builder-catalog.js" defer></script>
+  <script src="js/builder-engine.js" defer></script>
+  <script src="js/builder-session.js" defer></script>
+  <script src="js/builder-ui.js" defer></script>
+  <script src="js/builder-boot.js" defer></script>
+</body>
+</html>

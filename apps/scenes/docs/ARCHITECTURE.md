@@ -10,6 +10,8 @@ Waypoint Scenes is one product with five experiences. Working tools remain in th
 
 **Portfolios (Portfolio Foundation):** Purpose-driven curated sets at `/apps/scenes/portfolio/` — localStorage `waypoint-scenes-portfolios-v1`, ordered Library image refs, cover, notes, observational candidate suggestions from existing labels/ratings/coach notes. Distinct from Photo Coach session “portfolio” history and from light Library collections. See `docs/scenes/current-state-reconciliation.md`.
 
+**Portfolio Assistant / Coach / Builder:** Candidate review (`assistant.html`), comparative coaching, and Auto Portfolio Builder (`builder.html`) — local-first drafts from real Library signals only. Builder store: `waypoint-scenes-portfolio-builder-sessions-v1`.
+
 ## Modules
 
 | Module | Purpose | Status on platform | Live tool today |

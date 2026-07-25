@@ -137,6 +137,21 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-25 — Scenes Auto Portfolio Builder
+
+**Artifact:** `docs/scenes/auto-portfolio-builder-owner-review.md`  
+**Branch:** `feature/scenes-auto-portfolio-builder`  
+**Cut from:** `feature/scenes-portfolio-coach` @ `86ca1bf`
+
+1. **Draft ≠ final** — product language must stay “suggested draft / proposed
+   sequence”; ban score-chase and certainty copy in catalog + tests.
+2. **User decisions are constraints, not hints** — include/exclude/cover/pins/
+   roles/swaps must survive regenerate-remaining; rebuild/reset needs confirm.
+3. **Similarity reduction needs an inspectable omit list** — collapsing bursts
+   without alternatives feels like silent deletion.
+4. **Extend source resolution, don’t fork SoT** — candidate-session and selected
+   id sources still resolve to LibraryImage rows via `assistant-signals.js`.
+
 ### 2026-07-24 — Scenes Portfolio Foundation
 
 **Artifact:** `docs/scenes/portfolio-foundation-owner-review.md`  

@@ -74,7 +74,8 @@
         purpose: M.normalizePurpose(input.purpose),
         notes: input.notes || null,
         imageIds: input.imageIds || [],
-        coverImageId: input.coverImageId || null
+        coverImageId: input.coverImageId || null,
+        items: Array.isArray(input.items) ? input.items : undefined
       });
       portfolios.unshift(p);
       persist();
