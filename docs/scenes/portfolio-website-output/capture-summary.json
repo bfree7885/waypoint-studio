@@ -1,0 +1,38 @@
+{
+  "results": {
+    "desktop": {
+      "link": true
+    },
+    "tablet": {
+      "preview": {
+        "overflow": false
+      }
+    },
+    "phone": {
+      "preview": {
+        "overflow": false,
+        "hasPublish": false
+      }
+    },
+    "consoleErrors": []
+  },
+  "consoleErrors": [],
+  "sample": {
+    "zipPath": "/home/bryan/projects/waypoint-scenes/docs/scenes/portfolio-website-output/sample-autumn-ridges-website.zip",
+    "sampleDir": "/home/bryan/projects/waypoint-scenes/docs/scenes/portfolio-website-output/sample-export",
+    "filename": "Autumn-ridges-website.zip",
+    "approxBytes": 10344
+  },
+  "screenshots": [
+    "01-desktop-home.png",
+    "02-desktop-create.png",
+    "03-desktop-editor.png",
+    "04-desktop-editor-captions.png",
+    "05-desktop-preview.png",
+    "06-tablet-editor.png",
+    "07-tablet-preview.png",
+    "08-phone-editor.png",
+    "09-phone-preview.png",
+    "10-desktop-portfolio-link.png"
+  ]
+}

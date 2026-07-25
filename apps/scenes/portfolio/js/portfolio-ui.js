@@ -160,6 +160,10 @@
     if (reviewLink) {
       reviewLink.setAttribute("href", "assistant.html?portfolio=" + encodeURIComponent(p.id));
     }
+    var websiteLink = $("pf-website-gallery");
+    if (websiteLink) {
+      websiteLink.setAttribute("href", "output.html?portfolio=" + encodeURIComponent(p.id));
+    }
 
     var grid = $("pf-selected");
     if (!p.imageIds.length) {

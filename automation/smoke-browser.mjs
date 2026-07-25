@@ -42,6 +42,7 @@ const PAGES = [
   { name: "scenes-portfolio", path: "/apps/scenes/portfolio/", ready: "shell" },
   { name: "scenes-portfolio-assistant", path: "/apps/scenes/portfolio/assistant.html", ready: "shell" },
   { name: "scenes-portfolio-builder", path: "/apps/scenes/portfolio/builder.html", ready: "shell" },
+  { name: "scenes-portfolio-output", path: "/apps/scenes/portfolio/output.html", ready: "shell" },
   { name: "photo-coach", path: "/apps/photo-coach/", ready: "coach" },
   { name: "animal-vision", path: "/apps/animal-vision/", ready: "shell" },
   { name: "hidden-landscapes", path: "/apps/hidden-landscapes/", ready: "shell" },

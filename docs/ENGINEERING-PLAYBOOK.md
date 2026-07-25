@@ -137,6 +137,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-25 — Scenes Portfolio Website Output
+
+**Artifact:** `docs/scenes/portfolio-website-output-owner-review.md`  
+**Branch:** `feature/scenes-portfolio-website-output`  
+**Cut from:** `feature/scenes-portfolio-health` @ `6a38dbb`
+
+1. **Separate output projects from source portfolios** — gallery drafts need
+   their own localStorage key and `sourceSnapshot`; never write captions/alt
+   back into the portfolio silently.
+2. **Public captions must start empty** — private notes, Assistant/Coach/Health
+   text, and `selectionRationale` are not public copy; only user-authored
+   fields may be copied on explicit action.
+3. **Vendor-free ZIP is enough for STORED JPEG packages** — a minimal CRC +
+   local-file ZIP writer avoids CDN/npm while keeping exports offline-safe.
+4. **Precise GPS is a warning-class opt-in, never a default** — validate and
+   label `embedded-gps` distinctly from user-authored broad location.
+5. **Preview must share package generators with export** — iframe simulation
+   of viewport widths is honest only when HTML/CSS come from the same builders
+   that fill the ZIP.
+
 ### 2026-07-25 — Scenes Portfolio Health
 
 **Artifact:** `docs/scenes/portfolio-health-owner-review.md`  

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="portfolio-output">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a portable website gallery draft from an approved portfolio. Local preview and ZIP export — no automatic publishing.">
+  <title>Website Gallery — Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="css/scenes-portfolio.css">
+  <link rel="stylesheet" href="css/scenes-portfolio-output.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to website gallery</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="pf-page pfo-page">
+      <header class="pf-hero">
+        <p class="wds-eyebrow">
+          <a href="../">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          <a href="./">Portfolios</a>
+          <span aria-hidden="true"> · </span>
+          Website gallery
+        </p>
+        <h1 class="pf-hero__title">Website gallery draft</h1>
+        <p class="pf-hero__lead">
+          Turn an approved portfolio into a polished, portable gallery package.
+          Preview here, export a static ZIP, reopen later — never published automatically.
+        </p>
+        <p class="pf-trust" role="note">Private by default. Local files only. No hosting, tracking, or remote scripts in the export.</p>
+      </header>
+
+      <p class="pf-status" id="pfo-status" role="status" aria-live="polite" hidden></p>
+      <div class="pfo-progress" id="pfo-progress" hidden role="status" aria-live="polite">
+        <p id="pfo-progress-text">Preparing export…</p>
+        <button type="button" class="wds-btn wds-btn--ghost" id="pfo-cancel-export">Cancel</button>
+      </div>
+
+      <!-- Project list -->
+      <section id="pfo-home" class="pfo-panel" aria-label="Website gallery projects">
+        <div class="pf-toolbar">
+          <button type="button" class="wds-btn wds-btn--primary" id="pfo-new">Create website gallery</button>
+          <a class="wds-btn wds-btn--ghost" href="./">Back to portfolios</a>
+          <a class="wds-btn wds-btn--ghost" href="builder.html">Open Builder</a>
+          <a class="wds-btn wds-btn--ghost" href="health.html">Portfolio Health</a>
+        </div>
+        <div id="pfo-empty" class="pf-empty" hidden>
+          <h2>No website galleries yet</h2>
+          <p>Choose a saved portfolio to create a gallery draft. Photographs stay in your Photo Library until you export.</p>
+        </div>
+        <ul id="pfo-project-list" class="pfo-project-list" aria-label="Saved website gallery projects"></ul>
+        <section class="pfo-history" aria-label="Recent exports">
+          <h2 class="pf-section-title">Recent exports</h2>
+          <p class="pf-hint">Lightweight history only — ZIP files are not kept in app storage.</p>
+          <ul id="pfo-history" class="pfo-history-list"></ul>
+        </section>
+      </section>
+
+      <!-- Create from portfolio -->
+      <section id="pfo-create" class="pfo-panel" hidden aria-label="Choose portfolio">
+        <h2 class="pf-section-title">Choose a portfolio</h2>
+        <p class="pf-hint">Source order and cover become the starting point. Edits here do not change the portfolio itself.</p>
+        <div class="pfo-field">
+          <label for="pfo-portfolio">Portfolio</label>
+          <select id="pfo-portfolio" class="pfo-select"></select>
+        </div>
+        <div class="pfo-field">
+          <label for="pfo-layout-new">Starting layout</label>
+          <select id="pfo-layout-new" class="pfo-select"></select>
+        </div>
+        <div class="pf-toolbar">
+          <button type="button" class="wds-btn wds-btn--primary" id="pfo-create-confirm">Create draft</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-create-cancel">Cancel</button>
+        </div>
+        <div id="pfo-no-portfolios" class="pf-empty" hidden>
+          <h2>No portfolios yet</h2>
+          <p>Create and save a purpose portfolio first, then return here.</p>
+          <p><a class="wds-btn wds-btn--primary" href="./">Open portfolios</a></p>
+        </div>
+      </section>
+
+      <!-- Editor -->
+      <section id="pfo-editor" class="pfo-panel" hidden aria-label="Edit website gallery">
+        <div class="pf-toolbar">
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-back">Back to projects</button>
+          <button type="button" class="wds-btn wds-btn--primary" id="pfo-save">Save</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-preview-btn">Preview</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-export-btn">Export ZIP</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-duplicate">Duplicate</button>
+          <button type="button" class="wds-btn wds-btn--ghost pf-danger" id="pfo-delete">Delete</button>
+        </div>
+
+        <div id="pfo-reconcile" class="pfo-reconcile" hidden role="region" aria-label="Source portfolio changes">
+          <h2 class="pf-section-title">Source portfolio changed</h2>
+          <p class="pf-hint">Your gallery edits are kept unless you choose to apply a change. Nothing is discarded silently.</p>
+          <ul id="pfo-reconcile-list"></ul>
+          <div class="pf-toolbar">
+            <button type="button" class="wds-btn wds-btn--primary" id="pfo-reconcile-all">Apply all from source</button>
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfo-reconcile-keep">Keep current gallery</button>
+          </div>
+        </div>
+
+        <div id="pfo-missing" class="pfo-missing" hidden role="status"></div>
+
+        <form class="pfo-form" onsubmit="return false;">
+          <div class="pfo-field">
+            <label for="pfo-title">Gallery title</label>
+            <input id="pfo-title" type="text" maxlength="120" autocomplete="off" required>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-description">Gallery description</label>
+            <textarea id="pfo-description" maxlength="2000" rows="3" placeholder="Optional public description"></textarea>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-layout">Layout</label>
+            <select id="pfo-layout" class="pfo-select"></select>
+            <p class="pf-hint" id="pfo-layout-hint"></p>
+          </div>
+        </form>
+
+        <h2 class="pf-section-title">Metadata display</h2>
+        <p class="pf-hint">Private by default. Precise GPS stays off unless you explicitly enable it.</p>
+        <div class="pfo-checks" id="pfo-meta-checks">
+          <label class="pfo-check"><input type="checkbox" data-meta="captureDate"> Capture date</label>
+          <label class="pfo-check"><input type="checkbox" data-meta="locationBroad"> Broad location (user-authored only)</label>
+          <label class="pfo-check"><input type="checkbox" data-meta="locationPrecise"> Precise GPS <span class="pfo-warn-inline">(public risk)</span></label>
+          <label class="pfo-check"><input type="checkbox" data-meta="camera"> Camera</label>
+          <label class="pfo-check"><input type="checkbox" data-meta="lens"> Lens</label>
+          <label class="pfo-check"><input type="checkbox" data-meta="focalLength"> Focal length</label>
+        </div>
+        <p class="pf-hint pfo-privacy-note" id="pfo-gps-warn" hidden>
+          Precise coordinates will be written into the export. Prefer broad location for anything shared beyond this device.
+        </p>
+
+        <h2 class="pf-section-title">Appearance</h2>
+        <div class="pfo-appear">
+          <div class="pfo-field">
+            <label for="pfo-theme">Theme</label>
+            <select id="pfo-theme" class="pfo-select">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-spacing">Spacing</label>
+            <select id="pfo-spacing" class="pfo-select">
+              <option value="comfortable">Comfortable</option>
+              <option value="compact">Compact</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-density">Grid density</label>
+            <select id="pfo-density" class="pfo-select">
+              <option value="regular">Regular</option>
+              <option value="dense">Dense</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-fit">Image fit</label>
+            <select id="pfo-fit" class="pfo-select">
+              <option value="contain">Contain</option>
+              <option value="cover">Cover</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-captions">Captions</label>
+            <select id="pfo-captions" class="pfo-select">
+              <option value="always">Always show</option>
+              <option value="hidden">Hide</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-title-align">Title alignment</label>
+            <select id="pfo-title-align" class="pfo-select">
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-cover-display">Cover display</label>
+            <select id="pfo-cover-display" class="pfo-select">
+              <option value="hero">Hero</option>
+              <option value="inline">Inline only</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+          <div class="pfo-field">
+            <label for="pfo-max-width">Max content width</label>
+            <select id="pfo-max-width" class="pfo-select">
+              <option value="narrow">Narrow</option>
+              <option value="medium">Medium</option>
+              <option value="wide">Wide</option>
+            </select>
+          </div>
+        </div>
+
+        <h2 class="pf-section-title">Photographs</h2>
+        <p class="pf-hint">
+          Public captions are separate from private Scenes notes. Alt text is written by you —
+          nothing is fabricated. Mark decorative only when the image is purely ornamental.
+        </p>
+        <ul id="pfo-images" class="pfo-images"></ul>
+
+        <h2 class="pf-section-title">Validation</h2>
+        <div id="pfo-validation" class="pfo-validation" aria-live="polite"></div>
+      </section>
+
+      <!-- Preview -->
+      <section id="pfo-preview" class="pfo-panel" hidden aria-label="Gallery preview">
+        <div class="pf-toolbar">
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfo-preview-back">Return to editing</button>
+          <div class="pfo-viewport" role="group" aria-label="Preview viewport">
+            <button type="button" class="wds-btn wds-btn--ghost" data-viewport="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" class="wds-btn wds-btn--ghost" data-viewport="tablet" aria-pressed="false">Tablet</button>
+            <button type="button" class="wds-btn wds-btn--ghost" data-viewport="mobile" aria-pressed="false">Mobile</button>
+          </div>
+          <button type="button" class="wds-btn wds-btn--primary" id="pfo-export-from-preview">Export ZIP</button>
+        </div>
+        <p class="pf-hint">
+          Viewport widths simulate layout only — not a real device. Images and settings match this draft.
+        </p>
+        <div id="pfo-preview-frame-wrap" class="pfo-preview-frame-wrap" data-viewport="desktop">
+          <iframe id="pfo-preview-frame" class="pfo-preview-frame" title="Website gallery preview" sandbox=""></iframe>
+        </div>
+      </section>
+
+      <div id="pfo-confirm" class="pf-confirm" hidden role="dialog" aria-modal="true" aria-labelledby="pfo-confirm-title">
+        <div class="pf-confirm__panel">
+          <h2 id="pfo-confirm-title">Delete website gallery?</h2>
+          <p id="pfo-confirm-text"></p>
+          <div class="pf-confirm__actions">
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfo-confirm-cancel">Cancel</button>
+            <button type="button" class="wds-btn wds-btn--primary pf-danger" id="pfo-confirm-ok">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="pf-links">
+        <a href="./">Back to portfolios</a>
+        · Exports are portable drafts you control — Scenes never publishes them for you.
+      </p>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../photo-library/js/pl-models.js" defer></script>
+  <script src="../../photo-library/js/pl-store.js" defer></script>
+  <script src="js/portfolio-models.js" defer></script>
+  <script src="js/portfolio-store.js" defer></script>
+  <script src="js/portfolio-candidates.js" defer></script>
+  <script src="js/portfolio-engine.js" defer></script>
+  <script src="js/output-catalog.js" defer></script>
+  <script src="js/output-models.js" defer></script>
+  <script src="js/output-store.js" defer></script>
+  <script src="js/output-privacy.js" defer></script>
+  <script src="js/output-zip.js" defer></script>
+  <script src="js/output-package.js" defer></script>
+  <script src="js/output-engine.js" defer></script>
+  <script src="js/output-ui.js" defer></script>
+  <script src="js/output-boot.js" defer></script>
+</body>
+</html>
