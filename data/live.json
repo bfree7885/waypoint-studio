@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-25T11:30:01.460Z",
-  "nextScheduledUpdate": "2026-07-25T12:00:00.000Z",
+  "updatedAt": "2026-07-25T12:00:01.450Z",
+  "nextScheduledUpdate": "2026-07-25T12:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -17,16 +17,16 @@
   "timezone": "America/Chicago",
   "current": {
     "temperatureF": 72,
-    "feelsLikeF": 77,
-    "humidity": 92,
-    "windMph": 5,
-    "windGustMph": 9,
-    "cloudCover": 9,
-    "uvIndex": 0,
+    "feelsLikeF": 78,
+    "humidity": 95,
+    "windMph": 6,
+    "windGustMph": 10,
+    "cloudCover": 7,
+    "uvIndex": 0.2,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-25T06:30"
+    "observedAt": "2026-07-25T07:00"
   },
   "forecast": {
     "highF": 102,
@@ -58,13 +58,13 @@
         "time": "2026-07-25T11:00",
         "temperatureF": 86,
         "precipProbability": 0,
-        "conditions": "Clear sky"
+        "conditions": "Mainly clear"
       },
       {
         "time": "2026-07-25T12:00",
         "temperatureF": 90,
         "precipProbability": 0,
-        "conditions": "Mainly clear"
+        "conditions": "Overcast"
       },
       {
         "time": "2026-07-25T13:00",
@@ -90,7 +90,7 @@
   },
   "airQuality": {
     "usAqi": 55,
-    "pm25": 19,
+    "pm25": 19.7,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 229.19440269470215,
+        "generationtime_ms": 488.45183849334717,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-25T06:30",
+          "time": "2026-07-25T07:00",
           "interval": 900,
           "temperature_2m": 71.9,
-          "relative_humidity_2m": 92,
-          "apparent_temperature": 77.4,
+          "relative_humidity_2m": 95,
+          "apparent_temperature": 77.7,
           "weather_code": 0,
-          "wind_speed_10m": 5.3,
-          "wind_direction_10m": 192,
-          "wind_gusts_10m": 9.4,
-          "cloud_cover": 9,
-          "surface_pressure": 945.9,
-          "uv_index": 0,
+          "wind_speed_10m": 5.7,
+          "wind_direction_10m": 198,
+          "wind_gusts_10m": 10.1,
+          "cloud_cover": 7,
+          "surface_pressure": 945.7,
+          "uv_index": 0.2,
           "precipitation": 0
         },
         "hourly_units": {
@@ -215,8 +215,8 @@
             99.5,
             95.3,
             89.1,
-            85.2,
-            83.3,
+            85.4,
+            84.4,
             82.1,
             81.2,
             80.3,
@@ -254,12 +254,12 @@
             0,
             0,
             0,
-            0,
             1,
             3,
             3,
             3,
-            0,
+            3,
+            1,
             0,
             0,
             0,
@@ -430,8 +430,8 @@
             0
           ],
           "uv_index_max": [
-            7.65,
-            8.25
+            7.55,
+            8.2
           ],
           "sunrise": [
             "2026-07-25T06:27",
@@ -464,14 +464,14 @@
     "air_quality": {
       "data": {
         "usAqi": 55,
-        "pm25": 19,
+        "pm25": 19.7,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 0,
+        "uvIndex": 0.2,
         "status": "live"
       }
     },
@@ -484,16 +484,16 @@
     "river_gauges": {
       "data": {
         "status": "live",
-        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.26 ft stage · 1.28 cfs · 29.2 km away",
+        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.25 ft stage · 1.21 cfs · 29.2 km away",
         "nearest": {
           "siteId": "06853800",
           "siteName": "WHITE ROCK C NR BURR OAK, KS",
           "lat": 39.89918,
           "lng": -98.2503276,
-          "observedAt": "2026-07-25T04:45:00.000-05:00",
-          "dischargeCfs": 1.28,
+          "observedAt": "2026-07-25T06:45:00.000-05:00",
+          "dischargeCfs": 1.21,
           "dischargeUnit": "ft3/s",
-          "stageFt": 1.26,
+          "stageFt": 1.25,
           "stageUnit": "ft",
           "distanceKm": 29.179412056109083
         },
@@ -531,7 +531,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 9,
+        "cloudCover": 7,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:27 AM",
@@ -546,26 +546,19 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "previous-success",
+      "USGS Water Services",
       "NWS"
     ],
-    "failures": [
-      {
-        "module": "river_gauges",
-        "source": "USGS Water Services",
-        "error": "This operation was aborted",
-        "retryAttempts": 3
-      }
-    ],
+    "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-25T11:30:01.460Z",
+    "generatedAt": "2026-07-25T12:00:01.450Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "estimated",
+      "usgsWater": "live",
       "ebird": "unavailable"
     }
   }
