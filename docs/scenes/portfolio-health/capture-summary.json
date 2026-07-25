@@ -1,0 +1,43 @@
+{
+  "results": {
+    "desktop": {
+      "scope": {
+        "options": 2,
+        "analyze": true,
+        "overflow": false
+      },
+      "overview": {
+        "areas": 9,
+        "cards": 21,
+        "scoreRing": false,
+        "overflow": false
+      }
+    },
+    "tablet": {
+      "overview": {
+        "cards": 21,
+        "overflow": false
+      }
+    },
+    "phone": {
+      "overview": {
+        "cards": 21,
+        "overflow": false,
+        "detailOpen": true
+      }
+    },
+    "consoleErrors": []
+  },
+  "consoleErrors": [],
+  "screenshots": [
+    "01-desktop-scope.png",
+    "02-desktop-overview.png",
+    "03-desktop-insight.png",
+    "04-desktop-repetition.png",
+    "05-desktop-compare.png",
+    "06-tablet-overview.png",
+    "07-phone-scope.png",
+    "08-phone-overview.png",
+    "09-phone-insight.png"
+  ]
+}

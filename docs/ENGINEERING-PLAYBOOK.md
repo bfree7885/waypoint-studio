@@ -137,6 +137,21 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-25 — Scenes Portfolio Health
+
+**Artifact:** `docs/scenes/portfolio-health-owner-review.md`  
+**Branch:** `feature/scenes-portfolio-health`  
+**Cut from:** `feature/scenes-auto-portfolio-builder` @ `8629ef1` (publish tip after `17e4049`)
+
+1. **Describe, never grade** — ban universal scores in model + UI + tests; keep
+   confidence qualitative (`higher` / `moderate` / `lower`) only.
+2. **Underrepresentation needs an owned comparison basis** — library-vs-portfolio
+   or purpose-signals only; never industry norms or invented seasons/places.
+3. **Dismissals must be fingerprint-aware** — refresh should not silently restore
+   dismissed insights unless the insight fingerprint materially changes.
+4. **Reuse Assistant similarity groups** — avoid a second quadratic similarity
+   pass; Health repetition is a consumer of `buildGroups`, not a fork.
+
 ### 2026-07-25 — Scenes Auto Portfolio Builder
 
 **Artifact:** `docs/scenes/auto-portfolio-builder-owner-review.md`  
