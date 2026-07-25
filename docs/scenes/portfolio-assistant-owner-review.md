@@ -4,7 +4,8 @@
 **Branch:** `feature/scenes-portfolio-assistant`
 **Cut from:** `feature/scenes-portfolio-foundation`
 **Starting SHA:** `0a298e65a2930c1ce4d22240c8203d3a679ccecb`
-**Final SHA:** _(filled at end of this doc after commit)_
+**Implementation commit:** `5780d052635bb8b1825fd8059bc0064db15ad679`
+**Final SHA:** this docs-stamp commit (branch tip; see `git log -1`)
 **Base foundation (meaningful tip):** `87fbd76`
 **Base main (`origin/main`):** `0be5f9f`
 **Deployment status:** **Not deployed** · **Not merged**
@@ -286,7 +287,8 @@ perceptual hashing · on-device EXIF enrichment · cloud sync · social share.
 
 - Branch: `feature/scenes-portfolio-assistant`
 - Starting SHA: `0a298e6`
-- Final SHA: _(see top; stamped after commit)_
+- Implementation commit: `5780d05`
+- Final SHA: this docs-stamp commit (branch tip)
 - **Not merged** to `main` or to the foundation branch
 - **Not deployed**
 - Dashboard and Sheds product files were not modified.
