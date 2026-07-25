@@ -617,3 +617,30 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Documented follow-ups do not block merge** when baselines are disclosed
    (`home-rc1` support assert; stale Outdoor OS today-outside suite).
 
+### 2026-07-24 — Scenes Portfolio Assistant (explainable candidate review)
+
+**Branch:** `feature/scenes-portfolio-assistant` from `feature/scenes-portfolio-foundation`
+**Docs:** `docs/scenes/portfolio-assistant-signal-audit.md` · `docs/scenes/portfolio-assistant-owner-review.md`
+
+1. **Audit signals before writing logic.** Inventory what the repo actually
+   produces (LibraryImage fields) and forbid claiming anything else. Pixel
+   sharpness/exposure/composition live only in the Photo Coach *shoot* model,
+   not on `LibraryImage` — do not fake them for portfolios.
+2. **Separate suggestion from decision in storage.** Keep assistant
+   `recommendations` and user `decisions` in distinct maps; recompute refreshes
+   suggestions and must never overwrite explicit decisions. Effective state =
+   user override else suggestion.
+3. **Version the analysis output** (`ANALYSIS_VERSION`) and cache a per-image
+   signal signature so unchanged frames/groups skip recompute — cheap perf win,
+   honest progress (no fake spinner).
+4. **Confidence is qualitative, never a percentage; never color-only.** Pair
+   category color with text + shape (dots) for accessibility.
+5. **Honest fallback beats a guess.** Insufficient evidence → *Needs review* +
+   manual selection; never auto-reject, never invent a score.
+6. **Headless capture race:** static controls exist in the DOM before `boot()`
+   binds handlers. Capture/smoke scripts must wait for the app's post-init
+   render (e.g. empty state visible) before clicking, or clicks no-op.
+7. **Keep the diff scoped:** new workspace lives under `apps/scenes/portfolio/`;
+   foundation touched only for two "Review candidates" links + a dynamic href.
+   Dashboard/Sheds untouched.
+

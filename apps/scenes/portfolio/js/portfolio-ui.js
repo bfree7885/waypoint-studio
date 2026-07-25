@@ -156,6 +156,11 @@
     $("pf-description").value = p.description || "";
     $("pf-notes").value = p.notes || "";
 
+    var reviewLink = $("pf-review-candidates");
+    if (reviewLink) {
+      reviewLink.setAttribute("href", "assistant.html?portfolio=" + encodeURIComponent(p.id));
+    }
+
     var grid = $("pf-selected");
     if (!p.imageIds.length) {
       grid.innerHTML =

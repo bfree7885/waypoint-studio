@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="portfolio-assistant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Assistant — review candidate photographs from your private library with explainable, evidence-based suggestions. Local-first; you decide.">
+  <title>Candidate review — Portfolio Assistant · Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="css/scenes-portfolio.css">
+  <link rel="stylesheet" href="css/scenes-portfolio-assistant.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to candidate review</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="pf-page pfa-page">
+      <header class="pf-hero">
+        <p class="wds-eyebrow">
+          <a href="../">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          <a href="./">Portfolios</a>
+          <span aria-hidden="true"> · </span>
+          Portfolio Assistant
+        </p>
+        <h1 class="pf-hero__title">Candidate review</h1>
+        <p class="pf-hero__lead">
+          Review photographs from your own library with explainable suggestions built only from your labels, ratings, and analysis.
+          The assistant recommends and explains why — you decide what belongs. Nothing is deleted or altered.
+        </p>
+        <p class="pf-trust" role="note">Private by default. Runs on this device. Originals stay in Photo Library.</p>
+      </header>
+
+      <p class="pf-status" id="pfa-status" role="status" aria-live="polite" hidden></p>
+
+      <!-- Start / choose source -->
+      <section id="pfa-start" class="pfa-start" aria-label="Start a candidate review">
+        <div class="pfa-start__panel">
+          <h2 class="pf-section-title">Start a review</h2>
+          <p class="pf-hint">Choose where to review from. Suggestions sharpen as you label frames in Shoot Review or the library.</p>
+          <div class="pfa-start__row">
+            <label for="pfa-source">Source</label>
+            <select id="pfa-source" class="pfa-select"></select>
+          </div>
+          <div class="pfa-start__actions">
+            <button type="button" class="wds-btn wds-btn--primary" id="pfa-begin">Begin review</button>
+            <a class="wds-btn wds-btn--ghost" href="./">Back to portfolios</a>
+          </div>
+          <p class="pfa-empty-lib pf-hint" id="pfa-empty-lib" hidden>
+            Your Photo Library looks empty on this device. <a href="../../photo-library/">Import photographs</a> or
+            <a href="../../photo-coach/">review a shoot</a> first — the assistant never invents photographs.
+          </p>
+        </div>
+
+        <div class="pfa-resume" id="pfa-resume" hidden>
+          <h2 class="pf-section-title">Continue a review</h2>
+          <ul class="pfa-resume__list" id="pfa-resume-list"></ul>
+        </div>
+      </section>
+
+      <!-- Active session workspace -->
+      <section id="pfa-workspace" class="pfa-workspace" hidden aria-label="Candidate review workspace">
+        <div class="pfa-bar">
+          <div class="pfa-bar__meta">
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfa-new">New review</button>
+            <span class="pfa-bar__source" id="pfa-source-label"></span>
+          </div>
+          <div class="pfa-bar__controls">
+            <label class="pfa-inline" for="pfa-filter-category">Category
+              <select id="pfa-filter-category" class="pfa-select pfa-select--sm">
+                <option value="all">All</option>
+                <option value="strong-candidate">Strong candidate</option>
+                <option value="similar-frame">Similar frame</option>
+                <option value="supporting-image">Supporting image</option>
+                <option value="needs-review">Needs review</option>
+              </select>
+            </label>
+            <label class="pfa-inline" for="pfa-filter-confidence">Confidence
+              <select id="pfa-filter-confidence" class="pfa-select pfa-select--sm">
+                <option value="all">All</option>
+                <option value="higher">Higher</option>
+                <option value="moderate">Moderate</option>
+                <option value="lower">Lower</option>
+              </select>
+            </label>
+            <label class="pfa-inline" for="pfa-sort">Sort
+              <select id="pfa-sort" class="pfa-select pfa-select--sm">
+                <option value="recommended">Recommended</option>
+                <option value="category">Category</option>
+                <option value="filename">Filename</option>
+              </select>
+            </label>
+            <label class="pfa-inline pfa-inline--check">
+              <input type="checkbox" id="pfa-show-excluded" checked> Show excluded
+            </label>
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfa-reanalyze">Re-analyze</button>
+          </div>
+        </div>
+
+        <p class="pf-hint pfa-session-message" id="pfa-session-message" aria-live="polite"></p>
+
+        <div class="pfa-layout">
+          <div class="pfa-filmstrip" id="pfa-filmstrip" role="listbox" aria-label="Candidate photographs" tabindex="0"></div>
+
+          <div class="pfa-preview" id="pfa-preview" aria-live="polite"></div>
+        </div>
+
+        <div class="pfa-group" id="pfa-group" hidden role="region" aria-label="Compare similar frames"></div>
+      </section>
+
+      <p class="pf-links">
+        <a href="./">Back to portfolios</a>
+        · The assistant reads library ids only — your originals never leave this device unless you export them yourself.
+      </p>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../photo-library/js/pl-models.js" defer></script>
+  <script src="../../photo-library/js/pl-store.js" defer></script>
+  <script src="js/portfolio-models.js" defer></script>
+  <script src="js/portfolio-store.js" defer></script>
+  <script src="js/portfolio-candidates.js" defer></script>
+  <script src="js/portfolio-engine.js" defer></script>
+  <script src="js/assistant-signals.js" defer></script>
+  <script src="js/assistant-recommend.js" defer></script>
+  <script src="js/assistant-session.js" defer></script>
+  <script src="js/assistant-ui.js" defer></script>
+  <script src="js/assistant-boot.js" defer></script>
+</body>
+</html>
