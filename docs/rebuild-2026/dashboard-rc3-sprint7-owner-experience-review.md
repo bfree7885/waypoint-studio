@@ -5,7 +5,7 @@
 **Type:** Production-readiness experience review (not a feature sprint)  
 **Branch:** `feature/dashboard-rc3-sprint6-functional-catalog`  
 **Starting SHA:** `a73fbe0de2471e5f7fb91f1affcff88da1381623`  
-**Ending SHA:** _(set at commit)_  
+**Ending SHA:** `157a27855a4cfce709116f1f04428ecdcf00f0d7`  
 **Authority:** Product standards · Observe. Discover. Understand. · RC3 Sprint 6 functional catalog  
 
 **Evidence:** Live local Dashboard on Sprint 6 tip + Sprint 6 mobile captures + new Sprint 7 experience captures under `docs/rebuild-2026/dashboard-rc3-sprint7/`.
