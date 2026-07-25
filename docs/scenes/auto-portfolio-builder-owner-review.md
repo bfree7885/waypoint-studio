@@ -4,8 +4,8 @@
 **Branch:** `feature/scenes-auto-portfolio-builder`  
 **Cut from:** `feature/scenes-portfolio-coach`  
 **Starting SHA:** `86ca1bf5d8f87c748c4db8c3d7a19bb172a07f27` (coach publish tip after docs stamp `353f4a8`; later than brief’s “near 353f4a8” as expected)  
-**Implementation commit:** *(this sprint’s `feat(scenes): add explainable auto portfolio builder`)*  
-**Final SHA:** branch tip after commit (see `git log -1`; publish commits may advance tip later)  
+**Implementation commit:** `09a2146ceb52bf9f46c4f8b3f0766a3209719edf`  
+**Final SHA:** `09a2146ceb52bf9f46c4f8b3f0766a3209719edf` (implementation tip at push; publish bots may advance tip later)  
 **Base coach implementation:** `ef7ed25` · **Base assistant tip:** `714d7ce` · **Base foundation (meaningful):** `87fbd76`  
 **Deployment status:** **Not deployed** · **Not merged**  
 **Dashboard / Sheds:** **Untouched** (no Dashboard or Sheds product files in diff)
@@ -291,8 +291,8 @@ changes · cloud sync · social share · score-chase gamification.
 
 - Branch: `feature/scenes-auto-portfolio-builder`  
 - Starting SHA: `86ca1bf`  
-- Implementation commit: see `git log` for `feat(scenes): add explainable auto portfolio builder`  
-- Tip SHA: may advance if publish bots land `[skip ci]` commits — record tip separately from implementation SHA  
+- Implementation commit: `09a2146`  
+- Tip SHA: `09a2146` at push (may advance if publish bots land `[skip ci]` commits — record tip separately)  
 - **Not merged** to `main` or coach/assistant/foundation branches  
 - **Not deployed**  
 - Dashboard and Sheds product files were not modified  
