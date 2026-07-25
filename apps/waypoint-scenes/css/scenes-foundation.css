@@ -1,0 +1,221 @@
+:root {
+  --sf-charcoal: #12151a;
+  --sf-slate: #1c222c;
+  --sf-slate-2: #262e3b;
+  --sf-offwhite: #e8ebe4;
+  --sf-muted: #a7b0a3;
+  --sf-violet: #5b3d8c;
+  --sf-midnight: #1a2a4a;
+  --sf-aurora: #9be15d;
+  --sf-magenta: #c23a7a;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(900px 480px at 12% -10%, rgba(91, 61, 140, 0.35), transparent 60%),
+    radial-gradient(800px 420px at 90% 0%, rgba(26, 42, 74, 0.55), transparent 55%),
+    var(--sf-charcoal);
+  color: var(--sf-offwhite);
+}
+
+.sf-hero {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1.5rem;
+}
+
+.sf-hero__mission {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sf-aurora);
+}
+
+.sf-hero__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  line-height: 1.05;
+}
+
+.sf-hero__tag {
+  margin: 0.75rem 0 0;
+  font-size: 1.15rem;
+  color: var(--sf-offwhite);
+}
+
+.sf-hero__lead {
+  margin: 1rem 0 0;
+  max-width: 38rem;
+  color: var(--sf-muted);
+  line-height: 1.55;
+}
+
+.sf-main {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.sf-section-title {
+  margin: 0 0 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.75rem;
+}
+
+.sf-pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sf-pillars {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sf-pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.25rem 1.2rem 1.35rem;
+  border-radius: 14px;
+  border: 1px solid rgba(232, 235, 228, 0.1);
+  background: linear-gradient(165deg, rgba(38, 46, 59, 0.92), rgba(18, 21, 26, 0.92));
+  min-height: 100%;
+}
+
+.sf-pillar--learn {
+  border-color: rgba(155, 225, 93, 0.28);
+}
+
+.sf-pillar--create {
+  border-color: rgba(91, 61, 140, 0.45);
+}
+
+.sf-pillar--remember {
+  border-color: rgba(194, 58, 122, 0.35);
+}
+
+.sf-pillar--explore {
+  border-color: rgba(26, 42, 74, 0.8);
+}
+
+.sf-pillar__kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sf-aurora);
+}
+
+.sf-pillar--create .sf-pillar__kicker { color: #c4b0ef; }
+.sf-pillar--remember .sf-pillar__kicker { color: #e8a0c2; }
+.sf-pillar--explore .sf-pillar__kicker { color: #8eb6e8; }
+
+.sf-pillar__title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.sf-pillar__copy {
+  margin: 0;
+  flex: 1;
+  color: var(--sf-muted);
+  line-height: 1.5;
+}
+
+.sf-pillar__status {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.sf-pillar__status--live {
+  color: var(--sf-aurora);
+}
+
+.sf-pillar__status--foundation {
+  color: #e8a0c2;
+}
+
+.sf-pillar .wds-btn {
+  align-self: flex-start;
+  min-height: 44px;
+}
+
+.sf-privacy {
+  margin: 1.75rem 0 0;
+  color: var(--sf-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.sf-foundation {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.sf-foundation h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin: 0.35rem 0 0.75rem;
+}
+
+.sf-foundation__eyebrow {
+  margin: 0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--sf-aurora);
+}
+
+.sf-foundation__eyebrow a {
+  color: inherit;
+}
+
+.sf-foundation__list {
+  margin: 1rem 0 1.5rem;
+  padding-left: 1.2rem;
+  color: var(--sf-muted);
+  line-height: 1.55;
+}
+
+.sf-foundation__note {
+  margin: 1rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--sf-magenta);
+  background: rgba(38, 46, 59, 0.65);
+  color: var(--sf-offwhite);
+  line-height: 1.5;
+}
+
+.sf-foundation__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.sf-foundation__actions .wds-btn[aria-disabled="true"],
+.sf-foundation__actions .wds-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

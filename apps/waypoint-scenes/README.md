@@ -1,18 +1,28 @@
 # Waypoint Scenes
 
-Creative reflection from field evidence — honest landscape photography, quiet motion, and collections that treat your frames as evidence from a place.
+**Observe. Discover. Understand.**  
+Capture what you find. Learn why it matters.
 
-Part of **[Waypoint Studio](../../)** — the fourth core instrument (after Dashboard, ForageCast, and Fieldry). Supports photography and memory; does not replace structured observation capture in Fieldry.
+Flagship photography product in **[Waypoint Studio](../../)** — four pillars:
 
-**Role:** Visual storytelling after time outside — not a harvest tool, not a social feed.
+| Pillar | Experience | Route |
+|--------|------------|-------|
+| **LEARN** | Photo Coach | [`/apps/photo-coach/`](../photo-coach/) |
+| **CREATE** | Living Scenes | [`create/`](./create/) |
+| **REMEMBER** | Outdoor Journals | [`remember/`](./remember/) (foundation) |
+| **EXPLORE** | Hidden Landscapes | [`explore/`](./explore/) |
 
-Shared design system: [`design-system/`](../../design-system/README.md). Learn engine: [WEF](../../design-system/education/README.md).
+**Canonical entry:** [`/apps/waypoint-scenes/`](./)  
+**Photo Coach source of truth:** [`/apps/photo-coach/`](../photo-coach/) — do not host a second consumer Coach here.  
+**Owner `photo_pipeline`:** separate internal tooling — not the consumer LEARN experience.
+
+Shared design system: [`design-system/`](../../design-system/README.md).
 
 **Governance:** [`docs/STRATEGIC-DIRECTION.md`](../../docs/STRATEGIC-DIRECTION.md) · [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](../../docs/WAYPOINT-STUDIO-CONSTITUTION.md)
 
 ## Run locally
 
-From the **repository root** (not this folder):
+From the **repository root**:
 
 ```bash
 python3 -m http.server 8080
@@ -20,25 +30,16 @@ python3 -m http.server 8080
 
 Open [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/)
 
-## Interface
-
-| Studio | Purpose |
-|--------|---------|
-| **Living Scene** | Upload, Effects Studio, Scene Presets, atmosphere |
-| **Parallax** | 2.5D mouse/tilt depth |
-| **Collections** | Gallery, field notes, workflow |
-| **Field Guide** | WEF curriculum |
-| **Export** | PNG snapshot |
-
 ## Key paths
 
 | Area | Location |
 |------|----------|
-| App shell | `index.html` |
-| Styles | `css/` |
-| Scripts | `js/` |
-| Images | `assets/Images/` |
-| Portfolio SVGs | `images/portfolio/` |
+| Scenes landing | `index.html` |
+| Living Scenes studio | `create/` |
+| Outdoor Journals foundation | `remember/` |
+| Hidden Landscapes overview | `explore/` |
+| Shared Coach / studio JS | `js/` |
+| Foundation styles | `css/scenes-foundation.css` |
 | WDS (shared) | `../../design-system/` |
 
 ## AI agents

@@ -93,7 +93,8 @@
     if (window.WaypointLearn) window.WaypointLearn.init();
     if (window.WaypointPhotoCoach) window.WaypointPhotoCoach.init();
     bindProductModes();
-    setProductMode("coach");
+    // CREATE studio has no Coach host; dual-host pages default to builder after redirect.
+    setProductMode($("mode-coach") ? "coach" : "builder");
     updateSidebarAwaitingImage();
     updateExportActions();
   }
@@ -270,12 +271,12 @@
 
   function showCoachImportBanner(critique) {
     if (!els.coachImportBanner) return;
-    var summary = "";
-    if (critique && critique.overallGrade) {
-      summary = critique.overallGrade.letter + " · " + critique.overallGrade.score + "/100";
-      if (critique.sceneSuggestion && critique.sceneSuggestion.style) {
-        summary += " · Suggested mood: " + critique.sceneSuggestion.style;
-      }
+    var summary = "Reading attached from Photo Coach";
+    if (critique && critique.sceneSuggestion && critique.sceneSuggestion.style) {
+      summary += " · Suggested mood: " + critique.sceneSuggestion.style;
+    } else if (critique && (critique.narrativeSummary || (critique.overallGrade && critique.overallGrade.summary))) {
+      var note = critique.narrativeSummary || critique.overallGrade.summary;
+      if (note) summary += " · " + String(note).slice(0, 120);
     }
     if (els.coachImportSummary) els.coachImportSummary.textContent = summary;
     els.coachImportBanner.hidden = false;
@@ -739,9 +740,18 @@
     }
   }
 
+  function photoCoachHref() {
+    return "/apps/photo-coach/";
+  }
+
   function setProductMode(mode) {
     var coach = $("mode-coach");
     var builder = $("mode-builder");
+    // CREATE-only pages (Living Scenes studio) have no Coach host — stay on builder.
+    if (!coach) {
+      if (builder) builder.hidden = false;
+      return;
+    }
     document.querySelectorAll("[data-product-mode]").forEach(function (btn) {
       btn.classList.toggle("is-active", btn.getAttribute("data-product-mode") === mode);
     });
@@ -760,17 +770,29 @@
   function bindProductModes() {
     document.querySelectorAll("[data-product-mode]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        setProductMode(btn.getAttribute("data-product-mode"));
-        if (btn.getAttribute("data-product-mode") === "builder") scrollToWorkspace();
+        var mode = btn.getAttribute("data-product-mode");
+        if (mode === "coach") {
+          // Dual-host retired — send LEARN traffic to the canonical Photo Coach.
+          window.location.href = photoCoachHref();
+          return;
+        }
+        setProductMode(mode);
+        if (mode === "builder") scrollToWorkspace();
       });
     });
     [$("btn-mode-coach-hero"), $("btn-coach-nav")].forEach(function (btn) {
-      if (btn) btn.addEventListener("click", function () { setProductMode("coach"); });
+      if (btn) {
+        btn.addEventListener("click", function () {
+          window.location.href = photoCoachHref();
+        });
+      }
     });
     [$("btn-mode-builder-hero"), $("btn-upload-nav")].forEach(function (btn) {
       if (btn) btn.addEventListener("click", function () {
         setProductMode("builder");
         scrollToWorkspace();
+        var file = $("file-input");
+        if (btn.id === "btn-upload-nav" && file && !imageLoaded) file.click();
       });
     });
   }

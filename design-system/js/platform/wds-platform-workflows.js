@@ -28,7 +28,7 @@
       to: "scenes",
       label: "Explore photography in Scenes",
       why: "Encounters can inspire how you look next time outdoors.",
-      pathFromRoot: "apps/scenes/",
+      pathFromRoot: "apps/waypoint-scenes/",
       when: "after-save"
     },
     {

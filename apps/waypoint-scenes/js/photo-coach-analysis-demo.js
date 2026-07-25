@@ -1175,6 +1175,8 @@
       uncertainNote = "Genre is uncertain from browser signals alone — coaching stays general rather than inventing a subject type.";
     }
 
+    var tip = buildChallenge(signals, outdoorContext, genre, prioritized);
+
     return {
       version: ENGINE_VERSION,
       engineStatus: "disconnected",
@@ -1218,8 +1220,10 @@
       printRecommendation: printRec,
       editIntelligence: editIntelligence,
       fieldInsights: fieldInsights,
-      nextShootChallenge: buildChallenge(signals, outdoorContext, genre, prioritized),
-      fieldAssignment: buildChallenge(signals, outdoorContext, genre, prioritized),
+      nextObservation: tip,
+      fieldSuggestion: tip,
+      nextShootChallenge: tip,
+      fieldAssignment: tip,
       sceneSuggestion: sceneSuggestion,
       learningNote: learningConcept.lesson
     };

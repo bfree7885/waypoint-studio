@@ -52,6 +52,9 @@
       editIntelligence: null,
       outdoorContext: null,
       learningNote: null,
+      nextObservation: null,
+      fieldSuggestion: null,
+      /** @deprecated consumer alias — prefer nextObservation */
       fieldAssignment: null,
       nextShootChallenge: null
     };

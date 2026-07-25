@@ -986,7 +986,7 @@
     var items = shoot.images.map(function (img, idx) {
       var isActive = img.id === activeId;
       var label = img.status === "done"
-        ? ((img.analysis && img.analysis.overallGrade && img.analysis.overallGrade.letter) || "•")
+        ? String(idx + 1)
         : img.status === "analyzing"
           ? "…"
           : img.status === "error"
@@ -1214,10 +1214,7 @@
       '<p class="pc-shoot-summary__lede">One session, read as a whole — not a contest between single frames.</p>' +
       meta +
       '<div class="pc-shoot-summary__score pc-shoot-summary__score--quiet">' +
-        '<span class="pc-shoot-summary__letter">' + escapeHtml(summary.letter) + "</span>" +
-        '<p class="pc-shoot-summary__score-note">Session read ' +
-          escapeHtml(String(summary.overallShootScore)) +
-          "/100 — blends keepers, median quality, and consistency. Guidance only.</p>" +
+        '<p class="pc-shoot-summary__score-note">Session reading — blends keepers, median quality, and consistency. Guidance only, not a report card.</p>' +
       "</div>" +
       favoriteHtml +
       '<div class="pc-shoot-summary__block">' +

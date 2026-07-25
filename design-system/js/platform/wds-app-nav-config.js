@@ -13,7 +13,7 @@
     },
     "studioPrimaryNav": [
       { "id": "dashboard", "label": "Dashboard", "href": "apps/dashboard/", "hint": "How is today?" },
-      { "id": "scenes", "label": "Scenes", "href": "apps/photo-coach/", "hint": "Review today’s shoot" },
+      { "id": "scenes", "label": "Scenes", "href": "apps/waypoint-scenes/", "hint": "Learn · Create · Remember · Explore" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "volunteer", "label": "Volunteer", "href": "apps/waypoint-volunteer/discover.html", "hint": "What good today?" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
@@ -111,7 +111,7 @@
         "title": "Scenes",
         "shortTitle": "Scenes",
         "icon": "scenes",
-        "route": "apps/scenes/",
+        "route": "apps/waypoint-scenes/",
         "match": [
           "/apps/scenes",
           "/apps/photo-coach",
@@ -121,26 +121,57 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
+        "description": "Flagship photography — Learn with Photo Coach, Create Living Scenes, Remember Outdoor Journals, Explore Hidden Landscapes.",
         "status": "live",
         "features": [
           {
             "id": "overview",
-            "label": "Today",
-            "href": "apps/scenes/",
+            "label": "Scenes",
+            "href": "apps/waypoint-scenes/",
             "match": [
+              "/apps/waypoint-scenes/?$",
+              "/apps/waypoint-scenes/index",
               "/apps/scenes/?$",
               "/apps/scenes/index"
             ]
           },
           {
             "id": "photo-coach",
-            "label": "Review a shoot",
+            "label": "Photo Coach",
             "href": "apps/photo-coach/",
             "match": [
               "/apps/scenes/photo-coach",
               "/apps/photo-coach/?$",
               "/apps/photo-coach/index"
+            ]
+          },
+          {
+            "id": "living-scenes",
+            "label": "Living Scenes",
+            "href": "apps/waypoint-scenes/create/",
+            "match": [
+              "/apps/waypoint-scenes/create",
+              "/apps/scenes/living-scenes",
+              "/apps/scenes/scene-builder"
+            ]
+          },
+          {
+            "id": "outdoor-journals",
+            "label": "Outdoor Journals",
+            "href": "apps/waypoint-scenes/remember/",
+            "match": [
+              "/apps/waypoint-scenes/remember"
+            ]
+          },
+          {
+            "id": "hidden-landscapes",
+            "label": "Hidden Landscapes",
+            "href": "apps/waypoint-scenes/explore/",
+            "match": [
+              "/apps/waypoint-scenes/explore",
+              "/apps/scenes/hidden-landscapes",
+              "/apps/hidden-landscapes",
+              "/apps/animal-vision"
             ]
           },
           {
@@ -151,23 +182,13 @@
               "/apps/scenes/photo-library",
               "/apps/photo-library"
             ]
-          },
-          {
-            "id": "hidden-landscapes",
-            "label": "Other ways of seeing",
-            "href": "apps/hidden-landscapes/",
-            "match": [
-              "/apps/scenes/hidden-landscapes",
-              "/apps/hidden-landscapes",
-              "/apps/animal-vision"
-            ]
           }
         ],
-        "purpose": "Observe carefully, discover what to look for, understand how you see — Create and Share stay inside the craft workflow.",
+        "purpose": "Observe carefully, discover what to look for, understand how you see — Learn, Create, Remember, Explore.",
         "maturity": "Flagship",
         "startHere": {
-          "label": "Review today’s shoot",
-          "href": "apps/photo-coach/"
+          "label": "Enter Scenes",
+          "href": "apps/waypoint-scenes/"
         },
         "journeys": [
           "observe",

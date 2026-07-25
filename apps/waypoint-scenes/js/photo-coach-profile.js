@@ -46,6 +46,10 @@
   }
 
   function completeAssignment(id) {
+    return markSuggestionTried(id);
+  }
+
+  function markSuggestionTried(id) {
     var p = load();
     if (p.completedAssignments.indexOf(id) < 0) {
       p.completedAssignments.push(id);
@@ -59,6 +63,7 @@
     return {
       level: p.experienceLevel || "developing",
       goals: (p.goals || []).slice(0, 3).join(", ") || "general craft",
+      suggestionsTried: (p.completedAssignments || []).length,
       assignmentsDone: (p.completedAssignments || []).length
     };
   }
@@ -67,6 +72,7 @@
     load: load,
     save: save,
     setGoal: setGoal,
+    markSuggestionTried: markSuggestionTried,
     completeAssignment: completeAssignment,
     renderSummary: renderSummary
   };

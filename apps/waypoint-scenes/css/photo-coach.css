@@ -204,7 +204,7 @@
   opacity: 0.75;
 }
 
-/* Grade */
+/* Reading card */
 .coach-grade-card {
   background: linear-gradient(145deg, rgba(62, 207, 142, 0.12), var(--coach-surface));
   border: 1px solid rgba(62, 207, 142, 0.35);

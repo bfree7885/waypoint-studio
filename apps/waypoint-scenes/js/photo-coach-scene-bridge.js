@@ -32,8 +32,8 @@
   function renderBringToLife(critique) {
     var opts = sceneOptions(critique);
     var html = '<section class="coach-card coach-card--scene" aria-labelledby="coach-scene-title">' +
-      '<h3 class="coach-card__title" id="coach-scene-title">Bring it to life</h3>' +
-      '<p class="coach-card__note">Send this frame into Scene Builder with critique context attached.</p>' +
+      '<h3 class="coach-card__title" id="coach-scene-title">Create a Living Scene</h3>' +
+      '<p class="coach-card__note">Continue into Living Scenes with this frame’s reading attached. Your original photograph stays intact.</p>' +
       '<ul class="coach-scene-options">';
     opts.forEach(function (opt) {
       var statusClass = opt.status === "live" ? "live" : "pending";
@@ -41,7 +41,7 @@
         '<div class="coach-scene-opt__copy">' +
           '<strong>' + escapeHtml(opt.label) + "</strong>" +
           (opt.recommended ? ' <span class="coach-trust coach-trust--live">Suggested</span>' : "") +
-          (opt.status === "pending" ? ' <span class="coach-trust coach-trust--pending">Coming later</span>' : "") +
+          (opt.status === "pending" ? ' <span class="coach-trust coach-trust--pending">Later</span>' : "") +
           '<p>' + escapeHtml(opt.desc) + "</p>" +
         "</div>";
       if (opt.status === "live") {
@@ -59,14 +59,35 @@
         '<li><span class="coach-trust coach-trust--pending">Later</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
       "</ul>" +
       '<button type="button" class="wds-btn wds-btn--primary coach-scene-primary" id="btn-coach-send-builder">' +
-        "Create Living Scene</button>" +
+        "Open Living Scenes</button>" +
       "</section>";
     return html;
   }
 
   function sendToBuilder(imageUrl, file, critique, exif) {
+    if (!imageUrl) return false;
+
     var App = global.WaypointSceneApp;
-    if (!App || !imageUrl) return false;
+    // Canonical Photo Coach page does not host Living Scenes — hand off to CREATE studio.
+    if (!App) {
+      try {
+        global.sessionStorage.setItem(
+          "waypoint-living-scenes-handoff-v1",
+          JSON.stringify({
+            imageName: file ? file.name : "photo",
+            critique: critique || null,
+            exif: exif || null,
+            at: Date.now()
+          })
+        );
+      } catch (err) {
+        /* ignore quota */
+      }
+      var target = new URL("/apps/waypoint-scenes/create/", global.location.origin);
+      target.searchParams.set("from", "coach");
+      global.location.href = target.href;
+      return true;
+    }
 
     if (App.setProductMode) App.setProductMode("builder");
     else {

@@ -1,5 +1,5 @@
 /**
- * Photo Coach — Upload. Notice. Understand. Bring it to Life.
+ * Photo Coach — Upload. Notice. Understand. Create Living Scenes.
  */
 (function (global) {
   "use strict";
@@ -309,7 +309,7 @@
     };
   }
 
-  function renderGradeCard(c) {
+  function renderReadingCard(c) {
     var g = c.overallGrade || {};
     var badge = c.isDemo || c.isSample
       ? '<span class="coach-trust coach-trust--demo">On-device field note</span>'
@@ -319,27 +319,27 @@
       : (c.coaching && c.coaching.uncertainNote
         ? '<p class="coach-genre coach-genre--uncertain">' + escapeHtml(c.coaching.uncertainNote) + "</p>"
         : "");
-    return '<section class="coach-grade-card" aria-labelledby="coach-grade-title">' +
+    return '<section class="coach-grade-card coach-reading-card" aria-labelledby="coach-grade-title">' +
       '<div class="coach-grade-card__head">' +
         '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall reading</h2>' + badge +
-      "</div>" +
-      '<div class="coach-grade-card__score">' +
-        '<span class="coach-grade-letter" aria-label="Relative reading">' + escapeHtml(g.letter || "—") + "</span>" +
-        '<span class="coach-grade-num">' + escapeHtml(String(g.score != null ? g.score : c.overallScore || "—")) +
-          '<span class="coach-grade-max">/100 relative</span></span>' +
       "</div>" +
       genre +
       '<p class="coach-grade-summary">' + escapeHtml(c.narrativeSummary || g.summary || "") + "</p>" +
       '<dl class="coach-grade-meta">' +
-        "<div><dt>Portfolio</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
-        "<div><dt>Print</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
+        "<div><dt>Portfolio potential</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
+        "<div><dt>Print potential</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
         "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "On-device signals") + "</dd></div>" +
       "</dl>" +
-      '<p class="coach-engine-note" role="note">A relative field reading of this image — not a grade of you as a photographer.</p>' +
+      '<p class="coach-engine-note" role="note">A relative field reading of this image — guidance only, not a judgment of you as a photographer.</p>' +
       (c.engineStatus === "disconnected"
         ? '<p class="coach-engine-note" role="status">On-device analysis — guidance from image characteristics, not a cloud review.</p>'
         : "") +
     "</section>";
+  }
+
+  // Backward-compatible alias (internal callers).
+  function renderGradeCard(c) {
+    return renderReadingCard(c);
   }
 
   function renderSignalsPanel(signals) {
@@ -369,10 +369,9 @@
       '<ul class="coach-photo-breakdown">' + rows.map(function (r) {
         return '<li class="coach-photo-breakdown__item">' +
           '<details class="coach-photo-breakdown__details">' +
-            '<summary><span class="coach-photo-breakdown__cat">' + escapeHtml(r.category) + "</span>" +
-            '<span class="coach-photo-breakdown__score">' + escapeHtml(String(r.score)) + "</span></summary>" +
+            '<summary><span class="coach-photo-breakdown__cat">' + escapeHtml(r.category) + "</span></summary>" +
             '<p class="coach-photo-breakdown__reason">' + escapeHtml(r.reason) + "</p>" +
-            '<p class="coach-photo-breakdown__teach"><strong>Guide note:</strong> ' + escapeHtml(r.teachingNote) + "</p>" +
+            '<p class="coach-photo-breakdown__teach"><strong>Composition note:</strong> ' + escapeHtml(r.teachingNote) + "</p>" +
           "</details></li>";
       }).join("") + "</ul></section>";
   }
@@ -503,7 +502,7 @@
   }
 
   function renderChallenge(c) {
-    var tip = c.nextShootChallenge || c.fieldAssignment || "";
+    var tip = c.nextObservation || c.nextShootChallenge || c.fieldSuggestion || c.fieldAssignment || "";
     if (!tip) return "";
     var Guide = global.WDS && global.WDS.guideCard;
     if (Guide && Guide.render) {

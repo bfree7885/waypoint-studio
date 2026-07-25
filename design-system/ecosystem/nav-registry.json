@@ -93,7 +93,7 @@
       "title": "Scenes",
       "shortTitle": "Scenes",
       "icon": "scenes",
-      "route": "apps/scenes/",
+      "route": "apps/waypoint-scenes/",
       "match": [
         "/apps/scenes",
         "/apps/photo-coach",
@@ -103,25 +103,17 @@
         "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+      "description": "Flagship photography \u2014 Learn, Create, Remember, Explore.",
       "status": "live",
       "features": [
         {
           "id": "overview",
-          "label": "Overview",
-          "href": "apps/scenes/",
+          "label": "Scenes",
+          "href": "apps/waypoint-scenes/",
           "match": [
-            "/apps/scenes/?$",
-            "/apps/scenes/index"
-          ]
-        },
-        {
-          "id": "photo-library",
-          "label": "Library",
-          "href": "apps/photo-library/",
-          "match": [
-            "/apps/scenes/photo-library",
-            "/apps/photo-library"
+            "/apps/waypoint-scenes/?$",
+            "/apps/waypoint-scenes/index",
+            "/apps/scenes/?$"
           ]
         },
         {
@@ -129,61 +121,48 @@
           "label": "Photo Coach",
           "href": "apps/photo-coach/",
           "match": [
-            "/apps/scenes/photo-coach",
-            "/apps/photo-coach/?$",
-            "/apps/photo-coach/index"
-          ]
-        },
-        {
-          "id": "hidden-landscapes",
-          "label": "Hidden Landscapes",
-          "href": "apps/hidden-landscapes/",
-          "match": [
-            "/apps/scenes/hidden-landscapes",
-            "/apps/hidden-landscapes",
-            "/apps/animal-vision"
+            "/apps/photo-coach"
           ]
         },
         {
           "id": "living-scenes",
           "label": "Living Scenes",
-          "href": "apps/scenes/living-scenes/",
+          "href": "apps/waypoint-scenes/create/",
           "match": [
-            "/apps/scenes/living-scenes"
+            "/apps/waypoint-scenes/create"
           ]
         },
         {
-          "id": "scene-builder",
-          "label": "Scene Builder",
-          "href": "apps/scenes/scene-builder/",
+          "id": "outdoor-journals",
+          "label": "Outdoor Journals",
+          "href": "apps/waypoint-scenes/remember/",
           "match": [
-            "/apps/scenes/scene-builder",
-            "/apps/waypoint-scenes"
+            "/apps/waypoint-scenes/remember"
           ]
         },
         {
-          "id": "photographer-profile",
-          "label": "Profile",
-          "href": "apps/scenes/photographer-profile/",
+          "id": "hidden-landscapes",
+          "label": "Hidden Landscapes",
+          "href": "apps/waypoint-scenes/explore/",
           "match": [
-            "/apps/scenes/photographer-profile",
-            "/apps/photo-coach/profile"
+            "/apps/waypoint-scenes/explore",
+            "/apps/hidden-landscapes"
           ]
         },
         {
-          "id": "guide",
-          "label": "Field guide",
-          "href": "apps/photo-coach/guide/",
+          "id": "photo-library",
+          "label": "Your photographs",
+          "href": "apps/photo-library/",
           "match": [
-            "/apps/photo-coach/guide"
+            "/apps/photo-library"
           ]
         }
       ],
       "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
       "maturity": "Live",
       "startHere": {
-        "label": "Open Photo Coach",
-        "href": "apps/photo-coach/"
+        "label": "Enter Scenes",
+        "href": "apps/waypoint-scenes/"
       },
       "journeys": [
         "observe",
@@ -215,7 +194,7 @@
           "href": "apps/shed-hunting/"
         }
       ],
-      "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
+      "purpose": "Private antler-shed field craft \u2014 sign, seasonality, and finds without trophy culture.",
       "maturity": "Foundation",
       "startHere": {
         "label": "Open field map",
@@ -241,7 +220,7 @@
         "/apps/foragecast"
       ],
       "category": "outdoor",
-      "description": "Outdoor intelligence — what to look for today and why, across foraging and land care.",
+      "description": "Outdoor intelligence \u2014 what to look for today and why, across foraging and land care.",
       "status": "live",
       "features": [
         {
@@ -326,7 +305,7 @@
           ]
         }
       ],
-      "purpose": "Seasonal outdoor intelligence — what to look for today across foraging and land care.",
+      "purpose": "Seasonal outdoor intelligence \u2014 what to look for today across foraging and land care.",
       "maturity": "Live",
       "startHere": {
         "label": "Open ForageCast",
@@ -427,7 +406,7 @@
         "/apps/steepleaf"
       ],
       "category": "outdoor",
-      "description": "Tea companion — today’s brew, private collection, sessions, and knowledge graph.",
+      "description": "Tea companion \u2014 today\u2019s brew, private collection, sessions, and knowledge graph.",
       "status": "active",
       "features": [
         {
@@ -471,10 +450,10 @@
           "href": "apps/steepleaf/#settings"
         }
       ],
-      "purpose": "Private tea companion — today’s brew, collection, sessions, and calm tasting notes.",
+      "purpose": "Private tea companion \u2014 today\u2019s brew, collection, sessions, and calm tasting notes.",
       "maturity": "Early access",
       "startHere": {
-        "label": "Open today’s brew",
+        "label": "Open today\u2019s brew",
         "href": "apps/steepleaf/#brew"
       },
       "journeys": [
@@ -496,7 +475,7 @@
         "/apps/signalterrain"
       ],
       "category": "intelligence",
-      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
+      "description": "Radio & Spectrum Intelligence and educational Cyber Awareness \u2014 observe and understand signals without offense.",
       "status": "foundation",
       "features": [
         {
@@ -553,7 +532,7 @@
       "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype.",
       "maturity": "Foundation",
       "startHere": {
-        "label": "Open today’s cyber brief",
+        "label": "Open today\u2019s cyber brief",
         "href": "apps/signalterrain/cyber/live.html#brief"
       },
       "journeys": [
@@ -574,7 +553,7 @@
         "/apps/savant-sommelier"
       ],
       "category": "lifestyle",
-      "description": "Wine intelligence — discover, learn, cellar, and vineyard suitability with explanations.",
+      "description": "Wine intelligence \u2014 discover, learn, cellar, and vineyard suitability with explanations.",
       "status": "active",
       "features": [
         {
@@ -607,7 +586,7 @@
           "href": "apps/savant-sommelier/settings.html"
         }
       ],
-      "purpose": "Wine-through-place literacy — discover, learn, cellar, and vineyard context with explanations.",
+      "purpose": "Wine-through-place literacy \u2014 discover, learn, cellar, and vineyard context with explanations.",
       "maturity": "Early access",
       "startHere": {
         "label": "Discover wines",
@@ -633,7 +612,7 @@
         "/apps/waypoint-volunteer"
       ],
       "category": "outdoor",
-      "description": "What good can I do today? — discover community opportunities without gamification.",
+      "description": "What good can I do today? \u2014 discover community opportunities without gamification.",
       "status": "foundation",
       "features": [
         {
@@ -662,7 +641,7 @@
           "href": "apps/waypoint-volunteer/impact/"
         }
       ],
-      "purpose": "Discover community good you can do today — without management software or gamification.",
+      "purpose": "Discover community good you can do today \u2014 without management software or gamification.",
       "maturity": "Foundation",
       "startHere": {
         "label": "What good can I do today?",
@@ -689,9 +668,9 @@
         "/apps/landscape-interpretation"
       ],
       "category": "outdoor",
-      "description": "Why does this place look the way it does? — educational landscape stories from field clues.",
+      "description": "Why does this place look the way it does? \u2014 educational landscape stories from field clues.",
       "status": "experimental",
-      "purpose": "Read why a place looks the way it does from field clues — ecology, geology, and land use.",
+      "purpose": "Read why a place looks the way it does from field clues \u2014 ecology, geology, and land use.",
       "maturity": "Experimental",
       "startHere": {
         "label": "Open field reader",
@@ -725,22 +704,22 @@
     {
       "id": "observe",
       "label": "Observe",
-      "blurb": "See what is happening — weather, seasons, wildlife sign, light, community needs, and invisible environments."
+      "blurb": "See what is happening \u2014 weather, seasons, wildlife sign, light, community needs, and invisible environments."
     },
     {
       "id": "understand",
       "label": "Understand",
-      "blurb": "Learn why it matters — calm explanations with uncertainty labeled, never hype."
+      "blurb": "Learn why it matters \u2014 calm explanations with uncertainty labeled, never hype."
     },
     {
       "id": "create",
       "label": "Create",
-      "blurb": "Optional making — photography craft, journals, and personal collections without competition."
+      "blurb": "Optional making \u2014 photography craft, journals, and personal collections without competition."
     },
     {
       "id": "share",
       "label": "Share",
-      "blurb": "Intentional sharing only — exports and contributions you choose, never engagement traps."
+      "blurb": "Intentional sharing only \u2014 exports and contributions you choose, never engagement traps."
     }
   ]
 }

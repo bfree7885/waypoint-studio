@@ -87,7 +87,7 @@
       status: "live",
       description: "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.",
       pathFromApps: "../scenes/",
-      pathFromRoot: "apps/scenes/",
+      pathFromRoot: "apps/waypoint-scenes/",
       dataProduct: "scenes",
       navPriority: 40
     },

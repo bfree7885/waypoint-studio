@@ -340,7 +340,7 @@
       "lead": "Weather, seasons, field notes, and photographs \u2014 calm software for people who spend time outside.",
       "description": "Outdoor tools for naturalists, photographers, and careful observers.",
       "studioHref": "/",
-      "toolHref": "apps/scenes/",
+      "toolHref": "apps/waypoint-scenes/",
       "toolLabel": "Waypoint Scenes",
       "contentDomains": [
         "species",
@@ -410,7 +410,7 @@
       "lead": "Waypoint Scenes helps photographers observe an image more carefully, understand what is working, and make deliberate improvements.",
       "description": "Photography tools for careful looking \u2014 Photo Coach and Profile available now.",
       "studioHref": "../../",
-      "toolHref": "apps/scenes/",
+      "toolHref": "apps/waypoint-scenes/",
       "toolLabel": "Open studio",
       "contentDomains": [
         "photography",
