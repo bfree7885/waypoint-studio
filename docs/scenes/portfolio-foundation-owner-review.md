@@ -3,7 +3,7 @@
 **Date:** 2026-07-24  
 **Branch:** `feature/scenes-portfolio-foundation`  
 **Base (`origin/main`):** `0be5f9fb23f0b0f024794ea2542df502416537f1`  
-**Final commit SHA:** _(filled after commit)_  
+**Final commit SHA:** `4f8d18c7345b36fc264e0cc9ff28047308e8db1c`  
 **Deployment status:** **Not deployed** · **Not merged to main**  
 **Dashboard / Sheds:** Untouched
 
