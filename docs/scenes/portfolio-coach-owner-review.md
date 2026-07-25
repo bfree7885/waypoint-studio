@@ -4,8 +4,8 @@
 **Branch:** `feature/scenes-portfolio-coach`
 **Cut from:** `feature/scenes-portfolio-assistant`
 **Starting SHA:** `714d7ce3b4b10dd3796ff8d88d57b14062c082c0` (expected tip after assistant `[skip ci]` publish — matches brief)
-**Implementation commit:** *(this sprint’s feat commit; see `git log -1` after stamp)*
-**Final SHA:** branch tip after docs stamp (see `git log -1`)
+**Implementation commit:** `ef7ed25381fdf7099ef0a335432e8aea6821be64`
+**Final SHA:** this docs-stamp commit (branch tip; see `git log -1`)
 **Base assistant tip:** `714d7ce` (implementation `5780d05`, docs tip `2c65849`, then publish)
 **Base foundation (meaningful tip):** `87fbd76`
 **Base main (`origin/main`):** unchanged by this sprint
@@ -284,7 +284,8 @@ changes · cloud sync · social share · lesson/quiz systems.
 
 - Branch: `feature/scenes-portfolio-coach`
 - Starting SHA: `714d7ce`
-- Implementation commit: see `git log` for `feat(scenes): add comparative portfolio coaching`
+- Implementation commit: `ef7ed25`
+- Final SHA: this docs-stamp commit (branch tip)
 - **Not merged** to `main` or assistant/foundation branches
 - **Not deployed**
 - Dashboard and Sheds product files were not modified
