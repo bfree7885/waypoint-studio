@@ -644,3 +644,25 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    foundation touched only for two "Review candidates" links + a dynamic href.
    Dashboard/Sheds untouched.
 
+### 2026-07-24 — Scenes Portfolio Coach (comparative mentoring)
+
+**Branch:** `feature/scenes-portfolio-coach` from `feature/scenes-portfolio-assistant` @ `714d7ce`
+**Docs:** `docs/scenes/portfolio-coach-signal-audit.md` · `docs/scenes/portfolio-coach-owner-review.md`
+
+1. **Audit comparative claims separately from single-image recommendations.**
+   Frame / fit / role coaching must still refuse pixel analysis the LibraryImage
+   model does not produce — say “evidence limited” and leave the decision open.
+2. **Assistant recommends; Coach explains; user decides.** Keep mentor language
+   (“may,” “might,” soft roles) and ban definitive quality / winner wording in
+   generators *and* tests.
+3. **Separate layers again:** compare facts → generate points (+ uncertainty) →
+   persist decisions/notes → present. Re-generation must preserve preference,
+   roles, helpful/dismiss, and notes.
+4. **Never silently mutate portfolios.** Add/replace are explicit UI actions;
+   coach store only *records* that the user asked for a membership change.
+5. **Nested quote bugs in large HTML template strings** fail late in headless
+   capture (`Unexpected identifier`). Run `node --check` on UI modules before
+   CDP screenshots.
+6. **Preserve prior sprint docs.** Coach audits/reviews are additive; do not
+   rewrite Assistant owner-review or signal-audit files.
+

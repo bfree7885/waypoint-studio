@@ -12,11 +12,13 @@
   var Signals = function () { return global.WaypointScenesAssistantSignals; };
   var Recommend = function () { return global.WaypointScenesAssistantRecommend; };
   var Sessions = function () { return global.WaypointScenesAssistantSessions; };
+  var CoachStore = function () { return global.WaypointScenesCoachStore; };
   var PortfolioEngine = function () { return global.WaypointScenesPortfolioEngine; };
   var PL = function () { return global.WaypointPhotoLibraryStore; };
 
   var sessionEngine = null;
   var portfolioEngine = null;
+  var coachEngine = null;
   var libraryImages = [];
   var collections = [];
 
@@ -28,7 +30,48 @@
     sort: "recommended",
     groupOpenId: null,
     presetPortfolioId: null,
-    presetSource: null
+    presetSource: null,
+    /** Manual multi-select for coaching (max 2). */
+    compareSelect: [],
+    /** Active Portfolio Coach session id (local coach store). */
+    coachSessionId: null,
+    /** Mobile coach pane: photos | points | decide */
+    coachTab: "photos",
+    /** Expanded evidence point id */
+    coachEvidenceId: null
+  };
+
+  var ROLE_OPTIONS = [
+    "",
+    "hero-or-subject",
+    "supporting",
+    "cover-or-opening",
+    "detail-or-supporting",
+    "environmental-or-establishing",
+    "undecided"
+  ];
+
+  var ROLE_LABEL = {
+    "hero-or-subject": "Hero / subject",
+    supporting: "Supporting",
+    "cover-or-opening": "Cover / opening",
+    "detail-or-supporting": "Detail / supporting",
+    "environmental-or-establishing": "Environmental / establishing",
+    undecided: "Undecided"
+  };
+
+  var COACH_CAT_LABEL = {
+    "technical-clarity": "Technical clarity",
+    "subject-presentation": "Subject presentation",
+    composition: "Composition",
+    "timing-and-gesture": "Timing and gesture",
+    "environmental-context": "Environmental context",
+    "visual-variety": "Visual variety",
+    "portfolio-repetition": "Portfolio repetition",
+    "narrative-role": "Narrative role",
+    "cover-suitability": "Cover suitability",
+    "sequence-contribution": "Sequence contribution",
+    "insufficient-evidence": "Insufficient evidence"
   };
 
   // ---- helpers -----------------------------------------------------------
@@ -271,6 +314,51 @@
     if (rec.groupId && rec.relatedImageIds && rec.relatedImageIds.length) {
       groupBtn = '<button type="button" class="wds-btn wds-btn--ghost" data-open-group="' + esc(rec.groupId) +
         '">Compare similar frames (' + (rec.relatedImageIds.length + 1) + ")</button>";
+      var other = rec.relatedImageIds[0];
+      if (other) {
+        groupBtn += '<button type="button" class="wds-btn wds-btn--primary" data-coach-pair data-a="' + esc(id) +
+          '" data-b="' + esc(other) + '" data-group="' + esc(rec.groupId) +
+          '">Open Portfolio Coach</button>';
+      }
+    }
+
+    var inCompare = state.compareSelect.indexOf(id) >= 0;
+    var compareBtn =
+      '<button type="button" class="wds-btn wds-btn--ghost' + (inCompare ? " is-on" : "") +
+      '" data-coach-pick="' + esc(id) + '" aria-pressed="' + (inCompare ? "true" : "false") + '">' +
+      (inCompare ? "Selected for coach" : "Select for coach") + "</button>";
+    if (state.compareSelect.length === 2) {
+      compareBtn +=
+        '<button type="button" class="wds-btn wds-btn--primary" data-coach-manual>Open Portfolio Coach with selection</button>';
+    }
+
+    // Nearby frame: previous/next in session order for candidate + nearby
+    var order = session.order && session.order.length ? session.order : session.imageIds || [];
+    var oi = order.indexOf(id);
+    var nearbyBtn = "";
+    if (oi >= 0 && order.length > 1) {
+      var nearId = oi < order.length - 1 ? order[oi + 1] : order[oi - 1];
+      if (nearId) {
+        nearbyBtn =
+          '<button type="button" class="wds-btn wds-btn--ghost" data-coach-pair data-a="' + esc(id) +
+          '" data-b="' + esc(nearId) + '" data-source="nearby">Coach with nearby frame</button>';
+      }
+    }
+
+    // Portfolio image + alternative: if active is in a portfolio, offer coach vs first related or strong alt
+    var pfBtn = "";
+    var pf = activePortfolio();
+    if (pf && (pf.imageIds || []).indexOf(id) >= 0) {
+      var alt = (rec.relatedImageIds && rec.relatedImageIds[0]) || null;
+      if (!alt) {
+        var candidates = (session.imageIds || []).filter(function (x) { return x !== id && (pf.imageIds || []).indexOf(x) < 0; });
+        alt = candidates[0] || null;
+      }
+      if (alt) {
+        pfBtn =
+          '<button type="button" class="wds-btn wds-btn--ghost" data-coach-pair data-a="' + esc(id) +
+          '" data-b="' + esc(alt) + '" data-source="portfolio-alt">Coach: portfolio image vs alternative</button>';
+      }
     }
 
     var decidedNote = "";
@@ -299,6 +387,9 @@
       '<button type="button" class="wds-btn wds-btn--ghost pfa-mark" data-mark="excluded" data-id="' + esc(id) + '">Exclude from review</button>' +
       (dec ? '<button type="button" class="wds-btn wds-btn--ghost" data-clear="' + esc(id) + '">Clear my decision</button>' : "") +
       groupBtn +
+      compareBtn +
+      nearbyBtn +
+      pfBtn +
       "</div>" +
       '<div class="pfa-add">' +
       '<label for="pfa-add-select" class="wds-sr-only">Add to portfolio</label>' +
@@ -320,12 +411,21 @@
     if (!group) { wrap.hidden = true; wrap.innerHTML = ""; return; }
     wrap.hidden = false;
 
+    var coachPairBtn = "";
+    if (group.imageIds.length >= 2) {
+      coachPairBtn =
+        '<button type="button" class="wds-btn wds-btn--primary" data-coach-group="' + esc(group.id) +
+        '" data-a="' + esc(group.imageIds[0]) + '" data-b="' + esc(group.imageIds[1]) +
+        '">Open Portfolio Coach</button>';
+    }
+
     wrap.innerHTML =
       '<div class="pfa-group__head">' +
       "<h2 class=\"pf-section-title\">Compare similar frames</h2>" +
       '<button type="button" class="wds-btn wds-btn--ghost" id="pfa-group-close">Close</button>' +
       "</div>" +
-      '<p class="pf-hint">' + esc(group.reason) + " Choose a preferred frame, keep several, or dismiss — nothing is deleted.</p>" +
+      '<p class="pf-hint">' + esc(group.reason) + " Choose a preferred frame, keep several, open Portfolio Coach, or dismiss — nothing is deleted.</p>" +
+      '<div class="pfa-group__coach-launch">' + coachPairBtn + "</div>" +
       '<ul class="pfa-group__grid">' +
       group.imageIds
         .map(function (id) {
@@ -339,12 +439,213 @@
             '<div class="pfa-group__actions">' +
             '<button type="button" class="wds-btn wds-btn--ghost" data-prefer="' + esc(id) + '" data-group="' + esc(group.id) + '"' + (pref ? " disabled" : "") + ">Prefer this</button>" +
             '<button type="button" class="wds-btn wds-btn--ghost" data-add="' + esc(id) + '">Add</button>' +
+            '<button type="button" class="wds-btn wds-btn--ghost" data-coach-pick="' + esc(id) + '">Select for coach</button>' +
             '<button type="button" class="wds-btn wds-btn--ghost pf-danger" data-mark="excluded" data-id="' + esc(id) + '">Dismiss</button>' +
             "</div>" +
             "</li>";
         })
         .join("") +
       "</ul>";
+  }
+
+  // ---- Portfolio Coach presentation --------------------------------------
+
+  function activePortfolio() {
+    if (state.presetPortfolioId) return portfolioEngine.get(state.presetPortfolioId);
+    var session = currentSession();
+    if (session && session.destinationPortfolioIds && session.destinationPortfolioIds[0]) {
+      return portfolioEngine.get(session.destinationPortfolioIds[0]);
+    }
+    var list = portfolioEngine.list();
+    return list.length ? list[0] : null;
+  }
+
+  function openCoach(imageIdA, imageIdB, source, group) {
+    if (!imageIdA || !imageIdB || imageIdA === imageIdB) {
+      setStatus("Select two different photographs to open Portfolio Coach.", true);
+      return;
+    }
+    var imgA = libraryById(imageIdA);
+    var imgB = libraryById(imageIdB);
+    if (!imgA && !imgB) {
+      setStatus("Those photograph references are missing from the library.", true);
+      return;
+    }
+    var pf = activePortfolio();
+    var coachSession = coachEngine.openComparison({
+      imgA: imgA || { id: imageIdA, filename: "Missing A" },
+      imgB: imgB || { id: imageIdB, filename: "Missing B" },
+      portfolio: pf,
+      libraryImages: libraryImages,
+      group: group || null,
+      source: source || "manual",
+      assistantSessionId: state.sessionId,
+      portfolioId: pf ? pf.id : null
+    });
+    state.coachSessionId = coachSession.id;
+    state.coachTab = "photos";
+    state.coachEvidenceId = null;
+    state.groupOpenId = null;
+    setStatus("Portfolio Coach is ready — photographs stay dominant; you decide.");
+    render();
+    var panel = $("pfc-coach");
+    if (panel && panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function toggleCompareSelect(imageId) {
+    var idx = state.compareSelect.indexOf(imageId);
+    if (idx >= 0) {
+      state.compareSelect.splice(idx, 1);
+    } else {
+      if (state.compareSelect.length >= 2) state.compareSelect.shift();
+      state.compareSelect.push(imageId);
+    }
+    if (state.compareSelect.length === 2) {
+      setStatus("Two photographs selected — open Portfolio Coach when ready.");
+    } else {
+      setStatus(state.compareSelect.length === 1 ? "Select one more photograph for Portfolio Coach." : "");
+    }
+    render();
+  }
+
+  function confidenceBadgeCoach(conf) {
+    return '<span class="pfa-conf" data-conf="' + esc(conf) + '">' +
+      '<span class="pfa-conf__dots" aria-hidden="true">' + (CONF_DOTS[conf] || "") + "</span>" +
+      '<span class="pfa-conf__label">' + esc(CONF_LABEL[conf] || conf) + "</span></span>";
+  }
+
+  function roleSelectHtml(side, current) {
+    var opts = ROLE_OPTIONS.map(function (r) {
+      var label = r ? (ROLE_LABEL[r] || r) : "No role set";
+      return '<option value="' + esc(r) + '"' + (r === (current || "") ? " selected" : "") + ">" + esc(label) + "</option>";
+    }).join("");
+    return '<label class="pfc-role"><span class="wds-sr-only">Role for frame ' + side.toUpperCase() + "</span>" +
+      '<select class="pfa-select pfa-select--sm" data-role-side="' + side + '">' + opts + "</select></label>";
+  }
+
+  function renderCoachPoint(p, decision) {
+    var dismissed = decision && decision.dismissedPointIds.indexOf(p.id) >= 0;
+    var helpful = decision && decision.helpfulPointIds.indexOf(p.id) >= 0;
+    if (dismissed) return "";
+    var evidenceOpen = state.coachEvidenceId === p.id;
+    var evidence = (p.evidence || [])
+      .map(function (e) {
+        return "<li><strong>" + esc(e.label || e.signal) + "</strong>: " +
+          (e.valueA != null ? "A · " + esc(String(e.valueA)) : "") +
+          (e.valueA != null && e.valueB != null ? " · " : "") +
+          (e.valueB != null ? "B · " + esc(String(e.valueB)) : "") +
+          "</li>";
+      })
+      .join("");
+    return '<article class="pfc-point" data-kind="' + esc(p.kind || "mixed") + '" data-cat="' + esc(p.category) + '">' +
+      '<header class="pfc-point__head">' +
+      '<span class="pfc-cat">' + esc(COACH_CAT_LABEL[p.category] || p.category) + "</span>" +
+      '<span class="pfc-mode">' + esc(p.mode) + "</span>" +
+      confidenceBadgeCoach(p.confidence) +
+      (p.kind === "technical" ? '<span class="pfc-kind">Technical</span>' : "") +
+      (p.kind === "creative" ? '<span class="pfc-kind pfc-kind--creative">Creative (cautious)</span>' : "") +
+      "</header>" +
+      '<p class="pfc-obs">' + esc(p.observation) + "</p>" +
+      '<p class="pfc-why"><span class="pfc-label">Why it may matter</span> ' + esc(p.whyItMayMatter) + "</p>" +
+      '<p class="pfc-trade"><span class="pfc-label">Tradeoff</span> ' + esc(p.tradeoff) + "</p>" +
+      (p.portfolioContext ? '<p class="pfc-pfx"><span class="pfc-label">Portfolio context</span> ' + esc(p.portfolioContext) + "</p>" : "") +
+      '<p class="pfc-ask"><span class="pfc-label">Your call</span> ' + esc(p.decisionPrompt) + "</p>" +
+      '<div class="pfc-point__actions">' +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-evidence="' + esc(p.id) + '" aria-expanded="' +
+      (evidenceOpen ? "true" : "false") + '">' + (evidenceOpen ? "Hide evidence" : "Show evidence") + "</button>" +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-helpful="' + esc(p.id) + '"' +
+      (helpful ? " disabled" : "") + ">" + (helpful ? "Marked helpful" : "Mark helpful") + "</button>" +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-dismiss-point="' + esc(p.id) + '">Dismiss</button>' +
+      "</div>" +
+      (evidenceOpen
+        ? '<div class="pfc-evidence" role="region" aria-label="Evidence for this coaching point"><ul>' +
+          (evidence || "<li>No structured evidence rows for this point.</li>") +
+          '</ul><p class="pf-hint">Weak or incomplete signals are shown honestly. This is not pixel analysis.</p></div>'
+        : "") +
+      "</article>";
+  }
+
+  function renderCoach() {
+    var wrap = $("pfc-coach");
+    if (!wrap) return;
+    if (!state.coachSessionId) { wrap.hidden = true; wrap.innerHTML = ""; return; }
+    var cs = coachEngine.get(state.coachSessionId);
+    if (!cs) { wrap.hidden = true; wrap.innerHTML = ""; state.coachSessionId = null; return; }
+    wrap.hidden = false;
+
+    var imgA = libraryById(cs.imageIdA);
+    var imgB = libraryById(cs.imageIdB);
+    var decision = cs.decision || {};
+    var pref = decision.preference;
+    var notes = coachEngine.notesForSession(cs.id);
+    var pointsHtml = (cs.points || []).map(function (p) { return renderCoachPoint(p, decision); }).join("");
+    if (!pointsHtml) {
+      pointsHtml = '<p class="pf-hint">All coaching points were dismissed. Manual comparison remains available.</p>';
+    }
+
+    var tab = state.coachTab || "photos";
+    wrap.innerHTML =
+      '<div class="pfc-head">' +
+      "<div>" +
+      '<h2 class="pf-section-title">Portfolio Coach</h2>' +
+      '<p class="pf-hint">' + esc(cs.message || "Assistant recommends. Coach explains. You decide.") + "</p>" +
+      "</div>" +
+      '<button type="button" class="wds-btn wds-btn--ghost" id="pfc-close">Close coach</button>' +
+      "</div>" +
+      '<div class="pfc-tabs" role="tablist" aria-label="Coach views">' +
+      '<button type="button" role="tab" class="pfc-tab' + (tab === "photos" ? " is-active" : "") + '" data-coach-tab="photos" aria-selected="' + (tab === "photos") + '">Photographs</button>' +
+      '<button type="button" role="tab" class="pfc-tab' + (tab === "points" ? " is-active" : "") + '" data-coach-tab="points" aria-selected="' + (tab === "points") + '">Coaching</button>' +
+      '<button type="button" role="tab" class="pfc-tab' + (tab === "decide" ? " is-active" : "") + '" data-coach-tab="decide" aria-selected="' + (tab === "decide") + '">Your decision</button>' +
+      "</div>" +
+      '<div class="pfc-body" data-tab="' + esc(tab) + '">' +
+      '<div class="pfc-photos' + (tab === "photos" ? " is-shown" : "") + '" role="tabpanel">' +
+      '<figure class="pfc-fig' + (pref === "prefer-a" ? " is-preferred" : "") + '">' +
+      '<div class="pfc-fig__media">' + thumbHtml(imgA, imgA && imgA.filename, "pfc-fig__img") + "</div>" +
+      '<figcaption><span class="pfc-fig__tag">A</span> ' + esc((imgA && imgA.filename) || cs.imageIdA || "Missing") + "</figcaption>" +
+      "</figure>" +
+      '<figure class="pfc-fig' + (pref === "prefer-b" ? " is-preferred" : "") + '">' +
+      '<div class="pfc-fig__media">' + thumbHtml(imgB, imgB && imgB.filename, "pfc-fig__img") + "</div>" +
+      '<figcaption><span class="pfc-fig__tag">B</span> ' + esc((imgB && imgB.filename) || cs.imageIdB || "Missing") + "</figcaption>" +
+      "</figure>" +
+      "</div>" +
+      '<div class="pfc-points' + (tab === "points" ? " is-shown" : "") + '" role="tabpanel">' +
+      pointsHtml +
+      "</div>" +
+      '<div class="pfc-decide' + (tab === "decide" ? " is-shown" : "") + '" role="tabpanel">' +
+      '<div class="pfc-pref" role="group" aria-label="Preference for this comparison">' +
+      '<button type="button" class="wds-btn wds-btn--ghost' + (pref === "prefer-a" ? " is-on" : "") + '" data-coach-pref="prefer-a">Prefer A</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost' + (pref === "prefer-b" ? " is-on" : "") + '" data-coach-pref="prefer-b">Prefer B</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost' + (pref === "keep-both" ? " is-on" : "") + '" data-coach-pref="keep-both">Keep both</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost' + (pref === "keep-neither" ? " is-on" : "") + '" data-coach-pref="keep-neither">Keep neither this session</button>' +
+      "</div>" +
+      '<div class="pfc-roles">' +
+      "<p class=\"pfc-label\">Assign different roles (optional)</p>" +
+      '<div class="pfc-roles__row"><span>A</span> ' + roleSelectHtml("a", decision.roles && decision.roles.a) +
+      "<span>B</span> " + roleSelectHtml("b", decision.roles && decision.roles.b) + "</div>" +
+      "</div>" +
+      '<div class="pfc-portfolio-actions">' +
+      '<label for="pfc-add-select" class="wds-sr-only">Portfolio for coach actions</label>' +
+      '<select id="pfc-add-select" class="pfa-select pfa-select--sm">' + portfolioOptions(state.presetPortfolioId) + "</select>" +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-add="a">Add A</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-add="b">Add B</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-add="both">Add both</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-replace="a">Replace portfolio image with A…</button>' +
+      '<button type="button" class="wds-btn wds-btn--ghost" data-coach-replace="b">Replace portfolio image with B…</button>' +
+      "</div>" +
+      '<div class="pfc-note">' +
+      '<label for="pfc-note-input">Personal note</label>' +
+      '<textarea id="pfc-note-input" class="pfc-note__input" rows="2" maxlength="500" placeholder="What you noticed — saved on this device only."></textarea>' +
+      '<button type="button" class="wds-btn wds-btn--ghost" id="pfc-note-save">Save note</button>' +
+      (notes.length
+        ? '<ul class="pfc-note__list">' + notes.map(function (n) {
+            return "<li><time datetime=\"" + esc(n.createdAt) + "\">" + esc((n.createdAt || "").slice(0, 10)) +
+              "</time> " + esc(n.text) + "</li>";
+          }).join("") + "</ul>"
+        : '<p class="pf-hint">Notes stay local for your future learning history — no lessons or streaks.</p>') +
+      "</div>" +
+      '<p class="pf-hint">Portfolio changes never happen silently. Originals are never deleted or altered.</p>' +
+      "</div>" +
+      "</div>";
   }
 
   function renderWorkspace() {
@@ -366,6 +667,7 @@
     renderFilmstrip(session);
     renderPreview(session);
     renderGroup(session);
+    renderCoach();
   }
 
   function render() {
@@ -403,19 +705,78 @@
     render();
   }
 
-  function addToPortfolio(imageId) {
-    var sel = $("pfa-add-select");
+  function resolvePortfolioChoice(selectId) {
+    var sel = $(selectId) || $("pfa-add-select");
     var choice = sel ? sel.value : "";
-    if (!choice) { setStatus("Choose a portfolio first.", true); return; }
+    if (!choice) return null;
+    if (choice === "__new__") {
+      var session = currentSession();
+      var created = portfolioEngine.createPortfolio({
+        title: (session && session.source && session.source.label) || "New portfolio"
+      });
+      state.presetPortfolioId = created.id;
+      return created.id;
+    }
+    return choice;
+  }
+
+  function coachAdd(side) {
+    var cs = coachEngine.get(state.coachSessionId);
+    if (!cs) return;
+    var portfolioId = resolvePortfolioChoice("pfc-add-select");
+    if (!portfolioId) { setStatus("Choose a portfolio first.", true); return; }
+    var ids = [];
+    if (side === "a" || side === "both") ids.push(cs.imageIdA);
+    if (side === "b" || side === "both") ids.push(cs.imageIdB);
+    ids.forEach(function (imageId) {
+      if (!imageId) return;
+      portfolioEngine.addImages(portfolioId, [imageId], { source: "suggestion", selectionRationale: "Added from Portfolio Coach comparison." });
+      coachEngine.recordAdded(cs.id, imageId);
+      if (state.sessionId) sessionEngine.recordAddedToPortfolio(state.sessionId, imageId, portfolioId);
+    });
+    state.presetPortfolioId = portfolioId;
+    setStatus("Added to portfolio from Portfolio Coach. Originals stay in your library.");
+    render();
+  }
+
+  function coachReplace(side) {
+    var cs = coachEngine.get(state.coachSessionId);
+    if (!cs) return;
+    var portfolioId = resolvePortfolioChoice("pfc-add-select");
+    if (!portfolioId) { setStatus("Choose a portfolio first.", true); return; }
+    var pf = portfolioEngine.get(portfolioId);
+    if (!pf || !(pf.imageIds || []).length) {
+      setStatus("That portfolio has no image to replace yet. Add instead.", true);
+      return;
+    }
+    var addId = side === "a" ? cs.imageIdA : cs.imageIdB;
+    var removeId = pf.coverImageId && pf.coverImageId !== addId
+      ? pf.coverImageId
+      : (pf.imageIds.filter(function (id) { return id !== addId; })[0] || null);
+    if (!removeId) {
+      setStatus("Could not find a different portfolio image to replace.", true);
+      return;
+    }
+    var label = (libraryById(removeId) && libraryById(removeId).filename) || removeId;
+    if (global.confirm && !global.confirm("Replace “" + label + "” in the portfolio with frame " + side.toUpperCase() + "? The original file stays in Photo Library.")) {
+      return;
+    }
+    portfolioEngine.removeImage(portfolioId, removeId);
+    portfolioEngine.addImages(portfolioId, [addId], { source: "suggestion", selectionRationale: "Replaced via Portfolio Coach." });
+    coachEngine.recordReplace(cs.id, removeId, addId);
+    if (state.sessionId) sessionEngine.recordAddedToPortfolio(state.sessionId, addId, portfolioId);
+    state.presetPortfolioId = portfolioId;
+    setStatus("Portfolio membership updated. Original files were not deleted.");
+    render();
+  }
+
+  function addToPortfolio(imageId) {
+    var portfolioId = resolvePortfolioChoice("pfa-add-select");
+    if (!portfolioId) { setStatus("Choose a portfolio first.", true); return; }
     var session = currentSession();
     var rec = session && session.recommendations[imageId];
     var rationale = rec && rec.rationale && rec.rationale.length ? rec.rationale[0] : null;
 
-    var portfolioId = choice;
-    if (choice === "__new__") {
-      var created = portfolioEngine.createPortfolio({ title: (session.source && session.source.label) || "New portfolio" });
-      portfolioId = created.id;
-    }
     portfolioEngine.addImages(portfolioId, [imageId], { source: "suggestion", selectionRationale: rationale });
     sessionEngine.recordAddedToPortfolio(session.id, imageId, portfolioId);
     state.presetPortfolioId = portfolioId;
@@ -451,7 +812,12 @@
 
     var newBtn = $("pfa-new");
     if (newBtn) newBtn.addEventListener("click", function () {
-      state.view = "start"; state.sessionId = null; state.groupOpenId = null; render();
+      state.view = "start";
+      state.sessionId = null;
+      state.groupOpenId = null;
+      state.coachSessionId = null;
+      state.compareSelect = [];
+      render();
     });
 
     var reBtn = $("pfa-reanalyze");
@@ -523,6 +889,114 @@
       }
       var addBtn = t.closest("[data-add]");
       if (addBtn) { addToPortfolio(addBtn.getAttribute("data-add")); return; }
+
+      // ---- Portfolio Coach controls ----
+      var coachPair = t.closest("[data-coach-pair]");
+      if (coachPair) {
+        var session = currentSession();
+        var gid = coachPair.getAttribute("data-group");
+        var group = gid && session ? (session.groups || []).filter(function (g) { return g.id === gid; })[0] : null;
+        openCoach(
+          coachPair.getAttribute("data-a"),
+          coachPair.getAttribute("data-b"),
+          coachPair.getAttribute("data-source") || (group ? "similar-group" : "manual"),
+          group || null
+        );
+        return;
+      }
+      var coachGroup = t.closest("[data-coach-group]");
+      if (coachGroup) {
+        var sess2 = currentSession();
+        var g2 = sess2 ? (sess2.groups || []).filter(function (g) { return g.id === coachGroup.getAttribute("data-coach-group"); })[0] : null;
+        openCoach(coachGroup.getAttribute("data-a"), coachGroup.getAttribute("data-b"), "similar-group", g2 || null);
+        return;
+      }
+      var coachPick = t.closest("[data-coach-pick]");
+      if (coachPick) { toggleCompareSelect(coachPick.getAttribute("data-coach-pick")); return; }
+      if (t.closest("[data-coach-manual]")) {
+        if (state.compareSelect.length === 2) {
+          openCoach(state.compareSelect[0], state.compareSelect[1], "manual", null);
+          state.compareSelect = [];
+        }
+        return;
+      }
+      if (t.id === "pfc-close") {
+        state.coachSessionId = null;
+        setStatus("Returned to candidate review.");
+        render();
+        return;
+      }
+      var coachTab = t.closest("[data-coach-tab]");
+      if (coachTab) {
+        state.coachTab = coachTab.getAttribute("data-coach-tab");
+        render();
+        return;
+      }
+      var coachPref = t.closest("[data-coach-pref]");
+      if (coachPref && state.coachSessionId) {
+        coachEngine.setPreference(state.coachSessionId, coachPref.getAttribute("data-coach-pref"));
+        // Mirror prefer into assistant preferred-in-group when a group exists
+        var csPref = coachEngine.get(state.coachSessionId);
+        if (csPref && csPref.groupId && state.sessionId) {
+          var prefId = csPref.decision.preference === "prefer-a" ? csPref.imageIdA
+            : csPref.decision.preference === "prefer-b" ? csPref.imageIdB : null;
+          if (prefId) sessionEngine.setPreferredInGroup(state.sessionId, csPref.groupId, prefId);
+        }
+        setStatus("Your coaching preference was saved on this device.");
+        render();
+        return;
+      }
+      var helpful = t.closest("[data-coach-helpful]");
+      if (helpful && state.coachSessionId) {
+        coachEngine.markPoint(state.coachSessionId, helpful.getAttribute("data-coach-helpful"), "helpful");
+        setStatus("Marked coaching point helpful.");
+        render();
+        return;
+      }
+      var dismissPt = t.closest("[data-coach-dismiss-point]");
+      if (dismissPt && state.coachSessionId) {
+        coachEngine.markPoint(state.coachSessionId, dismissPt.getAttribute("data-coach-dismiss-point"), "dismiss");
+        setStatus("Coaching point dismissed for this comparison.");
+        render();
+        return;
+      }
+      var evid = t.closest("[data-coach-evidence]");
+      if (evid) {
+        var eid = evid.getAttribute("data-coach-evidence");
+        state.coachEvidenceId = state.coachEvidenceId === eid ? null : eid;
+        render();
+        return;
+      }
+      var coachAddBtn = t.closest("[data-coach-add]");
+      if (coachAddBtn) { coachAdd(coachAddBtn.getAttribute("data-coach-add")); return; }
+      var coachReplaceBtn = t.closest("[data-coach-replace]");
+      if (coachReplaceBtn) { coachReplace(coachReplaceBtn.getAttribute("data-coach-replace")); return; }
+      if (t.id === "pfc-note-save" && state.coachSessionId) {
+        var noteEl = $("pfc-note-input");
+        var text = noteEl ? noteEl.value : "";
+        var note = coachEngine.addNote(state.coachSessionId, text);
+        if (!note) { setStatus("Write a short note first.", true); return; }
+        setStatus("Personal note saved on this device.");
+        render();
+        return;
+      }
+    });
+
+    document.addEventListener("change", function (ev) {
+      var t = ev.target;
+      if (!t) return;
+      if (t.getAttribute && t.getAttribute("data-role-side") && state.coachSessionId) {
+        var cs = coachEngine.get(state.coachSessionId);
+        if (!cs) return;
+        var side = t.getAttribute("data-role-side");
+        var roles = {
+          a: side === "a" ? t.value : (cs.decision.roles && cs.decision.roles.a) || null,
+          b: side === "b" ? t.value : (cs.decision.roles && cs.decision.roles.b) || null
+        };
+        coachEngine.setRoles(state.coachSessionId, roles.a, roles.b, true);
+        setStatus("Role override saved — coaching suggestions do not overwrite it.");
+        render();
+      }
     });
 
     var strip = $("pfa-filmstrip");
@@ -546,8 +1020,9 @@
     loadLibrary();
     sessionEngine = Sessions().getShared();
     portfolioEngine = PortfolioEngine().getShared();
+    coachEngine = CoachStore().getShared();
 
-    return Promise.all([sessionEngine.init(), portfolioEngine.init()]).then(function () {
+    return Promise.all([sessionEngine.init(), portfolioEngine.init(), coachEngine.init()]).then(function () {
       bind();
       try {
         var params = new URLSearchParams(global.location.search);
