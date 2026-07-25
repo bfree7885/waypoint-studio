@@ -4,8 +4,8 @@
 **Branch:** `feature/scenes-portfolio-health`  
 **Cut from:** `feature/scenes-auto-portfolio-builder`  
 **Starting SHA:** `8629ef168346f6066fad8bb21cfc79e3623c8062` (publish tip after builder docs stamp `17e4049`; brief expected `17e4049` — advanced by automated `[skip ci]` Publish live engine artifacts commits)  
-**Implementation commit:** _(filled at commit)_  
-**Final / tip SHA:** _(filled after push)_  
+**Implementation commit:** `2603ad8d56e5b3c602ea145fe701b54ac0f2b6f3`  
+**Final / tip SHA:** `2603ad8d56e5b3c602ea145fe701b54ac0f2b6f3` (implementation tip at push; publish bots may advance tip later)  
 **Base builder implementation:** `09a2146` · **Base coach:** `ef7ed25` · **Base assistant tip:** `714d7ce` · **Base foundation (meaningful):** `87fbd76`  
 **Deployment status:** **Not deployed** · **Not merged**  
 **Dashboard / Sheds:** **Untouched** (no Dashboard or Sheds product files in diff)
@@ -340,8 +340,8 @@ Intentional Health product + docs + tests only. Operational noise
 |------|-------|
 | Branch | `feature/scenes-portfolio-health` |
 | Starting SHA | `8629ef168346f6066fad8bb21cfc79e3623c8062` |
-| Sprint implementation commit | _(filled at commit)_ |
-| Current branch tip | _(filled after push)_ |
+| Sprint implementation commit | `2603ad8d56e5b3c602ea145fe701b54ac0f2b6f3` |
+| Current branch tip | `2603ad8d56e5b3c602ea145fe701b54ac0f2b6f3` (at docs stamp; may advance via publish bots) |
 | Commit message | `feat(scenes): add portfolio health insights` |
 | Push | `git push -u origin feature/scenes-portfolio-health` |
 | Merged | **No** |
