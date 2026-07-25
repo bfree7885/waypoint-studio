@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-25T06:00:01.889Z",
-  "dataUpdatedAt": "2026-07-25T06:00:01.889Z",
-  "nextScheduledRun": "2026-07-25T06:30:00.000Z",
-  "lastPublishAt": "2026-07-25T05:30:43.744Z",
-  "lastPublishedDataAt": "2026-07-25T05:30:01.715Z",
-  "lastPublishCommit": "42d8f25",
+  "lastEngineRun": "2026-07-25T06:30:01.868Z",
+  "dataUpdatedAt": "2026-07-25T06:30:01.868Z",
+  "nextScheduledRun": "2026-07-25T07:00:00.000Z",
+  "lastPublishAt": "2026-07-25T06:00:45.720Z",
+  "lastPublishedDataAt": "2026-07-25T06:00:01.889Z",
+  "lastPublishCommit": "cb3c83f",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed 42d8f25 to origin/feature/scenes-portfolio-coach"
+  "lastPublishMessage": "Pushed cb3c83f to origin/feature/scenes-portfolio-coach"
 }
