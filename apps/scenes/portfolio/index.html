@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="portfolio">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Scenes Portfolios — create purpose-driven sets from your private Photo Library. Local-first; no fabricated photographs.">
+  <title>Portfolios — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="css/scenes-portfolio.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to portfolios</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="pf-page">
+      <header class="pf-hero">
+        <p class="wds-eyebrow">
+          <a href="../">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          Portfolios
+        </p>
+        <h1 class="pf-hero__title">Purpose portfolios</h1>
+        <p class="pf-hero__lead">
+          Curate ordered sets from photographs already on this device — for a gallery wall, a seasonal journal, a quiet edit, or whatever purpose you name.
+          Suggestions appear only when your own labels or analysis exist; they are never a scoreboard.
+        </p>
+        <p class="pf-trust" role="note">Private by default. Stored in this browser. Photographs stay in Photo Library.</p>
+      </header>
+
+      <div class="pf-toolbar">
+        <button type="button" class="wds-btn wds-btn--primary" id="pf-create">Create portfolio</button>
+        <a class="wds-btn wds-btn--ghost" href="../../photo-library/">Open Photo Library</a>
+        <a class="wds-btn wds-btn--ghost" href="../../photo-coach/">Review a shoot</a>
+      </div>
+
+      <p class="pf-status" id="pf-status" role="status" hidden></p>
+
+      <section id="pf-empty" class="pf-empty" hidden>
+        <h2>No portfolios yet</h2>
+        <p>
+          Create one when you have a purpose in mind. There are no sample portfolios —
+          only sets you build from your private library.
+        </p>
+      </section>
+
+      <section id="pf-list" class="pf-list" aria-label="Your portfolios"></section>
+
+      <section id="pf-editor" class="pf-editor" hidden aria-label="Edit portfolio">
+        <div class="pf-toolbar">
+          <button type="button" class="wds-btn wds-btn--ghost" id="pf-back">Back to portfolios</button>
+          <button type="button" class="wds-btn wds-btn--primary" id="pf-save">Save</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pf-open-picker">Add from library</button>
+        </div>
+
+        <form class="pf-form" onsubmit="return false;">
+          <div class="pf-field">
+            <label for="pf-title">Title</label>
+            <input id="pf-title" name="title" type="text" maxlength="120" autocomplete="off" required>
+          </div>
+          <div class="pf-field">
+            <label for="pf-purpose">Purpose <span class="wds-sr-only">(optional)</span></label>
+            <input id="pf-purpose" name="purpose" type="text" maxlength="160" placeholder="e.g. Gallery submission · Autumn journal · Client select" autocomplete="off">
+          </div>
+          <div class="pf-field">
+            <label for="pf-description">Description</label>
+            <textarea id="pf-description" name="description" maxlength="2000" rows="3" placeholder="Optional notes about the set’s intent"></textarea>
+          </div>
+          <div class="pf-field">
+            <label for="pf-notes">Private notes</label>
+            <textarea id="pf-notes" name="notes" maxlength="4000" rows="3" placeholder="Reminders for yourself — not shared"></textarea>
+          </div>
+        </form>
+
+        <div>
+          <h2 class="pf-section-title">Photographs in this set</h2>
+          <ul id="pf-selected" class="pf-selected"></ul>
+        </div>
+
+        <div>
+          <h2 class="pf-section-title">Suggestions</h2>
+          <div id="pf-suggestions" aria-live="polite"></div>
+        </div>
+
+        <div id="pf-picker" class="pf-picker" hidden aria-label="Add photographs from library"></div>
+      </section>
+
+      <div id="pf-confirm" class="pf-confirm" hidden role="dialog" aria-modal="true" aria-labelledby="pf-confirm-title">
+        <div class="pf-confirm__panel">
+          <h2 id="pf-confirm-title">Delete portfolio?</h2>
+          <p id="pf-confirm-text"></p>
+          <div class="pf-confirm__actions">
+            <button type="button" class="wds-btn wds-btn--ghost" id="pf-confirm-cancel">Cancel</button>
+            <button type="button" class="wds-btn wds-btn--primary pf-danger" id="pf-confirm-ok">Delete portfolio</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="pf-links">
+        <a href="../">Back to Scenes</a>
+        · Portfolios reference library ids only — originals never leave this device unless you export them yourself.
+      </p>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../../photo-library/js/pl-models.js" defer></script>
+  <script src="../../photo-library/js/pl-store.js" defer></script>
+  <script src="js/portfolio-models.js" defer></script>
+  <script src="js/portfolio-store.js" defer></script>
+  <script src="js/portfolio-candidates.js" defer></script>
+  <script src="js/portfolio-engine.js" defer></script>
+  <script src="js/portfolio-ui.js" defer></script>
+  <script src="js/portfolio-boot.js" defer></script>
+</body>
+</html>

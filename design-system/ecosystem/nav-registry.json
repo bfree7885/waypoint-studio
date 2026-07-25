@@ -115,6 +115,14 @@
           ]
         },
         {
+          "id": "portfolio",
+          "label": "Portfolios",
+          "href": "apps/scenes/portfolio/",
+          "match": [
+            "/apps/scenes/portfolio"
+          ]
+        },
+        {
           "id": "photo-coach",
           "label": "Photo Coach",
           "href": "apps/photo-coach/",

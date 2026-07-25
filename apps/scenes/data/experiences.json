@@ -84,6 +84,22 @@
       "image": "assets/media/hero.jpg",
       "imagePosition": "center 70%",
       "tone": "ink"
+    },
+    {
+      "id": "portfolio",
+      "title": "Portfolios",
+      "shortTitle": "Portfolios",
+      "status": "live",
+      "statusLabel": "Available",
+      "summary": "Curate purpose-driven sets from photographs already in your private library.",
+      "description": "Name a purpose, order frames, choose a cover, and keep notes. Suggestions use your own Keep/Maybe labels, ratings, and coach notes when they exist — never fabricated sample portfolios.",
+      "modulePath": "portfolio/",
+      "toolHref": "portfolio/",
+      "toolLabel": "Open Portfolios",
+      "engine": null,
+      "image": "assets/media/hero.jpg",
+      "imagePosition": "center 45%",
+      "tone": "warm"
     }
   ]
 }

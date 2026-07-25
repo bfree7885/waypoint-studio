@@ -144,6 +144,14 @@
             ]
           },
           {
+            "id": "portfolio",
+            "label": "Portfolios",
+            "href": "apps/scenes/portfolio/",
+            "match": [
+              "/apps/scenes/portfolio"
+            ]
+          },
+          {
             "id": "hidden-landscapes",
             "label": "Other ways of seeing",
             "href": "apps/hidden-landscapes/",

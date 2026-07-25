@@ -137,6 +137,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-07-24 — Scenes Portfolio Foundation
+
+**Artifact:** `docs/scenes/portfolio-foundation-owner-review.md`  
+**Branch:** `feature/scenes-portfolio-foundation`  
+**Base:** `origin/main` @ `0be5f9fb23f0b0f024794ea2542df502416537f1`
+
+1. **Reconcile before inventing** — Photo Coach “portfolio” is session history;
+   Library collections are light chips; purpose portfolios need a distinct
+   localStorage key and product language.
+2. **Author `display:` overrides `[hidden]`** — grid/flex CSS can leave empty
+   and editor views both visible; force `[hidden] { display: none !important }`.
+3. **Suggestions need an insufficient-data path** — empty analysis must not
+   invent candidates; manual curation is the honest fallback.
+4. **Cut Scenes work from `origin/main`, not Dashboard feature branches** —
+   stash operational noise (`data/publish-state.json`) and leave Dashboard paused.
+
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
 **Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  

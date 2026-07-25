@@ -8,6 +8,8 @@ Waypoint Scenes is one product with five experiences. Working tools remain in th
 
 **Photo Library (Work Block 4):** Shared local catalog at `/apps/photo-library/` — `PhotoLibraryEngine`, IndexedDB originals, collections/search/filters, and `?libraryId=` handoff into Photo Coach / Hidden Landscapes. See `apps/photo-library/docs/PHOTO-LIBRARY.md`.
 
+**Portfolios (Portfolio Foundation):** Purpose-driven curated sets at `/apps/scenes/portfolio/` — localStorage `waypoint-scenes-portfolios-v1`, ordered Library image refs, cover, notes, observational candidate suggestions from existing labels/ratings/coach notes. Distinct from Photo Coach session “portfolio” history and from light Library collections. See `docs/scenes/current-state-reconciliation.md`.
+
 ## Modules
 
 | Module | Purpose | Status on platform | Live tool today |
@@ -17,6 +19,7 @@ Waypoint Scenes is one product with five experiences. Working tools remain in th
 | **Living Scenes** | Subtle motion and atmosphere on stills | Future experience | Preview page only |
 | **Scene Builder** | Interactive photographic environments and stories | Preview | `/apps/waypoint-scenes/` (early studio) |
 | **Photographer Profile** | Private lifelong companion for how you see | Preview | `/apps/photo-coach/profile/` (early companion) |
+| **Portfolios** | Purpose-driven curated sets from the private library | Available | `/apps/scenes/portfolio/` |
 
 Platform routes live under `/apps/scenes/<module>/`. They introduce the experience, link back to the Scenes home, and deep-link to working tools without relocating Photo Coach code.
 
@@ -30,6 +33,7 @@ apps/scenes/
   living-scenes/             # module landing (planned)
   scene-builder/             # module landing → live builder
   photographer-profile/      # module landing → live profile
+  portfolio/                 # purpose portfolios (CRUD + candidates)
   data/experiences.json      # shared experience catalog
   css/scenes-home.css
   js/engines/                # interface-only engines
