@@ -1,0 +1,34 @@
+{
+  "ok": true,
+  "failures": [],
+  "tileCount": 32,
+  "defaultCount": 11,
+  "categories": 9,
+  "consoleErrors": [],
+  "stableLoadingHeights": [
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134,
+    134
+  ],
+  "upstreamRequestCounts": {
+    "https://api.weather.gov/points/42.5151,-74.0454": 16,
+    "https://api.open-meteo.com/v1/forecast?latitude=41.34&longitude=-75.04&current=temperature_2m%2Crelative_humidity_2m%2Capparent_temperature%2Cweather_code%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Ccloud_cover%2Csurface_pressure%2Cuv_index%2Cprecipitation&hourly=temperature_2m%2Capparent_temperature%2Crelative_humidity_2m%2Cweather_code%2Cwind_speed_10m%2Cwind_direction_10m%2Cwind_gusts_10m%2Cprecipitation_probability%2Cprecipitation%2Ccloud_cover%2Csurface_pressure%2Cuv_index&daily=weather_code%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_probability_max%2Cprecipitation_sum%2Cuv_index_max%2Csunrise%2Csunset&timezone=America%2FNew_York&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch": 15,
+    "https://api.weather.gov/alerts/active?point=41.3400,-75.0400": 15,
+    "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=41.34&longitude=-75.04&current=us_aqi,pm2_5&timezone=auto": 15,
+    "https://api.open-meteo.com/v1/elevation?latitude=41.34&longitude=-75.04": 15,
+    "https://waterservices.usgs.gov/nwis/iv/?format=json&bBox=-75.3900%2C40.9900%2C-74.6900%2C41.6900&parameterCd=00060,00065&siteStatus=active": 15,
+    "https://api.weather.gov/gridpoints/ALY/63,55/forecast": 15,
+    "https://api.weather.gov/gridpoints/ALY/63,55/forecast/hourly": 15,
+    "https://api.weather.gov/points/41.3400,-75.0400": 6,
+    "https://api.weather.gov/gridpoints/BGM/101,27/forecast": 6,
+    "https://api.weather.gov/gridpoints/BGM/101,27/forecast/hourly": 6
+  }
+}

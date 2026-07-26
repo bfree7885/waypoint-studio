@@ -618,3 +618,32 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-07-25 — Dashboard functional tile catalog expansion
+
+**Branch:** `feature/dashboard-functional-tile-catalog`  
+**Report:** `docs/rebuild-2026/dashboard-functional-tile-catalog-owner-review.md`
+
+1. **A memoised selector layer is what makes a wide catalog free.** Parsing the
+   OIP package once and handing all 32 tiles the same normalised view took the
+   Dashboard from 5 to 32 tiles with zero additional network requests and
+   ~12.5 KB gzipped. Tiles read; they never fetch.
+2. **Never hardcode attribution when a provider can fall back.** The weather
+   layer answers from Open-Meteo *or* NWS; a fixed `sourceLabel` credited the
+   wrong source. Resolve the label from `weatherRef.meta.provider` at render.
+3. **A provider fallback is also a capability fallback.** NWS publishes no
+   sunrise, cloud cover, humidity, or UV, so light/sky/UV tiles must degrade
+   honestly rather than assume the richer provider's fields exist.
+4. **Trust provider *values*, not provider *labels*.** One source publishes
+   period pairs out of order (`high: 53, low: 81`); label highs and lows by
+   value. Date-only strings parse as UTC midnight and shift the weekday west —
+   parse them as local calendar dates.
+5. **Every calculated tile owes the reader its inputs.** An `Estimated` chip
+   plus a `basis` line naming the fields, and explicit disclaimers where a
+   reader could infer authority we do not have (no trail reports, no road data,
+   no prediction that wildlife will appear).
+6. **Grouping is the difference between a catalog and a wall.** Past roughly a
+   dozen entries the library needs per-category sections with counts and
+   select-all/clear, not one flat list.
+7. **Wrap each payload builder in try/catch.** One throwing provider should cost
+   one tile, never the workspace.
+

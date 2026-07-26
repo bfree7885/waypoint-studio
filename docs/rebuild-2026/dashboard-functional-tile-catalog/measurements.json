@@ -1,0 +1,3646 @@
+[
+  {
+    "label": "desktop-default",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 8,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      }
+    ]
+  },
+  {
+    "label": "desktop-all",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 135,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 135,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 135,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      }
+    ]
+  },
+  {
+    "label": "desktop-odd",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 1,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 141,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      }
+    ]
+  },
+  {
+    "label": "desktop-one-category",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 1,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      }
+    ]
+  },
+  {
+    "label": "desktop-partial-failure",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 8,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      }
+    ]
+  },
+  {
+    "label": "desktop-customize",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 1,
+    "catalogGroups": [
+      {
+        "category": "weather",
+        "selected": 2,
+        "total": 5
+      },
+      {
+        "category": "photography",
+        "selected": 1,
+        "total": 5
+      },
+      {
+        "category": "astronomy",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "air",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "hiking",
+        "selected": 2,
+        "total": 4
+      },
+      {
+        "category": "water",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "wildlife",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "travel",
+        "selected": 0,
+        "total": 3
+      },
+      {
+        "category": "safety",
+        "selected": 2,
+        "total": 3
+      },
+      {
+        "category": "favorites",
+        "selected": 0,
+        "total": 0
+      }
+    ],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 254,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 187,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 187,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      }
+    ]
+  },
+  {
+    "label": "mobile-customize",
+    "innerWidth": 390,
+    "gridWidth": 363,
+    "familyCount": 1,
+    "catalogGroups": [
+      {
+        "category": "weather",
+        "selected": 2,
+        "total": 5
+      },
+      {
+        "category": "photography",
+        "selected": 1,
+        "total": 5
+      },
+      {
+        "category": "astronomy",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "air",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "hiking",
+        "selected": 2,
+        "total": 4
+      },
+      {
+        "category": "water",
+        "selected": 1,
+        "total": 3
+      },
+      {
+        "category": "wildlife",
+        "selected": 3,
+        "total": 3
+      },
+      {
+        "category": "travel",
+        "selected": 0,
+        "total": 3
+      },
+      {
+        "category": "safety",
+        "selected": 2,
+        "total": 3
+      },
+      {
+        "category": "favorites",
+        "selected": 0,
+        "total": 0
+      }
+    ],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      }
+    ]
+  },
+  {
+    "label": "320x800",
+    "innerWidth": 320,
+    "gridWidth": 293,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 177,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 177,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 177,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 141,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 141,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 141,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 141,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 153,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 141,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "height": 162,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      }
+    ]
+  },
+  {
+    "label": "360x800",
+    "innerWidth": 360,
+    "gridWidth": 333,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 177,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 177,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 177,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 141,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 141,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 141,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 141,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 153,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 141,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 333,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 322,
+        "height": 162,
+        "parentWidth": 333,
+        "ratio": 0.9663849765258216
+      }
+    ]
+  },
+  {
+    "label": "375x812",
+    "innerWidth": 375,
+    "gridWidth": 348,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 124,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 141,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 124,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "height": 162,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      }
+    ]
+  },
+  {
+    "label": "390x844",
+    "innerWidth": 390,
+    "gridWidth": 363,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      }
+    ]
+  },
+  {
+    "label": "430x932",
+    "innerWidth": 430,
+    "gridWidth": 403,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 141,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 141,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 124,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "height": 162,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      }
+    ]
+  },
+  {
+    "label": "768x1024",
+    "innerWidth": 768,
+    "gridWidth": 725,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 714,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 0.9845689655172414
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 134,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "height": 162,
+        "parentWidth": 725,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "1024x768",
+    "innerWidth": 1024,
+    "gridWidth": 973,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 481,
+        "height": 134,
+        "parentWidth": 973,
+        "ratio": 0.4942499196916158
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 481,
+        "height": 134,
+        "parentWidth": 973,
+        "ratio": 0.4942499196916158
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 481,
+        "height": 134,
+        "parentWidth": 973,
+        "ratio": 0.4942499196916158
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 481,
+        "height": 134,
+        "parentWidth": 973,
+        "ratio": 0.4942499196916158
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 153,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 973,
+        "height": 134,
+        "parentWidth": 973,
+        "ratio": 1
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 141,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 171,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 171,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 171,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "height": 162,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      }
+    ]
+  },
+  {
+    "label": "1440x1000",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 177,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 177,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 177,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 184,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 184,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 173,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 173,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 173,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 158,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "height": 158,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 195,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 195,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 195,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 178,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 178,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 178,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 275,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 275,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 275,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "height": 136,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 134,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 222,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 222,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 222,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "height": 244,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      }
+    ]
+  },
+  {
+    "label": "apps-dashboard-390",
+    "innerWidth": 390,
+    "gridWidth": 363,
+    "familyCount": 9,
+    "catalogGroups": [],
+    "comingSoon": false,
+    "horizontalOverflow": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-hourly",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-forecast",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-wind",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-precip",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-golden",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-blue",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 141,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-night-photo",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-sun",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 124,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-moon",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-dark-sky",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-uv",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-exposure",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-hiking-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-daylight-left",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-trail-estimate",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-pack",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-river",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-rainfall",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-flood",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-birding",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-wildlife-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-seasonal",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-driving",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-travel-window",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-place",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-risk",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-freeze",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "height": 162,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      }
+    ]
+  }
+]
