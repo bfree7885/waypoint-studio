@@ -116,6 +116,7 @@ Dashboard Rebuild Home path only (`design-system/.../rebuild/*`, Home HTML cache
 | Branch | `fix/dashboard-production-tile-layout` |
 | Starting SHA | `0be5f9fb23f0b0f024794ea2542df502416537f1` |
 | Implementation SHA | `73d60dea37e2748ee435b47dad5b6a74cee02531` |
-| Merge SHA | *(set after merge to main)* |
-| Deployed production SHA | *(from live `data/build-info.json`)* |
+| Merge SHA | `35bbb0a30ca5344f923efa75cf3681a74d3c3c11` |
+| Deployed production SHA | `35bbb0a30ca5344f923efa75cf3681a74d3c3c11` (live `data/build-info.json`, Pages run `30185003567`) |
 | Live URLs | `https://waypointstudio.org/?cb=tile-layout-1`, `https://waypointstudio.org/apps/dashboard/?cb=tile-layout-1` |
+| Cache verification | HTML serves `?v=dash-tile-layout-1`; meta `waypoint-build=35bbb0a`; live mobile 375px tile ratios ≈ 1.0; desktop Astronomy/Light full-width confirmed |
