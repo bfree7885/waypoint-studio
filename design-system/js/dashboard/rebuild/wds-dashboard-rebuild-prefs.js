@@ -85,9 +85,12 @@
     var base = defaults();
     var ids = allIds();
     prefs = prefs || {};
+    var enabledSeen = Object.create(null);
     var enabled = Array.isArray(prefs.enabled)
       ? prefs.enabled.filter(function (id) {
-          return ids.indexOf(id) >= 0;
+          if (ids.indexOf(id) < 0 || enabledSeen[id]) return false;
+          enabledSeen[id] = true;
+          return true;
         })
       : base.enabled;
     if (!enabled.length && base.enabled.length) enabled = base.enabled.slice();
@@ -217,7 +220,7 @@
     if (presetId === "minimal") {
       prefs.enabled = all
         .filter(function (w) {
-          return w.id === "ph-conditions" || w.id === "ph-light";
+          return w.id === "ph-conditions" || w.id === "ph-golden" || w.id === "ph-alerts";
         })
         .map(function (w) {
           return w.id;
@@ -325,9 +328,38 @@
     return save(prefs);
   }
 
+  /** Bulk category actions — one save so the workspace repaints once. */
+  function setCategoryEnabled(categoryId, on) {
+    var reg = Registry();
+    var ids = reg && reg.categoryIdsFor ? reg.categoryIdsFor(categoryId) : [];
+    if (!ids.length) return load();
+    var prefs = load();
+    ids.forEach(function (id) {
+      var idx = prefs.enabled.indexOf(id);
+      if (on && idx < 0) prefs.enabled.push(id);
+      if (!on && idx >= 0) prefs.enabled.splice(idx, 1);
+    });
+    if (!on) {
+      prefs.favorites = prefs.favorites.filter(function (id) {
+        return ids.indexOf(id) < 0;
+      });
+    }
+    return save(prefs);
+  }
+
+  function categorySelectedCount(categoryId, prefs) {
+    var reg = Registry();
+    var ids = reg && reg.categoryIdsFor ? reg.categoryIdsFor(categoryId) : [];
+    prefs = prefs || load();
+    var enabled = prefs.enabled || [];
+    return ids.filter(function (id) {
+      return enabled.indexOf(id) >= 0;
+    }).length;
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildPrefs = {
-    version: "3.1.0-mobile-customize",
+    version: "4.0.0-tile-catalog",
     storageKey: STORAGE_KEY,
     presets: PRESETS.slice(),
     columnOptions: COLUMN_OPTIONS.slice(),
@@ -345,6 +377,8 @@
     setFavorite: setFavorite,
     toggleFavorite: toggleFavorite,
     setGridColumns: setGridColumns,
+    setCategoryEnabled: setCategoryEnabled,
+    categorySelectedCount: categorySelectedCount,
     isDrafting: isDrafting,
     beginDraft: beginDraft,
     commitDraft: commitDraft,

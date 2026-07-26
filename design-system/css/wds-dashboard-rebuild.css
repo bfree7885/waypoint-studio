@@ -569,8 +569,33 @@
   font-weight: 500;
 }
 
+.wdb-r-widget__interpretation {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  line-height: var(--wds-leading-snug, 1.35);
+  color: var(--wdb-r-ink);
+}
+
+/* Attribution and method line — keeps calculated tiles honest about inputs. */
+.wdb-r-widget__basis {
+  margin: 0.1rem 0 0;
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  color: var(--wdb-r-faint);
+}
+
 .wdb-r-widget__trust {
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.wdb-r-widget__source {
+  font-size: 0.625rem;
+  letter-spacing: 0.03em;
+  color: var(--wdb-r-faint);
 }
 
 .wdb-r-widget__controls {
@@ -836,6 +861,56 @@
   border-color: color-mix(in srgb, var(--wdb-r-accent) 55%, var(--wdb-r-line-strong));
   background: color-mix(in srgb, var(--wdb-r-accent) 14%, transparent);
   color: var(--wdb-r-ink);
+}
+
+.wdb-r-catalog__groups {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wdb-r-catalog__group {
+  display: grid;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.wdb-r-catalog__group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--wdb-r-line);
+}
+
+.wdb-r-catalog__group-heading {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.wdb-r-catalog__group-head h3 {
+  margin: 0;
+  font-size: var(--wds-text-base, 0.9375rem);
+  letter-spacing: 0.01em;
+}
+
+.wdb-r-catalog__group-desc {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  color: var(--wdb-r-muted);
+}
+
+.wdb-r-catalog__group-count {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--wdb-r-muted);
+  white-space: nowrap;
+}
+
+.wdb-r-catalog__group-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex: 0 0 auto;
 }
 
 .wdb-r-catalog__list {
@@ -1226,6 +1301,20 @@ html.wdb-r-kiosk .wdb-r,
   .wdb-r-catalog__item {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .wdb-r-catalog__group-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .wdb-r-catalog__group-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wdb-r-catalog__group-actions .wdb-r-btn {
+    justify-content: center;
   }
 
   .wdb-r-catalog__actions {

@@ -135,35 +135,113 @@
     );
   }
 
+  function renderCatalogGroup(cat, prefs) {
+    var reg = Registry();
+    var prefsApi = Prefs();
+    var items = reg && reg.byLibraryCategory ? reg.byLibraryCategory(cat.id, prefs) : [];
+    if (!items.length && cat.id === "favorites") {
+      items = [];
+    }
+    var total = items.length;
+    var selected =
+      prefsApi && prefsApi.categorySelectedCount
+        ? prefsApi.categorySelectedCount(cat.id, prefs)
+        : 0;
+    var groupId = "wdb-r-cat-" + escapeHtml(cat.id);
+    var bulk =
+      cat.id === "favorites"
+        ? ""
+        : '<div class="wdb-r-catalog__group-actions" role="group" aria-label="' +
+          escapeHtml(cat.label) +
+          ' bulk actions">' +
+          '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="category-enable-all" data-category="' +
+          escapeHtml(cat.id) +
+          '">Select all</button>' +
+          '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="category-clear" data-category="' +
+          escapeHtml(cat.id) +
+          '">Clear</button>' +
+          "</div>";
+    var list = total
+      ? items
+          .map(function (w) {
+            return renderCatalogItem(w, prefs);
+          })
+          .join("")
+      : '<li class="wdb-r-catalog__empty" role="status">' +
+        (cat.id === "favorites"
+          ? "No favorites pinned yet."
+          : "No instruments in this category yet.") +
+        "</li>";
+
+    return (
+      '<section class="wdb-r-catalog__group" data-category="' +
+      escapeHtml(cat.id) +
+      '" data-selected="' +
+      selected +
+      '" data-total="' +
+      total +
+      '" aria-labelledby="' +
+      groupId +
+      '">' +
+      '<div class="wdb-r-catalog__group-head">' +
+      '<div class="wdb-r-catalog__group-heading">' +
+      '<h3 id="' +
+      groupId +
+      '">' +
+      escapeHtml(cat.label) +
+      "</h3>" +
+      '<p class="wdb-r-catalog__group-desc">' +
+      escapeHtml(cat.description || "") +
+      "</p>" +
+      "</div>" +
+      '<p class="wdb-r-catalog__group-count" data-wdb-r-category-count>' +
+      selected +
+      " of " +
+      total +
+      " selected</p>" +
+      bulk +
+      "</div>" +
+      '<ul class="wdb-r-catalog__list" role="list">' +
+      list +
+      "</ul>" +
+      "</section>"
+    );
+  }
+
   function renderCatalog(prefs, options) {
     options = options || {};
     var reg = Registry();
     var prefsApi = Prefs();
     prefs = prefs || (prefsApi && prefsApi.load ? prefsApi.load() : { enabled: [], favorites: [] });
     var filter = activeFilter(prefs, options);
-    var items =
-      reg && reg.byLibraryCategory
-        ? reg.byLibraryCategory(filter, prefs)
-        : reg && reg.all
-          ? reg.all()
-          : [];
-    var list =
-      items.length > 0
-        ? items.map(function (w) {
-            return renderCatalogItem(w, prefs);
-          }).join("")
-        : '<li class="wdb-r-catalog__empty" role="status">No widgets in this category yet.</li>';
+    var cats = reg && reg.libraryCategories ? reg.libraryCategories() : [];
+    var groups = filter === "all" ? cats : cats.filter(function (c) {
+      return c.id === filter;
+    });
+    var total = reg && reg.all ? reg.all().length : 0;
+    var selectedTotal = (prefs.enabled || []).length;
+    var body = groups.length
+      ? groups
+          .map(function (cat) {
+            return renderCatalogGroup(cat, prefs);
+          })
+          .join("")
+      : '<p class="wdb-r-catalog__empty" role="status">No instruments in this category yet.</p>';
 
     return (
       '<section class="wdb-r-catalog wdb-r-library" data-wdb-r-catalog data-filter="' +
       escapeHtml(filter) +
       '" aria-labelledby="wdb-r-catalog-title">' +
       '<h2 id="wdb-r-catalog-title">Widget library</h2>' +
-      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Every library entry is a real, selectable instrument.</p>' +
+      '<p class="wdb-r-catalog__lede">' +
+      selectedTotal +
+      " of " +
+      total +
+      " instruments on your workspace. Browse by category, then add, remove, or favorite. Every library entry is a real, selectable instrument.</p>" +
       renderFilterTabs(prefs, filter) +
-      '<ul class="wdb-r-catalog__list" role="list">' +
-      list +
-      "</ul>" +
+      '<div class="wdb-r-catalog__groups">' +
+      body +
+      "</div>" +
       "</section>"
     );
   }
@@ -269,6 +347,11 @@
       var cols = el && el.getAttribute("data-columns");
       return prefsApi.setGridColumns(cols);
     }
+    if (action === "category-enable-all" || action === "category-clear") {
+      var categoryId = el && el.getAttribute("data-category");
+      if (!categoryId || !prefsApi.setCategoryEnabled) return prefsApi.load();
+      return prefsApi.setCategoryEnabled(categoryId, action === "category-enable-all");
+    }
     if (action === "library-filter") {
       libraryFilterState = (el && el.getAttribute("data-filter")) || "all";
       return prefsApi.load();
@@ -366,9 +449,10 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildCustomize = {
-    version: "3.1.0-mobile-customize",
+    version: "4.0.0-tile-catalog",
     render: render,
     renderCatalog: renderCatalog,
+    renderCatalogGroup: renderCatalogGroup,
     renderToolbar: renderToolbar,
     handleAction: handleAction,
     bind: bind,
