@@ -231,10 +231,16 @@ function readyExpression(kind) {
     })()`;
   }
   if (kind === "status") {
-    return `(() => ({ ok: /live engine/i.test(document.title || '') }))()`;
+    return `(() => ({
+      ok: /live engine/i.test(document.title || '') && /not a public product page|operator surface/i.test(document.body && document.body.innerText || ''),
+      stub: true
+    }))()`;
   }
   if (kind === "debug") {
-    return `(() => ({ ok: /debug/i.test(document.title || '') }))()`;
+    return `(() => ({
+      ok: /debug/i.test(document.title || '') && /not published|operator surface/i.test(document.body && document.body.innerText || ''),
+      stub: true
+    }))()`;
   }
   return `(() => ({ ok: !!(document.body && document.body.innerText && document.body.innerText.length > 20) }))()`;
 }

@@ -204,7 +204,8 @@ if (arrMatch) {
   "design-system/css/wds-platform-boot.css",
   "map/index.html",
   "apps/shed-hunting/map/index.html",
-  "favicon.svg"
+  "favicon.svg",
+  "favicon.ico"
 ].forEach((rel) => {
   if (!fs.existsSync(path.join(ROOT, rel))) {
     broken.push({ file: "(critical)", ref: rel, missing: rel });

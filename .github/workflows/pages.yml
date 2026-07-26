@@ -72,11 +72,24 @@ jobs:
       - name: Validate production links
         run: node automation/validate-production-links.mjs
 
-      - name: Exclude private owner surfaces from Pages
+      - name: Exclude private owner and operator surfaces from Pages
         run: |
           rm -rf private
           rm -rf audits
-          echo "Removed private/ and audits/ from Pages artifact"
+          rm -rf reports
+          rm -rf automation
+          rm -rf scripts
+          rm -rf engineering
+          rm -rf docs/rebuild-2026
+          rm -rf docs/audits
+          rm -rf docs/turnaround
+          rm -rf docs/archive
+          rm -rf docs/dashboard-rc25-sprint6
+          rm -rf docs/consolidation
+          # Owner-review / internal markdown that must not be a public product path
+          find docs -type f \( -name '*owner-review*' -o -name '*OWNER-REVIEW*' \) -delete 2>/dev/null || true
+          echo "Removed private/, audits/, reports/, automation/, scripts/, engineering/, and internal docs from Pages artifact"
+          echo "Public status.html / debug.html remain as non-sensitive operator stubs only"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

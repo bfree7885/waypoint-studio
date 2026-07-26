@@ -20,8 +20,9 @@ const DATA_DIR = path.join(ROOT, "data");
 const LIVE_PATH = process.env.WAYPOINT_LIVE_OUT || path.join(DATA_DIR, "live.json");
 const HEALTH_PATH = path.join(DATA_DIR, "health.json");
 const INDEX_PATH = path.join(ROOT, "design-system", "content-engine", "regions-index.json");
-const STATUS_PATH = path.join(ROOT, "status.html");
-const DEBUG_PATH = path.join(ROOT, "debug.html");
+const OPERATOR_DIR = path.join(ROOT, "private", "operator");
+const STATUS_PATH = path.join(OPERATOR_DIR, "status.html");
+const DEBUG_PATH = path.join(OPERATOR_DIR, "debug.html");
 const PUBLISH_STATE_PATH = path.join(DATA_DIR, "publish-state.json");
 
 const DEFAULT_TIMEOUT_MS = 12000;
@@ -1699,6 +1700,7 @@ function makeDebugHtml(seed) {
 function writeRenderedPages(payload, health) {
   const commitHash = gitCommit();
   const buildTime = new Date().toISOString();
+  fs.mkdirSync(OPERATOR_DIR, { recursive: true });
   fs.writeFileSync(STATUS_PATH, makeStatusHtml(payload, health), "utf8");
   fs.writeFileSync(DEBUG_PATH, makeDebugHtml(makeDebugSeed(payload, health, commitHash, buildTime)), "utf8");
 }
@@ -1744,7 +1746,9 @@ async function main() {
 
   console.log("Waypoint Live Engine wrote", LIVE_PATH, "and", HEALTH_PATH);
   console.log("engine ran:", runAt);
-  console.log("files changed: data/live.json, data/health.json, data/publish-state.json, status.html, debug.html");
+  console.log(
+    "files changed: data/live.json, data/health.json, data/publish-state.json, private/operator/status.html, private/operator/debug.html"
+  );
   console.log("updatedAt:", payload.updatedAt);
   console.log("location:", payload.location.label);
   console.log("engineVersion:", ENGINE_VERSION);

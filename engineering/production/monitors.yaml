@@ -16,10 +16,6 @@ monitors:
     title: Production navigation architecture
     type: command
     command: node automation/check-production-nav.mjs
-  - id: status-page
-    title: Live engine status page
-    type: url
-    url: https://waypointstudio.org/status.html
   - id: engine-health
     title: Engine health JSON
     type: url
