@@ -304,7 +304,7 @@ introduce layout shift.
 ## 15. Delivery record
 
 - **Branch:** `feature/dashboard-functional-tile-catalog`
-- **Implementation SHA:** _stamped on commit_
+- **Implementation SHA:** `e7a4b15` (feature `1164abc`, tests `a178291`, docs `e7a4b15`)
 - **Merge SHA:** _stamped on merge_
 - **Production SHA:** _stamped after deploy_
 - **Live URLs checked:** _recorded after deploy_
