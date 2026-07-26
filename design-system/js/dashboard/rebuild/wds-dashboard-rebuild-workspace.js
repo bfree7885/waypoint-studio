@@ -43,6 +43,27 @@
     );
   }
 
+  function openFamilySection(family, columns) {
+    var id = family && family.id ? family.id : "instruments";
+    return (
+      '<section class="wdb-r-family" data-wdb-r-family data-family="' +
+      escapeHtml(id) +
+      '" data-cols="' +
+      columns +
+      '" style="--wdb-r-family-cols: ' +
+      columns +
+      '">' +
+      (family && family.label ? renderGroupHeader(family) : "") +
+      '<div class="wdb-r-family__grid" data-wdb-r-family-grid data-cols="' +
+      columns +
+      '">'
+    );
+  }
+
+  function closeFamilySection() {
+    return "</div></section>";
+  }
+
   function renderSkeletonBody() {
     return (
       '<div class="wdb-r-widget__body wdb-r-widget__body--pending" data-lazy-slot data-trust="waiting" aria-busy="true">' +
@@ -64,7 +85,7 @@
     var size =
       (prefs && prefs.sizes && prefs.sizes[widget.id]) ||
       widget.size ||
-      "md";
+      "standard";
     if (reg && reg.normalizeSize) size = reg.normalizeSize(size);
     var lazy = !!options.lazy && !options.eager;
     var data = null;
@@ -247,20 +268,35 @@
     var reduce = prefersReducedMotion();
     var animate = !!options.animate && !reduce;
     var lazy = options.lazy === true;
-    var widgets = [];
-    var lastFamily = null;
+    var sections = [];
+    var openFamilyId = null;
+    var familyOpen = false;
+
+    function ensureFamily(family) {
+      var familyId = family && family.id ? family.id : "instruments";
+      if (familyOpen && openFamilyId === familyId) return;
+      if (familyOpen) {
+        sections.push(closeFamilySection());
+        familyOpen = false;
+      }
+      sections.push(openFamilySection(customize ? null : family, columns));
+      openFamilyId = familyId;
+      familyOpen = true;
+    }
+
     ids.forEach(function (id) {
       var w = reg && reg.get ? reg.get(id) : null;
       if (!w) return;
-      var family = reg && reg.familyFor ? reg.familyFor(w) : null;
-      var familyId = family && family.id ? family.id : "";
-      if (familyId && familyId !== lastFamily && !customize) {
-        widgets.push(renderGroupHeader(family));
-        lastFamily = familyId;
-      } else if (familyId) {
-        lastFamily = familyId;
+      var family =
+        reg && reg.familyFor
+          ? reg.familyFor(w)
+          : { id: w.category || "instruments", label: w.category || "Instruments" };
+      if (customize) {
+        ensureFamily({ id: "workspace", label: "" });
+      } else {
+        ensureFamily(family);
       }
-      widgets.push(
+      sections.push(
         renderWidgetFrame(w, prefs, {
           customize: customize,
           platform: options.platform || null,
@@ -269,8 +305,10 @@
         })
       );
     });
+    if (familyOpen) sections.push(closeFamilySection());
+
     var empty = "";
-    if (!widgets.length) {
+    if (!ids.length || !sections.length) {
       empty =
         '<div class="wdb-r-workspace__empty" role="status">' +
         '<p class="wdb-r-workspace__empty-title">Your workspace is empty</p>' +
@@ -303,7 +341,7 @@
       '" style="--wdb-r-columns: ' +
       columns +
       '">' +
-      widgets.join("") +
+      sections.join("") +
       empty +
       "</div>" +
       "</section>"
@@ -322,7 +360,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildWorkspace = {
-    version: "3.2.0-rc25-s6",
+    version: "3.3.0-tile-layout",
     renderWorkspace: renderWorkspace,
     renderWidgetFrame: renderWidgetFrame,
     mount: mount,

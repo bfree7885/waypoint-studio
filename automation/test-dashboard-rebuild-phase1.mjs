@@ -223,13 +223,17 @@ const categories = Reg.all().map((w) => w.category);
   "light",
   "air",
   "astronomy",
+  "alerts"
+].forEach(function (cat) {
+  assert("catalog includes " + cat, categories.indexOf(cat) >= 0);
+});
+[
   "photography",
   "rivers",
   "wildlife",
-  "alerts",
   "trails"
 ].forEach(function (cat) {
-  assert("catalog anticipates " + cat, categories.indexOf(cat) >= 0);
+  assert("catalog excludes placeholder " + cat, categories.indexOf(cat) < 0);
 });
 
 const bannedDev = [

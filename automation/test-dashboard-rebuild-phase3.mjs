@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
@@ -139,7 +139,7 @@ const Kiosk = sandbox.WDS.dashboardRebuildKiosk;
 const Shell = sandbox.WDS.dashboardRebuild;
 const Data = sandbox.WDS.dashboardRebuildData;
 
-assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6/.test(Reg.version)));
+assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|tile-layout/.test(Reg.version)));
 assert("prefs key preserved", Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1");
 assert("prefs exposes favorites API", typeof Prefs.toggleFavorite === "function");
 assert("prefs exposes columns API", typeof Prefs.setGridColumns === "function");
@@ -147,13 +147,13 @@ assert("customize library API", typeof Customize.renderCatalog === "function");
 assert("workspace lazy API", typeof Workspace.bindLazy === "function");
 
 const all = Reg.all();
-assert("catalog includes travel", !!Reg.get("ph-travel"));
+assert("catalog excludes travel placeholder", !Reg.get("ph-travel"));
 assert("catalog still has phase2 live four", Data.liveIds.length === 4);
 assert(
   "library categories complete",
   Reg.libraryCategories()
     .map((c) => c.id)
-    .join(",") === "weather,photography,astronomy,hiking,water,travel,nature,safety,favorites"
+    .join(",") === "weather,photography,astronomy,safety,favorites"
 );
 
 [
@@ -161,17 +161,13 @@ assert(
   ["ph-light", "photography", "Available"],
   ["ph-air", "weather", "Available"],
   ["ph-astronomy", "astronomy", "Available"],
-  ["ph-photography", "photography", "Coming Soon"],
-  ["ph-rivers", "water", "Coming Soon"],
-  ["ph-trails", "hiking", "Coming Soon"],
-  ["ph-travel", "travel", "Coming Soon"],
-  ["ph-wildlife", "nature", "Coming Soon"],
-  ["ph-alerts", "safety", "Coming Soon"]
+  ["ph-alerts", "safety", "Available"]
 ].forEach(function (row) {
   const w = Reg.get(row[0]);
   assert(row[0] + " library category", w && w.libraryCategory === row[1]);
   assert(row[0] + " availability badge", Reg.availability(w).label === row[2]);
 });
+assert("removed placeholders stay gone", !Reg.get("ph-photography") && !Reg.get("ph-rivers"));
 
 Prefs.reset();
 assert("defaults gridColumns 3", Prefs.load().gridColumns === 3);
@@ -219,12 +215,7 @@ Prefs.setEnabled("ph-conditions", false);
 Prefs.setEnabled("ph-light", false);
 Prefs.setEnabled("ph-air", false);
 Prefs.setEnabled("ph-astronomy", false);
-Prefs.setEnabled("ph-photography", false);
-Prefs.setEnabled("ph-rivers", false);
-Prefs.setEnabled("ph-wildlife", false);
 Prefs.setEnabled("ph-alerts", false);
-Prefs.setEnabled("ph-trails", false);
-Prefs.setEnabled("ph-travel", false);
 /* After clearing all, normalize may restore defaults if empty — force empty via save */
 Prefs.save({
   version: 1,
@@ -278,7 +269,7 @@ const lib = Customize.renderCatalog(Prefs.load(), { libraryFilter: "weather" });
 assert("library title", /Widget library/.test(lib));
 assert("library filter weather", /data-filter="weather"/.test(lib));
 assert("library shows Available badge", /wdb-r-badge--available/.test(lib));
-assert("library shows Coming Soon in all", /Coming Soon/.test(Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" })));
+assert("library has no Coming Soon", !/Coming Soon/i.test(Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" })));
 assert("library weather includes Conditions", /Conditions/.test(lib));
 assert("library weather excludes Trails", !/Trail Conditions/.test(lib));
 assert("library has icons", /wdb-r-catalog__icon/.test(lib));
@@ -286,7 +277,7 @@ assert("library favorite control", /data-wdb-r-action="favorite"/.test(lib));
 assert("library category tabs", /role="tablist"/.test(lib));
 
 const hiking = Customize.renderCatalog(Prefs.load(), { libraryFilter: "hiking" });
-assert("hiking category has trails", /Trail Conditions/.test(hiking));
+assert("hiking category removed with trails placeholder", !/Trail Conditions/.test(hiking) && hiking.indexOf("ph-trails") < 0);
 
 const favFilter = Customize.renderCatalog(
   Object.assign(Prefs.load(), { favorites: ["ph-air"] }),

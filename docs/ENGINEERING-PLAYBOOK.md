@@ -601,3 +601,20 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Documented follow-ups do not block merge** when baselines are disclosed
    (`home-rc1` support assert; stale Outdoor OS today-outside suite).
 
+### 2026-07-25 — Dashboard production tile layout repair
+
+**Branch:** `fix/dashboard-production-tile-layout`  
+**Report:** `docs/rebuild-2026/dashboard-production-tile-layout-repair-owner-review.md`
+
+1. **Family headers in a shared 12-col grid create orphan thirds.** Nest each
+   family in its own equal-column grid so a single Astronomy/Light tile fills
+   the row instead of `span 4` beside empty tracks.
+2. **Ambiguous size tokens (`sm`/`half`/`compact`) fight equal-width UX.** Prefer
+   an explicit `standard|wide|featured` model with legacy migration.
+3. **Coming-soon tiles must leave the selectable catalog**, not hide behind CSS.
+4. **Mobile full-width needs a breakpoint that covers real phones**
+   (`max-width: 47.99rem`) with `minmax(0, 1fr)` and `grid-column: 1 / -1` on
+   every variant — including loading skeletons.
+5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
+   (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
+
