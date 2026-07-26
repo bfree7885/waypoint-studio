@@ -21,9 +21,7 @@ const PUBLISH_STATE_PATH = path.join(ROOT, "data", "publish-state.json");
 const ARTIFACTS = [
   "data/live.json",
   "data/health.json",
-  "data/publish-state.json",
-  "status.html",
-  "debug.html"
+  "data/publish-state.json"
 ];
 const COMMIT_PREFIX = "Publish live engine artifacts";
 const MIN_PUBLISH_INTERVAL_MS = Number(process.env.WAYPOINT_PUBLISH_MIN_INTERVAL_MS || 20 * 60 * 1000);
@@ -188,6 +186,7 @@ function main() {
       '":(exclude)data/health.json" ' +
       '":(exclude)data/publish-state.json" ' +
       '":(exclude)data/build-info.json" ' +
+      '":(exclude)private/operator/" ' +
       '":(exclude)status.html" ' +
       '":(exclude)debug.html" ' +
       '":(exclude)design-system/js/wds-build.js"'

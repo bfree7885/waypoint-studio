@@ -10,5 +10,10 @@ Disallow: /scripts/
 Disallow: /engineering/
 Disallow: /waypoint-importer/
 Disallow: /private/
+Disallow: /reports/
+Disallow: /docs/rebuild-2026/
+Disallow: /docs/audits/
+Disallow: /docs/turnaround/
+Disallow: /docs/archive/
 
 Sitemap: https://waypointstudio.org/sitemap.xml

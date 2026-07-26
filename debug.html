@@ -3,163 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="waypoint-build" content="local">
   <title>Waypoint Studio Debug</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/design-system/css/wds.css">
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 2rem; background: #1a2420; color: #f4f1ea; font-family: Inter, system-ui, sans-serif; }
+    main { max-width: 32rem; }
+    h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 1.75rem; margin: 0 0 0.75rem; }
+    p { line-height: 1.55; color: rgba(244,241,234,0.82); }
+    a { color: #c8f055; }
+    .eyebrow { letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.75rem; opacity: 0.7; margin: 0 0 0.5rem; }
+  </style>
 </head>
 <body>
-<p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
-<pre id="debug-output">Waypoint Studio Debug
-====================
-1) Current deployed commit hash: bba5424
-2) Build date/time: 2026-07-22T21:00:44.930Z
-3) Active page title: Waypoint Studio
-4) Visible H1/H2/H3 headings from live dashboard:
-(none captured server-side; browser snapshot will fill this when available)
-5) Live weather loaded: yes
-6) Location loaded: yes
-7) Fallback/coming-soon/educational/assignment text present: no
-8) Dashboard sections currently rendered:
-(none captured server-side; browser snapshot will fill this when available)
-Engine health: HEALTHY (DEGRADED)
-Snapshot source: server pre-render
-Snapshot captured at: 2026-07-22T21:00:01.796Z
-Raw snapshot:
-{
-  &quot;commitHash&quot;: &quot;bba5424&quot;,
-  &quot;buildTime&quot;: &quot;2026-07-22T21:00:44.930Z&quot;,
-  &quot;activePageTitle&quot;: &quot;Waypoint Studio&quot;,
-  &quot;capturedAt&quot;: &quot;2026-07-22T21:00:01.796Z&quot;,
-  &quot;headings&quot;: [],
-  &quot;sectionsRendered&quot;: [],
-  &quot;liveWeatherLoaded&quot;: true,
-  &quot;locationLoaded&quot;: true,
-  &quot;bannedTextPresent&quot;: false,
-  &quot;bannedTextHits&quot;: [],
-  &quot;engineHealth&quot;: &quot;HEALTHY (DEGRADED)&quot;,
-  &quot;moduleHealth&quot;: {
-    &quot;weather&quot;: {
-      &quot;status&quot;: &quot;fallback&quot;,
-      &quot;stale&quot;: true
-    },
-    &quot;sunrise_sunset&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;moon&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;air_quality&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;uv&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;pollen&quot;: {
-      &quot;status&quot;: &quot;unavailable&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;river_gauges&quot;: {
-      &quot;status&quot;: &quot;fallback&quot;,
-      &quot;stale&quot;: true
-    },
-    &quot;ebird&quot;: {
-      &quot;status&quot;: &quot;unavailable&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;alerts&quot;: {
-      &quot;status&quot;: &quot;live&quot;,
-      &quot;stale&quot;: false
-    },
-    &quot;photography_conditions&quot;: {
-      &quot;status&quot;: &quot;estimated&quot;,
-      &quot;stale&quot;: false
-    }
-  },
-  &quot;ebirdStatus&quot;: &quot;unavailable&quot;,
-  &quot;ebirdObservations&quot;: 0,
-  &quot;serverGenerated&quot;: true
-}</pre>
-<script>
-(function () {
-  "use strict";
-  var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "bba5424";
-  var FALLBACK_BUILD = "2026-07-22T21:00:44.930Z";
-  var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
-  function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
-  function readSnapshot() {
-    if (window.opener && window.opener.__WAYPOINT_DEBUG__) return window.opener.__WAYPOINT_DEBUG__;
-    if (window.__WAYPOINT_DEBUG__) return window.__WAYPOINT_DEBUG__;
-    try { var raw = localStorage.getItem(DEBUG_KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
-  }
-  function containsTerms(snapshotText) {
-    var text = String(snapshotText || "").toLowerCase();
-    return TERMS.filter(function (term) { return text.indexOf(term) >= 0; });
-  }
-  function buildReport(snapshot) {
-    var headingList = snapshot && snapshot.headings ? snapshot.headings : [];
-    var sectionList = snapshot && snapshot.sectionsRendered ? snapshot.sectionsRendered : [];
-    var hits = containsTerms(JSON.stringify(snapshot || {}));
-    var fallbackLang = !!(snapshot && snapshot.bannedTextPresent) || hits.length > 0;
-    var out = [];
-    out.push("Waypoint Studio Debug");
-    out.push("====================");
-    out.push("");
-    out.push("1) Current deployed commit hash: " + ((snapshot && snapshot.commitHash) || FALLBACK_COMMIT || "unavailable"));
-    out.push("2) Build date/time: " + ((snapshot && snapshot.buildTime) || FALLBACK_BUILD || "unavailable"));
-    out.push("3) Active page title: " + ((snapshot && snapshot.activePageTitle) || document.title));
-    out.push("");
-    out.push("4) Visible H1/H2/H3 headings from live dashboard:");
-    out = out.concat(lines(headingList));
-    out.push("");
-    out.push("5) Live weather loaded: " + (snapshot && snapshot.liveWeatherLoaded ? "yes" : "no"));
-    out.push("6) Location loaded: " + (snapshot && snapshot.locationLoaded ? "yes" : "no"));
-    out.push("7) Fallback/coming-soon/educational/assignment text present: " + (fallbackLang ? "yes" : "no"));
-    if (snapshot && snapshot.bannedTextHits && snapshot.bannedTextHits.length) out.push("   - matched banned terms: " + snapshot.bannedTextHits.join(", "));
-    if (hits.length) out.push("   - matched debug terms: " + hits.join(", "));
-    out.push("");
-    out.push("8) Dashboard sections currently rendered:");
-    out = out.concat(lines(sectionList));
-    out.push("");
-    out.push("Snapshot source: " + (snapshot ? "window/localStorage" : "none found"));
-    out.push("Snapshot captured at: " + ((snapshot && snapshot.capturedAt) || "unavailable"));
-    out.push("");
-    out.push("Raw snapshot:");
-    out.push(JSON.stringify(snapshot || {}, null, 2));
-    return out.join("\n");
-  }
-  function copyReport() {
-    var pre = document.getElementById("debug-output");
-    var status = document.getElementById("copy-status");
-    if (!pre) return;
-    var text = pre.textContent || "";
-    function markCopied() {
-      if (!status) return;
-      status.textContent = "Copied.";
-      setTimeout(function () { if (status.textContent === "Copied.") status.textContent = ""; }, 1200);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(markCopied).catch(function () {
-        var ta = document.createElement("textarea");
-        ta.value = text; ta.setAttribute("readonly", "readonly"); ta.style.position = "fixed"; ta.style.left = "-9999px";
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
-        document.body.removeChild(ta);
-      });
-      return;
-    }
-    var ta = document.createElement("textarea");
-    ta.value = text; ta.setAttribute("readonly", "readonly"); ta.style.position = "fixed"; ta.style.left = "-9999px";
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
-    document.body.removeChild(ta);
-  }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"bba5424","buildTime":"2026-07-22T21:00:44.930Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-07-22T21:00:01.796Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY (DEGRADED)","moduleHealth":{"weather":{"status":"fallback","stale":true},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":true},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
-  var copyBtn = document.getElementById("copy-report");
-  if (copyBtn) copyBtn.addEventListener("click", copyReport);
-})();
-</script>
+  <main>
+    <p class="eyebrow">Operator surface</p>
+    <h1>Debug reports are not published for public visitors</h1>
+    <p>
+      Snapshot and module diagnostics remain in local operator tooling under
+      <code>private/operator/</code>. This public route intentionally carries no live payload.
+    </p>
+    <p><a href="/">← Waypoint Studio Home</a></p>
+  </main>
 </body>
 </html>

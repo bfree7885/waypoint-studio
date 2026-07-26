@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-07-26T20:52:52.295Z",
+  "base": "http://127.0.0.1:44237",
+  "faviconProbe": {
+    "url": "http://127.0.0.1:44237/favicon.ico",
+    "status": 200,
+    "bytes": 2338,
+    "contentType": "image/x-icon",
+    "icoMagic": true
+  },
+  "probes": {
+    "/status.html": {
+      "status": 200,
+      "title": "Waypoint Live Engine — Status",
+      "hasComingLater": false,
+      "hasOperatorStub": true,
+      "hasRawSnapshot": false
+    },
+    "/debug.html": {
+      "status": 200,
+      "title": "Waypoint Studio Debug",
+      "hasComingLater": false,
+      "hasOperatorStub": true,
+      "hasRawSnapshot": false
+    },
+    "/support.html": {
+      "status": 200,
+      "title": "Support — Waypoint Studio",
+      "hasComingLater": false,
+      "hasOperatorStub": false,
+      "hasRawSnapshot": false
+    },
+    "/incubator/": {
+      "status": 200,
+      "title": "Incubator (experimental) — Waypoint Studio",
+      "hasComingLater": false,
+      "hasOperatorStub": false,
+      "hasRawSnapshot": false
+    },
+    "/favicon.ico": {
+      "status": 200,
+      "title": null,
+      "hasComingLater": false,
+      "hasOperatorStub": false,
+      "hasRawSnapshot": false
+    },
+    "/": {
+      "status": 200,
+      "title": "Home — Waypoint Studio",
+      "hasComingLater": false,
+      "hasOperatorStub": false,
+      "hasRawSnapshot": false
+    },
+    "/about.html": {
+      "status": 200,
+      "title": "About — Waypoint Studio",
+      "hasComingLater": false,
+      "hasOperatorStub": false,
+      "hasRawSnapshot": false
+    }
+  },
+  "crawl": {
+    "checked": 90,
+    "broken": 0,
+    "brokenSamples": []
+  },
+  "screenshots": [
+    {
+      "file": "home__desktop.png",
+      "viewport": "desktop",
+      "path": "/"
+    },
+    {
+      "file": "footer__desktop.png",
+      "viewport": "desktop",
+      "path": "/#footer"
+    },
+    {
+      "file": "support__desktop.png",
+      "viewport": "desktop",
+      "path": "/support.html"
+    },
+    {
+      "file": "incubator__desktop.png",
+      "viewport": "desktop",
+      "path": "/incubator/"
+    },
+    {
+      "file": "status__desktop.png",
+      "viewport": "desktop",
+      "path": "/status.html"
+    },
+    {
+      "file": "debug__desktop.png",
+      "viewport": "desktop",
+      "path": "/debug.html"
+    },
+    {
+      "file": "home__mobile.png",
+      "viewport": "mobile",
+      "path": "/"
+    },
+    {
+      "file": "footer__mobile.png",
+      "viewport": "mobile",
+      "path": "/#footer"
+    },
+    {
+      "file": "support__mobile.png",
+      "viewport": "mobile",
+      "path": "/support.html"
+    },
+    {
+      "file": "incubator__mobile.png",
+      "viewport": "mobile",
+      "path": "/incubator/"
+    },
+    {
+      "file": "status__mobile.png",
+      "viewport": "mobile",
+      "path": "/status.html"
+    },
+    {
+      "file": "debug__mobile.png",
+      "viewport": "mobile",
+      "path": "/debug.html"
+    },
+    {
+      "file": "favicon-context__desktop.png",
+      "viewport": "desktop",
+      "path": "/support.html",
+      "note": "page with favicon.ico link"
+    }
+  ],
+  "localhostOnly": true,
+  "noPreviewProductUrls": true
+}

@@ -166,10 +166,10 @@
 
     html +=
       '<section class="was-home__section was-home__incubator" aria-labelledby="was-home-incubator">' +
-        '<h2 id="was-home-incubator">Incubator</h2>' +
-        '<p class="was-home__journey-blurb">Future products, held quietly.</p>' +
+        '<h2 id="was-home-incubator">Experimental incubator</h2>' +
+        '<p class="was-home__journey-blurb">Optional previews — not primary products. Held quietly for later chapters.</p>' +
         "<ul>" + incLinks + "</ul>" +
-        '<p><a href="incubator/">View Incubator</a></p>' +
+        '<p><a href="incubator/">Browse incubator (experimental)</a></p>' +
       "</section>";
 
     var sup = supportingIds.map(function (id) {

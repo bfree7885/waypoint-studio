@@ -618,3 +618,17 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-07-26 — Turnaround Sprint 2 public surface cleanup
+
+**Branch:** `turnaround/sprint-02-public-surface-cleanup`  
+**Report:** `docs/turnaround/2026-07-26-sprint-02-public-surface-cleanup.md`
+
+1. **Ship `/favicon.ico` even when SVG icons exist** — browsers still request ICO
+   and treat 404 as a failed public asset.
+2. **Support must not promote unfinished incubator copy** (“Coming later”); keep
+   Incubator secondary and explicitly experimental.
+3. **Public status/debug pages must not carry live engine dumps** — stubs on the
+   public routes; full operator HTML under `private/operator/` excluded from Pages.
+4. **Pages artifact exclusions are part of product trust** — strip audits,
+   owner-review docs, reports, and tooling directories before upload.
+
