@@ -11,7 +11,15 @@
   var STORAGE_KEY = "waypoint-photo-coach-shoots-v1";
   var MAX_SHOOTS = 12;
   var MAX_IMAGES = 20;
-  var THUMB_MAX = 120;
+  /** Filmstrip / group chips only — never upscale into primary Coach previews. */
+  var THUMB_MAX = 160;
+  var THUMB_QUALITY = 0.72;
+  /**
+   * Primary Coach / recommendation preview long-edge.
+   * Sized for sharp ~2× desktop rendering without ballooning localStorage.
+   */
+  var PREVIEW_MAX = 1280;
+  var PREVIEW_QUALITY = 0.84;
   var SELECTION_LABELS = ["keep", "maybe", "reject", "favorite"];
 
   function clamp(n, a, b) {
@@ -50,26 +58,158 @@
     }
   }
 
-  function makeThumbnail(imageUrl) {
+  /**
+   * EXIF orientation 1–8 → canvas transform for browsers that do not
+   * auto-orient drawImage. createImageBitmap({ imageOrientation: "from-image" })
+   * is preferred when available.
+   */
+  function applyExifOrientation(ctx, orientation, width, height) {
+    switch (orientation) {
+      case 2:
+        ctx.translate(width, 0);
+        ctx.scale(-1, 1);
+        break;
+      case 3:
+        ctx.translate(width, height);
+        ctx.rotate(Math.PI);
+        break;
+      case 4:
+        ctx.translate(0, height);
+        ctx.scale(1, -1);
+        break;
+      case 5:
+        ctx.rotate(0.5 * Math.PI);
+        ctx.scale(1, -1);
+        break;
+      case 6:
+        ctx.rotate(0.5 * Math.PI);
+        ctx.translate(0, -height);
+        break;
+      case 7:
+        ctx.rotate(0.5 * Math.PI);
+        ctx.translate(width, -height);
+        ctx.scale(-1, 1);
+        break;
+      case 8:
+        ctx.rotate(-0.5 * Math.PI);
+        ctx.translate(-width, 0);
+        break;
+      default:
+        break;
+    }
+  }
+
+  function orientedCanvasSize(width, height, orientation) {
+    if (orientation >= 5 && orientation <= 8) {
+      return { width: height, height: width };
+    }
+    return { width: width, height: height };
+  }
+
+  function rasterToJpeg(source, srcW, srcH, maxEdge, quality, orientation, resolve) {
+    try {
+      var orient = orientation != null ? Number(orientation) : 1;
+      if (!orient || orient < 1 || orient > 8) orient = 1;
+      var outBox = orientedCanvasSize(srcW, srcH, orient);
+      var scale = Math.min(1, maxEdge / Math.max(outBox.width, outBox.height));
+      var drawW = Math.max(1, Math.round(srcW * scale));
+      var drawH = Math.max(1, Math.round(srcH * scale));
+      var canvasW = orient >= 5 && orient <= 8 ? drawH : drawW;
+      var canvasH = orient >= 5 && orient <= 8 ? drawW : drawH;
+      var canvas = document.createElement("canvas");
+      canvas.width = canvasW;
+      canvas.height = canvasH;
+      var ctx = canvas.getContext("2d");
+      ctx.save();
+      applyExifOrientation(ctx, orient, drawW, drawH);
+      ctx.drawImage(source, 0, 0, drawW, drawH);
+      ctx.restore();
+      resolve({
+        dataUrl: canvas.toDataURL("image/jpeg", quality),
+        width: canvas.width,
+        height: canvas.height
+      });
+    } catch (err) {
+      resolve(null);
+    }
+  }
+
+  /**
+   * Downscale only (never upscale). Honors EXIF orientation when provided
+   * or when createImageBitmap supports imageOrientation: "from-image".
+   */
+  function makeSizedJpeg(imageUrl, maxEdge, quality, orientation) {
     return new Promise(function (resolve) {
-      if (!imageUrl) { resolve(null); return; }
-      var img = new Image();
-      img.onload = function () {
-        try {
-          var canvas = document.createElement("canvas");
-          var scale = THUMB_MAX / Math.max(img.naturalWidth, img.naturalHeight);
-          canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
-          canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-          resolve(canvas.toDataURL("image/jpeg", 0.68));
-        } catch (err) {
+      if (!imageUrl) {
+        resolve(null);
+        return;
+      }
+
+      function viaImage() {
+        var img = new Image();
+        img.onload = function () {
+          rasterToJpeg(
+            img,
+            img.naturalWidth,
+            img.naturalHeight,
+            maxEdge,
+            quality,
+            orientation,
+            resolve
+          );
+        };
+        img.onerror = function () {
           resolve(null);
-        }
-      };
-      img.onerror = function () { resolve(null); };
-      img.src = imageUrl;
+        };
+        img.src = imageUrl;
+      }
+
+      if (typeof createImageBitmap === "function" && typeof fetch === "function") {
+        fetch(imageUrl)
+          .then(function (r) {
+            return r.blob();
+          })
+          .then(function (blob) {
+            return createImageBitmap(blob, { imageOrientation: "from-image" });
+          })
+          .then(function (bitmap) {
+            // Bitmap is already orientation-corrected — skip manual EXIF transform.
+            rasterToJpeg(bitmap, bitmap.width, bitmap.height, maxEdge, quality, 1, function (result) {
+              if (bitmap.close) bitmap.close();
+              resolve(result);
+            });
+          })
+          .catch(function () {
+            viaImage();
+          });
+        return;
+      }
+      viaImage();
     });
+  }
+
+  function makeThumbnail(imageUrl, orientation) {
+    return makeSizedJpeg(imageUrl, THUMB_MAX, THUMB_QUALITY, orientation).then(function (r) {
+      return r ? r.dataUrl : null;
+    });
+  }
+
+  function makePreview(imageUrl, orientation) {
+    return makeSizedJpeg(imageUrl, PREVIEW_MAX, PREVIEW_QUALITY, orientation);
+  }
+
+  /** Prefer sharp preview for cards / stage; filmstrip keeps thumbnail. */
+  function mediaSrc(img) {
+    if (!img) return "";
+    return img.preview || img.objectUrl || img.thumbnail || "";
+  }
+
+  function mediaDims(img) {
+    if (!img) return { width: null, height: null };
+    return {
+      width: img.previewWidth || null,
+      height: img.previewHeight || null
+    };
   }
 
   /**
@@ -186,6 +326,12 @@
       error: null,
       analyzedAt: null,
       thumbnail: null,
+      /** High-res JPEG data URL for Coach stage + recommendation cards (not filmstrip). */
+      preview: null,
+      previewWidth: null,
+      previewHeight: null,
+      /** Session-only object URL of the original file when available. */
+      objectUrl: null,
       portfolioSessionId: null,
       analysis: null,
       critique: null,
@@ -254,6 +400,10 @@
       imageId: best.id,
       fileName: best.fileName,
       thumbnail: best.thumbnail,
+      preview: best.preview || null,
+      previewWidth: best.previewWidth || null,
+      previewHeight: best.previewHeight || null,
+      objectUrl: best.objectUrl || null,
       score: best.analysis && best.analysis.overallScore,
       letter: best.analysis && best.analysis.overallGrade && best.analysis.overallGrade.letter,
       why: reasonFn(best, bestScore)
@@ -346,6 +496,10 @@
           imageId: improved.id,
           fileName: improved.fileName,
           thumbnail: improved.thumbnail,
+          preview: improved.preview || null,
+          previewWidth: improved.previewWidth || null,
+          previewHeight: improved.previewHeight || null,
+          objectUrl: improved.objectUrl || null,
           score: improved.analysis.overallScore,
           letter: improved.analysis.overallGrade && improved.analysis.overallGrade.letter,
           why: "Later frames in this ranking look stronger than the weaker end of the set — a gentle signal of warming up, not a score race."
@@ -702,6 +856,10 @@
         score: img.analysis.overallScore,
         letter: img.analysis.overallGrade && img.analysis.overallGrade.letter,
         thumbnail: img.thumbnail,
+        preview: img.preview || null,
+        previewWidth: img.previewWidth || null,
+        previewHeight: img.previewHeight || null,
+        objectUrl: img.objectUrl || null,
         why: primaryStrength
       };
     });
@@ -848,6 +1006,10 @@
         imageId: img.id,
         fileName: img.fileName,
         thumbnail: img.thumbnail,
+        preview: img.preview || null,
+        previewWidth: img.previewWidth || null,
+        previewHeight: img.previewHeight || null,
+        objectUrl: img.objectUrl || null,
         why: issue
       };
     });
@@ -910,6 +1072,10 @@
             imageId: favorite.id,
             fileName: favorite.fileName,
             thumbnail: favorite.thumbnail,
+            preview: favorite.preview || null,
+            previewWidth: favorite.previewWidth || null,
+            previewHeight: favorite.previewHeight || null,
+            objectUrl: favorite.objectUrl || null,
             selectionLabel: favorite.selectionLabel || null
           }
         : null,
@@ -977,6 +1143,38 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  /**
+   * Photograph-dominant recommendation media. Uses preview (not filmstrip thumb)
+   * and preserves intrinsic aspect via width/height attributes when known.
+   */
+  function renderRecoMediaHtml(img, altText) {
+    var src = mediaSrc(img);
+    if (!src) return "";
+    var dims = mediaDims(img);
+    var wh =
+      dims.width && dims.height
+        ? ' width="' + dims.width + '" height="' + dims.height + '"'
+        : "";
+    var ratioStyle =
+      dims.width && dims.height
+        ? ' style="aspect-ratio:' + dims.width + "/" + dims.height + '"'
+        : "";
+    return (
+      '<figure class="pc-reco__media"' +
+      ratioStyle +
+      ">" +
+        '<img src="' +
+        escapeHtml(src) +
+        '" alt="' +
+        escapeHtml(altText || "") +
+        '" class="pc-reco__img pc-shoot-summary__thumb" decoding="async"' +
+        wh +
+        ratioStyle +
+        ">" +
+      "</figure>"
+    );
   }
 
   function renderFilmstripHtml(shoot, activeId) {
@@ -1114,28 +1312,53 @@
     }).join("") || "<li>Not enough repeated patterns to speak confidently yet.</li>";
 
     var strongest = (summary.strongestImages || []).map(function (img) {
-      return '<li class="pc-shoot-summary__strong">' +
-        (img.thumbnail
-          ? '<img src="' + escapeHtml(img.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">'
-          : "") +
-        '<div><strong>' + escapeHtml(img.fileName) + "</strong>" +
-        '<p class="pc-shoot-summary__why">' + escapeHtml(img.why) + "</p>" +
-        '<button type="button" class="pc-shoot-summary__open" data-image-id="' + escapeHtml(img.imageId) +
-        '">View photograph</button></div></li>';
+      return (
+        '<li class="pc-reco pc-shoot-summary__strong">' +
+        renderRecoMediaHtml(img, img.fileName || "Strong composition") +
+        '<div class="pc-reco__body">' +
+          "<strong>" +
+          escapeHtml(img.fileName) +
+          "</strong>" +
+          (img.letter || img.score != null
+            ? '<p class="pc-reco__score">' +
+              escapeHtml(
+                (img.letter ? img.letter : "") +
+                  (img.score != null ? (img.letter ? " · " : "") + Math.round(img.score) : "")
+              ) +
+              "</p>"
+            : "") +
+          '<p class="pc-shoot-summary__why">' +
+          escapeHtml(img.why) +
+          "</p>" +
+          '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
+          escapeHtml(img.imageId) +
+          '">View photograph</button>' +
+        "</div></li>"
+      );
     }).join("");
 
     var bestOf = (summary.bestOfSession || []).map(function (cat) {
       var p = cat.pick || {};
-      return '<li class="pc-bestof__item">' +
-        (p.thumbnail ? '<img src="' + escapeHtml(p.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">' : "") +
-        "<div><strong>" + escapeHtml(cat.title) + "</strong>" +
-        "<p>" + escapeHtml(p.fileName || "") + "</p>" +
-        '<p class="pc-shoot-summary__why">' + escapeHtml(p.why || "") + "</p>" +
-        (p.imageId
-          ? '<button type="button" class="pc-shoot-summary__open" data-image-id="' + escapeHtml(p.imageId) +
-            '">View photograph</button>'
-          : "") +
-        "</div></li>";
+      return (
+        '<li class="pc-reco pc-bestof__item">' +
+        renderRecoMediaHtml(p, cat.title || p.fileName || "Session pick") +
+        '<div class="pc-reco__body">' +
+          "<strong>" +
+          escapeHtml(cat.title) +
+          "</strong>" +
+          "<p>" +
+          escapeHtml(p.fileName || "") +
+          "</p>" +
+          '<p class="pc-shoot-summary__why">' +
+          escapeHtml(p.why || "") +
+          "</p>" +
+          (p.imageId
+            ? '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
+              escapeHtml(p.imageId) +
+              '">View photograph</button>'
+            : "") +
+        "</div></li>"
+      );
     }).join("") || "<li>Not enough variety to suggest multiple categories yet.</li>";
 
     var edits = (summary.editingSuggestions || []).map(function (e) {
@@ -1191,18 +1414,20 @@
     var favoriteHtml = "";
     if (summary.favoriteImage) {
       favoriteHtml =
-        '<div class="pc-shoot-summary__favorite">' +
-          "<h3 class=\"pc-shoot-summary__h\">Favorite</h3>" +
-          (summary.favoriteImage.thumbnail
-            ? '<img src="' + escapeHtml(summary.favoriteImage.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">'
-            : "") +
-          "<p>" + escapeHtml(summary.favoriteImage.fileName) +
-          (summary.favoriteImage.selectionLabel === "favorite"
-            ? " · marked by you"
-            : " · strongest early candidate") +
-          "</p>" +
-          '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
-            escapeHtml(summary.favoriteImage.imageId) + '">View photograph</button>' +
+        '<div class="pc-reco pc-shoot-summary__favorite">' +
+          renderRecoMediaHtml(summary.favoriteImage, summary.favoriteImage.fileName || "Favorite") +
+          '<div class="pc-reco__body">' +
+            '<h3 class="pc-shoot-summary__h">Favorite</h3>' +
+            "<p>" +
+            escapeHtml(summary.favoriteImage.fileName) +
+            (summary.favoriteImage.selectionLabel === "favorite"
+              ? " · marked by you"
+              : " · strongest early candidate") +
+            "</p>" +
+            '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
+            escapeHtml(summary.favoriteImage.imageId) +
+            '">View photograph</button>' +
+          "</div>" +
         "</div>";
     }
 
@@ -1295,6 +1520,8 @@
     SCHEMA_VERSION: SCHEMA_VERSION,
     MAX_IMAGES: MAX_IMAGES,
     MAX_SHOOTS: MAX_SHOOTS,
+    THUMB_MAX: THUMB_MAX,
+    PREVIEW_MAX: PREVIEW_MAX,
     SELECTION_LABELS: SELECTION_LABELS,
     createShoot: createShoot,
     createImageRecord: createImageRecord,
@@ -1308,6 +1535,9 @@
     setImageSelection: setImageSelection,
     normalizeSelectionLabel: normalizeSelectionLabel,
     makeThumbnail: makeThumbnail,
+    makePreview: makePreview,
+    makeSizedJpeg: makeSizedJpeg,
+    mediaSrc: mediaSrc,
     persistShoot: persistShoot,
     saveShoot: persistShoot,
     getShoot: getShoot,

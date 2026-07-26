@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="pc-shell">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coach preview layout probe</title>
+  <link rel="stylesheet" href="../../../apps/waypoint-scenes/css/photo-coach.css" />
+  <link rel="stylesheet" href="../../../apps/photo-coach/css/photo-coach-shell.css" />
+  <link rel="stylesheet" href="../../../apps/photo-coach/css/photo-coach-folio.css" />
+  <style>body{margin:0;padding:1rem;background:#0b0f14;color:#fff}</style>
+</head>
+<body class="pc-shell">
+  <ul class="pc-bestof" id="list">
+    <li class="pc-reco pc-bestof__item">
+      <figure class="pc-reco__media" style="aspect-ratio:1280/853">
+        <img class="pc-reco__img pc-shoot-summary__thumb" style="aspect-ratio:1280/853" width="1280" height="853"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='853'%3E%3Crect fill='%233d6b4f' width='100%25' height='100%25'/%3E%3Ctext x='40' y='440' fill='white' font-size='64'%3ELandscape%3C/text%3E%3C/svg%3E"
+          alt="landscape" />
+      </figure>
+      <div class="pc-reco__body"><strong>landscape.jpg</strong><p class="pc-shoot-summary__why">why</p>
+        <button type="button" class="pc-shoot-summary__open">View photograph</button></div>
+    </li>
+    <li class="pc-reco pc-bestof__item">
+      <figure class="pc-reco__media" style="aspect-ratio:853/1280">
+        <img class="pc-reco__img pc-shoot-summary__thumb" style="aspect-ratio:853/1280" width="853" height="1280"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='853' height='1280'%3E%3Crect fill='%234a5d8a' width='100%25' height='100%25'/%3E%3Ctext x='40' y='640' fill='white' font-size='64'%3EPortrait%3C/text%3E%3C/svg%3E"
+          alt="portrait" />
+      </figure>
+      <div class="pc-reco__body"><strong>portrait.jpg</strong><p class="pc-shoot-summary__why">why</p>
+        <button type="button" class="pc-shoot-summary__open">View photograph</button></div>
+    </li>
+    <li class="pc-reco pc-bestof__item">
+      <figure class="pc-reco__media" style="aspect-ratio:1/1">
+        <img class="pc-reco__img pc-shoot-summary__thumb" style="aspect-ratio:1/1" width="960" height="960"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960'%3E%3Crect fill='%238a6b3d' width='100%25' height='100%25'/%3E%3Ctext x='40' y='500' fill='white' font-size='64'%3ESquare%3C/text%3E%3C/svg%3E"
+          alt="square" />
+      </figure>
+      <div class="pc-reco__body"><strong>square.jpg</strong><p class="pc-shoot-summary__why">why</p>
+        <button type="button" class="pc-shoot-summary__open">View photograph</button></div>
+    </li>
+  </ul>
+  <pre id="probe-json"></pre>
+  <script>
+    var imgs = Array.from(document.querySelectorAll(".pc-reco__img"));
+    var rows = imgs.map(function (img) {
+      var r = img.getBoundingClientRect();
+      return {
+        w: Math.round(r.width),
+        h: Math.round(r.height),
+        ratio: Math.round((r.height / Math.max(1, r.width)) * 1000) / 1000,
+        naturalW: Number(img.getAttribute("width")) || img.naturalWidth || 0
+      };
+    });
+    document.getElementById("probe-json").textContent = JSON.stringify({ viewport: window.innerWidth, rows: rows });
+  </script>
+</body>
+</html>

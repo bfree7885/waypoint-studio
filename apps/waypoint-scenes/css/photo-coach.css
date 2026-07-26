@@ -1081,20 +1081,29 @@
 }
 
 .pc-shoot-summary__strong {
-  display: flex;
-  gap: 0.65rem;
-  margin-bottom: 0.65rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.9fr);
+  gap: 0.75rem 1rem;
+  align-items: start;
+  margin: 0;
+  padding: 0.65rem 0;
 }
 
 .pc-shoot-summary__thumb {
-  width: 3rem;
-  height: 3rem;
-  object-fit: cover;
-  border-radius: 0.35rem;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.4rem;
+  background: #05070c;
 }
 
 @media (max-width: 720px) {
   .pc-shoot-summary__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pc-shoot-summary__strong {
     grid-template-columns: 1fr;
   }
 }

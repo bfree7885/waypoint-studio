@@ -218,10 +218,13 @@
     currentExif = img.exif;
     currentSessionId = img.portfolioSessionId || null;
     currentFile = { name: img.fileName };
-    if (img.thumbnail && els.previewImg) {
-      els.previewImg.src = img.thumbnail;
-      els.previewImg.alt = "Photo: " + img.fileName;
-      els.previewImg.hidden = false;
+    if (img.preview || img.objectUrl || img.thumbnail) {
+      var stageSrc = img.objectUrl || img.preview || img.thumbnail;
+      if (els.previewImg) {
+        els.previewImg.src = stageSrc;
+        els.previewImg.alt = "Photo: " + img.fileName;
+        els.previewImg.hidden = false;
+      }
     }
     if (els.previewFrame) els.previewFrame.hidden = false;
     if (els.empty) els.empty.hidden = true;
@@ -735,9 +738,12 @@
         currentCritique = session.critique;
         currentSessionId = session.id;
         currentExif = session.exif;
-        if (session.thumbnail && els.previewImg) {
-          els.previewImg.src = session.thumbnail;
-          els.previewImg.hidden = false;
+        if (els.previewImg) {
+          var histSrc = session.imageUrl || session.preview || session.thumbnail;
+          if (histSrc) {
+            els.previewImg.src = histSrc;
+            els.previewImg.hidden = false;
+          }
         }
         if (els.previewFrame) els.previewFrame.hidden = false;
         if (els.empty) els.empty.hidden = true;
@@ -795,8 +801,15 @@
           });
         }
 
-        return Shoot.makeThumbnail(url).then(function (thumb) {
+        return Shoot.makeThumbnail(url, exif && exif.orientation).then(function (thumb) {
+          return Shoot.makePreview(url, exif && exif.orientation).then(function (preview) {
           imageRec.thumbnail = thumb;
+          imageRec.objectUrl = url;
+          if (preview) {
+            imageRec.preview = preview.dataUrl;
+            imageRec.previewWidth = preview.width;
+            imageRec.previewHeight = preview.height;
+          }
           imageRec.critique = critique;
           imageRec.analysis = Shoot.toStructuredAnalysis(critique);
           imageRec.analyzedAt = critique.analyzedAt || new Date().toISOString();
@@ -815,6 +828,7 @@
                 shootId: currentShoot ? currentShoot.id : null,
                 portfolioSessionId: imageRec.portfolioSessionId || null,
                 thumbnail: thumb,
+                preview: imageRec.preview || null,
                 legacyImageId: imageRec.id,
                 selectionLabel: imageRec.selectionLabel || null
               });
@@ -867,6 +881,7 @@
               critique: critique,
               imageUrl: url,
               thumbnail: thumb,
+              preview: imageRec.preview || null,
               outdoorContext: outdoorCtx,
               shootId: currentShoot ? currentShoot.id : null,
               shootImageId: imageRec.id

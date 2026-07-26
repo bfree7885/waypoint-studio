@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="pc-shell">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coach preview layout fixture</title>
+  <link rel="stylesheet" href="../../../design-system/css/wds.css" />
+  <link rel="stylesheet" href="../../../apps/waypoint-scenes/css/studio-shell.css" />
+  <link rel="stylesheet" href="../../../apps/waypoint-scenes/css/photo-coach.css" />
+  <link rel="stylesheet" href="../../../apps/photo-coach/css/photo-coach-shell.css" />
+  <link rel="stylesheet" href="../../../apps/photo-coach/css/photo-coach-folio.css" />
+  <style>
+    body { margin: 0; padding: 1.25rem; background: #0b0f14; color: #e8ecef; font-family: "Source Sans 3", system-ui, sans-serif; }
+    .fixture-note { font-size: 0.85rem; opacity: 0.75; margin-bottom: 1rem; max-width: 48rem; }
+  </style>
+</head>
+<body class="pc-shell">
+  <p class="fixture-note">Fixture for Coach recommendation preview layout (landscape / portrait / square).</p>
+  <div id="mount" class="pc-shoot-summary-mount"></div>
+  <pre id="probe-json" hidden></pre>
+  <script src="../../../apps/waypoint-scenes/js/photo-coach-shoot.js"></script>
+  <script>
+    function makeDataUrl(w, h, label, color) {
+      var c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      var ctx = c.getContext("2d");
+      var g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, color);
+      g.addColorStop(1, "#1a2230");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(255,255,255,0.92)";
+      ctx.font = Math.max(14, Math.round(Math.min(w, h) * 0.08)) + "px sans-serif";
+      ctx.fillText(label + " " + w + "×" + h, 16, Math.round(h * 0.5));
+      // Soft hills / subject so sharpness vs upscale is obvious
+      ctx.fillStyle = "rgba(255,255,255,0.12)";
+      ctx.beginPath();
+      ctx.ellipse(w * 0.35, h * 0.62, w * 0.28, h * 0.18, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "rgba(0,0,0,0.25)";
+      ctx.beginPath();
+      ctx.moveTo(0, h * 0.72);
+      ctx.quadraticCurveTo(w * 0.4, h * 0.55, w, h * 0.78);
+      ctx.lineTo(w, h);
+      ctx.lineTo(0, h);
+      ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.55)";
+      for (var i = 0; i < 40; i++) {
+        ctx.fillRect(Math.round((i * 97) % w), Math.round((i * 53) % (h * 0.5)), 2, 2);
+      }
+      return c.toDataURL("image/jpeg", 0.85);
+    }
+
+    var Shoot = window.WaypointPhotoCoachShoot;
+    var landscape = makeDataUrl(120, 80, "Landscape", "#3d6b4f");
+    var portrait = makeDataUrl(80, 120, "Portrait", "#4a5d8a");
+    var square = makeDataUrl(120, 120, "Square", "#8a6b3d");
+    // High-res previews (post-fix path uses these)
+    var landscapePrev = makeDataUrl(1280, 853, "Landscape", "#3d6b4f");
+    var portraitPrev = makeDataUrl(853, 1280, "Portrait", "#4a5d8a");
+    var squarePrev = makeDataUrl(960, 960, "Square", "#8a6b3d");
+
+    var usePreview = new URLSearchParams(location.search).get("preview") !== "0";
+    var summary = {
+      sessionDateLabel: "Fixture session",
+      imageCount: 3,
+      failedCount: 0,
+      letter: "B",
+      overallShootScore: 78,
+      gear: { camera: "Fixture Cam", lens: "35mm" },
+      analysisDurationMs: 1200,
+      locations: [],
+      weatherPlaceholder: { note: "Fixture weather note." },
+      sessionInsights: [{ text: "Fixture insight for layout verification." }],
+      strongestImages: [
+        { imageId: "a", fileName: "landscape-ridge.jpg", why: "Strong leading lines along the ridge.", thumbnail: landscape, preview: landscapePrev, previewWidth: 1280, previewHeight: 853, score: 84, letter: "B+" },
+        { imageId: "b", fileName: "portrait-tree.jpg", why: "Quiet vertical framing.", thumbnail: portrait, preview: portraitPrev, previewWidth: 853, previewHeight: 1280, score: 81, letter: "B" },
+        { imageId: "c", fileName: "square-mushroom.jpg", why: "Centered subject holds the frame.", thumbnail: square, preview: squarePrev, previewWidth: 960, previewHeight: 960, score: 79, letter: "B" }
+      ],
+      bestOfSession: [
+        { title: "Best Composition", pick: { imageId: "a", fileName: "landscape-ridge.jpg", why: "Composition pick.", thumbnail: landscape, preview: landscapePrev, previewWidth: 1280, previewHeight: 853 } },
+        { title: "Best Light", pick: { imageId: "b", fileName: "portrait-tree.jpg", why: "Light pick.", thumbnail: portrait, preview: portraitPrev, previewWidth: 853, previewHeight: 1280 } },
+        { title: "Most Interesting", pick: { imageId: "c", fileName: "square-mushroom.jpg", why: "Interest pick.", thumbnail: square, preview: squarePrev, previewWidth: 960, previewHeight: 960 } }
+      ],
+      commonStrengths: [{ title: "Light", count: 2, examples: ["landscape-ridge.jpg"] }],
+      recurringImprovements: [{ issue: "Watch the horizon", count: 1, examples: ["landscape-ridge.jpg"] }],
+      technicalConsistency: { score: 72, notes: ["Steady exposure."] },
+      nextOutingFocus: { title: "Practice edges", detail: "Give subjects a little more breathing room." },
+      editingSuggestions: [{ title: "Lift shadows gently", count: 2, detail: "Keep midtones natural." }],
+      imagesNeedingAnotherAttempt: [],
+      interestingSubjects: [{ label: "Landscape", count: 1 }],
+      sessionStats: { percentages: { landscape: 40, wildlife: 10, plants: 20, fungi: 20, water: 5, macro: 5 } },
+      favoriteImage: null,
+      personalizedOuting: null,
+      labelCounts: {},
+      groupCount: 0,
+      scoreDetail: { score: 78 }
+    };
+
+    // Force thumb-only path when preview=0 to reproduce blurry upscale
+    if (!usePreview) {
+      summary.strongestImages.forEach(function (img) { delete img.preview; delete img.previewWidth; delete img.previewHeight; });
+      summary.bestOfSession.forEach(function (cat) {
+        delete cat.pick.preview; delete cat.pick.previewWidth; delete cat.pick.previewHeight;
+      });
+    }
+
+    document.getElementById("mount").innerHTML = Shoot.renderSummaryHtml(summary, { images: [] });
+
+    if (new URLSearchParams(location.search).get("probe") === "1") {
+      var imgs = Array.from(document.querySelectorAll(".pc-reco__img, .pc-shoot-summary__thumb"));
+      var rows = imgs.map(function (img) {
+        var r = img.getBoundingClientRect();
+        return {
+          w: Math.round(r.width),
+          h: Math.round(r.height),
+          ratio: Math.round((r.height / Math.max(1, r.width)) * 1000) / 1000,
+          naturalW: img.naturalWidth || Number(img.getAttribute("width")) || 0,
+          naturalH: img.naturalHeight || Number(img.getAttribute("height")) || 0
+        };
+      });
+      var payload = { viewport: window.innerWidth, rows: rows };
+      document.getElementById("probe-json").textContent = JSON.stringify(payload);
+      document.title = "PROBE_OK";
+    }
+  </script>
+</body>
+</html>
