@@ -618,3 +618,20 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-07-26 — Complete production audit (planning sprint)
+
+**Branch:** `audit/waypoint-studio-complete-production-review-2026-07`  
+**Report:** `docs/audits/waypoint-studio-complete-production-audit-2026-07.md`
+
+1. **Verify production SHA before trusting chat memory.** The catalog feature
+   branch had a full implementation while `main`/production still served five
+   tiles — the opposite of an outdated brief that claimed “no implementation.”
+2. **HTTP 200 ≠ healthy.** Living Scenes and Support return 200 with unfinished
+   product language; portfolio routes 404 despite feature-branch depth.
+3. **Dead eras in the loader are a production defect**, not just tech debt —
+   Home still downloads Outdoor OS/V2/V3 while only Rebuild mounts.
+4. **Consolidate before expanding.** Three unfinished products at primary-nav
+   weight score worse than one deep product.
+5. **Audit tooling must hit the live host** with clean browser contexts; repo
+   tests alone cannot certify Pages.
+

@@ -1,0 +1,98 @@
+{
+  "base": "https://waypointstudio.org",
+  "crawledAt": "2026-07-26T04:22:43.897Z",
+  "routes": 84,
+  "linksExtracted": 674,
+  "uniqueInternalDestinations": 93,
+  "brokenInternalDestinations": 0,
+  "localhostReferences": 0,
+  "externalLinks": 160,
+  "unfinishedRoutes": [
+    "/apps/photo-library/",
+    "/apps/scenes/living-scenes/",
+    "/apps/scenes/scene-builder/",
+    "/apps/waypoint-scenes/",
+    "/apps/shed-hunting/map/",
+    "/about.html",
+    "/contact.html",
+    "/terms.html",
+    "/support.html",
+    "/settings.html",
+    "/status.html",
+    "/debug.html",
+    "/404.html",
+    "/incubator/",
+    "/articles/",
+    "/apps/photo-pipeline/",
+    "/apps/dashboard/contact.html",
+    "/sitemap.xml",
+    "/waypoint-importer/",
+    "/waypoint-importer/README.md",
+    "/private/",
+    "/apps/scenes/portfolio/",
+    "/apps/scenes/portfolio/assistant.html",
+    "/apps/scenes/portfolio/builder.html",
+    "/apps/scenes/portfolio/health.html",
+    "/apps/scenes/portfolio/output.html"
+  ],
+  "brokenRoutes": [
+    {
+      "path": "/404.html",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/waypoint-importer/",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/private/",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/reports/owner-production-audit.html",
+      "status": 200,
+      "error": null
+    },
+    {
+      "path": "/apps/scenes/portfolio/",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/apps/scenes/portfolio/assistant.html",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/apps/scenes/portfolio/builder.html",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/apps/scenes/portfolio/health.html",
+      "status": 404,
+      "error": null
+    },
+    {
+      "path": "/apps/scenes/portfolio/output.html",
+      "status": 404,
+      "error": null
+    }
+  ],
+  "productionBuild": {
+    "commit": "59c09debbe8d9c7d36acf74607bd4ebfa55359fc",
+    "shortCommit": "59c09de",
+    "builtAt": "2026-07-26T02:47:56.539Z",
+    "workflowRunId": "30185121429",
+    "source": "github-pages",
+    "commitFull": "59c09debbe8d9c7d36acf74607bd4ebfa55359fc",
+    "deployedAt": "2026-07-26T02:47:56.539Z",
+    "locationSchema": 4,
+    "loaderVersion": 2,
+    "migrationEpoch": 3,
+    "minRecoveryBuild": "cf51ce4"
+  }
+}

@@ -1,0 +1,354 @@
+[
+  {
+    "file": "dashboard__home__1440x1000.png",
+    "product": "dashboard",
+    "route": "home",
+    "path": "/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home__390x844.png",
+    "product": "dashboard",
+    "route": "home",
+    "path": "/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__dashboard-apps__1440x1000.png",
+    "product": "dashboard",
+    "route": "dashboard-apps",
+    "path": "/apps/dashboard/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__dashboard-apps__390x844.png",
+    "product": "dashboard",
+    "route": "dashboard-apps",
+    "path": "/apps/dashboard/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__dashboard-customize__1440x1000.png",
+    "product": "dashboard",
+    "route": "dashboard-customize",
+    "path": "/#/customize",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__dashboard-customize__390x844.png",
+    "product": "dashboard",
+    "route": "dashboard-customize",
+    "path": "/#/customize",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__scenes-hub__1440x1000.png",
+    "product": "scenes",
+    "route": "scenes-hub",
+    "path": "/apps/scenes/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__scenes-hub__390x844.png",
+    "product": "scenes",
+    "route": "scenes-hub",
+    "path": "/apps/scenes/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__photo-coach__1440x1000.png",
+    "product": "scenes",
+    "route": "photo-coach",
+    "path": "/apps/photo-coach/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__photo-coach__390x844.png",
+    "product": "scenes",
+    "route": "photo-coach",
+    "path": "/apps/photo-coach/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__photo-library__1440x1000.png",
+    "product": "scenes",
+    "route": "photo-library",
+    "path": "/apps/photo-library/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__photo-library__390x844.png",
+    "product": "scenes",
+    "route": "photo-library",
+    "path": "/apps/photo-library/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__hidden-landscapes__1440x1000.png",
+    "product": "scenes",
+    "route": "hidden-landscapes",
+    "path": "/apps/hidden-landscapes/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__hidden-landscapes__390x844.png",
+    "product": "scenes",
+    "route": "hidden-landscapes",
+    "path": "/apps/hidden-landscapes/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__living-scenes__1440x1000.png",
+    "product": "scenes",
+    "route": "living-scenes",
+    "path": "/apps/scenes/living-scenes/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__living-scenes__390x844.png",
+    "product": "scenes",
+    "route": "living-scenes",
+    "path": "/apps/scenes/living-scenes/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__scene-builder__1440x1000.png",
+    "product": "scenes",
+    "route": "scene-builder",
+    "path": "/apps/scenes/scene-builder/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__scene-builder__390x844.png",
+    "product": "scenes",
+    "route": "scene-builder",
+    "path": "/apps/scenes/scene-builder/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__waypoint-scenes-legacy__1440x1000.png",
+    "product": "scenes",
+    "route": "waypoint-scenes-legacy",
+    "path": "/apps/waypoint-scenes/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "scenes__waypoint-scenes-legacy__390x844.png",
+    "product": "scenes",
+    "route": "waypoint-scenes-legacy",
+    "path": "/apps/waypoint-scenes/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "sheds__sheds-home__1440x1000.png",
+    "product": "sheds",
+    "route": "sheds-home",
+    "path": "/apps/shed-hunting/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "sheds__sheds-home__390x844.png",
+    "product": "sheds",
+    "route": "sheds-home",
+    "path": "/apps/shed-hunting/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "sheds__sheds-map__1440x1000.png",
+    "product": "sheds",
+    "route": "sheds-map",
+    "path": "/apps/shed-hunting/map/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "sheds__sheds-map__390x844.png",
+    "product": "sheds",
+    "route": "sheds-map",
+    "path": "/apps/shed-hunting/map/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__about__1440x1000.png",
+    "product": "platform",
+    "route": "about",
+    "path": "/about.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__about__390x844.png",
+    "product": "platform",
+    "route": "about",
+    "path": "/about.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__contact__1440x1000.png",
+    "product": "platform",
+    "route": "contact",
+    "path": "/contact.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__contact__390x844.png",
+    "product": "platform",
+    "route": "contact",
+    "path": "/contact.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__support__1440x1000.png",
+    "product": "platform",
+    "route": "support",
+    "path": "/support.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__support__390x844.png",
+    "product": "platform",
+    "route": "support",
+    "path": "/support.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__privacy__1440x1000.png",
+    "product": "platform",
+    "route": "privacy",
+    "path": "/privacy.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__privacy__390x844.png",
+    "product": "platform",
+    "route": "privacy",
+    "path": "/privacy.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__incubator__1440x1000.png",
+    "product": "platform",
+    "route": "incubator",
+    "path": "/incubator/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__incubator__390x844.png",
+    "product": "platform",
+    "route": "incubator",
+    "path": "/incubator/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__status__1440x1000.png",
+    "product": "platform",
+    "route": "status",
+    "path": "/status.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__status__390x844.png",
+    "product": "platform",
+    "route": "status",
+    "path": "/status.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__debug__1440x1000.png",
+    "product": "platform",
+    "route": "debug",
+    "path": "/debug.html",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "platform__debug__390x844.png",
+    "product": "platform",
+    "route": "debug",
+    "path": "/debug.html",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__320x800.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "320x800",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__375x812.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "375x812",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__390x844.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "390x844",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__768x1024.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "768x1024",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__1440x1000.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "1440x1000",
+    "state": "loaded"
+  },
+  {
+    "file": "dashboard__home-matrix__1920x1080.png",
+    "product": "dashboard",
+    "route": "home-matrix",
+    "path": "/",
+    "viewport": "1920x1080",
+    "state": "loaded"
+  }
+]

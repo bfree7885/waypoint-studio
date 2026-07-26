@@ -1,0 +1,653 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/?audit=1785039759857",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/favicon.svg",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/favicon.svg?audit=1785039759889",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/site.webmanifest",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/site.webmanifest?audit=1785039759944",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds.css?audit=1785039759978",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-app-shell.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-app-shell.css?audit=1785039760055",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-dashboard-rebuild.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-dashboard-rebuild.css?audit=1785039760102",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/about.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/about.html?audit=1785039760157",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/contact.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/contact.html?audit=1785039760191",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/dashboard/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/dashboard/?audit=1785039760225",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/dashboard/contact.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/dashboard/contact.html?audit=1785039760259",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/css/scenes-home.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/css/scenes-home.css?audit=1785039760294",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-coach/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-coach/?audit=1785039760348",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-library/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-library/?audit=1785039760381",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/articles/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/articles/?audit=1785039760418",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/hidden-landscapes/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/hidden-landscapes/?audit=1785039760453",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/living-scenes/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/living-scenes/?audit=1785039760487",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/scene-builder/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/scene-builder/?audit=1785039760521",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/photographer-profile/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/photographer-profile/?audit=1785039760564",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-scenes/css/studio-shell.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-scenes/css/studio-shell.css?audit=1785039760604",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-scenes/css/photo-coach.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-scenes/css/photo-coach.css?audit=1785039760661",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-coach/css/photo-coach-shell.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-shell.css?audit=1785039760718",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-coach/css/photo-coach-folio.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-folio.css?audit=1785039760776",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/?audit=1785039760832",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-library/css/photo-library.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-library/css/photo-library.css?audit=1785039760866",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-library/css/photo-library-folio.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-library/css/photo-library-folio.css?audit=1785039760914",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/hidden-landscapes/css/hidden-landscapes.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/hidden-landscapes/css/hidden-landscapes.css?audit=1785039760965",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/hidden-landscapes/gallery.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/hidden-landscapes/gallery.html?audit=1785039761017",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/hidden-landscapes/learn.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/hidden-landscapes/learn.html?audit=1785039761050",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/animal-vision/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/animal-vision/?audit=1785039761083",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/photo-coach/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/photo-coach/?audit=1785039761117",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/scenes/hidden-landscapes/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/scenes/hidden-landscapes/?audit=1785039761171",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-scenes/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-scenes/?audit=1785039761203",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-coach/profile/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-coach/profile/?audit=1785039761238",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-scenes/css/main.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-scenes/css/main.css?audit=1785039761273",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-scenes/css/scenes-mvp.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-scenes/css/scenes-mvp.css?audit=1785039761338",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-platform-foundation.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css?audit=1785039761385",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/shed-hunting/css/sheds-home.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/shed-hunting/css/sheds-home.css?audit=1785039761434",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/shed-hunting/map/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/shed-hunting/map/?audit=1785039761482",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-experience-v2.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-experience-v2.css?audit=1785039761520",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/shed-hunting/css/sheds-map.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/shed-hunting/css/sheds-map.css?audit=1785039761569",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/shed-hunting/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/shed-hunting/?audit=1785039761621",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/knowledge.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/knowledge.html?audit=1785039761657",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/support.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/support.html?audit=1785039761690",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/privacy.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/privacy.html?audit=1785039761727",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-contact.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-contact.css?audit=1785039761769",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/incubator/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/incubator/?audit=1785039761822",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/terms.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/terms.html?audit=1785039761858",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-platform-ui.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-platform-ui.css?audit=1785039761894",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-platform-integration.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-platform-integration.css?audit=1785039761954",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/index.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/index.html?audit=1785039762006",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/docs/WAYPOINT-KNOWLEDGE-PLATFORM.md?audit=1785039762039",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/docs/WAYPOINT-EDITORIAL-STANDARDS.md",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/docs/WAYPOINT-EDITORIAL-STANDARDS.md?audit=1785039762073",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-dashboard-home.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-dashboard-home.css?audit=1785039762108",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/css/home-dashboard.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/css/home-dashboard.css?audit=1785039762154",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/css/kiosk.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/css/kiosk.css?audit=1785039762209",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/?audit=1785039762262",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/steepleaf/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/steepleaf/?audit=1785039762299",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/savant-sommelier/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/savant-sommelier/?audit=1785039762354",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/?audit=1785039762391",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/discover.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html?audit=1785039762425",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/animal-vision/css/animal-vision.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/animal-vision/css/animal-vision.css?audit=1785039762464",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/foragecast/css/foragecast-home.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/foragecast/css/foragecast-home.css?audit=1785039762520",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/foragecast/css/foragecast-heat.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/foragecast/css/foragecast-heat.css?audit=1785039762570",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/foragecast/css/foragecast-recovery.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/foragecast/css/foragecast-recovery.css?audit=1785039762622",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/fieldry/css/fieldry.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/fieldry/css/fieldry.css?audit=1785039762672",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-steepleaf.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-steepleaf.css?audit=1785039762730",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/steepleaf/explore/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/steepleaf/explore/?audit=1785039762787",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/steepleaf/entity/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/steepleaf/entity/?audit=1785039762823",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/savant-sommelier/css/savant-recovery.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/savant-sommelier/css/savant-recovery.css?audit=1785039762860",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/live.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/live.html?audit=1785039762911",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/?audit=1785039762945",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/topics.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/topics.html?audit=1785039762981",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/graph.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/graph.html?audit=1785039763016",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/summary.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/summary.html?audit=1785039763050",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/teaching.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/teaching.html?audit=1785039763084",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/css/volunteer-home.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/css/volunteer-home.css?audit=1785039763123",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/saved/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/saved/?audit=1785039763181",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/profile/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/profile/?audit=1785039763215",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/waypoint-volunteer/impact/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/waypoint-volunteer/impact/?audit=1785039763249",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/landscape-interpretation/css/lie.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/landscape-interpretation/css/lie.css?audit=1785039763282",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/fieldry/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/fieldry/?audit=1785039763334",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-pipeline/css/review.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-pipeline/css/review.css?audit=1785039763369",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/foragecast/",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/foragecast/?audit=1785039763423",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/photo-coach/css/photo-coach-profile.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-profile.css?audit=1785039763456",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-volunteer.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-volunteer.css?audit=1785039763535",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-signalterrain-foundation.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css?audit=1785039763588",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/design-system/css/wds-signalterrain-cyber-live.css",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/design-system/css/wds-signalterrain-cyber-live.css?audit=1785039763635",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/workspace.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html?audit=1785039763684",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/brief.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html?audit=1785039763721",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/explorer.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/explorer.html?audit=1785039763753",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/advisor.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/advisor.html?audit=1785039763789",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/knowledge.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/knowledge.html?audit=1785039763822",
+    "ok": true,
+    "error": null
+  },
+  {
+    "path": "/apps/signalterrain/cyber/ingest-health.html",
+    "status": 200,
+    "finalUrl": "https://waypointstudio.org/apps/signalterrain/cyber/ingest-health.html?audit=1785039763855",
+    "ok": true,
+    "error": null
+  }
+]

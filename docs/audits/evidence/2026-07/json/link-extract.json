@@ -1,0 +1,4046 @@
+[
+  {
+    "from": "/",
+    "href": "https://waypointstudio.org/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/",
+    "href": "site.webmanifest",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/site.webmanifest"
+  },
+  {
+    "from": "/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/",
+    "href": "design-system/css/wds.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/",
+    "href": "design-system/css/wds-app-shell.css?v=59c09de",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-app-shell.css?v=59c09de"
+  },
+  {
+    "from": "/",
+    "href": "design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/",
+    "href": "about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/",
+    "href": "contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://waypointstudio.org/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "../../design-system/css/wds.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "../../design-system/css/wds-app-shell.css?v=59c09de",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-app-shell.css?v=59c09de"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "../../design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "../../about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/dashboard/",
+    "href": "./contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/contact.html"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "css/scenes-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/css/scenes-home.css"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-library/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-library/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-library/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-library/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-library/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-library/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../../articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "living-scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/living-scenes/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "scene-builder/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/scene-builder/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "photographer-profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photographer-profile/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../../articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/",
+    "href": "../dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "../waypoint-scenes/css/studio-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/studio-shell.css"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "../waypoint-scenes/css/photo-coach.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/photo-coach.css"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "css/photo-coach-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-shell.css"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "css/photo-coach-folio.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-folio.css"
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "#coach-drop-zone",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/photo-coach/",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "css/photo-library.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-library/css/photo-library.css"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "css/photo-library-folio.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-library/css/photo-library-folio.css"
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/photo-library/",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "css/hidden-landscapes.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/css/hidden-landscapes.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "gallery.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/gallery.html"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "learn.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/learn.html"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "../animal-vision/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/animal-vision/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../css/scenes-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/css/scenes-home.css"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../living-scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/living-scenes/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../scene-builder/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/scene-builder/"
+  },
+  {
+    "from": "/apps/scenes/living-scenes/",
+    "href": "../photographer-profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photographer-profile/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../css/scenes-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/css/scenes-home.css"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../../waypoint-scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../living-scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/living-scenes/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../scene-builder/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/scene-builder/"
+  },
+  {
+    "from": "/apps/scenes/scene-builder/",
+    "href": "../photographer-profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photographer-profile/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../css/scenes-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/css/scenes-home.css"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../../photo-coach/profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/profile/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../living-scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/living-scenes/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../scene-builder/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/scene-builder/"
+  },
+  {
+    "from": "/apps/scenes/photographer-profile/",
+    "href": "../photographer-profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/photographer-profile/"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "css/main.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/main.css"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "css/studio-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/studio-shell.css"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "css/scenes-mvp.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/scenes-mvp.css"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "css/photo-coach.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/photo-coach.css"
+  },
+  {
+    "from": "/apps/waypoint-scenes/",
+    "href": "#workspace",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "css/sheds-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/css/sheds-home.css"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "../dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "../../articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/apps/shed-hunting/",
+    "href": "../../articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css",
+    "kind": "url",
+    "resolved": "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../design-system/css/wds-experience-v2.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-experience-v2.css"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../css/sheds-map.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/css/sheds-map.css"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "#sheds-map",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/knowledge.html"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/shed-hunting/map/",
+    "href": "../../../privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/sheds/",
+    "href": "https://waypointstudio.org/apps/shed-hunting/map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/sheds/",
+    "href": "../apps/shed-hunting/map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/map/",
+    "href": "/apps/shed-hunting/map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/map/",
+    "href": "/apps/shed-hunting/map/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/map/"
+  },
+  {
+    "from": "/scenes/",
+    "href": "https://waypointstudio.org/apps/photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/scenes/",
+    "href": "../apps/photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/about.html",
+    "href": "https://waypointstudio.org/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/about.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/about.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/about.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/about.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/about.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/about.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/about.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/about.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/about.html",
+    "href": "incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/about.html",
+    "href": "knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/knowledge.html"
+  },
+  {
+    "from": "/about.html",
+    "href": "contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/contact.html",
+    "href": "https://waypointstudio.org/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/contact.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/contact.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/contact.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/contact.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/contact.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/contact.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/contact.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/contact.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/contact.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/contact.html",
+    "href": "support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/contact.html",
+    "href": "privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "https://waypointstudio.org/privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/privacy.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/privacy.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/privacy.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/privacy.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/terms.html",
+    "href": "https://waypointstudio.org/terms.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/terms.html"
+  },
+  {
+    "from": "/terms.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/terms.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/terms.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/terms.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/terms.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/terms.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/terms.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/terms.html",
+    "href": "privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/terms.html",
+    "href": "contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "https://waypointstudio.org/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/support.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/support.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/support.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/support.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/support.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/support.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html?category=bug&amp;subject=Bug%20report&amp;includeTech=1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=bug&amp;subject=Bug%20report&amp;includeTech=1"
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html?category=feature&amp;subject=Feature%20request",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=feature&amp;subject=Feature%20request"
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html?category=scientific&amp;subject=Scientific%20correction",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=scientific&amp;subject=Scientific%20correction"
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html?category=bug&amp;includeTech=1&amp;subject=Bug%20report",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=bug&amp;includeTech=1&amp;subject=Bug%20report"
+  },
+  {
+    "from": "/support.html",
+    "href": "contact.html?category=feature&amp;subject=Feature%20request",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html?category=feature&amp;subject=Feature%20request"
+  },
+  {
+    "from": "/support.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/support.html",
+    "href": "apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/support.html",
+    "href": "apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/support.html",
+    "href": "articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/support.html",
+    "href": "about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/support.html",
+    "href": "incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/settings.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/settings.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/settings.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/settings.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/settings.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/settings.html",
+    "href": "design-system/css/wds-platform-ui.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-ui.css?v=local"
+  },
+  {
+    "from": "/settings.html",
+    "href": "design-system/css/wds-platform-integration.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-integration.css?v=local"
+  },
+  {
+    "from": "/settings.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/settings.html",
+    "href": "index.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/index.html"
+  },
+  {
+    "from": "/settings.html",
+    "href": "privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/settings.html",
+    "href": "support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "design-system/css/wds-contact.css?v=local",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=local"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/docs/WAYPOINT-KNOWLEDGE-PLATFORM.md"
+  },
+  {
+    "from": "/knowledge.html",
+    "href": "docs/WAYPOINT-EDITORIAL-STANDARDS.md",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/docs/WAYPOINT-EDITORIAL-STANDARDS.md"
+  },
+  {
+    "from": "/status.html",
+    "href": "design-system/css/wds-dashboard-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-dashboard-home.css"
+  },
+  {
+    "from": "/status.html",
+    "href": "css/home-dashboard.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/css/home-dashboard.css"
+  },
+  {
+    "from": "/status.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/status.html",
+    "href": "apps/dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/kiosk.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/kiosk.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/kiosk.html",
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+  },
+  {
+    "from": "/kiosk.html",
+    "href": "css/kiosk.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/css/kiosk.css"
+  },
+  {
+    "from": "/404.html",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/404.html",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/404.html",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/404.html",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/404.html",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/404.html",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/404.html",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/404.html",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/404.html",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/404.html",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/dashboard.html",
+    "href": "https://waypointstudio.org/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/dashboard.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/dashboard/",
+    "href": "https://waypointstudio.org/apps/dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/dashboard/",
+    "href": "../apps/dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "https://waypointstudio.org/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/incubator/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/signalterrain/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/steepleaf/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/steepleaf/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/savant-sommelier/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/savant-sommelier/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/incubator/",
+    "href": "../apps/waypoint-volunteer/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/"
+  },
+  {
+    "from": "/volunteer/",
+    "href": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html"
+  },
+  {
+    "from": "/volunteer/",
+    "href": "../apps/waypoint-volunteer/discover.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html"
+  },
+  {
+    "from": "/articles/",
+    "href": "https://waypointstudio.org/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/articles/",
+    "href": "../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/articles/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/articles/",
+    "href": "../apps/dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/articles/",
+    "href": "../apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/articles/",
+    "href": "../apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/articles/",
+    "href": "../apps/waypoint-volunteer/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/"
+  },
+  {
+    "from": "/articles/",
+    "href": "../knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/knowledge.html"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "css/animal-vision.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/animal-vision/css/animal-vision.css"
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/animal-vision/",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "css/foragecast-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/foragecast/css/foragecast-home.css"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "css/foragecast-heat.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/foragecast/css/foragecast-heat.css"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "css/foragecast-recovery.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/foragecast/css/foragecast-recovery.css"
+  },
+  {
+    "from": "/apps/foragecast/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "css/fieldry.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/fieldry/css/fieldry.css"
+  },
+  {
+    "from": "/apps/fieldry/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "../../design-system/css/wds-steepleaf.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-steepleaf.css"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/steepleaf/"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "explore/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/steepleaf/explore/"
+  },
+  {
+    "from": "/apps/steepleaf/",
+    "href": "entity/?id=stl_tea-longjing-shifeng",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/steepleaf/entity/?id=stl_tea-longjing-shifeng"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "css/savant-recovery.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/savant-sommelier/css/savant-recovery.css"
+  },
+  {
+    "from": "/apps/savant-sommelier/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "https://waypointstudio.org/apps/signalterrain/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "../../favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "cyber/live.html#brief",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html#brief"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "cyber/live.html#brief",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html#brief"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "cyber/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "topics.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/topics.html"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "graph.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/graph.html"
+  },
+  {
+    "from": "/apps/signalterrain/",
+    "href": "summary.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/summary.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/",
+    "href": "live.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/",
+    "href": "live.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/",
+    "href": "teaching.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/teaching.html"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "https://waypointstudio.org/apps/waypoint-volunteer/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "../../favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "css/volunteer-home.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/css/volunteer-home.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "discover.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "saved/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/saved/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "profile/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/profile/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "impact/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/impact/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "discover.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/",
+    "href": "../../articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "css/lie.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/landscape-interpretation/css/lie.css"
+  },
+  {
+    "from": "/apps/landscape-interpretation/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/terrainbound/",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/terrainbound/",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/terrainbound/",
+    "href": "../fieldry/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/fieldry/"
+  },
+  {
+    "from": "/apps/terrainbound/",
+    "href": "../dashboard/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/apps/photo-pipeline/",
+    "href": "css/review.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-pipeline/css/review.css"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "https://waypointstudio.org/apps/dashboard/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/contact.html"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "../../design-system/css/wds-app-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-app-shell.css"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "../../design-system/css/wds-contact.css?v=os-m3-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-contact.css?v=os-m3-1"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "../../design-system/css/wds-dashboard-home.css?v=os-m3-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-dashboard-home.css?v=os-m3-1"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "mailto:contact@waypointstudio.org",
+    "kind": "mailto",
+    "resolved": null
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/dashboard/"
+  },
+  {
+    "from": "/apps/dashboard/contact.html",
+    "href": "../../privacy.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/privacy.html"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/waypoint-importer/",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/private/",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/private/",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/private/",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/private/",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/private/",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/private/",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/private/",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/private/",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/private/",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/private/",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/assistant.html",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/builder.html",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/health.html",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/apps/scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/apps/shed-hunting/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/shed-hunting/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/articles/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/support.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/support.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/scenes/portfolio/output.html",
+    "href": "/incubator/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/incubator/"
+  },
+  {
+    "from": "/apps/scenes/photo-coach/",
+    "href": "../../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/apps/scenes/photo-coach/",
+    "href": "../../photo-coach/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/"
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/articles/"
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "../../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "../../apps/foragecast/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/foragecast/"
+  },
+  {
+    "from": "/articles/samples/reading-todays-conditions.html",
+    "href": "../../apps/fieldry/#/new",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/fieldry/#/new"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "css/hidden-landscapes.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/css/hidden-landscapes.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/gallery.html",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "css/hidden-landscapes.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/css/hidden-landscapes.css"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/hidden-landscapes/learn.html",
+    "href": "../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/apps/scenes/hidden-landscapes/",
+    "href": "../../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/scenes/hidden-landscapes/",
+    "href": "../../hidden-landscapes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/hidden-landscapes/"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../../waypoint-scenes/css/studio-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/studio-shell.css"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../../waypoint-scenes/css/photo-coach.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-scenes/css/photo-coach.css"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../css/photo-coach-shell.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-shell.css"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../css/photo-coach-profile.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/photo-coach/css/photo-coach-profile.css"
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "#pp-mount",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/photo-coach/profile/",
+    "href": "../../scenes/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/scenes/"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://waypointstudio.org/",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/index.html",
+    "href": "favicon.svg",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/favicon.svg"
+  },
+  {
+    "from": "/index.html",
+    "href": "site.webmanifest",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/site.webmanifest"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/index.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/index.html",
+    "href": "design-system/css/wds.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/index.html",
+    "href": "design-system/css/wds-app-shell.css?v=59c09de",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-app-shell.css?v=59c09de"
+  },
+  {
+    "from": "/index.html",
+    "href": "design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1"
+  },
+  {
+    "from": "/index.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/index.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/"
+  },
+  {
+    "from": "/index.html",
+    "href": "about.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/about.html"
+  },
+  {
+    "from": "/index.html",
+    "href": "contact.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/contact.html"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+    "kind": "url",
+    "resolved": "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "../../design-system/css/wds-volunteer.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-volunteer.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/waypoint-volunteer/discover.html",
+    "href": "./?about=1",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/?about=1"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "../../../design-system/css/wds-steepleaf.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-steepleaf.css"
+  },
+  {
+    "from": "/apps/steepleaf/explore/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "../../../design-system/css/wds-steepleaf.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-steepleaf.css"
+  },
+  {
+    "from": "/apps/steepleaf/entity/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "../../../design-system/css/wds-signalterrain-cyber-live.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-cyber-live.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "./live.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "workspace.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/live.html",
+    "href": "teaching.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/teaching.html"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/signalterrain/topics.html",
+    "href": "graph.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/graph.html"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/signalterrain/graph.html",
+    "href": "topics.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/topics.html"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "graph.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/graph.html"
+  },
+  {
+    "from": "/apps/signalterrain/summary.html",
+    "href": "topics.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/topics.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "live.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/teaching.html",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "../../../design-system/css/wds-volunteer.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-volunteer.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/waypoint-volunteer/saved/",
+    "href": "../discover.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/waypoint-volunteer/discover.html"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "../../../design-system/css/wds-volunteer.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-volunteer.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/profile/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "../../../design-system/css/wds-volunteer.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-volunteer.css"
+  },
+  {
+    "from": "/apps/waypoint-volunteer/impact/",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "brief.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "explorer.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/explorer.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "advisor.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/advisor.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/workspace.html",
+    "href": "knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/knowledge.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "live.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "workspace.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "teaching.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/teaching.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "ingest-health.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/ingest-health.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/brief.html",
+    "href": "live.html#brief",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/live.html#brief"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "brief.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "workspace.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "advisor.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/advisor.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/knowledge.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/explorer.html",
+    "href": "../graph.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/graph.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "brief.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "workspace.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "explorer.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/explorer.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/advisor.html",
+    "href": "knowledge.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/knowledge.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "brief.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/brief.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "workspace.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/workspace.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "explorer.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/explorer.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/knowledge.html",
+    "href": "advisor.html",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/advisor.html"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "https://fonts.googleapis.com",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "https://fonts.gstatic.com",
+    "kind": "url",
+    "resolved": "https://fonts.gstatic.com/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap",
+    "kind": "url",
+    "resolved": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "../../../design-system/css/wds.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "../../../design-system/css/wds-platform-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-platform-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "../../../design-system/css/wds-signalterrain-foundation.css",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/design-system/css/wds-signalterrain-foundation.css"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "#main",
+    "kind": "hash",
+    "resolved": null
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "./",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/cyber/"
+  },
+  {
+    "from": "/apps/signalterrain/cyber/ingest-health.html",
+    "href": "../",
+    "kind": "url",
+    "resolved": "https://waypointstudio.org/apps/signalterrain/"
+  }
+]
