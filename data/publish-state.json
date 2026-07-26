@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-26T04:30:02.026Z",
-  "dataUpdatedAt": "2026-07-26T04:30:02.026Z",
-  "nextScheduledRun": "2026-07-26T05:00:00.000Z",
-  "lastPublishAt": "2026-07-22T06:00:44.719Z",
-  "lastPublishedDataAt": "2026-07-22T06:00:02.219Z",
-  "lastPublishCommit": "bba5424",
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
+  "lastEngineRun": "2026-07-26T05:00:01.938Z",
+  "dataUpdatedAt": "2026-07-26T05:00:01.938Z",
+  "nextScheduledRun": "2026-07-26T05:30:00.000Z",
+  "lastPublishAt": "2026-07-26T04:30:45.724Z",
+  "lastPublishedDataAt": "2026-07-26T04:30:02.026Z",
+  "lastPublishCommit": "55e5936",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed 55e5936 to origin/audit/waypoint-studio-complete-production-review-2026-07"
 }
