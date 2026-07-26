@@ -618,3 +618,17 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-07-26 — Turnaround Sprint 1 reconciliation
+
+**Branch:** `turnaround/sprint-01-reconciliation`  
+**Report:** `docs/turnaround/2026-07-26-sprint-01-reconciliation.md`
+
+1. **Reconcile before turnaround:** record `origin/main`, live `build-info`,
+   feature tips, and dirty-tree classes before any merge or deploy.
+2. **Catalog tip ≠ implementation tip** when publish commits trail the branch —
+   integrate through the last legitimate SHA (`c7b2525`), not publish noise.
+3. **Never stage automated publish churn** (`live.json`, `health.json`,
+   `publish-state.json`, `debug.html`, `status.html`) as product work.
+4. **Main unchanged after audit ⇒ low conflict risk** for catalog FF/merge;
+   still prefer excluding `[skip ci]` publish commits from the integration tip.
+
