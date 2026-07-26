@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-26T21:00:01.764Z",
-  "dataUpdatedAt": "2026-07-26T21:00:01.764Z",
-  "nextScheduledRun": "2026-07-26T21:30:00.000Z",
-  "lastPublishAt": "2026-07-22T06:00:44.719Z",
-  "lastPublishedDataAt": "2026-07-22T06:00:02.219Z",
-  "lastPublishCommit": "bba5424",
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
+  "lastEngineRun": "2026-07-26T21:30:01.428Z",
+  "dataUpdatedAt": "2026-07-26T21:30:01.428Z",
+  "nextScheduledRun": "2026-07-26T22:00:00.000Z",
+  "lastPublishAt": "2026-07-26T21:00:45.277Z",
+  "lastPublishedDataAt": "2026-07-26T21:00:01.764Z",
+  "lastPublishCommit": "6613271",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed 6613271 to origin/turnaround/sprint-02-public-surface-cleanup"
 }
