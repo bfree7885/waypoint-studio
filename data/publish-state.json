@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-26T05:30:02.140Z",
-  "dataUpdatedAt": "2026-07-26T05:30:02.140Z",
-  "nextScheduledRun": "2026-07-26T06:00:00.000Z",
-  "lastPublishAt": "2026-07-26T05:00:49.928Z",
-  "lastPublishedDataAt": "2026-07-26T05:00:01.938Z",
-  "lastPublishCommit": "a2960e2",
+  "lastEngineRun": "2026-07-26T06:00:01.250Z",
+  "dataUpdatedAt": "2026-07-26T06:00:01.250Z",
+  "nextScheduledRun": "2026-07-26T06:30:00.000Z",
+  "lastPublishAt": "2026-07-26T05:30:15.122Z",
+  "lastPublishedDataAt": "2026-07-26T05:30:02.140Z",
+  "lastPublishCommit": "2a98a88",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed a2960e2 to origin/audit/waypoint-studio-complete-production-review-2026-07"
+  "lastPublishMessage": "Pushed 2a98a88 to origin/audit/waypoint-studio-complete-production-review-2026-07"
 }
