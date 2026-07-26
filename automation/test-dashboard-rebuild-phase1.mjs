@@ -187,12 +187,12 @@ const ws = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace has widget frames", /data-widget-id="ph-conditions"/.test(ws));
 assert("workspace heading", /Workspace/.test(ws));
 assert("workspace anticipates conditions", /data-widget-id="ph-conditions"/.test(ws));
-assert("workspace anticipates light", /data-widget-id="ph-light"/.test(ws));
+assert("workspace anticipates light", /data-widget-id="ph-golden"/.test(ws));
 assert("workspace anticipates air", /data-widget-id="ph-air"/.test(ws));
-assert("workspace anticipates astronomy", /data-widget-id="ph-astronomy"/.test(ws));
+assert("workspace anticipates astronomy", /data-widget-id="ph-sun"/.test(ws));
 assert("workspace anticipates alerts", /data-widget-id="ph-alerts"/.test(ws));
-assert("workspace omits coming-soon photography by default", !/data-widget-id="ph-photography"/.test(ws));
-assert("workspace omits coming-soon rivers by default", !/data-widget-id="ph-rivers"/.test(ws));
+assert("workspace default omits opt-in blue hour", !/data-widget-id="ph-blue"/.test(ws));
+assert("workspace default omits opt-in pack guidance", !/data-widget-id="ph-pack"/.test(ws));
 assert("no developer instrument copy", !/Instrument not connected yet/.test(ws));
 assert("product waiting copy", /Waiting for weather data|Data will appear here|Widget coming soon|coming soon/i.test(ws));
 
@@ -227,13 +227,15 @@ const categories = Reg.all().map((w) => w.category);
 ].forEach(function (cat) {
   assert("catalog includes " + cat, categories.indexOf(cat) >= 0);
 });
+/* Every catalogued category must now resolve to a functional tile. */
 [
   "photography",
   "rivers",
   "wildlife",
   "trails"
 ].forEach(function (cat) {
-  assert("catalog excludes placeholder " + cat, categories.indexOf(cat) < 0);
+  const entries = Reg.all().filter((w) => w.category === cat);
+  assert("catalog category " + cat + " is functional", entries.length > 0 && entries.every((w) => w.live === true));
 });
 
 const bannedDev = [

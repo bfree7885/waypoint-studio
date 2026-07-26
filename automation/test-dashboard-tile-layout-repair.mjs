@@ -32,9 +32,9 @@ const css = fs.readFileSync(path.join(ROOT, "design-system/css/wds-dashboard-reb
 const rootHtml = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 
-assert("root mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-layout-1/.test(rootHtml));
-assert("dashboard route mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-layout-1/.test(dashHtml));
-assert("root and dashboard share home-boot", /home-boot\.js\?v=dash-tile-layout-1/.test(rootHtml) && /home-boot\.js\?v=dash-tile-layout-1/.test(dashHtml));
+assert("root mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-catalog-1/.test(rootHtml));
+assert("dashboard route mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-catalog-1/.test(dashHtml));
+assert("root and dashboard share home-boot", /home-boot\.js\?v=dash-tile-catalog-1/.test(rootHtml) && /home-boot\.js\?v=dash-tile-catalog-1/.test(dashHtml));
 assert("CSS defines family grid", /\.wdb-r-family__grid/.test(css));
 assert("CSS mobile uses minmax(0, 1fr)", /grid-template-columns:\s*minmax\(0,\s*1fr\)/.test(css));
 assert("CSS forces mobile full span", /grid-column:\s*1\s*\/\s*-1/.test(css));
@@ -96,11 +96,10 @@ assert("normalize maps half→standard", Reg.normalizeSize("half") === "standard
 assert("normalize maps compact→standard", Reg.normalizeSize("compact") === "standard");
 
 const catalog = Reg.all();
-assert("catalog has exactly 5 functional tiles", catalog.length === 5, String(catalog.length));
+assert("catalog has 32 functional tiles", catalog.length === 32, String(catalog.length));
 assert(
-  "catalog ids",
-  catalog.map((w) => w.id).join(",") ===
-    "ph-conditions,ph-air,ph-alerts,ph-astronomy,ph-light"
+  "catalog ids unique",
+  new Set(catalog.map((w) => w.id)).size === catalog.length
 );
 assert(
   "no Coming Soon in catalog copy",
@@ -118,7 +117,7 @@ assert(
 Prefs.reset();
 const prefs = Prefs.load();
 assert("default sizes are standard", Object.values(prefs.sizes).every((s) => s === "standard"));
-assert("default enabled length 5", prefs.enabled.length === 5, String(prefs.enabled.length));
+assert("default enabled length 11", prefs.enabled.length === 11, String(prefs.enabled.length));
 
 const ws = Workspace.renderWorkspace({ prefs, customize: false, lazy: false });
 assert("workspace uses family sections", /data-wdb-r-family/.test(ws));
@@ -138,12 +137,12 @@ assert(
 );
 
 const oddPrefs = Prefs.load();
-oddPrefs.enabled = ["ph-conditions", "ph-air", "ph-alerts", "ph-astronomy"];
+oddPrefs.enabled = ["ph-conditions", "ph-hourly", "ph-wind", "ph-precip", "ph-forecast"];
 oddPrefs.order = oddPrefs.enabled.slice();
 oddPrefs.gridColumns = 3;
 const oddWs = Workspace.renderWorkspace({ prefs: oddPrefs, customize: false });
 const oddTiles = (oddWs.match(/data-widget-id="/g) || []).length;
-assert("odd count still renders 4 tiles", oddTiles === 4, String(oddTiles));
+assert("odd count still renders 5 tiles", oddTiles === 5, String(oddTiles));
 assert("odd count keeps family grids", /wdb-r-family__grid/.test(oddWs));
 
 const longTitlePrefs = Prefs.load();
@@ -157,7 +156,9 @@ longReg.title = originalTitle;
 assert("long title still standard width class", /wdb-r-widget--standard/.test(longWs));
 assert("long title still full family grid", /wdb-r-family__grid[^>]*data-cols="3"/.test(longWs));
 
-const emptyData = Reg.getData("ph-alerts");
+const emptyData = Reg.getData("ph-alerts", {
+  platform: { alerts: { status: "empty", items: [], count: 0 } }
+});
 assert("empty data still catalog-available", emptyData.status === "empty");
 const emptyWs = Workspace.renderWorkspace({
   prefs: { ...Prefs.load(), enabled: ["ph-alerts"], order: ["ph-alerts"] },
@@ -168,10 +169,8 @@ assert("empty tile still full-width class contract", /wdb-r-widget--standard/.te
 const catalogHtml = Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" });
 assert("customize catalog has no Coming Soon", !/Coming Soon/i.test(catalogHtml));
 assert(
-  "customize catalog lists all 5",
-  ["ph-conditions", "ph-air", "ph-alerts", "ph-astronomy", "ph-light"].every((id) =>
-    catalogHtml.includes('data-widget-id="' + id + '"') || catalogHtml.includes(id)
-  ) || ["Conditions", "Air", "Alerts", "Astronomy", "Light"].every((t) => catalogHtml.includes(t))
+  "customize catalog lists every functional tile",
+  catalog.every((w) => catalogHtml.includes('data-widget-id="' + w.id + '"'))
 );
 
 /* Legacy prefs size migration */
@@ -179,9 +178,9 @@ sandbox.localStorage.setItem(
   Prefs.storageKey,
   JSON.stringify({
     version: 1,
-    enabled: ["ph-conditions", "ph-light", "ph-rivers"],
-    order: ["ph-conditions", "ph-light", "ph-rivers"],
-    sizes: { "ph-conditions": "sm", "ph-light": "anchor", "ph-rivers": "md" },
+    enabled: ["ph-conditions", "ph-golden", "ph-rivers"],
+    order: ["ph-conditions", "ph-golden", "ph-rivers"],
+    sizes: { "ph-conditions": "sm", "ph-golden": "anchor", "ph-rivers": "md" },
     favorites: [],
     gridColumns: 3,
     preset: "default",
@@ -190,7 +189,7 @@ sandbox.localStorage.setItem(
 );
 const migrated = Prefs.load();
 assert("legacy sm migrates to standard", migrated.sizes["ph-conditions"] === "standard");
-assert("legacy anchor migrates to featured", migrated.sizes["ph-light"] === "featured");
+assert("legacy anchor migrates to featured", migrated.sizes["ph-golden"] === "featured");
 assert("removed rivers id dropped from enabled", migrated.enabled.indexOf("ph-rivers") < 0);
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");

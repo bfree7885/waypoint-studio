@@ -148,7 +148,7 @@ assert("shell loaded", !!(Shell && Shell.mount));
 assert("shell exposes setPlatform", typeof Shell.setPlatform === "function");
 
 const all = Reg.all();
-assert("catalog has functional tiles only", all.length === 5, String(all.length));
+assert("catalog has functional tiles only", all.length === 32, String(all.length));
 assert(
   "four live widgets marked",
   Data.liveIds.every(function (id) {
@@ -169,9 +169,13 @@ const waiting = Reg.getData("ph-conditions");
 assert("conditions waiting without platform", waiting.trust === "waiting" || waiting.status === "waiting");
 assert("waiting does not invent numbers", !/\d+\s*°|AQI\s*\d+/i.test(JSON.stringify(waiting)));
 
-const alertsEmpty = Reg.getData("ph-alerts");
+const alertsEmpty = Reg.getData("ph-alerts", {
+  platform: { alerts: { status: "empty", items: [], count: 0 } }
+});
 assert("alerts empty status not coming-soon", alertsEmpty.status === "empty");
 assert("alerts honest empty copy", /No active alerts/i.test(alertsEmpty.message || ""));
+const alertsWaiting = Reg.getData("ph-alerts");
+assert("alerts waiting before platform", alertsWaiting.status === "waiting");
 assert("alerts availability Available", Reg.availability(Reg.get("ph-alerts")).label === "Available");
 
 const platform = {
@@ -220,9 +224,9 @@ assert("conditions live with platform", condLive.status === "live");
 assert("conditions has temp fact", (condLive.facts || []).some((f) => /72/.test(f.value)));
 assert("conditions trust live", condLive.trust === "live");
 
-const lightLive = Reg.getData("ph-light", { platform });
+const lightLive = Reg.getData("ph-golden", { platform });
 assert("light live with platform", lightLive.status === "live");
-assert("light golden hour fact", (lightLive.facts || []).some((f) => /Golden/i.test(f.label)));
+assert("light golden hour fact", (lightLive.facts || []).some((f) => /Morning|Evening|Golden/i.test(f.label)));
 assert("light trust estimated", lightLive.trust === "estimated");
 
 const airLive = Reg.getData("ph-air", { platform });
@@ -235,15 +239,16 @@ const airMissing = Reg.getData("ph-air", {
 assert("air unavailable when provider fails", airMissing.status === "unavailable");
 assert("air unavailable does not invent AQI", !/AQI\s*\d+/i.test(JSON.stringify(airMissing)));
 
-const astroLive = Reg.getData("ph-astronomy", { platform });
+const astroLive = Reg.getData("ph-moon", { platform });
 assert("astronomy live with moon phase", astroLive.status === "live");
 assert(
   "astronomy labels missing moonrise honestly",
-  (astroLive.facts || []).some((f) => f.label === "Moonrise" && /Not reported/i.test(f.value))
+  !(astroLive.facts || []).some((f) => /Moonrise|Moonset/i.test(f.label)) &&
+    /not published/i.test(astroLive.basis || "")
 );
 assert(
   "astronomy marks illumination computed",
-  (astroLive.facts || []).some((f) => f.label === "Illumination" && f.note === "Computed")
+  (astroLive.facts || []).some((f) => f.label === "Illumination") && astroLive.trust === "estimated"
 );
 
 const lines = Data.composeTodayLines(platform);
@@ -366,7 +371,11 @@ const categories = Reg.all().map((w) => w.category);
   "wildlife",
   "trails"
 ].forEach(function (cat) {
-  assert("catalog excludes placeholder " + cat, categories.indexOf(cat) < 0);
+  const entries = Reg.all().filter((w) => w.category === cat);
+  assert(
+    "catalog category " + cat + " is functional",
+    entries.length > 0 && entries.every((w) => w.live === true)
+  );
 });
 
 const banned = ["you should", "do this", "homework", "assignment"];

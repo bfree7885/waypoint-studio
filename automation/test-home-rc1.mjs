@@ -161,7 +161,7 @@ const defaults = Prefs.defaults ? Prefs.defaults() : Prefs.load();
 const enabled = defaults.enabled || [];
 assert(
   "defaults include Conditions Light Air Astronomy",
-  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy"].every(function (id) {
+  ["ph-conditions", "ph-golden", "ph-air", "ph-sun"].every(function (id) {
     return enabled.indexOf(id) >= 0;
   })
 );

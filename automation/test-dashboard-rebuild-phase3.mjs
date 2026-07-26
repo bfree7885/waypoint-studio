@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-tile-catalog-1/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
@@ -139,7 +139,7 @@ const Kiosk = sandbox.WDS.dashboardRebuildKiosk;
 const Shell = sandbox.WDS.dashboardRebuild;
 const Data = sandbox.WDS.dashboardRebuildData;
 
-assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|tile-layout/.test(Reg.version)));
+assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|tile-layout|tile-catalog/.test(Reg.version)));
 assert("prefs key preserved", Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1");
 assert("prefs exposes favorites API", typeof Prefs.toggleFavorite === "function");
 assert("prefs exposes columns API", typeof Prefs.setGridColumns === "function");
@@ -148,26 +148,31 @@ assert("workspace lazy API", typeof Workspace.bindLazy === "function");
 
 const all = Reg.all();
 assert("catalog excludes travel placeholder", !Reg.get("ph-travel"));
-assert("catalog still has phase2 live four", Data.liveIds.length === 4);
+assert("catalog live ids match catalog size", Data.liveIds.length === all.length);
 assert(
   "library categories complete",
   Reg.libraryCategories()
     .map((c) => c.id)
-    .join(",") === "weather,photography,astronomy,safety,favorites"
+    .join(",") ===
+    "weather,photography,astronomy,air,hiking,water,wildlife,travel,safety,favorites"
 );
 
 [
   ["ph-conditions", "weather", "Available"],
-  ["ph-light", "photography", "Available"],
-  ["ph-air", "weather", "Available"],
-  ["ph-astronomy", "astronomy", "Available"],
+  ["ph-golden", "photography", "Available"],
+  ["ph-air", "air", "Available"],
+  ["ph-sun", "astronomy", "Available"],
+  ["ph-river", "water", "Available"],
+  ["ph-birding", "wildlife", "Available"],
+  ["ph-place", "travel", "Available"],
+  ["ph-hiking-window", "hiking", "Available"],
   ["ph-alerts", "safety", "Available"]
 ].forEach(function (row) {
   const w = Reg.get(row[0]);
   assert(row[0] + " library category", w && w.libraryCategory === row[1]);
   assert(row[0] + " availability badge", Reg.availability(w).label === row[2]);
 });
-assert("removed placeholders stay gone", !Reg.get("ph-photography") && !Reg.get("ph-rivers"));
+assert("removed placeholders stay gone", !Reg.get("ph-photography") && !Reg.get("ph-rivers") && !Reg.get("ph-light"));
 
 Prefs.reset();
 assert("defaults gridColumns 3", Prefs.load().gridColumns === 3);
@@ -180,16 +185,16 @@ assert("persist gridColumns 1", Prefs.load().gridColumns === 1);
 Prefs.setGridColumns(99);
 assert("invalid columns normalize to 3", Prefs.load().gridColumns === 3);
 
-Prefs.toggleFavorite("ph-astronomy");
-assert("favorite persists", Prefs.isFavorite("ph-astronomy"));
-assert("favorite auto-enables", Prefs.load().enabled.indexOf("ph-astronomy") >= 0);
+Prefs.toggleFavorite("ph-moon");
+assert("favorite persists", Prefs.isFavorite("ph-moon"));
+assert("favorite auto-enables", Prefs.load().enabled.indexOf("ph-moon") >= 0);
 Prefs.setEnabled("ph-conditions", true);
 Prefs.setEnabled("ph-air", true);
-Prefs.setEnabled("ph-astronomy", true);
+Prefs.setEnabled("ph-moon", true);
 const ordered = Prefs.visibleOrdered();
 assert(
   "favorites rise to top",
-  ordered[0] === "ph-astronomy",
+  ordered[0] === "ph-moon",
   ordered.join(",")
 );
 
@@ -300,10 +305,10 @@ assert("handleAction sets columns", Prefs.load().gridColumns === 1);
 
 Customize.handleAction("favorite", {
   getAttribute(name) {
-    return name === "data-widget-id" ? "ph-light" : null;
+    return name === "data-widget-id" ? "ph-golden" : null;
   }
 });
-assert("handleAction favorites", Prefs.isFavorite("ph-light"));
+assert("handleAction favorites", Prefs.isFavorite("ph-golden"));
 
 const platform = {
   meta: { fromCache: false, blockStatus: { weather: "live", airQuality: "live", daylight: "live" } },
@@ -390,7 +395,7 @@ assert("lazy frames pending", /data-lazy="pending"/.test(lazyHtml));
 assert("lazy reserved settling copy", /Settling…/.test(lazyHtml));
 assert("lazy skeleton placeholders", /wdb-r-skeleton/.test(lazyHtml));
 assert("workspace family grouping", /wdb-r-group__label/.test(Workspace.renderWorkspace({ prefs: Prefs.load(), platform })));
-assert("widget family attrs", /data-family="environmental"/.test(Workspace.renderWorkspace({ prefs: Prefs.load(), platform })));
+assert("widget family attrs", /data-family="weather"/.test(Workspace.renderWorkspace({ prefs: Prefs.load(), platform })));
 
 assert("kiosk constraints unchanged", Kiosk.constraints().hideCustomize === true);
 
