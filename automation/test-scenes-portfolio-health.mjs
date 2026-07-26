@@ -589,6 +589,13 @@ assert("no score ring markup", !/score-ring|health-score|readiness-meter/i.test(
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/scenes/portfolio/index.html"), "utf8");
 assert("portfolios index links Health", /health\.html/.test(indexHtml));
 
+const smoke = fs.readFileSync(path.join(ROOT, "automation/smoke-browser.mjs"), "utf8");
+assert(
+  "smoke portfolio-health route",
+  /name: "scenes-portfolio-health"/.test(smoke) &&
+    /path: "\/apps\/scenes\/portfolio\/health\.html"/.test(smoke)
+);
+
 // Global banned language across engine outputs
 [a1, a2, aHike, aAsst, aEmpty, aOne].forEach((ax, idx) => {
   assert("banned language absent #" + idx, !banned.test(allText(ax)));
