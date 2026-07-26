@@ -1,76 +1,70 @@
-:root {
-  --sf-charcoal: #12151a;
-  --sf-slate: #1c222c;
-  --sf-slate-2: #262e3b;
-  --sf-offwhite: #e8ebe4;
-  --sf-muted: #a7b0a3;
-  --sf-violet: #5b3d8c;
-  --sf-midnight: #1a2a4a;
-  --sf-aurora: #9be15d;
-  --sf-magenta: #c23a7a;
-}
+/**
+ * Scenes landing — four-pillar foundation
+ * Uses Waypoint Studio Design System tokens only (RC4 platform unity).
+ */
 
 body {
   margin: 0;
-  background:
-    radial-gradient(900px 480px at 12% -10%, rgba(91, 61, 140, 0.35), transparent 60%),
-    radial-gradient(800px 420px at 90% 0%, rgba(26, 42, 74, 0.55), transparent 55%),
-    var(--sf-charcoal);
-  color: var(--sf-offwhite);
+  background: var(--wds-bg);
+  color: var(--wds-text);
+  font-family: var(--wds-font-body);
 }
 
 .sf-hero {
-  max-width: 44rem;
+  max-width: var(--wds-max-content, 72rem);
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 1.5rem;
+  padding: 1.75rem clamp(1rem, 3vw, 1.75rem) 1rem;
 }
 
 .sf-hero__mission {
-  margin: 0 0 0.75rem;
-  font-size: 0.8rem;
+  margin: 0 0 0.65rem;
+  font-size: var(--wds-text-xs, 0.6875rem);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--sf-aurora);
+  color: var(--wds-accent);
+  font-weight: 600;
 }
 
 .sf-hero__title {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--wds-font-display);
   font-weight: 500;
-  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-size: clamp(2.4rem, 6vw, 3.5rem);
   line-height: 1.05;
+  color: var(--wds-text);
 }
 
 .sf-hero__tag {
-  margin: 0.75rem 0 0;
-  font-size: 1.15rem;
-  color: var(--sf-offwhite);
+  margin: 0.65rem 0 0;
+  font-size: 1.1rem;
+  color: var(--wds-text);
 }
 
 .sf-hero__lead {
-  margin: 1rem 0 0;
+  margin: 0.85rem 0 0;
   max-width: 38rem;
-  color: var(--sf-muted);
+  color: var(--wds-text-secondary);
   line-height: 1.55;
 }
 
 .sf-main {
-  max-width: 68rem;
+  max-width: var(--wds-max-content, 72rem);
   margin: 0 auto;
-  padding: 0 1.25rem 3rem;
+  padding: 0 clamp(1rem, 3vw, 1.75rem) 2.5rem;
 }
 
 .sf-section-title {
-  margin: 0 0 1rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  margin: 0 0 0.85rem;
+  font-family: var(--wds-font-display);
   font-weight: 500;
-  font-size: 1.75rem;
+  font-size: 1.65rem;
+  color: var(--wds-text);
 }
 
 .sf-pillars {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 @media (min-width: 768px) {
@@ -82,67 +76,70 @@ body {
 .sf-pillar {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  padding: 1.25rem 1.2rem 1.35rem;
-  border-radius: 14px;
-  border: 1px solid rgba(232, 235, 228, 0.1);
-  background: linear-gradient(165deg, rgba(38, 46, 59, 0.92), rgba(18, 21, 26, 0.92));
-  min-height: 100%;
+  gap: 0.55rem;
+  padding: 1rem 1rem 1.1rem;
+  border-radius: var(--wds-radius-lg, 0.75rem);
+  border: 1px solid var(--wds-border-subtle);
+  background: linear-gradient(165deg, var(--wds-elevated), var(--wds-surface));
+  min-height: 0;
 }
 
 .sf-pillar--learn {
-  border-color: rgba(155, 225, 93, 0.28);
+  border-color: var(--wds-accent-border);
 }
 
 .sf-pillar--create {
-  border-color: rgba(91, 61, 140, 0.45);
+  border-color: rgba(155, 143, 217, 0.35);
 }
 
 .sf-pillar--remember {
-  border-color: rgba(194, 58, 122, 0.35);
+  border-color: rgba(155, 143, 217, 0.22);
 }
 
 .sf-pillar--explore {
-  border-color: rgba(26, 42, 74, 0.8);
+  border-color: rgba(200, 240, 85, 0.2);
 }
 
 .sf-pillar__kicker {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: var(--wds-text-xs, 0.6875rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--sf-aurora);
+  color: var(--wds-accent);
+  font-weight: 600;
 }
 
-.sf-pillar--create .sf-pillar__kicker { color: #c4b0ef; }
-.sf-pillar--remember .sf-pillar__kicker { color: #e8a0c2; }
-.sf-pillar--explore .sf-pillar__kicker { color: #8eb6e8; }
+.sf-pillar--create .sf-pillar__kicker {
+  color: var(--wds-purple-bright);
+}
+
+.sf-pillar--remember .sf-pillar__kicker {
+  color: var(--wds-purple);
+}
+
+.sf-pillar--explore .sf-pillar__kicker {
+  color: var(--wds-lime-bright);
+}
 
 .sf-pillar__title {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.7rem;
+  font-family: var(--wds-font-display);
+  font-size: 1.55rem;
   font-weight: 500;
+  color: var(--wds-text);
 }
 
 .sf-pillar__copy {
   margin: 0;
   flex: 1;
-  color: var(--sf-muted);
+  color: var(--wds-text-secondary);
   line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 .sf-pillar__status {
   margin: 0;
-  font-size: 0.85rem;
-}
-
-.sf-pillar__status--live {
-  color: var(--sf-aurora);
-}
-
-.sf-pillar__status--foundation {
-  color: #e8a0c2;
+  align-self: flex-start;
 }
 
 .sf-pillar .wds-btn {
@@ -151,71 +148,40 @@ body {
 }
 
 .sf-privacy {
-  margin: 1.75rem 0 0;
-  color: var(--sf-muted);
-  font-size: 0.92rem;
+  margin: 1.35rem 0 0;
+  color: var(--wds-text-muted);
+  font-size: 0.9rem;
   line-height: 1.45;
 }
 
 .sf-foundation {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  padding: 1.75rem clamp(1rem, 3vw, 1.75rem) 2.5rem;
 }
 
 .sf-foundation h1 {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--wds-font-display);
   font-weight: 500;
   font-size: clamp(2rem, 5vw, 2.8rem);
   margin: 0.35rem 0 0.75rem;
+  color: var(--wds-text);
 }
 
 .sf-foundation__eyebrow {
   margin: 0;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.75rem;
-  color: var(--sf-aurora);
+  font-size: var(--wds-text-xs, 0.6875rem);
+  color: var(--wds-accent);
+  font-weight: 600;
 }
 
-.sf-foundation__eyebrow a {
-  color: inherit;
-}
-
-.sf-foundation__list {
-  margin: 1rem 0 1.5rem;
-  padding-left: 1.2rem;
-  color: var(--sf-muted);
+.sf-foundation p {
+  color: var(--wds-text-secondary);
   line-height: 1.55;
 }
 
-.sf-foundation__note {
-  margin: 1rem 0;
-  padding: 0.9rem 1rem;
-  border-left: 3px solid var(--sf-magenta);
-  background: rgba(38, 46, 59, 0.65);
-  color: var(--sf-offwhite);
-  line-height: 1.5;
-}
-
-.sf-foundation__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.sf-foundation__actions .wds-btn[aria-disabled="true"],
-.sf-foundation__actions .wds-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto !important;
-    animation: none !important;
-    transition: none !important;
-  }
+.sf-foundation a {
+  color: var(--wds-accent);
 }

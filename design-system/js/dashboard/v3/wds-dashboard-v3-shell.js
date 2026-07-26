@@ -13,12 +13,12 @@
 
   function statusBadge(trust) {
     var map = {
-      live: { label: "Live", cls: "wdb-v2-status--live" },
-      cached: { label: "Cached", cls: "wdb-v2-status--cached" },
-      partial: { label: "Partial", cls: "wdb-v2-status--partial" },
-      offline: { label: "Offline", cls: "wdb-v2-status--offline" },
-      estimated: { label: "Estimated", cls: "wdb-v2-status--partial" },
-      "provider-unavailable": { label: "Unavailable", cls: "wdb-v2-status--partial" }
+      live: { label: "Live", cls: "wds-status wds-status--live wdb-v2-status--live" },
+      cached: { label: "Waiting", cls: "wds-status wds-status--waiting wdb-v2-status--cached" },
+      partial: { label: "Partial", cls: "wds-status wds-status--estimated wdb-v2-status--partial" },
+      offline: { label: "Offline", cls: "wds-status wds-status--offline wdb-v2-status--offline" },
+      estimated: { label: "Estimated", cls: "wds-status wds-status--estimated wdb-v2-status--partial" },
+      "provider-unavailable": { label: "Unavailable", cls: "wds-status wds-status--offline wdb-v2-status--partial" }
     };
     return map[trust] || map.partial;
   }

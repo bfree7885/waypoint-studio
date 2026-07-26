@@ -1,45 +1,47 @@
-/* Waypoint Scenes — photography-first flagship landing (mobile first) */
+/* Waypoint Scenes — photography-first surfaces (RC4: shared WDS chrome + tokens) */
 
 html[data-product="scenes"],
 .was-shell[data-product="scenes"] {
-  --scenes-ink: #f4f1ea;
-  --scenes-muted: rgba(244, 241, 234, 0.72);
-  --scenes-charcoal: #0c1018;
-  --scenes-midnight: #0b1a3a;
-  --scenes-violet: #9b7ed4;
-  --scenes-moss: #a8c48a;
-  --wds-font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
-  --wds-accent: var(--scenes-moss);
-  background: var(--scenes-charcoal);
-  color: var(--scenes-ink);
+  /* Legacy scene aliases → platform tokens (keeps page CSS working) */
+  --scenes-ink: var(--wds-text);
+  --scenes-muted: var(--wds-text-secondary);
+  --scenes-charcoal: var(--wds-bg);
+  --scenes-midnight: var(--wds-navy-800);
+  --scenes-violet: var(--wds-purple);
+  --scenes-moss: var(--wds-accent);
+  --wds-font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --wds-accent: var(--wds-lime);
+  background: var(--wds-bg);
+  color: var(--wds-text);
   font-family: var(--wds-font-body);
 }
 
+/* Shared platform header — do not invent a Scenes-only chrome */
 .was-shell[data-product="scenes"] .was-global {
-  background: color-mix(in srgb, var(--scenes-charcoal) 78%, transparent);
-  border-bottom-color: rgba(244, 241, 234, 0.08);
-  backdrop-filter: blur(10px);
+  background: var(--wds-topbar-bg, rgba(8, 15, 28, 0.82));
+  border-bottom-color: var(--wds-border-subtle);
+  backdrop-filter: blur(18px) saturate(1.15);
 }
 
 .was-shell[data-product="scenes"] .was-brand__name,
 .was-shell[data-product="scenes"] .was-local__app {
-  color: var(--scenes-ink);
+  color: var(--wds-text);
 }
 
 .was-shell[data-product="scenes"] .was-primary-nav__link,
 .was-shell[data-product="scenes"] .was-local a {
-  color: var(--scenes-muted);
+  color: var(--wds-text-secondary);
 }
 
 .was-shell[data-product="scenes"] .was-primary-nav__link[aria-current="page"],
 .was-shell[data-product="scenes"] .was-local a[aria-current="page"],
 .was-shell[data-product="scenes"] .was-local a.is-current {
-  color: var(--scenes-moss);
+  color: var(--wds-accent);
 }
 
 .was-shell[data-product="scenes"] .was-footer {
-  border-top-color: rgba(244, 241, 234, 0.08);
-  color: var(--scenes-muted);
+  border-top-color: var(--wds-border-subtle);
+  color: var(--wds-text-muted);
 }
 
 /* ——— Stage hero ——— */

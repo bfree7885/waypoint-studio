@@ -1,0 +1,309 @@
+/**
+ * Waypoint Studio — Platform Unity (RC4 Sprint 1)
+ * One chrome language across Dashboard, Scenes, Sheds, Articles, and siblings.
+ *
+ * Goals:
+ * - Shared topbar / local nav never "resets" between apps
+ * - Shared status badges communicate Live / Waiting / Estimated / Offline
+ * - Dense, content-proportional cards (no empty min-height balloons)
+ * - Typography + spacing locked to WDS tokens (Inter + Cormorant)
+ */
+
+/* ——— Shared status badges (all products) ——— */
+.wds-status,
+.wdb-v2-status,
+.wdb-v2-widget__avail,
+.sf-pillar__status,
+.was-launcher__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--wds-text-xs, 0.6875rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  border-radius: var(--wds-radius-full, 999px);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid transparent;
+  max-width: 100%;
+}
+
+.wds-status::before,
+.wdb-v2-status--live::before,
+.wdb-v2-widget__avail--live::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.wds-status--live,
+.wdb-v2-status--live,
+.wdb-v2-widget__avail--live,
+.sf-pillar__status--live {
+  color: var(--wds-lime-bright, #d8f878);
+  background: var(--wds-lime-dim, rgba(200, 240, 85, 0.12));
+  border-color: var(--wds-accent-border, rgba(200, 240, 85, 0.35));
+}
+
+.wds-status--waiting,
+.wds-status--cached,
+.wdb-v2-status--cached {
+  color: var(--wds-purple-bright, #b0a6eb);
+  background: var(--wds-purple-dim, rgba(155, 143, 217, 0.14));
+  border-color: rgba(155, 143, 217, 0.35);
+}
+
+.wds-status--estimated,
+.wds-status--partial,
+.wdb-v2-status--partial,
+.wdb-v2-widget__avail--derived {
+  color: #e8d48a;
+  background: rgba(232, 212, 138, 0.12);
+  border-color: rgba(232, 212, 138, 0.35);
+}
+
+.wds-status--offline,
+.wdb-v2-status--offline,
+.wdb-v2-widget__avail--unavailable {
+  color: var(--wds-text-muted, rgba(228, 234, 244, 0.65));
+  background: rgba(228, 234, 244, 0.06);
+  border-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.06));
+}
+
+.wds-status--foundation,
+.sf-pillar__status--foundation,
+.wdb-v2-widget__avail--planned,
+.wdb-v2-widget__avail--experimental {
+  color: var(--wds-purple-bright, #b0a6eb);
+  background: var(--wds-purple-dim, rgba(155, 143, 217, 0.14));
+  border-color: rgba(155, 143, 217, 0.28);
+}
+
+/* Dark-surface availability chips (replace light-theme leftovers) */
+.wdb-v2-widget__avail--live {
+  background: var(--wds-lime-dim, rgba(200, 240, 85, 0.12));
+  color: var(--wds-lime-bright, #d8f878);
+}
+.wdb-v2-widget__avail--derived {
+  background: rgba(232, 212, 138, 0.12);
+  color: #e8d48a;
+}
+.wdb-v2-widget__avail--planned,
+.wdb-v2-widget__avail--experimental,
+.wdb-v2-widget__avail--unavailable {
+  background: rgba(228, 234, 244, 0.06);
+  color: var(--wds-text-muted, rgba(228, 234, 244, 0.65));
+}
+
+/* ——— Chrome: one sticky global header ——— */
+.was-global {
+  background: var(--wds-topbar-bg, rgba(8, 15, 28, 0.82));
+  border-bottom-color: var(--wds-border-subtle);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+}
+
+.was-global__inner {
+  max-width: var(--wds-max-content, 72rem);
+  padding: 0.55rem clamp(1rem, 3vw, 1.75rem);
+  min-height: 3rem;
+  gap: 0.85rem 1.25rem;
+}
+
+.was-primary-nav,
+.was-global nav {
+  gap: 0.35rem 0.65rem;
+}
+
+.was-apps-btn {
+  background: var(--wds-elevated, var(--wds-navy-800));
+  color: var(--wds-text);
+  border-color: var(--wds-border-subtle);
+}
+
+.was-local {
+  background: rgba(8, 15, 28, 0.55);
+  border-bottom-color: var(--wds-border-subtle);
+}
+
+.was-local__link {
+  color: var(--wds-text-secondary);
+}
+
+.was-local__link[aria-current="page"],
+.was-local__link.is-active {
+  color: var(--wds-text);
+}
+
+/* Kill legacy Scenes / Coach topbar look if present beside shell */
+.was-shell .topbar,
+.app.was-shell > .topbar {
+  display: none !important;
+}
+
+/* ——— Typography lock ——— */
+.was-shell,
+.wds-app {
+  font-family: var(--wds-font-body);
+  color: var(--wds-text);
+}
+
+.was-shell h1,
+.was-shell h2,
+.was-shell .wds-display,
+.sf-hero__title,
+.sf-section-title,
+.sf-pillar__title,
+.xp-stage__title {
+  font-family: var(--wds-font-display);
+}
+
+/* ——— Shared card density ——— */
+.wds-card,
+.wpf-card,
+.xp-secondary__list a,
+.sf-pillar {
+  background: var(--wds-surface);
+  border: 1px solid var(--wds-border-subtle);
+  border-radius: var(--wds-radius-lg, 0.75rem);
+  color: var(--wds-text);
+}
+
+/* Dashboard widgets — content-proportional, less empty air */
+.wdb-v2-widget,
+.wdb-v3-widget,
+.wdb-v3 .wdb-v2-widget {
+  min-height: 0;
+  height: auto;
+  padding: 0.7rem 0.8rem;
+  gap: 0.3rem;
+  background: var(--wds-surface);
+  border-color: var(--wds-border-subtle);
+}
+
+.wdb-v2-cat {
+  margin: 0 0 1rem;
+}
+
+.wdb-v2-cat__grid {
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+}
+
+.wdb-v2-widgets {
+  margin: 0 0 1rem;
+}
+
+.wdb-v2-panel {
+  min-height: 0;
+  padding: 0.55rem 0.7rem;
+}
+
+.wdb-v2-brief,
+.wdb-v3-brief {
+  padding: 0.85rem 0.95rem;
+  margin-bottom: 1rem;
+  background: var(--wds-elevated);
+  border-color: var(--wds-border-subtle);
+}
+
+.wdb-v3 {
+  --wdb-v3-space-2: 0.55rem;
+  --wdb-v3-space-3: 0.85rem;
+  --wdb-v3-space-4: 1.2rem;
+  --wdb-v3-brief-bg: var(--wds-elevated);
+  --wdb-v3-line: var(--wds-border-subtle);
+  --wdb-v3-muted: var(--wds-text-muted);
+}
+
+.wdb-v3-widgets-area__title,
+.wdb-v2-cat__title {
+  margin-bottom: 0.45rem;
+  color: var(--wds-text-tertiary);
+}
+
+/* Skeleton / loading less tall */
+#wds-content-engine {
+  min-height: 42vh;
+}
+
+.wdb-skel--hero {
+  height: 5.5rem;
+}
+
+/* ——— Scenes foundation page — WDS atmosphere ——— */
+html[data-product="scenes"] body {
+  background: var(--wds-bg);
+  color: var(--wds-text);
+}
+
+.sf-hero {
+  max-width: var(--wds-max-content, 72rem);
+  padding: 1.75rem clamp(1rem, 3vw, 1.75rem) 1rem;
+}
+
+.sf-hero__mission {
+  color: var(--wds-accent);
+}
+
+.sf-hero__tag {
+  color: var(--wds-text);
+}
+
+.sf-hero__lead {
+  color: var(--wds-text-secondary);
+}
+
+.sf-main {
+  max-width: var(--wds-max-content, 72rem);
+  padding: 0 clamp(1rem, 3vw, 1.75rem) 2.5rem;
+}
+
+.sf-pillars {
+  gap: 0.75rem;
+}
+
+.sf-pillar {
+  padding: 1rem 1rem 1.1rem;
+  background: linear-gradient(165deg, var(--wds-elevated), var(--wds-surface));
+  border-color: var(--wds-border-subtle);
+}
+
+.sf-pillar__kicker {
+  color: var(--wds-accent);
+}
+
+.sf-pillar__copy,
+.sf-privacy {
+  color: var(--wds-text-secondary);
+}
+
+/* ——— Shared page rhythm (Sheds / Articles / Scenes) ——— */
+.xp-stage,
+.was-home__hero,
+.wcs-hero {
+  padding-block: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.xp-secondary__list {
+  gap: 0.55rem;
+}
+
+.xp-secondary__list a {
+  padding: 0.85rem 1rem;
+}
+
+@media (max-width: 720px) {
+  .was-global__inner {
+    gap: 0.65rem;
+    padding-inline: 0.85rem;
+  }
+
+  .wdb-v2-cat__grid {
+    grid-template-columns: 1fr;
+  }
+}
