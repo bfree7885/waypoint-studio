@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-26T15:00:01.139Z",
-  "nextScheduledUpdate": "2026-07-26T15:30:00.000Z",
+  "updatedAt": "2026-07-26T15:30:02.098Z",
+  "nextScheduledUpdate": "2026-07-26T16:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 87,
-    "feelsLikeF": 92,
-    "humidity": 60,
+    "temperatureF": 89,
+    "feelsLikeF": 94,
+    "humidity": 55,
     "windMph": 10,
-    "windGustMph": 17,
-    "cloudCover": 14,
-    "uvIndex": 4.2,
+    "windGustMph": 16,
+    "cloudCover": 8,
+    "uvIndex": 5.1,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-26T10:00"
+    "observedAt": "2026-07-26T10:30"
   },
   "forecast": {
     "highF": 106,
@@ -37,20 +37,14 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-07-26T11:00",
-        "temperatureF": 92,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
         "time": "2026-07-26T12:00",
-        "temperatureF": 95,
+        "temperatureF": 94,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-26T13:00",
-        "temperatureF": 98,
+        "temperatureF": 97,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
@@ -62,12 +56,18 @@
       },
       {
         "time": "2026-07-26T15:00",
-        "temperatureF": 104,
+        "temperatureF": 103,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-26T16:00",
+        "temperatureF": 105,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-26T17:00",
         "temperatureF": 106,
         "precipProbability": 0,
         "conditions": "Clear sky"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 85,
-    "phaseValue": 0.426,
+    "phaseValue": 0.427,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 581.1141729354858,
+        "generationtime_ms": 161.33737564086914,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-26T10:00",
+          "time": "2026-07-26T10:30",
           "interval": 900,
-          "temperature_2m": 87.3,
-          "relative_humidity_2m": 60,
-          "apparent_temperature": 92.3,
+          "temperature_2m": 88.6,
+          "relative_humidity_2m": 55,
+          "apparent_temperature": 93.6,
           "weather_code": 0,
-          "wind_speed_10m": 9.7,
-          "wind_direction_10m": 187,
-          "wind_gusts_10m": 17.4,
-          "cloud_cover": 14,
-          "surface_pressure": 945,
-          "uv_index": 4.2,
+          "wind_speed_10m": 10.1,
+          "wind_direction_10m": 181,
+          "wind_gusts_10m": 16.1,
+          "cloud_cover": 8,
+          "surface_pressure": 945.2,
+          "uv_index": 5.05,
           "precipitation": 0
         },
         "hourly_units": {
@@ -202,25 +202,25 @@
             75.7,
             75.8,
             78.4,
-            83,
-            87.3,
-            91.6,
-            94.9,
-            97.8,
-            100.4,
-            103.7,
+            81.8,
+            86.6,
+            90.5,
+            94.3,
+            97.3,
+            100.1,
+            103,
+            104.8,
             105.5,
-            106.4,
-            106.2,
-            104.6,
-            99.9,
-            94.7,
-            91.6,
-            89.4,
-            87.7,
-            86.1,
-            84.8,
-            83.6,
+            105.1,
+            104.2,
+            99.6,
+            94.5,
+            91.1,
+            89,
+            87.3,
+            85.8,
+            84.6,
+            83.5,
             82.1,
             80.9,
             79.2,
@@ -414,7 +414,7 @@
             3
           ],
           "temperature_2m_max": [
-            106.4,
+            105.5,
             104.2
           ],
           "temperature_2m_min": [
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 85,
-        "phaseValue": 0.426,
+        "phaseValue": 0.427,
         "trust": "Estimated"
       }
     },
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 4.2,
+        "uvIndex": 5.1,
         "status": "live"
       }
     },
@@ -490,7 +490,7 @@
           "siteName": "WHITE ROCK C NR BURR OAK, KS",
           "lat": 39.89918,
           "lng": -98.2503276,
-          "observedAt": "2026-07-26T07:45:00.000-05:00",
+          "observedAt": "2026-07-26T09:45:00.000-05:00",
           "dischargeCfs": 1,
           "dischargeUnit": "ft3/s",
           "stageFt": 1.22,
@@ -531,7 +531,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 14,
+        "cloudCover": 8,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:28 AM",
@@ -546,26 +546,19 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "previous-success",
+      "USGS Water Services",
       "NWS"
     ],
-    "failures": [
-      {
-        "module": "river_gauges",
-        "source": "USGS Water Services",
-        "error": "This operation was aborted",
-        "retryAttempts": 3
-      }
-    ],
+    "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-26T15:00:01.139Z",
+    "generatedAt": "2026-07-26T15:30:02.098Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "estimated",
+      "usgsWater": "live",
       "ebird": "unavailable"
     }
   }
