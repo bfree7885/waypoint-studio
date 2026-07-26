@@ -1,0 +1,533 @@
+[
+  {
+    "label": "desktop-all",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "parentWidth": 1133,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "desktop-odd",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 2,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "parentWidth": 1133,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "customize",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 1,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 561,
+        "parentWidth": 1133,
+        "ratio": 0.49506206896551724
+      }
+    ]
+  },
+  {
+    "label": "320x800",
+    "innerWidth": 320,
+    "gridWidth": 293,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 282,
+        "parentWidth": 293,
+        "ratio": 0.9617929562433297
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "parentWidth": 293,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 293,
+        "parentWidth": 293,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "375x812",
+    "innerWidth": 375,
+    "gridWidth": 348,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 337,
+        "parentWidth": 348,
+        "ratio": 0.9678346810422283
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "parentWidth": 348,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 348,
+        "parentWidth": 348,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "390x844",
+    "innerWidth": 390,
+    "gridWidth": 363,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "430x932",
+    "innerWidth": 430,
+    "gridWidth": 403,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 392,
+        "parentWidth": 403,
+        "ratio": 0.9722265321955004
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "parentWidth": 403,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 403,
+        "parentWidth": 403,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "768x1024",
+    "innerWidth": 768,
+    "gridWidth": 725,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "parentWidth": 725,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 725,
+        "parentWidth": 725,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "1024x768",
+    "innerWidth": 1024,
+    "gridWidth": 973,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 317,
+        "parentWidth": 973,
+        "ratio": 0.32566655958882107
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 973,
+        "parentWidth": 973,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 973,
+        "parentWidth": 973,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "1440x1000",
+    "innerWidth": 1440,
+    "gridWidth": 1133,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.3267448275862069
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 370,
+        "parentWidth": 1133,
+        "ratio": 0.32675862068965517
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "parentWidth": 1133,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 1133,
+        "parentWidth": 1133,
+        "ratio": 1
+      }
+    ]
+  },
+  {
+    "label": "apps-dashboard-390",
+    "innerWidth": 390,
+    "gridWidth": 363,
+    "familyCount": 3,
+    "comingSoon": false,
+    "tiles": [
+      {
+        "id": "ph-conditions",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-air",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-alerts",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 352,
+        "parentWidth": 363,
+        "ratio": 0.9691645133505599
+      },
+      {
+        "id": "ph-astronomy",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      },
+      {
+        "id": "ph-light",
+        "size": "standard",
+        "className": "wdb-r-widget wdb-r-widget--standard",
+        "width": 363,
+        "parentWidth": 363,
+        "ratio": 1
+      }
+    ]
+  }
+]

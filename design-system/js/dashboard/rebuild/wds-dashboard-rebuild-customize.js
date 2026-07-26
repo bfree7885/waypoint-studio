@@ -65,7 +65,7 @@
     });
     var on = !!enabled[w.id];
     var fav = prefsApi && prefsApi.isFavorite ? prefsApi.isFavorite(w.id, prefs) : false;
-    var avail = reg && reg.availability ? reg.availability(w) : { id: "coming-soon", label: "Coming Soon" };
+    var avail = reg && reg.availability ? reg.availability(w) : { id: "available", label: "Available" };
     var icon =
       reg && reg.iconHtml
         ? reg.iconHtml(w)
@@ -159,7 +159,7 @@
       escapeHtml(filter) +
       '" aria-labelledby="wdb-r-catalog-title">' +
       '<h2 id="wdb-r-catalog-title">Widget library</h2>' +
-      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Available widgets settle with live data; others stay Coming Soon.</p>' +
+      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Every library entry is a real, selectable instrument.</p>' +
       renderFilterTabs(prefs, filter) +
       '<ul class="wdb-r-catalog__list" role="list">' +
       list +
@@ -250,9 +250,9 @@
 
   function cycleSize(current) {
     var reg = Registry();
-    var sizes = (reg && reg.sizes) || ["sm", "md", "lg", "anchor"];
+    var sizes = (reg && reg.sizes) || ["standard", "wide", "featured"];
     var i = sizes.indexOf(current);
-    if (i < 0) return "md";
+    if (i < 0) return "standard";
     return sizes[(i + 1) % sizes.length];
   }
 
@@ -275,7 +275,7 @@
     }
     if (action === "size-cycle" && id) {
       var prefs = prefsApi.load();
-      var next = cycleSize(prefs.sizes[id] || "md");
+      var next = cycleSize(prefs.sizes[id] || "standard");
       return prefsApi.setSize(id, next);
     }
     if (action === "preset") {

@@ -186,10 +186,27 @@
 }
 
 .wdb-r-workspace__grid {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: var(--wdb-r-gap);
   align-items: stretch;
+}
+
+.wdb-r-family {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--wdb-r-gap) * 0.65);
+  min-width: 0;
+  width: 100%;
+}
+
+.wdb-r-family__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--wdb-r-family-cols, 3), minmax(0, 1fr));
+  gap: var(--wdb-r-gap);
+  align-items: stretch;
+  min-width: 0;
+  width: 100%;
 }
 
 .wdb-r-workspace__grid--animate .wdb-r-widget {
@@ -201,7 +218,6 @@
 }
 
 .wdb-r-workspace__empty {
-  grid-column: 1 / -1;
   margin: 0;
   padding: var(--wds-space-7, 1.75rem) var(--wds-space-4, 1rem);
   text-align: center;
@@ -227,12 +243,12 @@
 
 /* Family grouping — quiet section rhythm without redesign */
 .wdb-r-group {
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 0.65rem;
   margin: 0.15rem 0 0;
   min-height: 1.1rem;
+  width: 100%;
 }
 
 .wdb-r-group:first-child {
@@ -260,21 +276,20 @@
   );
 }
 
-/* Explicit column preference (1 / 2 / 3) — preserves card chrome */
-.wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget,
-.wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--sm,
-.wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--md,
-.wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--lg,
-.wdb-r-workspace__grid[data-columns="1"] .wdb-r-widget--anchor {
-  grid-column: span 12;
+/* Explicit column preference (1 / 2 / 3) — equal-width family grids */
+.wdb-r-workspace__grid[data-columns="1"] .wdb-r-family__grid,
+.wdb-r-family__grid[data-cols="1"] {
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget,
-.wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--sm,
-.wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--md,
-.wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--lg,
-.wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--anchor {
-  grid-column: span 6;
+.wdb-r-workspace__grid[data-columns="2"] .wdb-r-family__grid,
+.wdb-r-family__grid[data-cols="2"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid,
+.wdb-r-family__grid[data-cols="3"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 @keyframes wdb-r-widget-in {
@@ -306,11 +321,15 @@
   }
 }
 
-/* ——— Widgets: tools, not gray boxes ——— */
+/* ——— Widgets: equal-width contract (standard / wide / featured) ——— */
 .wdb-r-widget {
-  grid-column: span 4;
+  grid-column: auto;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
   min-height: 8.35rem;
   padding: var(--wdb-r-pad);
   border: 1px solid var(--wdb-r-line-strong);
@@ -347,28 +366,78 @@
   transform: translateY(-1px);
 }
 
-/* Prefer md widgets in a calm 3-up rhythm when columns allow */
-.wdb-r-workspace__grid[data-columns="3"] .wdb-r-widget--sm {
-  grid-column: span 4;
-}
-
-.wdb-r-widget--sm {
-  grid-column: span 3;
-  min-height: 7.35rem;
-}
-
+/* Size variants — explicit, never accidental half tiles */
+.wdb-r-widget--standard,
+.wdb-r-widget--sm,
 .wdb-r-widget--md {
+  grid-column: auto;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.wdb-r-widget--wide,
+.wdb-r-widget--lg {
+  grid-column: span 2;
+  min-height: 9.5rem;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.wdb-r-widget--featured,
+.wdb-r-widget--anchor {
+  grid-column: 1 / -1;
+  min-height: 10rem;
+  min-width: 0;
+  width: 100%;
+  max-width: none;
+}
+
+/*
+ * 3-column families use a 6-track grid so incomplete rows can fill cleanly:
+ * three tiles → span 2 each; one leftover → full; two leftovers → span 3 each.
+ */
+.wdb-r-family__grid[data-cols="3"],
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--standard,
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--sm,
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--md,
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid > .wdb-r-widget--standard,
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid > .wdb-r-widget--sm,
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid > .wdb-r-widget--md {
+  grid-column: span 2;
+}
+
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--wide,
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--lg,
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid > .wdb-r-widget--wide,
+.wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid > .wdb-r-widget--lg {
   grid-column: span 4;
 }
 
-.wdb-r-widget--lg {
-  grid-column: span 6;
-  min-height: 9.5rem;
+.wdb-r-family__grid[data-cols="2"] > .wdb-r-widget--standard:last-child:nth-child(odd),
+.wdb-r-family__grid[data-cols="2"] > .wdb-r-widget--sm:last-child:nth-child(odd),
+.wdb-r-family__grid[data-cols="2"] > .wdb-r-widget--md:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
 }
 
-.wdb-r-widget--anchor {
-  grid-column: span 8;
-  min-height: 10rem;
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--standard:last-child:nth-child(3n + 1),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--sm:last-child:nth-child(3n + 1),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--md:last-child:nth-child(3n + 1) {
+  grid-column: 1 / -1;
+}
+
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--standard:nth-last-child(2):nth-child(3n + 1),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--sm:nth-last-child(2):nth-child(3n + 1),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--md:nth-last-child(2):nth-child(3n + 1),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--standard:last-child:nth-child(3n + 2),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--sm:last-child:nth-child(3n + 2),
+.wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--md:last-child:nth-child(3n + 2) {
+  grid-column: span 3;
 }
 
 .wdb-r-widget__head {
@@ -1019,17 +1088,20 @@ html.wdb-r-kiosk .wdb-r,
 
 /* ——— Responsive: intentional breakpoints ——— */
 
-/* Laptop */
+/* Laptop — keep equal family columns */
 @media (max-width: 72rem) {
-  .wdb-r-widget--sm {
-    grid-column: span 4;
+  .wdb-r-widget--wide,
+  .wdb-r-widget--lg {
+    grid-column: span 2;
   }
-  .wdb-r-widget--anchor {
-    grid-column: span 8;
+
+  .wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--wide,
+  .wdb-r-family__grid[data-cols="3"] > .wdb-r-widget--lg {
+    grid-column: span 4;
   }
 }
 
-/* Tablet */
+/* Tablet — comfortable 2-up when readable; orphans fill */
 @media (max-width: 52rem) {
   .wdb-r {
     padding-top: var(--wds-space-3, 0.75rem);
@@ -1049,20 +1121,41 @@ html.wdb-r-kiosk .wdb-r,
     align-items: flex-start;
   }
 
-  .wdb-r-widget,
-  .wdb-r-widget--sm,
-  .wdb-r-widget--md {
-    grid-column: span 6;
+  .wdb-r-family__grid,
+  .wdb-r-family__grid[data-cols="2"],
+  .wdb-r-family__grid[data-cols="3"],
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-family__grid,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .wdb-r-widget--lg,
-  .wdb-r-widget--anchor {
-    grid-column: span 12;
+  .wdb-r-family__grid > .wdb-r-widget,
+  .wdb-r-family__grid > .wdb-r-widget--standard,
+  .wdb-r-family__grid > .wdb-r-widget--sm,
+  .wdb-r-family__grid > .wdb-r-widget--md,
+  .wdb-r-family__grid > .wdb-r-widget--wide,
+  .wdb-r-family__grid > .wdb-r-widget--lg,
+  .wdb-r-family__grid > .wdb-r-widget--featured,
+  .wdb-r-family__grid > .wdb-r-widget--anchor {
+    grid-column: auto;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+  }
+
+  .wdb-r-family__grid > .wdb-r-widget--featured,
+  .wdb-r-family__grid > .wdb-r-widget--anchor,
+  .wdb-r-family__grid > .wdb-r-widget--standard:last-child:nth-child(odd),
+  .wdb-r-family__grid > .wdb-r-widget--sm:last-child:nth-child(odd),
+  .wdb-r-family__grid > .wdb-r-widget--md:last-child:nth-child(odd),
+  .wdb-r-family__grid > .wdb-r-widget--wide:last-child:nth-child(odd),
+  .wdb-r-family__grid > .wdb-r-widget--lg:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 }
 
-/* Phone */
-@media (max-width: 40rem) {
+/* Phone / all mobile widths — every tile full content width */
+@media (max-width: 47.99rem) {
   .wdb-r {
     padding-left: max(0.85rem, env(safe-area-inset-left, 0px));
     padding-right: max(0.85rem, env(safe-area-inset-right, 0px));
@@ -1074,13 +1167,38 @@ html.wdb-r-kiosk .wdb-r,
     align-items: flex-start;
   }
 
+  .wdb-r-family__grid,
+  .wdb-r-family__grid[data-cols="1"],
+  .wdb-r-family__grid[data-cols="2"],
+  .wdb-r-family__grid[data-cols="3"],
+  .wdb-r-workspace__grid[data-columns="1"] .wdb-r-family__grid,
+  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-family__grid,
+  .wdb-r-workspace__grid[data-columns="3"] .wdb-r-family__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .wdb-r-widget,
+  .wdb-r-widget--standard,
   .wdb-r-widget--sm,
   .wdb-r-widget--md,
+  .wdb-r-widget--wide,
   .wdb-r-widget--lg,
-  .wdb-r-widget--anchor {
-    grid-column: span 12;
+  .wdb-r-widget--featured,
+  .wdb-r-widget--anchor,
+  .wdb-r-family__grid > .wdb-r-widget,
+  .wdb-r-family__grid > .wdb-r-widget--standard,
+  .wdb-r-family__grid > .wdb-r-widget--sm,
+  .wdb-r-family__grid > .wdb-r-widget--md,
+  .wdb-r-family__grid > .wdb-r-widget--wide,
+  .wdb-r-family__grid > .wdb-r-widget--lg,
+  .wdb-r-family__grid > .wdb-r-widget--featured,
+  .wdb-r-family__grid > .wdb-r-widget--anchor {
+    grid-column: 1 / -1;
+    min-width: 0;
+    width: 100%;
+    max-width: none;
     min-height: 7rem;
+    box-sizing: border-box;
   }
 
   .wdb-r-widget__fact {
@@ -1142,14 +1260,6 @@ html.wdb-r-kiosk .wdb-r,
 
   .wdb-r-customize-bar__commit .wdb-r-btn {
     flex: 1 1 auto;
-  }
-
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--sm,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--md,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--lg,
-  .wdb-r-workspace__grid[data-columns="2"] .wdb-r-widget--anchor {
-    grid-column: span 12;
   }
 
   /* Prevent horizontal page scroll while editing */

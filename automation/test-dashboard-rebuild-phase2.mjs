@@ -148,7 +148,7 @@ assert("shell loaded", !!(Shell && Shell.mount));
 assert("shell exposes setPlatform", typeof Shell.setPlatform === "function");
 
 const all = Reg.all();
-assert("catalog has core families", all.length >= 9, String(all.length));
+assert("catalog has functional tiles only", all.length === 5, String(all.length));
 assert(
   "four live widgets marked",
   Data.liveIds.every(function (id) {
@@ -157,19 +157,22 @@ assert(
   })
 );
 assert(
-  "non-live remain placeholders",
-  ["ph-photography", "ph-rivers", "ph-wildlife", "ph-alerts", "ph-trails"].every(function (id) {
-    return Reg.get(id) && Reg.get(id).live === false;
+  "coming-soon placeholders removed from catalog",
+  ["ph-photography", "ph-rivers", "ph-wildlife", "ph-trails", "ph-travel"].every(function (id) {
+    return !Reg.get(id);
   })
 );
+assert("alerts remains catalog-available", Reg.get("ph-alerts") && Reg.get("ph-alerts").catalogAvailable === true);
+
 
 const waiting = Reg.getData("ph-conditions");
 assert("conditions waiting without platform", waiting.trust === "waiting" || waiting.status === "waiting");
 assert("waiting does not invent numbers", !/\d+\s*°|AQI\s*\d+/i.test(JSON.stringify(waiting)));
 
-const comingSoon = Reg.getData("ph-photography");
-assert("photography still placeholder", comingSoon.status === "placeholder");
-assert("photography coming soon copy", /coming soon/i.test(comingSoon.message || ""));
+const alertsEmpty = Reg.getData("ph-alerts");
+assert("alerts empty status not coming-soon", alertsEmpty.status === "empty");
+assert("alerts honest empty copy", /No active alerts/i.test(alertsEmpty.message || ""));
+assert("alerts availability Available", Reg.availability(Reg.get("ph-alerts")).label === "Available");
 
 const platform = {
   meta: { fromCache: false, blockStatus: { weather: "live", airQuality: "live", daylight: "live" } },
@@ -292,8 +295,8 @@ Prefs.setEnabled("ph-alerts", true);
 assert("prefs persist enable", Prefs.load().enabled.indexOf("ph-alerts") >= 0);
 Prefs.move("ph-conditions", 1);
 assert("prefs persist reorder", Prefs.load().order.indexOf("ph-light") < Prefs.load().order.indexOf("ph-conditions") || true);
-Prefs.setSize("ph-conditions", "lg");
-assert("prefs persist size", Prefs.load().sizes["ph-conditions"] === "lg");
+Prefs.setSize("ph-conditions", "wide");
+assert("prefs persist size", Prefs.load().sizes["ph-conditions"] === "wide");
 Prefs.reset();
 assert("prefs reset restores defaults", Prefs.load().enabled.indexOf("ph-conditions") >= 0);
 
@@ -321,14 +324,7 @@ const wsLive = Workspace.renderWorkspace({
 });
 assert("workspace renders live conditions facts", /wdb-r-widget__facts/.test(wsLive) && /72°F/.test(wsLive));
 assert("workspace renders live air", /US AQI|Good/.test(wsLive));
-Prefs.setEnabled("ph-photography", true);
-const wsPhoto = Workspace.renderWorkspace({
-  prefs: Prefs.load(),
-  customize: false,
-  platform
-});
-assert("workspace photography still coming soon", /Photography windows coming soon/.test(wsPhoto));
-Prefs.setEnabled("ph-photography", false);
+assert("photography absent from registry", !Reg.get("ph-photography"));
 
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");
@@ -360,13 +356,17 @@ const categories = Reg.all().map((w) => w.category);
   "light",
   "air",
   "astronomy",
+  "alerts"
+].forEach(function (cat) {
+  assert("catalog includes " + cat, categories.indexOf(cat) >= 0);
+});
+[
   "photography",
   "rivers",
   "wildlife",
-  "alerts",
   "trails"
 ].forEach(function (cat) {
-  assert("catalog anticipates " + cat, categories.indexOf(cat) >= 0);
+  assert("catalog excludes placeholder " + cat, categories.indexOf(cat) < 0);
 });
 
 const banned = ["you should", "do this", "homework", "assignment"];

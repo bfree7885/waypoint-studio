@@ -1,38 +1,43 @@
 /**
- * Dashboard Rebuild — widget registry (Phase 3: library categories + favorites).
- * Conditions · Light · Air · Astronomy hydrate from OIP; other families stay coming-soon.
+ * Dashboard Rebuild — widget registry (tile layout repair).
+ * Functional catalog only; Coming Soon placeholders removed from the library.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
   "use strict";
 
-  var SIZES = ["sm", "md", "lg", "anchor"];
+  /**
+   * Authoritative tile size model — equal-width columns by default.
+   * Legacy sm/md/lg/anchor/half/compact map through normalizeSize.
+   */
+  var SIZES = ["standard", "wide", "featured"];
+  var LEGACY_SIZE_MAP = {
+    sm: "standard",
+    md: "standard",
+    lg: "wide",
+    anchor: "featured",
+    small: "standard",
+    half: "standard",
+    compact: "standard",
+    standard: "standard",
+    wide: "wide",
+    featured: "featured"
+  };
 
-  /** Library filter groups (Phase 3 Customize). Favorites is prefs-driven. */
+  /** Library filter groups. Favorites is prefs-driven. */
   var LIBRARY_CATEGORIES = [
     { id: "weather", label: "Weather" },
     { id: "photography", label: "Photography" },
     { id: "astronomy", label: "Astronomy" },
-    { id: "hiking", label: "Hiking" },
-    { id: "water", label: "Water" },
-    { id: "travel", label: "Travel" },
-    { id: "nature", label: "Nature" },
     { id: "safety", label: "Safety" },
     { id: "favorites", label: "Favorites" }
   ];
 
-  /**
-   * Workspace family labels — related instruments read as one group.
-   * Environmental · Astronomy · Photography · Water (+ Nature / Trails / Travel).
-   */
+  /** Workspace family labels — related instruments read as one group. */
   var FAMILIES = {
     environmental: { id: "environmental", label: "Environmental" },
     astronomy: { id: "astronomy", label: "Astronomy" },
-    photography: { id: "photography", label: "Photography" },
-    water: { id: "water", label: "Water" },
-    nature: { id: "nature", label: "Nature" },
-    hiking: { id: "hiking", label: "Trails" },
-    travel: { id: "travel", label: "Travel" }
+    photography: { id: "photography", label: "Photography" }
   };
 
   var CATEGORY_FAMILY = {
@@ -40,21 +45,14 @@
     air: "environmental",
     alerts: "environmental",
     astronomy: "astronomy",
-    light: "photography",
-    photography: "photography",
-    rivers: "water",
-    water: "water",
-    wildlife: "nature",
-    nature: "nature",
-    flora: "nature",
-    mushrooms: "nature",
-    earth: "nature",
-    trails: "hiking",
-    hiking: "hiking",
-    travel: "travel"
+    light: "photography"
   };
 
-  /** Catalog — Phase 2 live ids keep ph-* keys for local prefs continuity. */
+  /**
+   * Catalog — only functional instruments.
+   * Coming-soon placeholders are removed from the selectable library until they ship.
+   * Phase 2 live ids keep ph-* keys for local prefs continuity.
+   */
   var CATALOG = [
     {
       id: "ph-conditions",
@@ -62,10 +60,11 @@
       category: "conditions",
       libraryCategory: "weather",
       icon: "weather",
-      size: "md",
+      size: "standard",
       defaultVisible: true,
       defaultOrder: 10,
       live: true,
+      catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Temperature, sky, precip, and wind near you.",
       emptyMessage: "Waiting for weather data.",
@@ -77,10 +76,11 @@
       category: "air",
       libraryCategory: "weather",
       icon: "weather",
-      size: "md",
+      size: "standard",
       defaultVisible: true,
       defaultOrder: 20,
       live: true,
+      catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Air quality with honest uncertainty.",
       emptyMessage: "Air quality unavailable for this place right now.",
@@ -92,10 +92,11 @@
       category: "alerts",
       libraryCategory: "safety",
       icon: "book",
-      size: "md",
+      size: "standard",
       defaultVisible: true,
       defaultOrder: 30,
       live: false,
+      catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Official alerts — shown only when they matter.",
       emptyMessage: "No active alerts for this place."
@@ -106,10 +107,11 @@
       category: "astronomy",
       libraryCategory: "astronomy",
       icon: "species",
-      size: "md",
+      size: "standard",
       defaultVisible: true,
       defaultOrder: 40,
       live: true,
+      catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Night sky context and celestial timing.",
       emptyMessage: "Sky context will appear here.",
@@ -121,84 +123,15 @@
       category: "light",
       libraryCategory: "photography",
       icon: "compass",
-      size: "md",
+      size: "standard",
       defaultVisible: true,
       defaultOrder: 50,
       live: true,
+      catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Sunrise, sunset, and observational light windows.",
       emptyMessage: "Sunrise and light windows will appear here.",
       offlineMessage: "Light windows are offline right now."
-    },
-    {
-      id: "ph-photography",
-      title: "Photography",
-      category: "photography",
-      libraryCategory: "photography",
-      icon: "camera",
-      size: "md",
-      defaultVisible: false,
-      defaultOrder: 60,
-      live: false,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Light quality and photography windows.",
-      emptyMessage: "Photography windows coming soon."
-    },
-    {
-      id: "ph-rivers",
-      title: "Rivers",
-      category: "rivers",
-      libraryCategory: "water",
-      icon: "map",
-      size: "sm",
-      defaultVisible: false,
-      defaultOrder: 70,
-      live: false,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Nearby gauges and river status when relevant.",
-      emptyMessage: "River status coming soon."
-    },
-    {
-      id: "ph-wildlife",
-      title: "Wildlife",
-      category: "wildlife",
-      libraryCategory: "nature",
-      icon: "leaf",
-      size: "md",
-      defaultVisible: false,
-      defaultOrder: 80,
-      live: false,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Observational wildlife context for your place.",
-      emptyMessage: "Wildlife notes coming soon."
-    },
-    {
-      id: "ph-trails",
-      title: "Trail Conditions",
-      category: "trails",
-      libraryCategory: "hiking",
-      icon: "terrain",
-      size: "md",
-      defaultVisible: false,
-      defaultOrder: 90,
-      live: false,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Trail surface and access context when available.",
-      emptyMessage: "Trail conditions coming soon."
-    },
-    {
-      id: "ph-travel",
-      title: "Travel",
-      category: "travel",
-      libraryCategory: "travel",
-      icon: "compass",
-      size: "md",
-      defaultVisible: false,
-      defaultOrder: 100,
-      live: false,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Place-to-place outdoor context when available.",
-      emptyMessage: "Travel context coming soon."
     }
   ];
 
@@ -238,14 +171,16 @@
   }
 
   function normalizeSize(size) {
-    return SIZES.indexOf(size) >= 0 ? size : "md";
+    var key = String(size == null ? "" : size).toLowerCase();
+    if (LEGACY_SIZE_MAP[key]) return LEGACY_SIZE_MAP[key];
+    return SIZES.indexOf(size) >= 0 ? size : "standard";
   }
 
   function availability(widget) {
-    if (widget && widget.live) {
+    if (widget && (widget.live || widget.catalogAvailable)) {
       return { id: "available", label: "Available" };
     }
-    return { id: "coming-soon", label: "Coming Soon" };
+    return { id: "unavailable", label: "Unavailable" };
   }
 
   function libraryCategories() {
@@ -325,7 +260,8 @@
   }
 
   /**
-   * Honest payload — live widgets use OIP adapters; others stay coming-soon.
+   * Honest payload — live widgets use OIP adapters; catalog-available empty tiles
+   * keep a useful empty state (not Coming Soon).
    */
   function getData(id, options) {
     options = options || {};
@@ -345,10 +281,20 @@
       }
     }
 
+    if (widget.catalogAvailable) {
+      return {
+        trust: "waiting",
+        status: "empty",
+        message: widget.emptyMessage || "Data will appear here.",
+        widgetId: widget.id,
+        category: widget.category
+      };
+    }
+
     return {
-      trust: "waiting",
-      status: "placeholder",
-      message: widget.emptyMessage || "Coming soon.",
+      trust: "unavailable",
+      status: "unavailable",
+      message: widget.emptyMessage || "This instrument is not available yet.",
       widgetId: widget.id,
       category: widget.category
     };
@@ -396,9 +342,11 @@
         ? trust
         : data.status === "placeholder"
           ? "placeholder"
-          : trust === "waiting"
+          : data.status === "empty"
             ? "waiting"
-            : "ready";
+            : trust === "waiting"
+              ? "waiting"
+              : "ready";
     var inner = "";
     if (data.facts && data.facts.length) {
       inner = renderFacts(data.facts);
@@ -446,7 +394,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "3.2.0-rc25-s6",
+    version: "3.3.0-tile-layout",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
     all: all,

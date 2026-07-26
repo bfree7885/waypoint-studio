@@ -27,7 +27,7 @@
     var sizes = {};
     if (reg && reg.all) {
       reg.all().forEach(function (w) {
-        sizes[w.id] = reg.normalizeSize ? reg.normalizeSize(w.size) : w.size || "md";
+        sizes[w.id] = reg.normalizeSize ? reg.normalizeSize(w.size) : w.size || "standard";
       });
     }
     return {
@@ -96,7 +96,7 @@
     var reg = Registry();
     ids.forEach(function (id) {
       var raw = prefs.sizes && prefs.sizes[id];
-      var fallback = (base.sizes && base.sizes[id]) || "md";
+      var fallback = (base.sizes && base.sizes[id]) || "standard";
       sizes[id] = reg && reg.normalizeSize ? reg.normalizeSize(raw || fallback) : raw || fallback;
     });
     var preset = PRESETS.indexOf(prefs.preset) >= 0 ? prefs.preset : "default";
