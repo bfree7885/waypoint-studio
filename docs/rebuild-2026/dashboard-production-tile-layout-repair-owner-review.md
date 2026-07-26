@@ -115,7 +115,7 @@ Dashboard Rebuild Home path only (`design-system/.../rebuild/*`, Home HTML cache
 |-------|-------|
 | Branch | `fix/dashboard-production-tile-layout` |
 | Starting SHA | `0be5f9fb23f0b0f024794ea2542df502416537f1` |
-| Implementation SHA | *(set after commit)* |
+| Implementation SHA | `73d60dea37e2748ee435b47dad5b6a74cee02531` |
 | Merge SHA | *(set after merge to main)* |
 | Deployed production SHA | *(from live `data/build-info.json`)* |
 | Live URLs | `https://waypointstudio.org/?cb=tile-layout-1`, `https://waypointstudio.org/apps/dashboard/?cb=tile-layout-1` |
