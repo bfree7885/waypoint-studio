@@ -1,0 +1,9 @@
+{
+  "phase": "before",
+  "loader": "design-system/js/wds.js",
+  "moduleCount": 165,
+  "requestCountEstimate": 166,
+  "jsBytes": 1836590,
+  "jsKiB": 1794,
+  "missing": []
+}

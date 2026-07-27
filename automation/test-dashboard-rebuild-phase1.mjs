@@ -62,9 +62,9 @@ modules.forEach(function (rel) {
 });
 
 assert(
-  "wds.js loads rebuild modules",
+  "wds-home.js loads rebuild modules",
   /dashboard\/rebuild\/wds-dashboard-rebuild\.js/.test(
-    fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8")
+    fs.readFileSync(path.join(ROOT, "design-system/js/wds-home.js"), "utf8")
   )
 );
 

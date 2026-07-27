@@ -207,7 +207,8 @@ if (arrMatch) {
   "favicon.svg",
   "favicon.ico",
   "design-system/js/platform/wds-security-baseline.js",
-  "design-system/security/baseline.json"
+  "design-system/security/baseline.json",
+  "design-system/js/wds-home.js"
 ].forEach((rel) => {
   if (!fs.existsSync(path.join(ROOT, rel))) {
     broken.push({ file: "(critical)", ref: rel, missing: rel });

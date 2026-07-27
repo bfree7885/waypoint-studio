@@ -1,0 +1,215 @@
+{
+  "generatedAt": "2026-07-27T00:56:45.641Z",
+  "base": "http://127.0.0.1:39153",
+  "results": [
+    {
+      "path": "/",
+      "viewport": "desktop",
+      "elapsedMs": 6576,
+      "jsRequests": 102,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "home__desktop.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 54.700000047683716
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 189.09999990463257
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nBlooming Grove Township, PA\n·\nSun, Jul 26, 8:56 PM\n·\nWaiting\n\nSummary settling as place and weather arrive.\nConditions wi"
+    },
+    {
+      "path": "/apps/dashboard/",
+      "viewport": "desktop",
+      "elapsedMs": 6520,
+      "jsRequests": 102,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "dash__desktop.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 63.5
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 237
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 790.1000001430511
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 796.6000001430511
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nBlooming Grove Township, PA\n·\nSun, Jul 26, 8:56 PM\n·\nLive\n\n71°F under partly cloudy.\nWinds remain light.\nCloud cover near"
+    },
+    {
+      "path": "/",
+      "viewport": "mobile",
+      "elapsedMs": 6521,
+      "jsRequests": 102,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "home__mobile.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 54.40000009536743
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 180.80000019073486
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 464.5
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 470.5
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nBlooming Grove Township, PA\n·\nSun, Jul 26, 8:56 PM\n·\nLive\n\n71°F under partly cloudy.\nWinds remain light.\nCloud cover near"
+    },
+    {
+      "path": "/apps/dashboard/",
+      "viewport": "mobile",
+      "elapsedMs": 6518,
+      "jsRequests": 102,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "dash__mobile.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 54.40000009536743
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 154.70000004768372
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 451.2999999523163
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 458.40000009536743
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nBlooming Grove Township, PA\n·\nSun, Jul 26, 8:56 PM\n·\nLive\n\n71°F under partly cloudy.\nWinds remain light.\nCloud cover near"
+    },
+    {
+      "path": "/#/customize",
+      "viewport": "desktop",
+      "elapsedMs": 6526,
+      "jsRequests": 102,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "customize__desktop.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 65
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 219.40000009536743
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 477.5
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 479.2000000476837
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nBlooming Grove Township, PA\n·\nSun, Jul 26, 8:56 PM\n·\nLive\n\n71°F under partly cloudy.\nWinds remain light.\nCloud cover near"
+    },
+    {
+      "path": "/#/kiosk",
+      "viewport": "desktop",
+      "elapsedMs": 6509,
+      "jsRequests": 51,
+      "uniqueJs": 51,
+      "networkErrors": [],
+      "screenshot": "kiosk__desktop.png",
+      "title": "Home — Waypoint Studio",
+      "shell": true,
+      "rebuild": true,
+      "legacyOS": false,
+      "loaderModules": 48,
+      "customize": true,
+      "kiosk": true,
+      "marks": [
+        {
+          "name": "wdb-html-parsed",
+          "startTime": 62.200000047683716
+        },
+        {
+          "name": "wdb-rebuild-shell-ready",
+          "startTime": 199.09999990463257
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 474.7999999523163
+        },
+        {
+          "name": "wdb-rebuild-platform-ready",
+          "startTime": 479.39999985694885
+        }
+      ],
+      "clsApprox": 0,
+      "bodyTextSample": "Skip to content\nWaypoint Studio\n\nHOME\n\nWorkspace\nCustomize\nHome\nToday Outside\n\nPike County, PA\n·\nSun, Jul 26, 8:56 PM\n·\nLive\n\n71°F under partly cloudy.\nWinds remain light.\nCloud cover near 69%.\nGolden"
+    }
+  ],
+  "ok": true
+}
