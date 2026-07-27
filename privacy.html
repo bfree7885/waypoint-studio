@@ -2,6 +2,10 @@
 <html lang="en" data-product="studio-home">
 <head>
   <meta charset="UTF-8">
+  <!-- waypoint-security-meta:start -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https:; worker-src 'self' blob:; form-action 'self' https://formsubmit.co; upgrade-insecure-requests">
+  <!-- waypoint-security-meta:end -->
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Waypoint Studio privacy — what stays on your device, what third parties may see, and what we do not collect.">
@@ -54,6 +58,16 @@
         <p>We do not operate an advertising network or sell personal observation databases.</p>
       </section>
 
+      <section class="wcs-section" aria-labelledby="photos-title">
+        <h2 id="photos-title">Photos, EXIF, and location</h2>
+        <ul>
+          <li><strong>Photo Coach / Scenes uploads</strong> — photographs you choose are read in your browser for on-device analysis. They are not uploaded to Waypoint servers by these tools.</li>
+          <li><strong>EXIF</strong> — camera, time, and GPS tags (when present in the file) may be read locally to explain a frame. That metadata stays in the browser session unless you deliberately copy or export it yourself.</li>
+          <li><strong>Browser geolocation</strong> — used only after you allow it (or choose a manual region). Approximate coordinates may be sent to map-tile, weather, or geocoding providers when those features run. Denying permission is supported.</li>
+          <li><strong>Local storage</strong> — preferences, drafts, and field records stay on this device by default. Clearing site data removes them.</li>
+        </ul>
+      </section>
+
       <section class="wcs-section" aria-labelledby="contact-title">
         <h2 id="contact-title">Contact form data</h2>
         <ul>
@@ -87,7 +101,7 @@
       </section>
 
       <section class="wcs-section">
-        <p class="wcs-meta">Aligned with the Privacy Philosophy in the Waypoint Studio Constitution. Updated 2026-07-15.</p>
+        <p class="wcs-meta">Aligned with the Privacy Philosophy in the Waypoint Studio Constitution. Updated 2026-07-26.</p>
       </section>
     </main>
 
@@ -96,6 +110,7 @@
 
   <script src="design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="design-system/js/platform/wds-security-baseline.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
   <script src="design-system/js/platform/wds-app-shell.js?v=local" defer></script>

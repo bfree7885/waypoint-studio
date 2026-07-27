@@ -632,3 +632,16 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Pages artifact exclusions are part of product trust** — strip audits,
    owner-review docs, reports, and tooling directories before upload.
 
+### 2026-07-26 — Turnaround Sprint 3 security hardening
+
+**Branch:** `turnaround/sprint-03-security-hardening`  
+**Report:** `docs/turnaround/2026-07-26-sprint-03-security-hardening.md`
+
+1. **Do not invent `_headers` for GitHub Pages** — the platform ignores them;
+   document true HTTP headers vs meta fallbacks vs unsupported controls.
+2. **Meta CSP cannot claim `frame-ancestors`** — browsers ignore it in meta;
+   framing defense needs an HTTP edge.
+3. **Keep contact/FormSubmit and EXIF/location messaging honest** — photos stay
+   on-device; FormSubmit leaves the device; geolocation is permissioned.
+4. **Automate the honesty gate** — posture checker + secret scan + CSP smoke.
+

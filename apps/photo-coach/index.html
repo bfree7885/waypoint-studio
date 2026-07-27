@@ -2,6 +2,10 @@
 <html lang="en" data-product="photo-coach">
 <head>
   <meta charset="UTF-8">
+  <!-- waypoint-security-meta:start -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https:; worker-src 'self' blob:; form-action 'self' https://formsubmit.co; upgrade-insecure-requests">
+  <!-- waypoint-security-meta:end -->
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Photo Coach — the first tool in Waypoint Scenes. Upload a photograph for browser-based analysis: grade, strengths, and improvement coaching.">
@@ -34,7 +38,7 @@
         </header>
 
         <p class="pc-trust" role="note">
-          Analysis runs in your browser. Guidance only — private labels never leave this device.
+          Analysis runs in your browser. Photographs and EXIF (including GPS tags when present) stay on this device — they are not uploaded to Waypoint servers. Guidance only — private labels never leave this device.
         </p>
 
         <details class="pc-disclosure">
@@ -124,6 +128,7 @@
 
   <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-security-baseline.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>

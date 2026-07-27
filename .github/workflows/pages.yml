@@ -47,6 +47,9 @@ jobs:
           GITHUB_ACTIONS: "true"
           WAYPOINT_BUILD_SOURCE: github-pages
 
+      - name: Inject repository-enforceable security meta
+        run: node scripts/inject-security-meta.mjs
+
       - name: Verify injected metadata matches deploy SHA
         env:
           GITHUB_SHA: ${{ steps.sha.outputs.sha }}
