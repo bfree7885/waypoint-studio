@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-27T15:30:01.471Z",
-  "nextScheduledUpdate": "2026-07-27T16:00:00.000Z",
+  "updatedAt": "2026-07-27T16:00:01.980Z",
+  "nextScheduledUpdate": "2026-07-27T16:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 89,
-    "feelsLikeF": 92,
-    "humidity": 44,
-    "windMph": 7,
-    "windGustMph": 9,
+    "temperatureF": 91,
+    "feelsLikeF": 97,
+    "humidity": 45,
+    "windMph": 5,
+    "windGustMph": 6,
     "cloudCover": 0,
-    "uvIndex": 4.6,
+    "uvIndex": 5.5,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-27T10:30"
+    "observedAt": "2026-07-27T11:00"
   },
   "forecast": {
     "highF": 104,
@@ -40,7 +40,7 @@
         "time": "2026-07-27T12:00",
         "temperatureF": 95,
         "precipProbability": 0,
-        "conditions": "Overcast"
+        "conditions": "Clear sky"
       },
       {
         "time": "2026-07-27T13:00",
@@ -58,13 +58,13 @@
         "time": "2026-07-27T15:00",
         "temperatureF": 102,
         "precipProbability": 1,
-        "conditions": "Clear sky"
+        "conditions": "Overcast"
       },
       {
         "time": "2026-07-27T16:00",
         "temperatureF": 104,
         "precipProbability": 1,
-        "conditions": "Clear sky"
+        "conditions": "Mainly clear"
       },
       {
         "time": "2026-07-27T17:00",
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 92,
-    "phaseValue": 0.461,
+    "phaseValue": 0.462,
     "trust": "Estimated"
   },
   "airQuality": {
     "usAqi": 26,
-    "pm25": 0.8,
+    "pm25": 1.5,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 350.5520820617676,
+        "generationtime_ms": 1132.2650909423828,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-27T10:30",
+          "time": "2026-07-27T11:00",
           "interval": 900,
-          "temperature_2m": 88.9,
-          "relative_humidity_2m": 44,
-          "apparent_temperature": 92.3,
+          "temperature_2m": 90.6,
+          "relative_humidity_2m": 45,
+          "apparent_temperature": 96.6,
           "weather_code": 0,
-          "wind_speed_10m": 6.7,
+          "wind_speed_10m": 5,
           "wind_direction_10m": 249,
-          "wind_gusts_10m": 9.4,
+          "wind_gusts_10m": 6,
           "cloud_cover": 0,
-          "surface_pressure": 942.2,
-          "uv_index": 4.6,
+          "surface_pressure": 942,
+          "uv_index": 5.45,
           "precipitation": 0
         },
         "hourly_units": {
@@ -218,9 +218,9 @@
             89.8,
             88,
             86.8,
-            85.4,
-            84.3,
-            80.9,
+            85.5,
+            84.7,
+            80.5,
             80.3,
             78.2,
             77.8,
@@ -255,19 +255,19 @@
             0,
             0,
             0,
-            3,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
             3,
-            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            3,
+            3,
             3,
             3,
             3,
@@ -457,21 +457,21 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 92,
-        "phaseValue": 0.461,
+        "phaseValue": 0.462,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
         "usAqi": 26,
-        "pm25": 0.8,
+        "pm25": 1.5,
         "category": "Good",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 4.6,
+        "uvIndex": 5.5,
         "status": "live"
       }
     },
@@ -490,7 +490,7 @@
           "siteName": "WHITE ROCK C NR BURR OAK, KS",
           "lat": 39.89918,
           "lng": -98.2503276,
-          "observedAt": "2026-07-27T09:45:00.000-05:00",
+          "observedAt": "2026-07-27T10:45:00.000-05:00",
           "dischargeCfs": 0.94,
           "dischargeUnit": "ft3/s",
           "stageFt": 1.21,
@@ -546,7 +546,7 @@
     ],
     "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-27T15:30:01.471Z",
+    "generatedAt": "2026-07-27T16:00:01.980Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
