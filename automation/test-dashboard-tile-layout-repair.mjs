@@ -32,9 +32,11 @@ const css = fs.readFileSync(path.join(ROOT, "design-system/css/wds-dashboard-reb
 const rootHtml = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 
-assert("root mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-layout-1/.test(rootHtml));
-assert("dashboard route mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-tile-layout-1/.test(dashHtml));
-assert("root and dashboard share home-boot", /home-boot\.js\?v=dash-tile-layout-1/.test(rootHtml) && /home-boot\.js\?v=dash-tile-layout-1/.test(dashHtml));
+assert("root mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-(tile-layout-1|canonical-1)/.test(rootHtml));
+assert("dashboard route mounts Rebuild CSS", /wds-dashboard-rebuild\.css\?v=dash-(tile-layout-1|canonical-1)/.test(dashHtml));
+assert("root and dashboard share home-boot", /home-boot\.js\?v=dash-(tile-layout-1|canonical-1)/.test(rootHtml) && /home-boot\.js\?v=dash-(tile-layout-1|canonical-1)/.test(dashHtml));
+assert("root uses canonical wds-home", /wds-home\.js/.test(rootHtml));
+assert("dashboard uses canonical wds-home", /wds-home\.js/.test(dashHtml));
 assert("CSS defines family grid", /\.wdb-r-family__grid/.test(css));
 assert("CSS mobile uses minmax(0, 1fr)", /grid-template-columns:\s*minmax\(0,\s*1fr\)/.test(css));
 assert("CSS forces mobile full span", /grid-column:\s*1\s*\/\s*-1/.test(css));

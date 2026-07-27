@@ -1,0 +1,18 @@
+{
+  "moduleCount": {
+    "before": 165,
+    "after": 48,
+    "delta": -117
+  },
+  "jsBytes": {
+    "before": 1836590,
+    "after": 513787,
+    "delta": -1322803,
+    "savedKiB": 1292
+  },
+  "requestCountEstimate": {
+    "before": 166,
+    "after": 49,
+    "delta": -117
+  }
+}

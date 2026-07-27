@@ -645,3 +645,16 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    on-device; FormSubmit leaves the device; geolocation is permissioned.
 4. **Automate the honesty gate** — posture checker + secret scan + CSP smoke.
 
+### 2026-07-26 — Turnaround Sprint 4 canonical Dashboard loader
+
+**Branch:** `turnaround/sprint-04-canonical-dashboard-loader`  
+**Report:** `docs/turnaround/2026-07-26-sprint-04-canonical-dashboard-loader.md`
+
+1. **Home must not load every Dashboard generation.** Ship a dedicated
+   `wds-home.js` that mounts Rebuild only; leave V1/V2/V3/OS sources in Git
+   unloaded.
+2. **Regression-test the loader list** so Outdoor OS / V2 / V3 / Recovery cannot
+   quietly return to the live Home script graph.
+3. **Measure module count and JS bytes before/after** — static sums plus clean
+   browser request counts beat intuition alone.
+

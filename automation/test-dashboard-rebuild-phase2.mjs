@@ -49,9 +49,9 @@ modules.forEach(function (rel) {
   assert("module exists " + path.basename(rel), fs.existsSync(path.join(ROOT, rel)));
 });
 
-const wdsJs = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
-assert("wds.js loads rebuild data", /dashboard\/rebuild\/wds-dashboard-rebuild-data\.js/.test(wdsJs));
-assert("wds.js loads rebuild shell", /dashboard\/rebuild\/wds-dashboard-rebuild\.js/.test(wdsJs));
+const homeLoader = fs.readFileSync(path.join(ROOT, "design-system/js/wds-home.js"), "utf8");
+assert("wds-home.js loads rebuild data", /dashboard\/rebuild\/wds-dashboard-rebuild-data\.js/.test(homeLoader));
+assert("wds-home.js loads rebuild shell", /dashboard\/rebuild\/wds-dashboard-rebuild\.js/.test(homeLoader));
 
 const homeBoot = fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8");
 assert("home-boot hydrates OIP", /outdoorIntelligence\.get/.test(homeBoot));

@@ -74,7 +74,9 @@ assert("404 links Home architecture", /<a href="\/">Home<\/a>/.test(fs.readFileS
 assert("about primary is Home not Dashboard", /<strong>Home<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && !/<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
 assert("support experiences are Home architecture", /<strong>Home<\/strong>/.test(supportHtml) && /<strong>Contact<\/strong>/.test(supportHtml) && !/Coming later|Waypoint Volunteer|incubator\//.test(supportHtml));
 assert("dashboard match includes root", /\^\/\$/.test(navCfg));
-assert("wds loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(wdsJs));
+assert("wds-home loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(fs.readFileSync(path.join(ROOT, "design-system/js/wds-home.js"), "utf8")));
+assert("root uses canonical wds-home", /wds-home\.js/.test(rootHtml));
+assert("dashboard uses canonical wds-home", /wds-home\.js/.test(dashHtml));
 assert("studio constitution Home lock", /Home is the canonical Waypoint Studio experience/.test(studioConst));
 assert("support no Outdoor overview", !/Outdoor overview/i.test(supportHtml));
 assert("dashboard.html redirects to Home root", /url=\.\/|location\.replace\("\.\/"/.test(dashRedirect));
