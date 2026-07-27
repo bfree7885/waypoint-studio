@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-22T21:00:01.796Z",
-  "dataUpdatedAt": "2026-07-22T21:00:01.796Z",
-  "nextScheduledRun": "2026-07-22T21:30:00.000Z",
+  "lastEngineRun": "2026-07-27T01:30:01.444Z",
+  "dataUpdatedAt": "2026-07-27T01:30:01.444Z",
+  "nextScheduledRun": "2026-07-27T02:00:00.000Z",
   "lastPublishAt": "2026-07-22T06:00:44.719Z",
   "lastPublishedDataAt": "2026-07-22T06:00:02.219Z",
   "lastPublishCommit": "bba5424",
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
+  "lastPublishStatus": "failed",
+  "lastPublishMessage": "Command failed: git fetch origin turnaround/sprint-05-scenes-surface-cleanup\nfatal: couldn't find remote ref turnaround/sprint-05-scenes-surface-cleanup\n"
 }
