@@ -93,7 +93,7 @@
         "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+      "description": "Photography craft hub — Photo Coach (Shoot Review) and Photo Library available now; Hidden Landscapes experimental. Futures stay labeled.",
       "status": "live",
       "features": [
         {
@@ -133,44 +133,10 @@
             "/apps/hidden-landscapes",
             "/apps/animal-vision"
           ]
-        },
-        {
-          "id": "living-scenes",
-          "label": "Living Scenes",
-          "href": "apps/scenes/living-scenes/",
-          "match": [
-            "/apps/scenes/living-scenes"
-          ]
-        },
-        {
-          "id": "scene-builder",
-          "label": "Scene Builder",
-          "href": "apps/scenes/scene-builder/",
-          "match": [
-            "/apps/scenes/scene-builder",
-            "/apps/waypoint-scenes"
-          ]
-        },
-        {
-          "id": "photographer-profile",
-          "label": "Profile",
-          "href": "apps/scenes/photographer-profile/",
-          "match": [
-            "/apps/scenes/photographer-profile",
-            "/apps/photo-coach/profile"
-          ]
-        },
-        {
-          "id": "guide",
-          "label": "Field guide",
-          "href": "apps/photo-coach/guide/",
-          "match": [
-            "/apps/photo-coach/guide"
-          ]
         }
       ],
-      "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
-      "maturity": "Live",
+      "purpose": "Careful looking and craft feedback with honest labels for experimental and future work.",
+      "maturity": "Live craft tools; previews demoted",
       "startHere": {
         "label": "Open Photo Coach",
         "href": "apps/photo-coach/"

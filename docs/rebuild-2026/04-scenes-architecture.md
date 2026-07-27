@@ -1,7 +1,8 @@
 # 04 — Scenes Architecture
 
 **Status:** Architecture baseline — awaiting owner approval  
-**Depends on:** [01-product-vision.md](./01-product-vision.md), [02-information-architecture.md](./02-information-architecture.md)
+**Depends on:** [01-product-vision.md](./01-product-vision.md), [02-information-architecture.md](./02-information-architecture.md)  
+**Live honesty:** Public surface status is documented in [`docs/scenes/FOUR-PILLAR-VISION.md`](../scenes/FOUR-PILLAR-VISION.md). This file preserves product vision; it must not be read as a claim that Living Scenes, Scene Builder, Outdoor Journals, or Portfolio are live finished products.
 
 ---
 

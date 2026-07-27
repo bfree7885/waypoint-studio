@@ -112,7 +112,7 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
+        "description": "Photography craft hub — Photo Coach (Shoot Review) and Photo Library available now; Hidden Landscapes experimental.",
         "status": "live",
         "features": [
           {

@@ -30,9 +30,11 @@
   "apps": [
     { "id": "studio", "label": "Studio home" },
     { "id": "dashboard", "label": "Dashboard" },
-    { "id": "scenes", "label": "Waypoint Scenes" },
+    { "id": "scenes", "label": "Scenes" },
     { "id": "photo-coach", "label": "Photo Coach" },
-    { "id": "scene-builder", "label": "Scene Builder" },
+    { "id": "photo-library", "label": "Photo Library" },
+    { "id": "hidden-landscapes", "label": "Hidden Landscapes" },
+    { "id": "scene-builder", "label": "Scene Builder (preview)" },
     { "id": "foragecast", "label": "ForageCast" },
     { "id": "fieldry", "label": "Fieldry" },
     { "id": "sheds", "label": "Sheds" },

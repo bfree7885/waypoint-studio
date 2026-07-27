@@ -277,8 +277,8 @@
             '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(img.id) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
             ">Open in Hidden Landscapes</a>" +
-          '<span class="pl-actions__future" title="Coming as Living Scenes grows">Living Scenes · future</span>' +
-          '<span class="pl-actions__future" title="Coming as Scene Builder grows">Scene Builder · future</span>' +
+          '<span class="pl-actions__future" title="Future direction — not available">Living Scenes · future direction</span>' +
+          '<span class="pl-actions__future" title="Future direction — not available">Scene Builder · future direction</span>' +
         "</div>" +
         '<div class="pl-label-row" role="group" aria-label="Private labels">' +
           ["keep", "maybe", "reject", "favorite"].map(function (lab) {
@@ -289,20 +289,16 @@
           '<button type="button" class="pl-chip" data-label="">Clear</button>' +
         "</div>" +
         '<div class="pl-detail__modules">' +
-          "<h3>Modules using this photograph</h3>" +
+          "<h3>Tools using this photograph</h3>" +
           "<ul>" +
             "<li>Photo Coach — " + esc(coach.analysisStatus || "not-analyzed") + "</li>" +
-            "<li>Hidden Landscapes — " +
+            "<li>Hidden Landscapes (experimental) — " +
               (img.moduleRefs.hiddenLandscapes && img.moduleRefs.hiddenLandscapes.available
                 ? "linked"
                 : canOpenMedia ? "ready to open" : "needs original") +
             "</li>" +
-            "<li>Living Scenes — " +
-              (img.moduleRefs.livingScenes && img.moduleRefs.livingScenes.created ? "created" : "not yet") +
-            "</li>" +
-            "<li>Scene Builder — " +
-              (img.moduleRefs.sceneBuilder && img.moduleRefs.sceneBuilder.created ? "created" : "not yet") +
-            "</li>" +
+            "<li>Living Scenes — future direction (not available)</li>" +
+            "<li>Scene Builder — future direction (not available)</li>" +
           "</ul>" +
         "</div>";
 

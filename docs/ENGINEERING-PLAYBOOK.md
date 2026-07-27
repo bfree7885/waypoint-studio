@@ -658,3 +658,18 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 3. **Measure module count and JS bytes before/after** — static sums plus clean
    browser request counts beat intuition alone.
 
+### 2026-07-26 — Turnaround Sprint 5 Scenes surface cleanup
+
+**Branch:** `turnaround/sprint-05-scenes-surface-cleanup`  
+**Report:** `docs/turnaround/2026-07-26-sprint-05-scenes-surface-cleanup.md`
+
+1. **Public Scenes must separate available / experimental / future** — never
+   promote Living Scenes, Scene Builder, Outdoor Journals, or Portfolio as live
+   finished peers of Photo Coach and Photo Library.
+2. **`/apps/waypoint-scenes/` is legacy, not the hub** — keep reachable only with
+   an honest preview banner pointing to `/apps/scenes/`.
+3. **Vendor Coach CSS out of the monolith path** when feasible; leave JS
+   coupling explicit so it cannot be mistaken for “fully independent.”
+4. **Absent products stay named as absent** (Outdoor Journals, Portfolio) rather
+   than silently omitted in a way that invites dead deep links later.
+

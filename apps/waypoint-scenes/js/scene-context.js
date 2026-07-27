@@ -6,8 +6,8 @@
   "use strict";
 
   var CAPABILITIES = {
-    "living-scene-2d": { status: "live", label: "Living Scene (2D)", trust: "Live" },
-    parallax: { status: "live", label: "Parallax depth", trust: "Live" },
+    "living-scene-2d": { status: "preview", label: "Living Scene (2D)", trust: "Preview" },
+    parallax: { status: "preview", label: "Parallax depth", trust: "Preview" },
     "animated-water": { status: "partial", label: "Animated water", trust: "Estimated", note: "Canvas overlay — not fluid simulation" },
     "animated-clouds": { status: "partial", label: "Animated clouds", trust: "Estimated", note: "Drift effect module" },
     "wind-grass": { status: "partial", label: "Moving grass / leaves", trust: "Estimated", note: "Leaf drift effect" },

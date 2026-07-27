@@ -326,10 +326,23 @@ html[data-product="scenes"],
   color: var(--scenes-lime);
 }
 
+.scenes-elsewhere__intro {
+  margin: 0 0 1.15rem;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--scenes-ink) 55%, transparent);
+}
+
 .scenes-elsewhere__list span {
   font-size: 0.88rem;
   color: color-mix(in srgb, var(--scenes-ink) 48%, transparent);
   line-height: 1.4;
+}
+
+.scenes-elsewhere__plain {
+  color: color-mix(in srgb, var(--scenes-ink) 72%, transparent);
+  font-size: 1.05rem;
 }
 
 .scenes-elsewhere__nav {

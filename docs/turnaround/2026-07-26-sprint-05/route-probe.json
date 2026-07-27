@@ -1,0 +1,18 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "probedAt": "2026-07-26",
+  "routes": [
+    { "path": "/apps/scenes/", "status": 200, "role": "hub" },
+    { "path": "/apps/photo-coach/", "status": 200, "role": "available" },
+    { "path": "/apps/photo-library/", "status": 200, "role": "available" },
+    { "path": "/apps/hidden-landscapes/", "status": 200, "role": "experimental" },
+    { "path": "/apps/scenes/living-scenes/", "status": 200, "role": "preview" },
+    { "path": "/apps/scenes/scene-builder/", "status": 200, "role": "preview" },
+    { "path": "/apps/scenes/photographer-profile/", "status": 200, "role": "preview" },
+    { "path": "/apps/waypoint-scenes/", "status": 200, "role": "legacy-preview" },
+    { "path": "/apps/scenes/photo-coach/", "status": 200, "role": "redirect-stub" },
+    { "path": "/apps/scenes/photo-library/", "status": 200, "role": "redirect-stub" },
+    { "path": "/apps/scenes/hidden-landscapes/", "status": 200, "role": "redirect-stub" },
+    { "path": "/apps/scenes/portfolio/", "status": 404, "role": "absent" }
+  ]
+}
