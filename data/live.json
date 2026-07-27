@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-27T10:00:01.589Z",
-  "nextScheduledUpdate": "2026-07-27T10:30:00.000Z",
+  "updatedAt": "2026-07-27T10:30:01.369Z",
+  "nextScheduledUpdate": "2026-07-27T11:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 78,
-    "feelsLikeF": 79,
-    "humidity": 63,
+    "temperatureF": 77,
+    "feelsLikeF": 78,
+    "humidity": 62,
     "windMph": 9,
-    "windGustMph": 17,
+    "windGustMph": 16,
     "cloudCover": 0,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-07-27T05:00"
+    "observedAt": "2026-07-27T05:30"
   },
   "forecast": {
     "highF": 104,
@@ -36,12 +36,6 @@
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-07-27T06:00",
-        "temperatureF": 77,
-        "precipProbability": 3,
-        "conditions": "Clear sky"
-      },
       {
         "time": "2026-07-27T07:00",
         "temperatureF": 76,
@@ -71,6 +65,12 @@
         "temperatureF": 93,
         "precipProbability": 2,
         "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-27T12:00",
+        "temperatureF": 96,
+        "precipProbability": 2,
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waxing gibbous",
     "illumination": 91,
-    "phaseValue": 0.453,
+    "phaseValue": 0.454,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 590.1001691818237,
+        "generationtime_ms": 822.4117755889893,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,15 +120,15 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-27T05:00",
+          "time": "2026-07-27T05:30",
           "interval": 900,
-          "temperature_2m": 77.7,
-          "relative_humidity_2m": 63,
-          "apparent_temperature": 79,
+          "temperature_2m": 77.3,
+          "relative_humidity_2m": 62,
+          "apparent_temperature": 78,
           "weather_code": 0,
-          "wind_speed_10m": 9.2,
-          "wind_direction_10m": 186,
-          "wind_gusts_10m": 16.8,
+          "wind_speed_10m": 9.4,
+          "wind_direction_10m": 181,
+          "wind_gusts_10m": 16.3,
           "cloud_cover": 0,
           "surface_pressure": 940.9,
           "uv_index": 0,
@@ -313,27 +313,27 @@
             5,
             6,
             5,
-            6,
+            5,
             7,
             9,
             7,
-            15,
-            25,
-            26,
-            25,
-            29,
+            13,
+            13,
+            14,
+            13,
+            17,
             19,
             18,
-            24,
-            19,
             16,
-            17,
-            18,
-            17,
+            19,
+            19,
+            13,
+            14,
+            13,
             14,
             8,
             7,
-            3,
+            7,
             3,
             3,
             3,
@@ -423,7 +423,7 @@
           ],
           "precipitation_probability_max": [
             9,
-            29
+            19
           ],
           "precipitation_sum": [
             0,
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waxing gibbous",
         "illumination": 91,
-        "phaseValue": 0.453,
+        "phaseValue": 0.454,
         "trust": "Estimated"
       }
     },
@@ -553,7 +553,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-27T10:00:01.589Z",
+    "generatedAt": "2026-07-27T10:30:01.369Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
