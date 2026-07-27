@@ -1,10 +1,10 @@
 # Production Asset Audit
 
-**Generated:** 2026-07-26T20:52:31.124Z
+**Generated:** 2026-07-27T00:41:24.444Z
 
-- HTML refs checked: **555**
+- HTML refs checked: **559**
 - CSS @import edges: **54**
-- wds.js modules: **164**
+- wds.js modules: **165**
 - Missing: **0**
 
 ## Method

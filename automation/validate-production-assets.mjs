@@ -205,7 +205,9 @@ if (arrMatch) {
   "map/index.html",
   "apps/shed-hunting/map/index.html",
   "favicon.svg",
-  "favicon.ico"
+  "favicon.ico",
+  "design-system/js/platform/wds-security-baseline.js",
+  "design-system/security/baseline.json"
 ].forEach((rel) => {
   if (!fs.existsSync(path.join(ROOT, rel))) {
     broken.push({ file: "(critical)", ref: rel, missing: rel });

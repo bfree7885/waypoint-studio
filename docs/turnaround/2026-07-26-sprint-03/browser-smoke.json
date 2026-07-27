@@ -1,0 +1,83 @@
+{
+  "base": "http://127.0.0.1:45971",
+  "generatedAt": "2026-07-27T00:43:47.990Z",
+  "results": [
+    {
+      "path": "/",
+      "needShell": true,
+      "title": "Home — Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/privacy.html",
+      "needShell": true,
+      "title": "Privacy — Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/contact.html",
+      "needShell": true,
+      "title": "Contact — Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/support.html",
+      "needShell": true,
+      "title": "Support — Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/apps/dashboard/",
+      "needShell": true,
+      "title": "Home — Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/apps/photo-coach/",
+      "needShell": true,
+      "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": false,
+      "cspViolations": [],
+      "ok": true
+    },
+    {
+      "path": "/status.html",
+      "needShell": false,
+      "title": "Waypoint Live Engine — Status",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "shell": true,
+      "operatorStub": true,
+      "cspViolations": [],
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-07-26",
+  "hosting": {
+    "platform": "GitHub Pages",
+    "productionOrigin": "https://waypointstudio.org",
+    "notes": [
+      "GitHub Pages does not allow repository-controlled custom response headers.",
+      "Do not add _headers, .htaccess, netlify.toml, or vercel.json expecting Pages to honor them.",
+      "Platform currently serves Strict-Transport-Security and Access-Control-Allow-Origin: * (not tunable from this repo)."
+    ]
+  },
+  "httpHeaders": {
+    "strict-transport-security": {
+      "status": "platform-provided",
+      "repoControlled": false,
+      "observedProduction": "max-age=31556952"
+    },
+    "access-control-allow-origin": {
+      "status": "platform-provided",
+      "repoControlled": false,
+      "observedProduction": "*",
+      "notes": "Permissive CORS is a GitHub Pages platform default for static assets; not removable from the repo alone."
+    },
+    "content-security-policy": {
+      "status": "unsupported-as-http-on-pages",
+      "repoControlled": false,
+      "fallback": "meta-http-equiv"
+    },
+    "x-frame-options": {
+      "status": "unsupported-as-http-on-pages",
+      "repoControlled": false,
+      "fallback": "none-valid-via-meta",
+      "notes": "frame-ancestors is ignored in meta CSP per the HTML/CSP specs; true framing defense needs an edge that can set HTTP CSP or X-Frame-Options."
+    },
+    "x-content-type-options": {
+      "status": "unsupported-as-http-on-pages",
+      "repoControlled": false,
+      "fallback": "none-valid-via-meta"
+    },
+    "referrer-policy": {
+      "status": "unsupported-as-http-on-pages",
+      "repoControlled": false,
+      "fallback": "meta-name-referrer"
+    },
+    "permissions-policy": {
+      "status": "unsupported-as-http-on-pages",
+      "repoControlled": false,
+      "fallback": "none-valid-via-meta"
+    }
+  },
+  "metaControls": {
+    "referrer": {
+      "tag": "meta[name=referrer]",
+      "content": "strict-origin-when-cross-origin",
+      "enforcedBy": "browser-meta"
+    },
+    "contentSecurityPolicy": {
+      "tag": "meta[http-equiv=Content-Security-Policy]",
+      "enforcedBy": "browser-meta",
+      "omittedDirectives": ["frame-ancestors", "report-uri", "report-to", "sandbox"],
+      "policy": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://unpkg.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https:; worker-src 'self' blob:; form-action 'self' https://formsubmit.co; upgrade-insecure-requests"
+    }
+  },
+  "htmlControls": {
+    "externalLinks": {
+      "rel": "noopener noreferrer",
+      "enforcedBy": "wds-security-baseline.js"
+    }
+  },
+  "externalDependencies": [
+    { "id": "google-fonts", "hosts": ["fonts.googleapis.com", "fonts.gstatic.com"], "purpose": "Typography" },
+    { "id": "formsubmit", "hosts": ["formsubmit.co"], "purpose": "Contact form email relay" },
+    { "id": "leaflet-cdn", "hosts": ["cdn.jsdelivr.net", "unpkg.com"], "purpose": "Map library (SRI where present)" },
+    { "id": "osm-tiles", "hosts": ["*.tile.openstreetmap.org", "*.tile.opentopomap.org", "*.basemaps.cartocdn.com"], "purpose": "Map tiles" },
+    { "id": "weather", "hosts": ["api.open-meteo.com", "air-quality-api.open-meteo.com", "api.weather.gov"], "purpose": "Weather and alerts" },
+    { "id": "geocode", "hosts": ["nominatim.openstreetmap.org", "ipwho.is", "photon.komoot.io"], "purpose": "Geocoding / IP fallback" },
+    { "id": "water-trails", "hosts": ["waterservices.usgs.gov", "overpass-api.de", "overpass.private.coffee"], "purpose": "River and trail context" }
+  ]
+}

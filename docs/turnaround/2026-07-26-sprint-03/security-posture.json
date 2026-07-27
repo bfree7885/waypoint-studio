@@ -1,0 +1,147 @@
+{
+  "generatedAt": "2026-07-27T00:41:04.363Z",
+  "baselineVersion": "1.0.0",
+  "hosting": {
+    "platform": "GitHub Pages",
+    "productionOrigin": "https://waypointstudio.org",
+    "notes": [
+      "GitHub Pages does not allow repository-controlled custom response headers.",
+      "Do not add _headers, .htaccess, netlify.toml, or vercel.json expecting Pages to honor them.",
+      "Platform currently serves Strict-Transport-Security and Access-Control-Allow-Origin: * (not tunable from this repo)."
+    ]
+  },
+  "fakeHeaderFiles": {
+    "banned": [
+      "_headers",
+      ".htaccess",
+      "netlify.toml",
+      "vercel.json"
+    ],
+    "present": [],
+    "ok": true
+  },
+  "productionHttpProbe": {
+    "url": "https://waypointstudio.org/",
+    "status": 200,
+    "headersPresent": {
+      "strict-transport-security": true,
+      "access-control-allow-origin": "*",
+      "content-security-policy": false,
+      "x-frame-options": false,
+      "x-content-type-options": false,
+      "referrer-policy": false,
+      "permissions-policy": false
+    },
+    "raw": {
+      "strict-transport-security": "max-age=31556952",
+      "access-control-allow-origin": "*"
+    }
+  },
+  "localMetaSamples": [
+    {
+      "file": "index.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "privacy.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "contact.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "support.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "apps/dashboard/index.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "apps/scenes/index.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "apps/photo-coach/index.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "status.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    },
+    {
+      "file": "debug.html",
+      "referrerMeta": "strict-origin-when-cross-origin",
+      "cspMeta": true,
+      "cspHasFrameAncestors": false,
+      "securityMarker": true,
+      "securityScriptLinked": true
+    }
+  ],
+  "classification": {
+    "trueHttpHeaders": {
+      "note": "Only what the hosting platform actually returns today",
+      "items": [
+        {
+          "header": "strict-transport-security",
+          "value": true
+        },
+        {
+          "header": "access-control-allow-origin",
+          "value": "*"
+        }
+      ]
+    },
+    "metaBasedControls": {
+      "note": "Repository-enforceable via HTML meta (valid browser behavior)",
+      "items": [
+        "meta[name=referrer]=strict-origin-when-cross-origin",
+        "meta[http-equiv=Content-Security-Policy] (without frame-ancestors)"
+      ]
+    },
+    "unsupportedOnGitHubPages": {
+      "note": "Cannot be honestly claimed as active HTTP protections from this repo",
+      "items": [
+        "Content-Security-Policy response header",
+        "X-Frame-Options / CSP frame-ancestors (HTTP only)",
+        "X-Content-Type-Options: nosniff",
+        "Permissions-Policy",
+        "Removing Access-Control-Allow-Origin: *"
+      ]
+    }
+  },
+  "failures": []
+}
