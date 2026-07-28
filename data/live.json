@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-28T17:30:01.488Z",
-  "nextScheduledUpdate": "2026-07-28T18:00:00.000Z",
+  "updatedAt": "2026-07-28T18:00:01.969Z",
+  "nextScheduledUpdate": "2026-07-28T18:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 86,
-    "feelsLikeF": 100,
-    "humidity": 70,
-    "windMph": 2,
-    "windGustMph": 2,
+    "temperatureF": 87,
+    "feelsLikeF": 101,
+    "humidity": 69,
+    "windMph": 3,
+    "windGustMph": 3,
     "cloudCover": 100,
-    "uvIndex": 6.8,
+    "uvIndex": 7.5,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-07-28T12:30"
+    "observedAt": "2026-07-28T13:00"
   },
   "forecast": {
     "highF": 91,
@@ -40,7 +40,7 @@
         "time": "2026-07-28T14:00",
         "temperatureF": 89,
         "precipProbability": 2,
-        "conditions": "Overcast"
+        "conditions": "Partly cloudy"
       },
       {
         "time": "2026-07-28T15:00",
@@ -89,8 +89,8 @@
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 29,
-    "pm25": 1.8,
+    "usAqi": 31,
+    "pm25": 1.9,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 302.6876449584961,
+        "generationtime_ms": 1361.5614175796509,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-28T12:30",
+          "time": "2026-07-28T13:00",
           "interval": 900,
-          "temperature_2m": 85.9,
-          "relative_humidity_2m": 70,
-          "apparent_temperature": 100,
+          "temperature_2m": 86.9,
+          "relative_humidity_2m": 69,
+          "apparent_temperature": 100.9,
           "weather_code": 3,
-          "wind_speed_10m": 1.7,
-          "wind_direction_10m": 67,
-          "wind_gusts_10m": 2.2,
+          "wind_speed_10m": 2.6,
+          "wind_direction_10m": 59,
+          "wind_gusts_10m": 2.9,
           "cloud_cover": 100,
-          "surface_pressure": 946.3,
-          "uv_index": 6.75,
+          "surface_pressure": 946,
+          "uv_index": 7.5,
           "precipitation": 0
         },
         "hourly_units": {
@@ -220,9 +220,9 @@
             79.9,
             79.4,
             79.1,
-            77.7,
-            77.1,
-            75.5,
+            77.6,
+            76.6,
+            75.8,
             75.2,
             74.2,
             75.6,
@@ -257,7 +257,7 @@
             3,
             3,
             3,
-            3,
+            2,
             3,
             0,
             0,
@@ -272,7 +272,7 @@
             3,
             3,
             3,
-            53,
+            3,
             3,
             3,
             3,
@@ -372,7 +372,7 @@
             0,
             0,
             0,
-            0.021,
+            0,
             0,
             0,
             0,
@@ -411,7 +411,7 @@
           ],
           "weather_code": [
             82,
-            53
+            3
           ],
           "temperature_2m_max": [
             91.1,
@@ -427,11 +427,11 @@
           ],
           "precipitation_sum": [
             1.606,
-            0.021
+            0
           ],
           "uv_index_max": [
-            8.15,
-            5.95
+            8.05,
+            3.65
           ],
           "sunrise": [
             "2026-07-28T06:29",
@@ -463,15 +463,15 @@
     },
     "air_quality": {
       "data": {
-        "usAqi": 29,
-        "pm25": 1.8,
+        "usAqi": 31,
+        "pm25": 1.9,
         "category": "Good",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 6.8,
+        "uvIndex": 7.5,
         "status": "live"
       }
     },
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-28T17:30:01.488Z",
+    "generatedAt": "2026-07-28T18:00:01.969Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
