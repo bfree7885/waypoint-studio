@@ -35,6 +35,8 @@ const HTML_FILES = [
   "about.html",
   "privacy.html",
   "knowledge.html",
+  "articles/index.html",
+  "404.html",
   "settings.html",
   "apps/scenes/index.html",
   "apps/photo-coach/index.html",
@@ -112,11 +114,16 @@ function resolveRoot() {
 }
 
 function resolveSha() {
+  if (process.env.WAYPOINT_FORCE_LOCAL === "1") return "local";
   const fromEnv =
     process.env.WAYPOINT_BUILD_SHA ||
     process.env.GITHUB_SHA ||
     process.env.COMMIT_SHA ||
     "";
+  // Production Pages must provide GITHUB_SHA. Never invent a git SHA when unset in CI.
+  if (process.env.GITHUB_ACTIONS === "true" && !fromEnv.trim()) {
+    throw new Error("inject-build-metadata: GITHUB_SHA required in GitHub Actions");
+  }
   if (fromEnv.trim()) return fromEnv.trim();
   try {
     return execSync("git rev-parse HEAD", { cwd: DEFAULT_ROOT, encoding: "utf8" }).trim();
@@ -167,6 +174,21 @@ function stampHtml(file, sha) {
     return true;
   }
   return false;
+}
+
+
+function writeVersionJson(root, info) {
+  const jsonPath = path.join(root, "version.json");
+  const payload = {
+    buildSha: info.commit,
+    shortSha: info.shortCommit,
+    builtAt: info.builtAt,
+    environment: info.source === "github-pages" ? "production" : info.source,
+    source: info.source,
+    workflowRunId: info.workflowRunId
+  };
+  fs.writeFileSync(jsonPath, JSON.stringify(payload, null, 2) + "\n", "utf8");
+  return jsonPath;
 }
 
 function writeBuildInfo(root, info) {
@@ -275,6 +297,7 @@ function main() {
   });
 
   writeBuildInfo(root, info);
+  writeVersionJson(root, info);
   writeBuildJs(root, info);
 
   console.log(
@@ -286,7 +309,8 @@ function main() {
         commit: full,
         source: info.source,
         workflowRunId: info.workflowRunId,
-        stampedHtml: stamped
+        stampedHtml: stamped,
+        versionJson: path.join(root, "version.json")
       },
       null,
       2

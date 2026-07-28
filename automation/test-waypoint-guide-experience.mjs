@@ -70,7 +70,7 @@ function run() {
   const photoHtml = fs.readFileSync(path.join(ROOT, "apps/photo-coach/index.html"), "utf8");
   assert("photo-coach loads guide-card", photoHtml.includes("wds-guide-card.js"));
 
-  const scenesHtml = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/index.html"), "utf8");
+  const scenesHtml = fs.readFileSync(path.join(ROOT, "apps/scenes/index.html"), "utf8");
   assert("scenes loads guide-card", scenesHtml.includes("wds-guide-card.js"));
 
   const pattern = fs.readFileSync(path.join(ROOT, "design-system/patterns/guide-card.html"), "utf8");

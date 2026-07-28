@@ -15,7 +15,7 @@ const SCAN = [
   "apps/foragecast/js/foragecast-model.js",
   "apps/foragecast/js/foragecast-prediction.js",
   "apps/photo-coach/js/photo-coach-conditions.js",
-  "apps/waypoint-scenes/js/photo-coach-shoot.js",
+  "apps/scenes/js/photo-coach-shoot.js",
   "apps/hidden-landscapes/index.html",
   "apps/hidden-landscapes/gallery.html",
   "apps/hidden-landscapes/learn.html",

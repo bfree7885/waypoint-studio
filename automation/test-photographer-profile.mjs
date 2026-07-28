@@ -53,10 +53,10 @@ function makeLocalStorage() {
 function setup() {
   global.window = global;
   global.localStorage = makeLocalStorage();
-  load("apps/waypoint-scenes/js/photo-coach-models.js");
-  load("apps/waypoint-scenes/js/photo-coach-profile-engine.js");
-  load("apps/waypoint-scenes/js/photo-coach-repository.js");
-  load("apps/waypoint-scenes/js/photo-coach-profile-demo.js");
+  load("apps/scenes/js/photo-coach-models.js");
+  load("apps/scenes/js/photo-coach-profile-engine.js");
+  load("apps/scenes/js/photo-coach-repository.js");
+  load("apps/scenes/js/photo-coach-profile-demo.js");
 }
 
 function run() {

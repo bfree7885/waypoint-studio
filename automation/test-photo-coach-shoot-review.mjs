@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const WS = path.join(ROOT, "apps/waypoint-scenes/js");
+const WS = path.join(ROOT, "apps/scenes/js");
 
 let n = 0;
 function assert(name, cond) {

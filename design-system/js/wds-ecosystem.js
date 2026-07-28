@@ -253,7 +253,7 @@
   }
 
   function sectionFeaturedTool(product) {
-    var href = product.toolHref || "../waypoint-scenes/";
+    var href = product.toolHref || "../scenes/";
     var label = product.toolLabel || "Open " + product.name;
     if (product.slug === "studio") {
       href = product.toolHref;

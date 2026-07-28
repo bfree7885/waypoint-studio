@@ -65,7 +65,7 @@ function run() {
   const photoHtml = fs.readFileSync(path.join(ROOT, "apps/photo-coach/index.html"), "utf8");
   assert("photo-coach loads wds-ai-guide", photoHtml.includes("wds-ai-guide.js"));
 
-  const scenesHtml = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/index.html"), "utf8");
+  const scenesHtml = fs.readFileSync(path.join(ROOT, "apps/scenes/index.html"), "utf8");
   assert("scenes loads wds-ai-guide", scenesHtml.includes("wds-ai-guide.js"));
 
   if (failures.length) {

@@ -133,7 +133,7 @@ async function main() {
     await send("Network.setCacheDisabled", { cacheDisabled: true });
 
     // ── Scene Builder: compare mount must not dim first paint ──
-    await send("Page.navigate", { url: BASE + "/apps/waypoint-scenes/" });
+    await send("Page.navigate", { url: BASE + "/apps/scenes/" });
     await delay(4000);
     const scene = await evaluate(send, `(() => {
       const el = document.getElementById("coach-compare-mount");

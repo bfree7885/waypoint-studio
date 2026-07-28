@@ -330,14 +330,14 @@
   width: 100%;
   max-width: none;
   box-sizing: border-box;
-  min-height: 8.35rem;
-  padding: var(--wdb-r-pad);
+  min-height: 0;
+  padding: 0.7rem 0.8rem 0.75rem;
   border: 1px solid var(--wdb-r-line-strong);
   border-radius: var(--wdb-r-radius);
   background: var(--wdb-r-surface);
   box-shadow: var(--wdb-r-shadow);
   content-visibility: auto;
-  contain-intrinsic-size: auto 8.35rem;
+  contain-intrinsic-size: auto 4.5rem;
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
@@ -351,7 +351,7 @@
 }
 
 .wdb-r-widget__body--pending {
-  min-height: 3.75rem;
+  min-height: 2.25rem;
 }
 
 .wdb-r-widget[data-lazy="ready"] > .wdb-r-widget__body:not(.wdb-r-widget__body--pending) {
@@ -379,7 +379,7 @@
 .wdb-r-widget--wide,
 .wdb-r-widget--lg {
   grid-column: span 2;
-  min-height: 9.5rem;
+  min-height: 0;
   min-width: 0;
   width: 100%;
   max-width: none;
@@ -388,7 +388,7 @@
 .wdb-r-widget--featured,
 .wdb-r-widget--anchor {
   grid-column: 1 / -1;
-  min-height: 10rem;
+  min-height: 0;
   min-width: 0;
   width: 100%;
   max-width: none;
@@ -445,7 +445,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 0.45rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .wdb-r-widget__title-row {
@@ -500,11 +500,11 @@
 }
 
 .wdb-r-widget__body {
-  flex: 1;
+  flex: 0 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 0.5rem;
+  justify-content: flex-start;
+  gap: 0.35rem;
 }
 
 .wdb-r-widget__status {
@@ -1197,7 +1197,7 @@ html.wdb-r-kiosk .wdb-r,
     min-width: 0;
     width: 100%;
     max-width: none;
-    min-height: 7rem;
+    min-height: 0;
     box-sizing: border-box;
   }
 
@@ -1470,5 +1470,36 @@ html.wdb-r-kiosk .wdb-r,
 
   .wdb-r-deepen__img {
     max-height: 16rem;
+  }
+}
+
+
+/* route-consolidation: compact status */
+.wdb-r-widget__status {
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+}
+.wdb-r-widget__state {
+  padding: 0.15rem 0.4rem;
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+}
+.wdb-r-badge {
+  font-size: 0.625rem;
+  letter-spacing: 0.03em;
+  padding: 0.1rem 0.35rem;
+}
+.wdb-r-widget__head {
+  min-height: 0;
+}
+@media (max-width: 720px) {
+  .wdb-r-widget {
+    min-height: 0;
+    padding: 0.65rem 0.7rem 0.7rem;
   }
 }

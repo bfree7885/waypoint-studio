@@ -62,7 +62,7 @@
       "summary": "Create interactive photographic environments and stories from still frames.",
       "description": "An early studio for atmosphere and depth on a photograph. The fuller storytelling vision continues to grow; this preview points to the current surface when you want to experiment.",
       "modulePath": "scene-builder/",
-      "toolHref": "../../waypoint-scenes/",
+      "toolHref": "../",
       "toolLabel": "Open early Scene Builder",
       "engine": "SceneEngine",
       "image": "assets/media/hero.jpg",

@@ -26,7 +26,7 @@ function assert(name, cond, detail) {
   }
 }
 
-const css = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/css/photo-coach.css"), "utf8");
+const css = fs.readFileSync(path.join(ROOT, "apps/scenes/css/photo-coach.css"), "utf8");
 assert(
   "compare mount hidden rule in photo-coach.css",
   /\.coach-compare-mount\[hidden\]\s*\{[^}]*display:\s*none\s*!important/s.test(css)
@@ -38,11 +38,11 @@ assert(
   /\.coach-compare-mount\[hidden\]\s*\{[^}]*display:\s*none\s*!important/s.test(shellCss)
 );
 
-const compareJs = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/js/photo-coach-compare.js"), "utf8");
+const compareJs = fs.readFileSync(path.join(ROOT, "apps/scenes/js/photo-coach-compare.js"), "utf8");
 assert("compare exports close", /close:\s*close/.test(compareJs) && /function close\(/.test(compareJs));
 assert("compare Escape dismiss", /Escape/.test(compareJs));
 
-const appJs = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/js/app.js"), "utf8");
+const appJs = fs.readFileSync(path.join(ROOT, "apps/scenes/js/app.js"), "utf8");
 assert(
   "setProductMode dismisses compare",
   /function setProductMode[\s\S]*WaypointPhotoCoachCompare\.close/s.test(appJs)
@@ -134,7 +134,7 @@ sandbox.mount = {
   }
 };
 vm.runInNewContext(
-  fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/js/photo-coach-compare.js"), "utf8"),
+  fs.readFileSync(path.join(ROOT, "apps/scenes/js/photo-coach-compare.js"), "utf8"),
   sandbox
 );
 sandbox.WaypointPhotoCoachCompare.close(sandbox.mount);

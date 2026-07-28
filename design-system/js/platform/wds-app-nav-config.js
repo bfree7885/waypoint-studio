@@ -9,10 +9,10 @@
     "version": "2.2.0-home-rc1",
     "brand": {
       "name": "Waypoint Studio",
-      "homeRoute": "./"
+      "homeRoute": "apps/dashboard/"
     },
     "studioPrimaryNav": [
-      { "id": "home", "label": "Home", "href": "./", "hint": "What’s happening outside today" },
+      { "id": "home", "label": "Home", "href": "apps/dashboard/", "hint": "What’s happening outside today" },
       { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },

@@ -248,8 +248,8 @@ async function main() {
   const assets = [
     "/assets/images/home/hero.jpg",
     "/apps/scenes/assets/media/hero.jpg",
-    "/apps/waypoint-scenes/assets/fogforest.jpg",
-    "/apps/waypoint-scenes/assets/wetland.jpg",
+    "/apps/scenes/assets/fogforest.jpg",
+    "/apps/scenes/assets/wetland.jpg",
     "/assets/images/identity/manifest.json"
   ];
   meta.assetStatus = {};

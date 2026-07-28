@@ -54,7 +54,8 @@ const PAGES = [
   { name: "foragecast-property", path: "/apps/foragecast/property.html", ready: "shell" },
   { name: "foragecast-setup", path: "/apps/foragecast/property-setup.html", ready: "shell" },
   { name: "fieldry", path: "/apps/fieldry/", ready: "shell" },
-  { name: "waypoint-scenes", path: "/apps/waypoint-scenes/", ready: "any" },
+  { name: "scenes-canonical", path: "/apps/scenes/", ready: "any" },
+  { name: "waypoint-scenes-redirect", path: "/apps/waypoint-scenes/", ready: "any" },
   { name: "photo-coach-profile", path: "/apps/photo-coach/profile/", ready: "shell" },
   { name: "sheds", path: "/apps/shed-hunting/", ready: "shell" },
   { name: "steepleaf", path: "/apps/steepleaf/", ready: "shell" },
@@ -582,9 +583,9 @@ async function main() {
       failed = true;
       console.log("FAIL: Hidden Landscapes studio incomplete");
     }
-    if (r.name === "waypoint-scenes" && r.checks.bodyLen < 50) {
+    if (r.name === "waypoint-scenes-redirect" && r.checks.bodyLen < 20) {
       failed = true;
-      console.log("FAIL: waypoint-scenes blank");
+      console.log("FAIL: waypoint-scenes-redirect blank");
     }
     if (r.name === "status" && !/live engine/i.test(r.checks.title || "")) {
       failed = true;

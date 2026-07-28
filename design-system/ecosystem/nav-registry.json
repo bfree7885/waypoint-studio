@@ -2,7 +2,7 @@
   "version": "2.1.0",
   "brand": {
     "name": "Waypoint Studio",
-    "homeRoute": "./"
+    "homeRoute": "apps/dashboard/"
   },
   "categories": [
     {
