@@ -2,6 +2,7 @@
 
 **Branch:** `feature/production-route-consolidation`  
 **Starting SHA:** `59c09debbe8d9c7d36acf74607bd4ebfa55359fc` (production `main` tip / build `59c09de`)  
+**Implementation / branch-tip SHA:** `a4c5d4409db228ee4c3c2fe98276d9216b7709c9`  
 **Scope:** Targeted routing + shared-shell correction. No broad redesign. Not merged. Not deployed.
 
 ## Confirmed pre-change route map (production `59c09de`)
