@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-29T17:00:01.757Z",
-  "nextScheduledUpdate": "2026-07-29T17:30:00.000Z",
+  "updatedAt": "2026-07-29T17:30:01.925Z",
+  "nextScheduledUpdate": "2026-07-29T18:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,60 +16,60 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 83,
-    "feelsLikeF": 90,
-    "humidity": 71,
+    "temperatureF": 84,
+    "feelsLikeF": 91,
+    "humidity": 70,
     "windMph": 10,
-    "windGustMph": 13,
-    "cloudCover": 100,
-    "uvIndex": 6.7,
+    "windGustMph": 12,
+    "cloudCover": 75,
+    "uvIndex": 7.3,
     "precipIn": 0,
-    "conditions": "Overcast",
-    "weatherCode": 3,
-    "observedAt": "2026-07-29T12:00"
+    "conditions": "Partly cloudy",
+    "weatherCode": 2,
+    "observedAt": "2026-07-29T12:30"
   },
   "forecast": {
     "highF": 87,
     "lowF": 73,
     "precipProbability": 48,
-    "summary": "Overcast · High 87° / Low 73°"
+    "summary": "Partly cloudy · High 87° / Low 73°"
   },
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-07-29T13:00",
-        "temperatureF": 84,
-        "precipProbability": 9,
-        "conditions": "Partly cloudy"
-      },
-      {
         "time": "2026-07-29T14:00",
         "temperatureF": 84,
-        "precipProbability": 10,
+        "precipProbability": 8,
         "conditions": "Overcast"
       },
       {
         "time": "2026-07-29T15:00",
         "temperatureF": 84,
-        "precipProbability": 11,
+        "precipProbability": 8,
         "conditions": "Mainly clear"
       },
       {
         "time": "2026-07-29T16:00",
         "temperatureF": 85,
-        "precipProbability": 11,
+        "precipProbability": 9,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-29T17:00",
         "temperatureF": 86,
-        "precipProbability": 10,
+        "precipProbability": 7,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-07-29T18:00",
         "temperatureF": 87,
-        "precipProbability": 13,
+        "precipProbability": 5,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-07-29T19:00",
+        "temperatureF": 86,
+        "precipProbability": 5,
         "conditions": "Clear sky"
       }
     ],
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning gibbous",
     "illumination": 94,
-    "phaseValue": 0.531,
+    "phaseValue": 0.532,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 669.4021224975586,
+        "generationtime_ms": 1140.508532524109,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-07-29T12:00",
+          "time": "2026-07-29T12:30",
           "interval": 900,
-          "temperature_2m": 83,
-          "relative_humidity_2m": 71,
-          "apparent_temperature": 89.6,
-          "weather_code": 3,
-          "wind_speed_10m": 9.6,
-          "wind_direction_10m": 147,
-          "wind_gusts_10m": 13,
-          "cloud_cover": 100,
-          "surface_pressure": 946.4,
-          "uv_index": 6.65,
+          "temperature_2m": 83.6,
+          "relative_humidity_2m": 70,
+          "apparent_temperature": 90.6,
+          "weather_code": 2,
+          "wind_speed_10m": 9.8,
+          "wind_direction_10m": 127,
+          "wind_gusts_10m": 12.3,
+          "cloud_cover": 75,
+          "surface_pressure": 947,
+          "uv_index": 7.25,
           "precipitation": 0
         },
         "hourly_units": {
@@ -305,42 +305,42 @@
             27,
             20,
             13,
-            16,
+            7,
+            8,
+            8,
+            8,
             9,
-            10,
-            11,
-            11,
-            10,
-            13,
-            11,
+            7,
+            5,
+            5,
+            2,
+            2,
             3,
             3,
-            3,
-            4,
             5,
             7,
             14,
-            17,
-            21,
-            23,
-            14,
-            8,
-            8,
-            6,
-            9,
-            7,
-            4,
-            4,
-            4,
-            7,
-            2,
-            2,
-            2,
-            4,
-            3,
-            12,
+            15,
+            16,
+            22,
             19,
-            50
+            10,
+            13,
+            11,
+            14,
+            6,
+            5,
+            4,
+            5,
+            4,
+            2,
+            2,
+            2,
+            4,
+            4,
+            8,
+            20,
+            30
           ],
           "precipitation": [
             0,
@@ -423,7 +423,7 @@
           ],
           "precipitation_probability_max": [
             48,
-            50
+            30
           ],
           "precipitation_sum": [
             0.024,
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning gibbous",
         "illumination": 94,
-        "phaseValue": 0.531,
+        "phaseValue": 0.532,
         "trust": "Estimated"
       }
     },
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 6.7,
+        "uvIndex": 7.3,
         "status": "live"
       }
     },
@@ -520,8 +520,8 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 100,
-        "score": 48,
+        "cloudCover": 75,
+        "score": 68,
         "summary": "Moderate outdoor light conditions",
         "sunrise": "6:30 AM",
         "sunset": "8:50 PM"
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-29T17:00:01.757Z",
+    "generatedAt": "2026-07-29T17:30:01.925Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
