@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-07-30T13:30:01.162Z",
-  "nextScheduledUpdate": "2026-07-30T14:00:00.000Z",
+  "updatedAt": "2026-07-30T14:00:02.081Z",
+  "nextScheduledUpdate": "2026-07-30T14:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -530,24 +530,50 @@
   },
   "meta": {
     "sources": [
-      "Open-Meteo",
+      "previous-success",
       "Open-Meteo astronomy",
       "Calculated",
-      "Open-Meteo Air Quality",
+      "previous-success",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "weather",
+        "source": "Open-Meteo",
+        "error": "fetch failed",
+        "retryAttempts": 4
+      },
+      {
+        "module": "air_quality",
+        "source": "Open-Meteo Air Quality",
+        "error": "fetch failed",
+        "retryAttempts": 4
+      },
+      {
+        "module": "pollen",
+        "source": "Open-Meteo Air Quality",
+        "error": "fetch failed",
+        "retryAttempts": 3
+      },
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-07-30T13:30:01.162Z",
+    "generatedAt": "2026-07-30T14:00:02.081Z",
     "healthFile": "data/health.json",
     "blockStatus": {
-      "weather": "live",
+      "weather": "estimated",
       "alerts": "live",
-      "airQuality": "live",
+      "airQuality": "estimated",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
