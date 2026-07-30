@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-07-30T07:30:01.554Z",
-  "dataUpdatedAt": "2026-07-30T07:30:01.554Z",
-  "nextScheduledRun": "2026-07-30T08:00:00.000Z",
-  "lastPublishAt": "2026-07-30T04:00:46.310Z",
-  "lastPublishedDataAt": "2026-07-30T04:00:01.856Z",
-  "lastPublishCommit": "0e949a6",
-  "lastPublishStatus": "failed",
-  "lastPublishMessage": "Command failed: git fetch origin turnaround/sprint-05-scenes-surface-cleanup\nfatal: unable to access 'https://github.com/bfree7885/waypoint-studio.git/': Could not resolve host: github.com\n"
+  "lastEngineRun": "2026-07-30T08:00:01.113Z",
+  "dataUpdatedAt": "2026-07-30T08:00:01.113Z",
+  "nextScheduledRun": "2026-07-30T08:30:00.000Z",
+  "lastPublishAt": "2026-07-30T07:30:25.987Z",
+  "lastPublishedDataAt": "2026-07-30T07:30:01.554Z",
+  "lastPublishCommit": "cd67171",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed cd67171 to origin/turnaround/sprint-05-scenes-surface-cleanup"
 }
