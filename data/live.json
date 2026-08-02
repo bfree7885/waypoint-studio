@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-02T05:00:01.778Z",
-  "nextScheduledUpdate": "2026-08-02T05:30:00.000Z",
+  "updatedAt": "2026-08-02T05:30:01.932Z",
+  "nextScheduledUpdate": "2026-08-02T06:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 68,
-    "feelsLikeF": 69,
-    "humidity": 74,
-    "windMph": 5,
-    "windGustMph": 5,
+    "temperatureF": 67,
+    "feelsLikeF": 67,
+    "humidity": 77,
+    "windMph": 6,
+    "windGustMph": 8,
     "cloudCover": 0,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-02T00:00"
+    "observedAt": "2026-08-02T00:30"
   },
   "forecast": {
     "highF": 90,
@@ -36,12 +36,6 @@
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-08-02T01:00",
-        "temperatureF": 66,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
       {
         "time": "2026-08-02T02:00",
         "temperatureF": 66,
@@ -71,6 +65,12 @@
         "temperatureF": 63,
         "precipProbability": 0,
         "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-08-02T07:00",
+        "temperatureF": 63,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning gibbous",
     "illumination": 70,
-    "phaseValue": 0.649,
+    "phaseValue": 0.65,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 593.6517715454102,
+        "generationtime_ms": 432.6983690261841,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-02T00:00",
+          "time": "2026-08-02T00:30",
           "interval": 900,
-          "temperature_2m": 67.7,
-          "relative_humidity_2m": 74,
-          "apparent_temperature": 68.8,
+          "temperature_2m": 66.8,
+          "relative_humidity_2m": 77,
+          "apparent_temperature": 67.4,
           "weather_code": 0,
-          "wind_speed_10m": 4.5,
-          "wind_direction_10m": 351,
-          "wind_gusts_10m": 4.9,
+          "wind_speed_10m": 5.9,
+          "wind_direction_10m": 40,
+          "wind_gusts_10m": 8.1,
           "cloud_cover": 0,
-          "surface_pressure": 948.1,
+          "surface_pressure": 947.9,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning gibbous",
         "illumination": 70,
-        "phaseValue": 0.649,
+        "phaseValue": 0.65,
         "trust": "Estimated"
       }
     },
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-02T05:00:01.778Z",
+    "generatedAt": "2026-08-02T05:30:01.932Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
