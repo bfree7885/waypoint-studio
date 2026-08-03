@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-03T11:30:02.053Z",
-  "nextScheduledUpdate": "2026-08-03T12:00:00.000Z",
+  "updatedAt": "2026-08-03T12:00:01.365Z",
+  "nextScheduledUpdate": "2026-08-03T12:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,15 +18,15 @@
   "current": {
     "temperatureF": 64,
     "feelsLikeF": 63,
-    "humidity": 85,
+    "humidity": 86,
     "windMph": 9,
     "windGustMph": 17,
     "cloudCover": 0,
-    "uvIndex": 0,
+    "uvIndex": 0.1,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-03T06:30"
+    "observedAt": "2026-08-03T07:00"
   },
   "forecast": {
     "highF": 94,
@@ -84,13 +84,13 @@
   },
   "moon": {
     "phase": "Waning gibbous",
-    "illumination": 62,
-    "phaseValue": 0.692,
+    "illumination": 61,
+    "phaseValue": 0.693,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 41,
-    "pm25": 4.6,
+    "usAqi": 40,
+    "pm25": 5.4,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 353.08635234832764,
+        "generationtime_ms": 740.6947612762451,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-03T06:30",
+          "time": "2026-08-03T07:00",
           "interval": 900,
-          "temperature_2m": 63.9,
-          "relative_humidity_2m": 85,
-          "apparent_temperature": 63.2,
+          "temperature_2m": 63.8,
+          "relative_humidity_2m": 86,
+          "apparent_temperature": 63.1,
           "weather_code": 0,
-          "wind_speed_10m": 8.9,
-          "wind_direction_10m": 146,
-          "wind_gusts_10m": 16.6,
+          "wind_speed_10m": 9.2,
+          "wind_direction_10m": 148,
+          "wind_gusts_10m": 16.8,
           "cloud_cover": 0,
-          "surface_pressure": 943.2,
-          "uv_index": 0,
+          "surface_pressure": 942.8,
+          "uv_index": 0.05,
           "precipitation": 0
         },
         "hourly_units": {
@@ -214,9 +214,9 @@
             90.8,
             88,
             84.2,
-            80.9,
-            79.1,
-            78.5,
+            81,
+            79,
+            77.6,
             78.3,
             77.2,
             75.9,
@@ -265,7 +265,7 @@
             0,
             0,
             0,
-            2,
+            0,
             3,
             3,
             3,
@@ -431,7 +431,7 @@
           ],
           "uv_index_max": [
             8.05,
-            7.95
+            8
           ],
           "sunrise": [
             "2026-08-03T06:35",
@@ -456,22 +456,22 @@
     "moon": {
       "data": {
         "phase": "Waning gibbous",
-        "illumination": 62,
-        "phaseValue": 0.692,
+        "illumination": 61,
+        "phaseValue": 0.693,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 41,
-        "pm25": 4.6,
+        "usAqi": 40,
+        "pm25": 5.4,
         "category": "Good",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 0,
+        "uvIndex": 0.1,
         "status": "live"
       }
     },
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-03T11:30:02.053Z",
+    "generatedAt": "2026-08-03T12:00:01.365Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }

@@ -2,13 +2,13 @@
   "version": 1,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "generatedAt": "2026-08-03T11:30:02.053Z",
-  "nextScheduledUpdate": "2026-08-03T12:00:00.000Z",
+  "generatedAt": "2026-08-03T12:00:01.365Z",
+  "nextScheduledUpdate": "2026-08-03T12:30:00.000Z",
   "overall": {
     "status": "healthy",
     "label": "HEALTHY",
     "message": "All critical modules live.",
-    "lastSuccessfulRefresh": "2026-08-03T11:30:13.284Z",
+    "lastSuccessfulRefresh": "2026-08-03T12:00:46.071Z",
     "criticalLive": 5,
     "criticalUsable": 5,
     "criticalFallback": 0,
@@ -16,14 +16,14 @@
   },
   "publish": {
     "version": 1,
-    "lastEngineRun": "2026-08-03T11:30:02.053Z",
-    "dataUpdatedAt": "2026-08-03T11:30:02.053Z",
-    "nextScheduledRun": "2026-08-03T12:00:00.000Z",
-    "lastPublishAt": "2026-08-03T11:00:45.924Z",
-    "lastPublishedDataAt": "2026-08-03T11:00:01.582Z",
-    "lastPublishCommit": "b9e267c",
+    "lastEngineRun": "2026-08-03T12:00:01.365Z",
+    "dataUpdatedAt": "2026-08-03T12:00:01.365Z",
+    "nextScheduledRun": "2026-08-03T12:30:00.000Z",
+    "lastPublishAt": "2026-08-03T11:30:15.233Z",
+    "lastPublishedDataAt": "2026-08-03T11:30:02.053Z",
+    "lastPublishCommit": "3a1efc8",
     "lastPublishStatus": "succeeded",
-    "lastPublishMessage": "Pushed b9e267c to origin/turnaround/sprint-05-scenes-surface-cleanup"
+    "lastPublishMessage": "Pushed 3a1efc8 to origin/turnaround/sprint-05-scenes-surface-cleanup"
   },
   "modules": {
     "weather": {
@@ -34,7 +34,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 353.08635234832764,
+        "generationtime_ms": 740.6947612762451,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -55,18 +55,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-03T06:30",
+          "time": "2026-08-03T07:00",
           "interval": 900,
-          "temperature_2m": 63.9,
-          "relative_humidity_2m": 85,
-          "apparent_temperature": 63.2,
+          "temperature_2m": 63.8,
+          "relative_humidity_2m": 86,
+          "apparent_temperature": 63.1,
           "weather_code": 0,
-          "wind_speed_10m": 8.9,
-          "wind_direction_10m": 146,
-          "wind_gusts_10m": 16.6,
+          "wind_speed_10m": 9.2,
+          "wind_direction_10m": 148,
+          "wind_gusts_10m": 16.8,
           "cloud_cover": 0,
-          "surface_pressure": 943.2,
-          "uv_index": 0,
+          "surface_pressure": 942.8,
+          "uv_index": 0.05,
           "precipitation": 0
         },
         "hourly_units": {
@@ -149,9 +149,9 @@
             90.8,
             88,
             84.2,
-            80.9,
-            79.1,
-            78.5,
+            81,
+            79,
+            77.6,
             78.3,
             77.2,
             75.9,
@@ -200,7 +200,7 @@
             0,
             0,
             0,
-            2,
+            0,
             3,
             3,
             3,
@@ -366,7 +366,7 @@
           ],
           "uv_index_max": [
             8.05,
-            7.95
+            8
           ],
           "sunrise": [
             "2026-08-03T06:35",
@@ -381,17 +381,17 @@
       "source": "Open-Meteo",
       "error": null,
       "lastError": null,
-      "responseMs": 1618,
-      "retryAttempts": 1,
+      "responseMs": 2553,
+      "retryAttempts": 3,
       "failureCount": 0,
       "recoveryAt": "2026-07-30T14:30:01.705Z",
-      "lastAttempt": "2026-08-03T11:30:02.055Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:02.055Z",
+      "lastAttempt": "2026-08-03T12:00:01.367Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:01.367Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "sunrise_sunset": {
       "name": "sunrise_sunset",
@@ -412,13 +412,13 @@
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": null,
-      "lastAttempt": "2026-08-03T11:30:03.674Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:03.674Z",
+      "lastAttempt": "2026-08-03T12:00:05.424Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:05.424Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "moon": {
       "name": "moon",
@@ -427,8 +427,8 @@
       "displayStatus": "LIVE",
       "data": {
         "phase": "Waning gibbous",
-        "illumination": 62,
-        "phaseValue": 0.692,
+        "illumination": 61,
+        "phaseValue": 0.693,
         "trust": "Estimated"
       },
       "source": "Calculated",
@@ -438,13 +438,13 @@
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": null,
-      "lastAttempt": "2026-08-03T11:30:03.674Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:03.674Z",
+      "lastAttempt": "2026-08-03T12:00:05.424Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:05.424Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "air_quality": {
       "name": "air_quality",
@@ -452,8 +452,8 @@
       "status": "live",
       "displayStatus": "LIVE",
       "data": {
-        "usAqi": 41,
-        "pm25": 4.6,
+        "usAqi": 40,
+        "pm25": 5.4,
         "category": "Good",
         "status": "live"
       },
@@ -464,13 +464,13 @@
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": "2026-07-30T14:30:03.767Z",
-      "lastAttempt": "2026-08-03T11:30:03.674Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:03.674Z",
+      "lastAttempt": "2026-08-03T12:00:05.425Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:05.425Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "uv": {
       "name": "uv",
@@ -478,7 +478,7 @@
       "status": "live",
       "displayStatus": "LIVE",
       "data": {
-        "uvIndex": 0,
+        "uvIndex": 0.1,
         "status": "live"
       },
       "source": "Open-Meteo",
@@ -488,13 +488,13 @@
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": null,
-      "lastAttempt": "2026-08-03T11:30:04.099Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:04.099Z",
+      "lastAttempt": "2026-08-03T12:00:05.850Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:05.850Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "pollen": {
       "name": "pollen",
@@ -508,23 +508,23 @@
       "source": "Open-Meteo Air Quality",
       "error": null,
       "lastError": null,
-      "responseMs": 105,
+      "responseMs": 111,
       "retryAttempts": 1,
       "failureCount": 0,
-      "recoveryAt": "2026-08-03T11:30:04.099Z",
-      "lastAttempt": "2026-08-03T11:30:04.099Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:04.099Z",
+      "recoveryAt": "2026-08-03T12:00:05.850Z",
+      "lastAttempt": "2026-08-03T12:00:05.850Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:05.850Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "none",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "river_gauges": {
       "name": "river_gauges",
       "provider": "USGS Water Services",
-      "status": "live",
-      "displayStatus": "LIVE",
+      "status": "fallback",
+      "displayStatus": "ESTIMATED",
       "data": {
         "status": "live",
         "summary": "WHITE ROCK C NR BURR OAK, KS — 1.49 ft stage · 7.75 cfs · 29.2 km away",
@@ -543,20 +543,20 @@
         "siteCount": 3,
         "disclaimer": "Provisional USGS data — subject to revision"
       },
-      "source": "USGS Water Services",
-      "error": null,
-      "lastError": null,
-      "responseMs": 7542,
-      "retryAttempts": 1,
-      "failureCount": 0,
-      "recoveryAt": "2026-08-03T11:30:04.205Z",
-      "lastAttempt": "2026-08-03T11:30:04.205Z",
+      "source": "previous-success",
+      "error": "This operation was aborted",
+      "lastError": "This operation was aborted",
+      "responseMs": 36006,
+      "retryAttempts": 3,
+      "failureCount": 1,
+      "recoveryAt": null,
+      "lastAttempt": "2026-08-03T12:00:05.961Z",
       "lastSuccessfulUpdate": "2026-08-03T11:30:04.205Z",
-      "fallbackAgeMs": null,
-      "fallbackAge": null,
-      "cacheStatus": "fresh",
+      "fallbackAgeMs": 1839268,
+      "fallbackAge": "31 min ago",
+      "cacheStatus": "serving-cache",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "ebird": {
       "name": "ebird",
@@ -573,17 +573,17 @@
       "source": "eBird",
       "error": null,
       "lastError": null,
-      "responseMs": 0,
+      "responseMs": 1,
       "retryAttempts": 1,
       "failureCount": 0,
-      "recoveryAt": "2026-08-03T11:30:11.748Z",
-      "lastAttempt": "2026-08-03T11:30:11.748Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:11.748Z",
+      "recoveryAt": "2026-08-03T12:00:43.473Z",
+      "lastAttempt": "2026-08-03T12:00:43.473Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:43.473Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "none",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "alerts": {
       "name": "alerts",
@@ -598,17 +598,17 @@
       "source": "NWS",
       "error": null,
       "lastError": null,
-      "responseMs": 1536,
+      "responseMs": 2596,
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": "2026-07-30T07:30:23.734Z",
-      "lastAttempt": "2026-08-03T11:30:11.748Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:11.748Z",
+      "lastAttempt": "2026-08-03T12:00:43.474Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:43.474Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "fresh",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     },
     "photography_conditions": {
       "name": "photography_conditions",
@@ -626,35 +626,35 @@
       "source": "Derived from weather/sun",
       "error": null,
       "lastError": null,
-      "responseMs": 0,
+      "responseMs": 1,
       "retryAttempts": 1,
       "failureCount": 0,
       "recoveryAt": null,
-      "lastAttempt": "2026-08-03T11:30:13.284Z",
-      "lastSuccessfulUpdate": "2026-08-03T11:30:13.284Z",
+      "lastAttempt": "2026-08-03T12:00:46.071Z",
+      "lastSuccessfulUpdate": "2026-08-03T12:00:46.071Z",
       "fallbackAgeMs": null,
       "fallbackAge": null,
       "cacheStatus": "derived",
       "stale": false,
-      "nextScheduledRefresh": "2026-08-03T12:00:00.000Z"
+      "nextScheduledRefresh": "2026-08-03T12:30:00.000Z"
     }
   },
   "runtime": {
-    "uptimeSeconds": 11,
-    "runDurationMs": 11232,
+    "uptimeSeconds": 45,
+    "runDurationMs": 44708,
     "memory": {
-      "rss": 75489280,
-      "heapTotal": 7790592,
-      "heapUsed": 6689888,
-      "external": 3640614,
-      "arrayBuffers": 83540
+      "rss": 77320192,
+      "heapTotal": 8314880,
+      "heapUsed": 6790384,
+      "external": 3623957,
+      "arrayBuffers": 66883
     },
     "nodeVersion": "v18.19.1",
     "platform": "linux"
   },
   "pipeline": {
     "stage": {
-      "apiFetch": "ok",
+      "apiFetch": "partial",
       "payloadBuild": "ok",
       "healthBuild": "ok",
       "writeLiveJson": "ok",
@@ -665,5 +665,12 @@
     "criticalModulesHealthy": 5,
     "criticalModulesTotal": 5
   },
-  "failures": []
+  "failures": [
+    {
+      "module": "river_gauges",
+      "source": "USGS Water Services",
+      "error": "This operation was aborted",
+      "retryAttempts": 3
+    }
+  ]
 }
