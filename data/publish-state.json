@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-08-03T17:00:01.943Z",
-  "dataUpdatedAt": "2026-08-03T17:00:01.943Z",
-  "nextScheduledRun": "2026-08-03T17:30:00.000Z",
-  "lastPublishAt": "2026-08-03T16:30:43.821Z",
-  "lastPublishedDataAt": "2026-08-03T16:30:01.459Z",
-  "lastPublishCommit": "b82230c",
+  "lastEngineRun": "2026-08-03T17:30:01.120Z",
+  "dataUpdatedAt": "2026-08-03T17:30:01.120Z",
+  "nextScheduledRun": "2026-08-03T18:00:00.000Z",
+  "lastPublishAt": "2026-08-03T17:00:45.990Z",
+  "lastPublishedDataAt": "2026-08-03T17:00:01.943Z",
+  "lastPublishCommit": "172804f",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed b82230c to origin/turnaround/sprint-05-scenes-surface-cleanup"
+  "lastPublishMessage": "Pushed 172804f to origin/turnaround/sprint-05-scenes-surface-cleanup"
 }
