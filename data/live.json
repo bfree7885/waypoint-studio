@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-03T07:30:01.271Z",
-  "nextScheduledUpdate": "2026-08-03T08:00:00.000Z",
+  "updatedAt": "2026-08-03T08:00:01.335Z",
+  "nextScheduledUpdate": "2026-08-03T08:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,15 +18,15 @@
   "current": {
     "temperatureF": 66,
     "feelsLikeF": 65,
-    "humidity": 79,
+    "humidity": 81,
     "windMph": 9,
-    "windGustMph": 18,
-    "cloudCover": 5,
+    "windGustMph": 17,
+    "cloudCover": 7,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-03T02:30"
+    "observedAt": "2026-08-03T03:00"
   },
   "forecast": {
     "highF": 93,
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 288.9047861099243,
+        "generationtime_ms": 728.2792329788208,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-03T02:30",
+          "time": "2026-08-03T03:00",
           "interval": 900,
-          "temperature_2m": 65.9,
-          "relative_humidity_2m": 79,
-          "apparent_temperature": 65.1,
+          "temperature_2m": 65.5,
+          "relative_humidity_2m": 81,
+          "apparent_temperature": 65,
           "weather_code": 0,
-          "wind_speed_10m": 9,
-          "wind_direction_10m": 157,
-          "wind_gusts_10m": 17.9,
-          "cloud_cover": 5,
-          "surface_pressure": 942.2,
+          "wind_speed_10m": 8.7,
+          "wind_direction_10m": 162,
+          "wind_gusts_10m": 17.4,
+          "cloud_cover": 7,
+          "surface_pressure": 942.6,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -520,7 +520,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 5,
+        "cloudCover": 7,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:35 AM",
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-03T07:30:01.271Z",
+    "generatedAt": "2026-08-03T08:00:01.335Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
