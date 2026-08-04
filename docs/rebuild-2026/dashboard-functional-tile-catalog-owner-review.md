@@ -1,10 +1,12 @@
 # Dashboard — Functional Tile Catalog Expansion (Owner Review)
 
-**Status:** implemented, rebased onto `origin/main`, production-readiness verified — pending merge and production deploy
+**Status:** implemented, rebased onto `origin/main`, production-readiness verified — pending merge and production deploy  
+**Canonical owner entrypoint:** [`docs/dashboard/dashboard-catalog-owner-review.md`](../dashboard/dashboard-catalog-owner-review.md) — prefer that path for review. This file remains the deep implementation record.
 **Branch:** `feature/dashboard-functional-tile-catalog`
 **Starting SHA (feature work):** `59c09de` (matched the prior `main` tip)
 **Pre-rebase tip (this integration pass):** `c975958`
 **Post-rebase tip:** `c975958` (already contained `origin/main`; rebase was a no-op)
+**Docs-gap / verification tip:** _stamped on the commit that adds `docs/dashboard/`_
 
 ---
 
@@ -371,10 +373,13 @@ introduce layout shift.
 ## 15. Delivery record
 
 - **Branch:** `feature/dashboard-functional-tile-catalog`
+- **Canonical owner review:** `docs/dashboard/dashboard-catalog-owner-review.md`
 - **Implementation SHA:** `e7a4b15` (feature `1164abc`, tests `a178291`, docs `e7a4b15`)
 - **Pre-rebase tip (integration):** `c975958`
 - **Post-rebase tip:** `c975958` (already on `origin/main`)
 - **Production-readiness docs SHA:** `227d33f`
+- **Readiness stamp SHA:** `00d95f6`
+- **Docs-gap / re-verification SHA:** _stamped on landing commit_
 - **Merge SHA:** _stamped on merge — do not merge in this pass_
 - **Production SHA:** _stamped after deploy — do not deploy in this pass_
 - **Live URLs checked:** _recorded after deploy_

@@ -93,37 +93,51 @@ Avoid: “You should go now.” / quiz tone / urgency hacks.
 
 | Field | Purpose |
 |-------|---------|
-| `id` | Stable key |
+| `id` | Stable key (`ph-*` in Rebuild) |
 | `title` | Human label |
-| `category` | Grouping for catalog/customize (conditions, light, air, water, alerts, learning, …) |
-| `size` | e.g. `sm` \| `md` \| `lg` \| `anchor` |
+| `category` / `libraryCategory` | Instrument family + customize library group |
+| `size` | **`standard` \| `wide` \| `featured`** only (legacy `sm`/`md`/`lg`/`anchor`/`half`/`compact` migrate) |
 | `defaultVisible` / `defaultOrder` | Sensible first-run layout |
-| `getData(ctx)` / providers | Async-capable; returns typed payload + trust |
+| `dataDependencies` | Shared OIP slices this tile reads (isolation contract) |
+| `sourceLabel` | Default attribution; weather tiles resolve from answering provider at render |
+| Payload adapters | Read memoised platform selectors — tiles do not fetch |
 | `render` | Presentational only |
-| `detail` | Optional deeper view |
+| `detail` | Optional deeper view (deepeners) |
 | `kiosk` | Flags: show in kiosk, refresh policy, chrome density |
 
-### Catalog direction (illustrative, not a locked inventory)
+### Locked catalog (functional tile inventory)
 
-Rebuild implementation will define the shipping catalog; historical V2/V3 catalogs are reference only. Expected families:
+**Shipping inventory:** **32 live tiles** across **9 library categories** (plus a prefs-driven Favorites group). Authority: `design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js`. Human index: [`docs/dashboard/tile-catalog.md`](../dashboard/tile-catalog.md). Owner review: [`docs/dashboard/dashboard-catalog-owner-review.md`](../dashboard/dashboard-catalog-owner-review.md).
 
-- **Conditions** — temperature, sky, precip, wind
-- **Light** — sun/moon, golden/blue observational windows
-- **Air** — AQI and related honesty
-- **Water** — rivers/gauges where relevant to place
-- **Alerts** — official alerts
-- **Day context** — short arc / timeline (optional widget, not mandatory OS day-arc)
-- **Learning** — optional educational widgets; off by default in “morning field” presets
+| Library category | Count |
+|------------------|------:|
+| Weather | 5 |
+| Photography | 5 |
+| Astronomy | 3 |
+| Air and Environment | 3 |
+| Hiking and Trails | 4 |
+| Rivers and Water | 3 |
+| Wildlife and Birding | 3 |
+| Travel and Access | 3 |
+| Alerts and Safety | 3 |
+
+**Rules:**
+
+- Every selectable entry is functional (OIP package or documented local calculation). **No Coming Soon / placeholder / disabled stubs** in the Rebuild catalog.
+- Unsupported ideas (eBird, moonrise/set, pollen, aurora, ISS, …) stay **out of the registry**, not stubbed.
+- Calculated tiles carry an **Estimated** trust chip and a **basis** line naming inputs.
+- Historical V2 / V3 / Outdoor OS catalogs remain reference-only and are not the Rebuild product path.
 
 Do not reintroduce Scenes shoot-review or Sheds map as core Dashboard widgets. Cross-link chips are enough.
 
 ### Customize
 
 - Enter/exit customize mode without losing place context
-- Add from catalog, remove, reorder, resize within constraints
+- Browse catalog **by category** (counts, select-all / clear per group)
+- Add from catalog, remove, reorder, resize within `standard`/`wide`/`featured`
 - Presets: e.g. Morning field · Photographer light · Minimal · Kiosk wall
 - Reset to defaults
-- Persist layout **local-first** (no account required)
+- Persist layout **local-first** in `waypoint-dashboard-rebuild-prefs-v1` (no account required)
 
 ---
 
@@ -206,4 +220,8 @@ Outdoor Intelligence Platform and prior dashboard engines are **candidates to ad
 
 ## Approval note
 
-Implementation should retire current Outdoor OS product path only after owner approval of this baseline and an explicit rebuild implementation mandate.
+Architecture baseline approved. The functional tile catalog (32 live tiles, nine
+categories) is locked in this document and in
+[`docs/dashboard/tile-catalog.md`](../dashboard/tile-catalog.md). Implementation
+retired Outdoor OS as the home product path under the Home Vision Lock; do not
+revive it as canonical presentation.

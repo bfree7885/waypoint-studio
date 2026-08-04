@@ -621,7 +621,7 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 ### 2026-07-25 — Dashboard functional tile catalog expansion
 
 **Branch:** `feature/dashboard-functional-tile-catalog`  
-**Report:** `docs/rebuild-2026/dashboard-functional-tile-catalog-owner-review.md`
+**Report:** `docs/dashboard/dashboard-catalog-owner-review.md` (deep record: `docs/rebuild-2026/dashboard-functional-tile-catalog-owner-review.md`)
 
 1. **A memoised selector layer is what makes a wide catalog free.** Parsing the
    OIP package once and handing all 32 tiles the same normalised view took the

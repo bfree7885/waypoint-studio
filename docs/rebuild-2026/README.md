@@ -2,7 +2,7 @@
 
 **Status:** Architecture baseline approved for Dashboard Phase 1 implementation  
 **Authority:** This folder is the sole product/architecture authority for the rebuild.  
-**Implementation:** Dashboard Phase 1 shell + presentation polish — see [dashboard-phase1-polish-owner-review.md](./dashboard-phase1-polish-owner-review.md) (awaiting owner visual review; Phase 2 not started). Framework baseline: [dashboard-phase1-owner-review.md](./dashboard-phase1-owner-review.md).
+**Implementation:** Dashboard Phase 1 shell + presentation polish — see [dashboard-phase1-polish-owner-review.md](./dashboard-phase1-polish-owner-review.md). Functional tile catalog (32 live tiles) — owner entrypoint [`docs/dashboard/dashboard-catalog-owner-review.md`](../dashboard/dashboard-catalog-owner-review.md); deep record [dashboard-functional-tile-catalog-owner-review.md](./dashboard-functional-tile-catalog-owner-review.md). Framework baseline: [dashboard-phase1-owner-review.md](./dashboard-phase1-owner-review.md).
 
 ## Documents
 
@@ -10,11 +10,13 @@
 |---|----------|---------|
 | 1 | [01-product-vision.md](./01-product-vision.md) | Company product map, era history, non-goals |
 | 2 | [02-information-architecture.md](./02-information-architecture.md) | Surfaces, cross-product boundaries, shared platform |
-| 3 | [03-dashboard-architecture.md](./03-dashboard-architecture.md) | Customizable workspace, widgets, Today Outside |
+| 3 | [03-dashboard-architecture.md](./03-dashboard-architecture.md) | Customizable workspace, widgets, Today Outside, **locked 32-tile catalog** |
 | 4 | [04-scenes-architecture.md](./04-scenes-architecture.md) | Photography education, analysis, shoot review |
 | 5 | [05-sheds-architecture.md](./05-sheds-architecture.md) | Wildlife, mapping, conditions, observations |
 | 6 | [06-routing.md](./06-routing.md) | Canonical routes and nav contracts |
 | 7 | [07-design-system.md](./07-design-system.md) | Shared WDS rules for the three products |
+| — | [../dashboard/tile-catalog.md](../dashboard/tile-catalog.md) | Human index of the Rebuild functional tile catalog |
+| — | [../dashboard/dashboard-catalog-owner-review.md](../dashboard/dashboard-catalog-owner-review.md) | Canonical owner review for the tile catalog |
 
 ## Binding owner decision (2026-07-22)
 

@@ -317,6 +317,33 @@ chronological commit order.
 - **Follow-up work:** Implement RF/Cyber only when real data paths exist.
 - **Commit:** _(pending owner)_
 
+### 2026-08-03 — Dashboard functional tile catalog standards
+
+- **Version:** Engineering Playbook lessons (2026-07-25 catalog entry);
+  Dashboard architecture baseline update
+- **Playbooks affected:** `docs/ENGINEERING-PLAYBOOK.md`;
+  `docs/rebuild-2026/03-dashboard-architecture.md`;
+  `docs/dashboard/tile-catalog.md`;
+  `docs/dashboard/dashboard-catalog-owner-review.md`
+- **Categories:** Engineering, Reliability, Scientific Integrity, Documentation
+- **Summary:** Locked the Rebuild Dashboard to a 32-tile functional catalog
+  (nine categories, no Coming Soon stubs). Codified memoised shared selectors,
+  provider-aware attribution, Estimated+basis for calculated tiles, and
+  category-grouped customize. Canonical owner entrypoint lives under
+  `docs/dashboard/`.
+- **Reason for change:** Expanding from five shell tiles to a daily workspace
+  required standing rules so placeholders never re-enter the selectable catalog
+  and so NWS fallback capability gaps stay honest.
+- **Lessons incorporated:** Engineering Playbook 2026-07-25 functional tile
+  catalog expansion (selector layer, attribution, capability fallback,
+  value-not-label highs/lows, basis lines, category grouping, builder try/catch).
+- **Potential impact:** Agents must treat the rebuild registry as the locked
+  inventory; deferred sources stay out of the registry; architecture docs no
+  longer describe the catalog as “illustrative.”
+- **Follow-up work:** Local sunrise/sunset when NWS answers; owner merge/deploy
+  gate unchanged.
+- **Commit:** _(stamped on landing commit)_
+
 ------------------------------------------------------------------------
 
 # Lessons Integration
