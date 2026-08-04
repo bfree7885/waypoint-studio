@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-product="photo-coach">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo Coach 2.0 — education-focused review architecture (Overall Impression through What To Practice Next).">
+  <title>Photo Coach 2.0 Review — Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../../scenes/css/studio-shell.css">
+  <link rel="stylesheet" href="../css/photo-coach-shell.css">
+  <link rel="stylesheet" href="../css/photo-coach-2.css">
+</head>
+<body class="pc-shell">
+  <a class="wds-skip" href="#pc2-mount">Skip to review</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="photo-coach" data-product-name="Photo Coach" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <main id="main" class="pc2-page">
+      <header class="pc2-hero">
+        <p class="pc2-hero__eyebrow">
+          <a class="pc-product-link" href="../../waypoint-scenes/">Scenes</a>
+          <span aria-hidden="true"> · </span>
+          <a class="pc-product-link" href="../">Photo Coach</a>
+          <span aria-hidden="true"> · </span>
+          Review 2.0
+        </p>
+        <h1 class="pc2-hero__title">Education-focused review</h1>
+        <p class="pc2-hero__lead">
+          Architecture shell for structured coaching sections. No LLM, no cloud inference —
+          providers are swappable so a future model can plug in without redesign.
+        </p>
+      </header>
+
+      <p class="pc2-trust" role="note">
+        Recommendations cite an image region and/or EXIF field. Guidance only — private on this device.
+      </p>
+
+      <div class="pc2-actions">
+        <button type="button" class="wds-btn wds-btn--primary" id="pc2-load-fixture">Load sample review</button>
+        <button type="button" class="wds-btn wds-btn--ghost" id="pc2-load-placeholder">Show AI-ready placeholder</button>
+      </div>
+
+      <div id="pc2-mount" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <script src="../../waypoint-scenes/js/photo-coach-2/schema.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/evidence.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/modules.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/fixtures.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/providers.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/composer.js"></script>
+  <script src="../../waypoint-scenes/js/photo-coach-2/ui.js"></script>
+  <script>
+    (function () {
+      var mount = document.getElementById("pc2-mount");
+      var Coach = window.WaypointPhotoCoach2;
+      var UI = window.WaypointPhotoCoach2UI;
+
+      function showFixture() {
+        var review = Coach.analyzeFixture({});
+        UI.renderReview(review, mount);
+      }
+
+      function showPlaceholder() {
+        var review = Coach.analyzePlaceholder({
+          imageName: "awaiting-model.jpg",
+          exif: window.WaypointPhotoCoach2Fixtures.FIXTURE_EXIF
+        });
+        UI.renderReview(review, mount);
+      }
+
+      document.getElementById("pc2-load-fixture").addEventListener("click", showFixture);
+      document.getElementById("pc2-load-placeholder").addEventListener("click", showPlaceholder);
+      showFixture();
+    })();
+  </script>
+</body>
+</html>

@@ -6,6 +6,21 @@ The live critique and **Shoot Review** product lives at `/apps/photo-coach/`
 - Session / queue / summary: [`SHOOT-REVIEW.md`](./SHOOT-REVIEW.md)
 - Photographer Profile companion: [`PHOTOGRAPHER-PROFILE.md`](./PHOTOGRAPHER-PROFILE.md)
 
+## Photo Coach 2.0 architecture (education reviews)
+
+Structured education-focused reviews (not pixel editing) live under
+`apps/waypoint-scenes/js/photo-coach-2/`:
+
+- Schema + eleven ordered sections (Overall Impression → What To Practice Next)
+- Reusable analysis modules + provider registry (`placeholder.ai-ready`, `heuristic.fixture`)
+- Recommendations cite image regions and/or EXIF fields
+- Demo shell: `apps/photo-coach/review-v2/index.html`
+- Owner review: `docs/scenes/PHOTO-COACH-2-ARCHITECTURE-OWNER-REVIEW.md`
+- Tests: `node automation/test-photo-coach-2-architecture.mjs`
+
+No LLM / cloud inference in this layer — future models implement the same
+`analyze(context) → ReviewDocument` contract.
+
 ---
 
 ## Legacy field-guide journey (still present)
