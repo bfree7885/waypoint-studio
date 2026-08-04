@@ -114,6 +114,6 @@ node automation/test-scenes-remember-pillar.mjs
 ## Confirmation
 
 - **Implementation SHA:** `2fd52caa1acd988a9d56aff9af29328014f572a6`
-- **Branch:** `feature/scenes-remember-pillar-foundation` (pushed; tip recorded after docs fix commit)
+- **Branch tip:** `a4ac50f354234c5f6797c463305f7685b1c4e76a` on `feature/scenes-remember-pillar-foundation`
 - **No deployment**
 - **No merge to main**
