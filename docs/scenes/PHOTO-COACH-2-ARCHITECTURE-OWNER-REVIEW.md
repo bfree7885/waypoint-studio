@@ -14,7 +14,7 @@
 | **Branch** | `feature/scenes-photo-coach-2-architecture` |
 | **Starting SHA** | `89129f4fa7cd19b583e43b90ae9642fdcfb7650f` (`feature/scenes-sprint3-scene-library` tip) |
 | **Implementation SHA** | `cd787d23d3c5f25ce65e2e9e383f5053afa1f6d2` |
-| **Tip SHA** | `2ed6a21e91c49e6323a69837e4f11f8edd1fb21e` |
+| **Tip SHA** | `cf60e2f80bae478599222939800023c9a193f916` (docs tip-stamp; HEAD may advance by later sync commits) |
 | **Working-tree note** | Unrelated local placeholder SVG edits may remain uncommitted; not part of this sprint. |
 
 ---
