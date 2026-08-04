@@ -1,0 +1,138 @@
+/* Remember pillar — foundation surfaces (Scenes) */
+
+.remember-page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.75rem) clamp(1.15rem, 4vw, 2rem) 3rem;
+}
+
+.remember-page__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+}
+
+.remember-page__eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.remember-page__eyebrow a:hover {
+  color: var(--scenes-lime, #c6ff4d);
+}
+
+.remember-page h1 {
+  margin: 0 0 0.75rem;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.15;
+  color: var(--scenes-ink, #eef2f6);
+}
+
+.remember-page__lead {
+  margin: 0 0 1.25rem;
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.remember-note {
+  margin: 0 0 1.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(155, 126, 212, 0.28);
+  border-radius: 0.35rem;
+  background: rgba(11, 26, 58, 0.55);
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.remember-note strong {
+  color: var(--scenes-ink, #eef2f6);
+}
+
+.remember-catalog {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.remember-catalog a {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(155, 143, 217, 0.16);
+  border-radius: 0.35rem;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(8, 15, 28, 0.35);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.remember-catalog a:hover {
+  border-color: rgba(198, 255, 77, 0.35);
+  background: rgba(11, 26, 58, 0.65);
+}
+
+.remember-catalog strong {
+  color: var(--scenes-ink, #eef2f6);
+  font-weight: 500;
+}
+
+.remember-catalog span {
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.remember-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.remember-print-status {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+}
+
+.remember-local-nav {
+  margin: 2rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(155, 143, 217, 0.12);
+}
+
+.remember-local-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+}
+
+.remember-local-nav a {
+  color: var(--scenes-muted, rgba(238, 242, 246, 0.78));
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.remember-local-nav a:hover,
+.remember-local-nav a[aria-current="page"] {
+  color: var(--scenes-lime, #c6ff4d);
+}
+
+.remember-page h2 {
+  margin: 1.75rem 0 0.65rem;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--scenes-ink, #eef2f6);
+}

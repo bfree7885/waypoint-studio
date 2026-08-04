@@ -7,7 +7,7 @@
 
   function list() {
     var bag = global.WaypointScenesEngines || {};
-    return ["SceneEngine", "VisionEngine", "CoachEngine", "ProfileEngine", "AnimationEngine"].map(function (id) {
+    return ["SceneEngine", "VisionEngine", "CoachEngine", "ProfileEngine", "AnimationEngine", "RememberEngine"].map(function (id) {
       return bag[id] || { id: id, status: "missing" };
     });
   }

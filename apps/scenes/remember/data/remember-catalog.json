@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "pillar": "remember",
+  "title": "Outdoor Journals",
+  "maturity": "foundation",
+  "description": "Turn photographs and field noticing into lasting private records — journals, calendars, and books. Framework only; builders and PDF generation are not shipped yet.",
+  "canonicalHub": "apps/scenes/remember/",
+  "types": [
+    {
+      "id": "outdoor-journal",
+      "label": "Outdoor Journals",
+      "href": "./",
+      "kind": "hub",
+      "maturity": "foundation",
+      "summary": "Remember pillar home — choose a journal, calendar, or book path."
+    },
+    {
+      "id": "hiking-journal",
+      "label": "Hiking Journals",
+      "href": "hiking-journals/",
+      "kind": "journal",
+      "maturity": "foundation",
+      "summary": "Trail days, elevation, weather notes, and photographs kept as a private walking record."
+    },
+    {
+      "id": "wildlife-journal",
+      "label": "Wildlife Journals",
+      "href": "wildlife-journals/",
+      "kind": "journal",
+      "maturity": "foundation",
+      "summary": "Encounters, behavior notes, and field photographs without turning noticing into a score."
+    },
+    {
+      "id": "mushroom-journal",
+      "label": "Mushroom Journals",
+      "href": "mushroom-journals/",
+      "kind": "journal",
+      "maturity": "foundation",
+      "summary": "Foray notes, habitat context, and careful identification language — never certainty theater."
+    },
+    {
+      "id": "year-in-nature",
+      "label": "Year in Nature",
+      "href": "year-in-nature/",
+      "kind": "book",
+      "maturity": "foundation",
+      "summary": "A seasonal arc across one year of looking — prints when the story is ready."
+    },
+    {
+      "id": "calendar",
+      "label": "Calendars",
+      "href": "calendars/",
+      "kind": "calendar",
+      "maturity": "foundation",
+      "summary": "Month and wall calendar layouts fed by keepers you already chose."
+    },
+    {
+      "id": "book",
+      "label": "Books",
+      "href": "books/",
+      "kind": "book",
+      "maturity": "foundation",
+      "summary": "Photography books and field books — sequenced pages, print-ready hooks only in this sprint."
+    }
+  ]
+}

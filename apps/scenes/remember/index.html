@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="remember" data-scenes-pillar="remember">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Remember — Outdoor Journals foundation for hiking, wildlife, mushroom journals, Year in Nature, calendars, and books.">
+  <title>Outdoor Journals — Remember · Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="css/remember.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="remember-page">
+      <p class="remember-page__eyebrow"><a href="../">Scenes</a> · Remember</p>
+      <h1>Outdoor Journals</h1>
+      <p class="remember-page__lead">
+        A place to turn photographs and field noticing into lasting private records —
+        journals, calendars, and books. Not a social feed, and not auto-generated content.
+      </p>
+      <p class="remember-note" role="status">
+        <strong>Foundation sprint.</strong>
+        Navigation, shared data model, and print-pipeline stubs are in place.
+        Full journal UX, PDF books, AI, and cloud sync are explicitly out of scope here.
+      </p>
+
+      <h2>Remember paths</h2>
+      <ul class="remember-catalog" data-remember-catalog>
+        <li>
+          <a href="hiking-journals/">
+            <strong>Hiking Journals</strong>
+            <span>Trail days and photographs kept as a private walking record.</span>
+          </a>
+        </li>
+        <li>
+          <a href="wildlife-journals/">
+            <strong>Wildlife Journals</strong>
+            <span>Encounters and field photographs without turning noticing into a score.</span>
+          </a>
+        </li>
+        <li>
+          <a href="mushroom-journals/">
+            <strong>Mushroom Journals</strong>
+            <span>Foray notes and careful identification language — never certainty theater.</span>
+          </a>
+        </li>
+        <li>
+          <a href="year-in-nature/">
+            <strong>Year in Nature</strong>
+            <span>A seasonal arc across one year of looking.</span>
+          </a>
+        </li>
+        <li>
+          <a href="calendars/">
+            <strong>Calendars</strong>
+            <span>Month and wall layouts fed by keepers you already chose.</span>
+          </a>
+        </li>
+        <li>
+          <a href="books/">
+            <strong>Books</strong>
+            <span>Photography and field books — print-ready hooks only for now.</span>
+          </a>
+        </li>
+      </ul>
+
+      <h2>Print pipeline</h2>
+      <p class="remember-page__lead">
+        Browser print preview hooks exist. PDF export returns a deliberate “not implemented” stub
+        until a later sprint owns book generation.
+      </p>
+      <div class="remember-actions">
+        <a class="wds-btn wds-btn--primary" href="../">Back to Scenes</a>
+        <button
+          type="button"
+          class="wds-btn wds-btn--secondary"
+          data-remember-print-demo
+          data-remember-type="outdoor-journal"
+          data-remember-title="Outdoor Journals foundation preview"
+        >
+          Probe print stub
+        </button>
+        <button type="button" class="wds-btn wds-btn--ghost" disabled aria-disabled="true">
+          Start a journal (not available yet)
+        </button>
+      </div>
+      <p class="remember-print-status" data-remember-print-status role="status"></p>
+
+      <p class="remember-page__lead">
+        Gather frames in <a href="../../photo-library/">Photo Library</a>
+        and review a shoot in <a href="../../photo-coach/">Photo Coach</a>
+        while Remember stays foundation-only.
+      </p>
+
+      <nav class="remember-local-nav" aria-label="Remember types">
+        <ul>
+          <li><a href="./" aria-current="page">Outdoor Journals</a></li>
+          <li><a href="hiking-journals/">Hiking</a></li>
+          <li><a href="wildlife-journals/">Wildlife</a></li>
+          <li><a href="mushroom-journals/">Mushroom</a></li>
+          <li><a href="year-in-nature/">Year in Nature</a></li>
+          <li><a href="calendars/">Calendars</a></li>
+          <li><a href="books/">Books</a></li>
+        </ul>
+      </nav>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="js/remember-model.js" defer></script>
+  <script src="js/remember-print.js" defer></script>
+  <script src="../js/engines/remember-engine.js" defer></script>
+  <script src="js/remember-ui.js" defer></script>
+</body>
+</html>

@@ -161,6 +161,15 @@
           ]
         },
         {
+          "id": "remember",
+          "label": "Remember",
+          "href": "apps/scenes/remember/",
+          "match": [
+            "/apps/scenes/remember",
+            "/apps/waypoint-scenes/remember"
+          ]
+        },
+        {
           "id": "guide",
           "label": "Field guide",
           "href": "apps/photo-coach/guide/",

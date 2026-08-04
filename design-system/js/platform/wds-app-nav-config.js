@@ -152,6 +152,15 @@
               "/apps/hidden-landscapes",
               "/apps/animal-vision"
             ]
+          },
+          {
+            "id": "remember",
+            "label": "Remember",
+            "href": "apps/scenes/remember/",
+            "match": [
+              "/apps/scenes/remember",
+              "/apps/waypoint-scenes/remember"
+            ]
           }
         ],
         "purpose": "Observe carefully, discover what to look for, understand how you see — Create and Share stay inside the craft workflow.",
