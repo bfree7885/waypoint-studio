@@ -14,6 +14,9 @@
  * - dispose()
  *
  * Creative RGB simulations are not genuine spectral capture.
+ *
+ * Future: Explore facade over Scenes Imaging Engine (SIE) —
+ * docs/scenes/create-explore-owner-review.md
  */
 (function (global) {
   "use strict";

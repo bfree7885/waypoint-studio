@@ -7,6 +7,9 @@
  * TODO: define effect preset schema (fog, light drift, season morph)
  * TODO: render preview loops locally on canvas / WebGL later
  * TODO: share effect ids with SceneEngine layers
+ *
+ * Future: Create facade over Scenes Imaging Engine (SIE), wrapping
+ * apps/waypoint-scenes/js/engine/ — docs/scenes/create-explore-owner-review.md
  */
 (function (global) {
   "use strict";
