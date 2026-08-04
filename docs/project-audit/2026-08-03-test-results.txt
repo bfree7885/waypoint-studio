@@ -1,0 +1,384 @@
+Waypoint Studio audit test run 2026-08-04T01:18:42Z
+BASE=59c09debbe8d9c7d36acf74607bd4ebfa55359fc
+
+===== RUN automation/test-dashboard-today-outside.mjs =====
+RESULT: FAIL exit=1
+PASS fog interpretation
+PASS telephoto / wind interpretation
+PASS uv interpretation without raw dump only
+PASS preview capped
+PASS eyebrow Today Outside
+PASS preview list in hero
+PASS panel has why label
+PASS Outdoor OS compose present
+PASS Outdoor OS interpret present
+PASS Outdoor OS PriorityRanker API
+PASS Outdoor OS location panel
+PASS obsolete Recovery presentation gone
+PASS product engine prefers Outdoor OS over V2/Recovery
+PASS V2 render not on product Outside page
+PASS obsolete customize gone
+PASS Recovery stub disabled
+PASS quiet chrome attribute on Outside
+PASS Volunteer not in OS prefs catalog UI
+FAIL Outside entry loads Outdoor OS CSS 
+PASS Outside entry does not load V2/V3 CSS
+PASS Outside entry has no Recovery/V2/V3 product chrome markers
+PASS engine refuses legacy fallthrough on Outside
+FAIL dashboard nav features empty (no Recovery/V2 tabs) 
+FAIL dashboard product titled Outside 
+PASS V2/V3 localStorage flags are not consulted by engine renderDashboard
+FAIL home-boot Outside sections are outdoor-dashboard only 
+PASS runtime OS wins even if Recovery claims enabled
+PASS Outside without OS does not fall through to Recovery/widgets
+
+4 failure(s)
+
+===== RUN automation/test-dashboard-tile-layout-repair.mjs =====
+RESULT: PASS
+PASS legacy sm migrates to standard
+PASS legacy anchor migrates to featured
+PASS removed rivers id dropped from enabled
+
+48 passed, 0 failed
+
+===== RUN automation/test-dashboard-mobile-tile-editing.mjs =====
+RESULT: PASS
+PASS save persists disable
+PASS saved layout removes tile from workspace paint
+PASS single prefs storage key
+
+All mobile tile editing tests passed (39).
+
+===== RUN automation/test-dashboard-rebuild-phase1.mjs =====
+RESULT: PASS
+PASS nav has customize feature
+PASS nav omits kiosk feature
+PASS homePrimary is three products
+
+88 passed, 0 failed
+
+===== RUN automation/test-dashboard-rebuild-phase2.mjs =====
+RESULT: PASS
+PASS no banned chrome: assignment
+PASS mount paints shell
+PASS setPlatform repaints live widgets
+
+96 passed, 0 failed
+
+===== RUN automation/test-dashboard-rebuild-phase3.mjs =====
+RESULT: PASS
+PASS kiosk constraints unchanged
+PASS mount paints shell
+PASS setPlatform no page reload contract
+
+94 passed, 0 failed
+
+===== RUN automation/test-dashboard-reliability.mjs =====
+RESULT: PASS
+PASS withDeadline invoked
+PASS raceForecast returns value
+PASS raceForecast timeout null
+
+All dashboard reliability tests passed (41).
+
+===== RUN automation/test-kiosk-modules.mjs =====
+RESULT: PASS
+PASS live-json-engine-point
+PASS production-asset-compat
+PASS timezone
+
+KIOSK MODULE TESTS: PASS
+
+===== RUN automation/test-kiosk-location-boot.mjs =====
+RESULT: FAIL exit=2
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/waypoint-studio-audit-2026-08-03/node_modules/ws/index.js' imported from /tmp/waypoint-studio-audit-2026-08-03/automation/test-kiosk-location-boot.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///tmp/waypoint-studio-audit-2026-08-03/node_modules/ws/index.js'
+}
+
+===== RUN automation/test-platform-foundation.mjs =====
+RESULT: PASS
+PASS foundation json apps/steepleaf/data/foundation.json
+PASS foundation json apps/signalterrain/data/foundation.json
+PASS foundation json apps/savant-sommelier/data/foundation.json
+
+All platform foundation tests passed.
+
+===== RUN automation/test-platform-consistency.mjs =====
+RESULT: FAIL exit=1
+PASS escape escapes
+PASS loading html
+PASS empty html
+FAIL error timeout kind — 
+PASS skeleton
+PASS task nav active
+PASS task nav shared class
+PASS wds imports platform-ui css
+PASS shared task nav css
+PASS shared empty aliases
+PASS local nav 44px
+PASS btn min 44
+PASS map btn 44
+PASS savant loads platform-ui
+PASS savant uses Inter
+PASS foragecast loads platform-ui
+PASS fc nav overview
+PASS fc nav conditions
+PASS fc nav species
+PASS fc nav map
+PASS fc nav settings
+PASS volunteer mini-nav removed
+PASS exists docs/PLATFORM-DESIGN-SYSTEM.md
+PASS exists docs/PLATFORM-COMPONENT-INVENTORY.md
+PASS exists docs/PLATFORM-UI-GUIDELINES.md
+PASS exists docs/PLATFORM-CONSISTENCY-CHANGELOG.md
+PASS exists docs/PLATFORM-CONSISTENCY-TECHNICAL-DEBT.md
+PASS exists docs/PLATFORM-APPS-NEEDING-WORK.md
+
+1 failure(s)
+
+===== RUN automation/test-platform-hardening.mjs =====
+RESULT: PASS
+PASS corrupt storage list safe
+PASS terrainbound redirects to fieldry
+PASS profile-boot escapes id
+
+All platform hardening tests passed.
+
+===== RUN automation/test-platform-reliability.mjs =====
+RESULT: PASS
+PASS map sets will-change
+PASS map destroy clears will-change
+PASS ForageCastFetch.formatFreshness
+
+All platform reliability tests passed.
+
+===== RUN automation/test-platform-integration.mjs =====
+RESULT: FAIL exit=1
+PASS ntf disabled by default
+PASS ntf blocked when disabled
+PASS ntf allowed when enabled
+PASS ntf list
+PASS graph seeds fieldry edges
+PASS graph derives from observations
+PASS foragecast workflows
+PASS workflow html
+PASS exists settings.html
+PASS exists design-system/js/platform/wds-platform-observations.js
+PASS exists design-system/js/platform/wds-platform-places.js
+PASS exists design-system/js/platform/wds-platform-search.js
+PASS exists design-system/js/platform/wds-platform-notifications.js
+PASS exists design-system/js/platform/wds-platform-graph.js
+PASS exists design-system/js/platform/wds-platform-workflows.js
+PASS exists design-system/js/platform/wds-platform-identity.js
+PASS exists docs/PLATFORM-INTEGRATION-REPORT.md
+PASS exists docs/PLATFORM-CROSS-APP-WORKFLOWS.md
+PASS exists docs/PLATFORM-KNOWLEDGE-GRAPH-ARCHITECTURE.md
+PASS exists docs/PLATFORM-SHARED-SERVICES-INVENTORY.md
+PASS exists docs/PLATFORM-INTEGRATION-CHANGELOG.md
+PASS exists docs/PLATFORM-INTEGRATION-OPPORTUNITIES.md
+PASS exists docs/PLATFORM-INTEGRATION-TECHNICAL-DEBT.md
+PASS wds.js loads observations
+PASS wds.js loads search
+PASS wds.js loads identity
+FAIL home has settings link — assertion failed
+FAIL home has studio search — assertion failed
+
+2 failure(s)
+
+===== RUN automation/test-sheds-biological-model.mjs =====
+RESULT: PASS
+PASS grid uses bio model
+PASS bio script in map
+PASS doc exists
+
+All biological model tests passed (33).
+
+===== RUN automation/test-sheds-planner.mjs =====
+RESULT: PASS
+PASS fab rail field controls
+PASS tools sheet present
+PASS primary add note control
+
+All sheds planner tests passed (38).
+
+===== RUN automation/test-sheds-map.mjs =====
+RESULT: FAIL exit=1
+PASS observation edit
+PASS shed_found details
+PASS search observation
+PASS filter by type
+PASS observation delete
+PASS default prefs balanced
+PASS grid builds without elevation
+PASS coverage limited without terrain/wx
+PASS search-completed reduces priority when enabled
+PASS heat changes when terrain weights change
+PASS explanation is textual
+PASS explanation avoids antler certainty
+PASS explanation mentions guidance or priority
+PASS reset defaults heat visible
+PASS no US geographic center leak
+PASS neutral view labeled in source
+PASS map shell progressive note
+PASS hidden overlay pattern for sheets
+PASS leaflet css present
+PASS opentopo attribution path ready
+PASS ethics sheet present
+PASS map-first tools sheet
+PASS map-first more button
+PASS map-first suggest glance
+FAIL skip link uses sheds-skip 
+PASS closeAllSheets includes validate
+PASS followUser pan away pattern
+PASS click debounce for obs
+
+Sheds map tests failed (1).
+
+===== RUN automation/test-sheds-field-ux.mjs =====
+RESULT: PASS
+PASS redesign rationale doc
+PASS autonomy show on map
+SKIP cdp (set SHEDS_CDP=1 to capture screenshots)
+
+All sheds field UX tests passed (30).
+
+===== RUN automation/test-sheds-sprint6.mjs =====
+RESULT: PASS
+PASS changelog present
+PASS planner exports
+PASS planner empty ok=false
+
+All Sheds Sprint 6 checks passed.
+
+===== RUN automation/test-sheds-integration-v1.1.mjs =====
+RESULT: PASS
+PASS scripts include presets+validation
+PASS offline mode control
+PASS a11y taxonomy pre
+
+All sheds integration v1.1 tests passed (30).
+
+===== RUN automation/test-photo-coach-shoot-review.mjs =====
+RESULT: PASS
+PASS coach loads importer bridge
+PASS folder input
+PASS single upload still supported
+
+All Photo Coach Shoot Review tests passed (41).
+
+===== RUN automation/test-photographer-profile.mjs =====
+RESULT: PASS
+PASS empty dna patient
+PASS migrate photo exclude default
+PASS migrate photo corrections
+
+All photographer profile tests passed.
+
+===== RUN automation/test-personalized-coaching.mjs =====
+RESULT: PASS
+PASS outing does not center landscape experiment
+PASS profile still woodland dominant
+PASS landscape remains low confidence / experimental
+
+All personalized coaching tests passed.
+
+===== RUN automation/test-photo-library.mjs =====
+RESULT: PASS
+PASS nav match photo-library
+PASS nav feature library
+PASS smoke photo-library
+
+All Photo Library tests passed (26).
+
+===== RUN automation/test-hidden-landscapes.mjs =====
+RESULT: PASS
+PASS engine has applyTransformation
+PASS engine has exportImage
+PASS drawSourceToOriginal does not wipe result canvas
+
+All Hidden Landscapes tests passed (134).
+
+===== RUN automation/test-platform-experience-rc2.mjs =====
+RESULT: FAIL exit=1
+PASS workflow volunteer-to-fieldry
+PASS discover module
+PASS articles module
+PASS articles manifest
+PASS articles hub
+PASS articles template
+PASS articles sample
+PASS category observe
+PASS category understand
+PASS category create
+PASS category share
+PASS category field-craft
+PASS category outdoor-intelligence
+PASS manifest categories
+PASS manifest search prep
+PASS docs experience
+PASS docs navigation
+PASS apps/shed-hunting/index.html related mount
+PASS apps/shed-hunting/index.html discover script
+PASS apps/signalterrain/index.html related mount
+PASS apps/signalterrain/index.html discover script
+PASS apps/waypoint-volunteer/index.html related mount
+PASS apps/waypoint-volunteer/index.html discover script
+PASS apps/scenes/index.html related mount
+PASS apps/scenes/index.html discover script
+PASS card actions css
+PASS pillars css
+PASS pillar min-height 44
+
+9 failure(s)
+
+===== RUN automation/check-morning-briefing.mjs =====
+RESULT: FAIL exit=1
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'ws' imported from /tmp/waypoint-studio-audit-2026-08-03/automation/check-morning-briefing.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at node:internal/modules/esm/loader:632:32 {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+
+===== RUN scripts/validate-surface-consistency.mjs =====
+RESULT: PASS
+PASS photo coach has no live.json photography fetch — engine photography dependency removed
+PASS kiosk normalize uses canonical photography module — uses canonical photography module
+PASS kiosk render uses normalized user photography — engine photography overlay removed
+
+SURFACE CONSISTENCY VALIDATION: PASS
+
+===== RUN scripts/generate-build-info.mjs =====
+RESULT: PASS
+  "commit": "59c09debbe8d9c7d36acf74607bd4ebfa55359fc",
+  "source": "local",
+  "workflowRunId": null,
+  "stampedHtml": 61
+}
+
+NOTE: test-dashboard-functional-tile-catalog.mjs absent on main (exists on feature/dashboard-functional-tile-catalog)
