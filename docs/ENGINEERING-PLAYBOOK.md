@@ -645,6 +645,23 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    on-device; FormSubmit leaves the device; geolocation is permissioned.
 4. **Automate the honesty gate** — posture checker + secret scan + CSP smoke.
 
+### 2026-08-03 — Platform consolidation (Dashboard foundation)
+
+**Branch:** `feature/platform-consolidation`  
+**Report:** `docs/platform/platform-consolidation-owner-review.md`
+
+1. **Integrate turnaround sprints 02–04 only** — public surface cleanup, static
+   security hardening, and the canonical `wds-home.js` Rebuild loader. Ignore
+   automated publish commits.
+2. **One Home loader** — `/` and `/apps/dashboard/` share `wds-home.js` +
+   `home-boot.js`; full `wds.js` remains for non-Home surfaces without legacy
+   Dashboard eras.
+3. **Keep Rebuild as the catalog extension point** — 32-tile catalog work should
+   land in `dashboard/rebuild/*` behind `wds-home.js`, not by reloading Outdoor OS
+   or the mega Home graph.
+4. **Asset validation matches Pages exclusions** — skip `automation/`, `private/`,
+   and other non-shipped trees so local probes cannot fail production gates.
+
 ### 2026-07-26 — Turnaround Sprint 4 canonical Dashboard loader
 
 **Branch:** `turnaround/sprint-04-canonical-dashboard-loader`  

@@ -17,3 +17,10 @@ loader) as of Turnaround Sprint 4 (2026-07-26).
 | `outdoor-intelligence/wds-oie-*.js` (brief/rules engines) | OIE | Unloaded on Home; OIP service path is used instead |
 
 **Canonical runtime:** `dashboard/rebuild/*` via `wds-home.js` + `apps/dashboard/js/home-boot.js`.
+
+---
+
+**Platform consolidation (2026-08-03):** These legacy trees remain in Git for history and
+isolated era tests. They stay **unloaded** on production Home. Do not delete without an
+owner decision — removal is separate from loader consolidation.
+

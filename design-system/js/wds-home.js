@@ -7,6 +7,12 @@
  * Obsolete Dashboard generations (V1/V2/V3/Outdoor OS/Recovery) remain in
  * Git under design-system/js/dashboard/ but are NOT registered here.
  *
+ * Catalog compatibility: tile catalog expansions live in
+ * dashboard/rebuild/wds-dashboard-rebuild-{registry,data,prefs,customize}.js
+ * (same paths this loader already registers). Feature branches that grow the
+ * 32-tile catalog should keep using wds-home.js — do not reintroduce full wds.js
+ * on Home.
+ *
  * Used by: /index.html and /apps/dashboard/index.html
  */
 (function () {
