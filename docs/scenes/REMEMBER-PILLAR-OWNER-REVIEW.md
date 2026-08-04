@@ -113,6 +113,6 @@ node automation/test-scenes-remember-pillar.mjs
 
 ## Confirmation
 
-- **Pushed:** feature branch only (see tip SHA on commit)  
+- **Pushed tip:**  (feature branch only)  
 - **No deployment**  
 - **No merge to main**
