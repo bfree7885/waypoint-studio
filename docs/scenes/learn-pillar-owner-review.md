@@ -1,7 +1,8 @@
 # Learn Pillar Owner Review
 
 **Branch:** `feature/scenes-learn-pillar-workflow`  
-**Tip:** `381d500` (381d500027a266851da08a33ff23486418831b35)  
+**Implementation:** `cda64a9` (cda64a95936b9b984dbca05a512d0355cc2b84ec)  
+**Branch HEAD at push:** see `git rev-parse origin/feature/scenes-learn-pillar-workflow`  
 **Date:** 2026-08-03  
 **Scope:** Connect existing photography modules into one Learn workflow. No new AI features.
 
