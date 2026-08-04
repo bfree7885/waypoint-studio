@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="css/scenes-foundation.css">
+  <link rel="stylesheet" href="../scenes/css/learn-pillar-workflow.css">
   <script>
     (function () {
       var q = new URLSearchParams(location.search);
@@ -35,21 +36,28 @@
         Review what you made, shape quiet atmosphere, keep lasting records, and explore other ways of seeing nature.
       </p>
       <p class="sf-hero__cta" style="margin-top:1.25rem">
-        <a class="wds-btn wds-btn--primary wds-btn--lg" href="library/">Open Scene Library</a>
+        <a class="wds-btn wds-btn--primary wds-btn--lg" href="../photo-library/">Import photographs</a>
+        <a class="wds-btn wds-btn--secondary wds-btn--lg" href="library/">Open Scene Library</a>
       </p>
     </header>
 
     <main id="main" class="sf-main">
+      <div id="lpw-rail"></div>
+
       <h2 class="sf-section-title" id="sf-pillars-title">Four paths</h2>
       <nav class="sf-pillars" aria-labelledby="sf-pillars-title">
         <article class="sf-pillar sf-pillar--learn">
           <p class="sf-pillar__kicker">LEARN</p>
-          <h3 class="sf-pillar__title">Photo Coach</h3>
+          <h3 class="sf-pillar__title">Photography workflow</h3>
           <p class="sf-pillar__copy">
-            Help me understand what works, what could improve, and what to try next — privately, on this device.
+            Importer → Photo Library → Scene Library → Photo Coach → Portfolio Assistant →
+            Portfolio Coach → Portfolio Builder → Portfolio Health. Every step after import
+            reads photographs already on this device.
           </p>
-          <p class="sf-pillar__status sf-pillar__status--live">Available now</p>
-          <a class="wds-btn wds-btn--primary" href="../photo-coach/">Open Photo Coach</a>
+          <p class="sf-pillar__status sf-pillar__status--live">Wired · existing modules</p>
+          <a class="wds-btn wds-btn--primary" href="../photo-library/">Start in Photo Library</a>
+          <a class="wds-btn wds-btn--secondary" href="../photo-coach/" style="margin-left:0.5rem">Photo Coach</a>
+          <a class="wds-btn wds-btn--secondary" href="../scenes/portfolio/" style="margin-left:0.5rem">Portfolios</a>
         </article>
 
         <article class="sf-pillar sf-pillar--create">
@@ -98,5 +106,17 @@
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../scenes/js/learn-pillar-workflow.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointLearnPillarWorkflow) {
+        WaypointLearnPillarWorkflow.renderRail("lpw-rail", {
+          shellDepth: 2,
+          title: "Learn workflow",
+          compact: true
+        });
+      }
+    });
+  </script>
 </body>
 </html>

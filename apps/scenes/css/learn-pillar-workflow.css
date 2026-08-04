@@ -1,0 +1,132 @@
+/* Learn pillar workflow rail — shared across Scenes / Library / Portfolio */
+
+.lpw {
+  --lpw-ink: #e8ebe4;
+  --lpw-muted: #a7b0a3;
+  --lpw-line: rgba(232, 235, 228, 0.14);
+  --lpw-accent: #9be15d;
+  --lpw-panel: rgba(28, 34, 44, 0.72);
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border: 1px solid var(--lpw-line);
+  border-radius: 0.75rem;
+  background: var(--lpw-panel);
+}
+
+.lpw-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.lpw-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  color: var(--lpw-ink);
+}
+
+.lpw-meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--lpw-muted);
+}
+
+.lpw-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 900px) {
+  .lpw-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.lpw-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.65rem;
+  row-gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  background: rgba(18, 21, 26, 0.35);
+}
+
+.lpw-step.is-current {
+  border-color: rgba(155, 225, 93, 0.45);
+  background: rgba(155, 225, 93, 0.08);
+}
+
+.lpw-step.is-gated .lpw-step__label {
+  opacity: 0.55;
+}
+
+.lpw-step__num {
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--lpw-accent);
+  border: 1px solid rgba(155, 225, 93, 0.35);
+}
+
+.lpw-step__label {
+  grid-column: 2;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--lpw-ink);
+  text-decoration: none;
+}
+
+a.lpw-step__label:hover,
+a.lpw-step__label:focus-visible {
+  color: var(--lpw-accent);
+  outline: none;
+}
+
+.lpw-step__summary {
+  grid-column: 2;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--lpw-muted);
+}
+
+.lpw-empty {
+  margin: 1rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--lpw-accent);
+  color: var(--lpw-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.lpw-empty a {
+  color: var(--lpw-accent);
+}
+
+/* Light surfaces (portfolio / photo-library folio) */
+.pl-page .lpw,
+.pf-page .lpw,
+.scenes-page .lpw {
+  --lpw-ink: #1c222c;
+  --lpw-muted: #5a6570;
+  --lpw-line: rgba(28, 34, 44, 0.12);
+  --lpw-accent: #2f6b3a;
+  --lpw-panel: rgba(255, 255, 255, 0.72);
+}

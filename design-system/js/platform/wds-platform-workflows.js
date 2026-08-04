@@ -14,6 +14,51 @@
 
   var WORKFLOWS = [
     {
+      id: "learn-pillar-import-to-library",
+      from: "photo-library",
+      to: "scenes",
+      label: "Continue to Scene Library",
+      why: "Imported photographs become Scenes you can reopen without re-upload.",
+      pathFromRoot: "apps/waypoint-scenes/library/",
+      when: "after-import"
+    },
+    {
+      id: "learn-pillar-library-to-coach",
+      from: "photo-library",
+      to: "photo-coach",
+      label: "Review a shoot in Photo Coach",
+      why: "Coaching reads frames already in your private library index.",
+      pathFromRoot: "apps/photo-coach/",
+      when: "after-import"
+    },
+    {
+      id: "learn-pillar-coach-to-portfolio",
+      from: "photo-coach",
+      to: "scenes",
+      label: "Open Portfolio Assistant",
+      why: "Keepers and labels from review become portfolio candidate evidence.",
+      pathFromRoot: "apps/scenes/portfolio/assistant.html",
+      when: "after-session"
+    },
+    {
+      id: "learn-pillar-portfolio-builder",
+      from: "scenes",
+      to: "scenes",
+      label: "Build a purpose portfolio",
+      why: "Assemble ordered sets only from photographs already on this device.",
+      pathFromRoot: "apps/scenes/portfolio/builder.html",
+      when: "after-session"
+    },
+    {
+      id: "learn-pillar-portfolio-health",
+      from: "scenes",
+      to: "scenes",
+      label: "Check Portfolio Health",
+      why: "See balance and repetition across portfolios you already made.",
+      pathFromRoot: "apps/scenes/portfolio/health.html",
+      when: "after-session"
+    },
+    {
       id: "photo-coach-to-fieldry",
       from: "photo-coach",
       to: "fieldry",

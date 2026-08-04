@@ -85,6 +85,63 @@
     if (input) input.click();
   }
 
+  function libraryImagesFromIndex() {
+    try {
+      if (global.WaypointPhotoLibraryEngine) {
+        var eng = global.WaypointPhotoLibraryEngine.get && global.WaypointPhotoLibraryEngine.get();
+        if (eng && eng.list) return eng.list() || [];
+      }
+      if (global.WaypointPhotoLibraryStore && global.WaypointPhotoLibraryStore.loadIndex) {
+        return global.WaypointPhotoLibraryStore.loadIndex() || [];
+      }
+      var raw = global.localStorage && global.localStorage.getItem("waypoint-photo-library-index-v1");
+      if (!raw) return [];
+      var parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function ingestFromPhotoLibrary() {
+    var Ingest = global.WaypointSceneIngest;
+    if (!Ingest || !Ingest.ingestFromLibraryFolder) {
+      if (mounts.status) {
+        mounts.status.hidden = false;
+        mounts.status.textContent = "Scene ingest is unavailable.";
+      }
+      return;
+    }
+    var images = libraryImagesFromIndex();
+    if (!images.length) {
+      if (mounts.status) {
+        mounts.status.hidden = false;
+        mounts.status.textContent =
+          "Photo Library index is empty on this device. Import photographs first, then create a Scene.";
+      }
+      return;
+    }
+    var result = Ingest.ingestFromLibraryFolder({
+      title: "From Photo Library",
+      importSource: (global.WaypointSceneModels && global.WaypointSceneModels.SOURCE &&
+        global.WaypointSceneModels.SOURCE.importedLibrary) || "imported-library",
+      images: images.slice(0, 200)
+    });
+    if (!result.ok) {
+      if (mounts.status) {
+        mounts.status.hidden = false;
+        mounts.status.textContent = result.error || "Could not build a Scene from the library.";
+      }
+      return;
+    }
+    if (mounts.status) {
+      mounts.status.hidden = false;
+      mounts.status.textContent =
+        "Created Scene from Photo Library — " + result.photoCount + " photographs.";
+    }
+    global.location.href = "../scene/?id=" + encodeURIComponent(result.scene.id);
+  }
+
   function onFolderSelected(ev) {
     var files = ev.target.files;
     if (!files || !files.length) return;
@@ -132,6 +189,8 @@
     }
     var importBtn = $("sl-import-btn");
     if (importBtn) importBtn.addEventListener("click", triggerImport);
+    var fromLib = $("sl-from-library-btn");
+    if (fromLib) fromLib.addEventListener("click", ingestFromPhotoLibrary);
     var input = $("sl-folder-input");
     if (input) input.addEventListener("change", onFolderSelected);
 

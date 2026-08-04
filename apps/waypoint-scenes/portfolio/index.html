@@ -1,77 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" data-product="scenes" data-scenes-pillar="portfolio">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio Advisor — foundation for best-of selection, duplicate grouping, balanced portfolios, and storytelling from a Scene.">
-  <title>Portfolio Advisor — Foundation · Waypoint Scenes</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../design-system/css/wds.css">
-  <link rel="stylesheet" href="../css/scenes-foundation.css">
-  <link rel="stylesheet" href="../css/scene-library.css">
-</head>
-<body>
-  <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
-    <div data-wds-app-global data-shell-depth="2"></div>
-    <div data-wds-app-local data-shell-depth="2"></div>
-
-    <main id="main" class="sl-foundation">
-      <p class="sl-foundation__eyebrow"><a href="../library/">Scene Library</a> · Portfolio Advisor</p>
-      <h1>Portfolio Advisor</h1>
-      <p>
-        A calm assistant that works on a Scene — not a separate upload flow.
-        It will help you choose a balanced set of photographs and explain why.
-      </p>
-      <p class="sl-foundation__note" role="status" id="sl-scene-note">
-        <strong>Foundation in progress.</strong>
-        Selection is not available yet. This page describes the intended capabilities so the path is clear.
-        No fake results or invented rankings are shown.
-      </p>
-      <h2>Upcoming capabilities</h2>
-      <ul class="sl-foundation__list">
-        <li>Best-of selection from a Scene</li>
-        <li>Duplicate and near-duplicate grouping</li>
-        <li>Balanced portfolios (variety of subject, light, distance)</li>
-        <li>Storytelling sequences</li>
-        <li>Portfolio reasoning — why a frame belongs (or doesn’t)</li>
-      </ul>
-      <div class="sl-foundation__actions">
-        <a class="wds-btn wds-btn--primary" id="sl-back-scene" href="../library/">Back to Scene Library</a>
-        <button type="button" class="wds-btn wds-btn--secondary" disabled aria-disabled="true">
-          Start selection (not available yet)
-        </button>
-      </div>
-    </main>
-
-    <div data-wds-app-footer data-shell-depth="2"></div>
-  </div>
-
-  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <meta http-equiv="refresh" content="0;url=../../scenes/portfolio/">
+  <link rel="canonical" href="../../scenes/portfolio/">
+  <title>Portfolio — Redirect · Waypoint Scenes</title>
   <script>
     (function () {
-      try {
-        var q = new URLSearchParams(location.search);
-        var id = q.get("sceneId");
-        if (id) {
-          var note = document.getElementById("sl-scene-note");
-          if (note) {
-            note.innerHTML = "<strong>Foundation in progress.</strong> Linked Scene: <code>" +
-              id.replace(/[<>&\"']/g, "") +
-              "</code>. Selection is not available yet — when it ships, it will read this Scene directly.";
-          }
-          var back = document.getElementById("sl-back-scene");
-          if (back) back.href = "../scene/?id=" + encodeURIComponent(id);
-        }
-      } catch (e) { /* ignore */ }
+      var target = "../../scenes/portfolio/" + location.search + location.hash;
+      location.replace(target);
+    })();
+  </script>
+</head>
+<body>
+  <p>
+    Portfolio Advisor now lives with the Learn portfolio suite.
+    <a id="lpw-continue" href="../../scenes/portfolio/">Continue to Portfolios</a>
+  </p>
+  <script>
+    (function () {
+      var a = document.getElementById("lpw-continue");
+      if (a) a.href = "../../scenes/portfolio/" + location.search + location.hash;
     })();
   </script>
 </body>

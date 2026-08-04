@@ -121,7 +121,7 @@
           "/apps/photo-library"
         ],
         "category": "photography",
-        "description": "Flagship photography — Learn with Photo Coach, Create Living Scenes, Remember Outdoor Journals, Explore Hidden Landscapes.",
+        "description": "Flagship photography — Learn workflow from imported photographs through Scene Library, Photo Coach, and purpose portfolios; Create Living Scenes; Remember Outdoor Journals; Explore Hidden Landscapes.",
         "status": "live",
         "features": [
           {
@@ -133,6 +133,15 @@
               "/apps/waypoint-scenes/index",
               "/apps/scenes/?$",
               "/apps/scenes/index"
+            ]
+          },
+          {
+            "id": "photo-library",
+            "label": "Photo Library",
+            "href": "apps/photo-library/",
+            "match": [
+              "/apps/scenes/photo-library",
+              "/apps/photo-library"
             ]
           },
           {
@@ -151,7 +160,17 @@
             "match": [
               "/apps/scenes/photo-coach",
               "/apps/photo-coach/?$",
-              "/apps/photo-coach/index"
+              "/apps/photo-coach/index",
+              "/apps/photo-coach/review-v2"
+            ]
+          },
+          {
+            "id": "portfolio-suite",
+            "label": "Portfolios",
+            "href": "apps/scenes/portfolio/",
+            "match": [
+              "/apps/scenes/portfolio",
+              "/apps/waypoint-scenes/portfolio"
             ]
           },
           {
@@ -173,14 +192,6 @@
             ]
           },
           {
-            "id": "portfolio-advisor",
-            "label": "Portfolio Advisor",
-            "href": "apps/waypoint-scenes/portfolio/",
-            "match": [
-              "/apps/waypoint-scenes/portfolio"
-            ]
-          },
-          {
             "id": "hidden-landscapes",
             "label": "Hidden Landscapes",
             "href": "apps/waypoint-scenes/explore/",
@@ -190,22 +201,13 @@
               "/apps/hidden-landscapes",
               "/apps/animal-vision"
             ]
-          },
-          {
-            "id": "photo-library",
-            "label": "Your photographs",
-            "href": "apps/photo-library/",
-            "match": [
-              "/apps/scenes/photo-library",
-              "/apps/photo-library"
-            ]
           }
         ],
         "purpose": "Observe carefully, discover what to look for, understand how you see — every shoot becomes a Scene.",
         "maturity": "Flagship",
         "startHere": {
-          "label": "Open Scene Library",
-          "href": "apps/waypoint-scenes/library/"
+          "label": "Import photographs",
+          "href": "apps/photo-library/"
         },
         "journeys": [
           "observe",

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../../../design-system/css/wds.css">
   <link rel="stylesheet" href="../css/scenes-foundation.css">
   <link rel="stylesheet" href="../css/scene-library.css">
+  <link rel="stylesheet" href="../../scenes/css/learn-pillar-workflow.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
@@ -25,13 +26,19 @@
           <p class="sl-head__eyebrow"><a href="../">Scenes</a> · Library</p>
           <h1 class="sl-head__title">Scene Library</h1>
           <p class="sl-head__lead">
-            Every imported shoot becomes a Scene. Open one once — Photo Coach, Portfolio Advisor,
+            Every imported shoot becomes a Scene. Open one once — Photo Coach, Portfolio tools,
             Living Scenes, and Outdoor Journals all grow from it. No re-uploading.
           </p>
         </div>
-        <button type="button" class="wds-btn wds-btn--primary" id="sl-import-btn">Import a folder</button>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
+          <a class="wds-btn wds-btn--ghost" href="../../photo-library/">Photo Library</a>
+          <button type="button" class="wds-btn wds-btn--secondary" id="sl-from-library-btn">Create Scene from library</button>
+          <button type="button" class="wds-btn wds-btn--primary" id="sl-import-btn">Import a folder</button>
+        </div>
         <input type="file" id="sl-folder-input" accept="image/jpeg,image/png,image/webp,image/heic" multiple webkitdirectory directory hidden>
       </header>
+
+      <div id="lpw-rail"></div>
 
       <div class="sl-controls" role="search">
         <label class="wds-sr-only" for="sl-search">Search Scenes</label>
@@ -76,9 +83,18 @@
   <script src="../js/scene-library/scene-ingest.js"></script>
   <script src="../js/scene-library/scene-format.js"></script>
   <script src="../js/scene-library/scene-library-ui.js"></script>
+  <script src="../../scenes/js/learn-pillar-workflow.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (window.WaypointSceneLibraryUI) window.WaypointSceneLibraryUI.mount();
+      if (window.WaypointLearnPillarWorkflow) {
+        WaypointLearnPillarWorkflow.renderRail("lpw-rail", {
+          current: "scene-library",
+          shellDepth: 3,
+          title: "Learn workflow",
+          compact: true
+        });
+      }
     });
   </script>
 </body>

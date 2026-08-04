@@ -107,7 +107,8 @@
       '<nav class="sd-actions" aria-labelledby="sd-actions-title">' +
         '<a class="wds-btn wds-btn--primary" href="#sd-grid" id="sd-action-review">Review Shoot</a>' +
         '<a class="wds-btn wds-btn--secondary" href="/apps/photo-coach/?sceneId=' + id + '">Photo Coach</a>' +
-        '<a class="wds-btn wds-btn--secondary" href="../portfolio/?sceneId=' + id + '">Portfolio Advisor</a>' +
+        '<a class="wds-btn wds-btn--secondary" href="/apps/scenes/portfolio/assistant.html?sceneId=' + id + '">Portfolio Assistant</a>' +
+        '<a class="wds-btn wds-btn--secondary" href="/apps/scenes/portfolio/?sceneId=' + id + '">Portfolios</a>' +
         '<a class="wds-btn wds-btn--secondary" href="../create/?sceneId=' + id + '">Living Scenes</a>' +
         '<a class="wds-btn wds-btn--secondary" href="../remember/?sceneId=' + id + '">Outdoor Journals</a>' +
         '<a class="wds-btn wds-btn--ghost" href="../export/?sceneId=' + id + '">Export</a>' +
@@ -259,7 +260,7 @@
             (photo.favorite ? "Unfavorite" : "Favorite") +
           "</button>" +
           '<a class="wds-btn wds-btn--secondary wds-btn--sm" href="/apps/photo-coach/?sceneId=' + id + "&photoId=" + pid + '">Photo Coach</a>' +
-          '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="../portfolio/?sceneId=' + id + "&photoId=" + pid + '">Portfolio</a>' +
+          '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="/apps/scenes/portfolio/assistant.html?sceneId=' + id + "&photoId=" + pid + '">Portfolio</a>' +
         "</div>" +
         '<p class="sd-detail__notes"><strong>Notes</strong> — placeholder. Per-photo notes land in a later sprint.</p>' +
         '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="sd-detail-close">Close</button>' +

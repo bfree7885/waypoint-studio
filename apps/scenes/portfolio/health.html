@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-product="scenes" data-scenes-page="portfolio-health">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio Health — reflective observations about the shape of your body of work. Local-first; no scores or rankings.">
+  <title>Portfolio Health — Waypoint Scenes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds.css">
+  <link rel="stylesheet" href="../css/scenes-home.css">
+  <link rel="stylesheet" href="../css/learn-pillar-workflow.css">
+  <link rel="stylesheet" href="css/scenes-portfolio.css">
+  <link rel="stylesheet" href="css/scenes-portfolio-health.css">
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to portfolio health</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="2">
+    <div data-wds-app-global data-shell-depth="2"></div>
+    <div data-wds-app-local data-shell-depth="2"></div>
+
+    <main id="main" class="pf-page pfh-page">
+      <header class="pf-hero">
+        <p class="wds-eyebrow">
+          <a href="../">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          <a href="./">Portfolios</a>
+          <span aria-hidden="true"> · </span>
+          Portfolio Health
+        </p>
+        <h1 class="pf-hero__title">Body of work</h1>
+        <p class="pf-hero__lead">
+          Reflective observations about the shape of your portfolios — concentration, repetition,
+          metadata coverage, and optional opportunities. Patterns, not grades. No portfolio score.
+        </p>
+        <p class="pf-trust" role="note">Private by default. Local analysis only. Your decisions stay yours.</p>
+      </header>
+
+      <div id="lpw-rail"></div>
+
+
+      <p class="pf-status" id="pfh-status" role="status" aria-live="polite" hidden></p>
+      <div class="pfh-progress" id="pfh-progress" hidden role="status" aria-live="polite">
+        <p id="pfh-progress-text">Analyzing…</p>
+      </div>
+
+      <!-- Scope -->
+      <section id="pfh-scope" class="pfh-panel" aria-label="Choose what to analyze">
+        <h2 class="pf-section-title">1. Choose scope</h2>
+        <p class="pf-hint">Analyze one portfolio, several, all of them, or — when useful — compare against your library. Photographs are never invented.</p>
+        <div class="pfh-field">
+          <label for="pfh-scope-type">Scope</label>
+          <select id="pfh-scope-type" class="pfh-select">
+            <option value="one">One portfolio</option>
+            <option value="multiple">Multiple portfolios</option>
+            <option value="all">All portfolios</option>
+            <option value="compare">Compare portfolios (descriptive)</option>
+          </select>
+        </div>
+        <div class="pfh-field" id="pfh-portfolio-wrap">
+          <label for="pfh-portfolios">Portfolio(s)</label>
+          <select id="pfh-portfolios" class="pfh-select" multiple size="6" aria-describedby="pfh-portfolio-hint"></select>
+          <p class="pf-hint" id="pfh-portfolio-hint">Hold Ctrl/Cmd to select multiple when comparing or analyzing several.</p>
+        </div>
+        <div class="pfh-actions">
+          <button type="button" class="wds-btn wds-btn--primary" id="pfh-analyze">Analyze</button>
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfh-refresh" hidden>Refresh analysis</button>
+          <a class="wds-btn wds-btn--ghost" href="./">Back to portfolios</a>
+          <a class="wds-btn wds-btn--ghost" href="builder.html">Open Builder</a>
+          <a class="wds-btn wds-btn--ghost" href="assistant.html">Open Assistant</a>
+        </div>
+        <div id="pfh-empty-portfolios" class="pf-empty" hidden>
+          <h2>No portfolios yet</h2>
+          <p>Create a purpose portfolio from your Photo Library first. Health does not invent sample sets.</p>
+          <p><a class="wds-btn wds-btn--primary" href="./">Create a portfolio</a></p>
+        </div>
+      </section>
+
+      <!-- Dimensions -->
+      <section id="pfh-dimensions" class="pfh-panel" aria-label="Analysis dimensions" hidden>
+        <h2 class="pf-section-title">2. Dimensions</h2>
+        <p class="pf-hint">Turn dimensions on or off. Incomplete-metadata dimensions can be excluded so Health does not stretch thin data.</p>
+        <div id="pfh-dim-list" class="pfh-dim-list"></div>
+        <label class="pfh-check">
+          <input type="checkbox" id="pfh-exclude-incomplete">
+          Exclude dimensions with incomplete metadata
+        </label>
+      </section>
+
+      <!-- Overview -->
+      <section id="pfh-overview" class="pfh-panel" aria-label="Health overview" hidden>
+        <h2 class="pf-section-title">Overview</h2>
+        <p class="pf-hint">Only areas backed by real data appear as available. There is no universal health score.</p>
+        <ul id="pfh-overview-list" class="pfh-overview-list"></ul>
+        <div id="pfh-chart" class="pfh-chart" hidden>
+          <h3 class="pfh-subhead">Orientation mix</h3>
+          <div id="pfh-chart-bars" class="pfh-bars" role="img" aria-label=""></div>
+          <p id="pfh-chart-sr" class="wds-sr-only"></p>
+        </div>
+        <ul id="pfh-limitations" class="pfh-limitations" aria-label="Analysis limitations"></ul>
+      </section>
+
+      <!-- Insights -->
+      <section id="pfh-insights" class="pfh-panel" aria-label="Insights" hidden>
+        <div class="pfh-insights-head">
+          <h2 class="pf-section-title">Insights</h2>
+          <div class="pfh-filter" role="group" aria-label="Filter insights">
+            <label for="pfh-filter-cat">Category</label>
+            <select id="pfh-filter-cat" class="pfh-select">
+              <option value="all">All</option>
+              <option value="concentration">Concentration</option>
+              <option value="underrepresentation">Underrepresentation</option>
+              <option value="repetition">Repetition</option>
+              <option value="metadata">Metadata</option>
+              <option value="purpose-alignment">Purpose alignment</option>
+              <option value="strength">Strength</option>
+              <option value="opportunity">Opportunities</option>
+              <option value="saved">Saved</option>
+              <option value="dismissed">Dismissed</option>
+            </select>
+          </div>
+        </div>
+        <div id="pfh-insight-list" class="pfh-insight-list"></div>
+        <p id="pfh-insights-empty" class="pf-hint" hidden>No insights match this filter. Insufficient evidence is stated honestly rather than filled in.</p>
+      </section>
+
+      <!-- Comparison -->
+      <section id="pfh-compare" class="pfh-panel" aria-label="Portfolio comparison" hidden>
+        <h2 class="pf-section-title">Portfolio comparison</h2>
+        <p class="pf-hint">Descriptive only — neither set is ranked or declared a winner.</p>
+        <div id="pfh-compare-table" class="pfh-compare-table"></div>
+        <ul id="pfh-compare-notes" class="pfh-limitations"></ul>
+      </section>
+
+      <!-- Detail drawer -->
+      <section id="pfh-detail" class="pfh-detail" hidden aria-label="Insight detail">
+        <div class="pfh-detail__bar">
+          <button type="button" class="wds-btn wds-btn--ghost" id="pfh-detail-back">Back to insights</button>
+        </div>
+        <article id="pfh-detail-body" class="pfh-detail__body"></article>
+        <div id="pfh-affected" class="pfh-affected" aria-label="Affected photographs"></div>
+        <div class="pfh-detail__actions" id="pfh-detail-actions"></div>
+      </section>
+
+      <!-- Confirm remove -->
+      <div id="pfh-confirm" class="pfh-confirm" hidden role="dialog" aria-modal="true" aria-labelledby="pfh-confirm-title">
+        <div class="pfh-confirm__card">
+          <h2 id="pfh-confirm-title">Remove from portfolio?</h2>
+          <p id="pfh-confirm-text">This removes the photograph from the portfolio membership. The original stays in Photo Library.</p>
+          <div class="pfh-actions">
+            <button type="button" class="wds-btn wds-btn--primary" id="pfh-confirm-ok">Remove</button>
+            <button type="button" class="wds-btn wds-btn--ghost" id="pfh-confirm-cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+    <div data-wds-app-footer data-shell-depth="2"></div>
+  </div>
+
+  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../js/learn-pillar-workflow.js" defer></script>
+  <script src="../../photo-library/js/pl-models.js" defer></script>
+  <script src="../../photo-library/js/pl-store.js" defer></script>
+  <script src="js/portfolio-models.js" defer></script>
+  <script src="js/portfolio-store.js" defer></script>
+  <script src="js/portfolio-candidates.js" defer></script>
+  <script src="js/portfolio-engine.js" defer></script>
+  <script src="js/assistant-signals.js" defer></script>
+  <script src="js/assistant-recommend.js" defer></script>
+  <script src="js/assistant-session.js" defer></script>
+  <script src="js/coach-compare.js" defer></script>
+  <script src="js/coach-generate.js" defer></script>
+  <script src="js/coach-store.js" defer></script>
+  <script src="js/builder-catalog.js" defer></script>
+  <script src="js/builder-engine.js" defer></script>
+  <script src="js/builder-session.js" defer></script>
+  <script src="js/health-catalog.js" defer></script>
+  <script src="js/health-engine.js" defer></script>
+  <script src="js/health-compare.js" defer></script>
+  <script src="js/health-store.js" defer></script>
+  <script src="js/health-ui.js" defer></script>
+  <script src="js/health-boot.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointLearnPillarWorkflow) {
+        WaypointLearnPillarWorkflow.renderRail("lpw-rail", {
+          current: "portfolio-health",
+          shellDepth: 3,
+          title: "Learn workflow",
+          compact: true
+        });
+      }
+    });
+  </script>
+</body>
+</html>

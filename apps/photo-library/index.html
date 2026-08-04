@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="css/photo-library.css">
   <link rel="stylesheet" href="css/photo-library-folio.css">
+  <link rel="stylesheet" href="../scenes/css/learn-pillar-workflow.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to library</a>
@@ -28,14 +29,19 @@
         </p>
         <h1 class="pl-hero__title">Your photographs, once.</h1>
         <p class="pl-hero__lead">
-          A quiet local catalog — the shared home for Photo Coach, Hidden Landscapes, and what comes next.
+          A quiet local catalog — the shared home for Scene Library, Photo Coach, and purpose portfolios.
           Search, collect, and open a frame into a tool without uploading it again.
         </p>
         <p class="pl-trust" role="note">Stored on this device. No cloud sync. No public sharing.</p>
       </header>
 
+      <div id="lpw-rail"></div>
+
       <div class="pl-toolbar" id="pl-toolbar">
         <button type="button" class="wds-btn wds-btn--primary" id="pl-import">Import photographs</button>
+        <a class="wds-btn wds-btn--ghost" href="../waypoint-scenes/library/">Scene Library</a>
+        <a class="wds-btn wds-btn--ghost" href="../photo-coach/">Photo Coach</a>
+        <a class="wds-btn wds-btn--ghost" href="../scenes/portfolio/">Portfolios</a>
         <button type="button" class="wds-btn wds-btn--ghost" data-pl-view="grid" aria-pressed="true">Grid</button>
         <button type="button" class="wds-btn wds-btn--ghost" data-pl-view="list" aria-pressed="false">List</button>
         <button type="button" class="wds-btn wds-btn--ghost" id="pl-selection-mode" aria-pressed="false">Select</button>
@@ -91,5 +97,18 @@
   <script src="js/pl-engine.js" defer></script>
   <script src="js/pl-ui.js" defer></script>
   <script src="js/pl-boot.js" defer></script>
+  <script src="../scenes/js/learn-pillar-workflow.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WaypointLearnPillarWorkflow) {
+        WaypointLearnPillarWorkflow.renderRail("lpw-rail", {
+          current: "photo-library",
+          shellDepth: 2,
+          title: "Learn workflow",
+          compact: true
+        });
+      }
+    });
+  </script>
 </body>
 </html>
