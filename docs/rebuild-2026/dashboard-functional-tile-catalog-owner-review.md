@@ -6,7 +6,7 @@
 **Starting SHA (feature work):** `59c09de` (matched the prior `main` tip)
 **Pre-rebase tip (this integration pass):** `c975958`
 **Post-rebase tip:** `c975958` (already contained `origin/main`; rebase was a no-op)
-**Docs-gap / verification tip:** _stamped on the commit that adds `docs/dashboard/`_
+**Docs-gap / verification tip:** `d1a36ce`
 
 ---
 
@@ -379,7 +379,7 @@ introduce layout shift.
 - **Post-rebase tip:** `c975958` (already on `origin/main`)
 - **Production-readiness docs SHA:** `227d33f`
 - **Readiness stamp SHA:** `00d95f6`
-- **Docs-gap / re-verification SHA:** _stamped on landing commit_
+- **Docs-gap / re-verification SHA:** `d1a36ce`
 - **Merge SHA:** _stamped on merge — do not merge in this pass_
 - **Production SHA:** _stamped after deploy — do not deploy in this pass_
 - **Live URLs checked:** _recorded after deploy_

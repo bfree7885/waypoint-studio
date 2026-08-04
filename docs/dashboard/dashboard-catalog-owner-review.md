@@ -16,7 +16,7 @@
 | Tests | `a178291` |
 | Initial docs | `e7a4b15` |
 | Prior tip (readiness stamp) | `00d95f6` |
-| This verification / docs-gap tip | _stamped on the commit that lands this file_ |
+| This verification / docs-gap tip | `d1a36ce` |
 
 **Rebase:** already contains `origin/main` @ `59c09de` — rebase is a **no-op** (0 behind, 8 ahead before this docs pass). No conflicts.
 

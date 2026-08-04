@@ -342,7 +342,7 @@ chronological commit order.
   longer describe the catalog as “illustrative.”
 - **Follow-up work:** Local sunrise/sunset when NWS answers; owner merge/deploy
   gate unchanged.
-- **Commit:** _(stamped on landing commit)_
+- **Commit:** `d1a36ce`
 
 ------------------------------------------------------------------------
 
