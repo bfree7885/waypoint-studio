@@ -3,6 +3,7 @@
 **Date:** 2026-08-03  
 **Branch:** `feature/platform-consolidation`  
 **Base:** `origin/main` @ `59c09debbe8d9c7d36acf74607bd4ebfa55359fc`  
+**Tip:** `f80cb77859545347887dde9e147474fa081f2a52`  
 **Status:** Ready for owner review — **not** merged to main, **not** deployed.
 
 ---
