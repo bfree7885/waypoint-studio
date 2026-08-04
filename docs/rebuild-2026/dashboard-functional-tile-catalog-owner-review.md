@@ -1,8 +1,75 @@
 # Dashboard — Functional Tile Catalog Expansion (Owner Review)
 
-**Status:** implemented, verified, pending merge and production deploy
+**Status:** implemented, rebased onto `origin/main`, production-readiness verified — pending merge and production deploy
 **Branch:** `feature/dashboard-functional-tile-catalog`
-**Starting SHA:** `59c09de` (matched the prior `main` tip)
+**Starting SHA (feature work):** `59c09de` (matched the prior `main` tip)
+**Pre-rebase tip (this integration pass):** `c975958`
+**Post-rebase tip:** `c975958` (already contained `origin/main`; rebase was a no-op)
+
+---
+
+## 0. Production-readiness integration (2026-08-03)
+
+### Rebase
+
+| Item | Value |
+| --- | --- |
+| Base | `origin/main` @ `59c09de` |
+| Feature tip before rebase | `c975958` |
+| Merge-base | `59c09de` (= `origin/main`) |
+| Outcome | **Already up to date** — no replay, no conflicts |
+| Notable conflicts | None |
+
+Feature commits remain: `1164abc` (catalog), `a178291` (tests), `e7a4b15` / `c7b2525` (docs), plus two unrelated live-engine publish commits (`83ec742`, `c975958` `[skip ci]`).
+
+### Working tiles
+
+| Metric | Count |
+| --- | --- |
+| **Working / catalogued tiles** | **32** |
+| Default-visible | 11 |
+| Categories | 9 |
+| **Removed this pass** | **none** (rebuild registry had no duplicates or obsolete stubs) |
+| **Disabled / Coming soon / placeholder** | **none** |
+
+Every registry ID maps 1:1 to `liveIds` and a `buildWidgetPayload` builder. Layout sizes remain the three allowed values (`standard` / `wide` / `featured`); this catalog uses `standard` for all 32. Legacy Outdoor OS / V2 / V3 catalogs stay in tree for historical surfaces and are **not** part of the Rebuild product path — they were left alone so OS/V2/V3 tests keep passing.
+
+### Preserved
+
+- All 32 working tiles and category-grouped customization
+- Mobile layout repair (full-width tiles, one column)
+- Today Outside (`wds-dashboard-rebuild-today.js`)
+- Rebuild architecture (`wds-dashboard-rebuild*`, registry, prefs, workspace, deepeners, kiosk)
+- Tile layout + mobile editing contracts
+
+### Test summary (this pass)
+
+| Suite | Result |
+| --- | --- |
+| `test-dashboard-functional-tile-catalog.mjs` | **177 pass / 0 fail** |
+| `test-dashboard-tile-layout-repair.mjs` | **48 pass / 0 fail** |
+| `test-dashboard-mobile-tile-editing.mjs` | **39 pass / 0 fail** |
+| `test-dashboard-rebuild-phase1.mjs` | **88 pass / 0 fail** |
+| `test-dashboard-rebuild-phase2.mjs` | **97 pass / 0 fail** |
+| `test-dashboard-rebuild-phase3.mjs` | **102 pass / 0 fail** |
+| `test-dashboard-reliability.mjs` | **41 pass / 0 fail** |
+| `test-dashboard-os-copy.mjs` | **28 pass / 0 fail** |
+| `test-dashboard-os-interpret.mjs` | **80 pass / 0 fail** |
+| `test-dashboard-os-routes.mjs` | **36 pass / 0 fail** |
+| `test-dashboard-v2.mjs` | **59 pass / 0 fail** |
+| `test-dashboard-v3.mjs` | **50 pass / 0 fail** |
+| `test-dashboard-today-outside.mjs` | **28 pass / 4 fail** (stale Outdoor OS asserts; same baseline on `origin/main`) |
+| **Dashboard green total (excl. stale today-outside)** | **845 pass / 0 fail** |
+
+Stale today-outside failures (not introduced here; documented on main): Outdoor OS CSS load, empty dashboard nav, product title "Outside", home-boot outdoor-dashboard-only sections.
+
+### Screenshots
+
+Existing browser captures under `docs/rebuild-2026/dashboard-functional-tile-catalog/` remain the authoritative visual record (`verification.json` `ok: true`, 26 PNGs including desktop default/all-tiles/customize and mobile 320–430 + apps/dashboard).
+
+### Ship gate
+
+- **Do not merge. Do not deploy.** This pass only rebased/verified and refreshed this owner review.
 
 ---
 
@@ -305,7 +372,10 @@ introduce layout shift.
 
 - **Branch:** `feature/dashboard-functional-tile-catalog`
 - **Implementation SHA:** `e7a4b15` (feature `1164abc`, tests `a178291`, docs `e7a4b15`)
-- **Merge SHA:** _stamped on merge_
-- **Production SHA:** _stamped after deploy_
+- **Pre-rebase tip (integration):** `c975958`
+- **Post-rebase tip:** `c975958` (already on `origin/main`)
+- **Production-readiness docs SHA:** _stamped on the integration commit_
+- **Merge SHA:** _stamped on merge — do not merge in this pass_
+- **Production SHA:** _stamped after deploy — do not deploy in this pass_
 - **Live URLs checked:** _recorded after deploy_
 - **Clean-browser verification:** _recorded after deploy_
