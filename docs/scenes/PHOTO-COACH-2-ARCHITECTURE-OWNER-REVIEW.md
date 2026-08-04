@@ -13,7 +13,7 @@
 | **Repository** | `/home/bryan/Projects/waypoint-studio` |
 | **Branch** | `feature/scenes-photo-coach-2-architecture` |
 | **Starting SHA** | `89129f4fa7cd19b583e43b90ae9642fdcfb7650f` (`feature/scenes-sprint3-scene-library` tip) |
-| **Implementation SHA** | _(filled after feature commit)_ |
+| **Implementation SHA** | `cd787d23d3c5f25ce65e2e9e383f5053afa1f6d2` |
 | **Tip SHA** | _(filled after docs stamp commit, if any)_ |
 | **Working-tree note** | Unrelated local placeholder SVG edits may remain uncommitted; not part of this sprint. |
 
