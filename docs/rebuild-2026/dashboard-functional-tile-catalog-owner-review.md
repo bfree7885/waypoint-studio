@@ -374,7 +374,7 @@ introduce layout shift.
 - **Implementation SHA:** `e7a4b15` (feature `1164abc`, tests `a178291`, docs `e7a4b15`)
 - **Pre-rebase tip (integration):** `c975958`
 - **Post-rebase tip:** `c975958` (already on `origin/main`)
-- **Production-readiness docs SHA:** _stamped on the integration commit_
+- **Production-readiness docs SHA:** `227d33f`
 - **Merge SHA:** _stamped on merge — do not merge in this pass_
 - **Production SHA:** _stamped after deploy — do not deploy in this pass_
 - **Live URLs checked:** _recorded after deploy_
