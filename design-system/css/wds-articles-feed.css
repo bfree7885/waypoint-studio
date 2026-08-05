@@ -1,0 +1,298 @@
+/**
+ * Waypoint Articles feed styles — calm field reading cards.
+ */
+.waf {
+  --waf-ink: #1a2218;
+  --waf-muted: #5c6b58;
+  --waf-paper: #f7f5ef;
+  --waf-moss: #3f5d3a;
+  --waf-line: rgba(26, 34, 24, 0.12);
+  --waf-take: #eef3ea;
+  color: var(--waf-ink);
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.was-home .waf,
+.was-shell[data-product="studio-home"] .waf {
+  color: inherit;
+  --waf-ink: var(--home-ink, #f4f1ea);
+  --waf-muted: var(--home-ink-muted, rgba(244, 241, 234, 0.78));
+  --waf-paper: rgba(255, 255, 255, 0.04);
+  --waf-moss: var(--home-moss, #7a9b6a);
+  --waf-line: rgba(244, 241, 234, 0.14);
+  --waf-take: rgba(122, 155, 106, 0.12);
+}
+
+.waf-lede {
+  color: var(--waf-muted);
+  max-width: 42rem;
+  line-height: 1.55;
+  margin: 0 0 1.25rem;
+}
+
+.waf-health {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--waf-muted);
+  margin: 0 0 0.75rem;
+}
+
+.waf-health__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #8a6a2f;
+}
+
+.waf-health[data-health="ok"] .waf-health__dot {
+  background: var(--waf-moss);
+}
+
+.waf-health[data-health="partial"] .waf-health__dot,
+.waf-health[data-health="stale"] .waf-health__dot {
+  background: #b0892e;
+}
+
+.waf-health[data-health="unavailable"] .waf-health__dot {
+  background: #9a4a3a;
+}
+
+.waf-toolbar {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--waf-line);
+}
+
+.waf-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.waf-view {
+  appearance: none;
+  border: 1px solid var(--waf-line);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+}
+
+.waf-view.is-active,
+.waf-view[aria-selected="true"] {
+  border-color: var(--waf-moss);
+  color: var(--waf-moss);
+}
+
+.waf-filters {
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 720px) {
+  .waf-filters {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+}
+
+.waf-filter {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.78rem;
+  color: var(--waf-muted);
+}
+
+.waf-filter input,
+.waf-filter select {
+  font: inherit;
+  color: inherit;
+  background: var(--waf-paper);
+  border: 1px solid var(--waf-line);
+  padding: 0.55rem 0.65rem;
+  border-radius: 0.2rem;
+}
+
+.waf-count {
+  font-size: 0.8rem;
+  color: var(--waf-muted);
+  margin: 0;
+}
+
+.waf-count a {
+  color: inherit;
+}
+
+.waf-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.waf-card {
+  background: var(--waf-paper);
+  border: 1px solid var(--waf-line);
+  border-radius: 0.35rem;
+  padding: 1.15rem 1.2rem 1.25rem;
+}
+
+.waf-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+}
+
+.waf-chip {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--waf-line);
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.15rem;
+  color: var(--waf-muted);
+}
+
+.waf-chip--geo {
+  border-color: color-mix(in srgb, var(--waf-moss) 55%, var(--waf-line));
+  color: var(--waf-moss);
+}
+
+.waf-card__title {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 560;
+  margin: 0 0 0.45rem;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.waf-card__source {
+  font-size: 0.85rem;
+  color: var(--waf-muted);
+  margin: 0 0 0.9rem;
+}
+
+.waf-card__summary p,
+.waf-card__take p {
+  margin: 0 0 0.45rem;
+  line-height: 1.55;
+}
+
+.waf-card__take {
+  margin-top: 0.85rem;
+  padding: 0.85rem 0.9rem;
+  background: var(--waf-take);
+  border-radius: 0.25rem;
+  border-left: 3px solid var(--waf-moss);
+}
+
+.waf-card__summary {
+  border-top: 1px solid var(--waf-line);
+  padding-top: 0.75rem;
+}
+
+.waf-card__take h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.waf-card__prov {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--waf-muted);
+  margin: 0 !important;
+}
+
+.waf-card__related {
+  margin: 0.85rem 0 0;
+  font-size: 0.9rem;
+}
+
+.waf-card__related-label {
+  color: var(--waf-muted);
+}
+
+.waf-card__related-reason {
+  color: var(--waf-muted);
+  font-size: 0.85rem;
+}
+
+.waf-card__cta {
+  display: grid;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+}
+
+.waf-card__attr {
+  font-size: 0.75rem;
+  color: var(--waf-muted);
+}
+
+.waf-empty {
+  border: 1px dashed var(--waf-line);
+  padding: 1rem 1.1rem;
+  margin: 0 0 1rem;
+  color: var(--waf-muted);
+}
+
+.waf-editorial {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--waf-line);
+  color: var(--waf-muted);
+}
+
+.waf-editorial h2 {
+  font-size: 1rem;
+  margin: 0 0 0.35rem;
+  color: inherit;
+}
+
+.waf-related {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border-top: 1px solid var(--waf-line);
+  border-bottom: 1px solid var(--waf-line);
+}
+
+.waf-related__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--waf-muted);
+  margin: 0 0 0.5rem;
+}
+
+.waf-related__card h3 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+}
+
+.waf-related__source {
+  font-size: 0.8rem;
+  color: var(--waf-muted);
+  margin: 0 0 0.45rem;
+}
+
+@media (max-width: 640px) {
+  .waf-card {
+    padding: 1rem;
+  }
+  .waf-card__title {
+    font-size: 1.1rem;
+  }
+  .waf-card__cta .wds-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fixture Outdoor Science</title>
+    <link>https://example.org/outdoor</link>
+    <description>Test fixture feed</description>
+    <item>
+      <title>Hudson Valley warblers begin overnight migration pulse</title>
+      <link>https://example.org/outdoor/hudson-valley-warblers-migration</link>
+      <guid>https://example.org/outdoor/hudson-valley-warblers-migration</guid>
+      <pubDate>Mon, 03 Aug 2026 12:00:00 GMT</pubDate>
+      <category>Birds</category>
+      <description><![CDATA[
+        Field observers along the Hudson River corridor reported a sharp overnight increase in warbler calls before dawn.
+        Researchers note that cold fronts often concentrate migrants, though counts remain provisional until systematic surveys finish.
+        Habitat quality in riverside thickets may influence how long birds stop to forage.
+      ]]></description>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Fixture Desk</dc:creator>
+    </item>
+    <item>
+      <title>Catskill trail crews clear storm debris on Plateau Mountain approaches</title>
+      <link>https://example.org/outdoor/catskill-trail-debris</link>
+      <guid>catskill-trail-debris-001</guid>
+      <pubDate>Sun, 02 Aug 2026 09:30:00 GMT</pubDate>
+      <description>
+        Recent thunderstorms left blowdowns across several Catskill hiking approaches. Crews prioritized drainage and footing hazards.
+        Hikers should expect slower travel and treat reports as operational updates rather than formal closures unless posted.
+      </description>
+    </item>
+    <item>
+      <title>CLICK HERE!!! Celebrity beach house SHOCKING reveal</title>
+      <link>https://example.org/outdoor/celebrity-spam</link>
+      <guid>spam-1</guid>
+      <pubDate>Sat, 01 Aug 2026 08:00:00 GMT</pubDate>
+      <description>Reality TV gossip and smartphone gadget review with affiliate coupon deals.</description>
+    </item>
+  </channel>
+</rss>

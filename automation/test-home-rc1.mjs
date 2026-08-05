@@ -172,7 +172,7 @@ assert("no separate Weather widget required", !Reg.get("weather") || !Reg.get("p
 
 const Deepen = sandbox.WDS.dashboardRebuildDeepeners;
 const deepenHtml = Deepen.render();
-assert("deepeners render Latest Articles", /Latest Articles/.test(deepenHtml));
+assert("deepeners render Field Notes", /Field Notes/.test(deepenHtml));
 assert("deepeners render Waypoint’s Take", /Waypoint.s Take/.test(deepenHtml));
 assert("deepeners render Featured Photography", /Featured Photography/.test(deepenHtml));
 assert("deepeners render Scenes intro", /Open Scenes/.test(deepenHtml));

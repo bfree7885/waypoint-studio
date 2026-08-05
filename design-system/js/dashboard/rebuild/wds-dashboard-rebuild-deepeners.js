@@ -1,6 +1,6 @@
 /**
  * Dashboard Rebuild — Home below-fold deepeners (append only).
- * Latest Articles · Waypoint's Take · Featured Photography · Scenes · Sheds.
+ * Field Notes · Waypoint's Take · Featured Photography · Scenes · Sheds.
  * Same visual family as Rebuild; honest empty/loading; no marketing banners.
  * Authority: docs/rebuild-2026/home-vision-lock-owner-review.md
  */
@@ -42,11 +42,11 @@
       '<div class="wdb-r-deepen" data-wdb-r-deepen>' +
       '<section class="wdb-r-deepen__section" data-deepen="articles" aria-labelledby="wdb-r-articles-title">' +
       '<header class="wdb-r-deepen__header">' +
-      '<h2 class="wdb-r-deepen__title" id="wdb-r-articles-title">Latest Articles</h2>' +
-      '<p class="wdb-r-deepen__lede">Calm field reading that deepens what you notice outside.</p>' +
+      '<h2 class="wdb-r-deepen__title" id="wdb-r-articles-title">Field Notes</h2>' +
+      '<p class="wdb-r-deepen__lede">A few curated articles — local, seasonal, and conditions-related. Full reporting stays with the publisher.</p>' +
       "</header>" +
       '<div class="wdb-r-deepen__body" data-deepen-body="articles" aria-busy="true">' +
-      '<p class="wdb-r-deepen__status" role="status">Loading articles…</p>' +
+      '<p class="wdb-r-deepen__status" role="status">Loading field notes…</p>' +
       "</div>" +
       "</section>" +
       '<section class="wdb-r-deepen__section" data-deepen="take" aria-labelledby="wdb-r-take-title">' +
@@ -102,40 +102,54 @@
   function fillArticles(el, depth) {
     if (!el) return;
     var p = prefixes(depth);
-    var url = p.articles + "manifest.json";
-    fetch(url, { cache: "no-store" })
+    var dataUrl = p.root + "data/articles/articles.json";
+    fetch(dataUrl, { cache: "no-store" })
       .then(function (r) {
         if (!r.ok) throw new Error("articles " + r.status);
         return r.json();
       })
       .then(function (data) {
-        var items = (data && data.articles) || [];
+        var byId = Object.create(null);
+        ((data && data.articles) || []).forEach(function (a) {
+          byId[a.id] = a;
+        });
+        var pickIds = (data && data.dashboardPicks) || [];
+        var items = pickIds.map(function (id) {
+          return byId[id];
+        }).filter(Boolean);
+        if (!items.length) {
+          items = ((data && data.articles) || []).slice(0, 3);
+        }
         if (!items.length) {
           el.innerHTML =
-            '<p class="wdb-r-deepen__empty">No articles published yet. The index is ready when editorial pieces arrive.</p>' +
+            '<p class="wdb-r-deepen__empty">No curated field notes yet. The Articles feed will appear after the next successful refresh.</p>' +
             '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" href="' +
             escapeHtml(p.articles) +
             '">Browse Articles \u2192</a></p>';
         } else {
+          var labels = ["Local", "Seasonal", "Conditions"];
           var list = items
-            .slice(0, 5)
-            .map(function (a) {
-              var href = p.articles + (a.path || ("samples/" + a.slug + ".html"));
-              var status =
-                a.status === "sample"
-                  ? '<span class="wdb-r-deepen__chip">Sample</span>'
-                  : "";
+            .slice(0, 3)
+            .map(function (a, idx) {
+              var geo = (a.geographicScopes && a.geographicScopes[0]) || "";
+              var chip =
+                '<span class="wdb-r-deepen__chip">' +
+                escapeHtml(labels[idx] || geo || "Article") +
+                "</span>";
               return (
                 '<li class="wdb-r-deepen__article">' +
+                chip +
                 '<a href="' +
-                escapeHtml(href) +
-                '">' +
+                escapeHtml(a.canonicalUrl) +
+                '" rel="noopener noreferrer" target="_blank">' +
                 escapeHtml(a.title || "Untitled") +
                 "</a>" +
-                status +
-                (a.summary
-                  ? '<p class="wdb-r-deepen__summary">' + escapeHtml(a.summary) + "</p>"
-                  : "") +
+                '<p class="wdb-r-deepen__summary">' +
+                escapeHtml(a.sourceName || "") +
+                (geo ? " · " + escapeHtml(geo) : "") +
+                (a.summary ? " — " + escapeHtml(String(a.summary).slice(0, 140)) + (String(a.summary).length > 140 ? "…" : "") : "") +
+                "</p>" +
+                '<p class="wdb-r-deepen__meta">Opens original publisher</p>' +
                 "</li>"
               );
             })
@@ -152,7 +166,10 @@
       })
       .catch(function () {
         el.innerHTML =
-          '<p class="wdb-r-deepen__empty" role="alert">Articles could not load right now. Try again later.</p>';
+          '<p class="wdb-r-deepen__empty" role="alert">Field notes could not load right now. Try again later.</p>' +
+          '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" href="' +
+          escapeHtml(p.articles) +
+          '">Browse Articles \u2192</a></p>';
         el.removeAttribute("aria-busy");
       });
   }

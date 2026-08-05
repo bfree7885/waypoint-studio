@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Fixture Astronomy Atom</title>
+  <link href="https://example.org/sky"/>
+  <updated>2026-08-03T18:00:00Z</updated>
+  <entry>
+    <title>Perseid meteors favor darker Poconos ridgelines this week</title>
+    <link href="https://example.org/sky/perseids-poconos" rel="alternate"/>
+    <id>tag:example.org,2026:perseids-poconos</id>
+    <published>2026-08-03T18:00:00Z</published>
+    <summary type="html"><![CDATA[
+      <p>Astronomers expect the Perseid meteor shower to peak under relatively dark skies across northeastern Pennsylvania ridgelines.</p>
+      <p>Cloud cover and moonlight remain the largest uncertainties; observers should treat timing windows as approximate.</p>
+      <script>alert('xss')</script>
+    ]]></summary>
+    <author><name>Fixture Observatory</name></author>
+    <category term="Astronomy"/>
+  </entry>
+  <entry>
+    <title>Infrared canopy studies reveal summer heat stress patterns</title>
+    <link href="https://example.org/sky/infrared-canopy"/>
+    <id>tag:example.org,2026:infrared-canopy</id>
+    <updated>2026-08-01T11:00:00Z</updated>
+    <content>Researchers using infrared imaging mapped canopy temperature anomalies that may signal drought stress. Findings are early and do not prescribe land-management actions.</content>
+  </entry>
+</feed>
