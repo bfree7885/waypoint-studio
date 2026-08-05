@@ -40,6 +40,11 @@
   function renderSkeleton() {
     return (
       '<div class="wdb-r-deepen" data-wdb-r-deepen>' +
+      '<section class="wdb-r-deepen__section" data-deepen="timeline" aria-label="Observation timeline">' +
+      '<div class="wdb-r-deepen__body" data-deepen-body="timeline" aria-busy="true">' +
+      '<p class="wdb-r-deepen__status" role="status">Loading observation timeline…</p>' +
+      "</div>" +
+      "</section>" +
       '<section class="wdb-r-deepen__section" data-deepen="articles" aria-labelledby="wdb-r-articles-title">' +
       '<header class="wdb-r-deepen__header">' +
       '<h2 class="wdb-r-deepen__title" id="wdb-r-articles-title">Field Notes</h2>' +
@@ -103,11 +108,14 @@
     if (!el) return;
     var p = prefixes(depth);
     var dataUrl = p.root + "data/articles/articles.json";
-    fetch(dataUrl, { cache: "no-store" })
-      .then(function (r) {
-        if (!r.ok) throw new Error("articles " + r.status);
-        return r.json();
-      })
+    var observations = global.WDS && global.WDS.platformObservations;
+    var payloadPromise = observations && observations.loadArticlePayload
+      ? observations.loadArticlePayload(dataUrl)
+      : fetch(dataUrl, { cache: "no-store" }).then(function (r) {
+          if (!r.ok) throw new Error("articles " + r.status);
+          return r.json();
+        });
+    payloadPromise
       .then(function (data) {
         var byId = Object.create(null);
         ((data && data.articles) || []).forEach(function (a) {
@@ -216,6 +224,23 @@
     el.removeAttribute("aria-busy");
   }
 
+  function fillTimeline(el, depth) {
+    if (!el) return;
+    var timeline = global.WDS && global.WDS.observationTimeline;
+    if (!timeline || !timeline.mount) {
+      el.innerHTML = '<p class="wdb-r-deepen__empty">Observation timeline is unavailable right now.</p>';
+      el.removeAttribute("aria-busy");
+      return;
+    }
+    timeline.mount(el, {
+      depth: depth,
+      limit: 5,
+      maxPerKind: { article: 1, weather: 1, "trail-condition": 1 },
+      heading: "Recent observations",
+      intro: "Photos, field notes, conditions, trips, and reading—one calm chronology."
+    });
+  }
+
   function fillPhoto(el, depth) {
     if (!el) return;
     var p = prefixes(depth);
@@ -287,6 +312,7 @@
     if (!root) return;
     var depth = options.depth != null ? options.depth : depthFromPath();
     setLinks(root, depth);
+    fillTimeline(root.querySelector('[data-deepen-body="timeline"]'), depth);
     fillArticles(root.querySelector('[data-deepen-body="articles"]'), depth);
     fillTake(root.querySelector('[data-deepen-body="take"]'));
     fillPhoto(root.querySelector('[data-deepen-body="photo"]'), depth);

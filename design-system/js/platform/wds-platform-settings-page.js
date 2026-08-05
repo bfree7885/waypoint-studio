@@ -61,7 +61,7 @@
     var stats = WDS.platformObservations.stats();
     if (statsEl) {
       statsEl.textContent =
-        stats.total + " private records · " +
+        stats.total + " available records · " +
         stats.distinctTaxa + " distinct labels · " +
         stats.honesty;
     }
@@ -75,7 +75,9 @@
         var link = o.href
           ? '<a href="' + esc(o.href) + '">' + esc(o.title) + "</a>"
           : esc(o.title);
-        return "<li>" + link + " <span class=\"wds-honesty\">" + esc(o.sourceApp) + "</span></li>";
+        return "<li>" + link + " <span class=\"wds-honesty\">" +
+          esc((o.source && (o.source.label || o.source.id)) || o.sourceApp) +
+          "</span></li>";
       }).join("") + "</ul>";
     }
   }

@@ -119,6 +119,7 @@
         Privacy: photographs stay on this device unless you choose otherwise.
       </p>
 
+      <aside id="scenes-observation-timeline" aria-label="Recent observations across Waypoint"></aside>
       <div data-wds-related-apps="scenes" data-shell-depth="1" class="scenes-related"></div>
       <aside id="scenes-related-article" class="waf-related" hidden aria-label="Related field reading"></aside>
     </main>
@@ -135,6 +136,7 @@
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-observation-timeline.js?v=local" defer></script>
   <script src="../../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script src="js/engines/scene-engine.js" defer></script>
@@ -146,6 +148,17 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (window.WDS && WDS.experienceIdentity) WDS.experienceIdentity.mount("scenes");
+      if (window.WDS && WDS.observationTimeline) {
+        WDS.observationTimeline.mount(document.getElementById("scenes-observation-timeline"), {
+          surface: "scenes",
+          depth: 1,
+          kinds: ["photo", "trip", "sighting", "weather", "article"],
+          limit: 3,
+          maxPerKind: { article: 1 },
+          heading: "Recent observations",
+          intro: "Frames, outings, sightings, conditions, and reading in one chronology."
+        });
+      }
       var related = document.getElementById("scenes-related-article");
       if (window.WDS && WDS.outdoorRecommendations) {
         WDS.outdoorRecommendations.mount(related, {

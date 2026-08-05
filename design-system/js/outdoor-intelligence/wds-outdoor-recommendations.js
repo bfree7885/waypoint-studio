@@ -473,12 +473,17 @@
       context.articles = options.articles;
       return Promise.resolve(context);
     }
-    if (typeof global.fetch !== "function") return Promise.resolve(context);
-    return global.fetch(options.articlesUrl || articlesUrl(options.depth || 0), { cache: "no-store" })
-      .then(function (response) {
-        if (!response.ok) throw new Error("Articles HTTP " + response.status);
-        return response.json();
-      })
+    var dataUrl = options.articlesUrl || articlesUrl(options.depth || 0);
+    var observationService = global.WDS && global.WDS.platformObservations;
+    var payloadPromise = observationService && observationService.loadArticlePayload
+      ? observationService.loadArticlePayload(dataUrl)
+      : (typeof global.fetch === "function"
+        ? global.fetch(dataUrl, { cache: "no-store" }).then(function (response) {
+            if (!response.ok) throw new Error("Articles HTTP " + response.status);
+            return response.json();
+          })
+        : Promise.resolve({ articles: [] }));
+    return payloadPromise
       .then(function (payload) {
         context.articles = arr(payload && payload.articles);
         return context;

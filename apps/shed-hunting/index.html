@@ -63,6 +63,7 @@
       </section>
 
       <div id="sheds-workflows" class="sheds-workflows"></div>
+      <aside id="sheds-observation-timeline" aria-label="Recent observations across Waypoint"></aside>
       <div data-wds-related-apps="sheds" data-shell-depth="1"></div>
       <aside id="sheds-related-article" class="waf-related" hidden aria-label="Related field reading"></aside>
     </main>
@@ -80,6 +81,7 @@
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-observation-timeline.js?v=local" defer></script>
   <script src="../../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script src="js/sheds-models.js" defer></script>
@@ -89,6 +91,17 @@
       var el = document.getElementById("sheds-workflows");
       if (el && window.WDS && WDS.platformWorkflows) {
         el.innerHTML = WDS.platformWorkflows.renderLinksHtml("shed-hunting", { depth: 1, when: "after-observation" });
+      }
+      if (window.WDS && WDS.observationTimeline) {
+        WDS.observationTimeline.mount(document.getElementById("sheds-observation-timeline"), {
+          surface: "sheds",
+          depth: 1,
+          kinds: ["sighting", "journal", "trip", "weather", "trail-condition", "article"],
+          limit: 3,
+          maxPerKind: { article: 1 },
+          heading: "Recent observations",
+          intro: "Field signs, searches, conditions, and related reading without exposing exact locations."
+        });
       }
       var related = document.getElementById("sheds-related-article");
       if (window.WDS && WDS.outdoorRecommendations) {

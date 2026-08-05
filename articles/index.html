@@ -29,6 +29,7 @@
         </p>
       </header>
       <aside id="was-article-recommendations" aria-label="Recommended outdoor context"></aside>
+      <aside id="was-observation-timeline" aria-label="Recent observations across Waypoint"></aside>
       <div id="was-articles-feed" aria-busy="true">
         <p class="wds-honesty">Loading curated articles…</p>
       </div>
@@ -39,6 +40,7 @@
   <script src="../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-observation-timeline.js?v=local" defer></script>
   <script src="../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script>
@@ -58,6 +60,16 @@
           includeArticles: false,
           limit: 2,
           heading: "Observe before you choose a story"
+        });
+      }
+      if (window.WDS && WDS.observationTimeline) {
+        WDS.observationTimeline.mount(document.getElementById("was-observation-timeline"), {
+          depth: 0,
+          kinds: ["photo", "journal", "sighting", "weather", "trip", "species", "trail-condition"],
+          includeArticles: false,
+          limit: 3,
+          heading: "Recent observations",
+          intro: "Your recent field and creative records can add context before you choose what to read."
         });
       }
     });

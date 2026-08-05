@@ -139,8 +139,8 @@ continuously improves.
 
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
-**Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  
-**Branch:** `integration/dashboard-rc25-sprint6`  
+**Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
+**Branch:** `integration/dashboard-rc25-sprint6`
 **Backup:** `backup/dashboard-rc25-sprint6-pre-reconcile`
 
 1. **When polish already sits on main’s tip, cherry-pick the product commit
@@ -157,7 +157,7 @@ continuously improves.
 
 ### 2026-07-23 — Dashboard RC2.5 Sprint 6 (experience polish)
 
-**Artifact:** `docs/dashboard-rc25-sprint6/OWNER-REVIEW.md` (supporting);  
+**Artifact:** `docs/dashboard-rc25-sprint6/OWNER-REVIEW.md` (supporting);
 merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 **Branch:** `polish/dashboard-rc25-sprint6` → `integration/dashboard-rc25-sprint6`
 
@@ -173,7 +173,7 @@ merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 
 ### 2026-07-23 — Mobile tile editing (iPhone Customize)
 
-**Artifact:** `docs/dashboard-mobile-tile-editing/OWNER-REVIEW.md`  
+**Artifact:** `docs/dashboard-mobile-tile-editing/OWNER-REVIEW.md`
 **Branch:** `fix/mobile-tile-editing`
 
 1. **Do not transplant Outdoor OS quiet-chrome wholesale onto Rebuild Home** —
@@ -189,7 +189,7 @@ merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 
 ### 2026-07-23 — Photography Library RC1 owner review (design only)
 
-**Artifact:** `docs/rebuild-2026/photography-library-rc1-owner-review.md`  
+**Artifact:** `docs/rebuild-2026/photography-library-rc1-owner-review.md`
 **Status:** Awaiting owner approval — no implementation this block.
 
 1. **Public photography needs a Featured gate, not “approved = public”** —
@@ -207,7 +207,7 @@ merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 
 ### 2026-07-23 — Photography + widget color correction
 
-**Artifact:** `docs/rebuild-2026/platform-photography-and-widget-color-correction-owner-review.md`  
+**Artifact:** `docs/rebuild-2026/platform-photography-and-widget-color-correction-owner-review.md`
 **Evidence:** `docs/rebuild-2026/platform-color-correction/`
 
 1. **Unsplash stand-ins are not “restored photography”** — identical MD5
@@ -225,7 +225,7 @@ merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 
 ### 2026-07-23 — Platform photography + visual regression
 
-**Artifact:** `docs/rebuild-2026/platform-photography-and-visual-regression-owner-review.md` (**SUPERSEDED**)  
+**Artifact:** `docs/rebuild-2026/platform-photography-and-visual-regression-owner-review.md` (**SUPERSEDED**)
 **Evidence:** `docs/rebuild-2026/platform-visual-regression/`
 
 1. **Missing photography was a manifest rewire, not deleted binaries** —
@@ -243,7 +243,7 @@ merge gate: `docs/rebuild-2026/platform-polish-rc2-owner-review.md`
 
 ### 2026-07-23 — Home RC1.2 footer production delivery check
 
-**Artifact:** `docs/rebuild-2026/home-rc1.2-footer-production-incident.md`  
+**Artifact:** `docs/rebuild-2026/home-rc1.2-footer-production-incident.md`
 **Evidence:** `docs/rebuild-2026/home-rc1.2-footer-production/`
 
 1. **Green Pages + matching `build-info` is not enough alone for footer claims** —
@@ -603,7 +603,7 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 
 ### 2026-07-25 — Dashboard production tile layout repair
 
-**Branch:** `fix/dashboard-production-tile-layout`  
+**Branch:** `fix/dashboard-production-tile-layout`
 **Report:** `docs/rebuild-2026/dashboard-production-tile-layout-repair-owner-review.md`
 
 1. **Family headers in a shared 12-col grid create orphan thirds.** Nest each
@@ -620,7 +620,7 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 
 ### 2026-08-05 — Shared outdoor recommendation engine
 
-**Branch:** `feature/outdoor-intelligence-engine`  
+**Branch:** `feature/outdoor-intelligence-engine`
 **Report:** `docs/platform/outdoor-intelligence-owner-review.md`
 
 1. **Compose domain outputs; do not rebuild providers.** One thin deterministic
@@ -638,4 +638,21 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Sparse context needs an honest seasonal fallback.** Empty recommendation
    panels feel broken; a seasonal observation prompt is better than fabricated
    certainty.
+
+### 2026-08-05 — Shared observation timeline
+
+**Branch:** `feature/outdoor-intelligence-engine`
+**Report:** `docs/platform/observation-owner-review.md`
+
+1. **Adapters beat migrations for cross-app chronology.** Source stores remain
+   authoritative; a read model projects them into one schema without copying
+   private records into a second database.
+2. **Preserve WOS for research detail.** The shared timeline is the product
+   chronology; WOS remains the research-grade biological package.
+3. **Kind caps keep public feeds from drowning private records.** Articles and
+   ephemeral weather/trail cards need surface-level maximums.
+4. **Never render exact coordinates or private thumbnails in shared cards.**
+   Labels and honesty copy are enough for cross-surface context.
+5. **Keep legacy aliases during schema upgrades.** `sourceApp`, `taxonLabel`,
+   `locationLabel`, and `href` prevent silent breakage in search/graph/settings.
 
