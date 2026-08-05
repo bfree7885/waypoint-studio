@@ -213,9 +213,16 @@
 
   function healthBadge(health, data) {
     var status = (health && health.status) || "unknown";
-    var stale = isStale(data);
-    var label = status === "ok" ? "Feeds fresh" : status === "partial" ? "Partial refresh" : "Feeds unavailable";
-    if (stale) label = "Stale data — " + label;
+    var stale = isStale(data) || status === "stale" || !!(data && data.retainedPrevious);
+    var label =
+      status === "ok"
+        ? "Feeds fresh"
+        : status === "partial"
+          ? "Partial refresh"
+          : status === "stale"
+            ? "Showing last good data"
+            : "Feeds unavailable";
+    if (stale && status !== "stale") label = "Stale data — " + label;
     return (
       '<p class="waf-health" data-health="' +
       esc(stale ? "stale" : status) +

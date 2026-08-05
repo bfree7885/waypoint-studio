@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-05T02:39:22.337Z",
-  "notes": "Conservative outdoor/environmental/scientific feed registry for Waypoint Articles. Prefer government, universities, museums, observatories, established nonprofits, and reputable regional newsrooms. Disable unreliable feeds rather than hiding failures.",
+  "updatedAt": "2026-08-05T13:38:51.000Z",
+  "notes": "Conservative outdoor/environmental/scientific feed registry for Waypoint Articles. Prefer government, universities, museums, observatories, established nonprofits, and reputable regional newsrooms. Disable unreliable feeds rather than hiding failures. Release-gate recheck 2026-08-05.",
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
@@ -18,7 +18,7 @@
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 360,
       "notes": "Official NASA imagery and short captions — astronomy and visual science.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:22.614Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:45.720Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -38,7 +38,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Official NOAA features — weather, climate, oceans, and earth science.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:22.799Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:45.906Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -57,7 +57,7 @@
       ],
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: USGS newsroom RSS URL returns HTTP 404 as of 2026-08-05. Re-enable when an official feed endpoint is confirmed.",
+      "notes": "DISABLED (invalid URL): invalid URL — official USGS newsroom RSS returns HTTP 404 HTML; no public Atom/RSS replacement confirmed 2026-08-05. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:51.007Z",
@@ -80,7 +80,7 @@
       ],
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: NPS news RSS URL returns HTTP 404 as of 2026-08-05. Park-specific HTML news pages are not used as feeds.",
+      "notes": "DISABLED (invalid URL): invalid URL — NPS /rss/news.xml returns HTTP 404; park HTML newsrooms are not scraped. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:51.123Z",
@@ -103,7 +103,7 @@
       ],
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: Smithsonian Magazine Smart News feed returns HTTP 403 to the Waypoint crawler. Avoid scraping HTML as a workaround.",
+      "notes": "DISABLED (blocked request): blocked request — Smart News feed returns HTTP 403 (bot challenge). Intentionally disabled; do not scrape HTML.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:51.214Z",
@@ -127,7 +127,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "National Audubon Society site-wide RSS. Prefer bird/habitat/conservation items via classification.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:22.947Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:45.974Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -146,7 +146,7 @@
       ],
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: allaboutbirds.org feed returns HTTP 403 to the Waypoint crawler as of 2026-08-05.",
+      "notes": "DISABLED (blocked request): blocked request — allaboutbirds.org feed returns HTTP 403. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:51.847Z",
@@ -170,7 +170,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Nature Conservancy Cool Green Science / blog feed — conservation and field science.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.029Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.136Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -188,7 +188,7 @@
       ],
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: SWPC rss.xml returns 404. JSON alerts API exists but is not RSS/Atom; revisit as a structured provider later.",
+      "notes": "DISABLED (invalid URL): invalid URL — SWPC rss.xml returns 404; JSON alerts API is unsupported format for this RSS/Atom pipeline. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:55.032Z",
@@ -211,7 +211,7 @@
       ],
       "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: DEC press-release RSS URL returns HTTP 404 as of 2026-08-05.",
+      "notes": "DISABLED (invalid URL): invalid URL — DEC press-release RSS returns HTTP 404. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:55.595Z",
@@ -234,7 +234,7 @@
       ],
       "defaultGeographicScope": "Poconos",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: DCNR newsroom page is HTML, not a reliable RSS endpoint. Re-enable when an official Atom/RSS URL is confirmed.",
+      "notes": "DISABLED (no RSS or Atom feed): no RSS or Atom feed — DCNR NewsRoom is an HTML page (200). Intentionally disabled; no scrape substitute.",
       "lastSuccessfulFetch": null,
       "lastFailure": null,
       "failureCount": 0
@@ -254,7 +254,7 @@
       ],
       "defaultGeographicScope": "Northern New Jersey",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: NJ DEP newsroom feed returns HTTP 403 to the Waypoint crawler as of 2026-08-05.",
+      "notes": "DISABLED (invalid URL / blocked): invalid URL / blocked — newsroom/feed returns 404 HTML as of release-gate recheck. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:55.711Z",
@@ -278,7 +278,7 @@
       "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 360,
       "notes": "Established Northeast outdoor nonprofit — trails, safety, seasonal recreation.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.131Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.251Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -297,7 +297,7 @@
       ],
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED pending confirmation of a stable public RSS endpoint after NatGeo feed changes.",
+      "notes": "DISABLED (invalid URL): invalid URL — environment RSS returns HTML/JS shell (404/spa). Intentionally disabled pending a stable public feed.",
       "lastSuccessfulFetch": null,
       "lastFailure": null,
       "failureCount": 0
@@ -317,7 +317,7 @@
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 360,
       "notes": "Established astronomy and earth-science explainers for night-sky observers.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.210Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.377Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -334,7 +334,7 @@
       ],
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: NASA spaceweather blog feed returned no parseable items on 2026-08-05.",
+      "notes": "DISABLED (unsupported format / empty parse): unsupported format / empty parse — blogs.nasa.gov/spaceweather/feed returns HTML shell, not parseable RSS/Atom items. Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:37:56.340Z",
@@ -356,7 +356,7 @@
       ],
       "defaultGeographicScope": "Hudson Valley",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED until a stable outdoors-section RSS URL is verified. Do not invent local relevance from publisher HQ alone.",
+      "notes": "DISABLED (invalid URL): invalid URL — outdoors section RSS returns HTML article shell (404 feed). Intentionally disabled.",
       "lastSuccessfulFetch": null,
       "lastFailure": null,
       "failureCount": 0
@@ -377,7 +377,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Nonprofit science journalism — earth and environment desk.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.299Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.461Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -397,7 +397,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Official USFWS news RSS.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.465Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.580Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -416,7 +416,7 @@
       ],
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
-      "notes": "DISABLED: Forest Service news RSS endpoint returns HTTP 404 as of 2026-08-05.",
+      "notes": "DISABLED (other): other — Forest Service news RSS returned HTTP 500 on recheck. Intentionally disabled until endpoint recovers.",
       "lastSuccessfulFetch": null,
       "lastFailure": {
         "at": "2026-08-05T02:38:04.916Z",
@@ -440,7 +440,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Science news aggregator with research institution sourcing — earth and climate desk.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.749Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.757Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -460,7 +460,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 360,
       "notes": "Science journalism aggregator — earth sciences desk. Classification filters non-outdoor topics.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.865Z",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.838Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -476,10 +476,49 @@
         "Weather",
         "Outdoor Safety"
       ],
-      "defaultGeographicScope": "Hudson Valley",
+      "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 360,
-      "notes": "Official NWS Albany products covering eastern NY including Hudson Valley/Catskills vicinity. Geographic labels still prefer article place signals when present.",
-      "lastSuccessfulFetch": "2026-08-05T02:39:23.952Z",
+      "notes": "Official NWS Albany products for eastern NY. Narrow local labels (HV/Catskills/Adirondacks) require place signals in the item title/description — office location alone does not force Hudson Valley.",
+      "lastSuccessfulFetch": "2026-08-05T13:40:46.935Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "adirondack-explorer",
+      "name": "Adirondack Explorer",
+      "publisher": "Adirondack Explorer",
+      "feedUrl": "https://www.adirondackexplorer.org/feed/",
+      "homepageUrl": "https://www.adirondackexplorer.org/",
+      "enabled": true,
+      "trustTier": "established-newsroom",
+      "defaultCategories": [
+        "Regional News",
+        "Conservation",
+        "Hiking and Trails"
+      ],
+      "defaultGeographicScope": "Adirondacks",
+      "updateIntervalMinutes": 360,
+      "notes": "Independent nonprofit newsroom dedicated to Adirondack Park. Classification still requires outdoor/environmental relevance; obituaries and pure politics are rejected when matched.",
+      "lastSuccessfulFetch": "2026-08-05T13:40:47.089Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "nws-burlington",
+      "name": "NWS Burlington Area Headlines",
+      "publisher": "National Weather Service Burlington",
+      "feedUrl": "https://www.weather.gov/rss_page.php?site_name=btv",
+      "homepageUrl": "https://www.weather.gov/btv/",
+      "enabled": true,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Weather",
+        "Outdoor Safety"
+      ],
+      "defaultGeographicScope": "Northeast",
+      "updateIntervalMinutes": 360,
+      "notes": "Official NWS Burlington products — useful for Adirondacks / northern NY / Vermont vicinity. Narrow local labels require place signals in item text. Soft default is Northeast, not Adirondacks-by-office.",
+      "lastSuccessfulFetch": "2026-08-05T13:40:47.123Z",
       "lastFailure": null,
       "failureCount": 0
     }

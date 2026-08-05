@@ -1,27 +1,32 @@
 # Waypoint Articles — Owner Review
 
-**Branch:** `feature/waypoint-articles-rss-feed`  
-**Starting SHA:** `59c09debbe8d9c7d36acf74607bd4ebfa55359fc` (`origin/main`)  
-**Ending SHA:** `104a38fb89d7a6c4a5b22abfa1427a3e05e9a254`
+**Branch:** `review/waypoint-articles-release-gate` (from `feature/waypoint-articles-rss-feed`)  
+**Starting SHA (Articles tip):** `aeccb76363a33941d37d18c43b8a9c7964332c7d`  
+**Production base:** `origin/main` `@ 59c09debbe8d9c7d36acf74607bd4ebfa55359fc`  
+**Ending SHA:** see release-gate tip after push  
+**Release gate:** [`articles-release-gate.md`](./articles-release-gate.md) — **APPROVE WITH CONDITIONS**
 
 ## Product summary
 
 First usable Waypoint Articles experience: curated RSS/Atom outdoor reading feed with summaries, **Waypoint’s Take**, geographic/category filters, Dashboard Field Notes, quiet Scenes/Sheds related reading, and curated RSS export. Original publishers remain the destination. Full articles are not republished.
 
+Release-gate refinements: category-varied Takes, narrower geo defaults (no false Hudson Valley from office location), tighter classification, last-good retention on total feed failure, Adirondack Explorer + NWS Burlington sources, workflow empty-dataset guard, and classified disabled-feed notes.
+
 ## Canonical route
 
 `/articles/`
 
-## Feed counts
+## Feed counts (release-gate refresh)
 
 | Metric | Value |
 |--------|------:|
-| Configured feeds | 23 |
-| Enabled feeds | 11 |
-| Successfully processed feeds (last refresh) | 11 |
-| Disabled / failing feeds | 12 (explicit notes in registry) |
-| Normalized articles in demonstration dataset | 120 |
-| Local / regional articles | 16 |
+| Configured feeds | 25 |
+| Enabled feeds | 13 |
+| Successfully processed feeds | 13 |
+| Disabled feeds | 12 (classified; none hidden) |
+| Failing enabled feeds | 0 |
+| Normalized articles | 120 |
+| Local / regional articles | 15 |
 
 ## Categories supported
 
@@ -31,13 +36,15 @@ Weather, Climate, Wildlife, Birds, Forests and Plants, Fungi, Geology, Rivers an
 
 Hudson Valley, Catskills, Poconos, Northern New Jersey, Tri-State, Adirondacks, Northeast, National, Global
 
+**Coverage honesty:** After fixing false local labels, demonstration volume is strongest nationally and in Northeast/Adirondacks. Hudson Valley, Poconos, and Northern New Jersey remain weak until reputable regional RSS appears.
+
 ## Summary generation method
 
-Deterministic **feed-description** summarizer from sanitized RSS/Atom metadata (`summaryProvenance`: `feed-description` | `unavailable`). No production AI summarizer in this sprint.
+Deterministic **feed-description** summarizer (`summaryProvenance`: `feed-description` | `unavailable`). No production AI summarizer.
 
 ## Waypoint’s Take generation method
 
-Deterministic **fallback** templates grounded in categories, geography, and related products (`takeProvenance`: `fallback` | `unavailable`). Not a repeat of the summary.
+Deterministic **fallback** templates with **category variation** (`takeProvenance`: `fallback` | `unavailable`). Does not restate the summary.
 
 ## Refresh process
 
@@ -45,9 +52,7 @@ Deterministic **fallback** templates grounded in categories, geography, and rela
 node scripts/articles-refresh.mjs
 ```
 
-GitHub Action: `.github/workflows/articles-refresh.yml` (every 6 hours + manual). Commits only when artifacts change.
-
-Optional live check: `node automation/check-articles-live-feeds.mjs`
+GitHub Action: `.github/workflows/articles-refresh.yml` (every 6 hours). Commits only when artifacts change and article count > 0. Retains last-good dataset if every enabled feed fails.
 
 ## RSS output routes
 
@@ -60,50 +65,37 @@ Optional live check: `node automation/check-articles-live-feeds.mjs`
 
 | Surface | Status |
 |---------|--------|
-| Dashboard | **Shipped** — Field Notes deepener with local / seasonal / conditions picks linking to publishers + Articles hub |
-| Scenes | **Shipped** — one quiet related-reading mount (photography / astronomy / seasonal topics) |
-| Sheds | **Shipped** — one quiet related-reading mount (wildlife / habitat / conservation) |
+| Dashboard | Field Notes deepener |
+| Scenes | One quiet related-reading mount |
+| Sheds | One quiet habitat / wildlife / conservation mount |
 
 ## Screenshots
 
-See `docs/articles/screenshots/` (desktop + mobile captures from local static server).
+- `docs/articles/screenshots/`
+- Release gate: `docs/articles/screenshots/release-gate/`
 
 ## Test results
 
-- `node automation/test-articles-rss.mjs` — pass (fixtures)
-- Home RC1 deepener assertion updated for Field Notes
-- Dashboard / platform suites run in this branch before push
+- `automation/test-articles-rss.mjs` — pass
+- Field Notes deepener assertion — pass
+- Dashboard reliability — pass
+- Pre-existing unrelated platform failures on `origin/main` — unchanged
 
 ## Known limitations
 
-- No AI summarization backend yet
-- Several desirable agency feeds disabled (404/403) — documented, not hidden
-- Geographic coverage still thinner than national science coverage; NWS Albany helps regional weather
-- “For You” uses relevance ranking + localStorage view prefs; no account graph yet
-- Saved articles view omitted (platform local-save pattern not cleanly shared yet)
-- Remote feed images are retained in data when permitted but not emphasized in cards
+See release-gate document.
 
 ## Production requirements
 
-- Commit/refresh static `data/articles/*` and `feeds/*` on the 6-hour Action (or manual refresh before release)
-- Do not scrape HTML bodies when feeds fail — disable and note instead
-- Keep User-Agent identifiable; timeout ≥ 15s; avoid sub-hourly polling
-- Prevent refresh-only loops: Action commits only on artifact diff
+- Refresh static artifacts on schedule or before release
+- Do not scrape HTML when feeds fail
+- Identifiable User-Agent; ≥15s timeouts; ≥4–6 hour cadence
+- Empty refresh must not commit empty artifacts
 
 ## Copyright & attribution safeguards
 
-- Feed metadata / permitted excerpts only
-- Canonical publisher URLs on every card and RSS item
-- Explicit curator language in RSS channel + item descriptions
-- Script/style stripped; non-http(s) URLs rejected
-- Provenance labels prevent pretending truncated excerpts are full summaries
-- Policy doc: `docs/articles/copyright-attribution-and-content-policy.md`
-
-## Audit reuse notes
-
-**Reused:** `/articles/` route, editorial sample + categories, manifest, deepeners mount point, static Pages data pattern, cyber RSS parsing lessons.  
-**Replaced as primary UX:** scaffold-only hub cards; Sample-only “Latest Articles” deepener list.
+Feed metadata only; canonical publisher URLs; no full republication; script stripping; http(s)-only links; provenance labels. Policy: `copyright-attribution-and-content-policy.md`.
 
 ## Merge / deploy
 
-Not merged. Not deployed. Owner review only.
+Not merged. Not deployed. Owner decision via release gate.

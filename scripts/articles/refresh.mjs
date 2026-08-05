@@ -313,14 +313,37 @@ export async function refreshArticles(userOptions = {}) {
     .sort((a, b) => (b.relevanceScore || 0) - (a.relevanceScore || 0))
     .slice(0, options.maxArticles);
 
-  const views = selectViews(active);
-  const picks = dashboardPicks(active);
-
   const staleHours = 12;
+  const previous = (() => {
+    try {
+      return readJson(options.articlesOut);
+    } catch {
+      return null;
+    }
+  })();
+
+  // Preserve last-known-good article set when every enabled feed fails.
+  let retainedPrevious = false;
+  let activeOut = active;
+  let duplicatesOut = duplicates;
+  if (!active.length && previous && Array.isArray(previous.articles) && previous.articles.length) {
+    activeOut = previous.articles;
+    duplicatesOut = previous.duplicates || [];
+    retainedPrevious = true;
+  }
+
+  const views = selectViews(activeOut);
+  const picks = dashboardPicks(activeOut);
+
   const payload = {
     version: ENGINE_VERSION,
-    generatedAt: discoveredAt,
-    staleAfter: new Date(Date.parse(discoveredAt) + staleHours * 3600 * 1000).toISOString(),
+    generatedAt: retainedPrevious ? previous.generatedAt || discoveredAt : discoveredAt,
+    refreshedAt: discoveredAt,
+    retainedPrevious,
+    staleAfter: new Date(
+      Date.parse(retainedPrevious ? previous.generatedAt || discoveredAt : discoveredAt) +
+        staleHours * 3600 * 1000
+    ).toISOString(),
     summaryMethod: "deterministic-feed-description",
     takeMethod: "deterministic-fallback",
     copyright:
@@ -330,9 +353,9 @@ export async function refreshArticles(userOptions = {}) {
       feedsEnabled: feeds.filter((f) => f.enabled).length,
       feedsOk: feedResults.filter((r) => r.ok).length,
       feedsFailed: feedResults.filter((r) => r.enabled && !r.ok && r.error !== "disabled").length,
-      articles: active.length,
-      duplicates: duplicates.length,
-      localRegional: active.filter((a) =>
+      articles: activeOut.length,
+      duplicates: Array.isArray(duplicatesOut) ? duplicatesOut.length : duplicates.length,
+      localRegional: activeOut.filter((a) =>
         (a.geographicScopes || []).some((g) =>
           ["Hudson Valley", "Catskills", "Poconos", "Northern New Jersey", "Tri-State", "Adirondacks", "Northeast"].includes(g)
         )
@@ -340,15 +363,17 @@ export async function refreshArticles(userOptions = {}) {
     },
     views,
     dashboardPicks: picks,
-    articles: active,
-    duplicates: duplicates.map((d) => ({
-      id: d.id,
-      title: d.title,
-      duplicateOf: d.duplicateOf,
-      duplicateReason: d.duplicateReason,
-      feedId: d.feedId,
-      canonicalUrl: d.canonicalUrl
-    }))
+    articles: activeOut,
+    duplicates: retainedPrevious
+      ? duplicatesOut
+      : duplicates.map((d) => ({
+          id: d.id,
+          title: d.title,
+          duplicateOf: d.duplicateOf,
+          duplicateReason: d.duplicateReason,
+          feedId: d.feedId,
+          canonicalUrl: d.canonicalUrl
+        }))
   };
 
   const health = {
@@ -358,50 +383,55 @@ export async function refreshArticles(userOptions = {}) {
       ? feedResults.every((r) => !r.enabled || r.ok || r.error === "disabled")
         ? "ok"
         : "partial"
-      : "unavailable",
+      : retainedPrevious
+        ? "stale"
+        : "unavailable",
+    retainedPrevious,
     feeds: feedResults,
-    articleCount: active.length,
+    articleCount: activeOut.length,
     staleAfter: payload.staleAfter
   };
 
+  // Atomic writes: temp + rename already used by writeJson/writeText.
   writeJson(options.articlesOut, payload);
   writeJson(options.healthOut, health);
   writeJson(options.registryPath, registry);
 
-  // RSS outputs
+  // RSS outputs — keep previous RSS files if we retained previous empty refresh.
   ensureDir(options.feedsDir);
+  const rssSource = activeOut;
   writeText(
     path.join(options.feedsDir, "waypoint-articles.xml"),
-    buildRssFeed(active.slice(0, 50), {
+    buildRssFeed(rssSource.slice(0, 50), {
       title: "Waypoint Studio — Curated Articles",
       selfUrl: "https://waypointstudio.org/feeds/waypoint-articles.xml",
-      updatedAt: discoveredAt
+      updatedAt: payload.generatedAt
     })
   );
   writeText(
     path.join(options.feedsDir, "waypoint-local.xml"),
-    buildRssFeed(filterForLocal(active).slice(0, 40), {
+    buildRssFeed(filterForLocal(rssSource).slice(0, 40), {
       title: "Waypoint Studio — Local & Regional Articles",
       selfUrl: "https://waypointstudio.org/feeds/waypoint-local.xml",
       description:
         "Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.",
-      updatedAt: discoveredAt
+      updatedAt: payload.generatedAt
     })
   );
   writeText(
     path.join(options.feedsDir, "waypoint-photography.xml"),
-    buildRssFeed(filterForPhotography(active).slice(0, 40), {
+    buildRssFeed(filterForPhotography(rssSource).slice(0, 40), {
       title: "Waypoint Studio — Photography & Visual Nature",
       selfUrl: "https://waypointstudio.org/feeds/waypoint-photography.xml",
-      updatedAt: discoveredAt
+      updatedAt: payload.generatedAt
     })
   );
   writeText(
     path.join(options.feedsDir, "waypoint-science.xml"),
-    buildRssFeed(filterForScience(active).slice(0, 40), {
+    buildRssFeed(filterForScience(rssSource).slice(0, 40), {
       title: "Waypoint Studio — Science & Conservation",
       selfUrl: "https://waypointstudio.org/feeds/waypoint-science.xml",
-      updatedAt: discoveredAt
+      updatedAt: payload.generatedAt
     })
   );
 

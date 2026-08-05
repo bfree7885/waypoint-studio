@@ -1,12 +1,17 @@
 name: Articles feed refresh
 
 # Scheduled curated-article refresh for GitHub Pages static data.
-# Commits only article artifacts. Concurrent Pages deploys from unrelated
-# paths are unaffected; this workflow avoids push-to-main loops by:
-# - writing only known artifact paths
-# - skipping commit when article content hash is unchanged
-# - using a bot commit message that pages.yml may still deploy (acceptable,
-#   but rate is capped to every 6 hours)
+# Safety:
+# - concurrency group prevents overlapping refreshes
+# - commits only known artifact paths
+# - skips commit when artifacts unchanged
+# - refuses to commit an empty article set (preserves last good data in git)
+# - 6-hour cadence bounds Pages redeploys from artifact commits on main
+# - no secrets required
+#
+# Note: when this workflow runs on main, a successful artifact commit can
+# trigger pages.yml. That is intentional and rate-limited (~4/day), not a loop
+# from pages back into refresh.
 
 on:
   schedule:
@@ -33,6 +38,7 @@ jobs:
           node-version: "20"
 
       - name: Refresh curated articles
+        id: refresh
         run: node scripts/articles-refresh.mjs
         env:
           ARTICLES_TIMEOUT_MS: "20000"
@@ -40,8 +46,21 @@ jobs:
       - name: Validate fixtures + pipeline tests
         run: node automation/test-articles-rss.mjs
 
+      - name: Guard empty dataset
+        id: guard
+        run: |
+          count=$(node -e "const a=require('./data/articles/articles.json'); process.stdout.write(String((a.articles||[]).length))")
+          echo "article_count=$count" >> "$GITHUB_OUTPUT"
+          if [ "$count" -le 0 ]; then
+            echo "Refusing to commit an empty articles dataset; keeping previous git artifacts."
+            echo "safe=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "safe=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Detect artifact changes
         id: diff
+        if: steps.guard.outputs.safe == 'true'
         run: |
           if git diff --quiet -- data/articles/articles.json data/articles/health.json data/articles/feed-registry.json feeds/waypoint-articles.xml feeds/waypoint-local.xml feeds/waypoint-photography.xml feeds/waypoint-science.xml; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -50,7 +69,7 @@ jobs:
           fi
 
       - name: Commit article artifacts
-        if: steps.diff.outputs.changed == 'true'
+        if: steps.guard.outputs.safe == 'true' && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "waypoint-articles-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

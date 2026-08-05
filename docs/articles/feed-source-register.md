@@ -34,11 +34,11 @@ Each feed supports:
 - `notes`
 - `lastSuccessfulFetch`, `lastFailure`, `failureCount`
 
-**Important:** `defaultGeographicScope` is a soft fallback only when article text lacks place signals. Publisher headquarters never force a local label.
+**Important:** `defaultGeographicScope` is a soft fallback only when article text lacks place signals. Narrow scopes (Hudson Valley, Catskills, Poconos, Northern New Jersey, Tri-State, Adirondacks) demote to **Northeast** unless place references appear in the item — publisher headquarters never force a local label.
 
-## Current registry posture (this sprint)
+## Current registry posture (release gate)
 
-Enabled working sources (verified during implementation refresh):
+Enabled working sources:
 
 - NASA Image of the Day
 - NOAA News
@@ -50,26 +50,23 @@ Enabled working sources (verified during implementation refresh):
 - U.S. Fish & Wildlife Service News
 - ScienceDaily Earth & Climate
 - Phys.org Earth
-- NWS Albany products (Hudson Valley / eastern NY context)
+- NWS Albany (soft default Northeast)
+- Adirondack Explorer (regional nonprofit newsroom)
+- NWS Burlington (soft default Northeast)
 
-Disabled with explicit notes (do not hide failures):
+Disabled with explicit classifications (see `articles-release-gate.md`):
 
-- USGS newsroom RSS (404)
-- NPS news RSS (404)
-- Smithsonian Smart News (403)
-- Cornell All About Birds (403)
-- NOAA SWPC rss.xml (404)
-- NY DEC press RSS (404)
-- NJ DEP newsroom (403)
-- PA DCNR (HTML, not RSS)
-- National Geographic environment RSS (unstable/unconfirmed)
-- Times Union outdoors RSS (unverified)
-- NASA spaceweather blog (no parseable items)
-- USDA Forest Service news RSS (404)
+- USGS, NPS, Smithsonian Smart News (403), Cornell All About Birds (403), NOAA SWPC rss.xml, NY DEC, NJ DEP, PA DCNR (HTML), National Geographic environment RSS, Times Union outdoors RSS, NASA spaceweather blog HTML shell, USDA Forest Service (500)
+
+## Regional coverage gaps
+
+- **Hudson Valley / Poconos / Northern New Jersey:** no durable dedicated outdoor RSS verified at release gate without scraping or general-news noise
+- Highlands Current considered but not added as a primary source (high non-outdoor volume)
+- NWS Philadelphia channel returned empty items
 
 ## Maintenance
 
 1. Prefer fixing `feedUrl` over inventing scrapers.
-2. If a feed fails repeatedly, set `enabled: false` and explain in `notes`.
+2. If a feed fails repeatedly, set `enabled: false` and classify in `notes`.
 3. Re-run `node scripts/articles-refresh.mjs`.
 4. Keep request cadence ≥ 4–6 hours; honor timeouts and User-Agent identity.

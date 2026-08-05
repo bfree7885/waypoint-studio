@@ -107,9 +107,18 @@ const defaultOnly = classifyGeography(
   { defaultGeographicScope: "Hudson Valley" }
 );
 assert(
-  "feed default scope used only when article lacks places",
-  defaultOnly.geographicScopes[0] === "Hudson Valley",
+  "narrow feed default demotes to Northeast without place signals",
+  defaultOnly.geographicScopes[0] === "Northeast",
   JSON.stringify(defaultOnly)
+);
+const nationalDefault = classifyGeography(
+  { title: "Agency posts a routine notice", cleanedExcerpt: "Operators updated internal guidance without naming a place." },
+  { defaultGeographicScope: "National" }
+);
+assert(
+  "non-narrow feed default still applies when article lacks places",
+  nationalDefault.geographicScopes[0] === "National",
+  JSON.stringify(nationalDefault)
 );
 
 // ——— Dedupe ———
@@ -169,10 +178,42 @@ const take = buildWaypointTake({
   cleanedExcerpt: stripHtml(rss.items[0].description),
   categories: ["Birds"],
   geographicScopes: ["Hudson Valley"],
-  relatedProducts: [{ id: "fieldry", label: "Fieldry" }]
+  relatedProducts: [{ id: "fieldry", label: "Fieldry" }],
+  id: "warbler-take"
 });
 assert("take provenance fallback", take.takeProvenance === "fallback");
-assert("take titled section text exists", /observer|Waypoint|Hudson/i.test(take.waypointTake));
+assert("take titled section text exists", /outside|observ|bird|migrat|Fieldry|Hudson/i.test(take.waypointTake));
+
+// Take variation — not identical boilerplate across categories
+const takeWeather = buildWaypointTake({
+  title: "Hudson Valley heat advisory extended overnight",
+  cleanedExcerpt: "Temperatures remain elevated with humid air and limited overnight relief for the valley. Forecasters say uncertainty remains around storm timing.",
+  categories: ["Weather", "Outdoor Safety"],
+  geographicScopes: ["Hudson Valley"],
+  relatedProducts: [{ id: "dashboard", label: "Dashboard" }],
+  id: "t-weather"
+});
+const takeBirds = buildWaypointTake({
+  title: "Warbler migration pulse noted along riverside thickets",
+  cleanedExcerpt: "Observers reported increased overnight calls before dawn. Researchers note cold fronts often concentrate migrants, though counts remain provisional.",
+  categories: ["Birds"],
+  geographicScopes: ["Hudson Valley"],
+  relatedProducts: [{ id: "fieldry", label: "Fieldry" }],
+  id: "t-birds"
+});
+assert("take provenance fallback", takeWeather.takeProvenance === "fallback");
+assert(
+  "takes differ by category",
+  takeWeather.waypointTake !== takeBirds.waypointTake &&
+    /condition|forecast|wind|precip|route|Dashboard/i.test(takeWeather.waypointTake) &&
+    /bird|migrat|habitat|Fieldry|call/i.test(takeBirds.waypointTake),
+  takeWeather.waypointTake + " || " + takeBirds.waypointTake
+);
+assert(
+  "take does not copy summary wording wholesale",
+  !/Condensed from the publisher/i.test(takeWeather.waypointTake)
+);
+
 
 const takeNone = buildWaypointTake({ title: "X", cleanedExcerpt: "nope", categories: [], relatedProducts: [] });
 assert("take unavailable when sparse", takeNone.takeProvenance === "unavailable");
@@ -210,6 +251,16 @@ assert("RSS includes Waypoint’s Take", /Waypoint/i.test(xml) && /Take/i.test(x
 assert("local filter keeps HV", filterForLocal(sampleArticles).length === 1);
 assert("photography filter empty for birds-only", filterForPhotography(sampleArticles).length === 0);
 assert("science filter keeps birds", filterForScience(sampleArticles).length === 1);
+
+const primaryRss = read("feeds/waypoint-articles.xml");
+assert("primary RSS unique guids", (primaryRss.match(/<guid /g) || []).length === new Set([...primaryRss.matchAll(/<guid[^>]*>([^<]+)<\/guid>/g)].map(m => m[1])).size);
+assert("primary RSS escapes ampersands in text or uses entities safely", !/<description>[^<]*&[^a#]/.test(primaryRss) || primaryRss.includes("&amp;") || primaryRss.includes("&lt;"));
+assert("primary RSS item count reasonable", (primaryRss.match(/<item>/g) || []).length >= 5 && (primaryRss.match(/<item>/g) || []).length <= 60);
+assert("local RSS exists and is rss", /<rss/.test(read("feeds/waypoint-local.xml")));
+assert("photography RSS exists", /<rss/.test(read("feeds/waypoint-photography.xml")));
+assert("science RSS exists", /<rss/.test(read("feeds/waypoint-science.xml")));
+assert("RSS does not embed long article bodies", !/<description>[^<]{4000,}/.test(primaryRss));
+
 
 // ——— Generated artifacts present ———
 assert("articles.json exists", exists("data/articles/articles.json"));

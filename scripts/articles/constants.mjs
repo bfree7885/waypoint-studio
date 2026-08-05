@@ -77,13 +77,27 @@ export const REJECT_TOPIC_PATTERNS = [
   /\bstock\s+market\b/i,
   /\bcrypto\b/i,
   /\belection\s+poll\b/i,
-  /\bhollywood\s+of\s+congress\b/i,
+  /\bvotes\s+of\s+congress\b/i,
   /\bbest\s+deals?\b/i,
   /\bcoupon\b/i,
   /\baffiliate\b/i,
   /\bgadget\s+review\b/i,
   /\bsmartphone\b/i,
-  /\bhollywood\s+for\s+[A-Z][a-z]+\b/
+  /\bvotes\s+for\s+[A-Z][a-z]+\b/,
+  /\bwind\s+tunnel\b/i,
+  /\btest\s+kitchen\b/i,
+  /\bseafood\s+recipes?\b/i,
+  /\btelevision\s+programs?\b/i,
+  /\bfws\s+scholar\b/i,
+  /\bhunting\s+and\s+fishing\s+packages\b/i,
+  /\bphoto\s+contest\b/i,
+  /\bobituar/i,
+  /\bop[- ]?ed\b/i,
+  /\bselection\s+of\s+poems\b/i,
+  /\btech\s+assistance\s+workshop\b/i,
+  /\bolder\s+adults\b/i,
+  /\bprison\b/i,
+  /\bolympic\s+prospects\b/i
 ];
 
 export const TRUST_TIER_WEIGHT = {
