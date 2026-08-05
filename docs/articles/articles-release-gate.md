@@ -2,7 +2,7 @@
 
 **Branch:** `review/waypoint-articles-release-gate`  
 **Starting SHA:** `aeccb76363a33941d37d18c43b8a9c7964332c7d` (Articles tip / `feature/waypoint-articles-rss-feed`)  
-**Ending SHA:** _(filled at commit)_  
+**Ending SHA:** `70a5f3cebfecb4ae6abd784778ab5c891ac18ebc`  
 **Fresh refresh timestamp:** `2026-08-05T13:40:45.420Z`  
 **Authoritative base:** Articles branch derived from `origin/main` `@ 59c09debbe8d9c7d36acf74607bd4ebfa55359fc`
 
