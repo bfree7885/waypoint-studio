@@ -35,6 +35,7 @@ const HTML_FILES = [
   "about.html",
   "privacy.html",
   "knowledge.html",
+  "articles/index.html",
   "settings.html",
   "apps/scenes/index.html",
   "apps/photo-coach/index.html",
