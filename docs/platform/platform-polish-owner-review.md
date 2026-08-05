@@ -256,4 +256,4 @@ Residual a11y gaps: launcher letter icons, Articles/About `aria-current`, touch-
 - [ ] Deploy (out of scope)
 
 **Tip SHA:** `448319105c975a7511fe125537cf496b2973fb67`  
-**Push:** pending
+**Push:** confirmed to `origin/feature/platform-polish`
