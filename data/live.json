@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-05T22:30:01.508Z",
-  "nextScheduledUpdate": "2026-08-05T23:00:00.000Z",
+  "updatedAt": "2026-08-05T23:00:01.303Z",
+  "nextScheduledUpdate": "2026-08-05T23:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,33 +18,33 @@
   "current": {
     "temperatureF": 70,
     "feelsLikeF": 75,
-    "humidity": 84,
-    "windMph": 3,
+    "humidity": 89,
+    "windMph": 2,
     "windGustMph": 4,
-    "cloudCover": 96,
-    "uvIndex": 2,
+    "cloudCover": 100,
+    "uvIndex": 1.4,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-08-05T17:30"
+    "observedAt": "2026-08-05T18:00"
   },
   "forecast": {
-    "highF": 71,
+    "highF": 70,
     "lowF": 60,
     "precipProbability": 50,
-    "summary": "Overcast · High 71° / Low 60°"
+    "summary": "Overcast · High 70° / Low 60°"
   },
   "hourly": {
     "nextHours": [
       {
         "time": "2026-08-05T19:00",
-        "temperatureF": 71,
+        "temperatureF": 70,
         "precipProbability": 0,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-05T20:00",
-        "temperatureF": 70,
+        "temperatureF": 69,
         "precipProbability": 0,
         "conditions": "Overcast"
       },
@@ -56,7 +56,7 @@
       },
       {
         "time": "2026-08-05T22:00",
-        "temperatureF": 66,
+        "temperatureF": 65,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
@@ -68,7 +68,7 @@
       },
       {
         "time": "2026-08-06T00:00",
-        "temperatureF": 64,
+        "temperatureF": 63,
         "precipProbability": 0,
         "conditions": "Clear sky"
       }
@@ -89,8 +89,8 @@
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 60,
-    "pm25": 12,
+    "usAqi": 53,
+    "pm25": 4.3,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 255.03432750701904,
+        "generationtime_ms": 773.2044458389282,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-05T17:30",
+          "time": "2026-08-05T18:00",
           "interval": 900,
-          "temperature_2m": 70.4,
-          "relative_humidity_2m": 84,
-          "apparent_temperature": 74.8,
+          "temperature_2m": 69.5,
+          "relative_humidity_2m": 89,
+          "apparent_temperature": 74.5,
           "weather_code": 3,
-          "wind_speed_10m": 2.8,
-          "wind_direction_10m": 119,
-          "wind_gusts_10m": 3.6,
-          "cloud_cover": 96,
-          "surface_pressure": 949.1,
-          "uv_index": 1.95,
+          "wind_speed_10m": 2.3,
+          "wind_direction_10m": 107,
+          "wind_gusts_10m": 4,
+          "cloud_cover": 100,
+          "surface_pressure": 949,
+          "uv_index": 1.35,
           "precipitation": 0
         },
         "hourly_units": {
@@ -210,24 +210,24 @@
             65.8,
             67.3,
             69.5,
-            70.4,
-            70.6,
-            70.5,
-            69.6,
-            67.4,
-            65.6,
-            64.4,
-            63.5,
-            62.6,
-            62.2,
-            61.2,
-            60.5,
-            60.2,
-            59.8,
-            61.2,
+            69.9,
+            69.5,
+            69.8,
+            69,
+            66.9,
+            65.2,
+            63.9,
+            63.1,
             62.4,
-            64.1,
-            67.9,
+            61.7,
+            61,
+            60.1,
+            59.6,
+            60.7,
+            61.5,
+            62.8,
+            63.2,
+            64.7,
             71.1,
             73.1,
             76.1,
@@ -277,7 +277,7 @@
             45,
             45,
             45,
-            1,
+            45,
             3,
             2,
             1,
@@ -414,12 +414,12 @@
             45
           ],
           "temperature_2m_max": [
-            70.6,
+            69.9,
             85.1
           ],
           "temperature_2m_min": [
             59.7,
-            59.8
+            59.6
           ],
           "precipitation_probability_max": [
             50,
@@ -463,15 +463,15 @@
     },
     "air_quality": {
       "data": {
-        "usAqi": 60,
-        "pm25": 12,
+        "usAqi": 53,
+        "pm25": 4.3,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 2,
+        "uvIndex": 1.4,
         "status": "live"
       }
     },
@@ -484,16 +484,16 @@
     "river_gauges": {
       "data": {
         "status": "live",
-        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.31 ft stage · 5.56 cfs · 29.2 km away",
+        "summary": "WHITE ROCK C NR BURR OAK, KS — 1.32 ft stage · 5.68 cfs · 29.2 km away",
         "nearest": {
           "siteId": "06853800",
           "siteName": "WHITE ROCK C NR BURR OAK, KS",
           "lat": 39.89918,
           "lng": -98.2503276,
-          "observedAt": "2026-08-05T10:45:00.000-05:00",
-          "dischargeCfs": 5.56,
+          "observedAt": "2026-08-05T17:45:00.000-05:00",
+          "dischargeCfs": 5.68,
           "dischargeUnit": "ft3/s",
-          "stageFt": 1.31,
+          "stageFt": 1.32,
           "stageUnit": "ft",
           "distanceKm": 29.179412056109083
         },
@@ -520,7 +520,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 96,
+        "cloudCover": 100,
         "score": 48,
         "summary": "Moderate outdoor light conditions",
         "sunrise": "6:37 AM",
@@ -535,26 +535,19 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "previous-success",
+      "USGS Water Services",
       "NWS"
     ],
-    "failures": [
-      {
-        "module": "river_gauges",
-        "source": "USGS Water Services",
-        "error": "HTTP 503",
-        "retryAttempts": 3
-      }
-    ],
+    "failures": [],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-05T22:30:01.508Z",
+    "generatedAt": "2026-08-05T23:00:01.303Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "unavailable",
+      "usgsWater": "live",
       "ebird": "unavailable"
     }
   }
