@@ -134,6 +134,8 @@
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script src="js/engines/scene-engine.js" defer></script>
   <script src="js/engines/vision-engine.js" defer></script>
@@ -144,8 +146,16 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       if (window.WDS && WDS.experienceIdentity) WDS.experienceIdentity.mount("scenes");
-      if (window.WDS && WDS.articlesFeed) {
-        WDS.articlesFeed.mountRelated(document.getElementById("scenes-related-article"), {
+      var related = document.getElementById("scenes-related-article");
+      if (window.WDS && WDS.outdoorRecommendations) {
+        WDS.outdoorRecommendations.mount(related, {
+          surface: "scenes",
+          depth: 1,
+          limit: 2,
+          heading: "Worth noticing for your next scene"
+        });
+      } else if (window.WDS && WDS.articlesFeed) {
+        WDS.articlesFeed.mountRelated(related, {
           depth: 1,
           limit: 1,
           topics: ["photography", "astronomy", "birds", "seasonal", "hidden landscapes", "infrared"]

@@ -28,6 +28,7 @@
           <a href="../feeds/waypoint-articles.xml">RSS</a>
         </p>
       </header>
+      <aside id="was-article-recommendations" aria-label="Recommended outdoor context"></aside>
       <div id="was-articles-feed" aria-busy="true">
         <p class="wds-honesty">Loading curated articles…</p>
       </div>
@@ -37,6 +38,8 @@
   <script src="../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -45,6 +48,16 @@
           depth: 0,
           dataUrl: "../data/articles/articles.json",
           healthUrl: "../data/articles/health.json"
+        });
+      }
+      if (window.WDS && WDS.outdoorRecommendations) {
+        WDS.outdoorRecommendations.mount(document.getElementById("was-article-recommendations"), {
+          surface: "articles",
+          depth: 0,
+          articlesUrl: "../data/articles/articles.json",
+          includeArticles: false,
+          limit: 2,
+          heading: "Observe before you choose a story"
         });
       }
     });

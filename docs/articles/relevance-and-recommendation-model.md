@@ -48,7 +48,9 @@ Publisher locale is never sufficient to claim “Hudson Valley” (etc.).
 
 ## Dashboard Field Notes picks
 
-`dashboardPicks` selects up to three ids:
+The shared deterministic engine (`WDS.outdoorRecommendations`) ranks up to three
+article recommendations using the article score plus available category and
+location context. `dashboardPicks` remains the no-engine fallback.
 
 1. Strong local/regional article
 2. Timely seasonal article
@@ -58,4 +60,10 @@ Shown below Today Outside — never replaces weather, alerts, or core observatio
 
 ## Scenes / Sheds
 
-One quiet related card only when topic overlap is genuine. Sheds stays limited to habitat / seasonal movement / conservation / wildlife framing — not general hunting filler.
+The shared engine allows at most one related article alongside a contextual
+field or practice recommendation. Scenes requires photography, astronomy,
+geology, or explicit bird-subject overlap. Sheds stays limited to habitat /
+seasonal movement / conservation / wildlife framing — not general hunting
+filler.
+
+See `docs/platform/outdoor-intelligence-engine.md`.

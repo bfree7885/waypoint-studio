@@ -618,3 +618,24 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-05 — Shared outdoor recommendation engine
+
+**Branch:** `feature/outdoor-intelligence-engine`  
+**Report:** `docs/platform/outdoor-intelligence-owner-review.md`
+
+1. **Compose domain outputs; do not rebuild providers.** One thin deterministic
+   recommendation API above OIP, observations, articles, and local photo stores
+   keeps surfaces consistent without inventing weather or trail pipelines.
+2. **Surface filters beat generic relevance.** High article scores alone can
+   surface off-topic reading on Scenes/Sheds; restrict article kinds and cap
+   related articles to one quiet card.
+3. **Do not treat feed taxonomy as user interest.** Aggregating every article
+   category into caller preferences invents affinity. Pass explicit interest
+   categories only.
+4. **Identical inputs must produce identical rankings.** Deduplicate by
+   recommendation identity, not shared action URLs, or safety rules collapse
+   onto one destination.
+5. **Sparse context needs an honest seasonal fallback.** Empty recommendation
+   panels feel broken; a seasonal observation prompt is better than fabricated
+   certainty.
+

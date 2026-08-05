@@ -113,10 +113,30 @@
         ((data && data.articles) || []).forEach(function (a) {
           byId[a.id] = a;
         });
-        var pickIds = (data && data.dashboardPicks) || [];
-        var items = pickIds.map(function (id) {
-          return byId[id];
-        }).filter(Boolean);
+        var engine = global.WDS && global.WDS.outdoorRecommendations;
+        var items = [];
+        if (engine && engine.recommendFor) {
+          items = engine.recommendFor("dashboard", {
+            articles: (data && data.articles) || [],
+            platform: global.WDS.outdoorIntelligence && global.WDS.outdoorIntelligence.getLast
+              ? global.WDS.outdoorIntelligence.getLast()
+              : null,
+            location: global.WDS.location && global.WDS.location.getState
+              ? global.WDS.location.getState()
+              : null,
+            recentObservations: global.WDS.platformObservations && global.WDS.platformObservations.recent
+              ? global.WDS.platformObservations.recent(12)
+              : []
+          }, { kinds: ["article"], limit: 3 }).map(function (rec) {
+            return rec.article;
+          }).filter(Boolean);
+        }
+        if (!items.length) {
+          var pickIds = (data && data.dashboardPicks) || [];
+          items = pickIds.map(function (id) {
+            return byId[id];
+          }).filter(Boolean);
+        }
         if (!items.length) {
           items = ((data && data.articles) || []).slice(0, 3);
         }

@@ -1,0 +1,74 @@
+.wds-or {
+  margin-block: var(--wds-space-6, 2rem);
+}
+
+.wds-or__head {
+  margin-bottom: var(--wds-space-3, 1rem);
+}
+
+.wds-or__head h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.wds-or__eyebrow,
+.wds-or__kind {
+  margin: 0 0 0.35rem;
+  color: var(--wds-color-text-muted, #58635c);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wds-or__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--wds-space-3, 1rem);
+}
+
+.wds-or__card {
+  padding: var(--wds-space-4, 1.25rem);
+  border: 1px solid var(--wds-color-border, #ccd4ce);
+  border-radius: var(--wds-radius-lg, 0.75rem);
+  background: var(--wds-color-surface, #fff);
+}
+
+.wds-or__card h3 {
+  margin: 0 0 0.55rem;
+  overflow-wrap: anywhere;
+  font-size: 1.05rem;
+}
+
+.wds-or__card p {
+  margin: 0 0 0.75rem;
+}
+
+.wds-or__evidence,
+.wds-or__honesty,
+.wds-or__empty {
+  color: var(--wds-color-text-muted, #58635c);
+  font-size: 0.875rem;
+}
+
+.wds-or__evidence {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--wds-color-border-subtle, #e4e9e5);
+}
+
+.wds-or__action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  font-weight: 700;
+}
+
+.wds-or__honesty {
+  margin: 0.85rem 0 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wds-or__action {
+    transition: color 120ms ease;
+  }
+}

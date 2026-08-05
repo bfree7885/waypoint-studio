@@ -79,6 +79,8 @@
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
+  <script src="../../design-system/js/outdoor-intelligence/wds-outdoor-recommendations.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script src="js/sheds-models.js" defer></script>
   <script defer>
@@ -88,8 +90,16 @@
       if (el && window.WDS && WDS.platformWorkflows) {
         el.innerHTML = WDS.platformWorkflows.renderLinksHtml("shed-hunting", { depth: 1, when: "after-observation" });
       }
-      if (window.WDS && WDS.articlesFeed) {
-        WDS.articlesFeed.mountRelated(document.getElementById("sheds-related-article"), {
+      var related = document.getElementById("sheds-related-article");
+      if (window.WDS && WDS.outdoorRecommendations) {
+        WDS.outdoorRecommendations.mount(related, {
+          surface: "sheds",
+          depth: 1,
+          limit: 2,
+          heading: "Worth noticing before the search"
+        });
+      } else if (window.WDS && WDS.articlesFeed) {
+        WDS.articlesFeed.mountRelated(related, {
           depth: 1,
           limit: 1,
           topics: ["wildlife", "deer", "habitat", "conservation", "seasonal", "forest"]
