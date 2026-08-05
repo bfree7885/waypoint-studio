@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-05T15:00:01.938Z",
-  "nextScheduledUpdate": "2026-08-05T15:30:00.000Z",
+  "updatedAt": "2026-08-05T15:30:01.160Z",
+  "nextScheduledUpdate": "2026-08-05T16:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 62,
-    "feelsLikeF": 61,
-    "humidity": 94,
-    "windMph": 11,
-    "windGustMph": 21,
+    "temperatureF": 63,
+    "feelsLikeF": 63,
+    "humidity": 93,
+    "windMph": 8,
+    "windGustMph": 17,
     "cloudCover": 100,
-    "uvIndex": 1.4,
+    "uvIndex": 1.8,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-08-05T10:00"
+    "observedAt": "2026-08-05T10:30"
   },
   "forecast": {
     "highF": 71,
@@ -36,12 +36,6 @@
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-08-05T11:00",
-        "temperatureF": 63,
-        "precipProbability": 11,
-        "conditions": "Overcast"
-      },
       {
         "time": "2026-08-05T12:00",
         "temperatureF": 64,
@@ -71,6 +65,12 @@
         "temperatureF": 71,
         "precipProbability": 1,
         "conditions": "Overcast"
+      },
+      {
+        "time": "2026-08-05T17:00",
+        "temperatureF": 71,
+        "precipProbability": 1,
+        "conditions": "Overcast"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Last quarter",
     "illumination": 47,
-    "phaseValue": 0.765,
+    "phaseValue": 0.766,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 523.0739116668701,
+        "generationtime_ms": 522.1250057220459,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-05T10:00",
+          "time": "2026-08-05T10:30",
           "interval": 900,
-          "temperature_2m": 61.9,
-          "relative_humidity_2m": 94,
-          "apparent_temperature": 60.9,
+          "temperature_2m": 62.6,
+          "relative_humidity_2m": 93,
+          "apparent_temperature": 63,
           "weather_code": 3,
-          "wind_speed_10m": 10.5,
-          "wind_direction_10m": 29,
-          "wind_gusts_10m": 21.3,
+          "wind_speed_10m": 7.6,
+          "wind_direction_10m": 40,
+          "wind_gusts_10m": 16.6,
           "cloud_cover": 100,
-          "surface_pressure": 948,
-          "uv_index": 1.4,
+          "surface_pressure": 948.4,
+          "uv_index": 1.8,
           "precipitation": 0
         },
         "hourly_units": {
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Last quarter",
         "illumination": 47,
-        "phaseValue": 0.765,
+        "phaseValue": 0.766,
         "trust": "Estimated"
       }
     },
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 1.4,
+        "uvIndex": 1.8,
         "status": "live"
       }
     },
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "HTTP 503",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-05T15:00:01.938Z",
+    "generatedAt": "2026-08-05T15:30:01.160Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
