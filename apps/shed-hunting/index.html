@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../design-system/css/wds-platform-foundation.css">
+  <link rel="stylesheet" href="../../design-system/css/wds-articles-feed.css">
   <link rel="stylesheet" href="css/sheds-home.css">
 </head>
 <body>
@@ -63,6 +64,7 @@
 
       <div id="sheds-workflows" class="sheds-workflows"></div>
       <div data-wds-related-apps="sheds" data-shell-depth="1"></div>
+      <aside id="sheds-related-article" class="waf-related" hidden aria-label="Related field reading"></aside>
     </main>
     <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
@@ -77,6 +79,7 @@
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-experience-identity.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script src="js/sheds-models.js" defer></script>
   <script defer>
     document.addEventListener("DOMContentLoaded", function () {
@@ -84,6 +87,13 @@
       var el = document.getElementById("sheds-workflows");
       if (el && window.WDS && WDS.platformWorkflows) {
         el.innerHTML = WDS.platformWorkflows.renderLinksHtml("shed-hunting", { depth: 1, when: "after-observation" });
+      }
+      if (window.WDS && WDS.articlesFeed) {
+        WDS.articlesFeed.mountRelated(document.getElementById("sheds-related-article"), {
+          depth: 1,
+          limit: 1,
+          topics: ["wildlife", "deer", "habitat", "conservation", "seasonal", "forest"]
+        });
       }
     });
   </script>

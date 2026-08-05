@@ -1,0 +1,487 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-05T02:39:22.337Z",
+  "notes": "Conservative outdoor/environmental/scientific feed registry for Waypoint Articles. Prefer government, universities, museums, observatories, established nonprofits, and reputable regional newsrooms. Disable unreliable feeds rather than hiding failures.",
+  "feeds": [
+    {
+      "id": "nasa-image-of-the-day",
+      "name": "NASA Image of the Day",
+      "publisher": "NASA",
+      "feedUrl": "https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss",
+      "homepageUrl": "https://www.nasa.gov/",
+      "enabled": true,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Astronomy and Night Sky",
+        "Nature Photography"
+      ],
+      "defaultGeographicScope": "Global",
+      "updateIntervalMinutes": 360,
+      "notes": "Official NASA imagery and short captions — astronomy and visual science.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:22.614Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "noaa-news",
+      "name": "NOAA News Features",
+      "publisher": "NOAA",
+      "feedUrl": "https://www.noaa.gov/rss.xml",
+      "homepageUrl": "https://www.noaa.gov/",
+      "enabled": true,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Weather",
+        "Climate",
+        "Environmental Science"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Official NOAA features — weather, climate, oceans, and earth science.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:22.799Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "usgs-news",
+      "name": "USGS Newsroom",
+      "publisher": "U.S. Geological Survey",
+      "feedUrl": "https://www.usgs.gov/news/newsroom/news/rss",
+      "homepageUrl": "https://www.usgs.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Geology",
+        "Environmental Science",
+        "Rivers and Water"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: USGS newsroom RSS URL returns HTTP 404 as of 2026-08-05. Re-enable when an official feed endpoint is confirmed.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:51.007Z",
+        "error": "HTTP 404"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "nps-news",
+      "name": "National Park Service News",
+      "publisher": "National Park Service",
+      "feedUrl": "https://www.nps.gov/rss/news.xml",
+      "homepageUrl": "https://www.nps.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Conservation",
+        "Hiking and Trails",
+        "Regional News"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: NPS news RSS URL returns HTTP 404 as of 2026-08-05. Park-specific HTML news pages are not used as feeds.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:51.123Z",
+        "error": "HTTP 404"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "smithsonian-science",
+      "name": "Smithsonian Science",
+      "publisher": "Smithsonian Institution",
+      "feedUrl": "https://www.smithsonianmag.com/smartnews/feed/",
+      "homepageUrl": "https://www.smithsonianmag.com/",
+      "enabled": false,
+      "trustTier": "academic",
+      "defaultCategories": [
+        "Environmental Science",
+        "Wildlife",
+        "Seasonal Nature"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: Smithsonian Magazine Smart News feed returns HTTP 403 to the Waypoint crawler. Avoid scraping HTML as a workaround.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:51.214Z",
+        "error": "HTTP 403"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "audubon-news",
+      "name": "Audubon Magazine",
+      "publisher": "National Audubon Society",
+      "feedUrl": "https://www.audubon.org/rss.xml",
+      "homepageUrl": "https://www.audubon.org/",
+      "enabled": true,
+      "trustTier": "nonprofit",
+      "defaultCategories": [
+        "Birds",
+        "Wildlife",
+        "Conservation"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "National Audubon Society site-wide RSS. Prefer bird/habitat/conservation items via classification.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:22.947Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "cornell-lab-allaboutbirds",
+      "name": "All About Birds — Cornell Lab",
+      "publisher": "Cornell Lab of Ornithology",
+      "feedUrl": "https://www.allaboutbirds.org/news/feed/",
+      "homepageUrl": "https://www.allaboutbirds.org/",
+      "enabled": false,
+      "trustTier": "academic",
+      "defaultCategories": [
+        "Birds",
+        "Wildlife",
+        "Seasonal Nature"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: allaboutbirds.org feed returns HTTP 403 to the Waypoint crawler as of 2026-08-05.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:51.847Z",
+        "error": "HTTP 403"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "nature-conservancy",
+      "name": "The Nature Conservancy",
+      "publisher": "The Nature Conservancy",
+      "feedUrl": "https://blog.nature.org/feed/",
+      "homepageUrl": "https://www.nature.org/",
+      "enabled": true,
+      "trustTier": "nonprofit",
+      "defaultCategories": [
+        "Conservation",
+        "Forests and Plants",
+        "Environmental Science"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Nature Conservancy Cool Green Science / blog feed — conservation and field science.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.029Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "spaceweather-noaa",
+      "name": "NOAA Space Weather Prediction Center",
+      "publisher": "NOAA SWPC",
+      "feedUrl": "https://www.swpc.noaa.gov/rss.xml",
+      "homepageUrl": "https://www.swpc.noaa.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Astronomy and Night Sky",
+        "Weather"
+      ],
+      "defaultGeographicScope": "Global",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: SWPC rss.xml returns 404. JSON alerts API exists but is not RSS/Atom; revisit as a structured provider later.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:55.032Z",
+        "error": "HTTP 404"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "ny-dec-news",
+      "name": "New York DEC News",
+      "publisher": "NYS Department of Environmental Conservation",
+      "feedUrl": "https://dec.ny.gov/news/press-releases/rss.xml",
+      "homepageUrl": "https://dec.ny.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Regional News",
+        "Conservation",
+        "Outdoor Safety"
+      ],
+      "defaultGeographicScope": "Northeast",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: DEC press-release RSS URL returns HTTP 404 as of 2026-08-05.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:55.595Z",
+        "error": "HTTP 404"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "pa-dcnr-news",
+      "name": "Pennsylvania DCNR News",
+      "publisher": "PA Department of Conservation and Natural Resources",
+      "feedUrl": "https://www.dcnr.pa.gov/NewsRoom/Pages/default.aspx",
+      "homepageUrl": "https://www.dcnr.pa.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Regional News",
+        "Hiking and Trails",
+        "Forests and Plants"
+      ],
+      "defaultGeographicScope": "Poconos",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: DCNR newsroom page is HTML, not a reliable RSS endpoint. Re-enable when an official Atom/RSS URL is confirmed.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "nj-dep-news",
+      "name": "New Jersey DEP Newsroom",
+      "publisher": "NJ Department of Environmental Protection",
+      "feedUrl": "https://dep.nj.gov/newsroom/feed/",
+      "homepageUrl": "https://dep.nj.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Regional News",
+        "Conservation",
+        "Outdoor Safety"
+      ],
+      "defaultGeographicScope": "Northern New Jersey",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: NJ DEP newsroom feed returns HTTP 403 to the Waypoint crawler as of 2026-08-05.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:55.711Z",
+        "error": "HTTP 403"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "amc-outdoors",
+      "name": "Appalachian Mountain Club — Outdoors",
+      "publisher": "Appalachian Mountain Club",
+      "feedUrl": "https://www.outdoors.org/feed/",
+      "homepageUrl": "https://www.outdoors.org/",
+      "enabled": true,
+      "trustTier": "nonprofit",
+      "defaultCategories": [
+        "Hiking and Trails",
+        "Outdoor Safety",
+        "Seasonal Nature"
+      ],
+      "defaultGeographicScope": "Northeast",
+      "updateIntervalMinutes": 360,
+      "notes": "Established Northeast outdoor nonprofit — trails, safety, seasonal recreation.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.131Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "national-geographic-environment",
+      "name": "National Geographic — Environment",
+      "publisher": "National Geographic",
+      "feedUrl": "https://www.nationalgeographic.com/environment/rss/",
+      "homepageUrl": "https://www.nationalgeographic.com/environment",
+      "enabled": false,
+      "trustTier": "established-newsroom",
+      "defaultCategories": [
+        "Environmental Science",
+        "Wildlife",
+        "Conservation"
+      ],
+      "defaultGeographicScope": "Global",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED pending confirmation of a stable public RSS endpoint after NatGeo feed changes.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "earthsky",
+      "name": "EarthSky",
+      "publisher": "EarthSky Communications",
+      "feedUrl": "https://earthsky.org/feed/",
+      "homepageUrl": "https://earthsky.org/",
+      "enabled": true,
+      "trustTier": "nonprofit",
+      "defaultCategories": [
+        "Astronomy and Night Sky",
+        "Environmental Science"
+      ],
+      "defaultGeographicScope": "Global",
+      "updateIntervalMinutes": 360,
+      "notes": "Established astronomy and earth-science explainers for night-sky observers.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.210Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "nasa-space-weather",
+      "name": "NASA Space Weather News",
+      "publisher": "NASA",
+      "feedUrl": "https://blogs.nasa.gov/spaceweather/feed/",
+      "homepageUrl": "https://blogs.nasa.gov/spaceweather/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Astronomy and Night Sky"
+      ],
+      "defaultGeographicScope": "Global",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: NASA spaceweather blog feed returned no parseable items on 2026-08-05.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:37:56.340Z",
+        "error": "no parseable items"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "times-union-outdoors",
+      "name": "Times Union — Capital Region / outdoors coverage",
+      "publisher": "Times Union",
+      "feedUrl": "https://www.timesunion.com/rss/section/outdoors.xml",
+      "homepageUrl": "https://www.timesunion.com/",
+      "enabled": false,
+      "trustTier": "established-newsroom",
+      "defaultCategories": [
+        "Regional News",
+        "Hiking and Trails"
+      ],
+      "defaultGeographicScope": "Hudson Valley",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED until a stable outdoors-section RSS URL is verified. Do not invent local relevance from publisher HQ alone.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "sciencenews-earth",
+      "name": "Science News — Earth & Environment",
+      "publisher": "Science News / Society for Science",
+      "feedUrl": "https://www.sciencenews.org/topic/earth/feed",
+      "homepageUrl": "https://www.sciencenews.org/",
+      "enabled": true,
+      "trustTier": "academic",
+      "defaultCategories": [
+        "Environmental Science",
+        "Climate",
+        "Geology"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Nonprofit science journalism — earth and environment desk.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.299Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "usfws-news",
+      "name": "U.S. Fish and Wildlife Service News",
+      "publisher": "U.S. Fish and Wildlife Service",
+      "feedUrl": "https://www.fws.gov/news/rss.xml",
+      "homepageUrl": "https://www.fws.gov/",
+      "enabled": true,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Wildlife",
+        "Conservation",
+        "Birds"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Official USFWS news RSS.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.465Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "forest-service-news",
+      "name": "U.S. Forest Service News",
+      "publisher": "USDA Forest Service",
+      "feedUrl": "https://www.fs.usda.gov/rss/feeds/news",
+      "homepageUrl": "https://www.fs.usda.gov/",
+      "enabled": false,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Forests and Plants",
+        "Hiking and Trails",
+        "Outdoor Safety"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "DISABLED: Forest Service news RSS endpoint returns HTTP 404 as of 2026-08-05.",
+      "lastSuccessfulFetch": null,
+      "lastFailure": {
+        "at": "2026-08-05T02:38:04.916Z",
+        "error": "HTTP 404"
+      },
+      "failureCount": 3
+    },
+    {
+      "id": "sciencedaily-earth-climate",
+      "name": "ScienceDaily — Earth & Climate",
+      "publisher": "ScienceDaily",
+      "feedUrl": "https://www.sciencedaily.com/rss/earth_climate.xml",
+      "homepageUrl": "https://www.sciencedaily.com/",
+      "enabled": true,
+      "trustTier": "academic",
+      "defaultCategories": [
+        "Environmental Science",
+        "Climate",
+        "Geology"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Science news aggregator with research institution sourcing — earth and climate desk.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.749Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "phys-org-earth",
+      "name": "Phys.org — Earth Sciences",
+      "publisher": "Phys.org",
+      "feedUrl": "https://phys.org/rss-feed/earth-news/",
+      "homepageUrl": "https://phys.org/",
+      "enabled": true,
+      "trustTier": "established-newsroom",
+      "defaultCategories": [
+        "Environmental Science",
+        "Geology",
+        "Climate"
+      ],
+      "defaultGeographicScope": "National",
+      "updateIntervalMinutes": 360,
+      "notes": "Science journalism aggregator — earth sciences desk. Classification filters non-outdoor topics.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.865Z",
+      "lastFailure": null,
+      "failureCount": 0
+    },
+    {
+      "id": "nws-albany",
+      "name": "NWS Albany Area Forecast Discussions",
+      "publisher": "National Weather Service Albany",
+      "feedUrl": "https://www.weather.gov/rss_page.php?site_name=aly",
+      "homepageUrl": "https://www.weather.gov/aly/",
+      "enabled": true,
+      "trustTier": "official",
+      "defaultCategories": [
+        "Weather",
+        "Outdoor Safety"
+      ],
+      "defaultGeographicScope": "Hudson Valley",
+      "updateIntervalMinutes": 360,
+      "notes": "Official NWS Albany products covering eastern NY including Hudson Valley/Catskills vicinity. Geographic labels still prefer article place signals when present.",
+      "lastSuccessfulFetch": "2026-08-05T02:39:23.952Z",
+      "lastFailure": null,
+      "failureCount": 0
+    }
+  ]
+}

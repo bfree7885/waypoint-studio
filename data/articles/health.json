@@ -1,0 +1,241 @@
+{
+  "version": "1.0.0",
+  "checkedAt": "2026-08-05T02:39:22.361Z",
+  "status": "ok",
+  "feeds": [
+    {
+      "id": "nasa-image-of-the-day",
+      "name": "NASA Image of the Day",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
+      "warnings": [],
+      "ms": 266,
+      "enabled": true
+    },
+    {
+      "id": "noaa-news",
+      "name": "NOAA News Features",
+      "ok": true,
+      "itemCount": 10,
+      "error": null,
+      "warnings": [],
+      "ms": 177,
+      "enabled": true
+    },
+    {
+      "id": "usgs-news",
+      "name": "USGS Newsroom",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "nps-news",
+      "name": "National Park Service News",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "smithsonian-science",
+      "name": "Smithsonian Science",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "audubon-news",
+      "name": "Audubon Magazine",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
+      "warnings": [],
+      "ms": 152,
+      "enabled": true
+    },
+    {
+      "id": "cornell-lab-allaboutbirds",
+      "name": "All About Birds — Cornell Lab",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "nature-conservancy",
+      "name": "The Nature Conservancy",
+      "ok": true,
+      "itemCount": 10,
+      "error": null,
+      "warnings": [],
+      "ms": 75,
+      "enabled": true
+    },
+    {
+      "id": "spaceweather-noaa",
+      "name": "NOAA Space Weather Prediction Center",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "ny-dec-news",
+      "name": "New York DEC News",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "pa-dcnr-news",
+      "name": "Pennsylvania DCNR News",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "nj-dep-news",
+      "name": "New Jersey DEP Newsroom",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "amc-outdoors",
+      "name": "Appalachian Mountain Club — Outdoors",
+      "ok": true,
+      "itemCount": 10,
+      "error": null,
+      "warnings": [],
+      "ms": 101,
+      "enabled": true
+    },
+    {
+      "id": "national-geographic-environment",
+      "name": "National Geographic — Environment",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "earthsky",
+      "name": "EarthSky",
+      "ok": true,
+      "itemCount": 10,
+      "error": null,
+      "warnings": [],
+      "ms": 79,
+      "enabled": true
+    },
+    {
+      "id": "nasa-space-weather",
+      "name": "NASA Space Weather News",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "times-union-outdoors",
+      "name": "Times Union — Capital Region / outdoors coverage",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "sciencenews-earth",
+      "name": "Science News — Earth & Environment",
+      "ok": true,
+      "itemCount": 20,
+      "error": null,
+      "warnings": [],
+      "ms": 99,
+      "enabled": true
+    },
+    {
+      "id": "usfws-news",
+      "name": "U.S. Fish and Wildlife Service News",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
+      "warnings": [],
+      "ms": 162,
+      "enabled": true
+    },
+    {
+      "id": "forest-service-news",
+      "name": "U.S. Forest Service News",
+      "ok": false,
+      "itemCount": 0,
+      "error": "disabled",
+      "warnings": [],
+      "ms": 0,
+      "enabled": false
+    },
+    {
+      "id": "sciencedaily-earth-climate",
+      "name": "ScienceDaily — Earth & Climate",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
+      "warnings": [],
+      "ms": 282,
+      "enabled": true
+    },
+    {
+      "id": "phys-org-earth",
+      "name": "Phys.org — Earth Sciences",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
+      "warnings": [],
+      "ms": 115,
+      "enabled": true
+    },
+    {
+      "id": "nws-albany",
+      "name": "NWS Albany Area Forecast Discussions",
+      "ok": true,
+      "itemCount": 3,
+      "error": null,
+      "warnings": [
+        "item-missing-safe-url"
+      ],
+      "ms": 83,
+      "enabled": true
+    }
+  ],
+  "articleCount": 120,
+  "staleAfter": "2026-08-05T14:39:22.361Z"
+}
