@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-05T23:00:01.303Z",
-  "nextScheduledUpdate": "2026-08-05T23:30:00.000Z",
+  "updatedAt": "2026-08-05T23:30:01.803Z",
+  "nextScheduledUpdate": "2026-08-06T00:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -19,14 +19,14 @@
     "temperatureF": 70,
     "feelsLikeF": 75,
     "humidity": 89,
-    "windMph": 2,
-    "windGustMph": 4,
+    "windMph": 4,
+    "windGustMph": 5,
     "cloudCover": 100,
-    "uvIndex": 1.4,
+    "uvIndex": 1.1,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-08-05T18:00"
+    "observedAt": "2026-08-05T18:30"
   },
   "forecast": {
     "highF": 70,
@@ -37,12 +37,6 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-08-05T19:00",
-        "temperatureF": 70,
-        "precipProbability": 0,
-        "conditions": "Overcast"
-      },
-      {
         "time": "2026-08-05T20:00",
         "temperatureF": 69,
         "precipProbability": 0,
@@ -50,24 +44,30 @@
       },
       {
         "time": "2026-08-05T21:00",
-        "temperatureF": 67,
+        "temperatureF": 68,
         "precipProbability": 0,
         "conditions": "Mainly clear"
       },
       {
         "time": "2026-08-05T22:00",
-        "temperatureF": 65,
+        "temperatureF": 67,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-08-05T23:00",
-        "temperatureF": 64,
+        "temperatureF": 66,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-08-06T00:00",
+        "temperatureF": 64,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-08-06T01:00",
         "temperatureF": 63,
         "precipProbability": 0,
         "conditions": "Clear sky"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Last quarter",
     "illumination": 45,
-    "phaseValue": 0.776,
+    "phaseValue": 0.777,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 773.2044458389282,
+        "generationtime_ms": 273.8511562347412,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-05T18:00",
+          "time": "2026-08-05T18:30",
           "interval": 900,
-          "temperature_2m": 69.5,
+          "temperature_2m": 70.1,
           "relative_humidity_2m": 89,
-          "apparent_temperature": 74.5,
+          "apparent_temperature": 74.7,
           "weather_code": 3,
-          "wind_speed_10m": 2.3,
-          "wind_direction_10m": 107,
-          "wind_gusts_10m": 4,
+          "wind_speed_10m": 3.9,
+          "wind_direction_10m": 66,
+          "wind_gusts_10m": 4.5,
           "cloud_cover": 100,
-          "surface_pressure": 949,
-          "uv_index": 1.35,
+          "surface_pressure": 949.2,
+          "uv_index": 1.05,
           "precipitation": 0
         },
         "hourly_units": {
@@ -210,25 +210,25 @@
             65.8,
             67.3,
             69.5,
-            69.9,
-            69.5,
+            70.3,
+            70.2,
             69.8,
-            69,
-            66.9,
-            65.2,
-            63.9,
-            63.1,
-            62.4,
-            61.7,
-            61,
-            60.1,
-            59.6,
-            60.7,
-            61.5,
-            62.8,
+            69.1,
+            67.6,
+            67.3,
+            65.9,
+            64.2,
             63.2,
-            64.7,
-            71.1,
+            62.8,
+            62.8,
+            62.7,
+            63.3,
+            63.4,
+            63.4,
+            64.1,
+            64.2,
+            65.7,
+            70.7,
             73.1,
             76.1,
             79,
@@ -271,13 +271,13 @@
             0,
             0,
             0,
-            0,
             45,
             45,
             45,
             45,
             45,
             45,
+            3,
             3,
             2,
             1,
@@ -329,14 +329,14 @@
             0,
             0,
             0,
-            3,
+            2,
             2,
             3,
             4,
             3,
             3,
             3,
-            2,
+            1,
             2,
             2,
             3,
@@ -414,12 +414,12 @@
             45
           ],
           "temperature_2m_max": [
-            69.9,
+            70.3,
             85.1
           ],
           "temperature_2m_min": [
             59.7,
-            59.6
+            62.7
           ],
           "precipitation_probability_max": [
             50,
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Last quarter",
         "illumination": 45,
-        "phaseValue": 0.776,
+        "phaseValue": 0.777,
         "trust": "Estimated"
       }
     },
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 1.4,
+        "uvIndex": 1.1,
         "status": "live"
       }
     },
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-05T23:00:01.303Z",
+    "generatedAt": "2026-08-05T23:30:01.803Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
