@@ -255,4 +255,5 @@ Residual a11y gaps: launcher letter icons, Articles/About `aria-current`, touch-
 - [ ] Owner merge decision  
 - [ ] Deploy (out of scope)
 
-**Tip SHA / push confirmation:** filled after commit + push in the delivery note accompanying this PR/branch.
+**Tip SHA:** `448319105c975a7511fe125537cf496b2973fb67`  
+**Push:** pending
