@@ -80,7 +80,7 @@ Run:
 node scripts/articles-refresh.mjs
 ```
 
-Scheduled: `.github/workflows/articles-refresh.yml` every 6 hours. Commits only when artifacts change.
+Scheduled: `.github/workflows/articles-refresh.yml` every 12 hours. Commits only when artifacts change.
 
 ## Deployment model
 

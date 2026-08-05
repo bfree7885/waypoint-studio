@@ -52,7 +52,7 @@ Deterministic **fallback** templates with **category variation** (`takeProvenanc
 node scripts/articles-refresh.mjs
 ```
 
-GitHub Action: `.github/workflows/articles-refresh.yml` (every 6 hours). Commits only when artifacts change and article count > 0. Retains last-good dataset if every enabled feed fails.
+GitHub Action: `.github/workflows/articles-refresh.yml` (every 12 hours). Commits only when artifacts change and article count > 0. Retains last-good dataset if every enabled feed fails.
 
 ## RSS output routes
 
@@ -89,7 +89,7 @@ See release-gate document.
 
 - Refresh static artifacts on schedule or before release
 - Do not scrape HTML when feeds fail
-- Identifiable User-Agent; ≥15s timeouts; ≥4–6 hour cadence
+- Identifiable User-Agent; ≥15s timeouts; 12-hour refresh cadence
 - Empty refresh must not commit empty artifacts
 
 ## Copyright & attribution safeguards

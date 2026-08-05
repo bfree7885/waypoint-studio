@@ -69,4 +69,4 @@ Disabled with explicit classifications (see `articles-release-gate.md`):
 1. Prefer fixing `feedUrl` over inventing scrapers.
 2. If a feed fails repeatedly, set `enabled: false` and classify in `notes`.
 3. Re-run `node scripts/articles-refresh.mjs`.
-4. Keep request cadence ≥ 4–6 hours; honor timeouts and User-Agent identity.
+4. Keep request cadence at 12 hours (scheduled Action); honor timeouts and User-Agent identity.

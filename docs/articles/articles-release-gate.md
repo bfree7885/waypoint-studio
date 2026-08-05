@@ -17,7 +17,7 @@ The Articles experience is production-capable as a curated static feed: honest a
 1. Accept that Hudson Valley / Poconos / Northern New Jersey **article volume remains thin** until stable regional RSS sources appear (do not scrape HTML newsrooms).
 2. Accept that **12 feeds stay disabled** with classified reasons; do not treat green-all-feeds as a launch requirement.
 3. Accept that summaries remain **deterministic feed-description** (no AI) and Takes remain **fallback** templates with category variation.
-4. When the 6-hour refresh workflow lands on `main`, artifact commits may trigger Pages (~4/day). This is bounded, not a loop; monitor first week after merge.
+4. When the 12-hour refresh workflow lands on `main`, artifact commits may trigger Pages (~0–2/day when content changes). This is bounded, not a loop; monitor first week after merge.
 5. Pre-existing `origin/main` platform test failures (home/support architecture, Outside/OS CSS) remain unrelated and should not gate Articles.
 
 ## Counts (post release-gate refresh)
@@ -124,7 +124,7 @@ Checks: escaped content, publisher attribution, summary vs Take separation, no f
 - Pipeline **retains last-good `articles.json`** when every enabled feed fails (`retainedPrevious`)
 - Atomic temp+rename writes
 - No secrets required
-- 6-hour schedule bounds Pages redeploys if merged to main
+- 12-hour schedule bounds Pages redeploys if merged to main
 
 ## Test results
 
