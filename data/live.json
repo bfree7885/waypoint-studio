@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-05T07:30:01.424Z",
-  "nextScheduledUpdate": "2026-08-05T08:00:00.000Z",
+  "updatedAt": "2026-08-05T08:00:01.517Z",
+  "nextScheduledUpdate": "2026-08-05T08:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -19,14 +19,14 @@
     "temperatureF": 61,
     "feelsLikeF": 59,
     "humidity": 90,
-    "windMph": 13,
-    "windGustMph": 27,
-    "cloudCover": 53,
+    "windMph": 12,
+    "windGustMph": 25,
+    "cloudCover": 62,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Partly cloudy",
     "weatherCode": 2,
-    "observedAt": "2026-08-05T02:30"
+    "observedAt": "2026-08-05T03:00"
   },
   "forecast": {
     "highF": 77,
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Last quarter",
     "illumination": 49,
-    "phaseValue": 0.754,
+    "phaseValue": 0.755,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 50,
-    "pm25": 9.7,
+    "usAqi": 48,
+    "pm25": 9.3,
     "category": "Good",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 417.17827320098877,
+        "generationtime_ms": 720.3127145767212,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-05T02:30",
+          "time": "2026-08-05T03:00",
           "interval": 900,
-          "temperature_2m": 61.3,
+          "temperature_2m": 60.9,
           "relative_humidity_2m": 90,
-          "apparent_temperature": 58.5,
+          "apparent_temperature": 58.7,
           "weather_code": 2,
-          "wind_speed_10m": 13.1,
-          "wind_direction_10m": 23,
-          "wind_gusts_10m": 26.6,
-          "cloud_cover": 53,
-          "surface_pressure": 947.6,
+          "wind_speed_10m": 11.5,
+          "wind_direction_10m": 33,
+          "wind_gusts_10m": 24.6,
+          "cloud_cover": 62,
+          "surface_pressure": 947.7,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -457,14 +457,14 @@
       "data": {
         "phase": "Last quarter",
         "illumination": 49,
-        "phaseValue": 0.754,
+        "phaseValue": 0.755,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 50,
-        "pm25": 9.7,
+        "usAqi": 48,
+        "pm25": 9.3,
         "category": "Good",
         "status": "live"
       }
@@ -520,9 +520,9 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 53,
-        "score": 92,
-        "summary": "Strong outdoor light conditions",
+        "cloudCover": 62,
+        "score": 68,
+        "summary": "Moderate outdoor light conditions",
         "sunrise": "6:37 AM",
         "sunset": "8:43 PM"
       }
@@ -542,19 +542,19 @@
       {
         "module": "river_gauges",
         "source": "USGS Water Services",
-        "error": "This operation was aborted",
+        "error": "HTTP 503",
         "retryAttempts": 3
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-05T07:30:01.424Z",
+    "generatedAt": "2026-08-05T08:00:01.517Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "estimated",
+      "usgsWater": "unavailable",
       "ebird": "unavailable"
     }
   }
