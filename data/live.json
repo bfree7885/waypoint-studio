@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-05T10:00:01.297Z",
-  "nextScheduledUpdate": "2026-08-05T10:30:00.000Z",
+  "updatedAt": "2026-08-05T10:30:01.227Z",
+  "nextScheduledUpdate": "2026-08-05T11:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -19,57 +19,57 @@
     "temperatureF": 61,
     "feelsLikeF": 61,
     "humidity": 95,
-    "windMph": 9,
-    "windGustMph": 20,
+    "windMph": 8,
+    "windGustMph": 16,
     "cloudCover": 100,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Overcast",
     "weatherCode": 3,
-    "observedAt": "2026-08-05T05:00"
+    "observedAt": "2026-08-05T05:30"
   },
   "forecast": {
     "highF": 78,
     "lowF": 61,
-    "precipProbability": 34,
+    "precipProbability": 36,
     "summary": "Overcast · High 78° / Low 61°"
   },
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-08-05T06:00",
-        "temperatureF": 61,
-        "precipProbability": 15,
-        "conditions": "Overcast"
-      },
-      {
         "time": "2026-08-05T07:00",
         "temperatureF": 61,
-        "precipProbability": 12,
+        "precipProbability": 9,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-05T08:00",
         "temperatureF": 62,
-        "precipProbability": 18,
+        "precipProbability": 19,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-05T09:00",
         "temperatureF": 63,
-        "precipProbability": 34,
+        "precipProbability": 26,
         "conditions": "Partly cloudy"
       },
       {
         "time": "2026-08-05T10:00",
         "temperatureF": 63,
-        "precipProbability": 30,
+        "precipProbability": 36,
         "conditions": "Light drizzle"
       },
       {
         "time": "2026-08-05T11:00",
         "temperatureF": 63,
-        "precipProbability": 14,
+        "precipProbability": 19,
+        "conditions": "Overcast"
+      },
+      {
+        "time": "2026-08-05T12:00",
+        "temperatureF": 66,
+        "precipProbability": 8,
         "conditions": "Overcast"
       }
     ],
@@ -85,13 +85,13 @@
   "moon": {
     "phase": "Last quarter",
     "illumination": 48,
-    "phaseValue": 0.758,
+    "phaseValue": 0.759,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 46,
-    "pm25": 9.2,
-    "category": "Good",
+    "usAqi": 56,
+    "pm25": 12.2,
+    "category": "Moderate",
     "status": "live"
   },
   "modules": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 574.5840072631836,
+        "generationtime_ms": 288.1438732147217,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-05T05:00",
+          "time": "2026-08-05T05:30",
           "interval": 900,
-          "temperature_2m": 61,
+          "temperature_2m": 61.1,
           "relative_humidity_2m": 95,
-          "apparent_temperature": 60.6,
+          "apparent_temperature": 60.8,
           "weather_code": 3,
-          "wind_speed_10m": 8.6,
-          "wind_direction_10m": 39,
-          "wind_gusts_10m": 19.5,
+          "wind_speed_10m": 8.3,
+          "wind_direction_10m": 24,
+          "wind_gusts_10m": 16.3,
           "cloud_cover": 100,
-          "surface_pressure": 946.7,
+          "surface_pressure": 947.1,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -298,22 +298,22 @@
             5,
             5,
             5,
-            10,
-            15,
-            12,
-            18,
-            34,
-            30,
-            14,
-            7,
-            6,
-            4,
-            3,
+            9,
+            11,
+            9,
+            19,
+            26,
+            36,
+            19,
+            8,
+            11,
+            8,
+            5,
             2,
             1,
             2,
             2,
-            1,
+            0,
             0,
             0,
             0,
@@ -422,7 +422,7 @@
             62.1
           ],
           "precipitation_probability_max": [
-            34,
+            36,
             7
           ],
           "precipitation_sum": [
@@ -457,15 +457,15 @@
       "data": {
         "phase": "Last quarter",
         "illumination": 48,
-        "phaseValue": 0.758,
+        "phaseValue": 0.759,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 46,
-        "pm25": 9.2,
-        "category": "Good",
+        "usAqi": 56,
+        "pm25": 12.2,
+        "category": "Moderate",
         "status": "live"
       }
     },
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-05T10:00:01.297Z",
+    "generatedAt": "2026-08-05T10:30:01.227Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
