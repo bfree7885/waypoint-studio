@@ -310,8 +310,8 @@
     var empty = "";
     if (!ids.length || !sections.length) {
       empty =
-        '<div class="wdb-r-workspace__empty" role="status">' +
-        '<p class="wdb-r-workspace__empty-title">Your workspace is empty</p>' +
+        '<div class="wdb-r-workspace__empty wds-empty wds-state" role="status">' +
+        '<p class="wdb-r-workspace__empty-title wds-empty__title">Your workspace is empty</p>' +
         "<p>" +
         (customize
           ? "Add instruments from the library below. Changes stay draft until you Save."

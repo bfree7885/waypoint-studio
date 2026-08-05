@@ -83,7 +83,7 @@ html[data-product="waypoint-volunteer"],
   text-transform: uppercase;
   color: var(--wds-text-muted);
   text-decoration: none;
-  min-height: 2.5rem;
+  min-height: var(--wds-touch-min, 44px);
   display: inline-flex;
   align-items: center;
 }

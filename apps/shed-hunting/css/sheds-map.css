@@ -34,7 +34,8 @@ html, body {
   touch-action: manipulation;
 }
 
-.sheds-skip {
+.sheds-skip,
+.sheds-app .wds-skip {
   position: absolute;
   left: 0.75rem;
   top: calc(0.75rem + var(--sheds-safe-top));
@@ -44,16 +45,19 @@ html, body {
   color: #0a1410;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: var(--wds-radius-md, 8px);
   transform: translateY(-160%);
-  transition: transform 0.15s ease;
+  transition: transform var(--wds-duration-instant, 120ms) var(--sheds-ease, ease);
 }
 
 .sheds-skip:focus,
-.sheds-skip:focus-visible {
+.sheds-skip:focus-visible,
+.sheds-app .wds-skip:focus,
+.sheds-app .wds-skip:focus-visible {
   transform: translateY(0);
-  outline: 2px solid #fff;
+  outline: 2px solid var(--wds-focus, #fff);
   outline-offset: 2px;
+  left: 0.75rem;
 }
 
 .sheds-app {
@@ -91,9 +95,13 @@ html, body {
   background: transparent;
 }
 
-.sheds-map-loading {
+.sheds-map-loading,
+.sheds-map-loading.wds-map-loading {
   position: absolute;
   inset: 0;
+  left: 0;
+  right: 0;
+  top: 0;
   z-index: 400;
   display: flex;
   flex-direction: column;
@@ -105,6 +113,12 @@ html, body {
     linear-gradient(160deg, #0c1a14 0%, #152820 50%, #0a1410 100%);
   pointer-events: none;
   transition: opacity 0.55s var(--sheds-ease);
+  /* Keep immersive full-canvas loader even if .wds-map-loading is present */
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  color: var(--sheds-muted);
+  font-size: inherit;
 }
 
 .sheds-map-loading[hidden],

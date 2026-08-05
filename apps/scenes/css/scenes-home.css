@@ -35,11 +35,7 @@ html[data-product="scenes"],
   color: var(--scenes-muted);
 }
 
-.was-shell[data-product="scenes"] .was-primary-nav__link[aria-current="page"],
-.was-shell[data-product="scenes"] .was-local a[aria-current="page"],
-.was-shell[data-product="scenes"] .was-local a.is-current {
-  color: var(--scenes-lime);
-}
+/* Current links inherit shared shell accent via --wds-accent (scenes lime). */
 
 .was-shell[data-product="scenes"] .was-footer {
   border-top-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
@@ -84,13 +80,14 @@ html[data-product="scenes"],
   position: relative;
   z-index: 1;
   max-width: 40rem;
-  padding: clamp(5rem, 12vh, 7rem) clamp(1.15rem, 4vw, 2.75rem) clamp(2rem, 5vw, 3rem);
+  padding: clamp(5rem, 12vh, 7rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 3rem);
 }
 
 .scenes-stage__eyebrow {
   margin: 0 0 0.75rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
+  font-size: var(--wds-text-xs, 0.75rem);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider, 0.12em);
   text-transform: uppercase;
   color: var(--scenes-muted);
 }
@@ -98,19 +95,19 @@ html[data-product="scenes"],
 .scenes-stage__title {
   margin: 0;
   font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(2.35rem, 6.5vw, 3.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  line-height: var(--wds-leading-tight, 1.12);
+  letter-spacing: var(--wds-tracking-tight, -0.03em);
   max-width: 14ch;
   text-wrap: balance;
 }
 
 .scenes-stage__lead {
   margin: 1rem 0 0;
-  max-width: 28rem;
-  font-size: 1.08rem;
-  line-height: 1.6;
+  max-width: var(--wds-max-reading, 42rem);
+  font-size: var(--wds-text-md, 1rem);
+  line-height: var(--wds-leading-relaxed, 1.65);
   color: var(--scenes-muted);
 }
 
@@ -131,13 +128,13 @@ html[data-product="scenes"],
 .scenes-stage__cta a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
+  min-height: var(--wds-touch-min, 44px);
   padding: 0.5rem 1.15rem;
   border: 1px solid color-mix(in srgb, var(--scenes-ink) 35%, transparent);
-  border-radius: 999px;
+  border-radius: var(--wds-radius-pill, 999px);
   color: var(--scenes-ink);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: var(--wds-text-sm, 0.875rem);
   letter-spacing: 0.03em;
   background: color-mix(in srgb, var(--scenes-navy) 55%, transparent);
 }
@@ -149,7 +146,7 @@ html[data-product="scenes"],
 }
 
 .scenes-stage__cta a:focus-visible {
-  outline: 2px solid var(--scenes-violet);
+  outline: 2px solid var(--wds-focus, var(--scenes-lime));
   outline-offset: 3px;
 }
 
@@ -163,9 +160,9 @@ html[data-product="scenes"],
 
 /* ——— Page body ——— */
 .scenes-page {
-  max-width: 42rem;
+  max-width: var(--wds-max-reading, 42rem);
   margin: 0 auto;
-  padding: clamp(2.25rem, 6vw, 3.75rem) clamp(1.15rem, 3.5vw, 2rem) clamp(3rem, 8vw, 5rem);
+  padding: clamp(2.25rem, 6vw, 3.75rem) clamp(1rem, 3vw, 2rem) clamp(3rem, 8vw, 5rem);
 }
 
 .scenes-primary {
@@ -175,8 +172,8 @@ html[data-product="scenes"],
 
 .scenes-primary__kicker {
   margin: 0 0 0.55rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: var(--wds-text-xs, 0.75rem);
+  letter-spacing: var(--wds-tracking-wider, 0.12em);
   text-transform: uppercase;
   color: var(--scenes-magenta);
 }
@@ -527,12 +524,12 @@ html[data-product="scenes"],
   gap: 0.35rem 0.85rem;
   align-items: start;
   padding: 0.95rem 1rem;
-  border-radius: 0.85rem;
+  border-radius: var(--wds-radius-lg, 14px);
   border: 1px solid var(--wds-border-subtle, rgba(155, 143, 217, 0.1));
   text-decoration: none;
   color: inherit;
   background: color-mix(in srgb, var(--wds-elevated, #112038) 55%, transparent);
-  transition: border-color 200ms ease;
+  transition: border-color var(--wds-duration-calm, 280ms) var(--wds-ease-out, ease);
 }
 
 .scenes-journey__list a::before {
@@ -550,7 +547,7 @@ html[data-product="scenes"],
 }
 
 .scenes-journey__list a:focus-visible {
-  outline: 2px solid var(--scenes-violet);
+  outline: 2px solid var(--wds-focus, var(--scenes-lime));
   outline-offset: 2px;
 }
 

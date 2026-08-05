@@ -17,21 +17,22 @@
   border: 0 !important;
 }
 
-/* Sheds immersive map: same skip pattern as studio */
+/* Sheds immersive map: alias legacy .sheds-skip onto shared .wds-skip contract */
 .sheds-skip {
   position: absolute;
   left: -9999px;
-  top: 0;
+  top: var(--wds-space-3, 0.75rem);
   z-index: var(--wds-z-toast, 400);
   padding: var(--wds-space-3, 0.75rem) var(--wds-space-4, 1rem);
-  background: var(--wds-surface, #0c1628);
-  color: var(--wds-text, #e4eaf4);
+  background: var(--wds-text, #e4eaf4);
+  color: var(--wds-on-accent, #0a1410);
   text-decoration: none;
   border-radius: var(--wds-radius-md, 10px);
+  font-size: var(--wds-text-sm, 0.875rem);
+  font-weight: 500;
 }
 .sheds-skip:focus {
   left: var(--wds-space-4, 1rem);
-  top: var(--wds-space-4, 1rem);
 }
 
 /* ——— Reading / hierarchy ——— */

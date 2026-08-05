@@ -48,13 +48,15 @@ body::after {
 }
 
 /* ——— Chrome ——— */
-.skip-link {
+/* Prefer shared .wds-skip; keep .skip-link as alias for legacy markup */
+.skip-link,
+.wds-skip {
   position: absolute;
   left: -9999px;
   top: var(--ws-space-sm);
   z-index: 1000;
   padding: 0.45rem 0.85rem;
-  font-size: 0.75rem;
+  font-size: var(--wds-text-sm, 0.875rem);
   font-weight: 500;
   color: var(--ws-bg);
   background: var(--ws-text);
@@ -62,7 +64,8 @@ body::after {
   text-decoration: none;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.wds-skip:focus {
   left: var(--ws-space-md);
 }
 

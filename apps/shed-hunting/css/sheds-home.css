@@ -12,6 +12,7 @@ html[data-product="shed-hunting"],
   --sheds-orange: var(--aurora-burnt-orange, #c46a3a);
   --sheds-bark: var(--aurora-bark, #5c4638);
   --sheds-slate: #6e8498;
+  --wds-accent: var(--sheds-gold);
   background: var(--wds-bg, #080f1c);
   color: var(--sheds-ink);
   font-family: var(--wds-font-body, Inter, system-ui, sans-serif);
@@ -23,21 +24,17 @@ html[data-product="shed-hunting"],
   backdrop-filter: blur(10px);
 }
 
-.was-shell[data-product="shed-hunting"] .was-primary-nav__link[aria-current="page"],
-.was-shell[data-product="shed-hunting"] .was-local a[aria-current="page"],
-.was-shell[data-product="shed-hunting"] .was-local a.is-current {
-  color: var(--sheds-gold);
-}
+/* Current links inherit shared shell accent via --wds-accent (sheds gold). */
 
 .sheds-page {
-  max-width: 42rem;
+  max-width: var(--wds-max-reading, 42rem);
 }
 
 .xp-stage {
   position: relative;
-  margin: 0 0 2.25rem;
-  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1.25rem, 4vw, 2rem);
-  border-radius: 1.15rem;
+  margin: 0 0 var(--wds-section-gap, 2.25rem);
+  padding: clamp(1.75rem, 5vw, 2.75rem) clamp(1rem, 3vw, 2rem);
+  border-radius: var(--wds-radius-2xl, 24px);
   overflow: hidden;
   isolation: isolate;
   background-size: cover;
@@ -80,8 +77,9 @@ html[data-product="shed-hunting"],
 
 .xp-stage__eyebrow {
   margin: 0 0 0.5rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: var(--wds-text-xs, 0.75rem);
+  font-weight: 500;
+  letter-spacing: var(--wds-tracking-wider, 0.12em);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--sheds-ink) 55%, transparent);
 }
@@ -89,16 +87,17 @@ html[data-product="shed-hunting"],
 .xp-stage__title {
   margin: 0 0 0.65rem;
   font-family: var(--wds-font-display, Georgia, serif);
-  font-weight: 400;
-  font-size: clamp(1.85rem, 4vw, 2.35rem);
-  line-height: 1.15;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  line-height: var(--wds-leading-tight, 1.12);
   color: var(--sheds-ink);
 }
 
 .xp-stage__lead {
   margin: 0 0 1.25rem;
-  max-width: 34rem;
-  line-height: 1.55;
+  max-width: var(--wds-max-reading, 42rem);
+  font-size: var(--wds-text-md, 1rem);
+  line-height: var(--wds-leading-relaxed, 1.65);
   color: var(--sheds-muted);
 }
 
@@ -119,8 +118,8 @@ html[data-product="shed-hunting"],
 .xp-secondary__title,
 .xp-later__title {
   margin: 0 0 0.85rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: var(--wds-text-xs, 0.75rem);
+  letter-spacing: var(--wds-tracking-wider, 0.12em);
   text-transform: uppercase;
   font-weight: 500;
   color: var(--wds-text-secondary, rgba(238, 242, 246, 0.5));
@@ -149,8 +148,13 @@ html[data-product="shed-hunting"],
 
 .xp-secondary__list a:hover,
 .xp-secondary__list a:focus-visible {
-  color: var(--sheds-gold);
+  color: var(--wds-accent, var(--sheds-gold));
   outline: none;
+}
+
+.xp-secondary__list a:focus-visible {
+  outline: 2px solid var(--wds-focus, var(--sheds-gold));
+  outline-offset: 2px;
 }
 
 .xp-secondary__list strong {

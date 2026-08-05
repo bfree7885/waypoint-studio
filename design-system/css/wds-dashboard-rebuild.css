@@ -227,7 +227,8 @@
   background: color-mix(in srgb, var(--wdb-r-surface) 80%, transparent);
 }
 
-.wdb-r-workspace__empty-title {
+.wdb-r-workspace__empty-title,
+.wdb-r-workspace__empty .wds-empty__title {
   margin: 0 0 0.35rem;
   font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
   font-size: 1.25rem;
