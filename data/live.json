@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-06T05:00:01.649Z",
-  "nextScheduledUpdate": "2026-08-06T05:30:00.000Z",
+  "updatedAt": "2026-08-06T05:30:01.190Z",
+  "nextScheduledUpdate": "2026-08-06T06:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -18,15 +18,15 @@
   "current": {
     "temperatureF": 63,
     "feelsLikeF": 65,
-    "humidity": 91,
+    "humidity": 92,
     "windMph": 4,
-    "windGustMph": 7,
+    "windGustMph": 6,
     "cloudCover": 3,
     "uvIndex": 0,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-06T00:00"
+    "observedAt": "2026-08-06T00:30"
   },
   "forecast": {
     "highF": 83,
@@ -36,12 +36,6 @@
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-08-06T01:00",
-        "temperatureF": 62,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
       {
         "time": "2026-08-06T02:00",
         "temperatureF": 62,
@@ -62,12 +56,18 @@
       },
       {
         "time": "2026-08-06T05:00",
-        "temperatureF": 63,
+        "temperatureF": 62,
         "precipProbability": 0,
         "conditions": "Fog"
       },
       {
         "time": "2026-08-06T06:00",
+        "temperatureF": 63,
+        "precipProbability": 0,
+        "conditions": "Fog"
+      },
+      {
+        "time": "2026-08-06T07:00",
         "temperatureF": 63,
         "precipProbability": 0,
         "conditions": "Fog"
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 1600.1824140548706,
+        "generationtime_ms": 145.80142498016357,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-06T00:00",
+          "time": "2026-08-06T00:30",
           "interval": 900,
-          "temperature_2m": 62.7,
-          "relative_humidity_2m": 91,
-          "apparent_temperature": 64.5,
+          "temperature_2m": 62.6,
+          "relative_humidity_2m": 92,
+          "apparent_temperature": 64.6,
           "weather_code": 0,
-          "wind_speed_10m": 3.9,
-          "wind_direction_10m": 66,
-          "wind_gusts_10m": 7.2,
+          "wind_speed_10m": 3.7,
+          "wind_direction_10m": 38,
+          "wind_gusts_10m": 6,
           "cloud_cover": 3,
-          "surface_pressure": 948.5,
+          "surface_pressure": 948.7,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -193,24 +193,24 @@
             "2026-08-07T23:00"
           ],
           "temperature_2m": [
-            62.7,
-            62.2,
-            61.8,
-            61.4,
-            60.8,
-            62.5,
-            63.2,
-            63.4,
-            64.4,
-            65.3,
-            66.6,
-            68.3,
-            69.3,
-            72,
-            73.8,
-            74.6,
-            76.8,
-            80.9,
+            62.9,
+            62.1,
+            61.5,
+            61.1,
+            60.5,
+            62.1,
+            62.6,
+            62.8,
+            63.6,
+            64.3,
+            66.4,
+            67.3,
+            70,
+            72.5,
+            73.9,
+            75.3,
+            77.2,
+            80.3,
             82.9,
             82.7,
             79.4,
@@ -253,7 +253,7 @@
             45,
             45,
             45,
-            45,
+            3,
             3,
             3,
             3,
@@ -418,7 +418,7 @@
             101.6
           ],
           "temperature_2m_min": [
-            60.8,
+            60.5,
             69
           ],
           "precipitation_probability_max": [
@@ -513,8 +513,14 @@
     "alerts": {
       "data": {
         "status": "live",
-        "count": 0,
-        "items": []
+        "count": 1,
+        "items": [
+          {
+            "event": "Dense Fog Advisory",
+            "severity": "Moderate",
+            "headline": "Dense Fog Advisory issued August 6 at 12:04AM CDT until August 6 at 10:00AM CDT by NWS Hastings NE"
+          }
+        ]
       }
     },
     "photography_conditions": {
@@ -547,14 +553,14 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-06T05:00:01.649Z",
+    "generatedAt": "2026-08-06T05:30:01.190Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "estimated",
+      "usgsWater": "unavailable",
       "ebird": "unavailable"
     }
   }
