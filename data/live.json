@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-06T10:00:01.218Z",
-  "nextScheduledUpdate": "2026-08-06T10:30:00.000Z",
+  "updatedAt": "2026-08-06T10:30:01.147Z",
+  "nextScheduledUpdate": "2026-08-06T11:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,32 +16,26 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 65,
+    "temperatureF": 64,
     "feelsLikeF": 68,
     "humidity": 96,
-    "windMph": 3,
-    "windGustMph": 8,
-    "cloudCover": 72,
+    "windMph": 4,
+    "windGustMph": 9,
+    "cloudCover": 84,
     "uvIndex": 0,
     "precipIn": 0,
-    "conditions": "Partly cloudy",
-    "weatherCode": 2,
-    "observedAt": "2026-08-06T05:00"
+    "conditions": "Overcast",
+    "weatherCode": 3,
+    "observedAt": "2026-08-06T05:30"
   },
   "forecast": {
     "highF": 84,
     "lowF": 63,
     "precipProbability": 4,
-    "summary": "Partly cloudy · High 84° / Low 63°"
+    "summary": "Overcast · High 84° / Low 63°"
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-08-06T06:00",
-        "temperatureF": 64,
-        "precipProbability": 0,
-        "conditions": "Overcast"
-      },
       {
         "time": "2026-08-06T07:00",
         "temperatureF": 65,
@@ -71,6 +65,12 @@
         "temperatureF": 70,
         "precipProbability": 0,
         "conditions": "Partly cloudy"
+      },
+      {
+        "time": "2026-08-06T12:00",
+        "temperatureF": 72,
+        "precipProbability": 0,
+        "conditions": "Overcast"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -84,8 +84,8 @@
   },
   "moon": {
     "phase": "Waning crescent",
-    "illumination": 42,
-    "phaseValue": 0.792,
+    "illumination": 41,
+    "phaseValue": 0.793,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 645.7538604736328,
+        "generationtime_ms": 345.8366394042969,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-06T05:00",
+          "time": "2026-08-06T05:30",
           "interval": 900,
-          "temperature_2m": 64.8,
+          "temperature_2m": 64.4,
           "relative_humidity_2m": 96,
-          "apparent_temperature": 68.2,
-          "weather_code": 2,
-          "wind_speed_10m": 3.4,
-          "wind_direction_10m": 101,
-          "wind_gusts_10m": 8.3,
-          "cloud_cover": 72,
-          "surface_pressure": 949.7,
+          "apparent_temperature": 67.5,
+          "weather_code": 3,
+          "wind_speed_10m": 4,
+          "wind_direction_10m": 74,
+          "wind_gusts_10m": 9.4,
+          "cloud_cover": 84,
+          "surface_pressure": 949.6,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -456,8 +456,8 @@
     "moon": {
       "data": {
         "phase": "Waning crescent",
-        "illumination": 42,
-        "phaseValue": 0.792,
+        "illumination": 41,
+        "phaseValue": 0.793,
         "trust": "Estimated"
       }
     },
@@ -526,7 +526,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 72,
+        "cloudCover": 84,
         "score": 68,
         "summary": "Moderate outdoor light conditions",
         "sunrise": "6:38 AM",
@@ -553,14 +553,14 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-06T10:00:01.218Z",
+    "generatedAt": "2026-08-06T10:30:01.147Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "estimated",
+      "usgsWater": "unavailable",
       "ebird": "unavailable"
     }
   }
