@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-06T01:21:59.832Z",
-  "status": "partial",
+  "checkedAt": "2026-08-06T13:30:59.634Z",
+  "status": "ok",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": false,
-      "itemCount": 0,
-      "error": "HTTP 429",
+      "ok": true,
+      "itemCount": 24,
+      "error": null,
       "warnings": [],
-      "ms": 128,
+      "ms": 157,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 8,
       "error": null,
       "warnings": [],
-      "ms": 176,
+      "ms": 154,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 177,
+      "ms": 335,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 271,
+      "ms": 263,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 235,
+      "ms": 585,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 181,
+      "ms": 259,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 263,
+      "ms": 126,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 300,
+      "ms": 638,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 235,
+      "ms": 346,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 321,
+      "ms": 129,
       "enabled": true
     },
     {
@@ -233,17 +233,17 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 133,
+      "ms": 479,
       "enabled": true
     },
     {
       "id": "adirondack-explorer",
       "name": "Adirondack Explorer",
       "ok": true,
-      "itemCount": 6,
+      "itemCount": 9,
       "error": null,
       "warnings": [],
-      "ms": 157,
+      "ms": 63,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 316,
+      "ms": 348,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-06T13:21:59.832Z"
+  "staleAfter": "2026-08-07T01:30:59.634Z"
 }

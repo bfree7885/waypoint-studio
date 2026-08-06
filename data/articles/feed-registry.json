@@ -18,12 +18,9 @@
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 720,
       "notes": "Official NASA imagery and short captions — astronomy and visual science.",
-      "lastSuccessfulFetch": "2026-08-05T13:40:45.720Z",
-      "lastFailure": {
-        "at": "2026-08-06T01:21:59.960Z",
-        "error": "HTTP 429"
-      },
-      "failureCount": 1
+      "lastSuccessfulFetch": "2026-08-06T13:30:59.778Z",
+      "lastFailure": null,
+      "failureCount": 0
     },
     {
       "id": "noaa-news",
@@ -41,7 +38,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Official NOAA features — weather, climate, oceans, and earth science.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:00.118Z",
+      "lastSuccessfulFetch": "2026-08-06T13:30:59.941Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -130,7 +127,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "National Audubon Society site-wide RSS. Prefer bird/habitat/conservation items via classification.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:00.302Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:00.274Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -173,7 +170,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Nature Conservancy Cool Green Science / blog feed — conservation and field science.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:00.582Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:00.541Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -281,7 +278,7 @@
       "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 720,
       "notes": "Established Northeast outdoor nonprofit — trails, safety, seasonal recreation.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:00.815Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:01.126Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -320,7 +317,7 @@
       "defaultGeographicScope": "Global",
       "updateIntervalMinutes": 720,
       "notes": "Established astronomy and earth-science explainers for night-sky observers.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:00.998Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:01.385Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -380,7 +377,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Nonprofit science journalism — earth and environment desk.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:01.258Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:01.511Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -400,7 +397,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Official USFWS news RSS.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:01.557Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:02.147Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -443,7 +440,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Science news aggregator with research institution sourcing — earth and climate desk.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:01.792Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:02.492Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -463,7 +460,7 @@
       "defaultGeographicScope": "National",
       "updateIntervalMinutes": 720,
       "notes": "Science journalism aggregator — earth sciences desk. Classification filters non-outdoor topics.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:02.112Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:02.621Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -482,7 +479,7 @@
       "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 720,
       "notes": "Official NWS Albany products for eastern NY. Narrow local labels (HV/Catskills/Adirondacks) require place signals in the item title/description — office location alone does not force Hudson Valley.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:02.252Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:03.105Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -502,7 +499,7 @@
       "defaultGeographicScope": "Adirondacks",
       "updateIntervalMinutes": 720,
       "notes": "Independent nonprofit newsroom dedicated to Adirondack Park. Classification still requires outdoor/environmental relevance; obituaries and pure politics are rejected when matched.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:02.408Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:03.166Z",
       "lastFailure": null,
       "failureCount": 0
     },
@@ -521,7 +518,7 @@
       "defaultGeographicScope": "Northeast",
       "updateIntervalMinutes": 720,
       "notes": "Official NWS Burlington products — useful for Adirondacks / northern NY / Vermont vicinity. Narrow local labels require place signals in item text. Soft default is Northeast, not Adirondacks-by-office.",
-      "lastSuccessfulFetch": "2026-08-06T01:22:02.726Z",
+      "lastSuccessfulFetch": "2026-08-06T13:31:03.515Z",
       "lastFailure": null,
       "failureCount": 0
     }
