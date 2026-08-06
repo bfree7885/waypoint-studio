@@ -656,3 +656,23 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Keep legacy aliases during schema upgrades.** `sourceApp`, `taxonLabel`,
    `locationLabel`, and `href` prevent silent breakage in search/graph/settings.
 
+### 2026-08-05 — Waypoint Studio RC1 project audit
+
+**Branch:** `feature/outdoor-intelligence-engine`
+**Report:** `docs/project-audit/waypoint-studio-rc1-owner-review.md`
+
+1. **Judge RC1 against the shipped nav, not the aspirational seven-room map.**
+   Learn / Create / Remember / Explore are pillars or directions, not primary
+   products — marketing them invents maturity.
+2. **CI must assert the product era that users see.** Gating Outdoor OS
+   today-outside while skipping Home Rebuild suites is worse than no gate.
+3. **Shared platform layers do not replace boot budget work.** Recommendations
+   and the observation timeline improved coherence; Home still loads ~167
+   sequential modules including retired eras.
+4. **Invite RC1 and public 1.0 are different gates.** Closed beta can proceed
+   under honesty framing; Version 1.0 needs CI truth, contrast, live verify,
+   and a finished Home front-page story (Daily finish or cut).
+5. **Uncommitted front-page WIP must be called out in audits.** Waypoint Daily
+   consolidating Field Notes/Take is valuable only when owned, tested, and
+   documented — dual ownership confuses RC1 messaging.
+
