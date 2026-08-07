@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-07T09:00:01.704Z",
-  "nextScheduledUpdate": "2026-08-07T09:30:00.000Z",
+  "updatedAt": "2026-08-07T09:30:01.799Z",
+  "nextScheduledUpdate": "2026-08-07T10:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,32 +16,26 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 70,
-    "feelsLikeF": 75,
+    "temperatureF": 72,
+    "feelsLikeF": 76,
     "humidity": 94,
-    "windMph": 6,
-    "windGustMph": 12,
-    "cloudCover": 8,
+    "windMph": 9,
+    "windGustMph": 18,
+    "cloudCover": 24,
     "uvIndex": 0,
     "precipIn": 0,
-    "conditions": "Clear sky",
-    "weatherCode": 0,
-    "observedAt": "2026-08-07T04:00"
+    "conditions": "Mainly clear",
+    "weatherCode": 1,
+    "observedAt": "2026-08-07T04:30"
   },
   "forecast": {
-    "highF": 93,
-    "lowF": 69,
+    "highF": 94,
+    "lowF": 70,
     "precipProbability": 8,
-    "summary": "Clear sky · High 93° / Low 69°"
+    "summary": "Mainly clear · High 94° / Low 70°"
   },
   "hourly": {
     "nextHours": [
-      {
-        "time": "2026-08-07T05:00",
-        "temperatureF": 71,
-        "precipProbability": 2,
-        "conditions": "Mainly clear"
-      },
       {
         "time": "2026-08-07T06:00",
         "temperatureF": 70,
@@ -50,25 +44,31 @@
       },
       {
         "time": "2026-08-07T07:00",
-        "temperatureF": 69,
-        "precipProbability": 1,
-        "conditions": "Clear sky"
-      },
-      {
-        "time": "2026-08-07T08:00",
         "temperatureF": 70,
         "precipProbability": 1,
         "conditions": "Clear sky"
       },
       {
+        "time": "2026-08-07T08:00",
+        "temperatureF": 71,
+        "precipProbability": 1,
+        "conditions": "Clear sky"
+      },
+      {
         "time": "2026-08-07T09:00",
-        "temperatureF": 72,
+        "temperatureF": 73,
         "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
         "time": "2026-08-07T10:00",
-        "temperatureF": 75,
+        "temperatureF": 77,
+        "precipProbability": 0,
+        "conditions": "Clear sky"
+      },
+      {
+        "time": "2026-08-07T11:00",
+        "temperatureF": 80,
         "precipProbability": 0,
         "conditions": "Clear sky"
       }
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 35,
-    "phaseValue": 0.824,
+    "phaseValue": 0.825,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 382.31706619262695,
+        "generationtime_ms": 566.428542137146,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-07T04:00",
+          "time": "2026-08-07T04:30",
           "interval": 900,
-          "temperature_2m": 70.3,
+          "temperature_2m": 72,
           "relative_humidity_2m": 94,
-          "apparent_temperature": 75.1,
-          "weather_code": 0,
-          "wind_speed_10m": 5.5,
-          "wind_direction_10m": 145,
-          "wind_gusts_10m": 12.3,
-          "cloud_cover": 8,
-          "surface_pressure": 946.9,
+          "apparent_temperature": 76.2,
+          "weather_code": 1,
+          "wind_speed_10m": 9.1,
+          "wind_direction_10m": 155,
+          "wind_gusts_10m": 18.3,
+          "cloud_cover": 24,
+          "surface_pressure": 947.5,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -196,25 +196,25 @@
             71,
             72.3,
             71.8,
+            71.2,
             71.1,
-            70.3,
-            70.7,
+            71.4,
             70.4,
-            69.1,
-            69.7,
-            72.2,
-            75.4,
-            79.2,
-            83.6,
-            86.8,
-            89.2,
-            91.1,
-            92.4,
-            93.1,
-            92.4,
+            69.5,
+            70.5,
+            73.1,
+            76.5,
+            80.4,
+            84.2,
+            87.9,
             90.2,
-            86.2,
-            83.5,
+            92,
+            93.1,
+            93.7,
+            92,
+            89.8,
+            84.9,
+            82.7,
             78.7,
             77,
             76,
@@ -414,11 +414,11 @@
             3
           ],
           "temperature_2m_max": [
-            93.1,
+            93.7,
             92.4
           ],
           "temperature_2m_min": [
-            69.1,
+            69.5,
             69.1
           ],
           "precipitation_probability_max": [
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 35,
-        "phaseValue": 0.824,
+        "phaseValue": 0.825,
         "trust": "Estimated"
       }
     },
@@ -520,8 +520,8 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 8,
-        "score": 80,
+        "cloudCover": 24,
+        "score": 92,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:39 AM",
         "sunset": "8:41 PM"
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-07T09:00:01.704Z",
+    "generatedAt": "2026-08-07T09:30:01.799Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
