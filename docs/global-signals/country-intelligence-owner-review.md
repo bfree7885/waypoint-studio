@@ -19,7 +19,7 @@ Delivers Country Intelligence index + 15 full structural country profiles as a c
 | | SHA |
 | --- | --- |
 | Start (`origin/main`) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| End (branch tip) |  |
+| End (branch tip) | `71a88b69037e1cb5cf935672e6464d57a5066b21` |
 
 ## Routes
 
@@ -75,11 +75,11 @@ Each profile includes: Current Events · Major Industries · Exports · Imports 
 
 ## Tests
 
-```bash
+``bash
 node automation/test-global-signals-countries.mjs
 node automation/test-global-signals.mjs
 node automation/test-global-signals-articles.mjs
-```
+``
 
 Coverage: index, detail, missing fields, nav, Articles links, Side Trails/GS integration, no Articles regression.
 
