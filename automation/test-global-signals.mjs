@@ -34,6 +34,7 @@ const required = [
   "side-trails/global-signals/articles/index.html",
   "side-trails/global-signals/relationships/index.html",
   "side-trails/global-signals/countries/index.html",
+  "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -63,6 +64,8 @@ assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/countries\//);
+assert.match(html, /\.\/industries\//);
+assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -71,7 +74,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer + Citizen Impact + Country Intelligence are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -102,6 +105,13 @@ assert.match(countriesPage, /gsc-root/);
 assert.match(countriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(countriesPage, /Coming soon/i);
 assert.doesNotMatch(countriesPage, /WebSocket|live data dashboard/i);
+
+const industriesPage = read("side-trails/global-signals/industries/index.html");
+assert.match(industriesPage, /Industry Intelligence/);
+assert.match(industriesPage, /gsi-index|data-gsi-index/);
+assert.match(industriesPage, /Part of Side Trails\./);
+assert.doesNotMatch(industriesPage, /Coming soon/i);
+assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
 
 for (const slug of [
   "waypoint-take",

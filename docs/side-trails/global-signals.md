@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + module shells — Articles + Relationship Explorer + Citizen Impact + Country Intelligence sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
+**Role:** Public product page + module shells — Articles + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
 
 ---
 
@@ -39,6 +39,7 @@
 | Articles | `/side-trails/global-signals/articles/` | Sample/demo briefs live |
 | Relationship Explorer | `/side-trails/global-signals/relationships/` | Cascading “What depends on this?” sample/demo live |
 | Country Intelligence | `/side-trails/global-signals/countries/` | Index + slug profiles live (sample/demo) |
+| Industry Intelligence | `/side-trails/global-signals/industries/` | Index + slug baselines live (curated) |
 | Waypoint’s Take | `/side-trails/global-signals/waypoint-take/` | Coming soon / not implemented |
 | Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented (future graph surface) |
 | Supply Chains | `/side-trails/global-signals/supply-chains/` | Coming soon / not implemented |
