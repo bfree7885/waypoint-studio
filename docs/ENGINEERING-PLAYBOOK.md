@@ -137,6 +137,205 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+
+### 2026-08-06 — Side Trails release integration (ordered rebase)
+
+**Artifact:** `docs/releases/side-trails-integration-owner-review.md`  
+**Branch:** `release/side-trails-integration`
+
+1. **Merge Side Trails production + ST IA first**, then cherry-pick nav/articles/GS unique commits — parallel lineages conflict if merged whole.
+2. **Nav architecture can reintroduce SignalTerrain into `portfolio.foundations`** — re-assert `sideTrails` after rebase.
+3. **`GITHUB_TOKEN` pushes do not retrigger Pages** — always `workflow_dispatch` `pages.yml` after main updates that must go live.
+
+### 2026-08-06 — Articles design modernization (Take + shared nav)
+
+**Artifact:** `docs/articles/articles-modernization-owner-review.md`  
+**Branch:** `feature/articles-design-modernization`
+
+1. **Reuse WCS page chrome for Articles** — `wcs-page` / `wcs-hero` + shared shell
+   beats a one-off dark `was-home` skin; drop duplicate pill menus when primary
+   nav already carries Dashboard → About.
+2. **Waypoint’s Take is a component, not a card subsection** — shared
+   `wds-take.js` / `.wds-take` markup; Articles must call `renderArticleHtml` and
+   keep Summary visually plain.
+3. **Honest empty beats fake editorial** — when Take is missing, unavailable, or
+   only repeats Summary, render restrained empty; never invent Takes on live RSS.
+4. **Side Trails publishing is schema extension, not a CMS** — document
+   reserved `origin` / `projectId` / `projectLabel` and `dataUrl` overrides;
+   do not fork the feed renderer.
+5. **Align Home RC1 nav asserts when architecture labels change** — Dashboard /
+   Side Trails / Support belong in `studioPrimaryNav` and smoke tests together.
+
+### 2026-08-06 — Studio nav architecture alignment
+
+**Artifact:** `docs/product/waypoint-studio-nav-architecture-owner-review.md`  
+**Branch:** `feature/studio-nav-architecture-alignment`
+
+1. **One architecture contract, many surfaces** — `studioPrimaryNav` alone is not enough; About, Support, 404, incubator, sitemap, product-registry, and platform-catalog drift independently and must be audited together.
+2. **Quiet Home is an exception, not a second architecture** — do not force Side Trails/Support into quiet first viewport; document the exception and keep secondary/global directories honest.
+3. **Demote, don’t delete** — Volunteer / SignalTerrain / ForageCast remain reachable under Side Trails, Incubator, or supporting tiers; primary peers must match the seven-item set.
+4. **Keep nav-registry and embedded JS in sync** — `wds-app-nav-config.js` is the runtime embed; edit both or regenerate from `nav-registry.json`.
+5. **Smoke-test labels as the contract** — assert exact primary label set and absence of old peer names on directory HTML, not only JSON keys.
+
+### 2026-08-06 — SignalTerrain IA move into Side Trails
+
+**Artifact:** `docs/product/signalterrain-side-trails-move-owner-review.md`  
+**Branch:** `feature/signalterrain-move-to-side-trails`
+
+1. **Catalog membership ≠ architecture placement** — listing SignalTerrain on Side Trails
+   is incomplete until nav `homeIncubator`, platform catalog tier, and product-registry
+   portfolio also stop treating it as an incubator/foundation peer.
+2. **Preserve both URLs** — keep `/apps/signalterrain/` working and keep
+   `/side-trails/signalterrain/` as the product landing; dual entry beats broken bookmarks.
+3. **Assert non-peer explicitly in smoke tests** — check `homePrimary` /
+   `studioPrimaryNav` / `homeIncubator` do not list SignalTerrain beside Dashboard/Scenes.
+4. **Incubator should point, not host** — after the move, Incubator keeps a “Looking for
+   SignalTerrain?” pointer rather than a peer product section.
+5. **Use a fresh worktree from the Side Trails tip** when other worktrees carry unrelated
+   dirty WIP so the IA move does not ship mixed branches.
+
+### 2026-08-06 — Side Trails production integration (simple landing)
+
+**Artifact:** `docs/product/side-trails-production-integration-owner-review.md`  
+**Branch:** `feature/side-trails-production-integration`
+
+1. **Production Side Trails stays a short card list** — Civic Trails + SignalTerrain
+   only for the first ship; omit search, filters, categories UI, and dashboards
+   even if earlier catalog drafts had them.
+2. **Soft-exclude Global Signals from the primary set** until product explicitly
+   adds it; keep the catalog subset honest rather than carrying research WIP.
+3. **Open → landing for SignalTerrain** (`/side-trails/signalterrain/`), GitHub
+   for Civic Trails; do not modify `apps/signalterrain/` in the integration block.
+4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
+   Side Trails + landing commits so Global Signals / design-doc WIP never rides
+   the production review branch.
+### 2026-08-06 — Global Signals Side Trails project
+### 2026-08-06 — Global Signals Citizen Impact Dashboard (design only)
+
+**Artifact:** `docs/product/global-signals-citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Citizen framing is a lens, not a news desk** — ask “what could this mean for
+   ordinary people?” with conditional language; never guarantee outcomes.
+2. **Impacts are graph paths** — category cards without origin nodes / edge paths
+   are orphan claims and must not publish.
+3. **Empty categories are success** — filling eleven cards without evidence
+   violates trust; quiet days beat fabricated household drama.
+4. **Cross-link sibling engines early** — Relationship Engine, Cascading Impact
+   Explorer, and Articles share the same citizen-literacy end nodes; document
+   deep-link contracts before any runtime.
+5. **No surveillance framing** — citizen nodes are impact literacy, never
+   dossiers or targeting.
+
+### 2026-08-06 — Global Signals Cascading Impact Explorer (design only)
+
+**Artifact:** `docs/product/global-signals-cascading-impact-owner-review.md`  
+**Branch:** `feature/global-signals-cascading-impact` (consolidated into foundation)
+
+1. **Cascades need four edge facets** — reason, confidence, evidence, and timeframe
+   on every hop; never imply certainty.
+2. **Expand-on-demand beats wall graphs** — first hop limited; deeper branches open
+   intentionally so literacy stays calm.
+3. **Examples are patterns, not forecasts** — tariff and conflict cascade specimens
+   teach structure without live prediction theater.
+4. **Reuse Relationship Engine honesty** — cascade views are projections over
+   evidenced edges, not a second invented graph.
+
+### 2026-08-06 — Global Signals Side Trails foundation
+
+**Artifact:** `docs/product/global-signals-owner-review.md`  
+**Branch:** `feature/global-signals-foundation`
+
+1. **Intelligence platform ≠ news site ≠ financial advice** — state boundaries on
+   the landing and in docs so the product cannot drift into feed or trading theater.
+2. **Catalog + landing + honest placeholders together** — new Side Trails projects
+   need JSON card, public story page, and empty module shells in the same block.
+3. **Relationships before headlines** — citizen impact is the through-line; keep
+   sections focused on why links matter.
+4. **Consolidate WIP on one foundation branch** — finish partial Global Signals
+   files rather than forking duplicate landings across sibling worktrees.
+5. **Schematic specimens must say mock** — labeled SVG art prevents owners from
+   mistaking foundation review for live intelligence.
+
+### 2026-08-06 — SignalTerrain Intelligence Map (design only)
+
+**Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  
+**Branch:** `feature/signalterrain-intelligence-map-design`
+
+1. **No evidence → no marker** — geographic drama without citations violates trust.
+2. **Dossier is the product of a click** — summary/evidence/timeline/CVEs/advisories/news/recs
+   beat floating tooltips that hide provenance.
+3. **Extend Cyber Map ethics** — coarse precision and never-precise-victim stay mandatory
+   when adding BGP/DNS/cloud/attack layers.
+4. **Clustering is aggregation, not invention** — clusters must dissolve to sourced children.
+
+### 2026-08-06 — Global Signals Relationship Engine (design only)
+
+**Artifact:** `docs/product/global-signals-relationship-engine-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-engine`
+
+1. **Everything is a node** — Global Signals literacy starts from typed entities
+   (ports, tariffs, weather, citizens-as-impact, …), not headline cards.
+2. **Five facets on every edge** — why, strength, confidence, direction, and time
+   delay; strength ≠ confidence; delay is a class, not fake precision.
+3. **Cascades are views over evidenced hops** — 1°/2°/3° narration must not invent
+   intermediate nodes; confidence should degrade along a chain by default.
+4. **Citizens mean impact literacy, never surveillance** — third-order household
+   effects explain kinds of impact, not people.
+5. **Leave unrelated Side Trails landing WIP unstaged** when the ask is design-only
+   docs + push.
+
+### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
+
+**Artifact:** `docs/product/signalterrain-dynamic-defensive-posture-owner-review.md`  
+**Branch:** `feature/signalterrain-posture-engine-arch`
+
+1. **Name the daily delta explicitly** — “What should I do differently today?” is a
+   posture diff, not a static best-practices list.
+2. **Separate climate drivers from context** — zero-days / ransomware / KEV / advisories
+   are climate; stack / region / industry are context filters.
+3. **Quiet days are success** — inventing filler recommendations violates trust.
+4. **Relate, don’t silently fork** — cross-link Adaptive Defense Advisor and
+   recommendation schemas so future implementation has one contract.
+
+### 2026-08-06 — SignalTerrain dashboard mockup (no implementation)
+
+**Artifact:** `docs/product/signalterrain-dashboard-mockup-owner-review.md`  
+**Branch:** `feature/signalterrain-dashboard-mockup`
+
+1. **Mockups need a persistent SAMPLE banner** — owners must never confuse layout
+   review with live intelligence.
+2. **Use SAMPLE CVE/actor labels** — realistic density without inventing real
+   attribution or victim sets.
+3. **Ship screenshot SVGs beside the HTML mockup** — reviewable without a browser
+   walkthrough script.
+
+### 2026-08-06 — SignalTerrain public landing (no app functionality)
+
+**Artifact:** `docs/product/signalterrain-landing-owner-review.md`  
+**Branch:** `feature/signalterrain-landing`
+
+1. **Product page ≠ app** — keep `/side-trails/signalterrain/` as marketing/story;
+   leave `/apps/signalterrain/` as the existing experience.
+2. **Schematic illustrations only** — label threat map / timeline / globe / posture
+   art as non-live so we never imply fabricated incidents.
+3. **Point Side Trails CTA at the landing** when the ask is product introduction,
+   not deep-link into live briefs.
+
+### 2026-08-06 — Side Trails catalog (SignalTerrain second project)
+
+**Artifact:** `docs/product/side-trails-signalterrain-owner-review.md`  
+**Branch:** `feature/side-trails-signalterrain`
+
+1. **Side Trails ≠ Incubator** — Side Trails is a catalog of sister experiments;
+   Incubator remains Coming later. Link between them; don’t merge the IA.
+2. **Catalog-only cards** — never hardcode project titles/CTAs in HTML when the
+   contract is JSON-driven; tests should assert the shell stays empty of titles.
+3. **Integrate without rebuilding** — listing SignalTerrain means CTA to the
+   existing app path, not a new cyber feature surface in the same block.
+4. **Use a clean worktree from `origin/main`** when the primary workspace has
+   unrelated dirty WIP so Side Trails ships without noise.
+
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
 **Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  

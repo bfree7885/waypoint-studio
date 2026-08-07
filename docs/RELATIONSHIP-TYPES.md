@@ -76,4 +76,5 @@ Users may filter by type and confidence so the view stays calm. Default explorer
 
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
 - [TOPIC-LIFECYCLE.md](TOPIC-LIFECYCLE.md)  
-- [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md)
+- [RESEARCH-INTEGRATION.md](RESEARCH-INTEGRATION.md)  
+- [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md) — cascade edges require reason · confidence · evidence · timeframe

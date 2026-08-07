@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="780" viewBox="0 0 1200 780" role="img" aria-labelledby="title desc">
+  <title id="title">Citizen Impact Dashboard schematic</title>
+  <desc id="desc">Static illustration of an eleven-category card grid for Global Signals Citizen Impact. Not a live application.</desc>
+  <rect width="1200" height="780" fill="#070c14"/>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="780" fill="url(#grid)" opacity="0.45"/>
+
+  <text x="48" y="42" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2">SCHEMATIC  NOT A LIVE DASHBOARD</text>
+  <text x="48" y="78" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="28" font-weight="600">Citizen Impact</text>
+  <text x="48" y="108" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="15">What could this mean for ordinary people?</text>
+  <text x="48" y="132" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Global Signals · design-only mock · graph-linked impacts</text>
+
+  <!-- Card template helper positions: 4 columns x 3 rows (11 cards + quiet slot) -->
+  <!-- Row 1 -->
+  <g font-family="IBM Plex Sans, sans-serif">
+    <rect x="48" y="160" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="68" y="190" fill="#7dd3a7" font-size="15" font-weight="600">Food</text>
+    <text x="68" y="214" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="68" y="232" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="68" y="258" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="68" y="276" fill="#9aa8bd" font-size="11">Horizon: near term</text>
+    <text x="68" y="302" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="328" y="160" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="348" y="190" fill="#7dd3a7" font-size="15" font-weight="600">Gasoline</text>
+    <text x="348" y="214" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="348" y="232" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="348" y="258" fill="#e7c56b" font-size="11">Confidence: likely</text>
+    <text x="348" y="276" fill="#9aa8bd" font-size="11">Horizon: immediate</text>
+    <text x="348" y="302" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="608" y="160" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="628" y="190" fill="#7dd3a7" font-size="15" font-weight="600">Utilities</text>
+    <text x="628" y="214" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="628" y="232" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="628" y="258" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="628" y="276" fill="#9aa8bd" font-size="11">Horizon: medium term</text>
+    <text x="628" y="302" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="888" y="160" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="908" y="190" fill="#7dd3a7" font-size="15" font-weight="600">Healthcare</text>
+    <text x="908" y="214" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="908" y="232" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="908" y="258" fill="#e7c56b" font-size="11">Confidence: uncertain</text>
+    <text x="908" y="276" fill="#9aa8bd" font-size="11">Horizon: unclear</text>
+    <text x="908" y="302" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <!-- Row 2 -->
+    <rect x="48" y="348" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="68" y="378" fill="#7dd3a7" font-size="15" font-weight="600">Insurance</text>
+    <text x="68" y="402" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="68" y="420" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="68" y="446" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="68" y="464" fill="#9aa8bd" font-size="11">Horizon: long term</text>
+    <text x="68" y="490" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="328" y="348" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="348" y="378" fill="#7dd3a7" font-size="15" font-weight="600">Employment</text>
+    <text x="348" y="402" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="348" y="420" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="348" y="446" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="348" y="464" fill="#9aa8bd" font-size="11">Horizon: medium term</text>
+    <text x="348" y="490" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="608" y="348" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="628" y="378" fill="#7dd3a7" font-size="15" font-weight="600">Housing</text>
+    <text x="628" y="402" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="628" y="420" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="628" y="446" fill="#e7c56b" font-size="11">Confidence: likely</text>
+    <text x="628" y="464" fill="#9aa8bd" font-size="11">Horizon: long term</text>
+    <text x="628" y="490" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="888" y="348" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="908" y="378" fill="#7dd3a7" font-size="15" font-weight="600">Technology</text>
+    <text x="908" y="402" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="908" y="420" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="908" y="446" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="908" y="464" fill="#9aa8bd" font-size="11">Horizon: near term</text>
+    <text x="908" y="490" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <!-- Row 3 -->
+    <rect x="48" y="536" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="68" y="566" fill="#7dd3a7" font-size="15" font-weight="600">Travel</text>
+    <text x="68" y="590" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="68" y="608" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="68" y="634" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="68" y="652" fill="#9aa8bd" font-size="11">Horizon: near term</text>
+    <text x="68" y="678" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="328" y="536" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="348" y="566" fill="#7dd3a7" font-size="15" font-weight="600">Consumer Goods</text>
+    <text x="348" y="590" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="348" y="608" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="348" y="634" fill="#e7c56b" font-size="11">Confidence: possible</text>
+    <text x="348" y="652" fill="#9aa8bd" font-size="11">Horizon: medium term</text>
+    <text x="348" y="678" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <rect x="608" y="536" width="264" height="168" rx="12" fill="#0e1626" stroke="#2a3b55"/>
+    <text x="628" y="566" fill="#7dd3a7" font-size="15" font-weight="600">Education</text>
+    <text x="628" y="590" fill="#6d7c93" font-size="11">Current Events · Potential Impacts</text>
+    <text x="628" y="608" fill="#6d7c93" font-size="11">Industries · Why</text>
+    <text x="628" y="634" fill="#e7c56b" font-size="11">Confidence: uncertain</text>
+    <text x="628" y="652" fill="#9aa8bd" font-size="11">Horizon: medium term</text>
+    <text x="628" y="678" fill="#3d8bfd" font-size="10">’ graph path to events</text>
+
+    <!-- Quiet / graph legend slot -->
+    <rect x="888" y="536" width="264" height="168" rx="12" fill="#0a1220" stroke="#1e2d44" stroke-dasharray="5 4"/>
+    <text x="908" y="576" fill="#9aa8bd" font-size="14" font-weight="600">Quiet day OK</text>
+    <text x="908" y="602" fill="#6d7c93" font-size="11">Empty cards stay honest.</text>
+    <text x="908" y="628" fill="#6d7c93" font-size="11">Impacts require graph paths.</text>
+    <text x="908" y="654" fill="#5eead4" font-size="11">RE · Cascade · Articles</text>
+    <text x="908" y="678" fill="#6d7c93" font-size="10">cross-linked surfaces</text>
+  </g>
+
+  <text x="48" y="748" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">11 categories · could-mean language · no surveillance framing · design only</text>
+</svg>

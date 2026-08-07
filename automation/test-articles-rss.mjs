@@ -286,16 +286,41 @@ assert("disabled feeds explain why", registry.feeds.filter((f) => !f.enabled).ev
 // ——— UI module contracts ———
 assert("articles feed JS exists", exists("design-system/js/platform/wds-articles-feed.js"));
 assert("articles feed CSS exists", exists("design-system/css/wds-articles-feed.css"));
+assert("official Take module exists", exists("design-system/js/platform/wds-take.js"));
 const hub = read("articles/index.html");
 assert("hub mounts articles feed", /articlesFeed\.mountFeed/.test(hub));
 assert("hub links RSS alternate", /waypoint-articles\.xml/.test(hub));
 assert("hub does not claim Waypoint published originals", !/Waypoint published these stories/i.test(hub));
+assert("hub uses shared app shell nav", /wds-app-shell\.js/.test(hub) && /wds-app-nav-config\.js/.test(hub));
+assert("hub uses wcs-page design language", /wcs-page/.test(hub) && /wcs-hero/.test(hub));
+assert("hub loads official Take module", /wds-take\.js/.test(hub));
+assert("hub does not invent a one-off primary menu", !/wcs-pill-row was-home__links/.test(hub));
 
 const feedJs = read("design-system/js/platform/wds-articles-feed.js");
+const takeJs = read("design-system/js/platform/wds-take.js");
+const feedCss = read("design-system/css/wds-articles-feed.css");
 assert("UI has empty states", /No curated articles|temporarily unavailable|Summary unavailable|Stale data/.test(feedJs));
 assert("UI labels Waypoint’s Take exactly", /Waypoint’s Take|Waypoint\\u2019s Take|Waypoint's Take/.test(feedJs) || feedJs.includes("Waypoint’s Take") || feedJs.includes("Waypoint\u2019s Take"));
 assert("UI marks original publisher CTA", /Read original article/.test(feedJs));
 assert("UI supports views", /forYou/.test(feedJs) && /local/.test(feedJs) && /seasonal/.test(feedJs));
+assert("UI uses official Take renderer hooks", /renderArticleHtml|wds-take--article/.test(feedJs));
+assert("Take module forbids summary restatement helper", /isRedundantWithSummary/.test(takeJs));
+assert("Take CSS distinct from summary", /wds-take--article/.test(feedCss) && /waf-card__summary-label/.test(feedCss));
+assert("Articles CSS uses WDS tokens", /--wds-font-display|--wds-accent|--wds-text/.test(feedCss));
+
+const navCfg = read("design-system/js/platform/wds-app-nav-config.js");
+assert(
+  "shared primary nav includes Articles with site architecture peers",
+  /"id": "dashboard"/.test(navCfg) &&
+    /"id": "articles"/.test(navCfg) &&
+    /"id": "side-trails"/.test(navCfg) &&
+    /"id": "support"/.test(navCfg) &&
+    /"id": "about"/.test(navCfg)
+);
+
+assert("reusable articles architecture doc", exists("docs/articles/reusable-articles-architecture.md"));
+assert("Waypoint Take doc", exists("docs/articles/waypoint-take.md"));
+assert("articles modernization owner review", exists("docs/articles/articles-modernization-owner-review.md"));
 
 // Render card via vm for empty/stale helpers
 global.window = global;
@@ -308,11 +333,39 @@ global.localStorage = {
     this.store[k] = String(v);
   }
 };
+vm.runInThisContext(takeJs, { filename: "wds-take.js" });
 vm.runInThisContext(feedJs, { filename: "wds-articles-feed.js" });
 assert("articlesFeed API mounted", !!(global.WDS && global.WDS.articlesFeed));
+assert("Take API mounted", !!(global.WDS && global.WDS.take && global.WDS.take.renderArticleHtml));
 assert("provenance labels distinguish feed summary", /Feed-description/.test(global.WDS.articlesFeed.provenanceLabel("summary", "feed-description")));
 assert("provenance labels distinguish unavailable take", /unavailable/i.test(global.WDS.articlesFeed.provenanceLabel("take", "unavailable")));
 assert("stale detection works", global.WDS.articlesFeed.isStale({ staleAfter: "2000-01-01T00:00:00.000Z" }) === true);
+assert(
+  "Take restrained when unavailable",
+  /wds-take--restrained/.test(
+    global.WDS.take.renderArticleHtml({ body: "", provenance: "unavailable", summary: "A summary." })
+  )
+);
+assert(
+  "Take suppressed when it only repeats summary",
+  /wds-take--restrained/.test(
+    global.WDS.take.renderArticleHtml({
+      body: "Birds are migrating tonight.",
+      summary: "Birds are migrating tonight.",
+      provenance: "fallback"
+    })
+  )
+);
+assert(
+  "Take renders interpretation when distinct from summary",
+  /data-take-kind="interpretation"/.test(
+    global.WDS.take.renderArticleHtml({
+      body: "Watch understory color shifts before you choose a trail.",
+      summary: "Regional bird migration is underway.",
+      provenance: "fallback"
+    })
+  )
+);
 
 // Dashboard deepeners
 const deepen = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js");
@@ -336,7 +389,10 @@ assert("mobile card CTA CSS", /max-width:\s*640px/.test(read("design-system/css/
   "docs/articles/feed-source-register.md",
   "docs/articles/relevance-and-recommendation-model.md",
   "docs/articles/copyright-attribution-and-content-policy.md",
-  "docs/articles/articles-owner-review.md"
+  "docs/articles/articles-owner-review.md",
+  "docs/articles/reusable-articles-architecture.md",
+  "docs/articles/waypoint-take.md",
+  "docs/articles/articles-modernization-owner-review.md"
 ].forEach((d) => assert("doc " + d, exists(d)));
 
 if (failures.length) {

@@ -73,7 +73,9 @@ function run() {
 
   const Cat = global.WDS.platformCatalog;
   assert("catalog has core products", Cat.list({ coreOnly: true }).length >= 4);
-  assert("catalog has foundations", Cat.list({ tier: "foundation" }).length >= 4);
+  assert("catalog has incubator/supporting", Cat.list({ tier: "incubator" }).length + Cat.list({ tier: "supporting" }).length >= 3);
+  assert("catalog demotes ForageCast from core", Cat.byId("foragecast") && Cat.byId("foragecast").tier !== "core");
+  assert("catalog lists Side Trails as core", Cat.byId("side-trails") && Cat.byId("side-trails").tier === "core");
   assert("resolve sheds href", /shed-hunting/.test(Cat.resolveHref(Cat.byId("sheds"), 1)));
   assert("resolve studio home", Cat.resolveHref(Cat.byId("studio"), 0) === "./");
   assert("resolve dashboard app", /apps\/dashboard/.test(Cat.resolveHref(Cat.byId("dashboard"), 0)));

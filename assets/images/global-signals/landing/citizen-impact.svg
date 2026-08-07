@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Schematic mock: citizen impact from distant systems">
+  <rect width="960" height="540" fill="#070c14"/>
+  <defs>
+    <pattern id="grid2" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="url(#grid2)" opacity="0.45"/>
+  <text x="40" y="48" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2">MOCK / SCHEMATIC - CITIZEN IMPACT</text>
+  <rect x="80" y="140" width="220" height="260" rx="14" fill="#0e1626" stroke="#2a3b55"/>
+  <text x="190" y="180" text-anchor="middle" fill="#9aa8bd" font-family="IBM Plex Mono, monospace" font-size="11">DISTANT</text>
+  <text x="190" y="220" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Port delay</text>
+  <text x="190" y="250" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Policy shift</text>
+  <text x="190" y="280" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Weather stress</text>
+  <text x="190" y="310" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Cyber outage</text>
+  <path d="M320 270 H420" stroke="#7dd3a7" stroke-width="2"/>
+  <polygon points="420,262 436,270 420,278" fill="#7dd3a7"/>
+  <rect x="450" y="140" width="220" height="260" rx="14" fill="#0e1626" stroke="#7dd3a7" stroke-width="1.5"/>
+  <text x="560" y="180" text-anchor="middle" fill="#9aa8bd" font-family="IBM Plex Mono, monospace" font-size="11">NEARBY</text>
+  <text x="560" y="230" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Prices / access</text>
+  <text x="560" y="270" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Services</text>
+  <text x="560" y="310" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15">Work / travel</text>
+  <rect x="720" y="200" width="180" height="140" rx="14" fill="#121a2b" stroke="#5eead4" stroke-width="1.5"/>
+  <text x="810" y="255" text-anchor="middle" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="12">CONFIDENCE</text>
+  <text x="810" y="285" text-anchor="middle" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">labeled · unknown OK</text>
+  <text x="40" y="500" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Impact literacy specimen - not live metrics</text>
+</svg>

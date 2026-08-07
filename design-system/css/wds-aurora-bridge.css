@@ -139,6 +139,17 @@ html[data-product="waypoint-volunteer"],
   max-width: 58ch;
 }
 
+.wds-take__title {
+  margin: 0 0 var(--wds-space-3);
+  font-family: var(--wds-font-body);
+  font-size: var(--wds-text-xs);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wds-accent);
+}
+
 .wds-take__body {
   font-family: var(--wds-font-display);
   font-style: italic;
@@ -165,6 +176,10 @@ html[data-product="waypoint-volunteer"],
 .wds-take--restrained {
   border-left-color: var(--wds-text-muted);
   opacity: 0.92;
+}
+
+.wds-take--article {
+  max-width: none;
 }
 
 @media (max-width: 900px) {

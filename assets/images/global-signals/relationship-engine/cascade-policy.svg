@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-label="Schematic cascade: policy and tariff to industry to currency to citizen literacy. Not live data.">
+  <rect width="960" height="420" fill="#070c14"/>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#6d7c93"/>
+    </marker>
+  </defs>
+  <rect width="960" height="420" fill="url(#g)" opacity="0.45"/>
+  <text x="40" y="40" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5">SCHEMATIC  POLICY / TARIFF CASCADE</text>
+  <text x="40" y="64" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">How published trade measures can ripple through firms and household literacy</text>
+
+  <g font-family="IBM Plex Sans, sans-serif" font-size="13" fill="#e8eef7">
+    <rect x="40" y="160" width="160" height="56" rx="10" fill="#121a2b" stroke="#3d8bfd" stroke-width="2"/>
+    <text x="120" y="185" text-anchor="middle">Policy / tariff</text>
+    <text x="120" y="204" text-anchor="middle" fill="#6d7c93" font-size="11">signal node</text>
+
+    <rect x="280" y="160" width="160" height="56" rx="10" fill="#121a2b" stroke="#3d8bfd" stroke-width="2"/>
+    <text x="360" y="185" text-anchor="middle">Company / industry</text>
+    <text x="360" y="204" text-anchor="middle" fill="#6d7c93" font-size="11">1° import path</text>
+
+    <rect x="520" y="160" width="170" height="56" rx="10" fill="#121a2b" stroke="#5eead4" stroke-width="2"/>
+    <text x="605" y="185" text-anchor="middle">Currency / commodity</text>
+    <text x="605" y="204" text-anchor="middle" fill="#6d7c93" font-size="11">2° substitution</text>
+
+    <rect x="760" y="160" width="160" height="56" rx="10" fill="#121a2b" stroke="#e7c56b" stroke-width="2"/>
+    <text x="840" y="185" text-anchor="middle">Citizen literacy</text>
+    <text x="840" y="204" text-anchor="middle" fill="#6d7c93" font-size="11">3° cost of living</text>
+  </g>
+
+  <g fill="none" stroke="#6d7c93" stroke-width="1.5" marker-end="url(#arrow)">
+    <path d="M200 188 H270"/>
+    <path d="M440 188 H510"/>
+    <path d="M690 188 H750"/>
+  </g>
+
+  <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa8bd">
+    <text x="235" y="140" text-anchor="middle">1°</text>
+    <text x="235" y="250" text-anchor="middle">why: duty on imports</text>
+    <text x="235" y="266" text-anchor="middle">strength: strong</text>
+    <text x="235" y="282" text-anchor="middle">confidence: high*</text>
+    <text x="235" y="298" text-anchor="middle">delay: daysweeks</text>
+
+    <text x="475" y="140" text-anchor="middle">2°</text>
+    <text x="475" y="250" text-anchor="middle">why: cost / FX pass-through</text>
+    <text x="475" y="266" text-anchor="middle">strength: moderate</text>
+    <text x="475" y="282" text-anchor="middle">confidence: moderate</text>
+    <text x="475" y="298" text-anchor="middle">delay: weeks</text>
+
+    <text x="720" y="140" text-anchor="middle">3°</text>
+    <text x="720" y="250" text-anchor="middle">why: household prices</text>
+    <text x="720" y="266" text-anchor="middle">strength: weakmoderate</text>
+    <text x="720" y="282" text-anchor="middle">confidence: lowmod</text>
+    <text x="720" y="298" text-anchor="middle">delay: months / uncertain</text>
+  </g>
+
+  <text x="40" y="360" fill="#6d7c93" font-family="IBM Plex Sans, sans-serif" font-size="12">*Confidence high only when the tariff text itself is cited; pass-through remains estimated.</text>
+  <text x="40" y="390" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Schematic  not investment advice · Not live data</text>
+</svg>

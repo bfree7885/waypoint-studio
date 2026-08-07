@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">Cascading Impact Explorer interaction model</title>
+  <desc id="desc">Design illustration of expand-on-demand cascade branches from a seed event, with an edge inspector showing reason, confidence, evidence, and timeframe. Not an implemented UI.</desc>
+  <rect width="1100" height="560" fill="#070c14"/>
+  <defs>
+    <pattern id="grid3" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1100" height="560" fill="url(#grid3)" opacity="0.4"/>
+  <text x="40" y="36" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5">DESIGN ONLY · INTERACTION MODEL · NOT IMPLEMENTED</text>
+  <text x="40" y="66" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="600">Expand branches on demand</text>
+  <text x="40" y="90" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">One deep trail emphasis. Speculative hops demoted. Evidence required on every edge.</text>
+
+  <!-- seed -->
+  <rect x="60" y="140" width="160" height="64" rx="10" fill="#0e1626" stroke="#7dd3a7" stroke-width="2"/>
+  <text x="140" y="168" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="14" font-weight="600">Seed event</text>
+  <text x="140" y="188" text-anchor="middle" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">evidence required</text>
+
+  <!-- first hop -->
+  <path d="M220 172 H300" fill="none" stroke="#2a3b55" stroke-width="1.75"/>
+  <polygon points="300,172 290,167 290,177" fill="#3d8bfd"/>
+  <rect x="300" y="140" width="150" height="64" rx="10" fill="#0e1626" stroke="#3d8bfd" stroke-width="1.5"/>
+  <text x="375" y="168" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="14" font-weight="600">Domain A</text>
+  <text x="375" y="188" text-anchor="middle" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="10">expanded</text>
+
+  <!-- children of A -->
+  <path d="M450 160 H520" fill="none" stroke="#2a3b55" stroke-width="1.5"/>
+  <path d="M450 184 H520" fill="none" stroke="#2a3b55" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M520 160 H520 120 H560" fill="none" stroke="#2a3b55" stroke-width="1.5"/>
+  <path d="M520 184 H520 220 H560" fill="none" stroke="#2a3b55" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <rect x="560" y="96" width="140" height="48" rx="8" fill="#0e1626" stroke="#5eead4" stroke-width="1.25"/>
+  <text x="630" y="125" text-anchor="middle" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="13">Child A1</text>
+
+  <rect x="560" y="196" width="140" height="48" rx="8" fill="#0e1626" stroke="#2a3b55" stroke-width="1.25" stroke-dasharray="4 3"/>
+  <text x="630" y="218" text-anchor="middle" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">Child A2</text>
+  <text x="630" y="234" text-anchor="middle" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="9">speculative · hidden default</text>
+
+  <!-- collapsed sibling -->
+  <path d="M140 204 V280 H300" fill="none" stroke="#2a3b55" stroke-width="1.5"/>
+  <rect x="300" y="252" width="150" height="56" rx="10" fill="#0e1626" stroke="#2a3b55" stroke-width="1.25"/>
+  <text x="375" y="276" text-anchor="middle" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">Domain B</text>
+  <text x="375" y="294" text-anchor="middle" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">collapsed · expand later</text>
+
+  <!-- edge inspector panel -->
+  <rect x="760" y="120" width="300" height="280" rx="12" fill="#0e1626" stroke="#2a3b55" stroke-width="1.5"/>
+  <text x="780" y="150" fill="#7dd3a7" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1">EDGE INSPECTOR</text>
+  <text x="780" y="180" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="600">Seed ’ Domain A</text>
+
+  <text x="780" y="214" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">REASON</text>
+  <text x="780" y="232" fill="#c5d0e0" font-family="IBM Plex Sans, sans-serif" font-size="12">Plain-language mechanism&</text>
+
+  <text x="780" y="266" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">CONFIDENCE</text>
+  <rect x="780" y="276" width="88" height="22" rx="6" fill="#121a2b" stroke="#e7c56b"/>
+  <text x="824" y="291" text-anchor="middle" fill="#e7c56b" font-family="IBM Plex Mono, monospace" font-size="11">moderate</text>
+
+  <text x="780" y="324" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">EVIDENCE</text>
+  <text x="780" y="342" fill="#c5d0e0" font-family="IBM Plex Sans, sans-serif" font-size="12">2 public sources ’</text>
+
+  <text x="780" y="376" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="10">TIMEFRAME</text>
+  <text x="780" y="394" fill="#c5d0e0" font-family="IBM Plex Sans, sans-serif" font-size="12">weeksmonths (band)</text>
+
+  <text x="40" y="480" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Keyboard: Tab nodes · Enter expand/inspect · Escape close</text>
+  <text x="40" y="504" fill="#6d7c93" font-family="IBM Plex Sans, sans-serif" font-size="12">Honesty banner always visible: Estimated pathways  not predictions.</text>
+  <text x="40" y="532" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="11">Missing reason, confidence, evidence, or timeframe ’ edge cannot render</text>
+</svg>
