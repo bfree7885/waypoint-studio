@@ -73,3 +73,5 @@ Lightweight chain only — **not** a graph engine.
 ## Future module compatibility
 
 Designed for Relationship Graph, Cascading Impact, World Map, Supply Chain, Citizen Impact Dashboard, Scenario Builder, and AI Analyst — via stable ids, taxonomied tags, and path steps. No throwaway structures in Sprint 1.
+
+**Citizen Impact join:** household statements use the same confidence / horizon vocabulary and may reference `gsa_*` article ids plus Relationship Explorer `gsn_*` entity ids. See [`citizen-impact-data-model.md`](citizen-impact-data-model.md).
