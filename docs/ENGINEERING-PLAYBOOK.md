@@ -138,8 +138,6 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
-<<<<<<< HEAD
-
 ### 2026-08-07 — Global Signals Relationship Explorer
 
 **Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  
@@ -150,7 +148,7 @@ continuously improves.
 3. **Curated `cascades[].edgeIds` beats ad-hoc BFS for V1 demos** — deterministic Taiwan → … → Consumer Products stories are easier to test and screenshot than algorithmic walks.
 4. **Selectable roots must cover every advertised entity type** — product copy that lists Country…Weather Event needs at least one selectable of each, or the picker feels incomplete.
 5. **Negative UI copy can trip “must not mention X” tests** — assert against library names (`cytoscape`), not the phrase “force-directed” when the page honestly denies that pattern.
-=======
+
 ### 2026-08-07 — Global Signals Citizen Impact (eight-category sample/demo shell)
 
 **Artifact:** `docs/global-signals/citizen-impact-owner-review.md`  
@@ -169,8 +167,6 @@ continuously improves.
    brief.
 5. **Reuse GS landing chrome (`gs-landing` + IBM Plex)** for module pages; keep
    outdoor Articles / WCS skins out of Side Trails.
-
->>>>>>> origin/feature/global-signals-citizen-impact
 
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
