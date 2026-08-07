@@ -1,9 +1,9 @@
 # Global Signals — Relationship Engine
 
 **Status:** Design only — **not implemented**  
-**Product:** Global Signals (Side Trails / SignalTerrain intelligence platform)  
+**Product:** Global Signals (Side Trails relationship intelligence platform)  
 **Branch intent:** Architecture and visual contracts for owner review  
-**Related:** [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md), [SIGNALTERRAIN-INTELLIGENCE-MAP.md](SIGNALTERRAIN-INTELLIGENCE-MAP.md), [docs/side-trails/README.md](side-trails/README.md)
+**Related:** [GLOBAL-SIGNALS-ARCHITECTURE.md](GLOBAL-SIGNALS-ARCHITECTURE.md), [GLOBAL-SIGNALS-ROADMAP.md](GLOBAL-SIGNALS-ROADMAP.md), [GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md](GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md), [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md), [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md), [SIGNALTERRAIN-INTELLIGENCE-MAP.md](SIGNALTERRAIN-INTELLIGENCE-MAP.md), [docs/side-trails/README.md](side-trails/README.md)
 
 ---
 
@@ -307,6 +307,9 @@ owner review, a docs presence smoke test, and playbook lessons only.
 ## 12. Related
 
 - Owner review: [docs/product/global-signals-relationship-engine-owner-review.md](product/global-signals-relationship-engine-owner-review.md)  
+- Citizen Impact Dashboard: [GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md](GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md)  
+- Cascading Impact Explorer: [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md) *(when present)*  
+- Articles: [GLOBAL-SIGNALS-ARTICLES.md](GLOBAL-SIGNALS-ARTICLES.md) *(when present)*  
 - Side Trails: [docs/side-trails/README.md](side-trails/README.md)  
 - SignalTerrain relationship foundation: [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
 - Correlation patterns: [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md)  

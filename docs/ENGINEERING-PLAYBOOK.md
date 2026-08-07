@@ -200,16 +200,52 @@ continuously improves.
    Side Trails + landing commits so Global Signals / design-doc WIP never rides
    the production review branch.
 ### 2026-08-06 — Global Signals Side Trails project
+### 2026-08-06 — Global Signals Citizen Impact Dashboard (design only)
+
+**Artifact:** `docs/product/global-signals-citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Citizen framing is a lens, not a news desk** — ask “what could this mean for
+   ordinary people?” with conditional language; never guarantee outcomes.
+2. **Impacts are graph paths** — category cards without origin nodes / edge paths
+   are orphan claims and must not publish.
+3. **Empty categories are success** — filling eleven cards without evidence
+   violates trust; quiet days beat fabricated household drama.
+4. **Cross-link sibling engines early** — Relationship Engine, Cascading Impact
+   Explorer, and Articles share the same citizen-literacy end nodes; document
+   deep-link contracts before any runtime.
+5. **No surveillance framing** — citizen nodes are impact literacy, never
+   dossiers or targeting.
+
+### 2026-08-06 — Global Signals Cascading Impact Explorer (design only)
+
+**Artifact:** `docs/product/global-signals-cascading-impact-owner-review.md`  
+**Branch:** `feature/global-signals-cascading-impact` (consolidated into foundation)
+
+1. **Cascades need four edge facets** — reason, confidence, evidence, and timeframe
+   on every hop; never imply certainty.
+2. **Expand-on-demand beats wall graphs** — first hop limited; deeper branches open
+   intentionally so literacy stays calm.
+3. **Examples are patterns, not forecasts** — tariff and conflict cascade specimens
+   teach structure without live prediction theater.
+4. **Reuse Relationship Engine honesty** — cascade views are projections over
+   evidenced edges, not a second invented graph.
+
+### 2026-08-06 — Global Signals Side Trails foundation
 
 **Artifact:** `docs/product/global-signals-owner-review.md`  
-**Branch:** `feature/global-signals-side-trails`
+**Branch:** `feature/global-signals-foundation`
 
-1. **Intelligence platform ≠ news site** — state it on the landing and in docs so
-   the product cannot drift into feed theater.
-2. **Catalog + landing together** — new Side Trails projects need JSON card and
-   public story page in the same block.
+1. **Intelligence platform ≠ news site ≠ financial advice** — state boundaries on
+   the landing and in docs so the product cannot drift into feed or trading theater.
+2. **Catalog + landing + honest placeholders together** — new Side Trails projects
+   need JSON card, public story page, and empty module shells in the same block.
 3. **Relationships before headlines** — citizen impact is the through-line; keep
    sections focused on why links matter.
+4. **Consolidate WIP on one foundation branch** — finish partial Global Signals
+   files rather than forking duplicate landings across sibling worktrees.
+5. **Schematic specimens must say mock** — labeled SVG art prevents owners from
+   mistaking foundation review for live intelligence.
 
 ### 2026-08-06 — SignalTerrain Intelligence Map (design only)
 
@@ -222,6 +258,22 @@ continuously improves.
 3. **Extend Cyber Map ethics** — coarse precision and never-precise-victim stay mandatory
    when adding BGP/DNS/cloud/attack layers.
 4. **Clustering is aggregation, not invention** — clusters must dissolve to sourced children.
+
+### 2026-08-06 — Global Signals Relationship Engine (design only)
+
+**Artifact:** `docs/product/global-signals-relationship-engine-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-engine`
+
+1. **Everything is a node** — Global Signals literacy starts from typed entities
+   (ports, tariffs, weather, citizens-as-impact, …), not headline cards.
+2. **Five facets on every edge** — why, strength, confidence, direction, and time
+   delay; strength ≠ confidence; delay is a class, not fake precision.
+3. **Cascades are views over evidenced hops** — 1°/2°/3° narration must not invent
+   intermediate nodes; confidence should degrade along a chain by default.
+4. **Citizens mean impact literacy, never surveillance** — third-order household
+   effects explain kinds of impact, not people.
+5. **Leave unrelated Side Trails landing WIP unstaged** when the ask is design-only
+   docs + push.
 
 ### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
 

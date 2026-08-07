@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Schematic mock: signal flow from public signals to citizen impact">
+  <rect width="960" height="540" fill="#070c14"/>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="url(#grid)" opacity="0.45"/>
+  <text x="40" y="48" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="2">MOCK / SCHEMATIC - SIGNAL FLOW</text>
+  <g font-family="IBM Plex Sans, sans-serif">
+    <rect x="60" y="200" width="180" height="100" rx="12" fill="#0e1626" stroke="#3d8bfd" stroke-width="1.5"/>
+    <text x="150" y="245" text-anchor="middle" fill="#e8eef7" font-size="16" font-weight="600">Public signals</text>
+    <text x="150" y="270" text-anchor="middle" fill="#9aa8bd" font-size="12">cited sources</text>
+    <path d="M250 250 H320" stroke="#7dd3a7" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="330" y="200" width="200" height="100" rx="12" fill="#0e1626" stroke="#7dd3a7" stroke-width="1.5"/>
+    <text x="430" y="245" text-anchor="middle" fill="#e8eef7" font-size="16" font-weight="600">Relationships</text>
+    <text x="430" y="270" text-anchor="middle" fill="#9aa8bd" font-size="12">typed edges</text>
+    <path d="M540 250 H610" stroke="#7dd3a7" stroke-width="2"/>
+    <rect x="620" y="200" width="240" height="100" rx="12" fill="#0e1626" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="740" y="245" text-anchor="middle" fill="#e8eef7" font-size="16" font-weight="600">Citizen impact</text>
+    <text x="740" y="270" text-anchor="middle" fill="#9aa8bd" font-size="12">confidence labeled</text>
+  </g>
+  <text x="40" y="500" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Pipeline illustration - no live data</text>
+</svg>

@@ -112,3 +112,7 @@ The UI surfaces:
 
 - Default: `node automation/test-articles-rss.mjs` (fixtures)
 - Optional live: `node automation/check-articles-live-feeds.mjs`
+
+## Related
+
+- [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](../GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md) — optional “Related reading” join from cascade edge panels (design only; no republication)

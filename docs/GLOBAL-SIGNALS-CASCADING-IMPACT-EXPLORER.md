@@ -3,7 +3,7 @@
 **Status:** Design only — **not implemented**  
 **Product:** Global Signals (Side Trails)  
 **Primary question:** *Starting from one event, what downstream effects are plausible — and why?*  
-**Related:** [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md), [articles/articles-architecture.md](articles/articles-architecture.md), [PRODUCT_STANDARDS.md](PRODUCT_STANDARDS.md)
+**Related:** [GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md](GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md), [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md), [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md), [articles/articles-architecture.md](articles/articles-architecture.md), [PRODUCT_STANDARDS.md](PRODUCT_STANDARDS.md)
 
 ---
 
@@ -297,6 +297,8 @@ No ship dates implied.
 ## Related
 
 - [docs/product/global-signals-cascading-impact-owner-review.md](product/global-signals-cascading-impact-owner-review.md)  
+- [GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md](GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md) — category rollup of citizen-literacy ends  
+- [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md)  
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
 - [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md)  
 - [articles/articles-architecture.md](articles/articles-architecture.md)
