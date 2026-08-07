@@ -3,7 +3,7 @@
 **Date:** 2026-08-06  
 **Branch:** `feature/global-signals-cascading-impact`  
 **Base:** `feature/global-signals-foundation` / `origin/feature/global-signals-side-trails` (`f9b5d70`)  
-**Tip:** `d1e7d8a`  
+**Tip:** `9443204`  
 **Product:** Global Signals  
 **Deployed:** No  
 **Merged:** No  
