@@ -19,14 +19,14 @@ Delivers Country Intelligence index + 15 full structural country profiles as a c
 | | SHA |
 | --- | --- |
 | Start (`origin/main`) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| End (branch tip) | Push tip of `feature/global-signals-country-intelligence` (confirm with `git rev-parse`) |
+| End (branch tip) | `50bbdeabc03f9f92bdc5e5538dad7a6a05426c96` |
 
 ## Commits on branch
 
 1. `14ede49` — feat(global-signals): add Country Intelligence sample profiles  
 2. `662171b` — docs(global-signals): Country Intelligence owner review package  
 3. `edf1ef7` — docs(global-signals): stamp Country Intelligence tip SHA  
-4. _(follow-up)_ — docs: finalize owner-review SHA notes  
+4. `50bbdea` — docs(global-signals): finalize Country Intelligence owner-review SHAs  
 
 ## Routes
 
