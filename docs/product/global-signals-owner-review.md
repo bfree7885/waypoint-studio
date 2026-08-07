@@ -4,7 +4,7 @@
 **Branch:** `feature/global-signals-foundation`  
 **Base tip:** `f9b5d70` (prior Global Signals Side Trails WIP on `feature/global-signals-side-trails`; lineage includes SignalTerrain landing/mockups)  
 **Start SHA:** `f9b5d70`  
-**End SHA:** `87689123a349c377d1b0502dceff749a1b79ab6b`
+**End SHA:** `e1dbbd471f7d9aaafa10a4fbf340f638b6f76e51` (tip `a1ef214` after stamp)
 **Product:** Waypoint Studio · Side Trails · Global Signals  
 **Deployed:** No  
 **Merged:** No  
