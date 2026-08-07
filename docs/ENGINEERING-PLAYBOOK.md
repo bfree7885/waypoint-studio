@@ -137,6 +137,25 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Global Signals Industry Intelligence
+
+**Artifact:** `docs/global-signals/industry-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-industry-intelligence`
+
+1. **Curated baseline ≠ live news.** Dense industry pages can feel like a real
+   intelligence platform while still labeling `mode: curated-baseline` and never
+   fabricating breaking events as Observed.
+2. **Stable entity IDs enable parallel modules.** `gsi_*` / `gsc_*` / `gsci_*` /
+   `gsa_*` soft-links let Country Intelligence, Citizen Impact, and Relationship
+   Explorer land on other worktrees without colliding on this branch.
+3. **Articles taxonomy aliases matter.** Map `Logistics → Shipping` so sample
+   briefs interconnect without renaming existing Articles strings.
+4. **Detail-page relative depth.** Cross-module links from
+   `/industries/<slug>/` need `../../articles/` (not `../articles/`) — catch in
+   interconnect tests.
+5. **Seed script + JSON** keeps 11 full pages maintainable; regenerate via
+   `scripts/build-industry-intelligence-seed.mjs` rather than hand-editing
+   megabytes of duplicated HTML.
 
 ### 2026-08-07 — Global Signals Country Intelligence
 

@@ -33,6 +33,7 @@ const required = [
   "docs/product/global-signals-owner-review.md",
   "side-trails/global-signals/articles/index.html",
   "side-trails/global-signals/countries/index.html",
+  "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -61,6 +62,8 @@ assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/countries\//);
+assert.match(html, /\.\/industries\//);
+assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -84,6 +87,13 @@ assert.match(countriesPage, /gsc-root/);
 assert.match(countriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(countriesPage, /Coming soon/i);
 assert.doesNotMatch(countriesPage, /WebSocket|live data dashboard/i);
+
+const industriesPage = read("side-trails/global-signals/industries/index.html");
+assert.match(industriesPage, /Industry Intelligence/);
+assert.match(industriesPage, /gsi-index|gsi-detail|Industry/);
+assert.match(industriesPage, /Part of Side Trails\./);
+assert.doesNotMatch(industriesPage, /Coming soon/i);
+assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
 
 for (const slug of [
   "waypoint-take",
