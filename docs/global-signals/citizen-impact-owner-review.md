@@ -23,7 +23,8 @@ evidence-first and non-political.
 | Role | SHA |
 | --- | --- |
 | Start (`origin/main`) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| End (tip) | `4f3a6ee9083c7344ee4d661dffb6b5b13b98dded` |
+| Feature commit | `4f3a6ee9083c7344ee4d661dffb6b5b13b98dded` |
+| End (branch tip) | `123f29b4ce55b3c58cad64214ecd0d8b308af37d` |
 
 ## Route
 
