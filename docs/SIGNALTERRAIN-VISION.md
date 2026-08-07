@@ -1,11 +1,16 @@
 # SignalTerrain Vision
 
-**Status:** Active foundation  
-**Tagline:** Understand the world's signals.  
+**Status:** Experimental (Side Trails)  
+**Studio home:** Waypoint Studio → Side Trails → SignalTerrain  
+**Product landing:** `/side-trails/signalterrain/`  
+**App (preserved):** `/apps/signalterrain/`  
+**Tagline:** Understand the world's signals. / Adaptive cyber intelligence for defenders.  
 **Audience:** Product, editorial, design, and future RF / cyber / infrastructure / research workspaces  
 **Product verb:** Monitor ([Product Framework](WAYPOINT-PRODUCT-FRAMEWORK.md))
 
-SignalTerrain is Waypoint Studio’s home for **Signal Intelligence** — a calm platform for observing, understanding, and connecting signals from the modern world.
+SignalTerrain is a **Side Trails** project — a sister experiment beside Waypoint Studio’s primary outdoor tools, not a Dashboard/Scenes/Sheds peer.
+
+It is Waypoint Studio’s home for **Signal Intelligence** — a calm platform for observing, understanding, and connecting signals from the modern world.
 
 A **signal** is any piece of information that improves situational awareness: radio transmissions, advisories, vulnerabilities, campaigns, satellites, routing, space weather, government alerts, outages, research, standards, and carefully framed current events.
 

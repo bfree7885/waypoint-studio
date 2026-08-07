@@ -8,6 +8,8 @@
   <url><loc>https://waypointstudio.org/terms.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://waypointstudio.org/articles/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://waypointstudio.org/incubator/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://waypointstudio.org/side-trails/</loc><changefreq>monthly</changefreq><priority>0.45</priority></url>
+  <url><loc>https://waypointstudio.org/side-trails/signalterrain/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://waypointstudio.org/apps/dashboard/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://waypointstudio.org/apps/scenes/</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
   <url><loc>https://waypointstudio.org/apps/shed-hunting/</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>

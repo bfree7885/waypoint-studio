@@ -137,6 +137,23 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — SignalTerrain IA move into Side Trails
+
+**Artifact:** `docs/product/signalterrain-side-trails-move-owner-review.md`  
+**Branch:** `feature/signalterrain-move-to-side-trails`
+
+1. **Catalog membership ≠ architecture placement** — listing SignalTerrain on Side Trails
+   is incomplete until nav `homeIncubator`, platform catalog tier, and product-registry
+   portfolio also stop treating it as an incubator/foundation peer.
+2. **Preserve both URLs** — keep `/apps/signalterrain/` working and keep
+   `/side-trails/signalterrain/` as the product landing; dual entry beats broken bookmarks.
+3. **Assert non-peer explicitly in smoke tests** — check `homePrimary` /
+   `studioPrimaryNav` / `homeIncubator` do not list SignalTerrain beside Dashboard/Scenes.
+4. **Incubator should point, not host** — after the move, Incubator keeps a “Looking for
+   SignalTerrain?” pointer rather than a peer product section.
+5. **Use a fresh worktree from the Side Trails tip** when other worktrees carry unrelated
+   dirty WIP so the IA move does not ship mixed branches.
+
 ### 2026-08-06 — Side Trails production integration (simple landing)
 
 **Artifact:** `docs/product/side-trails-production-integration-owner-review.md`  

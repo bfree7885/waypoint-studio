@@ -2,7 +2,7 @@
 
 **These are foundations, not only public products.**
 
-Visitors use the **dashboard** and **instruments** (ForageCast, Fieldry, Scenes). Builders extend the layers below. Product foundations (Sheds, Steepleaf, SignalTerrain, Savant Sommelier) share the same kernel.
+Visitors use the **dashboard** and **instruments** (ForageCast, Fieldry, Scenes). Builders extend the layers below. Product foundations (Sheds, Steepleaf, Savant Sommelier) share the same kernel. **SignalTerrain** lives under **Side Trails** (Waypoint Studio → Side Trails → SignalTerrain), not as a studio primary peer.
 
 See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 
@@ -13,7 +13,8 @@ See also: [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md)
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  Public: Dashboard · ForageCast · Fieldry · Scenes / Photo Coach │
-│  Foundations: Sheds · Steepleaf · SignalTerrain · Savant         │
+│  Foundations: Sheds · Steepleaf · Savant                         │
+│  Side Trails: SignalTerrain (sister project — not a primary peer)│
 └───────────────────────────────┬──────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼──────────────────────────────────┐
