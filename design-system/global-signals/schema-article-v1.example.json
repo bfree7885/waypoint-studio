@@ -1,0 +1,63 @@
+{
+  "$comment": "Illustrative Global Signals article sketch only. Not loaded by runtime. Design-only companion to docs/GLOBAL-SIGNALS-ARTICLES.md.",
+  "id": "gsa_example-canal-disruption",
+  "headline": "Major canal operator reports extended transit restrictions",
+  "summary": "According to the operator’s public status bulletin, vessel transit through a named canal corridor is restricted for an extended window after infrastructure damage. The bulletin lists reduced daily slots and asks carriers to expect delays. Casualty and repair timelines are not stated in the primary notice.",
+  "source": {
+    "name": "Example Canal Authority (illustrative)",
+    "url": "https://example.invalid/status/canal-notice",
+    "type": "operator",
+    "retrievedAt": "2026-08-06T00:00:00Z"
+  },
+  "evidence": [
+    {
+      "label": "Operator status bulletin (illustrative primary)",
+      "url": "https://example.invalid/status/canal-notice",
+      "kind": "primary",
+      "note": "Example URL — not a real event"
+    }
+  ],
+  "date": {
+    "eventDate": "2026-08-05",
+    "publishedAt": "2026-08-05T18:00:00Z",
+    "recordedAt": "2026-08-06T00:00:00Z",
+    "timezoneNote": null
+  },
+  "topics": ["trade", "infrastructure", "transport", "supply-chain"],
+  "affectedNodes": [
+    "gsn_port-example-hub",
+    "gsn_canal-example",
+    "gsn_shipping-lane-example",
+    "gsn_industry-maritime-logistics",
+    "gsn_commodity-container-freight",
+    "gsn_citizens-import-dependent-households"
+  ],
+  "waypointTake": {
+    "whyItMatters": "A prolonged canal restriction can tighten a chokepoint that many import and export schedules quietly assume is available.",
+    "whoIsAffected": "Carriers, ports on either approach, manufacturers awaiting components, and retailers timing seasonal inventory.",
+    "industriesExposed": "Maritime logistics, retail goods reliant on containerized imports, and energy products that share the corridor when applicable.",
+    "citizensMayNotice": "Shoppers may see slower restocks or higher prices on imported goods over weeks—not necessarily an overnight shock.",
+    "downstream": "If restrictions persist, carriers may reroute via longer lanes, raising fuel burn and schedule uncertainty before consumer prices move.",
+    "limits": "This illustrative brief does not claim a live incident; repair duration and insurance outcomes remain unknown without further evidence.",
+    "provenance": "editor-written"
+  },
+  "likelyImpacts": [
+    {
+      "statement": "Container schedules serving ports on either side of the corridor may slip by days to weeks.",
+      "confidence": "moderate",
+      "horizon": "weeks",
+      "relatedNodeIds": ["gsn_port-example-hub", "gsn_industry-maritime-logistics"],
+      "evidenceRefs": [0]
+    },
+    {
+      "statement": "Households that rely on imported consumer goods could notice thinner shelves or higher prices later in the cascade.",
+      "confidence": "speculative",
+      "horizon": "months",
+      "relatedNodeIds": ["gsn_citizens-import-dependent-households"],
+      "evidenceRefs": [0]
+    }
+  ],
+  "confidence": "moderate",
+  "limitations": "Illustrative sample only — not a live Global Signals event.",
+  "unknowns": ["Actual repair timeline", "Insurance and tariff interactions"]
+}

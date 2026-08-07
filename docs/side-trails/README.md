@@ -42,6 +42,19 @@ project titles or CTAs.
 
 ---
 
+
+## Global Signals (design)
+
+Global Signals is the third Side Trails intelligence project (catalog entry may
+land on a parallel branch). Design contracts in this family:
+
+| Doc | Role |
+| --- | --- |
+| [`docs/GLOBAL-SIGNALS-ARTICLES.md`](../GLOBAL-SIGNALS-ARTICLES.md) | Articles system (intelligence briefs, not news) — **this branch** |
+| `docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md` | Relationship Engine node/edge model (sibling design on `feature/global-signals-relationship-engine` when published) |
+| [`docs/product/global-signals-articles-owner-review.md`](../product/global-signals-articles-owner-review.md) | Owner review for Articles |
+
+
 ## Related
 
 - [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md)

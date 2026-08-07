@@ -137,6 +137,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+
+### 2026-08-06 — Global Signals Articles system (design only)
+
+**Artifact:** `docs/product/global-signals-articles-owner-review.md`  
+**Branch:** `feature/global-signals-articles`
+
+1. **Intelligence brief ≠ news card** — Global Signals Articles require evidence,
+   affected graph nodes, and honest confidence; outdoor `/articles/` stays separate.
+2. **Waypoint’s Take must never restate the summary** — Take duties are why it
+   matters, who/industries are exposed, what citizens may notice, and downstream
+   consequences (hedged).
+3. **No evidence → no article** — same trust gate as map markers; empty Takes beat
+   fabricated interpretation.
+4. **Articles are graph citizens** — publish attaches edges; click/focus highlights
+   Affected Nodes against the Relationship Engine node model even if that engine
+   doc lands on a parallel branch.
+5. **Shared worktree contention** — when parallel Global Signals design agents
+   share one Side Trails worktree, spin a dedicated `git worktree` per feature
+   branch so documentation commits do not collide.
+
 ### 2026-08-06 — SignalTerrain Intelligence Map (design only)
 
 **Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  
