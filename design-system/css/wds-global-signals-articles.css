@@ -1,0 +1,85 @@
+/* Global Signals Articles — feed shell (Sprint 1) */
+
+.gsa-page {
+  min-height: 100vh;
+}
+
+.gsa-main {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 6.5rem 0 calc(3rem + env(safe-area-inset-bottom, 0px));
+  min-height: 70vh;
+}
+
+.gsa-hub-head {
+  margin-bottom: 1.75rem;
+  animation: gs-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gsa-hub-head h1 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  letter-spacing: -0.03em;
+  color: #f4f7fc;
+  font-weight: 650;
+}
+
+.gsa-hub-desc {
+  margin: 0 0 1.1rem;
+  max-width: 40rem;
+  color: #9aa8bd;
+  line-height: 1.55;
+  font-size: 1.02rem;
+}
+
+.gsa-hub-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.gsa-feed {
+  margin-top: 0.5rem;
+  padding: 1.25rem 1.1rem;
+  border: 1px dashed rgba(148, 163, 184, 0.28);
+  border-radius: 14px;
+  background:
+    radial-gradient(520px 180px at 8% 0%, rgba(125, 211, 167, 0.06), transparent 60%),
+    rgba(14, 22, 38, 0.55);
+  min-height: 10rem;
+}
+
+.gsa-feed[data-gsa-state="empty"] {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.gsa-empty {
+  margin: 0;
+  max-width: 28rem;
+  color: #9aa8bd;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+
+.gs-top nav a[aria-current="page"] {
+  color: #7dd3a7;
+}
+
+@media (max-width: 40rem) {
+  .gsa-main {
+    padding-top: 5.75rem;
+  }
+
+  .gsa-feed {
+    padding: 1.1rem 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gsa-hub-head {
+    animation: none;
+  }
+}

@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + honest module placeholders — **no engines, no live data**
+**Role:** Public product page + module shells — Articles feed empty-ready; other modules remain placeholders — **no engines, no live fabricated data**
 
 ---
 
@@ -36,7 +36,7 @@
 
 | Module | Path | Status |
 | --- | --- | --- |
-| Articles | `/side-trails/global-signals/articles/` | Coming soon / not implemented |
+| Articles | `/side-trails/global-signals/articles/` | Feed shell live (empty-ready); content pending verified sources |
 | Waypoint’s Take | `/side-trails/global-signals/waypoint-take/` | Coming soon / not implemented |
 | Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented |
 | Supply Chains | `/side-trails/global-signals/supply-chains/` | Coming soon / not implemented |
