@@ -33,6 +33,7 @@ const required = [
   "docs/product/global-signals-owner-review.md",
   "side-trails/global-signals/articles/index.html",
   "side-trails/global-signals/relationships/index.html",
+  "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -61,6 +62,7 @@ assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
+assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -69,7 +71,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer + Citizen Impact are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Explorer + Citizen Impact + Country Intelligence are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -93,6 +95,13 @@ assert.match(citizenImpactPage, /wds-gs-citizen-impact\.js/);
 assert.match(citizenImpactPage, /Part of Side Trails\./);
 assert.doesNotMatch(citizenImpactPage, /Coming soon/i);
 assert.doesNotMatch(citizenImpactPage, /WebSocket|live data dashboard/i);
+
+const countriesPage = read("side-trails/global-signals/countries/index.html");
+assert.match(countriesPage, /Country Intelligence/);
+assert.match(countriesPage, /gsc-root/);
+assert.match(countriesPage, /Part of Side Trails\./);
+assert.doesNotMatch(countriesPage, /Coming soon/i);
+assert.doesNotMatch(countriesPage, /WebSocket|live data dashboard/i);
 
 for (const slug of [
   "waypoint-take",

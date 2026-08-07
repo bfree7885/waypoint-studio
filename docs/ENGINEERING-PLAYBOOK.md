@@ -168,6 +168,27 @@ continuously improves.
 5. **Reuse GS landing chrome (`gs-landing` + IBM Plex)** for module pages; keep
    outdoor Articles / WCS skins out of Side Trails.
 
+### 2026-08-07 — Global Signals Country Intelligence
+
+**Artifact:** `docs/global-signals/country-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-country-intelligence`
+
+1. **Clean slug pages + shared mount beat query-only detail for country sets** —
+   thin `/countries/<slug>/index.html` shells keep shareable URLs while one JS
+   module owns normalize/render; still accept `?id=` for Articles parity.
+2. **Reuse Articles confidence/horizon normalizers with a `predicted` flag** —
+   country risks and citizen-impact links must coerce Observed → Unknown the
+   same way impact-path hops do.
+3. **Cross-module hrefs must be depth-aware** — links from `/countries/<slug>/`
+   need `../../articles/` and `../../citizen-impact/#…`; dataset-relative
+   `../citizen-impact` is wrong on slug pages.
+4. **Foundation smoke tests that assume every non-Articles module is
+   “Coming soon” must be updated when Country Intelligence graduates** —
+   otherwise CI freezes new modules in placeholder state.
+5. **Soft-link stable ids even when sibling modules are still shells** —
+   `gsa_*` article ids, citizen category anchors, and `relationship-graph`
+   routes keep parallel worktrees integrable without schema forks.
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
