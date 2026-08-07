@@ -6,20 +6,24 @@
   "use strict";
   global.WDS = global.WDS || {};
   global.WDS.APP_NAV_CONFIG = {
-    "version": "2.2.0-home-rc1",
+    "version": "2.3.0-studio-nav-architecture",
     "brand": {
       "name": "Waypoint Studio",
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "home", "label": "Home", "href": "./", "hint": "What’s happening outside today" },
+      { "id": "dashboard", "label": "Dashboard", "href": "./", "hint": "What’s happening outside today" },
       { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
-      { "id": "about", "label": "About", "href": "about.html" }
+      { "id": "side-trails", "label": "Side Trails", "href": "side-trails/", "hint": "Sister experiments" },
+      { "id": "support", "label": "Support", "href": "support.html", "hint": "Help and honest answers" },
+      { "id": "about", "label": "About", "href": "about.html", "hint": "Studio mission" }
     ],
-    "homePrimary": ["home", "scenes", "sheds"],
-    "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
+    "architectureNavLabels": ["Dashboard", "Scenes", "Sheds", "Articles", "Side Trails", "Support", "About"],
+    "homePrimary": ["dashboard", "scenes", "sheds"],
+    "homeIncubator": ["steepleaf", "savant-sommelier", "waypoint-volunteer"],
+    "homeSideTrails": ["signalterrain"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {

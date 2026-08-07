@@ -1,9 +1,23 @@
 {
-  "version": "2.1.0",
+  "version": "2.3.0",
   "brand": {
     "name": "Waypoint Studio",
     "homeRoute": "./"
   },
+  "studioPrimaryNav": [
+    { "id": "dashboard", "label": "Dashboard", "href": "./", "hint": "What’s happening outside today" },
+    { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
+    { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
+    { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
+    { "id": "side-trails", "label": "Side Trails", "href": "side-trails/", "hint": "Sister experiments" },
+    { "id": "support", "label": "Support", "href": "support.html", "hint": "Help and honest answers" },
+    { "id": "about", "label": "About", "href": "about.html", "hint": "Studio mission" }
+  ],
+  "architectureNavLabels": ["Dashboard", "Scenes", "Sheds", "Articles", "Side Trails", "Support", "About"],
+  "homePrimary": ["dashboard", "scenes", "sheds"],
+  "homeIncubator": ["steepleaf", "savant-sommelier", "waypoint-volunteer"],
+  "homeSideTrails": ["signalterrain"],
+  "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
   "categories": [
     {
       "id": "core",
