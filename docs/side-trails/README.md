@@ -28,11 +28,16 @@ project titles or CTAs.
 ### Global Signals
 
 - **Tagline:** Understanding how world events shape everyday life.
-- **Purpose:** Help people see how geopolitics, trade, infrastructure, weather, conflict, energy, cyber events, and policy ripple through supply chains and industries to citizens.
+- **Purpose:** Relationship intelligence platform exploring how geopolitics, trade, infrastructure, policy, weather, cyber events, conflict, and economics ripple through industries to citizens.
 - **Status:** Experimental
-- **Positioning:** Intelligence platform — **not** a news website
-- **Landing:** [`global-signals.md`](global-signals.md)
+- **Positioning:** **Not** a news website. **Not** financial advice.
+- **Landing notes:** [`global-signals.md`](global-signals.md)
+- **Architecture:** [`../GLOBAL-SIGNALS-ARCHITECTURE.md`](../GLOBAL-SIGNALS-ARCHITECTURE.md)
+- **Roadmap:** [`../GLOBAL-SIGNALS-ROADMAP.md`](../GLOBAL-SIGNALS-ROADMAP.md)
 - **Owner review:** [`../product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
+- **Relationship Engine (design only):** [`../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md`](../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md)
+- **Citizen Impact Dashboard (design only):** [`../GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md`](../GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md)
+- **Cascading Impact Explorer (design only):** [`../GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md`](../GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md)
 
 ---
 

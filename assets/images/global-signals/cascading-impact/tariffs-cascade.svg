@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-labelledby="title desc">
+  <title id="title">Schematic cascade: Tariffs to Consumers</title>
+  <desc id="desc">Educational illustration of a downstream pathway from tariffs through imports, manufacturing, retail, to consumers. Not a live event graph. Every hop requires reason, confidence, evidence, and timeframe.</desc>
+  <rect width="1100" height="420" fill="#070c14"/>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1100" height="420" fill="url(#grid)" opacity="0.45"/>
+  <text x="40" y="40" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5">SCHEMATIC · NOT A LIVE EVENT · GLOBAL SIGNALS</text>
+  <text x="40" y="68" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="600">Tariffs ’ Imports ’ Manufacturing ’ Retail ’ Consumers</text>
+  <text x="40" y="94" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">Estimated pathway for impact literacy. Never implies certainty.</text>
+
+  <!-- nodes -->
+  <g font-family="IBM Plex Sans, sans-serif">
+    <rect x="40" y="160" width="150" height="56" rx="10" fill="#0e1626" stroke="#7dd3a7" stroke-width="1.5"/>
+    <text x="115" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Tariffs</text>
+
+    <rect x="260" y="160" width="150" height="56" rx="10" fill="#0e1626" stroke="#3d8bfd" stroke-width="1.5"/>
+    <text x="335" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Imports</text>
+
+    <rect x="480" y="160" width="160" height="56" rx="10" fill="#0e1626" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="560" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Manufacturing</text>
+
+    <rect x="710" y="160" width="140" height="56" rx="10" fill="#0e1626" stroke="#e7c56b" stroke-width="1.5"/>
+    <text x="780" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Retail</text>
+
+    <rect x="920" y="160" width="140" height="56" rx="10" fill="#0e1626" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="990" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Consumers</text>
+  </g>
+
+  <!-- edges -->
+  <g fill="none" stroke="#2a3b55" stroke-width="1.75">
+    <path d="M190 188 H260"/>
+    <path d="M410 188 H480"/>
+    <path d="M640 188 H710"/>
+    <path d="M850 188 H920"/>
+  </g>
+  <g fill="#3d8bfd">
+    <polygon points="254,188 244,183 244,193"/>
+    <polygon points="474,188 464,183 464,193"/>
+    <polygon points="704,188 694,183 694,193"/>
+    <polygon points="914,188 904,183 904,193"/>
+  </g>
+
+  <!-- edge metadata chips -->
+  <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa8bd">
+    <text x="200" y="150">reason · conf · evidence · timeframe</text>
+    <text x="200" y="250">landed cost ‘</text>
+    <text x="200" y="266">moderate · weeksmonths</text>
+
+    <text x="420" y="250">input pressure</text>
+    <text x="420" y="266">moderate · weeksmonths</text>
+
+    <text x="650" y="250">wholesale adjust</text>
+    <text x="650" y="266">lowmod · months</text>
+
+    <text x="860" y="250">shelf pass-through?</text>
+    <text x="860" y="266">lowmod · monthsquarters</text>
+  </g>
+
+  <text x="40" y="340" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Every connection: reason + confidence + evidence + expected timeframe</text>
+  <text x="40" y="362" fill="#6d7c93" font-family="IBM Plex Sans, sans-serif" font-size="12">Pass-through is incomplete and sector-specific. Currency, inventories, and competition can weaken or delay effects.</text>
+  <text x="40" y="392" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="11">Citizen impact literacy · not a price forecast</text>
+</svg>

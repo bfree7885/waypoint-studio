@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-labelledby="title desc">
+  <title id="title">Schematic cascade: Conflict to Inflation pressure</title>
+  <desc id="desc">Educational illustration of a downstream pathway from conflict through oil, transportation, and food toward inflation pressure. Not a live event graph. Uncertainty labeled on every hop.</desc>
+  <rect width="1100" height="420" fill="#070c14"/>
+  <defs>
+    <pattern id="grid2" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#152033" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1100" height="420" fill="url(#grid2)" opacity="0.45"/>
+  <text x="40" y="40" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.5">SCHEMATIC · NOT A LIVE EVENT · GLOBAL SIGNALS</text>
+  <text x="40" y="68" fill="#e8eef7" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="600">Conflict ’ Oil ’ Transportation ’ Food ’ Inflation</text>
+  <text x="40" y="94" fill="#9aa8bd" font-family="IBM Plex Sans, sans-serif" font-size="13">Multi-causal systems. A literacy path  not a macro forecast.</text>
+
+  <g font-family="IBM Plex Sans, sans-serif">
+    <rect x="36" y="160" width="150" height="56" rx="10" fill="#0e1626" stroke="#e7c56b" stroke-width="1.5"/>
+    <text x="111" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Conflict</text>
+
+    <rect x="250" y="160" width="140" height="56" rx="10" fill="#0e1626" stroke="#3d8bfd" stroke-width="1.5"/>
+    <text x="320" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Oil</text>
+
+    <rect x="454" y="160" width="170" height="56" rx="10" fill="#0e1626" stroke="#5eead4" stroke-width="1.5"/>
+    <text x="539" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Transportation</text>
+
+    <rect x="688" y="160" width="140" height="56" rx="10" fill="#0e1626" stroke="#7dd3a7" stroke-width="1.5"/>
+    <text x="758" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Food</text>
+
+    <rect x="892" y="160" width="170" height="56" rx="10" fill="#0e1626" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="977" y="194" text-anchor="middle" fill="#e8eef7" font-size="14" font-weight="600">Inflation</text>
+  </g>
+
+  <g fill="none" stroke="#2a3b55" stroke-width="1.75">
+    <path d="M186 188 H250"/>
+    <path d="M390 188 H454"/>
+    <path d="M624 188 H688"/>
+    <path d="M828 188 H892"/>
+  </g>
+  <g fill="#e7c56b">
+    <polygon points="244,188 234,183 234,193"/>
+    <polygon points="448,188 438,183 438,193"/>
+    <polygon points="682,188 672,183 672,193"/>
+    <polygon points="886,188 876,183 876,193"/>
+  </g>
+
+  <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#9aa8bd">
+    <text x="190" y="150">reason · conf · evidence · timeframe</text>
+    <text x="190" y="250">risk premium?</text>
+    <text x="190" y="266">lowmod · daysweeks</text>
+
+    <text x="410" y="250">fuel ’ logistics</text>
+    <text x="410" y="266">moderate · weeks</text>
+
+    <text x="650" y="250">distribution cost</text>
+    <text x="650" y="266">lowmod · weeksmonths</text>
+
+    <text x="880" y="250">CPI-sensitive</text>
+    <text x="880" y="266">lowmod · months</text>
+  </g>
+
+  <text x="40" y="340" fill="#5eead4" font-family="IBM Plex Mono, monospace" font-size="11">Every connection: reason + confidence + evidence + expected timeframe</text>
+  <text x="40" y="362" fill="#6d7c93" font-family="IBM Plex Sans, sans-serif" font-size="12">Many conflicts do not move oil. Reserves, demand, and other drivers often dominate. Label uncertainty.</text>
+  <text x="40" y="392" fill="#6d7c93" font-family="IBM Plex Mono, monospace" font-size="11">Citizen impact literacy · not surveillance · not trading advice</text>
+</svg>
