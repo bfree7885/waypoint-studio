@@ -10,7 +10,7 @@
 | **origin/main before** | `4fd33ccbbe67dbaa9c010bfe261417b4a8c5bf72` (`chore(articles): refresh curated feed artifacts`) |
 | **Feature tip** | `88a49e566fc0e7584e7e43bc985ac0fd206197da` (`feature/global-signals-articles-sprint-1`) |
 | **Merge base** | `70412afc768323a966f85baef786480103391d11` (Side Trails integration) |
-| **Release tip (pre-merge)** | see commit after this doc lands |
+| **Release tip (pre-merge)** | `a107cbd042effcca3bbe4101a23bbe6fef728ed8` |
 | **Production before** | `70412af` (live `meta name="waypoint-build"`; Pages lag vs `origin/main`) |
 
 **Decision:** **Approve for merge + GitHub Pages deploy** — Sprint 1 content complete, sample/demo honesty clear, cherry-pick onto current main clean, required tests pass.
