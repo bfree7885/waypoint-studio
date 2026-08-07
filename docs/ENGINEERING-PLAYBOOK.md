@@ -169,6 +169,19 @@ continuously improves.
 4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
    Side Trails + landing commits so Global Signals / design-doc WIP never rides
    the production review branch.
+### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
+
+**Artifact:** `docs/product/signalterrain-dynamic-defensive-posture-owner-review.md`  
+**Branch:** `feature/signalterrain-posture-engine-arch`
+
+1. **Name the daily delta explicitly** — “What should I do differently today?” is a
+   posture diff, not a static best-practices list.
+2. **Separate climate drivers from context** — zero-days / ransomware / KEV / advisories
+   are climate; stack / region / industry are context filters.
+3. **Quiet days are success** — inventing filler recommendations violates trust.
+4. **Relate, don’t silently fork** — cross-link Adaptive Defense Advisor and
+   recommendation schemas so future implementation has one contract.
+
 ### 2026-08-06 — SignalTerrain dashboard mockup (no implementation)
 
 **Artifact:** `docs/product/signalterrain-dashboard-mockup-owner-review.md`  
