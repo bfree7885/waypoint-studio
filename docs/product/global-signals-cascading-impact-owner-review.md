@@ -2,8 +2,8 @@
 
 **Date:** 2026-08-06  
 **Branch:** `feature/global-signals-cascading-impact`  
-**Base:**  /  ()  
-**Tip:**   
+**Base:** `feature/global-signals-foundation` / `origin/feature/global-signals-side-trails` (`f9b5d70`)  
+**Tip:** `bc882f1` (pre-stamp; next commit corrects)  
 **Product:** Global Signals  
 **Deployed:** No  
 **Merged:** No  
