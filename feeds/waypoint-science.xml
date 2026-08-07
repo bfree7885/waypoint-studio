@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2026 02:01:29 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 12:36:59 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -26,43 +26,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-08/bo
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Human Bear Incidents Prompt Road Closures on Alligator River National Wildlife Refuge</title>
-    <link>https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</guid>
-    <pubDate>Fri, 31 Jul 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Alligator River National Wildlife Refuge is a popular destination for visitors coming to see wildlife, particularly the refuge’s large population of black bears. Unfortunately, refuge staff have recently witnessed and been notified of multiple incidents of black bears approaching vehicles with no
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Europe’s wildfires became so intense they created their own storm</title>
-    <link>https://www.sciencedaily.com/releases/2026/08/260804034631.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/08/260804034631.htm</guid>
-    <pubDate>Wed, 05 Aug 2026 05:42:01 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: Historic wildfires scorched huge areas of Spain and France, with one Spanish blaze burning an area about the size of New York City and a French fire generating a rare, towering fire cloud. A dangerous combination of lush winter growth, severe heat, drought, and strong winds helped turn the landscape into explosive fuel.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/08/260804034631.htm</description>
-    <category>Weather</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Hikers on Hurricane, Cobble Lookout call in injuries back-to-back</title>
@@ -197,6 +160,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/r
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Exploring the Bog River Trail</title>
+    <link>https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</guid>
+    <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The lower Bog River seen from the Goodman Bridge. Photo by Phil Brown &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Lower-Bog-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; A trek up the Bog River Trail offers terrific views and a joyous descent.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</description>
+    <category>Rivers and Water</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Measurements trace European wildfire smoke high into upper troposphere</title>
     <link>https://phys.org/news/2026-08-european-wildfire-high-upper-troposphere.html</link>
     <guid isPermaLink="true">https://phys.org/news/2026-08-european-wildfire-high-upper-troposphere.html</guid>
@@ -233,21 +214,22 @@ Read the original article at the publisher: https://phys.org/news/2026-08-human-
     <author>Phys.org</author>
   </item>
   <item>
-    <title>Adirondack Watershed Institute announces 2026 Impact Awards</title>
-    <link>https://www.adirondackexplorer.org/communities/adirondack-watershed-institute-announces-2026-impact-awards/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-watershed-institute-announces-2026-impact-awards/</guid>
-    <pubDate>Wed, 05 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Europe’s wildfires became so intense they created their own storm</title>
+    <link>https://www.sciencedaily.com/releases/2026/08/260804034631.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/08/260804034631.htm</guid>
+    <pubDate>Wed, 05 Aug 2026 05:42:01 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
 
-Summary: Local leader Guy Middleton and the Mirror Lake Watershed Association are the recipients of AWI’s awards. Photo courtesy of Paul Smith’s College. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/07/AWI-Awards_Banner-1-1440x810-1.jpg?fit=780%2C439&amp;ssl=1&quot; /&gt; Guy Middleton of the Upper Saranac Foundation and the Mirror Lake Watershed Association are the recipients of AWI&apos;s awards
+Summary: Historic wildfires scorched huge areas of Spain and France, with one Spanish blaze burning an area about the size of New York City and a French fire generating a rare, towering fire cloud. A dangerous combination of lush winter growth, severe heat, drought, and strong winds helped turn the landscape into explosive fuel.
 
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-watershed-institute-announces-2026-impact-awards/</description>
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/08/260804034631.htm</description>
+    <category>Weather</category>
     <category>Rivers and Water</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
+    <category domain="geographic">National</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>What Have We Done for Our Refuges Lately?</title>
@@ -266,6 +248,25 @@ Read the original article at the publisher: https://www.audubon.org/news/what-ha
     <category>Rivers and Water</category>
     <category domain="geographic">Global</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Tupper Lake Tinman triathlon faces potential end after 44 years</title>
+    <link>https://www.adirondackexplorer.org/communities/tupper-lake-tinman-triathlon-faces-potential-end-after-44-years/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tupper-lake-tinman-triathlon-faces-potential-end-after-44-years/</guid>
+    <pubDate>Fri, 07 Aug 2026 10:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Tupper Lake Tinman 2022. Photo Credit: ROOST. &quot; data-image-caption=&quot; Tupper Lake Tinman 2022. Photo Credit: ROOST. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/06/98436pre_f69dcbaf3870787.jpg?fit=540%2C360&amp;ssl=1&quot; /&gt; Organizers hope to find a new group to take over longtime event.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tupper-lake-tinman-triathlon-faces-potential-end-after-44-years/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Fly of the Week: The Pink Lady</title>
@@ -304,6 +305,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Human Bear Incidents Prompt Road Closures on Alligator River National Wildlife Refuge</title>
+    <link>https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</guid>
+    <pubDate>Fri, 31 Jul 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Alligator River National Wildlife Refuge is a popular destination for visitors coming to see wildlife, particularly the refuge’s large population of black bears. Unfortunately, refuge staff have recently witnessed and been notified of multiple incidents of black bears approaching vehicles with no
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-07/human-bear-incidents-prompt-road-closures-alligator-river-national-wildlife-refuge</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Tidal Wetland Restoration at Siletz Bay National Wildlife Refuge</title>
@@ -399,6 +419,23 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-07/ne
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Officials will not release cool water from a Colorado River reservoir to protect threatened fish</title>
+    <link>https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</guid>
+    <pubDate>Fri, 07 Aug 2026 07:40:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Federal officials said Thursday they will not release cool water this year from one of the Colorado River&apos;s major reservoirs, which would have protected a threatened native fish downstream but put more strain on already struggling hydropower production.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
     <title>Low water on Germany&apos;s Rhine River threatens new blow to economy</title>
     <link>https://phys.org/news/2026-08-germany-rhine-river-threatens-economy.html</link>
     <guid isPermaLink="true">https://phys.org/news/2026-08-germany-rhine-river-threatens-economy.html</guid>
@@ -451,6 +488,60 @@ Read the original article at the publisher: https://www.noaa.gov/news/new-turbul
     <category>Birds</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Sun news: Sun’s tiny whirlpools finally revealed</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Fri, 07 Aug 2026 11:41:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news August 7, 2026: The Inouye Solar Telescope captured the sharpest views yet of the sun&apos;s surface, revealing ocean-like waves in the solar plasma. The post Sun news: Sun’s tiny whirlpools finally revealed first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The electromagnetic spectrum: It’s more than visible light</title>
+    <link>https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</guid>
+    <pubDate>Fri, 07 Aug 2026 10:15:46 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The light our eyes can detect is only a sliver of the light out there. The electromagnetic spectrum describes all the wavelengths of light, seen and unseen. The post The electromagnetic spectrum: It’s more than visible light first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The 2nd eclipse season of 2026 is underway</title>
+    <link>https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</guid>
+    <pubDate>Fri, 07 Aug 2026 09:03:25 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: One of the many noticeable cycles in the heavens is an eclipse season. The 2nd eclipse season of 2026 starts with a total solar eclipse on August 12. The post The 2nd eclipse season of 2026 is underway first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Total solar eclipse to dazzle observers on August 12</title>
@@ -525,60 +616,6 @@ Read the original article at the publisher: https://earthsky.org/todays-image/be
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Why the Spokane wildfires became so catastrophic</title>
-    <link>https://earthsky.org/earth/why-the-spokane-wildfires-became-so-catastrophic/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/why-the-spokane-wildfires-became-so-catastrophic/</guid>
-    <pubDate>Wed, 05 Aug 2026 11:30:48 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Spokane wildfires show wildfire risk is growing, but preparedness, resilient communities and smarter land management can reduce future losses. The post Why the Spokane wildfires became so catastrophic first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/why-the-spokane-wildfires-became-so-catastrophic/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Mars Curiosity rover’s 7 minutes of terror 14 years ago</title>
-    <link>https://earthsky.org/space/mars-curiosity-rovers-seven-minutes-of-terror/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mars-curiosity-rovers-seven-minutes-of-terror/</guid>
-    <pubDate>Wed, 05 Aug 2026 10:31:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: To celebrate the 14-year anniversary of Curiosity rover&apos;s arrival on Mars, here’s a video on the final 7 minutes of its chilling descent on August 5-6, 2012. The post Mars Curiosity rover’s 7 minutes of terror 14 years ago first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/mars-curiosity-rovers-seven-minutes-of-terror/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Bringing a rare butterfly back to Fort Custer</title>
-    <link>https://www.fws.gov/story/2026-08/bringing-rare-butterfly-back-fort-custer</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/bringing-rare-butterfly-back-fort-custer</guid>
-    <pubDate>Wed, 05 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: At first glance, Fort Custer Training Center is a renowned place where soldiers train. Yet, tucked within its 7,500 acres, a quiet revolution in conservation is underway and a rare butterfly makes its return. We at the U.S. Fish and Wildlife Service have a remarkable partnership that highlights the
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/bringing-rare-butterfly-back-fort-custer</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>NOAA Announces 2026 Small Business of the Year Award Recipient</title>
     <link>https://www.noaa.gov/acquisition-grants/small-business/news/noaa-announces-2026-small-business-of-year-award-recipient</link>
     <guid isPermaLink="true">https://www.noaa.gov/acquisition-grants/small-business/news/noaa-announces-2026-small-business-of-year-award-recipient</guid>
@@ -598,6 +635,23 @@ Read the original article at the publisher: https://www.noaa.gov/acquisition-gra
     <author>NOAA</author>
   </item>
   <item>
+    <title>Visible planets and night sky guide for August</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Fri, 07 Aug 2026 08:45:08 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: EarthSky&apos;s visible planets and night sky guide. The Perseid meteors are coming! Watch a video. In the meantime, look for the crescent moon near red Mars. The post Visible planets and night sky guide for August first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>SpaceX rocket hit the moon: Before and after pics</title>
     <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
     <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
@@ -610,40 +664,6 @@ Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for August</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Thu, 06 Aug 2026 08:45:08 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: EarthSky&apos;s visible planets and night sky guide. The Perseid meteors are coming! In this video, find out how to see the most meteors possible. The post Visible planets and night sky guide for August first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Were Neptune’s inner moons born from an ancient cataclysm?</title>
-    <link>https://earthsky.org/space/neptunes-inner-moons-triton-james-webb-space-telescope/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/neptunes-inner-moons-triton-james-webb-space-telescope/</guid>
-    <pubDate>Wed, 05 Aug 2026 11:35:12 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A new study suggests that Neptune&apos;s inner moons formed when Neptune captured its largest moon Triton and a family of original small icy moons was destroyed. The post Were Neptune’s inner moons born from an ancient cataclysm? first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/neptunes-inner-moons-triton-james-webb-space-telescope/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -718,23 +738,6 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Poetry: The bear beneath the hammock</title>
-    <link>https://www.adirondackexplorer.org/communities/arts/poetry-the-bear-beneath-the-hammock/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/poetry-the-bear-beneath-the-hammock/</guid>
-    <pubDate>Wed, 05 Aug 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A black bear. Photo by Jeff Nadler, Explorer files. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/11/unnamed-1.jpg?fit=540%2C369&amp;ssl=1&quot; /&gt; James B. Kobak Jr. shares two poems about an encounter with a bear while relaxing in the woods in the Adirondacks
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/poetry-the-bear-beneath-the-hammock/</description>
-    <category>Wildlife</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
   </item>
   </channel>
 </rss>
