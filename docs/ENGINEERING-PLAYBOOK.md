@@ -169,6 +169,18 @@ continuously improves.
 4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
    Side Trails + landing commits so Global Signals / design-doc WIP never rides
    the production review branch.
+### 2026-08-06 — SignalTerrain Intelligence Map (design only)
+
+**Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  
+**Branch:** `feature/signalterrain-intelligence-map-design`
+
+1. **No evidence → no marker** — geographic drama without citations violates trust.
+2. **Dossier is the product of a click** — summary/evidence/timeline/CVEs/advisories/news/recs
+   beat floating tooltips that hide provenance.
+3. **Extend Cyber Map ethics** — coarse precision and never-precise-victim stay mandatory
+   when adding BGP/DNS/cloud/attack layers.
+4. **Clustering is aggregation, not invention** — clusters must dissolve to sourced children.
+
 ### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
 
 **Artifact:** `docs/product/signalterrain-dynamic-defensive-posture-owner-review.md`  
