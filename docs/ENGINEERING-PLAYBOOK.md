@@ -137,6 +137,20 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Side Trails catalog (SignalTerrain second project)
+
+**Artifact:** `docs/product/side-trails-signalterrain-owner-review.md`  
+**Branch:** `feature/side-trails-signalterrain`
+
+1. **Side Trails ≠ Incubator** — Side Trails is a catalog of sister experiments;
+   Incubator remains Coming later. Link between them; don’t merge the IA.
+2. **Catalog-only cards** — never hardcode project titles/CTAs in HTML when the
+   contract is JSON-driven; tests should assert the shell stays empty of titles.
+3. **Integrate without rebuilding** — listing SignalTerrain means CTA to the
+   existing app path, not a new cyber feature surface in the same block.
+4. **Use a clean worktree from `origin/main`** when the primary workspace has
+   unrelated dirty WIP so Side Trails ships without noise.
+
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
 **Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  
