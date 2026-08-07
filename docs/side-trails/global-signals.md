@@ -36,7 +36,8 @@
 
 | Module | Path | Status |
 | --- | --- | --- |
-| Articles | `/side-trails/global-signals/articles/` | Feed shell live (empty-ready); content pending verified sources |
+| Articles | `/side-trails/global-signals/articles/` | Feed shell live (sample/demo briefs) |
+| Country Intelligence | `/side-trails/global-signals/countries/` | Index + slug profiles live (sample/demo) |
 | Waypoint’s Take | `/side-trails/global-signals/waypoint-take/` | Coming soon / not implemented |
 | Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented |
 | Supply Chains | `/side-trails/global-signals/supply-chains/` | Coming soon / not implemented |
