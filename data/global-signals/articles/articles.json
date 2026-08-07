@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-06T20:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo dataset",
+  "honesty": {
+    "banner": "Sample / demo dataset \u2014 not a live intelligence feed. These briefs are illustrative and labeled. They are not current-event reports."
+  },
+  "articles": [
+    {
+      "id": "gsa_demo-canal-slots",
+      "headline": "Canal authority reduces daily transit slots after prolonged drought",
+      "publisher": "Illustrative Canal Authority (sample)",
+      "date": "2023-11-15",
+      "publishedAt": "2023-11-15T14:00:00Z",
+      "factualSummary": "In this sample scenario, a canal operator publishes a status notice reducing daily vessel transit slots after months of below-normal rainfall. The notice cites lower water levels and asks carriers to expect longer waits.",
+      "sourceUrl": "https://example.invalid/sample/canal-drought-notice",
+      "eventType": "Canal / strait disruption"
+    },
+    {
+      "id": "gsa_demo-steel-tariff",
+      "headline": "Government announces higher tariffs on selected steel imports",
+      "publisher": "Illustrative Trade Authority (sample)",
+      "date": "2024-03-12",
+      "publishedAt": "2024-03-12T16:30:00Z",
+      "factualSummary": "In this sample scenario, a trade authority publishes a notice raising tariff rates on selected steel product lines. The notice lists covered product codes and an effective date.",
+      "sourceUrl": "https://example.invalid/sample/steel-tariff-notice",
+      "eventType": "Tariffs"
+    },
+    {
+      "id": "gsa_demo-shipping-diversion",
+      "headline": "Carriers divert sailings away from a contested maritime corridor",
+      "publisher": "Illustrative Maritime Advisory (sample)",
+      "date": "2024-01-08",
+      "publishedAt": "2024-01-08T09:00:00Z",
+      "factualSummary": "In this sample scenario, a maritime advisory notes that several carriers are diverting sailings away from a contested corridor after security incidents. Public notices describe longer alternate routes and schedule uncertainty.",
+      "sourceUrl": "https://example.invalid/sample/maritime-corridor-advisory",
+      "eventType": "Shipping disruption"
+    },
+    {
+      "id": "gsa_demo-pipeline-cyber",
+      "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems",
+      "publisher": "Illustrative Cyber Agency Advisory (sample)",
+      "date": "2021-05-09",
+      "publishedAt": "2021-05-09T18:00:00Z",
+      "factualSummary": "In this sample scenario based on a well-known historical pattern, a pipeline operator reports a ransomware incident affecting business systems and temporarily pauses some operations. Public advisories describe precautionary shutdowns.",
+      "sourceUrl": "https://example.invalid/sample/pipeline-cyber-advisory",
+      "eventType": "Cyber incident"
+    },
+    {
+      "id": "gsa_demo-port-labor",
+      "headline": "Labor stoppage slows cargo handling at a major coastal port complex",
+      "publisher": "Illustrative Port Authority Update (sample)",
+      "date": "2023-07-01",
+      "publishedAt": "2023-07-01T11:00:00Z",
+      "factualSummary": "In this sample scenario, a port authority reports slowed or paused cargo handling during a labor stoppage at a major complex. Public updates describe vessel queues and limited operations.",
+      "sourceUrl": "https://example.invalid/sample/port-labor-update",
+      "eventType": "Industrial strike"
+    }
+  ]
+}
