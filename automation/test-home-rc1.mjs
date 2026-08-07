@@ -49,10 +49,11 @@ assert("no marketing homepage modules on root", !/was-home-hero|studio-home\.js|
 assert("no Outdoor OS on root", !/wds-dashboard-os\.css|Outdoor OS/i.test(rootHtml));
 assert("no Recovery briefing on root", !/building your briefing|Outdoor overview/i.test(rootHtml));
 
-assert("primary nav is Home·Scenes·Sheds·Articles·About", /"id": "home".*"Scenes".*"Sheds".*"Articles".*"About"/s.test(navCfg));
-assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 800)));
+assert("primary nav is Dashboard·Scenes·Sheds·Articles·Side Trails·Support·About", /"id": "dashboard".*"Scenes".*"Sheds".*"Articles".*"Side Trails".*"Support".*"About"/s.test(navCfg));
+assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 1200)));
 const primaryNavBlock = (navCfg.match(/"studioPrimaryNav"\s*:\s*\[[\s\S]*?\]/) || [""])[0];
-assert("primary nav omits SignalTerrain", !/signalterrain|SignalTerrain|Volunteer/i.test(primaryNavBlock));
+assert("primary nav omits SignalTerrain as peer", !/"SignalTerrain"|Volunteer|ForageCast|Fieldry|Steepleaf/i.test(primaryNavBlock));
+assert("primary nav includes Side Trails", /"Side Trails"/.test(primaryNavBlock));
 assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
 assert("startHere is Open Home", /"label":\s*"Open Home"/.test(navCfg));
 assert("contact back link is Home", /Back to Home/.test(fs.readFileSync(path.join(ROOT, "apps/dashboard/contact.html"), "utf8")));
@@ -70,9 +71,9 @@ assert(
   )
 );
 assert("kiosk chrome has no user Kiosk label", !/>Kiosk</.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")) && !/Exit kiosk/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")));
-assert("404 links Home architecture", /<a href="\/">Home<\/a>/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")) && !/SignalTerrain|Waypoint Volunteer|ForageCast/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")));
-assert("about primary is Home not Dashboard", /<strong>Home<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && !/<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
-assert("support experiences are Home architecture", /<strong>Home<\/strong>/.test(supportHtml) && /<strong>Contact<\/strong>/.test(supportHtml) && !/Coming later|Waypoint Volunteer|incubator\//.test(supportHtml));
+assert("404 links Dashboard architecture", /<a href="\/">Dashboard<\/a>/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")) && /Side Trails/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")) && !/SignalTerrain|Waypoint Volunteer|ForageCast/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")));
+assert("about primary includes Dashboard architecture", /<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && /<strong>Side Trails<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
+assert("support experiences are studio architecture", /<strong>Dashboard<\/strong>/.test(supportHtml) && /<strong>Side Trails<\/strong>/.test(supportHtml) && /<strong>Support<\/strong>/.test(supportHtml) && !/<strong>Coming later<\/strong>|<strong>Volunteer<\/strong>|<strong>SignalTerrain<\/strong>/.test(supportHtml));
 assert("dashboard match includes root", /\^\/\$/.test(navCfg));
 assert("wds loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(wdsJs));
 assert("studio constitution Home lock", /Home is the canonical Waypoint Studio experience/.test(studioConst));
@@ -193,7 +194,7 @@ const primary = sandbox.WDS.APP_NAV_CONFIG.studioPrimaryNav.map(function (i) {
 });
 assert(
   "nav labels exact set",
-  primary.join("|") === "Home|Scenes|Sheds|Articles|About",
+  primary.join("|") === "Dashboard|Scenes|Sheds|Articles|Side Trails|Support|About",
   primary.join("|")
 );
 

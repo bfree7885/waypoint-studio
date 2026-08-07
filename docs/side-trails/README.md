@@ -3,8 +3,11 @@
 **Route:** `/side-trails/`  
 **Catalog:** `data/side-trails/catalog.json`
 
+**Hierarchy:** Waypoint Studio → Side Trails → (catalog projects)
+
 Side Trails is Waypoint Studio’s laboratory for sister projects — adjacent
-experiments that deepen curiosity without competing as Home flagships.
+experiments that deepen curiosity without competing as Home flagships
+(Dashboard / Scenes / Sheds).
 
 Cards are rendered only from the JSON catalog. The HTML never hardcodes
 project titles or CTAs.
@@ -18,14 +21,17 @@ project titles or CTAs.
 | `civic-trails` | Civic Trails | Beta | Explore Civic Trails |
 | `signalterrain` | SignalTerrain | Experimental | Explore SignalTerrain |
 
-### SignalTerrain (second project)
+### SignalTerrain (Side Trails project)
 
+- **IA home:** Waypoint Studio → Side Trails → SignalTerrain (not a studio primary peer; not Incubator)
 - **Tagline:** Adaptive cyber intelligence for defenders.
 - **Description:** SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.
 - **Status:** Experimental
 - **Button:** Explore SignalTerrain → `/side-trails/signalterrain/` product landing
+- **App (preserved):** `/apps/signalterrain/`
 - **Icon:** `assets/images/side-trails/signalterrain-network.svg` (cyber / network motif)
 - **Product landing:** [`signalterrain-landing.md`](signalterrain-landing.md)
+- **IA move review:** [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md)
 
 ---
 
@@ -44,5 +50,6 @@ project titles or CTAs.
 
 ## Related
 
-- [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md)
-- Incubator (`/incubator/`) remains the Coming later surface for maturing product visions.
+- [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md) — catalog membership
+- [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md) — IA move out of primary/incubator peers
+- Incubator (`/incubator/`) remains the Coming later surface for maturing product visions (Steepleaf, Savant). SignalTerrain is listed under Side Trails, with a pointer from Incubator.

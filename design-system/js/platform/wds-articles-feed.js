@@ -44,12 +44,49 @@
       if (value === "ai-generated") return "AI-generated summary";
       if (value === "editor-written") return "Editor-written summary";
       if (value === "unavailable") return "Summary unavailable";
-      return "Feed-description summary";
+      return "Feed-description summary · source facts";
     }
-    if (value === "generated") return "Generated take";
-    if (value === "editor-written") return "Editor-written take";
+    if (global.WDS && WDS.take && WDS.take.provenanceLabel && kind === "take") {
+      return WDS.take.provenanceLabel(value);
+    }
+    if (value === "generated") return "Generated take · interpretation, not a score";
+    if (value === "editor-written") return "Editor-written take · interpretation, not a score";
     if (value === "unavailable") return "Waypoint’s Take unavailable";
-    return "Fallback take from feed metadata";
+    return "Fallback take · interpretation, not a score";
+  }
+
+  function renderTakeSection(article) {
+    var opts = {
+      body: article.waypointTake,
+      summary: article.summary,
+      provenance: article.takeProvenance,
+      meta: provenanceLabel("take", article.takeProvenance)
+    };
+    if (global.WDS && WDS.take && typeof WDS.take.renderArticleHtml === "function") {
+      return WDS.take.renderArticleHtml(opts);
+    }
+    var body = String(article.waypointTake || "").trim();
+    var unavailable = !body || article.takeProvenance === "unavailable";
+    if (unavailable) {
+      return (
+        '<section class="wds-take wds-take--article wds-take--restrained waf-card__take" data-take-surface="article" data-take-kind="restrained" aria-label="Waypoint’s Take">' +
+        '<h3 class="wds-take__title">Waypoint’s Take</h3>' +
+        '<p class="wds-take__body">No Waypoint’s Take is available for this item yet. We will not invent one.</p>' +
+        '<p class="wds-take__meta">Optional · not invented</p>' +
+        "</section>"
+      );
+    }
+    return (
+      '<section class="wds-take wds-take--article waf-card__take" data-take-surface="article" data-take-kind="interpretation" aria-label="Waypoint’s Take">' +
+      '<h3 class="wds-take__title">Waypoint’s Take</h3>' +
+      '<p class="wds-take__body">' +
+      esc(body) +
+      "</p>" +
+      '<p class="wds-take__meta">' +
+      esc(opts.meta) +
+      "</p>" +
+      "</section>"
+    );
   }
 
   function isStale(data) {
@@ -133,11 +170,12 @@
     var cats = (article.categories || []).slice(0, 2);
     var geo = (article.geographicScopes || [])[0] || "National";
     var summaryProv = provenanceLabel("summary", article.summaryProvenance);
-    var takeProv = provenanceLabel("take", article.takeProvenance);
 
     return (
       '<article class="waf-card" data-article-id="' +
       esc(article.id) +
+      '" data-article-origin="' +
+      esc(article.origin || article.projectId || "studio") +
       '">' +
       '<header class="waf-card__meta">' +
       '<span class="waf-chip waf-chip--geo">' +
@@ -148,6 +186,9 @@
           return '<span class="waf-chip waf-chip--cat">' + esc(c) + "</span>";
         })
         .join("") +
+      (article.projectLabel
+        ? '<span class="waf-chip waf-chip--project">' + esc(article.projectLabel) + "</span>"
+        : "") +
       "</header>" +
       '<h2 class="waf-card__title">' +
       esc(article.title) +
@@ -168,6 +209,7 @@
       "</span>" +
       "</p>" +
       '<section class="waf-card__summary" aria-label="Summary">' +
+      '<p class="waf-card__summary-label">Summary</p>' +
       "<p>" +
       esc(article.summary || "Summary unavailable.") +
       "</p>" +
@@ -175,15 +217,7 @@
       esc(summaryProv) +
       "</p>" +
       "</section>" +
-      '<section class="waf-card__take" aria-label="Waypoint’s Take">' +
-      "<h3>Waypoint’s Take</h3>" +
-      "<p>" +
-      esc(article.waypointTake || "No Waypoint analysis is available.") +
-      "</p>" +
-      '<p class="waf-card__prov">' +
-      esc(takeProv) +
-      "</p>" +
-      "</section>" +
+      renderTakeSection(article) +
       relatedAction(article, depth) +
       '<p class="waf-card__cta">' +
       '<a class="wds-btn wds-btn--primary" href="' +

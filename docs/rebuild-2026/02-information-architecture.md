@@ -17,10 +17,11 @@ Shared (not primary products)
 ├── Settings / Places
 ├── Contact / Support / About / Privacy
 ├── Design system + App Shell
-└── Optional supporting content (Articles, incubator apps)
+├── Optional supporting content (Articles, incubator apps)
+└── Side Trails (/side-trails/) — sister experiments (e.g. SignalTerrain)
 ```
 
-Primary navigation exposes **exactly three products**. Everything else is secondary, footer, launcher depth, or incubator.
+Primary navigation exposes **exactly three products**. Everything else is secondary, footer, launcher depth, incubator, or Side Trails.
 
 ---
 

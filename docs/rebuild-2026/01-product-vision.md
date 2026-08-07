@@ -91,7 +91,7 @@ These support the three products without becoming peers in primary navigation:
 | **Articles / education content** | Supporting learning; not a fourth primary product in this rebuild |
 | **Settings / places / contact / privacy** | Shared account-less prefs and trust surfaces |
 
-Incubator apps (SignalTerrain, Steepleaf, Savant, Volunteer, ForageCast, Fieldry, etc.) may remain reachable and honest about maturity, but **they are not primary products** of the 2026 Rebuild portfolio. Primary nav and rebuild architecture center on Dashboard, Scenes, Sheds only.
+Incubator apps (Steepleaf, Savant, Volunteer, ForageCast, Fieldry, etc.) may remain reachable and honest about maturity, but **they are not primary products** of the 2026 Rebuild portfolio. **SignalTerrain** is a **Side Trails** project (Waypoint Studio → Side Trails → SignalTerrain), not an Incubator peer and not a Dashboard/Scenes/Sheds peer. Primary nav and rebuild architecture center on Dashboard, Scenes, Sheds only.
 
 ---
 

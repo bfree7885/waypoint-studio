@@ -150,7 +150,8 @@ Examples: CISA · NVD · MITRE · US-CERT · NIST · NOAA Space Weather · cloud
 
 ## Navigation structure
 
-Product home remains **SignalTerrain**. Signal Intelligence defines **intelligence IA** inside that home (and later Dashboard glances).
+**Studio IA:** Waypoint Studio → Side Trails → SignalTerrain (not a Dashboard/Scenes peer).  
+Product home remains **SignalTerrain** (app + Side Trails landing). Signal Intelligence defines **intelligence IA** inside that home (and later Dashboard glances).
 
 Catalog: `design-system/signal-intelligence/navigation.json`.
 

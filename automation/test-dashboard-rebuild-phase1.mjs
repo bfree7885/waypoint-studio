@@ -275,7 +275,7 @@ assert("nav title Home", dash && dash.title === "Home");
 assert("nav has workspace feature", dash.features.some((f) => f.id === "workspace"));
 assert("nav has customize feature", dash.features.some((f) => f.id === "customize"));
 assert("nav omits kiosk feature", !dash.features.some((f) => f.id === "kiosk"));
-assert("homePrimary is three products", (navSandbox.WDS.APP_NAV_CONFIG.homePrimary || []).join(",") === "home,scenes,sheds");
+assert("homePrimary is three products", (navSandbox.WDS.APP_NAV_CONFIG.homePrimary || []).join(",") === "dashboard,scenes,sheds");
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {
