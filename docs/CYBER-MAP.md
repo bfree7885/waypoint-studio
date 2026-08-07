@@ -41,3 +41,11 @@ Always:
 Equirectangular SVG placement for efficiency — not a cartographic authority claim. Markers link back to cyber entity ids when present.
 
 Layers are fetched when the Map panel opens and cached locally via the research workspace cache helpers for offline re-view of the sample package.
+
+---
+
+## Successor design
+
+Expanded product design (additional layers + incident dossier contract):  
+[SIGNALTERRAIN-INTELLIGENCE-MAP.md](SIGNALTERRAIN-INTELLIGENCE-MAP.md) — **design only / not implemented** in that document’s branch.
+
