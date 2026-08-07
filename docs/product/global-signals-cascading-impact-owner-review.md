@@ -3,6 +3,7 @@
 **Date:** 2026-08-06  
 **Branch:** `feature/global-signals-cascading-impact`  
 **Base:**  /  ()  
+**Tip:**   
 **Product:** Global Signals  
 **Deployed:** No  
 **Merged:** No  
