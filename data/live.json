@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-07T19:30:01.264Z",
-  "nextScheduledUpdate": "2026-08-07T20:00:00.000Z",
+  "updatedAt": "2026-08-07T20:00:01.285Z",
+  "nextScheduledUpdate": "2026-08-07T20:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 87,
-    "feelsLikeF": 93,
-    "humidity": 50,
-    "windMph": 8,
-    "windGustMph": 10,
-    "cloudCover": 2,
-    "uvIndex": 7.8,
+    "temperatureF": 88,
+    "feelsLikeF": 95,
+    "humidity": 49,
+    "windMph": 6,
+    "windGustMph": 8,
+    "cloudCover": 1,
+    "uvIndex": 7.5,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-07T14:30"
+    "observedAt": "2026-08-07T15:00"
   },
   "forecast": {
     "highF": 91,
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 32,
-    "phaseValue": 0.839,
+    "phaseValue": 0.84,
     "trust": "Estimated"
   },
   "airQuality": {
     "usAqi": 58,
-    "pm25": 10.4,
+    "pm25": 10.7,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 228.2639741897583,
+        "generationtime_ms": 522.5492715835571,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-07T14:30",
+          "time": "2026-08-07T15:00",
           "interval": 900,
-          "temperature_2m": 86.9,
-          "relative_humidity_2m": 50,
-          "apparent_temperature": 92.9,
+          "temperature_2m": 88.1,
+          "relative_humidity_2m": 49,
+          "apparent_temperature": 95,
           "weather_code": 0,
-          "wind_speed_10m": 8.1,
-          "wind_direction_10m": 208,
-          "wind_gusts_10m": 9.8,
-          "cloud_cover": 2,
-          "surface_pressure": 949.3,
-          "uv_index": 7.75,
+          "wind_speed_10m": 6.2,
+          "wind_direction_10m": 218,
+          "wind_gusts_10m": 7.6,
+          "cloud_cover": 1,
+          "surface_pressure": 949.6,
+          "uv_index": 7.45,
           "precipitation": 0
         },
         "hourly_units": {
@@ -457,21 +457,21 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 32,
-        "phaseValue": 0.839,
+        "phaseValue": 0.84,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
         "usAqi": 58,
-        "pm25": 10.4,
+        "pm25": 10.7,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 7.8,
+        "uvIndex": 7.5,
         "status": "live"
       }
     },
@@ -520,7 +520,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 2,
+        "cloudCover": 1,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:39 AM",
@@ -535,19 +535,26 @@
       "Calculated",
       "Open-Meteo Air Quality",
       "Open-Meteo",
-      "USGS Water Services",
+      "previous-success",
       "NWS"
     ],
-    "failures": [],
+    "failures": [
+      {
+        "module": "river_gauges",
+        "source": "USGS Water Services",
+        "error": "This operation was aborted",
+        "retryAttempts": 3
+      }
+    ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-07T19:30:01.264Z",
+    "generatedAt": "2026-08-07T20:00:01.285Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
       "alerts": "live",
       "airQuality": "live",
       "elevation": "unavailable",
-      "usgsWater": "live",
+      "usgsWater": "estimated",
       "ebird": "unavailable"
     }
   }
