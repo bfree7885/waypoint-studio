@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Global Signals Articles — Sprint 1 (Prompts 1–3).
+ * Global Signals Articles — Sprint 1 (Prompts 1–4).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -56,9 +56,15 @@ for (const a of data.articles) {
   assert.ok(a.factualSummary, "factualSummary required");
   assert.ok(a.sourceUrl, "sourceUrl required");
   assert.ok(a.eventType, "eventType required");
-  assert.equal(a.confidence, undefined);
+  assert.ok(Array.isArray(a.affectedCountries));
+  assert.ok(Array.isArray(a.affectedIndustries));
+  assert.ok(Array.isArray(a.affectedCommodities));
+  assert.ok(Array.isArray(a.citizenImpacts));
+  assert.ok(a.timeHorizon);
+  assert.ok(a.confidence);
   assert.equal(a.impactPath, undefined);
 }
+
 
 const withTake = data.articles.filter((a) => a.waypointsTake);
 const withoutTake = data.articles.filter((a) => !a.waypointsTake);
@@ -109,6 +115,24 @@ assert.match(emptyTakeCard, /We will not invent one/);
 const missingTake = api.renderTake(null);
 assert.match(missingTake, /gsa-card__take--empty/);
 
+// Confidence + horizon normalize
+assert.equal(api.normalizeConfidence(null), "Unknown");
+assert.equal(api.normalizeConfidence(""), "Unknown");
+assert.equal(api.normalizeConfidence("moderate"), "Medium");
+assert.equal(api.normalizeConfidence("Observed"), "Observed");
+assert.equal(api.normalizeConfidence("Observed", { predicted: true }), "Unknown");
+assert.equal(api.normalizeConfidence("nope"), "Unknown");
+assert.equal(api.normalizeTimeHorizon("weeks"), "Weeks");
+assert.equal(api.normalizeTimeHorizon("long term"), "Long-term");
+assert.equal(api.normalizeTimeHorizon("bogus"), "Unknown");
+
+const metaCard = api.renderCard(api.normalizeArticle(data.articles[0]));
+assert.match(metaCard, /gsa-card__impact/);
+assert.match(metaCard, /Confidence · Medium|Medium/);
+assert.match(metaCard, /Horizon · Weeks|Weeks/);
+assert.match(metaCard, /Industries/);
+assert.match(metaCard, /Citizen impact/);
+
 // HTTP smoke
 const mime = {
   ".html": "text/html; charset=utf-8",
@@ -152,4 +176,4 @@ const cssRes = await get("/design-system/css/wds-global-signals-articles.css");
 assert.equal(cssRes.status, 200);
 
 server.close();
-console.log("Global Signals Articles Prompt 3 (Waypoint\u2019s Take) checks passed.");
+console.log("Global Signals Articles Prompt 4 (impact metadata) checks passed.");

@@ -16,6 +16,75 @@
       .replace(/"/g, "&quot;");
   }
 
+
+  var CONFIDENCE_ALLOWED = ["Observed", "High", "Medium", "Low", "Unknown"];
+  var HORIZON_ALLOWED = ["Immediate", "Days", "Weeks", "Months", "Long-term"];
+
+  function titleCaseToken(s) {
+    return String(s || "")
+      .trim()
+      .toLowerCase()
+      .replace(/long[\s_-]*term/g, "long-term")
+      .replace(/\b\w/g, function (c) {
+        return c.toUpperCase();
+      })
+      .replace(/Long-Term/g, "Long-term");
+  }
+
+  /** Normalize confidence. Invalid/missing → Unknown. Never invent Observed. */
+  function normalizeConfidence(value, opts) {
+    opts = opts || {};
+    if (value == null || value === "") return "Unknown";
+    var raw = String(value).trim();
+    var lower = raw.toLowerCase();
+    if (lower === "moderate") return "Medium";
+    if (lower === "speculative") return "Low";
+    var mapped = {
+      observed: "Observed",
+      high: "High",
+      medium: "Medium",
+      low: "Low",
+      unknown: "Unknown"
+    };
+    var out = mapped[lower];
+    if (!out) return "Unknown";
+    // Predicted / analysis surfaces must never be Observed
+    if (opts.predicted && out === "Observed") return "Unknown";
+    return out;
+  }
+
+  function normalizeTimeHorizon(value) {
+    if (value == null || value === "") return "Unknown";
+    var lower = String(value)
+      .trim()
+      .toLowerCase()
+      .replace(/[\s_]+/g, "-");
+    var mapped = {
+      immediate: "Immediate",
+      days: "Days",
+      day: "Days",
+      weeks: "Weeks",
+      week: "Weeks",
+      months: "Months",
+      month: "Months",
+      "long-term": "Long-term",
+      longterm: "Long-term",
+      "long term": "Long-term"
+    };
+    return mapped[lower] || "Unknown";
+  }
+
+  function normalizeStringList(value) {
+    if (!value) return [];
+    if (!Array.isArray(value)) value = [value];
+    return value
+      .map(function (v) {
+        return String(v == null ? "" : v).trim();
+      })
+      .filter(Boolean);
+  }
+
+
   function formatDate(value) {
     if (!value) return "Date unavailable";
     var d = new Date(value);
@@ -57,8 +126,54 @@
       factualSummary: String(raw.factualSummary || "").trim(),
       sourceUrl: raw.sourceUrl || null,
       eventType: String(raw.eventType || "").trim(),
-      waypointsTake: take
+      waypointsTake: take,
+      affectedCountries: normalizeStringList(raw.affectedCountries),
+      affectedIndustries: normalizeStringList(raw.affectedIndustries),
+      affectedCommodities: normalizeStringList(raw.affectedCommodities),
+      citizenImpacts: normalizeStringList(raw.citizenImpacts),
+      timeHorizon: normalizeTimeHorizon(raw.timeHorizon),
+      confidence: normalizeConfidence(raw.confidence)
     };
+  }
+
+  function renderChipRow(title, items) {
+    if (!items || !items.length) {
+      return (
+        "<div class=\"gsa-meta-row\"><h4>" +
+        esc(title) +
+        '</h4><p class="gsa-empty-inline">Not tagged</p></div>'
+      );
+    }
+    return (
+      '<div class="gsa-meta-row"><h4>' +
+      esc(title) +
+      '</h4><ul class="gsa-chips">' +
+      items
+        .map(function (item) {
+          return "<li>" + esc(item) + "</li>";
+        })
+        .join("") +
+      "</ul></div>"
+    );
+  }
+
+  function renderImpactMeta(article) {
+    return (
+      '<section class="gsa-card__impact" aria-label="Impact metadata">' +
+      '<p class="gsa-card__meta">' +
+      '<span class="gsa-badge gsa-badge--confidence" data-confidence="' +
+      esc(article.confidence) +
+      '">Confidence · ' +
+      esc(article.confidence) +
+      "</span>" +
+      '<span class="gsa-badge">Horizon · ' +
+      esc(article.timeHorizon) +
+      "</span>" +
+      "</p>" +
+      renderChipRow("Industries", article.affectedIndustries) +
+      renderChipRow("Citizen impact", article.citizenImpacts) +
+      "</section>"
+    );
   }
 
   function takeHasSubstance(take) {
@@ -122,6 +237,14 @@
       '<header class="gsa-card__head">' +
       '<p class="gsa-card__meta"><span class="gsa-badge">' +
       esc(eventType) +
+      "</span>" +
+      '<span class="gsa-badge gsa-badge--confidence" data-confidence="' +
+      esc(article.confidence) +
+      '">' +
+      esc(article.confidence) +
+      "</span>" +
+      '<span class="gsa-badge">' +
+      esc(article.timeHorizon) +
       "</span></p>" +
       '<h2 class="gsa-card__title">' +
       esc(headline) +
@@ -140,6 +263,7 @@
       "</p>" +
       "</section>" +
       renderTake(article.waypointsTake) +
+      renderImpactMeta(article) +
       "</article>"
     );
   }
@@ -230,7 +354,12 @@
     renderCard: renderCard,
     renderTake: renderTake,
     takeHasSubstance: takeHasSubstance,
+    renderImpactMeta: renderImpactMeta,
+    normalizeConfidence: normalizeConfidence,
+    normalizeTimeHorizon: normalizeTimeHorizon,
     formatDate: formatDate,
-    isSafeHttpUrl: isSafeHttpUrl
+    isSafeHttpUrl: isSafeHttpUrl,
+    CONFIDENCE_ALLOWED: CONFIDENCE_ALLOWED,
+    HORIZON_ALLOWED: HORIZON_ALLOWED
   };
 })(typeof window !== "undefined" ? window : globalThis);
