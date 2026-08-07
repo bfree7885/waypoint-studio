@@ -67,8 +67,16 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
+// Articles module has a live shell (Sprint 1); other modules remain placeholders.
+const articlesPage = read("side-trails/global-signals/articles/index.html");
+assert.match(articlesPage, /Articles/);
+assert.match(articlesPage, /gsa-feed/);
+assert.match(articlesPage, /Global Signals articles will appear here as verified sources are added\./);
+assert.match(articlesPage, /Part of Side Trails\./);
+assert.doesNotMatch(articlesPage, /Coming soon/i);
+assert.doesNotMatch(articlesPage, /fetch\(|WebSocket|live data dashboard/i);
+
 for (const slug of [
-  "articles",
   "waypoint-take",
   "relationship-graph",
   "supply-chains",

@@ -3,42 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Articles — Global Signals module. Coming soon / not implemented. Part of Side Trails.">
-  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Global Signals Articles — intelligence briefs with verified sources. Not a breaking news feed. Part of Side Trails at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/articles/">
-  <title>Articles — Coming soon · Global Signals</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Articles — Global Signals">
+  <meta property="og:description" content="Intelligence briefs with verified sources — not a breaking news feed.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/articles/">
+  <title>Articles — Global Signals</title>
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-articles.css">
 </head>
-<body class="gs-landing">
+<body class="gs-landing gsa-page">
   <a class="gs-skip" href="#main">Skip to content</a>
+
   <header class="gs-top">
     <a class="gs-brand-mark" href="../">Global Signals</a>
     <nav aria-label="Product">
-      <a href="../">Product</a>
+      <a href="./" aria-current="page">Articles</a>
+      <a href="../">Global Signals</a>
       <a href="../../">Side Trails</a>
     </nav>
   </header>
-  <main id="main" class="gs-placeholder-main">
-    <p class="gs-eyebrow">Global Signals module</p>
-    <p class="gs-badge">Coming soon · not implemented</p>
-    <h1>Articles</h1>
-    <p>Curated literacy pieces with sources — not a breaking news feed.</p>
-    <p>
-      This route is an honest empty shell for roadmap planning. There is no live data,
-      no engine, and no fabricated functionality here.
-    </p>
-    <p>
-      <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
-      <a class="gs-cta" href="../../">Side Trails</a>
-    </p>
+
+  <main id="main" class="gsa-main">
+    <header class="gsa-hub-head">
+      <p class="gs-eyebrow">Global Signals module</p>
+      <h1>Articles</h1>
+      <p class="gsa-hub-desc">
+        Intelligence briefs with verified sources — not a breaking news feed.
+        Each brief separates observed facts from analysis when content is ready.
+      </p>
+      <p class="gsa-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+      </p>
+    </header>
+
+    <section
+      id="gsa-feed"
+      class="gsa-feed"
+      aria-label="Global Signals articles feed"
+      data-gsa-feed
+      data-gsa-state="empty"
+    >
+      <p class="gsa-empty" role="status">
+        Global Signals articles will appear here as verified sources are added.
+      </p>
+    </section>
   </main>
+
   <footer class="gs-footer">
     <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
     <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
   </footer>
 </body>
 </html>
