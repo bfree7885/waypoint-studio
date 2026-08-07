@@ -2,7 +2,9 @@
 
 **Date:** 2026-08-06  
 **Branch:** `feature/studio-nav-architecture-alignment`  
-**Base tip:** Side Trails lineage (`aa408fa` / SignalTerrain catalog work on top of `origin/main`)  
+**Start SHA:** `aa408fa5a6ef9e76712242bc06edbcaf2d557f82`  
+**End SHA:** `861e9edc1b0d321b763c410b4f2bd1ad1ade9738`
+**Base tip:** Side Trails lineage (`aa408fa5a6ef9e76712242bc06edbcaf2d557f82`)
 **Deployed:** No  
 **Merged:** No  
 **Author commit identity:** Bryan Freeman \<bfree7885@gmail.com\>
