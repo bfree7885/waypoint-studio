@@ -61,9 +61,13 @@ to everyday consequence, without panic or partisan theater.
 | `assets/images/side-trails/global-signals-globe.svg` | Catalog icon |
 | `assets/images/global-signals/landing/relationships.svg` | Schematic illustration |
 | `docs/product/global-signals-owner-review.md` | Owner review |
+| `docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md` | Relationship Engine design (not implemented) |
+| `docs/product/global-signals-relationship-engine-owner-review.md` | Relationship Engine owner review |
 
 ---
 
 ## Side Trails
 
 Listed in `data/side-trails/catalog.json` with CTA **Explore Global Signals**.
+
+**Core design (design only):** [Relationship Engine](../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md) — connected nodes with why / strength / confidence / direction / time delay, plus first-/second-/third-order cascades.

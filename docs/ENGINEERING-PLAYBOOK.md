@@ -161,6 +161,22 @@ continuously improves.
    when adding BGP/DNS/cloud/attack layers.
 4. **Clustering is aggregation, not invention** — clusters must dissolve to sourced children.
 
+### 2026-08-06 — Global Signals Relationship Engine (design only)
+
+**Artifact:** `docs/product/global-signals-relationship-engine-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-engine`
+
+1. **Everything is a node** — Global Signals literacy starts from typed entities
+   (ports, tariffs, weather, citizens-as-impact, …), not headline cards.
+2. **Five facets on every edge** — why, strength, confidence, direction, and time
+   delay; strength ≠ confidence; delay is a class, not fake precision.
+3. **Cascades are views over evidenced hops** — 1°/2°/3° narration must not invent
+   intermediate nodes; confidence should degrade along a chain by default.
+4. **Citizens mean impact literacy, never surveillance** — third-order household
+   effects explain kinds of impact, not people.
+5. **When a shared Side Trails worktree is busy, isolate design branches** in a
+   dedicated worktree from the latest Global Signals foundation tip before push.
+
 ### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
 
 **Artifact:** `docs/product/signalterrain-dynamic-defensive-posture-owner-review.md`  

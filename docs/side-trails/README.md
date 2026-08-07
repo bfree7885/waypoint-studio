@@ -33,6 +33,7 @@ project titles or CTAs.
 - **Positioning:** Intelligence platform — **not** a news website
 - **Landing:** [`global-signals.md`](global-signals.md)
 - **Owner review:** [`../product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
+- **Relationship Engine (design only):** [`../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md`](../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md)
 
 ---
 
@@ -53,4 +54,5 @@ project titles or CTAs.
 
 - [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md)
 - [`docs/product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
+- **Global Signals Relationship Engine (design only):** [`docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md`](../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md) · [owner review](../product/global-signals-relationship-engine-owner-review.md)
 - Incubator (`/incubator/`) remains the Coming later surface for maturing product visions.
