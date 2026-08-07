@@ -132,8 +132,141 @@
       affectedCommodities: normalizeStringList(raw.affectedCommodities),
       citizenImpacts: normalizeStringList(raw.citizenImpacts),
       timeHorizon: normalizeTimeHorizon(raw.timeHorizon),
-      confidence: normalizeConfidence(raw.confidence)
+      confidence: normalizeConfidence(raw.confidence),
+      likelyImpactPath: normalizeImpactPath(raw.likelyImpactPath || raw.impactPath)
     };
+  }
+
+  function normalizeImpactPath(rawPath) {
+    if (!Array.isArray(rawPath)) return [];
+    return rawPath
+      .map(function (step) {
+        if (!step || typeof step !== "object") return null;
+        var label = String(step.label || "").trim();
+        if (!label) return null;
+        return {
+          label: label,
+          type: String(step.type || step.kind || "unknown").trim() || "unknown",
+          confidence: normalizeConfidence(step.confidence, { predicted: true }),
+          timeframe: normalizeTimeHorizon(step.timeframe || step.horizon),
+          explanation: String(step.explanation || "").trim()
+        };
+      })
+      .filter(Boolean);
+  }
+
+  function renderImpactPath(path, opts) {
+    opts = opts || {};
+    if (!path || !path.length) {
+      return '<p class="gsa-empty">Likely impact path not tagged for this brief.</p>';
+    }
+    var items = path
+      .map(function (step, i) {
+        return (
+          '<li class="gsa-path__step" data-type="' +
+          esc(step.type) +
+          '">' +
+          '<div class="gsa-path__node">' +
+          '<span class="gsa-path__label">' +
+          esc(step.label) +
+          "</span>" +
+          '<span class="gsa-badge gsa-badge--confidence" data-confidence="' +
+          esc(step.confidence) +
+          '">' +
+          esc(step.confidence) +
+          "</span>" +
+          '<span class="gsa-badge">' +
+          esc(step.timeframe) +
+          "</span>" +
+          "</div>" +
+          (step.explanation
+            ? '<p class="gsa-path__explain">' + esc(step.explanation) + "</p>"
+            : "") +
+          (i < path.length - 1
+            ? '<span class="gsa-path__arrow" aria-hidden="true">↓</span>'
+            : "") +
+          "</li>"
+        );
+      })
+      .join("");
+    return (
+      '<ol class="gsa-path" aria-label="Likely impact path">' + items + "</ol>"
+    );
+  }
+
+  function renderPathPreview(path) {
+    if (!path || !path.length) return "";
+    var labels = path.map(function (s) { return s.label; });
+    return (
+      '<p class="gsa-path-preview" aria-label="Impact path preview">' +
+      esc(labels.join(" → ")) +
+      "</p>"
+    );
+  }
+
+  function queryId() {
+    try {
+      return new URLSearchParams(global.location.search).get("id");
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function renderDetail(article) {
+    var sourceHtml = isSafeHttpUrl(article.sourceUrl)
+      ? '<a href="' +
+        esc(article.sourceUrl) +
+        '" rel="noopener noreferrer" target="_blank">' +
+        esc(article.publisher || "Source") +
+        "</a>"
+      : esc(article.publisher || "Publisher unavailable");
+
+    return (
+      '<article class="gsa-detail" data-gsa-id="' +
+      esc(article.id) +
+      '">' +
+      '<p class="gsa-card__meta">' +
+      '<span class="gsa-badge">' +
+      esc(article.eventType || "Event type unavailable") +
+      "</span>" +
+      '<span class="gsa-badge gsa-badge--confidence" data-confidence="' +
+      esc(article.confidence) +
+      '">' +
+      esc(article.confidence) +
+      "</span>" +
+      '<span class="gsa-badge">' +
+      esc(article.timeHorizon) +
+      "</span></p>" +
+      "<h1>" +
+      esc(article.headline || "Untitled brief") +
+      "</h1>" +
+      "<p class=\"gsa-detail__byline\">" +
+      sourceHtml +
+      " · " +
+      esc(formatDate(article.date)) +
+      "</p>" +
+      '<section class="gsa-section" aria-labelledby="gsa-what">' +
+      '<h2 id="gsa-what">What happened</h2>' +
+      '<p class="gsa-note">Observed / reported facts from sources</p>' +
+      "<p>" +
+      esc(article.factualSummary || "Factual summary unavailable.") +
+      "</p></section>" +
+      '<section class="gsa-section" aria-labelledby="gsa-take">' +
+      '<h2 id="gsa-take">Waypoint\u2019s Take</h2>' +
+      renderTake(article.waypointsTake).replace(
+        'class="gsa-card__take',
+        'class="gsa-card__take gsa-detail__take'
+      ) +
+      "</section>" +
+      '<section class="gsa-section" aria-labelledby="gsa-path">' +
+      '<h2 id="gsa-path">Likely impact path</h2>' +
+      '<p class="gsa-note">Transparent tagged chain — not autonomous prediction. Step confidence never uses Observed for predicted hops.</p>' +
+      renderImpactPath(article.likelyImpactPath) +
+      "</section>" +
+      renderImpactMeta(article) +
+      '<p class="gsa-detail__back"><a href="./">← All briefs</a></p>' +
+      "</article>"
+    );
   }
 
   function renderChipRow(title, items) {
@@ -264,6 +397,10 @@
       "</section>" +
       renderTake(article.waypointsTake) +
       renderImpactMeta(article) +
+      renderPathPreview(article.likelyImpactPath) +
+      '<p class="gsa-card__cta"><a href="?id=' +
+      encodeURIComponent(article.id) +
+      '">Open brief</a></p>' +
       "</article>"
     );
   }
@@ -324,6 +461,29 @@
         return bundle;
       }
 
+      var id = opts.id != null ? opts.id : queryId();
+      if (id) {
+        var found = null;
+        for (var i = 0; i < bundle.articles.length; i++) {
+          if (bundle.articles[i].id === id) {
+            found = bundle.articles[i];
+            break;
+          }
+        }
+        root.setAttribute("data-gsa-state", found ? "detail" : "error");
+        if (!found) {
+          root.innerHTML =
+            renderBanner(bundle.data) +
+            '<div class="gsa-error" role="alert"><p>Brief not found. <a href="./">Back to all briefs</a></p></div>';
+          return bundle;
+        }
+        try {
+          document.title = found.headline + " · Global Signals Articles";
+        } catch (e) {}
+        root.innerHTML = renderBanner(bundle.data) + renderDetail(found);
+        return bundle;
+      }
+
       root.setAttribute("data-gsa-state", "ready");
       root.innerHTML =
         renderBanner(bundle.data) +
@@ -355,6 +515,9 @@
     renderTake: renderTake,
     takeHasSubstance: takeHasSubstance,
     renderImpactMeta: renderImpactMeta,
+    renderImpactPath: renderImpactPath,
+    renderDetail: renderDetail,
+    normalizeImpactPath: normalizeImpactPath,
     normalizeConfidence: normalizeConfidence,
     normalizeTimeHorizon: normalizeTimeHorizon,
     formatDate: formatDate,

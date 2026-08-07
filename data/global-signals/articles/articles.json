@@ -41,7 +41,44 @@
         "Transportation"
       ],
       "timeHorizon": "Weeks",
-      "confidence": "Medium"
+      "confidence": "Medium",
+      "likelyImpactPath": [
+        {
+          "label": "Canal slot cuts",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Operator notice reduces daily transit capacity."
+        },
+        {
+          "label": "Canal corridor",
+          "type": "infrastructure",
+          "confidence": "High",
+          "timeframe": "Days",
+          "explanation": "Shared chokepoint queues vessels on either approach."
+        },
+        {
+          "label": "Container freight",
+          "type": "commodity",
+          "confidence": "Medium",
+          "timeframe": "Weeks",
+          "explanation": "Schedules slip; some cargo seeks longer alternate lanes."
+        },
+        {
+          "label": "Retail / manufacturing",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Weeks",
+          "explanation": "Inventory timing and intermediate parts face delay risk."
+        },
+        {
+          "label": "Goods availability",
+          "type": "citizen-impact",
+          "confidence": "Low",
+          "timeframe": "Weeks",
+          "explanation": "Households may notice slower restocks \u2014 not an overnight shock."
+        }
+      ]
     },
     {
       "id": "gsa_demo-steel-tariff",
@@ -76,7 +113,44 @@
         "Transportation"
       ],
       "timeHorizon": "Months",
-      "confidence": "Medium"
+      "confidence": "Medium",
+      "likelyImpactPath": [
+        {
+          "label": "Steel tariff",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Published tariff schedule takes effect on listed lines."
+        },
+        {
+          "label": "Steel",
+          "type": "commodity",
+          "confidence": "High",
+          "timeframe": "Days",
+          "explanation": "Landed cost of covered imports rises for importers."
+        },
+        {
+          "label": "Manufacturing",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Weeks",
+          "explanation": "Fabricators face input-cost pressure."
+        },
+        {
+          "label": "Construction",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Months",
+          "explanation": "Project budgets may absorb higher material costs."
+        },
+        {
+          "label": "Housing costs",
+          "type": "citizen-impact",
+          "confidence": "Low",
+          "timeframe": "Months",
+          "explanation": "Pass-through to housing materials is plausible, not certain."
+        }
+      ]
     },
     {
       "id": "gsa_demo-shipping-diversion",
@@ -114,7 +188,44 @@
         "Travel costs"
       ],
       "timeHorizon": "Weeks",
-      "confidence": "Medium"
+      "confidence": "Medium",
+      "likelyImpactPath": [
+        {
+          "label": "Corridor diversion",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Carriers divert sailings after security advisories."
+        },
+        {
+          "label": "Longer sea route",
+          "type": "infrastructure",
+          "confidence": "High",
+          "timeframe": "Days",
+          "explanation": "Voyages add days via alternate Capes."
+        },
+        {
+          "label": "Freight / fuel",
+          "type": "commodity",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Bunker burn and schedule cost rise."
+        },
+        {
+          "label": "Logistics / retail",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Weeks",
+          "explanation": "Inventory buffers and port congestion adjust."
+        },
+        {
+          "label": "Goods & fuel costs",
+          "type": "citizen-impact",
+          "confidence": "Low",
+          "timeframe": "Weeks",
+          "explanation": "Later arrivals and possible fuel sensitivity \u2014 analysis only."
+        }
+      ]
     },
     {
       "id": "gsa_demo-pipeline-cyber",
@@ -150,7 +261,44 @@
         "Employment"
       ],
       "timeHorizon": "Days",
-      "confidence": "High"
+      "confidence": "High",
+      "likelyImpactPath": [
+        {
+          "label": "Ransomware",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Operator reports ransomware affecting business systems."
+        },
+        {
+          "label": "Fuel pipeline",
+          "type": "infrastructure",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Precautionary pause can halt product movement."
+        },
+        {
+          "label": "Gasoline / diesel",
+          "type": "commodity",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Regional supply tightens if terminals starve."
+        },
+        {
+          "label": "Transport / travel",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Stations and carriers face allocation pressure."
+        },
+        {
+          "label": "Fuel availability",
+          "type": "citizen-impact",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Local shortages possible; price spikes are not Observed predictions."
+        }
+      ]
     },
     {
       "id": "gsa_demo-port-labor",
@@ -182,7 +330,44 @@
         "Employment"
       ],
       "timeHorizon": "Days",
-      "confidence": "High"
+      "confidence": "High",
+      "likelyImpactPath": [
+        {
+          "label": "Port labor stoppage",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Cargo handling slows or pauses during stoppage."
+        },
+        {
+          "label": "Container terminals",
+          "type": "infrastructure",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Vessel queues form at gates and berths."
+        },
+        {
+          "label": "Imports / perishables",
+          "type": "commodity",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Time-sensitive cargo faces dwell risk."
+        },
+        {
+          "label": "Retail / food",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Days",
+          "explanation": "Restock cadence and cold-chain windows tighten."
+        },
+        {
+          "label": "Goods & food prices",
+          "type": "citizen-impact",
+          "confidence": "Low",
+          "timeframe": "Weeks",
+          "explanation": "Spot gaps and price pressure are plausible if prolonged."
+        }
+      ]
     }
   ]
 }
