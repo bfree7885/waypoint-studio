@@ -137,6 +137,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Side Trails production integration (simple landing)
+
+**Artifact:** `docs/product/side-trails-production-integration-owner-review.md`  
+**Branch:** `feature/side-trails-production-integration`
+
+1. **Production Side Trails stays a short card list** — Civic Trails + SignalTerrain
+   only for the first ship; omit search, filters, categories UI, and dashboards
+   even if earlier catalog drafts had them.
+2. **Soft-exclude Global Signals from the primary set** until product explicitly
+   adds it; keep the catalog subset honest rather than carrying research WIP.
+3. **Open → landing for SignalTerrain** (`/side-trails/signalterrain/`), GitHub
+   for Civic Trails; do not modify `apps/signalterrain/` in the integration block.
+4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
+   Side Trails + landing commits so Global Signals / design-doc WIP never rides
+   the production review branch.
+
 ### 2026-08-06 — SignalTerrain public landing (no app functionality)
 
 **Artifact:** `docs/product/signalterrain-landing-owner-review.md`  

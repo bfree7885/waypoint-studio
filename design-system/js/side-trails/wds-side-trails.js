@@ -35,7 +35,7 @@
       icon: text(row.icon) || "",
       category: text(row.category),
       status: status,
-      ctaLabel: text(row.ctaLabel) || ("Explore " + title),
+      ctaLabel: text(row.ctaLabel) || "Open",
       url: url,
       order: Number.isFinite(Number(row.order)) ? Number(row.order) : 999
     };

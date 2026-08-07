@@ -1,31 +1,47 @@
 # Side Trails
 
 **Route:** `/side-trails/`  
-**Catalog:** `data/side-trails/catalog.json`
+**Catalog:** `data/side-trails/catalog.json`  
+**Status:** Production integration (simple landing)
 
-Side Trails is Waypoint Studio’s laboratory for sister projects — adjacent
-experiments that deepen curiosity without competing as Home flagships.
+Side Trails is the permanent home for experimental projects, research,
+prototypes, intelligence tools, and special-interest applications beside
+Waypoint Studio’s primary outdoor tools.
 
-Cards are rendered only from the JSON catalog. The HTML never hardcodes
-project titles or CTAs.
+The landing is intentionally simple: a short introduction and project cards.
+There is **no** search, categories UI, filters, or dashboard chrome.
+
+Cards render from a minimal JSON catalog (two projects today). The page shell
+does not hardcode project titles or CTAs.
 
 ---
 
-## Projects (catalog)
+## Projects (production set)
 
-| Id | Title | Status | CTA |
+| Id | Title | Status | Open |
 | --- | --- | --- | --- |
-| `civic-trails` | Civic Trails | Beta | Explore Civic Trails |
-| `signalterrain` | SignalTerrain | Experimental | Explore SignalTerrain |
+| `civic-trails` | Civic Trails | Beta | GitHub (`bfree7885/civic-trails`) |
+| `signalterrain` | SignalTerrain | Experimental | `/side-trails/signalterrain/` |
 
-### SignalTerrain (second project)
+### Card fields
 
-- **Tagline:** Adaptive cyber intelligence for defenders.
-- **Description:** SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.
-- **Status:** Experimental
-- **Button:** Explore SignalTerrain → `/side-trails/signalterrain/` product landing
-- **Icon:** `assets/images/side-trails/signalterrain-network.svg` (cyber / network motif)
-- **Product landing:** [`signalterrain-landing.md`](signalterrain-landing.md)
+Each card shows: icon · title · tagline · short description · status badge · **Open** button.
+
+### Civic Trails
+
+- Evidence-first civic transparency GIS (public records; certainty labeled).
+- Open → public GitHub repository until a hosted product URL is confirmed.
+
+### SignalTerrain
+
+- Adaptive cyber intelligence for defenders.
+- Open → product landing at `/side-trails/signalterrain/` (existing app remains at `/apps/signalterrain/`; this integration does not modify the app).
+- Details: [`signalterrain-landing.md`](signalterrain-landing.md)
+
+### Intentionally omitted
+
+- Global Signals and other catalog candidates are **not** in the primary production card set.
+- Search, category filters, and admin/dashboard surfaces.
 
 ---
 
@@ -33,16 +49,20 @@ project titles or CTAs.
 
 | Path | Role |
 | --- | --- |
-| `side-trails/index.html` | Page shell |
-| `data/side-trails/catalog.json` | Source of truth |
+| `side-trails/index.html` | Simple page shell |
+| `data/side-trails/catalog.json` | Two-project catalog |
 | `design-system/js/side-trails/wds-side-trails.js` | Catalog loader |
 | `design-system/js/side-trails/wds-side-trails-app.js` | Card UI |
-| `design-system/css/wds-side-trails.css` | Layout |
+| `design-system/css/wds-side-trails.css` | Layout (reuses `wcs-page` / `was-home__card`) |
 | `assets/images/side-trails/` | Icons |
+| `automation/test-side-trails.mjs` | Smoke checks |
+
+Light discovery links (no IA redesign): About, Support, 404, Incubator.
 
 ---
 
 ## Related
 
-- [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md)
-- Incubator (`/incubator/`) remains the Coming later surface for maturing product visions.
+- [`docs/product/side-trails-production-integration-owner-review.md`](../product/side-trails-production-integration-owner-review.md)
+- [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md) (earlier catalog expansion)
+- Incubator (`/incubator/`) remains Coming later for maturing product visions.

@@ -50,9 +50,6 @@
       '<span class="was-home__status">' +
       escapeHtml(statusLabel(project.status)) +
       "</span>" +
-      (project.category
-        ? '<span class="wst-card__category">' + escapeHtml(project.category) + "</span>"
-        : "") +
       "</div></div>" +
       '<h2 class="was-home__card-title">' +
       escapeHtml(project.title) +
@@ -69,7 +66,7 @@
       '"' +
       rel +
       ">" +
-      escapeHtml(project.ctaLabel) +
+      escapeHtml(project.ctaLabel || "Open") +
       "</a>" +
       "</div>" +
       "</article>"

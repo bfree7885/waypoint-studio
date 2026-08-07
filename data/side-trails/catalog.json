@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "updatedAt": "2026-08-06",
   "title": "Side Trails",
-  "tagline": "A laboratory of sister projects beside Waypoint Studio’s primary outdoor tools.",
-  "message": "Every card is loaded from this catalog. The page never hardcodes projects.",
+  "tagline": "Experimental projects, research, prototypes, and special-interest tools beside Waypoint Studio.",
+  "message": "Two Side Trails projects are listed today.",
   "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived"],
   "projects": [
     {
@@ -12,9 +12,8 @@
       "tagline": "Mapping public service through public records.",
       "description": "Evidence-first civic transparency GIS. Public records only, certainty labeled, never partisan theater.",
       "icon": "assets/images/side-trails/civic-trails-map.svg",
-      "category": "Civic",
       "status": "beta",
-      "ctaLabel": "Explore Civic Trails",
+      "ctaLabel": "Open",
       "url": "https://github.com/bfree7885/civic-trails",
       "order": 10
     },
@@ -24,9 +23,8 @@
       "tagline": "Adaptive cyber intelligence for defenders.",
       "description": "SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.",
       "icon": "assets/images/side-trails/signalterrain-network.svg",
-      "category": "Cyber",
       "status": "experimental",
-      "ctaLabel": "Explore SignalTerrain",
+      "ctaLabel": "Open",
       "url": "side-trails/signalterrain/",
       "order": 20
     }
