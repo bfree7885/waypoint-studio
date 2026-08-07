@@ -73,3 +73,7 @@ Lightweight chain only — **not** a graph engine.
 ## Future module compatibility
 
 Designed for Relationship Graph, Cascading Impact, World Map, Supply Chain, Citizen Impact Dashboard, Scenario Builder, and AI Analyst — via stable ids, taxonomied tags, and path steps. No throwaway structures in Sprint 1.
+
+## Relationship Explorer (shared rules)
+
+Cascading dependency edges live in `data/global-signals/relationships/relationships.json` and reuse the same confidence / time-horizon normalizers. See [relationship-explorer-data-model.md](relationship-explorer-data-model.md).

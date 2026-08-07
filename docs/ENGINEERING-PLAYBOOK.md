@@ -178,6 +178,18 @@ continuously improves.
    `gsa_*` article ids, citizen category anchors, and `relationship-graph`
    routes keep parallel worktrees integrable without schema forks.
 
+
+### 2026-08-07 — Global Signals Relationship Explorer
+
+**Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-explorer`
+
+1. **Cascade UX ≠ graph UX** — ship an ordered downward path with edge facets first; leave force-directed / network canvas for Relationship Graph so owners can review literacy without layout noise.
+2. **Reuse Articles confidence / horizon normalizers with `predicted: true` on every edge** — prevents Observed leaking into dependency hops even when seed JSON is wrong.
+3. **Curated `cascades[].edgeIds` beats ad-hoc BFS for V1 demos** — deterministic Taiwan → … → Consumer Products stories are easier to test and screenshot than algorithmic walks.
+4. **Selectable roots must cover every advertised entity type** — product copy that lists Country…Weather Event needs at least one selectable of each, or the picker feels incomplete.
+5. **Negative UI copy can trip “must not mention X” tests** — assert against library names (`cytoscape`), not the phrase “force-directed” when the page honestly denies that pattern.
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  

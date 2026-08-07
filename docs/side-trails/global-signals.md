@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + module shells — Articles feed empty-ready; other modules remain placeholders — **no engines, no live fabricated data**
+**Role:** Public product page + module shells — Articles + Relationship Explorer sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
 
 ---
 
@@ -36,10 +36,12 @@
 
 | Module | Path | Status |
 | --- | --- | --- |
-| Articles | `/side-trails/global-signals/articles/` | Feed shell live (sample/demo briefs) |
+| Articles | `/side-trails/global-signals/articles/` | Sample/demo briefs live |
 | Country Intelligence | `/side-trails/global-signals/countries/` | Index + slug profiles live (sample/demo) |
+| Industry Intelligence | `/side-trails/global-signals/industries/` | Index + slug baselines live (curated) |
+| Relationship Explorer | `/side-trails/global-signals/relationships/` | Cascading “What depends on this?” sample/demo live |
 | Waypoint’s Take | `/side-trails/global-signals/waypoint-take/` | Coming soon / not implemented |
-| Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented |
+| Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented (future graph surface) |
 | Supply Chains | `/side-trails/global-signals/supply-chains/` | Coming soon / not implemented |
 | Citizen Impact | `/side-trails/global-signals/citizen-impact/` | Coming soon / not implemented |
 | Scenario Explorer | `/side-trails/global-signals/scenario-explorer/` | Coming soon / not implemented |
@@ -73,6 +75,8 @@ Catalog icon: `assets/images/side-trails/global-signals-globe.svg`
 | `docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md` | Relationship graph design contract (not implemented) |
 | `docs/GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md` | Citizen Impact Dashboard design (not implemented) |
 | `docs/GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md` | Cascading Impact Explorer design (not implemented) |
+| `docs/global-signals/articles-owner-review.md` | Articles Sprint 1 owner review |
+| `docs/global-signals/relationship-explorer-owner-review.md` | Relationship Explorer owner review |
 | `docs/product/global-signals-owner-review.md` | Owner review |
 | `docs/product/global-signals-citizen-impact-owner-review.md` | Citizen Impact owner review |
 
@@ -83,6 +87,8 @@ Catalog icon: `assets/images/side-trails/global-signals-globe.svg`
 | Path | Role |
 | --- | --- |
 | `side-trails/global-signals/index.html` | Landing page |
+| `side-trails/global-signals/relationships/index.html` | Relationship Explorer |
+| `data/global-signals/relationships/relationships.json` | Sample/demo entities + cascades |
 | `design-system/css/wds-global-signals-landing.css` | Styles |
 | `data/side-trails/catalog.json` | Catalog card (`global-signals`) |
 

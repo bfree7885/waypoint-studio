@@ -34,6 +34,7 @@ const required = [
   "side-trails/global-signals/articles/index.html",
   "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/industries/index.html",
+  "side-trails/global-signals/relationships/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -64,6 +65,7 @@ assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
+assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -72,7 +74,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Country Intelligence ship live sample/demo shells; other modules remain placeholders.
+// Live sample/demo shells; remaining modules stay honest placeholders until merged.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -94,6 +96,14 @@ assert.match(industriesPage, /gsi-index|gsi-detail|Industry/);
 assert.match(industriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(industriesPage, /Coming soon/i);
 assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
+
+const relationshipsPage = read("side-trails/global-signals/relationships/index.html");
+assert.match(relationshipsPage, /Relationship Explorer/);
+assert.match(relationshipsPage, /gsr-app/);
+assert.match(relationshipsPage, /What depends on this/);
+assert.match(relationshipsPage, /Part of Side Trails\./);
+assert.doesNotMatch(relationshipsPage, /Coming soon/i);
+assert.doesNotMatch(relationshipsPage, /cytoscape|WebSocket/i);
 
 for (const slug of [
   "waypoint-take",
