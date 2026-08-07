@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Global Signals Articles — Sprint 1 (Prompts 1–4).
+ * Global Signals Articles — Sprint 1 (Prompts 1–5).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -62,8 +62,18 @@ for (const a of data.articles) {
   assert.ok(Array.isArray(a.citizenImpacts));
   assert.ok(a.timeHorizon);
   assert.ok(a.confidence);
-  assert.equal(a.impactPath, undefined);
+  assert.ok(Array.isArray(a.likelyImpactPath));
+  assert.ok(a.likelyImpactPath.length >= 3);
+  for (const step of a.likelyImpactPath) {
+    assert.ok(step.label);
+    assert.ok(step.type);
+    assert.ok(step.confidence);
+    assert.ok(step.timeframe);
+    assert.ok(step.explanation);
+    assert.notEqual(step.confidence, "Observed", "predicted path hops must not be Observed");
+  }
 }
+
 
 
 const withTake = data.articles.filter((a) => a.waypointsTake);
@@ -98,7 +108,8 @@ assert.match(sparseCard, /Publisher unavailable/);
 assert.match(sparseCard, /Factual summary unavailable/);
 assert.match(sparseCard, /Event type unavailable/);
 assert.match(sparseCard, /Date unavailable/);
-assert.doesNotMatch(sparseCard, /href="/);
+assert.doesNotMatch(sparseCard, /gsa-card__source" href=/);
+assert.match(sparseCard, /Open brief/);
 
 // Waypoint's Take rendering
 const takeCard = api.renderCard(api.normalizeArticle(withTake[0]));
@@ -132,6 +143,40 @@ assert.match(metaCard, /Confidence · Medium|Medium/);
 assert.match(metaCard, /Horizon · Weeks|Weeks/);
 assert.match(metaCard, /Industries/);
 assert.match(metaCard, /Citizen impact/);
+
+// Likely impact path + detail
+const pathHtml = api.renderImpactPath(api.normalizeArticle(data.articles[0]).likelyImpactPath);
+assert.match(pathHtml, /gsa-path/);
+assert.match(pathHtml, /gsa-path__step/);
+assert.match(pathHtml, /Canal slot cuts|Steel tariff|Ransomware|Port labor|Corridor diversion/);
+
+const emptyPath = api.renderImpactPath([]);
+assert.match(emptyPath, /not tagged/i);
+
+const detail = api.renderDetail(api.normalizeArticle(data.articles[0]));
+assert.match(detail, /gsa-detail/);
+assert.match(detail, /Likely impact path/);
+assert.match(detail, /What happened/);
+assert.match(detail, /All briefs/);
+
+// Malformed records
+const malformed = api.normalizeArticle({
+  id: "gsa_bad",
+  confidence: "Observed",
+  timeHorizon: "whenever",
+  likelyImpactPath: [
+    { label: "X", type: "citizen-impact", confidence: "Observed", timeframe: "days", explanation: "y" },
+    { label: "", type: "event" },
+    null
+  ]
+});
+assert.equal(malformed.confidence, "Observed"); // article-level facts confidence may be Observed
+assert.equal(malformed.timeHorizon, "Unknown");
+assert.equal(malformed.likelyImpactPath.length, 1);
+assert.equal(malformed.likelyImpactPath[0].confidence, "Unknown"); // predicted coerce
+
+assert.equal(api.normalizeArticle(null), null);
+assert.equal(api.normalizeArticle({}), null);
 
 // HTTP smoke
 const mime = {
@@ -167,6 +212,10 @@ async function get(pathname) {
 
 const page = await get("/side-trails/global-signals/articles/");
 assert.equal(page.status, 200);
+const detailPage = await get("/side-trails/global-signals/articles/?id=gsa_demo-canal-slots");
+assert.equal(detailPage.status, 200);
+assert.match(detailPage.text, /wds-gs-articles\.js/);
+
 const json = await get("/data/global-signals/articles/articles.json");
 assert.equal(json.status, 200);
 assert.match(json.text, /gsa_demo-canal-slots/);
@@ -175,5 +224,11 @@ assert.equal(js.status, 200);
 const cssRes = await get("/design-system/css/wds-global-signals-articles.css");
 assert.equal(cssRes.status, 200);
 
+// No regression to outdoor Waypoint Articles
+const outdoor = read("articles/index.html");
+assert.match(outdoor, /Waypoint Studio Articles|Articles — Waypoint Studio/);
+assert.doesNotMatch(outdoor, /gsa-feed|global-signals\/articles\.json/);
+assert.ok(exists("design-system/js/platform/wds-articles-feed.js"));
+
 server.close();
-console.log("Global Signals Articles Prompt 4 (impact metadata) checks passed.");
+console.log("Global Signals Articles Prompt 5 (impact path + detail) checks passed.");
