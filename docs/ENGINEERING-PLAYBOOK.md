@@ -190,6 +190,26 @@ continuously improves.
 4. **Selectable roots must cover every advertised entity type** — product copy that lists Country…Weather Event needs at least one selectable of each, or the picker feels incomplete.
 5. **Negative UI copy can trip “must not mention X” tests** — assert against library names (`cytoscape`), not the phrase “force-directed” when the page honestly denies that pattern.
 
+### 2026-08-07 — Global Signals Citizen Impact (eight-category sample/demo shell)
+
+**Artifact:** `docs/global-signals/citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Align Citizen Impact to Articles confidence/horizon + Rel Explorer `gsn_*` ids**
+   instead of inventing a parallel schema — soft-link Explorer routes only when
+   they exist on main; otherwise document intended join keys.
+2. **Treat statement-level impact claims as predicted surfaces** — coerce Observed
+   away the same way Articles path hops do; reserve Observed for established facts.
+3. **Graduate foundation smoke tests when a module leaves “Coming soon”** —
+   `test-global-signals.mjs` must exclude Citizen Impact once the live shell ships,
+   same lesson as Articles Sprint 1.
+4. **Eight owner-requested categories beat shipping the full eleven-card design
+   grid unfinished** — keep the broader design doc directional; V1 UI matches the
+   brief.
+5. **Reuse GS landing chrome (`gs-landing` + IBM Plex)** for module pages; keep
+   outdoor Articles / WCS skins out of Side Trails.
+
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
