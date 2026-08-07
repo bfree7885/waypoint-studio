@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Automotive — Industry Intelligence · Global Signals. Curated baseline with supply chain, threats, opportunities, citizen impacts, and Waypoint’s Take.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/industries/automotive/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Automotive — Industry Intelligence · Global Signals">
+  <meta property="og:description" content="Interconnected industry intelligence for Automotive. Curated baseline — not a live news feed.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/industries/automotive/">
+  <title>Automotive — Industry Intelligence · Global Signals</title>
+  <link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../../design-system/css/wds-global-signals-industries.css">
+</head>
+<body class="gs-landing gsi-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="../">Industries</a>
+      <a href="./" aria-current="page">Automotive</a>
+      <a href="../../articles/">Articles</a>
+      <a href="../../../">Side Trails</a>
+    </nav>
+  </header>
+
+  <main id="main" class="gsi-main">
+    <p class="gsi-hub-nav" style="margin-bottom:1rem">
+      <a class="gs-cta" href="../">← All industries</a>
+      <a class="gs-cta" href="../../">Global Signals</a>
+    </p>
+    <section
+      id="gsi-detail"
+      class="gsi-mount"
+      aria-label="Automotive industry intelligence"
+      data-gsi-detail
+      data-gsi-slug="automotive"
+      data-gsi-state="loading"
+      data-gsi-data="../../../../data/global-signals/industries/industries.json"
+    >
+      <p class="gsi-empty" role="status">Loading Automotive…</p>
+    </section>
+  </main>
+
+  <script src="../../../../design-system/js/global-signals/wds-gs-industries.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.industries) {
+        WDS.globalSignals.industries.mountDetail(document.getElementById("gsi-detail"), {
+          slug: "automotive",
+          depth: 4,
+          dataUrl: "../../../../data/global-signals/industries/industries.json"
+        });
+      }
+    });
+  </script>
+
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Industries</a>
+      <a href="../../">Global Signals</a>
+      <a href="../../../">Side Trails</a>
+    </p>
+  </footer>
+</body>
+</html>

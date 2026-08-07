@@ -59,6 +59,8 @@ assert.match(html, /signal-flow\.svg/);
 assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
+assert.match(html, /\.\/industries\//);
+assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
