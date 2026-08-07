@@ -18,7 +18,7 @@ Delivers the first interactive Relationship Explorer after Articles Sprint 1: ca
 | | SHA |
 | --- | --- |
 | Starting (main) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| Tip | `pending push — see git tip` |
+| Tip |  |
 
 ## Routes
 
