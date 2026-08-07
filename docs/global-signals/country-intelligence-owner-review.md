@@ -19,7 +19,7 @@ Delivers Country Intelligence index + 15 full structural country profiles as a c
 | | SHA |
 | --- | --- |
 | Start (`origin/main`) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| End (branch tip) | `50bbdeabc03f9f92bdc5e5538dad7a6a05426c96` |
+| End (branch tip) | `2b1cf590480a5bff2b3fc32428d093730a2bf45f` |
 
 ## Commits on branch
 
@@ -127,3 +127,4 @@ Coverage: index, detail, missing fields, nav, Articles links, Side Trails/GS int
 ## Recommendation
 
 **Do not merge yet.** Review UI honesty, demo labeling, country selection, and cross-link targets; merge only after owner acceptance.
+5. `2b1cf59` — docs(global-signals): record final Country Intelligence tip SHA
