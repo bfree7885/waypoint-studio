@@ -138,6 +138,20 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
+### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
+
+**Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
+**Branch:** `release/global-signals-sprint-1`
+
+1. **When feature branched from an older main tip, cherry-pick the five unique
+   commits onto current `origin/main`** — preserves newer production work
+   (here: outdoor Articles feed refresh `4fd33cc`) without a reverse-merge.
+2. **Pre-existing SignalTerrain suite failures on main do not block an additive
+   GS release** when the changed file set does not touch those surfaces and the
+   failures reproduce on `origin/main` alone.
+3. **`pages.yml` + live SHA verification remain mandatory** — production was
+   still on Side Trails `70412af` while main already held the articles refresh.
+
 ### 2026-08-06 — Global Signals Articles Sprint 1 (five commit slices)
 
 **Artifact:** `docs/global-signals/articles-owner-review.md`  
