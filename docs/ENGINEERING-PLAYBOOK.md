@@ -138,6 +138,39 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
+### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
+
+**Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
+**Branch:** `release/global-signals-sprint-1`
+
+1. **When feature branched from an older main tip, cherry-pick the five unique
+   commits onto current `origin/main`** — preserves newer production work
+   (here: outdoor Articles feed refresh `4fd33cc`) without a reverse-merge.
+2. **Pre-existing SignalTerrain suite failures on main do not block an additive
+   GS release** when the changed file set does not touch those surfaces and the
+   failures reproduce on `origin/main` alone.
+3. **`pages.yml` + live SHA verification remain mandatory** — production was
+   still on Side Trails `70412af` while main already held the articles refresh.
+
+### 2026-08-06 — Global Signals Articles Sprint 1 (five commit slices)
+
+**Artifact:** `docs/global-signals/articles-owner-review.md`  
+**Branch:** `feature/global-signals-articles-sprint-1`
+
+1. **Slice commits beat monoliths for reviewable GS work** — route shell → cards →
+   Take → metadata → path/detail keeps each push owner-reviewable and avoids
+   shipping half-built parallel schemas.
+2. **`sample-demo` mode must be a first-class dataset flag**, not a footnote —
+   banner + mode field prevent demo briefs from being misread as live news.
+3. **Confidence normalizers need a `predicted` flag** — Observed is facts-only;
+   impact-path hops must coerce Observed → Unknown.
+4. **Reuse Global Signals landing chrome** (`gs-landing` + IBM Plex) for module
+   pages; do not fork outdoor Articles WCS skin into Side Trails.
+5. **Foundation smoke tests that assert “Coming soon” on every module** must be
+   updated when the first module graduates to a live shell — otherwise CI locks
+   the product in placeholder state.
+
+
 ### 2026-08-06 — Side Trails release integration (ordered rebase)
 
 **Artifact:** `docs/releases/side-trails-integration-owner-review.md`  
