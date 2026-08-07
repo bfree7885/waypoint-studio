@@ -69,7 +69,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Explorer + Citizen Impact are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -86,11 +86,18 @@ assert.match(relationshipsPage, /Part of Side Trails\./);
 assert.doesNotMatch(relationshipsPage, /Coming soon/i);
 assert.doesNotMatch(relationshipsPage, /cytoscape|WebSocket/i);
 
+const citizenImpactPage = read("side-trails/global-signals/citizen-impact/index.html");
+assert.match(citizenImpactPage, /Citizen Impact/);
+assert.match(citizenImpactPage, /gsc-board|data-gsc-board/);
+assert.match(citizenImpactPage, /wds-gs-citizen-impact\.js/);
+assert.match(citizenImpactPage, /Part of Side Trails\./);
+assert.doesNotMatch(citizenImpactPage, /Coming soon/i);
+assert.doesNotMatch(citizenImpactPage, /WebSocket|live data dashboard/i);
+
 for (const slug of [
   "waypoint-take",
   "relationship-graph",
   "supply-chains",
-  "citizen-impact",
   "scenario-explorer",
   "global-dashboard"
 ]) {

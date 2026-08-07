@@ -77,3 +77,5 @@ Designed for Relationship Graph, Cascading Impact, World Map, Supply Chain, Citi
 ## Relationship Explorer (shared rules)
 
 Cascading dependency edges live in `data/global-signals/relationships/relationships.json` and reuse the same confidence / time-horizon normalizers. See [relationship-explorer-data-model.md](relationship-explorer-data-model.md).
+
+**Citizen Impact join:** household statements use the same confidence / horizon vocabulary and may reference `gsa_*` article ids plus Relationship Explorer `gsn_*` entity ids. See [`citizen-impact-data-model.md`](citizen-impact-data-model.md).

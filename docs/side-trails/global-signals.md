@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + module shells — Articles + Relationship Explorer sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
+**Role:** Public product page + module shells — Articles + Relationship Explorer + Citizen Impact sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
 
 ---
 
@@ -41,7 +41,7 @@
 | Waypoint’s Take | `/side-trails/global-signals/waypoint-take/` | Coming soon / not implemented |
 | Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Coming soon / not implemented (future graph surface) |
 | Supply Chains | `/side-trails/global-signals/supply-chains/` | Coming soon / not implemented |
-| Citizen Impact | `/side-trails/global-signals/citizen-impact/` | Coming soon / not implemented |
+| Citizen Impact | `/side-trails/global-signals/citizen-impact/` | Sample/demo literacy shell (8 categories) |
 | Scenario Explorer | `/side-trails/global-signals/scenario-explorer/` | Coming soon / not implemented |
 | Global Dashboard | `/side-trails/global-signals/global-dashboard/` | Coming soon / not implemented |
 
