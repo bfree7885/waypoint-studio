@@ -2,6 +2,7 @@
 
 **Date:** 2026-08-06  
 **Branch:** `feature/global-signals-side-trails`  
+**Tip:** `3eb2f2c`  
 **Base:** `feature/signalterrain-intelligence-map-design` (`aa408fa`)  
 **Product:** Global Signals · Side Trails · Waypoint Studio  
 **Deployed:** No  
