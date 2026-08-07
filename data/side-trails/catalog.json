@@ -1,9 +1,9 @@
 {
-  "version": "1.2.0",
+  "version": "1.1.0",
   "updatedAt": "2026-08-06",
   "title": "Side Trails",
-  "tagline": "Experimental projects, research, prototypes, and special-interest tools beside Waypoint Studio.",
-  "message": "Two Side Trails projects are listed today.",
+  "tagline": "A laboratory of sister projects beside Waypoint Studio’s primary outdoor tools.",
+  "message": "Every card is loaded from this catalog. The page never hardcodes projects.",
   "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived"],
   "projects": [
     {
@@ -12,8 +12,9 @@
       "tagline": "Mapping public service through public records.",
       "description": "Evidence-first civic transparency GIS. Public records only, certainty labeled, never partisan theater.",
       "icon": "assets/images/side-trails/civic-trails-map.svg",
+      "category": "Civic",
       "status": "beta",
-      "ctaLabel": "Open",
+      "ctaLabel": "Explore Civic Trails",
       "url": "https://github.com/bfree7885/civic-trails",
       "order": 10
     },
@@ -23,10 +24,23 @@
       "tagline": "Adaptive cyber intelligence for defenders.",
       "description": "SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.",
       "icon": "assets/images/side-trails/signalterrain-network.svg",
+      "category": "Cyber",
       "status": "experimental",
-      "ctaLabel": "Open",
+      "ctaLabel": "Explore SignalTerrain",
       "url": "side-trails/signalterrain/",
       "order": 20
+    },
+    {
+      "id": "global-signals",
+      "title": "Global Signals",
+      "tagline": "Understanding how world events shape everyday life.",
+      "description": "Global Signals helps people understand how geopolitics, trade, infrastructure, weather, conflict, energy, cyber events, and government policy ripple through supply chains, industries, and ultimately affect citizens. An intelligence platform — not a news website.",
+      "icon": "assets/images/side-trails/global-signals-globe.svg",
+      "category": "Research",
+      "status": "experimental",
+      "ctaLabel": "Explore Global Signals",
+      "url": "side-trails/global-signals/",
+      "order": 30
     }
   ]
 }
