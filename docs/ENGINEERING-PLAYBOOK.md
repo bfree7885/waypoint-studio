@@ -137,6 +137,16 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+
+### 2026-08-06 — Side Trails release integration (ordered rebase)
+
+**Artifact:** `docs/releases/side-trails-integration-owner-review.md`  
+**Branch:** `release/side-trails-integration`
+
+1. **Merge Side Trails production + ST IA first**, then cherry-pick nav/articles/GS unique commits — parallel lineages conflict if merged whole.
+2. **Nav architecture can reintroduce SignalTerrain into `portfolio.foundations`** — re-assert `sideTrails` after rebase.
+3. **`GITHUB_TOKEN` pushes do not retrigger Pages** — always `workflow_dispatch` `pages.yml` after main updates that must go live.
+
 ### 2026-08-06 — Articles design modernization (Take + shared nav)
 
 **Artifact:** `docs/articles/articles-modernization-owner-review.md`  
