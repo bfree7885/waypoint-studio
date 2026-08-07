@@ -23,8 +23,9 @@ project titles or CTAs.
 - **Tagline:** Adaptive cyber intelligence for defenders.
 - **Description:** SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.
 - **Status:** Experimental
-- **Button:** Explore SignalTerrain → existing `/apps/signalterrain/` (no new product functionality in this block)
+- **Button:** Explore SignalTerrain → `/side-trails/signalterrain/` product landing
 - **Icon:** `assets/images/side-trails/signalterrain-network.svg` (cyber / network motif)
+- **Product landing:** [`signalterrain-landing.md`](signalterrain-landing.md)
 
 ---
 

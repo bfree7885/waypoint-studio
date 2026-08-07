@@ -137,6 +137,18 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — SignalTerrain public landing (no app functionality)
+
+**Artifact:** `docs/product/signalterrain-landing-owner-review.md`  
+**Branch:** `feature/signalterrain-landing`
+
+1. **Product page ≠ app** — keep `/side-trails/signalterrain/` as marketing/story;
+   leave `/apps/signalterrain/` as the existing experience.
+2. **Schematic illustrations only** — label threat map / timeline / globe / posture
+   art as non-live so we never imply fabricated incidents.
+3. **Point Side Trails CTA at the landing** when the ask is product introduction,
+   not deep-link into live briefs.
+
 ### 2026-08-06 — Side Trails catalog (SignalTerrain second project)
 
 **Artifact:** `docs/product/side-trails-signalterrain-owner-review.md`  

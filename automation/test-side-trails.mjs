@@ -51,7 +51,7 @@ assert.equal(signal.tagline, "Adaptive cyber intelligence for defenders.");
 assert.match(signal.description, /trusted public intelligence/);
 assert.equal(signal.status, "experimental");
 assert.equal(signal.ctaLabel, "Explore SignalTerrain");
-assert.equal(signal.url, "apps/signalterrain/");
+assert.equal(signal.url, "side-trails/signalterrain/");
 assert.ok(exists(signal.icon), signal.icon);
 assert.match(read(signal.icon), /circle|network|svg/i);
 
