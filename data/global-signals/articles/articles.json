@@ -15,7 +15,11 @@
       "publishedAt": "2023-11-15T14:00:00Z",
       "factualSummary": "In this sample scenario, a canal operator publishes a status notice reducing daily vessel transit slots after months of below-normal rainfall. The notice cites lower water levels and asks carriers to expect longer waits.",
       "sourceUrl": "https://example.invalid/sample/canal-drought-notice",
-      "eventType": "Canal / strait disruption"
+      "eventType": "Canal / strait disruption",
+      "waypointsTake": {
+        "whyItMatters": "A chokepoint many import schedules assume will stay open can tighten without a single dramatic accident \u2014 drought-driven slot cuts are structural capacity loss.",
+        "analysis": "Carriers and ports on either approach face queues and missed connections within days to weeks. Some cargo may reroute via longer lanes before consumer shelves thin. Recovery depends on rainfall and water management \u2014 those timelines are not knowable from the notice alone."
+      }
     },
     {
       "id": "gsa_demo-steel-tariff",
@@ -25,7 +29,11 @@
       "publishedAt": "2024-03-12T16:30:00Z",
       "factualSummary": "In this sample scenario, a trade authority publishes a notice raising tariff rates on selected steel product lines. The notice lists covered product codes and an effective date.",
       "sourceUrl": "https://example.invalid/sample/steel-tariff-notice",
-      "eventType": "Tariffs"
+      "eventType": "Tariffs",
+      "waypointsTake": {
+        "whyItMatters": "Tariffs change the relative cost of imported inputs before most households see anything \u2014 the first relationship that matters is steel to manufacturing to construction.",
+        "analysis": "Importers and fabricators face higher landed costs once the effective date arrives. Downstream effects on housing materials are plausible over months but not automatic. Pass-through depends on contracts, inventories, and domestic capacity."
+      }
     },
     {
       "id": "gsa_demo-shipping-diversion",
@@ -35,7 +43,11 @@
       "publishedAt": "2024-01-08T09:00:00Z",
       "factualSummary": "In this sample scenario, a maritime advisory notes that several carriers are diverting sailings away from a contested corridor after security incidents. Public notices describe longer alternate routes and schedule uncertainty.",
       "sourceUrl": "https://example.invalid/sample/maritime-corridor-advisory",
-      "eventType": "Shipping disruption"
+      "eventType": "Shipping disruption",
+      "waypointsTake": {
+        "whyItMatters": "Security risk at a strait can move freight onto longer routes quickly \u2014 the first-order link is corridor risk to voyage days to fuel and schedule cost.",
+        "analysis": "Longer transit times and higher bunker fuel use appear within days for diverted voyages. Port congestion elsewhere and delayed intermediate goods are plausible over weeks. How long diversions continue is contingent on security conditions."
+      }
     },
     {
       "id": "gsa_demo-pipeline-cyber",
@@ -45,7 +57,11 @@
       "publishedAt": "2021-05-09T18:00:00Z",
       "factualSummary": "In this sample scenario based on a well-known historical pattern, a pipeline operator reports a ransomware incident affecting business systems and temporarily pauses some operations. Public advisories describe precautionary shutdowns.",
       "sourceUrl": "https://example.invalid/sample/pipeline-cyber-advisory",
-      "eventType": "Cyber incident"
+      "eventType": "Cyber incident",
+      "waypointsTake": {
+        "whyItMatters": "Cyber incidents on energy operators can halt physical flows even when malware hits IT systems \u2014 the relationship is cyber event to critical infrastructure to fuel distribution.",
+        "analysis": "Spot shortages and panic-buying risk can appear within days in dependent regions if product stops moving. Restoration timelines often remain partly opaque during the incident. Predicted household price paths must not be labeled as Observed."
+      }
     },
     {
       "id": "gsa_demo-port-labor",

@@ -1,6 +1,6 @@
 /**
- * Global Signals Articles — card feed (Sprint 1 Prompt 2).
- * Loads labeled sample/demo JSON. Does not invent missing fields.
+ * Global Signals Articles — card feed (Sprint 1).
+ * Loads labeled sample/demo JSON. Does not invent missing Takes or facts.
  */
 (function (global) {
   "use strict";
@@ -45,6 +45,10 @@
     if (!raw || typeof raw !== "object") return null;
     var id = String(raw.id || "").trim();
     if (!id) return null;
+    var take = raw.waypointsTake || raw.waypointTake || null;
+    if (typeof take === "string") {
+      take = { analysis: take };
+    }
     return {
       id: id,
       headline: String(raw.headline || "").trim(),
@@ -52,8 +56,44 @@
       date: raw.date || raw.publishedAt || null,
       factualSummary: String(raw.factualSummary || "").trim(),
       sourceUrl: raw.sourceUrl || null,
-      eventType: String(raw.eventType || "").trim()
+      eventType: String(raw.eventType || "").trim(),
+      waypointsTake: take
     };
+  }
+
+  function takeHasSubstance(take) {
+    if (!take) return false;
+    if (typeof take === "string") return take.trim().length > 0;
+    return Boolean(
+      (take.whyItMatters && String(take.whyItMatters).trim()) ||
+        (take.analysis && String(take.analysis).trim())
+    );
+  }
+
+  function renderTake(take) {
+    if (!takeHasSubstance(take)) {
+      return (
+        '<section class="gsa-card__take gsa-card__take--empty" aria-label="Waypoint\u2019s Take">' +
+        "<h3>Waypoint\u2019s Take</h3>" +
+        '<p class="gsa-note">Analysis · not established fact</p>' +
+        "<p>No Waypoint\u2019s Take is available for this brief. We will not invent one.</p>" +
+        "</section>"
+      );
+    }
+    var parts = [];
+    if (take.whyItMatters && String(take.whyItMatters).trim()) {
+      parts.push("<p><strong>Why it matters.</strong> " + esc(take.whyItMatters) + "</p>");
+    }
+    if (take.analysis && String(take.analysis).trim()) {
+      parts.push("<p>" + esc(take.analysis) + "</p>");
+    }
+    return (
+      '<section class="gsa-card__take" aria-label="Waypoint\u2019s Take">' +
+      "<h3>Waypoint\u2019s Take</h3>" +
+      '<p class="gsa-note">Analysis · interpretation, not established fact</p>' +
+      parts.join("") +
+      "</section>"
+    );
   }
 
   function renderCard(article) {
@@ -94,10 +134,12 @@
       "</header>" +
       '<section class="gsa-card__facts" aria-label="Factual summary">' +
       "<h3>Factual summary</h3>" +
+      '<p class="gsa-note">Observed / reported facts from sources</p>' +
       "<p>" +
       esc(summary) +
       "</p>" +
       "</section>" +
+      renderTake(article.waypointsTake) +
       "</article>"
     );
   }
@@ -186,6 +228,8 @@
     loadArticles: loadArticles,
     normalizeArticle: normalizeArticle,
     renderCard: renderCard,
+    renderTake: renderTake,
+    takeHasSubstance: takeHasSubstance,
     formatDate: formatDate,
     isSafeHttpUrl: isSafeHttpUrl
   };

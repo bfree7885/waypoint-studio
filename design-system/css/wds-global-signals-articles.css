@@ -204,3 +204,55 @@
     padding: 0.9rem 0.85rem 1rem;
   }
 }
+
+/* Waypoint's Take (Prompt 3) — visually separate from factual summary */
+.gsa-note {
+  margin: 0 0 0.45rem;
+  color: #7a8aa3;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.gsa-card__facts {
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.gsa-card__take {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 211, 167, 0.22);
+  background: rgba(125, 211, 167, 0.05);
+}
+
+.gsa-card__take h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7dd3a7;
+  font-weight: 650;
+}
+
+.gsa-card__take p {
+  margin: 0 0 0.55rem;
+  color: #c5d0e0;
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.gsa-card__take p:last-child {
+  margin-bottom: 0;
+}
+
+.gsa-card__take--empty {
+  border-style: dashed;
+  border-color: rgba(148, 163, 184, 0.28);
+  background: transparent;
+}
+
+.gsa-card__take--empty p {
+  color: #9aa8bd;
+}

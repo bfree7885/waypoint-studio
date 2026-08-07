@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Global Signals Articles — Sprint 1 (Prompts 1–2).
+ * Global Signals Articles — Sprint 1 (Prompts 1–3).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -56,11 +56,20 @@ for (const a of data.articles) {
   assert.ok(a.factualSummary, "factualSummary required");
   assert.ok(a.sourceUrl, "sourceUrl required");
   assert.ok(a.eventType, "eventType required");
-  assert.equal(a.waypointsTake, undefined);
-  assert.equal(a.waypointTake, undefined);
   assert.equal(a.confidence, undefined);
   assert.equal(a.impactPath, undefined);
 }
+
+const withTake = data.articles.filter((a) => a.waypointsTake);
+const withoutTake = data.articles.filter((a) => !a.waypointsTake);
+assert.equal(withTake.length, 4);
+assert.equal(withoutTake.length, 1);
+for (const a of withTake) {
+  const body = [a.waypointsTake.whyItMatters, a.waypointsTake.analysis].filter(Boolean).join(" ");
+  assert.ok(body.length > 40, "take should have substance");
+  assert.notEqual(body.trim(), a.factualSummary.trim(), "take must not restate summary");
+}
+
 
 // Unit: card renderer + missing fields + source links
 await import(pathToFileURL(path.join(root, jsPath)).href);
@@ -84,6 +93,21 @@ assert.match(sparseCard, /Factual summary unavailable/);
 assert.match(sparseCard, /Event type unavailable/);
 assert.match(sparseCard, /Date unavailable/);
 assert.doesNotMatch(sparseCard, /href="/);
+
+// Waypoint's Take rendering
+const takeCard = api.renderCard(api.normalizeArticle(withTake[0]));
+assert.match(takeCard, /gsa-card__facts/);
+assert.match(takeCard, /gsa-card__take/);
+assert.match(takeCard, /Waypoint.s Take/);
+assert.match(takeCard, /Analysis · interpretation, not established fact/);
+assert.match(takeCard, /Observed \/ reported facts from sources/);
+
+const emptyTakeCard = api.renderCard(api.normalizeArticle(withoutTake[0]));
+assert.match(emptyTakeCard, /gsa-card__take--empty/);
+assert.match(emptyTakeCard, /We will not invent one/);
+
+const missingTake = api.renderTake(null);
+assert.match(missingTake, /gsa-card__take--empty/);
 
 // HTTP smoke
 const mime = {
@@ -128,4 +152,4 @@ const cssRes = await get("/design-system/css/wds-global-signals-articles.css");
 assert.equal(cssRes.status, 200);
 
 server.close();
-console.log("Global Signals Articles Prompt 2 (cards + demo data) checks passed.");
+console.log("Global Signals Articles Prompt 3 (Waypoint\u2019s Take) checks passed.");
