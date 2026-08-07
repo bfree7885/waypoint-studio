@@ -1,27 +1,27 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-06T13:30:59.634Z",
-  "status": "ok",
+  "checkedAt": "2026-08-07T02:01:29.222Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": true,
-      "itemCount": 24,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 157,
+      "ms": 99,
       "enabled": true
     },
     {
       "id": "noaa-news",
       "name": "NOAA News Features",
       "ok": true,
-      "itemCount": 8,
+      "itemCount": 9,
       "error": null,
       "warnings": [],
-      "ms": 154,
+      "ms": 121,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 335,
+      "ms": 54,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 263,
+      "ms": 177,
       "enabled": true
     },
     {
@@ -121,7 +121,7 @@
       "itemCount": 0,
       "error": "disabled",
       "warnings": [],
-      "ms": 0,
+      "ms": 1,
       "enabled": false
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 585,
+      "ms": 113,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 259,
+      "ms": 96,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 126,
+      "ms": 96,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 638,
+      "ms": 245,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 346,
+      "ms": 157,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 129,
+      "ms": 144,
       "enabled": true
     },
     {
@@ -233,17 +233,17 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 479,
+      "ms": 286,
       "enabled": true
     },
     {
       "id": "adirondack-explorer",
       "name": "Adirondack Explorer",
       "ok": true,
-      "itemCount": 9,
+      "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 63,
+      "ms": 86,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 348,
+      "ms": 293,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-07T01:30:59.634Z"
+  "staleAfter": "2026-08-07T14:01:29.222Z"
 }
