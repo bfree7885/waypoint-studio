@@ -15,10 +15,10 @@ Industry Intelligence delivers an index plus 11 full industry pages with interco
 
 ## Commits
 
-*(Filled after push — see tip SHA below.)*
+1. `1f27761` — feat(global-signals): add Industry Intelligence module
 
 **Starting SHA (main):** `f942c7b177512b59bf3807c28814ccbe69820c2c`  
-**Ending SHA:** _pending push_
+**Ending SHA:** `1f27761fda868d48bcb6393e99509743f3c0f7a1`
 
 ## Routes
 
