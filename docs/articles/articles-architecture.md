@@ -33,7 +33,12 @@ Supporting artifacts:
 | `scripts/articles-refresh.mjs` | Refresh CLI |
 | `scripts/articles/*` | Pipeline modules |
 | `design-system/js/platform/wds-articles-feed.js` | Hub + related-content UI |
-| `design-system/css/wds-articles-feed.css` | Feed styles |
+| `design-system/js/platform/wds-take.js` | Official Waypoint’s Take component |
+| `design-system/css/wds-articles-feed.css` | Feed styles (WDS tokens) |
+
+**Reusable / Side Trails–ready architecture:** [reusable-articles-architecture.md](./reusable-articles-architecture.md)  
+**Take component:** [waypoint-take.md](./waypoint-take.md)  
+**Design modernization owner review:** [articles-modernization-owner-review.md](./articles-modernization-owner-review.md)
 
 ## What was reused
 

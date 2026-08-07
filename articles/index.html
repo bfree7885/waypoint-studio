@@ -3,29 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Waypoint Studio Articles — curated outdoor, environmental, and scientific reporting with summaries and Waypoint’s Take. Original publishers remain the destination.">
   <title>Articles — Waypoint Studio</title>
   <link rel="canonical" href="https://waypointstudio.org/articles/">
   <link rel="alternate" type="application/rss+xml" title="Waypoint Curated Articles" href="../feeds/waypoint-articles.xml">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../design-system/css/wds.css">
+  <link rel="stylesheet" href="../design-system/css/wds-contact.css">
   <link rel="stylesheet" href="../design-system/css/wds-articles-feed.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
     <div data-wds-app-global data-shell-depth="0"></div>
-    <main id="main" class="was-home">
-      <header class="was-home__hero">
+    <main id="main" class="wcs-page wcs-page--wide waf-hub">
+      <header class="wcs-hero waf-hub-hero">
         <p class="wds-eyebrow">Learn while you’re out</p>
         <h1>Articles</h1>
         <p class="was-home__tagline">Curated field reading from trustworthy publishers.</p>
-        <p class="was-home__lead">Waypoint collects outdoor, environmental, scientific, and regional nature reporting — then adds a concise summary and Waypoint’s Take. Full articles stay on the original publisher’s site.</p>
-        <p class="wcs-pill-row was-home__links" style="margin-top:1rem">
-          <a href="../apps/dashboard/">Dashboard</a>
-          <a href="../apps/scenes/">Scenes</a>
-          <a href="../apps/shed-hunting/">Sheds</a>
-          <a href="../feeds/waypoint-articles.xml">RSS</a>
+        <p>Waypoint collects outdoor, environmental, scientific, and regional nature reporting — then adds a concise summary and, when available, Waypoint’s Take. Full articles stay on the original publisher’s site.</p>
+        <p class="waf-hub-meta">
+          <a href="../feeds/waypoint-articles.xml">RSS feed</a>
+          <span>Original publishers remain the destination</span>
         </p>
       </header>
       <div id="was-articles-feed" aria-busy="true">
@@ -37,6 +40,7 @@
   <script src="../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-take.js?v=local" defer></script>
   <script src="../design-system/js/platform/wds-articles-feed.js?v=local" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
