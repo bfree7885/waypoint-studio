@@ -3,7 +3,7 @@
 **Branch:** `feature/articles-design-modernization`  
 **Base tip:** Side Trails + SignalTerrain nav context (`aa408fa` on studio nav / Side Trails lineage)  
 **Starting SHA:** `aa408fa5a6ef9e76712242bc06edbcaf2d557f82`  
-**Ending SHA:** `61b1a58661471b52d982114d3dc16ccc51328c2c`  
+**Ending SHA:** `312ee7e8c447201b336da4f764c95bbef95be442`  
 **Decision needed:** Approve visual + architecture alignment for Articles (no merge until owner sign-off)
 
 ## Related nav work included
