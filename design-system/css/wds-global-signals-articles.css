@@ -256,3 +256,69 @@
 .gsa-card__take--empty p {
   color: #9aa8bd;
 }
+
+/* Impact metadata + confidence (Prompt 4) */
+.gsa-card__impact {
+  margin-top: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.gsa-badge--confidence[data-confidence="Observed"] {
+  border-color: rgba(125, 211, 167, 0.55);
+  color: #7dd3a7;
+}
+
+.gsa-badge--confidence[data-confidence="High"] {
+  border-color: rgba(96, 165, 250, 0.5);
+  color: #93c5fd;
+}
+
+.gsa-badge--confidence[data-confidence="Medium"] {
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #fbbf24;
+}
+
+.gsa-badge--confidence[data-confidence="Low"],
+.gsa-badge--confidence[data-confidence="Unknown"] {
+  border-color: rgba(148, 163, 184, 0.4);
+  color: #9aa8bd;
+}
+
+.gsa-meta-row {
+  margin: 0.55rem 0 0;
+}
+
+.gsa-meta-row h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a8aa3;
+  font-weight: 600;
+}
+
+.gsa-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gsa-chips li {
+  padding: 0.18rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(14, 22, 38, 0.8);
+  color: #c5d0e0;
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.gsa-empty-inline {
+  margin: 0;
+  color: #7a8aa3;
+  font-size: 0.88rem;
+}
