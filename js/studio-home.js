@@ -113,7 +113,8 @@
     if (!mount || !Nav) return false;
     var cfg = Nav.config ? Nav.config() : {};
     var primaryIds = cfgIds(cfg, "homePrimary", ["dashboard", "scenes", "sheds", "volunteer"]);
-    var incubatorIds = cfgIds(cfg, "homeIncubator", ["signalterrain", "steepleaf", "savant-sommelier"]);
+    var incubatorIds = cfgIds(cfg, "homeIncubator", ["steepleaf", "savant-sommelier"]);
+    var sideTrailsIds = cfgIds(cfg, "homeSideTrails", ["signalterrain"]);
     var supportingIds = cfgIds(cfg, "homeSupporting", ["foragecast", "fieldry", "landscape-interpretation"]);
 
     var leadHtml = "";
@@ -170,6 +171,21 @@
         '<p class="was-home__journey-blurb">Future products, held quietly.</p>' +
         "<ul>" + incLinks + "</ul>" +
         '<p><a href="incubator/">View Incubator</a></p>' +
+      "</section>";
+
+    var sideLinks = sideTrailsIds.map(function (id) {
+      var app = byId(Nav, id);
+      if (!app) return "";
+      var landing = (app.productLanding && app.productLanding.href) || "side-trails/";
+      return '<li><a href="' + esc(Nav.resolveRoute(landing, 0)) + '">' + esc(app.title) + "</a> — " + esc(maturityLabel(app)) + "</li>";
+    }).join("");
+
+    html +=
+      '<section class="was-home__section was-home__side-trails" aria-labelledby="was-home-side-trails">' +
+        '<h2 id="was-home-side-trails">Side Trails</h2>' +
+        '<p class="was-home__journey-blurb">Sister experiments beside the primary outdoor tools — not Home peers.</p>' +
+        "<ul>" + sideLinks + "</ul>" +
+        '<p><a href="side-trails/">View Side Trails</a></p>' +
       "</section>";
 
     var sup = supportingIds.map(function (id) {

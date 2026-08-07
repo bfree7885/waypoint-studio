@@ -19,7 +19,8 @@
       { "id": "about", "label": "About", "href": "about.html" }
     ],
     "homePrimary": ["home", "scenes", "sheds"],
-    "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
+    "homeIncubator": ["steepleaf", "savant-sommelier"],
+    "homeSideTrails": ["signalterrain"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {
@@ -472,12 +473,19 @@
         "icon": "signalterrain",
         "route": "apps/signalterrain/",
         "match": [
-          "/apps/signalterrain"
+          "/apps/signalterrain",
+          "/side-trails/signalterrain"
         ],
         "category": "intelligence",
-        "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
-        "status": "foundation",
+        "family": "side-trails",
+        "description": "Side Trails project — Radio & Spectrum Intelligence and educational Cyber Awareness; observe and understand signals without offense.",
+        "status": "experimental",
         "features": [
+          {
+            "id": "product-landing",
+            "label": "Product page",
+            "href": "side-trails/signalterrain/"
+          },
           {
             "id": "overview",
             "label": "Overview",
@@ -529,11 +537,15 @@
             "href": "apps/signalterrain/cyber/ingest-health.html"
           }
         ],
-        "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype.",
-        "maturity": "Foundation",
+        "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype — under Side Trails, not a studio primary peer.",
+        "maturity": "Experimental (Side Trails)",
         "startHere": {
           "label": "Open today’s cyber brief",
           "href": "apps/signalterrain/cyber/live.html#brief"
+        },
+        "productLanding": {
+          "label": "SignalTerrain product page",
+          "href": "side-trails/signalterrain/"
         },
         "journeys": [
           "observe",

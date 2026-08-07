@@ -2,7 +2,8 @@
 
 **Route:** `/side-trails/`  
 **Catalog:** `data/side-trails/catalog.json`  
-**Status:** Production integration (simple landing)
+**Status:** Production integration (simple landing)  
+**Hierarchy:** Waypoint Studio → Side Trails → (catalog projects)
 
 Side Trails is the permanent home for experimental projects, research,
 prototypes, intelligence tools, and special-interest applications beside
@@ -34,9 +35,11 @@ Each card shows: icon · title · tagline · short description · status badge �
 
 ### SignalTerrain
 
+- **IA home:** Waypoint Studio → Side Trails → SignalTerrain (not a studio primary peer; not Incubator)
 - Adaptive cyber intelligence for defenders.
 - Open → product landing at `/side-trails/signalterrain/` (existing app remains at `/apps/signalterrain/`; this integration does not modify the app).
 - Details: [`signalterrain-landing.md`](signalterrain-landing.md)
+- IA move review: [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md)
 
 ### Intentionally omitted
 
@@ -56,13 +59,15 @@ Each card shows: icon · title · tagline · short description · status badge �
 | `design-system/css/wds-side-trails.css` | Layout (reuses `wcs-page` / `was-home__card`) |
 | `assets/images/side-trails/` | Icons |
 | `automation/test-side-trails.mjs` | Smoke checks |
+| `automation/test-signalterrain-side-trails-move.mjs` | IA placement smoke checks |
 
-Light discovery links (no IA redesign): About, Support, 404, Incubator.
+Light discovery links (no IA redesign): About, Support, 404, Incubator (pointer only for SignalTerrain).
 
 ---
 
 ## Related
 
+- [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md) — architecture placement under Side Trails
 - [`docs/product/side-trails-production-integration-owner-review.md`](../product/side-trails-production-integration-owner-review.md)
 - [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md) (earlier catalog expansion)
-- Incubator (`/incubator/`) remains Coming later for maturing product visions.
+- Incubator (`/incubator/`) remains Coming later for maturing product visions (Steepleaf, Savant). SignalTerrain is listed under Side Trails.
