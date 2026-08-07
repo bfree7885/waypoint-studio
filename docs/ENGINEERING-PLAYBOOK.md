@@ -169,6 +169,17 @@ continuously improves.
 4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
    Side Trails + landing commits so Global Signals / design-doc WIP never rides
    the production review branch.
+### 2026-08-06 — SignalTerrain dashboard mockup (no implementation)
+
+**Artifact:** `docs/product/signalterrain-dashboard-mockup-owner-review.md`  
+**Branch:** `feature/signalterrain-dashboard-mockup`
+
+1. **Mockups need a persistent SAMPLE banner** — owners must never confuse layout
+   review with live intelligence.
+2. **Use SAMPLE CVE/actor labels** — realistic density without inventing real
+   attribution or victim sets.
+3. **Ship screenshot SVGs beside the HTML mockup** — reviewable without a browser
+   walkthrough script.
 
 ### 2026-08-06 — SignalTerrain public landing (no app functionality)
 
