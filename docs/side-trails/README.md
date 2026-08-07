@@ -12,8 +12,8 @@ Waypoint Studio’s primary outdoor tools.
 The landing is intentionally simple: a short introduction and project cards.
 There is **no** search, categories UI, filters, or dashboard chrome.
 
-Cards render from a minimal JSON catalog (two projects today). The page shell
-does not hardcode project titles or CTAs.
+Cards render from a minimal JSON catalog. The page shell does not hardcode
+project titles or CTAs.
 
 ---
 
@@ -23,6 +23,7 @@ does not hardcode project titles or CTAs.
 | --- | --- | --- | --- |
 | `civic-trails` | Civic Trails | Beta | GitHub (`bfree7885/civic-trails`) |
 | `signalterrain` | SignalTerrain | Experimental | `/side-trails/signalterrain/` |
+| `global-signals` | Global Signals | Experimental | `/side-trails/global-signals/` |
 
 ### Card fields
 
@@ -32,19 +33,33 @@ Each card shows: icon · title · tagline · short description · status badge �
 
 - Evidence-first civic transparency GIS (public records; certainty labeled).
 - Open → public GitHub repository until a hosted product URL is confirmed.
+- Civic Trails application engineering lives in a **separate repo** (`bfree7885/civic-trails`); Studio only catalogs and links out.
 
 ### SignalTerrain
 
 - **IA home:** Waypoint Studio → Side Trails → SignalTerrain (not a studio primary peer; not Incubator)
 - Adaptive cyber intelligence for defenders.
-- Open → product landing at `/side-trails/signalterrain/` (existing app remains at `/apps/signalterrain/`; this integration does not modify the app).
+- Open → product landing at `/side-trails/signalterrain/` (existing app remains at `/apps/signalterrain/`).
 - Details: [`signalterrain-landing.md`](signalterrain-landing.md)
 - IA move review: [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md)
 
+### Global Signals
+
+- **Tagline:** Understanding how world events shape everyday life.
+- Relationship intelligence foundation (docs, landing, placeholders) — not live engines.
+- **Not** a news website. **Not** financial advice.
+- Open → `/side-trails/global-signals/`
+- Landing notes: [`global-signals.md`](global-signals.md)
+- Architecture / roadmap: [`../GLOBAL-SIGNALS-ARCHITECTURE.md`](../GLOBAL-SIGNALS-ARCHITECTURE.md), [`../GLOBAL-SIGNALS-ROADMAP.md`](../GLOBAL-SIGNALS-ROADMAP.md)
+- Owner review: [`../product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
+- Relationship Engine (design only): [`../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md`](../GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md)
+- Citizen Impact Dashboard (design only): [`../GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md`](../GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md)
+- Cascading Impact Explorer (design only): [`../GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md`](../GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md)
+
 ### Intentionally omitted
 
-- Global Signals and other catalog candidates are **not** in the primary production card set.
-- Search, category filters, and admin/dashboard surfaces.
+- Search, category filters, and admin/dashboard surfaces on the Side Trails landing.
+- Live Global Signals engines (relationship / cascade / citizen-impact remain design + placeholder surfaces).
 
 ---
 
@@ -53,13 +68,14 @@ Each card shows: icon · title · tagline · short description · status badge �
 | Path | Role |
 | --- | --- |
 | `side-trails/index.html` | Simple page shell |
-| `data/side-trails/catalog.json` | Two-project catalog |
+| `data/side-trails/catalog.json` | Three-project catalog |
 | `design-system/js/side-trails/wds-side-trails.js` | Catalog loader |
 | `design-system/js/side-trails/wds-side-trails-app.js` | Card UI |
 | `design-system/css/wds-side-trails.css` | Layout (reuses `wcs-page` / `was-home__card`) |
 | `assets/images/side-trails/` | Icons |
 | `automation/test-side-trails.mjs` | Smoke checks |
 | `automation/test-signalterrain-side-trails-move.mjs` | IA placement smoke checks |
+| `automation/test-global-signals.mjs` | Global Signals foundation smoke |
 
 Light discovery links (no IA redesign): About, Support, 404, Incubator (pointer only for SignalTerrain).
 
@@ -70,4 +86,5 @@ Light discovery links (no IA redesign): About, Support, 404, Incubator (pointer 
 - [`docs/product/signalterrain-side-trails-move-owner-review.md`](../product/signalterrain-side-trails-move-owner-review.md) — architecture placement under Side Trails
 - [`docs/product/side-trails-production-integration-owner-review.md`](../product/side-trails-production-integration-owner-review.md)
 - [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md) (earlier catalog expansion)
-- Incubator (`/incubator/`) remains Coming later for maturing product visions (Steepleaf, Savant). SignalTerrain is listed under Side Trails.
+- [`docs/product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
+- Incubator (`/incubator/`) remains Coming later for maturing product visions (Steepleaf, Savant, Volunteer). SignalTerrain and Global Signals are listed under Side Trails.

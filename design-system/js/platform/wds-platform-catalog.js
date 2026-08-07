@@ -195,7 +195,7 @@
       name: "SignalTerrain",
       shortName: "SignalTerrain",
       tier: "side-trails",
-      status: "foundation",
+      status: "experimental",
       description: "Adaptive cyber intelligence for defenders — listed under Side Trails, not a studio flagship.",
       pathFromApps: "../signalterrain/",
       pathFromRoot: "apps/signalterrain/",

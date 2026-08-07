@@ -1,6 +1,6 @@
 {
   "version": "1.3.0",
-  "description": "Waypoint Studio product registry — core architecture, content tracks, shared modules, and planned shared engines.",
+  "description": "Waypoint Studio product registry \u2014 core architecture, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": [
       "studio",
@@ -19,8 +19,7 @@
       "savant-sommelier",
       "waypoint-volunteer",
       "foragecast",
-      "fieldry",
-      "signalterrain"
+      "fieldry"
     ],
     "contentTracks": [],
     "modules": [],
