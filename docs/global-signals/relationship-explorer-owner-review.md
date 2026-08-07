@@ -18,7 +18,7 @@ Delivers the first interactive Relationship Explorer after Articles Sprint 1: ca
 | | SHA |
 | --- | --- |
 | Starting (main) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| Tip |  |
+| Tip | `77854ddfb9ff18a9562ad24df8e33af530e8b0e4` |
 
 ## Routes
 
