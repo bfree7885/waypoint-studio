@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "updatedAt": "2026-08-06",
   "title": "Side Trails",
   "tagline": "A laboratory of sister projects beside Waypoint Studio’s primary outdoor tools.",
@@ -29,6 +29,18 @@
       "ctaLabel": "Explore SignalTerrain",
       "url": "side-trails/signalterrain/",
       "order": 20
+    },
+    {
+      "id": "global-signals",
+      "title": "Global Signals",
+      "tagline": "Understanding how world events shape everyday life.",
+      "description": "Global Signals helps people understand how geopolitics, trade, infrastructure, weather, conflict, energy, cyber events, and government policy ripple through supply chains, industries, and ultimately affect citizens. An intelligence platform — not a news website.",
+      "icon": "assets/images/side-trails/global-signals-globe.svg",
+      "category": "Research",
+      "status": "experimental",
+      "ctaLabel": "Explore Global Signals",
+      "url": "side-trails/global-signals/",
+      "order": 30
     }
   ]
 }

@@ -17,15 +17,22 @@ project titles or CTAs.
 | --- | --- | --- | --- |
 | `civic-trails` | Civic Trails | Beta | Explore Civic Trails |
 | `signalterrain` | SignalTerrain | Experimental | Explore SignalTerrain |
+| `global-signals` | Global Signals | Experimental | Explore Global Signals |
 
-### SignalTerrain (second project)
+### SignalTerrain
 
 - **Tagline:** Adaptive cyber intelligence for defenders.
-- **Description:** SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.
 - **Status:** Experimental
-- **Button:** Explore SignalTerrain → `/side-trails/signalterrain/` product landing
-- **Icon:** `assets/images/side-trails/signalterrain-network.svg` (cyber / network motif)
-- **Product landing:** [`signalterrain-landing.md`](signalterrain-landing.md)
+- **Landing:** [`signalterrain-landing.md`](signalterrain-landing.md)
+
+### Global Signals
+
+- **Tagline:** Understanding how world events shape everyday life.
+- **Purpose:** Help people see how geopolitics, trade, infrastructure, weather, conflict, energy, cyber events, and policy ripple through supply chains and industries to citizens.
+- **Status:** Experimental
+- **Positioning:** Intelligence platform — **not** a news website
+- **Landing:** [`global-signals.md`](global-signals.md)
+- **Owner review:** [`../product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
 
 ---
 
@@ -45,4 +52,5 @@ project titles or CTAs.
 ## Related
 
 - [`docs/product/side-trails-signalterrain-owner-review.md`](../product/side-trails-signalterrain-owner-review.md)
+- [`docs/product/global-signals-owner-review.md`](../product/global-signals-owner-review.md)
 - Incubator (`/incubator/`) remains the Coming later surface for maturing product visions.

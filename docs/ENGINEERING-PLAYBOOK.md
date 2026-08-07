@@ -137,6 +137,18 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Global Signals Side Trails project
+
+**Artifact:** `docs/product/global-signals-owner-review.md`  
+**Branch:** `feature/global-signals-side-trails`
+
+1. **Intelligence platform ≠ news site** — state it on the landing and in docs so
+   the product cannot drift into feed theater.
+2. **Catalog + landing together** — new Side Trails projects need JSON card and
+   public story page in the same block.
+3. **Relationships before headlines** — citizen impact is the through-line; keep
+   sections focused on why links matter.
+
 ### 2026-08-06 — SignalTerrain Intelligence Map (design only)
 
 **Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  
