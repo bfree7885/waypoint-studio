@@ -98,7 +98,8 @@
         '<p><button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button></p>' +
         '<p class="wds-caption"><a href="apps/dashboard/">Dashboard</a> · ' +
         '<a href="apps/scenes/">Scenes</a> · <a href="apps/shed-hunting/">Sheds</a> · ' +
-        '<a href="apps/waypoint-volunteer/">Volunteer</a></p>' +
+        '<a href="articles/">Articles</a> · <a href="side-trails/">Side Trails</a> · ' +
+        '<a href="support.html">Support</a> · <a href="about.html">About</a></p>' +
       "</div>";
     mount.removeAttribute("aria-busy");
   }
@@ -112,8 +113,8 @@
     var Nav = global.WDS && global.WDS.appNav;
     if (!mount || !Nav) return false;
     var cfg = Nav.config ? Nav.config() : {};
-    var primaryIds = cfgIds(cfg, "homePrimary", ["dashboard", "scenes", "sheds", "volunteer"]);
-    var incubatorIds = cfgIds(cfg, "homeIncubator", ["steepleaf", "savant-sommelier"]);
+    var primaryIds = cfgIds(cfg, "homePrimary", ["dashboard", "scenes", "sheds"]);
+    var incubatorIds = cfgIds(cfg, "homeIncubator", ["steepleaf", "savant-sommelier", "waypoint-volunteer"]);
     var sideTrailsIds = cfgIds(cfg, "homeSideTrails", ["signalterrain"]);
     var supportingIds = cfgIds(cfg, "homeSupporting", ["foragecast", "fieldry", "landscape-interpretation"]);
 

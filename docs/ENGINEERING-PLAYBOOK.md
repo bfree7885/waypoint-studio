@@ -137,6 +137,36 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Articles design modernization (Take + shared nav)
+
+**Artifact:** `docs/articles/articles-modernization-owner-review.md`  
+**Branch:** `feature/articles-design-modernization`
+
+1. **Reuse WCS page chrome for Articles** — `wcs-page` / `wcs-hero` + shared shell
+   beats a one-off dark `was-home` skin; drop duplicate pill menus when primary
+   nav already carries Dashboard → About.
+2. **Waypoint’s Take is a component, not a card subsection** — shared
+   `wds-take.js` / `.wds-take` markup; Articles must call `renderArticleHtml` and
+   keep Summary visually plain.
+3. **Honest empty beats fake editorial** — when Take is missing, unavailable, or
+   only repeats Summary, render restrained empty; never invent Takes on live RSS.
+4. **Side Trails publishing is schema extension, not a CMS** — document
+   reserved `origin` / `projectId` / `projectLabel` and `dataUrl` overrides;
+   do not fork the feed renderer.
+5. **Align Home RC1 nav asserts when architecture labels change** — Dashboard /
+   Side Trails / Support belong in `studioPrimaryNav` and smoke tests together.
+
+### 2026-08-06 — Studio nav architecture alignment
+
+**Artifact:** `docs/product/waypoint-studio-nav-architecture-owner-review.md`  
+**Branch:** `feature/studio-nav-architecture-alignment`
+
+1. **One architecture contract, many surfaces** — `studioPrimaryNav` alone is not enough; About, Support, 404, incubator, sitemap, product-registry, and platform-catalog drift independently and must be audited together.
+2. **Quiet Home is an exception, not a second architecture** — do not force Side Trails/Support into quiet first viewport; document the exception and keep secondary/global directories honest.
+3. **Demote, don’t delete** — Volunteer / SignalTerrain / ForageCast remain reachable under Side Trails, Incubator, or supporting tiers; primary peers must match the seven-item set.
+4. **Keep nav-registry and embedded JS in sync** — `wds-app-nav-config.js` is the runtime embed; edit both or regenerate from `nav-registry.json`.
+5. **Smoke-test labels as the contract** — assert exact primary label set and absence of old peer names on directory HTML, not only JSON keys.
+
 ### 2026-08-06 — SignalTerrain IA move into Side Trails
 
 **Artifact:** `docs/product/signalterrain-side-trails-move-owner-review.md`  
@@ -169,6 +199,7 @@ continuously improves.
 4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
    Side Trails + landing commits so Global Signals / design-doc WIP never rides
    the production review branch.
+
 ### 2026-08-06 — SignalTerrain Intelligence Map (design only)
 
 **Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  

@@ -138,12 +138,15 @@
       } else {
         href = NavApi.resolveRoute(item.href, depth);
       }
+      var pathNow = String((global.location && global.location.pathname) || "");
       var current =
         ((item.id === "home" || item.id === "dashboard") && activeId === "dashboard") ||
         (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
         (item.id === "sheds" && activeId === "sheds") ||
-        (item.id === "articles" && /\/articles(\/|$)/.test(String((global.location && global.location.pathname) || ""))) ||
-        (item.id === "about" && /about\.html$/i.test(String((global.location && global.location.pathname) || ""))) ||
+        (item.id === "articles" && /\/articles(\/|$)/.test(pathNow)) ||
+        (item.id === "side-trails" && /\/side-trails(\/|$)/.test(pathNow)) ||
+        (item.id === "support" && /support\.html$/i.test(pathNow)) ||
+        (item.id === "about" && /about\.html$/i.test(pathNow)) ||
         (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
       return (
         '<a class="was-primary-nav__link" href="' + esc(href) + '"' +
