@@ -3,7 +3,7 @@
 **Status:** Design only — **not implemented**  
 **Product:** Global Signals (Side Trails)  
 **Primary question:** *Starting from one event, what downstream effects are plausible — and why?*  
-**Related:** [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md), [articles/articles-architecture.md](articles/articles-architecture.md), [PRODUCT_STANDARDS.md](PRODUCT_STANDARDS.md)
+**Related:** [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md), [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md), [articles/articles-architecture.md](articles/articles-architecture.md), [PRODUCT_STANDARDS.md](PRODUCT_STANDARDS.md)
 
 ---
 
@@ -45,8 +45,9 @@ Global Signals helps people understand how geopolitics, trade, infrastructure, w
 
 | Adjacent surface | Relationship |
 | --- | --- |
-| Relationship Engine / typed edges ([SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md)) | Cascade edges reuse the same honesty fields: type, label, confidence, sources/notes. Global Signals may extend type vocabulary for civic/economic cascades (`affects`, `depends_on`, `caused_by`, `observed_with`, `associated_with`) without inventing certainty. |
-| Waypoint Articles ([articles/articles-architecture.md](articles/articles-architecture.md)) | Evidence cards may deep-link to curated outdoor/science/context reading when relevant; Articles never become full-article republication inside a cascade node. |
+| Global Signals Relationship Engine ([GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md)) | **Graph layer.** Cascading Impact Explorer is the expand-on-demand **traversal UX** over evidenced edges. 1°/2°/3° orders are narrative views; this explorer does not invent hops without edges (or an explicitly labeled hypothesis mode). |
+| SignalTerrain typed edges ([SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md)) | Honesty baseline and type vocabulary (`affects`, `depends_on`, `caused_by`, `observed_with`, `associated_with`, …). |
+| Waypoint Articles ([articles/articles-architecture.md](articles/articles-architecture.md)) | Optional quiet “Related reading” from edge panels; never full-article republication inside a cascade node. |
 | SignalTerrain Intelligence Map / posture docs | Sibling Side Trails intelligence patterns (evidence-first, calm UI). Cascades are **economic / civic / systemic literacy**, not cyber attack maps. |
 
 ---
@@ -72,16 +73,18 @@ A domain is a literacy bucket along a cascade (e.g. Imports, Manufacturing, Reta
 
 ### 4.3 Cascade edge (connection) — required fields
 
-Every connection **must** include all four:
+Every connection **must** include all four explorer fields:
 
-| Field | Meaning | Honesty rule |
-| --- | --- | --- |
-| **reason** | Plain-language mechanism (“higher input costs may pass into shelf prices”) | No reason → no edge |
-| **confidence** | `high` · `moderate` · `low` · `speculative` | UI must show the label; never hide behind color alone |
-| **evidence** | Citations supporting the *relationship pattern* (studies, official stats, reputable reporting on the mechanism) | Mechanism evidence may be historical/general; must not fake a live citation for today’s event |
-| **expected timeframe** | Band such as `days` · `weeks` · `months` · `quarters` · `years` · `uncertain` | Bands only — no false precision |
+| Explorer field | Meaning | Honesty rule | Relationship Engine facet |
+| --- | --- | --- | --- |
+| **reason** | Plain-language mechanism (“higher input costs may pass into shelf prices”) | No reason → no edge | `why` |
+| **confidence** | `high` · `moderate` · `low` · `speculative` | UI must show the label; never hide behind color alone | `confidence` |
+| **evidence** | Citations supporting the *relationship pattern* (studies, official stats, reputable reporting on the mechanism) | Mechanism evidence may be historical/general; must not fake a live citation for today’s event | evidence / sources on the edge |
+| **expected timeframe** | Band such as `days` · `weeks` · `months` · `quarters` · `years` · `uncertain` | Bands only — no false precision | `delay` (time-delay class) |
 
-Optional: `relationshipType` (align with Relationship Engine), `notes` / caveats, `conflictsWith` (competing explanations).
+When the Relationship Engine edge is present, also surface **strength** (effect magnitude if the link is real) and **direction** — and keep them distinct from confidence. A critical-but-speculative hop must never look certain.
+
+Optional: `relationshipType`, `notes` / caveats, `conflictsWith` (competing explanations), `orderHint` (1°/2°/3° narration).
 
 ### 4.4 Cascade branch
 
@@ -250,14 +253,14 @@ All SVGs are labeled schematic / not live event graphs.
 
 ## 10. Relationship to Relationship Engine
 
-Cascading Impact Explorer is a **product traversal UX** over typed, evidenced relationships. It should:
+Cascading Impact Explorer is the **product traversal UX** over the graph defined in [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md). It should:
 
-- Reuse confidence vocabulary (`high` · `moderate` · `low` · `speculative`)  
-- Prefer precise types (`affects`, `depends_on`, `caused_by`, `observed_with`, `associated_with`) over vague `related_to` when possible  
+- Map explorer fields to engine facets (`reason`↔`why`, `timeframe`↔`delay`) and show strength/direction when available  
+- Degrade confidence along a chain by default unless each hop is independently evidenced  
+- Prefer precise types (`affects`, `depends_on`, `caused_by`, `observed_with`, `associated_with`) over vague `related_to`  
 - Keep sources on edges that claim causation or strong impact  
-- Avoid guilt-by-association theater (same non-goals as [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md))
-
-A Global Signals–specific Relationship Engine design may extend schemas later; until then, SignalTerrain relationship docs are the honesty baseline.
+- Treat citizen hops as **impact literacy**, never surveillance (same non-goals as the Relationship Engine and [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md))  
+- Refuse to invent intermediate nodes for a prettier 2°/3° story
 
 ---
 
@@ -297,6 +300,7 @@ No ship dates implied.
 ## Related
 
 - [docs/product/global-signals-cascading-impact-owner-review.md](product/global-signals-cascading-impact-owner-review.md)  
+- [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md) — graph layer; cascades as ordered views  
 - [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  
 - [RELATIONSHIP-TYPES.md](RELATIONSHIP-TYPES.md)  
 - [articles/articles-architecture.md](articles/articles-architecture.md)

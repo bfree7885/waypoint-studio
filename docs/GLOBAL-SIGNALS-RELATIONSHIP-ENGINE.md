@@ -3,7 +3,7 @@
 **Status:** Design only — **not implemented**  
 **Product:** Global Signals (Side Trails / SignalTerrain intelligence platform)  
 **Branch intent:** Architecture and visual contracts for owner review  
-**Related:** [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md), [SIGNALTERRAIN-INTELLIGENCE-MAP.md](SIGNALTERRAIN-INTELLIGENCE-MAP.md), [docs/side-trails/README.md](side-trails/README.md)
+**Related:** [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md), [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md), [SIGNALTERRAIN-CORRELATION-ENGINE.md](SIGNALTERRAIN-CORRELATION-ENGINE.md), [SIGNALTERRAIN-INTELLIGENCE-MAP.md](SIGNALTERRAIN-INTELLIGENCE-MAP.md), [docs/side-trails/README.md](side-trails/README.md)
 
 ---
 
@@ -306,6 +306,7 @@ owner review, a docs presence smoke test, and playbook lessons only.
 
 ## 12. Related
 
+- Cascading Impact Explorer (traversal UX): [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md)  
 - Owner review: [docs/product/global-signals-relationship-engine-owner-review.md](product/global-signals-relationship-engine-owner-review.md)  
 - Side Trails: [docs/side-trails/README.md](side-trails/README.md)  
 - SignalTerrain relationship foundation: [SIGNALTERRAIN-RELATIONSHIP-MODEL.md](SIGNALTERRAIN-RELATIONSHIP-MODEL.md)  

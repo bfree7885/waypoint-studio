@@ -137,6 +137,23 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Global Signals Cascading Impact Explorer (design only)
+
+**Artifact:** `docs/product/global-signals-cascading-impact-owner-review.md`  
+**Branch:** `feature/global-signals-cascading-impact`
+
+1. **Four fields or no edge** — reason, confidence, evidence, and expected
+   timeframe are non-optional; silent arrows read as certainty.
+2. **Explorer is UX over the Relationship Engine** — map reason↔why and
+   timeframe↔delay; show strength/direction without conflating them with
+   confidence; never invent hops for a prettier cascade.
+3. **Schematic ≠ forecast** — educational chains (tariffs→consumers;
+   conflict→inflation) stay labeled SAMPLE/schematic and never invent live
+   events for drama.
+4. **Expand-on-demand beats doom graphs** — small first hop; speculative depth
+   escalates honesty labels, not density; citizens mean impact literacy, not
+   surveillance.
+
 ### 2026-08-06 — Global Signals Side Trails project
 
 **Artifact:** `docs/product/global-signals-owner-review.md`  
