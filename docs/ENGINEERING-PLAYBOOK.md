@@ -137,6 +137,48 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-06 — Side Trails production integration (simple landing)
+
+**Artifact:** `docs/product/side-trails-production-integration-owner-review.md`  
+**Branch:** `feature/side-trails-production-integration`
+
+1. **Production Side Trails stays a short card list** — Civic Trails + SignalTerrain
+   only for the first ship; omit search, filters, categories UI, and dashboards
+   even if earlier catalog drafts had them.
+2. **Soft-exclude Global Signals from the primary set** until product explicitly
+   adds it; keep the catalog subset honest rather than carrying research WIP.
+3. **Open → landing for SignalTerrain** (`/side-trails/signalterrain/`), GitHub
+   for Civic Trails; do not modify `apps/signalterrain/` in the integration block.
+4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
+   Side Trails + landing commits so Global Signals / design-doc WIP never rides
+   the production review branch.
+
+### 2026-08-06 — SignalTerrain public landing (no app functionality)
+
+**Artifact:** `docs/product/signalterrain-landing-owner-review.md`  
+**Branch:** `feature/signalterrain-landing`
+
+1. **Product page ≠ app** — keep `/side-trails/signalterrain/` as marketing/story;
+   leave `/apps/signalterrain/` as the existing experience.
+2. **Schematic illustrations only** — label threat map / timeline / globe / posture
+   art as non-live so we never imply fabricated incidents.
+3. **Point Side Trails CTA at the landing** when the ask is product introduction,
+   not deep-link into live briefs.
+
+### 2026-08-06 — Side Trails catalog (SignalTerrain second project)
+
+**Artifact:** `docs/product/side-trails-signalterrain-owner-review.md`  
+**Branch:** `feature/side-trails-signalterrain`
+
+1. **Side Trails ≠ Incubator** — Side Trails is a catalog of sister experiments;
+   Incubator remains Coming later. Link between them; don’t merge the IA.
+2. **Catalog-only cards** — never hardcode project titles/CTAs in HTML when the
+   contract is JSON-driven; tests should assert the shell stays empty of titles.
+3. **Integrate without rebuilding** — listing SignalTerrain means CTA to the
+   existing app path, not a new cyber feature surface in the same block.
+4. **Use a clean worktree from `origin/main`** when the primary workspace has
+   unrelated dirty WIP so Side Trails ships without noise.
+
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
 **Artifact:** `docs/rebuild-2026/platform-polish-rc2-owner-review.md`  

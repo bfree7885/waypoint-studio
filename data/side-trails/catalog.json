@@ -1,0 +1,32 @@
+{
+  "version": "1.2.0",
+  "updatedAt": "2026-08-06",
+  "title": "Side Trails",
+  "tagline": "Experimental projects, research, prototypes, and special-interest tools beside Waypoint Studio.",
+  "message": "Two Side Trails projects are listed today.",
+  "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived"],
+  "projects": [
+    {
+      "id": "civic-trails",
+      "title": "Civic Trails",
+      "tagline": "Mapping public service through public records.",
+      "description": "Evidence-first civic transparency GIS. Public records only, certainty labeled, never partisan theater.",
+      "icon": "assets/images/side-trails/civic-trails-map.svg",
+      "status": "beta",
+      "ctaLabel": "Open",
+      "url": "https://github.com/bfree7885/civic-trails",
+      "order": 10
+    },
+    {
+      "id": "signalterrain",
+      "title": "SignalTerrain",
+      "tagline": "Adaptive cyber intelligence for defenders.",
+      "description": "SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.",
+      "icon": "assets/images/side-trails/signalterrain-network.svg",
+      "status": "experimental",
+      "ctaLabel": "Open",
+      "url": "side-trails/signalterrain/",
+      "order": 20
+    }
+  ]
+}
