@@ -15,10 +15,11 @@ Industry Intelligence delivers an index plus 11 full industry pages with interco
 
 ## Commits
 
-1. `1f27761` — feat(global-signals): add Industry Intelligence module
+1. `1f27761` — feat(global-signals): add Industry Intelligence module  
+2. `898af84` — docs(global-signals): stamp Industry Intelligence owner-review SHAs
 
 **Starting SHA (main):** `f942c7b177512b59bf3807c28814ccbe69820c2c`  
-**Ending SHA:** `1f27761fda868d48bcb6393e99509743f3c0f7a1`
+**Ending SHA:** `898af845005be36855312c2779df5d9598296a3e`
 
 ## Routes
 
