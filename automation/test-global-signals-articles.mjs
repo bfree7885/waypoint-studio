@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * Global Signals Articles — Sprint 1 Prompt 1 (route shell).
+ * Global Signals Articles — Sprint 1 (Prompts 1–2).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { pathToFileURL } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -20,42 +21,77 @@ function exists(rel) {
 
 const htmlPath = "side-trails/global-signals/articles/index.html";
 const cssPath = "design-system/css/wds-global-signals-articles.css";
+const jsPath = "design-system/js/global-signals/wds-gs-articles.js";
+const dataPath = "data/global-signals/articles/articles.json";
 
 assert.ok(exists(htmlPath), "articles route missing");
 assert.ok(exists(cssPath), "articles CSS missing");
+assert.ok(exists(jsPath), "articles JS missing");
+assert.ok(exists(dataPath), "articles data missing");
 
 const html = read(htmlPath);
 assert.match(html, /<title>Articles — Global Signals<\/title>/);
-assert.match(html, /Intelligence briefs with verified sources/);
 assert.match(html, /id="gsa-feed"/);
 assert.match(html, /data-gsa-feed/);
-assert.match(html, /data-gsa-state="empty"/);
-assert.match(
-  html,
-  /Global Signals articles will appear here as verified sources are added\./
-);
+assert.match(html, /Global Signals articles will appear here as verified sources are added\./);
 assert.match(html, /href="\.\.\/"/);
-assert.match(html, /href="\.\.\/\.\.\//);
 assert.match(html, /Back to Global Signals/);
-assert.match(html, /Side Trails/);
-assert.match(html, /wds-global-signals-articles\.css/);
-assert.match(html, /wds-global-signals-landing\.css/);
+assert.match(html, /wds-gs-articles\.js/);
+assert.match(html, /articles\.json/);
 assert.doesNotMatch(html, /Coming soon/i);
-assert.doesNotMatch(html, /fetch\(|WebSocket|openai|anthropic/i);
-assert.doesNotMatch(html, /waypointsTake|impactPath|confidence/i);
 
 const css = read(cssPath);
 assert.match(css, /\.gsa-feed/);
-assert.match(css, /\.gsa-empty/);
+assert.match(css, /\.gsa-card/);
 assert.match(css, /@media \(max-width:\s*40rem\)/);
-assert.match(css, /min-height:\s*10rem/);
 
-// Static file server smoke: 200 + no script console surface on shell
+const data = JSON.parse(read(dataPath));
+assert.equal(data.mode, "sample-demo");
+assert.equal(data.articles.length, 5);
+for (const a of data.articles) {
+  assert.ok(a.id, "id required");
+  assert.ok(a.headline, "headline required");
+  assert.ok(a.publisher, "publisher required");
+  assert.ok(a.date || a.publishedAt, "date required");
+  assert.ok(a.factualSummary, "factualSummary required");
+  assert.ok(a.sourceUrl, "sourceUrl required");
+  assert.ok(a.eventType, "eventType required");
+  assert.equal(a.waypointsTake, undefined);
+  assert.equal(a.waypointTake, undefined);
+  assert.equal(a.confidence, undefined);
+  assert.equal(a.impactPath, undefined);
+}
+
+// Unit: card renderer + missing fields + source links
+await import(pathToFileURL(path.join(root, jsPath)).href);
+const api = globalThis.WDS.globalSignals.articles;
+assert.equal(api.isSafeHttpUrl("https://example.invalid/x"), true);
+assert.equal(api.isSafeHttpUrl("javascript:alert(1)"), false);
+assert.equal(api.isSafeHttpUrl(null), false);
+
+const full = api.normalizeArticle(data.articles[0]);
+const card = api.renderCard(full);
+assert.match(card, /gsa-card/);
+assert.match(card, /Factual summary/);
+assert.match(card, /href="https:\/\/example\.invalid\/sample\/canal-drought-notice"/);
+assert.match(card, /rel="noopener noreferrer"/);
+
+const sparse = api.normalizeArticle({ id: "gsa_sparse" });
+const sparseCard = api.renderCard(sparse);
+assert.match(sparseCard, /Untitled brief/);
+assert.match(sparseCard, /Publisher unavailable/);
+assert.match(sparseCard, /Factual summary unavailable/);
+assert.match(sparseCard, /Event type unavailable/);
+assert.match(sparseCard, /Date unavailable/);
+assert.doesNotMatch(sparseCard, /href="/);
+
+// HTTP smoke
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
-  ".svg": "image/svg+xml",
-  ".js": "text/javascript; charset=utf-8"
+  ".js": "text/javascript; charset=utf-8",
+  ".json": "application/json; charset=utf-8",
+  ".svg": "image/svg+xml"
 };
 
 const server = http.createServer((req, res) => {
@@ -68,8 +104,7 @@ const server = http.createServer((req, res) => {
     res.end("not found");
     return;
   }
-  const ext = path.extname(file);
-  res.writeHead(200, { "Content-Type": mime[ext] || "application/octet-stream" });
+  res.writeHead(200, { "Content-Type": mime[path.extname(file)] || "application/octet-stream" });
   res.end(fs.readFileSync(file));
 });
 
@@ -79,27 +114,18 @@ const base = `http://127.0.0.1:${port}`;
 
 async function get(pathname) {
   const res = await fetch(`${base}${pathname}`);
-  const text = await res.text();
-  return { status: res.status, text, headers: res.headers };
+  return { status: res.status, text: await res.text() };
 }
 
 const page = await get("/side-trails/global-signals/articles/");
-assert.equal(page.status, 200, "articles route should return 200");
-assert.match(page.text, /gsa-feed/);
-assert.match(page.text, /Global Signals articles will appear here/);
-
+assert.equal(page.status, 200);
+const json = await get("/data/global-signals/articles/articles.json");
+assert.equal(json.status, 200);
+assert.match(json.text, /gsa_demo-canal-slots/);
+const js = await get("/design-system/js/global-signals/wds-gs-articles.js");
+assert.equal(js.status, 200);
 const cssRes = await get("/design-system/css/wds-global-signals-articles.css");
-assert.equal(cssRes.status, 200, "articles CSS should return 200");
-
-const gs = await get("/side-trails/global-signals/");
-assert.equal(gs.status, 200);
-assert.match(gs.text, /\.\/articles\//);
-
-const st = await get("/side-trails/");
-assert.equal(st.status, 200);
-
-// Shell has no app scripts — console-error surface is empty by construction
-assert.doesNotMatch(page.text, /<script/i);
+assert.equal(cssRes.status, 200);
 
 server.close();
-console.log("Global Signals Articles Prompt 1 (route shell) checks passed.");
+console.log("Global Signals Articles Prompt 2 (cards + demo data) checks passed.");

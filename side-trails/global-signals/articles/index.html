@@ -50,13 +50,25 @@
       class="gsa-feed"
       aria-label="Global Signals articles feed"
       data-gsa-feed
-      data-gsa-state="empty"
+      data-gsa-state="loading"
     >
       <p class="gsa-empty" role="status">
         Global Signals articles will appear here as verified sources are added.
       </p>
     </section>
   </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-articles.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.articles) {
+        WDS.globalSignals.articles.mount(document.getElementById("gsa-feed"), {
+          depth: 3,
+          dataUrl: "../../../data/global-signals/articles/articles.json"
+        });
+      }
+    });
+  </script>
 
   <footer class="gs-footer">
     <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>

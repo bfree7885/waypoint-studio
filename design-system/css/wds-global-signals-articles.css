@@ -83,3 +83,124 @@
     animation: none;
   }
 }
+
+/* Article cards (Prompt 2) */
+.gsa-feed[data-gsa-state="ready"],
+.gsa-feed[data-gsa-state="loading"],
+.gsa-feed[data-gsa-state="error"] {
+  display: block;
+  text-align: left;
+  border-style: solid;
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.gsa-banner {
+  margin: 0 0 1.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 234, 212, 0.28);
+  background: rgba(15, 28, 40, 0.75);
+}
+
+.gsa-banner p {
+  margin: 0.35rem 0 0;
+  color: #9aa8bd;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.gsa-banner .gsa-badge {
+  margin-bottom: 0.25rem;
+  border-color: rgba(94, 234, 212, 0.45);
+  color: #5eead4;
+}
+
+.gsa-hub-count {
+  margin: 0 0 1rem;
+  color: #7a8aa3;
+  font-size: 0.9rem;
+}
+
+.gsa-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.gsa-card {
+  padding: 1rem 1.05rem 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background: rgba(11, 18, 32, 0.85);
+}
+
+.gsa-card__meta {
+  margin: 0 0 0.55rem;
+}
+
+.gsa-badge {
+  display: inline-block;
+  margin: 0 0.35rem 0.35rem 0;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #9aa8bd;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gsa-card__title {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.15rem, 2.8vw, 1.35rem);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #f0f4fa;
+  font-weight: 600;
+}
+
+.gsa-card__byline {
+  margin: 0 0 0.85rem;
+  color: #9aa8bd;
+  font-size: 0.92rem;
+}
+
+.gsa-card__source {
+  color: #7dd3a7;
+  text-decoration: none;
+}
+
+.gsa-card__source:hover,
+.gsa-card__source:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.gsa-card__facts h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #7a8aa3;
+  font-weight: 600;
+}
+
+.gsa-card__facts p {
+  margin: 0;
+  color: #c5d0e0;
+  line-height: 1.55;
+  font-size: 0.98rem;
+}
+
+.gsa-loading,
+.gsa-error {
+  margin: 0;
+  color: #9aa8bd;
+  line-height: 1.5;
+}
+
+@media (max-width: 40rem) {
+  .gsa-card {
+    padding: 0.9rem 0.85rem 1rem;
+  }
+}
