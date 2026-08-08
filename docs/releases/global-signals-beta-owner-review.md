@@ -40,13 +40,13 @@ A coherent intelligence shell ships on `release/global-signals-beta`: landing, E
 | Industry Intelligence | `feature/global-signals-industry-intelligence` | `435ecda` | yes | Integrated |
 | Relationship Graph | `feature/global-signals-relationship-graph` | `2e3f271` | yes | Integrated |
 | Explain This | `feature/global-signals-explain-this` | `3528c3f` | yes | Integrated |
-| Home / Dashboard | `feature/global-signals-home-dashboard` | `f7ade1e` | **local only** | Umbrella merges only — no dashboard feature |
+| Home / Dashboard | `feature/global-signals-home-dashboard` | `bac5862` | local (tip moved mid-review) | **Integrated** — real `gsh-board` home |
 | Universal Search | `feature/global-signals-universal-search` | `4f788ee` | yes | Integrated on release |
-| Entity system | `feature/global-signals-entity-system` | `da0f514` (+ WIP) | **local only** | Incomplete — wait |
+| Entity system | `feature/global-signals-entity-system` | `86f5f34` | local (tip moved mid-review) | **Integrated** — shared entity shell |
 | Graph backbone | `feature/global-signals-graph-backbone` | `2e3f271` | local only | Alias of Relationship Graph tip |
 | Story Mode | `feature/global-signals-story-mode` | `3528c3f` | local only | Alias of Explain This tip — not a separate feature |
 
-**Still incomplete at review close:** Entity system (uncommitted shell work in progress), Story Mode (no distinct implementation), true Home Dashboard (route remains honest empty shell). Home-dashboard branch tip did not move after Explain This merge during this review.
+**Late tips integrated during review close:** Entity System (`86f5f34`) and Home Dashboard board (`bac5862` / feat `b31a819`) landed while review was in progress and were merged onto the release branch. **Still incomplete:** Story Mode (tip still equals Explain This — no distinct feature). `/global-dashboard/` remains an honest empty shell; the real home is `/side-trails/global-signals/` (`gsh-board`).
 
 ---
 
@@ -101,6 +101,8 @@ Directory: [`docs/releases/global-signals-beta/`](global-signals-beta/) — see 
 | 13 | Explain This Taiwan | Signature module working; confidence / path / match disclosed |
 | 14–15 | Global Dashboard / Waypoint’s Take | Honest coming-soon shells |
 | 16 | Search Taiwan | Working structured search results |
+| 18 | Home dashboard board | Real `gsh-board` after late home tip |
+| 19 | Entity Taiwan | Shared entity shell |
 
 Module-level screenshot packs also remain under `docs/global-signals/{articles,relationships,relationship-graph,countries,industries,citizen-impact,explain,search}/`.
 
@@ -117,9 +119,9 @@ None that falsify sample/demo Experimental Beta. Production claims would be P0.
 | ID | Finding | Evidence |
 | --- | --- | --- |
 | P1-1 | **Fragmented product nav.** Landing has full module nav; module pages each ship a different subset (Articles misses Countries/Industries/Citizen/Search/Explain; Countries/Industries/Citizen only link Articles + home). | Nav audit + screenshots 03–13 |
-| P1-2 | **Home Dashboard does not exist.** `/global-dashboard/` is an honest empty shell; `feature/global-signals-home-dashboard` is an integration umbrella, not a dashboard product. Landing is the real entry. | Screenshot 14; branch history |
+| P1-2 | **Two “homes”.** Real board is `/side-trails/global-signals/`; `/global-dashboard/` is still coming soon. Keep primary entry on the board; hide/demote the empty shell. | Screenshots 01/18 vs 14 |
 | P1-3 | **Duplicate relationship surfaces without clear hierarchy in chrome.** Graph vs Explorer vs Explain all “do relationships.” Landing elevates Explain; module headers still bury the hierarchy. | Landing CTAs vs module page chrome |
-| P1-4 | **Entity system incomplete.** No shared entity shell on release; WIP local branch only. Cross-links use module-specific pages (`countries/`, `industries/`, `?entity=`) without a unified entity URL. | Branch tip `da0f514` + uncommitted WIP |
+| P1-4 | **Entity shell integrated but not yet the universal deep-link target.** Search/Explain/Graph still often point at module routes; Countries/Industries alias entities — finish rewiring for one app feel. | Entities module + Search index |
 
 ### P2 — polish for cohesion
 
@@ -147,7 +149,7 @@ None that falsify sample/demo Experimental Beta. Production claims would be P0.
 
 ### Dashboard / Home
 
-**Not shippable as a dashboard.** Landing (`/side-trails/global-signals/`) is the working home. `/global-dashboard/` correctly says coming soon. Do not market Beta as having a Global Dashboard.
+**Shippable as application home.** `/side-trails/global-signals/` is now a dense sample/demo intelligence board (`gsh-board`) composing live module datasets. `/global-dashboard/` remains an honest empty shell — do not confuse the two. Home tip moved mid-review from umbrella-only to feat `b31a819`.
 
 ### Articles
 
@@ -179,7 +181,7 @@ Signature module works; deterministic matching; honest gaps; no LLM. Best Beta f
 
 ### Entity system
 
-Incomplete — wait. When ready, should own `/entities/<type>/<id>/` (or equivalent) and become the deep-link target for Search / Graph / Explain instead of module-specific shells.
+**Integrated late.** Canonical `/entities/<type>/<slug>/` with Countries/Industries as aliases. Dual `?entity=` / `?focus=` contract for graph soft-links. Module nav still fragmented vs home chrome.
 
 ### Search
 
@@ -245,9 +247,8 @@ Screenshot capture: `node automation/capture-gs-beta-owner-review-screenshots.mj
 
 | Branch | Reason |
 | --- | --- |
-| `feature/global-signals-entity-system` | Incomplete WIP |
 | `feature/global-signals-story-mode` | No distinct feature |
-| Further home-dashboard feature commits | None beyond umbrella; dashboard still shell |
+| Further churn on home/entity after `bac5862` / `86f5f34` | Re-fetch before audience Beta if tips move again |
 
 ### Explicitly out of scope
 
@@ -299,11 +300,11 @@ Deprioritize new features. Prefer:
 
 | Decision | Call |
 | --- | --- |
-| Experimental Beta branch | **GO** — prepared on `release/global-signals-beta` |
+| Experimental Beta branch | **GO** — prepared on `release/global-signals-beta` (includes late Home + Entity tips) |
 | Merge to main | **NO** |
 | Deploy | **NO** |
 | Market as finished Global Signals product | **NO** |
-| Wait for entity / story / real dashboard before main | **YES** |
+| Wait for Story Mode + shared-nav polish before main | **YES** |
 
 ---
 

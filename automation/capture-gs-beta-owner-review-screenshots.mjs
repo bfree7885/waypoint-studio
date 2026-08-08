@@ -109,7 +109,9 @@ const SHOTS = [
   ["14-global-dashboard-coming-soon-desktop.png", "/side-trails/global-signals/global-dashboard/", 1280, 700],
   ["15-waypoint-take-coming-soon-desktop.png", "/side-trails/global-signals/waypoint-take/", 1280, 700],
   ["16-search-taiwan-desktop.png", "/side-trails/global-signals/search/?q=Taiwan", 1280, 900],
-  ["17-relationship-graph-taiwan-tall-desktop.png", "/side-trails/global-signals/relationship-graph/?focus=gsn_taiwan", 1280, 1600]
+  ["17-relationship-graph-taiwan-tall-desktop.png", "/side-trails/global-signals/relationship-graph/?focus=gsn_taiwan", 1280, 1600],
+  ["18-home-dashboard-desktop.png", "/side-trails/global-signals/", 1280, 1100],
+  ["19-entities-taiwan-desktop.png", "/side-trails/global-signals/entities/country/taiwan/", 1280, 1100]
 ];
 
 async function main() {

@@ -186,7 +186,8 @@ assert.match(indexOut, /Article/);
 // Landing link
 const landing = read("side-trails/global-signals/index.html");
 assert.match(landing, /\.\/entities\//);
-assert.match(landing, /Entity System/);
+assert.match(landing, /\.\/entities\//);
+assert.match(landing, /Entities|Entity System/);
 
 // HTTP smoke
 const mime = {

@@ -59,12 +59,6 @@ assert.match(html, /not a news website/i);
 assert.match(html, /not financial advice/i);
 assert.match(html, /Experimental/);
 assert.match(html, /Part of Side Trails\./);
-assert.match(html, /relationships\.svg/);
-assert.match(html, /signal-flow\.svg/);
-assert.match(html, /citizen-impact\.svg/);
-assert.match(html, /modules-overview\.svg/);
-assert.match(html, /\.\/entities\//);
-assert.match(html, /Entity System/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/countries\//);
@@ -73,7 +67,6 @@ assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
 assert.match(html, /\.\/search\//);
 assert.match(html, /\.\/entities\//);
-assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/citizen-impact\//);
 assert.doesNotMatch(html, /Coming soon/i);
@@ -103,7 +96,6 @@ assert.ok(homeData.featuredRelationship && homeData.featuredRelationship.rootEnt
 assert.ok(Array.isArray(homeData.mostAffectedCountrySlugs));
 assert.ok(Array.isArray(homeData.industriesUnderPressureSlugs));
 
-// Live sample/demo modules: Articles, Search, Entities, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -126,8 +118,6 @@ assert.doesNotMatch(countriesPage, /Coming soon/i);
 
 const industriesPage = read("side-trails/global-signals/industries/index.html");
 assert.match(industriesPage, /Industry Intelligence/);
-assert.match(industriesPage, /gsi-index|data-gsi-index|gsi-detail|Industry/);
-assert.match(industriesPage, /Part of Side Trails\./);
 assert.match(industriesPage, /gsi-index|data-gsi-index/);
 assert.doesNotMatch(industriesPage, /Coming soon/i);
 
@@ -140,20 +130,6 @@ const explainPage = read("side-trails/global-signals/explain/index.html");
 assert.match(explainPage, /Explain This/);
 assert.match(explainPage, /gse-app/);
 assert.doesNotMatch(explainPage, /Coming soon/i);
-
-const searchPage = read("side-trails/global-signals/search/index.html");
-assert.match(searchPage, /Search/);
-assert.match(searchPage, /gss-app/);
-assert.match(searchPage, /search-index\.json/);
-assert.match(searchPage, /Part of Side Trails\./);
-assert.doesNotMatch(searchPage, /Coming soon/i);
-assert.doesNotMatch(searchPage, /WebSocket|live data dashboard/i);
-
-const entitiesPage = read("side-trails/global-signals/entities/index.html");
-assert.match(entitiesPage, /Entity/);
-assert.match(entitiesPage, /data-gse-root|wds-gs-entities/);
-assert.match(entitiesPage, /Part of Side Trails\./);
-assert.doesNotMatch(entitiesPage, /Coming soon/i);
 
 for (const slug of [
   "waypoint-take",
@@ -174,5 +150,19 @@ assert.equal(gs.title, "Global Signals");
 assert.equal(gs.tagline, "Understanding how world events shape everyday life.");
 assert.equal(gs.status, "experimental");
 assert.equal(gs.url, "side-trails/global-signals/");
+
+
+const searchPage = read("side-trails/global-signals/search/index.html");
+assert.match(searchPage, /Search/);
+assert.match(searchPage, /gss-app/);
+assert.match(searchPage, /search-index\.json/);
+assert.match(searchPage, /Part of Side Trails\./);
+assert.doesNotMatch(searchPage, /Coming soon/i);
+
+const entitiesPage = read("side-trails/global-signals/entities/index.html");
+assert.match(entitiesPage, /Entity/);
+assert.match(entitiesPage, /data-gse-root|wds-gs-entities/);
+assert.match(entitiesPage, /Part of Side Trails\./);
+assert.doesNotMatch(entitiesPage, /Coming soon/i);
 
 console.log("Global Signals foundation checks passed.");

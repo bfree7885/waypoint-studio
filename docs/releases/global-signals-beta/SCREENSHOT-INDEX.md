@@ -7,15 +7,15 @@ Owner review: [`../global-signals-beta-owner-review.md`](../global-signals-beta-
 
 | File | Route | Viewport |
 | --- | --- | --- |
-| `01-landing-desktop.png` | `/side-trails/global-signals/` | desktop |
+| `01-landing-desktop.png` | `/side-trails/global-signals/` (home board) | desktop |
 | `02-landing-mobile.png` | `/side-trails/global-signals/` | mobile |
-| `03-articles-feed-desktop.png` | `/side-trails/global-signals/articles/` | desktop |
+| `03-articles-feed-desktop.png` | `/articles/` | desktop |
 | `04-articles-detail-desktop.png` | `/articles/?id=gsa_demo-steel-tariff` | desktop |
 | `05-relationship-graph-taiwan-desktop.png` | `/relationship-graph/?focus=gsn_taiwan` | desktop |
 | `06-relationship-graph-mobile.png` | `/relationship-graph/?focus=gsn_taiwan` | mobile |
 | `07-relationship-explorer-taiwan-desktop.png` | `/relationships/?entity=gsn_taiwan` | desktop |
 | `08-countries-index-desktop.png` | `/countries/` | desktop |
-| `09-country-taiwan-desktop.png` | `/countries/taiwan/` | desktop |
+| `09-country-taiwan-desktop.png` | `/countries/taiwan/` (entity alias) | desktop |
 | `10-industries-index-desktop.png` | `/industries/` | desktop |
 | `11-industry-semiconductors-desktop.png` | `/industries/semiconductors/` | desktop |
 | `12-citizen-impact-desktop.png` | `/citizen-impact/` | desktop |
@@ -23,4 +23,6 @@ Owner review: [`../global-signals-beta-owner-review.md`](../global-signals-beta-
 | `14-global-dashboard-coming-soon-desktop.png` | `/global-dashboard/` | desktop |
 | `15-waypoint-take-coming-soon-desktop.png` | `/waypoint-take/` | desktop |
 | `16-search-taiwan-desktop.png` | `/search/?q=Taiwan` | desktop |
-| `17-relationship-graph-taiwan-tall-desktop.png` | `/relationship-graph/?focus=gsn_taiwan` | desktop tall (shows canvas) |
+| `17-relationship-graph-taiwan-tall-desktop.png` | `/relationship-graph/?focus=gsn_taiwan` | desktop tall |
+| `18-home-dashboard-desktop.png` | `/` home board (late tip) | desktop |
+| `19-entities-taiwan-desktop.png` | `/entities/country/taiwan/` | desktop |
