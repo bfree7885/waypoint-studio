@@ -13,22 +13,18 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app">
-    <div id="wds-product-home" data-wds-product="PRODUCT_SLUG"></div>
-    <footer class="wds-footer">Waypoint Studio</footer>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="PRODUCT_SLUG" data-product-name="PRODUCT_NAME" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <main id="main" class="wcs-page">
+      <!-- Product content -->
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="1"></div>
   </div>
-  <script src="../js/wds.js?v=local" defer></script>
-  <script defer>
-    document.addEventListener("DOMContentLoaded", function () {
-      function boot() {
-        if (window.WDS && WDS.ecosystem) {
-          WDS.ecosystem.initProductHome({ product: "PRODUCT_SLUG", base: "../" });
-        } else {
-          requestAnimationFrame(boot);
-        }
-      }
-      boot();
-    });
-  </script>
+  <script src="../js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../js/platform/wds-app-shell.js?v=local" defer></script>
 </body>
 </html>
