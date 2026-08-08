@@ -38,7 +38,7 @@
       "icon": "assets/images/side-trails/global-signals-globe.svg",
       "category": "Research",
       "status": "experimental",
-      "ctaLabel": "Explore Global Signals",
+      "ctaLabel": "Open Global Signals",
       "url": "side-trails/global-signals/",
       "order": 30
     }

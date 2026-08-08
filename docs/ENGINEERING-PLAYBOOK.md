@@ -137,6 +137,137 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Global Signals direct entry (dashboard first)
+
+**Artifact:** `docs/global-signals/direct-entry-owner-review.md`  
+**Branch:** `feature/global-signals-direct-entry`
+
+1. **Integrate the home-dashboard tip before link surgery** — otherwise “direct
+   entry” only moves traffic onto an empty marketing page. Base from `origin/main`,
+   merge `feature/global-signals-home-dashboard`, then audit entry points.
+2. **Homepage Side Trails is nav-config driven** — catalog URL alone is not enough;
+   add `global-signals` to `homeSideTrails` + `productLanding`/`startHere` so Home
+   lists open the dashboard without a detour.
+3. **Park mission copy on `/about/`** — keep `/side-trails/global-signals/` as the
+   board; footer “About” is secondary. Do not restore hero marketing on the primary route.
+4. **Superseded shells get redirects, not “coming soon”** —
+   `global-dashboard/` → `../` once a real dashboard exists; leave unfinished modules
+   as honest empty shells only when they are still planned work.
+5. **Assert entry matrix in automation** — catalog URL, nav `homeSideTrails`, About
+   studio link, primary `gsh-board`, and redirect meta/`location.replace` in one
+   `test-global-signals-direct-entry.mjs` so regressions cannot reintroduce friction.
+
+### 2026-08-07 — Global Signals home application dashboard
+
+**Artifact:** `docs/global-signals/home-dashboard-owner-review.md`  
+**Branch:** `feature/global-signals-home-dashboard`
+
+1. **Dashboard ≠ landing.** Once modules exist, `/side-trails/global-signals/`
+   must open into composed intelligence — not mission copy or a module catalog.
+   Keep “coming soon” shells off the entry surface even if routes still exist.
+2. **Integrate sibling feature tips before wiring links.** Conservative merges of
+   Explorer, Graph, Explain, Countries, Industries, and Citizen Impact avoid
+   dashboard deep-links into empty shells.
+3. **Curated `home.json` + module JSON composition** beats inventing a live risk
+   engine; featured picks must resolve to existing ids and keep sample/demo labels.
+4. **Foundation smoke tests that require every roadmap href on the landing freeze
+   product progress** — graduate assertions when the entry experience becomes a
+   board (require live module links; assert placeholders are *absent*).
+5. **Relationship search belongs on the home board** as a first-class entry
+   (`?entity=`), not a buried module CTA.
+
+### 2026-08-07 — Global Signals Industry Intelligence
+
+**Artifact:** `docs/global-signals/industry-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-industry-intelligence`
+
+1. **Curated baseline ≠ live news.** Dense industry pages can feel like a real
+   intelligence platform while still labeling `mode: curated-baseline` and never
+   fabricating breaking events as Observed.
+2. **Stable entity IDs enable parallel modules.** `gsi_*` / `gsc_*` / `gsci_*` /
+   `gsa_*` soft-links let Country Intelligence, Citizen Impact, and Relationship
+   Explorer land on other worktrees without colliding on this branch.
+3. **Articles taxonomy aliases matter.** Map `Logistics → Shipping` so sample
+   briefs interconnect without renaming existing Articles strings.
+4. **Detail-page relative depth.** Cross-module links from
+   `/industries/<slug>/` need `../../articles/` (not `../articles/`) — catch in
+   interconnect tests.
+5. **Seed script + JSON** keeps 11 full pages maintainable; regenerate via
+   `scripts/build-industry-intelligence-seed.mjs` rather than hand-editing
+   megabytes of duplicated HTML.
+
+### 2026-08-07 — Global Signals Relationship Graph (primary)
+
+**Artifact:** `docs/global-signals/relationship-graph-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-graph`
+
+1. **Radial-from-focus + neighbor list beats force-directed for literacy** — stable equal-angle rings and progressive expand keep “why this edge” readable; physics layouts obscure evidence.
+2. **Assemble edges only from curated source datasets** — Relationship Explorer, Citizen Impact cause chains, Industry `topDependencies` / `citizenImpacts`, and Country citizen pathways. Do not invent hops to fill the graph.
+3. **Mobile must drop the canvas when cramped** — stacked expand panels preserve edge facets; hiding SVG under `40rem` is a readability choice, not a missing feature.
+4. **Promote Graph without deleting Cascade Explorer** — keep `/relationships/` as the linear companion; elevate `/relationship-graph/` as the primary CTA and update “coming soon” suite assertions accordingly.
+5. **Negative UI copy still trips library-name tests if the regex includes the denied phrase** — keep asserting `cytoscape|d3.force|…`, not `force-directed`, when the page honestly rejects that layout.
+
+### 2026-08-07 — Global Signals Explain This
+
+**Artifact:** `docs/global-signals/explain-this-owner-review.md`  
+**Branch:** `feature/global-signals-explain-this`
+
+1. **Signature explainer = curated match + graph walk, never an LLM** — prompts / keywords / aliases / labels are enough for V1 demos and keep trust boundaries testable.
+2. **Prefer curated cascades; BFS only as fallback** — deterministic Taiwan / drought / tariff stories screenshot cleanly; BFS must still refuse to invent edges.
+3. **Waypoint’s Take is sourced or absent** — pull `waypointsTake` from linked industry JSON only; honest empty beats paraphrased filler.
+4. **Label seed extensions that exist only for demo prompts** — `gsn_travel` / `gsc_airlines` carry `provenance: explain-this-seed-extension` so owners can accept or relocate them.
+5. **Soft-link parallel modules by stable IDs** — inline linked excerpts now; deep-link `gsc_*` / `gsi_*` / citizen section anchors so Countries / Industries / Citizen Impact can land later without rewiring Explain This.
+
+### 2026-08-07 — Global Signals Relationship Explorer
+
+**Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-explorer`
+
+1. **Cascade UX ≠ graph UX** — ship an ordered downward path with edge facets first; leave force-directed / network canvas for Relationship Graph so owners can review literacy without layout noise.
+2. **Reuse Articles confidence / horizon normalizers with `predicted: true` on every edge** — prevents Observed leaking into dependency hops even when seed JSON is wrong.
+3. **Curated `cascades[].edgeIds` beats ad-hoc BFS for V1 demos** — deterministic Taiwan → … → Consumer Products stories are easier to test and screenshot than algorithmic walks.
+4. **Selectable roots must cover every advertised entity type** — product copy that lists Country…Weather Event needs at least one selectable of each, or the picker feels incomplete.
+5. **Negative UI copy can trip “must not mention X” tests** — assert against library names (`cytoscape`), not the phrase “force-directed” when the page honestly denies that pattern.
+
+### 2026-08-07 — Global Signals Citizen Impact (eight-category sample/demo shell)
+
+**Artifact:** `docs/global-signals/citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Align Citizen Impact to Articles confidence/horizon + Rel Explorer `gsn_*` ids**
+   instead of inventing a parallel schema — soft-link Explorer routes only when
+   they exist on main; otherwise document intended join keys.
+2. **Treat statement-level impact claims as predicted surfaces** — coerce Observed
+   away the same way Articles path hops do; reserve Observed for established facts.
+3. **Graduate foundation smoke tests when a module leaves “Coming soon”** —
+   `test-global-signals.mjs` must exclude Citizen Impact once the live shell ships,
+   same lesson as Articles Sprint 1.
+4. **Eight owner-requested categories beat shipping the full eleven-card design
+   grid unfinished** — keep the broader design doc directional; V1 UI matches the
+   brief.
+5. **Reuse GS landing chrome (`gs-landing` + IBM Plex)** for module pages; keep
+   outdoor Articles / WCS skins out of Side Trails.
+
+### 2026-08-07 — Global Signals Country Intelligence
+
+**Artifact:** `docs/global-signals/country-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-country-intelligence`
+
+1. **Clean slug pages + shared mount beat query-only detail for country sets** —
+   thin `/countries/<slug>/index.html` shells keep shareable URLs while one JS
+   module owns normalize/render; still accept `?id=` for Articles parity.
+2. **Reuse Articles confidence/horizon normalizers with a `predicted` flag** —
+   country risks and citizen-impact links must coerce Observed → Unknown the
+   same way impact-path hops do.
+3. **Cross-module hrefs must be depth-aware** — links from `/countries/<slug>/`
+   need `../../articles/` and `../../citizen-impact/#…`; dataset-relative
+   `../citizen-impact` is wrong on slug pages.
+4. **Foundation smoke tests that assume every non-Articles module is
+   “Coming soon” must be updated when Country Intelligence graduates** —
+   otherwise CI freezes new modules in placeholder state.
+5. **Soft-link stable ids even when sibling modules are still shells** —
+   `gsa_*` article ids, citizen category anchors, and `relationship-graph`
+   routes keep parallel worktrees integrable without schema forks.
 
 ### 2026-08-07 — Homepage Side Trails section (deepeners teaser)
 

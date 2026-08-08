@@ -115,7 +115,7 @@
     var cfg = Nav.config ? Nav.config() : {};
     var primaryIds = cfgIds(cfg, "homePrimary", ["dashboard", "scenes", "sheds"]);
     var incubatorIds = cfgIds(cfg, "homeIncubator", ["steepleaf", "savant-sommelier", "waypoint-volunteer"]);
-    var sideTrailsIds = cfgIds(cfg, "homeSideTrails", ["signalterrain"]);
+    var sideTrailsIds = cfgIds(cfg, "homeSideTrails", ["signalterrain", "global-signals"]);
     var supportingIds = cfgIds(cfg, "homeSupporting", ["foragecast", "fieldry", "landscape-interpretation"]);
 
     var leadHtml = "";

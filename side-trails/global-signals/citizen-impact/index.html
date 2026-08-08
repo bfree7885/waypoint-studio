@@ -3,42 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Citizen Impact — Global Signals module. Coming soon / not implemented. Part of Side Trails.">
-  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Citizen Impact — Global Signals. Translates geopolitics into everyday life with confidence and time-horizon labels. Sample/demo literacy — not live news. Part of Side Trails at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/citizen-impact/">
-  <title>Citizen Impact — Coming soon · Global Signals</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Citizen Impact — Global Signals">
+  <meta property="og:description" content="Everyday consequences of world events — labeled sample/demo literacy, not live news.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/citizen-impact/">
+  <title>Citizen Impact — Global Signals</title>
   <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-citizen-impact.css">
 </head>
-<body class="gs-landing">
+<body class="gs-landing gsc-page">
   <a class="gs-skip" href="#main">Skip to content</a>
+
   <header class="gs-top">
     <a class="gs-brand-mark" href="../">Global Signals</a>
     <nav aria-label="Product">
-      <a href="../">Product</a>
+      <a href="./" aria-current="page">Citizen Impact</a>
+      <a href="../articles/">Articles</a>
+      <a href="../">Global Signals</a>
       <a href="../../">Side Trails</a>
     </nav>
   </header>
-  <main id="main" class="gs-placeholder-main">
-    <p class="gs-eyebrow">Global Signals module</p>
-    <p class="gs-badge">Coming soon · not implemented</p>
-    <h1>Citizen Impact</h1>
-    <p>Everyday consequences labeled with confidence and unknowns.</p>
-    <p>
-      This route is an honest empty shell for roadmap planning. There is no live data,
-      no engine, and no fabricated functionality here.
-    </p>
-    <p>
-      <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
-      <a class="gs-cta" href="../../">Side Trails</a>
-    </p>
+
+  <main id="main" class="gsc-main">
+    <header class="gsc-hub-head">
+      <p class="gs-eyebrow">Global Signals module</p>
+      <h1>Citizen Impact</h1>
+      <p class="gsc-hub-desc">
+        Translates geopolitics into everyday life — food, fuel, utilities, housing,
+        travel, healthcare, insurance, and technology. Each statement answers what
+        changed, why, what caused it, how confident we are, and the expected time horizon.
+        Evidence and entity ids stay visible. Not financial, medical, or political advice.
+      </p>
+      <p class="gsc-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+        <a class="gs-cta" href="../articles/">Articles</a>
+      </p>
+    </header>
+
+    <section
+      id="gsc-board"
+      class="gsc-board"
+      aria-label="Citizen impact categories"
+      data-gsc-board
+      data-gsc-state="loading"
+    >
+      <p class="gsc-empty" role="status">
+        Loading Citizen Impact sample statements…
+      </p>
+    </section>
   </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-citizen-impact.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.citizenImpact) {
+        WDS.globalSignals.citizenImpact.mount(document.getElementById("gsc-board"), {
+          depth: 3,
+          dataUrl: "../../../data/global-signals/citizen-impact/citizen-impact.json"
+        });
+      }
+    });
+  </script>
+
   <footer class="gs-footer">
     <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
     <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
   </footer>
 </body>
 </html>

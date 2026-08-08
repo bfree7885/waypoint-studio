@@ -23,7 +23,7 @@
     "architectureNavLabels": ["Dashboard", "Scenes", "Sheds", "Articles", "Side Trails", "Support", "About"],
     "homePrimary": ["dashboard", "scenes", "sheds"],
     "homeIncubator": ["steepleaf", "savant-sommelier", "waypoint-volunteer"],
-    "homeSideTrails": ["signalterrain"],
+    "homeSideTrails": ["signalterrain", "global-signals"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {
@@ -555,6 +555,85 @@
           "understand"
         ],
         "related": [
+          "dashboard"
+        ]
+      },
+      {
+        "id": "global-signals",
+        "title": "Global Signals",
+        "shortTitle": "Global Signals",
+        "icon": "globe",
+        "route": "side-trails/global-signals/",
+        "match": [
+          "/side-trails/global-signals"
+        ],
+        "category": "intelligence",
+        "family": "side-trails",
+        "description": "Side Trails relationship intelligence — how world events shape everyday life. Opens the live dashboard (sample/demo labeled), not a marketing page.",
+        "status": "experimental",
+        "features": [
+          {
+            "id": "dashboard",
+            "label": "Intelligence dashboard",
+            "href": "side-trails/global-signals/"
+          },
+          {
+            "id": "articles",
+            "label": "Articles",
+            "href": "side-trails/global-signals/articles/"
+          },
+          {
+            "id": "explain",
+            "label": "Explain This",
+            "href": "side-trails/global-signals/explain/"
+          },
+          {
+            "id": "relationships",
+            "label": "Relationship Explorer",
+            "href": "side-trails/global-signals/relationships/"
+          },
+          {
+            "id": "relationship-graph",
+            "label": "Relationship Graph",
+            "href": "side-trails/global-signals/relationship-graph/"
+          },
+          {
+            "id": "countries",
+            "label": "Country Intelligence",
+            "href": "side-trails/global-signals/countries/"
+          },
+          {
+            "id": "industries",
+            "label": "Industry Intelligence",
+            "href": "side-trails/global-signals/industries/"
+          },
+          {
+            "id": "citizen-impact",
+            "label": "Citizen Impact",
+            "href": "side-trails/global-signals/citizen-impact/"
+          },
+          {
+            "id": "about",
+            "label": "About",
+            "href": "side-trails/global-signals/about/"
+          }
+        ],
+        "purpose": "Observe and understand how geopolitics, trade, infrastructure, and related signals ripple into citizen life — under Side Trails, not a studio primary peer.",
+        "maturity": "Experimental (Side Trails)",
+        "startHere": {
+          "label": "Open Global Signals dashboard",
+          "href": "side-trails/global-signals/"
+        },
+        "productLanding": {
+          "label": "Open Global Signals dashboard",
+          "href": "side-trails/global-signals/"
+        },
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "signalterrain",
           "dashboard"
         ]
       },

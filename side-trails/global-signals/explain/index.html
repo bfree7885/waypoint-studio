@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Explain This — ask why food prices rise, why Taiwan matters, why airlines are affected, or what a tariff changes. Structured graph answers only. No AI invention. Part of Global Signals at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/explain/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Explain This — Global Signals">
+  <meta property="og:description" content="Signature Global Signals explainer: structured matching and relationship traversal — never fabricated AI answers.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/explain/">
+  <title>Explain This — Global Signals</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-explain.css">
+</head>
+<body class="gs-landing gse-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="./" aria-current="page">Explain This</a>
+      <a href="../relationships/">Relationships</a>
+      <a href="../articles/">Articles</a>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+    </nav>
+  </header>
+
+  <main id="main" class="gse-main">
+    <header class="gse-hub-head">
+      <p class="gs-eyebrow">Global Signals signature module</p>
+      <h1>Explain This</h1>
+      <p class="gse-hub-desc">
+        Ask why something matters — food prices, Taiwan, airlines, tariffs —
+        and follow a structured relationship chain with confidence, horizon, and evidence.
+        Answers come only from the graph and linked records. No AI invention.
+      </p>
+      <p class="gse-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../relationships/">Relationship Explorer</a>
+        <a class="gs-cta" href="../articles/">Articles</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+      </p>
+    </header>
+
+    <section
+      id="gse-app"
+      class="gse-app"
+      aria-label="Explain This"
+      data-gse-app
+      data-gse-state="loading"
+    >
+      <p class="gse-loading" role="status">Loading Explain This…</p>
+    </section>
+  </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-explain.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.explain) {
+        WDS.globalSignals.explain.mount(document.getElementById("gse-app"), {
+          relationshipsUrl: "../../../data/global-signals/relationships/relationships.json",
+          seedsUrl: "../../../data/global-signals/explain/question-seeds.json",
+          industriesUrl: "../../../data/global-signals/industries/industries.json",
+          countriesUrl: "../../../data/global-signals/countries/countries.json",
+          citizenImpactUrl: "../../../data/global-signals/citizen-impact/citizen-impact.json",
+          articlesUrl: "../../../data/global-signals/articles/articles.json"
+        });
+      }
+    });
+  </script>
+
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../relationships/">Relationships</a>
+      <a href="../articles/">Articles</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
+  </footer>
+</body>
+</html>

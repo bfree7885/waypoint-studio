@@ -1,0 +1,204 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-07T22:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo Explain This seeds",
+  "honesty": {
+    "banner": "Explain This answers only from the structured relationship graph and linked Global Signals records. No AI generation. If the graph has no path, the UI says so.",
+    "matchingRules": "Questions map via curated prompt strings, keyword aliases, and entity labels — never an LLM.",
+    "inventionRules": "Never invent edges, Waypoint Takes, confidence, or evidence. Missing sections render honest empty states."
+  },
+  "examplePrompts": [
+    "Why are food prices increasing?",
+    "Why does Taiwan matter?",
+    "Why are airlines affected?",
+    "What does this tariff change?"
+  ],
+  "questions": [
+    {
+      "id": "gsq_food_prices",
+      "prompts": [
+        "Why are food prices increasing?",
+        "Why are food prices rising?",
+        "Why is food getting more expensive?"
+      ],
+      "keywords": [
+        "food price",
+        "food prices",
+        "grocery",
+        "groceries",
+        "household food",
+        "food cost",
+        "food costs"
+      ],
+      "seedEntityIds": ["gsn_drought"],
+      "preferredCascadeId": "gsc_drought",
+      "linkedIndustryIds": ["gsi_food", "gsi_agriculture"],
+      "linkedCountryIds": [],
+      "linkedCitizenSections": ["food"],
+      "linkedArticleIds": ["gsa_demo-port-labor"]
+    },
+    {
+      "id": "gsq_taiwan",
+      "prompts": [
+        "Why does Taiwan matter?",
+        "Why is Taiwan important?",
+        "Why does Taiwan matter for supply chains?"
+      ],
+      "keywords": ["taiwan", "taipei", "tsmc"],
+      "seedEntityIds": ["gsn_taiwan"],
+      "preferredCascadeId": "gsc_taiwan",
+      "linkedIndustryIds": ["gsi_semiconductors", "gsi_technology"],
+      "linkedCountryIds": ["gsc_taiwan"],
+      "linkedCitizenSections": ["technology"],
+      "linkedArticleIds": []
+    },
+    {
+      "id": "gsq_airlines",
+      "prompts": [
+        "Why are airlines affected?",
+        "Why are airlines impacted?",
+        "How are airlines affected?"
+      ],
+      "keywords": [
+        "airline",
+        "airlines",
+        "aviation",
+        "air travel",
+        "flight",
+        "flights",
+        "jet fuel"
+      ],
+      "seedEntityIds": ["gsn_corridor_conflict"],
+      "preferredCascadeId": "gsc_airlines",
+      "linkedIndustryIds": ["gsi_transportation", "gsi_energy"],
+      "linkedCountryIds": [],
+      "linkedCitizenSections": ["travel", "fuel"],
+      "linkedArticleIds": ["gsa_demo-shipping-diversion"]
+    },
+    {
+      "id": "gsq_tariff",
+      "prompts": [
+        "What does this tariff change?",
+        "What does a steel tariff change?",
+        "What does this tariff affect?"
+      ],
+      "keywords": [
+        "tariff",
+        "tariffs",
+        "steel tariff",
+        "trade duty",
+        "import duty"
+      ],
+      "seedEntityIds": ["gsn_steel_tariff"],
+      "preferredCascadeId": "gsc_steel_tariff",
+      "linkedIndustryIds": ["gsi_construction", "gsi_automotive"],
+      "linkedCountryIds": [],
+      "linkedCitizenSections": ["housing"],
+      "linkedArticleIds": ["gsa_demo-steel-tariff"]
+    }
+  ],
+  "entityAliases": {
+    "taiwan": "gsn_taiwan",
+    "semiconductors": "gsn_semiconductors",
+    "chips": "gsn_semiconductors",
+    "electronics": "gsn_electronics",
+    "drought": "gsn_drought",
+    "grain": "gsn_grain",
+    "food": "gsn_household_food",
+    "food prices": "gsn_household_food",
+    "grocery": "gsn_household_food",
+    "tariff": "gsn_steel_tariff",
+    "steel tariff": "gsn_steel_tariff",
+    "steel": "gsn_steel",
+    "airline": "gsn_travel",
+    "airlines": "gsn_travel",
+    "aviation": "gsn_travel",
+    "air travel": "gsn_travel",
+    "travel": "gsn_travel",
+    "oil": "gsn_crude_oil",
+    "crude": "gsn_crude_oil",
+    "conflict": "gsn_corridor_conflict",
+    "rotterdam": "gsn_rotterdam",
+    "canal": "gsn_canal_corridor"
+  },
+  "entityCrosswalk": {
+    "gsn_taiwan": {
+      "countryIds": ["gsc_taiwan"],
+      "industryIds": ["gsi_semiconductors", "gsi_technology"],
+      "citizenSections": ["technology"]
+    },
+    "gsn_semiconductors": {
+      "countryIds": ["gsc_taiwan"],
+      "industryIds": ["gsi_semiconductors"],
+      "citizenSections": ["technology"]
+    },
+    "gsn_electronics": {
+      "industryIds": ["gsi_technology"],
+      "citizenSections": ["technology"]
+    },
+    "gsn_drought": {
+      "industryIds": ["gsi_agriculture", "gsi_food"],
+      "citizenSections": ["food"]
+    },
+    "gsn_grain": {
+      "industryIds": ["gsi_agriculture", "gsi_food"],
+      "citizenSections": ["food"]
+    },
+    "gsn_food_processing": {
+      "industryIds": ["gsi_food"],
+      "citizenSections": ["food"]
+    },
+    "gsn_household_food": {
+      "industryIds": ["gsi_food"],
+      "citizenSections": ["food"]
+    },
+    "gsn_steel_tariff": {
+      "industryIds": ["gsi_construction", "gsi_automotive"],
+      "citizenSections": ["housing"],
+      "articleIds": ["gsa_demo-steel-tariff"]
+    },
+    "gsn_steel": {
+      "industryIds": ["gsi_construction", "gsi_automotive"],
+      "citizenSections": ["housing"]
+    },
+    "gsn_construction": {
+      "industryIds": ["gsi_construction"],
+      "citizenSections": ["housing"]
+    },
+    "gsn_automotive": {
+      "industryIds": ["gsi_automotive"],
+      "citizenSections": ["transportation"]
+    },
+    "gsn_corridor_conflict": {
+      "industryIds": ["gsi_energy", "gsi_transportation"],
+      "citizenSections": ["fuel", "travel"],
+      "articleIds": ["gsa_demo-shipping-diversion"]
+    },
+    "gsn_crude_oil": {
+      "industryIds": ["gsi_energy", "gsi_transportation"],
+      "citizenSections": ["fuel", "travel"]
+    },
+    "gsn_transportation": {
+      "industryIds": ["gsi_transportation"],
+      "citizenSections": ["travel", "fuel"]
+    },
+    "gsn_travel": {
+      "industryIds": ["gsi_transportation"],
+      "citizenSections": ["travel"]
+    },
+    "gsn_logistics": {
+      "industryIds": ["gsi_shipping", "gsi_transportation"],
+      "citizenSections": ["travel"]
+    }
+  },
+  "routes": {
+    "articles": "../articles/",
+    "relationships": "../relationships/",
+    "relationshipGraph": "../relationship-graph/",
+    "citizenImpact": "../citizen-impact/",
+    "countries": "../countries/",
+    "industries": "../industries/",
+    "explain": "./"
+  }
+}
