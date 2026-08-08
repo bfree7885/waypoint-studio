@@ -2,6 +2,7 @@
 
 **Date:** 2026-08-07  
 **Branch:** `feature/homepage-global-signals-teaser`  
+**Tip SHA:** `7c8fce57a79a2e1bccd53cf1b9034483c39f1267`  
 **Worktree:** `/home/bryan/Projects/waypoint-studio-home-gs-teaser`  
 **Product:** Waypoint Studio · Home · Global Signals (Side Trails)  
 **Deployed:** No  
