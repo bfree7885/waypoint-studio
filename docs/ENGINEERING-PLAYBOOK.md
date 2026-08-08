@@ -137,6 +137,26 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Global Signals direct entry (dashboard first)
+
+**Artifact:** `docs/global-signals/direct-entry-owner-review.md`  
+**Branch:** `feature/global-signals-direct-entry`
+
+1. **Integrate the home-dashboard tip before link surgery** — otherwise “direct
+   entry” only moves traffic onto an empty marketing page. Base from `origin/main`,
+   merge `feature/global-signals-home-dashboard`, then audit entry points.
+2. **Homepage Side Trails is nav-config driven** — catalog URL alone is not enough;
+   add `global-signals` to `homeSideTrails` + `productLanding`/`startHere` so Home
+   lists open the dashboard without a detour.
+3. **Park mission copy on `/about/`** — keep `/side-trails/global-signals/` as the
+   board; footer “About” is secondary. Do not restore hero marketing on the primary route.
+4. **Superseded shells get redirects, not “coming soon”** —
+   `global-dashboard/` → `../` once a real dashboard exists; leave unfinished modules
+   as honest empty shells only when they are still planned work.
+5. **Assert entry matrix in automation** — catalog URL, nav `homeSideTrails`, About
+   studio link, primary `gsh-board`, and redirect meta/`location.replace` in one
+   `test-global-signals-direct-entry.mjs` so regressions cannot reintroduce friction.
+
 ### 2026-08-07 — Global Signals home application dashboard
 
 **Artifact:** `docs/global-signals/home-dashboard-owner-review.md`  

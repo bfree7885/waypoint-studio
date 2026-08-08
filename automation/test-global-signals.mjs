@@ -127,17 +127,24 @@ assert.match(explainPage, /Explain This/);
 assert.match(explainPage, /gse-app/);
 assert.doesNotMatch(explainPage, /Coming soon/i);
 
-for (const slug of [
-  "waypoint-take",
-  "supply-chains",
-  "scenario-explorer",
-  "global-dashboard"
-]) {
+for (const slug of ["waypoint-take", "supply-chains", "scenario-explorer"]) {
   const page = read(`side-trails/global-signals/${slug}/index.html`);
   assert.match(page, /Coming soon/i);
   assert.match(page, /not implemented/i);
   assert.match(page, /Part of Side Trails\./);
 }
+
+const globalDashboardRedirect = read("side-trails/global-signals/global-dashboard/index.html");
+assert.match(globalDashboardRedirect, /meta[^>]+http-equiv=["']refresh/i);
+assert.match(globalDashboardRedirect, /url=\.\.\//);
+assert.match(globalDashboardRedirect, /location\.replace\(\s*["']\.\.\/["']\s*\)/);
+assert.doesNotMatch(globalDashboardRedirect, /Coming soon/i);
+
+const aboutPage = read("side-trails/global-signals/about/index.html");
+assert.match(aboutPage, /About/);
+assert.match(aboutPage, /Open dashboard/i);
+assert.match(aboutPage, /href="\.\.\/"/);
+assert.match(html, /\.\/about\//); // secondary About in dashboard footer
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 const gs = catalog.projects.find((p) => p.id === "global-signals");
