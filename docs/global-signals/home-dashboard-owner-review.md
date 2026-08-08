@@ -10,7 +10,7 @@
 | | SHA |
 | --- | --- |
 | Start (branched from `origin/main`) | `f942c7b` — Merge release/global-signals-sprint-1 into main |
-| Tip (this review package) | b31a819e384118ab9a09b8412af6400fe999c088 |
+| Tip (this review package) | `eaec7eb0b9b9ea308c12c58f02d21cc0787be993` |
 
 ## Goal achieved
 
