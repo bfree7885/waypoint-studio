@@ -33,6 +33,7 @@ const required = [
   "docs/product/global-signals-owner-review.md",
   "side-trails/global-signals/articles/index.html",
   "side-trails/global-signals/relationships/index.html",
+  "side-trails/global-signals/explain/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -61,6 +62,7 @@ assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
+assert.match(html, /\.\/explain\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -69,7 +71,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Explorer + Explain This are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -85,6 +87,14 @@ assert.match(relationshipsPage, /What depends on this/);
 assert.match(relationshipsPage, /Part of Side Trails\./);
 assert.doesNotMatch(relationshipsPage, /Coming soon/i);
 assert.doesNotMatch(relationshipsPage, /cytoscape|WebSocket/i);
+
+const explainPage = read("side-trails/global-signals/explain/index.html");
+assert.match(explainPage, /Explain This/);
+assert.match(explainPage, /gse-app/);
+assert.match(explainPage, /No AI invention/);
+assert.match(explainPage, /Part of Side Trails\./);
+assert.doesNotMatch(explainPage, /Coming soon/i);
+assert.doesNotMatch(explainPage, /openai|anthropic|llm|ChatGPT/i);
 
 for (const slug of [
   "waypoint-take",
