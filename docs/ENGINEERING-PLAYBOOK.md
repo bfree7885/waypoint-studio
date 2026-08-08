@@ -137,6 +137,25 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Global Signals home application dashboard
+
+**Artifact:** `docs/global-signals/home-dashboard-owner-review.md`  
+**Branch:** `feature/global-signals-home-dashboard`
+
+1. **Dashboard ≠ landing.** Once modules exist, `/side-trails/global-signals/`
+   must open into composed intelligence — not mission copy or a module catalog.
+   Keep “coming soon” shells off the entry surface even if routes still exist.
+2. **Integrate sibling feature tips before wiring links.** Conservative merges of
+   Explorer, Graph, Explain, Countries, Industries, and Citizen Impact avoid
+   dashboard deep-links into empty shells.
+3. **Curated `home.json` + module JSON composition** beats inventing a live risk
+   engine; featured picks must resolve to existing ids and keep sample/demo labels.
+4. **Foundation smoke tests that require every roadmap href on the landing freeze
+   product progress** — graduate assertions when the entry experience becomes a
+   board (require live module links; assert placeholders are *absent*).
+5. **Relationship search belongs on the home board** as a first-class entry
+   (`?entity=`), not a buried module CTA.
+
 ### 2026-08-07 — Global Signals Industry Intelligence
 
 **Artifact:** `docs/global-signals/industry-intelligence-owner-review.md`  
