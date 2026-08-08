@@ -1,9 +1,11 @@
 # Global Signals — Citizen Impact Dashboard
 
-**Status:** Design only — **not implemented**  
+**Status:** Sample / demo runtime on `feature/global-signals-citizen-impact` (eight-category literacy shell)  
 **Product:** Global Signals (Side Trails)  
 **Primary question:** *What could this mean for ordinary people?*  
-**Related:** [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md), [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md) *(when present)*, [GLOBAL-SIGNALS-ARTICLES.md](GLOBAL-SIGNALS-ARTICLES.md) *(when present)*, [docs/side-trails/README.md](side-trails/README.md), [docs/side-trails/global-signals.md](side-trails/global-signals.md) *(when present)*
+**Route:** `/side-trails/global-signals/citizen-impact/`  
+**Data model:** [`docs/global-signals/citizen-impact-data-model.md`](global-signals/citizen-impact-data-model.md)  
+**Related:** [GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md](GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md), [GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md](GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md) *(when present)*, [docs/global-signals/articles-data-model.md](global-signals/articles-data-model.md), [docs/side-trails/README.md](side-trails/README.md), [docs/side-trails/global-signals.md](side-trails/global-signals.md)
 
 ---
 
@@ -20,8 +22,12 @@ It does **not** answer:
 
 > What will happen for certain? Who should we watch? How do markets “guarantee” a move?
 
-This document is a **design contract**. No interactive dashboard runtime, live
-feeds, personalization engine, or notification system ships in this branch.
+This document remains the **design contract**. The eight-category sample/demo
+runtime ships on `/side-trails/global-signals/citizen-impact/` (Food · Fuel ·
+Utilities · Housing · Travel · Healthcare · Insurance · Technology). Broader
+eleven-category design notes below are directional; V1 UI implements the eight
+owner-requested sections. No live feeds, personalization engine, or notification
+system ships in this branch.
 
 **Positioning:** intelligence platform — not news theater, not a government desk,
 not surveillance.

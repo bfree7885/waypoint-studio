@@ -1,0 +1,74 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-08T01:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo intelligence dashboard",
+  "honesty": {
+    "banner": "Sample / demo dashboard — composed from labeled Global Signals datasets. Not a live news feed, not financial advice, and not a real-time risk score.",
+    "compositionRules": "Sections select among existing Articles, Countries, Industries, Citizen Impact, Relationship Explorer, Relationship Graph, and Explain This records. Featured picks do not invent events."
+  },
+  "question": "What matters today?",
+  "tagline": "Understanding how world events shape everyday life.",
+  "featuredTake": {
+    "source": "article",
+    "articleId": "gsa_demo-canal-slots",
+    "industrySlug": "shipping",
+    "note": "Analysis from the sample Articles brief, with Industry Intelligence for shipping context."
+  },
+  "featuredRelationship": {
+    "cascadeId": "gsc_taiwan",
+    "rootEntityId": "gsn_taiwan",
+    "graphFocusId": "gsn_taiwan",
+    "explainQuery": "Why does Taiwan matter for semiconductors?"
+  },
+  "featuredArticleIds": [
+    "gsa_demo-canal-slots",
+    "gsa_demo-pipeline-cyber",
+    "gsa_demo-shipping-diversion",
+    "gsa_demo-steel-tariff"
+  ],
+  "mostAffectedCountrySlugs": [
+    "taiwan",
+    "china",
+    "united-states",
+    "saudi-arabia",
+    "germany",
+    "japan"
+  ],
+  "industriesUnderPressureSlugs": [
+    "semiconductors",
+    "shipping",
+    "energy",
+    "food",
+    "automotive",
+    "agriculture"
+  ],
+  "citizenImpactSectionIds": [
+    "fuel",
+    "food",
+    "technology",
+    "travel"
+  ],
+  "currentEventSources": {
+    "preferArticleIds": [
+      "gsa_demo-canal-slots",
+      "gsa_demo-pipeline-cyber",
+      "gsa_demo-shipping-diversion"
+    ],
+    "preferCountrySlugs": [
+      "taiwan",
+      "united-states",
+      "saudi-arabia"
+    ],
+    "maxItems": 6
+  },
+  "moduleRoutes": {
+    "articles": "./articles/",
+    "relationships": "./relationships/",
+    "relationshipGraph": "./relationship-graph/",
+    "countries": "./countries/",
+    "industries": "./industries/",
+    "citizenImpact": "./citizen-impact/",
+    "explain": "./explain/"
+  }
+}
