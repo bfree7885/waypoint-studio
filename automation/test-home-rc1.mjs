@@ -178,7 +178,10 @@ assert("deepeners render Waypoint’s Take", /Waypoint.s Take/.test(deepenHtml))
 assert("deepeners render Featured Photography", /Featured Photography/.test(deepenHtml));
 assert("deepeners render Scenes intro", /Open Scenes/.test(deepenHtml));
 assert("deepeners render Sheds intro", /Open Sheds/.test(deepenHtml));
+assert("deepeners render Global Signals teaser", /data-deepen="global-signals-teaser"/.test(deepenHtml));
+assert("deepeners link Explore Global Signals", /Explore Global Signals/.test(deepenHtml) && /side-trails\/global-signals\//.test(deepenHtml));
 assert("deepeners do not embed Scenes app", !/photo-coach|wds-scenes/i.test(deepenHtml));
+assert("wds loads GS home teaser", /global-signals\/wds-gs-home-teaser\.js/.test(wdsJs));
 
 const Rebuild = sandbox.WDS.dashboardRebuild;
 const shell = Rebuild.renderShell({ view: "workspace", placeContext: { placeLabel: "Test", trust: "waiting" } });

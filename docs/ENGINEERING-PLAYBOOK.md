@@ -850,3 +850,18 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-07 — Homepage Global Signals live teaser
+
+**Branch:** `feature/homepage-global-signals-teaser`  
+**Report:** `docs/product/homepage-global-signals-teaser-owner-review.md`
+
+1. **Home teasers for Side Trails products must refuse non-production modes.**
+   Gate with `wds-gs-loader` (`live` / `live-empty` only); never fall back to
+   `sample-demo` fixtures on the marketing/home surface.
+2. **Unavailable and live-empty are success states.** Prefer honest emptiness
+   over inventing an event, industry, or citizen impact.
+3. **Keep the teaser a compact strip**, separate from Side Trails catalog cards,
+   so parallel homepage work does not turn Home into a geopolitical dashboard.
+4. **Require a complete ripple pair** (industry + citizen for one origin event)
+   before rendering “live”; partial graph activation stays empty.
+

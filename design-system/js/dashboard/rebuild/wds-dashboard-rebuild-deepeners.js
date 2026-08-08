@@ -1,6 +1,7 @@
 /**
  * Dashboard Rebuild — Home below-fold deepeners (append only).
- * Field Notes · Waypoint's Take · Featured Photography · Scenes · Sheds.
+ * Field Notes · Waypoint's Take · Featured Photography · Scenes · Sheds ·
+ * Global Signals teaser (compact live strip; separate from Side Trails cards).
  * Same visual family as Rebuild; honest empty/loading; no marketing banners.
  * Authority: docs/rebuild-2026/home-vision-lock-owner-review.md
  */
@@ -27,14 +28,50 @@
 
   function prefixes(depth) {
     depth = depth == null ? depthFromPath() : depth;
-    if (depth <= 0) return { root: "", articles: "articles/", scenes: "apps/scenes/", sheds: "apps/shed-hunting/map/", identity: "assets/images/identity/manifest.json" };
+    if (depth <= 0) {
+      return {
+        root: "",
+        articles: "articles/",
+        scenes: "apps/scenes/",
+        sheds: "apps/shed-hunting/map/",
+        identity: "assets/images/identity/manifest.json",
+        globalSignals: "side-trails/global-signals/"
+      };
+    }
     return {
       root: "../../",
       articles: "../../articles/",
       scenes: "../scenes/",
       sheds: "../shed-hunting/map/",
-      identity: "../../assets/images/identity/manifest.json"
+      identity: "../../assets/images/identity/manifest.json",
+      globalSignals: "../../side-trails/global-signals/"
     };
+  }
+
+  /** Compact live strip — not a Side Trails card grid (parallel homepage work). */
+  function renderGlobalSignalsTeaserShell(depth) {
+    var Teaser = global.WDS && global.WDS.globalSignals && global.WDS.globalSignals.homeTeaser;
+    var explore =
+      (Teaser && Teaser.prefixes && Teaser.prefixes(depth).explore) ||
+      prefixes(depth).globalSignals;
+    if (Teaser && typeof Teaser.renderShell === "function") {
+      return Teaser.renderShell(explore);
+    }
+    return (
+      '<section class="wdb-r-deepen__section wdb-r-deepen__section--gs-teaser" data-deepen="global-signals-teaser" aria-labelledby="wdb-r-gs-teaser-title">' +
+      '<p class="wdb-r-gs-teaser__eyebrow">Global Signals</p>' +
+      '<header class="wdb-r-deepen__header">' +
+      '<h2 class="wdb-r-deepen__title" id="wdb-r-gs-teaser-title">What\u2019s changing</h2>' +
+      '<p class="wdb-r-deepen__lede">One live signal and its potential ripples — not a news feed.</p>' +
+      "</header>" +
+      '<div class="wdb-r-deepen__body wdb-r-gs-teaser" data-deepen-body="global-signals-teaser" data-gs-teaser aria-busy="true">' +
+      '<p class="wdb-r-deepen__status" role="status">Checking live Global Signals\u2026</p>' +
+      "</div>" +
+      '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" data-deepen-link="global-signals" href="' +
+      escapeHtml(explore) +
+      '">Explore Global Signals \u2192</a></p>' +
+      "</section>"
+    );
   }
 
   function renderSkeleton() {
@@ -87,6 +124,7 @@
       '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" data-deepen-link="sheds" href="#">Open Sheds \u2192</a></p>' +
       "</div>" +
       "</section>" +
+      renderGlobalSignalsTeaserShell(0) +
       "</div>"
     );
   }
@@ -95,8 +133,10 @@
     var p = prefixes(depth);
     var scenes = root.querySelector('[data-deepen-link="scenes"]');
     var sheds = root.querySelector('[data-deepen-link="sheds"]');
+    var gs = root.querySelector('[data-deepen-link="global-signals"]');
     if (scenes) scenes.setAttribute("href", p.scenes);
     if (sheds) sheds.setAttribute("href", p.sheds);
+    if (gs) gs.setAttribute("href", p.globalSignals);
   }
 
   function fillArticles(el, depth) {
@@ -260,6 +300,23 @@
       });
   }
 
+  function bindGlobalSignalsTeaser(root, depth) {
+    var Teaser = global.WDS && global.WDS.globalSignals && global.WDS.globalSignals.homeTeaser;
+    var body = root.querySelector('[data-deepen-body="global-signals-teaser"]');
+    if (Teaser && typeof Teaser.fill === "function") {
+      Teaser.fill(body, depth);
+      return;
+    }
+    if (body) {
+      body.innerHTML =
+        '<p class="wdb-r-deepen__empty" data-gs-teaser-state="unavailable" role="status">' +
+        "Live Global Signals data is unavailable right now. Home will not invent a signal." +
+        "</p>" +
+        '<p class="wdb-r-gs-teaser__freshness" data-gs-teaser-freshness>Freshness unavailable</p>';
+      body.removeAttribute("aria-busy");
+    }
+  }
+
   function bind(host, options) {
     options = options || {};
     if (!host) return;
@@ -270,6 +327,7 @@
     fillArticles(root.querySelector('[data-deepen-body="articles"]'), depth);
     fillTake(root.querySelector('[data-deepen-body="take"]'));
     fillPhoto(root.querySelector('[data-deepen-body="photo"]'), depth);
+    bindGlobalSignalsTeaser(root, depth);
   }
 
   global.WDS = global.WDS || {};

@@ -1,0 +1,41 @@
+{
+  "base": "http://127.0.0.1:8779",
+  "captures": [
+    {
+      "file": "01-desktop-gs-teaser-unavailable.png",
+      "state": {
+        "teaser": true,
+        "state": "unavailable",
+        "text": "GLOBAL SIGNALS\n\nWhat’s changing\n\nOne live signal and its potential ripples — not a news feed.\n\nLive Global Signals data is unavailable right now. Home will not invent a signal.\n\nFreshness unavailable\n\nExplore Global Signals →",
+        "href": "side-trails/global-signals/"
+      }
+    },
+    {
+      "file": "02-phone-gs-teaser-unavailable.png",
+      "state": {
+        "teaser": true,
+        "state": "unavailable",
+        "text": "GLOBAL SIGNALS\n\nWhat’s changing\n\nOne live signal and its potential ripples — not a news feed.\n\nLive Global Signals data is unavailable right now. Home will not invent a signal.\n\nFreshness unavailable\n\nExplore Global Signals →",
+        "href": "side-trails/global-signals/"
+      }
+    },
+    {
+      "file": "03-desktop-gs-teaser-live.png",
+      "state": {
+        "teaser": true,
+        "state": "live",
+        "text": "GLOBAL SIGNALS\n\nWhat’s changing\n\nOne live signal and its potential ripples — not a news feed.\n\nOFAC publishes sanctions-related Federal Register notice\n\nPotential ripple effects:\n\nIndustry → Semiconductors\nCitizen impact → Consumer electronics availability\n\nUpdated 18 min ago\n\nImpacts are calculated exposure paths — not Observed facts.\n\nExplore Global Signals →",
+        "href": "side-trails/global-signals/"
+      }
+    },
+    {
+      "file": "04-phone-gs-teaser-live.png",
+      "state": {
+        "teaser": true,
+        "state": "live",
+        "text": "GLOBAL SIGNALS\n\nWhat’s changing\n\nOne live signal and its potential ripples — not a news feed.\n\nOFAC publishes sanctions-related Federal Register notice\n\nPotential ripple effects:\n\nIndustry → Semiconductors\nCitizen impact → Consumer electronics availability\n\nUpdated 18 min ago\n\nImpacts are calculated exposure paths — not Observed facts.\n\nExplore Global Signals →",
+        "href": "side-trails/global-signals/"
+      }
+    }
+  ]
+}
