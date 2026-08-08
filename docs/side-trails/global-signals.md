@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + module shells — Articles + Relationship Graph + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
+**Role:** Public product page + module shells — Explain This + Articles + Relationship Graph + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
 
 ---
 
@@ -36,6 +36,7 @@
 
 | Module | Path | Status |
 | --- | --- | --- |
+| Explain This | `/side-trails/global-signals/explain/` | Signature Q→structured graph answers (sample/demo) |
 | Articles | `/side-trails/global-signals/articles/` | Sample/demo briefs live |
 | Relationship Graph | `/side-trails/global-signals/relationship-graph/` | Primary expand-on-click graph (sample/demo; radial-from-focus) |
 | Relationship Explorer | `/side-trails/global-signals/relationships/` | Cascading “What depends on this?” sample/demo live |

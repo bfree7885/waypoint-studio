@@ -168,6 +168,17 @@ continuously improves.
 4. **Promote Graph without deleting Cascade Explorer** — keep `/relationships/` as the linear companion; elevate `/relationship-graph/` as the primary CTA and update “coming soon” suite assertions accordingly.
 5. **Negative UI copy still trips library-name tests if the regex includes the denied phrase** — keep asserting `cytoscape|d3.force|…`, not `force-directed`, when the page honestly rejects that layout.
 
+### 2026-08-07 — Global Signals Explain This
+
+**Artifact:** `docs/global-signals/explain-this-owner-review.md`  
+**Branch:** `feature/global-signals-explain-this`
+
+1. **Signature explainer = curated match + graph walk, never an LLM** — prompts / keywords / aliases / labels are enough for V1 demos and keep trust boundaries testable.
+2. **Prefer curated cascades; BFS only as fallback** — deterministic Taiwan / drought / tariff stories screenshot cleanly; BFS must still refuse to invent edges.
+3. **Waypoint’s Take is sourced or absent** — pull `waypointsTake` from linked industry JSON only; honest empty beats paraphrased filler.
+4. **Label seed extensions that exist only for demo prompts** — `gsn_travel` / `gsc_airlines` carry `provenance: explain-this-seed-extension` so owners can accept or relocate them.
+5. **Soft-link parallel modules by stable IDs** — inline linked excerpts now; deep-link `gsc_*` / `gsi_*` / citizen section anchors so Countries / Industries / Citizen Impact can land later without rewiring Explain This.
+
 ### 2026-08-07 — Global Signals Relationship Explorer
 
 **Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  

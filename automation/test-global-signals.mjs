@@ -35,6 +35,7 @@ const required = [
   "side-trails/global-signals/relationships/index.html",
   "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/industries/index.html",
+  "side-trails/global-signals/explain/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -66,6 +67,7 @@ assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
+assert.match(html, /\.\/explain\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -74,7 +76,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Live sample/demo modules: Articles, Relationship Explorer, Relationship Graph, Citizen Impact, Country Intelligence, Industry Intelligence.
+// Live sample/demo modules: Articles, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -119,6 +121,14 @@ assert.match(graphPage, /gsg-app/);
 assert.match(graphPage, /Part of Side Trails\./);
 assert.doesNotMatch(graphPage, /Coming soon/i);
 assert.doesNotMatch(graphPage, /cytoscape|d3\.force|vis-network|sigma\.js|WebSocket/i);
+
+const explainPage = read("side-trails/global-signals/explain/index.html");
+assert.match(explainPage, /Explain This/);
+assert.match(explainPage, /gse-app/);
+assert.match(explainPage, /No AI invention/);
+assert.match(explainPage, /Part of Side Trails\./);
+assert.doesNotMatch(explainPage, /Coming soon/i);
+assert.doesNotMatch(explainPage, /openai|anthropic|llm|ChatGPT/i);
 
 for (const slug of [
   "waypoint-take",
