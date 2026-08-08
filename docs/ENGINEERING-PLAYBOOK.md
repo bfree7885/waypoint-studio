@@ -137,6 +137,27 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Side Trails discovery release
+
+**Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  
+**Branch:** `release/side-trails-discovery`
+
+1. **Quiet Home hid architecture nav** — config already listed Side Trails, but
+   `data-quiet-chrome` suppressed the whole primary row. Keep Explore hidden; keep
+   the seven-item architecture nav visible with calm quiet styles.
+2. **Homepage deepeners ≠ studio-home.js** — Rebuild Home mounts
+   `wds-dashboard-rebuild-deepeners.js`; teaser cards must land there (and CSS), not
+   only in the older `js/studio-home.js` directory surface.
+3. **Prefer smallest GS stack for discovery** — home-dashboard + direct-entry cover
+   the primary board; skip unfinished live-data/entity/story and skip homepage GS
+   teasers when the board is sample/demo only.
+4. **Site-root absolute primary hrefs** — nested `/articles/` + apps-era
+   `data-shell-depth` invented peer-relative dead links; directory-segment depth +
+   `/side-trails/` absolute paths fix discovery from every shell page.
+5. **Local static servers need the release cwd** — an orphan listener on the port
+   can serve stale deepeners without Side Trails; restart from the worktree before
+   screenshot/DOM gates.
+
 ### 2026-08-07 — Global Signals direct entry (dashboard first)
 
 **Artifact:** `docs/global-signals/direct-entry-owner-review.md`  

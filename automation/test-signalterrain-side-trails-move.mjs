@@ -85,8 +85,13 @@ assert.equal(
   false,
   "SignalTerrain must not remain in homeIncubator"
 );
-assert.equal(nav.homeSideTrails.length, 1);
-assert.equal(nav.homeSideTrails[0], "signalterrain");
+assert.ok(nav.homeSideTrails.includes("signalterrain"), "SignalTerrain must remain in homeSideTrails");
+assert.equal(
+  nav.homeSideTrails.includes("signalterrain") && !nav.homePrimary.includes("signalterrain"),
+  true,
+  "SignalTerrain stays Side Trails-only on Home"
+);
+// Global Signals may also appear in homeSideTrails after direct-entry integration.
 
 const stApp = (nav.apps || []).find((a) => a.id === "signalterrain");
 assert.ok(stApp, "nav apps entry for SignalTerrain must remain (app chrome)");
@@ -127,7 +132,8 @@ assert.match(incubator, /side-trails\//);
 const about = read("about.html");
 assert.match(about, /Side Trails/);
 assert.match(about, /SignalTerrain/);
-assert.match(about, /Side Trails → SignalTerrain/);
+assert.match(about, /Waypoint Studio → Side Trails → project/);
+assert.match(about, /side-trails\/signalterrain\//);
 
 const support = read("support.html");
 assert.match(support, /side-trails\//);
