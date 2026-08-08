@@ -65,10 +65,40 @@
     return { ok: true };
   }
 
+  var SEX_VALUES = ["unknown", "buck", "doe", "fawn_unknown"];
+  var CLASS_VALUES = ["unknown", "fawn", "yearling", "mature", "not_applicable"];
+
+  function normalizeSex(v) {
+    var s = v != null ? String(v) : "unknown";
+    return SEX_VALUES.indexOf(s) >= 0 ? s : "unknown";
+  }
+
+  function normalizeClass(v) {
+    var s = v != null ? String(v) : "unknown";
+    return CLASS_VALUES.indexOf(s) >= 0 ? s : "unknown";
+  }
+
+  function normalizeWeatherSnapshot(raw) {
+    if (!raw || typeof raw !== "object") return null;
+    var snap = {
+      capturedAt: raw.capturedAt || null,
+      source: raw.source || null,
+      tempC: typeof raw.tempC === "number" ? raw.tempC : null,
+      windSpeedMs: typeof raw.windSpeedMs === "number" ? raw.windSpeedMs : null,
+      snowMm: typeof raw.snowMm === "number" ? raw.snowMm : null,
+      precipMm24h: typeof raw.precipMm24h === "number" ? raw.precipMm24h : null,
+      pressureHpa: typeof raw.pressureHpa === "number" ? raw.pressureHpa : null
+    };
+    var has = snap.tempC != null || snap.windSpeedMs != null || snap.snowMm != null ||
+      snap.precipMm24h != null || snap.pressureHpa != null;
+    return has ? snap : null;
+  }
+
   function normalize(raw) {
     if (!raw || typeof raw !== "object") return null;
     var now = new Date().toISOString();
     var type = raw.type || "other";
+    var details = raw.details && typeof raw.details === "object" ? Object.assign({}, raw.details) : {};
     var obs = {
       schemaVersion: SCHEMA_VERSION,
       id: raw.id || ("obs_" + uuid()),
@@ -85,10 +115,18 @@
       note: raw.note != null ? String(raw.note) : "",
       confidence: raw.confidence || "uncertain",
       quantity: raw.quantity == null || raw.quantity === "" ? null : Number(raw.quantity),
-      details: raw.details && typeof raw.details === "object" ? raw.details : {},
+      details: details,
+      weatherSnapshot: normalizeWeatherSnapshot(raw.weatherSnapshot || details.weatherSnapshot),
+      photoRef: raw.photoRef != null && String(raw.photoRef).trim()
+        ? String(raw.photoRef).trim().slice(0, 240)
+        : (details.photoRef ? String(details.photoRef).trim().slice(0, 240) : null),
       createdAt: raw.createdAt || now,
       updatedAt: raw.updatedAt || now
     };
+    if (type === "deer_seen" || type === "deer_sign") {
+      obs.details.sex = normalizeSex(details.sex);
+      obs.details.class = normalizeClass(details.class);
+    }
     if (type === "shed_found") {
       obs.details = Object.assign({
         side: "unknown",
@@ -284,6 +322,8 @@
     SCHEMA_VERSION: SCHEMA_VERSION,
     SPECIES_WHITETAIL: SPECIES_WHITETAIL,
     OBSERVATION_TYPES: OBSERVATION_TYPES,
+    SEX_VALUES: SEX_VALUES,
+    CLASS_VALUES: CLASS_VALUES,
     typeMeta: typeMeta,
     list: list,
     getById: getById,
@@ -292,6 +332,7 @@
     remove: remove,
     validate: validateObservation,
     normalize: normalize,
+    normalizeWeatherSnapshot: normalizeWeatherSnapshot,
     exportJson: exportJson,
     loadMapView: loadMapView,
     saveMapView: saveMapView,
@@ -299,4 +340,4 @@
     loadModelPrefs: loadModelPrefs,
     saveModelPrefs: saveModelPrefs
   };
-})(window);
+})(typeof window !== "undefined" ? window : globalThis);

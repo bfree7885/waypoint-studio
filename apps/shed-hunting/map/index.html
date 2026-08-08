@@ -84,23 +84,28 @@
       </div>
 
       <!-- Legend: Later — revealed only when heat is active -->
-      <div class="sheds-legend-float" id="heat-legend" hidden aria-label="Search priority legend">
+      <div class="sheds-legend-float" id="heat-legend" hidden aria-label="Heat layer legend">
+        <span class="sheds-legend-float__mode" id="heat-legend-mode">Estimated opportunity</span>
         <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i>Lower</span>
         <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i>Mod</span>
         <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i>Higher</span>
         <span class="sheds-legend-float__status" id="heat-legend-status">Lower → higher walk priority</span>
       </div>
 
-      <!-- Conversation: today → where → why -->
-      <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" aria-live="polite" data-expanded="false" data-has-plan="false">
+      <!-- TODAY'S SEARCH — primary field briefing over the map -->
+      <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" aria-live="polite" data-expanded="false" data-has-plan="false" data-todays-search="true">
         <div class="sheds-sheet-field__grab" aria-hidden="true"></div>
         <button type="button" class="sheds-suggest__summary" id="btn-toggle-plan" aria-expanded="false" aria-controls="plan-details">
-          <span class="sheds-suggest__kicker" id="plan-title">Start here</span>
-          <span class="sheds-suggest__glance" id="plan-glance">Find yourself on the map</span>
-          <span class="sheds-suggest__conf" id="plan-stars" aria-label="Confidence">We’ll suggest where to look</span>
+          <span class="sheds-suggest__eyebrow">Today’s Search</span>
+          <span class="sheds-suggest__kicker" id="plan-title">Reading conditions…</span>
+          <span class="sheds-suggest__glance" id="plan-glance">Live weather and season when available</span>
+          <span class="sheds-suggest__conf" id="plan-stars" aria-label="Confidence">Confidence pending</span>
           <span class="sheds-suggest__chev" aria-hidden="true"></span>
         </button>
         <div class="sheds-suggest__details" id="plan-details" hidden>
+          <p class="sheds-today__status" id="today-status" role="status">Loading today’s conditions…</p>
+          <div class="sheds-today__windows" id="today-windows" aria-label="Time windows today"></div>
+          <div class="sheds-today__areas" id="today-areas" aria-label="Areas and terrain to consider"></div>
           <div class="sheds-plan__stats" id="plan-stats" hidden>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Direction</span><span id="plan-stat-dir">—</span></div>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Distance</span><span id="plan-stat-dist">—</span></div>
@@ -109,9 +114,11 @@
           </div>
           <p class="sheds-plan__body" id="plan-body">Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee.</p>
           <p class="sheds-plan__meta" id="plan-meta"></p>
-          <details class="sheds-plan__why-wrap">
-            <summary>Why this may matter</summary>
+          <details class="sheds-plan__why-wrap" open>
+            <summary>Signals, uncertainty &amp; why</summary>
+            <ul class="sheds-today__signals" id="today-signals"></ul>
             <p class="sheds-plan__why" id="plan-why"></p>
+            <p class="sheds-today__uncertain" id="today-uncertain"></p>
             <p class="sheds-plan__meta" id="plan-knowledge-link">
               <a href="../../../knowledge.html">Optional reading — Waypoint Knowledge</a>
             </p>
@@ -175,6 +182,10 @@
           <select id="obs-type" required></select>
         </div>
         <div class="sheds-field">
+          <label for="obs-when">Date &amp; time</label>
+          <input id="obs-when" type="datetime-local">
+        </div>
+        <div class="sheds-field">
           <label for="obs-note">Note (optional)</label>
           <textarea id="obs-note" maxlength="800" rows="2" placeholder="Sign, access, habitat…" enterkeyhint="done"></textarea>
         </div>
@@ -191,6 +202,30 @@
             <option value="other">Other</option>
           </select>
         </div>
+        <div id="deer-extra" hidden>
+          <p class="sheds-sheet__lede">Deer details (optional)</p>
+          <div class="sheds-grid-2">
+            <div class="sheds-field">
+              <label for="obs-sex">Sex</label>
+              <select id="obs-sex">
+                <option value="unknown">Unknown</option>
+                <option value="buck">Buck</option>
+                <option value="doe">Doe</option>
+                <option value="fawn_unknown">Fawn (sex unknown)</option>
+              </select>
+            </div>
+            <div class="sheds-field">
+              <label for="obs-class">Class</label>
+              <select id="obs-class">
+                <option value="unknown">Unknown</option>
+                <option value="fawn">Fawn</option>
+                <option value="yearling">Yearling</option>
+                <option value="mature">Mature</option>
+                <option value="not_applicable">N/A</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div class="sheds-grid-2">
           <div class="sheds-field">
             <label for="obs-confidence">Confidence</label>
@@ -204,6 +239,11 @@
             <label for="obs-quantity">Quantity (optional)</label>
             <input id="obs-quantity" type="number" min="0" step="1" inputmode="numeric">
           </div>
+        </div>
+        <div class="sheds-field">
+          <label for="obs-photo-ref">Photo reference (optional, local note only)</label>
+          <input id="obs-photo-ref" type="text" maxlength="240" autocomplete="off" placeholder="Filename or album note — not uploaded">
+          <p class="sheds-note">Sheds does not upload photos. This is a private reminder string on this device.</p>
         </div>
         <div id="sheds-extra" hidden>
           <p class="sheds-sheet__lede">Shed details (whitetail) — optional</p>
@@ -252,6 +292,57 @@
       <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show heat / priority overlay</label>
       <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
       <label class="sheds-check"><input type="checkbox" id="coverage-visible" checked> Show search-coverage marks</label>
+      <div class="sheds-field">
+        <label for="heat-mode">Heat layer mode</label>
+        <select id="heat-mode">
+          <option value="biological" selected>Estimated opportunity (biological model)</option>
+          <option value="observed">Observed activity (your notes only)</option>
+        </select>
+        <p class="sheds-note" id="heat-mode-hint">Biological mode is estimated walk priority. Observed mode uses only your private notes — empty until you log activity.</p>
+      </div>
+      <fieldset class="sheds-fieldset" id="obs-heat-filters">
+        <legend>Observed-activity filters</legend>
+        <div class="sheds-grid-2">
+          <div class="sheds-field">
+            <label for="heat-tod">Time of day</label>
+            <select id="heat-tod">
+              <option value="all" selected>All</option>
+              <option value="morning">Morning</option>
+              <option value="midday">Midday</option>
+              <option value="evening">Evening</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="heat-season">Season</label>
+            <select id="heat-season">
+              <option value="all" selected>All</option>
+              <option value="winter">Winter</option>
+              <option value="late_winter_spring">Late winter / spring</option>
+              <option value="summer">Summer</option>
+              <option value="fall">Fall</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="heat-wx">Weather at note</label>
+            <select id="heat-wx">
+              <option value="any" selected>Any / unknown</option>
+              <option value="snowy">Snowy or freezing</option>
+              <option value="mild">Mild (≥8°C)</option>
+              <option value="windy">Windy (≥6 m/s)</option>
+            </select>
+          </div>
+          <div class="sheds-field">
+            <label for="heat-range">Date range</label>
+            <select id="heat-range">
+              <option value="all" selected>All dates</option>
+              <option value="30">Last 30 days</option>
+              <option value="90">Last 90 days</option>
+              <option value="365">Last year</option>
+            </select>
+          </div>
+        </div>
+        <p class="sheds-note">Weather filter only matches notes that saved a weather snapshot. No demo sightings are included.</p>
+      </fieldset>
       <label class="sheds-check"><input type="checkbox" id="confidence-overlay"> Confidence hatch (limited inputs)</label>
       <label class="sheds-check"><input type="checkbox" id="diagnostic-mode"> Diagnostic factor inspector</label>
       <label class="sheds-check"><input type="checkbox" id="compare-mode"> Compare vs balanced baseline</label>
@@ -423,7 +514,7 @@
         <li><strong>Habitat.</strong> Avoid trampling sensitive areas; leave no trash; respect closures.</li>
         <li><strong>Privacy.</strong> Observations, tracks, and validations stay in this browser’s storage. Export creates a file you control.</li>
         <li><strong>Map providers.</strong> Tile requests (OSM / OpenTopoMap) and optional Open-Meteo elevation/weather reveal approximate location to those services.</li>
-        <li><strong>Model honesty.</strong> The colored surface is relative search priority for whitetail — never “there is an antler here.”</li>
+        <li><strong>Model honesty.</strong> Biological heat is estimated opportunity (relative walk priority). Observed-activity heat is only your private notes. Neither predicts exact deer locations or guarantees sheds.</li>
         <li><strong>Sensitive places.</strong> Do not publish precise private or protected locations from this tool.</li>
       </ul>
       <div class="sheds-actions">
@@ -435,6 +526,8 @@
 
   <script src="../vendor/leaflet/leaflet.js"></script>
   <script src="../js/sheds-observation-store.js"></script>
+  <script src="../js/sheds-observation-patterns.js"></script>
+  <script src="../js/sheds-todays-search.js"></script>
   <script src="../js/sheds-session-store.js"></script>
   <script src="../js/sheds-validation-store.js"></script>
   <script src="../js/sheds-biological-model.js"></script>
