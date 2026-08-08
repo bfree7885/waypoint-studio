@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/schemas/global-signals/relationship.json",
+  "title": "GlobalSignalsRelationship",
+  "type": "object",
+  "required": ["id", "from", "to", "relationshipType", "direction", "confidence", "derivationMethod", "evidence", "lastVerifiedAt", "updatedAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "relationshipType": { "type": "string" },
+    "direction": { "type": "string" },
+    "confidence": { "enum": ["Observed", "High", "Medium", "Low", "Unknown"] },
+    "derivationMethod": { "type": "string" },
+    "evidence": { "type": "object" },
+    "lastVerifiedAt": { "type": "string" },
+    "updatedAt": { "type": "string" },
+    "active": { "type": "boolean" }
+  }
+}

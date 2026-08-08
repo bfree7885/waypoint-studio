@@ -138,6 +138,30 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
+### 2026-08-08 — Global Signals live-data architecture + ingestion + articles
+
+**Artifact:** `docs/global-signals/live-articles-owner-review.md`  
+**Branch:** `feature/global-signals-live-data-architecture`
+
+1. **Production paths must refuse `sample-demo`.** Move demos under
+   `data/global-signals/fixtures/` and gate loaders (`live` / `live-empty` only)
+   so Pages cannot accidentally render sample briefs as current information.
+2. **Short regex tokens false-activate the graph.** `\bear\b` without a leading
+   boundary alternative matched the `ear` inside `near` and attached export-control
+   chip impacts to hurricane copy. Prefer long phrases; never bare 3-letter tokens.
+3. **Adapter agency slugs must be verified against the live API catalog.** OFAC/CBP
+   Federal Register slugs differed from guessed names and returned HTTP 400 until
+   corrected from `/api/v1/agencies`.
+4. **Impact fan-out needs distance decay and tight activation.** Broad “any EAR
+   notice → semiconductors” created hundreds of low-trust impacts; semiconductor
+   activation now requires chip-specific language.
+5. **GitHub Actions artifact commits can retrigger Pages.** Keep GS ingest at a
+   ≥6h cadence and document the token/Pages interaction before merging to the
+   Pages source branch.
+6. **Waypoint’s Take must be deterministic assembly, not generative invention.**
+   Separate VERIFIED provenance from ANALYSIS; return no take when evidence is
+   insufficient.
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  

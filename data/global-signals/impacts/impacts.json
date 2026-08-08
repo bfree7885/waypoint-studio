@@ -1,0 +1,1787 @@
+{
+  "version": "1.0.0",
+  "mode": "live",
+  "modeLabel": "Live calculated impacts",
+  "updatedAt": "2026-08-08T02:03:53.318Z",
+  "honesty": {
+    "banner": "Impacts are calculated from live events + evidence-backed graph edges. They are ANALYSIS / exposure paths, never Observed facts. Empty means no activation path reached an industry or citizen node.",
+    "confidenceRules": "Confidence decays with causal distance (order). Predicted impacts must never be labeled Observed."
+  },
+  "counts": {
+    "total": 19,
+    "firstOrder": 17,
+    "secondOrder": 2,
+    "thirdOrder": 0,
+    "industries": 11,
+    "citizen": 8,
+    "eventsProcessed": 11
+  },
+  "impacts": [
+    {
+      "id": "gsi_00e02816",
+      "originEvent": "gse_fr_e2d1a4d7",
+      "originEventTitle": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+          "url": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_7ae4e02b",
+      "originEvent": "gse_fr_0850d8bf",
+      "originEventTitle": "Notice of Request for Public Comments on Section 232 National Security Investigation of Anthracite Coal",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Request for Public Comments on Section 232 National Security Investigation of Anthracite Coal",
+          "url": "https://www.federalregister.gov/documents/2026/07/07/2026-13663/notice-of-request-for-public-comments-on-section-232-national-security-investigation-of-anthracite",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_5b75a133",
+      "originEvent": "gse_fr_aacdb204",
+      "originEventTitle": "Notice of Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure of Each Economy To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure of Each Economy To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+          "url": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_8f4b81ff",
+      "originEvent": "gse_fr_39632071",
+      "originEventTitle": "Notice of Action: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Action: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+          "url": "https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_6bca7541",
+      "originEvent": "gse_fr_59ae37a8",
+      "originEventTitle": "Initiation of Section 301 Investigation; Hearing; and Request for Public Comments: Germany's Persistent Underpayment for Innovative Pharmaceutical Products",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Section 301 Investigation; Hearing; and Request for Public Comments: Germany's Persistent Underpayment for Innovative Pharmaceutical Products",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12671/initiation-of-section-301-investigation-hearing-and-request-for-public-comments-germanys-persistent",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_3112828b",
+      "originEvent": "gse_fr_13806caa",
+      "originEventTitle": "Notice of Determinations and Request for Comments Concerning Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Determinations and Request for Comments Concerning Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+          "url": "https://www.federalregister.gov/documents/2026/06/05/2026-11296/notice-of-determinations-and-request-for-comments-concerning-actions-in-section-301-investigations",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_8ded91cc",
+      "originEvent": "gse_fr_478731e1",
+      "originEventTitle": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+          "url": "https://www.federalregister.gov/documents/2026/06/04/2026-11158/notice-of-determination-and-request-for-comments-concerning-action-pursuant-to-section-301-brazils",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_bfaed80c",
+      "originEvent": "gse_fr_30d854d4",
+      "originEventTitle": "Initiation of Section 301 Investigation and Request for Public Comments: Vietnam's Acts, Policies, and Practices Related to Intellectual Property Protection and Enforcement",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Section 301 Investigation and Request for Public Comments: Vietnam's Acts, Policies, and Practices Related to Intellectual Property Protection and Enforcement",
+          "url": "https://www.federalregister.gov/documents/2026/06/03/2026-11043/initiation-of-section-301-investigation-and-request-for-public-comments-vietnams-acts-policies-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_2e736bdf",
+      "originEvent": "gse_fr_935fe16f",
+      "originEventTitle": "Initiation of Second Four-Year Review Process: China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Second Four-Year Review Process: China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation",
+          "url": "https://www.federalregister.gov/documents/2026/05/06/2026-08806/initiation-of-second-four-year-review-process-chinas-acts-policies-and-practices-related-to",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_3b9563c5",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_energy",
+      "affectedEntityLabel": "Energy",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude oil feeds energy industry",
+          "url": "https://www.eia.gov/",
+          "notes": "Commodity-industry mapping."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Energy\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_13f55fa4",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_edf563b6",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_772cc3bd",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_40ff79d2",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_energy",
+      "affectedEntityLabel": "Energy",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude oil feeds energy industry",
+          "url": "https://www.eia.gov/",
+          "notes": "Commodity-industry mapping."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Energy\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_473a9fe7",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_4fcdffff",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_96e321f8",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_5d1cd422",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_10bb5d4f",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    }
+  ],
+  "industries": [
+    {
+      "id": "gsi_00e02816",
+      "originEvent": "gse_fr_e2d1a4d7",
+      "originEventTitle": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+          "url": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_7ae4e02b",
+      "originEvent": "gse_fr_0850d8bf",
+      "originEventTitle": "Notice of Request for Public Comments on Section 232 National Security Investigation of Anthracite Coal",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Request for Public Comments on Section 232 National Security Investigation of Anthracite Coal",
+          "url": "https://www.federalregister.gov/documents/2026/07/07/2026-13663/notice-of-request-for-public-comments-on-section-232-national-security-investigation-of-anthracite",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_5b75a133",
+      "originEvent": "gse_fr_aacdb204",
+      "originEventTitle": "Notice of Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure of Each Economy To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure of Each Economy To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+          "url": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_8f4b81ff",
+      "originEvent": "gse_fr_39632071",
+      "originEventTitle": "Notice of Action: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Action: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+          "url": "https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_6bca7541",
+      "originEvent": "gse_fr_59ae37a8",
+      "originEventTitle": "Initiation of Section 301 Investigation; Hearing; and Request for Public Comments: Germany's Persistent Underpayment for Innovative Pharmaceutical Products",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Section 301 Investigation; Hearing; and Request for Public Comments: Germany's Persistent Underpayment for Innovative Pharmaceutical Products",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12671/initiation-of-section-301-investigation-hearing-and-request-for-public-comments-germanys-persistent",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_3112828b",
+      "originEvent": "gse_fr_13806caa",
+      "originEventTitle": "Notice of Determinations and Request for Comments Concerning Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Determinations and Request for Comments Concerning Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+          "url": "https://www.federalregister.gov/documents/2026/06/05/2026-11296/notice-of-determinations-and-request-for-comments-concerning-actions-in-section-301-investigations",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_8ded91cc",
+      "originEvent": "gse_fr_478731e1",
+      "originEventTitle": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+          "url": "https://www.federalregister.gov/documents/2026/06/04/2026-11158/notice-of-determination-and-request-for-comments-concerning-action-pursuant-to-section-301-brazils",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_bfaed80c",
+      "originEvent": "gse_fr_30d854d4",
+      "originEventTitle": "Initiation of Section 301 Investigation and Request for Public Comments: Vietnam's Acts, Policies, and Practices Related to Intellectual Property Protection and Enforcement",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Section 301 Investigation and Request for Public Comments: Vietnam's Acts, Policies, and Practices Related to Intellectual Property Protection and Enforcement",
+          "url": "https://www.federalregister.gov/documents/2026/06/03/2026-11043/initiation-of-section-301-investigation-and-request-for-public-comments-vietnams-acts-policies-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_2e736bdf",
+      "originEvent": "gse_fr_935fe16f",
+      "originEventTitle": "Initiation of Second Four-Year Review Process: China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation",
+      "path": [
+        {
+          "from": "gse_commodity_steel",
+          "to": "gse_industry_automotive",
+          "relationshipType": "inputs",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Steel is a major automotive manufacturing input",
+            "url": "https://www.commerce.gov/",
+            "notes": "Documented industrial input."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_automotive",
+      "affectedEntityLabel": "Automotive",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Steel is a major automotive manufacturing input",
+          "url": "https://www.commerce.gov/",
+          "notes": "Documented industrial input."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Initiation of Second Four-Year Review Process: China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation",
+          "url": "https://www.federalregister.gov/documents/2026/05/06/2026-08806/initiation-of-second-four-year-review-process-chinas-acts-policies-and-practices-related-to",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Steel\", and a coded graph path of length 1 reaches \"Automotive\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_3b9563c5",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_energy",
+      "affectedEntityLabel": "Energy",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude oil feeds energy industry",
+          "url": "https://www.eia.gov/",
+          "notes": "Commodity-industry mapping."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Energy\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_40ff79d2",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_industry_energy",
+      "affectedEntityLabel": "Energy",
+      "affectedEntityType": "Industry",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude oil feeds energy industry",
+          "url": "https://www.eia.gov/",
+          "notes": "Commodity-industry mapping."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Energy\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    }
+  ],
+  "citizen": [
+    {
+      "id": "gsi_13f55fa4",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_edf563b6",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_772cc3bd",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_473a9fe7",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_4fcdffff",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_96e321f8",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_5d1cd422",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_10bb5d4f",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    }
+  ]
+}

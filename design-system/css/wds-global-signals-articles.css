@@ -121,6 +121,27 @@
   font-size: 0.9rem;
 }
 
+.gsa-freshness {
+  margin: 0.35rem 0 0;
+  color: #5eead4;
+  font-size: 0.88rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.01em;
+}
+
+.gsa-take-verified,
+.gsa-take-evidence {
+  margin: 0.35rem 0 0.75rem;
+  padding-left: 1.1rem;
+  color: #c5d0e0;
+  line-height: 1.45;
+}
+
+.gsa-take-evidence a {
+  color: #7dd3fc;
+  word-break: break-all;
+}
+
 .gsa-list {
   display: grid;
   gap: 1rem;

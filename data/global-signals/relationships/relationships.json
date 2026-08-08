@@ -1,0 +1,888 @@
+{
+  "version": "1.0.0",
+  "mode": "live",
+  "modeLabel": "Live relationships",
+  "updatedAt": "2026-08-08T02:03:53.315Z",
+  "honesty": {
+    "banner": "Live graph combines evidence-backed structural relationships with activation from real ingested events. Edges are not AI guesses. Active highlighting means an event matched an explicit activation rule.",
+    "confidenceRules": "Observed only for authoritative institutional/geographic facts. Derived impacts must not use Observed."
+  },
+  "entityTypes": [
+    "Country",
+    "Region",
+    "Port",
+    "Canal",
+    "Strait",
+    "Commodity",
+    "Industry",
+    "Company",
+    "Infrastructure",
+    "Energy Asset",
+    "Trade Route",
+    "Policy",
+    "Tariff",
+    "Sanction",
+    "Conflict",
+    "Event",
+    "Citizen Impact"
+  ],
+  "entities": [
+    {
+      "id": "gse_country_us",
+      "type": "country",
+      "label": "United States",
+      "summary": "Major importer/exporter and sanctions/trade-policy issuer.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_15248ee1",
+        "gse_fr_4f656ef8",
+        "gse_fr_ad49cc43",
+        "gse_fr_b31741ae",
+        "gse_fr_e8ac64a4",
+        "gse_fr_e2d1a4d7",
+        "gse_fr_01a241cc",
+        "gse_fr_0850d8bf",
+        "gse_fr_aacdb204",
+        "gse_fr_39632071",
+        "gse_fr_59ae37a8",
+        "gse_fr_13806caa",
+        "gse_fr_478731e1",
+        "gse_fr_30d854d4",
+        "gse_fr_935fe16f"
+      ]
+    },
+    {
+      "id": "gse_country_cn",
+      "type": "country",
+      "label": "China",
+      "summary": "Major manufacturing and commodity demand center.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_country_tw",
+      "type": "country",
+      "label": "Taiwan",
+      "summary": "Concentrated advanced semiconductor fabrication capacity.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_country_sa",
+      "type": "country",
+      "label": "Saudi Arabia",
+      "summary": "Major crude oil exporter.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_region_mideast",
+      "type": "region",
+      "label": "Middle East",
+      "summary": "Energy export region with critical maritime chokepoints.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_strait_hormuz",
+      "type": "strait",
+      "label": "Strait of Hormuz",
+      "summary": "Maritime chokepoint for a large share of seaborne crude oil.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_canal_suez",
+      "type": "canal",
+      "label": "Suez Canal",
+      "summary": "Canal linking Red Sea and Mediterranean container/energy routes.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_canal_panama",
+      "type": "canal",
+      "label": "Panama Canal",
+      "summary": "Canal linking Pacific and Atlantic container routes.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_port_la_lb",
+      "type": "port",
+      "label": "Los Angeles / Long Beach ports",
+      "summary": "Major US West Coast container gateway.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_commodity_crude",
+      "type": "commodity",
+      "label": "Crude oil",
+      "summary": "Primary energy commodity transported via maritime chokepoints.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_1c879ea0",
+        "gse_fr_35e7db41"
+      ]
+    },
+    {
+      "id": "gse_commodity_lng",
+      "type": "commodity",
+      "label": "LNG",
+      "summary": "Seaborne natural gas commodity.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_commodity_chips",
+      "type": "commodity",
+      "label": "Semiconductors",
+      "summary": "Intermediate good for electronics, autos, and industrial systems.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_commodity_steel",
+      "type": "commodity",
+      "label": "Steel",
+      "summary": "Industrial input frequently targeted by tariffs.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_e2d1a4d7",
+        "gse_fr_0850d8bf",
+        "gse_fr_aacdb204",
+        "gse_fr_39632071",
+        "gse_fr_59ae37a8",
+        "gse_fr_13806caa",
+        "gse_fr_478731e1",
+        "gse_fr_30d854d4",
+        "gse_fr_935fe16f"
+      ]
+    },
+    {
+      "id": "gse_commodity_containers",
+      "type": "commodity",
+      "label": "Container freight",
+      "summary": "Unit of seaborne manufactured goods transport.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_industry_energy",
+      "type": "industry",
+      "label": "Energy",
+      "summary": "Upstream/midstream energy and fuels.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_1c879ea0",
+        "gse_fr_35e7db41"
+      ]
+    },
+    {
+      "id": "gse_industry_shipping",
+      "type": "industry",
+      "label": "Shipping",
+      "summary": "Maritime logistics and vessel operators.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_industry_semiconductors",
+      "type": "industry",
+      "label": "Semiconductors",
+      "summary": "Chip design, fabrication, packaging.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_industry_automotive",
+      "type": "industry",
+      "label": "Automotive",
+      "summary": "Vehicle manufacturing dependent on chips, steel, logistics.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_e2d1a4d7",
+        "gse_fr_0850d8bf",
+        "gse_fr_aacdb204",
+        "gse_fr_39632071",
+        "gse_fr_59ae37a8",
+        "gse_fr_13806caa",
+        "gse_fr_478731e1",
+        "gse_fr_30d854d4",
+        "gse_fr_935fe16f"
+      ]
+    },
+    {
+      "id": "gse_industry_retail",
+      "type": "industry",
+      "label": "Retail",
+      "summary": "Consumer goods distribution dependent on container freight.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_industry_agriculture",
+      "type": "industry",
+      "label": "Agriculture",
+      "summary": "Food production and trade.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_industry_technology",
+      "type": "industry",
+      "label": "Technology",
+      "summary": "Devices and cloud hardware dependent on semiconductors.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_route_asia_us",
+      "type": "trade_route",
+      "label": "Asia–US West Coast route",
+      "summary": "Primary container corridor into US West Coast ports.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_infra_grid_us",
+      "type": "infrastructure",
+      "label": "US power grid",
+      "summary": "Critical electricity infrastructure.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_policy_ofac",
+      "type": "policy",
+      "label": "OFAC sanctions programs",
+      "summary": "US Treasury sanctions administration.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_15248ee1",
+        "gse_fr_4f656ef8",
+        "gse_fr_ad49cc43",
+        "gse_fr_b31741ae",
+        "gse_fr_e8ac64a4"
+      ]
+    },
+    {
+      "id": "gse_policy_export_controls",
+      "type": "policy",
+      "label": "US export controls",
+      "summary": "Commerce/BIS export and entity-list controls.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_fuel",
+      "type": "citizen_impact",
+      "label": "Fuel prices",
+      "summary": "Household transportation and heating fuel costs.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_1c879ea0",
+        "gse_fr_35e7db41"
+      ]
+    },
+    {
+      "id": "gse_citizen_food",
+      "type": "citizen_impact",
+      "label": "Food prices",
+      "summary": "Grocery and staple food costs.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_electronics",
+      "type": "citizen_impact",
+      "label": "Electronics",
+      "summary": "Device availability and pricing.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_travel",
+      "type": "citizen_impact",
+      "label": "Travel",
+      "summary": "Transport cost and schedule effects.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_goods",
+      "type": "citizen_impact",
+      "label": "Consumer goods",
+      "summary": "Shelf availability for imported goods.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_jobs",
+      "type": "citizen_impact",
+      "label": "Jobs",
+      "summary": "Employment effects in exposed industries.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_transport",
+      "type": "citizen_impact",
+      "label": "Transportation",
+      "summary": "Freight and passenger transport conditions.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_utilities",
+      "type": "citizen_impact",
+      "label": "Utilities",
+      "summary": "Electricity and related utility costs/reliability.",
+      "selectable": true,
+      "active": false,
+      "activatingEventIds": []
+    },
+    {
+      "id": "gse_citizen_medicines",
+      "type": "citizen_impact",
+      "label": "Medicines",
+      "summary": "Pharmaceutical supply and access.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_fr_01a241cc",
+        "gse_fr_59ae37a8"
+      ]
+    },
+    {
+      "id": "gse_citizen_housing",
+      "type": "citizen_impact",
+      "label": "Housing",
+      "summary": "Housing cost pressure via materials/energy/jobs.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_usgs_37486f67",
+        "gse_usgs_8f87be36",
+        "gse_usgs_f958dd07",
+        "gse_usgs_2f07f874",
+        "gse_usgs_1b828b1e",
+        "gse_noaa_0ac78d34",
+        "gse_noaa_12e0469f"
+      ]
+    },
+    {
+      "id": "gse_citizen_insurance",
+      "type": "citizen_impact",
+      "label": "Insurance",
+      "summary": "Premiums and coverage after disasters/conflict risk.",
+      "selectable": true,
+      "active": true,
+      "activatingEventIds": [
+        "gse_usgs_37486f67",
+        "gse_usgs_8f87be36",
+        "gse_usgs_f958dd07",
+        "gse_usgs_2f07f874",
+        "gse_usgs_1b828b1e",
+        "gse_noaa_0ac78d34",
+        "gse_noaa_12e0469f"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "gsr_tw_produces_chips",
+      "from": "gse_country_tw",
+      "to": "gse_commodity_chips",
+      "relationType": "produces",
+      "why": "Structural production concentration used for literacy; not a forecast.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Industry concentration of advanced semiconductor fabrication in Taiwan (public industry fact)",
+        "url": "https://www.bis.doc.gov/",
+        "notes": "Structural production concentration used for literacy; not a forecast."
+      },
+      "derivationMethod": "documented_trade_structure",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_chips_industry",
+      "from": "gse_commodity_chips",
+      "to": "gse_industry_semiconductors",
+      "relationType": "defines",
+      "why": "Coded taxonomy link.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Commodity-to-industry identity mapping",
+        "url": "https://www.census.gov/naics/",
+        "notes": "Coded taxonomy link."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_chips_to_tech",
+      "from": "gse_commodity_chips",
+      "to": "gse_industry_technology",
+      "relationType": "inputs",
+      "why": "Documented intermediate-good dependency.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Semiconductors are intermediate inputs to electronics/tech hardware",
+        "url": "https://www.bis.doc.gov/",
+        "notes": "Documented intermediate-good dependency."
+      },
+      "derivationMethod": "documented_trade_structure",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_chips_to_auto",
+      "from": "gse_commodity_chips",
+      "to": "gse_industry_automotive",
+      "relationType": "inputs",
+      "why": "Documented intermediate-good dependency.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Automotive electronics require semiconductors",
+        "url": "https://www.bis.doc.gov/",
+        "notes": "Documented intermediate-good dependency."
+      },
+      "derivationMethod": "documented_trade_structure",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_hormuz_transports_crude",
+      "from": "gse_strait_hormuz",
+      "to": "gse_commodity_crude",
+      "relationType": "transports",
+      "why": "EIA Today in Energy chokepoint reporting.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Strait of Hormuz is a major seaborne crude oil transit chokepoint (EIA)",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=61025",
+        "notes": "EIA Today in Energy chokepoint reporting."
+      },
+      "derivationMethod": "known_infrastructure_dependency",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_crude_to_energy",
+      "from": "gse_commodity_crude",
+      "to": "gse_industry_energy",
+      "relationType": "feeds",
+      "why": "Commodity-industry mapping.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Crude oil feeds energy industry",
+        "url": "https://www.eia.gov/",
+        "notes": "Commodity-industry mapping."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_crude_affects_fuel",
+      "from": "gse_commodity_crude",
+      "to": "gse_citizen_fuel",
+      "relationType": "affects",
+      "why": "Rule-coded; confidence Medium — retail pass-through is not guaranteed.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+        "url": "https://www.eia.gov/petroleum/",
+        "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_crude_affects_transport_cost",
+      "from": "gse_commodity_crude",
+      "to": "gse_citizen_transport",
+      "relationType": "affects",
+      "why": "Rule-coded dependency.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Fuel inputs affect transportation costs",
+        "url": "https://www.eia.gov/petroleum/",
+        "notes": "Rule-coded dependency."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_suez_route",
+      "from": "gse_canal_suez",
+      "to": "gse_commodity_containers",
+      "relationType": "transports",
+      "why": "Public chokepoint/trade-route fact.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Suez Canal is a major container shipping artery",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=61025",
+        "notes": "Public chokepoint/trade-route fact."
+      },
+      "derivationMethod": "known_infrastructure_dependency",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_panama_route",
+      "from": "gse_canal_panama",
+      "to": "gse_commodity_containers",
+      "relationType": "transports",
+      "why": "Canal authority operational role (public).",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Panama Canal is a major inter-ocean container artery",
+        "url": "https://pancanal.com/",
+        "notes": "Canal authority operational role (public)."
+      },
+      "derivationMethod": "known_infrastructure_dependency",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_containers_shipping",
+      "from": "gse_commodity_containers",
+      "to": "gse_industry_shipping",
+      "relationType": "defines",
+      "why": "Coded mapping.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Container freight is the shipping industry unit of carriage",
+        "url": "https://www.census.gov/foreign-trade/",
+        "notes": "Coded mapping."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_containers_retail",
+      "from": "gse_commodity_containers",
+      "to": "gse_industry_retail",
+      "relationType": "inputs",
+      "why": "Rule-coded logistics dependency.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Imported consumer goods move primarily in containers",
+        "url": "https://www.census.gov/foreign-trade/",
+        "notes": "Rule-coded logistics dependency."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_retail_to_goods",
+      "from": "gse_industry_retail",
+      "to": "gse_citizen_goods",
+      "relationType": "affects",
+      "why": "Rule-coded; not automatic scarcity.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Retail logistics stress can affect consumer goods availability",
+        "url": "https://www.census.gov/retail/",
+        "notes": "Rule-coded; not automatic scarcity."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_ports_route",
+      "from": "gse_port_la_lb",
+      "to": "gse_route_asia_us",
+      "relationType": "terminates",
+      "why": "Port authority public role.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "LA/LB is a primary Asia–US West Coast gateway",
+        "url": "https://www.portoflosangeles.org/",
+        "notes": "Port authority public role."
+      },
+      "derivationMethod": "known_infrastructure_dependency",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_route_containers",
+      "from": "gse_route_asia_us",
+      "to": "gse_commodity_containers",
+      "relationType": "carries",
+      "why": "Infrastructure dependency.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Asia–US West Coast route carries containerized goods",
+        "url": "https://www.portoflosangeles.org/",
+        "notes": "Infrastructure dependency."
+      },
+      "derivationMethod": "known_infrastructure_dependency",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_ofac_sanctions",
+      "from": "gse_policy_ofac",
+      "to": "gse_country_us",
+      "relationType": "administered_by",
+      "why": "Authoritative institutional fact.",
+      "confidence": "Observed",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "OFAC administers US sanctions programs (Treasury)",
+        "url": "https://ofac.treasury.gov/",
+        "notes": "Authoritative institutional fact."
+      },
+      "derivationMethod": "authoritative_dataset",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_export_controls_chips",
+      "from": "gse_policy_export_controls",
+      "to": "gse_commodity_chips",
+      "relationType": "constrains",
+      "why": "Authoritative policy scope.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "US export controls constrain advanced semiconductor items (BIS)",
+        "url": "https://www.bis.doc.gov/",
+        "notes": "Authoritative policy scope."
+      },
+      "derivationMethod": "authoritative_dataset",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_steel_tariff_exposure",
+      "from": "gse_commodity_steel",
+      "to": "gse_industry_automotive",
+      "relationType": "inputs",
+      "why": "Documented industrial input.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Steel is a major automotive manufacturing input",
+        "url": "https://www.commerce.gov/",
+        "notes": "Documented industrial input."
+      },
+      "derivationMethod": "documented_trade_structure",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_energy_utilities",
+      "from": "gse_industry_energy",
+      "to": "gse_citizen_utilities",
+      "relationType": "affects",
+      "why": "Rule-coded; pass-through varies.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Energy industry conditions can affect utility costs",
+        "url": "https://www.eia.gov/",
+        "notes": "Rule-coded; pass-through varies."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_tech_electronics",
+      "from": "gse_industry_technology",
+      "to": "gse_citizen_electronics",
+      "relationType": "affects",
+      "why": "Rule-coded.",
+      "confidence": "Medium",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Technology hardware supply can affect electronics availability",
+        "url": "https://www.census.gov/",
+        "notes": "Rule-coded."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_shipping_travel",
+      "from": "gse_industry_shipping",
+      "to": "gse_citizen_travel",
+      "relationType": "affects",
+      "why": "Indirect; Low confidence.",
+      "confidence": "Low",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Severe maritime disruption can affect travel schedules/costs indirectly",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=61025",
+        "notes": "Indirect; Low confidence."
+      },
+      "derivationMethod": "coded_rule",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_sa_crude",
+      "from": "gse_country_sa",
+      "to": "gse_commodity_crude",
+      "relationType": "exports",
+      "why": "Documented trade structure.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Saudi Arabia is a major crude oil exporter (EIA)",
+        "url": "https://www.eia.gov/",
+        "notes": "Documented trade structure."
+      },
+      "derivationMethod": "documented_trade_structure",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": true,
+      "direction": "directed"
+    },
+    {
+      "id": "gsr_mideast_hormuz",
+      "from": "gse_region_mideast",
+      "to": "gse_strait_hormuz",
+      "relationType": "contains",
+      "why": "Geographic fact.",
+      "confidence": "Observed",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "documented_public_fact",
+        "label": "Strait of Hormuz is in the Middle East maritime region",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=61025",
+        "notes": "Geographic fact."
+      },
+      "derivationMethod": "authoritative_dataset",
+      "lastVerifiedAt": "2026-08-08T02:03:53.315Z",
+      "updatedAt": "2026-08-08T02:03:53.315Z",
+      "active": false,
+      "direction": "directed"
+    }
+  ],
+  "cascades": []
+}

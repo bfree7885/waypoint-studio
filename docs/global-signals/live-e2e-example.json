@@ -1,0 +1,136 @@
+{
+  "documentedAt": "2026-08-08T02:06:06.244Z",
+  "exampleArticle": {
+    "id": "gsa_live_e688949c",
+    "headline": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+    "publisher": "Federal Register",
+    "date": "2026-08-06",
+    "publishedAt": "2026-08-06T12:00:00.000Z",
+    "factualSummary": "This notice requests public comments on a proposal to include 14 additional derivative articles within the scope of the Section 232 duties on steel, aluminum, and copper: aluminum powder; brass-wind musical instruments and their parts and accessories; parts of welding machines and apparatus; floor safes; certain electric conductor cables; fire extinguishers; parts of heat exchange units; parts of certain hydraulic engines and motors; certain self-propelled cranes, mobile lifting frames, and straddle carriers; tanker trailers and semi- trailers; self-loading or self-unloading trailers and semi-",
+    "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+    "eventType": "Tariffs",
+    "relatedEventId": "gse_fr_e2d1a4d7",
+    "waypointsTake": {
+      "whyItMatters": "This official notice activates structural dependencies already coded in the Global Signals graph (1 industry exposure, 0 citizen categories).",
+      "analysis": "What is directly affected: Automotive What could be affected next: No additional verified dependency hop reached an industry or citizen category in the canonical graph. Industries exposed (graph): Automotive Citizens might notice (graph): None identified via coded graph paths from this event. Evidence supports that statement only through the linked official source and coded edges — not through unverified reporting. What remains uncertain: Retail price and household timing effects are not knowable from the source notice alone. Graph paths describe structural exposure, not guaranteed outcomes.",
+      "verifiedFacts": [
+        "Publisher: Federal Register",
+        "Published: 2026-08-06T12:00:00.000Z",
+        "Source: https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+        "Event type (adapter classification): tariffs"
+      ],
+      "analysisNotes": [
+        "ANALYSIS sections use deterministic templates over structured fields only.",
+        "No generative model invents geopolitical claims."
+      ],
+      "evidenceLinks": [
+        "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+        "https://www.commerce.gov/",
+        "https://www.bis.doc.gov/",
+        "https://www.eia.gov/todayinenergy/detail.php?id=61025",
+        "https://www.eia.gov/",
+        "https://www.eia.gov/petroleum/",
+        "https://ofac.treasury.gov/"
+      ],
+      "relationshipPaths": [
+        "gse_commodity_steel → inputs → gse_industry_automotive"
+      ],
+      "generatedBy": "deterministic-graph-templates",
+      "generatedAt": "2026-08-08T02:03:53.325Z"
+    },
+    "affectedCountries": [
+      "United States"
+    ],
+    "affectedIndustries": [
+      "Automotive"
+    ],
+    "affectedCommodities": [],
+    "citizenImpacts": [],
+    "timeHorizon": "Days",
+    "confidence": "Observed",
+    "likelyImpactPath": [
+      {
+        "label": "Request for Public Comments on the Proposed Implementation of Duties on Addition",
+        "type": "event",
+        "confidence": "High",
+        "timeframe": "Immediate",
+        "explanation": "Originating ingested event (source-backed)."
+      },
+      {
+        "label": "Automotive",
+        "type": "inputs",
+        "confidence": "High",
+        "timeframe": "Days",
+        "explanation": "Coded inputs edge (order 1); derived exposure, not Observed."
+      }
+    ],
+    "provenance": {
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+      "publisher": "Federal Register",
+      "publishedAt": "2026-08-06T12:00:00.000Z",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+    },
+    "retrievedAt": "2026-08-08T02:03:52.458Z"
+  },
+  "relatedImpactCount": 1,
+  "ingestionStatus": {
+    "version": "1.0.0",
+    "mode": "live",
+    "updatedAt": "2026-08-08T02:03:53.314Z",
+    "lastSuccessfulIngestion": "2026-08-08T02:03:53.314Z",
+    "lastAttemptAt": "2026-08-08T02:03:53.314Z",
+    "startedAt": "2026-08-08T02:03:52.458Z",
+    "activeSources": 7,
+    "sourcesAttempted": 7,
+    "eventsIngested": 49,
+    "rawEvents": 72,
+    "rejectedCount": 0,
+    "sourceFailures": [],
+    "adapters": [
+      {
+        "id": "federal-register",
+        "eventCount": 60,
+        "health": {
+          "ok": 4,
+          "attempted": 4,
+          "failures": []
+        }
+      },
+      {
+        "id": "usgs-earthquakes",
+        "eventCount": 9,
+        "health": {
+          "ok": 1,
+          "attempted": 1,
+          "failures": []
+        }
+      },
+      {
+        "id": "noaa-news",
+        "eventCount": 3,
+        "health": {
+          "ok": 1,
+          "attempted": 1,
+          "failures": []
+        }
+      },
+      {
+        "id": "state-dept",
+        "eventCount": 0,
+        "health": {
+          "ok": 1,
+          "attempted": 1,
+          "failures": []
+        }
+      }
+    ],
+    "artifactPaths": {
+      "events": "data/global-signals/production/events/events.json",
+      "status": "data/global-signals/ingestion/status.json",
+      "registry": "data/global-signals/sources/registry.json"
+    },
+    "refreshCadence": "Every 6 hours via GitHub Actions (global-signals-ingest.yml)"
+  }
+}

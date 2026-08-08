@@ -1,0 +1,106 @@
+name: Global Signals live ingest
+
+# Scheduled live-data refresh for Global Signals production artifacts.
+# Cadence: every 6 hours (+ manual dispatch).
+#
+# Safety / Pages notes:
+# - concurrency group prevents overlapping ingest runs
+# - commits only known GS artifact paths
+# - skips commit when artifacts unchanged
+# - refuses to commit when zero sources succeed (keeps last good data)
+# - GITHUB_TOKEN pushes to this branch/main can trigger pages.yml when merged
+#   to the Pages source branch; that is intentional and rate-limited by the
+#   6h cadence. Prefer running this workflow on the live-data feature branch
+#   until owner merge. See docs/global-signals/live-data-architecture.md.
+
+on:
+  schedule:
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: global-signals-ingest
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run live pipeline
+        id: pipeline
+        run: node scripts/global-signals/run-live-pipeline.mjs
+        env:
+          ARTICLES_TIMEOUT_MS: "25000"
+
+      - name: Unit + live-data tests
+        run: |
+          node automation/test-global-signals-live-data.mjs
+          node automation/test-global-signals-articles.mjs
+          node automation/test-global-signals-live-e2e.mjs
+
+      - name: Guard source success
+        id: guard
+        run: |
+          active=$(node -e "const s=require('./data/global-signals/ingestion/status.json'); process.stdout.write(String(s.activeSources||0))")
+          events=$(node -e "const e=require('./data/global-signals/production/events/events.json'); process.stdout.write(String((e.events||[]).length))")
+          echo "active_sources=$active" >> "$GITHUB_OUTPUT"
+          echo "event_count=$events" >> "$GITHUB_OUTPUT"
+          if [ "$active" -le 0 ]; then
+            echo "No sources succeeded; refusing to commit."
+            echo "safe=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "safe=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Detect artifact changes
+        id: diff
+        if: steps.guard.outputs.safe == 'true'
+        run: |
+          paths=(
+            data/global-signals/production
+            data/global-signals/ingestion
+            data/global-signals/sources
+            data/global-signals/articles/articles.json
+            data/global-signals/events
+            data/global-signals/relationship-graph
+            data/global-signals/relationships
+            data/global-signals/impacts
+            data/global-signals/industries/live-impacts.json
+            data/global-signals/citizen-impact/live-impacts.json
+          )
+          if git diff --quiet -- "${paths[@]}"; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit live artifacts
+        if: steps.guard.outputs.safe == 'true' && steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "waypoint-global-signals-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/global-signals/production \
+            data/global-signals/ingestion \
+            data/global-signals/sources \
+            data/global-signals/articles/articles.json \
+            data/global-signals/events \
+            data/global-signals/relationship-graph \
+            data/global-signals/relationships \
+            data/global-signals/impacts \
+            data/global-signals/industries/live-impacts.json \
+            data/global-signals/citizen-impact/live-impacts.json \
+            docs/global-signals/live-e2e-example.json || true
+          git commit -m "chore(global-signals): refresh live ingestion artifacts" || echo "No commit needed"
+          git push

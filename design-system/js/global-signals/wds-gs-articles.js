@@ -1,6 +1,8 @@
 /**
- * Global Signals Articles — card feed (Sprint 1).
- * Loads labeled sample/demo JSON. Does not invent missing Takes or facts.
+ * Global Signals Articles — card feed.
+ * Production loads live JSON only (mode: live | live-empty).
+ * Fixtures (sample-demo) are for tests — refused in production mounts unless allowFixture.
+ * Does not invent missing Takes or facts.
  */
 (function (global) {
   "use strict";
@@ -329,16 +331,46 @@
       );
     }
     var parts = [];
+    if (Array.isArray(take.verifiedFacts) && take.verifiedFacts.length) {
+      parts.push('<p class="gsa-note">VERIFIED (from source provenance)</p>');
+      parts.push(
+        "<ul class=\"gsa-take-verified\">" +
+          take.verifiedFacts
+            .map(function (line) {
+              return "<li>" + esc(line) + "</li>";
+            })
+            .join("") +
+          "</ul>"
+      );
+    }
+    parts.push('<p class="gsa-note">ANALYSIS · interpretation, not established fact</p>');
     if (take.whyItMatters && String(take.whyItMatters).trim()) {
       parts.push("<p><strong>Why it matters.</strong> " + esc(take.whyItMatters) + "</p>");
     }
     if (take.analysis && String(take.analysis).trim()) {
       parts.push("<p>" + esc(take.analysis) + "</p>");
     }
+    if (Array.isArray(take.evidenceLinks) && take.evidenceLinks.length) {
+      parts.push(
+        '<p class="gsa-note">Evidence links</p><ul class="gsa-take-evidence">' +
+          take.evidenceLinks
+            .filter(isSafeHttpUrl)
+            .map(function (url) {
+              return (
+                '<li><a href="' +
+                esc(url) +
+                '" rel="noopener noreferrer" target="_blank">' +
+                esc(url) +
+                "</a></li>"
+              );
+            })
+            .join("") +
+          "</ul>"
+      );
+    }
     return (
       '<section class="gsa-card__take" aria-label="Waypoint\u2019s Take">' +
       "<h3>Waypoint\u2019s Take</h3>" +
-      '<p class="gsa-note">Analysis · interpretation, not established fact</p>' +
       parts.join("") +
       "</section>"
     );
@@ -405,17 +437,58 @@
     );
   }
 
+  function formatFreshnessAge(iso) {
+    if (!iso) return null;
+    var t = new Date(iso).getTime();
+    if (isNaN(t)) return null;
+    var mins = Math.max(0, Math.round((Date.now() - t) / 60000));
+    if (mins < 1) return "Updated just now";
+    if (mins < 60) return "Updated " + mins + " minute" + (mins === 1 ? "" : "s") + " ago";
+    var hours = Math.round(mins / 60);
+    if (hours < 48) return "Updated " + hours + " hour" + (hours === 1 ? "" : "s") + " ago";
+    var days = Math.round(hours / 24);
+    return "Updated " + days + " day" + (days === 1 ? "" : "s") + " ago";
+  }
+
+  function renderFreshness(data) {
+    var f = data && data.freshness;
+    if (!f) return "";
+    var state = String(f.state || (data.mode === "live" ? "LIVE" : "EMPTY")).toUpperCase();
+    var age = formatFreshnessAge(f.lastSuccessfulRefresh || data.updatedAt);
+    var parts = [
+      state,
+      age,
+      f.sourceCount != null ? "Sources OK · " + f.sourceCount : null,
+      f.sourceHealth ? "Health · " + f.sourceHealth : null,
+      f.eventsIngested != null ? "Events · " + f.eventsIngested : null
+    ].filter(Boolean);
+    return (
+      '<p class="gsa-freshness" role="status">' +
+      esc(parts.join(" · ")) +
+      "</p>"
+    );
+  }
+
   function renderBanner(data) {
-    if (!data || data.mode !== "sample-demo") return "";
-    var label = data.modeLabel || "Sample / demo dataset";
+    if (!data) return "";
+    var mode = data.mode || "";
+    var isLive = mode === "live" || mode === "live-empty";
+    var isFixture = mode === "sample-demo" || mode === "fixture" || mode === "demo";
+    if (!isLive && !isFixture) return "";
+    var label =
+      data.modeLabel ||
+      (isLive ? "Live intelligence feed" : "Sample / demo dataset");
     var honesty =
       (data.honesty && data.honesty.banner) ||
-      "Sample / demo dataset — not a live intelligence feed.";
+      (isLive
+        ? "Live feed from approved public sources."
+        : "Sample / demo dataset — not a live intelligence feed.");
     return (
       '<div class="gsa-banner" role="status">' +
       '<p class="gsa-badge">' +
       esc(label) +
       "</p>" +
+      renderFreshness(data) +
       "<p>" +
       esc(honesty) +
       "</p>" +
@@ -436,6 +509,19 @@
     var res = await fetch(url, { credentials: "same-origin" });
     if (!res.ok) throw new Error("HTTP " + res.status);
     var data = await res.json();
+    var mode = data && data.mode;
+    var productionOk = mode === "live" || mode === "live-empty";
+    var fixtureOk = mode === "sample-demo" || mode === "fixture" || mode === "demo";
+    if (!opts.allowFixture && !productionOk) {
+      throw new Error(
+        "Refusing non-production Global Signals articles mode: " +
+          String(mode || "missing") +
+          ". Use fixtures path with allowFixture for tests."
+      );
+    }
+    if (opts.allowFixture && !productionOk && !fixtureOk) {
+      throw new Error("Unrecognized articles mode: " + String(mode || "missing"));
+    }
     var articles = (data.articles || [])
       .map(normalizeArticle)
       .filter(Boolean);
@@ -485,13 +571,20 @@
       }
 
       root.setAttribute("data-gsa-state", "ready");
+      var live = bundle.data && (bundle.data.mode === "live" || bundle.data.mode === "live-empty");
+      var countLabel = live
+        ? bundle.articles.length +
+          " live brief" +
+          (bundle.articles.length === 1 ? "" : "s")
+        : bundle.articles.length +
+          " demo brief" +
+          (bundle.articles.length === 1 ? "" : "s") +
+          " · sample / demo";
       root.innerHTML =
         renderBanner(bundle.data) +
         '<p class="gsa-hub-count">' +
-        bundle.articles.length +
-        " demo brief" +
-        (bundle.articles.length === 1 ? "" : "s") +
-        " · sample / demo</p>" +
+        esc(countLabel) +
+        "</p>" +
         '<div class="gsa-list" role="list">' +
         bundle.articles.map(renderCard).join("") +
         "</div>";

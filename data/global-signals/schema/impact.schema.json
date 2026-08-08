@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/schemas/global-signals/impact.json",
+  "title": "GlobalSignalsImpact",
+  "type": "object",
+  "required": ["id", "originEvent", "path", "affectedEntity", "impactDirection", "confidence", "timeHorizon", "evidence", "updatedAt"],
+  "properties": {
+    "id": { "type": "string" },
+    "originEvent": { "type": "string" },
+    "path": { "type": "array", "minItems": 1 },
+    "affectedEntity": { "type": "string" },
+    "impactDirection": { "type": "string" },
+    "confidence": { "enum": ["High", "Medium", "Low", "Unknown"] },
+    "timeHorizon": { "type": "string" },
+    "evidence": { "type": "array" },
+    "updatedAt": { "type": "string" },
+    "order": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "whyThisIsShowing": { "type": "string" }
+  }
+}

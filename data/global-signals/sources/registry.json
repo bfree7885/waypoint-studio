@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-08T02:03:53.314Z",
+  "sources": [
+    {
+      "id": "federal-register",
+      "enabled": true,
+      "lastEventCount": 60,
+      "lastOk": true,
+      "notes": "Approved public government feed/API — no prohibited scraping."
+    },
+    {
+      "id": "usgs-earthquakes",
+      "enabled": true,
+      "lastEventCount": 9,
+      "lastOk": true,
+      "notes": "Approved public government feed/API — no prohibited scraping."
+    },
+    {
+      "id": "noaa-news",
+      "enabled": true,
+      "lastEventCount": 3,
+      "lastOk": true,
+      "notes": "Approved public government feed/API — no prohibited scraping."
+    },
+    {
+      "id": "state-dept",
+      "enabled": true,
+      "lastEventCount": 0,
+      "lastOk": true,
+      "notes": "Approved public government feed/API — no prohibited scraping."
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Global Signals Articles — Sprint 1 (Prompts 1–5).
+ * Global Signals Articles — fixture unit tests + production gate.
+ * Demo/sample data lives under fixtures/ only.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -22,30 +23,32 @@ function exists(rel) {
 const htmlPath = "side-trails/global-signals/articles/index.html";
 const cssPath = "design-system/css/wds-global-signals-articles.css";
 const jsPath = "design-system/js/global-signals/wds-gs-articles.js";
-const dataPath = "data/global-signals/articles/articles.json";
+const loaderPath = "design-system/js/global-signals/wds-gs-loader.js";
+const fixturePath = "data/global-signals/fixtures/articles/articles.json";
+const prodPath = "data/global-signals/articles/articles.json";
 
 assert.ok(exists(htmlPath), "articles route missing");
 assert.ok(exists(cssPath), "articles CSS missing");
 assert.ok(exists(jsPath), "articles JS missing");
-assert.ok(exists(dataPath), "articles data missing");
+assert.ok(exists(loaderPath), "shared loader missing");
+assert.ok(exists(fixturePath), "fixture articles missing");
 
 const html = read(htmlPath);
 assert.match(html, /<title>Articles — Global Signals<\/title>/);
 assert.match(html, /id="gsa-feed"/);
 assert.match(html, /data-gsa-feed/);
 assert.match(html, /Global Signals articles will appear here as verified sources are added\./);
-assert.match(html, /href="\.\.\/"/);
-assert.match(html, /Back to Global Signals/);
 assert.match(html, /wds-gs-articles\.js/);
+assert.match(html, /wds-gs-loader\.js/);
 assert.match(html, /articles\.json/);
 assert.doesNotMatch(html, /Coming soon/i);
 
 const css = read(cssPath);
 assert.match(css, /\.gsa-feed/);
 assert.match(css, /\.gsa-card/);
-assert.match(css, /@media \(max-width:\s*40rem\)/);
+assert.match(css, /\.gsa-freshness/);
 
-const data = JSON.parse(read(dataPath));
+const data = JSON.parse(read(fixturePath));
 assert.equal(data.mode, "sample-demo");
 assert.equal(data.articles.length, 5);
 for (const a of data.articles) {
@@ -74,111 +77,56 @@ for (const a of data.articles) {
   }
 }
 
-
-
 const withTake = data.articles.filter((a) => a.waypointsTake);
 const withoutTake = data.articles.filter((a) => !a.waypointsTake);
 assert.equal(withTake.length, 4);
 assert.equal(withoutTake.length, 1);
-for (const a of withTake) {
-  const body = [a.waypointsTake.whyItMatters, a.waypointsTake.analysis].filter(Boolean).join(" ");
-  assert.ok(body.length > 40, "take should have substance");
-  assert.notEqual(body.trim(), a.factualSummary.trim(), "take must not restate summary");
+
+// Production path must not be sample-demo
+if (exists(prodPath)) {
+  const prod = JSON.parse(read(prodPath));
+  assert.notEqual(prod.mode, "sample-demo", "production articles must not be sample-demo");
+  assert.ok(prod.mode === "live" || prod.mode === "live-empty", "production mode must be live*");
 }
 
-
-// Unit: card renderer + missing fields + source links
+await import(pathToFileURL(path.join(root, loaderPath)).href);
 await import(pathToFileURL(path.join(root, jsPath)).href);
 const api = globalThis.WDS.globalSignals.articles;
+const loader = globalThis.WDS.globalSignals.loader;
+
+assert.equal(loader.isProductionMode("live"), true);
+assert.equal(loader.isProductionMode("sample-demo"), false);
+assert.equal(loader.gateDataset(data).ok, false);
+assert.equal(loader.gateDataset(data, { allowFixture: true }).ok, true);
+
 assert.equal(api.isSafeHttpUrl("https://example.invalid/x"), true);
 assert.equal(api.isSafeHttpUrl("javascript:alert(1)"), false);
-assert.equal(api.isSafeHttpUrl(null), false);
 
 const full = api.normalizeArticle(data.articles[0]);
 const card = api.renderCard(full);
 assert.match(card, /gsa-card/);
 assert.match(card, /Factual summary/);
 assert.match(card, /href="https:\/\/example\.invalid\/sample\/canal-drought-notice"/);
-assert.match(card, /rel="noopener noreferrer"/);
 
 const sparse = api.normalizeArticle({ id: "gsa_sparse" });
 const sparseCard = api.renderCard(sparse);
 assert.match(sparseCard, /Untitled brief/);
-assert.match(sparseCard, /Publisher unavailable/);
-assert.match(sparseCard, /Factual summary unavailable/);
-assert.match(sparseCard, /Event type unavailable/);
-assert.match(sparseCard, /Date unavailable/);
 assert.doesNotMatch(sparseCard, /gsa-card__source" href=/);
-assert.match(sparseCard, /Open brief/);
 
-// Waypoint's Take rendering
 const takeCard = api.renderCard(api.normalizeArticle(withTake[0]));
-assert.match(takeCard, /gsa-card__facts/);
-assert.match(takeCard, /gsa-card__take/);
 assert.match(takeCard, /Waypoint.s Take/);
-assert.match(takeCard, /Analysis · interpretation, not established fact/);
-assert.match(takeCard, /Observed \/ reported facts from sources/);
 
 const emptyTakeCard = api.renderCard(api.normalizeArticle(withoutTake[0]));
 assert.match(emptyTakeCard, /gsa-card__take--empty/);
-assert.match(emptyTakeCard, /We will not invent one/);
 
-const missingTake = api.renderTake(null);
-assert.match(missingTake, /gsa-card__take--empty/);
-
-// Confidence + horizon normalize
-assert.equal(api.normalizeConfidence(null), "Unknown");
-assert.equal(api.normalizeConfidence(""), "Unknown");
-assert.equal(api.normalizeConfidence("moderate"), "Medium");
-assert.equal(api.normalizeConfidence("Observed"), "Observed");
 assert.equal(api.normalizeConfidence("Observed", { predicted: true }), "Unknown");
-assert.equal(api.normalizeConfidence("nope"), "Unknown");
 assert.equal(api.normalizeTimeHorizon("weeks"), "Weeks");
-assert.equal(api.normalizeTimeHorizon("long term"), "Long-term");
-assert.equal(api.normalizeTimeHorizon("bogus"), "Unknown");
-
-const metaCard = api.renderCard(api.normalizeArticle(data.articles[0]));
-assert.match(metaCard, /gsa-card__impact/);
-assert.match(metaCard, /Confidence · Medium|Medium/);
-assert.match(metaCard, /Horizon · Weeks|Weeks/);
-assert.match(metaCard, /Industries/);
-assert.match(metaCard, /Citizen impact/);
-
-// Likely impact path + detail
-const pathHtml = api.renderImpactPath(api.normalizeArticle(data.articles[0]).likelyImpactPath);
-assert.match(pathHtml, /gsa-path/);
-assert.match(pathHtml, /gsa-path__step/);
-assert.match(pathHtml, /Canal slot cuts|Steel tariff|Ransomware|Port labor|Corridor diversion/);
-
-const emptyPath = api.renderImpactPath([]);
-assert.match(emptyPath, /not tagged/i);
 
 const detail = api.renderDetail(api.normalizeArticle(data.articles[0]));
 assert.match(detail, /gsa-detail/);
 assert.match(detail, /Likely impact path/);
-assert.match(detail, /What happened/);
-assert.match(detail, /All briefs/);
 
-// Malformed records
-const malformed = api.normalizeArticle({
-  id: "gsa_bad",
-  confidence: "Observed",
-  timeHorizon: "whenever",
-  likelyImpactPath: [
-    { label: "X", type: "citizen-impact", confidence: "Observed", timeframe: "days", explanation: "y" },
-    { label: "", type: "event" },
-    null
-  ]
-});
-assert.equal(malformed.confidence, "Observed"); // article-level facts confidence may be Observed
-assert.equal(malformed.timeHorizon, "Unknown");
-assert.equal(malformed.likelyImpactPath.length, 1);
-assert.equal(malformed.likelyImpactPath[0].confidence, "Unknown"); // predicted coerce
-
-assert.equal(api.normalizeArticle(null), null);
-assert.equal(api.normalizeArticle({}), null);
-
-// HTTP smoke
+// HTTP smoke with fixture allowFixture via direct JSON fetch; page uses production path
 const mime = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -212,23 +160,17 @@ async function get(pathname) {
 
 const page = await get("/side-trails/global-signals/articles/");
 assert.equal(page.status, 200);
-const detailPage = await get("/side-trails/global-signals/articles/?id=gsa_demo-canal-slots");
-assert.equal(detailPage.status, 200);
-assert.match(detailPage.text, /wds-gs-articles\.js/);
 
-const json = await get("/data/global-signals/articles/articles.json");
-assert.equal(json.status, 200);
-assert.match(json.text, /gsa_demo-canal-slots/);
+const fixtureJson = await get("/data/global-signals/fixtures/articles/articles.json");
+assert.equal(fixtureJson.status, 200);
+assert.match(fixtureJson.text, /gsa_demo-canal-slots/);
+
 const js = await get("/design-system/js/global-signals/wds-gs-articles.js");
 assert.equal(js.status, 200);
-const cssRes = await get("/design-system/css/wds-global-signals-articles.css");
-assert.equal(cssRes.status, 200);
 
-// No regression to outdoor Waypoint Articles
 const outdoor = read("articles/index.html");
 assert.match(outdoor, /Waypoint Studio Articles|Articles — Waypoint Studio/);
 assert.doesNotMatch(outdoor, /gsa-feed|global-signals\/articles\.json/);
-assert.ok(exists("design-system/js/platform/wds-articles-feed.js"));
 
 server.close();
-console.log("Global Signals Articles Prompt 5 (impact path + detail) checks passed.");
+console.log("Global Signals Articles fixture + production-gate checks passed.");

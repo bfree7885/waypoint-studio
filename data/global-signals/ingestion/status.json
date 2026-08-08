@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "mode": "live",
+  "updatedAt": "2026-08-08T02:03:53.314Z",
+  "lastSuccessfulIngestion": "2026-08-08T02:03:53.314Z",
+  "lastAttemptAt": "2026-08-08T02:03:53.314Z",
+  "startedAt": "2026-08-08T02:03:52.458Z",
+  "activeSources": 7,
+  "sourcesAttempted": 7,
+  "eventsIngested": 49,
+  "rawEvents": 72,
+  "rejectedCount": 0,
+  "sourceFailures": [],
+  "adapters": [
+    {
+      "id": "federal-register",
+      "eventCount": 60,
+      "health": {
+        "ok": 4,
+        "attempted": 4,
+        "failures": []
+      }
+    },
+    {
+      "id": "usgs-earthquakes",
+      "eventCount": 9,
+      "health": {
+        "ok": 1,
+        "attempted": 1,
+        "failures": []
+      }
+    },
+    {
+      "id": "noaa-news",
+      "eventCount": 3,
+      "health": {
+        "ok": 1,
+        "attempted": 1,
+        "failures": []
+      }
+    },
+    {
+      "id": "state-dept",
+      "eventCount": 0,
+      "health": {
+        "ok": 1,
+        "attempted": 1,
+        "failures": []
+      }
+    }
+  ],
+  "artifactPaths": {
+    "events": "data/global-signals/production/events/events.json",
+    "status": "data/global-signals/ingestion/status.json",
+    "registry": "data/global-signals/sources/registry.json"
+  },
+  "refreshCadence": "Every 6 hours via GitHub Actions (global-signals-ingest.yml)"
+}

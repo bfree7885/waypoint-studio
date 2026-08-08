@@ -1,0 +1,2519 @@
+{
+  "version": "1.0.0",
+  "mode": "live",
+  "modeLabel": "Live ingested events",
+  "updatedAt": "2026-08-08T02:03:53.314Z",
+  "honesty": {
+    "banner": "Live events from approved public government sources. Summaries are truncated source text — not republished full articles. Downstream impacts are not facts.",
+    "confidenceRules": "Observed is reserved for source-reported facts. Predicted impacts must never use Observed."
+  },
+  "counts": {
+    "raw": 72,
+    "normalized": 72,
+    "deduped": 49,
+    "rejected": 0
+  },
+  "events": [
+    {
+      "id": "gse_fr_15248ee1",
+      "title": "Notice of OFAC Sanctions Actions",
+      "summary": "The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) is publishing updates to the identifying information of one or more persons currently included in OFAC's Specially Designated Nationals and Blocked Persons List (SDN List). OFAC is also publishing the names of one entity whose property and interests in property have been unblocked and two aircraft who have been removed from the SDN List.",
+      "eventType": "sanctions",
+      "entities": [
+        "OFAC",
+        "Treasury Department",
+        "Foreign Assets Control Office"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-07T12:00:00.000Z",
+      "publishedAt": "2026-08-07T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/07/2026-16153/notice-of-ofac-sanctions-actions",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-16153",
+          "url": "https://www.federalregister.gov/documents/2026/08/07/2026-16153/notice-of-ofac-sanctions-actions"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/07/2026-16153/notice-of-ofac-sanctions-actions",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-07T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-16153"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_4f656ef8",
+      "title": "Notice of OFAC Sanctions Action",
+      "summary": "The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) is publishing the names of one or more persons and vessels that have been placed on OFAC's Specially Designated Nationals and Blocked Persons List (SDN List) based on OFAC's determination that one or more applicable legal criteria were satisfied. All property and interests in property subject to U.S. jurisdiction of these persons are blocked, and U.S. persons are generally prohibited from engaging in transactions with them. The vessels placed on the SDN List have been identified as property in which a blocked person",
+      "eventType": "sanctions",
+      "entities": [
+        "OFAC",
+        "Treasury Department",
+        "Foreign Assets Control Office"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-06T12:00:00.000Z",
+      "publishedAt": "2026-08-06T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15996/notice-of-ofac-sanctions-action",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15996",
+          "url": "https://www.federalregister.gov/documents/2026/08/06/2026-15996/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/08/05/2026-15849/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/08/04/2026-15785/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/30/2026-15356/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/28/2026-15157/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/20/2026-14514/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/17/2026-14477/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/15/2026-14247/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13494/notice-of-ofac-sanctions-actions"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/02/2026-13389/notice-of-ofac-sanctions-action"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15996/notice-of-ofac-sanctions-action",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-06T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15996"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15849"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15785"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15356"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15157"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14514"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14477"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14247"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-13494"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-13389"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_ad49cc43",
+      "title": "Updating Website and Contact Information, and Authorizations for Payments for Legal Services",
+      "summary": "The Department of the Treasury's Office of Foreign Assets Control (OFAC) is adopting a final rule to update website and contact information in certain parts of the Code of Federal Regulations (CFR). Additionally, OFAC is amending one CFR Part to update general licenses authorizing payments for legal services from funds originating outside the United States to replace the reporting requirement in the general license with a recordkeeping requirement and correcting typographical errors in two CFR Parts. OFAC is also updating its regulations to correct an erroneous cross-reference.",
+      "eventType": "sanctions",
+      "entities": [
+        "OFAC",
+        "Treasury Department",
+        "Foreign Assets Control Office"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-27T12:00:00.000Z",
+      "publishedAt": "2026-07-27T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/27/2026-15112/updating-website-and-contact-information-and-authorizations-for-payments-for-legal-services",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15112",
+          "url": "https://www.federalregister.gov/documents/2026/07/27/2026-15112/updating-website-and-contact-information-and-authorizations-for-payments-for-legal-services"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/27/2026-15112/updating-website-and-contact-information-and-authorizations-for-payments-for-legal-services",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-27T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-15112"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_b31741ae",
+      "title": "Notice of OFAC Sanctions Action",
+      "summary": "The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) has removed from OFAC's Specially Designated Nationals and Blocked Persons List (SDN List) the names of certain persons whose property and interests in property had been blocked pursuant to Hong Kong sanctions authorities. Additionally, OFAC has transferred names of persons who remain sanctioned under the Hong Kong Autonomy Act, Public Law 116-149 (HKAA), from the SDN List to the Non-SDN Menu Based Sanctions List (NS-MBS List).",
+      "eventType": "sanctions",
+      "entities": [
+        "OFAC",
+        "Treasury Department",
+        "Foreign Assets Control Office"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-22T12:00:00.000Z",
+      "publishedAt": "2026-07-22T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/22/2026-14706/notice-of-ofac-sanctions-action",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14706",
+          "url": "https://www.federalregister.gov/documents/2026/07/22/2026-14706/notice-of-ofac-sanctions-action"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/22/2026-14706/notice-of-ofac-sanctions-action",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-22T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14706"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_e8ac64a4",
+      "title": "Notice of OFAC Sanctions Action",
+      "summary": "The U.S. Department of the Treasury's Office of Foreign Assets Control (OFAC) is publishing updates to the identifying information of one or more persons currently included on OFAC's Specially Designated Nationals and Blocked Persons List (SDN List).",
+      "eventType": "sanctions",
+      "entities": [
+        "OFAC",
+        "Treasury Department",
+        "Foreign Assets Control Office"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-17T12:00:00.000Z",
+      "publishedAt": "2026-07-17T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/17/2026-14458/notice-of-ofac-sanctions-action",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14458",
+          "url": "https://www.federalregister.gov/documents/2026/07/17/2026-14458/notice-of-ofac-sanctions-action"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/14/2026-14093/notice-of-ofac-sanctions-action"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/17/2026-14458/notice-of-ofac-sanctions-action",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-17T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14458"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "foreign-assets-control-office",
+          "documentNumber": "2026-14093"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_9dc66809",
+      "title": "DPAS Directive Allocation Order and Additional Requirements for Recoverable Critical Minerals and Materials",
+      "summary": "The Bureau of Industry and Security (\"BIS\") is publishing this temporary final rule to restrict the exportation of black mass and tungsten waste and scrap without a license. Specifically, as of August 27, 2026, U.S. persons engaged in the sale of black mass and tungsten waste and scrap must allocate 100 percent of monthly sales to U.S. persons, unless an adjustment or exception is obtained in advance from BIS. This action is taken pursuant to section 101 of the Defense Production Act of 1950, as amended (\"DPA\" or the \"Act\"), the Defense Priorities and Allocations System (15 CFR part 700) and P",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-06T12:00:00.000Z",
+      "publishedAt": "2026-08-06T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-16078/dpas-directive-allocation-order-and-additional-requirements-for-recoverable-critical-minerals-and",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-16078",
+          "url": "https://www.federalregister.gov/documents/2026/08/06/2026-16078/dpas-directive-allocation-order-and-additional-requirements-for-recoverable-critical-minerals-and"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-16078/dpas-directive-allocation-order-and-additional-requirements-for-recoverable-critical-minerals-and",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-06T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-16078"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_e2d1a4d7",
+      "title": "Request for Public Comments on the Proposed Implementation of Duties on Additional Aluminum, Steel, and Copper Derivative Articles Under Section 232",
+      "summary": "This notice requests public comments on a proposal to include 14 additional derivative articles within the scope of the Section 232 duties on steel, aluminum, and copper: aluminum powder; brass-wind musical instruments and their parts and accessories; parts of welding machines and apparatus; floor safes; certain electric conductor cables; fire extinguishers; parts of heat exchange units; parts of certain hydraulic engines and motors; certain self-propelled cranes, mobile lifting frames, and straddle carriers; tanker trailers and semi- trailers; self-loading or self-unloading trailers and semi-",
+      "eventType": "tariffs",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-06T12:00:00.000Z",
+      "publishedAt": "2026-08-06T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15961",
+          "url": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/06/2026-15961/request-for-public-comments-on-the-proposed-implementation-of-duties-on-additional-aluminum-steel",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-06T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-15961"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_01a241cc",
+      "title": "Notice of Reduction of Tariffs on Patented Pharmaceuticals and Pharmaceutical Ingredients for Products of the United Kingdom Implemented by Presidential Proclamation 11020",
+      "summary": "This notice revises the tariff rate on patented pharmaceuticals and associated pharmaceutical ingredients that are products of the United Kingdom from 10 percent to zero percent in accordance with Proclamation 11020 \"Adjusting Imports of Pharmaceuticals and Pharmaceutical Ingredients Into the United States.\"",
+      "eventType": "tariffs",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-04T12:00:00.000Z",
+      "publishedAt": "2026-08-04T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/04/2026-15799/notice-of-reduction-of-tariffs-on-patented-pharmaceuticals-and-pharmaceutical-ingredients-for",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15799",
+          "url": "https://www.federalregister.gov/documents/2026/08/04/2026-15799/notice-of-reduction-of-tariffs-on-patented-pharmaceuticals-and-pharmaceutical-ingredients-for"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/04/2026-15799/notice-of-reduction-of-tariffs-on-patented-pharmaceuticals-and-pharmaceutical-ingredients-for",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-04T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-15799"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_6244fef2",
+      "title": "Implementation of EAR Export Controls on Silencers, Mufflers, and Sound Suppressors; and Other Firearms Related Changes",
+      "summary": "The Department of Commerce (Commerce), Bureau of Industry and Security (BIS) is revising the Export Administration Regulations (EAR) and the Commerce Control List (CCL) to appropriately control certain silencers, mufflers, and sound suppressors (sound suppressors) that will no longer be described on the International Traffic in Arms Regulations U.S. Munitions List (USML). This interim final rule (IFR) complements a Department of State interim final rule published elsewhere in this issue of the Federal Register (International Traffic in Arms Regulations: USML Category I Firearm Suppressors (140",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-23T12:00:00.000Z",
+      "publishedAt": "2026-07-23T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/23/2026-14942/implementation-of-ear-export-controls-on-silencers-mufflers-and-sound-suppressors-and-other-firearms",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14942",
+          "url": "https://www.federalregister.gov/documents/2026/07/23/2026-14942/implementation-of-ear-export-controls-on-silencers-mufflers-and-sound-suppressors-and-other-firearms"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/23/2026-14942/implementation-of-ear-export-controls-on-silencers-mufflers-and-sound-suppressors-and-other-firearms",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-23T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-14942"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_4849b074",
+      "title": "Enhanced Favorable Treatment for the United Arab Emirates Under the Export Administration Regulations",
+      "summary": "In this final rule, the Bureau of Industry and Security (BIS) amends the Export Administration Regulations (EAR) to provide enhanced favorable treatment for the United Arab Emirates (UAE). Specifically, BIS is removing the UAE from Country Groups D:3 and D:4 and adding the UAE to Country Group A:5. More license exceptions will now be available, including Strategic Trade Authorization (STA) for the UAE Government and approved commercial entities in the UAE. STA will authorize the export, reexport, or transfer (in-country) of military items; certain commercial satellites and spacecraft; and dual",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-14T12:00:00.000Z",
+      "publishedAt": "2026-07-14T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/14/2026-14132/enhanced-favorable-treatment-for-the-united-arab-emirates-under-the-export-administration",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14132",
+          "url": "https://www.federalregister.gov/documents/2026/07/14/2026-14132/enhanced-favorable-treatment-for-the-united-arab-emirates-under-the-export-administration"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/14/2026-14132/enhanced-favorable-treatment-for-the-united-arab-emirates-under-the-export-administration",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-14T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-14132"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_0850d8bf",
+      "title": "Notice of Request for Public Comments on Section 232 National Security Investigation of Anthracite Coal",
+      "summary": "On June 29, 2026, the Secretary of Commerce initiated an investigation to determine the effects on the national security of imports of anthracite coal. This investigation has been initiated under section 232 of the Trade Expansion Act of 1962, as amended (Section 232). Interested parties are invited to submit written comments, data, analyses, or other information pertinent to the investigation to the Department of Commerce's (Department) Bureau of Industry and Security (BIS), Office of Strategic Industries and Economic Security. This notice identifies issues on which the Department is especial",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-07T12:00:00.000Z",
+      "publishedAt": "2026-07-07T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/07/2026-13663/notice-of-request-for-public-comments-on-section-232-national-security-investigation-of-anthracite",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-13663",
+          "url": "https://www.federalregister.gov/documents/2026/07/07/2026-13663/notice-of-request-for-public-comments-on-section-232-national-security-investigation-of-anthracite"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/07/2026-13663/notice-of-request-for-public-comments-on-section-232-national-security-investigation-of-anthracite",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-07T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-13663"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_cc9f042b",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Technology Letter of Explanation",
+      "summary": "Federal Register document from BIS: Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Voluntary Self-Disclosure of Antiboycott Violations",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-24T12:00:00.000Z",
+      "publishedAt": "2026-06-24T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12731/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-12731",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12731/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12728/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/05/21/2026-10210/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12731/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-24T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-12731"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-12728"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-10210"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_70debb4a",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Report of Requests for Restrictive Trade Practice or Boycott",
+      "summary": "Federal Register document from BIS: Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Report of Requests for Restrictive Trade Practice or Boycott",
+      "eventType": "trade_policy",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-24T12:00:00.000Z",
+      "publishedAt": "2026-06-24T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12729/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-12729",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12729/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12729/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-24T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-12729"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_bb7e201d",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Five-Year Records Retention Requirement for Export Transactions and Boycott Actions.",
+      "summary": "The Department of Commerce, in accordance with the Paperwork Reduction Act of 1995 (PRA), invites the general public and other Federal agencies to comment on proposed, and continuing information collections, which helps us assess the impact of our information collection requirements and minimize the public's reporting burden. The purpose of this notice is to allow for 60 days of public comment preceding submission of the collection to OMB.",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-24T12:00:00.000Z",
+      "publishedAt": "2026-06-24T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12727/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-12727",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12727/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12727/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-24T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-12727"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_bb2a515f",
+      "title": "In the Matter of: Hans De Geetere, Paul Parmentierlaan 121, 8300 Knokke Heist, Belgium, and Nyckeestraat 4, 8300 Knokke Heist, Belgium, Knokke-Heist Support Corporation Management, a/k/a Hasa Invest, Paul Parmentierlaan 121, 8300 Knokke Heist, Belgium, and Nyckeestraat 4, 8300 Knokke Heist, Belgium; Final Decision and Order",
+      "summary": "Federal Register document from BIS: In the Matter of: Hans De Geetere, Paul Parmentierlaan 121, 8300 Knokke Heist, Belgium, and Nyckeestraat 4, 8300 Knokke Heist, Belgium, Knokke-Heist Support Corporation Management, a/k/a Hasa Invest, Paul Parmentierlaan 121, 8300 Knokke Heist, Belgium, and Nyckeestraat 4, 8300 Knokke Heist, Belgium; Final Decision and Order",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-29T12:00:00.000Z",
+      "publishedAt": "2026-05-29T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/29/2026-10682/in-the-matter-of-hans-de-geetere-paul-parmentierlaan-121-8300-knokke-heist-belgium-and-nyckeestraat",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-10682",
+          "url": "https://www.federalregister.gov/documents/2026/05/29/2026-10682/in-the-matter-of-hans-de-geetere-paul-parmentierlaan-121-8300-knokke-heist-belgium-and-nyckeestraat"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/29/2026-10682/in-the-matter-of-hans-de-geetere-paul-parmentierlaan-121-8300-knokke-heist-belgium-and-nyckeestraat",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-29T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-10682"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_c1675fce",
+      "title": "Reporting for Calendar Year 2025 on Offsets Agreements Related to Sales of Defense Articles or Defense Services to Foreign Countries or Foreign Firms",
+      "summary": "This notice is to remind the public that U.S. firms are required to report annually to the Department of Commerce (Commerce) information on contracts for the sale of defense articles or defense services to foreign countries or foreign firms that are subject to offsets agreements exceeding $5,000,000 in value. U.S. firms are also required to report annually to Commerce information on offsets transactions completed in performance of existing offsets commitments for which an offsets credit of $250,000 or more has been claimed from the foreign representative. This year, such reports must include r",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-27T12:00:00.000Z",
+      "publishedAt": "2026-05-27T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/27/2026-10521/reporting-for-calendar-year-2025-on-offsets-agreements-related-to-sales-of-defense-articles-or",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-10521",
+          "url": "https://www.federalregister.gov/documents/2026/05/27/2026-10521/reporting-for-calendar-year-2025-on-offsets-agreements-related-to-sales-of-defense-articles-or"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/27/2026-10521/reporting-for-calendar-year-2025-on-offsets-agreements-related-to-sales-of-defense-articles-or",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-27T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-10521"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_55a221f0",
+      "title": "Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Reporting of Violations of the Export Administration Regulations",
+      "summary": "Federal Register document from BIS: Agency Information Collection Activities; Submission to the Office of Management and Budget (OMB) for Review and Approval; Comment Request; Reporting of Violations of the Export Administration Regulations",
+      "eventType": "export_import_controls",
+      "entities": [
+        "BIS",
+        "Commerce Department",
+        "Industry and Security Bureau"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-21T12:00:00.000Z",
+      "publishedAt": "2026-05-21T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/21/2026-10217/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-10217",
+          "url": "https://www.federalregister.gov/documents/2026/05/21/2026-10217/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/05/21/2026-10216/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/21/2026-10217/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-21T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-10217"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "industry-and-security-bureau",
+          "documentNumber": "2026-10216"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_aacdb204",
+      "title": "Notice of Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure of Each Economy To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "summary": "The United States Trade Representative (Trade Representative) has determined under Section 301(b) and Section 304(a) of the Trade Act of 1974, as amended (Trade Act), that in each of 60 investigations, certain of the acts, policies, and practices of the economy at issue are actionable and that action by the United States is appropriate. In accordance with the specific direction of the President, the Trade Representative is taking actions in each of these investigations by imposing tariffs on all products of the investigated economy, with certain exemptions as provided in Annexes I and II to th",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-28T12:00:00.000Z",
+      "publishedAt": "2026-07-28T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15181",
+          "url": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/28/2026-15181/notice-of-actions-in-section-301-investigations-of-acts-policies-and-practices-of-various-economies",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-28T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-15181"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_8b86fc6a",
+      "title": "Fiscal Year 2027 Tariff-Rate Quota Allocations for Raw Cane Sugar, Refined Sugar, and Sugar-Containing Products",
+      "summary": "The Office of the United States Trade Representative is providing notice of allocations of the Fiscal Year (FY) 2027 (October 1, 2026 through September 30, 2027) in-quota quantities of the tariff- rate quotas (TRQs) for imported raw cane sugar, certain sugars, syrups and molasses (also known as refined sugar), which includes specialty sugar, and sugar-containing products.",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-24T12:00:00.000Z",
+      "publishedAt": "2026-07-24T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/24/2026-15050/fiscal-year-2027-tariff-rate-quota-allocations-for-raw-cane-sugar-refined-sugar-and-sugar-containing",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15050",
+          "url": "https://www.federalregister.gov/documents/2026/07/24/2026-15050/fiscal-year-2027-tariff-rate-quota-allocations-for-raw-cane-sugar-refined-sugar-and-sugar-containing"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/24/2026-15050/fiscal-year-2027-tariff-rate-quota-allocations-for-raw-cane-sugar-refined-sugar-and-sugar-containing",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-24T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-15050"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_39632071",
+      "title": "Notice of Action: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "summary": "The United States Trade Representative (Trade Representative) has determined under Section 301(b) and Section 304(a) of the Trade Act of 1974, as amended (Trade Act), that certain of Brazil's acts, policies, and practices at issue in this investigation are actionable and that action by the United States is appropriate. In accordance with the specific direction of the President, the Trade Representative is taking action by imposing 25 percent tariffs on all imports of Brazil, with certain exemptions.",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-20T12:00:00.000Z",
+      "publishedAt": "2026-07-20T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14542",
+          "url": "https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/20/2026-14542/notice-of-action-brazils-acts-policies-and-practices-related-to-digital-trade-and-electronic-payment",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-20T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-14542"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_6cf1803c",
+      "title": "Request for Comments and Notice of Public Hearing Concerning the Annual Review of Country Eligibility for Benefits Under the African Growth and Opportunity Act for Calendar Year 2027",
+      "summary": "USTR is announcing the initiation of its 26th annual review of the eligibility of sub-Saharan African countries to receive the benefits of the current African Growth and Opportunity Act (AGOA), if reauthorized, for calendar year 2027. USTR is requesting written comments for this review and will conduct a public hearing on this matter. In developing its recommendations on AGOA country eligibility for calendar year 2027, USTR, in coordination with the AGOA Implementation Subcommittee of the Trade Policy Staff Committee (AGOA TPSC Subcommittee), will consider written comments, written testimony,",
+      "eventType": "export_import_controls",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-30T12:00:00.000Z",
+      "publishedAt": "2026-06-30T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/30/2026-13177/request-for-comments-and-notice-of-public-hearing-concerning-the-annual-review-of-country",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-13177",
+          "url": "https://www.federalregister.gov/documents/2026/06/30/2026-13177/request-for-comments-and-notice-of-public-hearing-concerning-the-annual-review-of-country"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/30/2026-13177/request-for-comments-and-notice-of-public-hearing-concerning-the-annual-review-of-country",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-30T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-13177"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_59ae37a8",
+      "title": "Initiation of Section 301 Investigation; Hearing; and Request for Public Comments: Germany's Persistent Underpayment for Innovative Pharmaceutical Products",
+      "summary": "The United States Trade Representative (U.S. Trade Representative) has initiated an investigation pursuant to the Trade Act of 1974, as amended (Trade Act), with respect to Germany's persistent underpayment for innovative pharmaceutical products. The inter-agency Section 301 Committee is holding a public hearing and seeking public comments in connection with this investigation.",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-24T12:00:00.000Z",
+      "publishedAt": "2026-06-24T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12671/initiation-of-section-301-investigation-hearing-and-request-for-public-comments-germanys-persistent",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-12671",
+          "url": "https://www.federalregister.gov/documents/2026/06/24/2026-12671/initiation-of-section-301-investigation-hearing-and-request-for-public-comments-germanys-persistent"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/24/2026-12671/initiation-of-section-301-investigation-hearing-and-request-for-public-comments-germanys-persistent",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-24T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-12671"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_80aa4378",
+      "title": "Notice of Extended Deadline for Written Responses to the Initial Round of Comments About the Administration's Action Following a Determination of Import Injury With Regard to Quartz Surface Products (QSP)",
+      "summary": "On May 15, 2026, the Office of the United States Trade Representative (USTR), on behalf of the Trade Policy Staff Committee (TPSC), published in the Federal Register a process by which domestic producers, importers, exporters, and other interested parties may submit views and evidence on the appropriateness of the safeguard measure recommended by the United States International Trade Commission (USITC) with respect to its determination that quartz surface products (QSP) are being imported into the United States in such increased quantities as to be a substantial cause of serious injury, or the",
+      "eventType": "export_import_controls",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-09T12:00:00.000Z",
+      "publishedAt": "2026-06-09T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/09/2026-11471/notice-of-extended-deadline-for-written-responses-to-the-initial-round-of-comments-about-the",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-11471",
+          "url": "https://www.federalregister.gov/documents/2026/06/09/2026-11471/notice-of-extended-deadline-for-written-responses-to-the-initial-round-of-comments-about-the"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/09/2026-11471/notice-of-extended-deadline-for-written-responses-to-the-initial-round-of-comments-about-the",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-09T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-11471"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_13806caa",
+      "title": "Notice of Determinations and Request for Comments Concerning Actions in Section 301 Investigations of Acts, Policies, and Practices of Various Economies Related to the Failure To Impose and Effectively Enforce a Prohibition on the Importation of Goods Produced With Forced Labor",
+      "summary": "On March 12, 2026, the United States Trade Representative (Trade Representative) initiated 60 investigations related to the failure of various economies to impose and effectively enforce a prohibition on the importation of goods produced with forced labor. The Trade Representative has determined that 54 of the investigated economies have failed to impose and effectively enforce a forced labor import prohibition. The Trade Representative has determined that six of the investigated economies have failed to effectively enforce a forced labor import prohibition. The Trade Representative has determ",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-05T12:00:00.000Z",
+      "publishedAt": "2026-06-05T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/05/2026-11296/notice-of-determinations-and-request-for-comments-concerning-actions-in-section-301-investigations",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-11296",
+          "url": "https://www.federalregister.gov/documents/2026/06/05/2026-11296/notice-of-determinations-and-request-for-comments-concerning-actions-in-section-301-investigations"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/05/2026-11296/notice-of-determinations-and-request-for-comments-concerning-actions-in-section-301-investigations",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-05T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-11296"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_844945ca",
+      "title": "Request for Comments on the Scope and Operation of a Mechanism To Promote Reciprocal Managed Trade With China",
+      "summary": "USTR invites comments from interested parties to inform the development of negotiations with China aimed at optimizing bilateral trade in non-sensitive products in order to promote reciprocity and balance in the U.S.-China trade relationship. In particular, comment is sought on the types of non-sensitive products that would benefit from favorable tariff modifications by both sides, and considerations around the design of a new government-to-government mechanism--a U.S.-China Board of Trade--to manage bilateral trade optimization on an ongoing basis.",
+      "eventType": "trade_policy",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-05T12:00:00.000Z",
+      "publishedAt": "2026-06-05T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/05/2026-11291/request-for-comments-on-the-scope-and-operation-of-a-mechanism-to-promote-reciprocal-managed-trade",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-11291",
+          "url": "https://www.federalregister.gov/documents/2026/06/05/2026-11291/request-for-comments-on-the-scope-and-operation-of-a-mechanism-to-promote-reciprocal-managed-trade"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/05/2026-11291/request-for-comments-on-the-scope-and-operation-of-a-mechanism-to-promote-reciprocal-managed-trade",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-05T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-11291"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_478731e1",
+      "title": "Notice of Determination and Request for Comments Concerning Action Pursuant to Section 301: Brazil's Acts, Policies, and Practices Related to Digital Trade and Electronic Payment Services; Unfair, Preferential Tariffs; Anti-Corruption Enforcement; Intellectual Property Protection; Ethanol Market Access; and Illegal Deforestation",
+      "summary": "The United States Trade Representative (Trade Representative) has determined that certain of Brazil's acts, policies, and practices at issue in this investigation are actionable under Section 301(b) and Section 304(a) of the Trade Act of 1974, as amended (Trade Act). The Trade Representative is proposing action, including tariffs on articles of Brazil and certain exemptions, and invites comments from the public.",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-04T12:00:00.000Z",
+      "publishedAt": "2026-06-04T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/04/2026-11158/notice-of-determination-and-request-for-comments-concerning-action-pursuant-to-section-301-brazils",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-11158",
+          "url": "https://www.federalregister.gov/documents/2026/06/04/2026-11158/notice-of-determination-and-request-for-comments-concerning-action-pursuant-to-section-301-brazils"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/04/2026-11158/notice-of-determination-and-request-for-comments-concerning-action-pursuant-to-section-301-brazils",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-04T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-11158"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_30d854d4",
+      "title": "Initiation of Section 301 Investigation and Request for Public Comments: Vietnam's Acts, Policies, and Practices Related to Intellectual Property Protection and Enforcement",
+      "summary": "Pursuant to section 182(a)(2) of the Trade Act of 1974, as amended (Trade Act), the U.S. Trade Representative (Trade Representative) identified Vietnam as a priority foreign country due to Vietnam's denial of adequate and effective protection of intellectual property (IP) rights and its denial of fair and equitable market access to persons that rely on IP protection. Pursuant to section 302(b)(2) of the Trade Act, the Trade Representative is initiating a Section 301 investigation of the acts, policies, and practices of the Government of Vietnam related to IP protection and enforcement that res",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-06-03T12:00:00.000Z",
+      "publishedAt": "2026-06-03T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/06/03/2026-11043/initiation-of-section-301-investigation-and-request-for-public-comments-vietnams-acts-policies-and",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-11043",
+          "url": "https://www.federalregister.gov/documents/2026/06/03/2026-11043/initiation-of-section-301-investigation-and-request-for-public-comments-vietnams-acts-policies-and"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/06/03/2026-11043/initiation-of-section-301-investigation-and-request-for-public-comments-vietnams-acts-policies-and",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-06-03T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-11043"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_8d7f2084",
+      "title": "Implementing Certain Tariff-Related Elements of a Trade and Security Agreement Between the American Institute in Taiwan and the Taipei Economic and Cultural Representative Office in the United States",
+      "summary": "On September 5, 2025, President Trump issued Executive Order 14346 (Modifying the Scope of Reciprocal Tariffs and Establishing Procedures for Implementing Trade and Security Agreements). Executive Order 14346 directed and authorized the Secretary of Commerce (Secretary) and the United States Trade Representative (Trade Representative) to implement the terms of any framework trade and security agreement or final trade and security agreement concluded between the United States and a foreign trading partner that involve the national emergency declared in Executive Order 14257 of April 2, 2025 (Re",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Commerce Department",
+        "International Trade Administration",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-28T12:00:00.000Z",
+      "publishedAt": "2026-05-28T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/28/2026-10571/implementing-certain-tariff-related-elements-of-a-trade-and-security-agreement-between-the-american",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-10571",
+          "url": "https://www.federalregister.gov/documents/2026/05/28/2026-10571/implementing-certain-tariff-related-elements-of-a-trade-and-security-agreement-between-the-american"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/28/2026-10571/implementing-certain-tariff-related-elements-of-a-trade-and-security-agreement-between-the-american",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-28T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-10571"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_cf24572b",
+      "title": "Request for Comments and Public Hearing About the Administration's Action Following a Determination of Import Injury With Regard to Quartz Surface Products (QSP)",
+      "summary": "On April 1, 2026, the United States International Trade Commission (USITC) determined that quartz surface products (QSP) are being imported into the United States in such increased quantities as to be a substantial cause of serious injury, or the threat thereof, to the domestic industry producing an article that is like or directly competitive with the imported article. The Commissioners who voted in the affirmative are now conducting a process to recommend a safeguard measure for the President. The Office of the United States Trade Representative (USTR), on behalf of the Trade Policy Staff Co",
+      "eventType": "export_import_controls",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-15T12:00:00.000Z",
+      "publishedAt": "2026-05-15T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/15/2026-09809/request-for-comments-and-public-hearing-about-the-administrations-action-following-a-determination",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-09809",
+          "url": "https://www.federalregister.gov/documents/2026/05/15/2026-09809/request-for-comments-and-public-hearing-about-the-administrations-action-following-a-determination"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/15/2026-09809/request-for-comments-and-public-hearing-about-the-administrations-action-following-a-determination",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-15T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-09809"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_935fe16f",
+      "title": "Initiation of Second Four-Year Review Process: China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation",
+      "summary": "The U.S. Trade Representative is commencing the second, statutory four-year review of the two actions taken under Section 301 of the Trade Act of 1974, as amended (Trade Act), in the investigation of China's Acts, Policies, and Practices Related to Technology Transfer, Intellectual Property, and Innovation. The two actions were effective, respectively, on July 6, 2018, and August 23, 2018, and subsequently were modified by imposing additional duties on supplemental lists of products, by the temporary removal of duties on certain products through product exclusions, and through the first, statu",
+      "eventType": "export_import_controls",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-05-06T12:00:00.000Z",
+      "publishedAt": "2026-05-06T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/05/06/2026-08806/initiation-of-second-four-year-review-process-chinas-acts-policies-and-practices-related-to",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-08806",
+          "url": "https://www.federalregister.gov/documents/2026/05/06/2026-08806/initiation-of-second-four-year-review-process-chinas-acts-policies-and-practices-related-to"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/05/06/2026-08806/initiation-of-second-four-year-review-process-chinas-acts-policies-and-practices-related-to",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-05-06T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-08806"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_3f10bdcd",
+      "title": "Request for Comments on the Modernization of the African Growth and Opportunity Act (AGOA)",
+      "summary": "The Office of the United States Trade Representative (USTR) invites comments from interested parties to inform the development of trade policy recommendations on the modernization of the African Growth and Opportunity Act (AGOA), which is authorized through December 31, 2026. As part of forthcoming Congressional consideration of AGOA reauthorization, USTR will provide recommendations to Congress on reforms and modernizations to AGOA to ensure the program meets the needs of American workers and businesses, advances U.S. national security and economic security goals, optimizes balanced bilateral",
+      "eventType": "trade_policy",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-04-29T12:00:00.000Z",
+      "publishedAt": "2026-04-29T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/04/29/2026-08347/request-for-comments-on-the-modernization-of-the-african-growth-and-opportunity-act-agoa",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-08347",
+          "url": "https://www.federalregister.gov/documents/2026/04/29/2026-08347/request-for-comments-on-the-modernization-of-the-african-growth-and-opportunity-act-agoa"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/04/29/2026-08347/request-for-comments-on-the-modernization-of-the-african-growth-and-opportunity-act-agoa",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-04-29T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-08347"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_9fce8b57",
+      "title": "Publication of 2026 Tariff-Rate Quota Quantitative Limits Under the United States-Australia Free Trade Agreement",
+      "summary": "In accordance with the United States-Australia Free Trade Agreement entered into by the United States and the Commonwealth of Australia, the Office of the United States Trade Representative is providing notice of tariff-rate quota quantitative limits of certain tariff subheadings for calendar year 2026.",
+      "eventType": "tariffs",
+      "entities": [
+        "USTR",
+        "Trade Representative, Office of United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-03-31T12:00:00.000Z",
+      "publishedAt": "2026-03-31T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/03/31/2026-06207/publication-of-2026-tariff-rate-quota-quantitative-limits-under-the-united-states-australia-free",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-06207",
+          "url": "https://www.federalregister.gov/documents/2026/03/31/2026-06207/publication-of-2026-tariff-rate-quota-quantitative-limits-under-the-united-states-australia-free"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/03/31/2026-06207/publication-of-2026-tariff-rate-quota-quantitative-limits-under-the-united-states-australia-free",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-03-31T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "trade-representative-office-of-united-states",
+          "documentNumber": "2026-06207"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_4ff4c198",
+      "title": "Agency Information Collection Activities; Revision; Guam-CNMI Visa Waiver Information (Form I-736)",
+      "summary": "The Department of Homeland Security, U.S. Customs and Border Protection (CBP) will be submitting the following information collection request to the Office of Management and Budget (OMB) for review and approval in accordance with the Paperwork Reduction Act of 1995 (PRA). The information collection is published in the Federal Register to obtain comments from the public and affected agencies.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-04T12:00:00.000Z",
+      "publishedAt": "2026-08-04T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/04/2026-15773/agency-information-collection-activities-revision-guam-cnmi-visa-waiver-information-form-i-736",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15773",
+          "url": "https://www.federalregister.gov/documents/2026/08/04/2026-15773/agency-information-collection-activities-revision-guam-cnmi-visa-waiver-information-form-i-736"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/08/03/2026-15610/agency-information-collection-activities-extension-free-trade-agreements-ftas"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/04/2026-15773/agency-information-collection-activities-revision-guam-cnmi-visa-waiver-information-form-i-736",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-04T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-15773"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-15610"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_4e292d8b",
+      "title": "Agency Information Collection Activities; Revision; Cargo Manifest/Declaration, Stow Plan, Container Status Messages and Importer Security Filing",
+      "summary": "The Department of Homeland Security, U.S. Customs and Border Protection (CBP) will be submitting the following information collection request to the Office of Management and Budget (OMB) for review and approval in accordance with the Paperwork Reduction Act of 1995 (PRA). The information collection is published in the Federal Register to obtain comments from the public and affected agencies.",
+      "eventType": "export_import_controls",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-08-03T12:00:00.000Z",
+      "publishedAt": "2026-08-03T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/08/03/2026-15609/agency-information-collection-activities-revision-cargo-manifestdeclaration-stow-plan-container",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15609",
+          "url": "https://www.federalregister.gov/documents/2026/08/03/2026-15609/agency-information-collection-activities-revision-cargo-manifestdeclaration-stow-plan-container"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/08/03/2026-15609/agency-information-collection-activities-revision-cargo-manifestdeclaration-stow-plan-container",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-08-03T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-15609"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_89a6beda",
+      "title": "Customs User Fees To Be Adjusted for Inflation in Fiscal Year 2027",
+      "summary": "This document announces that U.S. Customs and Border Protection (CBP) is adjusting certain customs user fees and corresponding limitations established by the Consolidated Omnibus Budget Reconciliation Act (COBRA) for Fiscal Year 2027 in accordance with the Fixing America's Surface Transportation Act (FAST Act) as implemented by the CBP regulations.",
+      "eventType": "export_import_controls",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-31T12:00:00.000Z",
+      "publishedAt": "2026-07-31T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/31/2026-15530/customs-user-fees-to-be-adjusted-for-inflation-in-fiscal-year-2027",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15530",
+          "url": "https://www.federalregister.gov/documents/2026/07/31/2026-15530/customs-user-fees-to-be-adjusted-for-inflation-in-fiscal-year-2027"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/31/2026-15530/customs-user-fees-to-be-adjusted-for-inflation-in-fiscal-year-2027",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-31T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-15530"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_d3c5b4db",
+      "title": "Air Declaration Zone Test: Extension",
+      "summary": "This notice announces that U.S. Customs and Border Protection (CBP) is extending the Air Declaration Zone Test for an additional two years. Current CBP regulations require each traveler to provide a CBP officer with an oral or written declaration of all articles brought into the United States. The Air Declaration Zone Test streamlines the processing of travelers who enter the United States at air ports of entry by allowing a demonstrative initial declaration to separate travelers who do not have items to declare from those who have items to declare and, in some cases, replace the provision of",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-29T12:00:00.000Z",
+      "publishedAt": "2026-07-29T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/29/2026-15310/air-declaration-zone-test-extension",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-15310",
+          "url": "https://www.federalregister.gov/documents/2026/07/29/2026-15310/air-declaration-zone-test-extension"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/29/2026-15310/air-declaration-zone-test-extension",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-29T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-15310"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_23888187",
+      "title": "Notice of Issuance of Final Determination Concerning Philips North America LLC Ultrasound System 5100 POC Series",
+      "summary": "This document provides notice that U.S. Customs and Border Protection (CBP) has issued a final determination concerning the country of origin of the Philips North America LLC Ultrasound System 5100 POC Series. Based upon the facts presented, CBP has concluded that the last substantial transformation of the Philips North America LLC Ultrasound System 5100 POC Series occurs in the United States.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-16T12:00:00.000Z",
+      "publishedAt": "2026-07-16T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/16/2026-14310/notice-of-issuance-of-final-determination-concerning-philips-north-america-llc-ultrasound-system",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14310",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14310/notice-of-issuance-of-final-determination-concerning-philips-north-america-llc-ultrasound-system"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/16/2026-14310/notice-of-issuance-of-final-determination-concerning-philips-north-america-llc-ultrasound-system",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-16T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14310"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_1c879ea0",
+      "title": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "summary": "Notice is hereby given, pursuant to CBP regulations, that Camin Cargo Control, Inc. (East Providence, RI), has been approved to gauge petroleum and certain petroleum products and accredited to test petroleum and certain petroleum products for customs purposes for the next three years as of August 19, 2025.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-16T12:00:00.000Z",
+      "publishedAt": "2026-07-16T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14309",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14308/accreditation-and-approval-of-camin-cargo-control-inc-east-providence-ri-as-a-commercial-gauger-and"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14307/accreditation-and-approval-of-camin-cargo-control-inc-corpus-christi-tx-as-a-commercial-gauger-and"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14306/accreditation-and-approval-of-camin-cargo-control-inc-garden-city-ga-as-a-commercial-gauger-and"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13578/accreditation-and-approval-of-nmk-resources-inc-thorofare-nj-as-a-commercial-gauger-and-laboratory"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "Federal Register",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13577/accreditation-and-approval-of-nmk-resources-inc-pasadena-tx-as-a-commercial-gauger-and-laboratory"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-16T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14309"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14308"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14307"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14306"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-13578"
+        },
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-13577"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_8e8dd902",
+      "title": "Commercial Customs Operations Advisory Committee",
+      "summary": "The Commercial Customs Operations Advisory Committee (Committee) has postponed its quarterly meeting scheduled for Wednesday, July 15, 2026, in Washington, DC, until September 23, 2026.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-13T12:00:00.000Z",
+      "publishedAt": "2026-07-13T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/13/2026-14012/commercial-customs-operations-advisory-committee",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-14012",
+          "url": "https://www.federalregister.gov/documents/2026/07/13/2026-14012/commercial-customs-operations-advisory-committee"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/13/2026-14012/commercial-customs-operations-advisory-committee",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-13T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-14012"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_e9d2288b",
+      "title": "Agency Information Collection Activities; Extension; Court-Ordered Refunds Under the International Emergency Economic Powers Act Worksheet",
+      "summary": "The Department of Homeland Security, U.S. Customs and Border Protection (CBP) will be submitting the following information collection request to the Office of Management and Budget (OMB) for review and approval in accordance with the Paperwork Reduction Act of 1995 (PRA). The information collection is published in the Federal Register to obtain comments from the public and affected agencies.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-08T12:00:00.000Z",
+      "publishedAt": "2026-07-08T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/08/2026-13771/agency-information-collection-activities-extension-court-ordered-refunds-under-the-international",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-13771",
+          "url": "https://www.federalregister.gov/documents/2026/07/08/2026-13771/agency-information-collection-activities-extension-court-ordered-refunds-under-the-international"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/08/2026-13771/agency-information-collection-activities-extension-court-ordered-refunds-under-the-international",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-08T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-13771"
+        }
+      ]
+    },
+    {
+      "id": "gse_fr_35e7db41",
+      "title": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "summary": "Notice is hereby given, pursuant to CBP regulations, that The Strawn Group (Houston, TX) has been approved to gauge petroleum and certain petroleum products for customs purposes for the next three years as of September 27, 2024.",
+      "eventType": "trade_policy",
+      "entities": [
+        "CBP",
+        "Homeland Security Department",
+        "U.S. Customs and Border Protection"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "North America"
+      ],
+      "occurredAt": "2026-07-06T12:00:00.000Z",
+      "publishedAt": "2026-07-06T12:00:00.000Z",
+      "source": "federal-register",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+      "publisher": "Federal Register",
+      "retrievedAt": "2026-08-08T02:03:52.458Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.458Z",
+      "evidence": [
+        {
+          "kind": "official_document",
+          "label": "Federal Register 2026-13575",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "federal-register",
+        "sourceUrl": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+        "publisher": "Federal Register",
+        "publishedAt": "2026-07-06T12:00:00.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.458Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.458Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "federal-register",
+          "agency": "u-s-customs-and-border-protection",
+          "documentNumber": "2026-13575"
+        }
+      ]
+    },
+    {
+      "id": "gse_usgs_37486f67",
+      "title": "M 6.3 - south of the Kermadec Islands",
+      "summary": "USGS reports a magnitude 6.3 earthquake near 32 km SW of Sarangani, Philippines. This is an official geophysical observation, not an impact forecast.",
+      "eventType": "natural_disaster",
+      "entities": [
+        "USGS",
+        "Earthquake",
+        "south of the Kermadec Islands"
+      ],
+      "countries": [],
+      "regions": [
+        "south of the Kermadec Islands"
+      ],
+      "occurredAt": "2026-08-05T07:43:27.317Z",
+      "publishedAt": "2026-08-05T07:43:27.317Z",
+      "source": "usgs-earthquakes",
+      "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ti8i",
+      "publisher": "U.S. Geological Survey",
+      "retrievedAt": "2026-08-08T02:03:52.891Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.891Z",
+      "evidence": [
+        {
+          "kind": "official_observation",
+          "label": "USGS earthquake event page",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ti8i"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ti6x"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t01n"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000szpb"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "usgs-earthquakes",
+        "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ti8i",
+        "publisher": "U.S. Geological Survey",
+        "publishedAt": "2026-08-05T07:43:27.317Z",
+        "retrievedAt": "2026-08-08T02:03:52.891Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.891Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us6000ti8i",
+          "mag": 6.3
+        },
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us6000ti6x",
+          "mag": 6.3
+        },
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000t01n",
+          "mag": 6.3
+        },
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000szpb",
+          "mag": 6.4
+        }
+      ]
+    },
+    {
+      "id": "gse_usgs_8f87be36",
+      "title": "M 6.8 - The 2026 Kumamoto Region, Japan Earthquake",
+      "summary": "USGS reports a magnitude 6.8 earthquake near The 2026 Kumamoto Region, Japan Earthquake. This is an official geophysical observation, not an impact forecast.",
+      "eventType": "natural_disaster",
+      "entities": [
+        "USGS",
+        "Earthquake",
+        "The 2026 Kumamoto Region, Japan Earthquake"
+      ],
+      "countries": [],
+      "regions": [
+        "The 2026 Kumamoto Region, Japan Earthquake"
+      ],
+      "occurredAt": "2026-07-28T07:27:15.512Z",
+      "publishedAt": "2026-07-28T07:27:15.512Z",
+      "source": "usgs-earthquakes",
+      "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
+      "publisher": "U.S. Geological Survey",
+      "retrievedAt": "2026-08-08T02:03:52.891Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.891Z",
+      "evidence": [
+        {
+          "kind": "official_observation",
+          "label": "USGS earthquake event page",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "usgs-earthquakes",
+        "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tgb9",
+        "publisher": "U.S. Geological Survey",
+        "publishedAt": "2026-07-28T07:27:15.512Z",
+        "retrievedAt": "2026-08-08T02:03:52.891Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.891Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us6000tgb9",
+          "mag": 6.8
+        }
+      ]
+    },
+    {
+      "id": "gse_usgs_f958dd07",
+      "title": "M 6.4 - 96 km SW of Puerto Madero, Mexico",
+      "summary": "USGS reports a magnitude 6.4 earthquake near 96 km SW of Puerto Madero, Mexico. This is an official geophysical observation, not an impact forecast.",
+      "eventType": "natural_disaster",
+      "entities": [
+        "USGS",
+        "Earthquake",
+        "96 km SW of Puerto Madero, Mexico"
+      ],
+      "countries": [],
+      "regions": [
+        "96 km SW of Puerto Madero, Mexico"
+      ],
+      "occurredAt": "2026-07-17T15:20:06.587Z",
+      "publishedAt": "2026-07-17T15:20:06.587Z",
+      "source": "usgs-earthquakes",
+      "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t1cc",
+      "publisher": "U.S. Geological Survey",
+      "retrievedAt": "2026-08-08T02:03:52.891Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.891Z",
+      "evidence": [
+        {
+          "kind": "official_observation",
+          "label": "USGS earthquake event page",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t1cc"
+        },
+        {
+          "kind": "corroborating_source",
+          "label": "U.S. Geological Survey",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t1bu"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "usgs-earthquakes",
+        "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t1cc",
+        "publisher": "U.S. Geological Survey",
+        "publishedAt": "2026-07-17T15:20:06.587Z",
+        "retrievedAt": "2026-08-08T02:03:52.891Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.891Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000t1cc",
+          "mag": 6.4
+        },
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000t1bu",
+          "mag": 7.3
+        }
+      ]
+    },
+    {
+      "id": "gse_usgs_2f07f874",
+      "title": "M 6.2 - 32 km WSW of Sarangani, Philippines",
+      "summary": "USGS reports a magnitude 6.2 earthquake near 32 km WSW of Sarangani, Philippines. This is an official geophysical observation, not an impact forecast.",
+      "eventType": "natural_disaster",
+      "entities": [
+        "USGS",
+        "Earthquake",
+        "32 km WSW of Sarangani, Philippines"
+      ],
+      "countries": [],
+      "regions": [
+        "32 km WSW of Sarangani, Philippines"
+      ],
+      "occurredAt": "2026-07-14T15:49:39.287Z",
+      "publishedAt": "2026-07-14T15:49:39.287Z",
+      "source": "usgs-earthquakes",
+      "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0d0",
+      "publisher": "U.S. Geological Survey",
+      "retrievedAt": "2026-08-08T02:03:52.891Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.891Z",
+      "evidence": [
+        {
+          "kind": "official_observation",
+          "label": "USGS earthquake event page",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0d0"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "usgs-earthquakes",
+        "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000t0d0",
+        "publisher": "U.S. Geological Survey",
+        "publishedAt": "2026-07-14T15:49:39.287Z",
+        "retrievedAt": "2026-08-08T02:03:52.891Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.891Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000t0d0",
+          "mag": 6.2
+        }
+      ]
+    },
+    {
+      "id": "gse_usgs_1b828b1e",
+      "title": "M 6.4 - 196 km SE of Lorengau, Papua New Guinea",
+      "summary": "USGS reports a magnitude 6.4 earthquake near 196 km SE of Lorengau, Papua New Guinea. This is an official geophysical observation, not an impact forecast.",
+      "eventType": "natural_disaster",
+      "entities": [
+        "USGS",
+        "Earthquake",
+        "196 km SE of Lorengau, Papua New Guinea"
+      ],
+      "countries": [],
+      "regions": [
+        "196 km SE of Lorengau, Papua New Guinea"
+      ],
+      "occurredAt": "2026-07-13T08:53:27.219Z",
+      "publishedAt": "2026-07-13T08:53:27.219Z",
+      "source": "usgs-earthquakes",
+      "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000szzy",
+      "publisher": "U.S. Geological Survey",
+      "retrievedAt": "2026-08-08T02:03:52.891Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.891Z",
+      "evidence": [
+        {
+          "kind": "official_observation",
+          "label": "USGS earthquake event page",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000szzy"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "usgs-earthquakes",
+        "sourceUrl": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000szzy",
+        "publisher": "U.S. Geological Survey",
+        "publishedAt": "2026-07-13T08:53:27.219Z",
+        "retrievedAt": "2026-08-08T02:03:52.891Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.891Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "usgs-earthquakes",
+          "featureId": "us7000szzy",
+          "mag": 6.4
+        }
+      ]
+    },
+    {
+      "id": "gse_noaa_0ac78d34",
+      "title": "Pacific Hurricanes Fausto and Genevieve actually had origins near Africa",
+      "summary": "Pacific Hurricanes Fausto and Genevieve actually had origins near Africa NOAA satellites track hurricanes from their earliest beginnings NOAA's GOES West satellite captured this image of three tropical cyclones — Hurricanes Fausto and Genevieve and Typhoon Dolphin — swirling simultaneously in the Pacific Ocean. The image was taken on Tuesday, July 27, at 3:30 PM PDT/ 22:30 UTC. None of the three tropical cyclones made landfall in the United States. Fausto contributed to high surf conditions in Hawaii, and Genevieve also brought high surf to southern California. Typhoon Dolphin continued its track west toward Asia.&nbsp; (Image credit: NOAA Satellites) Download Image August 6, 2026 It may be surprising, but two of the hurricanes that swirled in the Pacific last week began their journeys tho",
+      "eventType": "natural_disaster",
+      "entities": [
+        "NOAA"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "Global"
+      ],
+      "occurredAt": "2026-08-06T17:49:27.000Z",
+      "publishedAt": "2026-08-06T17:49:27.000Z",
+      "source": "noaa-news",
+      "sourceUrl": "https://www.noaa.gov/stories/pacific-hurricanes-fausto-and-genevieve-actually-had-origins-near-africa",
+      "publisher": "NOAA",
+      "retrievedAt": "2026-08-08T02:03:52.973Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.973Z",
+      "evidence": [
+        {
+          "kind": "official_rss",
+          "label": "NOAA news feature",
+          "url": "https://www.noaa.gov/stories/pacific-hurricanes-fausto-and-genevieve-actually-had-origins-near-africa"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "noaa-news",
+        "sourceUrl": "https://www.noaa.gov/stories/pacific-hurricanes-fausto-and-genevieve-actually-had-origins-near-africa",
+        "publisher": "NOAA",
+        "publishedAt": "2026-08-06T17:49:27.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.973Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.973Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "noaa-news",
+          "guid": "16611 at https://www.noaa.gov"
+        }
+      ]
+    },
+    {
+      "id": "gse_noaa_12e0469f",
+      "title": "NOAA maintains prediction for below-normal Atlantic hurricane season",
+      "summary": "NOAA maintains prediction for below-normal Atlantic hurricane season Preparedness remains key throughout the season August 6, 2026 This image of Tropical Storm Bertha was captured by NOAA's GOES East (GOES-19 satellite) on July 22, 2026 at 1:15 p.m. ET. (Image credit: Tropical Storm Bertha captured by NOAA Satellites) Download Image With the climatological peak of hurricane season approaching in early September, NOAA’s prediction for below-normal activity in the Atlantic basin remains.&nbsp; Forecasters from&nbsp; NOAA’s National Weather Service updated today the number of expected named storms to 7-13 (with winds of 39 mph or greater), of which 2-6 could become hurricanes (winds of 74 mph or greater), including 0-2 major hurricanes (winds of 111 mph or greater). These ranges cover the ent",
+      "eventType": "natural_disaster",
+      "entities": [
+        "NOAA"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "Global"
+      ],
+      "occurredAt": "2026-07-30T17:52:31.000Z",
+      "publishedAt": "2026-07-30T17:52:31.000Z",
+      "source": "noaa-news",
+      "sourceUrl": "https://www.noaa.gov/news-release/noaa-maintains-prediction-for-below-normal-atlantic-hurricane-season",
+      "publisher": "NOAA",
+      "retrievedAt": "2026-08-08T02:03:52.973Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.973Z",
+      "evidence": [
+        {
+          "kind": "official_rss",
+          "label": "NOAA news feature",
+          "url": "https://www.noaa.gov/news-release/noaa-maintains-prediction-for-below-normal-atlantic-hurricane-season"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "noaa-news",
+        "sourceUrl": "https://www.noaa.gov/news-release/noaa-maintains-prediction-for-below-normal-atlantic-hurricane-season",
+        "publisher": "NOAA",
+        "publishedAt": "2026-07-30T17:52:31.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.973Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.973Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "noaa-news",
+          "guid": "16604 at https://www.noaa.gov"
+        }
+      ]
+    },
+    {
+      "id": "gse_noaa_0ac17045",
+      "title": "NOAA and partners find smaller-than-anticipated hypoxic zone in Gulf of America",
+      "summary": "NOAA and partners find smaller-than-anticipated hypoxic zone in Gulf of America Tropical Storm Bertha mixed water column, reducing size August 5, 2026 Measuring a 'dead zone': Scientists retrieve the CTD (conductivity, temperature, depth) package of ocean sensors after profiling dissolved oxygen at a station during the Shelfwide Hypoxia Cruise in the Gulf of America. (Image credit: Courtesy of Cassandra Glaspie/LSU) Download Image NOAA-supported scientists announced today that this year’s Gulf of America hypoxic zone is approximately 1,332 square miles, making it the 2nd smallest zone on record in 40 years of measurement. Hypoxic areas, also called “dead zones,” are areas with little to no oxygen in the water, which can negatively impact fish, shellfish, corals and aquatic plants by making",
+      "eventType": "natural_disaster",
+      "entities": [
+        "NOAA"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "regions": [
+        "Global"
+      ],
+      "occurredAt": "2026-07-30T17:26:01.000Z",
+      "publishedAt": "2026-07-30T17:26:01.000Z",
+      "source": "noaa-news",
+      "sourceUrl": "https://www.noaa.gov/news-release/noaa-and-partners-find-smaller-than-anticipated-hypoxic-zone-in-gulf-of-america",
+      "publisher": "NOAA",
+      "retrievedAt": "2026-08-08T02:03:52.973Z",
+      "lastVerifiedAt": "2026-08-08T02:03:52.973Z",
+      "evidence": [
+        {
+          "kind": "official_rss",
+          "label": "NOAA news feature",
+          "url": "https://www.noaa.gov/news-release/noaa-and-partners-find-smaller-than-anticipated-hypoxic-zone-in-gulf-of-america"
+        }
+      ],
+      "status": "active",
+      "provenance": {
+        "source": "noaa-news",
+        "sourceUrl": "https://www.noaa.gov/news-release/noaa-and-partners-find-smaller-than-anticipated-hypoxic-zone-in-gulf-of-america",
+        "publisher": "NOAA",
+        "publishedAt": "2026-07-30T17:26:01.000Z",
+        "retrievedAt": "2026-08-08T02:03:52.973Z",
+        "lastVerifiedAt": "2026-08-08T02:03:52.973Z"
+      },
+      "sourceRefs": [
+        {
+          "adapter": "noaa-news",
+          "guid": "16603 at https://www.noaa.gov"
+        }
+      ]
+    }
+  ]
+}

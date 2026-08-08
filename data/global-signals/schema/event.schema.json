@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/schemas/global-signals/event.json",
+  "title": "GlobalSignalsNormalizedEvent",
+  "type": "object",
+  "required": ["id", "title", "summary", "eventType", "source", "sourceUrl", "retrievedAt", "status"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "eventType": { "type": "string" },
+    "entities": { "type": "array", "items": { "type": "string" } },
+    "countries": { "type": "array", "items": { "type": "string" } },
+    "regions": { "type": "array", "items": { "type": "string" } },
+    "occurredAt": { "type": ["string", "null"] },
+    "publishedAt": { "type": ["string", "null"] },
+    "source": { "type": "string" },
+    "sourceUrl": { "type": "string" },
+    "publisher": { "type": "string" },
+    "retrievedAt": { "type": "string" },
+    "lastVerifiedAt": { "type": "string" },
+    "evidence": { "type": "array" },
+    "status": { "type": "string" },
+    "provenance": {
+      "type": "object",
+      "required": ["source", "publisher", "retrievedAt"],
+      "properties": {
+        "source": { "type": "string" },
+        "sourceUrl": { "type": ["string", "null"] },
+        "publisher": { "type": "string" },
+        "publishedAt": { "type": ["string", "null"] },
+        "retrievedAt": { "type": "string" },
+        "lastVerifiedAt": { "type": "string" }
+      }
+    }
+  }
+}

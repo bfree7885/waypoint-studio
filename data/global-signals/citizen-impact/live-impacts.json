@@ -1,0 +1,397 @@
+{
+  "version": "1.0.0",
+  "mode": "live",
+  "updatedAt": "2026-08-08T02:03:53.318Z",
+  "honesty": {
+    "banner": "Impacts are calculated from live events + evidence-backed graph edges. They are ANALYSIS / exposure paths, never Observed facts. Empty means no activation path reached an industry or citizen node.",
+    "confidenceRules": "Confidence decays with causal distance (order). Predicted impacts must never be labeled Observed."
+  },
+  "impacts": [
+    {
+      "id": "gsi_13f55fa4",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_edf563b6",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_772cc3bd",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_473a9fe7",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_fuel",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_fuel",
+      "affectedEntityLabel": "Fuel prices",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Crude price/supply can affect retail fuel costs (not automatic)",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded; confidence Medium — retail pass-through is not guaranteed."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Fuel prices\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_4fcdffff",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_citizen_transport",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Fuel inputs affect transportation costs",
+            "url": "https://www.eia.gov/petroleum/",
+            "notes": "Rule-coded dependency."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_transport",
+      "affectedEntityLabel": "Transportation",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Fuel inputs affect transportation costs",
+          "url": "https://www.eia.gov/petroleum/",
+          "notes": "Rule-coded dependency."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 1 reaches \"Transportation\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_96e321f8",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_commodity_crude",
+          "to": "gse_industry_energy",
+          "relationshipType": "feeds",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Crude oil feeds energy industry",
+            "url": "https://www.eia.gov/",
+            "notes": "Commodity-industry mapping."
+          },
+          "confidence": "High",
+          "order": 1
+        },
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Low",
+          "order": 2
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 2,
+      "orderLabel": "SECOND-ORDER",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Crude oil\", and a coded graph path of length 2 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_5d1cd422",
+      "originEvent": "gse_fr_1c879ea0",
+      "originEventTitle": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Accreditation and Approval of Camin Cargo Control, Inc. (Thorofare, NJ) as a Commercial Gauger and Laboratory",
+          "url": "https://www.federalregister.gov/documents/2026/07/16/2026-14309/accreditation-and-approval-of-camin-cargo-control-inc-thorofare-nj-as-a-commercial-gauger-and",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    },
+    {
+      "id": "gsi_10bb5d4f",
+      "originEvent": "gse_fr_35e7db41",
+      "originEventTitle": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+      "path": [
+        {
+          "from": "gse_industry_energy",
+          "to": "gse_citizen_utilities",
+          "relationshipType": "affects",
+          "evidence": {
+            "kind": "documented_public_fact",
+            "label": "Energy industry conditions can affect utility costs",
+            "url": "https://www.eia.gov/",
+            "notes": "Rule-coded; pass-through varies."
+          },
+          "confidence": "Medium",
+          "order": 1
+        }
+      ],
+      "affectedEntity": "gse_citizen_utilities",
+      "affectedEntityLabel": "Utilities",
+      "affectedEntityType": "Citizen Impact",
+      "impactDirection": "exposure",
+      "order": 1,
+      "orderLabel": "FIRST-ORDER",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": [
+        {
+          "kind": "graph_edge",
+          "label": "Energy industry conditions can affect utility costs",
+          "url": "https://www.eia.gov/",
+          "notes": "Rule-coded; pass-through varies."
+        },
+        {
+          "kind": "origin_event",
+          "label": "Approval of The Strawn Group (Houston, TX) as a Commercial Gauger",
+          "url": "https://www.federalregister.gov/documents/2026/07/06/2026-13575/approval-of-the-strawn-group-houston-tx-as-a-commercial-gauger",
+          "notes": "Source event used for activation; impact is derived, not Observed."
+        }
+      ],
+      "whyThisIsShowing": "An ingested event activated \"Energy\", and a coded graph path of length 1 reaches \"Utilities\".",
+      "updatedAt": "2026-08-08T02:03:53.318Z",
+      "status": "calculated"
+    }
+  ]
+}
