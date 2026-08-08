@@ -80,6 +80,9 @@ jobs:
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs
 
+      - name: Live data status component tests
+        run: node automation/test-live-status.mjs
+
       - name: Knowledge Platform tests
         run: node automation/test-knowledge-platform.mjs
 

@@ -246,6 +246,11 @@
   }
 
   function healthBadge(health, data) {
+    var LS = global.WDS && WDS.liveStatus;
+    if (LS) {
+      var spec = LS.fromArticlesHealth(health, data, { isStale: isStale });
+      return LS.renderHtml(spec);
+    }
     var status = (health && health.status) || "unknown";
     var stale = isStale(data) || status === "stale" || !!(data && data.retainedPrevious);
     var label =
@@ -467,6 +472,13 @@
           geoSel.addEventListener("change", function () {
             state.geo = geoSel.value;
             paint();
+          });
+        }
+        var retryBtn = el.querySelector("[data-wds-live-retry]");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", function (ev) {
+            ev.preventDefault();
+            global.location.reload();
           });
         }
       }

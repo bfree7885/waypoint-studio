@@ -137,6 +137,17 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+
+### 2026-08-08 — Live data reliability status
+
+**Artifact:** `docs/quality/live-data-reliability-owner-review.md`  
+**Branch:** `feature/live-data-reliability-status`
+
+1. **Silent `catch → null` hides Offline.** Client feeds (Sheds weather) must record error + updatedAt and render `wds-live-status`; never leave users assuming data is current.
+2. **One shared strip beats per-app badges.** Articles, Cyber, GS, and Sheds now share `WDS.liveStatus` semantics (Healthy / Warning / Offline) so freshness language stays consistent.
+3. **Sample/demo is Warning, not Healthy.** Global Signals labeled datasets must not look like live ingestion succeeded.
+4. **Adapters belong next to the component.** Prefer `fromArticlesHealth` / `fromCyberLive` / `fromClientFeed` over re-encoding status in each surface.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  

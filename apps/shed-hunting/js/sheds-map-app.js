@@ -35,6 +35,8 @@
     elevKey: "",
     elevAbort: null,
     weather: null,
+    weatherMeta: { status: "unknown", updatedAt: null, error: null, loading: false },
+    tileMeta: { status: "loading", ok: 0, err: 0, source: "OpenStreetMap", updatedAt: null },
     recomputeTimer: null,
     recomputeGen: 0,
     heatPhase: "idle",
@@ -407,6 +409,32 @@
       { position: "topright", collapsed: true }
     ).addTo(map);
 
+    function bindTileHealth(layer, label) {
+      layer.on("tileload", function () {
+        state.tileMeta.ok += 1;
+        state.tileMeta.status = state.tileMeta.err > 0 ? "warning" : "healthy";
+        state.tileMeta.source = label;
+        state.tileMeta.updatedAt = new Date().toISOString();
+        updateLiveStatusUi();
+      });
+      layer.on("tileerror", function () {
+        state.tileMeta.err += 1;
+        state.tileMeta.status = state.tileMeta.ok > 0 ? "warning" : "offline";
+        state.tileMeta.source = label;
+        state.tileMeta.updatedAt = new Date().toISOString();
+        updateLiveStatusUi();
+      });
+      layer.on("loading", function () {
+        if (state.tileMeta.ok === 0 && state.tileMeta.err === 0) {
+          state.tileMeta.status = "loading";
+          state.tileMeta.source = label;
+          updateLiveStatusUi();
+        }
+      });
+    }
+    bindTileHealth(osm, "OpenStreetMap");
+    bindTileHealth(topo, "OpenTopoMap");
+
     var firstTile = false;
     osm.on("load", function () {
       if (!firstTile) {
@@ -600,12 +628,23 @@
   }
 
   function fetchWeatherSoft(lat, lng) {
-    if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
+    if (!isFinite(lat) || !isFinite(lng)) {
+      state.weatherMeta = { status: "unavailable", updatedAt: null, error: "no coordinates", loading: false };
+      updateLiveStatusUi();
+      return Promise.resolve(null);
+    }
+    state.weatherMeta = {
+      status: "loading",
+      updatedAt: state.weatherMeta && state.weatherMeta.updatedAt,
+      error: null,
+      loading: true
+    };
+    updateLiveStatusUi();
     var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat.toFixed(4) +
       "&longitude=" + lng.toFixed(4) +
       "&daily=snowfall_sum&current=temperature_2m,wind_speed_10m&timezone=auto&forecast_days=3";
     return fetch(url, { credentials: "omit" }).then(function (res) {
-      if (!res.ok) throw new Error("wx");
+      if (!res.ok) throw new Error("Open-Meteo weather HTTP " + res.status);
       return res.json();
     }).then(function (data) {
       var snow = 0;
@@ -621,14 +660,120 @@
         ? data.current.temperature_2m : null;
       var windSpeedMs = data.current && typeof data.current.wind_speed_10m === "number"
         ? data.current.wind_speed_10m : null;
+      var nowIso = new Date().toISOString();
+      state.weatherMeta = { status: "healthy", updatedAt: nowIso, error: null, loading: false };
+      updateLiveStatusUi();
       return {
         snowInfluence: influence,
         snowMm: snow,
         tempC: tempC,
         windSpeedMs: windSpeedMs,
-        source: "weather-provider"
+        source: "Open-Meteo",
+        fetchedAt: nowIso
       };
-    }).catch(function () { return null; });
+    }).catch(function (err) {
+      state.weatherMeta = {
+        status: "offline",
+        updatedAt: state.weatherMeta && state.weatherMeta.updatedAt,
+        error: err && err.message ? err.message : "weather unavailable",
+        loading: false
+      };
+      updateLiveStatusUi();
+      return null;
+    });
+  }
+
+  function updateLiveStatusUi() {
+    if (!els.liveStatus) return;
+    var LS = window.WDS && WDS.liveStatus;
+    if (!LS) {
+      var wxLabel = state.weather
+        ? "Weather available"
+        : (state.weatherMeta && state.weatherMeta.error
+          ? "Weather unavailable — " + state.weatherMeta.error
+          : "Weather status unknown");
+      var tileLabel = state.tileMeta
+        ? ("Tiles · " + (state.tileMeta.status || "unknown") + " (" + (state.tileMeta.ok || 0) + " ok / " + (state.tileMeta.err || 0) + " err)")
+        : "Tiles status unknown";
+      els.liveStatus.innerHTML =
+        '<p class="sheds-note" role="status">' + wxLabel + "</p>" +
+        '<p class="sheds-note" role="status">' + tileLabel + "</p>";
+      return;
+    }
+    var wxState = "unknown";
+    if (state.offlineForced || navigator.onLine === false) wxState = state.weather ? "warning" : "offline";
+    else if (state.weatherMeta && state.weatherMeta.loading) wxState = "loading";
+    else if (state.weather) wxState = "healthy";
+    else if (state.weatherMeta && state.weatherMeta.status === "offline") wxState = "offline";
+    else if (state.weatherMeta && state.weatherMeta.status) wxState = state.weatherMeta.status;
+
+    var tileState = "unknown";
+    if (state.tileMeta) {
+      if (state.tileMeta.err > 0 && state.tileMeta.ok === 0) tileState = "offline";
+      else if (state.tileMeta.err > 0) tileState = "warning";
+      else if (state.tileMeta.ok > 0) tileState = "healthy";
+      else if (state.tileMeta.status === "loading") tileState = "loading";
+      else tileState = state.tileMeta.status || "unknown";
+    }
+
+    var wxSpec = LS.fromClientFeed({
+      id: "sheds-weather",
+      label: "Weather",
+      source: "Open-Meteo forecast (client)",
+      state: wxState,
+      updatedAt: (state.weather && state.weather.fetchedAt) || (state.weatherMeta && state.weatherMeta.updatedAt) || null,
+      message: state.weather
+        ? ("Snow context " + (typeof state.weather.snowMm === "number" ? state.weather.snowMm.toFixed(1) + " mm (3-day sum)" : "available"))
+        : (state.weatherMeta && state.weatherMeta.error
+          ? state.weatherMeta.error + " — scoring continues without live weather"
+          : "Weather not fetched yet"),
+      retry: {
+        available: true,
+        label: "Retry weather",
+        hint: "Re-request Open-Meteo for the current map center"
+      },
+      compact: true,
+      skipAgePolicy: true
+    });
+    var tileSpec = LS.fromClientFeed({
+      id: "sheds-tiles",
+      label: "Map tiles",
+      source: (state.tileMeta && state.tileMeta.source) || "OpenStreetMap / OpenTopoMap",
+      state: tileState,
+      updatedAt: state.tileMeta && state.tileMeta.updatedAt,
+      message:
+        (state.tileMeta && state.tileMeta.ok != null
+          ? state.tileMeta.ok + " loaded · " + state.tileMeta.err + " failed"
+          : "Waiting for first tile") +
+        (navigator.onLine === false ? " · browser offline (cached tiles may still show)" : ""),
+      retry: null,
+      compact: true,
+      skipAgePolicy: true
+    });
+    els.liveStatus.innerHTML =
+      '<div class="wds-live-status-stack">' +
+      LS.renderHtml(Object.assign({}, wxSpec, { compact: true })) +
+      LS.renderHtml(Object.assign({}, tileSpec, { compact: true })) +
+      "</div>";
+    // dark theme class
+    Array.prototype.forEach.call(els.liveStatus.querySelectorAll("[data-wds-live-status]"), function (node) {
+      node.classList.add("wds-live-status--on-dark", "wds-live-status--compact");
+    });
+    var retry = els.liveStatus.querySelector('[data-wds-live-retry="sheds-weather"]');
+    if (retry) {
+      retry.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        var center = map ? map.getCenter() : null;
+        var lat = state.userLatLng ? state.userLatLng.lat : (center && center.lat);
+        var lng = state.userLatLng ? state.userLatLng.lng : (center && center.lng);
+        if (lat == null || lng == null) return;
+        fetchWeatherSoft(lat, lng).then(function (w) {
+          state.weather = w;
+          scheduleRecompute(100);
+          updateLiveStatusUi();
+        });
+      });
+    }
   }
 
   function modelStamp() {
@@ -1827,6 +1972,7 @@
     els.sessionPill = $("session-pill");
     els.seasonPill = $("season-pill");
     els.modelNote = $("model-note");
+    els.liveStatus = $("sheds-live-status");
     els.inputsSummary = $("inputs-summary");
     els.planCard = $("plan-card");
     els.planTitle = $("plan-title");
@@ -1898,8 +2044,15 @@
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
     syncOfflineBanner();
-    window.addEventListener("online", syncOfflineBanner);
-    window.addEventListener("offline", syncOfflineBanner);
+    updateLiveStatusUi();
+    window.addEventListener("online", function () {
+      syncOfflineBanner();
+      updateLiveStatusUi();
+    });
+    window.addEventListener("offline", function () {
+      syncOfflineBanner();
+      updateLiveStatusUi();
+    });
 
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("reduced-motion");

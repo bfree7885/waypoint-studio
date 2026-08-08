@@ -473,12 +473,19 @@
     });
   }
 
+  function renderLiveStatus(home) {
+    var LS = global.WDS && WDS.liveStatus;
+    if (!LS) return "";
+    return LS.renderHtml(LS.fromGlobalSignalsHome(home));
+  }
+
   function renderBoard(bundle) {
     var home = bundle.home;
     var routes = home.moduleRoutes || {};
     var events = buildCurrentEvents(home, bundle.articles, bundle.countries);
     return (
       renderBanner(home) +
+      renderLiveStatus(home) +
       renderSearch(bundle.relationships, routes) +
       '<div class="gsh-grid">' +
       panel("gsh-events", "Current Events", routes.articles, "All articles", renderEventList(events)) +
@@ -567,6 +574,13 @@
         el.setAttribute("data-gsh-state", "ready");
         el.innerHTML = renderBoard(bundle);
         bindSearch(el, bundle.home.moduleRoutes || {});
+        var retryBtn = el.querySelector("[data-wds-live-retry]");
+        if (retryBtn) {
+          retryBtn.addEventListener("click", function (ev) {
+            ev.preventDefault();
+            mount(el, options);
+          });
+        }
         return bundle;
       })
       .catch(function (err) {
