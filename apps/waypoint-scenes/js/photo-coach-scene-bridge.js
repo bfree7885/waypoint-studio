@@ -16,10 +16,7 @@
     var sug = critique && critique.sceneSuggestion;
     return [
       { id: "living-scene", label: "Living Scene", status: "live", desc: "Atmosphere, drift, and animated weather layers." },
-      { id: "parallax", label: "Parallax Scene", status: "live", desc: "Depth and presence — tilt and wander." },
-      { id: "cinematic", label: "Cinematic Loop", status: "pending", desc: "Coming later — still export works today." },
-      { id: "3d", label: "3D Scene", status: "pending", desc: "Coming later." },
-      { id: "wallpaper", label: "Wallpaper export", status: "pending", desc: "Coming later — still export works today." }
+      { id: "parallax", label: "Parallax Scene", status: "live", desc: "Depth and presence — tilt and wander." }
     ].map(function (opt) {
       if (opt.id === "living-scene" && sug && sug.presetId) {
         opt.recommended = true;
@@ -36,27 +33,22 @@
       '<p class="coach-card__note">Send this frame into Scene Builder with critique context attached.</p>' +
       '<ul class="coach-scene-options">';
     opts.forEach(function (opt) {
-      var statusClass = opt.status === "live" ? "live" : "pending";
-      html += '<li class="coach-scene-opt coach-scene-opt--' + statusClass + '">' +
+      html += '<li class="coach-scene-opt coach-scene-opt--live">' +
         '<div class="coach-scene-opt__copy">' +
           '<strong>' + escapeHtml(opt.label) + "</strong>" +
           (opt.recommended ? ' <span class="coach-trust coach-trust--live">Suggested</span>' : "") +
-          (opt.status === "pending" ? ' <span class="coach-trust coach-trust--pending">Coming later</span>' : "") +
           '<p>' + escapeHtml(opt.desc) + "</p>" +
-        "</div>";
-      if (opt.status === "live") {
-        html += '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm coach-scene-btn" data-scene-action="' +
-          escapeHtml(opt.id) + '">Open</button>';
-      }
-      html += "</li>";
+        "</div>" +
+        '<button type="button" class="wds-btn wds-btn--secondary wds-btn--sm coach-scene-btn" data-scene-action="' +
+          escapeHtml(opt.id) + '">Open</button>' +
+        "</li>";
     });
     html += "</ul>" +
       '<p class="coach-scene-roadmap-title">What works today</p>' +
       '<ul class="coach-scene-roadmap">' +
         '<li><span class="coach-trust coach-trust--live">Ready</span> Fog, rain, snow, cloud drift, parallax</li>' +
         '<li><span class="coach-trust coach-trust--live">Ready</span> Leaf drift (wind), light rays, fireflies</li>' +
-        '<li><span class="coach-trust coach-trust--pending">Later</span> Animated water, stars, aurora</li>' +
-        '<li><span class="coach-trust coach-trust--pending">Later</span> Desktop/phone wallpaper, cinematic loop, 3D scene</li>' +
+        '<li><span class="coach-trust coach-trust--live">Ready</span> Still image export from Share</li>' +
       "</ul>" +
       '<button type="button" class="wds-btn wds-btn--primary coach-scene-primary" id="btn-coach-send-builder">' +
         "Create Living Scene</button>" +

@@ -13,14 +13,13 @@
     "Why Waypoint is not building an AllTrails-style route utility"
   ],
   "comingSoon": [
-    "Fieldry route journal template",
-    "Trail condition notes on the regional dashboard News slice",
-    "Conservation lessons in shared Learn content",
+    "Standalone trail product will not return — use Fieldry for route notes",
+    "Trail conditions and weather windows stay on the regional dashboard",
     "No race timing, leaderboards, or wearable sync"
   ],
   "preview": {
     "title": "The long trail shelter",
-    "placeholderLabel": "Trail journal · placeholder",
+    "placeholderLabel": "Trail journal",
     "placeholderHint": "Miles · mood · weather · turnaround",
     "description": "The miles change how you see — but endurance journaling belongs in Fieldry and stewardship belongs on the dashboard. This page documents retirement of the standalone product concept."
   },

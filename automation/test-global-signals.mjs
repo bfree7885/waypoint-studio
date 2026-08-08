@@ -129,9 +129,11 @@ assert.doesNotMatch(explainPage, /Coming soon/i);
 
 for (const slug of ["waypoint-take", "supply-chains", "scenario-explorer"]) {
   const page = read(`side-trails/global-signals/${slug}/index.html`);
-  assert.match(page, /Coming soon/i);
-  assert.match(page, /not implemented/i);
+  assert.doesNotMatch(page, /Coming soon/i);
+  assert.doesNotMatch(page, /not implemented/i);
+  assert.doesNotMatch(page, /honest empty shell/i);
   assert.match(page, /Part of Side Trails\./);
+  assert.match(page, /gs-cta--primary/);
 }
 
 const globalDashboardRedirect = read("side-trails/global-signals/global-dashboard/index.html");

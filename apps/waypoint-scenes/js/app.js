@@ -50,7 +50,6 @@
     els.canvasEffects = $("canvas-effects");
     els.previewMeta = $("preview-meta");
     els.exportCanvas = $("export-canvas");
-    els.comingSoonMount = $("coming-soon-mount");
     els.effectsGrid = $("effects-grid");
     els.cameraSliders = $("camera-sliders");
     els.effectsStudio = $("effects-studio");
@@ -79,7 +78,6 @@
     buildEffectModules();
     buildPresets();
     buildParallaxPresets();
-    buildComingSoon();
     bindUpload();
     bindParallax();
     bindStudio();
@@ -1046,12 +1044,6 @@
     applyEffects();
     if (!startLivingScene.previewInterval) {
       startLivingScene.previewInterval = setInterval(updateExportPreview, 3000);
-    }
-  }
-
-  function buildComingSoon() {
-    if (window.WaypointComingSoon && els.comingSoonMount) {
-      window.WaypointComingSoon.buildPanel(els.comingSoonMount);
     }
   }
 

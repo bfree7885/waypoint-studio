@@ -137,6 +137,30 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-08 — Production placeholder audit
+
+**Artifact:** `docs/quality/placeholder-audit.md`  
+**Branch:** `feature/quality-placeholder-audit`
+
+1. **“Honest empty shell” is still a dead end** — labeled Coming soon pages
+   fail product standards if they only apologize. Prefer wiring to live modules
+   (Articles, Industries, Explain, Explorer) with the same calm honesty.
+2. **Roadmaps belong in docs, not product chrome** — About/Roadmap and
+   Now/Next/Later sections train users to wait. Replace with “what works today”
+   and “honest limits / not goals.”
+3. **Incubator ≠ Coming later** — when early-access apps already open, link
+   text should say Incubator. Reserve Coming later / Planned for truly unshipped
+   catalog statuses.
+4. **Hide unfinished option lists** — Scene Builder “On the horizon” grids and
+   pending Coach→Scene options advertise software that does not exist; show only
+   live actions plus a short unavailable note.
+5. **Preview JSON `comingSoon` is user-facing** — `wds-app-preview.js` rendered
+   “Features in development” even when empty. Gate the section and frame copy as
+   limits, not a ship calendar.
+6. **Stale cross-links recreate shells** — Industry cross-nav and country notes
+   pointed at Coming soon routes after modules shipped; sweep soft-links whenever
+   a module goes live.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  
