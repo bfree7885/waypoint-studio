@@ -19,7 +19,8 @@ Delivers **Explain This** — Global Signals’ signature question → structure
 | | SHA |
 | --- | --- |
 | Starting (branch point) | `0018a5455541eb91f4a5c8299b8a7c4fad7643d7` |
-| Tip | `7fd9470ca815337043eac3337ee43db4692257f7` |
+| Feature commit | `c39a1287c336ebeb21e903def3b23d03741ab9a4` |
+| Tip | `3d8620e335d220263b95b9d12dcabdd3437db988` (branch HEAD may include later docs stamps) |
 
 ## Route
 
