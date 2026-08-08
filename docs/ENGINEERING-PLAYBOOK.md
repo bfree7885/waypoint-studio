@@ -850,3 +850,13 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+
+### 2026-08-07 — Side Trails primary / global navigation
+
+**Branch:** `feature/side-trails-primary-nav`  
+**Report:** `docs/product/side-trails-primary-nav-owner-review.md`
+
+1. **Config listing ≠ delivery.** `studioPrimaryNav` already named Side Trails while Quiet Home hid the entire primary row — audit the rendered shell, not only the registry.
+2. **Apps-era `data-shell-depth` breaks top-level routes.** Encoding that maps depth `1` → `../../` assumes `/apps/*`. Forcing `0` on `/articles/` and `/side-trails/` made peer links resolve under the current directory. Prefer pathname segment depth + site-root absolute primary hrefs.
+3. **Quiet chrome can keep Explore hidden and still expose architecture nav.** Hiding the launcher is not the same as hiding Dashboard · … · Side Trails · Support · About.
+4. **Coordinate homepage section work separately** from global nav so parallel agents do not fight over `studio-home.js`.
