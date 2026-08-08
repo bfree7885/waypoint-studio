@@ -2,6 +2,7 @@
 
 **Date:** 2026-08-08  
 **Branch:** `feature/studio-polish-release`  
+**Commit:** `6e43ad2`  
 **Base:** `origin/main` @ `1245c7c`  
 **Worktree:** `/home/bryan/Projects/waypoint-studio-polish`  
 **Status:** Feature branch pushed for owner review. **Not merged. Not deployed.**
