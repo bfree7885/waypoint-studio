@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Australia entity page using the shared Global Signals layout. Sample/demo.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/entities/country/australia/">
+  <title>Australia — country · Global Signals</title>
+  <link rel="icon" href="../../../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../../../design-system/css/wds-global-signals-entities.css">
+</head>
+<body class="gs-landing gse-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../../../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="../../../entities/">Entities</a>
+      <a href="./" aria-current="page">Australia</a>
+      <a href="../../../relationships/">Relationships</a>
+      <a href="../../../articles/">Articles</a>
+      <a href="../../../../">Side Trails</a>
+    </nav>
+  </header>
+  <main id="main" class="gse-main">
+    <section id="gse-root" class="gse-mount" data-gse-root data-gse-state="loading" data-gse-data="../../../../../data/global-signals/entities/entities.json" data-gse-type="country" data-gse-slug="australia" aria-label="Entity system">
+      <p class="gse-empty" role="status">Loading entity…</p>
+    </section>
+  </main>
+  <script src="../../../../../design-system/js/global-signals/wds-gs-entities.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.entities) {
+        WDS.globalSignals.entities.mount(document.getElementById("gse-root"), {"depth":5,"dataUrl":"../../../../../data/global-signals/entities/entities.json","type":"country","slug":"australia"});
+      }
+    });
+  </script>
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+  </footer>
+</body>
+</html>

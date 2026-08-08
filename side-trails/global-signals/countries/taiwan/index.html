@@ -3,68 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Taiwan — Country Intelligence · Global Signals. Sample/demo structural profile — not live news. Part of Side Trails.">
+  <meta name="description" content="Taiwan — Country Intelligence · Global Signals. Shared entity layout (alias of /entities/country/taiwan/). Sample/demo — not live news.">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/countries/taiwan/">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/entities/country/taiwan/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waypoint Studio">
   <meta property="og:title" content="Taiwan — Country Intelligence · Global Signals">
-  <meta property="og:description" content="Sample/demo structural country profile for Taiwan. Not a live news feed.">
-  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/countries/taiwan/">
+  <meta property="og:description" content="Shared entity layout for Taiwan. Sample/demo structural profile — not a live news feed.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/entities/country/taiwan/">
   <title>Taiwan — Country Intelligence · Global Signals</title>
   <link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../../design-system/css/wds-global-signals-landing.css">
-  <link rel="stylesheet" href="../../../../design-system/css/wds-global-signals-countries.css">
+  <link rel="stylesheet" href="../../../../design-system/css/wds-global-signals-entities.css">
 </head>
-<body class="gs-landing gsc-page">
+<body class="gs-landing gsc-page gse-page">
   <a class="gs-skip" href="#main">Skip to content</a>
-
   <header class="gs-top">
     <a class="gs-brand-mark" href="../../">Global Signals</a>
     <nav aria-label="Product">
       <a href="../">Countries</a>
+      <a href="../../entities/country/taiwan/">Entity</a>
       <a href="../../articles/">Articles</a>
-      <a href="../../">Global Signals</a>
       <a href="../../../">Side Trails</a>
     </nav>
   </header>
-
-  <main id="main" class="gsc-main">
+  <main id="main" class="gsc-main gse-main">
+    <p class="gse-hub-nav">
+      <a class="gs-cta" href="../">← All countries</a>
+      <a class="gs-cta" href="../../entities/country/taiwan/">Canonical entity page</a>
+      <a class="gs-cta" href="../../">Global Signals</a>
+    </p>
     <section
       id="gsc-root"
-      class="gsc-root"
+      class="gsc-root gse-mount"
       aria-label="Taiwan country profile"
       data-gsc-root
+      data-gse-root
       data-gsc-state="loading"
+      data-gse-state="loading"
       data-gsc-slug="taiwan"
+      data-gse-type="country"
+      data-gse-slug="taiwan"
+      data-gse-data="../../../../data/global-signals/entities/entities.json"
     >
-      <p class="gsc-loading" role="status">Loading country intelligence…</p>
+      <p class="gsc-loading gse-empty" role="status">Loading country intelligence…</p>
     </section>
   </main>
-
-  <script src="../../../../design-system/js/global-signals/wds-gs-countries.js" defer></script>
+  <script src="../../../../design-system/js/global-signals/wds-gs-entities.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.globalSignals && WDS.globalSignals.countries) {
-        WDS.globalSignals.countries.mount(document.getElementById("gsc-root"), {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.entities) {
+        WDS.globalSignals.entities.mount(document.getElementById("gsc-root"), {
+          type: "country",
           slug: "taiwan",
           depth: 4,
-          detailDepth: 1,
-          backHref: "../",
-          dataUrl: "../../../../data/global-signals/countries/countries.json"
+          dataUrl: "../../../../data/global-signals/entities/entities.json"
         });
       }
     });
   </script>
-
   <footer class="gs-footer">
     <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
     <p>Part of Side Trails.</p>
     <p>
       <a href="../">Countries</a>
+      <a href="../../entities/">Entities</a>
       <a href="../../">Global Signals</a>
       <a href="../../../">Side Trails</a>
     </p>

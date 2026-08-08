@@ -37,6 +37,7 @@ const required = [
   "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/explain/index.html",
   "side-trails/global-signals/search/index.html",
+  "side-trails/global-signals/entities/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -63,6 +64,8 @@ assert.match(html, /relationships\.svg/);
 assert.match(html, /signal-flow\.svg/);
 assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
+assert.match(html, /\.\/entities\//);
+assert.match(html, /Entity System/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/countries\//);
@@ -70,6 +73,7 @@ assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
 assert.match(html, /\.\/search\//);
+assert.match(html, /\.\/entities\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -78,7 +82,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Live sample/demo modules: Articles, Search, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
+// Live sample/demo modules: Articles, Search, Entities, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -112,7 +116,7 @@ assert.doesNotMatch(countriesPage, /WebSocket|live data dashboard/i);
 
 const industriesPage = read("side-trails/global-signals/industries/index.html");
 assert.match(industriesPage, /Industry Intelligence/);
-assert.match(industriesPage, /gsi-index|data-gsi-index/);
+assert.match(industriesPage, /gsi-index|data-gsi-index|gsi-detail|Industry/);
 assert.match(industriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(industriesPage, /Coming soon/i);
 assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
@@ -139,6 +143,12 @@ assert.match(searchPage, /search-index\.json/);
 assert.match(searchPage, /Part of Side Trails\./);
 assert.doesNotMatch(searchPage, /Coming soon/i);
 assert.doesNotMatch(searchPage, /WebSocket|live data dashboard/i);
+
+const entitiesPage = read("side-trails/global-signals/entities/index.html");
+assert.match(entitiesPage, /Entity/);
+assert.match(entitiesPage, /data-gse-root|wds-gs-entities/);
+assert.match(entitiesPage, /Part of Side Trails\./);
+assert.doesNotMatch(entitiesPage, /Coming soon/i);
 
 for (const slug of [
   "waypoint-take",

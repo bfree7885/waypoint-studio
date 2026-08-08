@@ -157,8 +157,9 @@ assert.match(landing, /Industry Intelligence/);
 for (const slug of REQUIRED_SLUGS) {
   const page = read(`side-trails/global-signals/industries/${slug}/index.html`);
   assert.match(page, new RegExp(`data-gsi-slug="${slug}"`));
-  assert.match(page, /wds-gs-industries\.js/);
-  assert.match(page, /industries\.json/);
+  assert.match(page, /wds-gs-entities\.js/);
+  assert.match(page, /entities\.json/);
+  assert.match(page, /data-gse-type="industry"/);
   assert.match(page, /All industries/);
   assert.doesNotMatch(page, /Coming soon/i);
   assert.doesNotMatch(page, /TODO|lorem ipsum/i);
