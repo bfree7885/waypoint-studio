@@ -963,7 +963,7 @@
                     }).join("")
                   : "") +
               "</datalist>" +
-              '<button type="submit" class="wds-btn wds-btn--ghost wds-btn--sm">Set</button>' +
+              '<button type="submit" class="wds-btn wds-btn--ghost">Set</button>' +
             "</div>" +
           "</form>" +
           '<p class="wds-caption wds-location-prompt__status" id="wds-loc-status" aria-live="polite"></p>' +

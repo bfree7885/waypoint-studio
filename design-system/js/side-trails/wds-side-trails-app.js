@@ -103,7 +103,13 @@
       if (taglineEl && result.tagline) taglineEl.textContent = result.tagline;
       if (statusEl) {
         statusEl.dataset.status = result.status;
-        statusEl.textContent = result.message;
+        if (result.ok && result.projects.length) {
+          statusEl.textContent = "";
+          statusEl.setAttribute("hidden", "");
+        } else {
+          statusEl.removeAttribute("hidden");
+          statusEl.textContent = result.message;
+        }
       }
 
       if (!result.ok) {
@@ -117,7 +123,7 @@
       if (!result.projects.length) {
         grid.innerHTML = emptyHtml(
           "No projects yet",
-          "Add entries to data/side-trails/catalog.json — cards are never hardcoded."
+          "Add entries to data/side-trails/catalog.json when a sister project is ready to appear here."
         );
         return;
       }

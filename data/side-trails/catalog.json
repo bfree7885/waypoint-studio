@@ -3,7 +3,7 @@
   "updatedAt": "2026-08-06",
   "title": "Side Trails",
   "tagline": "A laboratory of sister projects beside Waypoint Studio’s primary outdoor tools.",
-  "message": "Every card is loaded from this catalog. The page never hardcodes projects.",
+  "message": "Sister projects from the Side Trails catalog.",
   "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived"],
   "projects": [
     {

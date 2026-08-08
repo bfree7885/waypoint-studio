@@ -59,15 +59,19 @@
 
 .st-top nav a {
   text-decoration: none;
-  color: #9aa8bd;
+  color: #b8c4d6;
   font-size: 0.92rem;
   font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .st-top nav a:hover,
 .st-top nav a:focus-visible {
   color: #5eead4;
-  outline: none;
+  outline: 2px solid rgba(94, 234, 212, 0.55);
+  outline-offset: 3px;
 }
 
 .st-hero {
@@ -142,7 +146,7 @@
 .st-hero__support {
   margin: 1rem 0 0;
   max-width: 36rem;
-  color: #9aa8bd;
+  color: #c5d0e0;
   line-height: 1.55;
   font-size: 1.02rem;
 }
@@ -150,7 +154,7 @@
 .st-hero__cta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.65rem;
   margin-top: 1.35rem;
 }
 
@@ -160,12 +164,12 @@
   justify-content: center;
   min-height: 44px;
   padding: 0.55rem 1rem;
-  border-radius: 10px;
-  border: 1px solid #2a3b55;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+  border-radius: 0.55rem;
   text-decoration: none;
   font-weight: 600;
   color: #d7e2f2;
-  background: transparent;
+  background: rgba(10, 18, 30, 0.35);
 }
 
 .st-cta--primary {
@@ -177,7 +181,8 @@
 .st-cta:hover,
 .st-cta:focus-visible {
   border-color: #5eead4;
-  outline: none;
+  outline: 2px solid rgba(94, 234, 212, 0.45);
+  outline-offset: 2px;
 }
 
 .st-section {

@@ -44,7 +44,7 @@
       if (value === "ai-generated") return "AI-generated summary";
       if (value === "editor-written") return "Editor-written summary";
       if (value === "unavailable") return "Summary unavailable";
-      return "Feed-description summary · source facts";
+      return "Publisher feed summary · source facts";
     }
     if (global.WDS && WDS.take && WDS.take.provenanceLabel && kind === "take") {
       return WDS.take.provenanceLabel(value);
@@ -364,10 +364,14 @@
         var staleNote = isStale(data) ? renderEmpty("stale") : "";
 
         el.setAttribute("aria-busy", "false");
+        var lede =
+          options.hideLede
+            ? ""
+            : '<p class="waf-lede">Curated outdoor and environmental reporting from trustworthy publishers. Waypoint summarizes feed metadata and adds a field take — the original article stays on the publisher’s site.</p>';
         el.innerHTML =
           '<div class="waf">' +
           healthBadge(health, data) +
-          '<p class="waf-lede">Curated outdoor and environmental reporting from trustworthy publishers. Waypoint summarizes feed metadata and adds a field take — the original article stays on the publisher’s site.</p>' +
+          lede +
           '<div class="waf-toolbar" role="region" aria-label="Article filters">' +
           '<div class="waf-views" role="tablist" aria-label="Feed views">' +
           views

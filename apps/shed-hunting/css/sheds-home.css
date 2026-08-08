@@ -75,7 +75,7 @@ html[data-product="shed-hunting"],
 .xp-stage__credit {
   margin: 1rem 0 0;
   font-size: 0.75rem;
-  color: color-mix(in srgb, var(--sheds-ink) 45%, transparent);
+  color: color-mix(in srgb, var(--sheds-ink) 72%, transparent);
 }
 
 .xp-stage__eyebrow {

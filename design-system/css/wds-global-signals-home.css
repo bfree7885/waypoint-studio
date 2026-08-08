@@ -59,16 +59,20 @@
 
 .gsh-top nav a {
   text-decoration: none;
-  color: #9aa8bd;
+  color: #b8c4d6;
   font-size: 0.84rem;
   font-weight: 500;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .gsh-top nav a:hover,
 .gsh-top nav a:focus-visible,
 .gsh-top nav a[aria-current="page"] {
   color: #7dd3a7;
-  outline: none;
+  outline: 2px solid rgba(125, 211, 167, 0.45);
+  outline-offset: 2px;
 }
 
 .gsh-main {
@@ -290,7 +294,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.35rem;
+  gap: 0.55rem;
 }
 
 .gsh-item {
@@ -325,14 +329,14 @@ a.gsh-item:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 0.55rem;
-  color: #6d7c93;
+  color: #9aa8bd;
   font-size: 0.74rem;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 .gsh-item__summary {
   margin: 0;
-  color: #9aa8bd;
+  color: #b6c3d6;
   font-size: 0.82rem;
   line-height: 1.45;
 }
@@ -380,7 +384,7 @@ a.gsh-item:focus-visible {
 
 .gsh-take__analysis {
   margin: 0;
-  color: #9aa8bd;
+  color: #b6c3d6;
   font-size: 0.84rem;
   line-height: 1.5;
 }
