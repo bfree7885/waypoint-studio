@@ -14,7 +14,7 @@ Make the existing Relationship Graph the **navigation backbone** of Global Signa
 | | SHA |
 | --- | --- |
 | **Start** (from Relationship Graph tip) | `2e3f271618a06c04f1de432de28f83a096a83c7c` |
-| **End** | `f5b528dd25c78c61ec04d33855244ed9db5e404f` |
+| **End** | `afc971ea23639fff0c812f11540d98266445a612` |
 
 ## Modules integrated
 
@@ -71,6 +71,11 @@ All passed in this session. Backbone suite covers article/country/industry/citiz
 ## Screenshots
 
 See `docs/global-signals/graph-backbone/` + `SCREENSHOT-INDEX.md`.
+
+## Commits on branch
+
+- `66c45fa` feat(global-signals): make Relationship Graph the navigation backbone
+- docs stamps aligning owner-review End SHA (tip = End above)
 
 ## Recommendation
 
