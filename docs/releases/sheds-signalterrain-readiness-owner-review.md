@@ -6,6 +6,19 @@
 **Author:** readiness prep (do **not** merge without explicit owner authorization)  
 **Runtime:** local static server `http://127.0.0.1:8765` + headless Chrome CDP screenshots
 
+### Correction addendum (2026-08-07)
+
+Re-fetched `origin/feature/signalterrain-live-cyber-intelligence`:
+
+| Check | Result |
+|---|---|
+| Tip SHA | `3d55f233014c6681e8d11362d31d748869a7950c` (matches expected) |
+| Commit | `feat(signalterrain): Adaptive Defense on live cyber intelligence` |
+| `live.json` generatedAt | `2026-08-08T02:16:38.501Z` · trust **Live** · **292** records · signalEngine **2.1.0** |
+| Adaptive Defense | `adaptiveDefense` object present (v1.0.0); UI + `scripts/cyber-signal/adaptive-defense.mjs` |
+| Refresh | `.github/workflows/signalterrain-cyber-refresh.yml` — every **6 hours** |
+| Owner review | `docs/reviews/signalterrain-adaptive-defense-2026-08-07/OWNER-REVIEW.md` |
+
 ---
 
 ## Executive verdicts
@@ -13,7 +26,9 @@
 | Product | Verdict | One-line |
 |---|---|---|
 | **Sheds** | **Ready for production release** (flagship outdoor) | Map-first whitetail field intelligence with Today’s Search; primary nav + `/sheds/` open the useful map experience. |
-| **SignalTerrain** | **Conditional — discoverable, not fully fresh** | Live cyber dashboard is the direct entry under Side Trails; retain **Experimental**. Blocker: live artifact on this tip is stale (`generatedAt` **2026-07-19**); refresh WIP exists uncommitted on `feature/signalterrain-live-cyber-intelligence`. |
+| **SignalTerrain** | **Ready for production release under Side Trails (Experimental)** | Live cyber + Adaptive Defense shipped on `feature/signalterrain-live-cyber-intelligence` @ `3d55f23` (292 live records, 6h refresh). Prep branch still needs that tip integrated before Pages deploy; retain **Experimental**. |
+
+**Correction (2026-08-07 evening):** Earlier readiness text claiming “no remote tip / uncommitted WIP” for ST live-cyber is **stale**. Tip verified: `3d55f233014c6681e8d11362d31d748869a7950c`. Owner review: `docs/reviews/signalterrain-adaptive-defense-2026-08-07/OWNER-REVIEW.md`.
 
 **Do not merge this branch automatically.** Push for owner review only.
 
@@ -22,9 +37,8 @@
 ## Recommended release order
 
 1. **Sheds** (Today’s Search + observation-only heatmaps) — outdoor flagship, already productized.
-2. **Homepage Side Trails teaser + ST entry redirects** (this prep branch’s link/label fixes) — makes ST discoverable without elevating it above outdoor identity.
-3. **SignalTerrain live refresh** — land the in-progress live-engine refresh + scheduled workflow from the ST worktree **after** it is committed/reviewed; then consider promoting freshness claims.
-4. **Adaptive Defense** — only after live refresh is stable; keep Experimental.
+2. **Homepage Side Trails teaser + ST entry redirects** (this prep branch’s link/label fixes) — discoverable under Side Trails without elevating cyber above outdoor identity.
+3. **SignalTerrain live cyber + Adaptive Defense** (`feature/signalterrain-live-cyber-intelligence` @ `3d55f23`) — fresh live artifact, Adaptive Defense panel, 6h GH Actions refresh. Integrate onto the release carrier (or merge after this prep) before production Pages deploy. Keep **Experimental**.
 
 Optional upstream: if `release/side-trails-discovery` is preferred as the carrier for homepage/nav/GS, rebase or merge this prep onto that tip before production Pages deploy — **still requires explicit merge authorization**.
 
@@ -63,7 +77,7 @@ Optional upstream: if `release/side-trails-discovery` is preferred as the carrie
 | Side Trails catalog | Yes | Yes | ST card → live |
 | ST product landing | Yes | — | Live CTA primary |
 | ST live cyber | Yes | Yes | LIVE trust strip; no sample fallback |
-| Live-data failure / freshness | Yes | — | Honest unavailable providers; **artifact date is stale on this tip** |
+| Live-data failure / freshness | Yes | — | Prep tip stale; **ST feature tip fresh** (2026-08-08, Adaptive Defense present) |
 | Sample/demo leakage | Yes | — | Teaching samples isolated; live bans sample paths |
 
 ---
@@ -100,7 +114,7 @@ Capture helper: `automation/capture-sheds-st-readiness-screenshots.mjs`
 | Branch / tip | State at review time | Action taken |
 |---|---|---|
 | `feature/sheds-todays-search` @ `506fb85` | **Shipped** Today’s Search + observation heatmaps | Cherry-picked onto prep |
-| `feature/signalterrain-live-cyber-intelligence` | Tip empty vs main; **uncommitted** live refresh + Adaptive Defense in worktree (`waypoint-studio-st-live-cyber`) with fresh `generatedAt` ~2026-08-08 | **Not merged** — document as blocker; do not steal unfinished agent work |
+| `feature/signalterrain-live-cyber-intelligence` @ `3d55f23` | **Pushed** Adaptive Defense on live cyber (`generatedAt` **2026-08-08T02:16:38Z**, 292 records, `adaptiveDefense` present, 6h refresh workflow) | **Not merged into this prep** — integrate before ST Pages deploy; see ST owner review |
 | `feature/homepage-side-trails-section` @ `5a46285` | Homepage Side Trails teaser | Integrated (with ST → live href) |
 | `feature/side-trails-primary-nav` @ `740c068` | Absolute-path nav polish | Partially covered by main/discovery; not fully re-applied (acceptance met via existing Side Trails primary item) |
 | `release/side-trails-discovery` | Ahead of main with homepage/nav/GS | Not auto-merged; recommended as optional carrier |
@@ -109,11 +123,11 @@ Capture helper: `automation/capture-sheds-st-readiness-screenshots.mjs`
 
 ## Remaining blockers
 
-1. **SignalTerrain live freshness on this tip** — `data/cyber/live.json` `meta.generatedAt` = **2026-07-19T01:47:57Z** while UI shows LIVE. Honest for “last successful run,” but not “current as of today.” Refresh engine + commit from ST worktree before claiming current production cyber.
-2. **`feature/signalterrain-live-cyber-intelligence` unfinished** — large uncommitted diffs (live.json, signal engine, CSS/JS) + Adaptive Defense scripts/screenshots/workflow. Needs agent finish + review before release order step 3–4.
-3. **ST local nav maze** — live dashboard chrome still exposes many secondary routes (topics/graph/summary samples). Acceptable for Experimental; tighten local nav in a follow-up if it still feels maze-like after redirect.
-4. **Pre-existing `test-platform-experience-rc2.mjs` failures on main** (home pillars / startHereHref) — not introduced by this prep; do not treat as Sheds/ST gate.
-5. **Do not merge / do not deploy** until owner explicitly authorizes.
+1. **Prep branch does not yet include ST tip `3d55f23`** — `release/sheds-signalterrain-readiness` still carries older `data/cyber/live.json` (~2026-07-19). Integrate `feature/signalterrain-live-cyber-intelligence` before production Pages claims “current” cyber.
+2. **ST local nav maze** — live dashboard chrome still exposes many secondary routes (topics/graph/summary samples). Acceptable for Experimental; tighten in a follow-up.
+3. **Pre-existing `test-platform-experience-rc2.mjs` failures on main** (home pillars / startHereHref) — not introduced by this prep; do not treat as Sheds/ST gate.
+4. **Do not merge / do not deploy** until owner explicitly authorizes.
+5. **Enable/confirm scheduled refresh on the eventual deploy branch** — workflow exists on ST tip (`.github/workflows/signalterrain-cyber-refresh.yml`, cron `15 */6 * * *`); must be present on the branch Pages deploys from.
 
 ---
 
@@ -139,11 +153,11 @@ Capture helper: `automation/capture-sheds-st-readiness-screenshots.mjs`
 - Privacy-first observations; ethics gate; no fabricated sightings.
 - Observation heatmaps are observation-only (no demo seeds).
 
-### SignalTerrain — **CONDITIONAL GO for discovery; HOLD on “current” claim**
+### SignalTerrain — **GO under Side Trails (Experimental); integrate tip before deploy**
 - Remains under Side Trails; not a Home primary peer.
-- Visible from homepage Side Trails section.
-- Opens directly into live cyber dashboard.
+- Visible from homepage Side Trails section; opens directly into live cyber dashboard (prep entry fixes).
 - Homepage copy: current defensive cyber intelligence.
-- Experimental label retained.
-- Sample paths banned in live runtime; teaching isolated.
-- **Hold:** refresh live artifact / land ST live-cyber WIP before marketing “current.”
+- **Live tip `3d55f23` verified:** `generatedAt` 2026-08-08T02:16:38Z · trust Live · 292 records · `adaptiveDefense` v1.0.0 in artifact · 6h refresh workflow · owner review at `docs/reviews/signalterrain-adaptive-defense-2026-08-07/OWNER-REVIEW.md`.
+- Experimental label retained (Side Trails maturity).
+- Sample paths banned in live runtime; teaching isolated; devices-not-inspected disclaimer on Adaptive Defense.
+- **Deploy gate:** merge/integrate ST tip onto the release carrier so Pages serves the fresh artifact (prep branch alone still has stale live.json).
