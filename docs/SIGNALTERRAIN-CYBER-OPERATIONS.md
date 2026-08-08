@@ -13,7 +13,16 @@
 3. Confirm `data/cyber/health.json` providers and `trustState`.  
 4. Open `live.html` (static host must serve `/data/cyber/live.json`).  
 
-Suggested cadence: every 15–60 minutes for KEV/advisory class; NVD page pull on the same schedule is acceptable at capped page size. Do **not** download the entire NVD corpus on each run.
+Suggested cadence: **every 6 hours** via `.github/workflows/signalterrain-cyber-refresh.yml`
+(`cron: 15 */6 * * *`, plus `workflow_dispatch`). That keeps KEV/advisory freshness honest
+without hammering public feeds. Manual/local: `node scripts/signalterrain-cyber-live-engine.mjs`.
+
+### CISA 403 workaround
+
+Some networks return HTTP 403 to automated clients fetching CISA feeds. The engine records an
+honest provider failure and **retains last-known-good** `live.json` when a refresh yields zero
+success. GitHub-hosted runners usually reach CISA. If a runner or local environment is blocked:
+retry from Actions, confirm egress/User-Agent, and do **not** substitute sample threats.
 
 ---
 

@@ -517,3 +517,95 @@
   border: 1px solid var(--st-line);
   border-radius: 6px;
 }
+
+/* Adaptive Defense */
+.st-ad-teaser {
+  margin: 1rem 0 1.25rem;
+  padding: 0.85rem 0.95rem;
+  background: #f3f6f5;
+  border: 1px solid var(--st-line);
+  border-radius: 6px;
+}
+
+.st-ad-counts {
+  margin: 0.35rem 0 0.65rem;
+  font-size: 0.88rem;
+  color: var(--st-muted);
+}
+
+.st-ad-disclaimer {
+  margin: 0.75rem 0 0;
+  font-size: 0.86rem;
+  color: var(--st-muted);
+}
+
+.st-ad-card {
+  margin: 0.85rem 0 1.1rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--st-line);
+  border-radius: 6px;
+  background: var(--st-panel);
+}
+
+.st-ad-card h3 {
+  margin: 0.45rem 0 0.35rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.st-ad-field {
+  margin: 0.45rem 0 0.15rem;
+  font-size: 0.9rem;
+}
+
+.st-ad-cat {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  border: 1px solid var(--st-line);
+  color: var(--st-ink);
+  background: #eef1f4;
+}
+
+.st-ad-cat--patch {
+  background: #f3e6e6;
+  border-color: #d8b4b4;
+  color: #6a2a2a;
+}
+
+.st-ad-cat--mitigate {
+  background: #f5ecdf;
+  border-color: #d8c4a0;
+  color: #6a4a18;
+}
+
+.st-ad-cat--review {
+  background: #e7eef5;
+  border-color: #b8c8d8;
+  color: #2a4560;
+}
+
+.st-ad-cat--watch {
+  background: #eef3f1;
+  border-color: #b8cdc4;
+  color: #2f5d50;
+}
+
+.st-ad-cat--none {
+  background: #f4f5f7;
+  color: var(--st-muted);
+}
+
+.st-ad-section {
+  margin-top: 1.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--st-line);
+}
+
+.st-ad-method {
+  margin: 0.85rem 0 1.1rem;
+}
