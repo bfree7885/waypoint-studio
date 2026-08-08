@@ -1050,3 +1050,14 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
    committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
 
+### 2026-08-08 — Design-system site consistency
+
+**Branch:** `feature/design-system-site-consistency`  
+**Report:** `docs/design-system/site-consistency-review.md`
+
+1. **Canonical chrome is `was-shell` + `wds.css` + Cormorant/Inter.** Sister landings (ST/GS) and field HUDs (Sheds map) feel “older” when they skip that contract — even if their product voice is intentional.
+2. **Prefer a shared continuity strip over mass restyles** when sister branding must stay. Mount once via shared CSS/JS; load tokens underneath; keep product chrome below.
+3. **Articles Take contrast belongs in `wds-articles-feed.css`**, not page HTML. Light parchment fallbacks on the dark shell read as a different app.
+4. **Side Trails catalog without font links** falls back to Georgia/system and undermines the newest type stack — always ship the same non-blocking font links as Articles/Support.
+5. **Field maps should bridge tokens/fonts first**, not absorb the full studio topbar in one pass. Continuity + local Leaflet vendor removes the third type system without redesigning FABs or reintroducing CDN SRI risk.
+6. **Verify the static server cwd** before screenshot audits — an old process on the same port silently serves the wrong worktree.

@@ -1,11 +1,14 @@
+/* Studio continuity strip (shared) */
+@import url("wds-studio-continuity.css");
+
 /* Global Signals public product landing — intelligence platform story, not news */
 
 .gs-landing {
   margin: 0;
   min-height: 100vh;
-  color: #e8eef7;
-  background: #070c14;
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--wds-text, #e8eef7);
+  background: var(--wds-bg, #070c14);
+  font-family: "IBM Plex Sans", var(--wds-font-body, "Inter", "Segoe UI"), sans-serif;
 }
 
 .gs-landing a { color: inherit; }

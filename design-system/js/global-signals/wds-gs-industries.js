@@ -8,6 +8,32 @@
   var NS = (global.WDS = global.WDS || {});
   var GS = (NS.globalSignals = NS.globalSignals || {});
 
+
+  function ensureStudioContinuity() {
+    if (document.querySelector("[data-wds-studio-continuity-mounted]")) return;
+    if (global.WDS && WDS.studioContinuity && typeof WDS.studioContinuity.mount === "function") {
+      WDS.studioContinuity.mount();
+      return;
+    }
+    var existing = document.querySelector('script[src*="wds-studio-continuity.js"]');
+    if (existing) return;
+    var scripts = document.getElementsByTagName("script");
+    var base = "../../../../";
+    for (var i = scripts.length - 1; i >= 0; i--) {
+      var src = scripts[i].src || "";
+      var marker = "design-system/js/global-signals/";
+      var idx = src.indexOf(marker);
+      if (idx !== -1) {
+        base = src.slice(0, idx);
+        break;
+      }
+    }
+    var s = document.createElement("script");
+    s.src = base + "design-system/js/platform/wds-studio-continuity.js";
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;")
