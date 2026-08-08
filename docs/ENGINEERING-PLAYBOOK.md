@@ -137,6 +137,32 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-08 — Performance sprint (safe opts)
+
+**Artifact:** `docs/performance/performance-review.md`  
+**Branch:** `feature/performance-sprint`
+
+1. **Full `wds.css` is a 33-file waterfall (~287 KB).** Content/foundation pages
+   that only need the app shell should use an additive `wds-shell.css` subset
+   (~9 imports / ~74 KB) — Articles and SignalTerrain cut requests and bytes
+   sharply without touching dashboard behavior.
+2. **Confirm static-server cwd before Lighthouse.** An orphan listener on the
+   measurement port can serve another worktree; after metrics looked “stuck”
+   until the perf worktree owned the port.
+3. **Non-blocking fonts are not free on light pages.** Async Google Fonts helped
+   Articles/Sheds/ST; on already-tiny Global Signals they added CLS without a
+   meaningful FCP win — keep fonts blocking when the CSS/JS payload is already
+   small.
+4. **Duplicate CSS links compound `@import` cost.** Homepage linked
+   `wds-app-shell.css` while `wds.css` already imported it; remove the second
+   `<link>` rather than inventing a new bundle first.
+5. **Leaflet `updateWhenIdle: true` / `updateWhenZooming: false`** reduces tile
+   churn during pan/zoom without changing the settled map — safe map perf when
+   functionality must stay intact.
+6. **Homepage remains the real cliff** — ~164 `wds.js` modules / ~1.76 MB. Safe
+   HTML/CSS opts will not make Home feel instant; plan an explicit code-split
+   sprint with dependency-aware lazy loads.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  

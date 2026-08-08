@@ -18,8 +18,12 @@
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <!-- Non-blocking fonts: shell paints with fallbacks first -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"></noscript>
+  <!-- Shell subset + foundation styles (avoids full dashboard CSS waterfall) -->
+  <link rel="stylesheet" href="../../design-system/css/wds-shell.css">
   <link rel="stylesheet" href="../../design-system/css/wds-platform-foundation.css">
 </head>
 <body>
@@ -83,10 +87,6 @@
   <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-places.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-discover.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
   <script src="../../design-system/js/platform/wds-platform-foundation.js" defer></script>

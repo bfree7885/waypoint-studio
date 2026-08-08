@@ -1,0 +1,20 @@
+/**
+ * Waypoint Studio Design System — shell subset
+ *
+ * Use on content / foundation pages that mount the app shell but do not need
+ * dashboard widget CSS. Full product surfaces should keep using wds.css.
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="path/to/design-system/css/wds-shell.css">
+ *   <html data-product="…">
+ */
+
+@import url("wds-tokens.css");
+@import url("wds-aurora-bridge.css");
+@import url("wds-base.css");
+@import url("wds-components.css");
+@import url("wds-app-shell.css");
+@import url("wds-platform-ui.css");
+@import url("wds-platform-boot.css");
+@import url("wds-provenance.css");
+@import url("wds-research-integrity.css");

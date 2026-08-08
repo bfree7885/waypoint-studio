@@ -386,8 +386,10 @@
     var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
-      updateWhenIdle: false,
-      keepBuffer: 3
+      // Fetch tiles after pan/zoom settles — fewer in-flight requests, same final view
+      updateWhenIdle: true,
+      updateWhenZooming: false,
+      keepBuffer: 2
     });
     var topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
       maxZoom: 17,
@@ -396,7 +398,8 @@
         "<a href=\"http://viewfinderpanoramas.org\">SRTM</a> | " +
         "Map style: &copy; <a href=\"https://opentopomap.org\">OpenTopoMap</a> " +
         "(<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>)",
-      updateWhenIdle: false,
+      updateWhenIdle: true,
+      updateWhenZooming: false,
       keepBuffer: 2
     });
     // OSM fills reliably at overview; switch to Topo via Layers for field contours

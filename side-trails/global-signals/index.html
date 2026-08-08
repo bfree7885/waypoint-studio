@@ -15,9 +15,14 @@
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Keep fonts blocking here: page payload is already small; async fonts added CLS without meaningful FCP gain -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds-global-signals-landing.css">
   <link rel="stylesheet" href="../../design-system/css/wds-global-signals-home.css">
+  <style>
+    /* Reserve board space while sample data hydrates */
+    #gsh-board { min-height: 24rem; }
+  </style>
 </head>
 <body class="gs-landing gsh-page">
   <a class="gs-skip" href="#main">Skip to content</a>

@@ -1,0 +1,278 @@
+[
+  {
+    "name": "homepage",
+    "perf": 0.85,
+    "FCP": {
+      "score": 1,
+      "ms": 97.456,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 0.99,
+      "ms": 667.972,
+      "display": "0.7\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 400,
+      "display": "0.4\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 100.654,
+      "display": "0.1\u00a0s"
+    },
+    "CLS": {
+      "score": 0.4,
+      "ms": 0.29786352875626865,
+      "display": "0.298"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 402\u00a0KiB"
+    },
+    "bytes": {
+      "score": 0.5,
+      "ms": 3964397,
+      "display": "Total size was 3,871\u00a0KiB"
+    },
+    "requests": 221,
+    "css_files": 35
+  },
+  {
+    "name": "dashboard",
+    "perf": 0.85,
+    "FCP": {
+      "score": 1,
+      "ms": 109.454,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 482.74,
+      "display": "0.5\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 8.949000000000012,
+      "display": "10\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 325,
+      "display": "0.3\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 330.692,
+      "display": "0.3\u00a0s"
+    },
+    "CLS": {
+      "score": 0.4,
+      "ms": 0.29777212063150127,
+      "display": "0.298"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 402\u00a0KiB"
+    },
+    "bytes": {
+      "score": 0.5,
+      "ms": 3963896,
+      "display": "Total size was 3,871\u00a0KiB"
+    },
+    "requests": 219,
+    "css_files": 35
+  },
+  {
+    "name": "articles",
+    "perf": 0.86,
+    "FCP": {
+      "score": 1,
+      "ms": 164.489,
+      "display": "0.2\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 164.489,
+      "display": "0.2\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 180,
+      "display": "0.2\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 189.981,
+      "display": "0.2\u00a0s"
+    },
+    "CLS": {
+      "score": 0.43,
+      "ms": 0.282008877385929,
+      "display": "0.282"
+    },
+    "unusedJS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "bytes": {
+      "score": 1,
+      "ms": 793331,
+      "display": "Total size was 775\u00a0KiB"
+    },
+    "requests": 26,
+    "css_files": 12
+  },
+  {
+    "name": "sheds",
+    "perf": 1,
+    "FCP": {
+      "score": 1,
+      "ms": 148.693,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 244.144,
+      "display": "0.2\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 275,
+      "display": "0.3\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 153.907,
+      "display": "0.2\u00a0s"
+    },
+    "CLS": {
+      "score": 1,
+      "ms": 0.022321501072595444,
+      "display": "0.022"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 94\u00a0KiB"
+    },
+    "bytes": {
+      "score": 1,
+      "ms": 786430,
+      "display": "Total size was 768\u00a0KiB"
+    },
+    "requests": 30,
+    "css_files": 1
+  },
+  {
+    "name": "signalterrain",
+    "perf": 0.8,
+    "FCP": {
+      "score": 1,
+      "ms": 86.826,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 113.634,
+      "display": "0.1\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 93,
+      "display": "0.1\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 86.826,
+      "display": "0.1\u00a0s"
+    },
+    "CLS": {
+      "score": 0.19,
+      "ms": 0.4596954576943738,
+      "display": "0.46"
+    },
+    "unusedJS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "bytes": {
+      "score": 1,
+      "ms": 292938,
+      "display": "Total size was 286\u00a0KiB"
+    },
+    "requests": 30,
+    "css_files": 11
+  },
+  {
+    "name": "global-signals",
+    "perf": 0.93,
+    "FCP": {
+      "score": 1,
+      "ms": 160.583,
+      "display": "0.2\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 234.163,
+      "display": "0.2\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 113,
+      "display": "0.1\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 86.894,
+      "display": "0.1\u00a0s"
+    },
+    "CLS": {
+      "score": 0.7,
+      "ms": 0.16923626810872355,
+      "display": "0.169"
+    },
+    "unusedJS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "bytes": {
+      "score": 1,
+      "ms": 380370,
+      "display": "Total size was 371\u00a0KiB"
+    },
+    "requests": 15,
+    "css_files": 2
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "name": "articles",
+    "perf": 0.77,
+    "FCP": {
+      "score": 1,
+      "ms": 162.206,
+      "display": "0.2\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 162.206,
+      "display": "0.2\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 176,
+      "display": "0.2\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 162.206,
+      "display": "0.2\u00a0s"
+    },
+    "CLS": {
+      "score": 0.07,
+      "ms": 0.6947122735353286,
+      "display": "0.695"
+    },
+    "unusedJS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "unusedCSS": {
+      "score": 0.5,
+      "ms": 0,
+      "display": "Est savings of 144\u00a0KiB"
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 1,
+      "ms": 1002788,
+      "display": "Total size was 979\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 3.2009999999999996,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 50
+  },
+  {
+    "name": "dashboard",
+    "perf": 0.86,
+    "FCP": {
+      "score": 1,
+      "ms": 74.043,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 551.051,
+      "display": "0.6\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 14.607999999999947,
+      "display": "10\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 359,
+      "display": "0.4\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 396.953,
+      "display": "0.4\u00a0s"
+    },
+    "CLS": {
+      "score": 0.43,
+      "ms": 0.2792454609259702,
+      "display": "0.279"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 402\u00a0KiB"
+    },
+    "unusedCSS": {
+      "score": 0.5,
+      "ms": 0,
+      "display": "Est savings of 160\u00a0KiB"
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 0.5,
+      "ms": 3941258,
+      "display": "Total size was 3,849\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 24.76000000000003,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 219
+  },
+  {
+    "name": "global-signals",
+    "perf": 1,
+    "FCP": {
+      "score": 1,
+      "ms": 167.23,
+      "display": "0.2\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 167.23,
+      "display": "0.2\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 446,
+      "display": "0.4\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 167.23,
+      "display": "0.2\u00a0s"
+    },
+    "CLS": {
+      "score": 1,
+      "ms": 5.33006763754621e-05,
+      "display": "0"
+    },
+    "unusedJS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "unusedCSS": {
+      "score": 1,
+      "ms": 0,
+      "display": ""
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 1,
+      "ms": 79538,
+      "display": "Total size was 78\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 2.3049999999999997,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 8
+  },
+  {
+    "name": "homepage",
+    "perf": 0.86,
+    "FCP": {
+      "score": 1,
+      "ms": 91.715,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 491.835,
+      "display": "0.5\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 320,
+      "display": "0.3\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 99.207,
+      "display": "0.1\u00a0s"
+    },
+    "CLS": {
+      "score": 0.43,
+      "ms": 0.2792454609259702,
+      "display": "0.279"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 402\u00a0KiB"
+    },
+    "unusedCSS": {
+      "score": 0.5,
+      "ms": 10,
+      "display": "Est savings of 159\u00a0KiB"
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 0.5,
+      "ms": 3966736,
+      "display": "Total size was 3,874\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 3.005,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 222
+  },
+  {
+    "name": "sheds",
+    "perf": 1,
+    "FCP": {
+      "score": 1,
+      "ms": 214.929,
+      "display": "0.2\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 415.662,
+      "display": "0.4\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 0,
+      "display": "0\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 401,
+      "display": "0.4\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 275.206,
+      "display": "0.3\u00a0s"
+    },
+    "CLS": {
+      "score": 1,
+      "ms": 0.001121189015901366,
+      "display": "0.001"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 20,
+      "display": "Est savings of 104\u00a0KiB"
+    },
+    "unusedCSS": {
+      "score": 0.5,
+      "ms": 0,
+      "display": "Est savings of 25\u00a0KiB"
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 1,
+      "ms": 841985,
+      "display": "Total size was 822\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 29.607000000000028,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 32
+  },
+  {
+    "name": "signalterrain",
+    "perf": 0.78,
+    "FCP": {
+      "score": 1,
+      "ms": 96.955,
+      "display": "0.1\u00a0s"
+    },
+    "LCP": {
+      "score": 1,
+      "ms": 96.955,
+      "display": "0.1\u00a0s"
+    },
+    "TBT": {
+      "score": 1,
+      "ms": 17.750999984741213,
+      "display": "20\u00a0ms"
+    },
+    "SI": {
+      "score": 1,
+      "ms": 157,
+      "display": "0.2\u00a0s"
+    },
+    "TTI": {
+      "score": 1,
+      "ms": 253.3869999847412,
+      "display": "0.3\u00a0s"
+    },
+    "CLS": {
+      "score": 0.12,
+      "ms": 0.5597747326783062,
+      "display": "0.56"
+    },
+    "unusedJS": {
+      "score": 0.5,
+      "ms": 0,
+      "display": "Est savings of 31\u00a0KiB"
+    },
+    "unusedCSS": {
+      "score": 0.5,
+      "ms": 0,
+      "display": "Est savings of 145\u00a0KiB"
+    },
+    "renderBlocking": null,
+    "bytes": {
+      "score": 1,
+      "ms": 2656810,
+      "display": "Total size was 2,595\u00a0KiB"
+    },
+    "bootup": {
+      "score": 1,
+      "ms": 13.709999999999997,
+      "display": "0.0\u00a0s"
+    },
+    "requests": 54
+  }
+]
