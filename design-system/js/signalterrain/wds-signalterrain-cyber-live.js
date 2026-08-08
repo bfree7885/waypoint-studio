@@ -299,18 +299,26 @@
       return p.status === "cached" || p.status === "stale";
     }).length;
     var gen = (doc && doc.meta && doc.meta.generatedAt) || "—";
+    var LS = global.WDS && WDS.liveStatus;
+    var statusHtml = "";
+    if (LS) {
+      statusHtml = LS.renderHtml(LS.fromCyberLive(doc));
+    } else {
+      statusHtml =
+        "<p><strong>Trust:</strong> " +
+        trustBadge(doc && doc.meta && doc.meta.trustState) +
+        " · refreshed " +
+        esc(String(gen).slice(0, 19)) +
+        " · " +
+        esc(String(ok)) +
+        " providers ok" +
+        (cached ? " · " + esc(String(cached)) + " cached" : "") +
+        (planned ? " · " + esc(String(planned)) + " planned (not faked live)" : "") +
+        "</p>";
+    }
     return (
       '<div class="st-live-trust-strip" role="status">' +
-      "<p><strong>Trust:</strong> " +
-      trustBadge(doc && doc.meta && doc.meta.trustState) +
-      " · refreshed " +
-      esc(String(gen).slice(0, 19)) +
-      " · " +
-      esc(String(ok)) +
-      " providers ok" +
-      (cached ? " · " + esc(String(cached)) + " cached" : "") +
-      (planned ? " · " + esc(String(planned)) + " planned (not faked live)" : "") +
-      "</p>" +
+      statusHtml +
       (failed.length
         ? "<p><strong>Unavailable now:</strong> " +
           esc(
@@ -1422,6 +1430,13 @@
               state.kevOnly = !!fd.get("kev");
               state.profileOnly = !!fd.get("profile");
               paint();
+            });
+          }
+          var liveRetry = root.querySelector("[data-wds-live-retry]");
+          if (liveRetry) {
+            liveRetry.addEventListener("click", function (ev) {
+              ev.preventDefault();
+              mountLive(root, options);
             });
           }
           var add = root.querySelector("#st-live-profile-add");

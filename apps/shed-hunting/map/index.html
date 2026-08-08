@@ -14,6 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../../design-system/css/wds-experience-v2.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-live-status.css">
   <link rel="stylesheet" href="../css/sheds-map.css">
 </head>
 <body>
@@ -61,6 +62,7 @@
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
         <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
+        <div id="sheds-live-status" class="sheds-live-status-host wds-live-status-stack" aria-live="polite"></div>
         <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; basemap providers (CARTO / Esri) still see approximate map tile requests.</p>
       </div>
 
@@ -443,6 +445,7 @@
   <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
   <script src="../js/sheds-tile-provider.js"></script>
+  <script src="../../../design-system/js/platform/wds-live-status.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

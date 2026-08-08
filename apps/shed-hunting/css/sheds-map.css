@@ -1246,3 +1246,12 @@ html.sheds-sheet-open .sheds-legend-float {
     bottom: calc(5.1rem + var(--sheds-safe-bottom));
   }
 }
+
+
+/* Live data honesty strip (weather + tiles) */
+.sheds-live-status-host {
+  margin: 0.55rem 0 0.35rem;
+}
+.sheds-live-status-host .wds-live-status {
+  border-color: var(--sheds-border);
+}

@@ -1,0 +1,182 @@
+/**
+ * Live data status — calm honesty strip for feed freshness.
+ * @see design-system/js/platform/wds-live-status.js
+ */
+
+.wds-live-status {
+  --wls-ink: var(--wds-text-primary, #142018);
+  --wls-muted: color-mix(in srgb, var(--wls-ink) 62%, transparent);
+  --wls-line: color-mix(in srgb, var(--wds-border-subtle, rgba(40, 55, 48, 0.16)) 90%, transparent);
+  --wls-healthy: #2f6b45;
+  --wls-warning: #9a6b1f;
+  --wls-offline: #8a3f32;
+  --wls-unknown: #5a6570;
+  --wls-loading: #4a6a8a;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0 0 0.85rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--wls-line);
+  border-bottom: 1px solid var(--wls-line);
+  color: var(--wls-ink);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.wds-live-status--compact {
+  margin: 0;
+  padding: 0.45rem 0;
+  border: 0;
+  font-size: 0.8rem;
+}
+
+.wds-live-status__dot {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--wls-unknown);
+}
+
+.wds-live-status[data-state="healthy"] .wds-live-status__dot {
+  background: var(--wls-healthy);
+}
+
+.wds-live-status[data-state="warning"] .wds-live-status__dot {
+  background: var(--wls-warning);
+}
+
+.wds-live-status[data-state="offline"] .wds-live-status__dot {
+  background: var(--wls-offline);
+}
+
+.wds-live-status[data-state="loading"] .wds-live-status__dot {
+  background: var(--wls-loading);
+  animation: wds-live-status-pulse 1.2s ease-in-out infinite;
+}
+
+.wds-live-status[data-state="unknown"] .wds-live-status__dot {
+  background: var(--wls-unknown);
+}
+
+@keyframes wds-live-status-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wds-live-status[data-state="loading"] .wds-live-status__dot {
+    animation: none;
+    opacity: 0.85;
+  }
+}
+
+.wds-live-status__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.wds-live-status__primary,
+.wds-live-status__source,
+.wds-live-status__message,
+.wds-live-status__details {
+  margin: 0;
+}
+
+.wds-live-status__primary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.45rem;
+}
+
+.wds-live-status__state {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.wds-live-status[data-state="healthy"] .wds-live-status__state {
+  color: var(--wls-healthy);
+}
+
+.wds-live-status[data-state="warning"] .wds-live-status__state {
+  color: var(--wls-warning);
+}
+
+.wds-live-status[data-state="offline"] .wds-live-status__state {
+  color: var(--wls-offline);
+}
+
+.wds-live-status__sep {
+  color: var(--wls-muted);
+}
+
+.wds-live-status__label,
+.wds-live-status__updated {
+  color: var(--wls-muted);
+}
+
+.wds-live-status__source {
+  margin-top: 0.15rem;
+  color: var(--wls-muted);
+  font-size: 0.8rem;
+}
+
+.wds-live-status__message,
+.wds-live-status__details {
+  margin-top: 0.25rem;
+  color: var(--wls-ink);
+  font-size: 0.82rem;
+}
+
+.wds-live-status__retry {
+  flex: 0 0 auto;
+  align-self: center;
+  appearance: none;
+  border: 1px solid var(--wls-line);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.65rem;
+  min-height: 2.25rem;
+  cursor: pointer;
+  border-radius: var(--wds-radius-sm, 0.2rem);
+}
+
+.wds-live-status__retry:hover,
+.wds-live-status__retry:focus-visible {
+  border-color: color-mix(in srgb, var(--wls-ink) 35%, transparent);
+  outline: 2px solid transparent;
+}
+
+.wds-live-status__retry:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--wls-ink) 45%, transparent);
+  outline-offset: 2px;
+}
+
+/* Dark / field surfaces (Sheds map HUD) */
+.wds-live-status--on-dark {
+  --wls-ink: #f5f8f4;
+  --wls-muted: rgba(245, 248, 244, 0.72);
+  --wls-line: rgba(210, 230, 200, 0.22);
+  --wls-healthy: #9fd4a8;
+  --wls-warning: #e0c06a;
+  --wls-offline: #f0b8b0;
+  --wls-unknown: #a8b4bc;
+  --wls-loading: #8ec0ff;
+}
+
+.wds-live-status-stack {
+  display: grid;
+  gap: 0.35rem;
+}
