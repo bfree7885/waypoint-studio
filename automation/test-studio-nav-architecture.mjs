@@ -35,17 +35,31 @@ function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), "utf8");
 }
 
-function loadNavConfig() {
+function loadNavSandbox() {
   const sandbox = { globalThis: {} };
   sandbox.global = sandbox;
   sandbox.window = sandbox;
+  sandbox.location = { pathname: "/", hash: "" };
   vm.runInNewContext(read("design-system/js/platform/wds-app-nav-config.js"), sandbox, {
     filename: "wds-app-nav-config.js"
   });
-  return sandbox.WDS.APP_NAV_CONFIG;
+  vm.runInNewContext(read("design-system/js/platform/wds-app-nav.js"), sandbox, {
+    filename: "wds-app-nav.js"
+  });
+  return sandbox;
 }
 
-const cfg = loadNavConfig();
+const navSandbox = loadNavSandbox();
+const cfg = navSandbox.WDS.APP_NAV_CONFIG;
+
+function sandboxDepth(path) {
+  navSandbox.location.pathname = path;
+  return navSandbox.WDS.appNav.depthFromPath(path);
+}
+
+function sandboxResolve(route, depth) {
+  return navSandbox.WDS.appNav.resolveRoute(route, depth);
+}
 const labels = (cfg.studioPrimaryNav || []).map((i) => i.label);
 assert(
   "studioPrimaryNav exact architecture set",
@@ -69,7 +83,35 @@ assert(
   "nav-registry studioPrimaryNav matches",
   (navReg.studioPrimaryNav || []).map((i) => i.label).join("|") === REQUIRED.join("|")
 );
-assert("nav-registry includes Side Trails href", /side-trails\//.test(JSON.stringify(navReg.studioPrimaryNav)));
+assert("nav-registry includes Side Trails href", /\/side-trails\//.test(JSON.stringify(navReg.studioPrimaryNav)));
+assert(
+  "primary nav hrefs are site-root absolute",
+  (cfg.studioPrimaryNav || []).every(function (i) {
+    return typeof i.href === "string" && i.href.charAt(0) === "/";
+  }),
+  (cfg.studioPrimaryNav || []).map(function (i) { return i.href; }).join("|")
+);
+
+// Depth-aware resolution: /articles/ and /side-trails/ must not emit peer-relative dead ends.
+const depthArticles = sandboxDepth("/articles/");
+const depthSideTrails = sandboxDepth("/side-trails/");
+const depthScenes = sandboxDepth("/apps/scenes/");
+const depthRoot = sandboxDepth("/");
+assert("depth /articles/ is 1", depthArticles === 1, String(depthArticles));
+assert("depth /side-trails/ is 1", depthSideTrails === 1, String(depthSideTrails));
+assert("depth /apps/scenes/ is 2", depthScenes === 2, String(depthScenes));
+assert("depth / is 0", depthRoot === 0, String(depthRoot));
+assert(
+  "resolve Side Trails from /articles/ is absolute",
+  sandboxResolve("side-trails/", depthArticles) === "/side-trails/" ||
+    sandboxResolve("/side-trails/", depthArticles) === "/side-trails/",
+  sandboxResolve("/side-trails/", depthArticles)
+);
+assert(
+  "resolve relative articles from /side-trails/ uses parent",
+  sandboxResolve("articles/", depthSideTrails) === "../articles/",
+  sandboxResolve("articles/", depthSideTrails)
+);
 
 const productReg = JSON.parse(read("design-system/ecosystem/product-registry.json"));
 assert("product-registry core includes side-trails", productReg.portfolio.core.includes("side-trails"));
@@ -130,6 +172,21 @@ assert("studio-home fallback omits Volunteer peer", !/waypoint-volunteer/.test(s
 const shell = read("design-system/js/platform/wds-app-shell.js");
 assert("shell marks Side Trails active", /side-trails/.test(shell));
 assert("shell marks Support active", /support\\.html/.test(shell));
+assert(
+  "quiet chrome still renders primary nav",
+  !/var primary = quiet\s*\n\s*\?/.test(shell) && /studioPrimaryNav/.test(shell)
+);
+assert("quiet chrome hides Explore only", /hideExplore/.test(shell));
+
+const stLanding = read("side-trails/signalterrain/index.html");
+assert("SignalTerrain landing links Side Trails", /href="\/side-trails\/"/.test(stLanding));
+assert("SignalTerrain landing links Articles", /href="\/articles\/"/.test(stLanding));
+const gsLanding = read("side-trails/global-signals/index.html");
+assert("Global Signals landing links Side Trails", /href="\/side-trails\/"/.test(gsLanding));
+assert("Global Signals landing links Home", /href="\/"/.test(gsLanding));
+
+const quietCss = read("design-system/css/wds-app-shell.css");
+assert("quiet chrome styles primary nav", /\.was-global--quiet \.was-primary-nav/.test(quietCss));
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");
