@@ -1,15 +1,16 @@
 /* Sheds Experience Redesign V1 — map is the product; chrome disappears */
 
 :root {
+  /* Field HUD keeps forest character; bridge to WDS type + shared danger token */
   --sheds-bg: #07120e;
   --sheds-surface: rgba(8, 22, 16, 0.92);
   --sheds-surface-solid: #0c1c15;
-  --sheds-text: #f5f8f4;
-  --sheds-muted: rgba(245, 248, 244, 0.78);
-  --sheds-accent: #d8ec5c;
-  --sheds-accent-deep: #9bb82e;
+  --sheds-text: var(--wds-text, #f5f8f4);
+  --sheds-muted: var(--wds-text-secondary, rgba(245, 248, 244, 0.78));
+  --sheds-accent: var(--wds-accent, #d8ec5c);
+  --sheds-accent-deep: var(--wds-lime-deep, #9bb82e);
   --sheds-border: rgba(210, 230, 200, 0.22);
-  --sheds-danger: #f0b8b0;
+  --sheds-danger: var(--wds-danger, #f0b8b0);
   --sheds-info: #8ec0ff;
   --sheds-safe-bottom: env(safe-area-inset-bottom, 0px);
   --sheds-safe-top: env(safe-area-inset-top, 0px);
@@ -28,7 +29,7 @@ html, body {
   height: 100%;
   background: var(--sheds-bg);
   color: var(--sheds-text);
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-family: var(--wds-font-body, "Inter", system-ui, sans-serif);
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -205,7 +206,7 @@ html, body {
 }
 
 .sheds-hud-brand__name {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
   font-size: 1.12rem;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -235,7 +236,7 @@ html, body {
   font-size: 0.85rem;
   font-weight: 700;
   font-style: italic;
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
   opacity: 0.85;
 }
 
@@ -580,7 +581,7 @@ html.sheds-sheet-open .sheds-legend-float {
 
 .sheds-suggest__glance {
   grid-column: 1;
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.2;
@@ -830,7 +831,7 @@ html.sheds-sheet-open .sheds-legend-float {
 }
 
 .sheds-sheet__title {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
   font-size: 1.45rem;
   margin: 0 0 0.35rem;
 }

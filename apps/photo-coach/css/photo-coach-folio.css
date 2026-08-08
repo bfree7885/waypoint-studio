@@ -10,8 +10,7 @@
   --coach-surface-raised: rgba(255, 255, 255, 0.07);
   --coach-border: rgba(255, 255, 255, 0.12);
   --coach-border-strong: rgba(255, 255, 255, 0.22);
-  --wds-font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
-  font-family: var(--wds-font-body);
+  font-family: var(--wds-font-body, "Inter", system-ui, sans-serif);
 }
 
 .pc-shell .was-shell,

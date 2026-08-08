@@ -1,0 +1,96 @@
+/**
+ * Studio continuity strip — shared bridge for field/sister surfaces that keep
+ * product chrome but must still feel like Waypoint Studio (not a legacy app).
+ * Mount via wds-studio-continuity.js on .gs-landing, .st-landing, .sheds-app,
+ * or [data-wds-studio-continuity].
+ */
+
+.wds-studio-continuity {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0.45rem clamp(0.85rem, 3vw, 1.5rem);
+  padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
+  background: color-mix(in srgb, var(--wds-bg, #080f1c) 88%, transparent);
+  border-bottom: 1px solid var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--wds-font-body, "Inter", system-ui, sans-serif);
+  font-size: 0.8125rem;
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
+}
+
+.wds-studio-continuity a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wds-studio-continuity a:hover,
+.wds-studio-continuity a:focus-visible {
+  color: var(--wds-accent, #c8f055);
+  outline: none;
+}
+
+.wds-studio-continuity a:focus-visible {
+  outline: 2px solid var(--wds-focus, #c8f055);
+  outline-offset: 2px;
+}
+
+.wds-studio-continuity__brand {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--wds-text, #e4eaf4);
+}
+
+.wds-studio-continuity__sep {
+  opacity: 0.45;
+  user-select: none;
+}
+
+.wds-studio-continuity__trail {
+  color: var(--wds-text-muted, rgba(228, 234, 244, 0.65));
+}
+
+.wds-studio-continuity__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.95rem;
+  margin-left: auto;
+}
+
+.wds-studio-continuity__nav a[aria-current="page"] {
+  color: var(--wds-accent, #c8f055);
+}
+
+/* Push absolute product tops below the continuity strip */
+body.gs-landing:has(.wds-studio-continuity) .gs-top,
+body.gs-landing:has(.wds-studio-continuity) .gsh-top,
+body.st-landing:has(.wds-studio-continuity) .st-top {
+  top: 2.35rem;
+}
+
+body.gs-landing:has(.wds-studio-continuity) .gs-hero,
+body.st-landing:has(.wds-studio-continuity) .st-hero {
+  padding-top: 2.35rem;
+}
+
+/* Sheds map: compact strip over the field HUD without redesigning FABs */
+.sheds-app .wds-studio-continuity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(7, 18, 14, 0.72);
+  border-bottom-color: rgba(210, 230, 200, 0.14);
+}
+
+.sheds-app:has(.wds-studio-continuity) .sheds-hud-top {
+  top: calc(2.35rem + var(--sheds-safe-top, 0px));
+}
+
+.sheds-app:has(.wds-studio-continuity) .sheds-here {
+  top: calc(5.35rem + var(--sheds-safe-top, 0px));
+}
