@@ -14,7 +14,7 @@ Make the existing Relationship Graph the **navigation backbone** of Global Signa
 | | SHA |
 | --- | --- |
 | **Start** (from Relationship Graph tip) | `2e3f271618a06c04f1de432de28f83a096a83c7c` |
-| **End** | `73829783aa7b912fc498f1eb824e80de38c0e8aa`
+| **End** | `288b5f02605dec1f2213f95a240fbe04021e8212` |
 
 ## Modules integrated
 
