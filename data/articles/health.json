@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-07T12:36:59.617Z",
+  "checkedAt": "2026-08-08T00:45:14.662Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
@@ -11,17 +11,17 @@
       "itemCount": 0,
       "error": "HTTP 429",
       "warnings": [],
-      "ms": 145,
+      "ms": 174,
       "enabled": true
     },
     {
       "id": "noaa-news",
       "name": "NOAA News Features",
       "ok": true,
-      "itemCount": 9,
+      "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 266,
+      "ms": 503,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 141,
+      "ms": 69,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 182,
+      "ms": 123,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 312,
+      "ms": 325,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 173,
+      "ms": 64,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 161,
+      "ms": 1097,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 346,
+      "ms": 625,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 265,
+      "ms": 243,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 133,
+      "ms": 163,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 358,
+      "ms": 298,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 93,
+      "ms": 214,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 416,
+      "ms": 330,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-08T00:36:59.617Z"
+  "staleAfter": "2026-08-08T12:45:14.662Z"
 }
