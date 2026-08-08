@@ -179,6 +179,24 @@ assert("deepeners render Featured Photography", /Featured Photography/.test(deep
 assert("deepeners render Scenes intro", /Open Scenes/.test(deepenHtml));
 assert("deepeners render Sheds intro", /Open Sheds/.test(deepenHtml));
 assert("deepeners do not embed Scenes app", !/photo-coach|wds-scenes/i.test(deepenHtml));
+assert("deepeners render Side Trails section", /id="wdb-r-side-trails-title">Side Trails</.test(deepenHtml));
+assert(
+  "deepeners Side Trails subtitle",
+  /Experimental projects, research, and useful detours/.test(deepenHtml)
+);
+assert("deepeners Side Trails Civic Trails GitHub", /github\.com\/bfree7885\/civic-trails/.test(deepenHtml));
+assert("deepeners Side Trails SignalTerrain live cyber", /href="apps\/signalterrain\/cyber\/live\.html"/.test(deepenHtml));
+assert("deepeners Side Trails Global Signals app", /href="side-trails\/global-signals\/"/.test(deepenHtml));
+assert("deepeners Side Trails view-all link", /View all Side Trails/.test(deepenHtml) && /href="side-trails\/"/.test(deepenHtml));
+assert(
+  "Side Trails after Sheds (not before core experiences)",
+  deepenHtml.indexOf("data-deepen=\"sheds\"") < deepenHtml.indexOf("data-deepen=\"side-trails\"")
+);
+assert(
+  "Side Trails section is lighter class, not primary panel grid",
+  /wdb-r-deepen__section--side-trails/.test(deepenHtml) &&
+    !/wdb-r-deepen__panel" data-deepen-body="side-trails"/.test(deepenHtml)
+);
 
 const Rebuild = sandbox.WDS.dashboardRebuild;
 const shell = Rebuild.renderShell({ view: "workspace", placeContext: { placeLabel: "Test", trust: "waiting" } });

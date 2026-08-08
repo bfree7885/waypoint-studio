@@ -52,11 +52,11 @@ assert.ok(signal, "signalterrain missing");
 assert.ok(globalSignals, "global-signals missing");
 
 assert.equal(signal.title, "SignalTerrain");
-assert.equal(signal.tagline, "Adaptive cyber intelligence for defenders.");
-assert.match(signal.description, /trusted public intelligence/);
+assert.equal(signal.tagline, "Current defensive cyber intelligence.");
+assert.match(signal.description, /verified public cyber intelligence|honest freshness/i);
 assert.equal(signal.status, "experimental");
-assert.equal(signal.ctaLabel, "Explore SignalTerrain");
-assert.equal(signal.url, "side-trails/signalterrain/");
+assert.equal(signal.ctaLabel, "Open live intelligence");
+assert.equal(signal.url, "apps/signalterrain/cyber/live.html");
 assert.ok(exists(signal.icon), signal.icon);
 assert.match(read(signal.icon), /circle|network|svg/i);
 

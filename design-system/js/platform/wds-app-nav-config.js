@@ -14,7 +14,7 @@
     "studioPrimaryNav": [
       { "id": "dashboard", "label": "Dashboard", "href": "./", "hint": "What’s happening outside today" },
       { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
-      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
+      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Whitetail field intelligence" },
       { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
       { "id": "side-trails", "label": "Side Trails", "href": "side-trails/", "hint": "Sister experiments" },
       { "id": "support", "label": "Support", "href": "support.html", "hint": "Help and honest answers" },
@@ -179,12 +179,12 @@
         "title": "Sheds",
         "shortTitle": "Sheds",
         "icon": "sheds",
-        "route": "apps/shed-hunting/",
+        "route": "apps/shed-hunting/map/",
         "match": [
           "/apps/shed-hunting"
         ],
         "category": "outdoor",
-        "description": "Flagship shed hunting — map, GPS, field workflow, and privacy-first observations.",
+        "description": "Whitetail field intelligence — map, GPS, search coverage, and privacy-first observations.",
         "status": "live",
         "features": [
           {
@@ -474,14 +474,14 @@
         "title": "SignalTerrain",
         "shortTitle": "SignalTerrain",
         "icon": "signalterrain",
-        "route": "apps/signalterrain/",
+        "route": "apps/signalterrain/cyber/live.html",
         "match": [
           "/apps/signalterrain",
           "/side-trails/signalterrain"
         ],
         "category": "intelligence",
         "family": "side-trails",
-        "description": "Side Trails project — Radio & Spectrum Intelligence and educational Cyber Awareness; observe and understand signals without offense.",
+        "description": "Side Trails — current defensive cyber intelligence from verified public sources; educational and defensive only.",
         "status": "experimental",
         "features": [
           {
@@ -491,22 +491,22 @@
           },
           {
             "id": "overview",
-            "label": "Overview",
-            "href": "apps/signalterrain/"
+            "label": "Live cyber intelligence",
+            "href": "apps/signalterrain/cyber/live.html"
           },
           {
             "id": "topics",
-            "label": "Topics",
+            "label": "Topics (samples)",
             "href": "apps/signalterrain/topics.html"
           },
           {
             "id": "graph",
-            "label": "Knowledge graph",
+            "label": "Knowledge graph (samples)",
             "href": "apps/signalterrain/graph.html"
           },
           {
             "id": "summary",
-            "label": "Intelligence summary",
+            "label": "Intelligence summary (samples)",
             "href": "apps/signalterrain/summary.html"
           },
           {
@@ -543,7 +543,7 @@
         "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype — under Side Trails, not a studio primary peer.",
         "maturity": "Experimental (Side Trails)",
         "startHere": {
-          "label": "Open today’s cyber brief",
+          "label": "Today’s cyber brief",
           "href": "apps/signalterrain/cyber/live.html#brief"
         },
         "productLanding": {

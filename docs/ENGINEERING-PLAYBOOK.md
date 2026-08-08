@@ -137,6 +137,15 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Sheds + SignalTerrain readiness prep (no merge)
+
+**Artifact:** `docs/releases/sheds-signalterrain-readiness-owner-review.md`  
+**Branch:** `release/sheds-signalterrain-readiness`
+
+1. **Parallel feature tips may be empty while WIP lives only as uncommitted worktree files** — re-fetch remotes *and* inspect sibling worktrees before declaring a feature missing.
+2. **Direct product entry beats hub pages** — `/apps/signalterrain/` → live cyber (and homepage ST card → live) removes the catalog maze without redesigning Studio.
+3. **Keep Experimental when freshness/ops are incomplete** — ST can be discoverable under Side Trails while live.json timestamps remain honest and refresh lands separately.
+4. **Cherry-pick finished outdoor features onto a prep branch** (Today’s Search `506fb85`) rather than waiting for a large discovery merge when the owner asked only to prepare, not merge.
 
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
@@ -849,4 +858,22 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    every variant — including loading skeletons.
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
+
+### 2026-08-07 — Sheds Today’s Search + observation heatmaps
+
+**Branch:** `feature/sheds-todays-search`  
+**Report:** `docs/SHEDS-TODAYS-SEARCH-OWNER-REVIEW.md`
+
+1. **Separate epistemic layers on one map.** Biological heat = *estimated
+   opportunity*; observation heat = *observed activity* from private notes only.
+   Mixing them silently destroys trust — label the mode in the legend and briefing.
+2. **Empty observed heat is a feature.** Never seed demo sightings for first-run
+   polish. Tests must assert zero priorities with zero observations.
+3. **Today’s Search needs facts vs analysis vs uncertainty tags.** Weather numbers
+   are facts; dawn/dusk preference and fence-line wind notes are analysis; missing
+   pressure/location are uncertain. Confidence text must name the gaps.
+4. **Patterns need a sufficiency gate.** Do not whisper “your deer usually…” from
+   two notes. Require a minimum count + distinct days, then say when insufficient.
+5. **Rich Open-Meteo fetch stays fail-soft.** Sunrise/pressure/precip improve the
+   briefing; if the request fails, seasonal + note-based copy must still render.
 

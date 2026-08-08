@@ -57,8 +57,8 @@ assert(
 );
 
 const homeHtml = read("apps/signalterrain/index.html");
-assert("home static CTA live", /cyber\/live\.html#brief/.test(homeHtml));
-assert("home demotes sample summary", /summary\.html.*samples|Intelligence summary \(samples\)/i.test(homeHtml));
+assert("home redirects to live cyber", /cyber\/live\.html/.test(homeHtml) && /Redirecting|http-equiv="refresh"/i.test(homeHtml));
+assert("home points to product story", /side-trails\/signalterrain/.test(homeHtml));
 
 const liveHtml = read("apps/signalterrain/cyber/live.html");
 assert("live waits for scripts", /deadline|Waiting for Live scripts/.test(liveHtml));

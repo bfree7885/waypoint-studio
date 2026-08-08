@@ -94,11 +94,14 @@ assert("manifest search prep", manifest.search && manifest.search.providerId ===
 assert("docs experience", exists("docs/PLATFORM-EXPERIENCE-RC2.md"));
 assert("docs navigation", exists("docs/NAVIGATION-ARCHITECTURE.md"));
 
-["apps/shed-hunting/index.html", "apps/signalterrain/index.html", "apps/waypoint-volunteer/index.html", "apps/scenes/index.html"].forEach((f) => {
+["apps/shed-hunting/index.html", "apps/waypoint-volunteer/index.html", "apps/scenes/index.html"].forEach((f) => {
   const html = read(f);
   assert(f + " related mount", /data-wds-related-apps=/.test(html));
   assert(f + " discover script", /wds-platform-discover\.js/.test(html));
 });
+const stLive = read("apps/signalterrain/cyber/live.html");
+assert("signalterrain live shell", /data-wds-app-shell/.test(stLive));
+assert("signalterrain index redirects live", /cyber\/live\.html/.test(read("apps/signalterrain/index.html")));
 
 const shellCss = read("design-system/css/wds-app-shell.css");
 assert("card actions css", /\.was-home__card-actions/.test(shellCss));

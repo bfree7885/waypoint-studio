@@ -57,7 +57,7 @@ const signal = catalog.projects.find((p) => p.id === "signalterrain");
 assert.ok(signal, "SignalTerrain must appear in Side Trails catalog");
 assert.equal(signal.title, "SignalTerrain");
 assert.equal(signal.status, "experimental");
-assert.match(String(signal.url), /side-trails\/signalterrain\/?|apps\/signalterrain\/?/);
+assert.match(String(signal.url), /apps\/signalterrain\/cyber\/live\.html|side-trails\/signalterrain\/?|apps\/signalterrain\/?/);
 
 const nav = loadNavConfig();
 assert.ok(Array.isArray(nav.homePrimary));
@@ -91,7 +91,7 @@ assert.equal(nav.homeSideTrails[0], "signalterrain");
 const stApp = (nav.apps || []).find((a) => a.id === "signalterrain");
 assert.ok(stApp, "nav apps entry for SignalTerrain must remain (app chrome)");
 assert.equal(stApp.family, "side-trails");
-assert.equal(stApp.route, "apps/signalterrain/");
+assert.equal(stApp.route, "apps/signalterrain/cyber/live.html");
 assert.ok(stApp.productLanding && /side-trails\/signalterrain/.test(stApp.productLanding.href));
 
 const registry = JSON.parse(read("design-system/ecosystem/product-registry.json"));
@@ -105,7 +105,7 @@ assert.ok(
   "SignalTerrain must be in portfolio.sideTrails"
 );
 assert.equal(registry.products.signalterrain.portfolioTier, "side-trails");
-assert.equal(registry.products.signalterrain.toolHref, "apps/signalterrain/");
+assert.match(registry.products.signalterrain.toolHref, /apps\/signalterrain\/?/);
 assert.match(registry.products.signalterrain.studioHref, /side-trails\/signalterrain/);
 
 const platform = loadPlatformCatalog();

@@ -44,12 +44,14 @@ assert.match(html, /threat-map\.svg/);
 assert.match(html, /attack-timeline\.svg/);
 assert.match(html, /global-activity\.svg/);
 assert.match(html, /defensive-posture\.svg/);
-assert.doesNotMatch(html, /maplibre|cyber\/live|wds-signalterrain-cyber/i);
-assert.doesNotMatch(html, /Open today’s cyber brief|SIEM console/i);
+assert.match(html, /apps\/signalterrain\/cyber\/live\.html/);
+assert.match(html, /Open live intelligence/);
+assert.doesNotMatch(html, /maplibre|wds-signalterrain-cyber/i);
+assert.doesNotMatch(html, /SIEM console/i);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 const signal = catalog.projects.find((p) => p.id === "signalterrain");
 assert.ok(signal);
-assert.equal(signal.url, "side-trails/signalterrain/");
+assert.equal(signal.url, "apps/signalterrain/cyber/live.html");
 
 console.log("SignalTerrain landing checks passed.");

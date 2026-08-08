@@ -807,7 +807,7 @@
       "lead": "Two major areas: Radio & Spectrum Intelligence (SDR, receivers, propagation, monitoring, RF observations) and Cyber Awareness (ransomware, vulnerabilities, attacks, outages, advisories, defensive guidance) \u2014 educational and defensive only.",
       "description": "SignalTerrain lives under Side Trails in Waypoint Studio. It is the product home for Signal Intelligence: Radio & Spectrum Intelligence and educational Cyber Awareness connected through topics and a living knowledge graph. Not a scanner, SIEM, penetration-testing tool, or RSS reader.",
       "studioHref": "side-trails/signalterrain/",
-      "toolHref": "apps/signalterrain/",
+      "toolHref": "apps/signalterrain/cyber/live.html",
       "toolLabel": "Open SignalTerrain",
       "contentDomains": [
         "geology",

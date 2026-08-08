@@ -21,13 +21,13 @@
     {
       "id": "signalterrain",
       "title": "SignalTerrain",
-      "tagline": "Adaptive cyber intelligence for defenders.",
-      "description": "SignalTerrain helps individuals and organizations understand what cyber threats matter today by combining trusted public intelligence with explainable defensive guidance.",
+      "tagline": "Current defensive cyber intelligence.",
+      "description": "SignalTerrain surfaces verified public cyber intelligence with honest freshness and limits — educational and defensive only.",
       "icon": "assets/images/side-trails/signalterrain-network.svg",
       "category": "Cyber",
       "status": "experimental",
-      "ctaLabel": "Explore SignalTerrain",
-      "url": "side-trails/signalterrain/",
+      "ctaLabel": "Open live intelligence",
+      "url": "apps/signalterrain/cyber/live.html",
       "order": 20
     },
     {
