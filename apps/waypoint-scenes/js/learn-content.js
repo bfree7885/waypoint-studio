@@ -129,7 +129,7 @@
             steps: [
               "Open Export when a Living Scene feels true.",
               "The preview holds a single breath of motion — one moment from a living frame.",
-              "Save PNG to share that breath. Video export is on the horizon."
+              "Save PNG to share that breath. Video export is not available in this studio yet."
             ],
             fieldExercise:
               "Show a friend one still from the field before you show them any motion. Ask what they felt.",

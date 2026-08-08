@@ -153,6 +153,31 @@ continuously improves.
 4. **Screenshot framing** — 900×900 viewports miss Take; capture tall frames
    (≈900×1400) so before/after includes the panel.
 
+### 2026-08-08 — Production placeholder audit
+
+**Artifact:** `docs/quality/placeholder-audit.md`  
+**Branch:** `feature/quality-placeholder-audit`
+
+1. **“Honest empty shell” is still a dead end** — labeled Coming soon pages
+   fail product standards if they only apologize. Prefer wiring to live modules
+   (Articles, Industries, Explain, Explorer) with the same calm honesty.
+2. **Roadmaps belong in docs, not product chrome** — About/Roadmap and
+   Now/Next/Later sections train users to wait. Replace with “what works today”
+   and “honest limits / not goals.”
+3. **Incubator ≠ Coming later** — when early-access apps already open, link
+   text should say Incubator. Reserve Coming later / Planned for truly unshipped
+   catalog statuses.
+4. **Hide unfinished option lists** — Scene Builder “On the horizon” grids and
+   pending Coach→Scene options advertise software that does not exist; show only
+   live actions plus a short unavailable note.
+5. **Preview JSON `comingSoon` is user-facing** — `wds-app-preview.js` rendered
+   “Features in development” even when empty. Gate the section and frame copy as
+   limits, not a ship calendar.
+6. **Stale cross-links recreate shells** — Industry cross-nav and country notes
+   pointed at Coming soon routes after modules shipped; sweep soft-links whenever
+   a module goes live.
+
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  
@@ -1031,7 +1056,6 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
-<<<<<<< HEAD
 ### 2026-08-08 — Sheds map tile reliability
 
 **Branch:** `fix/sheds-map-reliability`  
@@ -1051,7 +1075,6 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
    committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
 
-=======
 
 ### 2026-08-07 — SignalTerrain Adaptive Defense (live cyber)
 
@@ -1068,4 +1091,4 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    MITIGATE · REVIEW · WATCH · NO IMMEDIATE ACTION, each with why/evidence.
 5. **Static screenshot servers must run from the feature worktree cwd** or they
    silently serve another clone’s stale `data/cyber/live.json`.
->>>>>>> 3d55f23 (feat(signalterrain): Adaptive Defense on live cyber intelligence)
+

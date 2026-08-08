@@ -632,7 +632,7 @@
       '<li><a href="../articles/">Articles</a></li>' +
       '<li><a href="../citizen-impact/">Citizen Impact</a></li>' +
       '<li><a href="../relationship-graph/">Relationship Graph</a></li>' +
-      '<li><a href="../supply-chains/">Supply Chains</a></li>' +
+      '<li><a href="../relationships/">Relationship Explorer</a></li>' +
       "</ul></nav>"
     );
   }
