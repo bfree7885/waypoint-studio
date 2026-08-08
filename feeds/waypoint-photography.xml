@@ -5,21 +5,21 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Aug 2026 00:45:14 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 08 Aug 2026 12:22:32 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
   <item>
-    <title>Sun news: Sun’s tiny whirlpools finally revealed</title>
+    <title>Sun news: Is a CME striking Earth now?</title>
     <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
     <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Fri, 07 Aug 2026 11:41:53 GMT</pubDate>
+    <pubDate>Sat, 08 Aug 2026 09:45:53 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news August 7, 2026: The Inouye Solar Telescope captured the sharpest views yet of the sun&apos;s surface, revealing ocean-like waves in the solar plasma. The post Sun news: Sun’s tiny whirlpools finally revealed first appeared on EarthSky .
+Summary: Sun news August 8, 2026: The expected CMEs arrived late, but the solar wind and IMF ticked up this morning. Active conditions and isolated G1 storms are possible. The post Sun news: Is a CME striking Earth now? first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
@@ -60,6 +60,40 @@ Waypoint’s Take: Outside, this matters because it can change what you watch fo
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Visible planets and night sky guide for August</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Sat, 08 Aug 2026 10:47:08 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: EarthSky&apos;s visible planets and night sky guide. The Perseid meteors will peak this week! Watch a video with meteor-spotting tips here. The post Visible planets and night sky guide for August first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>SpaceX rocket hit the moon: Before and after pics</title>
+    <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
+    <pubDate>Thu, 06 Aug 2026 18:00:56 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers have observed so far from this historic lunar event, including before and after pics. The post SpaceX rocket hit the moon: Before and after pics first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
+    <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
@@ -132,40 +166,6 @@ Waypoint’s Take: For someone heading outside, the useful question is observati
 Read the original article at the publisher: https://earthsky.org/todays-image/best-deep-sky-photos-of-july-2026-from-earthsky-community/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for August</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Fri, 07 Aug 2026 08:45:08 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: EarthSky&apos;s visible planets and night sky guide. The Perseid meteors are coming! Watch a video. In the meantime, look for the crescent moon near red Mars. The post Visible planets and night sky guide for August first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>SpaceX rocket hit the moon: Before and after pics</title>
-    <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
-    <pubDate>Thu, 06 Aug 2026 18:00:56 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers have observed so far from this historic lunar event, including before and after pics. The post SpaceX rocket hit the moon: Before and after pics first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
-    <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
