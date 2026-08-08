@@ -137,6 +137,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-07 — Articles Waypoint’s Take readability
+
+**Artifact:** `docs/articles/readability-owner-review.md`  
+**Branch:** `feature/articles-waypoints-take-readability`
+
+1. **Token fallbacks can lie** — `.wcs-page .waf` mixed live dark
+   `--wds-text` (parchment) with `--waf-take: color-mix(..., #fff)`, yielding
+   ~1.2:1 “white on white.” Never mix light washes into Take on the dark shell.
+2. **Italic display body ≠ editorial emphasis** — full-paragraph italics hurt
+   scanability; keep lime label + left accent for emphasis, normal body type.
+3. **Shared `.wds-take` owns Home + Articles** — fix aurora-bridge + articles-feed
+   together; GS Articles uses separate classes but should mirror the same dark/
+   AA pattern without expanding GS feature scope.
+4. **Screenshot framing** — 900×900 viewports miss Take; capture tall frames
+   (≈900×1400) so before/after includes the panel.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  

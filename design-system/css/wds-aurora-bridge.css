@@ -129,14 +129,18 @@ html[data-product="waypoint-volunteer"],
   color: var(--wds-text-secondary);
 }
 
-/* Waypoint's Take pattern */
+/* Waypoint's Take pattern — dark elevated surface, AA body contrast, lime label */
 .wds-take {
-  padding: var(--wds-space-5);
-  background: linear-gradient(160deg, var(--wds-elevated), var(--wds-surface));
+  padding: var(--wds-space-4) var(--wds-space-5);
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--wds-accent) 8%, var(--wds-elevated)),
+    var(--wds-surface)
+  );
   border: 1px solid var(--wds-border);
-  border-left: 3px solid color-mix(in srgb, var(--wds-accent) 55%, transparent);
+  border-left: 3px solid color-mix(in srgb, var(--wds-accent) 70%, transparent);
   border-radius: 0 var(--wds-radius-md) var(--wds-radius-md) 0;
-  max-width: 58ch;
+  max-width: 52ch;
 }
 
 .wds-take__title {
@@ -151,20 +155,26 @@ html[data-product="waypoint-volunteer"],
 }
 
 .wds-take__body {
-  font-family: var(--wds-font-display);
-  font-style: italic;
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  line-height: 1.5;
+  font-family: var(--wds-font-body);
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--wds-text-md);
+  line-height: var(--wds-leading-relaxed);
   color: var(--wds-text);
   margin: 0 0 var(--wds-space-3);
+  max-width: 48ch;
 }
 
 .wds-take__meta {
   margin: 0;
+  padding-top: var(--wds-space-3);
+  border-top: 1px solid var(--wds-border-subtle);
+  font-family: var(--wds-font-body);
+  font-style: normal;
   font-size: var(--wds-text-xs);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--wds-text-muted);
+  color: var(--wds-text-secondary);
 }
 
 .wds-take__sources {
@@ -175,7 +185,8 @@ html[data-product="waypoint-volunteer"],
 
 .wds-take--restrained {
   border-left-color: var(--wds-text-muted);
-  opacity: 0.92;
+  background: var(--wds-surface);
+  opacity: 1;
 }
 
 .wds-take--article {
