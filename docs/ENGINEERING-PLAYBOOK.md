@@ -1015,3 +1015,21 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-07 — Sheds Today’s Search + observation heatmaps
+
+**Branch:** `feature/sheds-todays-search`  
+**Report:** `docs/SHEDS-TODAYS-SEARCH-OWNER-REVIEW.md`
+
+1. **Separate epistemic layers on one map.** Biological heat = *estimated
+   opportunity*; observation heat = *observed activity* from private notes only.
+   Mixing them silently destroys trust — label the mode in the legend and briefing.
+2. **Empty observed heat is a feature.** Never seed demo sightings for first-run
+   polish. Tests must assert zero priorities with zero observations.
+3. **Today’s Search needs facts vs analysis vs uncertainty tags.** Weather numbers
+   are facts; dawn/dusk preference and fence-line wind notes are analysis; missing
+   pressure/location are uncertain. Confidence text must name the gaps.
+4. **Patterns need a sufficiency gate.** Do not whisper “your deer usually…” from
+   two notes. Require a minimum count + distinct days, then say when insufficient.
+5. **Rich Open-Meteo fetch stays fail-soft.** Sunrise/pressure/precip improve the
+   briefing; if the request fails, seasonal + note-based copy must still render.
+

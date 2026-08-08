@@ -552,7 +552,7 @@ html.sheds-sheet-open .sheds-legend-float {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   gap: 0.12rem 0.55rem;
   text-align: left;
   padding: 0.3rem 1.1rem 0.85rem;
@@ -564,18 +564,169 @@ html.sheds-sheet-open .sheds-legend-float {
   min-height: 4.2rem;
 }
 
+.sheds-suggest__eyebrow {
+  grid-column: 1;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sheds-accent);
+  margin: 0;
+}
+
 .sheds-suggest__kicker {
   grid-column: 1;
-  font-size: 0.72rem;
+  font-size: 0.92rem;
   letter-spacing: 0.01em;
-  color: var(--sheds-accent);
+  color: var(--sheds-text);
   font-weight: 650;
+  line-height: 1.25;
 }
 
 .sheds-suggest[data-has-plan="false"] .sheds-suggest__kicker {
   color: var(--sheds-muted);
   text-transform: none;
   letter-spacing: 0;
+}
+
+.sheds-suggest__chev {
+  grid-row: 1 / span 4;
+}
+
+.sheds-today__status {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.86rem;
+  color: var(--sheds-muted);
+  line-height: 1.4;
+}
+
+.sheds-today__windows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0.55rem 0 0.35rem;
+}
+
+.sheds-today__window {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem 0.45rem;
+  border-radius: 12px;
+  background: rgba(6, 16, 12, 0.7);
+  border: 1px solid var(--sheds-border);
+  min-height: 4.5rem;
+}
+
+.sheds-today__window.is-best {
+  border-color: rgba(216, 236, 92, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(216, 236, 92, 0.2);
+}
+
+.sheds-today__window-label {
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.sheds-today__window-band {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sheds-accent);
+}
+
+.sheds-today__window-why {
+  font-size: 0.72rem;
+  color: var(--sheds-muted);
+  line-height: 1.3;
+}
+
+.sheds-today__areas {
+  margin: 0.55rem 0 0.25rem;
+}
+
+.sheds-today__section-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sheds-muted);
+}
+
+.sheds-today__areas ul,
+.sheds-today__signals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sheds-today__areas li,
+.sheds-today__signals li {
+  margin: 0 0 0.45rem;
+  font-size: 0.84rem;
+  line-height: 1.35;
+  color: var(--sheds-text);
+}
+
+.sheds-today__area-why {
+  display: block;
+  color: var(--sheds-muted);
+  font-size: 0.78rem;
+  margin-top: 0.15rem;
+}
+
+.sheds-today__tag {
+  display: inline-block;
+  margin-left: 0.25rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--sheds-border);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sheds-muted);
+  vertical-align: middle;
+}
+
+.sheds-today__signals li[data-kind="fact"] .sheds-today__tag { color: #9fd0ff; border-color: rgba(159, 208, 255, 0.35); }
+.sheds-today__signals li[data-kind="analysis"] .sheds-today__tag { color: var(--sheds-accent); border-color: rgba(216, 236, 92, 0.35); }
+.sheds-today__signals li[data-kind="pattern"] .sheds-today__tag { color: #c6b4ff; border-color: rgba(198, 180, 255, 0.35); }
+.sheds-today__signals li[data-kind="uncertain"] .sheds-today__tag { color: #f0c090; border-color: rgba(240, 192, 144, 0.35); }
+
+.sheds-today__uncertain {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  color: #f0c090;
+  line-height: 1.4;
+}
+
+.sheds-fieldset {
+  margin: 0.75rem 0;
+  padding: 0.65rem 0.75rem 0.85rem;
+  border: 1px solid var(--sheds-border);
+  border-radius: 12px;
+}
+
+.sheds-fieldset legend {
+  padding: 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--sheds-muted);
+}
+
+.sheds-legend-float__mode {
+  flex: 1 1 100%;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sheds-accent);
+  margin-bottom: 0.15rem;
+}
+
+@media (max-width: 40rem) {
+  .sheds-today__windows {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sheds-suggest__glance {

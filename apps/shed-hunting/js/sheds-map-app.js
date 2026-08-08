@@ -13,6 +13,8 @@
   var Planner = window.WaypointShedsPlanner;
   var Presets = window.WaypointShedsPresets;
   var Validation = window.WaypointShedsValidation;
+  var Patterns = window.WaypointShedsObservationPatterns;
+  var TodaysSearch = window.WaypointShedsTodaysSearch;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -35,13 +37,17 @@
     elevKey: "",
     elevAbort: null,
     weather: null,
+    weatherStatus: "idle",
     recomputeTimer: null,
     recomputeGen: 0,
     heatPhase: "idle",
+    heatMode: "biological",
+    heatFilters: null,
     firstEthicsShown: false,
     tracking: false,
     activeSessionId: null,
     lastPlan: null,
+    lastToday: null,
     lastGrid: null,
     lastPerf: {},
     offlineForced: false,
@@ -86,6 +92,9 @@
     }
     updateNavMeta();
     syncRecenterBtn();
+    if (state.lastPlan != null || state.lastToday) {
+      try { renderPlanCard(state.lastPlan); } catch (e) { /* boot order */ }
+    }
   }
 
   function syncRecenterBtn() {
@@ -221,14 +230,125 @@
     if (!legend) return;
     var on = !!(state.prefs && state.prefs.heatVisible !== false && state.lastGrid);
     legend.hidden = !on;
+    var modeEl = $("heat-legend-mode");
+    if (modeEl) {
+      modeEl.textContent = state.heatMode === "observed"
+        ? "Observed activity"
+        : "Estimated opportunity";
+    }
     var status = $("heat-legend-status");
     if (status) {
-      if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
+      if (state.heatMode === "observed") {
+        var n = state.lastGrid && state.lastGrid.observationCount != null
+          ? state.lastGrid.observationCount : 0;
+        status.textContent = n
+          ? (n + " private note" + (n === 1 ? "" : "s") + " in filter")
+          : "Empty — log observations to build heat";
+      } else if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
       else if (state.heatPhase === "refine") status.textContent = "Updated for this view";
       else if (state.heatPhase === "zoom") status.textContent = "Zoom in for heat";
       else if (state.offlineForced || navigator.onLine === false) status.textContent = "Limited / offline scoring";
-      else status.textContent = "Lower → higher walk priority";
+      else status.textContent = "Lower → higher estimated priority";
     }
+  }
+
+  function locationStatusForToday() {
+    if (state.locationStatus === "denied") return "denied";
+    if (state.locationStatus === "finding") return state.userLatLng ? "ready" : "loading";
+    if (state.locationStatus === "unavailable" || state.locationStatus === "timeout") {
+      return state.userLatLng ? "ready" : "unavailable";
+    }
+    if (state.userLatLng || state.locationStatus === "available") return "ready";
+    if (state.locationStatus === "idle" || state.locationStatus === "neutral") return "loading";
+    return state.userLatLng ? "ready" : "unavailable";
+  }
+
+  function currentHeatFilters() {
+    var base = Patterns && Patterns.defaultHeatFilters
+      ? Patterns.defaultHeatFilters()
+      : { timeOfDay: "all", season: "all", weather: "any", sinceMs: null, untilMs: null };
+    var f = Object.assign({}, base, state.heatFilters || {});
+    var range = f.rangeDays;
+    if (range && range !== "all") {
+      var days = Number(range);
+      if (isFinite(days) && days > 0) f.sinceMs = Date.now() - days * 86400000;
+    }
+    return f;
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderTodayWindows(brief) {
+    var el = $("today-windows");
+    if (!el) return;
+    if (!brief || !brief.timeWindows || !brief.timeWindows.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = brief.timeWindows.map(function (w) {
+      var active = w.id === brief.bestWindowId ? " is-best" : "";
+      return "<div class=\"sheds-today__window" + active + "\" data-band=\"" + escapeHtml(w.band) + "\">" +
+        "<span class=\"sheds-today__window-label\">" + escapeHtml(w.label) + "</span>" +
+        "<span class=\"sheds-today__window-band\">" + escapeHtml(w.band) + "</span>" +
+        "<span class=\"sheds-today__window-why\">" + escapeHtml((w.why && w.why[0]) || "") + "</span>" +
+        "</div>";
+    }).join("");
+  }
+
+  function renderTodayAreas(brief) {
+    var el = $("today-areas");
+    if (!el) return;
+    if (!brief || !brief.areas || !brief.areas.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = "<p class=\"sheds-today__section-label\">Areas / terrain to consider</p><ul>" +
+      brief.areas.map(function (a) {
+        var tag = a.epistemic === "observed" || a.kind === "observation" ? "Pattern"
+          : a.epistemic === "estimated" || a.kind === "planner" ? "Estimated"
+          : a.epistemic === "fact" ? "Fact" : "Analysis";
+        return "<li><strong>" + escapeHtml(a.label) + "</strong> " +
+          "<span class=\"sheds-today__tag\">" + tag + "</span>" +
+          "<span class=\"sheds-today__area-why\">" + escapeHtml(a.why || "") + "</span></li>";
+      }).join("") + "</ul>";
+  }
+
+  function renderTodaySignals(brief) {
+    var el = $("today-signals");
+    if (!el) return;
+    if (!brief || !brief.signals || !brief.signals.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = brief.signals.map(function (s) {
+      return "<li data-kind=\"" + escapeHtml(s.kind) + "\"><span class=\"sheds-today__tag\">" +
+        escapeHtml(s.kind) + "</span> <strong>" + escapeHtml(s.label) + ":</strong> " +
+        escapeHtml(s.text) + "</li>";
+    }).join("");
+  }
+
+  function refreshTodaysSearch(plan) {
+    if (!TodaysSearch || !els.planCard) return null;
+    var patterns = Patterns ? Patterns.aggregatePatterns(Store.list()) : null;
+    var brief = TodaysSearch.build({
+      weather: state.offlineForced ? null : state.weather,
+      weatherStatus: state.offlineForced ? "unavailable"
+        : (state.weatherStatus === "loading" ? "loading"
+          : (state.weather ? "ready" : state.weatherStatus || "unavailable")),
+      season: currentSeasonProfile(),
+      locationStatus: locationStatusForToday(),
+      patterns: patterns,
+      plan: plan || state.lastPlan,
+      now: new Date()
+    });
+    state.lastToday = brief;
+    return brief;
   }
 
   function updateNavMeta() {
@@ -599,11 +719,33 @@
     });
   }
 
+  function formatLocalClock(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+    try {
+      return d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      return d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+  }
+
+  function hourFromIso(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+    return d.getHours() + d.getMinutes() / 60;
+  }
+
   function fetchWeatherSoft(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
+    state.weatherStatus = "loading";
     var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat.toFixed(4) +
       "&longitude=" + lng.toFixed(4) +
-      "&daily=snowfall_sum&current=temperature_2m,wind_speed_10m&timezone=auto&forecast_days=3";
+      "&current=temperature_2m,wind_speed_10m,surface_pressure,precipitation" +
+      "&hourly=temperature_2m,wind_speed_10m,precipitation,surface_pressure" +
+      "&daily=snowfall_sum,sunrise,sunset,precipitation_sum" +
+      "&timezone=auto&forecast_days=3&past_days=1";
     return fetch(url, { credentials: "omit" }).then(function (res) {
       if (!res.ok) throw new Error("wx");
       return res.json();
@@ -612,7 +754,6 @@
       if (data.daily && data.daily.snowfall_sum) {
         snow = data.daily.snowfall_sum.reduce(function (a, b) { return a + (b || 0); }, 0);
       }
-      // Light snow can help visibility of sheds; deep snow can reduce walkability — soft factor only
       var influence = 1;
       if (snow > 25) influence = 0.7;
       else if (snow > 8) influence = 0.88;
@@ -621,14 +762,63 @@
         ? data.current.temperature_2m : null;
       var windSpeedMs = data.current && typeof data.current.wind_speed_10m === "number"
         ? data.current.wind_speed_10m : null;
-      return {
+      var pressureHpa = data.current && typeof data.current.surface_pressure === "number"
+        ? data.current.surface_pressure : null;
+      var precipMm24h = null;
+      if (data.daily && data.daily.precipitation_sum && data.daily.precipitation_sum.length) {
+        // past_days=1 puts yesterday first; sum recent ~24–48h honestly as available
+        var sums = data.daily.precipitation_sum;
+        precipMm24h = Number(sums[sums.length > 1 ? 1 : 0] || 0);
+        if (sums.length > 1) precipMm24h = Number(sums[0] || 0) + Number(sums[1] || 0);
+      }
+      var pressureTrend = null;
+      if (data.hourly && data.hourly.surface_pressure && data.hourly.surface_pressure.length >= 6) {
+        var arr = data.hourly.surface_pressure.filter(function (v) { return typeof v === "number"; });
+        if (arr.length >= 6) {
+          var early = arr[Math.max(0, arr.length - 12)];
+          var late = arr[arr.length - 1];
+          var delta = late - early;
+          if (delta <= -1.5) pressureTrend = "falling";
+          else if (delta >= 1.5) pressureTrend = "rising";
+          else pressureTrend = "steady";
+        }
+      }
+      var sunriseIso = data.daily && data.daily.sunrise ? data.daily.sunrise[data.daily.sunrise.length > 1 ? 1 : 0] : null;
+      var sunsetIso = data.daily && data.daily.sunset ? data.daily.sunset[data.daily.sunset.length > 1 ? 1 : 0] : null;
+      // With past_days=1, index 1 is typically "today"
+      if (data.daily && data.daily.time && data.daily.time.length) {
+        var todayStr = new Date().toISOString().slice(0, 10);
+        var ix = data.daily.time.indexOf(todayStr);
+        if (ix < 0 && data.daily.time.length > 1) ix = 1;
+        if (ix < 0) ix = 0;
+        sunriseIso = data.daily.sunrise && data.daily.sunrise[ix];
+        sunsetIso = data.daily.sunset && data.daily.sunset[ix];
+      }
+      var pkg = {
         snowInfluence: influence,
         snowMm: snow,
         tempC: tempC,
         windSpeedMs: windSpeedMs,
-        source: "weather-provider"
+        pressureHpa: pressureHpa,
+        pressureTrend: pressureTrend,
+        precipMm24h: precipMm24h,
+        sunriseIso: sunriseIso || null,
+        sunsetIso: sunsetIso || null,
+        sunriseLocal: formatLocalClock(sunriseIso),
+        sunsetLocal: formatLocalClock(sunsetIso),
+        sunriseHour: hourFromIso(sunriseIso),
+        sunsetHour: hourFromIso(sunsetIso),
+        utcOffsetMinutes: typeof data.utc_offset_seconds === "number"
+          ? data.utc_offset_seconds / 60 : null,
+        source: "open-meteo",
+        fetchedAt: new Date().toISOString()
       };
-    }).catch(function () { return null; });
+      state.weatherStatus = "ready";
+      return pkg;
+    }).catch(function () {
+      state.weatherStatus = "unavailable";
+      return null;
+    });
   }
 
   function modelStamp() {
@@ -697,6 +887,22 @@
     };
   }
 
+  function recomputeObservedHeat(bounds, gen) {
+    if (!Patterns) return;
+    var filters = currentHeatFilters();
+    var grid = Patterns.buildObservationHeatGrid(
+      bounds, GRID_ROWS, GRID_COLS, Store.list(), filters, { nowMs: Date.now() }
+    );
+    if (gen !== state.recomputeGen) return;
+    state.heatPhase = "refine";
+    applyGridToUi(grid, {
+      label: "Observed activity (private notes only)",
+      elevNote: grid.observationCount
+        ? ("Filter: " + (grid.filterSummary || "all") + ".")
+        : "No matching private observations — heat intentionally empty (no demo data)."
+    });
+  }
+
   function recomputeHeat() {
     if (!map || !Model) return;
     var gen = ++state.recomputeGen;
@@ -722,6 +928,25 @@
       return;
     }
 
+    // Keep weather fresh for Today's Search even in observed-heat mode
+    var center = map.getCenter();
+    var wxPromise = state.offlineForced ? Promise.resolve(null)
+      : (state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng));
+
+    if (state.heatMode === "observed") {
+      try {
+        recomputeObservedHeat(bounds, gen);
+      } catch (e) {
+        console.error("sheds observed heat", e);
+      }
+      wxPromise.then(function (w) {
+        if (gen !== state.recomputeGen) return;
+        if (w) state.weather = w;
+        updatePlanner(state.lastGrid);
+      });
+      return;
+    }
+
     // Coarse first pass — local observations + season, no elevation wait
     try {
       var coarse = Model.buildGrid(bounds, COARSE_ROWS, COARSE_COLS, buildContext(null, COARSE_ROWS, COARSE_COLS, "unavailable"));
@@ -736,11 +961,9 @@
       console.error("sheds coarse heat", e);
     }
 
-    var center = map.getCenter();
     Promise.all([
       state.offlineForced ? Promise.resolve(null) : fetchElevations(bounds),
-      state.offlineForced ? Promise.resolve(null)
-        : (state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng))
+      wxPromise
     ]).then(function (pair) {
       if (gen !== state.recomputeGen) return;
       var elev = pair[0];
@@ -750,7 +973,7 @@
       if (gen !== state.recomputeGen) return;
       state.heatPhase = "refine";
       applyGridToUi(grid, {
-        label: "Refined biological heat",
+        label: "Refined biological heat (estimated opportunity)",
         elevNote: elev
           ? "Elevation sampled for this view."
           : (state.offlineForced || navigator.onLine === false
@@ -817,59 +1040,82 @@
     var glance = els.planGlance || els.planBody;
     var conf = $("plan-stars");
     var stats = $("plan-stats");
-    var season = currentSeasonProfile();
+    var brief = refreshTodaysSearch(plan);
+    var statusEl = $("today-status");
+    var uncertainEl = $("today-uncertain");
+    var whyWrap = document.querySelector(".sheds-plan__why-wrap");
+    if (whyWrap) whyWrap.hidden = false;
+
+    if (brief) {
+      renderTodayWindows(brief);
+      renderTodayAreas(brief);
+      renderTodaySignals(brief);
+      if (statusEl) {
+        var st = brief.status;
+        if (st === "loading") statusEl.textContent = "Loading today’s conditions…";
+        else if (st === "location_denied") statusEl.textContent = "Location denied — briefing uses map center when possible.";
+        else if (st === "weather_unavailable") statusEl.textContent = "Weather unavailable — seasonal / note-based briefing only.";
+        else if (st === "partial") statusEl.textContent = "Partial inputs — some signals missing.";
+        else statusEl.textContent = brief.summaryLine || brief.headline;
+      }
+      if (uncertainEl) {
+        uncertainEl.textContent = (brief.uncertainties || []).join(" ");
+      }
+      if (els.planTitle) els.planTitle.textContent = brief.headline;
+      if (conf) {
+        conf.textContent = "Confidence: " + brief.confidence;
+        conf.setAttribute("aria-label", brief.confidenceWhy || ("Confidence " + brief.confidence));
+      }
+    }
+
     if (!plan || !plan.ok || !plan.recommendation) {
       els.planCard.dataset.hasPlan = "false";
-      if (els.planTitle) els.planTitle.textContent = "Start here";
       var empty = "Find yourself on the map";
       if (plan && plan.reason) {
         if (/zoom/i.test(plan.reason)) empty = "Zoom in on your land";
         else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
       }
-      if (glance) glance.textContent = empty;
-      var emptyBrief = fieldConditionLines(state.weather, season);
+      if (glance) {
+        glance.textContent = brief && brief.timeWindows && brief.timeWindows[0]
+          ? ("Best window: " + brief.timeWindows[0].label + " · " + empty)
+          : empty;
+      }
       if (els.planBody) {
-        els.planBody.textContent =
-          emptyBrief[0] +
-          " Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee of antlers.";
+        els.planBody.textContent = (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
+          "Locate yourself, or pan to your land and zoom in for an estimated pocket. Never a guarantee of antlers.";
       }
-      if (els.planWhy) els.planWhy.textContent = emptyBrief.slice(1).join(" ");
+      if (els.planWhy) {
+        els.planWhy.textContent = brief && brief.disclaimer
+          ? brief.disclaimer
+          : "Relative guidance only.";
+      }
       if (els.planMeta) {
-        els.planMeta.textContent = state.weather
-          ? "Field briefing from season + recent weather context."
-          : "Field briefing uses season and what you have already marked.";
-      }
-      if (conf) {
-        conf.textContent = "We’ll suggest where to look";
-        conf.setAttribute("aria-label", "No recommendation yet");
+        els.planMeta.textContent = brief && brief.epistemicNote
+          ? brief.epistemicNote
+          : "Facts vs analysis vs uncertainty are labeled in signals.";
       }
       if (stats) stats.hidden = true;
       var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
       if (actions) actions.hidden = true;
-      var whyWrap = document.querySelector(".sheds-plan__why-wrap");
-      if (whyWrap) whyWrap.hidden = true;
-      els.planCard.setAttribute("aria-label", "No suggestion yet. " + empty);
+      els.planCard.setAttribute("aria-label", "Today’s Search. " + (brief && brief.headline ? brief.headline + ". " : "") + empty);
       updateNavMeta();
       syncHeatLegend();
       return;
     }
+
     els.planCard.dataset.hasPlan = "true";
     var actionsOn = $("plan-actions") || document.querySelector(".sheds-plan__actions");
     if (actionsOn) actionsOn.hidden = false;
-    var whyOn = document.querySelector(".sheds-plan__why-wrap");
-    if (whyOn) whyOn.hidden = false;
     var r = plan.recommendation;
-    var coverage = plan.coverage || (state.lastGrid && state.lastGrid.coverage);
-    if (els.planTitle) els.planTitle.textContent = dayQualityLine(coverage, r.band, state.weather, season);
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
     var glanceText = [dir, dist].filter(Boolean).join(" · ");
     if (!glanceText) glanceText = r.walkingHint || "Nearby pocket";
-    if (glance) glance.textContent = glanceText;
-    if (conf) {
-      var phrase = confidencePhrase(coverage, r.band);
-      conf.textContent = phrase;
-      conf.setAttribute("aria-label", phrase);
+    if (glance) {
+      var win = brief && brief.timeWindows && brief.timeWindows[0]
+        ? brief.timeWindows[0].label + " · "
+        : "";
+      glance.textContent = win + glanceText;
     }
     if (stats) {
       stats.hidden = false;
@@ -884,30 +1130,34 @@
         $("plan-stat-band").textContent = bandLabel;
       }
     }
-    var conditions = fieldConditionLines(state.weather, season);
     if (els.planBody) {
       var walk = r.walkingHint || glanceText;
       els.planBody.textContent =
-        conditions[0] +
-        " " +
+        (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
         walk +
-        " Relative walk guidance only — not a claim that antlers are present.";
+        " Estimated opportunity only — not a claim that antlers or deer are present.";
     }
     var whyParts = [];
-    if (conditions.length > 1) whyParts = whyParts.concat(conditions.slice(1));
-    if (r.explanation) whyParts.push(r.explanation);
-    whyParts.push(confidencePhrase(coverage, r.band) + ".");
+    if (r.why && r.why.length) whyParts = whyParts.concat(r.why.slice(0, 3));
+    else if (r.explanation) whyParts.push(r.explanation);
+    if (brief && brief.observationInsight) {
+      if (brief.observationInsight.sufficient && brief.observationInsight.summary) {
+        whyParts.push(brief.observationInsight.summary);
+      } else if (brief.observationInsight.insufficiencyReason) {
+        whyParts.push(brief.observationInsight.insufficiencyReason);
+      }
+    }
     if (els.planWhy) els.planWhy.textContent = whyParts.join(" ");
     var meta = [];
-    meta.push("Why: " + (conditions[0] || "local terrain and notes"));
-    meta.push("Confidence: " + confidencePhrase(coverage, r.band));
+    if (brief) meta.push("Confidence: " + brief.confidence + " — " + (brief.confidenceWhy || ""));
     if (plan.remainingHighCount != null && plan.remainingHighCount > 0) {
       meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
     }
+    meta.push("Layer: " + (state.heatMode === "observed" ? "Observed activity" : "Estimated opportunity"));
     if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Suggested place: " + glanceText + ". " + (conditions[0] || "") + " " + (r.explanation || "")
+      "Today’s Search: " + (brief && brief.headline ? brief.headline + ". " : "") + glanceText
     );
     updateNavMeta();
     syncHeatLegend();
@@ -1183,6 +1433,21 @@
     el.setAttribute("aria-hidden", "true");
   }
 
+  function toDatetimeLocalValue(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "";
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
+      "T" + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+
+  function fromDatetimeLocalValue(v) {
+    if (!v) return null;
+    var d = new Date(v);
+    return isNaN(d.getTime()) ? null : d.toISOString();
+  }
+
   function openNewObservation(latlng) {
     clickLatLng = latlng;
     els.obsForm.reset();
@@ -1191,9 +1456,15 @@
     $("obs-type").value = "deer_sign";
     $("obs-confidence").value = "probable";
     $("sheds-extra").hidden = true;
+    if ($("deer-extra")) $("deer-extra").hidden = true;
     if ($("obs-habitat")) $("obs-habitat").value = "";
+    if ($("obs-sex")) $("obs-sex").value = "unknown";
+    if ($("obs-class")) $("obs-class").value = "unknown";
+    if ($("obs-photo-ref")) $("obs-photo-ref").value = "";
+    if ($("obs-when")) $("obs-when").value = toDatetimeLocalValue(new Date().toISOString());
     $("obs-form-title").textContent = "Add observation";
     $("obs-delete").hidden = true;
+    toggleObsExtras("deer_sign");
     syncObsLocationHint();
     openSheet(els.sheetObs);
   }
@@ -1211,7 +1482,11 @@
     if ($("obs-habitat")) {
       $("obs-habitat").value = (obs.details && obs.details.habitat) || "";
     }
-    toggleShedExtra(obs.type);
+    if ($("obs-when")) $("obs-when").value = toDatetimeLocalValue(obs.observedAt);
+    if ($("obs-sex")) $("obs-sex").value = (obs.details && obs.details.sex) || "unknown";
+    if ($("obs-class")) $("obs-class").value = (obs.details && obs.details.class) || "unknown";
+    if ($("obs-photo-ref")) $("obs-photo-ref").value = obs.photoRef || "";
+    toggleObsExtras(obs.type);
     if (obs.type === "shed_found" && obs.details) {
       $("shed-side").value = obs.details.side || "unknown";
       $("shed-freshness").value = obs.details.freshness || "unknown";
@@ -1228,6 +1503,26 @@
     $("sheds-extra").hidden = type !== "shed_found";
   }
 
+  function toggleObsExtras(type) {
+    toggleShedExtra(type);
+    if ($("deer-extra")) {
+      $("deer-extra").hidden = !(type === "deer_seen" || type === "deer_sign");
+    }
+  }
+
+  function weatherSnapshotForSave() {
+    if (!state.weather) return null;
+    return {
+      capturedAt: new Date().toISOString(),
+      source: state.weather.source || "open-meteo",
+      tempC: state.weather.tempC,
+      windSpeedMs: state.weather.windSpeedMs,
+      snowMm: state.weather.snowMm,
+      precipMm24h: state.weather.precipMm24h,
+      pressureHpa: state.weather.pressureHpa
+    };
+  }
+
   function saveObservation(ev) {
     ev.preventDefault();
     var type = $("obs-type").value;
@@ -1235,6 +1530,7 @@
     var atMe = !!(state.userLatLng && clickLatLng &&
       Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
       Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6);
+    var whenIso = $("obs-when") ? fromDatetimeLocalValue($("obs-when").value) : null;
     var payload = {
       type: type,
       speciesId: Store.SPECIES_WHITETAIL,
@@ -1243,12 +1539,19 @@
         lng: clickLatLng.lng,
         precision: atMe ? "gps" : "map"
       },
+      observedAt: whenIso || new Date().toISOString(),
       note: $("obs-note").value.trim(),
       confidence: $("obs-confidence").value,
       quantity: $("obs-quantity").value,
+      photoRef: $("obs-photo-ref") ? $("obs-photo-ref").value.trim() : "",
+      weatherSnapshot: weatherSnapshotForSave(),
       details: {}
     };
     if (habitat) payload.details.habitat = habitat;
+    if (type === "deer_seen" || type === "deer_sign") {
+      payload.details.sex = $("obs-sex") ? $("obs-sex").value : "unknown";
+      payload.details.class = $("obs-class") ? $("obs-class").value : "unknown";
+    }
     if (type === "shed_found") {
       payload.details = Object.assign({}, payload.details, {
         side: $("shed-side").value,
@@ -1652,7 +1955,7 @@
     });
 
     $("obs-type").addEventListener("change", function () {
-      toggleShedExtra($("obs-type").value);
+      toggleObsExtras($("obs-type").value);
     });
     els.obsForm.addEventListener("submit", saveObservation);
     $("obs-delete").addEventListener("click", deleteObservation);
@@ -1663,6 +1966,29 @@
       Store.saveModelPrefs(state.prefs);
       syncHeatLegend();
       scheduleRecompute(50);
+    });
+    function readHeatFilterControls() {
+      state.heatMode = $("heat-mode") ? $("heat-mode").value : "biological";
+      state.heatFilters = {
+        timeOfDay: $("heat-tod") ? $("heat-tod").value : "all",
+        season: $("heat-season") ? $("heat-season").value : "all",
+        weather: $("heat-wx") ? $("heat-wx").value : "any",
+        rangeDays: $("heat-range") ? $("heat-range").value : "all"
+      };
+      try {
+        localStorage.setItem("waypoint-sheds-heat-ui-v1", JSON.stringify({
+          heatMode: state.heatMode,
+          heatFilters: state.heatFilters
+        }));
+      } catch (e) { /* ignore */ }
+    }
+    ["heat-mode", "heat-tod", "heat-season", "heat-wx", "heat-range"].forEach(function (id) {
+      if (!$(id)) return;
+      $(id).addEventListener("change", function () {
+        readHeatFilterControls();
+        syncHeatLegend();
+        scheduleRecompute(80);
+      });
     });
     $("obs-visible").addEventListener("change", function () {
       state.prefs.obsVisible = $("obs-visible").checked;
@@ -1781,6 +2107,12 @@
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
     if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
     if ($("offline-forced")) $("offline-forced").checked = !!state.offlineForced;
+    if ($("heat-mode")) $("heat-mode").value = state.heatMode || "biological";
+    var hf = state.heatFilters || {};
+    if ($("heat-tod")) $("heat-tod").value = hf.timeOfDay || "all";
+    if ($("heat-season")) $("heat-season").value = hf.season || "all";
+    if ($("heat-wx")) $("heat-wx").value = hf.weather || "any";
+    if ($("heat-range")) $("heat-range").value = hf.rangeDays || "all";
     if ($("model-preset") && Presets) {
       var pid = state.prefs.activePreset || "balanced";
       if (!Presets.PRESETS[pid]) pid = "balanced";
@@ -1794,6 +2126,20 @@
       var el = document.querySelector('[data-weight="' + k + '"]');
       if (el) el.value = state.prefs.weights[k];
     });
+  }
+
+  function loadHeatUiPrefs() {
+    try {
+      var raw = localStorage.getItem("waypoint-sheds-heat-ui-v1");
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (parsed.heatMode === "observed" || parsed.heatMode === "biological") {
+        state.heatMode = parsed.heatMode;
+      }
+      if (parsed.heatFilters && typeof parsed.heatFilters === "object") {
+        state.heatFilters = parsed.heatFilters;
+      }
+    } catch (e) { /* ignore */ }
   }
 
   function fillTypeSelects() {
@@ -1817,7 +2163,7 @@
   }
 
   function boot() {
-    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !Bio || !Presets || !Validation) {
+    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !Bio || !Presets || !Validation || !Patterns || !TodaysSearch) {
       requestAnimationFrame(boot);
       return;
     }
@@ -1858,6 +2204,8 @@
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
     if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
     if (state.prefs.opacity == null) state.prefs.opacity = DEFAULT_HEAT_OPACITY;
+    state.heatFilters = Patterns.defaultHeatFilters();
+    loadHeatUiPrefs();
     fillTypeSelects();
     if ($("model-preset") && Presets) {
       $("model-preset").innerHTML = Presets.listPresets().map(function (p) {
