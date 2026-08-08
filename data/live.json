@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-08T07:00:01.135Z",
-  "nextScheduledUpdate": "2026-08-08T07:30:00.000Z",
+  "updatedAt": "2026-08-08T07:30:01.305Z",
+  "nextScheduledUpdate": "2026-08-08T08:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,9 +16,9 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 71,
+    "temperatureF": 70,
     "feelsLikeF": 74,
-    "humidity": 87,
+    "humidity": 88,
     "windMph": 7,
     "windGustMph": 13,
     "cloudCover": 0,
@@ -26,7 +26,7 @@
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-08T02:00"
+    "observedAt": "2026-08-08T02:30"
   },
   "forecast": {
     "highF": 94,
@@ -37,15 +37,9 @@
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-08-08T03:00",
-        "temperatureF": 70,
-        "precipProbability": 0,
-        "conditions": "Clear sky"
-      },
-      {
         "time": "2026-08-08T04:00",
         "temperatureF": 70,
-        "precipProbability": 1,
+        "precipProbability": 0,
         "conditions": "Clear sky"
       },
       {
@@ -71,6 +65,12 @@
         "temperatureF": 70,
         "precipProbability": 1,
         "conditions": "Mainly clear"
+      },
+      {
+        "time": "2026-08-08T09:00",
+        "temperatureF": 74,
+        "precipProbability": 1,
+        "conditions": "Clear sky"
       }
     ],
     "note": "Low rain chance in the next several hours"
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 29,
-    "phaseValue": 0.855,
+    "phaseValue": 0.856,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 822.7823972702026,
+        "generationtime_ms": 195.4442262649536,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,17 +120,17 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-08T02:00",
+          "time": "2026-08-08T02:30",
           "interval": 900,
-          "temperature_2m": 70.5,
-          "relative_humidity_2m": 87,
+          "temperature_2m": 70.4,
+          "relative_humidity_2m": 88,
           "apparent_temperature": 73.8,
           "weather_code": 0,
           "wind_speed_10m": 6.9,
-          "wind_direction_10m": 57,
+          "wind_direction_10m": 69,
           "wind_gusts_10m": 13.4,
           "cloud_cover": 0,
-          "surface_pressure": 948.2,
+          "surface_pressure": 948.8,
           "uv_index": 0,
           "precipitation": 0
         },
@@ -194,25 +194,25 @@
           ],
           "temperature_2m": [
             72.6,
-            71.6,
-            70.5,
+            71.5,
+            70.9,
+            70.1,
             69.7,
-            69.5,
-            69.3,
+            69.4,
             69,
             68.6,
             70.4,
-            73.9,
-            78.2,
-            82,
-            83,
-            87.9,
-            90.3,
-            92.4,
-            92.9,
-            93.2,
-            93.8,
-            85.3,
+            73.5,
+            77.9,
+            82.1,
+            85.2,
+            88.4,
+            90.7,
+            92.7,
+            93,
+            93.7,
+            93.6,
+            87.1,
             82.4,
             80,
             78.5,
@@ -297,7 +297,7 @@
             0,
             0,
             0,
-            1,
+            0,
             1,
             1,
             1,
@@ -414,7 +414,7 @@
             3
           ],
           "temperature_2m_max": [
-            93.8,
+            93.7,
             105.4
           ],
           "temperature_2m_min": [
@@ -457,7 +457,7 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 29,
-        "phaseValue": 0.855,
+        "phaseValue": 0.856,
         "trust": "Estimated"
       }
     },
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-08T07:00:01.135Z",
+    "generatedAt": "2026-08-08T07:30:01.305Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
