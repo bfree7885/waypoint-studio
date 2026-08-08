@@ -36,6 +36,7 @@ const required = [
   "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/explain/index.html",
+  "side-trails/global-signals/search/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -68,6 +69,7 @@ assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
+assert.match(html, /\.\/search\//);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -76,7 +78,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Live sample/demo modules: Articles, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
+// Live sample/demo modules: Articles, Search, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -129,6 +131,14 @@ assert.match(explainPage, /No AI invention/);
 assert.match(explainPage, /Part of Side Trails\./);
 assert.doesNotMatch(explainPage, /Coming soon/i);
 assert.doesNotMatch(explainPage, /openai|anthropic|llm|ChatGPT/i);
+
+const searchPage = read("side-trails/global-signals/search/index.html");
+assert.match(searchPage, /Search/);
+assert.match(searchPage, /gss-app/);
+assert.match(searchPage, /search-index\.json/);
+assert.match(searchPage, /Part of Side Trails\./);
+assert.doesNotMatch(searchPage, /Coming soon/i);
+assert.doesNotMatch(searchPage, /WebSocket|live data dashboard/i);
 
 for (const slug of [
   "waypoint-take",
