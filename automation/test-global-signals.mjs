@@ -69,7 +69,8 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Graph + Cascade Explorer are live (sample/demo); other modules remain placeholders.
+// Live sample/demo modules: Articles, Relationship Graph, Cascade Explorer,
+// Country / Industry Intelligence, Citizen Impact. Remaining shells stay placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -93,10 +94,26 @@ assert.match(graphPage, /Part of Side Trails\./);
 assert.doesNotMatch(graphPage, /Coming soon/i);
 assert.doesNotMatch(graphPage, /cytoscape|d3\.force|vis-network|sigma\.js|WebSocket/i);
 
+const citizenPage = read("side-trails/global-signals/citizen-impact/index.html");
+assert.match(citizenPage, /Citizen Impact/);
+assert.match(citizenPage, /gsc-board/);
+assert.match(citizenPage, /relationship-graph\//);
+assert.match(citizenPage, /Part of Side Trails\./);
+assert.doesNotMatch(citizenPage, /Coming soon/i);
+
+const countriesPage = read("side-trails/global-signals/countries/index.html");
+assert.match(countriesPage, /Country Intelligence/);
+assert.match(countriesPage, /relationship-graph\//);
+assert.doesNotMatch(countriesPage, /Coming soon/i);
+
+const industriesPage = read("side-trails/global-signals/industries/index.html");
+assert.match(industriesPage, /Industry Intelligence/);
+assert.match(industriesPage, /relationship-graph\//);
+assert.doesNotMatch(industriesPage, /Coming soon/i);
+
 for (const slug of [
   "waypoint-take",
   "supply-chains",
-  "citizen-impact",
   "scenario-explorer",
   "global-dashboard"
 ]) {

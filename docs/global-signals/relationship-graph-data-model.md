@@ -23,9 +23,13 @@ Edges are **curated only** — assembled from existing Relationship Explorer, Ci
 | `entityTypes` | Catalog of node type keys |
 | `defaultFocusId` | Initial focus when no `?focus=` query |
 | `focusSeeds` | Picker chips / select options |
+| `idAliases` | Module→graph id bridges (e.g. `gsc_taiwan` → `gsn_taiwan`) |
+| `idAliasNotes` | Honest documentation of alias policy |
 | `sourceDatasets` | Paths of datasets edges were derived from |
 | `nodes` | Graph nodes (`gsn_*` / `gsi_*` / `gsc_*` / `gsci_*`) |
 | `edges` | Directed relationships (`gsr_*`) with required facets |
+
+Deep-link contract and cross-module mapping: `docs/global-signals/graph-backbone-id-mapping.md`.
 
 ## Node fields
 

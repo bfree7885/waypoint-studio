@@ -131,6 +131,7 @@
       affectedIndustries: normalizeStringList(raw.affectedIndustries),
       affectedCommodities: normalizeStringList(raw.affectedCommodities),
       citizenImpacts: normalizeStringList(raw.citizenImpacts),
+      relatedGraphNodeIds: normalizeStringList(raw.relatedGraphNodeIds || raw.graphFocusIds),
       timeHorizon: normalizeTimeHorizon(raw.timeHorizon),
       confidence: normalizeConfidence(raw.confidence),
       likelyImpactPath: normalizeImpactPath(raw.likelyImpactPath || raw.impactPath)
@@ -204,6 +205,39 @@
     );
   }
 
+
+  function graphLinks() {
+    return (GS && GS.graphLinks) || null;
+  }
+
+  function articleGraphCta(article, opts) {
+    opts = opts || {};
+    var gl = graphLinks();
+    var focusId = "";
+    if (gl && gl.articleFocusId) focusId = gl.articleFocusId(article);
+    else if (article && article.relatedGraphNodeIds && article.relatedGraphNodeIds[0]) {
+      focusId = article.relatedGraphNodeIds[0];
+    }
+    if (!focusId) return "";
+    var base = opts.base || (gl && gl.relativeGraphBase ? gl.relativeGraphBase(opts.depth || 3) : "../relationship-graph/");
+    if (gl && gl.ctaAnchor) {
+      return (
+        '<p class="gsa-card__cta gsa-card__cta--graph">' +
+        gl.ctaAnchor(focusId, { base: base, className: opts.className || "gs-cta" }) +
+        "</p>"
+      );
+    }
+    return (
+      '<p class="gsa-card__cta gsa-card__cta--graph"><a class="gs-cta" href="' +
+      base +
+      "?focus=" +
+      encodeURIComponent(focusId) +
+      '" data-gs-graph-focus="' +
+      esc(focusId) +
+      '">Open in Relationship Graph</a></p>'
+    );
+  }
+
   function queryId() {
     try {
       return new URLSearchParams(global.location.search).get("id");
@@ -264,6 +298,7 @@
       renderImpactPath(article.likelyImpactPath) +
       "</section>" +
       renderImpactMeta(article) +
+      articleGraphCta(article, { depth: 3 }) +
       '<p class="gsa-detail__back"><a href="./">← All briefs</a></p>' +
       "</article>"
     );
@@ -401,6 +436,7 @@
       '<p class="gsa-card__cta"><a href="?id=' +
       encodeURIComponent(article.id) +
       '">Open brief</a></p>' +
+      articleGraphCta(article, { depth: 3 }) +
       "</article>"
     );
   }

@@ -6772,5 +6772,9 @@
         "relationships"
       ]
     }
-  ]
+  ],
+  "idAliases": {
+    "gsc_taiwan": "gsn_taiwan"
+  },
+  "idAliasNotes": "Module→graph bridges when ids diverge. Country Intelligence uses gsc_taiwan; the graph entity node is gsn_taiwan (countryId mirrors gsc_taiwan). Other countries use gsc_* directly. Industries use gsi_*. Citizen categories use gsci_<section>. Articles have no gsa_* nodes — use relatedGraphNodeIds on each brief."
 }

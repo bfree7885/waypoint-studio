@@ -169,6 +169,19 @@
       adj[e.from].push({ edgeId: e.id, neighborId: e.to, direction: "out" });
       adj[e.to].push({ edgeId: e.id, neighborId: e.from, direction: "in" });
     });
+    var idAliases = {};
+    if (data.idAliases && typeof data.idAliases === "object") {
+      Object.keys(data.idAliases).forEach(function (k) {
+        var v = String(data.idAliases[k] || "").trim();
+        if (k && v) idAliases[String(k).trim()] = v;
+      });
+    }
+    // Reverse countryId bridges (e.g. gsc_taiwan → gsn_taiwan)
+    nodes.forEach(function (n) {
+      if (n.countryId && !idAliases[n.countryId]) {
+        idAliases[n.countryId] = n.id;
+      }
+    });
     return {
       version: data.version || null,
       mode: data.mode || null,
@@ -179,12 +192,28 @@
       defaultFocusId: data.defaultFocusId || null,
       focusSeeds: Array.isArray(data.focusSeeds) ? data.focusSeeds.slice() : [],
       sourceDatasets: data.sourceDatasets || [],
+      idAliases: idAliases,
+      idAliasNotes: data.idAliasNotes || null,
       nodes: nodes,
       edges: edges,
       nodeById: byId,
       edgeById: edgeById,
       adjacency: adj
     };
+  }
+
+  function resolveFocusId(bundle, rawId) {
+    if (!bundle || rawId == null || rawId === "") return null;
+    var id = String(rawId).trim();
+    if (!id) return null;
+    if (bundle.nodeById[id]) return id;
+    var aliased = bundle.idAliases && bundle.idAliases[id];
+    if (aliased && bundle.nodeById[aliased]) return aliased;
+    // Citizen section slug → gsci_* node
+    if (id.indexOf("gsci_") !== 0 && bundle.nodeById["gsci_" + id]) {
+      return "gsci_" + id;
+    }
+    return null;
   }
 
   function neighborsOf(bundle, nodeId, typeFilter) {
@@ -211,7 +240,13 @@
 
   function queryFocus() {
     try {
-      return new URLSearchParams(global.location.search).get("focus");
+      var params = new URLSearchParams(global.location.search);
+      var focus = params.get("focus");
+      // Compat: older industry soft-links used ?focus=industry&id=gsi_*
+      if (focus === "industry" && params.get("id")) {
+        return params.get("id");
+      }
+      return focus;
     } catch (e) {
       return null;
     }
@@ -584,10 +619,16 @@
 
   function renderStack(bundle, state) {
     if (!state.focusId || !bundle.nodeById[state.focusId]) {
+      var unresolved = state.unresolvedFocus
+        ? '<p class="gsg-note">Requested focus <code>' +
+          esc(state.unresolvedFocus) +
+          "</code> is not a known graph node (and no alias matched). We will not invent a focus.</p>"
+        : "";
       return (
         '<div class="gsg-panel gsg-panel--idle" data-gsg-state="idle">' +
         "<h2>Select a focus node</h2>" +
         "<p>Click any node to expand nearby relationships. Every edge shows why, confidence, time horizon, and evidence.</p>" +
+        unresolved +
         '<p class="gsg-note">Structured expand-on-click — not a force-directed spaghetti graph.</p>' +
         "</div>"
       );
@@ -921,17 +962,29 @@
         return bundle;
       }
 
-      var focusId = opts.focus != null ? opts.focus : queryFocus();
-      if (!focusId) focusId = bundle.defaultFocusId;
-      if (focusId && !bundle.nodeById[focusId]) focusId = null;
+      var requestedFocus = opts.focus != null ? opts.focus : queryFocus();
+      var focusId = resolveFocusId(bundle, requestedFocus);
+      var unresolvedFocus = null;
+      if (requestedFocus && !focusId) {
+        unresolvedFocus = String(requestedFocus).trim();
+      }
+      if (!focusId && !unresolvedFocus) {
+        focusId = resolveFocusId(bundle, bundle.defaultFocusId) || bundle.defaultFocusId;
+        if (focusId && !bundle.nodeById[focusId]) focusId = null;
+      }
 
       var state = {
         focusId: focusId,
+        unresolvedFocus: unresolvedFocus,
         typeFilter: opts.typeFilter || "all",
         expandedIds: {},
         selectedEdgeId: null
       };
       if (state.focusId) expandNode(state, state.focusId);
+      // Normalize aliased deep links into the canonical focus id in the URL
+      if (state.focusId && requestedFocus && state.focusId !== requestedFocus) {
+        setQueryFocus(state.focusId);
+      }
 
       root.setAttribute("data-gsg-state", "ready");
       paint(root, bundle, state);
@@ -957,6 +1010,8 @@
     normalizeConfidence: normalizeConfidence,
     normalizeTimeHorizon: normalizeTimeHorizon,
     normalizeEvidence: normalizeEvidence,
+    resolveFocusId: resolveFocusId,
+    queryFocus: queryFocus,
     typeLabel: typeLabel,
     neighborsOf: neighborsOf,
     visibleGraph: visibleGraph,

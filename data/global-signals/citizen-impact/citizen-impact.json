@@ -22,10 +22,12 @@
     "articlesRoute": "/side-trails/global-signals/articles/",
     "relationshipGraphRoute": "/side-trails/global-signals/relationship-graph/",
     "relationshipExplorerRouteIntended": "/side-trails/global-signals/relationships/",
-    "relationshipExplorerStatus": "Not on origin/main yet — soft-link deferred; entity IDs use stable gsn_* so Relationship Explorer can join later.",
+    "relationshipExplorerStatus": "Cascade Explorer is available at /side-trails/global-signals/relationships/. Primary exploration uses the Relationship Graph with ?focus=gsci_<category>.",
     "entityIdScheme": "gsn_*",
     "articleIdScheme": "gsa_*",
-    "statementIdScheme": "gsc_*"
+    "statementIdScheme": "gsc_*",
+    "graphFocusScheme": "gsci_<sectionId>",
+    "graphNodeIdPrefix": "gsci_"
   },
   "entities": [
     {
@@ -193,7 +195,9 @@
             "gsn_food_processing",
             "gsn_household_food"
           ],
-          "relatedArticleIds": ["gsa_demo-port-labor"],
+          "relatedArticleIds": [
+            "gsa_demo-port-labor"
+          ],
           "evidence": [
             {
               "id": "gev_demo-port-labor",
@@ -237,7 +241,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_food"
     },
     {
       "id": "fuel",
@@ -256,7 +261,9 @@
             "gsn_refined_gasoline",
             "gsn_transportation"
           ],
-          "relatedArticleIds": ["gsa_demo-pipeline-cyber"],
+          "relatedArticleIds": [
+            "gsa_demo-pipeline-cyber"
+          ],
           "evidence": [
             {
               "id": "gev_demo-pipeline-cyber",
@@ -300,7 +307,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_fuel"
     },
     {
       "id": "utilities",
@@ -319,7 +327,9 @@
             "gsn_canal_corridor",
             "gsn_power_utility"
           ],
-          "relatedArticleIds": ["gsa_demo-canal-slots"],
+          "relatedArticleIds": [
+            "gsa_demo-canal-slots"
+          ],
           "evidence": [
             {
               "id": "gev_demo-canal-drought",
@@ -363,7 +373,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_utilities"
     },
     {
       "id": "housing",
@@ -383,7 +394,9 @@
             "gsn_construction",
             "gsn_housing_materials"
           ],
-          "relatedArticleIds": ["gsa_demo-steel-tariff"],
+          "relatedArticleIds": [
+            "gsa_demo-steel-tariff"
+          ],
           "evidence": [
             {
               "id": "gev_demo-steel-tariff",
@@ -427,7 +440,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_housing"
     },
     {
       "id": "travel",
@@ -447,7 +461,9 @@
             "gsn_transportation",
             "gsn_travel"
           ],
-          "relatedArticleIds": ["gsa_demo-shipping-diversion"],
+          "relatedArticleIds": [
+            "gsa_demo-shipping-diversion"
+          ],
           "evidence": [
             {
               "id": "gev_demo-maritime-corridor",
@@ -491,7 +507,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_travel"
     },
     {
       "id": "healthcare",
@@ -511,7 +528,9 @@
             "gsn_logistics",
             "gsn_healthcare"
           ],
-          "relatedArticleIds": ["gsa_demo-port-labor"],
+          "relatedArticleIds": [
+            "gsa_demo-port-labor"
+          ],
           "evidence": [
             {
               "id": "gev_demo-port-labor-med",
@@ -555,7 +574,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_healthcare"
     },
     {
       "id": "insurance",
@@ -574,7 +594,9 @@
             "gsn_cyber_insurance",
             "gsn_transportation"
           ],
-          "relatedArticleIds": ["gsa_demo-pipeline-cyber"],
+          "relatedArticleIds": [
+            "gsa_demo-pipeline-cyber"
+          ],
           "evidence": [
             {
               "id": "gev_demo-pipeline-cyber-ins",
@@ -610,7 +632,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_insurance"
     },
     {
       "id": "technology",
@@ -675,7 +698,8 @@
             }
           ]
         }
-      ]
+      ],
+      "graphNodeId": "gsci_technology"
     }
   ]
 }

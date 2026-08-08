@@ -139,6 +139,17 @@ continuously improves.
 
 
 
+### 2026-08-07 — Global Signals Relationship Graph backbone (cross-module deep links)
+
+**Artifact:** `docs/global-signals/graph-backbone-owner-review.md`  
+**Branch:** `feature/global-signals-graph-backbone`
+
+1. **Prefer `?focus=<exact-node-id>` plus a thin alias map over inventing parallel graph UIs** — Country/Industry/Citizen/Articles CTAs should open the existing Relationship Graph; only bridge ids that truly diverge (Taiwan `gsc_taiwan` → `gsn_taiwan`, article `relatedGraphNodeIds`).
+2. **Namespace collisions on `gsc_*` are real** — country profiles, cascade walks, and Citizen Impact statements reuse the prefix; document and never deep-link statement/cascade ids as graph focus.
+3. **Selective file checkout beats full feature merges when parallel agents own shared landing HTML** — pull module JS/CSS/routes/tests; leave dashboard/home fights to their branches.
+4. **Broken soft-links like `?focus=industry&id=` need both a fix at the source and a one-line compat reader** — otherwise already-shared URLs stay dead.
+5. **Screenshot servers must bind the worktree root** — a busy port silently serving another project produces blank “mounted” pages and wastes review cycles.
+
 ### 2026-08-07 — Global Signals Relationship Graph (primary)
 
 **Artifact:** `docs/global-signals/relationship-graph-owner-review.md`  

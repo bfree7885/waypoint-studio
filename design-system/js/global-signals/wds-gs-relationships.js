@@ -349,6 +349,11 @@
         esc(root.label) +
         "</h2>" +
         '<p class="gsr-note">No curated cascade is mapped for this entity yet. Empty is honest — we will not invent dependencies.</p>' +
+        '<p class="gsr-graph-cta"><a class="gs-cta" href="../relationship-graph/?focus=' +
+        encodeURIComponent(rootId) +
+        '" data-gs-graph-focus="' +
+        esc(rootId) +
+        '">Open in Relationship Graph</a></p>' +
         "</header></div>"
       );
     }
@@ -375,6 +380,11 @@
       esc(labels.join(" → ")) +
       "</p>" +
       '<p class="gsr-note">Cascading relationship display — not a network graph. Edge confidence never uses Observed for predicted hops.</p>' +
+      '<p class="gsr-graph-cta"><a class="gs-cta" href="../relationship-graph/?focus=' +
+      encodeURIComponent(rootId) +
+      '" data-gs-graph-focus="' +
+      esc(rootId) +
+      '">Open in Relationship Graph</a></p>' +
       "</header>" +
       '<ol class="gsr-cascade" aria-label="Dependency cascade">' +
       items +
