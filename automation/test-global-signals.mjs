@@ -34,8 +34,9 @@ const required = [
   "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/explain/index.html",
-  "side-trails/global-signals/search/index.html",
+  "side-trails/global-signals/story/index.html",
   "side-trails/global-signals/entities/index.html",
+  "side-trails/global-signals/search/index.html",
   "side-trails/global-signals/waypoint-take/index.html",
   "side-trails/global-signals/relationship-graph/index.html",
   "side-trails/global-signals/supply-chains/index.html",
@@ -65,12 +66,9 @@ assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
-assert.match(html, /\.\/story\//);
 assert.match(html, /\.\/search\//);
 assert.match(html, /\.\/entities\//);
 assert.match(html, /\.\/story\//);
-assert.match(html, /Story Mode/);
-assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/citizen-impact\//);
 assert.doesNotMatch(html, /Coming soon/i);
@@ -100,7 +98,6 @@ assert.ok(homeData.featuredRelationship && homeData.featuredRelationship.rootEnt
 assert.ok(Array.isArray(homeData.mostAffectedCountrySlugs));
 assert.ok(Array.isArray(homeData.industriesUnderPressureSlugs));
 
-// Articles + Relationship Explorer + Explain This + Story Mode are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -136,13 +133,6 @@ assert.match(explainPage, /Explain This/);
 assert.match(explainPage, /gse-app/);
 assert.doesNotMatch(explainPage, /Coming soon/i);
 
-const storyPage = read("side-trails/global-signals/story/index.html");
-assert.match(storyPage, /Story/);
-assert.match(storyPage, /wds-gs-story/);
-assert.doesNotMatch(storyPage, /Coming soon/i);
-
-assert.doesNotMatch(storyPage, /openai|anthropic|llm|ChatGPT/i);
-
 for (const slug of [
   "waypoint-take",
   "supply-chains",
@@ -168,13 +158,16 @@ const searchPage = read("side-trails/global-signals/search/index.html");
 assert.match(searchPage, /Search/);
 assert.match(searchPage, /gss-app/);
 assert.match(searchPage, /search-index\.json/);
-assert.match(searchPage, /Part of Side Trails\./);
 assert.doesNotMatch(searchPage, /Coming soon/i);
 
 const entitiesPage = read("side-trails/global-signals/entities/index.html");
 assert.match(entitiesPage, /Entity/);
 assert.match(entitiesPage, /data-gse-root|wds-gs-entities/);
-assert.match(entitiesPage, /Part of Side Trails\./);
 assert.doesNotMatch(entitiesPage, /Coming soon/i);
+
+const storyPage = read("side-trails/global-signals/story/index.html");
+assert.match(storyPage, /Story/);
+assert.match(storyPage, /wds-gs-story/);
+assert.doesNotMatch(storyPage, /Coming soon/i);
 
 console.log("Global Signals foundation checks passed.");

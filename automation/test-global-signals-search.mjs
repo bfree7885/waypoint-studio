@@ -212,7 +212,7 @@ const articlesHtml = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesHtml, /id="gsa-feed"/);
 assert.doesNotMatch(articlesHtml, /Coming soon/i);
 const articlesData = JSON.parse(read("data/global-signals/articles/articles.json"));
-assert.equal(articlesData.articles.length, 5);
+assert.equal(articlesData.articles.length, 6);
 
 // No AI claims in JS
 const js = read(jsPath);

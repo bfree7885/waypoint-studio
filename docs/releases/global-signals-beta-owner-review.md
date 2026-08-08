@@ -44,9 +44,9 @@ A coherent intelligence shell ships on `release/global-signals-beta`: landing, E
 | Universal Search | `feature/global-signals-universal-search` | `4f788ee` | yes | Integrated on release |
 | Entity system | `feature/global-signals-entity-system` | `86f5f34` | local (tip moved mid-review) | **Integrated** — shared entity shell |
 | Graph backbone | `feature/global-signals-graph-backbone` | `2e3f271` | local only | Alias of Relationship Graph tip |
-| Story Mode | `feature/global-signals-story-mode` | `3528c3f` | local only | Alias of Explain This tip — not a separate feature |
+| Story Mode | `feature/global-signals-story-mode` | `2b8d27a` | yes | **Integrated late** — guided briefings |
 
-**Late tips integrated during review close:** Entity System (`86f5f34`) and Home Dashboard board (`bac5862` / feat `b31a819`) landed while review was in progress and were merged onto the release branch. **Still incomplete:** Story Mode (tip still equals Explain This — no distinct feature). `/global-dashboard/` remains an honest empty shell; the real home is `/side-trails/global-signals/` (`gsh-board`).
+**Late tips integrated during review close:** Entity System (`86f5f34`) and Home Dashboard board (`bac5862` / feat `b31a819`) landed while review was in progress and were merged onto the release branch. **Story Mode integrated late** at tip `2b8d27a`. `/global-dashboard/` remains an honest empty shell; the real home is `/side-trails/global-signals/` (`gsh-board`).
 
 ---
 
@@ -189,7 +189,7 @@ Integrated on release; deterministic structured index; not AI. Captured Taiwan q
 
 ### Story Mode
 
-Not present as a distinct feature. Do not list in Beta marketing.
+**Integrated late.** Guided intelligence briefings from curated seeds. Linked from home nav as Story. Sample/demo literacy — not live narrative news.
 
 ---
 
@@ -247,8 +247,7 @@ Screenshot capture: `node automation/capture-gs-beta-owner-review-screenshots.mj
 
 | Branch | Reason |
 | --- | --- |
-| `feature/global-signals-story-mode` | No distinct feature |
-| Further churn on home/entity after `bac5862` / `86f5f34` | Re-fetch before audience Beta if tips move again |
+| Further churn after Home/Entity/Story late tips | Re-fetch before audience Beta if tips move again |
 
 ### Explicitly out of scope
 
@@ -304,7 +303,7 @@ Deprioritize new features. Prefer:
 | Merge to main | **NO** |
 | Deploy | **NO** |
 | Market as finished Global Signals product | **NO** |
-| Wait for Story Mode + shared-nav polish before main | **YES** |
+| Wait for shared-nav polish before main | **YES** |
 
 ---
 

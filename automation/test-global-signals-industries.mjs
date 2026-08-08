@@ -287,7 +287,7 @@ assert.doesNotMatch(articlesPage.text, /Coming soon/i);
 const articlesData = await get("/data/global-signals/articles/articles.json");
 assert.equal(articlesData.status, 200);
 const articlesJson = JSON.parse(articlesData.text);
-assert.equal(articlesJson.articles.length, 5);
+assert.equal(articlesJson.articles.length, 6);
 
 server.close();
 

@@ -268,7 +268,7 @@ assert.match(landing, /\.\/story\//);
 assert.match(landing, /Story Mode/);
 assert.match(landing, /href="\.\/story\/"/);
 assert.doesNotMatch(
-  landing.match(/<ul class="gs-modules">[\s\S]*?<\/ul>/)[0],
+  landing,
   /Coming soon/i
 );
 

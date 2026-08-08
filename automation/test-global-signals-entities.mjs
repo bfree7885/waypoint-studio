@@ -101,7 +101,7 @@ for (const t of REQUIRED_TYPES) {
 
 assert.ok(data.counts.country >= 15);
 assert.ok(data.counts.industry >= 11);
-assert.ok(data.counts.article >= 5);
+assert.ok(data.counts.article >= 6);
 assert.ok(data.counts["citizen-impact"] >= 8);
 
 const byTypeSlug = new Map();
@@ -247,7 +247,7 @@ assert.match(articlesPage.text, /wds-gs-articles\.js/);
 assert.doesNotMatch(articlesPage.text, /Coming soon/i);
 const articlesData = await get("/data/global-signals/articles/articles.json");
 assert.equal(articlesData.status, 200);
-assert.equal(JSON.parse(articlesData.text).articles.length, 5);
+assert.equal(JSON.parse(articlesData.text).articles.length, 6);
 
 server.close();
 console.log("test-global-signals-entities: ok");
