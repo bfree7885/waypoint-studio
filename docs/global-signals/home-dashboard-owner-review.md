@@ -10,7 +10,7 @@
 | | SHA |
 | --- | --- |
 | Start (branched from `origin/main`) | `f942c7b` — Merge release/global-signals-sprint-1 into main |
-| Tip (this review package) | _fill after final commit_ (`git rev-parse HEAD`) |
+| Tip (this review package) | b31a819e384118ab9a09b8412af6400fe999c088 |
 
 ## Goal achieved
 
