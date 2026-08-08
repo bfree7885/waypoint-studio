@@ -63,6 +63,8 @@ assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/explain\//);
+assert.match(html, /\.\/story\//);
+assert.match(html, /Story Mode/);
 assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/supply-chains\//);
@@ -71,7 +73,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer + Explain This are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Explorer + Explain This + Story Mode are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -95,6 +97,14 @@ assert.match(explainPage, /No AI invention/);
 assert.match(explainPage, /Part of Side Trails\./);
 assert.doesNotMatch(explainPage, /Coming soon/i);
 assert.doesNotMatch(explainPage, /openai|anthropic|llm|ChatGPT/i);
+
+const storyPage = read("side-trails/global-signals/story/index.html");
+assert.match(storyPage, /Story Mode/);
+assert.match(storyPage, /gsm-app/);
+assert.match(storyPage, /No AI invention/);
+assert.match(storyPage, /Part of Side Trails\./);
+assert.doesNotMatch(storyPage, /Coming soon/i);
+assert.doesNotMatch(storyPage, /openai|anthropic|llm|ChatGPT/i);
 
 for (const slug of [
   "waypoint-take",

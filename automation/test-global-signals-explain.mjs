@@ -261,7 +261,7 @@ assert.match(landing, /Explain This/);
 // Articles no regression
 assert.doesNotMatch(read("side-trails/global-signals/articles/index.html"), /Coming soon/i);
 assert.match(read(articlesPath), /"mode": "sample-demo"/);
-assert.equal(articles.articles.length, 5);
+assert.equal(articles.articles.length, 6);
 
 // HTTP smoke
 const mime = {

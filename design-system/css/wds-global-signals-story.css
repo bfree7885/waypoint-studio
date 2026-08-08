@@ -1,0 +1,476 @@
+/* Global Signals — Story Mode (intelligence briefing) */
+
+.gsm-page {
+  min-height: 100vh;
+}
+
+.gsm-main {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 6.5rem 0 calc(3rem + env(safe-area-inset-bottom, 0px));
+  min-height: 70vh;
+}
+
+.gsm-hub-head {
+  margin-bottom: 1.75rem;
+  animation: gs-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gsm-hub-head h1 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+  letter-spacing: -0.03em;
+  color: #f4f7fc;
+  font-weight: 650;
+}
+
+.gsm-hub-desc {
+  margin: 0 0 1.1rem;
+  max-width: 42rem;
+  color: #9aa8bd;
+  line-height: 1.55;
+  font-size: 1.02rem;
+}
+
+.gsm-hub-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.gsm-app {
+  margin-top: 0.5rem;
+  padding: 1.25rem 1.1rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 14px;
+  background:
+    radial-gradient(520px 180px at 8% 0%, rgba(125, 211, 167, 0.06), transparent 60%),
+    rgba(14, 22, 38, 0.55);
+  min-height: 12rem;
+}
+
+.gs-top nav a[aria-current="page"] {
+  color: #7dd3a7;
+}
+
+.gsm-banner {
+  margin: 0 0 1.1rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid rgba(94, 234, 212, 0.28);
+  background: rgba(15, 28, 40, 0.75);
+}
+
+.gsm-banner p {
+  margin: 0.35rem 0 0;
+  color: #9aa8bd;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.gsm-badge {
+  display: inline-block;
+  margin: 0 0.35rem 0.35rem 0;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #9aa8bd;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gsm-banner .gsm-badge {
+  border-color: rgba(94, 234, 212, 0.45);
+  color: #5eead4;
+}
+
+.gsm-badge--confidence[data-confidence="Observed"] {
+  border-color: rgba(125, 211, 167, 0.55);
+  color: #7dd3a7;
+}
+
+.gsm-badge--confidence[data-confidence="High"] {
+  border-color: rgba(96, 165, 250, 0.5);
+  color: #93c5fd;
+}
+
+.gsm-badge--confidence[data-confidence="Medium"] {
+  border-color: rgba(251, 191, 36, 0.45);
+  color: #fbbf24;
+}
+
+.gsm-badge--confidence[data-confidence="Low"],
+.gsm-badge--confidence[data-confidence="Unknown"] {
+  border-color: rgba(148, 163, 184, 0.4);
+  color: #cbd5e1;
+}
+
+.gsm-badge--evidence {
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+.gsm-picker {
+  margin: 0 0 1.5rem;
+}
+
+.gsm-picker h2 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  color: #c5d0e0;
+  font-weight: 600;
+}
+
+.gsm-picker > ul {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.gsm-story-btn {
+  appearance: none;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(12, 20, 34, 0.7);
+  color: #d7e0ec;
+  font: inherit;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.gsm-story-btn span {
+  display: block;
+  font-weight: 600;
+  color: #e8eef7;
+}
+
+.gsm-story-btn small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #9aa8bd;
+  line-height: 1.4;
+  font-size: 0.88rem;
+}
+
+.gsm-story-btn:hover,
+.gsm-story-btn:focus-visible,
+.gsm-story-btn[aria-pressed="true"] {
+  border-color: rgba(125, 211, 167, 0.45);
+  outline: none;
+}
+
+.gsm-story-btn[aria-pressed="true"] {
+  background: rgba(12, 28, 24, 0.55);
+}
+
+.gsm-story-btn:focus-visible {
+  outline: 2px solid rgba(125, 211, 167, 0.5);
+  outline-offset: 2px;
+}
+
+.gsm-briefing {
+  animation: gs-rise 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.gsm-briefing__head {
+  margin-bottom: 1rem;
+}
+
+.gsm-eyebrow {
+  margin: 0 0 0.35rem;
+  color: #7dd3a7;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.gsm-briefing__head h2 {
+  margin: 0 0 0.45rem;
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  color: #f4f7fc;
+  letter-spacing: -0.02em;
+  font-weight: 650;
+}
+
+.gsm-dek {
+  margin: 0 0 0.75rem;
+  color: #9aa8bd;
+  line-height: 1.5;
+  max-width: 40rem;
+}
+
+.gsm-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.1rem;
+}
+
+.gsm-toc {
+  margin: 0 0 1.35rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(10, 16, 28, 0.45);
+}
+
+.gsm-toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.gsm-toc a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.gsm-toc a:hover,
+.gsm-toc a:focus-visible {
+  color: #7dd3a7;
+  outline: none;
+  text-decoration: underline;
+}
+
+.gsm-toc__status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9aa8bd;
+}
+
+.gsm-toc__status[data-status="missing"] {
+  color: #fbbf24;
+}
+
+.gsm-section {
+  margin: 0 0 1.45rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  scroll-margin-top: 5.5rem;
+}
+
+.gsm-section h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.12rem;
+  color: #f0f4fa;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.gsm-section > p {
+  margin: 0 0 0.65rem;
+  color: #c5d0e0;
+  line-height: 1.55;
+}
+
+.gsm-section--take {
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 211, 167, 0.22);
+  background: rgba(12, 28, 24, 0.45);
+  border-top: 1px solid rgba(125, 211, 167, 0.22);
+}
+
+.gsm-section--take strong {
+  color: #9fd9bc;
+  font-weight: 600;
+}
+
+.gsm-muted {
+  margin: 0.35rem 0 0;
+  color: #9aa8bd;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.gsm-empty {
+  margin: 0;
+  color: #9aa8bd;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.gsm-loading {
+  margin: 0;
+  color: #9aa8bd;
+}
+
+.gsm-chain {
+  list-style: none;
+  margin: 0.75rem 0;
+  padding: 0;
+}
+
+.gsm-chain__step {
+  margin: 0;
+}
+
+.gsm-chain__arrow {
+  display: block;
+  text-align: center;
+  color: #5eead4;
+  opacity: 0.7;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin: 0.15rem 0;
+}
+
+.gsm-node__meta {
+  margin: 0 0 0.35rem;
+}
+
+.gsm-node__label {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #f4f7fc;
+  font-weight: 600;
+}
+
+.gsm-node__summary {
+  margin: 0.35rem 0 0;
+  color: #9aa8bd;
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+.gsm-edge {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(10, 16, 28, 0.55);
+}
+
+.gsm-chain__step--root .gsm-node {
+  padding: 0.85rem 0.9rem;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 211, 167, 0.28);
+  background: rgba(12, 28, 24, 0.4);
+}
+
+.gsm-facets {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.75rem 0 0;
+}
+
+.gsm-facets dt {
+  margin: 0;
+  color: #7dd3a7;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.gsm-facets dd {
+  margin: 0.15rem 0 0;
+  color: #c5d0e0;
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+.gsm-evidence {
+  margin: 0.25rem 0 0;
+  color: #9aa8bd;
+  line-height: 1.45;
+  font-size: 0.92rem;
+}
+
+.gsm-evidence a {
+  color: #93c5fd;
+}
+
+.gsm-linklist,
+.gsm-deeplinks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.gsm-linklist a,
+.gsm-deeplinks a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.gsm-linklist a:hover,
+.gsm-linklist a:focus-visible,
+.gsm-deeplinks a:hover,
+.gsm-deeplinks a:focus-visible {
+  color: #7dd3a7;
+  outline: none;
+  text-decoration: underline;
+}
+
+.gsm-module-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0.85rem 0 0;
+}
+
+.gsm-gaps {
+  margin-top: 1.25rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(148, 163, 184, 0.28);
+  background: rgba(10, 16, 28, 0.4);
+}
+
+.gsm-gaps h2 {
+  margin: 0 0 0.45rem;
+  font-size: 0.95rem;
+  color: #c5d0e0;
+}
+
+.gsm-gaps ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #9aa8bd;
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 40rem) {
+  .gsm-main {
+    width: min(100% - 1.25rem, 920px);
+    padding-top: 5.5rem;
+  }
+
+  .gsm-app {
+    padding: 1rem 0.85rem;
+  }
+
+  .gsm-section {
+    scroll-margin-top: 4.75rem;
+  }
+
+  .gsm-facets {
+    gap: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gsm-hub-head,
+  .gsm-briefing,
+  .gsm-story-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
