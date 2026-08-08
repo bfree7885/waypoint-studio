@@ -22,7 +22,7 @@
     "articlesBase": "/side-trails/global-signals/articles/?id=",
     "citizenImpactRoute": "/side-trails/global-signals/citizen-impact/",
     "relationshipExplorerRoute": "/side-trails/global-signals/relationship-graph/",
-    "relationshipExplorerNote": "Intended soft-link target for Relationship Explorer when that module ships; on main this route remains a Coming soon shell.",
+    "relationshipExplorerNote": "Soft-link target for Relationship Graph / Explorer when country profiles cite related structure.",
     "citizenImpactNote": "Citizen Impact Connections use stable category ids (food, fuel, utilities, housing, travel, healthcare, insurance, technology). Soft-link to Citizen Impact route; category anchors (#food etc.) are reserved for later integration.",
     "articlesNote": "relatedArticles reference existing GS demo article ids (gsa_*) where thematically relevant."
   },

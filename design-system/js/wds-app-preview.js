@@ -62,6 +62,16 @@
         "</section>";
     }
 
+    var comingBlock = "";
+    if (data.comingSoon && data.comingSoon.length) {
+      comingBlock =
+        '<section class="wap-section" aria-labelledby="wap-coming-title">' +
+          '<p class="wap-section__eyebrow">Status</p>' +
+          '<h2 class="wap-section__title" id="wap-coming-title">Honest limits</h2>' +
+          listItems(data.comingSoon, "wap-list--coming") +
+        "</section>";
+    }
+
   return (
       portfolioBanner(data) +
       '<section class="wap-hero" aria-labelledby="wap-title">' +
@@ -78,11 +88,7 @@
       "</section>" +
       strategic +
       wosBlock +
-      '<section class="wap-section" aria-labelledby="wap-coming-title">' +
-        '<p class="wap-section__eyebrow">Coming</p>' +
-        '<h2 class="wap-section__title" id="wap-coming-title">Features in development</h2>' +
-        listItems(data.comingSoon, "wap-list--coming") +
-      "</section>" +
+      comingBlock +
       '<section class="wap-section" aria-labelledby="wap-preview-title">' +
         '<p class="wap-section__eyebrow">Preview</p>' +
         '<h2 class="wap-section__title" id="wap-preview-title">' + escapeHtml(data.preview.title) + "</h2>" +

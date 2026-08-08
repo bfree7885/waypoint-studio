@@ -545,9 +545,9 @@
           })
           .join("") +
         "</ul>" +
-        '<p class="gsc-note">Citizen Impact module may still be a Coming soon shell on main; category links use stable ids for later integration. Soft-link also reserved for Relationship Explorer at <a href="' +
+        '<p class="gsc-note">Citizen Impact categories open the live module. Related structure also lives in the <a href="' +
         esc(gsPrefix) +
-        'relationship-graph/">relationship-graph</a>.</p>';
+        'relationship-graph/">Relationship Graph</a>.</p>';
     }
 
     var iso = country.iso2

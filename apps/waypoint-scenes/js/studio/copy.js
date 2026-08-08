@@ -59,7 +59,7 @@
     export: {
       empty: "Bring a Living Scene to the hearth first.",
       save: "Save this moment",
-      note: "Video export is on the horizon."
+      note: "Still PNG export works today. Video export is not available in this studio yet."
     }
   };
 })(window);
