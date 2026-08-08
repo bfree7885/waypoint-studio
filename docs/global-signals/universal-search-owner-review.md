@@ -20,7 +20,7 @@ Primary experience lives at `/side-trails/global-signals/search/` so the paralle
 | | SHA |
 | --- | --- |
 | Starting (main) | `f942c7b177512b59bf3807c28814ccbe69820c2c` |
-| Tip | _(filled after commit)_ |
+| Tip | `9a515c7335461f56742d7e4bdd6ec70ad446d343` |
 
 ## Routes
 
