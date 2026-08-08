@@ -13,6 +13,7 @@
 | Integrated home dashboard tip | `bac5862` — docs(global-signals): align owner-review branch HEAD with tip |
 | Merge of home dashboard onto branch | `0525763` — Integrate Global Signals home dashboard as primary experience base |
 | Feature tip | `81f9de42450a38a1f2741080c263f4de361b93b3` |
+| Branch HEAD | `b1f597d32a572e2059a54c1dcdc0907ff184eff5` |
 
 ## Goal
 
