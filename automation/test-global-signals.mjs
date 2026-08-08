@@ -69,7 +69,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer are live (sample/demo); other modules remain placeholders.
+// Articles + Relationship Graph + Cascade Explorer are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -86,9 +86,15 @@ assert.match(relationshipsPage, /Part of Side Trails\./);
 assert.doesNotMatch(relationshipsPage, /Coming soon/i);
 assert.doesNotMatch(relationshipsPage, /cytoscape|WebSocket/i);
 
+const graphPage = read("side-trails/global-signals/relationship-graph/index.html");
+assert.match(graphPage, /Relationship Graph/);
+assert.match(graphPage, /gsg-app/);
+assert.match(graphPage, /Part of Side Trails\./);
+assert.doesNotMatch(graphPage, /Coming soon/i);
+assert.doesNotMatch(graphPage, /cytoscape|d3\.force|vis-network|sigma\.js|WebSocket/i);
+
 for (const slug of [
   "waypoint-take",
-  "relationship-graph",
   "supply-chains",
   "citizen-impact",
   "scenario-explorer",

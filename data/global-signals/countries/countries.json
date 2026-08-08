@@ -1,0 +1,3966 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-07T20:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo dataset",
+  "honesty": {
+    "banner": "Sample / demo country intelligence — not a live news or risk feed. Profiles use structural public-domain context and illustrative scenarios. They are not current-event reports.",
+    "confidenceRules": "Observed is reserved for established structural facts. Predictive risks and citizen-impact links must never use Observed. Missing or invalid confidence defaults to Unknown.",
+    "currentEventsRules": "Current Events entries are labeled sample/demo structural context or historical patterns — never presented as live breaking news."
+  },
+  "citizenImpactCategories": [
+    "food",
+    "fuel",
+    "utilities",
+    "housing",
+    "travel",
+    "healthcare",
+    "insurance",
+    "technology"
+  ],
+  "crossLinks": {
+    "articlesBase": "/side-trails/global-signals/articles/?id=",
+    "citizenImpactRoute": "/side-trails/global-signals/citizen-impact/",
+    "relationshipExplorerRoute": "/side-trails/global-signals/relationship-graph/",
+    "relationshipExplorerNote": "Intended soft-link target for Relationship Explorer when that module ships; on main this route remains a Coming soon shell.",
+    "citizenImpactNote": "Citizen Impact Connections use stable category ids (food, fuel, utilities, housing, travel, healthcare, insurance, technology). Soft-link to Citizen Impact route; category anchors (#food etc.) are reserved for later integration.",
+    "articlesNote": "relatedArticles reference existing GS demo article ids (gsa_*) where thematically relevant."
+  },
+  "countries": [
+    {
+      "id": "gsc_united-states",
+      "slug": "united-states",
+      "name": "United States",
+      "iso2": "US",
+      "region": "North America",
+      "summary": "Large diversified economy with deep capital markets, major energy production, advanced manufacturing, and extensive logistics networks linking Atlantic and Pacific trade.",
+      "currentEvents": [
+        {
+          "title": "Energy infrastructure cyber resilience remains a standing planning theme",
+          "summary": "Public after-action and sector guidance after historical pipeline ransomware patterns keep cyber readiness on operators' agendas. This is structural context, not a live incident notice.",
+          "asOf": "2021-05-01",
+          "kind": "historical-pattern",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Port labor and capacity cycles shape import schedules",
+          "summary": "Coastal container hubs periodically face labor, weather, or yard congestion that lengthens dwell times for consumer and industrial goods. Sample framing only.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Technology & software",
+          "notes": "Cloud, semiconductors design, enterprise software"
+        },
+        {
+          "name": "Energy",
+          "notes": "Oil, gas, refined products, and growing renewables"
+        },
+        {
+          "name": "Aerospace & defense",
+          "notes": "Aircraft, satellites, and defense systems"
+        },
+        {
+          "name": "Agriculture",
+          "notes": "Grains, soy, meat, and related processing"
+        },
+        {
+          "name": "Finance & professional services",
+          "notes": "Banking, insurance, capital markets"
+        }
+      ],
+      "exports": [
+        {
+          "name": "Refined petroleum products",
+          "notes": "Major net refined-product exporter in many years"
+        },
+        {
+          "name": "Aircraft & parts",
+          "notes": "Commercial and related aerospace"
+        },
+        {
+          "name": "Soybeans & grains",
+          "notes": "Tied to global food systems"
+        },
+        {
+          "name": "Machinery & electronics",
+          "notes": "Industrial equipment and tech goods"
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": "Finished drugs and intermediates"
+        }
+      ],
+      "imports": [
+        {
+          "name": "Consumer electronics",
+          "notes": "Devices and components"
+        },
+        {
+          "name": "Vehicles & parts",
+          "notes": "Finished autos and supply-chain parts"
+        },
+        {
+          "name": "Crude oil (selective)",
+          "notes": "Still imported for refining slate diversity"
+        },
+        {
+          "name": "Pharmaceuticals & medical devices",
+          "notes": "Global sourcing"
+        },
+        {
+          "name": "Apparel & household goods",
+          "notes": "Retail supply chains"
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Interstate power grids",
+          "notes": "Regional transmission organizations and interconnects",
+          "type": "energy"
+        },
+        {
+          "name": "Colonial-class refined product pipelines",
+          "notes": "Illustrative of liquid fuel corridors",
+          "type": "energy"
+        },
+        {
+          "name": "Internet backbone & cloud regions",
+          "notes": "Hyperscale data centers and undersea cable landings",
+          "type": "digital"
+        },
+        {
+          "name": "National airspace system",
+          "notes": "Hub airports and ATC",
+          "type": "transport"
+        },
+        {
+          "name": "Inland waterways & locks",
+          "notes": "Mississippi system for bulk commodities",
+          "type": "transport"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Los Angeles / Long Beach",
+          "notes": "Primary West Coast container complex"
+        },
+        {
+          "name": "New York / New Jersey",
+          "notes": "Primary East Coast container complex"
+        },
+        {
+          "name": "Houston",
+          "notes": "Energy and bulk liquids hub"
+        },
+        {
+          "name": "Savannah",
+          "notes": "Southeast container growth corridor"
+        },
+        {
+          "name": "Seattle / Tacoma",
+          "notes": "Pacific Northwest gateway"
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Large two-way goods trade with technology and consumer goods intensity",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "mexico",
+          "partnerName": "Mexico",
+          "nature": "USMCA integrated manufacturing and auto supply chains",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "canada",
+          "partnerName": "Canada",
+          "nature": "Energy, autos, and cross-border manufacturing",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Autos, machinery, and capital goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Machinery, autos, and chemicals",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Cyber disruption of fuel or logistics billing systems",
+          "summary": "Historical patterns show ransomware can force temporary operational caution even when physical pipes remain intact. Sample/demo framing.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Port congestion or labor stoppages delaying imports",
+          "summary": "Coastal hubs can slow retail replenishment and manufacturing inputs within days to weeks.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Tariff or trade-policy shifts affecting steel and finished goods",
+          "summary": "Policy changes can reprice imports and construction inputs over months.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-pipeline-cyber",
+        "gsa_demo-port-labor",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Pipeline or refining disruptions can pressure pump prices and commute costs within days.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "food",
+          "summary": "Port delays can thin imported grocery variety before staples are affected.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "housing",
+          "summary": "Steel and construction-input tariffs may contribute to building-cost pressure over months.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "technology",
+          "summary": "Electronics import timing depends on West Coast port fluidity.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation fuel and ATC/airport disruptions can raise fares or delay itineraries.",
+          "confidence": "Low",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Grid weather and fuel-mix stress can affect power reliability and bills seasonally.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Medical device and pharma import logistics can affect clinic supply lead times.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Catastrophe and cyber loss trends can influence premiums over longer horizons.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_china",
+      "slug": "china",
+      "name": "China",
+      "iso2": "CN",
+      "region": "East Asia",
+      "summary": "World's largest goods exporter with dense manufacturing clusters, major ports, and central roles in electronics, machinery, and intermediate goods.",
+      "currentEvents": [
+        {
+          "title": "Manufacturing and export hubs remain globally coupled",
+          "summary": "Coastal provinces concentrate electronics, machinery, and consumer-goods production that feed worldwide retailers. Structural context — sample/demo.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Rare-earth and battery-materials processing capacity is strategically watched",
+          "summary": "Processing concentration for certain critical materials is a long-running trade-structure theme, not a breaking alert.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Electronics & semiconductors assembly",
+          "notes": "Phones, PCs, components"
+        },
+        {
+          "name": "Machinery & industrial equipment",
+          "notes": ""
+        },
+        {
+          "name": "Electric vehicles & batteries",
+          "notes": ""
+        },
+        {
+          "name": "Steel & aluminum",
+          "notes": ""
+        },
+        {
+          "name": "Textiles & consumer goods",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Electronics & telecom equipment",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Furniture & household goods",
+          "notes": ""
+        },
+        {
+          "name": "Vehicles & EV components",
+          "notes": ""
+        },
+        {
+          "name": "Textiles & apparel",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Crude oil & LNG",
+          "notes": ""
+        },
+        {
+          "name": "Iron ore & copper",
+          "notes": ""
+        },
+        {
+          "name": "Soybeans & agricultural commodities",
+          "notes": ""
+        },
+        {
+          "name": "Semiconductors (advanced nodes)",
+          "notes": "Import dependence varies by node"
+        },
+        {
+          "name": "Industrial chemicals",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Coastal megaport complexes",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "National rail freight corridors",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Power generation & ultra-high-voltage transmission",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Undersea cable landings",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Major river basins & dams",
+          "notes": "",
+          "type": "water"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Shanghai",
+          "notes": ""
+        },
+        {
+          "name": "Ningbo-Zhoushan",
+          "notes": ""
+        },
+        {
+          "name": "Shenzhen",
+          "notes": ""
+        },
+        {
+          "name": "Guangzhou",
+          "notes": ""
+        },
+        {
+          "name": "Qingdao",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Large goods surplus/deficit relationship with tech and consumer intensity",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Components, machinery, and regional production networks",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "south-korea",
+          "partnerName": "South Korea",
+          "nature": "Semiconductors, displays, and intermediates",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Autos, machinery, and capital goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "australia",
+          "partnerName": "Australia",
+          "nature": "Iron ore and energy commodities",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Shipping-lane friction lengthening Europe–Asia transit times",
+          "summary": "Illustrative corridor diversions raise freight cost and schedule uncertainty.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Export-control or tariff shifts on tech goods",
+          "summary": "Policy changes can reconfigure electronics and machinery flows over months.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Energy import dependence during supply shocks",
+          "summary": "Oil and LNG import reliance can transmit global energy price moves domestically.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-steel-tariff",
+        "gsa_demo-canal-slots"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "technology",
+          "summary": "Assembly and component timing can affect device availability and prices abroad.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "food",
+          "summary": "Agricultural import needs link weather and trade policy to food costs.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "fuel",
+          "summary": "Oil and gas import costs can influence industrial and household energy prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "housing",
+          "summary": "Steel and materials cycles feed construction costs.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation and logistics delays can affect passenger and cargo connectivity.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Power demand growth and coal/gas mix affect reliability planning.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "healthcare",
+          "summary": "API and device manufacturing nodes matter for global medical supply.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Trade and catastrophe exposure influence commercial insurance pricing.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_taiwan",
+      "slug": "taiwan",
+      "name": "Taiwan",
+      "iso2": "TW",
+      "region": "East Asia",
+      "summary": "High-tech economy centered on advanced semiconductor manufacturing, precision machinery, and dense maritime trade links across the Taiwan Strait and Pacific.",
+      "currentEvents": [
+        {
+          "title": "Advanced semiconductor foundry capacity is a global bottleneck theme",
+          "summary": "Leading-edge chip fabrication concentration is a widely discussed structural dependency for electronics worldwide. Sample/demo structural context — not a live alert.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Maritime approaches remain critical for energy and trade",
+          "summary": "Island energy import and export logistics depend on sea lanes and port continuity.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Semiconductors (foundry & design)",
+          "notes": ""
+        },
+        {
+          "name": "Electronics manufacturing",
+          "notes": ""
+        },
+        {
+          "name": "Precision machinery",
+          "notes": ""
+        },
+        {
+          "name": "Petrochemicals",
+          "notes": ""
+        },
+        {
+          "name": "ICT hardware",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Integrated circuits",
+          "notes": ""
+        },
+        {
+          "name": "Electronic components",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Plastics & chemicals",
+          "notes": ""
+        },
+        {
+          "name": "Optical instruments",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Crude oil & LNG",
+          "notes": ""
+        },
+        {
+          "name": "Semiconductor equipment & materials",
+          "notes": ""
+        },
+        {
+          "name": "Coal & energy commodities",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Agricultural products",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Leading semiconductor fabs",
+          "notes": "",
+          "type": "industrial"
+        },
+        {
+          "name": "LNG import terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Undersea cable landings",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Major container ports",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Power grid & generation mix",
+          "notes": "",
+          "type": "energy"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Kaohsiung",
+          "notes": ""
+        },
+        {
+          "name": "Taipei / Keelung",
+          "notes": ""
+        },
+        {
+          "name": "Taichung",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Deep manufacturing and component linkages",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Chip equipment, design, and end-market demand",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Equipment, materials, and components",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "south-korea",
+          "partnerName": "South Korea",
+          "nature": "Memory, displays, and regional tech trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Machinery and industrial goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Sea-lane or port disruption affecting energy imports",
+          "summary": "LNG and oil import continuity is a structural vulnerability for island energy systems.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Concentrated fab outage cascading into global electronics",
+          "summary": "Illustrative: foundry interruption could delay devices and autos with chips.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Cable damage reducing connectivity",
+          "summary": "Undersea cable faults can degrade digital services until repairs complete.",
+          "confidence": "Low",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "technology",
+          "summary": "Chip supply timing ripples into phones, PCs, autos, and appliances worldwide.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "fuel",
+          "summary": "LNG import friction can raise power-generation fuel costs.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Power reliability planning is tightly coupled to imported fuels.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation and shipping schedule shocks affect passenger and cargo links.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "housing",
+          "summary": "Electronics and materials costs can influence appliance and fit-out prices.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "food",
+          "summary": "Import-dependent food baskets feel freight cost moves.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Medical electronics and devices depend on semiconductor availability.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Concentration risk in tech supply chains affects business interruption cover.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_russia",
+      "slug": "russia",
+      "name": "Russia",
+      "iso2": "RU",
+      "region": "Eurasia",
+      "summary": "Large resource economy with major roles in oil, gas, metals, and grains, plus extensive pipeline and rail networks spanning Eurasia.",
+      "currentEvents": [
+        {
+          "title": "Energy and commodity export corridors remain structurally important",
+          "summary": "Pipeline, tanker, and rail routes for hydrocarbons and metals are long-running features of global commodity markets. Sample/demo — not live news.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Grain export logistics affect food-system planning",
+          "summary": "Black Sea and alternative corridor capacity has been a recurring theme for wheat and related staples.",
+          "asOf": "2022-06-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Oil & gas",
+          "notes": ""
+        },
+        {
+          "name": "Metals & mining",
+          "notes": ""
+        },
+        {
+          "name": "Defense industry",
+          "notes": ""
+        },
+        {
+          "name": "Agriculture (grains)",
+          "notes": ""
+        },
+        {
+          "name": "Chemicals & fertilizers",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Crude oil & petroleum products",
+          "notes": ""
+        },
+        {
+          "name": "Natural gas",
+          "notes": ""
+        },
+        {
+          "name": "Coal",
+          "notes": ""
+        },
+        {
+          "name": "Wheat & grains",
+          "notes": ""
+        },
+        {
+          "name": "Metals (nickel, aluminum, etc.)",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Machinery & equipment",
+          "notes": ""
+        },
+        {
+          "name": "Vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Consumer goods",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Export oil/gas pipelines",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Arctic and Pacific energy terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Trans-Siberian / Baikal–Amur rail",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Black Sea port approaches",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Power grid spanning multiple time zones",
+          "notes": "",
+          "type": "energy"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Novorossiysk",
+          "notes": ""
+        },
+        {
+          "name": "Primorsk / Ust-Luga area",
+          "notes": ""
+        },
+        {
+          "name": "Vladivostok",
+          "notes": ""
+        },
+        {
+          "name": "Murmansk",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Energy and commodity trade intensification",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "india",
+          "partnerName": "India",
+          "nature": "Oil and commodity trade channels",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Historically significant energy relationship; structure evolved",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Energy and materials trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "ukraine",
+          "partnerName": "Ukraine",
+          "nature": "Geographic adjacency with contested corridors — evidence-first structural note only",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Sanctions and payment-channel friction altering trade routes",
+          "summary": "Compliance and logistics rerouting can raise costs and extend delivery times.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Black Sea shipping uncertainty for grains",
+          "summary": "Corridor risk can transmit into global food-price volatility.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Pipeline or terminal outages affecting energy exports",
+          "summary": "Physical or operational interruptions reprice regional gas and oil balances.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Global oil and gas balances can move household energy costs abroad.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "food",
+          "summary": "Grain and fertilizer export friction can pressure bread and feed prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "utilities",
+          "summary": "Gas availability historically influenced heating costs in importing regions.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Metals and energy input costs feed construction inflation channels.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation fuel and route restrictions can alter travel costs.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Pharma import dependence can create availability friction.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Sanctions and war-risk pricing affect shipping and cargo cover.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "technology",
+          "summary": "Export controls and component access constrain tech refresh cycles.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    },
+    {
+      "id": "gsc_ukraine",
+      "slug": "ukraine",
+      "name": "Ukraine",
+      "iso2": "UA",
+      "region": "Eastern Europe",
+      "summary": "Agricultural powerhouse and industrial base with critical Black Sea export logistics, energy transit history, and dense connections to European markets.",
+      "currentEvents": [
+        {
+          "title": "Black Sea grain and metals logistics remain a global food-system variable",
+          "summary": "Port access and corridor agreements have repeatedly shaped wheat, corn, and sunflower oil flows. Structural/historical pattern — sample/demo, not a live bulletin.",
+          "asOf": "2022-07-01",
+          "kind": "historical-pattern",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Energy grid repair and winter resilience planning",
+          "summary": "Power infrastructure damage and repair cycles affect domestic utilities and regional interconnects. Sample framing.",
+          "asOf": "2022-10-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Agriculture & food processing",
+          "notes": ""
+        },
+        {
+          "name": "Iron & steel",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "IT services",
+          "notes": ""
+        },
+        {
+          "name": "Energy transit & generation",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Corn, wheat, barley",
+          "notes": ""
+        },
+        {
+          "name": "Sunflower oil",
+          "notes": ""
+        },
+        {
+          "name": "Iron ore & steel",
+          "notes": ""
+        },
+        {
+          "name": "IT services",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Fuels",
+          "notes": ""
+        },
+        {
+          "name": "Machinery & vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Chemicals",
+          "notes": ""
+        },
+        {
+          "name": "Consumer goods",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Black Sea ports (Odesa region and alternatives)",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Power generation & transmission",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Rail freight to EU borders",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Danube barge corridors",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Digital connectivity & undersea/terrestrial links",
+          "notes": "",
+          "type": "digital"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Odesa / Chornomorsk / Pivdennyi complex",
+          "notes": ""
+        },
+        {
+          "name": "Mykolaiv (when accessible)",
+          "notes": ""
+        },
+        {
+          "name": "Danube ports (Reni / Izmail area)",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "EU market access for goods and reconstruction inputs",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-kingdom",
+          "partnerName": "United Kingdom",
+          "nature": "Commercial and support channels — structural note only",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Security assistance and commercial ties",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Commodity and goods trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "russia",
+          "partnerName": "Russia",
+          "nature": "Geographic adjacency and contested infrastructure — evidence-first only",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Port and corridor interruptions slowing grain exports",
+          "summary": "Export friction can raise global food-price volatility within weeks.",
+          "confidence": "High",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Power-grid attacks or damage reducing utilities reliability",
+          "summary": "Domestic heating, water, and hospital services face seasonal stress.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Insurance and shipping war-risk premiums elevating trade costs",
+          "summary": "Higher premiums raise landed costs for exporters and importers.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "food",
+          "summary": "Grain and oilseed export capacity links directly to global bread and feed prices.",
+          "confidence": "High",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "utilities",
+          "summary": "Grid damage can interrupt power and district heating.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "fuel",
+          "summary": "Fuel import logistics affect transport and generator costs.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "housing",
+          "summary": "Reconstruction materials demand and damage affect shelter costs.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Airspace and border frictions alter travel options.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Hospital power and supply chains are sensitive to grid and logistics shocks.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "War-risk and property cover become scarce or expensive.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "technology",
+          "summary": "Connectivity cuts degrade digital services and remittances tooling.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    },
+    {
+      "id": "gsc_japan",
+      "slug": "japan",
+      "name": "Japan",
+      "iso2": "JP",
+      "region": "East Asia",
+      "summary": "Advanced industrial economy specializing in automobiles, machinery, robotics, and electronics components, with high dependence on imported energy and food.",
+      "currentEvents": [
+        {
+          "title": "LNG and energy import planning remains a standing national theme",
+          "summary": "Island energy security centers on diversified LNG, coal, and nuclear policy mixes. Structural context — sample/demo.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Auto and electronics supply chains stay globally coupled",
+          "summary": "Just-in-time manufacturing transmits semiconductor and shipping shocks quickly.",
+          "asOf": "2021-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Automobiles & parts",
+          "notes": ""
+        },
+        {
+          "name": "Machinery & robotics",
+          "notes": ""
+        },
+        {
+          "name": "Electronics & components",
+          "notes": ""
+        },
+        {
+          "name": "Chemicals",
+          "notes": ""
+        },
+        {
+          "name": "Precision instruments",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Electronic components",
+          "notes": ""
+        },
+        {
+          "name": "Iron & steel products",
+          "notes": ""
+        },
+        {
+          "name": "Optical & precision equipment",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Crude oil & LNG",
+          "notes": ""
+        },
+        {
+          "name": "Coal",
+          "notes": ""
+        },
+        {
+          "name": "Foodstuffs",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Clothing & consumer goods",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "LNG terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Shinkansen & freight rail",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Major bay ports",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Undersea cable landings",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Nuclear and thermal generation fleet",
+          "notes": "",
+          "type": "energy"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Nagoya",
+          "notes": ""
+        },
+        {
+          "name": "Tokyo / Yokohama",
+          "notes": ""
+        },
+        {
+          "name": "Osaka / Kobe",
+          "notes": ""
+        },
+        {
+          "name": "Hakata",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Largest regional goods partner for many categories",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Autos, capital goods, and security-aligned commerce",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "australia",
+          "partnerName": "Australia",
+          "nature": "Energy and mineral imports",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "south-korea",
+          "partnerName": "South Korea",
+          "nature": "Components and regional manufacturing",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "taiwan",
+          "partnerName": "Taiwan",
+          "nature": "Semiconductor and electronics interdependence",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "LNG price spikes transmitting into power and industry costs",
+          "summary": "Import dependence makes utilities and manufacturers sensitive to global gas markets.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Shipping diversion raising auto and electronics logistics costs",
+          "summary": "Longer routes extend lead times for parts and finished goods.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Earthquake or typhoon damage to ports and plants",
+          "summary": "Natural hazards can idle critical nodes for days to months.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Imported energy costs feed electricity and transport prices.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Power tariffs and reliability track fuel mix and outage events.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "food",
+          "summary": "High food-import share transmits freight and FX moves to grocery baskets.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "technology",
+          "summary": "Component delays affect appliance and electronics availability.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation fuel and tourism cycles move fares and hotel prices.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "housing",
+          "summary": "Construction materials and energy costs influence housing expenses.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Imported pharma and device logistics matter for clinics.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Natural-catastrophe exposure shapes property premiums.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_india",
+      "slug": "india",
+      "name": "India",
+      "iso2": "IN",
+      "region": "South Asia",
+      "summary": "Large, fast-growing economy with major IT services, pharmaceuticals, refining, and agricultural sectors, plus expanding manufacturing and port capacity.",
+      "currentEvents": [
+        {
+          "title": "Refining and fuel-product export capacity is globally relevant",
+          "summary": "Large refining complexes influence regional diesel and gasoline balances. Structural sample/demo context.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Monsoon variability remains a standing food-system factor",
+          "summary": "Rainfall patterns affect domestic harvests and rural demand — not a live forecast.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "IT & business services",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals & generics",
+          "notes": ""
+        },
+        {
+          "name": "Petroleum refining",
+          "notes": ""
+        },
+        {
+          "name": "Textiles & apparel",
+          "notes": ""
+        },
+        {
+          "name": "Automotive & engineering",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Refined petroleum products",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Gems & jewelry",
+          "notes": ""
+        },
+        {
+          "name": "IT services",
+          "notes": ""
+        },
+        {
+          "name": "Textiles & garments",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Crude oil",
+          "notes": ""
+        },
+        {
+          "name": "Gold",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Coal",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Major refining complexes",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "National power grid & renewables buildout",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Dedicated freight corridors & rail",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Digital public infrastructure",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Monsoon water systems & irrigation",
+          "notes": "",
+          "type": "water"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Mundra",
+          "notes": ""
+        },
+        {
+          "name": "Jawaharlal Nehru (Nhava Sheva)",
+          "notes": ""
+        },
+        {
+          "name": "Chennai",
+          "notes": ""
+        },
+        {
+          "name": "Kandla",
+          "notes": ""
+        },
+        {
+          "name": "Visakhapatnam",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Services, pharma, and goods trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Electronics and intermediates imports",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "saudi-arabia",
+          "partnerName": "Saudi Arabia",
+          "nature": "Energy imports and related commercial ties",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Capital goods and investment",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Machinery and autos",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Crude import bill spikes during oil shocks",
+          "summary": "Current-account and fuel-price pressure can follow global oil moves.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Monsoon shortfalls stressing food inflation",
+          "summary": "Agricultural outcomes influence vegetable and grain prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Port or canal delays affecting electronics and export schedules",
+          "summary": "Container timing shocks hit both imports and garment exports.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-canal-slots",
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Diesel and petrol prices track crude and tax policy closely.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "food",
+          "summary": "Monsoon and logistics conditions move fresh food prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "utilities",
+          "summary": "Coal and renewable mix affect power tariffs and outages.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Domestic pharma strength supports medicine access; device imports still matter.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "technology",
+          "summary": "Electronics import duties and logistics affect device prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "housing",
+          "summary": "Steel and cement cycles influence construction costs.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation fuel and rail capacity shape mobility costs.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "insurance",
+          "summary": "Climate and health risks influence premium trajectories.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_germany",
+      "slug": "germany",
+      "name": "Germany",
+      "iso2": "DE",
+      "region": "Europe",
+      "summary": "Europe's largest economy, anchored in automotive, machinery, chemicals, and advanced manufacturing, with deep EU single-market integration.",
+      "currentEvents": [
+        {
+          "title": "Energy-mix transition after reduced pipeline gas reliance",
+          "summary": "LNG terminals, renewables, and industrial demand management became structural planning themes after 2022. Sample/demo historical context — not live news.",
+          "asOf": "2022-08-01",
+          "kind": "historical-pattern",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Auto industry electrification and supply-chain retooling",
+          "summary": "Battery materials, chips, and supplier networks reshape export composition over years.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Automotive",
+          "notes": ""
+        },
+        {
+          "name": "Machinery & equipment",
+          "notes": ""
+        },
+        {
+          "name": "Chemicals & pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Electrical equipment",
+          "notes": ""
+        },
+        {
+          "name": "Logistics & trade services",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Vehicles & parts",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Chemicals",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Electrical equipment",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Energy commodities",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Vehicles & parts",
+          "notes": ""
+        },
+        {
+          "name": "Raw materials & metals",
+          "notes": ""
+        },
+        {
+          "name": "Consumer goods",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Rhine inland waterway",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "North Sea ports hinterland rail/road",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Power grid & interconnectors",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "LNG import facilities",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Industrial chemical clusters",
+          "notes": "",
+          "type": "industrial"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Hamburg",
+          "notes": ""
+        },
+        {
+          "name": "Bremerhaven",
+          "notes": ""
+        },
+        {
+          "name": "Wilhelmshaven",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Autos, machinery, and investment links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Major goods partner for machinery and intermediates",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-kingdom",
+          "partnerName": "United Kingdom",
+          "nature": "Post-Brexit EU–UK trade channels",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Autos and machinery partnership",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "mexico",
+          "partnerName": "Mexico",
+          "nature": "Growing auto and industrial supply links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Rhine low-water events constraining bulk chemical logistics",
+          "summary": "Seasonal water levels can force mode shifts and raise industrial costs.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Energy price volatility affecting energy-intensive industry",
+          "summary": "Chemicals and metals are sensitive to power and gas price spikes.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Auto demand or chip shortages slowing production",
+          "summary": "Export revenues and employment can soften when inputs or demand slip.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-steel-tariff",
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Household energy bills track gas and power wholesale conditions.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Grid and heating costs are central winter concerns.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Construction and renovation costs follow materials and energy.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Auto ownership costs and rail fares respond to energy and policy.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "food",
+          "summary": "Freight and fertilizer costs feed grocery inflation channels.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "technology",
+          "summary": "Industrial electronics and auto chips affect product availability.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Pharma manufacturing strength supports supply; energy costs still matter.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Climate and industrial risks influence commercial premiums.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_mexico",
+      "slug": "mexico",
+      "name": "Mexico",
+      "iso2": "MX",
+      "region": "North America",
+      "summary": "Manufacturing and energy economy deeply integrated with USMCA partners, with major auto, electronics, and oil sectors plus Pacific and Gulf ports.",
+      "currentEvents": [
+        {
+          "title": "Nearshoring of manufacturing into northern industrial corridors",
+          "summary": "Auto and electronics investment themes emphasize proximity to US demand. Structural sample/demo context.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Energy reform and PEMEX operations remain fiscal-energy variables",
+          "summary": "State oil company performance and fuel policy affect budgets and pump prices. Not a live bulletin.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Automotive manufacturing",
+          "notes": ""
+        },
+        {
+          "name": "Electronics assembly",
+          "notes": ""
+        },
+        {
+          "name": "Oil & gas",
+          "notes": ""
+        },
+        {
+          "name": "Agriculture & food",
+          "notes": ""
+        },
+        {
+          "name": "Aerospace parts",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Vehicles & auto parts",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Crude oil",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Agricultural products (avocado, berries, etc.)",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Gasoline & refined products (net in some periods)",
+          "notes": ""
+        },
+        {
+          "name": "Electronics components",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Plastics",
+          "notes": ""
+        },
+        {
+          "name": "Grain & feed",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Cross-border road/rail freight corridors",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Gulf and Pacific port complexes",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Oil pipelines & refineries",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "National power grid (CFE)",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "US–Mexico electricity & gas interconnections",
+          "notes": "",
+          "type": "energy"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Manzanillo",
+          "notes": ""
+        },
+        {
+          "name": "Lázaro Cárdenas",
+          "notes": ""
+        },
+        {
+          "name": "Veracruz",
+          "notes": ""
+        },
+        {
+          "name": "Altamira",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Dominant goods partner under USMCA",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "canada",
+          "partnerName": "Canada",
+          "nature": "USMCA trilateral manufacturing",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Components and consumer goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Auto investment and machinery",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Auto and electronics investment",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Border freight slowdowns delaying auto and electronics shipments",
+          "summary": "Inspection or congestion events can idle plants within days.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Fuel supply or refining shortfalls pressuring pump prices",
+          "summary": "Import logistics and domestic refining affect gasoline availability.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Hurricane disruption to Gulf energy and ports",
+          "summary": "Seasonal storms can pause terminals and logistics hubs.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-port-labor",
+        "gsa_demo-steel-tariff",
+        "gsa_demo-pipeline-cyber"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Gasoline prices and availability are highly visible household costs.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "food",
+          "summary": "Export crops and import feed grains link farm incomes and grocery prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "housing",
+          "summary": "Construction materials and remittance flows influence housing demand.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Cross-border travel and aviation fuel affect mobility costs.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "technology",
+          "summary": "Electronics assembly jobs and device prices track export demand.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "utilities",
+          "summary": "Power reliability and tariffs affect households and factories.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Medical device manufacturing and pharma imports both matter.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Catastrophe exposure on coasts influences property cover.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_canada",
+      "slug": "canada",
+      "name": "Canada",
+      "iso2": "CA",
+      "region": "North America",
+      "summary": "Resource-rich G7 economy with major energy, minerals, agriculture, and autos, tightly integrated with the United States via pipelines, rail, and USMCA trade.",
+      "currentEvents": [
+        {
+          "title": "Oil and gas export pipeline capacity shapes North American energy flows",
+          "summary": "Pipeline and tanker outlet constraints are recurring structural themes for Western Canadian production. Sample/demo — not live news.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Critical minerals policy elevates mining and processing plans",
+          "summary": "Battery metals and allied supply-chain strategies are multi-year programs.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Oil & gas",
+          "notes": ""
+        },
+        {
+          "name": "Mining & metals",
+          "notes": ""
+        },
+        {
+          "name": "Automotive",
+          "notes": ""
+        },
+        {
+          "name": "Forestry & wood products",
+          "notes": ""
+        },
+        {
+          "name": "Financial services",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Crude oil",
+          "notes": ""
+        },
+        {
+          "name": "Natural gas",
+          "notes": ""
+        },
+        {
+          "name": "Vehicles & parts",
+          "notes": ""
+        },
+        {
+          "name": "Lumber & wood pulp",
+          "notes": ""
+        },
+        {
+          "name": "Minerals & metals",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Vehicles & parts",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Consumer goods",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Transcontinental pipelines",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Rail grain & resource corridors",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "St. Lawrence Seaway",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Hydroelectric generation (esp. Quebec)",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Northern & Pacific export terminals",
+          "notes": "",
+          "type": "energy"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Vancouver",
+          "notes": ""
+        },
+        {
+          "name": "Montreal",
+          "notes": ""
+        },
+        {
+          "name": "Prince Rupert",
+          "notes": ""
+        },
+        {
+          "name": "Halifax",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Overwhelming share of goods trade and energy flows",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Commodities and consumer goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "mexico",
+          "partnerName": "Mexico",
+          "nature": "USMCA manufacturing triangle",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-kingdom",
+          "partnerName": "United Kingdom",
+          "nature": "Historical and services/goods links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Energy and resource exports",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Pipeline or rail interruptions slowing energy and grain exports",
+          "summary": "Outlet constraints reprice Western production and downstream fuels.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Wildfire or extreme cold stressing power and transport",
+          "summary": "Seasonal hazards can cut communities and freight corridors.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "US trade-policy shifts affecting autos and softwood",
+          "summary": "Tariff or rules-of-origin changes ripple through plants and mills.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-pipeline-cyber",
+        "gsa_demo-steel-tariff",
+        "gsa_demo-port-labor"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Domestic fuel prices track refining margins and US rack markets.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Hydro and gas mixes shape electricity and heating bills.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Lumber cycles and interest rates jointly move housing costs.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "food",
+          "summary": "Rail and port fluidity affect grocery and farm-input timing.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation and cross-border road travel respond to fuel and policy.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Provincial systems rely on imported devices and drugs.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "technology",
+          "summary": "Telecom and cloud services depend on equipment imports.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "insurance",
+          "summary": "Climate perils influence property and crop insurance.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_united-kingdom",
+      "slug": "united-kingdom",
+      "name": "United Kingdom",
+      "iso2": "GB",
+      "region": "Europe",
+      "summary": "Services-heavy economy with global finance, professional services, aerospace, and remaining North Sea energy, plus major container gateways serving Atlantic trade.",
+      "currentEvents": [
+        {
+          "title": "Post-Brexit trade frictions remain a standing logistics theme",
+          "summary": "Customs and regulatory checks affect EU–UK goods timing. Structural sample/demo context.",
+          "asOf": "2021-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "North Sea energy and interconnectors support power balancing",
+          "summary": "Gas fields, wind, and cross-Channel links jointly shape electricity security.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Financial & professional services",
+          "notes": ""
+        },
+        {
+          "name": "Aerospace & defense",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals & life sciences",
+          "notes": ""
+        },
+        {
+          "name": "Creative industries",
+          "notes": ""
+        },
+        {
+          "name": "Energy (North Sea & offshore wind)",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Financial & business services",
+          "notes": ""
+        },
+        {
+          "name": "Machinery & vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Aerospace",
+          "notes": ""
+        },
+        {
+          "name": "Oil & refined products",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Foodstuffs",
+          "notes": ""
+        },
+        {
+          "name": "Machinery & vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Fuels",
+          "notes": ""
+        },
+        {
+          "name": "Consumer goods",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Interconnectors with EU power markets",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "North Sea pipelines & terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "London financial market infrastructure",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Major container ports & Channel tunnels/ferries",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Undersea cable landings",
+          "notes": "",
+          "type": "digital"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Felixstowe",
+          "notes": ""
+        },
+        {
+          "name": "London Gateway / Tilbury",
+          "notes": ""
+        },
+        {
+          "name": "Southampton",
+          "notes": ""
+        },
+        {
+          "name": "Liverpool",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Services and goods partnership",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "EU goods trade via Germany and wider EU",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Goods imports and financial links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "india",
+          "partnerName": "India",
+          "nature": "Services, people, and goods ties",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "saudi-arabia",
+          "partnerName": "Saudi Arabia",
+          "nature": "Energy and investment links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Port or Channel disruption delaying food and retail imports",
+          "summary": "Island logistics make supermarket replenishment sensitive to ferry/port shocks.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Gas and power price spikes in tight winters",
+          "summary": "Household bills and industrial demand respond quickly to wholesale moves.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Financial-market operational incidents",
+          "summary": "Clearing or outage events can transmit globally within hours to days.",
+          "confidence": "Low",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-port-labor",
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "food",
+          "summary": "High import share for food makes shelves sensitive to freight delays.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "fuel",
+          "summary": "Petrol and diesel track refining and wholesale gas/oil conditions.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Energy price caps and wholesale markets dominate bill narratives.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Mortgage rates and construction costs dominate housing affordability.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation and Channel travel respond to fuel and border frictions.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "NHS supply chains rely on imported medicines and devices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "London market prices global specialty risks.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "technology",
+          "summary": "Data-center and telecom resilience affect digital services.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    },
+    {
+      "id": "gsc_saudi-arabia",
+      "slug": "saudi-arabia",
+      "name": "Saudi Arabia",
+      "iso2": "SA",
+      "region": "Middle East",
+      "summary": "Leading oil exporter with expanding petrochemicals, logistics, and diversification programs, sitting astride Red Sea and Persian Gulf energy routes.",
+      "currentEvents": [
+        {
+          "title": "Oil production policy remains a global price-formation variable",
+          "summary": "OPEC+ coordination and spare capacity are long-running market structures. Sample/demo — not a live production bulletin.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Red Sea shipping security affects energy and container transit times",
+          "summary": "Corridor risk can divert tankers and boxships onto longer routes. Illustrative structural theme.",
+          "asOf": "2023-12-01",
+          "kind": "structural-context",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Crude oil production",
+          "notes": ""
+        },
+        {
+          "name": "Petrochemicals & refining",
+          "notes": ""
+        },
+        {
+          "name": "Mining (emerging)",
+          "notes": ""
+        },
+        {
+          "name": "Construction & infrastructure",
+          "notes": ""
+        },
+        {
+          "name": "Religious tourism & services",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Crude oil",
+          "notes": ""
+        },
+        {
+          "name": "Refined petroleum products",
+          "notes": ""
+        },
+        {
+          "name": "Petrochemicals",
+          "notes": ""
+        },
+        {
+          "name": "Plastics",
+          "notes": ""
+        },
+        {
+          "name": "Aluminum (growing)",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Machinery & vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Foodstuffs",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Military equipment",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Ghawar and major oil fields",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Ras Tanura / Juaymah export terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "East–West pipeline",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Desalination plants",
+          "notes": "",
+          "type": "water"
+        },
+        {
+          "name": "Red Sea port & NEOM-area logistics buildout",
+          "notes": "",
+          "type": "transport"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Jeddah Islamic Port",
+          "notes": ""
+        },
+        {
+          "name": "King Abdullah Port",
+          "notes": ""
+        },
+        {
+          "name": "Dammam / King Abdulaziz Port",
+          "notes": ""
+        },
+        {
+          "name": "Yanbu",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Major crude buyer",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "india",
+          "partnerName": "India",
+          "nature": "Crude and refined-product trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Long-standing crude relationship",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Energy, defense, and investment ties",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-kingdom",
+          "partnerName": "United Kingdom",
+          "nature": "Services and investment links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Red Sea corridor diversions raising freight and insurance costs",
+          "summary": "Longer routes delay goods and add bunker burn — sample framing.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Facility outages temporarily tightening oil balances",
+          "summary": "Terminal or field interruptions can move global prices within days.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Water desalination dependency under extreme heat",
+          "summary": "Utilities planning centers on desal capacity and power coupling.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots",
+        "gsa_demo-pipeline-cyber"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Global crude moves transmit into pump prices worldwide.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Domestic power and desalination are tightly energy-coupled.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "food",
+          "summary": "High food-import dependence links freight costs to groceries.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "travel",
+          "summary": "Hajj/Umrah and aviation fuel dynamics affect travel volumes and fares.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "housing",
+          "summary": "Large construction programs influence materials demand.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Imported devices and pharmaceuticals dominate supply.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "War-risk and energy facility cover prices fluctuate with corridor risk.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "technology",
+          "summary": "Digital diversification programs depend on imported equipment.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    },
+    {
+      "id": "gsc_brazil",
+      "slug": "brazil",
+      "name": "Brazil",
+      "iso2": "BR",
+      "region": "South America",
+      "summary": "Agricultural and resource giant with major soy, iron ore, oil, and meat exports, plus a large domestic industrial base and Atlantic port system.",
+      "currentEvents": [
+        {
+          "title": "Soy and corn export seasons set global feed-market tone",
+          "summary": "Harvest timing and Amazon/Santos logistics are recurring structural features. Sample/demo — not a live crop report.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Months",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Pre-salt oil production growth influences Atlantic energy trade",
+          "summary": "Offshore output expansion is a multi-year supply theme.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Agriculture & agribusiness",
+          "notes": ""
+        },
+        {
+          "name": "Mining (iron ore)",
+          "notes": ""
+        },
+        {
+          "name": "Oil & gas",
+          "notes": ""
+        },
+        {
+          "name": "Aerospace (Embraer)",
+          "notes": ""
+        },
+        {
+          "name": "Pulp & paper",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Soybeans",
+          "notes": ""
+        },
+        {
+          "name": "Iron ore",
+          "notes": ""
+        },
+        {
+          "name": "Crude oil",
+          "notes": ""
+        },
+        {
+          "name": "Meat (beef, poultry)",
+          "notes": ""
+        },
+        {
+          "name": "Sugar & coffee",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Fertilizers",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Refined fuels (periodic)",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Santos and northern Arc ports",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Amazon river barge systems",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Itaipu & hydropower fleet",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Pre-salt offshore production",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Fertilizer import terminals",
+          "notes": "",
+          "type": "industrial"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Santos",
+          "notes": ""
+        },
+        {
+          "name": "Itaguaí / Sepetiba",
+          "notes": ""
+        },
+        {
+          "name": "Paranaguá",
+          "notes": ""
+        },
+        {
+          "name": "Itaqui",
+          "notes": ""
+        },
+        {
+          "name": "Suape",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Dominant buyer of soy and iron ore",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Aircraft, agriculture, and energy trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "germany",
+          "partnerName": "Germany",
+          "nature": "Machinery and autos",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "india",
+          "partnerName": "India",
+          "nature": "Oil and agribusiness links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Minerals and foodstuffs",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Drought lowering hydro output and grain yields",
+          "summary": "Power tariffs and food exports can both feel rainfall shortfalls.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Port strikes or trucker stoppages delaying exports",
+          "summary": "Soy and meat shipments can backlog within days.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Fertilizer import shocks raising planting costs",
+          "summary": "Input prices transmit into food inflation with a lag.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-port-labor",
+        "gsa_demo-canal-slots",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "food",
+          "summary": "Domestic food prices and export earnings both track harvest and logistics.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "fuel",
+          "summary": "Ethanol and fuel-policy mixes affect pump prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Hydro dependence links drought to electricity tariffs.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Commodity cycles influence construction and employment.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Aviation and road fuel costs shape mobility.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Imported pharma dependence creates FX-sensitive prices.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Crop and catastrophe insurance track climate volatility.",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "technology",
+          "summary": "Electronics imports dominate consumer device markets.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    },
+    {
+      "id": "gsc_south-korea",
+      "slug": "south-korea",
+      "name": "South Korea",
+      "iso2": "KR",
+      "region": "East Asia",
+      "summary": "Export-oriented industrial economy specializing in semiconductors, displays, shipbuilding, autos, and petrochemicals, with high energy-import dependence.",
+      "currentEvents": [
+        {
+          "title": "Memory and foundry semiconductor cycles drive export earnings",
+          "summary": "Chip prices and fab utilization are standing macro variables. Sample/demo structural context.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "LNG import dependence anchors energy security planning",
+          "summary": "Power and industry rely on seaborne gas and coal.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Semiconductors",
+          "notes": ""
+        },
+        {
+          "name": "Shipbuilding",
+          "notes": ""
+        },
+        {
+          "name": "Automobiles",
+          "notes": ""
+        },
+        {
+          "name": "Displays & batteries",
+          "notes": ""
+        },
+        {
+          "name": "Petrochemicals",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Integrated circuits",
+          "notes": ""
+        },
+        {
+          "name": "Vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Ships",
+          "notes": ""
+        },
+        {
+          "name": "Refined petroleum products",
+          "notes": ""
+        },
+        {
+          "name": "Plastics & chemicals",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Crude oil & LNG",
+          "notes": ""
+        },
+        {
+          "name": "Semiconductor equipment",
+          "notes": ""
+        },
+        {
+          "name": "Coal",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Foodstuffs",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Semiconductor fab clusters",
+          "notes": "",
+          "type": "industrial"
+        },
+        {
+          "name": "LNG terminals",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Busan port complex",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "Nuclear & thermal generation",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Undersea cables",
+          "notes": "",
+          "type": "digital"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Busan",
+          "notes": ""
+        },
+        {
+          "name": "Incheon",
+          "notes": ""
+        },
+        {
+          "name": "Ulsan",
+          "notes": ""
+        },
+        {
+          "name": "Gwangyang",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Largest goods partner for many years",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Chips, autos, and security-aligned commerce",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "Components, materials, and historical industrial ties",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "taiwan",
+          "partnerName": "Taiwan",
+          "nature": "Semiconductor equipment and foundry interplay",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "australia",
+          "partnerName": "Australia",
+          "nature": "Energy and mineral imports",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Chip downcycles cutting export revenue and investment",
+          "summary": "Memory price slumps can slow growth within quarters.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Energy import spikes raising industrial power costs",
+          "summary": "LNG and coal price moves hit households and fabs.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Maritime corridor risk delaying energy and export cargoes",
+          "summary": "Longer routes add cost to time-sensitive shipments.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-canal-slots",
+        "gsa_demo-steel-tariff"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "technology",
+          "summary": "Chip and display cycles affect device prices and tech employment.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#technology"
+        },
+        {
+          "category": "fuel",
+          "summary": "Imported energy sets transport and heating costs.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "Power tariffs track fuel mix and industrial demand.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "housing",
+          "summary": "Construction and household appliance costs follow materials and chips.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "food",
+          "summary": "Food-import dependence transmits freight inflation.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "travel",
+          "summary": "Shipbuilding and aviation fuel dynamics influence travel supply.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Medical device and pharma imports matter for clinics.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "insurance",
+          "summary": "Industrial and quake exposures influence premiums.",
+          "confidence": "Low",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        }
+      ]
+    },
+    {
+      "id": "gsc_australia",
+      "slug": "australia",
+      "name": "Australia",
+      "iso2": "AU",
+      "region": "Oceania",
+      "summary": "Resource-export economy supplying iron ore, coal, LNG, and agricultural goods to Asia, with a services-heavy domestic economy and long maritime supply lines.",
+      "currentEvents": [
+        {
+          "title": "Iron ore and LNG exports remain core Asia supply pillars",
+          "summary": "Pilbara and LNG projects are multi-decade structural features of regional industry. Sample/demo — not live pricing.",
+          "asOf": "2023-01-01",
+          "kind": "structural-context",
+          "confidence": "Observed",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        },
+        {
+          "title": "Climate and bushfire seasons shape insurance and agriculture planning",
+          "summary": "Seasonal hazard patterns are standing risk themes for households and farms.",
+          "asOf": "2022-01-01",
+          "kind": "structural-context",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "label": "Sample / demo · not live news"
+        }
+      ],
+      "majorIndustries": [
+        {
+          "name": "Mining (iron ore, coal, gold)",
+          "notes": ""
+        },
+        {
+          "name": "LNG & energy",
+          "notes": ""
+        },
+        {
+          "name": "Agriculture",
+          "notes": ""
+        },
+        {
+          "name": "Education & tourism services",
+          "notes": ""
+        },
+        {
+          "name": "Financial services",
+          "notes": ""
+        }
+      ],
+      "exports": [
+        {
+          "name": "Iron ore",
+          "notes": ""
+        },
+        {
+          "name": "Coal",
+          "notes": ""
+        },
+        {
+          "name": "LNG",
+          "notes": ""
+        },
+        {
+          "name": "Gold",
+          "notes": ""
+        },
+        {
+          "name": "Beef & wheat",
+          "notes": ""
+        }
+      ],
+      "imports": [
+        {
+          "name": "Vehicles",
+          "notes": ""
+        },
+        {
+          "name": "Machinery",
+          "notes": ""
+        },
+        {
+          "name": "Electronics",
+          "notes": ""
+        },
+        {
+          "name": "Pharmaceuticals",
+          "notes": ""
+        },
+        {
+          "name": "Refined fuels (net importer in refined slate)",
+          "notes": ""
+        }
+      ],
+      "criticalInfrastructure": [
+        {
+          "name": "Pilbara rail & port systems",
+          "notes": "",
+          "type": "transport"
+        },
+        {
+          "name": "LNG export trains (North West Shelf / Gladstone area)",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "National Electricity Market",
+          "notes": "",
+          "type": "energy"
+        },
+        {
+          "name": "Undersea cables to Asia",
+          "notes": "",
+          "type": "digital"
+        },
+        {
+          "name": "Major container ports",
+          "notes": "",
+          "type": "transport"
+        }
+      ],
+      "majorPorts": [
+        {
+          "name": "Port Hedland",
+          "notes": ""
+        },
+        {
+          "name": "Newcastle",
+          "notes": ""
+        },
+        {
+          "name": "Gladstone",
+          "notes": ""
+        },
+        {
+          "name": "Melbourne",
+          "notes": ""
+        },
+        {
+          "name": "Sydney / Botany",
+          "notes": ""
+        }
+      ],
+      "tradeRelationships": [
+        {
+          "partnerSlug": "china",
+          "partnerName": "China",
+          "nature": "Dominant iron ore and goods relationship",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "japan",
+          "partnerName": "Japan",
+          "nature": "LNG, coal, and beef trade",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "south-korea",
+          "partnerName": "South Korea",
+          "nature": "Energy and minerals",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "united-states",
+          "partnerName": "United States",
+          "nature": "Services, investment, and goods",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        },
+        {
+          "partnerSlug": "india",
+          "partnerName": "India",
+          "nature": "Coal and education/services links",
+          "confidence": "Medium",
+          "timeHorizon": "Long-term"
+        }
+      ],
+      "currentRisks": [
+        {
+          "title": "Cyclone or port outages pausing iron ore shipments",
+          "summary": "Short interruptions can move seaborne ore prices within days.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "LNG maintenance or demand shocks altering export revenues",
+          "summary": "Energy earnings and domestic gas debates respond over weeks to months.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "label": "Illustrative risk framing · sample/demo"
+        },
+        {
+          "title": "Shipping distance amplifying global freight cost shocks",
+          "summary": "Island geography means container delays hit retail shelves.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "label": "Illustrative risk framing · sample/demo"
+        }
+      ],
+      "relatedArticles": [
+        "gsa_demo-canal-slots",
+        "gsa_demo-shipping-diversion",
+        "gsa_demo-port-labor"
+      ],
+      "citizenImpactConnections": [
+        {
+          "category": "fuel",
+          "summary": "Refined fuel import logistics affect pump prices.",
+          "confidence": "High",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#fuel"
+        },
+        {
+          "category": "utilities",
+          "summary": "NEM prices and coal/gas transitions move household power bills.",
+          "confidence": "High",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#utilities"
+        },
+        {
+          "category": "food",
+          "summary": "Drought and flood cycles swing grocery and farm incomes.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#food"
+        },
+        {
+          "category": "housing",
+          "summary": "Mining cycles and interest rates jointly move housing markets.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#housing"
+        },
+        {
+          "category": "travel",
+          "summary": "Long-haul aviation dependence makes fares fuel-sensitive.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "href": "../citizen-impact/#travel"
+        },
+        {
+          "category": "insurance",
+          "summary": "Bushfire and flood risk strongly influence premiums.",
+          "confidence": "High",
+          "timeHorizon": "Long-term",
+          "href": "../citizen-impact/#insurance"
+        },
+        {
+          "category": "healthcare",
+          "summary": "Imported medicines and devices dominate supply.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "href": "../citizen-impact/#healthcare"
+        },
+        {
+          "category": "technology",
+          "summary": "Undersea cable faults can degrade international connectivity.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "href": "../citizen-impact/#technology"
+        }
+      ]
+    }
+  ]
+}
