@@ -11,7 +11,7 @@
 | --- | --- |
 | Start (branched from `origin/main`) | `f942c7b` — Merge release/global-signals-sprint-1 into main |
 | Feature tip | `b31a819e384118ab9a09b8412af6400fe999c088` |
-| Branch HEAD | `cbec42797817e2ce34559acb5eded6284ae6bea1` |
+| Branch HEAD | `5adb38d5e7f5407bb101d0e0916b7ebdf54cc753` |
 
 ## Goal achieved
 
