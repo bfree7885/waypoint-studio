@@ -84,11 +84,24 @@ Attribution preserved on-map (OSM contributors + CARTO; Esri / GIS User Communit
 
 ---
 
+## Production verification (live)
+
+- **URL:** https://waypointstudio.org/apps/shed-hunting/map/
+- **Deploy SHA:** `9aba99f` (`9aba99fdc41603f164f1ccacbd99bb5a8a730b19`)
+- **build-info:** `shortCommit=9aba99f`, `source=github-pages`
+- Leaflet CSS: vendored, **loaded** (`tilePosition: absolute`)
+- Tile hosts: `*.basemaps.cartocdn.com` only (no OSMF public)
+- Viewport coverage: **1.0** (complete grid)
+- Screenshot: [`production-after.png`](./map-reliability/production-after.png)
+- Network: [`production-after-network.json`](./map-reliability/production-after-network.json)
+
+---
+
 ## Deploy checklist
 
-1. Merge release → `main` (Pages workflow).
-2. Confirm `https://waypointstudio.org/data/build-info.json` `shortCommit` matches deploy SHA.
-3. Open https://waypointstudio.org/apps/shed-hunting/map/ — expect continuous CARTO grid, attribution visible, no integrity error in console.
+1. Merge release → `main` (Pages workflow). **Done** (`9aba99f`).
+2. Confirm `https://waypointstudio.org/data/build-info.json` `shortCommit` matches deploy SHA. **Confirmed `9aba99f`.**
+3. Open https://waypointstudio.org/apps/shed-hunting/map/ — expect continuous CARTO grid, attribution visible, no integrity error in console. **Confirmed coverageRatio 1.0.**
 4. Spot-check Layers → Topographic (Esri).
 
 ---
