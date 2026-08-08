@@ -962,3 +962,20 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-07 — Global Signals Beta owner review / release branch
+
+**Branch:** `release/global-signals-beta`  
+**Report:** `docs/releases/global-signals-beta-owner-review.md`
+
+1. **Parallel module branches need an umbrella + conflict policy.** Home-dashboard
+   umbrella merges worked; Search add/add on `relationships.json` must keep the
+   Explain This tip, then rebuild `search-index.json`.
+2. **Integration umbrella ≠ product Home.** `feature/global-signals-home-dashboard`
+   can ship every module and still leave `/global-dashboard/` as coming soon —
+   do not market a dashboard that is not implemented.
+3. **Nav fragmentation is the Beta cohesion bug.** Landing full nav + per-module
+   subset navs feels like separate apps; shared chrome beats new features.
+4. **Alias branches confuse readiness.** `story-mode` / `graph-backbone` tips that
+   equal Explain/Graph tips are not shippable modules — verify unique commits.
+5. **Wait briefly and re-fetch** before cutting release: Search landed on remote
+   mid-review; Entity remained WIP — document incomplete tips honestly.
