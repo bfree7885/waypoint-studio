@@ -29,7 +29,8 @@ Kept `/relationship-graph/` as the canonical path (already reserved) rather than
 | | SHA |
 | --- | --- |
 | Starting (worktree base) | `0018a5455541eb91f4a5c8299b8a7c4fad7643d7` |
-| Tip | `1b8a85aa983a6cf57252f8647cf945cf53e68f04` |
+| Tip | `a7311c660b648b0ee85c2e4cd41226a10c651903` (includes docs tip stamp) |
+| Feature commit | `1b8a85aa983a6cf57252f8647cf945cf53e68f04` |
 
 ## Data
 
