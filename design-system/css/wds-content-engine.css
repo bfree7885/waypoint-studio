@@ -1069,15 +1069,15 @@
 .wds-location-search__label {
   display: block;
   margin-bottom: var(--wds-space-2);
-  font-size: var(--wds-text-xs);
+  font-size: var(--wds-text-sm);
   font-weight: 500;
-  color: var(--wds-text-tertiary);
+  color: var(--wds-text-secondary);
 }
 
 .wds-location-search__row {
   display: flex;
   gap: var(--wds-space-2);
-  align-items: center;
+  align-items: stretch;
 }
 
 .wds-location-search__input {
@@ -1090,9 +1090,17 @@
   background: var(--wds-inset);
   border: 1px solid var(--wds-border-subtle);
   border-radius: var(--wds-radius-md);
+  min-height: 2.75rem;
 }
 
-.wds-location-search__input:focus {
+.wds-location-search__row .wds-btn {
+  align-self: stretch;
+  min-height: 2.75rem;
+  padding-inline: 0.95rem;
+}
+
+.wds-location-search__input:focus,
+.wds-location-search__input:focus-visible {
   outline: 2px solid var(--wds-focus);
   outline-offset: 1px;
 }

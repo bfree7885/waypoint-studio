@@ -121,6 +121,7 @@
 .waf-filters {
   display: grid;
   gap: 0.65rem;
+  align-items: end;
 }
 
 @media (min-width: 720px) {
@@ -130,10 +131,13 @@
 }
 
 .waf-filter {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   gap: 0.25rem;
   font-size: 0.78rem;
   color: var(--waf-muted);
+  min-width: 0;
 }
 
 .waf-filter input,
@@ -145,6 +149,19 @@
   padding: 0.55rem 0.65rem;
   border-radius: var(--wds-radius-sm, 0.2rem);
   min-height: 2.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.waf-filter input:focus-visible,
+.waf-filter select:focus-visible,
+.waf-view:focus-visible {
+  outline: 2px solid var(--wds-focus, var(--waf-moss));
+  outline-offset: 2px;
+}
+
+.waf-hub .waf {
+  margin-top: 0.35rem;
 }
 
 .waf-count {
@@ -297,7 +314,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--waf-muted);
+  color: color-mix(in srgb, var(--waf-ink) 62%, var(--waf-muted));
   margin: 0 !important;
   font-family: var(--wds-font-body, inherit);
   font-style: normal;

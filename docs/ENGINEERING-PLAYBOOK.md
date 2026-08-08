@@ -182,6 +182,29 @@ continuously improves.
 4. **Screenshot framing** — 900×900 viewports miss Take; capture tall frames
    (≈900×1400) so before/after includes the panel.
 
+### 2026-08-08 — Studio polish release pass
+
+**Artifact:** `docs/releases/polish-owner-review.md`  
+**Branch:** `feature/studio-polish-release`
+
+1. **Hub pages duplicate feed ledes** — Articles hub already introduces the
+   product; feed `mountFeed` must support `hideLede` (or detect `.waf-hub`) so
+   status/toolbar isn’t preceded by a second mission paragraph.
+2. **Filter grids need `align-items: end`** — visible Category/Region labels
+   above selects make search inputs look taller/misaligned unless the row
+   bottom-aligns controls.
+3. **Catalog “ready” status can fight the hero** — Side Trails status echoed
+   engineering meta (“never hardcodes”) under an already-complete lede; hide
+   ready status when cards render; reserve status for loading/empty/error.
+4. **“Existing app” reads unfinished** — public nav/footer copy should say
+   “Open app,” not expose implementation vocabulary.
+5. **Parallel polish agents need worktrees** — shared DS shells (quiet nav,
+   contact tokens) are the conflict surface; keep polish inside existing
+   patterns and document overlaps rather than inventing new token systems.
+6. **Headless Chromium is the screenshot fallback** — when browser MCP has no
+   tab in a subagent, capture before/after with Chromium `--screenshot` from
+   the polish worktree’s static server.
+
 ### 2026-08-08 — Production placeholder audit
 
 **Artifact:** `docs/quality/placeholder-audit.md`  

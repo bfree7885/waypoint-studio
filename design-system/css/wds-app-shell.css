@@ -656,15 +656,16 @@ article.was-home__card {
 /* Quiet Home still exposes architecture primary nav (incl. Side Trails); keep it calm */
 .was-global--quiet .was-primary-nav {
   justify-content: flex-end;
-  gap: 0.25rem 0.65rem;
+  gap: 0.35rem 0.7rem;
   padding: 0;
 }
 
 .was-global--quiet .was-primary-nav__link {
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   letter-spacing: 0.05em;
-  opacity: 0.62;
-  min-height: 2.25rem;
+  opacity: 0.72;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.2rem;
 }
 
 .was-global--quiet .was-primary-nav__link:hover,
@@ -673,7 +674,7 @@ article.was-home__card {
 }
 
 .was-global--quiet .was-primary-nav__link[aria-current="page"] {
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 /*

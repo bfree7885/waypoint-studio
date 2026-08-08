@@ -117,7 +117,7 @@ html[data-product="scenes"],
 .scenes-stage__credit {
   margin: 0.85rem 0 0;
   font-size: 0.75rem;
-  color: color-mix(in srgb, var(--scenes-muted) 85%, transparent);
+  color: color-mix(in srgb, var(--scenes-muted) 92%, #fff);
 }
 
 .scenes-stage__cta {
