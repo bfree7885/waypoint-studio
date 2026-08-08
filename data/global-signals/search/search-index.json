@@ -65,9 +65,9 @@
     }
   ],
   "stats": {
-    "entries": 128,
+    "entries": 130,
     "byType": {
-      "country": 16,
+      "country": 17,
       "industry": 23,
       "commodity": 7,
       "company": 1,
@@ -76,7 +76,7 @@
       "tariff": 1,
       "policy": 1,
       "weather": 1,
-      "article": 5,
+      "article": 6,
       "citizen-impact": 8
     }
   },
@@ -129,6 +129,70 @@
         "semiconductor",
         "concentration",
         "literacy",
+        "not",
+        "live",
+        "risk",
+        "score",
+        "relationship",
+        "explorer",
+        "entity",
+        "gsn"
+      ],
+      "typeLabel": "Country"
+    },
+    {
+      "id": "rel:gsn_china",
+      "sourceId": "gsn_china",
+      "type": "country",
+      "label": "China",
+      "aliases": [],
+      "summary": "Illustrative country node for manufacturing and export-policy literacy — linked to Country Intelligence gsc_china. Not a live risk score.",
+      "context": "Relationship Explorer entity",
+      "confidence": null,
+      "provenance": "sample-demo · relationships.json",
+      "href": "/side-trails/global-signals/relationships/?entity=gsn_china",
+      "module": "relationships",
+      "moduleLabel": "Relationship Explorer",
+      "moduleStatus": "intended",
+      "keywords": [
+        "country",
+        "gsn_china"
+      ],
+      "hints": [
+        {
+          "kind": "cascade",
+          "label": "Cascade root: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
+          "kind": "related",
+          "label": "Related Policy: Export-control policy (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
+        },
+        {
+          "kind": "module",
+          "label": "Country Intelligence: China",
+          "href": "/side-trails/global-signals/countries/china/"
+        }
+      ],
+      "boost": 1.15,
+      "inCascades": 1,
+      "searchText": "china illustrative country node for manufacturing and export policy literacy linked to country intelligence gsc china not a live risk score relationship explorer entity country gsn china",
+      "tokens": [
+        "china",
+        "illustrative",
+        "country",
+        "node",
+        "for",
+        "manufacturing",
+        "and",
+        "export",
+        "policy",
+        "literacy",
+        "linked",
+        "to",
+        "intelligence",
+        "gsc",
         "not",
         "live",
         "risk",
@@ -414,6 +478,11 @@
           "href": "/side-trails/global-signals/relationships/?entity=gsn_electronics"
         },
         {
+          "kind": "cascade",
+          "label": "Appears in cascade: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
           "kind": "related",
           "label": "Related Industry: Automotive",
           "href": "/side-trails/global-signals/relationships/?entity=gsn_taiwan"
@@ -425,7 +494,7 @@
         }
       ],
       "boost": 1,
-      "inCascades": 5,
+      "inCascades": 6,
       "searchText": "consumer products finished goods households buy phones appliances and vehicles relationship explorer entity industry gsn consumer products",
       "tokens": [
         "consumer",
@@ -1392,13 +1461,23 @@
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
         },
         {
+          "kind": "cascade",
+          "label": "Appears in cascade: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
           "kind": "related",
           "label": "Related Commodity: Advanced chips",
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
+        },
+        {
+          "kind": "related",
+          "label": "Related Country: China",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
         }
       ],
       "boost": 1.15,
-      "inCascades": 1,
+      "inCascades": 2,
       "searchText": "export control policy illustrative sample public policy restricting certain advanced technology transfers relationship explorer entity policy gsn export controls",
       "tokens": [
         "export",
@@ -1445,6 +1524,11 @@
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
         },
         {
+          "kind": "cascade",
+          "label": "Appears in cascade: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
           "kind": "related",
           "label": "Related Policy: Export-control policy (illustrative)",
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
@@ -1456,7 +1540,7 @@
         }
       ],
       "boost": 1,
-      "inCascades": 1,
+      "inCascades": 2,
       "searchText": "advanced chips high end semiconductors subject to licensing and capacity constraints relationship explorer entity commodity gsn advanced chips",
       "tokens": [
         "advanced",
@@ -1503,6 +1587,11 @@
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
         },
         {
+          "kind": "cascade",
+          "label": "Appears in cascade: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
           "kind": "related",
           "label": "Related Commodity: Advanced chips",
           "href": "/side-trails/global-signals/relationships/?entity=gsn_export_controls"
@@ -1514,7 +1603,7 @@
         }
       ],
       "boost": 1,
-      "inCascades": 1,
+      "inCascades": 2,
       "searchText": "device manufacturing oems assembling phones servers and industrial equipment relationship explorer entity industry gsn device makers",
       "tokens": [
         "device",
@@ -2117,6 +2206,16 @@
       ],
       "hints": [
         {
+          "kind": "cascade",
+          "label": "Open in Relationship Explorer",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
+          "kind": "cascade",
+          "label": "Cascade root: China export restrictions (illustrative)",
+          "href": "/side-trails/global-signals/relationships/?entity=gsn_china"
+        },
+        {
           "kind": "module",
           "label": "Citizen Impact: technology",
           "href": "/side-trails/global-signals/citizen-impact/#section-technology"
@@ -2133,7 +2232,7 @@
         }
       ],
       "boost": 1.2,
-      "inCascades": 0,
+      "inCascades": 1,
       "searchText": "china cn east asia world s largest goods exporter with dense manufacturing clusters major ports and central roles in electronics machinery and intermediate goods region east asia china shanghai ningbo zhoushan shenzhen guangzhou qingdao",
       "tokens": [
         "china",
@@ -7556,6 +7655,129 @@
         "foods",
         "export",
         "crops"
+      ],
+      "typeLabel": "Article"
+    },
+    {
+      "id": "article:gsa_demo-china-export",
+      "sourceId": "gsa_demo-china-export",
+      "type": "article",
+      "label": "China publishes export restrictions on selected advanced technology items",
+      "aliases": [
+        "Illustrative Trade Ministry Notice (sample)",
+        "Export control / trade policy"
+      ],
+      "summary": "In this sample scenario, a trade authority publishes export-restriction language covering selected advanced technology items, including licensing requirements for certain chip-related transfers. The notice is labeled sample/demo and is not a live regulatory feed.",
+      "context": "Illustrative Trade Ministry Notice (sample) · 2023-09-12",
+      "confidence": "Medium",
+      "provenance": "sample-demo · articles.json",
+      "href": "/side-trails/global-signals/articles/?id=gsa_demo-china-export",
+      "module": "articles",
+      "moduleLabel": "Articles",
+      "moduleStatus": "live",
+      "keywords": [
+        "Export control / trade policy",
+        "China",
+        "Taiwan",
+        "United States",
+        "Japan",
+        "South Korea",
+        "Semiconductors",
+        "Technology",
+        "Automotive",
+        "Electronics",
+        "Advanced chips",
+        "Semiconductors"
+      ],
+      "hints": [
+        {
+          "kind": "related",
+          "label": "Related country: China",
+          "href": "/side-trails/global-signals/countries/china/"
+        },
+        {
+          "kind": "related",
+          "label": "Related country: Taiwan",
+          "href": "/side-trails/global-signals/countries/taiwan/"
+        },
+        {
+          "kind": "related",
+          "label": "Related country: United States",
+          "href": "/side-trails/global-signals/countries/united-states/"
+        },
+        {
+          "kind": "related",
+          "label": "Related industry: Semiconductors",
+          "href": "/side-trails/global-signals/industries/semiconductors/"
+        },
+        {
+          "kind": "related",
+          "label": "Related industry: Technology",
+          "href": "/side-trails/global-signals/industries/technology/"
+        },
+        {
+          "kind": "related",
+          "label": "Related industry: Automotive",
+          "href": "/side-trails/global-signals/industries/automotive/"
+        }
+      ],
+      "boost": 1.1,
+      "inCascades": 0,
+      "searchText": "china publishes export restrictions on selected advanced technology items illustrative trade ministry notice sample export control trade policy in this sample scenario a trade authority publishes export restriction language covering selected advanced technology items including licensing requirements for certain chip related transfers the notice is labeled sample demo and is not a live regulatory feed illustrative trade ministry notice sample 2023 09 12 export control trade policy china taiwan united states japan south korea semiconductors technology automotive electronics advanced chips semiconductors",
+      "tokens": [
+        "china",
+        "publishes",
+        "export",
+        "restrictions",
+        "on",
+        "selected",
+        "advanced",
+        "technology",
+        "items",
+        "illustrative",
+        "trade",
+        "ministry",
+        "notice",
+        "sample",
+        "control",
+        "policy",
+        "in",
+        "this",
+        "scenario",
+        "authority",
+        "restriction",
+        "language",
+        "covering",
+        "including",
+        "licensing",
+        "requirements",
+        "for",
+        "certain",
+        "chip",
+        "related",
+        "transfers",
+        "the",
+        "is",
+        "labeled",
+        "demo",
+        "and",
+        "not",
+        "live",
+        "regulatory",
+        "feed",
+        "2023",
+        "09",
+        "12",
+        "taiwan",
+        "united",
+        "states",
+        "japan",
+        "south",
+        "korea",
+        "semiconductors",
+        "automotive",
+        "electronics",
+        "chips"
       ],
       "typeLabel": "Article"
     },

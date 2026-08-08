@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-07T22:00:00Z",
+  "updatedAt": "2026-08-08T01:00:00Z",
   "mode": "sample-demo",
   "modeLabel": "Sample / demo dataset",
   "honesty": {
-    "banner": "Sample / demo dataset — not a live relationship graph. Cascades are illustrative educational patterns, not current-event forecasts.",
+    "banner": "Sample / demo dataset \u2014 not a live relationship graph. Cascades are illustrative educational patterns, not current-event forecasts.",
     "confidenceRules": "Observed is reserved for established structural facts. Predicted or downstream hops must never use Observed. Missing or invalid confidence defaults to Unknown.",
     "evidenceRules": "Demo evidence uses example.invalid citations and historical pattern notes. Never treat these as live news."
   },
@@ -24,8 +24,16 @@
       "id": "gsn_taiwan",
       "type": "country",
       "label": "Taiwan",
-      "summary": "Illustrative country node used for semiconductor concentration literacy — not a live risk score.",
+      "summary": "Illustrative country node used for semiconductor concentration literacy \u2014 not a live risk score.",
       "selectable": true
+    },
+    {
+      "id": "gsn_china",
+      "type": "country",
+      "label": "China",
+      "summary": "Illustrative country node for manufacturing and export-policy literacy \u2014 linked to Country Intelligence gsc_china. Not a live risk score.",
+      "selectable": true,
+      "provenance": "story-mode-seed-extension"
     },
     {
       "id": "gsn_semiconductors",
@@ -52,14 +60,14 @@
       "id": "gsn_consumer_products",
       "type": "industry",
       "label": "Consumer Products",
-      "summary": "Finished goods households buy — phones, appliances, and vehicles.",
+      "summary": "Finished goods households buy \u2014 phones, appliances, and vehicles.",
       "selectable": false
     },
     {
       "id": "gsn_rotterdam",
       "type": "port",
       "label": "Port of Rotterdam (illustrative)",
-      "summary": "Sample major European gateway used to teach port → corridor dependencies.",
+      "summary": "Sample major European gateway used to teach port \u2192 corridor dependencies.",
       "selectable": true
     },
     {
@@ -87,7 +95,7 @@
       "id": "gsn_goods_availability",
       "type": "industry",
       "label": "Goods availability (citizen impact)",
-      "summary": "Literacy node for how households may notice delays — not individual people.",
+      "summary": "Literacy node for how households may notice delays \u2014 not individual people.",
       "selectable": false
     },
     {
@@ -115,7 +123,7 @@
       "id": "gsn_drought",
       "type": "weather",
       "label": "Prolonged drought (illustrative)",
-      "summary": "Sample weather stress affecting waterways and agriculture — labeled demo, not a live alert.",
+      "summary": "Sample weather stress affecting waterways and agriculture \u2014 labeled demo, not a live alert.",
       "selectable": true
     },
     {
@@ -143,7 +151,7 @@
       "id": "gsn_corridor_conflict",
       "type": "conflict",
       "label": "Corridor conflict (illustrative)",
-      "summary": "Sample publicly reported conflict near a trade corridor — educational pattern only.",
+      "summary": "Sample publicly reported conflict near a trade corridor \u2014 educational pattern only.",
       "selectable": true
     },
     {
@@ -185,7 +193,7 @@
       "id": "gsn_demo_fab",
       "type": "company",
       "label": "DemoChip Fab Co. (illustrative)",
-      "summary": "Fictional company node for company → commodity literacy. Not a real firm.",
+      "summary": "Fictional company node for company \u2192 commodity literacy. Not a real firm.",
       "selectable": true
     },
     {
@@ -206,7 +214,7 @@
       "id": "gsn_travel",
       "type": "industry",
       "label": "Travel / airlines (citizen-facing)",
-      "summary": "Passenger and freight travel costs and schedules — literacy node shared with Citizen Impact (gsn_travel). Not a live fare index.",
+      "summary": "Passenger and freight travel costs and schedules \u2014 literacy node shared with Citizen Impact (gsn_travel). Not a live fare index.",
       "selectable": false,
       "provenance": "explain-this-seed-extension"
     }
@@ -217,7 +225,7 @@
       "from": "gsn_taiwan",
       "to": "gsn_semiconductors",
       "relationType": "concentrates_production",
-      "why": "A large share of advanced chip fabrication capacity is concentrated in Taiwan — a structural fact used for literacy, not a prediction.",
+      "why": "A large share of advanced chip fabrication capacity is concentrated in Taiwan \u2014 a structural fact used for literacy, not a prediction.",
       "confidence": "High",
       "timeHorizon": "Long-term",
       "evidence": {
@@ -247,14 +255,14 @@
       "from": "gsn_electronics",
       "to": "gsn_automotive",
       "relationType": "inputs",
-      "why": "Modern vehicles embed electronics for powertrain, safety, and infotainment — chip and board delays can constrain builds.",
+      "why": "Modern vehicles embed electronics for powertrain, safety, and infotainment \u2014 chip and board delays can constrain builds.",
       "confidence": "Medium",
       "timeHorizon": "Weeks",
       "evidence": {
         "kind": "sample-demo",
         "label": "Illustrative automotive electronics dependency (demo)",
         "url": "https://example.invalid/sample/electronics-automotive",
-        "notes": "Downstream hop — not Observed."
+        "notes": "Downstream hop \u2014 not Observed."
       }
     },
     {
@@ -284,7 +292,7 @@
         "kind": "sample-demo",
         "label": "Illustrative port throughput pattern (demo)",
         "url": "https://example.invalid/sample/rotterdam-throughput",
-        "notes": "Demo only — not a live port status."
+        "notes": "Demo only \u2014 not a live port status."
       }
     },
     {
@@ -322,7 +330,7 @@
       "from": "gsn_retail",
       "to": "gsn_goods_availability",
       "relationType": "feeds_into",
-      "why": "Households may notice thinner shelves or longer waits when retail inbound slows — not overnight shocks.",
+      "why": "Households may notice thinner shelves or longer waits when retail inbound slows \u2014 not overnight shocks.",
       "confidence": "Low",
       "timeHorizon": "Weeks",
       "evidence": {
@@ -387,7 +395,7 @@
       "timeHorizon": "Months",
       "evidence": {
         "kind": "sample-demo",
-        "label": "Illustrative drought–agriculture pattern (demo)",
+        "label": "Illustrative drought\u2013agriculture pattern (demo)",
         "url": "https://example.invalid/sample/drought-grain",
         "notes": "Not a live weather alert."
       }
@@ -412,7 +420,7 @@
       "from": "gsn_food_processing",
       "to": "gsn_household_food",
       "relationType": "feeds_into",
-      "why": "Processing cost and availability can eventually show up in grocery prices — usually with lag and many other factors.",
+      "why": "Processing cost and availability can eventually show up in grocery prices \u2014 usually with lag and many other factors.",
       "confidence": "Low",
       "timeHorizon": "Months",
       "evidence": {
@@ -517,7 +525,7 @@
       "from": "gsn_demo_fab",
       "to": "gsn_semiconductors",
       "relationType": "produces",
-      "why": "A fab company produces semiconductors that later industries consume — company → commodity literacy.",
+      "why": "A fab company produces semiconductors that later industries consume \u2014 company \u2192 commodity literacy.",
       "confidence": "High",
       "timeHorizon": "Long-term",
       "evidence": {
@@ -577,7 +585,7 @@
       "from": "gsn_transportation",
       "to": "gsn_travel",
       "relationType": "prices_through",
-      "why": "When transportation fuel and schedule costs rise, passenger travel — including airlines sensitive to jet-fuel and network delays — can see fare and reliability pressure. This is a structural literacy hop, not a live fare claim.",
+      "why": "When transportation fuel and schedule costs rise, passenger travel \u2014 including airlines sensitive to jet-fuel and network delays \u2014 can see fare and reliability pressure. This is a structural literacy hop, not a live fare claim.",
       "confidence": "Low",
       "timeHorizon": "Weeks",
       "evidence": {
@@ -587,6 +595,22 @@
         "notes": "Provenance: explain-this seed extension aligning Relationship Explorer with Citizen Impact gsn_travel. Low confidence by design."
       },
       "provenance": "explain-this-seed-extension"
+    },
+    {
+      "id": "gsr_china_export_controls",
+      "from": "gsn_china",
+      "to": "gsn_export_controls",
+      "relationType": "implements",
+      "why": "In this sample scenario, China publishes export-restriction language that tightens licensing for selected advanced technology transfers. Structural literacy hop \u2014 not a live license advisory.",
+      "confidence": "High",
+      "timeHorizon": "Immediate",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative China export-restriction notice (demo)",
+        "url": "https://example.invalid/sample/china-export-restrictions",
+        "notes": "Provenance: story-mode seed extension. Sample/demo only."
+      },
+      "provenance": "story-mode-seed-extension"
     }
   ],
   "cascades": [
@@ -606,7 +630,7 @@
       "id": "gsc_semiconductors",
       "rootId": "gsn_semiconductors",
       "title": "What depends on semiconductors (illustrative)",
-      "summary": "Commodity root showing electronics → automotive → consumers.",
+      "summary": "Commodity root showing electronics \u2192 automotive \u2192 consumers.",
       "edgeIds": [
         "gsr_semiconductors_electronics",
         "gsr_electronics_automotive",
@@ -617,7 +641,7 @@
       "id": "gsc_rotterdam",
       "rootId": "gsn_rotterdam",
       "title": "What depends on Port of Rotterdam (illustrative)",
-      "summary": "Port gateway → freight → logistics → retail → household availability.",
+      "summary": "Port gateway \u2192 freight \u2192 logistics \u2192 retail \u2192 household availability.",
       "edgeIds": [
         "gsr_rotterdam_freight",
         "gsr_freight_logistics",
@@ -629,7 +653,7 @@
       "id": "gsc_steel_tariff",
       "rootId": "gsn_steel_tariff",
       "title": "What a steel tariff can touch (illustrative)",
-      "summary": "Tariff → steel → construction (primary path).",
+      "summary": "Tariff \u2192 steel \u2192 construction (primary path).",
       "edgeIds": [
         "gsr_tariff_steel",
         "gsr_steel_construction"
@@ -648,7 +672,7 @@
       "id": "gsc_drought",
       "rootId": "gsn_drought",
       "title": "What a prolonged drought can touch (illustrative)",
-      "summary": "Weather → grain → food processing → household food costs.",
+      "summary": "Weather \u2192 grain \u2192 food processing \u2192 household food costs.",
       "edgeIds": [
         "gsr_drought_grain",
         "gsr_grain_food",
@@ -659,7 +683,7 @@
       "id": "gsc_conflict",
       "rootId": "gsn_corridor_conflict",
       "title": "What a corridor conflict can touch (illustrative)",
-      "summary": "Conflict → crude oil → transportation → logistics / travel (airline-sensitive fuel and schedule literacy).",
+      "summary": "Conflict \u2192 crude oil \u2192 transportation \u2192 logistics / travel (airline-sensitive fuel and schedule literacy).",
       "edgeIds": [
         "gsr_conflict_oil",
         "gsr_oil_transport",
@@ -682,7 +706,7 @@
       "id": "gsc_policy",
       "rootId": "gsn_export_controls",
       "title": "What export controls can touch (illustrative)",
-      "summary": "Policy → advanced chips → device makers → consumer products.",
+      "summary": "Policy \u2192 advanced chips \u2192 device makers \u2192 consumer products.",
       "edgeIds": [
         "gsr_policy_chips",
         "gsr_adv_chips_devices",
@@ -693,7 +717,7 @@
       "id": "gsc_fab",
       "rootId": "gsn_demo_fab",
       "title": "What depends on DemoChip Fab Co. (illustrative)",
-      "summary": "Fictional company → semiconductors → electronics → automotive → consumers.",
+      "summary": "Fictional company \u2192 semiconductors \u2192 electronics \u2192 automotive \u2192 consumers.",
       "edgeIds": [
         "gsr_fab_semiconductors",
         "gsr_semiconductors_electronics",
@@ -705,7 +729,7 @@
       "id": "gsc_canal",
       "rootId": "gsn_canal_corridor",
       "title": "What depends on a canal corridor (illustrative)",
-      "summary": "Chokepoint → freight → imports → retail → goods availability.",
+      "summary": "Chokepoint \u2192 freight \u2192 imports \u2192 retail \u2192 goods availability.",
       "edgeIds": [
         "gsr_canal_freight",
         "gsr_freight_imports",
@@ -717,7 +741,7 @@
       "id": "gsc_electronics",
       "rootId": "gsn_electronics",
       "title": "What depends on Electronics (illustrative)",
-      "summary": "Industry root → automotive → consumer products.",
+      "summary": "Industry root \u2192 automotive \u2192 consumer products.",
       "edgeIds": [
         "gsr_electronics_automotive",
         "gsr_automotive_consumer"
@@ -727,19 +751,36 @@
       "id": "gsc_airlines",
       "rootId": "gsn_corridor_conflict",
       "title": "Why airlines can be affected (illustrative)",
-      "summary": "Educational path from corridor conflict into fuel-sensitive transportation and passenger travel — not a live airline disruption alert.",
+      "summary": "Educational path from corridor conflict into fuel-sensitive transportation and passenger travel \u2014 not a live airline disruption alert.",
       "edgeIds": [
         "gsr_conflict_oil",
         "gsr_oil_transport",
         "gsr_transport_travel"
       ],
       "provenance": "explain-this-seed-extension"
+    },
+    {
+      "id": "gsc_china_export",
+      "rootId": "gsn_china",
+      "title": "China export restrictions (illustrative)",
+      "summary": "Educational path from a China export-restriction announcement into advanced chips, device manufacturing, and consumer products \u2014 not a live geopolitical alert.",
+      "edgeIds": [
+        "gsr_china_export_controls",
+        "gsr_policy_chips",
+        "gsr_adv_chips_devices",
+        "gsr_devices_consumer"
+      ],
+      "provenance": "story-mode-seed-extension"
     }
   ],
   "extensions": {
     "explainThis": {
       "note": "gsn_travel + gsr_transport_travel + gsc_airlines added so curated Explain This airline prompts traverse existing oil/transport structure. Labeled sample-demo; not live events.",
       "provenance": "explain-this-seed-extension"
+    },
+    "storyMode": {
+      "note": "gsn_china + gsr_china_export_controls + gsc_china_export added so Story Mode can brief the China export-restrictions demo against existing policy\u2192chips\u2192devices edges. Labeled sample-demo; not live events.",
+      "provenance": "story-mode-seed-extension"
     }
   }
 }

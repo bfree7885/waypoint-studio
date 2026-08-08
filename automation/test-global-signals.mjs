@@ -65,8 +65,12 @@ assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
+assert.match(html, /\.\/story\//);
 assert.match(html, /\.\/search\//);
 assert.match(html, /\.\/entities\//);
+assert.match(html, /\.\/story\//);
+assert.match(html, /Story Mode/);
+assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
 assert.match(html, /\.\/citizen-impact\//);
 assert.doesNotMatch(html, /Coming soon/i);
@@ -96,6 +100,7 @@ assert.ok(homeData.featuredRelationship && homeData.featuredRelationship.rootEnt
 assert.ok(Array.isArray(homeData.mostAffectedCountrySlugs));
 assert.ok(Array.isArray(homeData.industriesUnderPressureSlugs));
 
+// Articles + Relationship Explorer + Explain This + Story Mode are live (sample/demo); other modules remain placeholders.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -130,6 +135,13 @@ const explainPage = read("side-trails/global-signals/explain/index.html");
 assert.match(explainPage, /Explain This/);
 assert.match(explainPage, /gse-app/);
 assert.doesNotMatch(explainPage, /Coming soon/i);
+
+const storyPage = read("side-trails/global-signals/story/index.html");
+assert.match(storyPage, /Story/);
+assert.match(storyPage, /wds-gs-story/);
+assert.doesNotMatch(storyPage, /Coming soon/i);
+
+assert.doesNotMatch(storyPage, /openai|anthropic|llm|ChatGPT/i);
 
 for (const slug of [
   "waypoint-take",

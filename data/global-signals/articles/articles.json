@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-06T20:00:00Z",
+  "updatedAt": "2026-08-08T01:00:00Z",
   "mode": "sample-demo",
   "modeLabel": "Sample / demo dataset",
   "honesty": {
-    "banner": "Sample / demo dataset \u2014 not a live intelligence feed. These briefs are illustrative and labeled. They are not current-event reports.",
+    "banner": "Sample / demo dataset — not a live intelligence feed. These briefs are illustrative and labeled. They are not current-event reports.",
     "confidenceRules": "Observed is reserved for established facts. Predicted downstream effects must never use Observed. Missing or invalid confidence defaults to Unknown."
   },
   "articles": [
@@ -18,8 +18,8 @@
       "sourceUrl": "https://example.invalid/sample/canal-drought-notice",
       "eventType": "Canal / strait disruption",
       "waypointsTake": {
-        "whyItMatters": "A chokepoint many import schedules assume will stay open can tighten without a single dramatic accident \u2014 drought-driven slot cuts are structural capacity loss.",
-        "analysis": "Carriers and ports on either approach face queues and missed connections within days to weeks. Some cargo may reroute via longer lanes before consumer shelves thin. Recovery depends on rainfall and water management \u2014 those timelines are not knowable from the notice alone."
+        "whyItMatters": "A chokepoint many import schedules assume will stay open can tighten without a single dramatic accident — drought-driven slot cuts are structural capacity loss.",
+        "analysis": "Carriers and ports on either approach face queues and missed connections within days to weeks. Some cargo may reroute via longer lanes before consumer shelves thin. Recovery depends on rainfall and water management — those timelines are not knowable from the notice alone."
       },
       "affectedCountries": [
         "Panama (illustrative corridor)",
@@ -76,7 +76,7 @@
           "type": "citizen-impact",
           "confidence": "Low",
           "timeframe": "Weeks",
-          "explanation": "Households may notice slower restocks \u2014 not an overnight shock."
+          "explanation": "Households may notice slower restocks — not an overnight shock."
         }
       ]
     },
@@ -90,7 +90,7 @@
       "sourceUrl": "https://example.invalid/sample/steel-tariff-notice",
       "eventType": "Tariffs",
       "waypointsTake": {
-        "whyItMatters": "Tariffs change the relative cost of imported inputs before most households see anything \u2014 the first relationship that matters is steel to manufacturing to construction.",
+        "whyItMatters": "Tariffs change the relative cost of imported inputs before most households see anything — the first relationship that matters is steel to manufacturing to construction.",
         "analysis": "Importers and fabricators face higher landed costs once the effective date arrives. Downstream effects on housing materials are plausible over months but not automatic. Pass-through depends on contracts, inventories, and domestic capacity."
       },
       "affectedCountries": [
@@ -162,12 +162,12 @@
       "sourceUrl": "https://example.invalid/sample/maritime-corridor-advisory",
       "eventType": "Shipping disruption",
       "waypointsTake": {
-        "whyItMatters": "Security risk at a strait can move freight onto longer routes quickly \u2014 the first-order link is corridor risk to voyage days to fuel and schedule cost.",
+        "whyItMatters": "Security risk at a strait can move freight onto longer routes quickly — the first-order link is corridor risk to voyage days to fuel and schedule cost.",
         "analysis": "Longer transit times and higher bunker fuel use appear within days for diverted voyages. Port congestion elsewhere and delayed intermediate goods are plausible over weeks. How long diversions continue is contingent on security conditions."
       },
       "affectedCountries": [
         "Red Sea / Bab el-Mandeb (illustrative)",
-        "Europe\u2013Asia trade lanes"
+        "Europe–Asia trade lanes"
       ],
       "affectedIndustries": [
         "Logistics",
@@ -223,13 +223,13 @@
           "type": "citizen-impact",
           "confidence": "Low",
           "timeframe": "Weeks",
-          "explanation": "Later arrivals and possible fuel sensitivity \u2014 analysis only."
+          "explanation": "Later arrivals and possible fuel sensitivity — analysis only."
         }
       ]
     },
     {
       "id": "gsa_demo-pipeline-cyber",
-      "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems",
+      "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems",
       "publisher": "Illustrative Cyber Agency Advisory (sample)",
       "date": "2021-05-09",
       "publishedAt": "2021-05-09T18:00:00Z",
@@ -237,7 +237,7 @@
       "sourceUrl": "https://example.invalid/sample/pipeline-cyber-advisory",
       "eventType": "Cyber incident",
       "waypointsTake": {
-        "whyItMatters": "Cyber incidents on energy operators can halt physical flows even when malware hits IT systems \u2014 the relationship is cyber event to critical infrastructure to fuel distribution.",
+        "whyItMatters": "Cyber incidents on energy operators can halt physical flows even when malware hits IT systems — the relationship is cyber event to critical infrastructure to fuel distribution.",
         "analysis": "Spot shortages and panic-buying risk can appear within days in dependent regions if product stops moving. Restoration timelines often remain partly opaque during the incident. Predicted household price paths must not be labeled as Observed."
       },
       "affectedCountries": [
@@ -366,6 +366,83 @@
           "confidence": "Low",
           "timeframe": "Weeks",
           "explanation": "Spot gaps and price pressure are plausible if prolonged."
+        }
+      ]
+    },
+    {
+      "id": "gsa_demo-china-export",
+      "headline": "China publishes export restrictions on selected advanced technology items",
+      "publisher": "Illustrative Trade Ministry Notice (sample)",
+      "date": "2023-09-12",
+      "publishedAt": "2023-09-12T09:00:00Z",
+      "factualSummary": "In this sample scenario, a trade authority publishes export-restriction language covering selected advanced technology items, including licensing requirements for certain chip-related transfers. The notice is labeled sample/demo and is not a live regulatory feed.",
+      "sourceUrl": "https://example.invalid/sample/china-export-restrictions",
+      "eventType": "Export control / trade policy",
+      "waypointsTake": {
+        "whyItMatters": "Export restrictions are relationship events — they change which advanced inputs can move, then show up later in device manufacturing schedules and household availability.",
+        "analysis": "Treat the notice as a structural constraint on advanced chips and OEMs. Predicted consumer-device effects should stay Low/Unknown until inventory and lead-time data exist. This brief is illustrative literacy, not a geopolitical verdict."
+      },
+      "affectedCountries": [
+        "China",
+        "Taiwan",
+        "United States",
+        "Japan",
+        "South Korea"
+      ],
+      "affectedIndustries": [
+        "Semiconductors",
+        "Technology",
+        "Automotive",
+        "Electronics"
+      ],
+      "affectedCommodities": [
+        "Advanced chips",
+        "Semiconductors"
+      ],
+      "citizenImpacts": [
+        "Availability of goods",
+        "Digital access",
+        "Inflation / household costs"
+      ],
+      "timeHorizon": "Months",
+      "confidence": "Medium",
+      "storyId": "gss_china_export",
+      "provenance": "story-mode-seed-extension",
+      "likelyImpactPath": [
+        {
+          "label": "China export-restriction notice",
+          "type": "event",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Public notice tightens licensing for selected advanced technology transfers."
+        },
+        {
+          "label": "Export-control policy",
+          "type": "policy",
+          "confidence": "High",
+          "timeframe": "Immediate",
+          "explanation": "Licensing rules constrain certain advanced-chip shipments."
+        },
+        {
+          "label": "Advanced chips",
+          "type": "commodity",
+          "confidence": "Medium",
+          "timeframe": "Weeks",
+          "explanation": "Constrained inputs raise allocation pressure for OEMs."
+        },
+        {
+          "label": "Device manufacturing",
+          "type": "industry",
+          "confidence": "Medium",
+          "timeframe": "Months",
+          "explanation": "OEMs may redesign, delay, or substitute when licensed supply tightens."
+        },
+        {
+          "label": "Device availability",
+          "type": "citizen-impact",
+          "confidence": "Low",
+          "timeframe": "Months",
+          "explanation": "Households might notice longer waits or higher prices for some devices — not automatic."
         }
       ]
     }

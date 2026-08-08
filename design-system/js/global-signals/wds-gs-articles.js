@@ -133,7 +133,8 @@
       citizenImpacts: normalizeStringList(raw.citizenImpacts),
       timeHorizon: normalizeTimeHorizon(raw.timeHorizon),
       confidence: normalizeConfidence(raw.confidence),
-      likelyImpactPath: normalizeImpactPath(raw.likelyImpactPath || raw.impactPath)
+      likelyImpactPath: normalizeImpactPath(raw.likelyImpactPath || raw.impactPath),
+      storyId: raw.storyId ? String(raw.storyId).trim() : null
     };
   }
 
@@ -264,6 +265,11 @@
       renderImpactPath(article.likelyImpactPath) +
       "</section>" +
       renderImpactMeta(article) +
+      (article.storyId
+        ? '<p class="gsa-detail__story"><a class="gs-cta gs-cta--primary" href="../story/?id=' +
+          encodeURIComponent(article.storyId) +
+          '">Open Story Mode briefing</a></p>'
+        : "") +
       '<p class="gsa-detail__back"><a href="./">← All briefs</a></p>' +
       "</article>"
     );
@@ -400,7 +406,13 @@
       renderPathPreview(article.likelyImpactPath) +
       '<p class="gsa-card__cta"><a href="?id=' +
       encodeURIComponent(article.id) +
-      '">Open brief</a></p>' +
+      '">Open brief</a>' +
+      (article.storyId
+        ? ' · <a href="../story/?id=' +
+          encodeURIComponent(article.storyId) +
+          '">Story Mode</a>'
+        : "") +
+      "</p>" +
       "</article>"
     );
   }

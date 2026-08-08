@@ -187,6 +187,17 @@ continuously improves.
 4. **Promote Graph without deleting Cascade Explorer** — keep `/relationships/` as the linear companion; elevate `/relationship-graph/` as the primary CTA and update “coming soon” suite assertions accordingly.
 5. **Negative UI copy still trips library-name tests if the regex includes the denied phrase** — keep asserting `cytoscape|d3.force|…`, not `force-directed`, when the page honestly rejects that layout.
 
+### 2026-08-07 — Global Signals Story Mode
+
+**Artifact:** `docs/global-signals/story-mode-owner-review.md`  
+**Branch:** `feature/global-signals-story-mode`
+
+1. **Briefing ≠ explainer** — Story Mode is seed→sequential intelligence sections; Explain This stays question→path. Share traversal discipline, not the same UX shell.
+2. **Curated story defs may only reference existing IDs** — titles/section order are editorial; section bodies must resolve from graph + linked records or honest gaps.
+3. **Label story-only seed extensions** — `gsn_china` / `gsc_china_export` / `gsa_demo-china-export` carry `provenance: story-mode-seed-extension` for owner accept/relocate.
+4. **Chrome headless screenshots need virtual-time-budget (or CDP ready wait)** — plain `--screenshot` captures the loading shell before fetch+mount; landing HTML-only pages look fine and hide the bug.
+5. **Article-count regressions are intentional when a labeled demo brief is required** — bump Articles/Explain assertions with the seed, and keep “no Coming soon” as the real Articles regression gate.
+
 ### 2026-08-07 — Global Signals Explain This
 
 **Artifact:** `docs/global-signals/explain-this-owner-review.md`  

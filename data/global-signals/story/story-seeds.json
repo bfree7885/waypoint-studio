@@ -1,0 +1,149 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-08T01:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo Story Mode seeds",
+  "honesty": {
+    "banner": "Story Mode assembles intelligence briefings only from curated story seeds, the relationship graph, and linked Global Signals records. No AI generation. Missing sections stay empty and labeled.",
+    "assemblyRules": "Sections are filled by traversing preferred cascades / existing edges and resolving linked industry, country, citizen-impact, and article IDs. Curated titles and section order are allowed; narrative claims beyond structured fields are not.",
+    "inventionRules": "Never invent edges, Waypoint Takes, confidence, evidence, or citizen impacts. If a linked ID is missing, list an honest gap."
+  },
+  "defaultStoryId": "gss_china_export",
+  "stories": [
+    {
+      "id": "gss_china_export",
+      "slug": "china-export-restrictions",
+      "title": "China announces export restrictions",
+      "dek": "Illustrative briefing from structured export-control relationships — not a live geopolitical alert.",
+      "entryLabels": [
+        "China export restrictions",
+        "China announces export restrictions",
+        "export controls china"
+      ],
+      "seedEntityIds": ["gsn_china"],
+      "preferredCascadeId": "gsc_china_export",
+      "linkedIndustryIds": ["gsi_semiconductors", "gsi_technology", "gsi_automotive"],
+      "linkedCountryIds": [
+        "gsc_china",
+        "gsc_taiwan",
+        "gsc_united-states",
+        "gsc_japan",
+        "gsc_south-korea"
+      ],
+      "linkedCitizenSections": ["technology"],
+      "linkedArticleIds": ["gsa_demo-china-export"],
+      "sectionOrder": [
+        "whatHappened",
+        "whyItMatters",
+        "industries",
+        "countries",
+        "citizenImpacts",
+        "articles",
+        "relationshipGraph",
+        "confidence",
+        "evidence"
+      ],
+      "provenance": "story-mode-seed-extension"
+    },
+    {
+      "id": "gss_taiwan_chips",
+      "slug": "taiwan-semiconductor-concentration",
+      "title": "Why Taiwan matters for semiconductors",
+      "dek": "Country concentration literacy assembled from the Taiwan cascade and linked records.",
+      "entryLabels": [
+        "Taiwan semiconductors",
+        "Why Taiwan matters",
+        "Taiwan chip concentration"
+      ],
+      "seedEntityIds": ["gsn_taiwan"],
+      "preferredCascadeId": "gsc_taiwan",
+      "linkedIndustryIds": ["gsi_semiconductors", "gsi_technology"],
+      "linkedCountryIds": ["gsc_taiwan", "gsc_china", "gsc_united-states", "gsc_japan"],
+      "linkedCitizenSections": ["technology"],
+      "linkedArticleIds": [],
+      "sectionOrder": [
+        "whatHappened",
+        "whyItMatters",
+        "industries",
+        "countries",
+        "citizenImpacts",
+        "articles",
+        "relationshipGraph",
+        "confidence",
+        "evidence"
+      ]
+    },
+    {
+      "id": "gss_drought_food",
+      "slug": "drought-and-food-prices",
+      "title": "Drought pressure on food prices",
+      "dek": "Weather → grain → processing → household food costs, from the drought cascade.",
+      "entryLabels": [
+        "Drought food prices",
+        "Why are food prices increasing",
+        "food prices drought"
+      ],
+      "seedEntityIds": ["gsn_drought"],
+      "preferredCascadeId": "gsc_drought",
+      "linkedIndustryIds": ["gsi_food", "gsi_agriculture"],
+      "linkedCountryIds": [],
+      "linkedCitizenSections": ["food"],
+      "linkedArticleIds": ["gsa_demo-port-labor", "gsa_demo-canal-slots"],
+      "sectionOrder": [
+        "whatHappened",
+        "whyItMatters",
+        "industries",
+        "countries",
+        "citizenImpacts",
+        "articles",
+        "relationshipGraph",
+        "confidence",
+        "evidence"
+      ]
+    },
+    {
+      "id": "gss_steel_tariff",
+      "slug": "steel-tariff-ripple",
+      "title": "What a steel tariff can change",
+      "dek": "Tariff → steel → construction / automotive literacy from the steel-tariff cascade.",
+      "entryLabels": [
+        "Steel tariff",
+        "What does this tariff change",
+        "steel tariff ripple"
+      ],
+      "seedEntityIds": ["gsn_steel_tariff"],
+      "preferredCascadeId": "gsc_steel_tariff",
+      "linkedIndustryIds": ["gsi_construction", "gsi_automotive"],
+      "linkedCountryIds": ["gsc_united-states", "gsc_china"],
+      "linkedCitizenSections": ["housing"],
+      "linkedArticleIds": ["gsa_demo-steel-tariff"],
+      "sectionOrder": [
+        "whatHappened",
+        "whyItMatters",
+        "industries",
+        "countries",
+        "citizenImpacts",
+        "articles",
+        "relationshipGraph",
+        "confidence",
+        "evidence"
+      ]
+    }
+  ],
+  "articleStoryMap": {
+    "gsa_demo-china-export": "gss_china_export",
+    "gsa_demo-steel-tariff": "gss_steel_tariff",
+    "gsa_demo-port-labor": "gss_drought_food",
+    "gsa_demo-canal-slots": "gss_drought_food"
+  },
+  "routes": {
+    "articles": "../articles/",
+    "relationships": "../relationships/",
+    "relationshipGraph": "../relationship-graph/",
+    "citizenImpact": "../citizen-impact/",
+    "countries": "../countries/",
+    "industries": "../industries/",
+    "explain": "../explain/",
+    "story": "./"
+  }
+}

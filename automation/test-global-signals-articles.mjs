@@ -47,7 +47,7 @@ assert.match(css, /@media \(max-width:\s*40rem\)/);
 
 const data = JSON.parse(read(dataPath));
 assert.equal(data.mode, "sample-demo");
-assert.equal(data.articles.length, 5);
+assert.equal(data.articles.length, 6);
 for (const a of data.articles) {
   assert.ok(a.id, "id required");
   assert.ok(a.headline, "headline required");
@@ -78,7 +78,7 @@ for (const a of data.articles) {
 
 const withTake = data.articles.filter((a) => a.waypointsTake);
 const withoutTake = data.articles.filter((a) => !a.waypointsTake);
-assert.equal(withTake.length, 4);
+assert.equal(withTake.length, 5);
 assert.equal(withoutTake.length, 1);
 for (const a of withTake) {
   const body = [a.waypointsTake.whyItMatters, a.waypointsTake.analysis].filter(Boolean).join(" ");
