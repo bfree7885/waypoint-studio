@@ -161,6 +161,24 @@ function stampHtml(file, sha) {
     );
   }
 
+  // Optional production tile override (JSON). Never commit secrets into HTML —
+  // pass via CI env, e.g. WAYPOINT_MAP_TILE_CONFIG='{"streetUrl":"https://..."}'
+  const tileCfg = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
+  if (tileCfg && tileCfg.charAt(0) === "{" && /sheds-map|shed-hunting\/map/i.test(file)) {
+    const safe = tileCfg.replace(/</g, "\\u003c");
+    if (/<meta\s+name="waypoint-map-tiles"/i.test(next)) {
+      next = next.replace(
+        /<meta\s+name="waypoint-map-tiles"[^>]*>/i,
+        '<meta name="waypoint-map-tiles" content=\'' + safe + "'>"
+      );
+    } else if (/<meta\s+name="waypoint-build"/i.test(next)) {
+      next = next.replace(
+        /(<meta\s+name="waypoint-build"[^>]*>)/i,
+        "$1\n  <meta name=\"waypoint-map-tiles\" content='" + safe + "'>"
+      );
+    }
+  }
+
   next = next.replace(/(<script src="[^"]*wds-build\.js\?v=[^"]+") defer>/g, "$1>");
 
   if (next !== html) {

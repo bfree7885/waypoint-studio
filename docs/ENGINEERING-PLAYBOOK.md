@@ -1015,3 +1015,22 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-08 — Sheds map tile reliability
+
+**Branch:** `fix/sheds-map-reliability`  
+**Report:** `docs/sheds/map-reliability-owner-review.md`
+
+1. **Wrong Subresource Integrity on Leaflet CSS is a silent map-killer.** The
+   browser blocks the stylesheet; JS still runs; tiles stay `position: static`
+   and leave large gray gaps that look like “failed tiles.” Verify SRI digests
+   or vendor Leaflet locally (preferred for Pages).
+2. **OSMF public raster (`tile.openstreetmap.org`) is not a production basemap.**
+   It may return HTTP 200 placeholder PNGs with `x-blocked` (“Access blocked”).
+   Migrate to a production-capable CDN (CARTO / Esri / keyed provider) and keep
+   attribution honest.
+3. **DOM tile coverage sampling beats screenshot-only QA** for headless CDP
+   (composited transforms can under-paint in captures). Gate on viewport sample
+   hits + host allowlist (no OSMF public hosts).
+4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
+   committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
+

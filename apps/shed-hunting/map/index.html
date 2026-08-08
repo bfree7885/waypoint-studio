@@ -12,12 +12,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzPCf9xURh5NIHhHtvSEvxUtUM=" crossorigin="">
+  <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../../design-system/css/wds-experience-v2.css">
   <link rel="stylesheet" href="../css/sheds-map.css">
 </head>
 <body>
-  <a class="wds-skip sheds-skip" href="#sheds-map">Skip to map</a>
+  <a class="sheds-skip" href="#sheds-map">Skip to map</a>
   <div class="sheds-app">
     <div id="sheds-map-shell" aria-busy="true">
       <div class="sheds-map-canvas">
@@ -29,6 +29,7 @@
         <div class="sheds-map-offline" id="map-offline" hidden role="status">
           You’re offline. Cached tiles may still show; heat and weather need a connection. Local notes still save.
         </div>
+        <div class="sheds-map-tile-status" id="map-tile-status" hidden role="status" aria-live="polite"></div>
       </div>
 
       <!-- Immediate: brand + quiet status -->
@@ -60,7 +61,7 @@
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
         <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
-        <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; map tile providers still see approximate map requests.</p>
+        <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; basemap providers (CARTO / Esri) still see approximate map tile requests.</p>
       </div>
 
       <!-- Intention: place yourself, note what you see, then tools. -->
@@ -432,7 +433,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../vendor/leaflet/leaflet.js"></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-session-store.js"></script>
   <script src="../js/sheds-validation-store.js"></script>
@@ -441,6 +442,7 @@
   <script src="../js/sheds-likelihood-model.js"></script>
   <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
+  <script src="../js/sheds-tile-provider.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

@@ -1,0 +1,101 @@
+{
+  "capturedAt": "2026-08-08T13:20:16.209Z",
+  "url": "https://waypointstudio.org/apps/shed-hunting/map/",
+  "tilesRequested": 24,
+  "tilesOk200": 24,
+  "tilesBlockedHeader": 0,
+  "tilesHttpFail": 0,
+  "hosts": [
+    "b.tile.openstreetmap.org",
+    "c.tile.openstreetmap.org",
+    "a.tile.openstreetmap.org"
+  ],
+  "sample": [
+    {
+      "url": "https://b.tile.openstreetmap.org/6/17/23.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "35686"
+    },
+    {
+      "url": "https://c.tile.openstreetmap.org/6/16/22.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "24221"
+    },
+    {
+      "url": "https://a.tile.openstreetmap.org/6/15/24.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "28679"
+    },
+    {
+      "url": "https://a.tile.openstreetmap.org/6/16/23.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "32335"
+    },
+    {
+      "url": "https://c.tile.openstreetmap.org/6/15/23.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "26866"
+    },
+    {
+      "url": "https://c.tile.openstreetmap.org/6/17/24.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "41941"
+    },
+    {
+      "url": "https://b.tile.openstreetmap.org/6/16/24.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "32092"
+    },
+    {
+      "url": "https://a.tile.openstreetmap.org/6/13/23.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "14319"
+    },
+    {
+      "url": "https://b.tile.openstreetmap.org/6/14/23.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "17337"
+    },
+    {
+      "url": "https://b.tile.openstreetmap.org/6/18/22.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "44759"
+    },
+    {
+      "url": "https://c.tile.openstreetmap.org/6/14/24.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "21841"
+    },
+    {
+      "url": "https://c.tile.openstreetmap.org/6/17/21.png",
+      "status": 200,
+      "mime": "image/png",
+      "blocked": false,
+      "contentLength": "24227"
+    }
+  ],
+  "loadingFailedNonCancel": [],
+  "consoleErrors": []
+}
