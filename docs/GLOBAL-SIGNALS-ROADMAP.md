@@ -39,7 +39,8 @@
 | --- | --- | --- |
 | **Articles** | Curated literacy with citations — not a breaking feed | `/side-trails/global-signals/articles/` |
 | **Waypoint’s Take** | Calm editorial framing of relationships and uncertainty | `/side-trails/global-signals/waypoint-take/` |
-| **Relationship Graph** | Typed nodes and evidenced edges | `/side-trails/global-signals/relationship-graph/` |
+| **Relationship Explorer** | Cascading “What depends on this?” (sample/demo) | `/side-trails/global-signals/relationships/` |
+| **Relationship Graph** | Typed nodes and evidenced edges (future graph UX) | `/side-trails/global-signals/relationship-graph/` |
 | **Supply Chains** | Corridors, chokepoints, industry dependencies | `/side-trails/global-signals/supply-chains/` |
 | **Citizen Impact** | Everyday consequences with confidence labels | `/side-trails/global-signals/citizen-impact/` |
 | **Scenario Explorer** | What-if literacy for cascading effects — not prediction theater | `/side-trails/global-signals/scenario-explorer/` |

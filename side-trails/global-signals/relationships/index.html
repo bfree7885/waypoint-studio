@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Relationship Explorer — What depends on this? Cascading dependency literacy for Global Signals. Sample/demo data. Not a network graph. Part of Side Trails at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/relationships/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Relationship Explorer — Global Signals">
+  <meta property="og:description" content="Interactive cascading explorer answering What depends on this? — with why, confidence, time horizon, and evidence on every step.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/relationships/">
+  <title>Relationship Explorer — Global Signals</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-relationships.css">
+</head>
+<body class="gs-landing gsr-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="./" aria-current="page">Explorer</a>
+      <a href="../relationship-graph/">Graph</a>
+      <a href="../explain/">Explain This</a>
+      <a href="../articles/">Articles</a>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+    </nav>
+  </header>
+
+  <main id="main" class="gsr-main">
+    <header class="gsr-hub-head">
+      <p class="gs-eyebrow">Global Signals module</p>
+      <h1>Relationship Explorer</h1>
+      <p class="gsr-hub-desc">
+        Answers <strong>What depends on this?</strong> with a cascading dependency display —
+        not a force-directed graph. Every step shows why, confidence, time horizon, and evidence.
+      </p>
+      <p class="gsr-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../relationship-graph/">Relationship Graph</a>
+        <a class="gs-cta" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../articles/">Articles</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+      </p>
+    </header>
+
+    <section
+      id="gsr-app"
+      class="gsr-app"
+      aria-label="Relationship Explorer"
+      data-gsr-app
+      data-gsr-state="loading"
+    >
+      <p class="gsr-loading" role="status">Loading Relationship Explorer…</p>
+    </section>
+  </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-relationships.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.relationships) {
+        WDS.globalSignals.relationships.mount(document.getElementById("gsr-app"), {
+          depth: 3,
+          dataUrl: "../../../data/global-signals/relationships/relationships.json"
+        });
+      }
+    });
+  </script>
+
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../articles/">Articles</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
+  </footer>
+</body>
+</html>
