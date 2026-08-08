@@ -32,6 +32,7 @@ const required = [
   "docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md",
   "docs/product/global-signals-owner-review.md",
   "side-trails/global-signals/articles/index.html",
+  "side-trails/global-signals/entities/index.html",
   "side-trails/global-signals/countries/index.html",
   "side-trails/global-signals/industries/index.html",
   "side-trails/global-signals/relationships/index.html",
@@ -61,6 +62,8 @@ assert.match(html, /relationships\.svg/);
 assert.match(html, /signal-flow\.svg/);
 assert.match(html, /citizen-impact\.svg/);
 assert.match(html, /modules-overview\.svg/);
+assert.match(html, /\.\/entities\//);
+assert.match(html, /Entity System/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);

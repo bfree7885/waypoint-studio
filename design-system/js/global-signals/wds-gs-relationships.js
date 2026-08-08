@@ -186,7 +186,9 @@
 
   function queryEntity() {
     try {
-      return new URLSearchParams(global.location.search).get("entity");
+      var params = new URLSearchParams(global.location.search);
+      // Entity System graph links use ?focus=; explorer historically used ?entity=
+      return params.get("focus") || params.get("entity");
     } catch (e) {
       return null;
     }
@@ -195,8 +197,13 @@
   function setQueryEntity(id) {
     try {
       var url = new URL(global.location.href);
-      if (id) url.searchParams.set("entity", id);
-      else url.searchParams.delete("entity");
+      if (id) {
+        url.searchParams.set("focus", id);
+        url.searchParams.set("entity", id);
+      } else {
+        url.searchParams.delete("focus");
+        url.searchParams.delete("entity");
+      }
       global.history.replaceState({}, "", url.pathname + url.search + url.hash);
     } catch (e) {}
   }
@@ -554,7 +561,7 @@
         return bundle;
       }
 
-      var selectedId = opts.entity != null ? opts.entity : queryEntity();
+      var selectedId = opts.focus != null ? opts.focus : opts.entity != null ? opts.entity : queryEntity();
       if (selectedId && !bundle.entityById[selectedId]) {
         selectedId = null;
       }

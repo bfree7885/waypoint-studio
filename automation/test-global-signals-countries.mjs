@@ -128,7 +128,9 @@ for (const c of data.countries) {
   assert.ok(exists(slugPage), "missing slug page " + slugPage);
   const page = read(slugPage);
   assert.match(page, new RegExp(`slug:\\s*"${c.slug}"`));
-  assert.match(page, /wds-gs-countries\.js/);
+  assert.match(page, /wds-gs-entities\.js/);
+  assert.match(page, /entities\.json/);
+  assert.match(page, /data-gse-type="country"/);
   assert.doesNotMatch(page, /Coming soon/i);
   assert.doesNotMatch(page, /TODO|lorem ipsum|placeholder page/i);
 }

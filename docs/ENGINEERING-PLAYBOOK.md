@@ -922,3 +922,15 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+
+### 2026-08-07 — Global Signals Entity System (shared shell)
+
+**Branch:** `feature/global-signals-entity-system`  
+**Report:** `docs/global-signals/entity-system-owner-review.md`
+
+1. **One layout beats module forks.** Country/Industry detail pages now alias the shared `wds-gs-entities` shell with `rel=canonical` to `/entities/<type>/<slug>/` instead of maintaining parallel section trees.
+2. **Graph focus needs a dual-query contract.** Relationship Explorer historically used `?entity=`; Entity System links use `?focus=`. Accept both and write both on selection to avoid soft-link dead ends.
+3. **`gsc_*` is overloaded across modules.** Keep `gsn_*` as the only graph focus id; retain `gsc_*`/`gsi_*`/`gsa_*`/`gsci_*` as `moduleIds` aliases and document the collision explicitly.
+4. **Always render required sections.** Empty honesty copy is cheaper than inventing zeros — tests assert section ids even for sparse entities.
+5. **Rebuild registry from module JSON.** `scripts/build-global-signals-entities.mjs` is the single join point after country/industry/article/citizen/relationship data changes.
+
