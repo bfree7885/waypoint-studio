@@ -48,7 +48,8 @@
     followUser: true,
     planExpanded: false,
     lastClickAt: 0,
-    lastFocusEl: null
+    lastFocusEl: null,
+    tileStatus: null
   };
 
   var els = {};
@@ -349,6 +350,35 @@
     }
   }
 
+  function setTileStatus(status) {
+    var el = $("map-tile-status");
+    if (!el) return;
+    state.tileStatus = status || null;
+    if (!status) {
+      el.setAttribute("hidden", "");
+      el.textContent = "";
+      return;
+    }
+    if (status.degraded) {
+      el.removeAttribute("hidden");
+      el.setAttribute("data-level", "error");
+      el.textContent =
+        "Map tiles aren’t loading from " +
+        (status.providerLabel || "the basemap provider") +
+        ". Check your connection, then pan or zoom to retry. Gray gaps mean the tile request failed — not missing terrain.";
+      return;
+    }
+    if (status.struggling) {
+      el.removeAttribute("hidden");
+      el.setAttribute("data-level", "warn");
+      el.textContent =
+        "Some map tiles are slow or failing. Retrying automatically…";
+      return;
+    }
+    el.setAttribute("hidden", "");
+    el.textContent = "";
+  }
+
   function invalidateMapSize() {
     if (!map) return;
     setTimeout(function () {
@@ -383,36 +413,37 @@
     });
     L.control.zoom({ position: "bottomright" }).addTo(map);
 
-    var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
-      updateWhenIdle: false,
-      keepBuffer: 3
+    var Tiles = window.WaypointShedsTiles;
+    if (!Tiles || !Tiles.createBasemaps) {
+      throw new Error("WaypointShedsTiles missing — load sheds-tile-provider.js before sheds-map-app.js");
+    }
+    var basemaps = Tiles.createBasemaps(L);
+    var street = basemaps.street;
+    var topo = basemaps.topo;
+    Tiles.attachReliability(street, { onStatus: setTileStatus });
+    Tiles.attachReliability(topo, { onStatus: setTileStatus });
+    // CARTO/Esri production tiles — not OSMF public raster (blocked gray placeholders)
+    street.addTo(map);
+    L.control.layers(basemaps.baseLayers, null, {
+      position: "topright",
+      collapsed: true
+    }).addTo(map);
+    map.on("baselayerchange", function () {
+      setTileStatus(null);
     });
-    var topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-      maxZoom: 17,
-      attribution:
-        "Map data: &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, " +
-        "<a href=\"http://viewfinderpanoramas.org\">SRTM</a> | " +
-        "Map style: &copy; <a href=\"https://opentopomap.org\">OpenTopoMap</a> " +
-        "(<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>)",
-      updateWhenIdle: false,
-      keepBuffer: 2
-    });
-    // OSM fills reliably at overview; switch to Topo via Layers for field contours
-    osm.addTo(map);
-    L.control.layers(
-      { "Street (reliable)": osm, "Topographic (OpenTopoMap)": topo },
-      null,
-      { position: "topright", collapsed: true }
-    ).addTo(map);
 
     var firstTile = false;
-    osm.on("load", function () {
+    function afterBasemapSettles() {
+      forceMapLayout({ resetView: true });
+      try {
+        if (street && typeof street.redraw === "function" && map.hasLayer(street)) street.redraw();
+      } catch (e) { /* */ }
+    }
+    street.on("load", function () {
       if (!firstTile) {
         firstTile = true;
         setMapLoading(true);
-        forceMapLayout();
+        afterBasemapSettles();
       }
     });
 
@@ -435,13 +466,25 @@
     heatLayer = null;
 
     map.whenReady(function () {
-      forceMapLayout({ resetView: true });
+      afterBasemapSettles();
       invalidateMapSize();
     });
-    [100, 400, 1000].forEach(function (ms) {
-      setTimeout(function () { forceMapLayout(); }, ms);
+    [120, 480, 1200].forEach(function (ms) {
+      setTimeout(afterBasemapSettles, ms);
     });
-    setTimeout(function () { forceMapLayout({ resetView: true }); setMapLoading(true); }, 1800);
+    setTimeout(function () { afterBasemapSettles(); setMapLoading(true); }, 1800);
+
+    if (typeof ResizeObserver === "function") {
+      var shellEl = document.getElementById("sheds-map-shell");
+      if (shellEl) {
+        var resizeTimer = null;
+        var ro = new ResizeObserver(function () {
+          if (resizeTimer) clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { forceMapLayout({ resetView: true }); }, 80);
+        });
+        ro.observe(shellEl);
+      }
+    }
 
     map.on("dragstart", function () {
       state.followUser = false;
