@@ -138,6 +138,19 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
+### 2026-08-07 — Homepage Side Trails section (deepeners teaser)
+
+**Artifact:** `docs/releases/homepage-side-trails-section-owner-review.md`  
+**Branch:** `feature/homepage-side-trails-section`
+
+1. **Homepage Side Trails belongs in Rebuild deepeners after Scenes/Sheds**, not a
+   marketing `studio-home.js` surface — root Home remains the outdoor workspace.
+2. **Homepage card hrefs can differ from catalog Open URLs** when the product
+   requires the working app (`/apps/signalterrain/`) or an outlink (Civic Trails
+   GitHub) rather than the Side Trails product landing alone.
+3. **Keep Side Trails visually lighter than primary deepen panels** so Home does
+   not read as a second flagship catalog.
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  

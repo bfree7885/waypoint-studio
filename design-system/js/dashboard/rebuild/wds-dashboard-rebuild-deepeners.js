@@ -1,7 +1,8 @@
 /**
  * Dashboard Rebuild — Home below-fold deepeners (append only).
- * Field Notes · Waypoint's Take · Featured Photography · Scenes · Sheds.
- * Same visual family as Rebuild; honest empty/loading; no marketing banners.
+ * Field Notes · Waypoint's Take · Featured Photography · Scenes · Sheds · Side Trails.
+ * Same visual family as Rebuild; Side Trails stays visually lighter than primary apps.
+ * Honest empty/loading; no marketing banners.
  * Authority: docs/rebuild-2026/home-vision-lock-owner-review.md
  */
 (function (global) {
@@ -27,14 +28,119 @@
 
   function prefixes(depth) {
     depth = depth == null ? depthFromPath() : depth;
-    if (depth <= 0) return { root: "", articles: "articles/", scenes: "apps/scenes/", sheds: "apps/shed-hunting/map/", identity: "assets/images/identity/manifest.json" };
+    if (depth <= 0) {
+      return {
+        root: "",
+        articles: "articles/",
+        scenes: "apps/scenes/",
+        sheds: "apps/shed-hunting/map/",
+        identity: "assets/images/identity/manifest.json",
+        sideTrails: "side-trails/",
+        signalterrainApp: "apps/signalterrain/",
+        globalSignals: "side-trails/global-signals/",
+        icons: "assets/images/side-trails/"
+      };
+    }
     return {
       root: "../../",
       articles: "../../articles/",
       scenes: "../scenes/",
       sheds: "../shed-hunting/map/",
-      identity: "../../assets/images/identity/manifest.json"
+      identity: "../../assets/images/identity/manifest.json",
+      sideTrails: "../../side-trails/",
+      signalterrainApp: "../signalterrain/",
+      globalSignals: "../../side-trails/global-signals/",
+      icons: "../../assets/images/side-trails/"
     };
+  }
+
+  /** Homepage teaser cards — destinations verified for direct open (not catalog-only). */
+  var SIDE_TRAILS_CARDS = [
+    {
+      id: "civic-trails",
+      title: "Civic Trails",
+      description: "Evidence-first civic transparency GIS from public records.",
+      status: "Beta",
+      hrefKey: "civicTrails",
+      icon: "civic-trails-map.svg",
+      external: true
+    },
+    {
+      id: "signalterrain",
+      title: "SignalTerrain",
+      description: "Adaptive cyber intelligence for defenders.",
+      status: "Experimental",
+      hrefKey: "signalterrainApp",
+      icon: "signalterrain-network.svg",
+      external: false
+    },
+    {
+      id: "global-signals",
+      title: "Global Signals",
+      description: "How world events shape everyday life.",
+      status: "Experimental",
+      hrefKey: "globalSignals",
+      icon: "global-signals-globe.svg",
+      external: false
+    }
+  ];
+
+  var CIVIC_TRAILS_URL = "https://github.com/bfree7885/civic-trails";
+
+  function sideTrailsHref(card, p) {
+    if (card.hrefKey === "civicTrails") return CIVIC_TRAILS_URL;
+    return p[card.hrefKey] || p.sideTrails;
+  }
+
+  function renderSideTrailsCard(card, p) {
+    var href = sideTrailsHref(card, p);
+    var rel = card.external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    var iconSrc = p.icons + card.icon;
+    return (
+      '<a class="wdb-r-deepen__st-card" data-st-card="' +
+      escapeHtml(card.id) +
+      '" href="' +
+      escapeHtml(href) +
+      '"' +
+      rel +
+      ">" +
+      '<img class="wdb-r-deepen__st-icon" src="' +
+      escapeHtml(iconSrc) +
+      '" alt="" width="40" height="40" loading="lazy" decoding="async">' +
+      '<span class="wdb-r-deepen__st-status">' +
+      escapeHtml(card.status) +
+      "</span>" +
+      '<span class="wdb-r-deepen__st-title">' +
+      escapeHtml(card.title) +
+      "</span>" +
+      '<span class="wdb-r-deepen__st-desc">' +
+      escapeHtml(card.description) +
+      "</span>" +
+      "</a>"
+    );
+  }
+
+  function renderSideTrailsSection(depth) {
+    var p = prefixes(depth);
+    var cards = SIDE_TRAILS_CARDS.map(function (card) {
+      return renderSideTrailsCard(card, p);
+    }).join("");
+    return (
+      '<section class="wdb-r-deepen__section wdb-r-deepen__section--side-trails" data-deepen="side-trails" aria-labelledby="wdb-r-side-trails-title">' +
+      '<header class="wdb-r-deepen__header">' +
+      '<h2 class="wdb-r-deepen__title" id="wdb-r-side-trails-title">Side Trails</h2>' +
+      '<p class="wdb-r-deepen__lede">Experimental projects, research, and useful detours.</p>' +
+      "</header>" +
+      '<div class="wdb-r-deepen__body wdb-r-deepen__st" data-deepen-body="side-trails">' +
+      '<div class="wdb-r-deepen__st-grid">' +
+      cards +
+      "</div>" +
+      '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" data-deepen-link="side-trails" href="' +
+      escapeHtml(p.sideTrails) +
+      '">View all Side Trails \u2192</a></p>' +
+      "</div>" +
+      "</section>"
+    );
   }
 
   function renderSkeleton() {
@@ -87,6 +193,7 @@
       '<p class="wdb-r-deepen__action"><a class="wdb-r-deepen__link" data-deepen-link="sheds" href="#">Open Sheds \u2192</a></p>' +
       "</div>" +
       "</section>" +
+      renderSideTrailsSection(depthFromPath()) +
       "</div>"
     );
   }
@@ -95,8 +202,19 @@
     var p = prefixes(depth);
     var scenes = root.querySelector('[data-deepen-link="scenes"]');
     var sheds = root.querySelector('[data-deepen-link="sheds"]');
+    var sideTrails = root.querySelector('[data-deepen-link="side-trails"]');
     if (scenes) scenes.setAttribute("href", p.scenes);
     if (sheds) sheds.setAttribute("href", p.sheds);
+    if (sideTrails) sideTrails.setAttribute("href", p.sideTrails);
+
+    /* Re-resolve card hrefs/icons when mounted from /apps/dashboard/ */
+    SIDE_TRAILS_CARDS.forEach(function (card) {
+      var el = root.querySelector('[data-st-card="' + card.id + '"]');
+      if (!el) return;
+      el.setAttribute("href", sideTrailsHref(card, p));
+      var img = el.querySelector(".wdb-r-deepen__st-icon");
+      if (img) img.setAttribute("src", p.icons + card.icon);
+    });
   }
 
   function fillArticles(el, depth) {
@@ -274,7 +392,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildDeepeners = {
-    version: "1.0.0-home-rc1",
+    version: "1.1.0-home-side-trails",
     render: renderSkeleton,
     bind: bind,
     depthFromPath: depthFromPath
