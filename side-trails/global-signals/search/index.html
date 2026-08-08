@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Universal Intelligence Search for Global Signals — one box over curated countries, industries, relationships, citizen impact, and articles. Structured index, not AI. Part of Side Trails at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/search/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Search — Global Signals">
+  <meta property="og:description" content="One search box over a structured Global Signals knowledge index — countries, industries, relationships, citizen impact, and articles. Not AI.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/search/">
+  <title>Search — Global Signals</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-search.css">
+</head>
+<body class="gs-landing gss-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="./" aria-current="page">Search</a>
+      <a href="../articles/">Articles</a>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+    </nav>
+  </header>
+
+  <main id="main" class="gss-main">
+    <header class="gss-hub-head">
+      <p class="gs-eyebrow">Global Signals module</p>
+      <h1>Universal search</h1>
+      <p class="gss-hub-desc">
+        One box over a structured intelligence index — countries, commodities, industries,
+        companies, ports, conflicts, tariffs, policies, articles, and citizen-impact categories.
+        Ranked like a knowledge graph, not a dumb string dump. No AI model involved.
+      </p>
+      <p class="gss-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../articles/">Articles</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+      </p>
+    </header>
+
+    <section
+      id="gss-app"
+      class="gss-app"
+      aria-label="Universal intelligence search"
+      data-gss-app
+      data-gss-state="loading"
+    >
+      <p class="gss-loading" role="status">Loading search index…</p>
+    </section>
+  </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-search.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.search) {
+        WDS.globalSignals.search.mount(document.getElementById("gss-app"), {
+          depth: 3,
+          dataUrl: "../../../data/global-signals/search/search-index.json"
+        });
+      }
+    });
+  </script>
+
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../articles/">Articles</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
+  </footer>
+</body>
+</html>

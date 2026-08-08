@@ -138,6 +138,26 @@ Append new engineering lessons after every work block so the playbook
 continuously improves.
 
 
+### 2026-08-07 — Global Signals Universal Intelligence Search
+
+**Artifact:** `docs/global-signals/universal-search-owner-review.md`  
+**Branch:** `feature/global-signals-universal-search`
+
+1. **Keep search as a reusable module + `/search/` route** when a parallel
+   home-dashboard agent owns the landing — soft-link only; export
+   `WDS.globalSignals.search.mount` for later embed.
+2. **Prebuild a structured index over sibling-branch JSON** (countries,
+   industries, relationships, citizen impact, articles) instead of calling a
+   model — provenance and “intended module route” badges stay honest when UI
+   routes are not on main yet.
+3. **Token matching needs AND semantics** — OR on common words (`no`, `entity`)
+   fabricates false hits; phrase/label scores can still stand alone.
+4. **Deep links should use stable intended URLs now** (`/countries/{slug}/`,
+   `/relationships/?entity=`, `#section-*`) even if destinations land later.
+5. **Foundation smoke tests that lock “Coming soon” on every module** must
+   graduate Search (and Articles) explicitly when those shells go live.
+
+
 ### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
 
 **Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
