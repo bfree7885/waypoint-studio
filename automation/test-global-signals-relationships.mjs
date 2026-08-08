@@ -197,7 +197,8 @@ assert.equal(api.isSafeHttpUrl("javascript:alert(1)"), false);
 // Landing + Articles integration
 const landing = read("side-trails/global-signals/index.html");
 assert.match(landing, /\.\/relationships\//);
-assert.match(landing, /Relationship Explorer/);
+assert.match(landing, /Cascade Explorer|Relationship Explorer/);
+assert.match(landing, /\.\/relationship-graph\//);
 
 const articles = read("side-trails/global-signals/articles/index.html");
 assert.match(articles, /relationships\//);
@@ -261,9 +262,10 @@ const articlesPage = await get("/side-trails/global-signals/articles/");
 assert.equal(articlesPage.status, 200);
 assert.match(articlesPage.text, /relationships\//);
 
-// No regression: Articles still live; Relationship Graph still placeholder
+// No regression: Articles still live; Relationship Graph is primary (not a coming-soon shell)
 assert.doesNotMatch(read("side-trails/global-signals/articles/index.html"), /Coming soon/i);
-assert.match(read("side-trails/global-signals/relationship-graph/index.html"), /Coming soon/i);
+assert.doesNotMatch(read("side-trails/global-signals/relationship-graph/index.html"), /Coming soon/i);
+assert.match(read("side-trails/global-signals/relationship-graph/index.html"), /gsg-app/);
 
 server.close();
 console.log("Global Signals Relationship Explorer checks passed.");

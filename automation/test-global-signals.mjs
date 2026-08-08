@@ -74,7 +74,7 @@ assert.match(html, /\.\/scenario-explorer\//);
 assert.match(html, /\.\/global-dashboard\//);
 assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
 
-// Articles + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence are live (sample/demo); other modules remain placeholders.
+// Live sample/demo modules: Articles, Relationship Explorer, Relationship Graph, Citizen Impact, Country Intelligence, Industry Intelligence.
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
@@ -113,9 +113,15 @@ assert.match(industriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(industriesPage, /Coming soon/i);
 assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
 
+const graphPage = read("side-trails/global-signals/relationship-graph/index.html");
+assert.match(graphPage, /Relationship Graph/);
+assert.match(graphPage, /gsg-app/);
+assert.match(graphPage, /Part of Side Trails\./);
+assert.doesNotMatch(graphPage, /Coming soon/i);
+assert.doesNotMatch(graphPage, /cytoscape|d3\.force|vis-network|sigma\.js|WebSocket/i);
+
 for (const slug of [
   "waypoint-take",
-  "relationship-graph",
   "supply-chains",
   "scenario-explorer",
   "global-dashboard"

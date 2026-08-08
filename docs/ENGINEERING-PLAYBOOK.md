@@ -157,6 +157,17 @@ continuously improves.
    `scripts/build-industry-intelligence-seed.mjs` rather than hand-editing
    megabytes of duplicated HTML.
 
+### 2026-08-07 — Global Signals Relationship Graph (primary)
+
+**Artifact:** `docs/global-signals/relationship-graph-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-graph`
+
+1. **Radial-from-focus + neighbor list beats force-directed for literacy** — stable equal-angle rings and progressive expand keep “why this edge” readable; physics layouts obscure evidence.
+2. **Assemble edges only from curated source datasets** — Relationship Explorer, Citizen Impact cause chains, Industry `topDependencies` / `citizenImpacts`, and Country citizen pathways. Do not invent hops to fill the graph.
+3. **Mobile must drop the canvas when cramped** — stacked expand panels preserve edge facets; hiding SVG under `40rem` is a readability choice, not a missing feature.
+4. **Promote Graph without deleting Cascade Explorer** — keep `/relationships/` as the linear companion; elevate `/relationship-graph/` as the primary CTA and update “coming soon” suite assertions accordingly.
+5. **Negative UI copy still trips library-name tests if the regex includes the denied phrase** — keep asserting `cytoscape|d3.force|…`, not `force-directed`, when the page honestly rejects that layout.
+
 ### 2026-08-07 — Global Signals Relationship Explorer
 
 **Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  
