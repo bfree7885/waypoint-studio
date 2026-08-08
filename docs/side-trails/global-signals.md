@@ -2,7 +2,7 @@
 
 **Route:** `/side-trails/global-signals/`  
 **Status:** Experimental (Side Trails)  
-**Role:** Public product page + module shells — Explain This + Articles + Relationship Graph + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence sample/demo live; other modules remain placeholders — **no engines, no live fabricated data**
+**Role:** Application intelligence dashboard at `/side-trails/global-signals/` — Explain This + Articles + Relationship Graph + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence sample/demo live; unused roadmap shells remain off the primary surface — **no engines, no live fabricated data**
 
 ---
 
@@ -18,17 +18,16 @@
 
 ---
 
-## Landing sections
+## Dashboard sections (primary experience)
 
-1. Mission  
-2. Purpose  
-3. Philosophy & boundaries  
-4. Why relationships matter  
-5. Signal path  
-6. Why headlines are not enough  
-7. How Global Signals works  
-8. Why citizens should care  
-9. Roadmap (module teaser)
+1. Relationship Explorer search  
+2. Current Events  
+3. Featured Waypoint’s Take  
+4. Featured Relationship  
+5. Most Affected Countries  
+6. Industries Under Pressure  
+7. Citizen Impact Summary  
+8. Latest Articles  
 
 ---
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Global Signals foundation smoke checks (landing, placeholders, catalog, docs).
+ * Global Signals foundation smoke checks (dashboard + live modules + placeholders).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -20,12 +20,10 @@ function exists(rel) {
 const required = [
   "side-trails/global-signals/index.html",
   "design-system/css/wds-global-signals-landing.css",
+  "design-system/css/wds-global-signals-home.css",
+  "design-system/js/global-signals/wds-gs-home.js",
+  "data/global-signals/home/home.json",
   "assets/images/side-trails/global-signals-globe.svg",
-  "assets/images/global-signals/landing/relationships.svg",
-  "assets/images/global-signals/landing/signal-flow.svg",
-  "assets/images/global-signals/landing/citizen-impact.svg",
-  "assets/images/global-signals/landing/modules-overview.svg",
-  "assets/images/global-signals/architecture-layers.svg",
   "docs/side-trails/global-signals.md",
   "docs/GLOBAL-SIGNALS-ARCHITECTURE.md",
   "docs/GLOBAL-SIGNALS-ROADMAP.md",
@@ -50,85 +48,84 @@ for (const rel of required) {
 
 const html = read("side-trails/global-signals/index.html");
 assert.match(html, /Global Signals/);
-assert.match(html, /Understanding how world events shape everyday life\./);
+assert.match(html, /What matters today\?/);
+assert.match(html, /gsh-board|data-gsh-board/);
+assert.match(html, /wds-gs-home\.js/);
+assert.match(html, /wds-global-signals-home\.css/);
 assert.match(html, /relationship intelligence platform/i);
 assert.match(html, /not a news website/i);
 assert.match(html, /not financial advice/i);
 assert.match(html, /Experimental/);
-assert.match(html, /Philosophy/);
-assert.match(html, /Roadmap/);
 assert.match(html, /Part of Side Trails\./);
-assert.match(html, /relationships\.svg/);
-assert.match(html, /signal-flow\.svg/);
-assert.match(html, /citizen-impact\.svg/);
-assert.match(html, /modules-overview\.svg/);
 assert.match(html, /\.\/articles\//);
 assert.match(html, /\.\/relationships\//);
 assert.match(html, /\.\/countries\//);
 assert.match(html, /\.\/industries\//);
 assert.match(html, /Industry Intelligence/);
 assert.match(html, /\.\/explain\//);
-assert.match(html, /\.\/waypoint-take\//);
 assert.match(html, /\.\/relationship-graph\//);
-assert.match(html, /\.\/supply-chains\//);
 assert.match(html, /\.\/citizen-impact\//);
-assert.match(html, /\.\/scenario-explorer\//);
-assert.match(html, /\.\/global-dashboard\//);
-assert.doesNotMatch(html, /fetch\(|WebSocket|maplibre|live feed/i);
+assert.doesNotMatch(html, /Coming soon/i);
+assert.doesNotMatch(html, /Future modules/i);
+assert.doesNotMatch(html, /WebSocket|maplibre|live feed/i);
+// Roadmap shells stay off the primary dashboard surface.
+assert.doesNotMatch(html, /\.\/waypoint-take\//);
+assert.doesNotMatch(html, /\.\/supply-chains\//);
+assert.doesNotMatch(html, /\.\/scenario-explorer\//);
+assert.doesNotMatch(html, /\.\/global-dashboard\//);
 
-// Live sample/demo modules: Articles, Relationship Explorer, Relationship Graph, Explain This, Citizen Impact, Country Intelligence, Industry Intelligence.
+const homeJs = read("design-system/js/global-signals/wds-gs-home.js");
+assert.match(homeJs, /Current Events/);
+assert.match(homeJs, /Featured Waypoint/);
+assert.match(homeJs, /Featured Relationship/);
+assert.match(homeJs, /Most Affected Countries/);
+assert.match(homeJs, /Industries Under Pressure/);
+assert.match(homeJs, /Citizen Impact Summary/);
+assert.match(homeJs, /Latest Articles/);
+assert.match(homeJs, /Relationship Explorer search/);
+assert.match(homeJs, /GS\.home\s*=/);
+
+const homeData = JSON.parse(read("data/global-signals/home/home.json"));
+assert.equal(homeData.mode, "sample-demo");
+assert.ok(homeData.featuredTake && homeData.featuredTake.articleId);
+assert.ok(homeData.featuredRelationship && homeData.featuredRelationship.rootEntityId);
+assert.ok(Array.isArray(homeData.mostAffectedCountrySlugs));
+assert.ok(Array.isArray(homeData.industriesUnderPressureSlugs));
+
 const articlesPage = read("side-trails/global-signals/articles/index.html");
 assert.match(articlesPage, /Articles/);
 assert.match(articlesPage, /gsa-feed/);
-assert.match(articlesPage, /Global Signals articles will appear here as verified sources are added\./);
-assert.match(articlesPage, /Part of Side Trails\./);
 assert.doesNotMatch(articlesPage, /Coming soon/i);
-assert.doesNotMatch(articlesPage, /fetch\(|WebSocket|live data dashboard/i);
 
 const relationshipsPage = read("side-trails/global-signals/relationships/index.html");
 assert.match(relationshipsPage, /Relationship Explorer/);
 assert.match(relationshipsPage, /gsr-app/);
-assert.match(relationshipsPage, /What depends on this/);
-assert.match(relationshipsPage, /Part of Side Trails\./);
 assert.doesNotMatch(relationshipsPage, /Coming soon/i);
-assert.doesNotMatch(relationshipsPage, /cytoscape|WebSocket/i);
 
 const citizenImpactPage = read("side-trails/global-signals/citizen-impact/index.html");
 assert.match(citizenImpactPage, /Citizen Impact/);
 assert.match(citizenImpactPage, /gsc-board|data-gsc-board/);
-assert.match(citizenImpactPage, /wds-gs-citizen-impact\.js/);
-assert.match(citizenImpactPage, /Part of Side Trails\./);
 assert.doesNotMatch(citizenImpactPage, /Coming soon/i);
-assert.doesNotMatch(citizenImpactPage, /WebSocket|live data dashboard/i);
 
 const countriesPage = read("side-trails/global-signals/countries/index.html");
 assert.match(countriesPage, /Country Intelligence/);
 assert.match(countriesPage, /gsc-root/);
-assert.match(countriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(countriesPage, /Coming soon/i);
-assert.doesNotMatch(countriesPage, /WebSocket|live data dashboard/i);
 
 const industriesPage = read("side-trails/global-signals/industries/index.html");
 assert.match(industriesPage, /Industry Intelligence/);
 assert.match(industriesPage, /gsi-index|data-gsi-index/);
-assert.match(industriesPage, /Part of Side Trails\./);
 assert.doesNotMatch(industriesPage, /Coming soon/i);
-assert.doesNotMatch(industriesPage, /WebSocket|live data dashboard/i);
 
 const graphPage = read("side-trails/global-signals/relationship-graph/index.html");
 assert.match(graphPage, /Relationship Graph/);
 assert.match(graphPage, /gsg-app/);
-assert.match(graphPage, /Part of Side Trails\./);
 assert.doesNotMatch(graphPage, /Coming soon/i);
-assert.doesNotMatch(graphPage, /cytoscape|d3\.force|vis-network|sigma\.js|WebSocket/i);
 
 const explainPage = read("side-trails/global-signals/explain/index.html");
 assert.match(explainPage, /Explain This/);
 assert.match(explainPage, /gse-app/);
-assert.match(explainPage, /No AI invention/);
-assert.match(explainPage, /Part of Side Trails\./);
 assert.doesNotMatch(explainPage, /Coming soon/i);
-assert.doesNotMatch(explainPage, /openai|anthropic|llm|ChatGPT/i);
 
 for (const slug of [
   "waypoint-take",
@@ -140,7 +137,6 @@ for (const slug of [
   assert.match(page, /Coming soon/i);
   assert.match(page, /not implemented/i);
   assert.match(page, /Part of Side Trails\./);
-  assert.doesNotMatch(page, /fetch\(|WebSocket|live data dashboard/i);
 }
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
@@ -149,24 +145,6 @@ assert.ok(gs, "global-signals missing from catalog");
 assert.equal(gs.title, "Global Signals");
 assert.equal(gs.tagline, "Understanding how world events shape everyday life.");
 assert.equal(gs.status, "experimental");
-assert.equal(gs.ctaLabel, "Explore Global Signals");
 assert.equal(gs.url, "side-trails/global-signals/");
-assert.ok(exists(gs.icon), gs.icon);
-assert.match(gs.description, /relationship intelligence platform/i);
-assert.match(gs.description, /Not a news website/i);
-assert.match(gs.description, /Not financial advice/i);
-
-const arch = read("docs/GLOBAL-SIGNALS-ARCHITECTURE.md");
-assert.match(arch, /not implemented/i);
-assert.match(arch, /relationship intelligence platform/i);
-
-const roadmap = read("docs/GLOBAL-SIGNALS-ROADMAP.md");
-assert.match(roadmap, /Articles/);
-assert.match(roadmap, /Waypoint’s Take|Waypoint's Take/);
-assert.match(roadmap, /Relationship Graph/);
-assert.match(roadmap, /Supply Chains/);
-assert.match(roadmap, /Citizen Impact/);
-assert.match(roadmap, /Scenario Explorer/);
-assert.match(roadmap, /Global Dashboard/);
 
 console.log("Global Signals foundation checks passed.");

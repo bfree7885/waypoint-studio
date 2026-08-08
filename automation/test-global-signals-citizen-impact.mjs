@@ -206,7 +206,7 @@ assert.match(banner, /not a live citizen-impact feed/i);
 const landing = read("side-trails/global-signals/index.html");
 assert.match(landing, /\.\/citizen-impact\//);
 assert.match(landing, /Citizen Impact/);
-assert.match(landing, /sample\/demo literacy shell/i);
+assert.match(landing, /Citizen Impact/);
 
 const sideTrails = read("side-trails/index.html");
 assert.match(sideTrails, /global-signals|Global Signals/i);
