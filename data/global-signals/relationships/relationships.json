@@ -1,0 +1,745 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-07T22:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo dataset",
+  "honesty": {
+    "banner": "Sample / demo dataset — not a live relationship graph. Cascades are illustrative educational patterns, not current-event forecasts.",
+    "confidenceRules": "Observed is reserved for established structural facts. Predicted or downstream hops must never use Observed. Missing or invalid confidence defaults to Unknown.",
+    "evidenceRules": "Demo evidence uses example.invalid citations and historical pattern notes. Never treat these as live news."
+  },
+  "entityTypes": [
+    "country",
+    "industry",
+    "commodity",
+    "port",
+    "company",
+    "conflict",
+    "tariff",
+    "policy",
+    "weather"
+  ],
+  "entities": [
+    {
+      "id": "gsn_taiwan",
+      "type": "country",
+      "label": "Taiwan",
+      "summary": "Illustrative country node used for semiconductor concentration literacy — not a live risk score.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_semiconductors",
+      "type": "commodity",
+      "label": "Semiconductors",
+      "summary": "Advanced and commodity chips used across electronics and industrial control.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_electronics",
+      "type": "industry",
+      "label": "Electronics",
+      "summary": "Device and component manufacturing that consumes semiconductors. Selectable industry root.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_automotive",
+      "type": "industry",
+      "label": "Automotive",
+      "summary": "Vehicle production dependent on electronics and chip availability.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_consumer_products",
+      "type": "industry",
+      "label": "Consumer Products",
+      "summary": "Finished goods households buy — phones, appliances, and vehicles.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_rotterdam",
+      "type": "port",
+      "label": "Port of Rotterdam (illustrative)",
+      "summary": "Sample major European gateway used to teach port → corridor dependencies.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_container_freight",
+      "type": "commodity",
+      "label": "Container freight",
+      "summary": "Scheduled container capacity moving finished and intermediate goods.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_logistics",
+      "type": "industry",
+      "label": "Logistics",
+      "summary": "Warehousing, trucking, and last-mile distribution.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_retail",
+      "type": "industry",
+      "label": "Retail",
+      "summary": "Shelf availability and restock timing for consumer goods.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_goods_availability",
+      "type": "industry",
+      "label": "Goods availability (citizen impact)",
+      "summary": "Literacy node for how households may notice delays — not individual people.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_steel_tariff",
+      "type": "tariff",
+      "label": "Illustrative steel tariff",
+      "summary": "Sample trade measure raising cost of imported steel for literacy.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_steel",
+      "type": "commodity",
+      "label": "Steel",
+      "summary": "Structural metal input for construction and vehicles.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_construction",
+      "type": "industry",
+      "label": "Construction",
+      "summary": "Building and infrastructure projects using steel inputs.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_drought",
+      "type": "weather",
+      "label": "Prolonged drought (illustrative)",
+      "summary": "Sample weather stress affecting waterways and agriculture — labeled demo, not a live alert.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_grain",
+      "type": "commodity",
+      "label": "Grain",
+      "summary": "Staple agricultural commodity used in food systems.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_food_processing",
+      "type": "industry",
+      "label": "Food processing",
+      "summary": "Turning agricultural inputs into packaged foods.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_household_food",
+      "type": "industry",
+      "label": "Household food costs",
+      "summary": "Citizen-impact literacy for grocery prices and availability.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_corridor_conflict",
+      "type": "conflict",
+      "label": "Corridor conflict (illustrative)",
+      "summary": "Sample publicly reported conflict near a trade corridor — educational pattern only.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_crude_oil",
+      "type": "commodity",
+      "label": "Crude oil",
+      "summary": "Primary energy commodity affecting transport fuel costs.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_transportation",
+      "type": "industry",
+      "label": "Transportation",
+      "summary": "Freight and passenger movement sensitive to fuel prices.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_export_controls",
+      "type": "policy",
+      "label": "Export-control policy (illustrative)",
+      "summary": "Sample public policy restricting certain advanced technology transfers.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_advanced_chips",
+      "type": "commodity",
+      "label": "Advanced chips",
+      "summary": "High-end semiconductors subject to licensing and capacity constraints.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_device_makers",
+      "type": "industry",
+      "label": "Device manufacturing",
+      "summary": "OEMs assembling phones, servers, and industrial equipment.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_demo_fab",
+      "type": "company",
+      "label": "DemoChip Fab Co. (illustrative)",
+      "summary": "Fictional company node for company → commodity literacy. Not a real firm.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_canal_corridor",
+      "type": "port",
+      "label": "Canal corridor (illustrative)",
+      "summary": "Sample constrained waterway used to teach chokepoint cascades.",
+      "selectable": true
+    },
+    {
+      "id": "gsn_imported_goods",
+      "type": "commodity",
+      "label": "Imported consumer goods",
+      "summary": "Finished goods that depend on long-haul maritime schedules.",
+      "selectable": false
+    },
+    {
+      "id": "gsn_travel",
+      "type": "industry",
+      "label": "Travel / airlines (citizen-facing)",
+      "summary": "Passenger and freight travel costs and schedules — literacy node shared with Citizen Impact (gsn_travel). Not a live fare index.",
+      "selectable": false,
+      "provenance": "explain-this-seed-extension"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "gsr_taiwan_semiconductors",
+      "from": "gsn_taiwan",
+      "to": "gsn_semiconductors",
+      "relationType": "concentrates_production",
+      "why": "A large share of advanced chip fabrication capacity is concentrated in Taiwan — a structural fact used for literacy, not a prediction.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative industry concentration note (demo)",
+        "url": "https://example.invalid/sample/taiwan-semiconductor-concentration",
+        "notes": "Demo citation. Replace with verified public sources before live mode."
+      }
+    },
+    {
+      "id": "gsr_semiconductors_electronics",
+      "from": "gsn_semiconductors",
+      "to": "gsn_electronics",
+      "relationType": "inputs",
+      "why": "Electronics assembly depends on steady semiconductor supply for boards and controllers.",
+      "confidence": "High",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative supply-input pattern (demo)",
+        "url": "https://example.invalid/sample/chips-to-electronics",
+        "notes": "Historical pattern, not a live shortage claim."
+      }
+    },
+    {
+      "id": "gsr_electronics_automotive",
+      "from": "gsn_electronics",
+      "to": "gsn_automotive",
+      "relationType": "inputs",
+      "why": "Modern vehicles embed electronics for powertrain, safety, and infotainment — chip and board delays can constrain builds.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative automotive electronics dependency (demo)",
+        "url": "https://example.invalid/sample/electronics-automotive",
+        "notes": "Downstream hop — not Observed."
+      }
+    },
+    {
+      "id": "gsr_automotive_consumer",
+      "from": "gsn_automotive",
+      "to": "gsn_consumer_products",
+      "relationType": "feeds_into",
+      "why": "Vehicle availability and pricing feed into what households can purchase and when.",
+      "confidence": "Medium",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative consumer availability hop (demo)",
+        "url": "https://example.invalid/sample/auto-to-consumers",
+        "notes": "Citizen-impact literacy; not a price forecast."
+      }
+    },
+    {
+      "id": "gsr_rotterdam_freight",
+      "from": "gsn_rotterdam",
+      "to": "gsn_container_freight",
+      "relationType": "constrains",
+      "why": "When a major gateway slows, scheduled container capacity through that corridor tightens.",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative port throughput pattern (demo)",
+        "url": "https://example.invalid/sample/rotterdam-throughput",
+        "notes": "Demo only — not a live port status."
+      }
+    },
+    {
+      "id": "gsr_freight_logistics",
+      "from": "gsn_container_freight",
+      "to": "gsn_logistics",
+      "relationType": "affects",
+      "why": "Missed vessel windows cascade into warehouse and trucking schedules inland.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative inland logistics lag (demo)",
+        "url": "https://example.invalid/sample/freight-to-logistics",
+        "notes": "Downstream estimate."
+      }
+    },
+    {
+      "id": "gsr_logistics_retail",
+      "from": "gsn_logistics",
+      "to": "gsn_retail",
+      "relationType": "affects",
+      "why": "Retail restock calendars depend on predictable inbound logistics.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative retail restock dependency (demo)",
+        "url": "https://example.invalid/sample/logistics-retail",
+        "notes": "Pattern literacy."
+      }
+    },
+    {
+      "id": "gsr_retail_goods",
+      "from": "gsn_retail",
+      "to": "gsn_goods_availability",
+      "relationType": "feeds_into",
+      "why": "Households may notice thinner shelves or longer waits when retail inbound slows — not overnight shocks.",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative citizen-impact hop (demo)",
+        "url": "https://example.invalid/sample/retail-to-households",
+        "notes": "Low confidence by design for distant citizen effects."
+      }
+    },
+    {
+      "id": "gsr_tariff_steel",
+      "from": "gsn_steel_tariff",
+      "to": "gsn_steel",
+      "relationType": "prices_through",
+      "why": "A tariff on imported steel can raise effective input cost for domestic buyers of that steel.",
+      "confidence": "High",
+      "timeHorizon": "Immediate",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative tariff price-pass pattern (demo)",
+        "url": "https://example.invalid/sample/steel-tariff-mechanism",
+        "notes": "Mechanism literacy; not a claim about any current measure."
+      }
+    },
+    {
+      "id": "gsr_steel_construction",
+      "from": "gsn_steel",
+      "to": "gsn_construction",
+      "relationType": "inputs",
+      "why": "Construction projects budget steel as a major structural input; cost shifts can delay or reprice builds.",
+      "confidence": "Medium",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative construction input link (demo)",
+        "url": "https://example.invalid/sample/steel-construction",
+        "notes": "Downstream."
+      }
+    },
+    {
+      "id": "gsr_steel_automotive",
+      "from": "gsn_steel",
+      "to": "gsn_automotive",
+      "relationType": "inputs",
+      "why": "Vehicle body and chassis manufacturing consumes steel; input cost and availability matter for production planning.",
+      "confidence": "Medium",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative automotive steel link (demo)",
+        "url": "https://example.invalid/sample/steel-automotive",
+        "notes": "Downstream."
+      }
+    },
+    {
+      "id": "gsr_drought_grain",
+      "from": "gsn_drought",
+      "to": "gsn_grain",
+      "relationType": "affects",
+      "why": "Prolonged drought can reduce yields or raise irrigation stress for grain-producing regions.",
+      "confidence": "Medium",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative drought–agriculture pattern (demo)",
+        "url": "https://example.invalid/sample/drought-grain",
+        "notes": "Not a live weather alert."
+      }
+    },
+    {
+      "id": "gsr_grain_food",
+      "from": "gsn_grain",
+      "to": "gsn_food_processing",
+      "relationType": "inputs",
+      "why": "Food processors buy grain as a core feedstock for flour, feed, and packaged foods.",
+      "confidence": "High",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative grain-to-processing link (demo)",
+        "url": "https://example.invalid/sample/grain-processing",
+        "notes": "Structural input relationship."
+      }
+    },
+    {
+      "id": "gsr_food_household",
+      "from": "gsn_food_processing",
+      "to": "gsn_household_food",
+      "relationType": "feeds_into",
+      "why": "Processing cost and availability can eventually show up in grocery prices — usually with lag and many other factors.",
+      "confidence": "Low",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative grocery-price lag (demo)",
+        "url": "https://example.invalid/sample/food-to-households",
+        "notes": "Many confounders; low confidence."
+      }
+    },
+    {
+      "id": "gsr_conflict_oil",
+      "from": "gsn_corridor_conflict",
+      "to": "gsn_crude_oil",
+      "relationType": "affects",
+      "why": "Conflict near energy corridors can raise risk premiums and disrupt tanker schedules for crude shipments.",
+      "confidence": "Medium",
+      "timeHorizon": "Days",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative corridor-risk pattern (demo)",
+        "url": "https://example.invalid/sample/conflict-oil-corridor",
+        "notes": "Educational; not a live conflict report."
+      }
+    },
+    {
+      "id": "gsr_oil_transport",
+      "from": "gsn_crude_oil",
+      "to": "gsn_transportation",
+      "relationType": "prices_through",
+      "why": "Crude price and availability feed refined fuel costs that transportation operators pay.",
+      "confidence": "High",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative fuel cost pass-through (demo)",
+        "url": "https://example.invalid/sample/oil-to-transport",
+        "notes": "Mechanism literacy."
+      }
+    },
+    {
+      "id": "gsr_transport_logistics",
+      "from": "gsn_transportation",
+      "to": "gsn_logistics",
+      "relationType": "affects",
+      "why": "Higher transport costs can reprice freight contracts and slow discretionary shipments.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative transport-to-logistics hop (demo)",
+        "url": "https://example.invalid/sample/transport-logistics",
+        "notes": "Downstream."
+      }
+    },
+    {
+      "id": "gsr_policy_chips",
+      "from": "gsn_export_controls",
+      "to": "gsn_advanced_chips",
+      "relationType": "constrains",
+      "why": "Export-control rules can limit which advanced chips may be shipped to certain destinations without licenses.",
+      "confidence": "High",
+      "timeHorizon": "Immediate",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative export-control mechanism (demo)",
+        "url": "https://example.invalid/sample/export-controls-chips",
+        "notes": "Policy literacy; not a live license advisory."
+      }
+    },
+    {
+      "id": "gsr_adv_chips_devices",
+      "from": "gsn_advanced_chips",
+      "to": "gsn_device_makers",
+      "relationType": "inputs",
+      "why": "Device makers that rely on advanced nodes may redesign, delay, or substitute when licensed supply tightens.",
+      "confidence": "Medium",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative OEM adaptation lag (demo)",
+        "url": "https://example.invalid/sample/chips-to-devices",
+        "notes": "Downstream estimate."
+      }
+    },
+    {
+      "id": "gsr_devices_consumer",
+      "from": "gsn_device_makers",
+      "to": "gsn_consumer_products",
+      "relationType": "feeds_into",
+      "why": "OEM delays can lengthen wait times or change specs for consumer and enterprise devices.",
+      "confidence": "Low",
+      "timeHorizon": "Months",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative device availability hop (demo)",
+        "url": "https://example.invalid/sample/devices-consumers",
+        "notes": "Distant hop; low confidence."
+      }
+    },
+    {
+      "id": "gsr_fab_semiconductors",
+      "from": "gsn_demo_fab",
+      "to": "gsn_semiconductors",
+      "relationType": "produces",
+      "why": "A fab company produces semiconductors that later industries consume — company → commodity literacy.",
+      "confidence": "High",
+      "timeHorizon": "Long-term",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative fictional fab (demo)",
+        "url": "https://example.invalid/sample/demochip-fab",
+        "notes": "Fictional company. Never present as a real issuer."
+      }
+    },
+    {
+      "id": "gsr_canal_freight",
+      "from": "gsn_canal_corridor",
+      "to": "gsn_container_freight",
+      "relationType": "constrains",
+      "why": "A constrained canal corridor reduces daily transit capacity for container schedules that rely on that shortcut.",
+      "confidence": "High",
+      "timeHorizon": "Days",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative canal capacity pattern (demo)",
+        "url": "https://example.invalid/sample/canal-slots",
+        "notes": "Aligned with Articles sample canal brief; still demo-labeled."
+      }
+    },
+    {
+      "id": "gsr_freight_imports",
+      "from": "gsn_container_freight",
+      "to": "gsn_imported_goods",
+      "relationType": "affects",
+      "why": "Longer ocean legs and missed slots delay imported finished goods.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative import delay pattern (demo)",
+        "url": "https://example.invalid/sample/freight-imports",
+        "notes": "Downstream."
+      }
+    },
+    {
+      "id": "gsr_imports_retail",
+      "from": "gsn_imported_goods",
+      "to": "gsn_retail",
+      "relationType": "inputs",
+      "why": "Retail assortments that depend on imports face restock risk when inbound goods slip.",
+      "confidence": "Medium",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative import-to-retail link (demo)",
+        "url": "https://example.invalid/sample/imports-retail",
+        "notes": "Downstream."
+      }
+    },
+    {
+      "id": "gsr_transport_travel",
+      "from": "gsn_transportation",
+      "to": "gsn_travel",
+      "relationType": "prices_through",
+      "why": "When transportation fuel and schedule costs rise, passenger travel — including airlines sensitive to jet-fuel and network delays — can see fare and reliability pressure. This is a structural literacy hop, not a live fare claim.",
+      "confidence": "Low",
+      "timeHorizon": "Weeks",
+      "evidence": {
+        "kind": "sample-demo",
+        "label": "Illustrative travel cost sensitivity (demo)",
+        "url": "https://example.invalid/sample/transport-to-travel",
+        "notes": "Provenance: explain-this seed extension aligning Relationship Explorer with Citizen Impact gsn_travel. Low confidence by design."
+      },
+      "provenance": "explain-this-seed-extension"
+    }
+  ],
+  "cascades": [
+    {
+      "id": "gsc_taiwan",
+      "rootId": "gsn_taiwan",
+      "title": "What depends on Taiwan (illustrative)",
+      "summary": "Educational cascade from a country concentration node into consumer products.",
+      "edgeIds": [
+        "gsr_taiwan_semiconductors",
+        "gsr_semiconductors_electronics",
+        "gsr_electronics_automotive",
+        "gsr_automotive_consumer"
+      ]
+    },
+    {
+      "id": "gsc_semiconductors",
+      "rootId": "gsn_semiconductors",
+      "title": "What depends on semiconductors (illustrative)",
+      "summary": "Commodity root showing electronics → automotive → consumers.",
+      "edgeIds": [
+        "gsr_semiconductors_electronics",
+        "gsr_electronics_automotive",
+        "gsr_automotive_consumer"
+      ]
+    },
+    {
+      "id": "gsc_rotterdam",
+      "rootId": "gsn_rotterdam",
+      "title": "What depends on Port of Rotterdam (illustrative)",
+      "summary": "Port gateway → freight → logistics → retail → household availability.",
+      "edgeIds": [
+        "gsr_rotterdam_freight",
+        "gsr_freight_logistics",
+        "gsr_logistics_retail",
+        "gsr_retail_goods"
+      ]
+    },
+    {
+      "id": "gsc_steel_tariff",
+      "rootId": "gsn_steel_tariff",
+      "title": "What a steel tariff can touch (illustrative)",
+      "summary": "Tariff → steel → construction (primary path).",
+      "edgeIds": [
+        "gsr_tariff_steel",
+        "gsr_steel_construction"
+      ]
+    },
+    {
+      "id": "gsc_steel",
+      "rootId": "gsn_steel",
+      "title": "What depends on steel (illustrative)",
+      "summary": "Commodity root into construction; automotive is a sibling branch in the edge set.",
+      "edgeIds": [
+        "gsr_steel_construction"
+      ]
+    },
+    {
+      "id": "gsc_drought",
+      "rootId": "gsn_drought",
+      "title": "What a prolonged drought can touch (illustrative)",
+      "summary": "Weather → grain → food processing → household food costs.",
+      "edgeIds": [
+        "gsr_drought_grain",
+        "gsr_grain_food",
+        "gsr_food_household"
+      ]
+    },
+    {
+      "id": "gsc_conflict",
+      "rootId": "gsn_corridor_conflict",
+      "title": "What a corridor conflict can touch (illustrative)",
+      "summary": "Conflict → crude oil → transportation → logistics / travel (airline-sensitive fuel and schedule literacy).",
+      "edgeIds": [
+        "gsr_conflict_oil",
+        "gsr_oil_transport",
+        "gsr_transport_logistics",
+        "gsr_transport_travel"
+      ],
+      "provenance": "explain-this-seed-extension"
+    },
+    {
+      "id": "gsc_oil",
+      "rootId": "gsn_crude_oil",
+      "title": "What depends on crude oil (illustrative)",
+      "summary": "Commodity root into transportation and logistics.",
+      "edgeIds": [
+        "gsr_oil_transport",
+        "gsr_transport_logistics"
+      ]
+    },
+    {
+      "id": "gsc_policy",
+      "rootId": "gsn_export_controls",
+      "title": "What export controls can touch (illustrative)",
+      "summary": "Policy → advanced chips → device makers → consumer products.",
+      "edgeIds": [
+        "gsr_policy_chips",
+        "gsr_adv_chips_devices",
+        "gsr_devices_consumer"
+      ]
+    },
+    {
+      "id": "gsc_fab",
+      "rootId": "gsn_demo_fab",
+      "title": "What depends on DemoChip Fab Co. (illustrative)",
+      "summary": "Fictional company → semiconductors → electronics → automotive → consumers.",
+      "edgeIds": [
+        "gsr_fab_semiconductors",
+        "gsr_semiconductors_electronics",
+        "gsr_electronics_automotive",
+        "gsr_automotive_consumer"
+      ]
+    },
+    {
+      "id": "gsc_canal",
+      "rootId": "gsn_canal_corridor",
+      "title": "What depends on a canal corridor (illustrative)",
+      "summary": "Chokepoint → freight → imports → retail → goods availability.",
+      "edgeIds": [
+        "gsr_canal_freight",
+        "gsr_freight_imports",
+        "gsr_imports_retail",
+        "gsr_retail_goods"
+      ]
+    },
+    {
+      "id": "gsc_electronics",
+      "rootId": "gsn_electronics",
+      "title": "What depends on Electronics (illustrative)",
+      "summary": "Industry root → automotive → consumer products.",
+      "edgeIds": [
+        "gsr_electronics_automotive",
+        "gsr_automotive_consumer"
+      ]
+    },
+    {
+      "id": "gsc_airlines",
+      "rootId": "gsn_corridor_conflict",
+      "title": "Why airlines can be affected (illustrative)",
+      "summary": "Educational path from corridor conflict into fuel-sensitive transportation and passenger travel — not a live airline disruption alert.",
+      "edgeIds": [
+        "gsr_conflict_oil",
+        "gsr_oil_transport",
+        "gsr_transport_travel"
+      ],
+      "provenance": "explain-this-seed-extension"
+    }
+  ],
+  "extensions": {
+    "explainThis": {
+      "note": "gsn_travel + gsr_transport_travel + gsc_airlines added so curated Explain This airline prompts traverse existing oil/transport structure. Labeled sample-demo; not live events.",
+      "provenance": "explain-this-seed-extension"
+    }
+  }
+}

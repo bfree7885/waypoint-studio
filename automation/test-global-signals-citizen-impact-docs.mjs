@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+/**
+ * Global Signals Citizen Impact — design doc + runtime cross-checks.
+ */
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -9,55 +12,53 @@ const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
 const exists = (rel) => fs.existsSync(path.join(root, rel));
 
 const design = read("docs/GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD.md");
-assert.match(design, /Design only|not implemented/i);
+assert.match(design, /sample\/demo runtime|eight-category/i);
 assert.match(design, /What could this mean for ordinary people/);
 assert.match(design, /\bFood\b/);
-assert.match(design, /\bGasoline\b/);
+assert.match(design, /\bFuel\b|\bGasoline\b/);
 assert.match(design, /\bUtilities\b/);
 assert.match(design, /\bHealthcare\b/);
 assert.match(design, /\bInsurance\b/);
-assert.match(design, /\bEmployment\b/);
 assert.match(design, /\bHousing\b/);
 assert.match(design, /\bTechnology\b/);
 assert.match(design, /\bTravel\b/);
-assert.match(design, /Consumer Goods/);
-assert.match(design, /\bEducation\b/);
-assert.match(design, /Current Events/);
-assert.match(design, /Potential Impacts/);
-assert.match(design, /Industries Involved/);
-assert.match(design, /\bWhy\b/);
 assert.match(design, /Confidence/);
 assert.match(design, /Time Horizon/);
 assert.match(design, /Relationship Engine/);
-assert.match(design, /Cascading Impact/);
 assert.match(design, /Articles/);
 assert.match(design, /could mean|may notice|might/i);
 assert.match(design, /No surveillance|surveillance/i);
 assert.doesNotMatch(design, /you will be targeted|surveil citizens|guaranteed to rise/i);
 
-const review = read("docs/product/global-signals-citizen-impact-owner-review.md");
-assert.match(review, /Implementation:\*\* None/);
-assert.match(review, /Push-only|Approve design/i);
-assert.match(review, /not implemented|documentation only/i);
+assert.ok(exists("docs/global-signals/citizen-impact-data-model.md"));
+const model = read("docs/global-signals/citizen-impact-data-model.md");
+assert.match(model, /gsc_\*/);
+assert.match(model, /gsn_\*/);
+assert.match(model, /Observed/);
+assert.match(model, /sample-demo/);
+
+assert.ok(exists("docs/global-signals/citizen-impact-owner-review.md"));
+const review = read("docs/global-signals/citizen-impact-owner-review.md");
+assert.match(review, /do not merge/i);
+assert.match(review, /Citizen Impact/);
+assert.match(review, /sample\/demo/i);
 
 const svg = read("assets/images/global-signals/citizen-impact-dashboard.svg");
 assert.match(svg, /SCHEMATIC|NOT A LIVE/i);
 assert.match(svg, /Citizen Impact/);
 assert.match(svg, /Food/);
-assert.match(svg, /Education/);
 
 const playbook = read("docs/ENGINEERING-PLAYBOOK.md");
-assert.match(playbook, /Citizen Impact Dashboard/);
+assert.match(playbook, /Citizen Impact/);
 
 const readme = read("docs/side-trails/README.md");
 assert.match(readme, /GLOBAL-SIGNALS-CITIZEN-IMPACT-DASHBOARD|Citizen Impact/);
 
-// Cross-links from sibling Global Signals docs when present on disk
 const siblingDocs = [
   "docs/GLOBAL-SIGNALS-RELATIONSHIP-ENGINE.md",
   "docs/GLOBAL-SIGNALS-CASCADING-IMPACT-EXPLORER.md",
-  "docs/GLOBAL-SIGNALS-ARTICLES.md",
   "docs/side-trails/global-signals.md",
+  "docs/global-signals/articles-data-model.md"
 ];
 for (const rel of siblingDocs) {
   if (!exists(rel)) continue;
@@ -68,5 +69,9 @@ for (const rel of siblingDocs) {
     `${rel} is present but missing Citizen Impact cross-link`
   );
 }
+
+assert.ok(exists("side-trails/global-signals/citizen-impact/index.html"));
+assert.ok(exists("data/global-signals/citizen-impact/citizen-impact.json"));
+assert.ok(exists("design-system/js/global-signals/wds-gs-citizen-impact.js"));
 
 console.log("Global Signals Citizen Impact design checks passed.");
