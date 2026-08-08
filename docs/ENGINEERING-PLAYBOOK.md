@@ -1015,6 +1015,7 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+<<<<<<< HEAD
 ### 2026-08-08 — Sheds map tile reliability
 
 **Branch:** `fix/sheds-map-reliability`  
@@ -1034,3 +1035,21 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
    committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
 
+=======
+
+### 2026-08-07 — SignalTerrain Adaptive Defense (live cyber)
+
+**Branch:** `feature/signalterrain-live-cyber-intelligence`  
+**Report:** `docs/reviews/signalterrain-adaptive-defense-2026-08-07/OWNER-REVIEW.md`
+
+1. **Adaptive Defense must consume the live artifact only.** Teaching advisor
+   sample graphs stay isolated; production path is `live.html#adaptive`.
+2. **Never claim device inspection.** Optional local inventory may bias
+   browser re-score — state that explicitly on every Adaptive Defense surface.
+3. **CISA may 403 from some egress paths.** Retain last-known-good live.json;
+   never substitute fixtures. Document cadence (6h Actions) and workarounds.
+4. **Category vocabulary beats opaque scores for defenders:** PATCH / UPDATE ·
+   MITIGATE · REVIEW · WATCH · NO IMMEDIATE ACTION, each with why/evidence.
+5. **Static screenshot servers must run from the feature worktree cwd** or they
+   silently serve another clone’s stale `data/cyber/live.json`.
+>>>>>>> 3d55f23 (feat(signalterrain): Adaptive Defense on live cyber intelligence)

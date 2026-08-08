@@ -26,6 +26,10 @@ import {
   correlateRecords,
   SIGNAL_ENGINE_VERSION
 } from "./cyber-signal/signal-engine.mjs";
+import {
+  buildAdaptiveDefense,
+  ADAPTIVE_DEFENSE_VERSION
+} from "./cyber-signal/adaptive-defense.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -33,7 +37,7 @@ const OUT_DIR = path.join(ROOT, "data", "cyber");
 const LIVE_PATH = process.env.CYBER_LIVE_OUT || path.join(OUT_DIR, "live.json");
 const HEALTH_PATH = process.env.CYBER_HEALTH_OUT || path.join(OUT_DIR, "health.json");
 const GRAPH_PATH = process.env.CYBER_GRAPH_OUT || path.join(OUT_DIR, "graph.json");
-const ENGINE_VERSION = "1.2.0";
+const ENGINE_VERSION = "1.3.0";
 const HISTORY_PATH = process.env.CYBER_HISTORY_OUT || path.join(OUT_DIR, "history.json");
 const CORRELATION_PATH = process.env.CYBER_CORRELATION_OUT || path.join(OUT_DIR, "correlation.json");
 const MAX_GHSA = Number(process.env.CYBER_MAX_GHSA || 25);
@@ -1531,6 +1535,10 @@ async function main() {
   }
 
   const derived = buildDerivedViews(intelligenceRecords);
+  const adaptiveDefense = buildAdaptiveDefense(intelligenceRecords, {
+    previousRecords: previous?.records || [],
+    generatedAt: nowIso()
+  });
   const history = appendHistory(brief, {
     generatedAt: nowIso(),
     trustState,
@@ -1545,6 +1553,7 @@ async function main() {
     meta: {
       version: ENGINE_VERSION,
       signalEngineVersion: SIGNAL_ENGINE_VERSION,
+      adaptiveDefenseVersion: ADAPTIVE_DEFENSE_VERSION,
       generatedAt: nowIso(),
       trustState,
       engine: "signalterrain-cyber-live-engine",
@@ -1556,7 +1565,8 @@ async function main() {
         "Defensive awareness only",
         "Briefing interprets provider facts — never invents incidents",
         "Enrichment and recommendations are decision support, not compliance mandates",
-        "Low-signal items hidden by default (noise reduction)"
+        "Low-signal items hidden by default (noise reduction)",
+        "Adaptive Defense never claims to have inspected user devices"
       ],
       counts: {
         records: intelligenceRecords.length,
@@ -1566,10 +1576,12 @@ async function main() {
         providersOk: okCount,
         providersError: errCount,
         correlationEntities: signal.correlation.entityCount,
-        correlationRelationships: signal.correlation.relationshipCount
+        correlationRelationships: signal.correlation.relationshipCount,
+        adaptiveDefenseHeadline: adaptiveDefense.headline?.length || 0
       }
     },
     brief,
+    adaptiveDefense,
     signal: {
       meta: signal.meta,
       briefings: signal.briefings,
@@ -1597,7 +1609,8 @@ async function main() {
         "Priority scores explain their factors; they are decision support, not risk scores for your firm.",
         "Recommendations explain why — they are not automated remediation.",
         "ATT&CK technique links are keyword heuristics unless marked otherwise.",
-        "Persona tags are relevance hints for future personalization, not assigned roles."
+        "Persona tags are relevance hints for future personalization, not assigned roles.",
+        "Adaptive Defense answers “what should I care about differently today?” from live intel only — this app has not inspected your devices."
       ]
     }
   };

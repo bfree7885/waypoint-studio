@@ -109,6 +109,15 @@ const Live = sandbox.WDS.signalTerrainCyberLive;
 ok(!!Live?.matchProfile, "matchProfile export");
 ok(!!Live?.rescore, "rescore export");
 
+const adaptiveNav = /\[\s*"adaptive"\s*,\s*"Adaptive Defense"\s*\]/.test(liveJs);
+ok(adaptiveNav, "Adaptive Defense nav entry");
+ok(/has not inspected your devices/i.test(liveJs), "live UI device non-inspection language");
+
+if (existsSync(livePath)) {
+  const liveAd = JSON.parse(readFileSync(livePath, "utf8"));
+  ok(liveAd.adaptiveDefense && liveAd.adaptiveDefense.question, "adaptiveDefense in live artifact");
+}
+
 const fakeRec = {
   title: "Firefox security update",
   summary: "Fixes in Mozilla Firefox",
