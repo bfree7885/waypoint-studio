@@ -314,4 +314,4 @@ Deprioritize new features. Prefer:
 | `origin/main` base | `f00b4ae` |
 | Home umbrella tip integrated | `f7ade1e` |
 | Search tip integrated | `4f788ee` |
-| Release branch tip at docs commit | _(stamp after commit)_ |
+| Release branch tip (HEAD) | `64d57ee` (`64d57ee2463aafbfa682471860373e000804044d`) |
