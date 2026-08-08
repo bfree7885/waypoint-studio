@@ -22,7 +22,9 @@ Waypoint’s Take is the studio’s **official interpretation component**. It is
 1. **Never repeat Summary.** If Take text equals or near-duplicates Summary, UI treats it as absent and shows the restrained empty state.
 2. **Never invent Takes on live curated items** when provenance is `unavailable` or body is empty.
 3. Label the component **“Waypoint’s Take”** exactly; mark provenance (`fallback` · `editor-written` · `generated` · `unavailable`).
-4. Visually distinct: italic display body, accent left bar, uppercase title — Summary stays plain body type.
+4. Visually distinct: lime uppercase title, dark elevated surface, accent left
+   bar, normal body type — Summary stays plain body type. Do **not** set Take
+   body to full-paragraph italics (hurts scanability and perceived certainty).
 
 ## API
 

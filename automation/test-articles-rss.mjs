@@ -307,6 +307,26 @@ assert("UI uses official Take renderer hooks", /renderArticleHtml|wds-take--arti
 assert("Take module forbids summary restatement helper", /isRedundantWithSummary/.test(takeJs));
 assert("Take CSS distinct from summary", /wds-take--article/.test(feedCss) && /waf-card__summary-label/.test(feedCss));
 assert("Articles CSS uses WDS tokens", /--wds-font-display|--wds-accent|--wds-text/.test(feedCss));
+assert(
+  "Take surface stays dark (no #fff wash under parchment text)",
+  !/--waf-take:\s*color-mix\([^;]*#fff/.test(feedCss) &&
+    /--waf-take:\s*color-mix\([^;]*var\(--waf-paper\)/.test(feedCss)
+);
+assert(
+  "Take body is normal (not full-paragraph italic)",
+  /\.waf-card\s+\.wds-take__body\s*\{[^}]*font-style:\s*normal/s.test(feedCss)
+);
+assert("Take meta separated for scan", /\.waf-card\s+\.wds-take__meta\s*\{[^}]*border-top:/s.test(feedCss));
+assert("Articles filter/view focus-visible", /waf-view:focus-visible/.test(feedCss));
+const takeCss = read("design-system/css/wds-aurora-bridge.css");
+assert(
+  "Shared .wds-take body is normal style",
+  /\.wds-take__body\s*\{[^}]*font-style:\s*normal/s.test(takeCss)
+);
+assert(
+  "Shared .wds-take keeps lime accent title",
+  /\.wds-take__title\s*\{[^}]*color:\s*var\(--wds-accent\)/s.test(takeCss)
+);
 
 const navCfg = read("design-system/js/platform/wds-app-nav-config.js");
 assert(
@@ -392,8 +412,13 @@ assert("mobile card CTA CSS", /max-width:\s*640px/.test(read("design-system/css/
   "docs/articles/articles-owner-review.md",
   "docs/articles/reusable-articles-architecture.md",
   "docs/articles/waypoint-take.md",
-  "docs/articles/articles-modernization-owner-review.md"
+  "docs/articles/articles-modernization-owner-review.md",
+  "docs/articles/readability-owner-review.md"
 ].forEach((d) => assert("doc " + d, exists(d)));
+assert(
+  "readability review includes contrast notes",
+  /1\.17:1|WCAG AA/.test(read("docs/articles/readability-owner-review.md"))
+);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s)");
