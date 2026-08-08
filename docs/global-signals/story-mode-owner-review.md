@@ -19,7 +19,7 @@ Delivers **Story Mode** — Global Signals intelligence briefings assembled only
 | | SHA |
 | --- | --- |
 | Starting (branch point) | `3528c3f3c995260f256edf0186bcc49a10692379` |
-| Tip | see branch HEAD after push |
+| Tip |  |
 
 ## Routes
 
