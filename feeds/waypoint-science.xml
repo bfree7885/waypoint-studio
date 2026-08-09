@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Aug 2026 00:47:52 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 12:24:58 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,25 @@ Read the original article at the publisher: https://www.audubon.org/rockies/news
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</guid>
+    <pubDate>Sun, 09 Aug 2026 12:14:57 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Adirondack Stories: Winslow Homer</title>
@@ -67,43 +86,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>North Country 2026 State of Hunger Report</title>
-    <link>https://www.adirondackexplorer.org/communities/food-and-farms/north-country-2026-state-of-hunger-report/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/north-country-2026-state-of-hunger-report/</guid>
-    <pubDate>Fri, 07 Aug 2026 13:08:37 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Bulk bins at Ticonderoga Natural Foods Co-op. Photo courtesy of AdkAction, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/05/Bulk-bins-scaled-e1779224206821.jpg?fit=780%2C760&amp;ssl=1&quot; /&gt; The Regional Food Bank shows that nearly 13% of the Adirondack region&apos;s population struggle with food insecurity
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/north-country-2026-state-of-hunger-report/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Exploring the Bog River Trail</title>
-    <link>https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</guid>
-    <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The lower Bog River seen from the Goodman Bridge. Photo by Phil Brown &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Lower-Bog-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; A trek up the Bog River Trail offers terrific views and a joyous descent.
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/exploring-the-bog-river-trail/</description>
-    <category>Rivers and Water</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>A Boat Full of Trout</title>
     <link>https://www.fws.gov/story/2026-08/boat-full-trout</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-08/boat-full-trout</guid>
@@ -138,6 +120,25 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Laid to rest: honoring unearthed Revolutionary War soldiers</title>
+    <link>https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</guid>
+    <pubDate>Sun, 09 Aug 2026 10:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Honor Guards stand by four caskets containing remains from the Revolutionary War Era at the Repose of the Fallen Memorial where they were interred during a ceremony on Wednesday, May 22, 2026, at the Lake George Battlefield Park in Lake George, N.Y. PHOTO BY CINDY SCHULTZ &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/20260522_ADK_Remains_Ceremony_-016-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Revolutionary War soldiers reinterred in Lake George, closing a loop that began 7 years ago
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Lake George Association Annual Report details 2025 initiatives</title>
@@ -308,23 +309,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-07/ne
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Officials will not release cool water from a Colorado River reservoir to protect threatened fish</title>
-    <link>https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</guid>
-    <pubDate>Fri, 07 Aug 2026 07:40:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Federal officials said Thursday they will not release cool water this year from one of the Colorado River&apos;s major reservoirs, which would have protected a threatened native fish downstream but put more strain on already struggling hydropower production.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>The USS Monitor, Part 1: History and Legacy</title>
     <link>https://www.noaa.gov/multimedia/podcast/uss-monitor-part-1-history-and-legacy-ext</link>
     <guid isPermaLink="true">https://www.noaa.gov/multimedia/podcast/uss-monitor-part-1-history-and-legacy-ext</guid>
@@ -362,54 +346,36 @@ Read the original article at the publisher: https://www.noaa.gov/news/new-turbul
     <author>NOAA</author>
   </item>
   <item>
-    <title>Sun news: Is a CME striking Earth now?</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sat, 08 Aug 2026 09:45:53 GMT</pubDate>
+    <title>Highest-resolution images of the sun’s surface here!</title>
+    <link>https://earthsky.org/sun/highest-resolution-images-of-the-suns-surface-kelvin-helmholtz-instability/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/highest-resolution-images-of-the-suns-surface-kelvin-helmholtz-instability/</guid>
+    <pubDate>Sun, 09 Aug 2026 11:35:36 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news August 8, 2026: The expected CMEs arrived late, but the solar wind and IMF ticked up this morning. Active conditions and isolated G1 storms are possible. The post Sun news: Is a CME striking Earth now? first appeared on EarthSky .
+Summary: The Inouye Solar Telescope has captured the highest-resolution images of the sun&apos;s surface yet. They show instabilities that may help explain the hot surface. The post Highest-resolution images of the sun’s surface here! first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/sun/highest-resolution-images-of-the-suns-surface-kelvin-helmholtz-instability/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>The electromagnetic spectrum: It’s more than visible light</title>
-    <link>https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</guid>
-    <pubDate>Fri, 07 Aug 2026 10:15:46 GMT</pubDate>
+    <title>Venus greatest distance from the sun August 14-15, 2026</title>
+    <link>https://earthsky.org/astronomy-essentials/venus-after-sunset-greatest-elongation/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/venus-after-sunset-greatest-elongation/</guid>
+    <pubDate>Sun, 09 Aug 2026 07:50:11 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The light our eyes can detect is only a sliver of the light out there. The electromagnetic spectrum describes all the wavelengths of light, seen and unseen. The post The electromagnetic spectrum: It’s more than visible light first appeared on EarthSky .
+Summary: In 2026, look for Venus after sunset! It&apos;s high in August evening sky for all to see. It&apos;ll be brightest in the evening sky on September 22. The post Venus greatest distance from the sun August 14-15, 2026 first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The 2nd eclipse season of 2026 is underway</title>
-    <link>https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</guid>
-    <pubDate>Fri, 07 Aug 2026 09:03:25 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: One of the many noticeable cycles in the heavens is an eclipse season. The 2nd eclipse season of 2026 starts with a total solar eclipse on August 12. The post The 2nd eclipse season of 2026 is underway first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/venus-after-sunset-greatest-elongation/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -432,25 +398,6 @@ Read the original article at the publisher: https://www.audubon.org/florida/news
     <category>Birds</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Your National Wildlife Refuge System</title>
-    <link>https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</guid>
-    <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The new episode of The Future of Conservation, Your National Wildlife Refuge System, traces the origins, growth, and evolving purpose of an important part of America’s public lands—from President Theodore Roosevelt’s 1903 protection of Pelican Island to today’s network of more than 570 refuges.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Regional News</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Pacific Hurricanes Fausto and Genevieve actually had origins near Africa</title>
@@ -494,7 +441,7 @@ Read the original article at the publisher: https://www.noaa.gov/acquisition-gra
     <title>Visible planets and night sky guide for August</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sat, 08 Aug 2026 10:47:08 GMT</pubDate>
+    <pubDate>Sun, 09 Aug 2026 10:47:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
@@ -506,6 +453,40 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Perseid meteor shower 2026: It’s time to watch</title>
+    <link>https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</guid>
+    <pubDate>Sun, 09 Aug 2026 06:50:01 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The moon is waning smaller every day and will be gone by Perseid meteor shower peak around the mornings of August 13, 2026 The post Perseid meteor shower 2026: It’s time to watch first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Officials will not release cool water from a Colorado River reservoir to protect threatened fish</title>
+    <link>https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</guid>
+    <pubDate>Fri, 07 Aug 2026 07:40:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Federal officials said Thursday they will not release cool water this year from one of the Colorado River&apos;s major reservoirs, which would have protected a threatened native fish downstream but put more strain on already struggling hydropower production.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-08-cool-colorado-river-reservoir-threatened.html</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Low water on Germany&apos;s Rhine River threatens new blow to economy</title>
@@ -525,25 +506,6 @@ Read the original article at the publisher: https://phys.org/news/2026-08-german
     <author>Phys.org</author>
   </item>
   <item>
-    <title>Finding New Populations of Rare Plants with Partners</title>
-    <link>https://www.fws.gov/story/finding-new-populations-rare-plants-partners</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/finding-new-populations-rare-plants-partners</guid>
-    <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: From hot desert lowlands along the Rio Grande to forests of pine and oak in shaded ravines of the stark, volcanic Chisos Mountains, Big Bend National Park in Texas is a treasure trove of plants and animals in Trans-Pecos Texas. Retired U.S. Fish and Wildlife Service State Botanist, Chris Best,
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.fws.gov/story/finding-new-populations-rare-plants-partners</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category>Regional News</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>Giant trees have tricks to work around drought</title>
     <link>https://www.sciencenews.org/article/giant-trees-tricks-drought-water</link>
     <guid isPermaLink="true">https://www.sciencenews.org/article/giant-trees-tricks-drought-water</guid>
@@ -560,6 +522,42 @@ Read the original article at the publisher: https://www.sciencenews.org/article/
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>Science News / Society for Science</author>
+  </item>
+  <item>
+    <title>The electromagnetic spectrum: It’s more than visible light</title>
+    <link>https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</guid>
+    <pubDate>Fri, 07 Aug 2026 10:15:46 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The light our eyes can detect is only a sliver of the light out there. The electromagnetic spectrum describes all the wavelengths of light, seen and unseen. The post The electromagnetic spectrum: It’s more than visible light first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/what-is-the-electromagnetic-spectrum/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The 2nd eclipse season of 2026 is underway</title>
+    <link>https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</guid>
+    <pubDate>Fri, 07 Aug 2026 09:03:25 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: One of the many noticeable cycles in the heavens is an eclipse season. The 2nd eclipse season of 2026 starts with a total solar eclipse on August 12. The post The 2nd eclipse season of 2026 is underway first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/definition-what-is-an-eclipse-season/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Total solar eclipse to dazzle observers on August 12</title>
@@ -598,42 +596,6 @@ Read the original article at the publisher: https://earthsky.org/human-world/tip
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Vast Martian honeycombs featured in new Curiosity panorama</title>
-    <link>https://earthsky.org/space/martian-honeycombs-mud-cracks-curiosity-rover/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/martian-honeycombs-mud-cracks-curiosity-rover/</guid>
-    <pubDate>Thu, 06 Aug 2026 08:50:16 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA&apos;s Curiosity rover has found vast new fields of Martian honeycombs in Gale crater. They likely formed from drying mud, just like we see on Earth. The post Vast Martian honeycombs featured in new Curiosity panorama first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/martian-honeycombs-mud-cracks-curiosity-rover/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Best deep-sky photos of July 2026 from EarthSky community</title>
-    <link>https://earthsky.org/todays-image/best-deep-sky-photos-of-july-2026-from-earthsky-community/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/best-deep-sky-photos-of-july-2026-from-earthsky-community/</guid>
-    <pubDate>Thu, 06 Aug 2026 08:00:02 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Enjoy this gallery of deep-sky photos from July 2026 by our EarthSky community. If you have a great photo to share, we&apos;d love to see it! The post Best deep-sky photos of July 2026 from EarthSky community first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/best-deep-sky-photos-of-july-2026-from-earthsky-community/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>A slowing Atlantic current could unleash stronger California storms</title>
     <link>https://www.sciencedaily.com/releases/2026/07/260727214626.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/07/260727214626.htm</guid>
@@ -666,6 +628,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Birds</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Your National Wildlife Refuge System</title>
+    <link>https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</guid>
+    <pubDate>Fri, 07 Aug 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The new episode of The Future of Conservation, Your National Wildlife Refuge System, traces the origins, growth, and evolving purpose of an important part of America’s public lands—from President Theodore Roosevelt’s 1903 protection of Pelican Island to today’s network of more than 570 refuges.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-08/your-national-wildlife-refuge-system</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Regional News</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Bringing a rare butterfly back to Fort Custer</title>
@@ -741,6 +722,23 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-07/ce
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>SpaceX rocket hit the moon: Before and after pics</title>
+    <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
+    <pubDate>Thu, 06 Aug 2026 18:00:56 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers have observed so far from this historic lunar event, including before and after pics. The post SpaceX rocket hit the moon: Before and after pics first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
