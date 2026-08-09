@@ -495,29 +495,24 @@
             "href": "apps/signalterrain/"
           },
           {
-            "id": "topics",
-            "label": "Topics",
-            "href": "apps/signalterrain/topics.html"
-          },
-          {
-            "id": "graph",
-            "label": "Knowledge graph",
-            "href": "apps/signalterrain/graph.html"
-          },
-          {
-            "id": "summary",
-            "label": "Intelligence summary",
-            "href": "apps/signalterrain/summary.html"
-          },
-          {
-            "id": "cyber",
-            "label": "Cyber Awareness",
-            "href": "apps/signalterrain/cyber/"
+            "id": "cyber-live",
+            "label": "Live cyber intelligence",
+            "href": "apps/signalterrain/cyber/live.html"
           },
           {
             "id": "cyber-brief",
-            "label": "Daily cyber brief",
-            "href": "apps/signalterrain/cyber/brief.html"
+            "label": "Today’s cyber brief (live)",
+            "href": "apps/signalterrain/cyber/live.html#brief"
+          },
+          {
+            "id": "cyber-adaptive",
+            "label": "Adaptive Defense (live)",
+            "href": "apps/signalterrain/cyber/live.html#adaptive"
+          },
+          {
+            "id": "cyber-workspace",
+            "label": "Cyber workspace",
+            "href": "apps/signalterrain/cyber/workspace.html"
           },
           {
             "id": "cyber-explorer",
@@ -525,18 +520,38 @@
             "href": "apps/signalterrain/cyber/explorer.html"
           },
           {
-            "id": "cyber-advisor",
-            "label": "Adaptive defense advisor",
-            "href": "apps/signalterrain/cyber/advisor.html"
-          },
-          {
             "id": "cyber-knowledge",
             "label": "Defensive knowledge",
             "href": "apps/signalterrain/cyber/knowledge.html"
           },
           {
+            "id": "cyber-teaching",
+            "label": "Teaching samples",
+            "href": "apps/signalterrain/cyber/teaching.html"
+          },
+          {
+            "id": "topics",
+            "label": "Topics (samples)",
+            "href": "apps/signalterrain/topics.html"
+          },
+          {
+            "id": "graph",
+            "label": "Knowledge graph (samples)",
+            "href": "apps/signalterrain/graph.html"
+          },
+          {
+            "id": "summary",
+            "label": "Intelligence summary (samples)",
+            "href": "apps/signalterrain/summary.html"
+          },
+          {
+            "id": "cyber-brief-scenarios",
+            "label": "Brief scenarios (teaching)",
+            "href": "apps/signalterrain/cyber/brief.html"
+          },
+          {
             "id": "cyber-ingest-health",
-            "label": "Cyber ingest (internal)",
+            "label": "Cyber ingest (internal mock)",
             "href": "apps/signalterrain/cyber/ingest-health.html"
           }
         ],

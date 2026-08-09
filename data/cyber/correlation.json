@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-08T02:16:38.497Z",
+  "generatedAt": "2026-08-09T02:07:41.390Z",
   "entityCount": 381,
   "relationshipCount": 943,
   "entities": [
@@ -350,16 +350,6 @@
       "title": "CVE-2008-4128"
     },
     {
-      "id": "cve:CVE-2026-48282",
-      "kind": "cve",
-      "title": "CVE-2026-48282"
-    },
-    {
-      "id": "vendor:adobe",
-      "kind": "vendor",
-      "title": "Adobe"
-    },
-    {
       "id": "cve:CVE-2026-10520",
       "kind": "cve",
       "title": "CVE-2026-10520"
@@ -585,29 +575,14 @@
       "title": "iCagenda"
     },
     {
-      "id": "cve:CVE-2026-48908",
+      "id": "cve:CVE-2026-48282",
       "kind": "cve",
-      "title": "CVE-2026-48908"
+      "title": "CVE-2026-48282"
     },
     {
-      "id": "vendor:joomshaper",
+      "id": "vendor:adobe",
       "kind": "vendor",
-      "title": "JoomShaper"
-    },
-    {
-      "id": "cve:CVE-2026-55255",
-      "kind": "cve",
-      "title": "CVE-2026-55255"
-    },
-    {
-      "id": "cve:CVE-2026-56290",
-      "kind": "cve",
-      "title": "CVE-2026-56290"
-    },
-    {
-      "id": "vendor:joomlack",
-      "kind": "vendor",
-      "title": "Joomlack"
+      "title": "Adobe"
     },
     {
       "id": "cve:CVE-2026-45659",
@@ -943,6 +918,31 @@
       "id": "cve:CVE-2025-61757",
       "kind": "cve",
       "title": "CVE-2025-61757"
+    },
+    {
+      "id": "cve:CVE-2026-48908",
+      "kind": "cve",
+      "title": "CVE-2026-48908"
+    },
+    {
+      "id": "vendor:joomshaper",
+      "kind": "vendor",
+      "title": "JoomShaper"
+    },
+    {
+      "id": "cve:CVE-2026-55255",
+      "kind": "cve",
+      "title": "CVE-2026-55255"
+    },
+    {
+      "id": "cve:CVE-2026-56290",
+      "kind": "cve",
+      "title": "CVE-2026-56290"
+    },
+    {
+      "id": "vendor:joomlack",
+      "kind": "vendor",
+      "title": "Joomlack"
     },
     {
       "id": "cve:CVE-2026-48558",
@@ -3096,24 +3096,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-48282",
-      "to": "cve:CVE-2026-48282",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-48282",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-48282",
-      "to": "vendor:adobe",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-10520",
       "to": "cve:CVE-2026-10520",
       "evidence": "identifier"
@@ -3867,70 +3849,20 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-48908",
-      "to": "cve:CVE-2026-48908",
+      "from": "live_kev_cve-2026-48282",
+      "to": "cve:CVE-2026-48282",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-48908",
+      "from": "cve:CVE-2026-48282",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-48908",
-      "to": "vendor:joomshaper",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-55255",
-      "to": "cve:CVE-2026-55255",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-55255",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-55255",
-      "to": "vendor:langflow",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-56290",
-      "to": "cve:CVE-2026-56290",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-56290",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-56290",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-56290",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-56290",
-      "to": "vendor:joomlack",
+      "from": "live_kev_cve-2026-48282",
+      "to": "vendor:adobe",
       "evidence": "entity extraction"
     },
     {
@@ -5256,6 +5188,74 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-61757",
       "to": "vendor:oracle",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-48908",
+      "to": "cve:CVE-2026-48908",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-48908",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-48908",
+      "to": "vendor:joomshaper",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-55255",
+      "to": "cve:CVE-2026-55255",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-55255",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-55255",
+      "to": "vendor:langflow",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-56290",
+      "to": "cve:CVE-2026-56290",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-56290",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-56290",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-56290",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-56290",
+      "to": "vendor:joomlack",
       "evidence": "entity extraction"
     },
     {

@@ -897,7 +897,7 @@ export function buildSignalIntelligence(scoredRecords, options = {}) {
       entityCount: correlation.entityCount,
       relationshipCount: correlation.relationshipCount,
       // Keep payload lighter in live.json — full graph also written separately if requested
-      sampleRelationships: correlation.relationships.slice(0, 80),
+      relationshipPreview: correlation.relationships.slice(0, 80),
       note: correlation.note
     },
     noise: {

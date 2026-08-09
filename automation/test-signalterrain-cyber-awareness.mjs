@@ -155,8 +155,15 @@ const model = readFileSync(join(root, "docs/CYBER-INTELLIGENCE-MODEL.md"), "utf8
 ok(/NOT.*IDS|not.*IDS/i.test(model), "model rejects IDS");
 ok(/Known Facts/i.test(model) && /Unknown/i.test(model), "model explainability");
 
-const ui = readFileSync(join(root, "apps/signalterrain/cyber/index.html"), "utf8");
-ok(/Not an IDS|not an IDS|Not IDS/i.test(ui) || /not an IDS, SIEM/i.test(ui), "UI non-claims");
+const teachingUi = readFileSync(join(root, "apps/signalterrain/cyber/teaching.html"), "utf8");
+ok(/Teaching samples only/i.test(teachingUi), "teaching UI labeled samples");
+const liveUi = readFileSync(join(root, "apps/signalterrain/cyber/live.html"), "utf8");
+ok(/does not embed sample threats|Teaching \(samples\)/i.test(liveUi), "live UI separates samples");
+const awarenessJs = readFileSync(
+  join(root, "design-system/js/signalterrain/wds-signalterrain-cyber.js"),
+  "utf8"
+);
+ok(/Not IDS|not IDS|No IDS/i.test(awarenessJs) || /not a.*SIEM/i.test(awarenessJs), "UI non-claims");
 
 if (failed) {
   console.error(`\n${failed} failure(s)`);

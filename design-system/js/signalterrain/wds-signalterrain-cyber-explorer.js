@@ -327,7 +327,7 @@
       "<h2>" +
       esc(entity.title) +
       "</h2>" +
-      '<p class="st-badge">Product explorer · sample</p>' +
+      '<p class="st-badge">Product explorer</p>' +
       researchActionsHtml(entity.id, entity.title) +
       "<h3>Overview</h3><p>" +
       esc(entity.summary) +
@@ -349,7 +349,7 @@
             })
             .join("") +
           "</ul>"
-        : '<p class="st-muted">No advisory links in the sample neighborhood.</p>') +
+        : '<p class="st-muted">No advisory links in this neighborhood.</p>') +
       "<h3>Historical Vulnerabilities</h3>" +
       (vulns.length
         ? "<ul>" +
@@ -365,7 +365,7 @@
             })
             .join("") +
           "</ul>"
-        : '<p class="st-muted">No vulnerability links in sample.</p>') +
+        : '<p class="st-muted">No vulnerability links in this neighborhood.</p>') +
       "<h3>Known Mitigations</h3>" +
       (mitigations.length
         ? "<ul>" +
@@ -399,7 +399,7 @@
             })
             .join("") +
           "</ul>"
-        : '<p class="st-muted">No sibling product edges in this sample neighborhood.</p>') +
+        : '<p class="st-muted">No sibling product edges in this neighborhood.</p>') +
       "<h3>Related Technologies</h3><p class=\"st-muted\">Aliases: " +
       esc((entity.aliases || []).join(", ") || "—") +
       "</p>" +
@@ -434,7 +434,7 @@
       "<h2>" +
       esc(entity.title) +
       "</h2>" +
-      '<p class="st-badge">Threat campaign explorer · sample</p>' +
+      '<p class="st-badge">Threat campaign explorer</p>' +
       researchActionsHtml(entity.id, entity.title) +
       "<h3>Summary</h3><p>" +
       esc(entity.summary) +
@@ -447,7 +447,7 @@
         .join("") +
       "</ul>" +
       "<h3>Analysis (owner / interpretive)</h3><p>" +
-      esc((entity.ownerAnalysis && entity.ownerAnalysis.text) || "No separate owner analysis on this sample.") +
+      esc((entity.ownerAnalysis && entity.ownerAnalysis.text) || "No separate owner analysis on this entity.") +
       "</p>" +
       "<p class=\"st-muted\">Analysis is labeled separately from Known Facts.</p>" +
       "<h3>Timeline</h3><ul>" +
@@ -466,7 +466,7 @@
             })
             .join("") +
           "</ul>"
-        : '<p class="st-muted">None linked in sample neighborhood.</p>') +
+        : '<p class="st-muted">None linked in this neighborhood.</p>') +
       "<h3>Known techniques</h3>" +
       (techniques.length
         ? "<ul>" +
@@ -476,7 +476,7 @@
             })
             .join("") +
           "</ul>"
-        : '<p class="st-muted">None linked in sample.</p>') +
+        : '<p class="st-muted">None linked in this neighborhood.</p>') +
       "<h3>Targeted industries</h3>" +
       (industries.length
         ? "<ul>" +
@@ -525,9 +525,17 @@
       return Promise.resolve();
     }
 
+    var teaching =
+      options.allowSamples ||
+      /(?:\?|&)teaching=1(?:&|$)/.test(String(global.location && global.location.search));
+    var liveGraphUrl = options.liveGraphUrl || "../../../data/cyber/graph.json";
+    var graphUrl = teaching
+      ? base + "samples/cyber-intelligence.sample.json"
+      : liveGraphUrl;
+
     var state = {
       panel: "overview",
-      focusId: options.initialId || "cy_cve-2021-44228",
+      focusId: options.initialId || (teaching ? "cy_cve-2021-44228" : ""),
       expanded: {},
       typeFilters: [],
       timelineFilters: {
@@ -545,17 +553,19 @@
       mapLoaded: false,
       mapDoc: null,
       selectedEdgeId: null,
-      relKinds: []
+      relKinds: [],
+      teaching: teaching
     };
-    state.expanded[state.focusId] = true;
 
     return Promise.all([
-      G.loadBundle(base + "samples/cyber-intelligence.sample.json"),
+      G.loadBundle(graphUrl),
       loadJson(explorerBase + "navigation.json"),
       loadJson(base + "relationship-kinds.json"),
-      loadJson(base + "samples/research-workspace.sample.json").catch(function () {
-        return { items: [] };
-      })
+      teaching
+        ? loadJson(base + "samples/research-workspace.sample.json").catch(function () {
+            return { items: [] };
+          })
+        : Promise.resolve({ items: [] })
     ]).then(function (parts) {
       var loaded = parts[0];
       var nav = parts[1];
@@ -564,6 +574,14 @@
       var graph = loaded.graph;
       state.relKinds = relDoc.kinds || [];
       if (R) R.loadSeed(researchSample.items || []);
+      if (!state.focusId || !graph.get(state.focusId)) {
+        var preferred =
+          graph.byKind("kev-entry")[0] ||
+          graph.byKind("vulnerability")[0] ||
+          graph.listEntities()[0];
+        state.focusId = preferred ? preferred.id : "";
+      }
+      if (state.focusId) state.expanded[state.focusId] = true;
 
       // Restore expanded cache if present
       if (R) {
@@ -693,7 +711,7 @@
           "<h2>Cyber Terrain — Overview</h2>" +
           '<p class="st-lead">What is happening, where (coarsely), who is affected, how events relate, what changed, and what to learn next.</p>' +
           '<p class="st-badge">Educational map of relationships — not a news feed, not fear theater.</p>' +
-          "<p>Entity kinds in sample: " +
+          "<p>Entity kinds in graph: " +
           esc(JSON.stringify(kinds)) +
           "</p>" +
           "<h3>Example attention chain (shared graph API)</h3><ol>" +
@@ -1200,12 +1218,15 @@
       }
 
       function paint() {
+        var modeBadge = state.teaching
+          ? '<p class="st-badge" role="status">Teaching samples only — not live intelligence. <a href="live.html">Open live intelligence</a>.</p>'
+          : '<p class="st-badge" role="status">Live public intelligence graph · local-first research. Teaching samples stay on <a href="teaching.html">teaching.html</a>.</p>';
         root.innerHTML =
           '<div class="st-x-explorer">' +
           '<header class="st-demo-header">' +
           "<h1>Cyber Intelligence Explorer</h1>" +
           '<p class="st-lead">Explore relationships, timelines, and coarse geographic awareness — calmly.</p>' +
-          '<p class="st-badge">Sample intelligence · shared graph · local-first research</p>' +
+          modeBadge +
           "</header>" +
           renderNav() +
           '<div class="st-x-body" id="st-x-body">' +
@@ -1315,7 +1336,16 @@
       global.addEventListener("hashchange", onHash);
       onHash();
       return { graph: graph, state: state };
-    });
+    })
+      .catch(function (err) {
+        root.innerHTML =
+          '<p role="alert">Could not open the explorer against live intelligence. ' +
+          String((err && err.message) || "Live graph unavailable.") +
+          ' Sample data was not substituted. <a href="live.html">Live intelligence</a> · ' +
+          '<a href="teaching.html">Teaching samples</a> · ' +
+          '<button type="button" onclick="location.reload()">Retry</button></p>';
+        root.removeAttribute("aria-busy");
+      });
   }
 
   global.WDS = global.WDS || {};

@@ -461,17 +461,27 @@
       return Promise.resolve();
     }
 
-    var state = { searchQ: "", filterType: "all", index: null };
+    var teaching =
+      options.allowSamples ||
+      /(?:\?|&)teaching=1(?:&|$)/.test(String(global.location && global.location.search));
+    var liveGraphUrl = options.liveGraphUrl || "../../../data/cyber/graph.json";
+    var graphUrl = teaching
+      ? base + "samples/cyber-intelligence.sample.json"
+      : liveGraphUrl;
+
+    var state = { searchQ: "", filterType: "all", index: null, teaching: teaching };
 
     return Promise.all([
-      G.loadBundle(base + "samples/cyber-intelligence.sample.json"),
+      G.loadBundle(graphUrl),
       loadJson(knowBase + "encyclopedia/index.json"),
       loadJson(knowBase + "playbooks/index.json"),
       loadJson(knowBase + "incidents/index.json"),
       loadJson(knowBase + "learning-paths.json"),
-      loadJson(base + "samples/research-workspace.sample.json").catch(function () {
-        return { items: [] };
-      })
+      teaching
+        ? loadJson(base + "samples/research-workspace.sample.json").catch(function () {
+            return { items: [] };
+          })
+        : Promise.resolve({ items: [] })
     ]).then(function (parts) {
       var loaded = parts[0];
       var graph = loaded.graph;
@@ -1013,11 +1023,15 @@
       }
 
       function paint() {
+        var modeBadge = state.teaching
+          ? '<p class="st-badge" role="status">Teaching sample graph — encyclopedia/playbooks remain educational. <a href="live.html">Live intelligence</a>.</p>'
+          : '<p class="st-badge" role="status">Live intelligence graph · curated defensive literacy (encyclopedia, playbooks, learning paths). Not a SOC feed.</p>';
         root.innerHTML =
           '<div class="st-knowledge">' +
           '<header class="st-demo-header">' +
           "<h1>Defensive Knowledge</h1>" +
           '<p class="st-lead">What is this? How does it work? How do professionals defend?</p>' +
+          modeBadge +
           "</header>" +
           nav() +
           '<div id="st-k-body">' +
@@ -1079,7 +1093,16 @@
       global.addEventListener("hashchange", paint);
       paint();
       return state.index;
-    });
+    })
+      .catch(function (err) {
+        root.innerHTML =
+          '<p role="alert">Could not open defensive knowledge against live intelligence. ' +
+          String((err && err.message) || "Live graph unavailable.") +
+          ' Sample data was not substituted. <a href="live.html">Live intelligence</a> · ' +
+          '<a href="teaching.html">Teaching samples</a> · ' +
+          '<button type="button" onclick="location.reload()">Retry</button></p>';
+        root.removeAttribute("aria-busy");
+      });
   }
 
   global.WDS = global.WDS || {};

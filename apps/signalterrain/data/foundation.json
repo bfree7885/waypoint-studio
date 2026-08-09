@@ -78,9 +78,9 @@
       "description": "Educational sample UIOs — labeled samples, not live intelligence."
     },
     {
-      "title": "Living knowledge graph",
-      "status": "live",
-      "description": "Explore connected topics with expand/collapse, filters, search, and living timelines."
+      "title": "Living knowledge graph (samples)",
+      "status": "foundation",
+      "description": "Educational sample topic graph with expand/collapse, filters, search, and timelines — labeled samples, not live cyber intelligence."
     },
     {
       "title": "Topic foundation",
@@ -110,13 +110,23 @@
       "ready": true
     },
     {
+      "path": "cyber/live.html#adaptive",
+      "label": "Adaptive Defense (live)",
+      "ready": true
+    },
+    {
       "path": "cyber/",
       "label": "Cyber Awareness (live)",
       "ready": true
     },
     {
+      "path": "cyber/teaching.html",
+      "label": "Cyber teaching samples",
+      "ready": true
+    },
+    {
       "path": "cyber/ingest-health.html",
-      "label": "Cyber ingest health (internal)",
+      "label": "Cyber ingest health (internal mock)",
       "ready": true
     },
     {

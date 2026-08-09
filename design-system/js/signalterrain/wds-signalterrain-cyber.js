@@ -168,10 +168,11 @@
       return (
         "<h2>Cyber Awareness Intelligence Engine V0.1</h2>" +
         "<p class=\"st-lead\">Educational defensive intelligence — not IDS, SIEM, scanner, or offense. Sample data only.</p>" +
+        '<p><a href="live.html">Open live cyber intelligence</a> — production brief &amp; Adaptive Defense.</p>' +
         '<p><a href="workspace.html">Open Cyber Operations Workspace</a> — investigations, notes, watchlists, reading queue.</p>' +
-        '<p><a href="brief.html">Open today’s Daily Cyber Brief</a> — calm attention, transparent why.</p>' +
+        '<p><a href="brief.html">Open sample brief scenarios</a> — teaching demos only, not live.</p>' +
         '<p><a href="explorer.html">Open Cyber Intelligence Explorer</a> — relationships, timeline, map.</p>' +
-        '<p><a href="advisor.html">Open Adaptive Defense Advisor</a> — what should I do differently today?</p>' +
+        '<p><a href="advisor.html?teaching=1">Open teaching Adaptive Defense Advisor</a> — sample graph literacy.</p>' +
         '<p><a href="knowledge.html">Open Defensive Knowledge</a> — encyclopedia, playbooks, learning paths.</p>' +
         "<p>Entity counts: " +
         esc(JSON.stringify(kinds)) +
