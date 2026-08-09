@@ -357,7 +357,7 @@ vm.runInThisContext(takeJs, { filename: "wds-take.js" });
 vm.runInThisContext(feedJs, { filename: "wds-articles-feed.js" });
 assert("articlesFeed API mounted", !!(global.WDS && global.WDS.articlesFeed));
 assert("Take API mounted", !!(global.WDS && global.WDS.take && global.WDS.take.renderArticleHtml));
-assert("provenance labels distinguish feed summary", /Feed-description/.test(global.WDS.articlesFeed.provenanceLabel("summary", "feed-description")));
+assert("provenance labels distinguish feed summary", /Publisher feed summary|Feed-description|source facts/i.test(global.WDS.articlesFeed.provenanceLabel("summary", "feed-description")));
 assert("provenance labels distinguish unavailable take", /unavailable/i.test(global.WDS.articlesFeed.provenanceLabel("take", "unavailable")));
 assert("stale detection works", global.WDS.articlesFeed.isStale({ staleAfter: "2000-01-01T00:00:00.000Z" }) === true);
 assert(

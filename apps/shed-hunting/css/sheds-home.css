@@ -107,9 +107,9 @@ html[data-product="shed-hunting"],
 }
 
 .xp-stage__cta .wds-btn--primary {
-  background: color-mix(in srgb, var(--sheds-gold) 88%, #000);
-  color: var(--wds-on-accent, #080f1c);
-  border-color: color-mix(in srgb, var(--sheds-gold) 60%, transparent);
+  background: var(--sheds-gold, #d4a84b);
+  color: #080f1c;
+  border-color: transparent;
 }
 
 .xp-secondary {

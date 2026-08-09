@@ -147,7 +147,8 @@
 
 .fc-zone--moderate,
 .fc-heatmap__cell--moderate {
-  background: var(--wds-purple-muted);
+  /* Deeper fill so parchment zone labels stay AA-readable */
+  background: rgba(58, 48, 102, 0.94);
 }
 
 .fc-zone--low,

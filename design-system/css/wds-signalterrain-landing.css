@@ -129,7 +129,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #5eead4;
+  color: #7af0dc;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
 
@@ -172,8 +172,10 @@
   background: rgba(10, 18, 30, 0.35);
 }
 
+/* Beat .st-landing a { color: inherit } so primary CTAs keep dark ink */
+.st-landing a.st-cta--primary,
 .st-cta--primary {
-  background: color-mix(in srgb, #3d8bfd 88%, #fff);
+  background: #5b9cff;
   color: #071018;
   border-color: transparent;
 }
@@ -200,7 +202,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #6d7c93;
+  color: #9aa8bd;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
 
@@ -260,7 +262,7 @@
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #6d7c93;
+  color: #9aa8bd;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   border-top: 1px solid rgba(148, 163, 184, 0.14);
 }
@@ -399,7 +401,7 @@
 .st-note {
   margin: 1rem 0 0;
   font-size: 0.88rem;
-  color: #6d7c93;
+  color: #9aa8bd;
   max-width: 40rem;
   line-height: 1.45;
 }

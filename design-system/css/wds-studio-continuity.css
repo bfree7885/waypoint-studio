@@ -6,15 +6,18 @@
  */
 
 .wds-studio-continuity {
-  position: relative;
+  --wds-continuity-h: 2.5rem;
+  position: sticky;
+  top: 0;
   z-index: 40;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 1rem;
-  padding: 0.45rem clamp(0.85rem, 3vw, 1.5rem);
-  padding-top: calc(0.45rem + env(safe-area-inset-top, 0px));
-  background: color-mix(in srgb, var(--wds-bg, #080f1c) 88%, transparent);
+  gap: 0.4rem 0.75rem;
+  min-height: var(--wds-continuity-h);
+  padding: 0.4rem clamp(0.85rem, 3vw, 1.5rem);
+  padding-top: calc(0.4rem + env(safe-area-inset-top, 0px));
+  background: color-mix(in srgb, var(--wds-bg, #080f1c) 92%, transparent);
   border-bottom: 1px solid var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -65,16 +68,70 @@
   color: var(--wds-accent, #c8f055);
 }
 
-/* Push absolute product tops below the continuity strip */
-body.gs-landing:has(.wds-studio-continuity) .gs-top,
-body.gs-landing:has(.wds-studio-continuity) .gsh-top,
-body.st-landing:has(.wds-studio-continuity) .st-top {
-  top: 2.35rem;
+/* Keep the strip one line on phones — studio links live in product chrome/footer */
+@media (max-width: 720px) {
+  .wds-studio-continuity {
+    flex-wrap: nowrap;
+    gap: 0.3rem 0.45rem;
+    font-size: 0.75rem;
+    padding-block: 0.35rem;
+    padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
+  }
+
+  .wds-studio-continuity__nav {
+    display: none;
+  }
+
+  .wds-studio-continuity__trail {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 42vw;
+  }
+}
+
+/*
+ * Sister landings used absolute product tops that collide with the strip.
+ * With continuity present, keep product chrome in normal flow so brand marks
+ * never clip under the studio bridge.
+ */
+body.st-landing:has(.wds-studio-continuity) .st-top,
+body.gs-landing:has(.wds-studio-continuity) .gs-top {
+  position: relative;
+  top: auto;
+  z-index: 6;
+  background: rgba(7, 12, 20, 0.72);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  padding-top: 0.7rem;
+}
+
+body.gs-landing:has(.wds-studio-continuity) .gsh-top {
+  top: 0;
 }
 
 body.gs-landing:has(.wds-studio-continuity) .gs-hero,
 body.st-landing:has(.wds-studio-continuity) .st-hero {
-  padding-top: 2.35rem;
+  padding-top: 0;
+}
+
+body.st-landing:has(.wds-studio-continuity) .st-hero__content,
+body.gs-landing:has(.wds-studio-continuity) .gs-hero__content {
+  padding-top: clamp(3.5rem, 10vw, 5.5rem);
+}
+
+/* Drop studio-level duplicates from product nav when continuity is mounted */
+body.st-landing:has(.wds-studio-continuity) .st-top nav a[href="/"],
+body.st-landing:has(.wds-studio-continuity) .st-top nav a[href="/side-trails/"],
+body.st-landing:has(.wds-studio-continuity) .st-top nav a[href="/support.html"],
+body.st-landing:has(.wds-studio-continuity) .st-top nav a[href="/about.html"],
+body.gs-landing:has(.wds-studio-continuity) .gsh-top nav > a[href="/"],
+body.gs-landing:has(.wds-studio-continuity) .gsh-top nav > a[href="/side-trails/"],
+body.gs-landing:has(.wds-studio-continuity) .gsh-top nav > a[href="/support.html"],
+body.gs-landing:has(.wds-studio-continuity) .gs-top nav a[href="/"],
+body.gs-landing:has(.wds-studio-continuity) .gs-top nav a[href="/side-trails/"],
+body.gs-landing:has(.wds-studio-continuity) .gs-top nav a[href="/support.html"],
+body.gs-landing:has(.wds-studio-continuity) .gs-top nav a[href="/about.html"] {
+  display: none;
 }
 
 /* Sheds map: compact strip over the field HUD without redesigning FABs */
@@ -93,4 +150,14 @@ body.st-landing:has(.wds-studio-continuity) .st-hero {
 
 .sheds-app:has(.wds-studio-continuity) .sheds-here {
   top: calc(5.35rem + var(--sheds-safe-top, 0px));
+}
+
+@media (max-width: 720px) {
+  .sheds-app:has(.wds-studio-continuity) .sheds-hud-top {
+    top: calc(2.1rem + var(--sheds-safe-top, 0px));
+  }
+
+  .sheds-app:has(.wds-studio-continuity) .sheds-here {
+    top: calc(5rem + var(--sheds-safe-top, 0px));
+  }
 }

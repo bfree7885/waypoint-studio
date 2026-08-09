@@ -20,7 +20,7 @@
   font-weight: 500;
   margin: 0.35rem 0 0.65rem;
   line-height: 1.15;
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
   text-wrap: balance;
 }
 
@@ -35,7 +35,7 @@
 
 .wcs-hero p {
   margin: 0;
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
   line-height: 1.55;
   font-size: 1.05rem;
 }
@@ -59,7 +59,7 @@
 
 .wcs-section p,
 .wcs-section li {
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
   line-height: 1.55;
 }
 
@@ -78,7 +78,7 @@
   gap: 0.5rem 1.25rem;
   margin: 1rem 0 0;
   font-size: 0.9rem;
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
 }
 
 .wcs-meta a {
@@ -145,7 +145,7 @@
   gap: 0.65rem;
   min-height: 44px;
   font-size: 0.9rem;
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
   line-height: 1.45;
 }
 
@@ -179,13 +179,13 @@
 .wcs-status--ok {
   background: rgba(90, 140, 70, 0.12);
   border: 1px solid rgba(90, 140, 70, 0.35);
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
 }
 
 .wcs-status--err {
   background: rgba(180, 70, 60, 0.1);
   border: 1px solid rgba(180, 70, 60, 0.35);
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
 }
 
 .wcs-status--info {
@@ -224,12 +224,12 @@
 .wcs-card strong {
   display: block;
   margin-bottom: 0.2rem;
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
 }
 
 .wcs-card span {
   font-size: 0.88rem;
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
   line-height: 1.4;
 }
 
@@ -244,7 +244,7 @@
   min-height: 44px;
   display: flex;
   align-items: center;
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
   border-radius: 0.25rem;
 }
 
@@ -278,7 +278,7 @@
   border: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.12));
   text-decoration: none;
   font-size: 0.85rem;
-  color: var(--wds-text, #1c1a16);
+  color: var(--wds-text, #e4eaf4);
   background: var(--wds-surface, #fff);
 }
 
@@ -314,7 +314,7 @@
 }
 
 .was-footer__links a {
-  color: var(--wds-text-secondary, #4a4740);
+  color: var(--wds-text-secondary, rgba(228, 234, 244, 0.78));
   text-decoration: none;
   min-height: 44px;
   display: inline-flex;

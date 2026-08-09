@@ -137,6 +137,17 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-08 — Visual production repair
+
+**Branch:** `feature/visual-production-repair`  
+**Report:** `docs/visual-production-repair/owner-review.md`
+
+1. **Element color ≠ readable CTA** — `.gs-landing a { color: inherit }` (0,1,1) beats `.gs-cta--primary` (0,1,0). Always pair product `a { color: inherit }` with `a.component--primary` specificity, and prefer solid fills over `color-mix` for AA probes.
+2. **Banner paragraph rules poison badges** — when a badge is a `<p>`, `.banner p { color: muted }` overrides `.badge`. Scope `.banner .badge` (or stop using `<p>` for badges).
+3. **Continuity + absolute product tops clip** — a wrapping studio strip under-offsets `top: 2.35rem` and hides brand marks. Prefer flow/sticky strip (one line on phones) and demote duplicate studio links from product nav.
+4. **Light wash panels inside dark shells need explicit dark ink** — ForageCast reliability pastel backgrounds inherit parchment text from the shell; set `color` on the wash, do not trust inheritance.
+5. **Visual audit probes must ignore off-screen nav** — “clipped controls” false-positives from hamburger/overflow menus drown real contrast failures; gate on contrast + overflow-x + targeted selectors instead.
+
 ### 2026-08-07 — Articles Waypoint’s Take readability
 
 **Artifact:** `docs/articles/readability-owner-review.md`  
