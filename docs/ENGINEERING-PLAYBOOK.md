@@ -137,6 +137,19 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-08 — Articles production repair (HTML leakage + sample labels)
+
+**Branch:** `feature/articles-production-repair`
+
+1. **Quote-aware HTML strip is mandatory for RSS** — naive `/<[^>]+>/g` breaks on
+   `sizes="(max-width: 1024px) …"` and leaks `data-large-file` / srcset crumbs into
+   summaries. Fix in `scripts/articles/sanitize.mjs`, then refresh or reprocess stored JSON.
+2. **WordPress “The post … appeared first on …” footers** belong in sanitize, not CSS hide.
+3. **Production UI must not say “sample”** — rename Studio essays path/labels
+   (`articles/essays/`) and keep fixtures under `data/articles/fixtures/` only.
+4. **Take contrast lives in Articles CSS tokens** — light `#fff` washes under parchment
+   text fail AA on the dark studio shell; keep Take on `--wds-surface` with normal body type.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  

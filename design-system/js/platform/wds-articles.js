@@ -26,7 +26,11 @@
   function hrefFor(path, options) {
     options = options || {};
     var base = options.base != null ? options.base : (options.depth === 0 ? "articles/" : "");
-    if (path.indexOf("samples/") === 0 || path.indexOf("categories/") === 0) {
+    if (
+      path.indexOf("samples/") === 0 ||
+      path.indexOf("essays/") === 0 ||
+      path.indexOf("categories/") === 0
+    ) {
       return base + path;
     }
     return base + path;
@@ -71,10 +75,10 @@
               group: "articles",
               title: a.title,
               subtitle: a.summary,
-              href: prefix + (a.path || ("samples/" + a.slug + ".html")),
+              href: prefix + (a.path || ("essays/" + a.slug + ".html")),
               score: score,
               source: "articles",
-              honesty: (data.search && data.search.honesty) || "Editorial index"
+              honesty: (data.search && data.search.honesty) || "Articles index"
             };
           })
           .filter(Boolean);
@@ -103,11 +107,11 @@
             );
           })
           .join("");
-        var samples = (data.articles || [])
+        var essays = (data.articles || [])
           .map(function (a) {
             return (
               "<li><a href=\"" +
-              esc(a.path || ("samples/" + a.slug + ".html")) +
+              esc(a.path || ("essays/" + a.slug + ".html")) +
               "\">" +
               esc(a.title) +
               "</a> — " +
@@ -120,8 +124,8 @@
           '<section class="was-home__section" aria-labelledby="was-art-cats"><h2 id="was-art-cats">Categories</h2><div class="was-home__grid">' +
           cats +
           "</div></section>" +
-          '<section class="was-home__section" aria-labelledby="was-art-samples"><h2 id="was-art-samples">Sample articles</h2><ul>' +
-          (samples || "<li>No samples yet.</li>") +
+          '<section class="was-home__section" aria-labelledby="was-art-essays"><h2 id="was-art-essays">Studio essays</h2><ul>' +
+          (essays || "<li>No Studio essays published yet.</li>") +
           "</ul></section>";
         el.removeAttribute("aria-busy");
         bindLocalSearch(data, options);
@@ -143,7 +147,7 @@
         });
         if (!rows.length) {
           el.innerHTML =
-            '<p class="wds-honesty">No articles in this category yet — the scaffold is ready for future pieces.</p>';
+            '<p class="wds-honesty">No Studio essays in this category yet. Curated feed cards remain on the Articles hub.</p>';
         } else {
           el.innerHTML =
             "<ul>" +
@@ -185,7 +189,7 @@
         return blob.indexOf(q) >= 0;
       });
       if (!hits.length) {
-        out.innerHTML = '<p class="wds-honesty">No matches in the sample index.</p>';
+        out.innerHTML = '<p class="wds-honesty">No matches in the Studio essay index.</p>';
         return;
       }
       out.innerHTML =

@@ -13,7 +13,8 @@ import {
   sanitizeUrl,
   normalizeUrl,
   contentHash,
-  stripHtml
+  stripHtml,
+  looksLikeMarkupLeak
 } from "./sanitize.mjs";
 import {
   classifyCategories,
@@ -105,7 +106,13 @@ function normalizeItem(raw, feed, discoveredAt) {
   const canonicalUrl = sanitizeUrl(raw.link);
   if (!canonicalUrl) return null;
 
-  const cleanedExcerpt = sanitizeExcerpt(raw.description || "", 600);
+  let cleanedExcerpt = sanitizeExcerpt(raw.description || "", 600);
+  if (looksLikeMarkupLeak(cleanedExcerpt)) {
+    cleanedExcerpt = sanitizeExcerpt(stripHtml(raw.description || ""), 600);
+  }
+  if (looksLikeMarkupLeak(cleanedExcerpt)) {
+    cleanedExcerpt = "";
+  }
   const item = {
     id: makeId(feed.id, raw.guid, canonicalUrl, raw.title),
     canonicalUrl,
@@ -118,7 +125,9 @@ function normalizeItem(raw, feed, discoveredAt) {
     discoveredAt,
     feedId: feed.id,
     guid: raw.guid || null,
-    rawDescription: String(raw.description || "").slice(0, 4000),
+    // Keep enough HTML for image extraction / re-sanitize; truncation mid-tag is OK
+    // because sanitize is quote-aware and strips unclosed remnants.
+    rawDescription: String(raw.description || "").slice(0, 12000),
     cleanedExcerpt,
     categories: [],
     geographicScopes: [],

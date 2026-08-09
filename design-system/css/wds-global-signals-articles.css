@@ -221,14 +221,19 @@
 }
 
 .gsa-card__take {
-  padding: 0.85rem 0.9rem;
-  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  border-radius: 0 12px 12px 0;
   border: 1px solid rgba(125, 211, 167, 0.22);
-  background: rgba(125, 211, 167, 0.05);
+  border-left: 3px solid rgba(125, 211, 167, 0.65);
+  background: linear-gradient(
+    160deg,
+    rgba(125, 211, 167, 0.08),
+    rgba(14, 22, 38, 0.55)
+  );
 }
 
 .gsa-card__take h3 {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.4rem;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -238,19 +243,29 @@
 
 .gsa-card__take p {
   margin: 0 0 0.55rem;
-  color: #c5d0e0;
-  line-height: 1.55;
-  font-size: 0.95rem;
+  color: #e4eaf4;
+  line-height: 1.65;
+  font-size: 0.98rem;
+  font-style: normal;
+  max-width: 48ch;
 }
 
 .gsa-card__take p:last-child {
   margin-bottom: 0;
 }
 
+/* Why-it-matters / analysis labels stay scannable vs body */
+.gsa-card__take p strong {
+  color: #c5d0e0;
+  font-weight: 600;
+}
+
 .gsa-card__take--empty {
   border-style: dashed;
   border-color: rgba(148, 163, 184, 0.28);
-  background: transparent;
+  border-left-style: solid;
+  border-left-color: rgba(148, 163, 184, 0.4);
+  background: rgba(14, 22, 38, 0.35);
 }
 
 .gsa-card__take--empty p {

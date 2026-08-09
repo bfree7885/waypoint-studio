@@ -1,11 +1,11 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "title": "Waypoint Studio Articles",
-  "description": "Editorial samples plus curated third-party outdoor/environmental RSS recommendations. Full publisher articles are never republished.",
+  "description": "Curated third-party outdoor and environmental reporting plus short Studio essays. Full publisher articles are never republished.",
   "routing": {
     "hub": "/articles/",
     "category": "/articles/categories/{slug}/",
-    "article": "/articles/samples/{slug}.html",
+    "article": "/articles/essays/{slug}.html",
     "template": "/articles/templates/article.html",
     "feedData": "/data/articles/articles.json",
     "rss": "/feeds/waypoint-articles.xml"
@@ -19,7 +19,7 @@
   "search": {
     "providerId": "articles",
     "indexFields": ["title", "summary", "tags", "category", "apps"],
-    "honesty": "Editorial samples plus curated feed cards. Original publishers remain the destination."
+    "honesty": "Curated feed cards and Studio essays. Original publishers remain the destination."
   },
   "categories": [
     {
@@ -62,8 +62,8 @@
       "category": "outdoor-intelligence",
       "tags": ["dashboard", "weather", "trails"],
       "apps": ["dashboard", "foragecast", "fieldry"],
-      "status": "sample",
-      "path": "samples/reading-todays-conditions.html",
+      "status": "published",
+      "path": "essays/reading-todays-conditions.html",
       "published": "2026-07-20"
     }
   ]

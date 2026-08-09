@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fixture HTML Leak</title>
+    <link>https://example.org/leak</link>
+    <description>Regression fixture for attribute leakage</description>
+    <item>
+      <title>Bear poems after a quiet hammock afternoon</title>
+      <link>https://example.org/leak/bear-hammock</link>
+      <guid>https://example.org/leak/bear-hammock</guid>
+      <pubDate>Mon, 03 Aug 2026 12:00:00 GMT</pubDate>
+      <description><![CDATA[
+        <figure><img width="1024" height="699" src="https://example.org/bear.jpg" class="attachment-rss-image-size wp-post-image" alt="A black bear. Photo by Jeff Nadler, Explorer files. " sizes="(max-width: 1024px) 100vw, 1024px" srcset="https://example.org/bear.jpg 1300w, https://example.org/bear-300.jpg 300w" data-large-file="https://example.org/bear.jpg" /></figure>
+        <p>James B. Kobak Jr. shares two poems about an encounter with a bear while relaxing in the woods in the Adirondacks.</p>
+        <p>The post <a href="https://example.org/leak/bear-hammock">Bear poems</a> appeared first on <a href="https://example.org">Fixture Desk</a>.</p>
+      ]]></description>
+    </item>
+  </channel>
+</rss>

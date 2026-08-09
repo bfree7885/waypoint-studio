@@ -392,6 +392,8 @@
 
 .was-home__take-wrap .wds-take__body {
   color: var(--home-ink);
+  font-style: normal;
+  font-family: var(--wds-font-body, inherit);
 }
 
 .was-home__take-wrap .wds-take__meta,
