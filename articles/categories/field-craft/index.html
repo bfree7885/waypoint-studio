@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Waypoint Studio articles — Field craft category.">
+  <meta name="description" content="Waypoint Studio Articles — Field craft. Browse the curated feed for live categories.">
+  <meta name="robots" content="noindex,follow">
   <title>Field craft — Articles · Waypoint Studio</title>
+  <link rel="canonical" href="https://waypointstudio.org/articles/categories/field-craft/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,25 +20,26 @@
     <div data-wds-app-global data-shell-depth="0"></div>
     <main id="main" class="wcs-page">
       <header class="wcs-hero">
-        <p class="wds-eyebrow">Articles · Category</p>
+        <p class="wds-eyebrow">Articles</p>
         <h1>Field craft</h1>
+        <p>Practical outdoor skill and judgment.</p>
         <p class="waf-hub-meta"><a href="../../">All articles</a></p>
       </header>
-      <div id="was-articles-category" data-category="field-craft" aria-busy="true"></div>
+      <div id="was-articles-category" class="wds-honesty-block" role="status">
+        <p class="wds-honesty">
+          Studio journey labels like “Field craft” are not filters on the curated Articles feed.
+          Live categories there include Wildlife, Climate, Conservation, Weather, and related field topics.
+        </p>
+        <p>
+          <a class="wds-btn wds-btn--primary" href="../../">Open curated Articles</a>
+          
+        </p>
+      </div>
     </main>
     <div data-wds-app-footer data-shell-depth="0"></div>
   </div>
   <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
   <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-articles.js?v=local" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var el = document.getElementById("was-articles-category");
-      if (window.WDS && WDS.articles && el) {
-        WDS.articles.mountCategory(el, el.getAttribute("data-category"), { depth: 0, base: "../../" });
-      }
-    });
-  </script>
 </body>
 </html>

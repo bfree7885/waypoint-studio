@@ -90,6 +90,14 @@ const cyberEmpty = LS.fromCyberLive({
 }, { maxAgeMs: 99 * 60 * 60 * 1000 });
 assert("cyber empty→warning", cyberEmpty.state === "warning");
 
+const cyberStale = LS.fromCyberLive({
+  meta: { trustState: "Live", generatedAt: "2026-07-19T01:47:57.422Z" },
+  providers: [{ status: "ok" }],
+  records: [{ id: "r1" }]
+});
+assert("cyber stale Live badge→offline by age", cyberStale.state === "offline");
+
+
 const gsDemo = LS.fromGlobalSignalsHome({
   mode: "sample-demo",
   modeLabel: "Sample / demo",

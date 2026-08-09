@@ -437,7 +437,7 @@
           body +
           '<aside class="waf-editorial">' +
           "<h2>Editorial samples</h2>" +
-          '<p>Waypoint also publishes short Studio essays. <a href="samples/reading-todays-conditions.html">Reading today’s conditions</a> · <a href="categories/outdoor-intelligence/">Categories</a></p>' +
+          '<p>Waypoint also publishes short Studio essays. <a href="samples/reading-todays-conditions.html">Reading today’s conditions</a> (labeled sample). Live topic filters are above — Wildlife, Climate, Conservation, and related field categories.</p>' +
           "</aside>" +
           "</div>";
 

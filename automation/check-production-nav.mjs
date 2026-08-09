@@ -3,6 +3,9 @@
  * Production navigation / deployment check for waypointstudio.org.
  * Fails when the live site still serves the pre-App-Shell homepage.
  *
+ * Home is the Dashboard rebuild workspace at `/` (data-product="dashboard").
+ * `/dashboard.html` must redirect to root Home.
+ *
  * Usage:
  *   node automation/check-production-nav.mjs
  *   node automation/check-production-nav.mjs https://waypointstudio.org 83ff72e
@@ -35,12 +38,17 @@ async function main() {
 
   const home = await fetchText("/");
   if (home.status !== 200) fail("home HTTP " + home.status);
-  if (/data-product="studio-home"|class="[^"]*was-home/.test(home.text)) {
+  if (
+    /data-product="dashboard"/.test(home.text) &&
+    /wds-dashboard-rebuild|data-wds-app-shell|was-shell/.test(home.text)
+  ) {
+    pass("home is Dashboard workspace at root");
+  } else if (/data-product="studio-home"|class="[^"]*was-home/.test(home.text)) {
     pass("home is Studio directory");
   } else {
-    fail("home is not Studio directory");
+    fail("home is not Dashboard workspace or Studio directory");
   }
-  if (/Outdoor Dashboard|id="outdoor-dashboard"/.test(home.text) && !/studio-home/.test(home.text)) {
+  if (/Outdoor Dashboard|id="outdoor-dashboard"/.test(home.text) && !/studio-home|data-product="dashboard"/.test(home.text)) {
     fail("home still contains old Outdoor Dashboard markup");
   } else {
     pass("home is not the old Outdoor Dashboard");
@@ -100,8 +108,14 @@ async function main() {
   }
 
   const redirect = await fetchText("/dashboard.html");
-  if (/apps\/dashboard\//.test(redirect.text + redirect.finalUrl)) {
-    pass("dashboard.html redirects to apps/dashboard/");
+  const redirectBlob = redirect.text + " " + redirect.finalUrl;
+  if (
+    /content="0;url=\.\/"/.test(redirect.text) ||
+    /location\.replace\(["']\.\//.test(redirect.text) ||
+    /apps\/dashboard\//.test(redirectBlob) ||
+    (/\/$/.test(redirect.finalUrl) && !/dashboard\.html/.test(redirect.finalUrl))
+  ) {
+    pass("dashboard.html redirects to Home");
   } else {
     fail("dashboard.html redirect missing");
   }

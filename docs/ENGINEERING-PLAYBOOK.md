@@ -171,6 +171,16 @@ continuously improves.
 3. **Sample/demo is Warning, not Healthy.** Global Signals labeled datasets must not look like live ingestion succeeded.
 4. **Adapters belong next to the component.** Prefer `fromArticlesHealth` / `fromCyberLive` / `fromClientFeed` over re-encoding status in each surface.
 
+### 2026-08-08 — Production reality sweep
+
+**Branch:** `feature/production-reality-sweep`
+
+1. **Cherry-picks need runtime verification** — integrating `live-data-reliability` onto a map that already switched to `createBasemaps` left `bindTileHealth(osm)` calling an undefined layer. Grep + headless CDP after merges catch this; unit-less HTML checks do not.
+2. **Journey category scaffolds ≠ curated feed** — `/articles/categories/{observe,…}/` mounted a one-item sample manifest while `/articles/` served 120 curated items. Prefer honest exits (or real feed filters) over empty category theater.
+3. **Stale “Live” is a trust defect** — cyber `trustState: Live` with a weeks-old `generatedAt` must age to Offline via `WDS.liveStatus`, and the engine should be refreshed before calling the surface production-ready.
+4. **Hide unfinished from primary discovery** — Living Scenes and labeled mockups can remain as deep pages, but must not appear in hero CTAs, feature nav, or sitemap when they are not usable product.
+5. **Nav checkers rot with IA** — `check-production-nav.mjs` still expected Studio-directory Home after Dashboard moved to `/`. Keep deploy checks aligned with the shipped architecture contract.
+
 ### 2026-08-07 — Side Trails discovery release
 
 **Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  

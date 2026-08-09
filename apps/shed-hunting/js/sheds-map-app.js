@@ -36,7 +36,7 @@
     elevAbort: null,
     weather: null,
     weatherMeta: { status: "unknown", updatedAt: null, error: null, loading: false },
-    tileMeta: { status: "loading", ok: 0, err: 0, source: "OpenStreetMap", updatedAt: null },
+    tileMeta: { status: "loading", ok: 0, err: 0, source: "CARTO Voyager", updatedAt: null },
     recomputeTimer: null,
     recomputeGen: 0,
     heatPhase: "idle",
@@ -457,8 +457,8 @@
         }
       });
     }
-    bindTileHealth(osm, "OpenStreetMap");
-    bindTileHealth(topo, "OpenTopoMap");
+    bindTileHealth(street, "CARTO Voyager");
+    bindTileHealth(topo, "Esri World Topo");
 
     var firstTile = false;
     function afterBasemapSettles() {
@@ -781,7 +781,7 @@
     var tileSpec = LS.fromClientFeed({
       id: "sheds-tiles",
       label: "Map tiles",
-      source: (state.tileMeta && state.tileMeta.source) || "OpenStreetMap / OpenTopoMap",
+      source: (state.tileMeta && state.tileMeta.source) || "CARTO / Esri",
       state: tileState,
       updatedAt: state.tileMeta && state.tileMeta.updatedAt,
       message:

@@ -107,7 +107,7 @@
         "/apps/photo-library"
       ],
       "category": "photography",
-      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Scene Builder, Photographer Profile, and Photo Library.",
       "status": "live",
       "features": [
         {
@@ -146,14 +146,6 @@
             "/apps/scenes/hidden-landscapes",
             "/apps/hidden-landscapes",
             "/apps/animal-vision"
-          ]
-        },
-        {
-          "id": "living-scenes",
-          "label": "Living Scenes",
-          "href": "apps/scenes/living-scenes/",
-          "match": [
-            "/apps/scenes/living-scenes"
           ]
         },
         {

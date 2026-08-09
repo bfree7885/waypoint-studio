@@ -10,5 +10,8 @@ Disallow: /scripts/
 Disallow: /engineering/
 Disallow: /waypoint-importer/
 Disallow: /private/
+Disallow: /articles/samples/
+Disallow: /articles/categories/
+Disallow: /side-trails/signalterrain/mockups/
 
 Sitemap: https://waypointstudio.org/sitemap.xml

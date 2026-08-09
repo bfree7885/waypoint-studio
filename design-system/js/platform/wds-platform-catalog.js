@@ -61,7 +61,7 @@
       shortName: "Scenes",
       tier: "core",
       status: "live",
-      description: "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.",
+      description: "One photography platform — Photo Coach, Hidden Landscapes, Scene Builder, and Photographer Profile.",
       pathFromApps: "../scenes/",
       pathFromRoot: "apps/scenes/",
       dataProduct: "scenes",

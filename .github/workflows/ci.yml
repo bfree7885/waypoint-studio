@@ -83,6 +83,9 @@ jobs:
       - name: Live data status component tests
         run: node automation/test-live-status.mjs
 
+      - name: Production reality sweep
+        run: node automation/test-production-reality.mjs
+
       - name: Knowledge Platform tests
         run: node automation/test-knowledge-platform.mjs
 
