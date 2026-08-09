@@ -71,18 +71,6 @@
     })();
   </script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.globalSignals && WDS.globalSignals.industries) {
-        WDS.globalSignals.industries.mountDetail(document.getElementById("gsi-detail"), {
-          slug: "semiconductors",
-          depth: 4,
-          dataUrl: "../../../../data/global-signals/industries/industries.json"
-        });
-      }
-    });
-  </script>
-
   <footer class="gs-footer">
     <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
     <p>Part of Side Trails.</p>
