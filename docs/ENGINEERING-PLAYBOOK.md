@@ -137,6 +137,22 @@ Include:
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
+### 2026-08-08 — Production quality gate (release branch)
+
+**Branch:** `release/production-quality-gate`
+
+1. **Live-status merge can leave dead OSM vars** — after CARTO/Esri tile provider
+   landed, `bindTileHealth(osm, …)` still referenced removed basemap handles and
+   crashed Sheds map init. Bind health to `street`/`topo` with honest provider labels.
+2. **Nearby counties without JSON 404** — `regions-index` rows may set
+   `contentBundle` to a shared file; `loadRegion` must resolve via the index before
+   fetching, and `data-wds-region="workspace"` is mount intent, not a bundle id.
+3. **Home is rebuild, not studio cards / Outdoor OS** — smoke and Today Outside
+   tests still expected card grids or Outside CSS. Align assertions to quiet-chrome
+   Home + `wds-dashboard-rebuild` and keep Support/Contact in noscript exits.
+4. **Smoke overflow can race shell paint** — a short settle delay after readiness
+   prevents false horizontal-overflow fails on Scenes.
+
 ### 2026-08-07 — Articles Waypoint’s Take readability
 
 **Artifact:** `docs/articles/readability-owner-review.md`  

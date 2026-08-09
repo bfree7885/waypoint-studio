@@ -332,7 +332,7 @@ assert("sheds map feature link", /category=feature/.test(shedsMap));
 
 const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 assert("home noscript links about/contact", /about\.html/.test(home) && /contact\.html/.test(home));
-assert("home static markup omits support footer path", !/support\.html/.test(home));
+assert("home noscript links support", /support\.html/.test(home));
 
 const shellCss = fs.readFileSync(path.join(ROOT, "design-system/css/wds-app-shell.css"), "utf8");
 assert("footer links styled in shell css", /was-footer__links/.test(shellCss));

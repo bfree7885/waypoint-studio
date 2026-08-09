@@ -9,6 +9,7 @@
 
   var engineBase = "content-engine/";
   var bundleCache = {};
+  var regionsIndexCache = null;
 
   var SECTION_ORDER = [
     "outdoor-dashboard",
@@ -807,12 +808,45 @@
     "experiences": renderExperiences
   };
 
+  function loadRegionsIndex(base) {
+    if (regionsIndexCache) return Promise.resolve(regionsIndexCache);
+    return fetchJson(base + "regions-index.json").then(function (data) {
+      regionsIndexCache = data;
+      return data;
+    });
+  }
+
+  function resolveContentBundleId(regionId, index) {
+    if (!regionId || !index || !index.regions) return regionId;
+    for (var i = 0; i < index.regions.length; i++) {
+      var row = index.regions[i];
+      if (row && row.id === regionId) return row.contentBundle || row.id;
+    }
+    return regionId;
+  }
+
   function loadRegion(regionId, base) {
+    base = (base || engineBase).replace(/\/?$/, "/");
     var key = base + regionId;
     if (bundleCache[key]) return Promise.resolve(bundleCache[key]);
-    return fetchJson(base + "regions/" + regionId + ".json").then(function (data) {
-      bundleCache[key] = data;
-      return data;
+    return loadRegionsIndex(base).then(function (index) {
+      var bundleId = resolveContentBundleId(regionId, index);
+      var bundleKey = base + bundleId;
+      if (bundleCache[bundleKey]) {
+        bundleCache[key] = bundleCache[bundleKey];
+        return bundleCache[bundleKey];
+      }
+      return fetchJson(base + "regions/" + bundleId + ".json").then(function (data) {
+        bundleCache[bundleKey] = data;
+        bundleCache[key] = data;
+        return data;
+      });
+    }).catch(function () {
+      // Index unavailable — fall back to direct id (legacy / offline).
+      return fetchJson(base + "regions/" + regionId + ".json").then(function (data) {
+        bundleCache[key] = data;
+        return data;
+      });
     });
   }
 
@@ -1256,9 +1290,12 @@
     options = options || {};
     var base = resolveEngineBase(options);
     var loc = options.location || (global.WDS && global.WDS.location ? global.WDS.location.getState() : null);
+    var mountRegionAttr = options.mount && options.mount.getAttribute("data-wds-region");
+    // data-wds-region="workspace" marks dashboard mount intent — not a content bundle id.
+    if (mountRegionAttr === "workspace") mountRegionAttr = null;
     var regionId = (loc && loc.contentBundle) ||
       options.region ||
-      (options.mount && options.mount.getAttribute("data-wds-region")) ||
+      mountRegionAttr ||
       null;
     var OIP = global.WDS && global.WDS.outdoorIntelligence;
     if (!regionId && OIP && OIP.adapters && OIP.adapters.resolveRegionId) {

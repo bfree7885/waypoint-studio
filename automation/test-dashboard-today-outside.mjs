@@ -165,34 +165,39 @@ const navRegistry = fs.readFileSync(
   path.join(ROOT, "design-system/ecosystem/nav-registry.json"),
   "utf8"
 );
-assert("Outside entry loads Outdoor OS CSS", /wds-dashboard-os\.css/.test(dashHtml));
-assert("Outside entry does not load V2/V3 CSS", !/wds-dashboard-v2\.css|wds-dashboard-v3\.css/.test(dashHtml));
+assert("Home entry loads dashboard rebuild CSS", /wds-dashboard-rebuild\.css/.test(dashHtml));
+assert("Home entry does not load V2/V3 CSS", !/wds-dashboard-v2\.css|wds-dashboard-v3\.css/.test(dashHtml));
 assert(
-  "Outside entry has no Recovery/V2/V3 product chrome markers",
+  "Home entry has no Recovery/V2/V3 product chrome markers",
   !/data-wdb-recovery|data-wdb-v2|data-wdb-v3|Customize widgets|How is today/.test(dashHtml)
 );
 assert(
-  "engine refuses legacy fallthrough on Outside",
+  "engine keeps Outside legacy guard helpers",
   /isOutsideProductSurface/.test(engineSrc) && /outdoorOsUnavailableHtml/.test(engineSrc)
 );
 assert(
-  "dashboard nav features empty (no Recovery/V2 tabs)",
-  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navConfig) &&
-    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navRegistry)
+  "dashboard nav Workspace + Customize features (no Recovery/V2 tabs)",
+  /"id":\s*"dashboard"[\s\S]*?"id":\s*"workspace"/.test(navConfig) &&
+    /"id":\s*"dashboard"[\s\S]*?"id":\s*"customize"/.test(navConfig) &&
+    !/"label":\s*"Recovery"/.test(navConfig) &&
+    !/"label":\s*"Recovery"/.test(navRegistry)
 );
 assert(
-  "dashboard product titled Outside",
-  /"title":\s*"Outside"/.test(navConfig) && /"title":\s*"Outside"/.test(navRegistry)
+  "dashboard product titled Home",
+  /"title":\s*"Home"/.test(navConfig) && /"title":\s*"Home"/.test(navRegistry)
 );
 assert(
   "V2/V3 localStorage flags are not consulted by engine renderDashboard",
   !/waypoint-dashboard-v2/.test(engineSrc) && !/waypoint-dashboard-v3/.test(engineSrc)
 );
 assert(
-  "home-boot Outside sections are outdoor-dashboard only",
-  /sections:\s*\[["']outdoor-dashboard["']\]/.test(
+  "home-boot mounts rebuild workspace (not Outdoor OS sections)",
+  /dashboardRebuild\.mount/.test(
     fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8")
-  )
+  ) &&
+    !/sections:\s*\[["']outdoor-dashboard["']\]/.test(
+      fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8")
+    )
 );
 
 /* Runtime: stale V2/V3 flags must not change product render when OS is present */

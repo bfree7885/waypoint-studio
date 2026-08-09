@@ -29,7 +29,7 @@ const ARTIFACT_DIR =
   path.join(ROOT, "automation", "artifacts", "smoke-" + Date.now());
 
 const PAGES = [
-  { name: "studio-home", path: "/", ready: "studio" },
+  { name: "studio-home", path: "/", ready: "dashboard" },
   { name: "dashboard", path: "/apps/dashboard/", ready: "dashboard" },
   { name: "dashboard-redirect", path: "/dashboard.html", ready: "dashboard" },
   { name: "scenes", path: "/apps/scenes/", ready: "shell" },
@@ -277,7 +277,7 @@ async function testPage(client, page, bag) {
   bag.warnings.length = 0;
   bag.failedNet.length = 0;
 
-  if (page.name === "kiosk" || page.name === "dashboard") {
+  if (page.name === "kiosk" || page.name === "dashboard" || page.name === "studio-home") {
     try {
       await client.send("Browser.grantPermissions", {
         origin: new URL(BASE).origin,
@@ -295,7 +295,7 @@ async function testPage(client, page, bag) {
 
   await client.send("Page.navigate", { url: BASE + page.path });
 
-  if (page.name === "dashboard") {
+  if (page.name === "dashboard" || page.name === "studio-home") {
     await delay(800);
     await client.send("Runtime.evaluate", {
       expression: `(() => { const btn = document.getElementById('wds-loc-default'); if (btn) btn.click(); return !!btn; })()`,
@@ -313,6 +313,8 @@ async function testPage(client, page, bag) {
         : 12000;
 
   const ready = await waitReady(client, page.ready, timeout);
+  // Allow fonts/shell layout to settle before overflow + structural probes.
+  await delay(400);
 
   if (LIVE && page.name === "dashboard") {
     for (let i = 0; i < 20; i++) {
@@ -491,16 +493,14 @@ async function main() {
     }
 
     if (r.name === "studio-home") {
-      if (!r.checks.hasStudioHome) { failed = true; console.log("FAIL: Studio home missing"); }
-      if ((r.checks.studioAppCards || 0) < 4) { failed = true; console.log("FAIL: Studio app cards < 4"); }
-      if (!r.checks.hasAppsLauncher && !r.checks.hideApps) {
+      // Site root is quiet-chrome Home rebuild (workspace), not the old studio card grid.
+      if (!r.checks.hasAppShell) { failed = true; console.log("FAIL: Home App Shell missing"); }
+      if (!r.checks.quietChrome) { failed = true; console.log("FAIL: Home quiet chrome missing"); }
+      if (!/Home/i.test(r.checks.title || "")) { failed = true; console.log("FAIL: Home title missing"); }
+      if ((r.checks.bodyLen || 0) < 40) { failed = true; console.log("FAIL: Home body empty"); }
+      if (r.checks.hasStudioHome || (r.checks.studioAppCards || 0) >= 4) {
         failed = true;
-        console.log("FAIL: Apps launcher missing");
-      }
-      if (r.checks.hasDashboard && !r.checks.hasOutdoorOS) {
-        // Studio home must not embed the full Outside mount.
-        failed = true;
-        console.log("FAIL: Dashboard on Studio home");
+        console.log("FAIL: Legacy studio card home still mounted");
       }
     }
     if (r.name === "dashboard-redirect" && !/\/apps\/dashboard\//.test(r.checks.currentPath || "")) {

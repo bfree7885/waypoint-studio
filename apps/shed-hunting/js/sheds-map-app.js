@@ -457,8 +457,8 @@
         }
       });
     }
-    bindTileHealth(osm, "OpenStreetMap");
-    bindTileHealth(topo, "OpenTopoMap");
+    bindTileHealth(street, "CARTO basemap");
+    bindTileHealth(topo, "Esri World Topo");
 
     var firstTile = false;
     function afterBasemapSettles() {

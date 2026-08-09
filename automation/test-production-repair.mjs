@@ -99,7 +99,9 @@ const nav = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-n
 assert("nav photo coach live path", /"href": "apps\/photo-coach\/"/.test(nav));
 
 const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-assert("home single primary lead", (home.match(/was-home__lead/g) || []).length === 1);
+assert("home rebuild boot shell", /wdb-r-boot/.test(home) && /Opening workspace/.test(home));
+assert("home single sr-only title", (home.match(/<h1 class="wds-sr-only">Home<\/h1>/g) || []).length === 1);
+assert("home content engine mount", /id="wds-content-engine"/.test(home));
 
 const wds = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
 assert("wds loads platform-boot", /wds-platform-boot\.js/.test(wds));
