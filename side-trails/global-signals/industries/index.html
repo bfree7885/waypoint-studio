@@ -55,6 +55,8 @@
       data-gsi-index
       data-gsi-state="loading"
       data-gsi-data="../../../data/global-signals/industries/industries.json"
+      data-gsi-live="../../../data/global-signals/industries/live-impacts.json"
+      data-gsi-depth="3"
     >
       <p class="gsi-empty" role="status">
         Industry intelligence will appear here when curated baselines are available.
@@ -62,16 +64,21 @@
     </section>
   </main>
 
+  <script src="../../../design-system/js/global-signals/wds-gs-loader.js" defer></script>
   <script src="../../../design-system/js/global-signals/wds-gs-industries.js" defer></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.globalSignals && WDS.globalSignals.industries) {
-        WDS.globalSignals.industries.mountIndex(document.getElementById("gsi-index"), {
-          depth: 3,
-          dataUrl: "../../../data/global-signals/industries/industries.json"
-        });
-      }
-    });
+    (function () {
+      var el = document.getElementById("gsi-index");
+      if (!el) return;
+      setTimeout(function () {
+        var state = el.getAttribute("data-gsi-state");
+        if (state && state !== "loading") return;
+        if (window.WDS && WDS.globalSignals && WDS.globalSignals.industries) return;
+        el.setAttribute("data-gsi-state", "error");
+        el.setAttribute("aria-busy", "false");
+        el.innerHTML = '<p class="gsi-empty" role="alert">Industry module failed to load. <a href="../">Back to Global Signals</a></p>';
+      }, 8000);
+    })();
   </script>
 
   <footer class="gs-footer">

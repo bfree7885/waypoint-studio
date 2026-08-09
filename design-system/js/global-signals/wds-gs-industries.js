@@ -1,12 +1,19 @@
 /**
  * Global Signals — Industry Intelligence (index + detail).
- * Loads curated-baseline JSON. Does not invent missing Takes or live events.
+ * Loads curated structural baseline JSON + optional live impacts.
+ * Does not invent missing Takes, live events, or activations.
+ * Auto-boots [data-gsi-index] / [data-gsi-detail] mounts; every load must
+ * terminate in ready | empty | error (never infinite Loading).
  */
 (function (global) {
   "use strict";
 
   var NS = (global.WDS = global.WDS || {});
   var GS = (NS.globalSignals = NS.globalSignals || {});
+
+  var FETCH_TIMEOUT_MS = 12000;
+  var INDUSTRIES_REL = "data/global-signals/industries/industries.json";
+  var LIVE_IMPACTS_REL = "data/global-signals/industries/live-impacts.json";
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -18,6 +25,71 @@
 
   var CONFIDENCE_ALLOWED = ["Observed", "High", "Medium", "Low", "Unknown"];
   var HORIZON_ALLOWED = ["Immediate", "Days", "Weeks", "Months", "Long-term"];
+
+  function scriptBaseUrl() {
+    try {
+      var scripts = document.getElementsByTagName("script");
+      for (var i = scripts.length - 1; i >= 0; i--) {
+        var src = scripts[i].src || "";
+        var marker = "design-system/js/global-signals/";
+        var idx = src.indexOf(marker);
+        if (idx !== -1) return src.slice(0, idx);
+      }
+    } catch (e) {}
+    return "/";
+  }
+
+  function joinUrl(base, rel) {
+    if (!rel) return base || "";
+    if (/^https?:\/\//i.test(rel) || rel.charAt(0) === "/") return rel;
+    var b = String(base || "/");
+    if (b.charAt(b.length - 1) !== "/") b += "/";
+    return b + rel.replace(/^\.\//, "");
+  }
+
+  function depthPrefix(depth) {
+    var d = typeof depth === "number" ? depth : 3;
+    var prefix = "";
+    for (var i = 0; i < d; i++) prefix += "../";
+    return prefix;
+  }
+
+  function fetchJson(url, timeoutMs) {
+    var ms = timeoutMs == null ? FETCH_TIMEOUT_MS : timeoutMs;
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = null;
+    var opts = { credentials: "same-origin" };
+    if (ctrl) {
+      opts.signal = ctrl.signal;
+      timer = setTimeout(function () {
+        try {
+          ctrl.abort();
+        } catch (e) {}
+      }, ms);
+    }
+    var req = fetch(url, opts).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    });
+    if (!ctrl) {
+      var timeoutPromise = new Promise(function (_, reject) {
+        timer = setTimeout(function () {
+          reject(new Error("timeout"));
+        }, ms);
+      });
+      req = Promise.race([req, timeoutPromise]);
+    }
+    return Promise.resolve(req).then(
+      function (value) {
+        if (timer) clearTimeout(timer);
+        return value;
+      },
+      function (err) {
+        if (timer) clearTimeout(timer);
+        throw err;
+      }
+    );
+  }
 
   function normalizeConfidence(value, opts) {
     opts = opts || {};
@@ -586,6 +658,157 @@
     );
   }
 
+  function looksLikePortOrRoute(text) {
+    return /port|canal|strait|hub|gateway|corridor|lane|transshipment|terminal/i.test(
+      String(text || "")
+    );
+  }
+
+  function renderPortsRoutes(ind, crossLinks) {
+    var items = [];
+    (ind.majorCountries || []).forEach(function (c) {
+      if (!looksLikePortOrRoute(c.role) && !looksLikePortOrRoute(c.name)) return;
+      items.push({
+        label: c.name,
+        detail: c.role || "",
+        href: countryHref(c, crossLinks),
+        id: c.id || ""
+      });
+    });
+    (ind.supplyChain && ind.supplyChain.nodes ? ind.supplyChain.nodes : []).forEach(
+      function (n) {
+        if (!looksLikePortOrRoute(n.label) && !looksLikePortOrRoute(n.note) && n.type !== "infrastructure")
+          return;
+        if (!looksLikePortOrRoute(n.label) && !looksLikePortOrRoute(n.note)) return;
+        items.push({
+          label: n.label,
+          detail: n.note || "",
+          href: null,
+          id: ""
+        });
+      }
+    );
+    var body;
+    if (!items.length) {
+      body =
+        '<p class="gsi-empty">No port or route nodes are tagged on this structural baseline.</p>';
+    } else {
+      body =
+        '<ul class="gsi-item-list">' +
+        items
+          .map(function (it) {
+            var title = it.href
+              ? '<a href="' +
+                esc(it.href) +
+                '" data-entity="country" data-id="' +
+                esc(it.id) +
+                '">' +
+                esc(it.label) +
+                "</a>"
+              : esc(it.label);
+            return (
+              '<li class="gsi-item"><h3>' +
+              title +
+              "</h3>" +
+              (it.detail ? "<p>" + esc(it.detail) + "</p>" : "") +
+              "</li>"
+            );
+          })
+          .join("") +
+        "</ul>";
+    }
+    return (
+      '<section class="gsi-section" aria-labelledby="gsi-ports">' +
+      '<h2 id="gsi-ports">Ports &amp; routes</h2>' +
+      '<p class="gsi-note">Structural nodes from the industry baseline — not a live vessel or AIS feed.</p>' +
+      body +
+      "</section>"
+    );
+  }
+
+  function industryImpactMatches(impact, ind) {
+    if (!impact || !ind) return false;
+    var label = String(impact.affectedEntityLabel || "").toLowerCase();
+    var entity = String(impact.affectedEntity || "").toLowerCase();
+    var name = String(ind.name || "").toLowerCase();
+    var slug = String(ind.slug || "").toLowerCase();
+    var id = String(ind.id || "").toLowerCase();
+    if (label && label === name) return true;
+    if (entity && (entity === id || entity.indexOf(slug) !== -1)) return true;
+    if (label && slug && label.indexOf(slug) !== -1) return true;
+    var aliases = ind.taxonomyAliases || [];
+    for (var i = 0; i < aliases.length; i++) {
+      if (label && label === String(aliases[i] || "").toLowerCase()) return true;
+    }
+    return false;
+  }
+
+  function renderLiveDevelopments(ind, livePayload) {
+    var status = (livePayload && livePayload._gsiLiveStatus) || "missing";
+    var impacts = ((livePayload && livePayload.impacts) || []).filter(function (imp) {
+      return industryImpactMatches(imp, ind);
+    });
+    var note =
+      '<p class="gsi-note">Live activations are evidence-backed exposure paths — analysis, not Observed facts. We will not invent developments.</p>';
+    var statusLine =
+      '<p class="gsi-meta">' +
+      badge("Live · " + String(status)) +
+      (livePayload && livePayload.updatedAt
+        ? badge("Updated · " + String(livePayload.updatedAt).slice(0, 10))
+        : "") +
+      "</p>";
+    var body;
+    if (status === "error") {
+      body =
+        '<p class="gsi-empty" role="status">Live industry impacts could not be loaded (' +
+        esc((livePayload && livePayload._gsiLiveError) || "request failed") +
+        "). Structural baseline below is still shown when available.</p>";
+    } else if (!impacts.length) {
+      body =
+        '<p class="gsi-empty" role="status">No live activations currently reach ' +
+        esc(ind.name) +
+        ". The structural baseline remains available below.</p>";
+    } else {
+      body =
+        '<ul class="gsi-item-list">' +
+        impacts
+          .map(function (imp) {
+            var evidence = Array.isArray(imp.evidence) ? imp.evidence : [];
+            var ev =
+              evidence.length && evidence[0] && evidence[0].url
+                ? ' <a href="' +
+                  esc(evidence[0].url) +
+                  '" rel="noopener noreferrer">Source</a>'
+                : "";
+            return (
+              '<li class="gsi-item"><h3>' +
+              esc(imp.originEventTitle || imp.id || "Live impact") +
+              "</h3>" +
+              '<p class="gsi-meta">' +
+              badge(imp.orderLabel || "Impact") +
+              badge(normalizeConfidence(imp.confidence, { predicted: true }), "confidence") +
+              badge(normalizeTimeHorizon(imp.timeHorizon || imp.horizon)) +
+              "</p>" +
+              (imp.whyThisIsShowing
+                ? "<p>" + esc(imp.whyThisIsShowing) + "</p>"
+                : "") +
+              (ev ? "<p>" + ev + "</p>" : "") +
+              "</li>"
+            );
+          })
+          .join("") +
+        "</ul>";
+    }
+    return (
+      '<section class="gsi-section" aria-labelledby="gsi-live">' +
+      '<h2 id="gsi-live">Live developments</h2>' +
+      note +
+      statusLine +
+      body +
+      "</section>"
+    );
+  }
+
   function renderIndexCard(ind) {
     return (
       '<article class="gsi-card" data-gsi-id="' +
@@ -678,6 +901,7 @@
       "<p>" +
       esc(why.text || "Why unavailable.") +
       "</p></section>" +
+      renderLiveDevelopments(ind, payload && payload.liveImpacts) +
       renderItemList("Current threats", "gsi-threats", ind.threats, "Threats not tagged.") +
       renderItemList(
         "Current opportunities",
@@ -686,6 +910,7 @@
         "Opportunities not tagged."
       ) +
       renderCountries(ind.majorCountries, cross) +
+      renderPortsRoutes(ind, cross) +
       renderSupply(ind.supplyChain) +
       renderArticles(ind.relatedArticles, cross) +
       renderTake(ind.waypointsTake) +
@@ -714,38 +939,176 @@
     return byId;
   }
 
-  function resolveDataUrl(el, depth) {
-    if (el && el.getAttribute("data-gsi-data")) return el.getAttribute("data-gsi-data");
-    var d = typeof depth === "number" ? depth : 3;
-    var prefix = "";
-    for (var i = 0; i < d; i++) prefix += "../";
-    return prefix + "data/global-signals/industries/industries.json";
+  function resolveDataUrl(el, depth, configured) {
+    if (configured) return configured;
+    if (el && el.getAttribute && el.getAttribute("data-gsi-data")) {
+      return el.getAttribute("data-gsi-data");
+    }
+    var relative = depthPrefix(depth == null ? 3 : depth) + INDUSTRIES_REL;
+    var absolute = joinUrl(scriptBaseUrl(), INDUSTRIES_REL);
+    return { relative: relative, absolute: absolute };
+  }
+
+  function candidateUrls(primary, depth) {
+    var out = [];
+    var seen = {};
+    function add(u) {
+      if (!u || seen[u]) return;
+      seen[u] = true;
+      out.push(u);
+    }
+    if (primary && typeof primary === "object") {
+      add(primary.relative);
+      add(primary.absolute);
+    } else {
+      add(primary);
+    }
+    add(depthPrefix(depth == null ? 4 : depth) + INDUSTRIES_REL);
+    add(joinUrl(scriptBaseUrl(), INDUSTRIES_REL));
+    add("/" + INDUSTRIES_REL);
+    return out;
+  }
+
+  function loadIndustryDataset(opts) {
+    opts = opts || {};
+    var depth = opts.depth;
+    var primary = resolveDataUrl(opts.el, depth, opts.dataUrl);
+    var urls = candidateUrls(primary, depth);
+    var lastErr = null;
+    var i = 0;
+
+    function next() {
+      if (i >= urls.length) {
+        return Promise.reject(lastErr || new Error("Industry dataset unavailable"));
+      }
+      var url = urls[i++];
+      return fetchJson(url, opts.timeoutMs).catch(function (err) {
+        lastErr = err;
+        return next();
+      });
+    }
+
+    return next().then(function (payload) {
+      payload = payload || {};
+      payload._gsiResolvedFrom = urls[Math.max(0, i - 1)];
+      return attachLiveImpacts(payload, opts);
+    });
+  }
+
+  function liveImpactCandidates(opts) {
+    opts = opts || {};
+    var configured =
+      opts.liveDataUrl ||
+      (opts.el && opts.el.getAttribute && opts.el.getAttribute("data-gsi-live"));
+    var out = [];
+    var seen = {};
+    function add(u) {
+      if (!u || seen[u]) return;
+      seen[u] = true;
+      out.push(u);
+    }
+    add(configured);
+    add(depthPrefix(opts.depth == null ? 4 : opts.depth) + LIVE_IMPACTS_REL);
+    add(joinUrl(scriptBaseUrl(), LIVE_IMPACTS_REL));
+    add("/" + LIVE_IMPACTS_REL);
+    return out;
+  }
+
+  function attachLiveImpacts(payload, opts) {
+    var urls = liveImpactCandidates(opts);
+    var i = 0;
+    var lastErr = null;
+
+    function next() {
+      if (i >= urls.length) {
+        payload.liveImpacts = {
+          mode: "live-empty",
+          impacts: [],
+          _gsiLiveStatus: lastErr ? "error" : "missing",
+          _gsiLiveError: lastErr ? String(lastErr.message || lastErr) : "not_found"
+        };
+        return payload;
+      }
+      var url = urls[i++];
+      return fetchJson(url, opts.timeoutMs)
+        .then(function (live) {
+          live = live || {};
+          var mode = String(live.mode || "");
+          var loader = GS.loader;
+          if (loader && typeof loader.gateDataset === "function") {
+            var gated = loader.gateDataset(live, { allowFixture: !!opts.allowFixture });
+            if (!gated.ok) {
+              throw new Error(gated.message || gated.reason || "non_production_live_impacts");
+            }
+          } else if (mode && mode !== "live" && mode !== "live-empty" && !opts.allowFixture) {
+            throw new Error("Refusing non-production live impacts mode: " + mode);
+          }
+          live._gsiLiveStatus =
+            Array.isArray(live.impacts) && live.impacts.length ? "live" : "live-empty";
+          live._gsiResolvedFrom = url;
+          payload.liveImpacts = live;
+          return payload;
+        })
+        .catch(function (err) {
+          lastErr = err;
+          return next();
+        });
+    }
+
+    return Promise.resolve()
+      .then(next)
+      .catch(function () {
+        payload.liveImpacts = {
+          mode: "live-empty",
+          impacts: [],
+          _gsiLiveStatus: "error",
+          _gsiLiveError: "live_impacts_unavailable"
+        };
+        return payload;
+      });
   }
 
   function setState(el, state) {
     if (el) el.setAttribute("data-gsi-state", state);
   }
 
+  function renderLoadError(message, withBack) {
+    return (
+      '<p class="gsi-empty" role="alert">' +
+      esc(message) +
+      (withBack ? ' <a href="../">Back to industries</a>' : "") +
+      "</p>"
+    );
+  }
+
   function mountIndex(el, opts) {
     opts = opts || {};
     if (!el) return Promise.resolve(null);
+    if (el.getAttribute("data-gsi-booted") === "1" && el.getAttribute("data-gsi-state") !== "loading") {
+      return Promise.resolve(null);
+    }
+    el.setAttribute("data-gsi-booted", "1");
+    opts.el = el;
+    if (opts.depth == null) opts.depth = 3;
     setState(el, "loading");
+    el.setAttribute("aria-busy", "true");
     el.innerHTML = '<p class="gsi-empty" role="status">Loading industry intelligence\u2026</p>';
-    var url = opts.dataUrl || resolveDataUrl(el, opts.depth);
-    return fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
-      })
+    return loadIndustryDataset(opts)
       .then(function (payload) {
-        el.innerHTML = renderIndex(payload || {});
-        setState(el, "ready");
+        var html = renderIndex(payload || {});
+        el.innerHTML = html;
+        var empty = !(payload && payload.industries && payload.industries.length);
+        setState(el, empty ? "empty" : "ready");
+        el.setAttribute("aria-busy", "false");
         return payload;
       })
       .catch(function () {
-        el.innerHTML =
-          '<p class="gsi-empty" role="alert">Industry intelligence could not be loaded. The dataset may be unavailable — we will not invent content.</p>';
+        el.innerHTML = renderLoadError(
+          "Industry intelligence could not be loaded. The dataset may be unavailable — we will not invent content.",
+          false
+        );
         setState(el, "error");
+        el.setAttribute("aria-busy", "false");
         return null;
       });
   }
@@ -753,50 +1116,108 @@
   function mountDetail(el, opts) {
     opts = opts || {};
     if (!el) return Promise.resolve(null);
+    if (el.getAttribute("data-gsi-booted") === "1" && el.getAttribute("data-gsi-state") !== "loading") {
+      return Promise.resolve(null);
+    }
+    el.setAttribute("data-gsi-booted", "1");
+    opts.el = el;
+    if (opts.depth == null) opts.depth = 4;
     var slug =
       opts.slug ||
       (el.getAttribute && el.getAttribute("data-gsi-slug")) ||
       "";
     slug = String(slug || "").trim();
     setState(el, "loading");
+    el.setAttribute("aria-busy", "true");
     el.innerHTML = '<p class="gsi-empty" role="status">Loading industry\u2026</p>';
     if (!slug) {
-      el.innerHTML =
-        '<p class="gsi-empty" role="alert">Industry slug missing. <a href="../">Back to industries</a></p>';
+      el.innerHTML = renderLoadError("Industry slug missing.", true);
       setState(el, "error");
+      el.setAttribute("aria-busy", "false");
       return Promise.resolve(null);
     }
-    var url = opts.dataUrl || resolveDataUrl(el, opts.depth == null ? 4 : opts.depth);
-    return fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
-      })
+    return loadIndustryDataset(opts)
       .then(function (payload) {
         var list = (payload.industries || []).map(normalizeIndustry).filter(Boolean);
         var byId = buildIndex({}, list);
-        var ind = list.find(function (i) {
-          return i.slug === slug;
-        });
+        var ind = null;
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].slug === slug) {
+            ind = list[i];
+            break;
+          }
+        }
         if (!ind) {
-          el.innerHTML =
-            '<p class="gsi-empty" role="alert">Industry not found. <a href="../">Back to industries</a></p>';
+          el.innerHTML = renderLoadError("Industry not found.", true);
           setState(el, "error");
+          el.setAttribute("aria-busy", "false");
           return null;
         }
         el.innerHTML = renderDetail(ind, payload, byId);
         setState(el, "ready");
+        el.setAttribute("aria-busy", "false");
         if (global.document && document.title) {
           document.title = ind.name + " — Industry Intelligence · Global Signals";
         }
         return ind;
       })
       .catch(function () {
-        el.innerHTML =
-          '<p class="gsi-empty" role="alert">Industry intelligence could not be loaded. <a href="../">Back to industries</a></p>';
+        el.innerHTML = renderLoadError(
+          "Industry intelligence could not be loaded.",
+          true
+        );
         setState(el, "error");
+        el.setAttribute("aria-busy", "false");
         return null;
       });
+  }
+
+  function boot(root) {
+    var doc = root || (global.document ? document : null);
+    if (!doc || !doc.querySelectorAll) return [];
+    var jobs = [];
+    var indexes = doc.querySelectorAll("[data-gsi-index]");
+    for (var i = 0; i < indexes.length; i++) {
+      var idxEl = indexes[i];
+      if (idxEl.getAttribute("data-gsi-booted") === "1") continue;
+      idxEl.setAttribute("data-gsi-booted", "1");
+      jobs.push(
+        mountIndex(idxEl, {
+          depth: Number(idxEl.getAttribute("data-gsi-depth") || 3),
+          dataUrl: idxEl.getAttribute("data-gsi-data") || undefined,
+          liveDataUrl: idxEl.getAttribute("data-gsi-live") || undefined
+        })
+      );
+    }
+    var details = doc.querySelectorAll("[data-gsi-detail]");
+    for (var j = 0; j < details.length; j++) {
+      var el = details[j];
+      if (el.getAttribute("data-gsi-booted") === "1") continue;
+      el.setAttribute("data-gsi-booted", "1");
+      jobs.push(
+        mountDetail(el, {
+          slug: el.getAttribute("data-gsi-slug") || undefined,
+          depth: Number(el.getAttribute("data-gsi-depth") || 4),
+          dataUrl: el.getAttribute("data-gsi-data") || undefined,
+          liveDataUrl: el.getAttribute("data-gsi-live") || undefined
+        })
+      );
+    }
+    return jobs;
+  }
+
+  function autoBoot() {
+    try {
+      boot();
+    } catch (e) {}
+  }
+
+  if (global.document) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", autoBoot);
+    } else {
+      autoBoot();
+    }
   }
 
   GS.industries = {
@@ -808,9 +1229,17 @@
     renderDetail: renderDetail,
     renderTake: renderTake,
     renderIndexCard: renderIndexCard,
+    renderLiveDevelopments: renderLiveDevelopments,
+    renderPortsRoutes: renderPortsRoutes,
     takeHasSubstance: takeHasSubstance,
+    resolveDataUrl: resolveDataUrl,
+    candidateUrls: candidateUrls,
+    loadIndustryDataset: loadIndustryDataset,
+    fetchJson: fetchJson,
     mountIndex: mountIndex,
     mountDetail: mountDetail,
+    boot: boot,
+    FETCH_TIMEOUT_MS: FETCH_TIMEOUT_MS,
     CONFIDENCE_ALLOWED: CONFIDENCE_ALLOWED,
     HORIZON_ALLOWED: HORIZON_ALLOWED
   };

@@ -71,11 +71,23 @@ assert.match(css, /\.gsi-take/);
 assert.match(css, /@media \(max-width:\s*40rem\)/);
 assert.match(css, /prefers-reduced-motion/);
 
+assert.ok(exists("design-system/js/global-signals/wds-gs-loader.js"), "shared GS loader missing");
+assert.ok(
+  exists("data/global-signals/industries/live-impacts.json"),
+  "live industry impacts artifact missing"
+);
+
 const data = JSON.parse(read(dataPath));
 assert.equal(data.mode, "curated-baseline");
 assert.ok(data.honesty && data.honesty.banner);
+assert.doesNotMatch(String(data.modeLabel || ""), /sample-demo/i);
+assert.doesNotMatch(String(data.honesty.banner || ""), /sample-demo/i);
 assert.ok(data.crossLinks);
 assert.equal(data.industries.length, 11);
+
+const liveImpacts = JSON.parse(read("data/global-signals/industries/live-impacts.json"));
+assert.ok(liveImpacts.mode === "live" || liveImpacts.mode === "live-empty");
+assert.ok(Array.isArray(liveImpacts.impacts));
 
 const bySlug = new Map();
 const byId = new Map();
@@ -153,16 +165,29 @@ const landing = read("side-trails/global-signals/index.html");
 assert.match(landing, /\.\/industries\//);
 assert.match(landing, /Industry Intelligence/);
 
-// Detail page shells
+// Detail page shells — loader + watchdog on every sibling route
 for (const slug of REQUIRED_SLUGS) {
   const page = read(`side-trails/global-signals/industries/${slug}/index.html`);
   assert.match(page, new RegExp(`data-gsi-slug="${slug}"`));
+  assert.match(page, /wds-gs-loader\.js/);
   assert.match(page, /wds-gs-industries\.js/);
   assert.match(page, /industries\.json/);
+  assert.match(page, /live-impacts\.json/);
+  assert.match(page, /Industry module failed to load/);
   assert.match(page, /All industries/);
   assert.doesNotMatch(page, /Coming soon/i);
   assert.doesNotMatch(page, /TODO|lorem ipsum/i);
+  assert.doesNotMatch(page, /wds-gs-entities\.js/);
 }
+
+const indexPage = read(indexHtml);
+assert.match(indexPage, /wds-gs-loader\.js/);
+assert.match(indexPage, /live-impacts\.json/);
+assert.match(indexPage, /Industry module failed to load/);
+
+const shippingPage = read("side-trails/global-signals/industries/shipping/index.html");
+assert.match(shippingPage, /data-gsi-slug="shipping"/);
+assert.match(shippingPage, /Loading Shipping/);
 
 // Unit: renderer + missing fields
 await import(pathToFileURL(path.join(root, jsPath)).href);
@@ -179,7 +204,7 @@ assert.ok(full.threats.length >= 2);
 
 const indexHtmlOut = api.renderIndex(data);
 assert.match(indexHtmlOut, /gsi-banner/);
-assert.match(indexHtmlOut, /Curated baseline/);
+assert.match(indexHtmlOut, /Curated structural baseline|Curated baseline/);
 assert.match(indexHtmlOut, /Semiconductors/);
 assert.match(indexHtmlOut, /Energy/);
 assert.match(indexHtmlOut, /href="\.\/shipping\/"/);
@@ -193,9 +218,11 @@ for (const ind of data.industries.map(api.normalizeIndustry)) {
 const detail = api.renderDetail(full, data, byIdNorm);
 assert.match(detail, /What is happening/);
 assert.match(detail, /Why\?/);
+assert.match(detail, /Live developments/);
 assert.match(detail, /Current threats/);
 assert.match(detail, /Current opportunities/);
 assert.match(detail, /Major countries involved/);
+assert.match(detail, /Ports &amp; routes|Ports & routes/);
 assert.match(detail, /Supply chain/);
 assert.match(detail, /Related articles/);
 assert.match(detail, /Waypoint.s Take/);
@@ -209,6 +236,51 @@ assert.match(detail, /data-entity="industry"/);
 assert.match(detail, /href="\.\.\/\.\.\/articles\/"/);
 assert.match(detail, /href="\.\.\/\.\.\/citizen-impact\/"/);
 assert.match(detail, /relationship-graph/);
+
+// Shipping success render + honest empty live developments
+const shippingRaw = bySlug.get("shipping");
+assert.ok(shippingRaw, "shipping industry required");
+const shippingNorm = api.normalizeIndustry(shippingRaw);
+const shippingDetail = api.renderDetail(
+  shippingNorm,
+  {
+    ...data,
+    liveImpacts: { mode: "live-empty", impacts: [], _gsiLiveStatus: "live-empty" }
+  },
+  byIdNorm
+);
+assert.match(shippingDetail, /<h1>Shipping<\/h1>/);
+assert.match(shippingDetail, /Ports &amp; routes|Ports & routes/);
+assert.match(shippingDetail, /No live activations currently reach Shipping/);
+assert.match(shippingDetail, /Waypoint.s Take/);
+assert.doesNotMatch(shippingDetail, /Loading Shipping/);
+
+const shippingLiveDetail = api.renderDetail(
+  shippingNorm,
+  {
+    ...data,
+    liveImpacts: {
+      mode: "live",
+      impacts: liveImpacts.impacts,
+      _gsiLiveStatus: "live",
+      updatedAt: liveImpacts.updatedAt
+    }
+  },
+  byIdNorm
+);
+// Live feed may not include Shipping — still honest empty, never invented
+assert.match(shippingLiveDetail, /Live developments/);
+assert.match(
+  shippingLiveDetail,
+  /No live activations currently reach Shipping|FIRST-ORDER|Live · live/
+);
+
+// Data-source resolution candidates include nested + absolute deploy paths
+const resolved = api.resolveDataUrl(null, 4);
+assert.ok(resolved.relative.includes("../../../../data/global-signals/industries/industries.json"));
+const urls = api.candidateUrls(resolved, 4);
+assert.ok(urls.some((u) => u.includes("data/global-signals/industries/industries.json")));
+assert.ok(urls.some((u) => u.startsWith("/") || u.includes("../")));
 
 // Missing fields honesty
 const sparse = api.normalizeIndustry({ id: "gsi_sparse", slug: "sparse", name: "Sparse" });
@@ -271,10 +343,86 @@ assert.match(semi.text, /data-gsi-slug="semiconductors"/);
 
 const ship = await get("/side-trails/global-signals/industries/shipping/");
 assert.equal(ship.status, 200);
+assert.match(ship.text, /wds-gs-industries\.js/);
+assert.match(ship.text, /data-gsi-slug="shipping"/);
 
 const jsonRes = await get("/data/global-signals/industries/industries.json");
 assert.equal(jsonRes.status, 200);
 assert.match(jsonRes.text, /gsi_semiconductors/);
+
+const liveRes = await get("/data/global-signals/industries/live-impacts.json");
+assert.equal(liveRes.status, 200);
+
+const loaderRes = await get("/design-system/js/global-signals/wds-gs-loader.js");
+assert.equal(loaderRes.status, 200);
+
+// Nested-path mount success + failed-data termination (no infinite Loading)
+async function mountWithFetch(pathPrefix, fetchImpl) {
+  const prevFetch = globalThis.fetch;
+  globalThis.fetch = fetchImpl;
+  try {
+    const el = {
+      attrs: {
+        "data-gsi-slug": "shipping",
+        "data-gsi-state": "loading",
+        "data-gsi-data": `${pathPrefix}data/global-signals/industries/industries.json`,
+        "data-gsi-live": `${pathPrefix}data/global-signals/industries/live-impacts.json`
+      },
+      getAttribute(k) {
+        return this.attrs[k];
+      },
+      setAttribute(k, v) {
+        this.attrs[k] = v;
+      },
+      innerHTML: '<p class="gsi-empty" role="status">Loading Shipping…</p>'
+    };
+    const result = await api.mountDetail(el, {
+      slug: "shipping",
+      depth: 4,
+      dataUrl: el.getAttribute("data-gsi-data"),
+      liveDataUrl: el.getAttribute("data-gsi-live"),
+      timeoutMs: 2000
+    });
+    return { el, result };
+  } finally {
+    globalThis.fetch = prevFetch;
+  }
+}
+
+const okFetch = async (url) => {
+  const u = String(url);
+  if (u.includes("live-impacts.json")) {
+    return {
+      ok: true,
+      json: async () => liveImpacts
+    };
+  }
+  if (u.includes("industries.json")) {
+    return {
+      ok: true,
+      json: async () => data
+    };
+  }
+  return { ok: false, status: 404, json: async () => ({}) };
+};
+
+const okMount = await mountWithFetch("../../../../", okFetch);
+assert.equal(okMount.el.attrs["data-gsi-state"], "ready");
+assert.match(okMount.el.innerHTML, /<h1>Shipping<\/h1>/);
+assert.match(okMount.el.innerHTML, /Live developments/);
+assert.doesNotMatch(okMount.el.innerHTML, /Loading Shipping/);
+assert.ok(okMount.result && okMount.result.slug === "shipping");
+
+const failFetch = async () => ({ ok: false, status: 404, json: async () => ({}) });
+const failMount = await mountWithFetch("../../../../", failFetch);
+assert.equal(failMount.el.attrs["data-gsi-state"], "error");
+assert.match(failMount.el.innerHTML, /could not be loaded/i);
+assert.doesNotMatch(failMount.el.innerHTML, /Loading Shipping|Loading industry/);
+
+// Deployed-path compatibility: absolute root candidates still resolve via fetch helper
+const absMount = await mountWithFetch("/", okFetch);
+assert.equal(absMount.el.attrs["data-gsi-state"], "ready");
+assert.match(absMount.el.innerHTML, /Shipping/);
 
 // Articles non-regression
 const articlesPage = await get("/side-trails/global-signals/articles/");

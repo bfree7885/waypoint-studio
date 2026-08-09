@@ -1034,3 +1034,19 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
    committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
 
+### 2026-08-09 — Global Signals industry loader termination
+
+**Branch:** `fix/gs-shipping-industry-loader`
+
+1. **Silent `if (WDS…) mount` with no else is an infinite loader.** Static HTML
+   says “Loading Shipping…”. If the deferred module 404s/parses wrong, DOMContentLoaded
+   still fires and the page never leaves loading. Auto-boot inside the module plus an
+   8s watchdog that errors when `WDS.globalSignals.industries` is missing.
+2. **Fetch without timeout can hang at “Loading industry…” forever.** Use AbortController
+   / race timeout and always map failure to `data-gsi-state=error|empty|ready`.
+3. **Resolve industry JSON from script base + nested relative + absolute candidates.**
+   GH Pages nested routes and missing trailing slashes break single relative `../../../../data/...`
+   assumptions; try multiple candidates before failing honestly.
+4. **Live impacts are optional and must not invent Shipping activations.** Overlay
+   `live-impacts.json` when present; empty/missing → honest empty Live developments
+   section while structural baseline still renders.

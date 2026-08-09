@@ -1,6 +1,6 @@
 # Global Signals — Industry Intelligence Data Model
 
-**Status:** Curated baseline / sample-demo on `feature/global-signals-industry-intelligence`  
+**Status:** Curated structural baseline on main · optional live overlay via `live-impacts.json`  
 **Routes:** `/side-trails/global-signals/industries/` · `/side-trails/global-signals/industries/<slug>/`  
 **Dataset:** `data/global-signals/industries/industries.json` (`mode: curated-baseline`)
 
@@ -59,4 +59,4 @@ Same discipline as Articles:
 
 ## Provenance
 
-`mode: curated-baseline` with an honest banner. Sample article links point at the existing Articles sample-demo set (`example.invalid` citations). Do not present this dataset as live breaking intelligence.
+`mode: curated-baseline` with an honest banner (not labeled sample-demo). Optional `live-impacts.json` (`mode: live|live-empty`) supplies evidence-backed activations. Do not invent live developments when the overlay is empty or missing.

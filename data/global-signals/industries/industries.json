@@ -2,11 +2,12 @@
   "version": "1.0.0",
   "updatedAt": "2026-08-07T20:00:00Z",
   "mode": "curated-baseline",
-  "modeLabel": "Curated baseline / sample-demo intelligence",
+  "modeLabel": "Curated structural baseline \u2014 not a live breaking-news feed",
   "honesty": {
-    "banner": "Curated baseline intelligence — not a live breaking-news feed. Industry pages synthesize durable structure and labeled sample relationships. They are not real-time event reports.",
+    "banner": "Curated structural industry baseline \u2014 not a live breaking-news feed. Threats, opportunities, and Takes are labeled analysis or structural context. Live activations appear separately when evidence-backed impacts are available.",
     "confidenceRules": "Observed is reserved for established facts. Predictive threats, opportunities, and citizen-impact hops must never use Observed. Missing or invalid confidence defaults to Unknown.",
-    "analysisRules": "Waypoint’s Take is analysis and interpretation — never established fact. Do not treat curated baseline text as verified live intelligence."
+    "analysisRules": "Waypoint\u2019s Take is analysis and interpretation \u2014 never established fact. Do not treat curated baseline text as verified live intelligence.",
+    "liveRules": "Live developments load from live-impacts.json when present. Missing or empty live impacts must show an honest empty state \u2014 never invent activations."
   },
   "crossLinks": {
     "articlesBase": "/side-trails/global-signals/articles/",
@@ -75,7 +76,7 @@
         "horizon": "Months"
       },
       "why": {
-        "text": "Chips are an intermediate good for nearly every modern product. When lithography tools, photomasks, or advanced packaging nodes bottleneck, Automotive, Technology, Healthcare devices, and Defense electronics feel delayed availability long before consumers see a headline about ‘chips.’",
+        "text": "Chips are an intermediate good for nearly every modern product. When lithography tools, photomasks, or advanced packaging nodes bottleneck, Automotive, Technology, Healthcare devices, and Defense electronics feel delayed availability long before consumers see a headline about \u2018chips.\u2019",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -158,7 +159,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Design IP and EDA → wafers and specialty chemicals → fab tools → fabrication → advanced packaging/test → OEMs (phones, autos, servers, medical devices).",
+        "overview": "Design IP and EDA \u2192 wafers and specialty chemicals \u2192 fab tools \u2192 fabrication \u2192 advanced packaging/test \u2192 OEMs (phones, autos, servers, medical devices).",
         "nodes": [
           {
             "label": "EDA / IP",
@@ -203,7 +204,7 @@
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Semiconductor risk is not a gadget story — it is a dependency story. A fab constraint shows up months later as delayed cars, servers, or imaging equipment.",
+        "whyItMatters": "Semiconductor risk is not a gadget story \u2014 it is a dependency story. A fab constraint shows up months later as delayed cars, servers, or imaging equipment.",
         "analysis": "Treat leading-edge concentration as a structural fact, not a daily news pulse. Diversification of mature nodes and packaging can reduce some citizen-facing scarcity without solving geopolitics. Predicted household price effects should stay Low/Unknown confidence until inventory and contract data exist."
       },
       "citizenImpacts": [
@@ -217,7 +218,7 @@
         {
           "id": "gsci_inflation-household-costs",
           "label": "Inflation / household costs",
-          "detail": "Device and auto costs may rise if shortages persist — not automatic.",
+          "detail": "Device and auto costs may rise if shortages persist \u2014 not automatic.",
           "confidence": "Low",
           "horizon": "Months"
         },
@@ -369,7 +370,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Upstream extraction → midstream transport (pipeline/tanker) → refining/generation → distribution → industrial and household end use.",
+        "overview": "Upstream extraction \u2192 midstream transport (pipeline/tanker) \u2192 refining/generation \u2192 distribution \u2192 industrial and household end use.",
         "nodes": [
           {
             "label": "Upstream fields",
@@ -401,7 +402,7 @@
       "relatedArticles": [
         {
           "id": "gsa_demo-pipeline-cyber",
-          "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems"
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
         },
         {
           "id": "gsa_demo-shipping-diversion",
@@ -413,7 +414,7 @@
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Energy shocks travel through logistics and food cold chains before they become ‘inflation’ stories. The first relationship to watch is infrastructure continuity, not spot headlines.",
+        "whyItMatters": "Energy shocks travel through logistics and food cold chains before they become \u2018inflation\u2019 stories. The first relationship to watch is infrastructure continuity, not spot headlines.",
         "analysis": "Historical pipeline cyber patterns show precautionary shutdowns can create regional fuel stress within days. Treat predicted household price paths as Medium/Low confidence unless local inventory and allocation data confirm. Diversion of maritime lanes compounds fuel cost for Shipping and Transportation without implying a permanent regime."
       },
       "citizenImpacts": [
@@ -434,7 +435,7 @@
         {
           "id": "gsci_inflation-household-costs",
           "label": "Inflation / household costs",
-          "detail": "Energy is a broad cost pass-through into goods and services — lags vary.",
+          "detail": "Energy is a broad cost pass-through into goods and services \u2014 lags vary.",
           "confidence": "Low",
           "horizon": "Weeks"
         },
@@ -496,7 +497,7 @@
         "horizon": "Months"
       },
       "why": {
-        "text": "Agriculture is the upstream of Food. Disruptions in fertilizer, water, or export corridors show up later as Food prices and Availability of goods — with long lags and many offsets.",
+        "text": "Agriculture is the upstream of Food. Disruptions in fertilizer, water, or export corridors show up later as Food prices and Availability of goods \u2014 with long lags and many offsets.",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -579,7 +580,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Inputs (seed, fertilizer, fuel, water) → farms → storage/elevators → ports/rail → Food processors and export markets.",
+        "overview": "Inputs (seed, fertilizer, fuel, water) \u2192 farms \u2192 storage/elevators \u2192 ports/rail \u2192 Food processors and export markets.",
         "nodes": [
           {
             "label": "Fertilizer & seed",
@@ -619,8 +620,8 @@
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Agriculture transmits climate and logistics into Food prices slowly — skipping the farm layer makes consumer stories look mysterious.",
-        "analysis": "Port stoppages matter most for perishable and just-in-time export windows. Fertilizer cost pressure is an Energy→Agriculture hop that should not be labeled Observed for household food prices until retail data confirms pass-through."
+        "whyItMatters": "Agriculture transmits climate and logistics into Food prices slowly \u2014 skipping the farm layer makes consumer stories look mysterious.",
+        "analysis": "Port stoppages matter most for perishable and just-in-time export windows. Fertilizer cost pressure is an Energy\u2192Agriculture hop that should not be labeled Observed for household food prices until retail data confirms pass-through."
       },
       "citizenImpacts": [
         {
@@ -778,7 +779,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Farm commodities → processing plants → cold storage → wholesale → Retail / foodservice → households.",
+        "overview": "Farm commodities \u2192 processing plants \u2192 cold storage \u2192 wholesale \u2192 Retail / foodservice \u2192 households.",
         "nodes": [
           {
             "label": "Ingredients & packaging",
@@ -823,7 +824,7 @@
       ],
       "waypointsTake": {
         "whyItMatters": "Food security narratives often skip logistics. Port labor and canal capacity are Food stories when perishables are in the container mix.",
-        "analysis": "Sample briefs on port stoppages illustrate Days-horizon dwell risk for perishables. Household price effects remain Low confidence until retail scanners and substitution show persistent gaps — avoid treating every logistics delay as Observed inflation."
+        "analysis": "Sample briefs on port stoppages illustrate Days-horizon dwell risk for perishables. Household price effects remain Low confidence until retail scanners and substitution show persistent gaps \u2014 avoid treating every logistics delay as Observed inflation."
       },
       "citizenImpacts": [
         {
@@ -924,7 +925,7 @@
       ],
       "opportunities": [
         {
-          "label": "Modal flexibility (truck ↔ rail)",
+          "label": "Modal flexibility (truck \u2194 rail)",
           "detail": "Shifting modes can relieve corridor congestion.",
           "confidence": "Medium",
           "horizon": "Weeks"
@@ -981,7 +982,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Fuel & vehicles → carriers → hubs/terminals → last-mile → shippers (Retail, Food, Manufacturing).",
+        "overview": "Fuel & vehicles \u2192 carriers \u2192 hubs/terminals \u2192 last-mile \u2192 shippers (Retail, Food, Manufacturing).",
         "nodes": [
           {
             "label": "Fuel & charging",
@@ -1013,7 +1014,7 @@
       "relatedArticles": [
         {
           "id": "gsa_demo-pipeline-cyber",
-          "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems"
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
         },
         {
           "id": "gsa_demo-shipping-diversion",
@@ -1101,14 +1102,14 @@
       "slug": "shipping",
       "name": "Shipping",
       "tagline": "Ocean carriers, canals, straits, and port complexes.",
-      "summary": "Shipping moves bulk and containerized trade through canals, straits, and ports. Drought-limited canal slots, security diversions, and labor stoppages are primary stress modes in the sample briefs.",
+      "summary": "Shipping moves bulk and containerized trade through canals, straits, and ports. Drought-limited canal slots, security diversions, and labor stoppages are primary stress modes.",
       "whatIsHappening": {
         "text": "Carriers continuously rebalance capacity across canals, contested corridors, and alternate Capes. Port labor actions and water-limited canal transit slots create queue dynamics that ripple into Retail, Automotive parts, and Food imports.",
         "confidence": "Medium",
         "horizon": "Weeks"
       },
       "why": {
-        "text": "Most intercontinental trade still travels by sea. A chokepoint delay is a multi-industry delay — Logistics in article tags often means this layer.",
+        "text": "Most intercontinental trade still travels by sea. A chokepoint delay is a multi-industry delay \u2014 Logistics in article tags often means this layer.",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -1191,7 +1192,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Shipper booking → ocean leg (canal/strait) → destination port → inland Transportation → consignee industries.",
+        "overview": "Shipper booking \u2192 ocean leg (canal/strait) \u2192 destination port \u2192 inland Transportation \u2192 consignee industries.",
         "nodes": [
           {
             "label": "Booking & empty containers",
@@ -1235,8 +1236,8 @@
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Shipping is the spine of Global Signals’ sample relationship stories — canal slots, corridor diversions, and port labor are three distinct hop types into citizen shelves.",
-        "analysis": "Do not collapse every maritime delay into ‘inflation.’ Slot cuts and diversions are High confidence for voyage time; Low confidence for household prices until Retail and Food inventory confirm pass-through. Align article industry tag Logistics with this Shipping node when building graph edges."
+        "whyItMatters": "Shipping is a primary transmission layer for canal slots, corridor diversions, and port labor into citizen shelves \u2014 three distinct hop types that should not be collapsed into a single inflation story.",
+        "analysis": "Do not collapse every maritime delay into \u2018inflation.\u2019 Slot cuts and diversions are High confidence for voyage time; Low confidence for household prices until Retail and Food inventory confirm pass-through. Align article industry tag Logistics with this Shipping node when building graph edges."
       },
       "citizenImpacts": [
         {
@@ -1256,7 +1257,7 @@
         {
           "id": "gsci_fuel-prices",
           "label": "Fuel prices",
-          "detail": "Longer voyages can pressure bunker markets — weak household link.",
+          "detail": "Longer voyages can pressure bunker markets \u2014 weak household link.",
           "confidence": "Low",
           "horizon": "Weeks"
         },
@@ -1360,7 +1361,7 @@
         },
         {
           "label": "Interoperable digital records",
-          "detail": "Care continuity when patients move — Technology hop.",
+          "detail": "Care continuity when patients move \u2014 Technology hop.",
           "confidence": "Medium",
           "horizon": "Long-term"
         }
@@ -1404,7 +1405,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "APIs & device components → manufacturing → distribution cold chain → hospitals/pharmacies → patients.",
+        "overview": "APIs & device components \u2192 manufacturing \u2192 distribution cold chain \u2192 hospitals/pharmacies \u2192 patients.",
         "nodes": [
           {
             "label": "APIs & components",
@@ -1440,12 +1441,12 @@
         },
         {
           "id": "gsa_demo-pipeline-cyber",
-          "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems"
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
         }
       ],
       "waypointsTake": {
         "whyItMatters": "Healthcare is where industrial dependencies become personal. A semiconductor delay in an imaging tube is not abstract when wait lists grow.",
-        "analysis": "Keep confidence Low on broad ‘medicine crisis’ claims without SKU-level shortage evidence. Energy reliability for clinics is a clearer Days-horizon hop when grids or fuel are stressed. Never present Waypoint’s Take as clinical or medical advice."
+        "analysis": "Keep confidence Low on broad \u2018medicine crisis\u2019 claims without SKU-level shortage evidence. Energy reliability for clinics is a clearer Days-horizon hop when grids or fuel are stressed. Never present Waypoint\u2019s Take as clinical or medical advice."
       },
       "citizenImpacts": [
         {
@@ -1610,7 +1611,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Raw materials & chips → tier suppliers → assembly plants → distribution → dealers / fleets.",
+        "overview": "Raw materials & chips \u2192 tier suppliers \u2192 assembly plants \u2192 distribution \u2192 dealers / fleets.",
         "nodes": [
           {
             "label": "Steel & chemicals",
@@ -1623,7 +1624,7 @@
             "note": "Technology and Energy mineral links."
           },
           {
-            "label": "Tier 1–3 suppliers",
+            "label": "Tier 1\u20133 suppliers",
             "type": "manufacturing",
             "note": "Multi-country webs."
           },
@@ -1682,7 +1683,7 @@
         {
           "id": "gsci_inflation-household-costs",
           "label": "Inflation / household costs",
-          "detail": "Transaction prices may firm when inventory is scarce — not guaranteed.",
+          "detail": "Transaction prices may firm when inventory is scarce \u2014 not guaranteed.",
           "confidence": "Low",
           "horizon": "Months"
         }
@@ -1738,7 +1739,7 @@
         "horizon": "Months"
       },
       "why": {
-        "text": "Construction is how trade policy and materials shocks become Housing costs — with long lags and local variation. It also builds Energy, Shipping, and Healthcare facilities.",
+        "text": "Construction is how trade policy and materials shocks become Housing costs \u2014 with long lags and local variation. It also builds Energy, Shipping, and Healthcare facilities.",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -1809,7 +1810,7 @@
         },
         {
           "id": "gsc_turkey",
-          "name": "Türkiye",
+          "name": "T\u00fcrkiye",
           "slug": "turkey",
           "role": "Cement and contractor export role"
         },
@@ -1821,7 +1822,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Materials producers → distributors → contractors → job sites → owners (housing, industry, public).",
+        "overview": "Materials producers \u2192 distributors \u2192 contractors \u2192 job sites \u2192 owners (housing, industry, public).",
         "nodes": [
           {
             "label": "Steel, cement, lumber",
@@ -1857,7 +1858,7 @@
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Construction is the slow transmitter. A steel tariff may matter for Housing months later — labeling that lag honestly is the product.",
+        "whyItMatters": "Construction is the slow transmitter. A steel tariff may matter for Housing months later \u2014 labeling that lag honestly is the product.",
         "analysis": "Sample steel-tariff brief correctly keeps housing pass-through at Low confidence and Months horizon. Do not upgrade that to Observed without local bid and permit evidence."
       },
       "citizenImpacts": [
@@ -1933,7 +1934,7 @@
         "horizon": "Weeks"
       },
       "why": {
-        "text": "Retail is the citizen dashboard for industrial stress. Empty shelves are more legible than canal notices — Global Signals exists to reconnect them without panic.",
+        "text": "Retail is the citizen dashboard for industrial stress. Empty shelves are more legible than canal notices \u2014 Global Signals exists to reconnect them without panic.",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -2016,7 +2017,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Suppliers → ocean/air Shipping → DCs → stores / last-mile → households.",
+        "overview": "Suppliers \u2192 ocean/air Shipping \u2192 DCs \u2192 stores / last-mile \u2192 households.",
         "nodes": [
           {
             "label": "Suppliers & importers",
@@ -2060,12 +2061,12 @@
         },
         {
           "id": "gsa_demo-pipeline-cyber",
-          "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems"
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
         }
       ],
       "waypointsTake": {
-        "whyItMatters": "Retail is where relationship intelligence becomes everyday literacy. The goal is calm connection — not a doom shelf feed.",
-        "analysis": "When sample canal or port briefs tag Retail, treat Weeks-horizon goods availability as plausible Medium/Low — never Observed — until shelf and DC data exist. Prefer SKU-level honesty over national averages."
+        "whyItMatters": "Retail is where relationship intelligence becomes everyday literacy. The goal is calm connection \u2014 not a doom shelf feed.",
+        "analysis": "When sample canal or port briefs tag Retail, treat Weeks-horizon goods availability as plausible Medium/Low \u2014 never Observed \u2014 until shelf and DC data exist. Prefer SKU-level honesty over national averages."
       },
       "citizenImpacts": [
         {
@@ -2142,12 +2143,12 @@
       "tagline": "Cloud, software, devices, and digital infrastructure.",
       "summary": "Technology products and cloud services depend on Semiconductors, Energy for data centers, and Shipping for hardware. Digital access and employment in tech-enabled sectors are citizen outcomes.",
       "whatIsHappening": {
-        "text": "Cloud and AI workloads raise power and advanced silicon demand. Device OEMs still manage memory/logic availability and logistics. Cybersecurity incidents in adjacent critical infrastructure illustrate Technology’s dual role as enabler and risk surface.",
+        "text": "Cloud and AI workloads raise power and advanced silicon demand. Device OEMs still manage memory/logic availability and logistics. Cybersecurity incidents in adjacent critical infrastructure illustrate Technology\u2019s dual role as enabler and risk surface.",
         "confidence": "Medium",
         "horizon": "Months"
       },
       "why": {
-        "text": "Technology multiplies other industries’ productivity and their fragility. When silicon or power constrains cloud growth, Digital access and business continuity feel it; when OT-connected systems fail, Energy and Shipping can pause.",
+        "text": "Technology multiplies other industries\u2019 productivity and their fragility. When silicon or power constrains cloud growth, Digital access and business continuity feel it; when OT-connected systems fail, Energy and Shipping can pause.",
         "confidence": "High",
         "horizon": "Long-term"
       },
@@ -2236,7 +2237,7 @@
         }
       ],
       "supplyChain": {
-        "overview": "Chip & component supply → OEM/ODM assembly → cloud/data centers & devices → software/services → users and dependent industries.",
+        "overview": "Chip & component supply \u2192 OEM/ODM assembly \u2192 cloud/data centers & devices \u2192 software/services \u2192 users and dependent industries.",
         "nodes": [
           {
             "label": "Semiconductors",
@@ -2268,7 +2269,7 @@
       "relatedArticles": [
         {
           "id": "gsa_demo-pipeline-cyber",
-          "headline": "Ransomware disrupts a major fuel pipeline operator’s billing systems"
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
         },
         {
           "id": "gsa_demo-steel-tariff",
@@ -2304,7 +2305,7 @@
         {
           "id": "gsci_energy-reliability",
           "label": "Energy reliability",
-          "detail": "Data-center growth competes for regional power — local effects vary.",
+          "detail": "Data-center growth competes for regional power \u2014 local effects vary.",
           "confidence": "Low",
           "horizon": "Long-term"
         }
