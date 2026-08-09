@@ -99,6 +99,8 @@
   cursor: pointer;
   border-radius: var(--wds-radius-sm, 0.2rem);
   min-height: 2.5rem;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .waf-view.is-active,

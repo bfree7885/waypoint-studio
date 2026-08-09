@@ -1,0 +1,3957 @@
+{
+  "base": "http://127.0.0.1:8791",
+  "at": "2026-08-09T00:08:41.249Z",
+  "results": [
+    {
+      "viewport": "w375",
+      "route": "home",
+      "path": "/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__home.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "about",
+      "path": "/about.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "h1": "About",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__about.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "support",
+      "path": "/support.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Support — Waypoint Studio",
+        "h1": "Support",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__support.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "contact",
+      "path": "/contact.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Contact — Waypoint Studio",
+        "h1": "Contact",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__contact.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "privacy",
+      "path": "/privacy.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Privacy — Waypoint Studio",
+        "h1": "Privacy",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__privacy.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "terms",
+      "path": "/terms.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Terms of Service — Waypoint Studio",
+        "h1": "Terms of Service",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__terms.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "articles",
+      "path": "/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 46
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Waypoint Studio",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__articles.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "side-trails",
+      "path": "/side-trails/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Side Trails — Waypoint Studio",
+        "h1": "Side Trails",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__side-trails.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "incubator",
+      "path": "/incubator/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Incubator — Waypoint Studio",
+        "h1": "Future products, held quietly",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__incubator.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "dashboard",
+      "path": "/apps/dashboard/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__dashboard.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "scenes",
+      "path": "/apps/scenes/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+        "h1": "Review today’s shoot",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__scenes.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "sheds",
+      "path": "/apps/shed-hunting/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "wds-btn wds-btn--primary",
+          "sample": "Open today’s search",
+          "ratio": 1.18,
+          "need": 4.5,
+          "fg": "rgb(8, 15, 28)",
+          "bg": "rgb(17,32,56)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Today’s hunt · Waypoint Studio",
+        "h1": "Where should I search?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__sheds.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "sheds-map",
+      "path": "/apps/shed-hunting/map/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "Leaflet",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "OpenStreetMap",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "CARTO",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Waypoint Studio",
+        "h1": "",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__sheds-map.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "photo-coach",
+      "path": "/apps/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 3
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__photo-coach.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "scenes-photo-coach",
+      "path": "/apps/scenes/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 3
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__scenes-photo-coach.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "signalterrain-st",
+      "path": "/side-trails/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "THREAT MAP · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "ATTACK TIMELINE · EDUCATIONAL SEQUENCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "DEFENSIVE POSTURE · LAYERED GUIDANCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "GLOBAL ACTIVITY · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Observe invisible signals",
+        "h1": "Adaptive cyber intelligence for modern defenders.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__signalterrain-st.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "global-signals",
+      "path": "/side-trails/global-signals/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-badge",
+          "sample": "Sample / demo intelligence dashboard",
+          "ratio": 1.35,
+          "need": 3,
+          "fg": "rgb(154, 168, 189)",
+          "bg": "rgb(125,211,167)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gsh-search__go",
+          "sample": "Explore",
+          "ratio": 1.04,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-search__hint",
+          "sample": "Deep-links into Relationship Explorer with why, confidence, ",
+          "ratio": 4.35,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Global Signals — What matters today?",
+        "h1": "",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__global-signals.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-articles",
+      "path": "/side-trails/global-signals/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Global Signals",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-articles.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-explain",
+      "path": "/side-trails/global-signals/explain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gs-cta gs-cta--primary",
+          "sample": "Explain",
+          "ratio": 1.06,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(14,22,38)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Explain This — Global Signals",
+        "h1": "Explain This",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-explain.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-countries",
+      "path": "/side-trails/global-signals/countries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Country Intelligence — Global Signals",
+        "h1": "Country Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-countries.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-industries",
+      "path": "/side-trails/global-signals/industries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Industry Intelligence — Global Signals",
+        "h1": "Industry Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-industries.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-citizen",
+      "path": "/side-trails/global-signals/citizen-impact/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Citizen Impact — Global Signals",
+        "h1": "Citizen Impact",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-citizen.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-rel",
+      "path": "/side-trails/global-signals/relationships/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Relationship Explorer — Global Signals",
+        "h1": "Relationship Explorer",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-rel.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-graph",
+      "path": "/side-trails/global-signals/relationship-graph/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Taiwan · Relationship Graph · Global Signals",
+        "h1": "Relationship Graph",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-graph.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-take",
+      "path": "/side-trails/global-signals/waypoint-take/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint’s Take — Coming soon · Global Signals",
+        "h1": "Waypoint’s Take",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-take.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "gs-about",
+      "path": "/side-trails/global-signals/about/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "RELATIONSHIPS · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "SIGNAL FLOW · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "CITIZEN IMPACT · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Global Signals",
+        "h1": "Understanding how world events shape everyday life.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__gs-about.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "foragecast",
+      "path": "/apps/foragecast/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "fc-reliability fc-reliability--location-unavailable",
+          "sample": "Location unavailable — Set a place to personalize weather an",
+          "ratio": 1.02,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "strong",
+          "cls": "",
+          "sample": "Location unavailable",
+          "ratio": 1.02,
+          "need": 3,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone is-selected is-top",
+          "sample": "Old orchard edge MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "Old orchard edge",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "River terrace MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "River terrace",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "North oak slope MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "North oak slope",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "Hemlock ravine MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 15
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "ForageCast — What should I look for today?",
+        "h1": "Today’s foraging summary",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__foragecast.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "fieldry",
+      "path": "/apps/fieldry/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 5
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Fieldry — Life List · Waypoint Studio",
+        "h1": "A private life list",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__fieldry.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "signalterrain-app",
+      "path": "/apps/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 9
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Waypoint Studio",
+        "h1": "SignalTerrain",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__signalterrain-app.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "knowledge",
+      "path": "/knowledge.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint Knowledge — Waypoint Studio",
+        "h1": "The best information, thoughtfully organized.",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__knowledge.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "settings",
+      "path": "/settings.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Settings — Waypoint Studio",
+        "h1": "Settings",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__settings.png"
+    },
+    {
+      "viewport": "w375",
+      "route": "404",
+      "path": "/404.html",
+      "ok": true,
+      "issues": [],
+      "status": 200,
+      "probe": {
+        "title": "Page not found — Waypoint Studio",
+        "h1": "This page isn’t here",
+        "shell": false,
+        "fonts": "Inter, system-ui, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      }
+    },
+    {
+      "viewport": "w375",
+      "route": "article-sample",
+      "path": "/articles/samples/reading-todays-conditions.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Reading today’s conditions — Waypoint Studio",
+        "h1": "Reading today’s conditions",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 375,
+        "clientWidth": 375
+      },
+      "screenshot": "w375__article-sample.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "home",
+      "path": "/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__home.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "about",
+      "path": "/about.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "h1": "About",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__about.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "support",
+      "path": "/support.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Support — Waypoint Studio",
+        "h1": "Support",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__support.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "contact",
+      "path": "/contact.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Contact — Waypoint Studio",
+        "h1": "Contact",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__contact.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "privacy",
+      "path": "/privacy.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Privacy — Waypoint Studio",
+        "h1": "Privacy",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__privacy.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "terms",
+      "path": "/terms.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Terms of Service — Waypoint Studio",
+        "h1": "Terms of Service",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__terms.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "articles",
+      "path": "/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 44
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Waypoint Studio",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__articles.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "side-trails",
+      "path": "/side-trails/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Side Trails — Waypoint Studio",
+        "h1": "Side Trails",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__side-trails.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "incubator",
+      "path": "/incubator/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Incubator — Waypoint Studio",
+        "h1": "Future products, held quietly",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__incubator.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "dashboard",
+      "path": "/apps/dashboard/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__dashboard.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "scenes",
+      "path": "/apps/scenes/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+        "h1": "Review today’s shoot",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__scenes.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "sheds",
+      "path": "/apps/shed-hunting/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "wds-btn wds-btn--primary",
+          "sample": "Open today’s search",
+          "ratio": 1.18,
+          "need": 4.5,
+          "fg": "rgb(8, 15, 28)",
+          "bg": "rgb(17,32,56)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Today’s hunt · Waypoint Studio",
+        "h1": "Where should I search?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__sheds.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "sheds-map",
+      "path": "/apps/shed-hunting/map/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "Leaflet",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "OpenStreetMap",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "CARTO",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Waypoint Studio",
+        "h1": "",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__sheds-map.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "photo-coach",
+      "path": "/apps/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__photo-coach.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "scenes-photo-coach",
+      "path": "/apps/scenes/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__scenes-photo-coach.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "signalterrain-st",
+      "path": "/side-trails/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "THREAT MAP · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "ATTACK TIMELINE · EDUCATIONAL SEQUENCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "DEFENSIVE POSTURE · LAYERED GUIDANCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "GLOBAL ACTIVITY · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Observe invisible signals",
+        "h1": "Adaptive cyber intelligence for modern defenders.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__signalterrain-st.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "global-signals",
+      "path": "/side-trails/global-signals/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-badge",
+          "sample": "Sample / demo intelligence dashboard",
+          "ratio": 1.35,
+          "need": 3,
+          "fg": "rgb(154, 168, 189)",
+          "bg": "rgb(125,211,167)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gsh-search__go",
+          "sample": "Explore",
+          "ratio": 1.04,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-search__hint",
+          "sample": "Deep-links into Relationship Explorer with why, confidence, ",
+          "ratio": 4.35,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Global Signals — What matters today?",
+        "h1": "",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__global-signals.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-articles",
+      "path": "/side-trails/global-signals/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Global Signals",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-articles.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-explain",
+      "path": "/side-trails/global-signals/explain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gs-cta gs-cta--primary",
+          "sample": "Explain",
+          "ratio": 1.06,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(14,22,38)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Explain This — Global Signals",
+        "h1": "Explain This",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-explain.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-countries",
+      "path": "/side-trails/global-signals/countries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Country Intelligence — Global Signals",
+        "h1": "Country Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-countries.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-industries",
+      "path": "/side-trails/global-signals/industries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Industry Intelligence — Global Signals",
+        "h1": "Industry Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-industries.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-citizen",
+      "path": "/side-trails/global-signals/citizen-impact/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Citizen Impact — Global Signals",
+        "h1": "Citizen Impact",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-citizen.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-rel",
+      "path": "/side-trails/global-signals/relationships/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Relationship Explorer — Global Signals",
+        "h1": "Relationship Explorer",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-rel.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-graph",
+      "path": "/side-trails/global-signals/relationship-graph/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Taiwan · Relationship Graph · Global Signals",
+        "h1": "Relationship Graph",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-graph.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-take",
+      "path": "/side-trails/global-signals/waypoint-take/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint’s Take — Coming soon · Global Signals",
+        "h1": "Waypoint’s Take",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-take.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "gs-about",
+      "path": "/side-trails/global-signals/about/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "RELATIONSHIPS · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "SIGNAL FLOW · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "CITIZEN IMPACT · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Global Signals",
+        "h1": "Understanding how world events shape everyday life.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__gs-about.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "foragecast",
+      "path": "/apps/foragecast/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "fc-reliability fc-reliability--location-unavailable",
+          "sample": "Location unavailable — Set a place to personalize weather an",
+          "ratio": 1.02,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "strong",
+          "cls": "",
+          "sample": "Location unavailable",
+          "ratio": 1.02,
+          "need": 3,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone is-selected is-top",
+          "sample": "Old orchard edge MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "Old orchard edge",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "River terrace MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "River terrace",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "North oak slope MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "North oak slope",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "Hemlock ravine MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 14
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "ForageCast — What should I look for today?",
+        "h1": "Today’s foraging summary",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__foragecast.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "fieldry",
+      "path": "/apps/fieldry/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 4
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Fieldry — Life List · Waypoint Studio",
+        "h1": "A private life list",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__fieldry.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "signalterrain-app",
+      "path": "/apps/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 9
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Waypoint Studio",
+        "h1": "SignalTerrain",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__signalterrain-app.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "knowledge",
+      "path": "/knowledge.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint Knowledge — Waypoint Studio",
+        "h1": "The best information, thoughtfully organized.",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__knowledge.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "settings",
+      "path": "/settings.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Settings — Waypoint Studio",
+        "h1": "Settings",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__settings.png"
+    },
+    {
+      "viewport": "w430",
+      "route": "404",
+      "path": "/404.html",
+      "ok": true,
+      "issues": [],
+      "status": 200,
+      "probe": {
+        "title": "Page not found — Waypoint Studio",
+        "h1": "This page isn’t here",
+        "shell": false,
+        "fonts": "Inter, system-ui, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      }
+    },
+    {
+      "viewport": "w430",
+      "route": "article-sample",
+      "path": "/articles/samples/reading-todays-conditions.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Reading today’s conditions — Waypoint Studio",
+        "h1": "Reading today’s conditions",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 430,
+        "clientWidth": 430
+      },
+      "screenshot": "w430__article-sample.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "home",
+      "path": "/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__home.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "about",
+      "path": "/about.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "h1": "About",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__about.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "support",
+      "path": "/support.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Support — Waypoint Studio",
+        "h1": "Support",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__support.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "contact",
+      "path": "/contact.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Contact — Waypoint Studio",
+        "h1": "Contact",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__contact.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "privacy",
+      "path": "/privacy.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Privacy — Waypoint Studio",
+        "h1": "Privacy",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__privacy.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "terms",
+      "path": "/terms.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Terms of Service — Waypoint Studio",
+        "h1": "Terms of Service",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__terms.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "articles",
+      "path": "/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Waypoint Studio",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__articles.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "side-trails",
+      "path": "/side-trails/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Side Trails — Waypoint Studio",
+        "h1": "Side Trails",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__side-trails.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "incubator",
+      "path": "/incubator/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Incubator — Waypoint Studio",
+        "h1": "Future products, held quietly",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__incubator.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "dashboard",
+      "path": "/apps/dashboard/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__dashboard.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "scenes",
+      "path": "/apps/scenes/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+        "h1": "Review today’s shoot",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__scenes.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "sheds",
+      "path": "/apps/shed-hunting/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "wds-btn wds-btn--primary",
+          "sample": "Open today’s search",
+          "ratio": 1.18,
+          "need": 4.5,
+          "fg": "rgb(8, 15, 28)",
+          "bg": "rgb(17,32,56)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Today’s hunt · Waypoint Studio",
+        "h1": "Where should I search?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__sheds.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "sheds-map",
+      "path": "/apps/shed-hunting/map/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "Leaflet",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "OpenStreetMap",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "CARTO",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Waypoint Studio",
+        "h1": "",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__sheds-map.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "photo-coach",
+      "path": "/apps/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__photo-coach.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "scenes-photo-coach",
+      "path": "/apps/scenes/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__scenes-photo-coach.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "signalterrain-st",
+      "path": "/side-trails/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "THREAT MAP · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "ATTACK TIMELINE · EDUCATIONAL SEQUENCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "DEFENSIVE POSTURE · LAYERED GUIDANCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "GLOBAL ACTIVITY · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Observe invisible signals",
+        "h1": "Adaptive cyber intelligence for modern defenders.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__signalterrain-st.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "global-signals",
+      "path": "/side-trails/global-signals/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-badge",
+          "sample": "Sample / demo intelligence dashboard",
+          "ratio": 1.35,
+          "need": 3,
+          "fg": "rgb(154, 168, 189)",
+          "bg": "rgb(125,211,167)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gsh-search__go",
+          "sample": "Explore",
+          "ratio": 1.04,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-search__hint",
+          "sample": "Deep-links into Relationship Explorer with why, confidence, ",
+          "ratio": 4.35,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Global Signals — What matters today?",
+        "h1": "",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__global-signals.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-articles",
+      "path": "/side-trails/global-signals/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Global Signals",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-articles.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-explain",
+      "path": "/side-trails/global-signals/explain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gs-cta gs-cta--primary",
+          "sample": "Explain",
+          "ratio": 1.06,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(14,22,38)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Explain This — Global Signals",
+        "h1": "Explain This",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-explain.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-countries",
+      "path": "/side-trails/global-signals/countries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Country Intelligence — Global Signals",
+        "h1": "Country Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-countries.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-industries",
+      "path": "/side-trails/global-signals/industries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Industry Intelligence — Global Signals",
+        "h1": "Industry Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-industries.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-citizen",
+      "path": "/side-trails/global-signals/citizen-impact/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Citizen Impact — Global Signals",
+        "h1": "Citizen Impact",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-citizen.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-rel",
+      "path": "/side-trails/global-signals/relationships/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Relationship Explorer — Global Signals",
+        "h1": "Relationship Explorer",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-rel.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-graph",
+      "path": "/side-trails/global-signals/relationship-graph/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Taiwan · Relationship Graph · Global Signals",
+        "h1": "Relationship Graph",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-graph.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-take",
+      "path": "/side-trails/global-signals/waypoint-take/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint’s Take — Coming soon · Global Signals",
+        "h1": "Waypoint’s Take",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-take.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "gs-about",
+      "path": "/side-trails/global-signals/about/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "RELATIONSHIPS · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "SIGNAL FLOW · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "CITIZEN IMPACT · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Global Signals",
+        "h1": "Understanding how world events shape everyday life.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__gs-about.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "foragecast",
+      "path": "/apps/foragecast/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "fc-reliability fc-reliability--location-unavailable",
+          "sample": "Location unavailable — Set a place to personalize weather an",
+          "ratio": 1.02,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "strong",
+          "cls": "",
+          "sample": "Location unavailable",
+          "ratio": 1.02,
+          "need": 3,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone is-selected is-top",
+          "sample": "Old orchard edge MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "Old orchard edge",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "River terrace MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "River terrace",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "North oak slope MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "North oak slope",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "Hemlock ravine MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 9
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "ForageCast — What should I look for today?",
+        "h1": "Today’s foraging summary",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__foragecast.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "fieldry",
+      "path": "/apps/fieldry/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Fieldry — Life List · Waypoint Studio",
+        "h1": "A private life list",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__fieldry.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "signalterrain-app",
+      "path": "/apps/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 7
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Waypoint Studio",
+        "h1": "SignalTerrain",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__signalterrain-app.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "knowledge",
+      "path": "/knowledge.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint Knowledge — Waypoint Studio",
+        "h1": "The best information, thoughtfully organized.",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__knowledge.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "settings",
+      "path": "/settings.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Settings — Waypoint Studio",
+        "h1": "Settings",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__settings.png"
+    },
+    {
+      "viewport": "w768",
+      "route": "404",
+      "path": "/404.html",
+      "ok": true,
+      "issues": [],
+      "status": 200,
+      "probe": {
+        "title": "Page not found — Waypoint Studio",
+        "h1": "This page isn’t here",
+        "shell": false,
+        "fonts": "Inter, system-ui, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      }
+    },
+    {
+      "viewport": "w768",
+      "route": "article-sample",
+      "path": "/articles/samples/reading-todays-conditions.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Reading today’s conditions — Waypoint Studio",
+        "h1": "Reading today’s conditions",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 768,
+        "clientWidth": 768
+      },
+      "screenshot": "w768__article-sample.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "home",
+      "path": "/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__home.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "about",
+      "path": "/about.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Waypoint Studio",
+        "h1": "About",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__about.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "support",
+      "path": "/support.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Support — Waypoint Studio",
+        "h1": "Support",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__support.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "contact",
+      "path": "/contact.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 2
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Contact — Waypoint Studio",
+        "h1": "Contact",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__contact.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "privacy",
+      "path": "/privacy.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Privacy — Waypoint Studio",
+        "h1": "Privacy",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__privacy.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "terms",
+      "path": "/terms.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Terms of Service — Waypoint Studio",
+        "h1": "Terms of Service",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__terms.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "articles",
+      "path": "/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Waypoint Studio",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__articles.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "side-trails",
+      "path": "/side-trails/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Side Trails — Waypoint Studio",
+        "h1": "Side Trails",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__side-trails.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "incubator",
+      "path": "/incubator/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Incubator — Waypoint Studio",
+        "h1": "Future products, held quietly",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__incubator.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "dashboard",
+      "path": "/apps/dashboard/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Home — Waypoint Studio",
+        "h1": "Home",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__dashboard.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "scenes",
+      "path": "/apps/scenes/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Scenes — Continue yesterday’s work · Waypoint Studio",
+        "h1": "Review today’s shoot",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__scenes.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "sheds",
+      "path": "/apps/shed-hunting/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "wds-btn wds-btn--primary",
+          "sample": "Open today’s search",
+          "ratio": 1.18,
+          "need": 4.5,
+          "fg": "rgb(8, 15, 28)",
+          "bg": "rgb(17,32,56)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Today’s hunt · Waypoint Studio",
+        "h1": "Where should I search?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__sheds.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "sheds-map",
+      "path": "/apps/shed-hunting/map/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "Leaflet",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "OpenStreetMap",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "a",
+          "cls": "",
+          "sample": "CARTO",
+          "ratio": 3.86,
+          "need": 4.5,
+          "fg": "rgb(0, 120, 168)",
+          "bg": "rgb(7,18,13)"
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Sheds — Waypoint Studio",
+        "h1": "",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__sheds-map.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "photo-coach",
+      "path": "/apps/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__photo-coach.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "scenes-photo-coach",
+      "path": "/apps/scenes/photo-coach/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Photo Coach — Waypoint Scenes · Waypoint Studio",
+        "h1": "How did today’s shoot go?",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__scenes-photo-coach.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "signalterrain-st",
+      "path": "/side-trails/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "THREAT MAP · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "ATTACK TIMELINE · EDUCATIONAL SEQUENCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "DEFENSIVE POSTURE · LAYERED GUIDANCE",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "GLOBAL ACTIVITY · SCHEMATIC",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Observe invisible signals",
+        "h1": "Adaptive cyber intelligence for modern defenders.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__signalterrain-st.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "global-signals",
+      "path": "/side-trails/global-signals/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-badge",
+          "sample": "Sample / demo intelligence dashboard",
+          "ratio": 1.35,
+          "need": 3,
+          "fg": "rgb(154, 168, 189)",
+          "bg": "rgb(125,211,167)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gsh-search__go",
+          "sample": "Explore",
+          "ratio": 1.04,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "gsh-search__hint",
+          "sample": "Deep-links into Relationship Explorer with why, confidence, ",
+          "ratio": 4.35,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(12,20,34)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Global Signals — What matters today?",
+        "h1": "",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__global-signals.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-articles",
+      "path": "/side-trails/global-signals/articles/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Articles — Global Signals",
+        "h1": "Articles",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-articles.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-explain",
+      "path": "/side-trails/global-signals/explain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "gs-cta gs-cta--primary",
+          "sample": "Explain",
+          "ratio": 1.06,
+          "need": 3,
+          "fg": "rgb(7, 16, 24)",
+          "bg": "rgb(14,22,38)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Explain This — Global Signals",
+        "h1": "Explain This",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-explain.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-countries",
+      "path": "/side-trails/global-signals/countries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Country Intelligence — Global Signals",
+        "h1": "Country Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-countries.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-industries",
+      "path": "/side-trails/global-signals/industries/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Industry Intelligence — Global Signals",
+        "h1": "Industry Intelligence",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-industries.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-citizen",
+      "path": "/side-trails/global-signals/citizen-impact/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Citizen Impact — Global Signals",
+        "h1": "Citizen Impact",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-citizen.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-rel",
+      "path": "/side-trails/global-signals/relationships/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Relationship Explorer — Global Signals",
+        "h1": "Relationship Explorer",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-rel.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-graph",
+      "path": "/side-trails/global-signals/relationship-graph/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Taiwan · Relationship Graph · Global Signals",
+        "h1": "Relationship Graph",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-graph.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-take",
+      "path": "/side-trails/global-signals/waypoint-take/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint’s Take — Coming soon · Global Signals",
+        "h1": "Waypoint’s Take",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-take.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "gs-about",
+      "path": "/side-trails/global-signals/about/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "RELATIONSHIPS · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "SIGNAL FLOW · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "figcaption",
+          "cls": "",
+          "sample": "CITIZEN IMPACT · SCHEMATIC MOCK",
+          "ratio": 4.42,
+          "need": 4.5,
+          "fg": "rgb(109, 124, 147)",
+          "bg": "rgb(11,18,32)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "About — Global Signals",
+        "h1": "Understanding how world events shape everyday life.",
+        "shell": true,
+        "fonts": "\"IBM Plex Sans\", Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__gs-about.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "foragecast",
+      "path": "/apps/foragecast/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "contrast",
+          "tag": "p",
+          "cls": "fc-reliability fc-reliability--location-unavailable",
+          "sample": "Location unavailable — Set a place to personalize weather an",
+          "ratio": 1.02,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "strong",
+          "cls": "",
+          "sample": "Location unavailable",
+          "ratio": 1.02,
+          "need": 3,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(250,236,232)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone is-selected is-top",
+          "sample": "Old orchard edge MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "Old orchard edge",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "River terrace MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "River terrace",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "North oak slope MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-name",
+          "sample": "North oak slope",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "span",
+          "cls": "fc-heatmap__zone-band",
+          "sample": "MIXED SIGNAL",
+          "ratio": 2.65,
+          "need": 4.5,
+          "fg": "rgb(244, 246, 251)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "contrast",
+          "tag": "button",
+          "cls": "fc-heatmap__cell fc-heatmap__cell--moderate is-zone",
+          "sample": "Hemlock ravine MIXED SIGNAL",
+          "ratio": 2.55,
+          "need": 4.5,
+          "fg": "rgb(238, 242, 246)",
+          "bg": "rgb(155,143,217)"
+        },
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "ForageCast — What should I look for today?",
+        "h1": "Today’s foraging summary",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__foragecast.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "fieldry",
+      "path": "/apps/fieldry/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Fieldry — Life List · Waypoint Studio",
+        "h1": "A private life list",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__fieldry.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "signalterrain-app",
+      "path": "/apps/signalterrain/",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "SignalTerrain — Waypoint Studio",
+        "h1": "SignalTerrain",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__signalterrain-app.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "knowledge",
+      "path": "/knowledge.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Waypoint Knowledge — Waypoint Studio",
+        "h1": "The best information, thoughtfully organized.",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__knowledge.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "settings",
+      "path": "/settings.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Settings — Waypoint Studio",
+        "h1": "Settings",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__settings.png"
+    },
+    {
+      "viewport": "desktop",
+      "route": "404",
+      "path": "/404.html",
+      "ok": true,
+      "issues": [],
+      "status": 200,
+      "probe": {
+        "title": "Page not found — Waypoint Studio",
+        "h1": "This page isn’t here",
+        "shell": false,
+        "fonts": "Inter, system-ui, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      }
+    },
+    {
+      "viewport": "desktop",
+      "route": "article-sample",
+      "path": "/articles/samples/reading-todays-conditions.html",
+      "ok": false,
+      "issues": [
+        {
+          "kind": "clipped-controls",
+          "count": 1
+        }
+      ],
+      "status": 200,
+      "probe": {
+        "title": "Reading today’s conditions — Waypoint Studio",
+        "h1": "Reading today’s conditions",
+        "shell": true,
+        "fonts": "Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif",
+        "scrollWidth": 1280,
+        "clientWidth": 1280
+      },
+      "screenshot": "desktop__article-sample.png"
+    }
+  ],
+  "summary": {
+    "total": 132,
+    "fail": 128,
+    "pass": 4,
+    "contrastFails": 28,
+    "overflowFails": 0
+  }
+}

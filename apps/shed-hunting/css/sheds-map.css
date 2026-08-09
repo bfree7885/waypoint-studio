@@ -1006,8 +1006,12 @@ html.sheds-sheet-open .sheds-legend-float {
   margin-right: 0.35rem !important;
   margin-bottom: calc(var(--sheds-sheet-peek) + 0.2rem) !important;
   background: rgba(7, 18, 13, 0.65) !important;
-  color: var(--sheds-muted) !important;
+  color: var(--sheds-muted, #b7c4b8) !important;
   border-radius: 6px !important;
+}
+
+.leaflet-control-attribution a {
+  color: #9ec9e6 !important;
 }
 
 .leaflet-bottom.leaflet-right {

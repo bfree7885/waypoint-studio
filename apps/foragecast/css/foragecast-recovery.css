@@ -233,23 +233,32 @@
   line-height: 1.4;
   border: 1px solid var(--wds-border-subtle, #d5ddd6);
   background: rgba(255, 255, 255, 0.7);
+  /* Light wash surfaces need dark ink even inside the dark shell */
+  color: #1c2420;
+}
+
+.fc-reliability strong {
+  color: #121816;
 }
 
 .fc-reliability--ready {
   border-color: #9bb89f;
-  background: rgba(232, 242, 234, 0.9);
+  background: rgba(232, 242, 234, 0.95);
+  color: #1c2420;
 }
 
 .fc-reliability--cached {
   border-color: #c9b68a;
-  background: rgba(250, 244, 230, 0.95);
+  background: rgba(250, 244, 230, 0.98);
+  color: #1c2420;
 }
 
 .fc-reliability--offline,
 .fc-reliability--provider-unavailable,
 .fc-reliability--location-unavailable {
   border-color: #c9a39a;
-  background: rgba(250, 236, 232, 0.95);
+  background: rgba(250, 236, 232, 0.98);
+  color: #1c2420;
 }
 
 .fc-species-detail h2 {

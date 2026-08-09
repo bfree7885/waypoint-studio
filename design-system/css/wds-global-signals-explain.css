@@ -39,6 +39,17 @@
   margin: 0;
 }
 
+@media (max-width: 640px) {
+  .gse-hub-nav .gs-cta {
+    flex: 1 1 calc(50% - 0.35rem);
+    justify-content: center;
+  }
+
+  .gse-hub-nav .gs-cta--primary {
+    flex: 1 1 100%;
+  }
+}
+
 .gse-app {
   margin-top: 0.5rem;
   padding: 1.25rem 1.1rem;

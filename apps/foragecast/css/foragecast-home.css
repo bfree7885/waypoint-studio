@@ -260,7 +260,7 @@
 }
 
 .fc-heatmap__cell--high { background: var(--wds-lime-muted); }
-.fc-heatmap__cell--moderate { background: var(--wds-purple-muted); }
+.fc-heatmap__cell--moderate { background: rgba(58, 48, 102, 0.94); }
 .fc-heatmap__cell--low { background: rgba(31, 53, 84, 0.82); }
 
 .fc-heatmap__label {
