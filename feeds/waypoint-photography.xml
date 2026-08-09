@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Aug 2026 12:22:32 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 09 Aug 2026 00:47:52 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -81,23 +81,6 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>SpaceX rocket hit the moon: Before and after pics</title>
-    <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
-    <pubDate>Thu, 06 Aug 2026 18:00:56 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers have observed so far from this historic lunar event, including before and after pics. The post SpaceX rocket hit the moon: Before and after pics first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Total solar eclipse to dazzle observers on August 12</title>
     <link>https://earthsky.org/astronomy-essentials/total-solar-eclipse-visible-august-12-2026/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/total-solar-eclipse-visible-august-12-2026/</guid>
@@ -166,6 +149,23 @@ Waypoint’s Take: For someone heading outside, the useful question is observati
 Read the original article at the publisher: https://earthsky.org/todays-image/best-deep-sky-photos-of-july-2026-from-earthsky-community/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>SpaceX rocket hit the moon: Before and after pics</title>
+    <link>https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</guid>
+    <pubDate>Thu, 06 Aug 2026 18:00:56 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A SpaceX rocket hit the moon on August 5. Here&apos;s what astronomers have observed so far from this historic lunar event, including before and after pics. The post SpaceX rocket hit the moon: Before and after pics first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/falcon-rocket-will-hit-the-moon-august-5/</description>
+    <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
