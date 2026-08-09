@@ -74,8 +74,23 @@ export function buildSummary(article) {
   if (!assembled) assembled = body;
 
   let summary = truncateWords(assembled, MAX_SUMMARY_WORDS);
-  if (wordCount(summary) < 25) {
-    summary = truncateWords(`${title}. ${assembled}`, MAX_SUMMARY_WORDS);
+  if (wordCount(summary) < 25 && title) {
+    const assembledLower = assembled.toLowerCase();
+    const titleLower = title.toLowerCase();
+    // Avoid "Title. Title continues…" when the feed already opens with the headline.
+    if (!assembledLower.startsWith(titleLower) && !assembledLower.includes(titleLower)) {
+      summary = truncateWords(`${title}. ${assembled}`, MAX_SUMMARY_WORDS);
+    }
+  }
+  // Strip accidental leading headline echo: "Some Title. Some Title rest…"
+  if (title && summary.toLowerCase().startsWith(title.toLowerCase() + ". " + title.toLowerCase())) {
+    summary = summary.slice(title.length + 2).trim();
+  } else if (title && summary.toLowerCase().startsWith(title.toLowerCase() + ". ")) {
+    const rest = summary.slice(title.length + 2).trim();
+    // Keep a short lead-in only when the body does not already restate the headline.
+    if (rest.toLowerCase().startsWith(title.toLowerCase().slice(0, Math.min(24, title.length)))) {
+      summary = rest;
+    }
   }
 
   const provenance = "feed-description";

@@ -372,7 +372,7 @@
         el.innerHTML =
           '<div class="waf">' +
           healthBadge(health, data) +
-          '<p class="waf-lede">Curated outdoor and environmental reporting from trustworthy publishers. Waypoint summarizes feed metadata and adds a field take — the original article stays on the publisher’s site.</p>' +
+          '<p class="waf-lede">Summaries come from publisher feed metadata. Waypoint’s Take is interpretation when available — never invented filler.</p>' +
           '<div class="waf-toolbar" role="region" aria-label="Article filters">' +
           '<div class="waf-views" role="tablist" aria-label="Feed views">' +
           views
@@ -436,8 +436,8 @@
           staleNote +
           body +
           '<aside class="waf-editorial">' +
-          "<h2>Editorial samples</h2>" +
-          '<p>Waypoint also publishes short Studio essays. <a href="samples/reading-todays-conditions.html">Reading today’s conditions</a> · <a href="categories/outdoor-intelligence/">Categories</a></p>' +
+          "<h2>Studio essays</h2>" +
+          '<p>Waypoint also publishes short Studio essays. <a href="essays/reading-todays-conditions.html">Reading today’s conditions</a> · <a href="categories/outdoor-intelligence/">Categories</a></p>' +
           "</aside>" +
           "</div>";
 

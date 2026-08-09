@@ -12,7 +12,8 @@ import {
   stripHtml,
   sanitizeUrl,
   sanitizeExcerpt,
-  normalizeUrl
+  normalizeUrl,
+  looksLikeMarkupLeak
 } from "../scripts/articles/sanitize.mjs";
 import { classifyCategories, classifyGeography, shouldRejectTopic } from "../scripts/articles/classify.mjs";
 import { deduplicateArticles, titleSimilarity } from "../scripts/articles/dedupe.mjs";
@@ -74,6 +75,46 @@ assert("sanitize rejects data: URL", sanitizeUrl("data:text/html,hi") === null);
 assert("sanitize accepts https URL", !!sanitizeUrl("https://example.org/a"));
 assert("normalizeUrl drops utm", normalizeUrl("https://www.Example.org/a/?utm_source=x") === "https://example.org/a");
 assert("sanitizeExcerpt strips tags", !/</.test(sanitizeExcerpt("<b>Hello</b> world")));
+
+// ——— HTML leakage regressions (sizes="(max-width:…)" breaks naive /<[^>]+>/) ———
+const leakXml = read("data/articles/fixtures/html-leak-rss.xml");
+const leakFeed = parseFeed(leakXml);
+assert("HTML-leak fixture parses", leakFeed.items.length >= 1, "got " + leakFeed.items.length);
+const leakDesc = leakFeed.items[0].description || "";
+const leakClean = sanitizeExcerpt(leakDesc, 600);
+assert(
+  "sizes max-width img does not leak data-large-file",
+  !/data-large-file/i.test(leakClean) && !/srcset=/i.test(leakClean) && !/wp-post-image/i.test(leakClean),
+  leakClean
+);
+assert(
+  "sizes max-width img keeps story prose",
+  /James B\. Kobak|poems about an encounter/i.test(leakClean),
+  leakClean
+);
+assert(
+  "WordPress ‘appeared first on’ footer stripped",
+  !/appeared first on/i.test(leakClean) && !/The post\s/i.test(leakClean),
+  leakClean
+);
+const leakSummary = buildSummary({
+  title: leakFeed.items[0].title,
+  cleanedExcerpt: leakClean,
+  rawDescription: leakDesc
+});
+assert(
+  "summary from leaky feed has no markup crumbs",
+  !looksLikeMarkupLeak(leakSummary.summary) && !/data-large-file|https?:\/\/example\.org\/bear/i.test(leakSummary.summary),
+  leakSummary.summary
+);
+assert(
+  "looksLikeMarkupLeak detects attribute crumbs",
+  looksLikeMarkupLeak('Photo credit. " data-large-file="https://example.org/x.jpg" /> Next sentence.')
+);
+assert(
+  "looksLikeMarkupLeak clean on plain prose",
+  !looksLikeMarkupLeak("James shares two poems about a bear in the Adirondacks.")
+);
 
 // ——— Classification ———
 const warbler = {
@@ -310,7 +351,9 @@ assert("Articles CSS uses WDS tokens", /--wds-font-display|--wds-accent|--wds-te
 assert(
   "Take surface stays dark (no #fff wash under parchment text)",
   !/--waf-take:\s*color-mix\([^;]*#fff/.test(feedCss) &&
-    /--waf-take:\s*color-mix\([^;]*var\(--waf-paper\)/.test(feedCss)
+    /--waf-take:\s*color-mix\([^;]*var\(--waf-paper\)/.test(feedCss) &&
+    !/\.waf-card\s+\.wds-take--article[\s\S]{0,400}#fff/i.test(feedCss) &&
+    /--wds-surface|#0c1628/.test(feedCss)
 );
 assert(
   "Take body is normal (not full-paragraph italic)",
@@ -326,6 +369,29 @@ assert(
 assert(
   "Shared .wds-take keeps lime accent title",
   /\.wds-take__title\s*\{[^}]*color:\s*var\(--wds-accent\)/s.test(takeCss)
+);
+assert("hub does not label Studio essays as samples", !/Editorial samples|Sample articles/i.test(feedJs));
+assert("hub links Studio essays path", /essays\/reading-todays-conditions\.html/.test(feedJs));
+assert("manifest has no sample status", !/"status":\s*"sample"/.test(read("articles/manifest.json")));
+assert("essay page is published not sample", /waypoint-article-status" content="published"/.test(read("articles/essays/reading-todays-conditions.html")));
+assert("essay page omits sample lead copy", !/A sample article showing/i.test(read("articles/essays/reading-todays-conditions.html")));
+
+// Production articles.json must not show markup leaks in visible fields
+const articlesJson = JSON.parse(read("data/articles/articles.json"));
+const visibleLeak = (articlesJson.articles || []).filter((a) =>
+  [a.title, a.summary, a.waypointTake, a.cleanedExcerpt].some((v) => looksLikeMarkupLeak(v))
+);
+assert(
+  "stored articles have no visible markup leaks",
+  visibleLeak.length === 0,
+  visibleLeak
+    .slice(0, 5)
+    .map((a) => a.id + ":" + String(a.summary || "").slice(0, 80))
+    .join(" | ")
+);
+assert(
+  "stored articles omit sample/demo/lorem labels in titles",
+  !(articlesJson.articles || []).some((a) => /lorem ipsum|placeholder headline|demo article|sample article/i.test(a.title || ""))
 );
 
 const navCfg = read("design-system/js/platform/wds-app-nav-config.js");
