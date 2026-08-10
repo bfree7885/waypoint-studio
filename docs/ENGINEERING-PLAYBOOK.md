@@ -1122,3 +1122,21 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    to hide/lift controls and add an overlap CDP assertion.
 4. **Ethics copy must match the real tile provider.** Claiming OSM/OpenTopoMap
    while shipping CARTO/Esri is a trust defect, not copy polish.
+
+### 2026-08-10 — Sheds live-input cold-start escape (adversarial)
+
+**Branch:** `adversarial/sheds-subscriber-ready`  
+**Surface:** Today’s Search / Open-Meteo / Product Board gate
+
+1. **GPS-denied + zoom &lt; 9 skipped live weather.** Heat early-return never
+   called Open-Meteo; status still said “uses map center when possible.” Paying
+   users saw Limited briefing / weather unavailable on the default continental
+   view — a P1 honesty + primary-workflow defect.
+2. **Why the board missed it.** Prior SUBSCRIBER READY leaned on attestations;
+   browser-smoke was optional and failed on missing `ws`; Red Team did not treat
+   optional live/browser gaps as disproof; static probes never asserted
+   map-center weather fetch on cold start.
+3. **Repair + system fix.** `ensureWeatherForView()` fetches for GPS or map
+   center even when heat is skipped; glance softens “Best window” without weather;
+   new CDP cold-start test; sheds campaign forces `browser-smoke`; probe
+   `probeLiveInputColdStart`; Red Team Attack 6 flags optional live gaps.

@@ -1,6 +1,10 @@
 {
   "version": 1,
+<<<<<<< HEAD
   "updatedAt": "2026-08-10T17:45:27.943Z",
+=======
+  "updatedAt": "2026-08-10T17:26:06.552Z",
+>>>>>>> origin/main
   "policy": {
     "priorities": [
       "P0",
@@ -303,6 +307,7 @@
     },
     {
       "id": "WB-012",
+<<<<<<< HEAD
       "title": "Stale Live cyber artifact presented as Live (age >24h)",
       "severity": "P0",
       "area": "signalterrain",
@@ -319,6 +324,72 @@
       "failureOrigin": null,
       "evidence": [],
       "campaign": "signalterrain",
+=======
+      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "severity": "P1",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T15:14:06.255Z",
+      "updatedAt": "2026-08-10T17:26:06.552Z",
+      "failureOrigin": {
+        "phase": "release_gate",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T15:14:06.255Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:26:06.552Z",
+          "kind": "retest_pass",
+          "notes": "Duplicate of WB-013 live-input cold-start escape; ensureWeatherForView + CDP cold-start green; same repair verified."
+        }
+      ],
+      "campaign": null,
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-013",
+      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "severity": "P1",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T16:52:24.234Z",
+      "updatedAt": "2026-08-10T17:25:32.264Z",
+      "failureOrigin": {
+        "phase": "fix",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T16:52:24.234Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:25:32.264Z",
+          "kind": "retest_pass",
+          "notes": "ensureWeatherForView fetches Open-Meteo for map center on GPS-denied/zoomed-out cold start; CDP cold-start + unit contracts green; glance/status honesty updated."
+        }
+      ],
+      "campaign": null,
+>>>>>>> origin/main
       "blocksSubscriberReady": true
     }
   ]

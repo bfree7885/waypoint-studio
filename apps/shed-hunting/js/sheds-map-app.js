@@ -38,6 +38,7 @@
     elevAbort: null,
     weather: null,
     weatherStatus: "idle",
+    weatherFetchGen: 0,
     recomputeTimer: null,
     recomputeGen: 0,
     heatPhase: "idle",
@@ -780,6 +781,63 @@
     return d.getHours() + d.getMinutes() / 60;
   }
 
+  function weatherAnchorLatLng() {
+    if (state.userLatLng && isFinite(state.userLatLng.lat) && isFinite(state.userLatLng.lng)) {
+      return { lat: state.userLatLng.lat, lng: state.userLatLng.lng, source: "gps" };
+    }
+    if (map) {
+      var c = map.getCenter();
+      if (c && isFinite(c.lat) && isFinite(c.lng)) {
+        return { lat: c.lat, lng: c.lng, source: "map-center" };
+      }
+    }
+    return null;
+  }
+
+  function weatherNeedsRefresh(lat, lng) {
+    if (!state.weather || state.weatherStatus !== "ready") return true;
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) return false;
+    var prevLat = state.weather.fetchLat;
+    var prevLng = state.weather.fetchLng;
+    if (typeof prevLat !== "number" || typeof prevLng !== "number") return true;
+    // ~55 km at mid-latitudes — refetch when the view/anchor moved meaningfully
+    return Math.abs(prevLat - lat) > 0.5 || Math.abs(prevLng - lng) > 0.5;
+  }
+
+  /**
+   * Today's Search must get live weather for the GPS fix OR the map center —
+   * including cold-start / GPS-denied / zoomed-out views where heat is skipped.
+   */
+  function ensureWeatherForView(opts) {
+    opts = opts || {};
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
+      state.weatherStatus = state.weather ? state.weatherStatus : "unavailable";
+      return Promise.resolve(state.weather || null);
+    }
+    var anchor = weatherAnchorLatLng();
+    if (!anchor) {
+      state.weatherStatus = "unavailable";
+      return Promise.resolve(null);
+    }
+    if (!opts.force && !weatherNeedsRefresh(anchor.lat, anchor.lng)) {
+      return Promise.resolve(state.weather);
+    }
+    var gen = ++state.weatherFetchGen;
+    return fetchWeatherSoft(anchor.lat, anchor.lng).then(function (w) {
+      if (gen !== state.weatherFetchGen) return state.weather;
+      if (w) {
+        w.fetchLat = anchor.lat;
+        w.fetchLng = anchor.lng;
+        w.anchorSource = anchor.source;
+        state.weather = w;
+      }
+      if (opts.refreshBriefing !== false) {
+        updatePlanner(state.lastGrid || null);
+      }
+      return w;
+    });
+  }
+
   function fetchWeatherSoft(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
     state.weatherStatus = "loading";
@@ -966,6 +1024,8 @@
         heatLayer.setGrid({ cells: [], bounds: { west: 0, east: 0, south: 0, north: 0 }, rows: 0, cols: 0 });
       }
       updateCoverageUi({ level: "limited", label: "Limited input coverage — zoom for local analysis" });
+      // Heat waits for zoom, but Today's Search still needs map-center weather/daylight.
+      ensureWeatherForView({ refreshBriefing: true });
       updatePlanner(null);
       syncHeatLegend();
       return;
@@ -974,7 +1034,7 @@
     // Keep weather fresh for Today's Search even in observed-heat mode
     var center = map.getCenter();
     var wxPromise = state.offlineForced ? Promise.resolve(null)
-      : (state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng));
+      : ensureWeatherForView({ refreshBriefing: false });
 
     if (state.heatMode === "observed") {
       try {
@@ -1096,7 +1156,13 @@
       if (statusEl) {
         var st = brief.status;
         if (st === "loading") statusEl.textContent = "Loading today’s conditions…";
-        else if (st === "location_denied") statusEl.textContent = "Location denied — briefing uses map center when possible.";
+        else if (st === "location_denied") {
+          statusEl.textContent = state.weather
+            ? "Location denied — weather and daylight use the map center until you locate."
+            : (state.weatherStatus === "loading"
+              ? "Location denied — reading weather for the map center…"
+              : "Location denied — map stays usable; weather for the map center is unavailable.");
+        }
         else if (st === "weather_unavailable") statusEl.textContent = "Weather unavailable — seasonal / note-based briefing only.";
         else if (st === "partial") statusEl.textContent = "Partial inputs — some signals missing.";
         else statusEl.textContent = brief.summaryLine || brief.headline;
@@ -1119,9 +1185,16 @@
         else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
       }
       if (glance) {
-        glance.textContent = brief && brief.timeWindows && brief.timeWindows[0]
-          ? ("Best window: " + brief.timeWindows[0].label + " · " + empty)
-          : empty;
+        if (brief && brief.timeWindows && brief.timeWindows[0]) {
+          var winLabel = brief.timeWindows[0].label;
+          var wxReady = brief.weatherStatus === "ready" || !!state.weather;
+          var winPrefix = wxReady
+            ? ("Best window: " + winLabel)
+            : ("Seasonal window guess: " + winLabel);
+          glance.textContent = winPrefix + " · " + empty;
+        } else {
+          glance.textContent = empty;
+        }
       }
       if (els.planBody) {
         els.planBody.textContent = (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
@@ -1395,8 +1468,7 @@
       if (typeof opts.onSuccess === "function") {
         try { opts.onSuccess(ll, pos); } catch (e) { /* */ }
       }
-      fetchWeatherSoft(ll.lat, ll.lng).then(function (w) {
-        state.weather = w;
+      ensureWeatherForView({ force: true, refreshBriefing: true }).then(function () {
         scheduleRecompute(100);
       });
       scheduleRecompute(100);
@@ -1412,6 +1484,8 @@
       if (!Store.loadMapView() && state.locationStatus !== "denied") {
         setLocStatus(state.locationStatus === "timeout" ? "timeout" : "manual");
       }
+      // GPS failed — still read weather/daylight for the visible map center.
+      ensureWeatherForView({ refreshBriefing: true });
     }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
   }
 
@@ -1510,6 +1584,10 @@
     toggleObsExtras("deer_sign");
     syncObsLocationHint();
     openSheet(els.sheetObs);
+    var typeField = $("obs-type");
+    if (typeField && typeof typeField.focus === "function") {
+      try { typeField.focus(); } catch (e) { /* */ }
+    }
   }
 
   function openViewObservation(id) {
@@ -1568,6 +1646,18 @@
 
   function saveObservation(ev) {
     ev.preventDefault();
+    if (!clickLatLng) {
+      var fallback = state.userLatLng || (map && map.getCenter());
+      if (!fallback) {
+        var hintEl = $("obs-location-hint");
+        if (hintEl) {
+          hintEl.textContent = "Pick a map point or locate yourself before saving.";
+        }
+        return;
+      }
+      clickLatLng = fallback;
+      syncObsLocationHint();
+    }
     var type = $("obs-type").value;
     var habitat = $("obs-habitat") ? $("obs-habitat").value : "";
     var atMe = !!(state.userLatLng && clickLatLng &&
@@ -2281,6 +2371,7 @@
     }
     if (wasGpsDenied()) {
       setLocStatus("denied", "permission was denied — tap Locate to try again");
+      ensureWeatherForView({ refreshBriefing: true });
     } else {
       locateUser({ center: !Store.loadMapView() });
     }

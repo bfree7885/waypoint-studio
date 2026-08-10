@@ -117,6 +117,38 @@ assert(
 const app = read("apps/shed-hunting/js/sheds-map-app.js");
 assert("map uses TodaysSearch.build", /TodaysSearch\.build|refreshTodaysSearch/.test(app));
 assert("open-meteo richer fetch", /surface_pressure/.test(app) && /sunrise/.test(app));
+assert(
+  "ensureWeatherForView exists for map-center weather",
+  /function ensureWeatherForView/.test(app)
+);
+assert(
+  "low-zoom path still fetches weather",
+  /getZoom\(\) < 9[\s\S]{0,800}ensureWeatherForView/.test(app)
+);
+assert(
+  "GPS deny path fetches map-center weather",
+  /permission denied[\s\S]{0,900}ensureWeatherForView/.test(app)
+);
+assert(
+  "remembered GPS deny boot fetches weather",
+  /wasGpsDenied\(\)[\s\S]{0,280}ensureWeatherForView/.test(app)
+);
+assert(
+  "glance softens Best window without weather",
+  /Seasonal window guess/.test(app)
+);
+
+const deniedWithWx = TS.build({
+  weather: richWx,
+  weatherStatus: "ready",
+  locationStatus: "denied",
+  season: { phaseId: "peak_shed", phase: "Peak shed", supportLine: "lat heuristic" },
+  now: new Date("2026-02-15T14:00:00")
+});
+assert("denied+weather stays location_denied status", deniedWithWx.status === "location_denied");
+assert("denied+weather discloses map-center", /map-center|map center/i.test(deniedWithWx.headline + JSON.stringify(deniedWithWx.uncertainties)));
+assert("denied+weather not High solely from seasonal", deniedWithWx.confidence !== "High" || /weather|daylight/i.test(JSON.stringify(deniedWithWx.signals)));
+assert("brief exposes weatherStatus", deniedWithWx.weatherStatus === "ready");
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s)");

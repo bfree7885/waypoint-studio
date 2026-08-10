@@ -1,60 +1,60 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T11:56:52.147Z",
+  "updatedAt": "2026-08-10T17:25:32.447Z",
   "records": [
     {
-      "id": "AT-001",
-      "criterionId": "no-fake-functionality",
-      "role": "product-director",
+      "id": "AT-006",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
       "verdict": "pass",
-      "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+      "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
       "campaign": "sheds",
-      "at": "2026-08-10T11:55:26.071Z"
+      "at": "2026-08-10T17:25:32.294Z"
     },
     {
       "id": "AT-006",
       "criterionId": "primary-workflows",
       "role": "product-director",
       "verdict": "pass",
-      "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+      "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
       "campaign": "sheds",
-      "at": "2026-08-10T11:56:52.012Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "honest-data",
-      "role": "data-reliability",
-      "verdict": "pass",
-      "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
-      "campaign": "sheds",
-      "at": "2026-08-10T11:56:52.052Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "visual-review",
-      "role": "ux-ui-lead",
-      "verdict": "pass",
-      "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
-      "campaign": "sheds",
-      "at": "2026-08-10T11:56:52.083Z"
+      "at": "2026-08-10T17:25:32.324Z"
     },
     {
       "id": "AT-006",
       "criterionId": "commercial-review",
       "role": "commercial-subscriber",
       "verdict": "pass",
-      "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+      "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
       "campaign": "sheds",
-      "at": "2026-08-10T11:56:52.115Z"
+      "at": "2026-08-10T17:25:32.356Z"
     },
     {
       "id": "AT-006",
       "criterionId": "red-team-pass",
       "role": "red-team",
       "verdict": "pass",
-      "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+      "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
       "campaign": "sheds",
-      "at": "2026-08-10T11:56:52.147Z"
+      "at": "2026-08-10T17:25:32.385Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "pass",
+      "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+      "campaign": "sheds",
+      "at": "2026-08-10T17:25:32.416Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "visual-review",
+      "role": "ux-ui-lead",
+      "verdict": "pass",
+      "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+      "campaign": "sheds",
+      "at": "2026-08-10T17:25:32.447Z"
     }
   ]
 }

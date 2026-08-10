@@ -19,7 +19,7 @@ import {
 import { runStaticProbes } from "./probes.mjs";
 import { runCommercialReview } from "./commercial-reviewer.mjs";
 import { runRedTeam } from "./red-team.mjs";
-import { campaignCommandRemap } from "./campaigns.mjs";
+import { campaignCommandRemap, campaignForceRequired } from "./campaigns.mjs";
 
 /**
  * Subscriber Ready ≠ "tests pass".
@@ -75,6 +75,14 @@ function resolveCriterionCommand(criterion, campaignId) {
   const remap = campaignId && campaignCommandRemap(campaignId);
   if (remap && remap[criterion.id]) return remap[criterion.id];
   return criterion.command;
+}
+
+function resolveCriterionRequired(criterion, campaignId) {
+  const forced =
+    campaignId &&
+    (campaignForceRequired(campaignId) || []).includes(criterion.id);
+  if (forced) return true;
+  return criterion.required !== false;
 }
 
 function applyAttestationToCriterion(criterion, campaign) {
@@ -196,7 +204,7 @@ export function evaluateSubscriberReady({
       title: criterion.title,
       kind: criterion.kind,
       dimension: criterion.dimension || null,
-      required: criterion.required !== false,
+      required: resolveCriterionRequired(criterion, campaignId),
       defaultSeverity: criterion.defaultSeverity || "P1",
       status: "pending",
       detail: criterion.description || ""

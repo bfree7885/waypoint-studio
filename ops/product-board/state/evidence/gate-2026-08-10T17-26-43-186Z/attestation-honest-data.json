@@ -1,0 +1,17 @@
+{
+  "id": "attestation-honest-data",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.298Z",
+  "status": "pass",
+  "summary": "Attested pass by data-reliability: Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "honest-data",
+    "role": "data-reliability",
+    "verdict": "pass",
+    "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.294Z"
+  }
+}

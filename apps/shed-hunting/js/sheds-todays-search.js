@@ -425,6 +425,12 @@
     var headline;
     if (locationStatus === "denied" && !wx) {
       headline = "Limited briefing — location denied, weather unavailable";
+    } else if (locationStatus === "denied" && wx) {
+      headline = best.band === "favorable"
+        ? ("Good " + best.label.toLowerCase() + " opportunity (map-center weather)")
+        : best.band === "moderate"
+          ? (best.label + " looks workable (map-center weather)")
+          : ("Limited briefing — location off; using map-center weather");
     } else if (!wx) {
       headline = "Seasonal briefing — weather unavailable";
     } else if (best.band === "favorable") {
@@ -442,10 +448,12 @@
     if (weatherStatus === "loading") status = "partial";
     if (!wx && locationStatus === "denied") status = "location_denied";
     else if (!wx) status = "weather_unavailable";
-    else if (locationStatus === "denied") status = "partial";
+    else if (locationStatus === "denied") status = "location_denied";
 
     return {
       status: status,
+      weatherStatus: weatherStatus || (wx ? "ready" : "unavailable"),
+      locationStatus: locationStatus || "unknown",
       headline: headline,
       summaryLine: whyLead + " — Confidence: " + confidence + ".",
       favorability: favorability,

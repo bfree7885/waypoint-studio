@@ -36,3 +36,4 @@ Thumbs.db
 private/university/server/.env.smoke
 private/university/server/.env.*
 !private/university/server/.env.example
+node_modules/

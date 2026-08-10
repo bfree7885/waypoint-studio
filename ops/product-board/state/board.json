@@ -1,5 +1,6 @@
 {
   "version": 1,
+<<<<<<< HEAD
   "updatedAt": "2026-08-10T17:45:27.943Z",
   "mode": "loop",
   "phase": "release_gate",
@@ -53,6 +54,22 @@
       }
     ],
     "evidenceRunId": "gate-2026-08-10T17-26-41-935Z",
+=======
+  "updatedAt": "2026-08-10T17:26:50.301Z",
+  "mode": "loop",
+  "phase": "release_gate",
+  "activeItemId": "WB-012",
+  "activeRole": "release-manager",
+  "campaign": "sheds",
+  "lastCommand": "gate",
+  "lastCommandAt": "2026-08-10T17:26:50.301Z",
+  "releaseGate": {
+    "status": "passed",
+    "lastRunAt": "2026-08-10T17:26:50.300Z",
+    "verdict": "SUBSCRIBER READY",
+    "blockingFindings": [],
+    "evidenceRunId": "gate-2026-08-10T17-26-43-186Z",
+>>>>>>> origin/main
     "commercial": {
       "status": "pending",
       "wouldCancel": false,
@@ -64,6 +81,7 @@
       "summary": "Red Team disproved readiness with 1 finding(s)."
     },
     "attestations": {
+<<<<<<< HEAD
       "complete": false,
       "pending": [
         "no-fake-functionality",
@@ -76,6 +94,141 @@
       "failed": [],
       "passed": [],
       "byCriterion": {}
+=======
+      "complete": true,
+      "pending": [],
+      "failed": [],
+      "passed": [
+        {
+          "id": "no-fake-functionality",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "no-fake-functionality",
+            "role": "product-director",
+            "verdict": "pass",
+            "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.416Z"
+          }
+        },
+        {
+          "id": "primary-workflows",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "primary-workflows",
+            "role": "product-director",
+            "verdict": "pass",
+            "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.324Z"
+          }
+        },
+        {
+          "id": "honest-data",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "honest-data",
+            "role": "data-reliability",
+            "verdict": "pass",
+            "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.294Z"
+          }
+        },
+        {
+          "id": "visual-review",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "visual-review",
+            "role": "ux-ui-lead",
+            "verdict": "pass",
+            "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.447Z"
+          }
+        },
+        {
+          "id": "commercial-review",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "commercial-review",
+            "role": "commercial-subscriber",
+            "verdict": "pass",
+            "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.356Z"
+          }
+        },
+        {
+          "id": "red-team-pass",
+          "attestation": {
+            "id": "AT-006",
+            "criterionId": "red-team-pass",
+            "role": "red-team",
+            "verdict": "pass",
+            "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+            "campaign": "sheds",
+            "at": "2026-08-10T17:25:32.385Z"
+          }
+        }
+      ],
+      "byCriterion": {
+        "no-fake-functionality": {
+          "id": "AT-006",
+          "criterionId": "no-fake-functionality",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.416Z"
+        },
+        "primary-workflows": {
+          "id": "AT-006",
+          "criterionId": "primary-workflows",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.324Z"
+        },
+        "honest-data": {
+          "id": "AT-006",
+          "criterionId": "honest-data",
+          "role": "data-reliability",
+          "verdict": "pass",
+          "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.294Z"
+        },
+        "visual-review": {
+          "id": "AT-006",
+          "criterionId": "visual-review",
+          "role": "ux-ui-lead",
+          "verdict": "pass",
+          "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.447Z"
+        },
+        "commercial-review": {
+          "id": "AT-006",
+          "criterionId": "commercial-review",
+          "role": "commercial-subscriber",
+          "verdict": "pass",
+          "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.356Z"
+        },
+        "red-team-pass": {
+          "id": "AT-006",
+          "criterionId": "red-team-pass",
+          "role": "red-team",
+          "verdict": "pass",
+          "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.385Z"
+        }
+      }
+>>>>>>> origin/main
     },
     "dimensions": [
       "primary_workflows",
@@ -106,7 +259,7 @@
   },
   "routing": {
     "openRepairQueue": [],
-    "lastFailureId": null
+    "lastFailureId": "WB-013"
   },
   "loopHistory": [
     {
@@ -330,17 +483,26 @@
       "evidenceRunId": "gate-2026-08-10T11-59-32-638Z"
     },
     {
+<<<<<<< HEAD
       "at": "2026-08-10T12:22:29.408Z",
+=======
+      "at": "2026-08-10T12:21:25.065Z",
+>>>>>>> origin/main
       "event": "phase_set",
       "phase": "release_gate",
       "role": "release-manager"
     },
     {
+<<<<<<< HEAD
       "at": "2026-08-10T12:23:00.183Z",
+=======
+      "at": "2026-08-10T12:21:27.124Z",
+>>>>>>> origin/main
       "event": "subscriber_ready_gate",
       "phase": "release_gate",
       "verdict": "SUBSCRIBER READY",
       "findingCount": 0,
+<<<<<<< HEAD
       "evidenceRunId": "gate-2026-08-10T12-22-29-409Z"
     },
     {
@@ -352,11 +514,154 @@
     },
     {
       "at": "2026-08-10T16:53:15.801Z",
+=======
+      "evidenceRunId": "gate-2026-08-10T12-21-25-065Z"
+    },
+    {
+      "at": "2026-08-10T15:14:06.255Z",
+      "event": "failed_review_routed",
+      "phase": "fix",
+      "workItemId": "WB-012",
+      "severity": "P1",
+      "originPhase": "release_gate",
+      "blocksSubscriberReady": true
+    },
+    {
+      "at": "2026-08-10T15:14:06.283Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.311Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.339Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.369Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.234Z",
+      "event": "failed_review_routed",
+      "phase": "fix",
+      "workItemId": "WB-013",
+      "severity": "P1",
+      "originPhase": "fix",
+      "blocksSubscriberReady": true
+    },
+    {
+      "at": "2026-08-10T16:52:24.270Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.299Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.333Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.365Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T17:25:32.264Z",
+      "event": "repair_retest_passed",
+      "phase": "retest",
+      "workItemId": "WB-013"
+    },
+    {
+      "at": "2026-08-10T17:25:32.294Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.324Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.356Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.386Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.417Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.448Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "visual-review",
+      "role": "ux-ui-lead",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.476Z",
+>>>>>>> origin/main
       "event": "phase_set",
       "phase": "release_gate",
       "role": "release-manager"
     },
     {
+<<<<<<< HEAD
       "at": "2026-08-10T16:53:15.805Z",
       "event": "subscriber_ready_gate",
       "phase": "release_gate",
@@ -446,6 +751,60 @@
       "phase": "release_gate",
       "id": "WB-012",
       "severity": "P0"
+=======
+      "at": "2026-08-10T17:25:40.800Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 4,
+      "evidenceRunId": "gate-2026-08-10T17-25-32-476Z"
+    },
+    {
+      "at": "2026-08-10T17:25:51.996Z",
+      "event": "phase_set",
+      "phase": "prioritize",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T17:25:51.996Z",
+      "event": "prioritize",
+      "phase": "prioritize",
+      "top": "WB-012"
+    },
+    {
+      "at": "2026-08-10T17:26:06.552Z",
+      "event": "repair_retest_passed",
+      "phase": "retest",
+      "workItemId": "WB-012"
+    },
+    {
+      "at": "2026-08-10T17:26:06.582Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T17:26:13.652Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 1,
+      "evidenceRunId": "gate-2026-08-10T17-26-06-582Z"
+    },
+    {
+      "at": "2026-08-10T17:26:43.186Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T17:26:50.301Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "SUBSCRIBER READY",
+      "findingCount": 0,
+      "evidenceRunId": "gate-2026-08-10T17-26-43-186Z"
+>>>>>>> origin/main
     }
   ],
   "notes": [

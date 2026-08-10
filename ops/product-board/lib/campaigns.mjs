@@ -19,8 +19,10 @@ export const CAMPAIGNS = {
     commandRemap: {
       "production-build": "node automation/verify-sheds-production.mjs",
       "platform-foundation":
-        "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs"
+        "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs",
+      "browser-smoke": "node automation/test-sheds-live-weather-coldstart.mjs"
     },
+    forceRequired: ["browser-smoke"],
     mspDoc: null
   },
   signalterrain: {
@@ -69,4 +71,9 @@ export function assertCampaignProductExists(id) {
 
 export function campaignsRegistryPath() {
   return path.join(BOARD_ROOT, "campaigns.json");
+}
+
+export function campaignForceRequired(id) {
+  const c = getCampaign(id);
+  return c && Array.isArray(c.forceRequired) ? c.forceRequired : [];
 }

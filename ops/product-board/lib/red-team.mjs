@@ -88,6 +88,26 @@ export function runRedTeam({
     });
   }
 
+  // Attack 6: optional browser/live checks left failing on live-claim surfaces
+  // Escaped class: SUBSCRIBER READY with browser-smoke optional_fail while product
+  // claims Today/Live/Nearby inputs — Red Team treats as incomplete disproof barrier.
+  // Do NOT match incidental paths like audits/live-site-qa in a11y tool output.
+  const optionalLiveGaps = (qaChecks || []).filter((c) => {
+    if (c.status !== "optional_fail") return false;
+    if (c.id === "browser-smoke") return true;
+    // Match criterion identity only — never scan command output (avoids live-site-qa false hits).
+    return /\b(today|nearby|weather|cold-?start|live-data|live_data)\b/i.test(
+      `${c.id} ${c.title || ""}`
+    );
+  });
+  for (const c of optionalLiveGaps) {
+    disproofs.push({
+      id: `redteam:optional-live-gap:${c.id}`,
+      severity: "P1",
+      message: `Optional live/browser check failed or skipped on a live-claim surface: ${c.title || c.id}. Cannot rubber-stamp Today/Live/Nearby readiness.`
+    });
+  }
+
   let status = "pending";
   let disproved = false;
   let summary =
