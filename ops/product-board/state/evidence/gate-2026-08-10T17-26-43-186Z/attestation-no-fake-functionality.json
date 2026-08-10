@@ -1,0 +1,17 @@
+{
+  "id": "attestation-no-fake-functionality",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.297Z",
+  "status": "pass",
+  "summary": "Attested pass by product-director: No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "no-fake-functionality",
+    "role": "product-director",
+    "verdict": "pass",
+    "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.416Z"
+  }
+}

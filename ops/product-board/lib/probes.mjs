@@ -163,6 +163,70 @@ function probePrivacySignals() {
   return findings;
 }
 
+/**
+ * Escaped-defect class: live/current/nearby inputs skipped on GPS-denied or
+ * zoomed-out cold starts while UI claims map-center fallback.
+ * Sheds campaign only — static contract on the map app.
+ */
+function probeLiveInputColdStart(campaign) {
+  if (campaign !== "sheds") return [];
+  const findings = [];
+  const appPath = path.join(
+    REPO_ROOT,
+    "apps/shed-hunting/js/sheds-map-app.js"
+  );
+  if (!fs.existsSync(appPath)) {
+    findings.push({
+      id: "live_data:sheds-map-app-missing",
+      dimension: "live_data_integrity",
+      severity: "P0",
+      message: "Sheds map app missing for live-input cold-start probe"
+    });
+    return findings;
+  }
+  const app = fs.readFileSync(appPath, "utf8");
+  if (!/function ensureWeatherForView/.test(app)) {
+    findings.push({
+      id: "live_data:missing-ensureWeatherForView",
+      dimension: "live_data_integrity",
+      severity: "P1",
+      message:
+        "Sheds map lacks ensureWeatherForView — GPS-denied/zoomed-out Today’s Search can skip live weather while claiming map-center fallback"
+    });
+  }
+  if (!/getZoom\(\) < 9[\s\S]{0,900}ensureWeatherForView/.test(app)) {
+    findings.push({
+      id: "live_data:low-zoom-skips-weather",
+      dimension: "live_data_integrity",
+      severity: "P1",
+      message:
+        "Low-zoom early return must still fetch map-center weather for Today’s Search"
+    });
+  }
+  if (!/permission denied[\s\S]{0,900}ensureWeatherForView/.test(app)) {
+    findings.push({
+      id: "live_data:gps-deny-skips-weather",
+      dimension: "live_data_integrity",
+      severity: "P1",
+      message:
+        "GPS permission-denied path must still fetch weather for the visible map center"
+    });
+  }
+  if (
+    /briefing uses map center when possible/i.test(app) &&
+    !/ensureWeatherForView/.test(app)
+  ) {
+    findings.push({
+      id: "live_data:map-center-claim-without-fetch",
+      dimension: "live_data_integrity",
+      severity: "P1",
+      message:
+        "UI claims map-center briefing without ensureWeatherForView implementation"
+    });
+  }
+  return findings;
+}
+
 function probePlaywrightCapability() {
   const note = path.join(REPO_ROOT, "reports", "playwright-capability.txt");
   const installed = fs.existsSync(
@@ -192,7 +256,8 @@ export function runStaticProbes(options = {}) {
     ...scanPatterns(files, HTML_LEAK_PATTERNS.filter((p) => p.id !== "raw-angle-script"), "raw_html_leakage"),
     ...scanPatterns(files, DEAD_CONTROL_HINTS, "dead_controls"),
     ...probeResponsiveMeta(files),
-    ...probePrivacySignals()
+    ...probePrivacySignals(),
+    ...probeLiveInputColdStart(campaign)
   ];
 
   const playwright = probePlaywrightCapability();

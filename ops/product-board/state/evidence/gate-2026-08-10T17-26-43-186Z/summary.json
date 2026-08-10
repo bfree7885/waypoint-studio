@@ -1,0 +1,276 @@
+{
+  "verdict": "SUBSCRIBER READY",
+  "findings": [],
+  "checks": [
+    {
+      "id": "board-blockers",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "platform-foundation",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-links",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-build",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "browser-smoke",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "a11y-smoke",
+      "status": "optional_fail",
+      "required": false
+    },
+    {
+      "id": "probe-placeholders",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-html-leakage",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-dead-controls",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-responsive",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-privacy",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "dim-loading-states",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-network-perf-security",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "no-fake-functionality",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "primary-workflows",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "honest-data",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "visual-review",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "commercial-review",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "red-team-pass",
+      "status": "pass",
+      "required": true
+    }
+  ],
+  "commercial": {
+    "status": "pass",
+    "wouldCancel": false
+  },
+  "redTeam": {
+    "status": "pass",
+    "disproved": false
+  },
+  "attestations": {
+    "complete": true,
+    "pending": [],
+    "failed": [],
+    "passed": [
+      {
+        "id": "no-fake-functionality",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "no-fake-functionality",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.416Z"
+        }
+      },
+      {
+        "id": "primary-workflows",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "primary-workflows",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.324Z"
+        }
+      },
+      {
+        "id": "honest-data",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "honest-data",
+          "role": "data-reliability",
+          "verdict": "pass",
+          "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.294Z"
+        }
+      },
+      {
+        "id": "visual-review",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "visual-review",
+          "role": "ux-ui-lead",
+          "verdict": "pass",
+          "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.447Z"
+        }
+      },
+      {
+        "id": "commercial-review",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "commercial-review",
+          "role": "commercial-subscriber",
+          "verdict": "pass",
+          "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.356Z"
+        }
+      },
+      {
+        "id": "red-team-pass",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "red-team-pass",
+          "role": "red-team",
+          "verdict": "pass",
+          "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+          "campaign": "sheds",
+          "at": "2026-08-10T17:25:32.385Z"
+        }
+      }
+    ],
+    "byCriterion": {
+      "no-fake-functionality": {
+        "id": "AT-006",
+        "criterionId": "no-fake-functionality",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.416Z"
+      },
+      "primary-workflows": {
+        "id": "AT-006",
+        "criterionId": "primary-workflows",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.324Z"
+      },
+      "honest-data": {
+        "id": "AT-006",
+        "criterionId": "honest-data",
+        "role": "data-reliability",
+        "verdict": "pass",
+        "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.294Z"
+      },
+      "visual-review": {
+        "id": "AT-006",
+        "criterionId": "visual-review",
+        "role": "ux-ui-lead",
+        "verdict": "pass",
+        "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.447Z"
+      },
+      "commercial-review": {
+        "id": "AT-006",
+        "criterionId": "commercial-review",
+        "role": "commercial-subscriber",
+        "verdict": "pass",
+        "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.356Z"
+      },
+      "red-team-pass": {
+        "id": "AT-006",
+        "criterionId": "red-team-pass",
+        "role": "red-team",
+        "verdict": "pass",
+        "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+        "campaign": "sheds",
+        "at": "2026-08-10T17:25:32.385Z"
+      }
+    }
+  },
+  "evidenceCompleteness": {
+    "complete": true,
+    "missing": [],
+    "present": [
+      "static_probe",
+      "playwright_browser",
+      "automated_tests",
+      "console",
+      "a11y",
+      "attestation",
+      "commercial_review",
+      "red_team"
+    ]
+  },
+  "runId": "gate-2026-08-10T17-26-43-186Z",
+  "finalizedAt": "2026-08-10T17:26:50.301Z",
+  "entryCount": 16
+}

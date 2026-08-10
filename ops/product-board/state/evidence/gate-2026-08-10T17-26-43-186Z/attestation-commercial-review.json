@@ -1,0 +1,17 @@
+{
+  "id": "attestation-commercial-review",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.299Z",
+  "status": "pass",
+  "summary": "Attested pass by commercial-subscriber: Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "commercial-review",
+    "role": "commercial-subscriber",
+    "verdict": "pass",
+    "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.356Z"
+  }
+}
