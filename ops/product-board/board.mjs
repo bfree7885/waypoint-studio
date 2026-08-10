@@ -340,29 +340,39 @@ function cmdNext() {
   }
 }
 
-function cmdAddItem(args) {
+  function cmdAddItem(args) {
   printHeader("Add Item");
   if (!args.title || !args.severity) {
-    console.error("Usage: add-item --title T --severity P0..P4 [--area A] [--notes N]");
+    console.error(
+      "Usage: add-item --title T --severity P0..P4 [--area A] [--notes N] [--campaign C]"
+    );
     process.exitCode = 1;
     return;
   }
   assertSeverity(args.severity);
+  const state = loadBoardState();
   const backlog = loadBacklog();
+  const campaign =
+    args.campaign || state.campaign || null;
   const item = addWorkItem(backlog, {
     title: args.title,
     severity: args.severity,
     area: args.area || "general",
     notes: args.notes || "",
-    status: "ready"
+    status: "ready",
+    campaign
   });
   saveBacklog(backlog);
-  const state = loadBoardState();
   state.lastCommand = "add-item";
   state.lastCommandAt = nowIso();
-  appendLoopEvent(state, "item_added", { id: item.id, severity: item.severity });
+  appendLoopEvent(state, "item_added", {
+    id: item.id,
+    severity: item.severity,
+    campaign
+  });
   saveBoardState(state);
   console.log("Created", item.id, item.severity, item.title);
+  if (campaign) console.log("Campaign:", campaign);
 }
 
 function cmdFailReview(args) {

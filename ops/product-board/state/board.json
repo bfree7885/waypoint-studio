@@ -1,19 +1,108 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T16:53:15.941Z",
+  "updatedAt": "2026-08-10T17:45:27.943Z",
   "mode": "loop",
-  "phase": "discover",
-  "activeItemId": "WB-004",
-  "activeRole": "product-director",
+  "phase": "release_gate",
+  "activeItemId": null,
+  "activeRole": "release-manager",
   "campaign": "signalterrain",
-  "lastCommand": "campaign",
-  "lastCommandAt": "2026-08-10T16:53:15.941Z",
+  "lastCommand": "add-item",
+  "lastCommandAt": "2026-08-10T17:45:27.943Z",
   "releaseGate": {
-    "status": "not_run",
-    "lastRunAt": null,
-    "verdict": null,
-    "blockingFindings": [],
-    "evidenceRunId": null
+    "status": "blocked",
+    "lastRunAt": "2026-08-10T17:27:12.698Z",
+    "verdict": "NOT READY",
+    "blockingFindings": [
+      {
+        "id": "no-fake-functionality",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: No fake functionality / placeholders-as-finished"
+      },
+      {
+        "id": "primary-workflows",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Primary subscriber workflows complete"
+      },
+      {
+        "id": "honest-data",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Live / estimate / placeholder honesty"
+      },
+      {
+        "id": "visual-review",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Visual review pass for scoped surface"
+      },
+      {
+        "id": "commercial-review",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Commercial reviewer — cancel/refund/trust test"
+      },
+      {
+        "id": "red-team-pass",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Red Team independent disproof pass"
+      },
+      {
+        "id": "red-team-disproof",
+        "severity": "P0",
+        "message": "Red Team disproved readiness with 1 finding(s).",
+        "items": [
+          "redteam:tests-pass-insufficient"
+        ]
+      }
+    ],
+    "evidenceRunId": "gate-2026-08-10T17-26-41-935Z",
+    "commercial": {
+      "status": "pending",
+      "wouldCancel": false,
+      "summary": "Automated tests alone are insufficient — commercial attestation still required."
+    },
+    "redTeam": {
+      "status": "fail",
+      "disproved": true,
+      "summary": "Red Team disproved readiness with 1 finding(s)."
+    },
+    "attestations": {
+      "complete": false,
+      "pending": [
+        "no-fake-functionality",
+        "primary-workflows",
+        "honest-data",
+        "visual-review",
+        "commercial-review",
+        "red-team-pass"
+      ],
+      "failed": [],
+      "passed": [],
+      "byCriterion": {}
+    },
+    "dimensions": [
+      "primary_workflows",
+      "functionality",
+      "live_data_integrity",
+      "placeholder_detection",
+      "dead_controls",
+      "broken_links_nav",
+      "raw_html_leakage",
+      "loading_empty_error",
+      "mobile_tablet_desktop",
+      "responsive",
+      "contrast",
+      "a11y",
+      "keyboard",
+      "console",
+      "network_api",
+      "performance",
+      "security",
+      "privacy",
+      "content_quality",
+      "visual_consistency",
+      "discoverability",
+      "onboarding",
+      "persistence",
+      "commercial_usefulness"
+    ]
   },
   "routing": {
     "openRepairQueue": [],
@@ -302,12 +391,67 @@
       "phase": "discover",
       "campaign": "signalterrain",
       "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
+    },
+    {
+      "at": "2026-08-10T17:26:33.116Z",
+      "event": "campaign_set",
+      "phase": "discover",
+      "campaign": "signalterrain",
+      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
+    },
+    {
+      "at": "2026-08-10T17:26:33.155Z",
+      "event": "phase_set",
+      "phase": "discover",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T17:26:33.155Z",
+      "event": "discover",
+      "phase": "discover",
+      "imported": 0,
+      "skipped": 5,
+      "campaign": "signalterrain"
+    },
+    {
+      "at": "2026-08-10T17:26:33.194Z",
+      "event": "phase_set",
+      "phase": "prioritize",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T17:26:33.195Z",
+      "event": "prioritize",
+      "phase": "prioritize",
+      "top": null,
+      "campaign": "signalterrain"
+    },
+    {
+      "at": "2026-08-10T17:26:41.934Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T17:27:12.698Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 7,
+      "evidenceRunId": "gate-2026-08-10T17-26-41-935Z"
+    },
+    {
+      "at": "2026-08-10T17:45:27.943Z",
+      "event": "item_added",
+      "phase": "release_gate",
+      "id": "WB-012",
+      "severity": "P0"
     }
   ],
   "notes": [
-    "Campaign set to signalterrain.",
-    "Product path: apps/signalterrain → /home/bryan/projects/waypoint-product-board/apps/signalterrain",
-    "MSP freeze: ops/product-board/campaigns/signalterrain-msp.md",
-    "Run discover → prioritize → gate --campaign signalterrain"
+    "Discovery refreshed from Engineering OS + static inventory.",
+    "Active campaign: signalterrain → apps/signalterrain",
+    "Synced engineering tasks: imported=0 skipped=5",
+    "Next: prioritize, then next."
   ]
 }

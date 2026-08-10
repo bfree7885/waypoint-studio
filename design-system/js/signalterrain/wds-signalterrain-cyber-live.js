@@ -281,7 +281,43 @@
   }
 
   function trustBadge(state) {
-    return '<span class="st-live-trust">' + esc(state || "Unknown") + "</span>";
+    return '<span class="st-live-trust" data-trust="' + esc(state || "Unknown") + '">' + esc(state || "Unknown") + "</span>";
+  }
+
+  /** Max age for presenting trustState "Live" honestly (ms). */
+  var LIVE_MAX_AGE_MS = 36 * 60 * 60 * 1000;
+
+  /**
+   * Effective trust for display — never show Live when the artifact is stale.
+   * Returns { trustState, ageMs, generatedAt, stale }.
+   */
+  function effectiveTrust(doc, nowMs) {
+    var meta = (doc && doc.meta) || {};
+    var raw = meta.trustState || "Unknown";
+    var gen = meta.generatedAt || null;
+    var now = typeof nowMs === "number" ? nowMs : Date.now();
+    var ageMs = null;
+    if (gen) {
+      var t = Date.parse(gen);
+      if (!isNaN(t)) ageMs = Math.max(0, now - t);
+    }
+    var trust = raw;
+    var stale = ageMs != null && ageMs > LIVE_MAX_AGE_MS;
+    if (stale && (raw === "Live" || raw === "Partial")) {
+      trust = "Stale";
+    } else if (stale && raw === "Cached") {
+      trust = "Stale";
+    }
+    return { trustState: trust, ageMs: ageMs, generatedAt: gen, stale: !!stale, rawTrust: raw };
+  }
+
+  function formatAge(ageMs) {
+    if (ageMs == null) return "unknown age";
+    var h = Math.floor(ageMs / 3600000);
+    if (h < 1) return "under 1 hour old";
+    if (h < 48) return h + " hour" + (h === 1 ? "" : "s") + " old";
+    var d = Math.floor(h / 24);
+    return d + " day" + (d === 1 ? "" : "s") + " old";
   }
 
   function providerTrustStrip(doc) {
@@ -298,19 +334,26 @@
     var cached = providers.filter(function (p) {
       return p.status === "cached" || p.status === "stale";
     }).length;
-    var gen = (doc && doc.meta && doc.meta.generatedAt) || "—";
+    var eff = effectiveTrust(doc);
+    var gen = eff.generatedAt || "—";
     return (
       '<div class="st-live-trust-strip" role="status">' +
       "<p><strong>Trust:</strong> " +
-      trustBadge(doc && doc.meta && doc.meta.trustState) +
+      trustBadge(eff.trustState) +
       " · refreshed " +
       esc(String(gen).slice(0, 19)) +
+      " (" +
+      esc(formatAge(eff.ageMs)) +
+      ")" +
       " · " +
       esc(String(ok)) +
       " providers ok" +
       (cached ? " · " + esc(String(cached)) + " cached" : "") +
       (planned ? " · " + esc(String(planned)) + " planned (not faked live)" : "") +
       "</p>" +
+      (eff.stale
+        ? "<p class=\"st-live-stale-warn\"><strong>Not current:</strong> This brief is older than 36 hours. Treat it as historical public-source context, not a live feed. Refresh has not completed recently.</p>"
+        : "") +
       (failed.length
         ? "<p><strong>Unavailable now:</strong> " +
           esc(
@@ -1506,6 +1549,8 @@
     rescore: rescore,
     bandLabel: bandLabel,
     bandWhy: bandWhy,
+    effectiveTrust: effectiveTrust,
+    LIVE_MAX_AGE_MS: LIVE_MAX_AGE_MS,
     BANNED_SAMPLE_PATHS: BANNED_SAMPLE_PATHS
   };
 })(typeof window !== "undefined" ? window : globalThis);
