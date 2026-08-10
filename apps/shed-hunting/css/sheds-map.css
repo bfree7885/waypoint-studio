@@ -1417,7 +1417,17 @@ html.sheds-sheet-open .leaflet-control-attribution {
   }
 
   .sheds-legend-float {
+    /* Plan card (~9rem) + gap — keep legend fully above Today's Search */
     bottom: calc(10.25rem + var(--sheds-safe-bottom));
+  }
+
+  /*
+   * Escape: Leaflet attribution used mobile sheet-peek offset and sat in the
+   * ~1rem gap between legend and Today's Search (lower-left sandwich clip).
+   * Park it above the legend stack instead.
+   */
+  .leaflet-control-attribution {
+    margin-bottom: calc(15.1rem + var(--sheds-safe-bottom)) !important;
   }
 
   .sheds-fab-rail {
