@@ -178,9 +178,16 @@ export const INFRASTRUCTURE_INVENTORY = Object.freeze([
     id: "autonomous-pilot",
     path: "ops/product-board/",
     title: "Fully autonomous discover→ship pilot loop",
-    classification: "missing",
+    classification: "partial",
     notes:
-      "Foundation present; still needs attested criteria, visual/red-team runners, and campaign targeting before unattended pilot."
+      "Attestations, evidence packages, Commercial Reviewer, and Red Team are executable. Unattended visual/browser runners and campaign pilots still pending (Sheds pilot is next phase)."
+  },
+  {
+    id: "subscriber-ready-evidence",
+    path: "ops/product-board/state/evidence/",
+    title: "Subscriber Ready machine-readable evidence store",
+    classification: "implemented",
+    notes: "Gate runs write manifest/summary + per-kind JSON under state/evidence/<runId>/."
   }
 ]);
 

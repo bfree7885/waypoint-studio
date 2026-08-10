@@ -1,0 +1,77 @@
+{
+  "id": "commercial-review",
+  "kind": "commercial_review",
+  "at": "2026-08-10T01:39:38.296Z",
+  "status": "fail",
+  "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+  "severity": null,
+  "data": {
+    "role": "commercial-subscriber",
+    "evaluatedAt": "2026-08-10T01:39:38.296Z",
+    "status": "fail",
+    "wouldCancel": true,
+    "coreQuestion": "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+    "cancelRiskCatalog": [
+      "Broken primary workflow after payment expectation",
+      "Sample/demo/placeholder presented as finished Live product",
+      "Dead controls on the paid or primary value path",
+      "Misleading Live / estimate / cached honesty",
+      "Unreadable UI, HTML leakage, or silent failures",
+      "Data that does not persist when the product claims it does",
+      "Privacy surprise or unclear permissions",
+      "Feature that looks ready but delivers no commercial usefulness"
+    ],
+    "risks": [
+      {
+        "id": "commercial:open-p0-p1-work",
+        "severity": "P1",
+        "reason": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+        "cancelRisk": "Feature that looks ready but delivers no commercial usefulness"
+      },
+      {
+        "id": "commercial:responsive:missing-viewport",
+        "severity": "P1",
+        "reason": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+        "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+      },
+      {
+        "id": "commercial:responsive:missing-viewport",
+        "severity": "P1",
+        "reason": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+        "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+      },
+      {
+        "id": "commercial:responsive:missing-viewport",
+        "severity": "P1",
+        "reason": "Missing viewport meta: apps/scenes/photo-library/index.html",
+        "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+      },
+      {
+        "id": "commercial:responsive:missing-viewport",
+        "severity": "P1",
+        "reason": "Missing viewport meta: sheds/index.html",
+        "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+      },
+      {
+        "id": "commercial:check:board-blockers",
+        "severity": "P1",
+        "reason": "Required readiness check not green: Board blocker posture (P0–P2 / repair queue)",
+        "cancelRisk": "Broken primary workflow after payment expectation"
+      },
+      {
+        "id": "commercial:check:production-build",
+        "severity": "P1",
+        "reason": "Required readiness check not green: Production build verification",
+        "cancelRisk": "Broken primary workflow after payment expectation"
+      },
+      {
+        "id": "commercial:check:probe-responsive",
+        "severity": "P1",
+        "reason": "Required readiness check not green: Responsive viewport basics",
+        "cancelRisk": "Broken primary workflow after payment expectation"
+      }
+    ],
+    "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+    "blocksVerdict": "NOT READY"
+  }
+}

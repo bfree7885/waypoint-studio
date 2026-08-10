@@ -75,14 +75,16 @@ export const ROLE_CATALOG = Object.freeze([
     title: "Commercial / Subscriber",
     engineeringAgent: "product-manager",
     owns: ["discover", "release_gate"],
-    mission: "Subscriber Ready means a paying user would not feel misled."
+    mission:
+      "Paid customer today — what would cause cancel, refund, or loss of trust? Never approve on tests alone."
   },
   {
     id: "red-team",
     title: "Red-Team",
     engineeringAgent: "security-engineer",
     owns: ["red_team"],
-    mission: "Adversarial pass for fake demos, broken journeys, and trust traps."
+    mission:
+      "Independently DISPROVE Subscriber Ready; never rubber-stamp engineering or QA conclusions."
   },
   {
     id: "release-manager",

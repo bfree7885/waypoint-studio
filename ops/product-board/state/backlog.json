@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T01:09:28.748Z",
+  "updatedAt": "2026-08-10T01:30:00.000Z",
   "policy": {
     "priorities": [
       "P0",
@@ -26,7 +26,7 @@
       "status": "ready",
       "acceptanceCriteria": [
         "visual_review phase invokes or records automation/capture-platform-visual-regression.mjs for scoped surfaces",
-        "Failures route through fail-review → fix → retest"
+        "Failures route through fail-review \u2192 fix \u2192 retest"
       ],
       "source": "foundation-seed",
       "notes": "Capture tooling exists; not yet orchestrated by the board loop.",
@@ -63,19 +63,25 @@
       "title": "Attestation workflow for Subscriber Ready policy criteria",
       "severity": "P2",
       "area": "agent-ops",
-      "status": "ready",
+      "status": "done",
       "acceptanceCriteria": [
         "board.mjs supports recording role attestations for required policy criteria",
-        "Gate can reach SUBSCRIBER_READY only with attestations + passing required commands + empty P0–P2 queue"
+        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0\u2013P2 queue"
       ],
       "source": "foundation-seed",
-      "notes": "Foundation evaluates policy criteria as manual_required so we never fake approval.",
+      "notes": "Implemented: board.mjs attest + state/attestations.json; gate requires policy attestations + Commercial + Red Team.",
       "relatedEngineeringId": null,
       "assignedRole": "release-manager",
       "createdAt": "2026-08-09T00:00:00.000Z",
-      "updatedAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-10T01:30:00.000Z",
       "failureOrigin": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-10T01:30:00.000Z",
+          "kind": "implementation",
+          "notes": "attest command + requiredAttestationsStatus wired into evaluateSubscriberReady"
+        }
+      ],
       "blocksSubscriberReady": true
     },
     {

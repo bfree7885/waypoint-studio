@@ -23,12 +23,14 @@ import { ROLE_CATALOG, LOOP_PHASES, rolesForPhase } from "./lib/roles.mjs";
 import { INFRASTRUCTURE_INVENTORY, summarizeInventory } from "./lib/inventory.mjs";
 import { advanceLoop, setPhase } from "./lib/loop.mjs";
 import { routeFailedReview, markRepairRetest } from "./lib/routing.mjs";
-import { evaluateSubscriberReady } from "./lib/subscriber-ready.mjs";
+import { evaluateSubscriberReady, VERDICTS } from "./lib/subscriber-ready.mjs";
+import { recordAttestation, loadAttestations } from "./lib/attestations.mjs";
 import { nowIso } from "./lib/io.mjs";
 import { spawnSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
 import { REPO_ROOT } from "./lib/paths.mjs";
+import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -44,10 +46,12 @@ const COMMANDS = {
   "retest-result": "retest-result",
   gate: "gate",
   "subscriber-ready": "gate",
+  attest: "attest",
   sync: "sync",
   roles: "roles",
   test: "test",
-  loop: "next"
+  loop: "next",
+  evidence: "evidence"
 };
 
 function normalizeCommand(argv) {
@@ -94,15 +98,25 @@ Commands:
   fail-review         --findings TEXT [--item WB-001] [--severity P1] [--title T]
   retest-result       --item WB-001 --pass|--fail [--notes N]
   gate                Evaluate formal Subscriber Ready gate
+  subscriber-ready    Alias for gate
+  attest              Record policy attestation
+                      --criterion ID --role ROLE --verdict pass|fail|waive [--notes N]
+  evidence            Show latest gate evidence package path
   sync                Import open engineering WE-* tasks
   roles               List permanent executable roles
   test                Run Product Board self-tests
   help
 
+Gate options:
+  gate [--skip-commands] [--skip-probes] [--campaign NAME]
+
+Verdicts (exact): NOT READY | CONDITIONALLY READY | SUBSCRIBER READY
+
 Long-term loop:
   ${LOOP_PHASES.join(" → ")}
 
 Standing bar: SUBSCRIBER READY (not merely \"tests pass\").
+Commercial reviewer + Red Team are independent — tests alone never approve.
 Recovered Engineering OS: node engineering/orchestrator/run.mjs status
 `);
 }
@@ -309,29 +323,51 @@ function cmdGate(args) {
   const state = loadBoardState();
   const backlog = loadBacklog();
   setPhase(state, "release_gate", "release-manager");
+  if (args.campaign) state.campaign = String(args.campaign);
   const skipCommands = Boolean(args["skip-commands"]);
+  const skipProbes = Boolean(args["skip-probes"]);
   const result = evaluateSubscriberReady({
     backlog,
     state,
-    runCommands: !skipCommands
+    runCommands: !skipCommands,
+    runProbes: !skipProbes,
+    persistEvidence: true,
+    campaign: state.campaign
   });
+  const passed = result.verdict === VERDICTS.SUBSCRIBER_READY;
+  const conditional = result.verdict === VERDICTS.CONDITIONALLY_READY;
   state.releaseGate = {
-    status: result.verdict === "SUBSCRIBER_READY" ? "passed" : "blocked",
+    status: passed ? "passed" : conditional ? "conditional" : "blocked",
     lastRunAt: result.evaluatedAt,
     verdict: result.verdict,
-    blockingFindings: result.findings
+    blockingFindings: result.findings,
+    evidenceRunId: result.evidence?.runId || null,
+    commercial: {
+      status: result.commercial?.status,
+      wouldCancel: result.commercial?.wouldCancel,
+      summary: result.commercial?.summary
+    },
+    redTeam: {
+      status: result.redTeam?.status,
+      disproved: result.redTeam?.disproved,
+      summary: result.redTeam?.summary
+    },
+    attestations: result.attestations,
+    dimensions: result.dimensions
   };
   state.lastCommand = "gate";
   state.lastCommandAt = nowIso();
   appendLoopEvent(state, "subscriber_ready_gate", {
     verdict: result.verdict,
-    findingCount: result.findings.length
+    findingCount: result.findings.length,
+    evidenceRunId: result.evidence?.runId || null
   });
   saveBoardState(state);
 
   console.log("Verdict:", result.verdict);
-  console.log("\nPrinciples:");
-  result.principles.forEach((p) => console.log("  -", p));
+  console.log("Evidence:", result.evidence?.dir || "(not persisted)");
+  console.log("\nCommercial:", result.commercial?.status, "—", result.commercial?.summary);
+  console.log("Red Team:", result.redTeam?.status, "—", result.redTeam?.summary);
   console.log("\nChecks:");
   result.checks.forEach((c) => {
     console.log(`  [${c.status}] ${c.id} — ${c.title}`);
@@ -342,12 +378,69 @@ function cmdGate(args) {
       console.log(`  - ${f.severity || "?"} ${f.id}: ${f.message}`);
     });
   }
-  if (result.verdict !== "SUBSCRIBER_READY") {
+  if (!passed) {
     console.log(
-      "\nNot Subscriber Ready. Create/route work with fail-review or fix open blockers, then re-run gate."
+      `\n${result.verdict}. Fix blockers / complete attestations / satisfy Red Team + Commercial, then re-run gate.`
     );
-    process.exitCode = 2;
+    console.log(
+      "Attest: node ops/product-board/board.mjs attest --criterion ID --role ROLE --verdict pass --notes \"…\""
+    );
+    process.exitCode = conditional ? 3 : 2;
   }
+}
+
+function cmdAttest(args) {
+  printHeader("Record Attestation");
+  if (!args.criterion || !args.role || !args.verdict) {
+    console.error(
+      "Usage: attest --criterion ID --role ROLE --verdict pass|fail|waive [--notes N] [--campaign C]"
+    );
+    process.exitCode = 1;
+    return;
+  }
+  const record = recordAttestation({
+    criterionId: args.criterion,
+    role: args.role,
+    verdict: args.verdict,
+    notes: args.notes || "",
+    campaign: args.campaign || null
+  });
+  const state = loadBoardState();
+  state.lastCommand = "attest";
+  state.lastCommandAt = nowIso();
+  appendLoopEvent(state, "attestation_recorded", {
+    criterionId: record.criterionId,
+    role: record.role,
+    verdict: record.verdict
+  });
+  saveBoardState(state);
+  console.log("Recorded", record.id, record.criterionId, record.verdict, "by", record.role);
+  console.log("Re-run: node ops/product-board/board.mjs gate");
+}
+
+function cmdEvidence() {
+  printHeader("Latest Gate Evidence");
+  const state = loadBoardState();
+  const runId = state.releaseGate?.evidenceRunId;
+  const evidenceRoot = path.join(
+    process.env.WAYPOINT_PRODUCT_BOARD_STATE_DIR ||
+      path.join(__dirname, "state"),
+    "evidence"
+  );
+  if (!runId) {
+    console.log("No evidence run recorded on board state. Run: board.mjs gate");
+    return;
+  }
+  const dir = path.join(evidenceRoot, runId);
+  console.log("Run ID:", runId);
+  console.log("Directory:", dir);
+  const summary = path.join(dir, "summary.json");
+  if (fs.existsSync(summary)) {
+    console.log("Summary:", summary);
+    console.log(fs.readFileSync(summary, "utf8"));
+  }
+  const atts = loadAttestations();
+  console.log("\nAttestations on file:", (atts.records || []).length);
 }
 
 function cmdSync() {
@@ -412,6 +505,10 @@ function main() {
       return cmdRetestResult(args);
     case "gate":
       return cmdGate(args);
+    case "attest":
+      return cmdAttest(args);
+    case "evidence":
+      return cmdEvidence();
     case "sync":
       return cmdSync();
     case "roles":

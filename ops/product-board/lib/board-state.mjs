@@ -16,8 +16,13 @@ export const DEFAULT_BOARD_STATE = Object.freeze({
     status: "not_run",
     lastRunAt: null,
     verdict: null,
-    blockingFindings: []
+    blockingFindings: [],
+    evidenceRunId: null,
+    commercial: null,
+    redTeam: null
   },
+  attestationsNote:
+    "Record with: node ops/product-board/board.mjs attest --criterion ID --role ROLE --verdict pass|fail|waive",
   routing: {
     openRepairQueue: [],
     lastFailureId: null

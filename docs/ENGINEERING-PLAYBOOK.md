@@ -1066,3 +1066,25 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    work item and blocks the gate; “write report and stop” is a process defect.
 4. **Prefer a clean worktree** when the main checkout is dirty with unrelated
    HTML/docs noise; keep Agent Ops commits free of dirty-tree staging.
+
+### 2026-08-10 — Subscriber Ready executable gate
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/` (gate + evidence + Commercial + Red Team)
+
+1. **Exact verdicts matter.** Use only `NOT READY` | `CONDITIONALLY READY` |
+   `SUBSCRIBER READY`. Synonyms like `NOT_SUBSCRIBER_READY` break board consumers
+   and weaken the standing bar.
+2. **P0/P1 are automatic hard stops; P2 is not a free pass.** Open P0–P1 (or
+   repair queue) ⇒ `NOT READY`. Open P2 may yield `CONDITIONALLY READY` but never
+   `SUBSCRIBER READY`. Do not weaken this.
+3. **Commercial + Red Team must be independent modules.** Tests-pass alone must
+   bottom out at conditional/not-ready until commercial cancel-risk review and an
+   adversarial Red Team disproof pass are recorded. Red Team must never
+   auto-accept engineering self-certification.
+4. **Evidence belongs in board state.** Persist machine-readable packages under
+   `ops/product-board/state/evidence/<runId>/` (commands, probes, commercial,
+   red-team, Playwright capability honesty). A gate without evidence is theater.
+5. **Policy criterion IDs are not probe failures.** Matching
+   `primary-workflows` attestation-pending as “primary workflow broken” falsely
+   forces `NOT READY`; keep workflow-broken detection separate from attestation ids.

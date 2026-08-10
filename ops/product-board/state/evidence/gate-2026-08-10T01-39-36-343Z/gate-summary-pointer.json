@@ -1,0 +1,24 @@
+{
+  "id": "gate-summary-pointer",
+  "kind": "gate_summary",
+  "at": "2026-08-10T01:39:38.299Z",
+  "status": "recorded",
+  "summary": "Verdict: NOT READY",
+  "severity": null,
+  "data": {
+    "verdict": "NOT READY",
+    "completeness": {
+      "complete": true,
+      "missing": [],
+      "present": [
+        "static_probe",
+        "playwright_browser",
+        "automated_tests",
+        "console",
+        "a11y",
+        "commercial_review",
+        "red_team"
+      ]
+    }
+  }
+}

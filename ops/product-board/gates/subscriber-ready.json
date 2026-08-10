@@ -1,8 +1,9 @@
 {
-  "version": 1,
+  "version": 2,
   "id": "subscriber-ready",
   "title": "Subscriber Ready",
-  "description": "Formal release gate. Passing automated tests alone is never sufficient.",
+  "description": "Formal evidence-based release gate. Passing automated tests alone is never sufficient. Verdicts: NOT READY | CONDITIONALLY READY | SUBSCRIBER READY.",
+  "verdicts": ["NOT READY", "CONDITIONALLY READY", "SUBSCRIBER READY"],
   "principles": [
     "Never approve fake functionality",
     "Never treat unexplained sample/demo content as finished product",
@@ -15,22 +16,60 @@
     "No unfinished primary workflows",
     "No silent failures",
     "No ignored console/network failures on primary journeys",
-    "No poor-value features presented as ready"
+    "No poor-value features presented as ready",
+    "Commercial reviewer asks: paid today — cancel/refund/trust loss?",
+    "Red Team independently disproves readiness — never rubber-stamps QA"
   ],
   "policy": {
     "testsPassIsNotEnough": true,
-    "p0P1P2BlockApproval": true,
+    "p0OrP1AutomaticallyPreventSubscriberReady": true,
+    "p2BlocksSubscriberReadyAllowsConditional": true,
     "failedReviewMustRouteToRepair": true,
-    "onlyOwnerMayWaiveWithRecord": true
+    "onlyOwnerMayWaiveWithRecord": true,
+    "redTeamMustNotAutoAcceptEngineeringOrQa": true
   },
+  "dimensions": [
+    "primary_workflows",
+    "functionality",
+    "live_data_integrity",
+    "placeholder_detection",
+    "dead_controls",
+    "broken_links_nav",
+    "raw_html_leakage",
+    "loading_empty_error",
+    "mobile_tablet_desktop",
+    "responsive",
+    "contrast",
+    "a11y",
+    "keyboard",
+    "console",
+    "network_api",
+    "performance",
+    "security",
+    "privacy",
+    "content_quality",
+    "visual_consistency",
+    "discoverability",
+    "onboarding",
+    "persistence",
+    "commercial_usefulness"
+  ],
+  "evidenceRequiredKinds": [
+    "automated_tests",
+    "static_probe",
+    "commercial_review",
+    "red_team",
+    "playwright_browser"
+  ],
   "criteria": [
     {
       "id": "board-blockers",
-      "title": "No open P0–P2 Product Board items",
+      "title": "Board blocker posture (P0–P2 / repair queue)",
       "kind": "board",
       "required": true,
       "defaultSeverity": "P1",
-      "description": "Open blocking work or repair queue fails the gate."
+      "dimension": "primary_workflows",
+      "description": "Open P0–P1 or repair queue → NOT READY. Open P2 → blocks SUBSCRIBER READY."
     },
     {
       "id": "platform-foundation",
@@ -39,16 +78,42 @@
       "command": "node automation/test-platform-foundation.mjs",
       "required": true,
       "defaultSeverity": "P1",
+      "dimension": "functionality",
+      "evidenceKind": "automated_tests",
       "description": "Core automated regression for shared platform."
     },
     {
-      "id": "browser-smoke",
-      "title": "Browser smoke",
+      "id": "production-links",
+      "title": "Production link / route validation",
       "kind": "command",
-      "command": "node automation/smoke-browser.mjs",
+      "command": "node automation/validate-production-links.mjs",
       "required": true,
       "defaultSeverity": "P1",
-      "description": "Structural navigation / App Shell smoke."
+      "dimension": "broken_links_nav",
+      "evidenceKind": "automated_tests",
+      "description": "Broken local refs and critical public pages."
+    },
+    {
+      "id": "production-build",
+      "title": "Production build verification",
+      "kind": "command",
+      "command": "node automation/verify-production-build.mjs",
+      "required": true,
+      "defaultSeverity": "P1",
+      "dimension": "functionality",
+      "evidenceKind": "automated_tests",
+      "description": "Build/deploy integrity checks."
+    },
+    {
+      "id": "browser-smoke",
+      "title": "Browser smoke (console/network journeys)",
+      "kind": "command",
+      "command": "node automation/smoke-browser.mjs",
+      "required": false,
+      "defaultSeverity": "P1",
+      "dimension": "console",
+      "evidenceKind": "console",
+      "description": "Optional in constrained environments; required before claiming full browser readiness. Needs local server + ws."
     },
     {
       "id": "a11y-smoke",
@@ -57,7 +122,94 @@
       "command": "node automation/a11y-smoke.mjs",
       "required": false,
       "defaultSeverity": "P2",
-      "description": "Optional until live-site-qa deps are reliable; still required before claiming full a11y readiness."
+      "dimension": "a11y",
+      "evidenceKind": "a11y",
+      "description": "Optional until live-site-qa Playwright deps installed; still required before full a11y SUBSCRIBER READY."
+    },
+    {
+      "id": "probe-placeholders",
+      "title": "Sample/demo/placeholder detection",
+      "kind": "probe",
+      "dimension": "placeholder_detection",
+      "required": true,
+      "defaultSeverity": "P0",
+      "description": "Fake/sample presented as real fails the gate."
+    },
+    {
+      "id": "probe-html-leakage",
+      "title": "Raw HTML / unreadable text leakage",
+      "kind": "probe",
+      "dimension": "raw_html_leakage",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Visible undefined/null/HTML entity leaks."
+    },
+    {
+      "id": "probe-dead-controls",
+      "title": "Dead control heuristics",
+      "kind": "probe",
+      "dimension": "dead_controls",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Primary CTAs that go nowhere."
+    },
+    {
+      "id": "probe-responsive",
+      "title": "Responsive viewport basics",
+      "kind": "probe",
+      "dimension": "responsive",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Primary HTML surfaces need viewport meta."
+    },
+    {
+      "id": "probe-privacy",
+      "title": "Privacy surface present",
+      "kind": "probe",
+      "dimension": "privacy",
+      "required": true,
+      "defaultSeverity": "P0",
+      "description": "privacy.html must exist."
+    },
+    {
+      "id": "dim-loading-states",
+      "title": "Loading / empty / error honesty",
+      "kind": "dimension",
+      "dimension": "loading_empty_error",
+      "required": true,
+      "description": "Covered via QA attestation + product standards."
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "title": "Mobile / tablet / desktop",
+      "kind": "dimension",
+      "dimension": "mobile_tablet_desktop",
+      "required": true,
+      "description": "Requires visual/mobile evidence before SUBSCRIBER READY."
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "title": "Contrast + keyboard",
+      "kind": "dimension",
+      "dimension": "contrast",
+      "required": true,
+      "description": "A11y attestation dimension."
+    },
+    {
+      "id": "dim-network-perf-security",
+      "title": "Network / performance / security",
+      "kind": "dimension",
+      "dimension": "network_api",
+      "required": true,
+      "description": "Covered by production checks + security attestation."
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "title": "Content quality / visual consistency / discoverability / onboarding / persistence",
+      "kind": "dimension",
+      "dimension": "content_quality",
+      "required": true,
+      "description": "Product + UX attestations."
     },
     {
       "id": "no-fake-functionality",
@@ -65,6 +217,7 @@
       "kind": "policy",
       "required": true,
       "defaultSeverity": "P0",
+      "dimension": "placeholder_detection",
       "description": "Product Director + Commercial/Subscriber attestation."
     },
     {
@@ -73,6 +226,7 @@
       "kind": "policy",
       "required": true,
       "defaultSeverity": "P1",
+      "dimension": "primary_workflows",
       "description": "QA + Product Director attestation for the scoped campaign."
     },
     {
@@ -81,15 +235,35 @@
       "kind": "policy",
       "required": true,
       "defaultSeverity": "P0",
+      "dimension": "live_data_integrity",
       "description": "Data/Reliability attestation."
     },
     {
-      "id": "visual-redteam",
-      "title": "Visual review + red-team pass for scoped surface",
+      "id": "visual-review",
+      "title": "Visual review pass for scoped surface",
       "kind": "policy",
       "required": true,
       "defaultSeverity": "P1",
-      "description": "UX/UI Lead + Red-Team attestation; failures must route to repair."
+      "dimension": "visual_consistency",
+      "description": "UX/UI Lead attestation; failures route to repair."
+    },
+    {
+      "id": "commercial-review",
+      "title": "Commercial reviewer — cancel/refund/trust test",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P0",
+      "dimension": "commercial_usefulness",
+      "description": "Independent commercial attestation. Paid today — would they cancel?"
+    },
+    {
+      "id": "red-team-pass",
+      "title": "Red Team independent disproof pass",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P0",
+      "dimension": "security",
+      "description": "Red Team must attempt to disprove readiness; must not auto-accept engineering/QA."
     }
   ]
 }

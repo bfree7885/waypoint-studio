@@ -69,7 +69,7 @@ export function routeFailedReview({
   state.routing.lastFailureId = item.id;
   state.releaseGate = state.releaseGate || {};
   state.releaseGate.status = "blocked";
-  state.releaseGate.verdict = "NOT_SUBSCRIBER_READY";
+  state.releaseGate.verdict = "NOT READY";
   state.releaseGate.blockingFindings = [
     ...(state.releaseGate.blockingFindings || []),
     {

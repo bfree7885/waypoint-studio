@@ -1,0 +1,15 @@
+{
+  "id": "playwright-capability",
+  "kind": "playwright_browser",
+  "at": "2026-08-10T01:39:36.379Z",
+  "status": "missing",
+  "summary": "Playwright not installed in repo node_modules; browser automation limited.",
+  "severity": null,
+  "data": {
+    "id": "playwright-capability",
+    "dimension": "playwright_browser",
+    "status": "missing",
+    "message": "Playwright not installed in repo node_modules; browser automation limited.",
+    "severity": "P2"
+  }
+}
