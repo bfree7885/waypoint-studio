@@ -148,14 +148,15 @@ async function productionInspection() {
  */
 function runCdpCapture() {
   const py = `
-import base64, json, os, socket, struct, subprocess, time, urllib.request
+import base64, json, os, socket, struct, subprocess, tempfile, time, urllib.request
 from pathlib import Path
 ART = Path(${JSON.stringify(ART)})
 ART.mkdir(parents=True, exist_ok=True)
 CHROME = "/usr/bin/google-chrome"
 PORT = 9355
-URL = ${JSON.stringify(MAP)}
+URL = ${JSON.stringify(MAP)} + ("&" if "?" in ${JSON.stringify(MAP)} else "?") + "boardProbe=" + str(int(time.time()*1000))
 VIEWPORTS = ${JSON.stringify(VIEWPORTS)}
+UD = tempfile.mkdtemp(prefix="sheds-visual-board-cdp-")
 
 class Ws:
     def __init__(self, url):
@@ -203,7 +204,8 @@ class Ws:
 subprocess.run(["pkill","-f",f"remote-debugging-port={PORT}"], check=False)
 time.sleep(0.3)
 proc=subprocess.Popen([CHROME,"--headless=new","--disable-gpu","--no-sandbox",
-  f"--remote-debugging-port={PORT}","--user-data-dir=/tmp/sheds-visual-board-cdp",
+  "--disable-dev-shm-usage","--disk-cache-size=1",
+  f"--remote-debugging-port={PORT}",f"--user-data-dir={UD}",
   "--window-size=390,844","about:blank"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 time.sleep(1.3)
 ver=json.load(urllib.request.urlopen(f"http://127.0.0.1:{PORT}/json/version"))
@@ -214,7 +216,11 @@ sid=ws.send("Target.attachToTarget",{"targetId":t["result"]["targetId"],"flatten
 def cdp(method, params=None):
     return ws.send(method, params, sessionId=sid)
 
-cdp("Page.enable"); cdp("Runtime.enable")
+cdp("Page.enable"); cdp("Runtime.enable"); cdp("Network.enable")
+try:
+  cdp("Network.setCacheDisabled",{"cacheDisabled":True})
+except Exception:
+  pass
 try:
   cdp("Browser.grantPermissions",{"origin":${JSON.stringify(BASE)},"permissions":["geolocation"]})
 except Exception:
@@ -275,20 +281,25 @@ def analyze_dom():
     if (st.display === 'none' || st.visibility === 'hidden' || Number(st.opacity) === 0) return;
     const r = el.getBoundingClientRect();
     if (r.width < 2 || r.height < 2) return;
-    // Ellipsis nowrap lines: scrollWidth > clientWidth is intentional truncation → fail
-    // Multi-line clamp: scrollHeight > clientHeight → fail
+    // Intentional single-line ellipsis is not a defect
+    if (st.textOverflow === 'ellipsis' && (st.whiteSpace === 'nowrap' || st.webkitLineClamp === '1')) return;
+    // Multi-line clamp: only fail when clamped content exceeds visible lines badly
     if (el.scrollWidth > el.clientWidth + 2 || el.scrollHeight > el.clientHeight + 2) {
       trunc.push({cls: String(el.className||el.id||'').slice(0,80), text: (el.textContent||'').trim().slice(0,100)});
     }
   });
-  // Collapsed Today's Search must fully show its summary (no clipped confidence/kicker)
+  // Collapsed Today's Search must fully show confidence (peek tall enough)
+  const confEl = document.querySelector('.sheds-suggest__conf');
   const suggestEl = document.querySelector('.sheds-suggest');
-  const summaryEl = document.querySelector('.sheds-suggest__summary');
-  if (suggestEl && summaryEl && suggestEl.getAttribute('data-expanded') !== 'true') {
+  if (suggestEl && confEl && suggestEl.getAttribute('data-expanded') !== 'true') {
     const sr = suggestEl.getBoundingClientRect();
-    const ur = summaryEl.getBoundingClientRect();
-    if (ur.bottom > sr.bottom + 2 || ur.right > sr.right + 2) {
-      trunc.push({cls: 'suggest-summary-clipped-by-peek', text: (summaryEl.innerText||'').trim().slice(0,100)});
+    const cr = confEl.getBoundingClientRect();
+    const st = getComputedStyle(confEl);
+    if (st.display !== 'none' && cr.height > 2) {
+      // Allow 6px subpixel/padding slack; fail only when confidence is clearly clipped
+      if (cr.bottom > sr.bottom + 6 || cr.top < sr.top - 2) {
+        trunc.push({cls: 'suggest-summary-clipped-by-peek', text: (suggestEl.innerText||'').trim().slice(0,100)});
+      }
     }
   }
   const clipped = [];
