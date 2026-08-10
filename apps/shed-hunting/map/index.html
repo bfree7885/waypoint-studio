@@ -64,9 +64,8 @@
         <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; basemap providers (CARTO / Esri) still see approximate map tile requests.</p>
       </div>
 
-      <!-- Intention: place yourself, note what you see, then tools. -->
+      <!-- One explained field rail — locate, zoom, note, track, tools (no second Leaflet zoom stack). -->
       <div class="sheds-fab-rail" role="toolbar" aria-label="Field actions">
-        <p class="sheds-fab-rail__legend">Locate · note · track · tools</p>
         <button type="button" class="sheds-fab sheds-fab--primary" id="btn-locate" title="Locate me" aria-label="Locate me">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
           <span class="sheds-fab__label">Locate</span>
@@ -75,6 +74,16 @@
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/></svg>
           <span class="sheds-fab__label">Recenter</span>
         </button>
+        <div class="sheds-zoom-pair" role="group" aria-label="Map zoom">
+          <button type="button" class="sheds-fab sheds-fab--zoom" id="btn-zoom-in" title="Zoom in" aria-label="Zoom in">
+            <span class="sheds-fab__glyph" aria-hidden="true">+</span>
+            <span class="sheds-fab__label">In</span>
+          </button>
+          <button type="button" class="sheds-fab sheds-fab--zoom" id="btn-zoom-out" title="Zoom out" aria-label="Zoom out">
+            <span class="sheds-fab__glyph" aria-hidden="true">−</span>
+            <span class="sheds-fab__label">Out</span>
+          </button>
+        </div>
         <button type="button" class="sheds-fab" id="btn-add-obs-fab" title="Add note" aria-label="Add note">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
           <span class="sheds-fab__label">Note</span>
