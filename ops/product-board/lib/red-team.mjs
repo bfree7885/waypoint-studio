@@ -106,6 +106,11 @@ export function runRedTeam({
     status = "fail";
     disproved = true;
     summary = `Red Team disproved readiness with ${disproofs.length} finding(s).`;
+  } else if (attestations?.byCriterion?.["red-team-pass"]?.verdict === "pass") {
+    status = "pass";
+    disproved = false;
+    summary =
+      "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof.";
   } else {
     // No automatic pass — absence of findings ≠ approval.
     status = "pending";

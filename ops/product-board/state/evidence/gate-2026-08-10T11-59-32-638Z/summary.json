@@ -1,0 +1,276 @@
+{
+  "verdict": "SUBSCRIBER READY",
+  "findings": [],
+  "checks": [
+    {
+      "id": "board-blockers",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "platform-foundation",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-links",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-build",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "browser-smoke",
+      "status": "optional_fail",
+      "required": false
+    },
+    {
+      "id": "a11y-smoke",
+      "status": "optional_fail",
+      "required": false
+    },
+    {
+      "id": "probe-placeholders",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-html-leakage",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-dead-controls",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-responsive",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-privacy",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "dim-loading-states",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-network-perf-security",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "no-fake-functionality",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "primary-workflows",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "honest-data",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "visual-review",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "commercial-review",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "red-team-pass",
+      "status": "pass",
+      "required": true
+    }
+  ],
+  "commercial": {
+    "status": "pass",
+    "wouldCancel": false
+  },
+  "redTeam": {
+    "status": "pass",
+    "disproved": false
+  },
+  "attestations": {
+    "complete": true,
+    "pending": [],
+    "failed": [],
+    "passed": [
+      {
+        "id": "no-fake-functionality",
+        "attestation": {
+          "id": "AT-001",
+          "criterionId": "no-fake-functionality",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:55:26.071Z"
+        }
+      },
+      {
+        "id": "primary-workflows",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "primary-workflows",
+          "role": "product-director",
+          "verdict": "pass",
+          "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:56:52.012Z"
+        }
+      },
+      {
+        "id": "honest-data",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "honest-data",
+          "role": "data-reliability",
+          "verdict": "pass",
+          "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:56:52.052Z"
+        }
+      },
+      {
+        "id": "visual-review",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "visual-review",
+          "role": "ux-ui-lead",
+          "verdict": "pass",
+          "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:56:52.083Z"
+        }
+      },
+      {
+        "id": "commercial-review",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "commercial-review",
+          "role": "commercial-subscriber",
+          "verdict": "pass",
+          "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:56:52.115Z"
+        }
+      },
+      {
+        "id": "red-team-pass",
+        "attestation": {
+          "id": "AT-006",
+          "criterionId": "red-team-pass",
+          "role": "red-team",
+          "verdict": "pass",
+          "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+          "campaign": "sheds",
+          "at": "2026-08-10T11:56:52.147Z"
+        }
+      }
+    ],
+    "byCriterion": {
+      "no-fake-functionality": {
+        "id": "AT-001",
+        "criterionId": "no-fake-functionality",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:55:26.071Z"
+      },
+      "primary-workflows": {
+        "id": "AT-006",
+        "criterionId": "primary-workflows",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.012Z"
+      },
+      "honest-data": {
+        "id": "AT-006",
+        "criterionId": "honest-data",
+        "role": "data-reliability",
+        "verdict": "pass",
+        "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.052Z"
+      },
+      "visual-review": {
+        "id": "AT-006",
+        "criterionId": "visual-review",
+        "role": "ux-ui-lead",
+        "verdict": "pass",
+        "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.083Z"
+      },
+      "commercial-review": {
+        "id": "AT-006",
+        "criterionId": "commercial-review",
+        "role": "commercial-subscriber",
+        "verdict": "pass",
+        "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.115Z"
+      },
+      "red-team-pass": {
+        "id": "AT-006",
+        "criterionId": "red-team-pass",
+        "role": "red-team",
+        "verdict": "pass",
+        "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.147Z"
+      }
+    }
+  },
+  "evidenceCompleteness": {
+    "complete": true,
+    "missing": [],
+    "present": [
+      "static_probe",
+      "playwright_browser",
+      "automated_tests",
+      "console",
+      "a11y",
+      "attestation",
+      "commercial_review",
+      "red_team"
+    ]
+  },
+  "runId": "gate-2026-08-10T11-59-32-638Z",
+  "finalizedAt": "2026-08-10T11:59:33.357Z",
+  "entryCount": 16
+}

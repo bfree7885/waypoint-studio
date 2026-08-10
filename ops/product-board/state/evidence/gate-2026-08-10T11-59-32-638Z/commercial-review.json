@@ -1,0 +1,28 @@
+{
+  "id": "commercial-review",
+  "kind": "commercial_review",
+  "at": "2026-08-10T11:59:33.357Z",
+  "status": "pass",
+  "summary": "Commercial attestation recorded: paying customer would not cancel for known scoped risks.",
+  "severity": null,
+  "data": {
+    "role": "commercial-subscriber",
+    "evaluatedAt": "2026-08-10T11:59:33.357Z",
+    "status": "pass",
+    "wouldCancel": false,
+    "coreQuestion": "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+    "cancelRiskCatalog": [
+      "Broken primary workflow after payment expectation",
+      "Sample/demo/placeholder presented as finished Live product",
+      "Dead controls on the paid or primary value path",
+      "Misleading Live / estimate / cached honesty",
+      "Unreadable UI, HTML leakage, or silent failures",
+      "Data that does not persist when the product claims it does",
+      "Privacy surprise or unclear permissions",
+      "Feature that looks ready but delivers no commercial usefulness"
+    ],
+    "risks": [],
+    "summary": "Commercial attestation recorded: paying customer would not cancel for known scoped risks.",
+    "blocksVerdict": null
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cmd-a11y-smoke",
+  "kind": "a11y",
+  "at": "2026-08-10T11:59:33.353Z",
+  "status": "optional_fail",
+  "summary": "Accessibility smoke: optional_fail",
+  "severity": null,
+  "data": {
+    "command": "node automation/a11y-smoke.mjs",
+    "exitCode": 1,
+    "output": "Missing audits/live-site-qa deps. Run: cd audits/live-site-qa && npm install\n"
+  }
+}

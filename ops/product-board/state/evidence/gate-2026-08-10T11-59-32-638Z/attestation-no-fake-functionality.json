@@ -1,0 +1,17 @@
+{
+  "id": "attestation-no-fake-functionality",
+  "kind": "attestation",
+  "at": "2026-08-10T11:59:33.354Z",
+  "status": "pass",
+  "summary": "Attested pass by product-director: No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+  "severity": null,
+  "data": {
+    "id": "AT-001",
+    "criterionId": "no-fake-functionality",
+    "role": "product-director",
+    "verdict": "pass",
+    "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+    "campaign": "sheds",
+    "at": "2026-08-10T11:55:26.071Z"
+  }
+}

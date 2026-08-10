@@ -82,8 +82,10 @@ export function requiredAttestationsStatus(criteria, campaign = null) {
   const pending = [];
   const failed = [];
   const passed = [];
+  const byCriterion = {};
   for (const c of required) {
     const att = attestationFor(c.id, campaign);
+    if (att) byCriterion[c.id] = att;
     if (!att || att.verdict === undefined) {
       pending.push(c.id);
     } else if (att.verdict === "fail") {
@@ -98,6 +100,7 @@ export function requiredAttestationsStatus(criteria, campaign = null) {
     complete: pending.length === 0 && failed.length === 0,
     pending,
     failed,
-    passed
+    passed,
+    byCriterion
   };
 }
