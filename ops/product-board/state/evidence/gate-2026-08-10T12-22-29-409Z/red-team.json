@@ -1,0 +1,19 @@
+{
+  "id": "red-team",
+  "kind": "red_team",
+  "at": "2026-08-10T12:23:00.182Z",
+  "status": "pass",
+  "summary": "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof.",
+  "severity": null,
+  "data": {
+    "role": "red-team",
+    "evaluatedAt": "2026-08-10T12:23:00.182Z",
+    "status": "pass",
+    "disproved": false,
+    "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+    "disproofs": [],
+    "summary": "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof.",
+    "rejectedAutoAccept": true,
+    "blocksVerdict": null
+  }
+}

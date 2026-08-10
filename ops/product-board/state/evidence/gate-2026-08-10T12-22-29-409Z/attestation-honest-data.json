@@ -1,0 +1,17 @@
+{
+  "id": "attestation-honest-data",
+  "kind": "attestation",
+  "at": "2026-08-10T12:23:00.180Z",
+  "status": "pass",
+  "summary": "Attested pass by data-reliability: Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "honest-data",
+    "role": "data-reliability",
+    "verdict": "pass",
+    "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+    "campaign": "sheds",
+    "at": "2026-08-10T11:56:52.052Z"
+  }
+}
