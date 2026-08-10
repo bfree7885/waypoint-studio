@@ -1158,11 +1158,26 @@ html.sheds-sheet-open .sheds-legend-float {
   background: rgba(7, 18, 13, 0.65) !important;
   color: var(--sheds-muted) !important;
   border-radius: 6px !important;
+  z-index: 400 !important;
 }
 
 .leaflet-bottom.leaflet-right {
   bottom: calc(var(--sheds-sheet-peek) + 0.1rem) !important;
   right: calc(var(--sheds-fab-size) + 0.85rem) !important;
+}
+
+/* When Today's Search is expanded, keep Leaflet chrome above the sheet —
+   never float attribution/zoom through the briefing copy (mobile trust killer). */
+#sheds-map-shell:has(#plan-card[data-expanded="true"]) .leaflet-bottom.leaflet-right {
+  bottom: min(58vh, 28rem) !important;
+}
+
+#sheds-map-shell:has(#plan-card[data-expanded="true"]) .leaflet-control-attribution {
+  display: none !important;
+}
+
+#sheds-map-shell:has(#plan-card[data-expanded="true"]) .leaflet-control-zoom {
+  margin-bottom: 0.35rem !important;
 }
 
 .leaflet-top.leaflet-right {
