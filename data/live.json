@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-10T00:30:02.000Z",
-  "nextScheduledUpdate": "2026-08-10T01:00:00.000Z",
+  "updatedAt": "2026-08-10T01:00:01.908Z",
+  "nextScheduledUpdate": "2026-08-10T01:30:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,17 +16,17 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 84,
-    "feelsLikeF": 88,
-    "humidity": 68,
-    "windMph": 13,
+    "temperatureF": 82,
+    "feelsLikeF": 87,
+    "humidity": 73,
+    "windMph": 11,
     "windGustMph": 21,
-    "cloudCover": 5,
-    "uvIndex": 0.8,
+    "cloudCover": 0,
+    "uvIndex": 0.3,
     "precipIn": 0,
     "conditions": "Clear sky",
     "weatherCode": 0,
-    "observedAt": "2026-08-09T19:30"
+    "observedAt": "2026-08-09T20:00"
   },
   "forecast": {
     "highF": 92,
@@ -85,12 +85,12 @@
   "moon": {
     "phase": "Waning crescent",
     "illumination": 17,
-    "phaseValue": 0.914,
+    "phaseValue": 0.915,
     "trust": "Estimated"
   },
   "airQuality": {
-    "usAqi": 55,
-    "pm25": 9.4,
+    "usAqi": 54,
+    "pm25": 8.8,
     "category": "Moderate",
     "status": "live"
   },
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 424.78764057159424,
+        "generationtime_ms": 769.2266702651978,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-09T19:30",
+          "time": "2026-08-09T20:00",
           "interval": 900,
-          "temperature_2m": 83.9,
-          "relative_humidity_2m": 68,
-          "apparent_temperature": 87.8,
+          "temperature_2m": 82.4,
+          "relative_humidity_2m": 73,
+          "apparent_temperature": 87.3,
           "weather_code": 0,
-          "wind_speed_10m": 12.6,
-          "wind_direction_10m": 57,
-          "wind_gusts_10m": 21,
-          "cloud_cover": 5,
-          "surface_pressure": 941.8,
-          "uv_index": 0.75,
+          "wind_speed_10m": 11.1,
+          "wind_direction_10m": 65,
+          "wind_gusts_10m": 21.3,
+          "cloud_cover": 0,
+          "surface_pressure": 941.4,
+          "uv_index": 0.3,
           "precipitation": 0
         },
         "hourly_units": {
@@ -227,9 +227,9 @@
             72.5,
             73.7,
             77.5,
-            81,
-            84.6,
-            88.9,
+            81.2,
+            84.8,
+            88.7,
             91.8,
             93.6,
             91.2,
@@ -261,7 +261,7 @@
             0,
             0,
             3,
-            1,
+            0,
             0,
             0,
             3,
@@ -276,10 +276,10 @@
             3,
             3,
             3,
+            0,
+            3,
             3,
             0,
-            0,
-            2,
             3,
             3,
             3,
@@ -457,21 +457,21 @@
       "data": {
         "phase": "Waning crescent",
         "illumination": 17,
-        "phaseValue": 0.914,
+        "phaseValue": 0.915,
         "trust": "Estimated"
       }
     },
     "air_quality": {
       "data": {
-        "usAqi": 55,
-        "pm25": 9.4,
+        "usAqi": 54,
+        "pm25": 8.8,
         "category": "Moderate",
         "status": "live"
       }
     },
     "uv": {
       "data": {
-        "uvIndex": 0.8,
+        "uvIndex": 0.3,
         "status": "live"
       }
     },
@@ -520,7 +520,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 5,
+        "cloudCover": 0,
         "score": 80,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:41 AM",
@@ -547,7 +547,7 @@
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-10T00:30:02.000Z",
+    "generatedAt": "2026-08-10T01:00:01.908Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
