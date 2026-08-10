@@ -1,0 +1,23 @@
+{
+  "id": "gate-summary-pointer",
+  "kind": "gate_summary",
+  "at": "2026-08-10T16:53:15.805Z",
+  "status": "recorded",
+  "summary": "Verdict: CONDITIONALLY READY",
+  "severity": null,
+  "data": {
+    "verdict": "CONDITIONALLY READY",
+    "completeness": {
+      "complete": false,
+      "missing": [
+        "automated_tests",
+        "static_probe",
+        "playwright_browser"
+      ],
+      "present": [
+        "commercial_review",
+        "red_team"
+      ]
+    }
+  }
+}

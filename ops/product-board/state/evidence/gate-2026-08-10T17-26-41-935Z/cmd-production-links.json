@@ -1,0 +1,13 @@
+{
+  "id": "cmd-production-links",
+  "kind": "automated_tests",
+  "at": "2026-08-10T17:26:42.147Z",
+  "status": "pass",
+  "summary": "Production link / route validation: pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/validate-production-links.mjs",
+    "exitCode": 0,
+    "output": "Production link validation\nChecked local refs: 2314\nBroken: 0\nWarnings: 6\n\nWarnings (sample):\n- articles/categories/create/index.html — empty aria-busy mount without boot shell\n- articles/categories/field-craft/index.html — empty aria-busy mount without boot shell\n- articles/categories/observe/index.html — empty aria-busy mount without boot shell\n- articles/categories/outdoor-intelligence/index.html — empty aria-busy mount without boot shell\n- articles/categories/share/index.html — empty aria-busy mount without boot shell\n- articles/categories/understand/index.html — empty aria-busy mount without boot shell\n\nWrote docs/PRODUCTION-BROKEN-ROUTE-REPORT.md\n\nOK — no broken production links detected.\n"
+  }
+}

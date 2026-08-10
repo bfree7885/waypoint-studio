@@ -1,0 +1,13 @@
+{
+  "id": "cmd-browser-smoke",
+  "kind": "console",
+  "at": "2026-08-10T12:23:00.134Z",
+  "status": "optional_fail",
+  "summary": "Browser smoke (console/network journeys): optional_fail",
+  "severity": null,
+  "data": {
+    "command": "node automation/smoke-browser.mjs",
+    "exitCode": 2,
+    "output": "Smoke runner error: Server not ready: http://127.0.0.1:8080/\n"
+  }
+}

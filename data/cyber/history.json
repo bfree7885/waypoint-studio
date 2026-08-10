@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-19T01:47:57.421Z",
+  "updatedAt": "2026-08-10T17:45:04.287Z",
   "entries": [
+    {
+      "at": "2026-08-10T17:45:04.287Z",
+      "trustState": "Live",
+      "recordCount": 292,
+      "briefBullets": [
+        "Lead item: Check Point Security Gateway Improper Authentication Vulnerability",
+        "25 KEV dateAdded entries in ~30 days deserve edge review.",
+        "3 active public cloud/SaaS status signal(s).",
+        "24 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch immediately"
+    },
     {
       "at": "2026-07-19T01:47:57.419Z",
       "trustState": "Live",

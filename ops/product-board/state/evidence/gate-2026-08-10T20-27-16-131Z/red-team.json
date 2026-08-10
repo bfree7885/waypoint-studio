@@ -1,0 +1,30 @@
+{
+  "id": "red-team",
+  "kind": "red_team",
+  "at": "2026-08-10T20:27:16.145Z",
+  "status": "fail",
+  "summary": "Red Team disproved readiness with 2 finding(s).",
+  "severity": null,
+  "data": {
+    "role": "red-team",
+    "evaluatedAt": "2026-08-10T20:27:16.145Z",
+    "status": "fail",
+    "disproved": true,
+    "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+    "disproofs": [
+      {
+        "id": "redteam:backlog:WB-014",
+        "severity": "P0",
+        "message": "Open P0 work disproves readiness: Repair: Sheds dual markers, oscillation, chrome prototype quality"
+      },
+      {
+        "id": "redteam:commercial-cancel",
+        "severity": "P0",
+        "message": "Commercial reviewer cancel/refund risk present — Red Team treats as disproof."
+      }
+    ],
+    "summary": "Red Team disproved readiness with 2 finding(s).",
+    "rejectedAutoAccept": true,
+    "blocksVerdict": "NOT READY"
+  }
+}

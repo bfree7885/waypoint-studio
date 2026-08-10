@@ -1,0 +1,21 @@
+{
+  "id": "attestation-commercial-review",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.143Z",
+  "status": "fail",
+  "summary": "Attested fail by commercial-subscriber: Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "commercial-review",
+    "role": "commercial-subscriber",
+    "verdict": "fail",
+    "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+    "campaign": "sheds",
+    "commercialVisual": {
+      "wouldSupportPricing": false,
+      "productFeel": "prototype"
+    },
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

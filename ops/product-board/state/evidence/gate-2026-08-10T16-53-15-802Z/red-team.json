@@ -1,0 +1,19 @@
+{
+  "id": "red-team",
+  "kind": "red_team",
+  "at": "2026-08-10T16:53:15.804Z",
+  "status": "pending",
+  "summary": "No automatic P0/P1 disproof found; Red Team attestation still required (never auto-accept QA).",
+  "severity": null,
+  "data": {
+    "role": "red-team",
+    "evaluatedAt": "2026-08-10T16:53:15.804Z",
+    "status": "pending",
+    "disproved": false,
+    "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+    "disproofs": [],
+    "summary": "No automatic P0/P1 disproof found; Red Team attestation still required (never auto-accept QA).",
+    "rejectedAutoAccept": true,
+    "blocksVerdict": null
+  }
+}

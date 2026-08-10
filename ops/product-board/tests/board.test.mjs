@@ -629,5 +629,35 @@ await testAsync("fail-review routes visual defects to repair queue", async () =>
   });
 });
 
+await testAsync("signalterrain campaign is registered with product path + remaps", async () => {
+  const { getCampaign, assertCampaignProductExists, campaignCommandRemap, campaignScanRoots } =
+    await import("../lib/campaigns.mjs");
+  const c = getCampaign("signalterrain");
+  assert.ok(c, "signalterrain campaign exists");
+  assert.equal(c.productPath, "apps/signalterrain");
+  assert.ok(campaignScanRoots("signalterrain").includes("apps/signalterrain"));
+  const remap = campaignCommandRemap("signalterrain");
+  assert.ok(remap["production-build"].includes("verify-signalterrain-production"));
+  assert.ok(remap["platform-foundation"].includes("test-signalterrain-cyber-live"));
+  const abs = assertCampaignProductExists("signalterrain");
+  assert.ok(fs.existsSync(abs));
+  assert.ok(
+    fs.existsSync(path.join(REPO_ROOT, "automation/verify-signalterrain-production.mjs"))
+  );
+});
+
+await testAsync("sheds campaign forces screenshot + dynamic visual commands", async () => {
+  const { campaignCommandRemap, campaignForceRequired } = await import(
+    "../lib/campaigns.mjs"
+  );
+  const remap = campaignCommandRemap("sheds");
+  assert.ok(remap["screenshot-analysis"].includes("test-sheds-visual-board"));
+  assert.ok(remap["dynamic-visual"].includes("dynamic-visual"));
+  const forced = campaignForceRequired("sheds");
+  assert.ok(forced.includes("screenshot-analysis"));
+  assert.ok(forced.includes("dynamic-visual"));
+  assert.ok(forced.includes("production-inspection"));
+});
+
 console.log(`\n${passed} passed, ${failed} failed\n`);
 process.exitCode = failed ? 1 : 0;

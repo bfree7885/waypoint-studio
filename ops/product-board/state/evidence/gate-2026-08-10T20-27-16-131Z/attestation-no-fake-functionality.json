@@ -1,0 +1,17 @@
+{
+  "id": "attestation-no-fake-functionality",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.142Z",
+  "status": "fail",
+  "summary": "Attested fail by product-director: Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "no-fake-functionality",
+    "role": "product-director",
+    "verdict": "fail",
+    "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+    "campaign": "sheds",
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

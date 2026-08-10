@@ -1,0 +1,13 @@
+{
+  "id": "cmd-production-build",
+  "kind": "automated_tests",
+  "at": "2026-08-10T12:22:29.920Z",
+  "status": "pass",
+  "summary": "Production build verification: pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/verify-sheds-production.mjs",
+    "exitCode": 0,
+    "output": "Verify Sheds production — https://waypointstudio.org\nPASS: /sheds/ redirects toward map\nPASS: map HTTP 200\nPASS: map has viewport\nPASS: map shell present\nPASS: guidance honesty present\nPASS: no placeholder TODO UI in map HTML\nPASS: no OSMF public tile URL in map HTML\nPASS: Today’s Search present on production\nPASS: map build marker 3417ee0\nPASS: privacy.html reachable\n\nSHEDS PRODUCTION: PASS\n"
+  }
+}

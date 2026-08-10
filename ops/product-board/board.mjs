@@ -25,6 +25,11 @@ import { advanceLoop, setPhase } from "./lib/loop.mjs";
 import { routeFailedReview, markRepairRetest } from "./lib/routing.mjs";
 import { evaluateSubscriberReady, VERDICTS } from "./lib/subscriber-ready.mjs";
 import { recordAttestation, loadAttestations } from "./lib/attestations.mjs";
+import {
+  listCampaigns,
+  getCampaign,
+  assertCampaignProductExists
+} from "./lib/campaigns.mjs";
 import { nowIso } from "./lib/io.mjs";
 import { spawnSync } from "child_process";
 import path from "path";
@@ -49,6 +54,7 @@ const COMMANDS = {
   attest: "attest",
   sync: "sync",
   roles: "roles",
+  campaign: "campaign",
   test: "test",
   loop: "next",
   evidence: "evidence"
@@ -106,11 +112,22 @@ Commands:
   evidence            Show latest gate evidence package path
   sync                Import open engineering WE-* tasks
   roles               List permanent executable roles
+  campaign            Set/list active product campaign (sheds | signalterrain)
   test                Run Product Board self-tests
   help
 
 Gate options:
   gate [--skip-commands] [--skip-probes] [--campaign NAME]
+
+Campaigns (one board, many products):
+  sheds               Sheds MSP / Subscriber Ready pilot
+  signalterrain       SignalTerrain MSP (apps/signalterrain)
+
+SignalTerrain MSP launch (when authorized):
+  node ops/product-board/board.mjs campaign signalterrain
+  node ops/product-board/board.mjs discover
+  node ops/product-board/board.mjs prioritize
+  node ops/product-board/board.mjs gate --campaign signalterrain
 
 Verdicts (exact): NOT READY | CONDITIONALLY READY | SUBSCRIBER READY
 
@@ -128,20 +145,25 @@ function cmdStatus() {
   printHeader("Status");
   const state = loadBoardState();
   const backlog = loadBacklog();
-  const queue = prioritizedQueue(backlog);
-  const blocking = openBlockingItems(backlog);
+  const campaignId = state.campaign || null;
+  const queue = prioritizedQueue(backlog, campaignId);
+  const blocking = openBlockingItems(backlog, campaignId);
   console.log("Mode:", state.mode);
   console.log("Phase:", state.phase);
   console.log("Active role:", state.activeRole);
   console.log("Active item:", state.activeItemId || "(none)");
-  console.log("Campaign:", state.campaign || "(none)");
+  console.log("Campaign:", campaignId || "(none)");
+  if (campaignId) {
+    const c = getCampaign(campaignId);
+    if (c) console.log("Product path:", c.productPath);
+  }
   console.log("Repair queue:", (state.routing?.openRepairQueue || []).join(", ") || "(empty)");
   console.log(
     "Release gate:",
     state.releaseGate?.verdict || state.releaseGate?.status || "not_run"
   );
   console.log("Open items:", backlog.items?.length || 0);
-  console.log("Blocking P0–P2:", blocking.length);
+  console.log("Blocking P0–P2 (campaign scope):", blocking.length);
   console.log("\nTop queue:");
   queue.slice(0, 8).forEach((i) => {
     console.log(`  - ${i.severity} ${i.id} [${i.status}] ${i.title}`);
@@ -164,37 +186,60 @@ function cmdInventory() {
   }
 }
 
-function cmdDiscover() {
+function cmdDiscover(args = {}) {
   printHeader("Discover");
   const state = loadBoardState();
   const backlog = loadBacklog();
+  if (args.campaign) {
+    const id = String(args.campaign);
+    if (!getCampaign(id)) {
+      console.error("Unknown campaign:", id);
+      console.error(
+        "Known:",
+        listCampaigns()
+          .map((c) => c.id)
+          .join(", ")
+      );
+      process.exitCode = 1;
+      return;
+    }
+    assertCampaignProductExists(id);
+    state.campaign = id;
+  }
   const sync = syncEngineeringBacklog(backlog);
   setPhase(state, "discover", "product-director");
   state.mode = "discover";
   state.lastCommand = "discover";
   state.lastCommandAt = nowIso();
+  const campaignNote = state.campaign
+    ? `Active campaign: ${state.campaign} → ${getCampaign(state.campaign)?.productPath}`
+    : "No campaign set (platform-wide discover).";
   state.notes = [
     "Discovery refreshed from Engineering OS + static inventory.",
+    campaignNote,
     `Synced engineering tasks: imported=${sync.imported} skipped=${sync.skipped}`,
     "Next: prioritize, then next."
   ];
-  appendLoopEvent(state, "discover", sync);
+  appendLoopEvent(state, "discover", { ...sync, campaign: state.campaign });
   saveBacklog(backlog);
   saveBoardState(state);
+  console.log("Campaign:", state.campaign || "(none)");
   console.log("Synced engineering backlog:", sync);
   console.log("Inventory rows:", INFRASTRUCTURE_INVENTORY.length);
   console.log("Open board items:", backlog.items.length);
   console.log("Next: node ops/product-board/board.mjs prioritize");
 }
 
-function cmdPrioritize() {
+function cmdPrioritize(args = {}) {
   printHeader("Prioritize");
   const state = loadBoardState();
   const backlog = loadBacklog();
+  if (args.campaign) state.campaign = String(args.campaign);
   setPhase(state, "prioritize", "product-director");
   state.lastCommand = "prioritize";
   state.lastCommandAt = nowIso();
-  const queue = prioritizedQueue(backlog);
+  const queue = prioritizedQueue(backlog, state.campaign || null);
+  console.log("Campaign:", state.campaign || "(none)");
   console.log("Severity model:");
   SEVERITIES.forEach((s) => {
     console.log(
@@ -207,8 +252,65 @@ function cmdPrioritize() {
   });
   if (!queue.length) console.log("(empty — run discover or add-item)");
   state.activeItemId = queue[0]?.id || null;
-  appendLoopEvent(state, "prioritize", { top: state.activeItemId });
+  appendLoopEvent(state, "prioritize", {
+    top: state.activeItemId,
+    campaign: state.campaign || null
+  });
   saveBoardState(state);
+}
+
+function cmdCampaign(args = {}) {
+  printHeader("Campaign");
+  const state = loadBoardState();
+  const id = args._?.[0] || args.campaign || args.set || null;
+  if (!id) {
+    console.log("Active:", state.campaign || "(none)");
+    console.log("\nKnown campaigns:");
+    listCampaigns().forEach((c) => {
+      console.log(`  ${c.id} — ${c.title} (${c.productPath})`);
+    });
+    console.log("\nSet: node ops/product-board/board.mjs campaign signalterrain");
+    return;
+  }
+  const campaign = getCampaign(String(id));
+  if (!campaign) {
+    console.error("Unknown campaign:", id);
+    process.exitCode = 1;
+    return;
+  }
+  const abs = assertCampaignProductExists(campaign.id);
+  state.campaign = campaign.id;
+  // Switching campaign clears gate claim for the previous product.
+  state.releaseGate = {
+    status: "not_run",
+    lastRunAt: null,
+    verdict: null,
+    blockingFindings: [],
+    evidenceRunId: null
+  };
+  state.phase = "discover";
+  state.activeRole = "product-director";
+  state.mode = "loop";
+  state.lastCommand = "campaign";
+  state.lastCommandAt = nowIso();
+  state.notes = [
+    `Campaign set to ${campaign.id}.`,
+    `Product path: ${campaign.productPath} → ${abs}`,
+    campaign.mspDoc ? `MSP freeze: ${campaign.mspDoc}` : "No MSP freeze doc.",
+    "Run discover → prioritize → gate --campaign " + campaign.id
+  ];
+  appendLoopEvent(state, "campaign_set", { campaign: campaign.id, path: abs });
+  saveBoardState(state);
+  console.log("Campaign:", campaign.id);
+  console.log("Title:", campaign.title);
+  console.log("Product path:", campaign.productPath);
+  console.log("Absolute:", abs);
+  if (campaign.mspDoc) console.log("MSP freeze:", campaign.mspDoc);
+  console.log("Release gate reset to not_run for campaign switch.");
+  console.log("\nNext:");
+  console.log("  node ops/product-board/board.mjs discover");
+  console.log("  node ops/product-board/board.mjs prioritize");
+  console.log(`  node ops/product-board/board.mjs gate --campaign ${campaign.id}`);
 }
 
 function cmdNext() {
@@ -241,29 +343,39 @@ function cmdNext() {
   }
 }
 
-function cmdAddItem(args) {
+  function cmdAddItem(args) {
   printHeader("Add Item");
   if (!args.title || !args.severity) {
-    console.error("Usage: add-item --title T --severity P0..P4 [--area A] [--notes N]");
+    console.error(
+      "Usage: add-item --title T --severity P0..P4 [--area A] [--notes N] [--campaign C]"
+    );
     process.exitCode = 1;
     return;
   }
   assertSeverity(args.severity);
+  const state = loadBoardState();
   const backlog = loadBacklog();
+  const campaign =
+    args.campaign || state.campaign || null;
   const item = addWorkItem(backlog, {
     title: args.title,
     severity: args.severity,
     area: args.area || "general",
     notes: args.notes || "",
-    status: "ready"
+    status: "ready",
+    campaign
   });
   saveBacklog(backlog);
-  const state = loadBoardState();
   state.lastCommand = "add-item";
   state.lastCommandAt = nowIso();
-  appendLoopEvent(state, "item_added", { id: item.id, severity: item.severity });
+  appendLoopEvent(state, "item_added", {
+    id: item.id,
+    severity: item.severity,
+    campaign
+  });
   saveBoardState(state);
   console.log("Created", item.id, item.severity, item.title);
+  if (campaign) console.log("Campaign:", campaign);
 }
 
 function cmdFailReview(args) {
@@ -516,9 +628,9 @@ function main() {
     case "inventory":
       return cmdInventory();
     case "discover":
-      return cmdDiscover();
+      return cmdDiscover(args);
     case "prioritize":
-      return cmdPrioritize();
+      return cmdPrioritize(args);
     case "next":
       return cmdNext();
     case "add-item":
@@ -537,6 +649,8 @@ function main() {
       return cmdSync();
     case "roles":
       return cmdRoles();
+    case "campaign":
+      return cmdCampaign(args);
     case "test":
       return cmdTest();
     default:

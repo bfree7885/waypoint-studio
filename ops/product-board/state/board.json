@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T20:27:16.146Z",
-  "mode": "loop",
-  "phase": "release_gate",
+  "updatedAt": "2026-08-10T20:40:00.000Z",
+  "mode": "repair",
+  "phase": "fix",
   "activeItemId": "WB-014",
   "activeRole": "release-manager",
   "campaign": "sheds",
@@ -16,7 +16,7 @@
       {
         "id": "open-p0-p1-work",
         "severity": "P0",
-        "message": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+        "message": "1 open P0\u2013P1 item(s) automatically prevent SUBSCRIBER READY",
         "items": [
           "WB-014"
         ]
@@ -32,27 +32,27 @@
       {
         "id": "dim-loading-states",
         "severity": "P1",
-        "message": "Dimension loading_empty_error lacks supporting attestation/evidence — not auto-covered."
+        "message": "Dimension loading_empty_error lacks supporting attestation/evidence \u2014 not auto-covered."
       },
       {
         "id": "dim-mobile-tablet-desktop",
         "severity": "P1",
-        "message": "Dimension mobile_tablet_desktop lacks supporting attestation/evidence — not auto-covered."
+        "message": "Dimension mobile_tablet_desktop lacks supporting attestation/evidence \u2014 not auto-covered."
       },
       {
         "id": "dim-contrast-keyboard",
         "severity": "P1",
-        "message": "Dimension contrast lacks supporting attestation/evidence — not auto-covered."
+        "message": "Dimension contrast lacks supporting attestation/evidence \u2014 not auto-covered."
       },
       {
         "id": "dim-network-perf-security",
         "severity": "P1",
-        "message": "Dimension network_api lacks supporting attestation/evidence — not auto-covered."
+        "message": "Dimension network_api lacks supporting attestation/evidence \u2014 not auto-covered."
       },
       {
         "id": "dim-content-visual-discovery",
         "severity": "P1",
-        "message": "Dimension content_quality lacks supporting attestation/evidence — not auto-covered."
+        "message": "Dimension content_quality lacks supporting attestation/evidence \u2014 not auto-covered."
       },
       {
         "id": "no-fake-functionality",
@@ -77,7 +77,7 @@
       {
         "id": "commercial-review",
         "severity": "P0",
-        "message": "Attestation failed: Commercial reviewer — cancel/refund/trust test"
+        "message": "Attestation failed: Commercial reviewer \u2014 cancel/refund/trust test"
       },
       {
         "id": "red-team-pass",
@@ -87,12 +87,12 @@
       {
         "id": "screenshot-analysis-missing",
         "severity": "P0",
-        "message": "No screenshot_analysis evidence package — required before SUBSCRIBER READY for map/geo campaigns."
+        "message": "No screenshot_analysis evidence package \u2014 required before SUBSCRIBER READY for map/geo campaigns."
       },
       {
         "id": "dynamic-visual-missing",
         "severity": "P0",
-        "message": "No dynamic_visual_review evidence package — required for map/location stability before SUBSCRIBER READY."
+        "message": "No dynamic_visual_review evidence package \u2014 required for map/location stability before SUBSCRIBER READY."
       },
       {
         "id": "commercial-cancel-risk",
@@ -143,7 +143,7 @@
             "criterionId": "primary-workflows",
             "role": "product-director",
             "verdict": "fail",
-            "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+            "notes": "Locate/Today\u2019s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
             "campaign": "sheds",
             "at": "2026-08-10T18:00:00.000Z"
           }
@@ -155,7 +155,7 @@
             "criterionId": "honest-data",
             "role": "data-reliability",
             "verdict": "fail",
-            "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+            "notes": "Approximate GPS presented with same \u2018You are here\u2019 treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
             "campaign": "sheds",
             "at": "2026-08-10T18:00:00.000Z"
           }
@@ -167,7 +167,7 @@
             "criterionId": "visual-review",
             "role": "ux-ui-lead",
             "verdict": "fail",
-            "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+            "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots \u2260 analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
             "campaign": "sheds",
             "at": "2026-08-10T18:00:00.000Z"
           }
@@ -195,7 +195,7 @@
             "criterionId": "red-team-pass",
             "role": "red-team",
             "verdict": "fail",
-            "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+            "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7\u201310 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
             "campaign": "sheds",
             "at": "2026-08-10T18:00:00.000Z"
           }
@@ -217,7 +217,7 @@
           "criterionId": "primary-workflows",
           "role": "product-director",
           "verdict": "fail",
-          "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+          "notes": "Locate/Today\u2019s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
           "campaign": "sheds",
           "at": "2026-08-10T18:00:00.000Z"
         },
@@ -226,7 +226,7 @@
           "criterionId": "honest-data",
           "role": "data-reliability",
           "verdict": "fail",
-          "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+          "notes": "Approximate GPS presented with same \u2018You are here\u2019 treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
           "campaign": "sheds",
           "at": "2026-08-10T18:00:00.000Z"
         },
@@ -235,7 +235,7 @@
           "criterionId": "visual-review",
           "role": "ux-ui-lead",
           "verdict": "fail",
-          "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+          "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots \u2260 analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
           "campaign": "sheds",
           "at": "2026-08-10T18:00:00.000Z"
         },
@@ -257,7 +257,7 @@
           "criterionId": "red-team-pass",
           "role": "red-team",
           "verdict": "fail",
-          "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+          "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7\u201310 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
           "campaign": "sheds",
           "at": "2026-08-10T18:00:00.000Z"
         }
@@ -753,7 +753,7 @@
   ],
   "notes": [
     "Sheds Subscriber Ready autonomous pilot active.",
-    "Today’s Search recovered from feature/sheds-todays-search@506fb85.",
+    "Today\u2019s Search recovered from feature/sheds-todays-search@506fb85.",
     "Platform eng items tagged campaign=platform; Sheds work is campaign=sheds."
   ]
 }

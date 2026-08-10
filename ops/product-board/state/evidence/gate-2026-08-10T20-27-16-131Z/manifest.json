@@ -1,0 +1,381 @@
+{
+  "version": 1,
+  "runId": "gate-2026-08-10T20-27-16-131Z",
+  "createdAt": "2026-08-10T20:27:16.131Z",
+  "campaign": "sheds",
+  "target": "subscriber-ready",
+  "entries": [
+    {
+      "id": "static-probes",
+      "kind": "static_probe",
+      "at": "2026-08-10T20:27:16.140Z",
+      "status": "pass",
+      "summary": "Scanned 17 files; 1 findings",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/static-probes.json",
+      "data": {
+        "evaluatedAt": "2026-08-10T20:27:16.140Z",
+        "filesScanned": 17,
+        "findings": [
+          {
+            "id": "playwright-capability",
+            "dimension": "playwright_browser",
+            "severity": "P2",
+            "message": "Playwright not installed in repo node_modules; browser automation limited."
+          }
+        ],
+        "playwright": {
+          "id": "playwright-capability",
+          "dimension": "playwright_browser",
+          "status": "missing",
+          "message": "Playwright not installed in repo node_modules; browser automation limited.",
+          "severity": "P2"
+        },
+        "dimensionsCovered": [
+          "primary_workflows",
+          "functionality",
+          "live_data_integrity",
+          "placeholder_detection",
+          "dead_controls",
+          "broken_links_nav",
+          "raw_html_leakage",
+          "loading_empty_error",
+          "responsive",
+          "contrast",
+          "a11y",
+          "keyboard",
+          "console",
+          "network_api",
+          "performance",
+          "security",
+          "privacy",
+          "content_quality",
+          "visual_consistency",
+          "discoverability",
+          "onboarding",
+          "persistence",
+          "commercial_usefulness"
+        ],
+        "fakeAsReal": false,
+        "p0Count": 0,
+        "p1Count": 0
+      }
+    },
+    {
+      "id": "playwright-capability",
+      "kind": "playwright_browser",
+      "at": "2026-08-10T20:27:16.140Z",
+      "status": "missing",
+      "summary": "Playwright not installed in repo node_modules; browser automation limited.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/playwright-capability.json",
+      "data": {
+        "id": "playwright-capability",
+        "dimension": "playwright_browser",
+        "status": "missing",
+        "message": "Playwright not installed in repo node_modules; browser automation limited.",
+        "severity": "P2"
+      }
+    },
+    {
+      "id": "attestation-no-fake-functionality",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.142Z",
+      "status": "fail",
+      "summary": "Attested fail by product-director: Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-no-fake-functionality.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "no-fake-functionality",
+        "role": "product-director",
+        "verdict": "fail",
+        "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "attestation-primary-workflows",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.142Z",
+      "status": "fail",
+      "summary": "Attested fail by product-director: Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-primary-workflows.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "primary-workflows",
+        "role": "product-director",
+        "verdict": "fail",
+        "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "attestation-honest-data",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.142Z",
+      "status": "fail",
+      "summary": "Attested fail by data-reliability: Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-honest-data.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "honest-data",
+        "role": "data-reliability",
+        "verdict": "fail",
+        "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "attestation-visual-review",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.142Z",
+      "status": "fail",
+      "summary": "Attested fail by ux-ui-lead: OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-visual-review.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "visual-review",
+        "role": "ux-ui-lead",
+        "verdict": "fail",
+        "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "attestation-commercial-review",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.143Z",
+      "status": "fail",
+      "summary": "Attested fail by commercial-subscriber: Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-commercial-review.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "commercial-review",
+        "role": "commercial-subscriber",
+        "verdict": "fail",
+        "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+        "campaign": "sheds",
+        "commercialVisual": {
+          "wouldSupportPricing": false,
+          "productFeel": "prototype"
+        },
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "attestation-red-team-pass",
+      "kind": "attestation",
+      "at": "2026-08-10T20:27:16.144Z",
+      "status": "fail",
+      "summary": "Attested fail by red-team: Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/attestation-red-team-pass.json",
+      "data": {
+        "id": "AT-007",
+        "criterionId": "red-team-pass",
+        "role": "red-team",
+        "verdict": "fail",
+        "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    },
+    {
+      "id": "commercial-review",
+      "kind": "commercial_review",
+      "at": "2026-08-10T20:27:16.144Z",
+      "status": "fail",
+      "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/commercial-review.json",
+      "data": {
+        "role": "commercial-subscriber",
+        "evaluatedAt": "2026-08-10T20:27:16.144Z",
+        "status": "fail",
+        "wouldCancel": true,
+        "coreQuestion": "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+        "visualQuestions": [
+          {
+            "id": "pricing-page-support",
+            "text": "Would screenshots + a short screen recording of this exact production build support asking customers to pay on the pricing page?"
+          },
+          {
+            "id": "finished-vs-prototype",
+            "text": "Does this feel like finished commercial software, or a functional prototype?"
+          }
+        ],
+        "visualGate": {
+          "evaluatedAt": "2026-08-10T20:27:16.144Z",
+          "kind": "commercial_visual",
+          "questions": [
+            {
+              "id": "pricing-page-support",
+              "text": "Would screenshots + a short screen recording of this exact production build support asking customers to pay on the pricing page?"
+            },
+            {
+              "id": "finished-vs-prototype",
+              "text": "Does this feel like finished commercial software, or a functional prototype?"
+            }
+          ],
+          "status": "fail",
+          "wouldCancel": true,
+          "findings": [
+            {
+              "id": "commercial-visual:would-not-support-pricing",
+              "severity": "P0",
+              "message": "Commercial visual gate: production screenshots/recording would not support asking customers to pay."
+            },
+            {
+              "id": "commercial-visual:prototype-quality",
+              "severity": "P0",
+              "message": "Commercial visual gate: product feels like a functional prototype — fails Subscriber Ready."
+            }
+          ],
+          "summary": "Commercial visual gate failed — prototype quality or not pricing-supportable.",
+          "blocksVerdict": "NOT READY",
+          "notes": ""
+        },
+        "cancelRiskCatalog": [
+          "Broken primary workflow after payment expectation",
+          "Sample/demo/placeholder presented as finished Live product",
+          "Dead controls on the paid or primary value path",
+          "Misleading Live / estimate / cached honesty",
+          "Unreadable UI, HTML leakage, or silent failures",
+          "Data that does not persist when the product claims it does",
+          "Privacy surprise or unclear permissions",
+          "Feature that looks ready but delivers no commercial usefulness",
+          "Prototype-quality visuals that cannot support a pricing ask",
+          "Unexplained controls, clipping, or map-dominating hierarchy that hides product value"
+        ],
+        "risks": [
+          {
+            "id": "commercial:open-p0-p1-work",
+            "severity": "P0",
+            "reason": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+            "cancelRisk": "Feature that looks ready but delivers no commercial usefulness"
+          },
+          {
+            "id": "commercial:open-repair-queue",
+            "severity": "P1",
+            "reason": "Failed-review repair queue is non-empty",
+            "cancelRisk": "Feature that looks ready but delivers no commercial usefulness"
+          },
+          {
+            "id": "commercial:check:board-blockers",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Board blocker posture (P0–P2 / repair queue)",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:no-fake-functionality",
+            "severity": "P0",
+            "reason": "Required readiness check not green: No fake functionality / placeholders-as-finished",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:primary-workflows",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Primary subscriber workflows complete",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:honest-data",
+            "severity": "P0",
+            "reason": "Required readiness check not green: Live / estimate / placeholder honesty",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:visual-review",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Visual review pass for scoped surface",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:commercial-review",
+            "severity": "P0",
+            "reason": "Required readiness check not green: Commercial reviewer — cancel/refund/trust test",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:red-team-pass",
+            "severity": "P0",
+            "reason": "Required readiness check not green: Red Team independent disproof pass",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          }
+        ],
+        "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+        "blocksVerdict": "NOT READY"
+      }
+    },
+    {
+      "id": "red-team",
+      "kind": "red_team",
+      "at": "2026-08-10T20:27:16.145Z",
+      "status": "fail",
+      "summary": "Red Team disproved readiness with 2 finding(s).",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/red-team.json",
+      "data": {
+        "role": "red-team",
+        "evaluatedAt": "2026-08-10T20:27:16.145Z",
+        "status": "fail",
+        "disproved": true,
+        "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+        "disproofs": [
+          {
+            "id": "redteam:backlog:WB-014",
+            "severity": "P0",
+            "message": "Open P0 work disproves readiness: Repair: Sheds dual markers, oscillation, chrome prototype quality"
+          },
+          {
+            "id": "redteam:commercial-cancel",
+            "severity": "P0",
+            "message": "Commercial reviewer cancel/refund risk present — Red Team treats as disproof."
+          }
+        ],
+        "summary": "Red Team disproved readiness with 2 finding(s).",
+        "rejectedAutoAccept": true,
+        "blocksVerdict": "NOT READY"
+      }
+    },
+    {
+      "id": "gate-summary-pointer",
+      "kind": "gate_summary",
+      "at": "2026-08-10T20:27:16.145Z",
+      "status": "recorded",
+      "summary": "Verdict: NOT READY",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T20-27-16-131Z/gate-summary-pointer.json",
+      "data": {
+        "verdict": "NOT READY",
+        "completeness": {
+          "complete": false,
+          "missing": [
+            "automated_tests",
+            "screenshot_analysis",
+            "dynamic_visual_review",
+            "production_url"
+          ],
+          "present": [
+            "static_probe",
+            "playwright_browser",
+            "attestation",
+            "commercial_review",
+            "red_team"
+          ]
+        }
+      }
+    }
+  ],
+  "summaryArtifact": "evidence/gate-2026-08-10T20-27-16-131Z/summary.json",
+  "finalizedAt": "2026-08-10T20:27:16.146Z"
+}
