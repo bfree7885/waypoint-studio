@@ -1,0 +1,13 @@
+{
+  "id": "cmd-browser-smoke",
+  "kind": "console",
+  "at": "2026-08-10T17:26:50.255Z",
+  "status": "pass",
+  "summary": "Browser smoke (console/network journeys): pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/test-sheds-live-weather-coldstart.mjs",
+    "exitCode": 0,
+    "output": "PASS map shell present\nPASS Open-Meteo requested without GPS\nPASS not stuck weather-unavailable without fetch\nPASS no map-center claim without weather fetch\nPASS Today’s Search not stuck Reading conditions\nPASS briefing reflects map-center weather attempt\nSNAPSHOT {\n  \"zoom\": \"mapped\",\n  \"leaflet\": true,\n  \"title\": \"Morning looks workable (map-center weather)\",\n  \"glance\": \"Best window: Morning · Zoom in on your land\",\n  \"status\": \"Location denied — weather and daylight use the map center until you locate.\",\n  \"stars\": \"Confidence: Medium\",\n  \"loc\": \"Location off — explore the map\",\n  \"openMeteoCount\": 1,\n  \"openMeteoSample\": \"https://api.open-meteo.com/v1/forecast?latitude=44.9337&longitude=-101.4038&current=temperature_2m,wind_speed_10m,surface_pressure,precipitation&hourly=temperature_2m,wind_speed_10m,precipitation,surface_pressure&daily=snowfall_sum,sunrise,sunset,precipitation_sum&timezone=auto&forecast_days=3&past_days=1\",\n  \"weatherUnavailableForever\": false,\n  \"mapCenterClaimWithoutFetch\": false\n}\n\nAll Sheds live-weather cold-start checks passed.\n"
+  }
+}

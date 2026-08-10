@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T11:56:52.000Z",
+  "updatedAt": "2026-08-10T17:26:06.552Z",
   "policy": {
     "priorities": [
       "P0",
@@ -26,7 +26,7 @@
       "status": "ready",
       "acceptanceCriteria": [
         "visual_review phase invokes or records automation/capture-platform-visual-regression.mjs for scoped surfaces",
-        "Failures route through fail-review \u2192 fix \u2192 retest"
+        "Failures route through fail-review → fix → retest"
       ],
       "source": "foundation-seed",
       "notes": "Capture tooling exists; not yet orchestrated by the board loop.",
@@ -68,7 +68,7 @@
       "status": "done",
       "acceptanceCriteria": [
         "board.mjs supports recording role attestations for required policy criteria",
-        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0\u2013P2 queue"
+        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0–P2 queue"
       ],
       "source": "foundation-seed",
       "notes": "Implemented: board.mjs attest + state/attestations.json; gate requires policy attestations + Commercial + Red Team.",
@@ -198,17 +198,17 @@
     },
     {
       "id": "WB-008",
-      "title": "Sheds: production deploy of Today\u2019s Search + observation heat",
+      "title": "Sheds: production deploy of Today’s Search + observation heat",
       "severity": "P1",
       "area": "sheds",
       "status": "done",
       "acceptanceCriteria": [
-        "Production /apps/shed-hunting/map/ includes Today\u2019s Search panel",
+        "Production /apps/shed-hunting/map/ includes Today’s Search panel",
         "Observation heat mode present without demo seed data",
-        "verify-sheds-production notes Today\u2019s Search present"
+        "verify-sheds-production notes Today’s Search present"
       ],
       "source": "sheds-pilot-discover",
-      "notes": "Still blocking live SUBSCRIBER READY until Today\u2019s Search is on production (merge/deploy). Local product verified.",
+      "notes": "Still blocking live SUBSCRIBER READY until Today’s Search is on production (merge/deploy). Local product verified.",
       "relatedEngineeringId": null,
       "assignedRole": "qa",
       "createdAt": "2026-08-10T03:35:01.000Z",
@@ -218,7 +218,7 @@
         {
           "at": "2026-08-10T11:56:52.000Z",
           "kind": "production",
-          "notes": "PR #2 merged; production map shows Today\u2019s Search; verify-sheds-production PASS (396608b)."
+          "notes": "PR #2 merged; production map shows Today’s Search; verify-sheds-production PASS (396608b)."
         }
       ],
       "campaign": "sheds",
@@ -236,7 +236,7 @@
         "Attestations possible for primary-workflows + visual-review"
       ],
       "source": "sheds-pilot-discover",
-      "notes": "Primary workflows: locate, Today\u2019s Search, add note, heat modes, tools, ethics/privacy.",
+      "notes": "Primary workflows: locate, Today’s Search, add note, heat modes, tools, ethics/privacy.",
       "relatedEngineeringId": null,
       "assignedRole": "qa",
       "createdAt": "2026-08-10T03:35:01.000Z",
@@ -254,7 +254,7 @@
     },
     {
       "id": "WB-010",
-      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today\u2019s Search on mobile",
+      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today’s Search on mobile",
       "severity": "P1",
       "area": "sheds",
       "status": "done",
@@ -291,7 +291,7 @@
         "Ethics map-provider copy matches tile provider"
       ],
       "source": "commercial-red-team",
-      "notes": "Trust/honesty defect \u2014 repaired.",
+      "notes": "Trust/honesty defect — repaired.",
       "relatedEngineeringId": null,
       "assignedRole": "commercial-subscriber",
       "createdAt": "2026-08-10T10:39:26.000Z",
@@ -299,6 +299,74 @@
       "failureOrigin": "red_team",
       "evidence": [],
       "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-012",
+      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "severity": "P1",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T15:14:06.255Z",
+      "updatedAt": "2026-08-10T17:26:06.552Z",
+      "failureOrigin": {
+        "phase": "release_gate",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T15:14:06.255Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:26:06.552Z",
+          "kind": "retest_pass",
+          "notes": "Duplicate of WB-013 live-input cold-start escape; ensureWeatherForView + CDP cold-start green; same repair verified."
+        }
+      ],
+      "campaign": null,
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-013",
+      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "severity": "P1",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T16:52:24.234Z",
+      "updatedAt": "2026-08-10T17:25:32.264Z",
+      "failureOrigin": {
+        "phase": "fix",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T16:52:24.234Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:25:32.264Z",
+          "kind": "retest_pass",
+          "notes": "ensureWeatherForView fetches Open-Meteo for map center on GPS-denied/zoomed-out cold start; CDP cold-start + unit contracts green; glance/status honesty updated."
+        }
+      ],
+      "campaign": null,
       "blocksSubscriberReady": true
     }
   ]

@@ -74,8 +74,14 @@ const CAMPAIGN_COMMAND_REMAP = {
   sheds: {
     "production-build": "node automation/verify-sheds-production.mjs",
     "platform-foundation":
-      "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs"
+      "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs",
+    "browser-smoke": "node automation/test-sheds-live-weather-coldstart.mjs"
   }
+};
+
+/** Campaigns that claim live/nearby/today inputs cannot leave browser smoke optional. */
+const CAMPAIGN_FORCE_REQUIRED = {
+  sheds: ["browser-smoke"]
 };
 
 function resolveCriterionCommand(criterion, campaignId) {
@@ -83,6 +89,15 @@ function resolveCriterionCommand(criterion, campaignId) {
   const remap = campaignId && CAMPAIGN_COMMAND_REMAP[campaignId];
   if (remap && remap[criterion.id]) return remap[criterion.id];
   return criterion.command;
+}
+
+function resolveCriterionRequired(criterion, campaignId) {
+  const forced =
+    campaignId &&
+    CAMPAIGN_FORCE_REQUIRED[campaignId] &&
+    CAMPAIGN_FORCE_REQUIRED[campaignId].includes(criterion.id);
+  if (forced) return true;
+  return criterion.required !== false;
 }
 
 function applyAttestationToCriterion(criterion, campaign) {
@@ -204,7 +219,7 @@ export function evaluateSubscriberReady({
       title: criterion.title,
       kind: criterion.kind,
       dimension: criterion.dimension || null,
-      required: criterion.required !== false,
+      required: resolveCriterionRequired(criterion, campaignId),
       defaultSeverity: criterion.defaultSeverity || "P1",
       status: "pending",
       detail: criterion.description || ""
