@@ -378,12 +378,8 @@
     var targetEl = $("nav-to-target");
     if (!meta) return;
     var bits = 0;
-    if (accEl) {
-      if (state.accuracyM != null && isFinite(state.accuracyM)) {
-        accEl.textContent = "±" + Math.round(state.accuracyM) + " m";
-        bits++;
-      } else accEl.textContent = "";
-    }
+    // Accuracy lives in the here chip ("You are here · ±N m") — do not duplicate under it.
+    if (accEl) accEl.textContent = "";
     if (headEl) {
       if (state.headingDeg != null && isFinite(state.headingDeg)) {
         var dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
@@ -392,20 +388,8 @@
         bits++;
       } else headEl.textContent = "";
     }
-    if (targetEl) {
-      var plan = state.lastPlan && state.lastPlan.recommendation;
-      if (plan && state.userLatLng && Planner && Planner.formatDistance) {
-        var dist = plan.distanceM;
-        if (dist == null && typeof L !== "undefined") {
-          dist = state.userLatLng.distanceTo(L.latLng(plan.lat, plan.lng));
-        }
-        var dir = plan.bearingLabel || "";
-        targetEl.textContent = dist != null
-          ? ((dir ? dir + " · " : "") + Planner.formatDistance(dist))
-          : "";
-        if (targetEl.textContent) bits++;
-      } else targetEl.textContent = "";
-    }
+    // Target bearing/distance is owned by Today's Search — keep HUD from competing with briefing.
+    if (targetEl) targetEl.textContent = "";
     meta.hidden = bits === 0;
   }
 

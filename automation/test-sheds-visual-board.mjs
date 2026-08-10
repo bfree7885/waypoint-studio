@@ -260,26 +260,57 @@ def analyze_dom():
   const userPulse = document.querySelectorAll('.sheds-user-marker, .sheds-user-pulse').length;
   const target = document.querySelectorAll('.sheds-search-target, .sheds-target-dot').length;
   const trunc = [];
-  document.querySelectorAll('.sheds-here__label, .sheds-suggest, .sheds-suggest__glance, .sheds-here').forEach(el => {
+  // Only assert truncation on primary visible copy nodes — not overflow:hidden sheets
+  // that intentionally clip collapsed/expanded detail panels.
+  const truncSel = [
+    '.sheds-here__label',
+    '.sheds-suggest__eyebrow',
+    '.sheds-suggest__kicker',
+    '.sheds-suggest__glance',
+    '.sheds-suggest__conf',
+    '.sheds-fab__label'
+  ].join(',');
+  document.querySelectorAll(truncSel).forEach(el => {
+    const st = getComputedStyle(el);
+    if (st.display === 'none' || st.visibility === 'hidden' || Number(st.opacity) === 0) return;
+    const r = el.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2) return;
+    // Ellipsis nowrap lines: scrollWidth > clientWidth is intentional truncation → fail
+    // Multi-line clamp: scrollHeight > clientHeight → fail
     if (el.scrollWidth > el.clientWidth + 2 || el.scrollHeight > el.clientHeight + 2) {
-      trunc.push({cls: String(el.className).slice(0,80), text: (el.textContent||'').trim().slice(0,100)});
+      trunc.push({cls: String(el.className||el.id||'').slice(0,80), text: (el.textContent||'').trim().slice(0,100)});
     }
   });
+  // Collapsed Today's Search must fully show its summary (no clipped confidence/kicker)
+  const suggestEl = document.querySelector('.sheds-suggest');
+  const summaryEl = document.querySelector('.sheds-suggest__summary');
+  if (suggestEl && summaryEl && suggestEl.getAttribute('data-expanded') !== 'true') {
+    const sr = suggestEl.getBoundingClientRect();
+    const ur = summaryEl.getBoundingClientRect();
+    if (ur.bottom > sr.bottom + 2 || ur.right > sr.right + 2) {
+      trunc.push({cls: 'suggest-summary-clipped-by-peek', text: (summaryEl.innerText||'').trim().slice(0,100)});
+    }
+  }
   const clipped = [];
   document.querySelectorAll('.sheds-suggest, .sheds-fab-rail, .sheds-legend-float, .sheds-here').forEach(el => {
     const r = el.getBoundingClientRect();
+    if (r.width < 2 || r.height < 2) return;
     if (r.bottom > innerHeight + 2 || r.right > innerWidth + 2 || r.left < -2 || r.top < -2) {
       clipped.push({cls: String(el.className).slice(0,80), r:{t:r.top,l:r.left,b:r.bottom,ri:r.right,iw:innerWidth,ih:innerHeight}});
     }
   });
-  const fabs = [...document.querySelectorAll('.sheds-fab-rail .sheds-fab')].map(b => ({
+  const fabs = [...document.querySelectorAll('.sheds-fab-rail .sheds-fab')].filter(b => {
+    if (b.hasAttribute('hidden')) return false;
+    const st = getComputedStyle(b);
+    return st.display !== 'none' && st.visibility !== 'hidden';
+  }).map(b => ({
     id: b.id,
     label: (b.getAttribute('aria-label')||'').trim(),
     hasVisibleLabel: !!(b.querySelector('.sheds-fab__label') && getComputedStyle(b.querySelector('.sheds-fab__label')).display !== 'none')
   }));
   const unexplained = fabs.filter(f => !f.hasVisibleLabel && !f.label).length;
   const leafletZoom = document.querySelectorAll('.leaflet-control-zoom').length;
-  const here = (document.querySelector('.sheds-here')?.innerText||'').slice(0,200);
+  const here = (document.querySelector('.sheds-here__label')?.innerText||document.querySelector('.sheds-here')?.innerText||'').slice(0,200);
   const suggest = (document.querySelector('.sheds-suggest')?.innerText||'').slice(0,240);
   let userLat=null,userLng=null;
   try {
@@ -287,24 +318,23 @@ def analyze_dom():
     if (m) { userLat=m.lat; userLng=m.lng; }
   } catch(e) {}
   const markers = [];
-  document.querySelectorAll('.sheds-search-target').forEach(el => {
+  const seen = new Set();
+  function pushMarker(role, el, lat, lng) {
     const box = el.getBoundingClientRect();
-    if (box.width>0) markers.push({role:'search_target', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:null, lng:null});
-  });
-  document.querySelectorAll('path.sheds-user-marker, .sheds-user-marker path, path.leaflet-interactive.sheds-user-marker').forEach(el => {
-    const box = el.getBoundingClientRect();
-    if (box.width>0 && box.width<80) markers.push({role:'user_location', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:userLat, lng:userLng});
-  });
-  // Fallback: className on SVG may be SVGAnimatedString — check attribute
+    if (!(box.width>0 && box.height>0)) return;
+    const x = Math.round(box.x+box.width/2), y = Math.round(box.y+box.height/2);
+    const key = role + ':' + Math.round(x/6) + ':' + Math.round(y/6);
+    if (seen.has(key)) return;
+    seen.add(key);
+    markers.push({role, x, y, lat, lng});
+  }
+  document.querySelectorAll('.sheds-search-target').forEach(el => pushMarker('search_target', el, null, null));
   document.querySelectorAll('path.leaflet-interactive').forEach(el => {
     const cls = el.getAttribute('class') || '';
     const box = el.getBoundingClientRect();
-    if (!(box.width>0 && box.width<40)) return;
-    if (/sheds-user-marker|sheds-user-pulse/.test(cls)) {
-      markers.push({role:'user_location', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:userLat, lng:userLng, className:cls.slice(0,80)});
-    } else if (/sheds-search-target|sheds-target/.test(cls)) {
-      markers.push({role:'search_target', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:null, lng:null, className:cls.slice(0,80)});
-    }
+    if (!(box.width>0 && box.width<48)) return;
+    if (/sheds-user-marker|sheds-user-pulse/.test(cls)) pushMarker('user_location', el, userLat, userLng);
+    else if (/sheds-search-target|sheds-target/.test(cls)) pushMarker('search_target', el, null, null);
   });
   return { build, userPulse, target, trunc, clipped, fabs, unexplainedControls: unexplained, leafletZoom, here, suggest, markers, vw: innerWidth, vh: innerHeight };
 })()
@@ -333,9 +363,13 @@ for vp in VIEWPORTS:
     checks["crowdedCorners"] = "fail" if (dom.get("clipped") or dom.get("trunc")) else "pass"
     checks["controlPlacement"] = checks["unexplainedControls"]
     checks["overlap"] = "fail" if dup_users else "pass"
-    has_today = bool((dom.get("suggest") or "").strip()) and "Today" in (dom.get("suggest") or "Today")
-    checks["hierarchy"] = "pass" if has_today and not dup_users else "fail"
-    checks["mapVsProductHierarchy"] = "pass" if has_today else "fail"
+    suggest_txt = (dom.get("suggest") or "")
+    has_today = bool(suggest_txt.strip()) and ("today" in suggest_txt.lower())
+    has_confidence = "confidence" in suggest_txt.lower()
+    # Map-vs-product: briefing must identify Today's Search AND a next cue (distance/dir/confidence)
+    hierarchy_ok = has_today and has_confidence and not dup_users and not (dom.get("trunc") or [])
+    checks["hierarchy"] = "pass" if hierarchy_ok else "fail"
+    checks["mapVsProductHierarchy"] = "pass" if has_today and has_confidence else "fail"
     checks["nextActionClarity"] = "pass" if has_today and any(f.get("id")=="btn-locate" for f in (dom.get("fabs") or [])) else "fail"
     checks["readability"] = "fail" if dom.get("trunc") else "pass"
     checks["spacing"] = "fail" if dom.get("clipped") else "pass"
