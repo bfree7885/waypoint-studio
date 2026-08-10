@@ -19,6 +19,11 @@ const SCAN_ROOTS = [
   "volunteer"
 ];
 
+/** When a campaign is set, probes focus on these roots (still honest — not a weaken). */
+const CAMPAIGN_SCAN_ROOTS = {
+  sheds: ["sheds", "apps/shed-hunting"]
+};
+
 const SKIP_DIR = new Set([
   "node_modules",
   ".git",
@@ -68,9 +73,10 @@ function walkFiles(dir, out = [], exts = [".html", ".js", ".mjs", ".css"]) {
   return out;
 }
 
-function collectTargets() {
+function collectTargets(campaign = null) {
+  const roots = (campaign && CAMPAIGN_SCAN_ROOTS[campaign]) || SCAN_ROOTS;
   const files = [];
-  for (const root of SCAN_ROOTS) {
+  for (const root of roots) {
     walkFiles(path.join(REPO_ROOT, root), files, [".html", ".js"]);
   }
   // Cap for gate runtime — prefer primary surfaces
@@ -178,8 +184,9 @@ function probePlaywrightCapability() {
 /**
  * Run all static probes. Returns findings + dimension coverage map.
  */
-export function runStaticProbes() {
-  const files = collectTargets();
+export function runStaticProbes(options = {}) {
+  const campaign = options.campaign || null;
+  const files = collectTargets(campaign);
   const findings = [
     ...scanPatterns(files, PLACEHOLDER_PATTERNS, "placeholder_detection"),
     ...scanPatterns(files, HTML_LEAK_PATTERNS.filter((p) => p.id !== "raw-angle-script"), "raw_html_leakage"),

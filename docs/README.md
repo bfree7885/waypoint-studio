@@ -2,6 +2,7 @@
 
 | Document | Description |
 |----------|-------------|
+| [Engineering OS](../engineering/README.md) | Agent/engineering orchestrator, backlog, gates — recovered Agent Ops substrate |
 | [PRODUCT-PORTFOLIO-AUDIT.md](PRODUCT-PORTFOLIO-AUDIT.md) | Product verdicts — essential vs postponed |
 | [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md) | Core platform focus — four instruments |
 | [WAYPOINT-THEORY-OF-CHANGE.md](WAYPOINT-THEORY-OF-CHANGE.md) | Learn → observe → contribute cycle |

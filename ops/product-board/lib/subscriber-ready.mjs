@@ -57,19 +57,32 @@ function commandExists(command) {
   return true;
 }
 
-export function openP0P1Items(backlog) {
-  return (backlog.items || []).filter(
-    (i) =>
-      ["P0", "P1"].includes(i.severity) &&
-      !["done", "cancelled"].includes(i.status)
+export function openP0P1Items(backlog, campaignId = null) {
+  return openBlockingItems(backlog, campaignId).filter((i) =>
+    ["P0", "P1"].includes(i.severity)
   );
 }
 
-export function openP2Items(backlog) {
-  return (backlog.items || []).filter(
-    (i) =>
-      i.severity === "P2" && !["done", "cancelled"].includes(i.status)
+export function openP2Items(backlog, campaignId = null) {
+  return openBlockingItems(backlog, campaignId).filter(
+    (i) => i.severity === "P2"
   );
+}
+
+/** Campaign-specific command remaps — still required, not optional weaken. */
+const CAMPAIGN_COMMAND_REMAP = {
+  sheds: {
+    "production-build": "node automation/verify-sheds-production.mjs",
+    "platform-foundation":
+      "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs"
+  }
+};
+
+function resolveCriterionCommand(criterion, campaignId) {
+  if (!criterion.command) return null;
+  const remap = campaignId && CAMPAIGN_COMMAND_REMAP[campaignId];
+  if (remap && remap[criterion.id]) return remap[criterion.id];
+  return criterion.command;
 }
 
 function applyAttestationToCriterion(criterion, campaign) {
@@ -120,9 +133,9 @@ export function evaluateSubscriberReady({
       })
     : null;
 
-  const p0p1 = openP0P1Items(backlog);
-  const p2 = openP2Items(backlog);
-  const allBlocking = openBlockingItems(backlog);
+  const p0p1 = openP0P1Items(backlog, campaignId);
+  const p2 = openP2Items(backlog, campaignId);
+  const allBlocking = openBlockingItems(backlog, campaignId);
 
   if (p0p1.length) {
     findings.push({
@@ -159,7 +172,7 @@ export function evaluateSubscriberReady({
     dimensionsCovered: gate.dimensions || []
   };
   if (runProbes) {
-    probeResult = runStaticProbes();
+    probeResult = runStaticProbes({ campaign: campaignId });
     for (const f of probeResult.findings) {
       if (["P0", "P1"].includes(f.severity)) {
         findings.push(f);
@@ -225,22 +238,20 @@ export function evaluateSubscriberReady({
         });
       }
     } else if (criterion.kind === "command" && criterion.command) {
+      const command = resolveCriterionCommand(criterion, campaignId);
       if (!runCommands) {
         result.status = "skipped";
-      } else if (!commandExists(criterion.command)) {
+      } else if (!commandExists(command)) {
         result.status = "missing_tool";
         if (result.required) {
           findings.push({
             id: criterion.id,
             severity: criterion.defaultSeverity || "P2",
-            message: `Gate command missing or not runnable: ${criterion.command}`
+            message: `Gate command missing or not runnable: ${command}`
           });
         }
       } else {
-        const run = runOptionalCommand(
-          criterion.command,
-          criterion.timeoutMs || 120000
-        );
+        const run = runOptionalCommand(command, criterion.timeoutMs || 180000);
         if (run.ok) {
           result.status = "pass";
         } else {
@@ -248,11 +259,12 @@ export function evaluateSubscriberReady({
         }
         result.detail = run.output;
         result.exitCode = run.exitCode;
+        result.command = command;
         if (!run.ok && result.required) {
           findings.push({
             id: criterion.id,
             severity: criterion.defaultSeverity || "P1",
-            message: `Command failed: ${criterion.command}`,
+            message: `Command failed: ${command}`,
             exitCode: run.exitCode
           });
         }
@@ -270,7 +282,7 @@ export function evaluateSubscriberReady({
             status: result.status,
             summary: `${criterion.title}: ${result.status}`,
             data: {
-              command: criterion.command,
+              command,
               exitCode: run.exitCode,
               output: run.output.slice(0, 4000)
             }

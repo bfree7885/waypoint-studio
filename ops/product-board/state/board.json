@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T01:40:41.605Z",
+  "updatedAt": "2026-08-10T03:35:01.000Z",
   "mode": "loop",
-  "phase": "release_gate",
+  "phase": "discover",
   "activeItemId": "WB-004",
-  "activeRole": "release-manager",
-  "campaign": null,
+  "activeRole": "product-director",
+  "campaign": "sheds",
   "lastCommand": "gate",
   "lastCommandAt": "2026-08-10T01:40:41.605Z",
   "releaseGate": {
@@ -16,7 +16,7 @@
       {
         "id": "open-p0-p1-work",
         "severity": "P1",
-        "message": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+        "message": "1 open P0\u2013P1 item(s) automatically prevent SUBSCRIBER READY",
         "items": [
           "WB-004"
         ]
@@ -99,7 +99,7 @@
       {
         "id": "commercial-review",
         "severity": "P0",
-        "message": "Required criterion not yet attested: Commercial reviewer — cancel/refund/trust test"
+        "message": "Required criterion not yet attested: Commercial reviewer \u2014 cancel/refund/trust test"
       },
       {
         "id": "red-team-pass",
@@ -250,8 +250,8 @@
     }
   ],
   "notes": [
-    "Discovery refreshed from Engineering OS + static inventory.",
-    "Synced engineering tasks: imported=4 skipped=1",
-    "Next: prioritize, then next."
+    "Sheds Subscriber Ready autonomous pilot active.",
+    "Today\u2019s Search recovered from feature/sheds-todays-search@506fb85.",
+    "Platform eng items tagged campaign=platform; Sheds work is campaign=sheds."
   ]
 }

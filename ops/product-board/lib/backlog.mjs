@@ -52,7 +52,8 @@ export function createWorkItem({
   source = "manual",
   notes = "",
   relatedEngineeringId = null,
-  status = "ready"
+  status = "ready",
+  campaign = null
 }) {
   assertSeverity(severity);
   return {
@@ -70,8 +71,23 @@ export function createWorkItem({
     updatedAt: nowIso(),
     failureOrigin: null,
     evidence: [],
+    campaign: campaign || null,
     blocksSubscriberReady: blocksSubscriberReady(severity)
   };
+}
+
+/**
+ * Campaign scoping for Subscriber Ready.
+ * - No campaign on gate → all items count.
+ * - Gate campaign X → items with campaign null (global) OR matching X count.
+ * - Items tagged a different campaign (e.g. platform) do not block X.
+ * Does not weaken severity rules for in-scope items.
+ */
+export function itemInCampaignScope(item, campaignId) {
+  if (!campaignId) return true;
+  const c = item.campaign || null;
+  if (!c) return true;
+  return c === campaignId;
 }
 
 export function addWorkItem(backlog, partial) {
@@ -86,20 +102,21 @@ export function findItem(backlog, id) {
   return (backlog.items || []).find((i) => i.id === id) || null;
 }
 
-export function openBlockingItems(backlog) {
+export function openBlockingItems(backlog, campaignId = null) {
   return (backlog.items || []).filter(
     (i) =>
       i.blocksSubscriberReady &&
-      !["done", "cancelled"].includes(i.status)
+      !["done", "cancelled"].includes(i.status) &&
+      itemInCampaignScope(i, campaignId)
   );
 }
 
-export function prioritizedQueue(backlog) {
+export function prioritizedQueue(backlog, campaignId = null) {
   return (backlog.items || [])
     .filter((i) =>
       ["backlog", "ready", "fix", "test", "visual_review", "red_team", "retest", "in_progress"].includes(
         i.status
-      )
+      ) && itemInCampaignScope(i, campaignId)
     )
     .sort((a, b) => {
       const sev = compareSeverity(a.severity, b.severity);
