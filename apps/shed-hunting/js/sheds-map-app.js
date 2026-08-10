@@ -477,9 +477,10 @@
         accuracyCircle = L.circle(ll, {
           radius: accuracyM,
           color: "#8ec0ff",
-          weight: 1,
+          weight: 1.5,
+          dashArray: "4 6",
           fillColor: "#8ec0ff",
-          fillOpacity: 0.1,
+          fillOpacity: 0.04,
           interactive: false,
           className: "sheds-user-accuracy"
         }).addTo(map);
@@ -487,6 +488,9 @@
         accuracyCircle.setLatLng(ll);
         accuracyCircle.setRadius(accuracyM);
       }
+    } else if (accuracyCircle) {
+      map.removeLayer(accuracyCircle);
+      accuracyCircle = null;
     }
     if (headingLine) {
       map.removeLayer(headingLine);
@@ -1374,13 +1378,16 @@
     recMarker = null;
     if (!plan || !plan.recommendation) return;
     var r = plan.recommendation;
+    // SEARCH area ring — soft amber, not a second “you” pin
     recMarker = L.circle([r.lat, r.lng], {
       radius: r.suggestedRadiusM,
       color: "#e0a046",
-      weight: 2,
+      weight: 1.5,
+      dashArray: "6 8",
       fillColor: "#e0a046",
-      fillOpacity: 0.1,
-      className: "sheds-target-ring"
+      fillOpacity: 0.06,
+      className: "sheds-target-ring",
+      interactive: false
     }).addTo(planLayer);
     // SEARCH TARGET — amber mark + label — never the same “you” lime dot.
     var marker = L.marker([r.lat, r.lng], {

@@ -15,7 +15,7 @@
   --sheds-safe-top: env(safe-area-inset-top, 0px);
   --sheds-safe-right: env(safe-area-inset-right, 0px);
   --sheds-safe-left: env(safe-area-inset-left, 0px);
-  --sheds-sheet-peek: 7.25rem;
+  --sheds-sheet-peek: 8.1rem;
   --sheds-fab-size: 3.5rem;
   --sheds-radius: 16px;
   --sheds-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -811,6 +811,14 @@ html.sheds-sheet-open .leaflet-control-attribution {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.sheds-suggest:not([data-expanded="true"]) .sheds-suggest__summary {
+  padding-bottom: 0.55rem;
 }
 
 .sheds-suggest__conf {
@@ -1324,13 +1332,52 @@ html.sheds-sheet-open .leaflet-control-attribution {
     max-width: 26rem;
     left: 0.75rem;
     right: auto;
+    bottom: calc(0.75rem + var(--sheds-safe-bottom));
     border-radius: 20px;
     border: 1px solid var(--sheds-border);
-    margin-bottom: calc(0.75rem + var(--sheds-safe-bottom));
+    margin-bottom: 0;
+    max-height: none;
+    /* Collapsed card must fully fit — never clip under overflow:hidden shell */
+    height: auto;
+    padding-bottom: 0.55rem;
+  }
+
+  .sheds-suggest:not([data-expanded="true"]) {
+    max-height: none;
+    overflow: visible;
   }
 
   .sheds-suggest[data-expanded="true"] {
     max-height: min(70vh, 32rem);
+    overflow: auto;
+  }
+
+  .sheds-legend-float {
+    bottom: calc(9.5rem + var(--sheds-safe-bottom));
+  }
+
+  .leaflet-bottom.leaflet-right {
+    margin-bottom: 0.35rem;
+  }
+
+  .leaflet-control-zoom {
+    margin-bottom: 0.35rem !important;
+  }
+
+  .leaflet-control-zoom::before {
+    content: "Zoom";
+    display: block;
+    font-size: 0.58rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sheds-muted);
+    text-align: center;
+    padding: 0.2rem 0.3rem 0.05rem;
+    background: rgba(8, 20, 15, 0.9);
+    border: 1px solid var(--sheds-border);
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
   }
 }
 
