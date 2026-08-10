@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T10:39:26.000Z",
+  "updatedAt": "2026-08-10T11:56:52.000Z",
   "policy": {
     "priorities": [
       "P0",
@@ -201,7 +201,7 @@
       "title": "Sheds: production deploy of Today\u2019s Search + observation heat",
       "severity": "P1",
       "area": "sheds",
-      "status": "ready",
+      "status": "done",
       "acceptanceCriteria": [
         "Production /apps/shed-hunting/map/ includes Today\u2019s Search panel",
         "Observation heat mode present without demo seed data",
@@ -212,9 +212,15 @@
       "relatedEngineeringId": null,
       "assignedRole": "qa",
       "createdAt": "2026-08-10T03:35:01.000Z",
-      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "updatedAt": "2026-08-10T11:56:52.000Z",
       "failureOrigin": null,
-      "evidence": [],
+      "evidence": [
+        {
+          "at": "2026-08-10T11:56:52.000Z",
+          "kind": "production",
+          "notes": "PR #2 merged; production map shows Today\u2019s Search; verify-sheds-production PASS (396608b)."
+        }
+      ],
       "campaign": "sheds",
       "blocksSubscriberReady": true
     },

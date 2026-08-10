@@ -99,7 +99,16 @@ const nav = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-n
 assert("nav photo coach live path", /"href": "apps\/photo-coach\/"/.test(nav));
 
 const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-assert("home single primary lead", (home.match(/was-home__lead/g) || []).length === 1);
+// Home is App Shell + progressive workspace boot (not the retired was-home__lead marketing lead).
+assert(
+  "home progressive workspace boot",
+  /was-shell/.test(home) &&
+    /home-boot\.js/.test(home) &&
+    /data-wds-region="workspace"/.test(home) &&
+    /Opening workspace/.test(home)
+);
+// Retired lead must not reappear as a duplicate marketing hero on Home.
+assert("home no retired was-home lead", !/was-home__lead/.test(home));
 
 const wds = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
 assert("wds loads platform-boot", /wds-platform-boot\.js/.test(wds));

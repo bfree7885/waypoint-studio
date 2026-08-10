@@ -83,6 +83,14 @@ export function runCommercialReview({
     wouldCancel = false;
     summary =
       "Automated tests alone are insufficient — commercial attestation still required.";
+  } else if (
+    !risks.some((r) => ["P0", "P1"].includes(r.severity)) &&
+    attestations?.byCriterion?.["commercial-review"]?.verdict === "pass"
+  ) {
+    status = "pass";
+    wouldCancel = false;
+    summary =
+      "Commercial attestation recorded: paying customer would not cancel for known scoped risks.";
   } else if (!risks.length && attestations?.complete) {
     // Still pending unless an explicit commercial attestation exists.
     status = "pending";

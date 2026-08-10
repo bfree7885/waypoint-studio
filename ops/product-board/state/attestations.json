@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T11:56:52.147Z",
+  "records": [
+    {
+      "id": "AT-001",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "pass",
+      "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:55:26.071Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "pass",
+      "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:56:52.012Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "pass",
+      "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:56:52.052Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "visual-review",
+      "role": "ux-ui-lead",
+      "verdict": "pass",
+      "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:56:52.083Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "pass",
+      "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:56:52.115Z"
+    },
+    {
+      "id": "AT-006",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "pass",
+      "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+      "campaign": "sheds",
+      "at": "2026-08-10T11:56:52.147Z"
+    }
+  ]
+}

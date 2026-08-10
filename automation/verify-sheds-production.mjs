@@ -54,11 +54,7 @@ async function main() {
 
     const hasToday = /Today.?s Search|todays-search|WaypointShedsTodaysSearch/i.test(map.text);
     if (hasToday) pass("Today’s Search present on production");
-    else {
-      console.log(
-        "NOTE: Today’s Search not yet on production (branch feature pending deploy)"
-      );
-    }
+    else fail("Today’s Search missing on production map");
 
     const marker = (map.text.match(/name=["']waypoint-build["']\s+content=["']([^"']+)["']/i) || [])[1];
     if (!marker) fail("map missing waypoint-build marker");
