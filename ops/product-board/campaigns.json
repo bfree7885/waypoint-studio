@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Central Product Board campaigns. One board controls multiple Waypoint products.",
+  "campaigns": [
+    {
+      "id": "sheds",
+      "title": "Sheds",
+      "productPath": "apps/shed-hunting",
+      "status": "subscriber-ready-pilot-complete"
+    },
+    {
+      "id": "signalterrain",
+      "title": "SignalTerrain",
+      "productPath": "apps/signalterrain",
+      "status": "msp-campaign-ready",
+      "mspDoc": "ops/product-board/campaigns/signalterrain-msp.md",
+      "launch": "node ops/product-board/board.mjs campaign signalterrain && node ops/product-board/board.mjs discover --campaign signalterrain"
+    }
+  ]
+}

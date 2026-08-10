@@ -1,0 +1,17 @@
+{
+  "id": "attestation-red-team-pass",
+  "kind": "attestation",
+  "at": "2026-08-10T16:53:15.895Z",
+  "status": "pass",
+  "summary": "Attested pass by red-team: Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "red-team-pass",
+    "role": "red-team",
+    "verdict": "pass",
+    "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+    "campaign": "sheds",
+    "at": "2026-08-10T11:56:52.147Z"
+  }
+}

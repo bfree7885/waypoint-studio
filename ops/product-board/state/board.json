@@ -1,190 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T11:59:33.358Z",
+  "updatedAt": "2026-08-10T16:53:15.941Z",
   "mode": "loop",
-  "phase": "release_gate",
+  "phase": "discover",
   "activeItemId": "WB-004",
-  "activeRole": "release-manager",
-  "campaign": "sheds",
-  "lastCommand": "gate",
-  "lastCommandAt": "2026-08-10T11:59:33.358Z",
+  "activeRole": "product-director",
+  "campaign": "signalterrain",
+  "lastCommand": "campaign",
+  "lastCommandAt": "2026-08-10T16:53:15.941Z",
   "releaseGate": {
-    "status": "passed",
-    "lastRunAt": "2026-08-10T11:59:33.357Z",
-    "verdict": "SUBSCRIBER READY",
+    "status": "not_run",
+    "lastRunAt": null,
+    "verdict": null,
     "blockingFindings": [],
-    "evidenceRunId": "gate-2026-08-10T11-59-32-638Z",
-    "commercial": {
-      "status": "pass",
-      "wouldCancel": false,
-      "summary": "Commercial attestation recorded: paying customer would not cancel for known scoped risks."
-    },
-    "redTeam": {
-      "status": "pass",
-      "disproved": false,
-      "summary": "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof."
-    },
-    "attestations": {
-      "complete": true,
-      "pending": [],
-      "failed": [],
-      "passed": [
-        {
-          "id": "no-fake-functionality",
-          "attestation": {
-            "id": "AT-001",
-            "criterionId": "no-fake-functionality",
-            "role": "product-director",
-            "verdict": "pass",
-            "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:55:26.071Z"
-          }
-        },
-        {
-          "id": "primary-workflows",
-          "attestation": {
-            "id": "AT-006",
-            "criterionId": "primary-workflows",
-            "role": "product-director",
-            "verdict": "pass",
-            "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:56:52.012Z"
-          }
-        },
-        {
-          "id": "honest-data",
-          "attestation": {
-            "id": "AT-006",
-            "criterionId": "honest-data",
-            "role": "data-reliability",
-            "verdict": "pass",
-            "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:56:52.052Z"
-          }
-        },
-        {
-          "id": "visual-review",
-          "attestation": {
-            "id": "AT-006",
-            "criterionId": "visual-review",
-            "role": "ux-ui-lead",
-            "verdict": "pass",
-            "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:56:52.083Z"
-          }
-        },
-        {
-          "id": "commercial-review",
-          "attestation": {
-            "id": "AT-006",
-            "criterionId": "commercial-review",
-            "role": "commercial-subscriber",
-            "verdict": "pass",
-            "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:56:52.115Z"
-          }
-        },
-        {
-          "id": "red-team-pass",
-          "attestation": {
-            "id": "AT-006",
-            "criterionId": "red-team-pass",
-            "role": "red-team",
-            "verdict": "pass",
-            "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
-            "campaign": "sheds",
-            "at": "2026-08-10T11:56:52.147Z"
-          }
-        }
-      ],
-      "byCriterion": {
-        "no-fake-functionality": {
-          "id": "AT-001",
-          "criterionId": "no-fake-functionality",
-          "role": "product-director",
-          "verdict": "pass",
-          "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:55:26.071Z"
-        },
-        "primary-workflows": {
-          "id": "AT-006",
-          "criterionId": "primary-workflows",
-          "role": "product-director",
-          "verdict": "pass",
-          "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:56:52.012Z"
-        },
-        "honest-data": {
-          "id": "AT-006",
-          "criterionId": "honest-data",
-          "role": "data-reliability",
-          "verdict": "pass",
-          "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:56:52.052Z"
-        },
-        "visual-review": {
-          "id": "AT-006",
-          "criterionId": "visual-review",
-          "role": "ux-ui-lead",
-          "verdict": "pass",
-          "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:56:52.083Z"
-        },
-        "commercial-review": {
-          "id": "AT-006",
-          "criterionId": "commercial-review",
-          "role": "commercial-subscriber",
-          "verdict": "pass",
-          "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:56:52.115Z"
-        },
-        "red-team-pass": {
-          "id": "AT-006",
-          "criterionId": "red-team-pass",
-          "role": "red-team",
-          "verdict": "pass",
-          "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
-          "campaign": "sheds",
-          "at": "2026-08-10T11:56:52.147Z"
-        }
-      }
-    },
-    "dimensions": [
-      "primary_workflows",
-      "functionality",
-      "live_data_integrity",
-      "placeholder_detection",
-      "dead_controls",
-      "broken_links_nav",
-      "raw_html_leakage",
-      "loading_empty_error",
-      "mobile_tablet_desktop",
-      "responsive",
-      "contrast",
-      "a11y",
-      "keyboard",
-      "console",
-      "network_api",
-      "performance",
-      "security",
-      "privacy",
-      "content_quality",
-      "visual_consistency",
-      "discoverability",
-      "onboarding",
-      "persistence",
-      "commercial_usefulness"
-    ]
+    "evidenceRunId": null
   },
   "routing": {
     "openRepairQueue": [],
@@ -410,11 +239,75 @@
       "verdict": "SUBSCRIBER READY",
       "findingCount": 0,
       "evidenceRunId": "gate-2026-08-10T11-59-32-638Z"
+    },
+    {
+      "at": "2026-08-10T12:22:29.408Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T12:23:00.183Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "SUBSCRIBER READY",
+      "findingCount": 0,
+      "evidenceRunId": "gate-2026-08-10T12-22-29-409Z"
+    },
+    {
+      "at": "2026-08-10T16:53:15.715Z",
+      "event": "campaign_set",
+      "phase": "discover",
+      "campaign": "signalterrain",
+      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
+    },
+    {
+      "at": "2026-08-10T16:53:15.801Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T16:53:15.805Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "CONDITIONALLY READY",
+      "findingCount": 6,
+      "evidenceRunId": "gate-2026-08-10T16-53-15-802Z"
+    },
+    {
+      "at": "2026-08-10T16:53:15.850Z",
+      "event": "campaign_set",
+      "phase": "discover",
+      "campaign": "sheds",
+      "path": "/home/bryan/projects/waypoint-product-board/apps/shed-hunting"
+    },
+    {
+      "at": "2026-08-10T16:53:15.892Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T16:53:15.898Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "CONDITIONALLY READY",
+      "findingCount": 0,
+      "evidenceRunId": "gate-2026-08-10T16-53-15-893Z"
+    },
+    {
+      "at": "2026-08-10T16:53:15.941Z",
+      "event": "campaign_set",
+      "phase": "discover",
+      "campaign": "signalterrain",
+      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
     }
   ],
   "notes": [
-    "Sheds Subscriber Ready autonomous pilot active.",
-    "Today’s Search recovered from feature/sheds-todays-search@506fb85.",
-    "Platform eng items tagged campaign=platform; Sheds work is campaign=sheds."
+    "Campaign set to signalterrain.",
+    "Product path: apps/signalterrain → /home/bryan/projects/waypoint-product-board/apps/signalterrain",
+    "MSP freeze: ops/product-board/campaigns/signalterrain-msp.md",
+    "Run discover → prioritize → gate --campaign signalterrain"
   ]
 }

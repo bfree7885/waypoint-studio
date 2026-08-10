@@ -19,6 +19,7 @@ import {
 import { runStaticProbes } from "./probes.mjs";
 import { runCommercialReview } from "./commercial-reviewer.mjs";
 import { runRedTeam } from "./red-team.mjs";
+import { campaignCommandRemap } from "./campaigns.mjs";
 
 /**
  * Subscriber Ready ≠ "tests pass".
@@ -69,18 +70,9 @@ export function openP2Items(backlog, campaignId = null) {
   );
 }
 
-/** Campaign-specific command remaps — still required, not optional weaken. */
-const CAMPAIGN_COMMAND_REMAP = {
-  sheds: {
-    "production-build": "node automation/verify-sheds-production.mjs",
-    "platform-foundation":
-      "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs"
-  }
-};
-
 function resolveCriterionCommand(criterion, campaignId) {
   if (!criterion.command) return null;
-  const remap = campaignId && CAMPAIGN_COMMAND_REMAP[campaignId];
+  const remap = campaignId && campaignCommandRemap(campaignId);
   if (remap && remap[criterion.id]) return remap[criterion.id];
   return criterion.command;
 }
