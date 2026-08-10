@@ -1,0 +1,17 @@
+{
+  "id": "attestation-visual-review",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.142Z",
+  "status": "fail",
+  "summary": "Attested fail by ux-ui-lead: OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "visual-review",
+    "role": "ux-ui-lead",
+    "verdict": "fail",
+    "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+    "campaign": "sheds",
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

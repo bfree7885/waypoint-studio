@@ -20,9 +20,20 @@ export const CAMPAIGNS = {
       "production-build": "node automation/verify-sheds-production.mjs",
       "platform-foundation":
         "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs",
-      "browser-smoke": "node automation/test-sheds-live-weather-coldstart.mjs"
+      "browser-smoke": "node automation/test-sheds-live-weather-coldstart.mjs",
+      "screenshot-analysis":
+        "node automation/test-sheds-visual-board.mjs --mode=screenshot-analysis",
+      "dynamic-visual":
+        "node automation/test-sheds-visual-board.mjs --mode=dynamic-visual",
+      "production-inspection":
+        "node automation/test-sheds-visual-board.mjs --mode=production-inspection"
     },
-    forceRequired: ["browser-smoke"],
+    forceRequired: [
+      "browser-smoke",
+      "screenshot-analysis",
+      "dynamic-visual",
+      "production-inspection"
+    ],
     mspDoc: null
   },
   signalterrain: {

@@ -1,60 +1,64 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T17:25:32.447Z",
+  "updatedAt": "2026-08-10T18:00:00.000Z",
   "records": [
     {
-      "id": "AT-006",
-      "criterionId": "honest-data",
-      "role": "data-reliability",
-      "verdict": "pass",
-      "notes": "Retest after escape: Open-Meteo fires for map center without GPS (CDP cold-start); status discloses map-center weather; Low/Medium confidence honest; no demo fill.",
-      "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.294Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "primary-workflows",
-      "role": "product-director",
-      "verdict": "pass",
-      "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
-      "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.324Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "commercial-review",
-      "role": "commercial-subscriber",
-      "verdict": "pass",
-      "notes": "Paid-today cancel risk from weather-unavailable cold start repaired and retested; remaining: zoom for heat pockets, GPS optional. Would not cancel solely for scoped residual.",
-      "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.356Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "red-team-pass",
-      "role": "red-team",
-      "verdict": "pass",
-      "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
-      "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.385Z"
-    },
-    {
-      "id": "AT-006",
-      "criterionId": "no-fake-functionality",
-      "role": "product-director",
-      "verdict": "pass",
-      "notes": "No demo sightings; empty heat honest; seasonal window guess labeled when weather missing.",
-      "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.416Z"
-    },
-    {
-      "id": "AT-006",
+      "id": "AT-007",
       "criterionId": "visual-review",
       "role": "ux-ui-lead",
-      "verdict": "pass",
-      "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+      "verdict": "fail",
+      "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
       "campaign": "sheds",
-      "at": "2026-08-10T17:25:32.447Z"
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail",
+      "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+      "campaign": "sheds",
+      "commercialVisual": {
+        "wouldSupportPricing": false,
+        "productFeel": "prototype"
+      },
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail",
+      "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail",
+      "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail",
+      "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "fail",
+      "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
     }
   ]
 }

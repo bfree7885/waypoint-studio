@@ -1,81 +1,267 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T18:50:00.000Z",
-  "mode": "loop",
+  "updatedAt": "2026-08-10T20:40:00.000Z",
+  "mode": "repair",
   "phase": "fix",
-  "activeItemId": "WB-013",
-  "activeRole": "senior-software-engineer",
-  "campaign": "signalterrain",
-  "lastCommand": "add-item",
-  "lastCommandAt": "2026-08-10T17:45:27.943Z",
+  "activeItemId": "WB-014",
+  "activeRole": "release-manager",
+  "campaign": "sheds",
+  "lastCommand": "gate",
+  "lastCommandAt": "2026-08-10T20:27:16.146Z",
   "releaseGate": {
     "status": "blocked",
-    "lastRunAt": "2026-08-10T17:27:12.698Z",
+    "lastRunAt": "2026-08-10T20:27:16.145Z",
     "verdict": "NOT READY",
     "blockingFindings": [
       {
+        "id": "open-p0-p1-work",
+        "severity": "P0",
+        "message": "1 open P0\u2013P1 item(s) automatically prevent SUBSCRIBER READY",
+        "items": [
+          "WB-014"
+        ]
+      },
+      {
+        "id": "open-repair-queue",
+        "severity": "P1",
+        "message": "Failed-review repair queue is non-empty",
+        "items": [
+          "WB-014"
+        ]
+      },
+      {
+        "id": "dim-loading-states",
+        "severity": "P1",
+        "message": "Dimension loading_empty_error lacks supporting attestation/evidence \u2014 not auto-covered."
+      },
+      {
+        "id": "dim-mobile-tablet-desktop",
+        "severity": "P1",
+        "message": "Dimension mobile_tablet_desktop lacks supporting attestation/evidence \u2014 not auto-covered."
+      },
+      {
+        "id": "dim-contrast-keyboard",
+        "severity": "P1",
+        "message": "Dimension contrast lacks supporting attestation/evidence \u2014 not auto-covered."
+      },
+      {
+        "id": "dim-network-perf-security",
+        "severity": "P1",
+        "message": "Dimension network_api lacks supporting attestation/evidence \u2014 not auto-covered."
+      },
+      {
+        "id": "dim-content-visual-discovery",
+        "severity": "P1",
+        "message": "Dimension content_quality lacks supporting attestation/evidence \u2014 not auto-covered."
+      },
+      {
         "id": "no-fake-functionality",
         "severity": "P0",
-        "message": "Required criterion not yet attested: No fake functionality / placeholders-as-finished"
+        "message": "Attestation failed: No fake functionality / placeholders-as-finished"
       },
       {
         "id": "primary-workflows",
         "severity": "P1",
-        "message": "Required criterion not yet attested: Primary subscriber workflows complete"
+        "message": "Attestation failed: Primary subscriber workflows complete"
       },
       {
         "id": "honest-data",
         "severity": "P0",
-        "message": "Required criterion not yet attested: Live / estimate / placeholder honesty"
+        "message": "Attestation failed: Live / estimate / placeholder honesty"
       },
       {
         "id": "visual-review",
         "severity": "P1",
-        "message": "Required criterion not yet attested: Visual review pass for scoped surface"
+        "message": "Attestation failed: Visual review pass for scoped surface"
       },
       {
         "id": "commercial-review",
         "severity": "P0",
-        "message": "Required criterion not yet attested: Commercial reviewer \u2014 cancel/refund/trust test"
+        "message": "Attestation failed: Commercial reviewer \u2014 cancel/refund/trust test"
       },
       {
         "id": "red-team-pass",
         "severity": "P0",
-        "message": "Required criterion not yet attested: Red Team independent disproof pass"
+        "message": "Attestation failed: Red Team independent disproof pass"
+      },
+      {
+        "id": "screenshot-analysis-missing",
+        "severity": "P0",
+        "message": "No screenshot_analysis evidence package \u2014 required before SUBSCRIBER READY for map/geo campaigns."
+      },
+      {
+        "id": "dynamic-visual-missing",
+        "severity": "P0",
+        "message": "No dynamic_visual_review evidence package \u2014 required for map/location stability before SUBSCRIBER READY."
+      },
+      {
+        "id": "commercial-cancel-risk",
+        "severity": "P0",
+        "message": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
       },
       {
         "id": "red-team-disproof",
         "severity": "P0",
-        "message": "Red Team disproved readiness with 1 finding(s).",
+        "message": "Red Team disproved readiness with 2 finding(s).",
         "items": [
-          "redteam:tests-pass-insufficient"
+          "redteam:backlog:WB-014",
+          "redteam:commercial-cancel"
         ]
       }
     ],
-    "evidenceRunId": "gate-2026-08-10T17-26-41-935Z",
+    "evidenceRunId": "gate-2026-08-10T20-27-16-131Z",
     "commercial": {
-      "status": "pending",
-      "wouldCancel": false,
-      "summary": "Automated tests alone are insufficient \u2014 commercial attestation still required."
+      "status": "fail",
+      "wouldCancel": true,
+      "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
     },
     "redTeam": {
       "status": "fail",
       "disproved": true,
-      "summary": "Red Team disproved readiness with 1 finding(s)."
+      "summary": "Red Team disproved readiness with 2 finding(s)."
     },
     "attestations": {
       "complete": false,
-      "pending": [
-        "no-fake-functionality",
-        "primary-workflows",
-        "honest-data",
-        "visual-review",
-        "commercial-review",
-        "red-team-pass"
+      "pending": [],
+      "failed": [
+        {
+          "id": "no-fake-functionality",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "no-fake-functionality",
+            "role": "product-director",
+            "verdict": "fail",
+            "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+            "campaign": "sheds",
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        },
+        {
+          "id": "primary-workflows",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "primary-workflows",
+            "role": "product-director",
+            "verdict": "fail",
+            "notes": "Locate/Today\u2019s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+            "campaign": "sheds",
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        },
+        {
+          "id": "honest-data",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "honest-data",
+            "role": "data-reliability",
+            "verdict": "fail",
+            "notes": "Approximate GPS presented with same \u2018You are here\u2019 treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+            "campaign": "sheds",
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        },
+        {
+          "id": "visual-review",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "visual-review",
+            "role": "ux-ui-lead",
+            "verdict": "fail",
+            "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots \u2260 analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+            "campaign": "sheds",
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        },
+        {
+          "id": "commercial-review",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "commercial-review",
+            "role": "commercial-subscriber",
+            "verdict": "fail",
+            "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+            "campaign": "sheds",
+            "commercialVisual": {
+              "wouldSupportPricing": false,
+              "productFeel": "prototype"
+            },
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        },
+        {
+          "id": "red-team-pass",
+          "attestation": {
+            "id": "AT-007",
+            "criterionId": "red-team-pass",
+            "role": "red-team",
+            "verdict": "fail",
+            "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7\u201310 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+            "campaign": "sheds",
+            "at": "2026-08-10T18:00:00.000Z"
+          }
+        }
       ],
-      "failed": [],
       "passed": [],
-      "byCriterion": {}
+      "byCriterion": {
+        "no-fake-functionality": {
+          "id": "AT-007",
+          "criterionId": "no-fake-functionality",
+          "role": "product-director",
+          "verdict": "fail",
+          "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        },
+        "primary-workflows": {
+          "id": "AT-007",
+          "criterionId": "primary-workflows",
+          "role": "product-director",
+          "verdict": "fail",
+          "notes": "Locate/Today\u2019s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        },
+        "honest-data": {
+          "id": "AT-007",
+          "criterionId": "honest-data",
+          "role": "data-reliability",
+          "verdict": "fail",
+          "notes": "Approximate GPS presented with same \u2018You are here\u2019 treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        },
+        "visual-review": {
+          "id": "AT-007",
+          "criterionId": "visual-review",
+          "role": "ux-ui-lead",
+          "verdict": "fail",
+          "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots \u2260 analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        },
+        "commercial-review": {
+          "id": "AT-007",
+          "criterionId": "commercial-review",
+          "role": "commercial-subscriber",
+          "verdict": "fail",
+          "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+          "campaign": "sheds",
+          "commercialVisual": {
+            "wouldSupportPricing": false,
+            "productFeel": "prototype"
+          },
+          "at": "2026-08-10T18:00:00.000Z"
+        },
+        "red-team-pass": {
+          "id": "AT-007",
+          "criterionId": "red-team-pass",
+          "role": "red-team",
+          "verdict": "fail",
+          "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7\u201310 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      }
     },
     "dimensions": [
       "primary_workflows",
@@ -105,8 +291,10 @@
     ]
   },
   "routing": {
-    "openRepairQueue": [],
-    "lastFailureId": null
+    "openRepairQueue": [
+      "WB-014"
+    ],
+    "lastFailureId": "WB-014"
   },
   "loopHistory": [
     {
@@ -330,129 +518,242 @@
       "evidenceRunId": "gate-2026-08-10T11-59-32-638Z"
     },
     {
-      "at": "2026-08-10T12:22:29.408Z",
+      "at": "2026-08-10T12:21:25.065Z",
       "event": "phase_set",
       "phase": "release_gate",
       "role": "release-manager"
     },
     {
-      "at": "2026-08-10T12:23:00.183Z",
+      "at": "2026-08-10T12:21:27.124Z",
       "event": "subscriber_ready_gate",
       "phase": "release_gate",
       "verdict": "SUBSCRIBER READY",
       "findingCount": 0,
-      "evidenceRunId": "gate-2026-08-10T12-22-29-409Z"
+      "evidenceRunId": "gate-2026-08-10T12-21-25-065Z"
     },
     {
-      "at": "2026-08-10T16:53:15.715Z",
-      "event": "campaign_set",
-      "phase": "discover",
-      "campaign": "signalterrain",
-      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
+      "at": "2026-08-10T15:14:06.255Z",
+      "event": "failed_review_routed",
+      "phase": "fix",
+      "workItemId": "WB-012",
+      "severity": "P1",
+      "originPhase": "release_gate",
+      "blocksSubscriberReady": true
     },
     {
-      "at": "2026-08-10T16:53:15.801Z",
+      "at": "2026-08-10T15:14:06.283Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.311Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.339Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T15:14:06.369Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.234Z",
+      "event": "failed_review_routed",
+      "phase": "fix",
+      "workItemId": "WB-013",
+      "severity": "P1",
+      "originPhase": "fix",
+      "blocksSubscriberReady": true
+    },
+    {
+      "at": "2026-08-10T16:52:24.270Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.299Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.333Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T16:52:24.365Z",
+      "event": "attestation_recorded",
+      "phase": "fix",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail"
+    },
+    {
+      "at": "2026-08-10T17:25:32.264Z",
+      "event": "repair_retest_passed",
+      "phase": "retest",
+      "workItemId": "WB-013"
+    },
+    {
+      "at": "2026-08-10T17:25:32.294Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.324Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.356Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.386Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.417Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.448Z",
+      "event": "attestation_recorded",
+      "phase": "retest",
+      "criterionId": "visual-review",
+      "role": "ux-ui-lead",
+      "verdict": "pass"
+    },
+    {
+      "at": "2026-08-10T17:25:32.476Z",
       "event": "phase_set",
       "phase": "release_gate",
       "role": "release-manager"
     },
     {
-      "at": "2026-08-10T16:53:15.805Z",
-      "event": "subscriber_ready_gate",
-      "phase": "release_gate",
-      "verdict": "CONDITIONALLY READY",
-      "findingCount": 6,
-      "evidenceRunId": "gate-2026-08-10T16-53-15-802Z"
-    },
-    {
-      "at": "2026-08-10T16:53:15.850Z",
-      "event": "campaign_set",
-      "phase": "discover",
-      "campaign": "sheds",
-      "path": "/home/bryan/projects/waypoint-product-board/apps/shed-hunting"
-    },
-    {
-      "at": "2026-08-10T16:53:15.892Z",
-      "event": "phase_set",
-      "phase": "release_gate",
-      "role": "release-manager"
-    },
-    {
-      "at": "2026-08-10T16:53:15.898Z",
-      "event": "subscriber_ready_gate",
-      "phase": "release_gate",
-      "verdict": "CONDITIONALLY READY",
-      "findingCount": 0,
-      "evidenceRunId": "gate-2026-08-10T16-53-15-893Z"
-    },
-    {
-      "at": "2026-08-10T16:53:15.941Z",
-      "event": "campaign_set",
-      "phase": "discover",
-      "campaign": "signalterrain",
-      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
-    },
-    {
-      "at": "2026-08-10T17:26:33.116Z",
-      "event": "campaign_set",
-      "phase": "discover",
-      "campaign": "signalterrain",
-      "path": "/home/bryan/projects/waypoint-product-board/apps/signalterrain"
-    },
-    {
-      "at": "2026-08-10T17:26:33.155Z",
-      "event": "phase_set",
-      "phase": "discover",
-      "role": "product-director"
-    },
-    {
-      "at": "2026-08-10T17:26:33.155Z",
-      "event": "discover",
-      "phase": "discover",
-      "imported": 0,
-      "skipped": 5,
-      "campaign": "signalterrain"
-    },
-    {
-      "at": "2026-08-10T17:26:33.194Z",
-      "event": "phase_set",
-      "phase": "prioritize",
-      "role": "product-director"
-    },
-    {
-      "at": "2026-08-10T17:26:33.195Z",
-      "event": "prioritize",
-      "phase": "prioritize",
-      "top": null,
-      "campaign": "signalterrain"
-    },
-    {
-      "at": "2026-08-10T17:26:41.934Z",
-      "event": "phase_set",
-      "phase": "release_gate",
-      "role": "release-manager"
-    },
-    {
-      "at": "2026-08-10T17:27:12.698Z",
+      "at": "2026-08-10T17:25:40.800Z",
       "event": "subscriber_ready_gate",
       "phase": "release_gate",
       "verdict": "NOT READY",
-      "findingCount": 7,
-      "evidenceRunId": "gate-2026-08-10T17-26-41-935Z"
+      "findingCount": 4,
+      "evidenceRunId": "gate-2026-08-10T17-25-32-476Z"
     },
     {
-      "at": "2026-08-10T17:45:27.943Z",
-      "event": "item_added",
+      "at": "2026-08-10T17:25:51.996Z",
+      "event": "phase_set",
+      "phase": "prioritize",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T17:25:51.996Z",
+      "event": "prioritize",
+      "phase": "prioritize",
+      "top": "WB-012"
+    },
+    {
+      "at": "2026-08-10T17:26:06.552Z",
+      "event": "repair_retest_passed",
+      "phase": "retest",
+      "workItemId": "WB-012"
+    },
+    {
+      "at": "2026-08-10T17:26:06.582Z",
+      "event": "phase_set",
       "phase": "release_gate",
-      "id": "WB-012",
-      "severity": "P0"
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T17:26:13.652Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 1,
+      "evidenceRunId": "gate-2026-08-10T17-26-06-582Z"
+    },
+    {
+      "at": "2026-08-10T17:26:43.186Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T17:26:50.301Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "SUBSCRIBER READY",
+      "findingCount": 0,
+      "evidenceRunId": "gate-2026-08-10T17-26-43-186Z"
+    },
+    {
+      "at": "2026-08-10T20:27:16.096Z",
+      "event": "failed_review_routed",
+      "phase": "fix",
+      "workItemId": "WB-014",
+      "severity": "P0",
+      "originPhase": "release_gate",
+      "blocksSubscriberReady": true
+    },
+    {
+      "at": "2026-08-10T20:27:16.131Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T20:27:16.146Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 17,
+      "evidenceRunId": "gate-2026-08-10T20-27-16-131Z"
     }
   ],
   "notes": [
-    "Discovery refreshed from Engineering OS + static inventory.",
-    "Active campaign: signalterrain \u2192 apps/signalterrain",
-    "Synced engineering tasks: imported=0 skipped=5",
-    "Next: prioritize, then next.",
-    "Fixed merge conflict markers; SignalTerrain MSP active (WB-013)."
+    "Sheds Subscriber Ready autonomous pilot active.",
+    "Today\u2019s Search recovered from feature/sheds-todays-search@506fb85.",
+    "Platform eng items tagged campaign=platform; Sheds work is campaign=sheds."
   ]
 }

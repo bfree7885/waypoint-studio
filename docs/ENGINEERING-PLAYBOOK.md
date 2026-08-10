@@ -1140,3 +1140,30 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    center even when heat is skipped; glance softens “Best window” without weather;
    new CDP cold-start test; sheds campaign forces `browser-smoke`; probe
    `probeLiveInputColdStart`; Red Team Attack 6 flags optional live gaps.
+
+### 2026-08-10 — Sheds dual false-positive SUBSCRIBER READY (visual/dynamic)
+
+**Branch:** `fix/sheds-board-false-positive`  
+**Surface:** Product Board gate + Sheds map chrome / location markers  
+**Owner:** Rejected prior SUBSCRIBER READY @ `d5f1692` (second false positive)
+
+1. **Root cause of both board passes.** Policy attestations could pass with thin
+   notes (“CDP screenshots”); dimension criteria auto-`covered`; Commercial/Red
+   Team rubber-stamped attestation theater; no required screenshot *analysis*,
+   no dynamic marker-stability sampling, no commercial visual gate (pricing
+   support + finished vs prototype), and production visual defects were never
+   asserted. Escaped class: generating screenshots ≠ review.
+2. **Production defects missed.** Dual similar lime dots (user pulse + search
+   target); CSS `transform:scale` pulse oscillating screen bounds under stable
+   GPS; truncated/cramped status + Today’s Search; unexplained FAB icon stack;
+   ethics sheet showing Leaflet zoom through copy; map dominating product
+   hierarchy.
+3. **Board permanent repair.** `visual-review.mjs` + `dynamic-visual.mjs` +
+   `commercial-visual.mjs`; gate criteria `screenshot-analysis`,
+   `dynamic-visual`, `production-inspection`; attestation anti-theater rules;
+   Red Team attacks 7–10; sheds remap + `automation/test-sheds-visual-board.mjs`;
+   dimensions no longer auto-covered; fail-review routes visual/dynamic P0s.
+4. **Sheds location SOT.** Explicit `LOCATION_KIND` (USER_GPS /
+   USER_APPROXIMATE / SEARCH_TARGET / MAP_CENTER); distinct user vs amber “Next”
+   search marker; GPS jitter filter; opacity-only pulse; labeled FAB rail;
+   sheets hide map chrome at z-index 2400.

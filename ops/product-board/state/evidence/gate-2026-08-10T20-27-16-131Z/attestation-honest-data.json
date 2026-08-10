@@ -1,0 +1,17 @@
+{
+  "id": "attestation-honest-data",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.142Z",
+  "status": "fail",
+  "summary": "Attested fail by data-reliability: Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "honest-data",
+    "role": "data-reliability",
+    "verdict": "fail",
+    "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+    "campaign": "sheds",
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

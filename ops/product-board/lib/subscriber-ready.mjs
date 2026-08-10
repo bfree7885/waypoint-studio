@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
 import { readJson, nowIso } from "./io.mjs";
-import { SUBSCRIBER_READY_GATE, REPO_ROOT } from "./paths.mjs";
+import { SUBSCRIBER_READY_GATE, REPO_ROOT, getStateDir } from "./paths.mjs";
 import { openBlockingItems, loadBacklog } from "./backlog.mjs";
 import { computeVerdict, VERDICTS, isExactVerdict } from "./verdicts.mjs";
 import {
@@ -19,6 +19,8 @@ import {
 import { runStaticProbes } from "./probes.mjs";
 import { runCommercialReview } from "./commercial-reviewer.mjs";
 import { runRedTeam } from "./red-team.mjs";
+import { evaluateScreenshotAnalysis } from "./visual-review.mjs";
+import { evaluateDynamicVisual, isMapOrGeoCampaign } from "./dynamic-visual.mjs";
 import { campaignCommandRemap, campaignForceRequired } from "./campaigns.mjs";
 
 /**
@@ -314,15 +316,98 @@ export function evaluateSubscriberReady({
         });
       }
     } else if (criterion.kind === "dimension") {
-      // Coverage marker — satisfied when probes/commands/policy touch the dimension.
-      result.status = "covered";
-      result.detail = `Dimension tracked: ${criterion.dimension || criterion.id}`;
+      // Dimensions are NOT auto-satisfied. Require linked attestation notes or
+      // matching command/probe evidence — escaped class: "covered" without review.
+      const linkedAtt = attestationFor(
+        criterion.attestationCriterion ||
+          (criterion.dimension === "visual_consistency"
+            ? "visual-review"
+            : criterion.dimension === "mobile_tablet_desktop"
+              ? "visual-review"
+              : criterion.dimension === "commercial_usefulness"
+                ? "commercial-review"
+                : null),
+        campaignId
+      );
+      const relatedPass = checkResults.some(
+        (c) =>
+          c.dimension === criterion.dimension &&
+          ["pass", "covered"].includes(c.status) &&
+          c.id !== criterion.id
+      );
+      if (linkedAtt?.verdict === "pass" || relatedPass) {
+        result.status = "covered";
+        result.detail = `Dimension tracked with supporting evidence: ${criterion.dimension || criterion.id}`;
+      } else {
+        result.status = "manual_required";
+        result.detail = `Dimension ${criterion.dimension || criterion.id} lacks supporting attestation/evidence — not auto-covered.`;
+        if (result.required) {
+          findings.push({
+            id: criterion.id,
+            severity: criterion.defaultSeverity || "P1",
+            message: result.detail
+          });
+        }
+      }
     }
 
     checkResults.push(result);
   }
 
   const attStatus = requiredAttestationsStatus(gate.criteria || [], campaignId);
+  const commercialAtt = attestationFor("commercial-review", campaignId);
+  const commercialVisualAnswers =
+    commercialAtt?.commercialVisual ||
+    state?.commercialVisualAnswers ||
+    null;
+
+  // Load latest visual/dynamic evidence packages written by campaign probes
+  const visualPkg = loadLatestJsonEvidence("screenshot-analysis");
+  const dynamicPkg = loadLatestJsonEvidence("dynamic-visual");
+  if (visualPkg) {
+    const visualEval = evaluateScreenshotAnalysis(visualPkg);
+    if (evidenceRun) {
+      addEvidenceEntry(evidenceRun, {
+        id: "screenshot-analysis",
+        kind: "screenshot_analysis",
+        status: visualEval.status,
+        summary: visualEval.summary,
+        data: visualEval
+      });
+    }
+    for (const f of visualEval.findings) {
+      if (["P0", "P1"].includes(f.severity)) findings.push(f);
+    }
+  } else if (isMapOrGeoCampaign(campaignId) || campaignId === "sheds") {
+    findings.push({
+      id: "screenshot-analysis-missing",
+      severity: "P0",
+      message:
+        "No screenshot_analysis evidence package — required before SUBSCRIBER READY for map/geo campaigns."
+    });
+  }
+  if (dynamicPkg) {
+    const dynEval = evaluateDynamicVisual(dynamicPkg);
+    if (evidenceRun) {
+      addEvidenceEntry(evidenceRun, {
+        id: "dynamic-visual",
+        kind: "dynamic_visual_review",
+        status: dynEval.status,
+        summary: dynEval.summary,
+        data: dynEval
+      });
+    }
+    for (const f of dynEval.findings) {
+      if (["P0", "P1"].includes(f.severity)) findings.push(f);
+    }
+  } else if (isMapOrGeoCampaign(campaignId) || campaignId === "sheds") {
+    findings.push({
+      id: "dynamic-visual-missing",
+      severity: "P0",
+      message:
+        "No dynamic_visual_review evidence package — required for map/location stability before SUBSCRIBER READY."
+    });
+  }
 
   const commercial = runCommercialReview({
     backlogFindings: findings.filter((f) =>
@@ -331,7 +416,8 @@ export function evaluateSubscriberReady({
     probeFindings: probeResult.findings,
     gateChecks: checkResults,
     attestations: attStatus,
-    forced: commercialForced
+    forced: commercialForced,
+    commercialVisualAnswers
   });
   if (evidenceRun) {
     addEvidenceEntry(evidenceRun, {
@@ -399,8 +485,15 @@ export function evaluateSubscriberReady({
     ? evidenceCompleteness(evidenceRun.manifest, requiredKinds)
     : { complete: false, missing: requiredKinds, present: [] };
 
+  // Visual/dynamic findings already folded into findings → affect verdict via p0/required
+  const visualDynamicBlockers = findings.some((f) =>
+    /^(visual:|dynamic:|screenshot-analysis|dynamic-visual|commercial-visual)/i.test(
+      f.id
+    )
+  );
+
   const verdict = computeVerdict({
-    p0p1Open: p0p1.length > 0 || repairQueue.length > 0,
+    p0p1Open: p0p1.length > 0 || repairQueue.length > 0 || visualDynamicBlockers,
     requiredCheckFailed: requiredCheckFailed || policyFailed,
     fakeAsReal: probeResult.fakeAsReal,
     primaryWorkflowBroken: findings.some(
@@ -497,4 +590,19 @@ export function evaluateFixture({ items = [], state = {}, ...opts }) {
     persistEvidence: false,
     ...opts
   });
+}
+
+function loadLatestJsonEvidence(stem) {
+  const dir = path.join(getStateDir(), "visual-evidence");
+  if (!fs.existsSync(dir)) return null;
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => f.startsWith(stem) && f.endsWith(".json"))
+    .sort();
+  if (!files.length) return null;
+  try {
+    return JSON.parse(fs.readFileSync(path.join(dir, files[files.length - 1]), "utf8"));
+  } catch {
+    return null;
+  }
 }

@@ -1,0 +1,397 @@
+{
+  "verdict": "NOT READY",
+  "findings": [
+    {
+      "id": "open-p0-p1-work",
+      "severity": "P0",
+      "message": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+      "items": [
+        "WB-014"
+      ]
+    },
+    {
+      "id": "open-repair-queue",
+      "severity": "P1",
+      "message": "Failed-review repair queue is non-empty",
+      "items": [
+        "WB-014"
+      ]
+    },
+    {
+      "id": "dim-loading-states",
+      "severity": "P1",
+      "message": "Dimension loading_empty_error lacks supporting attestation/evidence — not auto-covered."
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "severity": "P1",
+      "message": "Dimension mobile_tablet_desktop lacks supporting attestation/evidence — not auto-covered."
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "severity": "P1",
+      "message": "Dimension contrast lacks supporting attestation/evidence — not auto-covered."
+    },
+    {
+      "id": "dim-network-perf-security",
+      "severity": "P1",
+      "message": "Dimension network_api lacks supporting attestation/evidence — not auto-covered."
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "severity": "P1",
+      "message": "Dimension content_quality lacks supporting attestation/evidence — not auto-covered."
+    },
+    {
+      "id": "no-fake-functionality",
+      "severity": "P0",
+      "message": "Attestation failed: No fake functionality / placeholders-as-finished"
+    },
+    {
+      "id": "primary-workflows",
+      "severity": "P1",
+      "message": "Attestation failed: Primary subscriber workflows complete"
+    },
+    {
+      "id": "honest-data",
+      "severity": "P0",
+      "message": "Attestation failed: Live / estimate / placeholder honesty"
+    },
+    {
+      "id": "visual-review",
+      "severity": "P1",
+      "message": "Attestation failed: Visual review pass for scoped surface"
+    },
+    {
+      "id": "commercial-review",
+      "severity": "P0",
+      "message": "Attestation failed: Commercial reviewer — cancel/refund/trust test"
+    },
+    {
+      "id": "red-team-pass",
+      "severity": "P0",
+      "message": "Attestation failed: Red Team independent disproof pass"
+    },
+    {
+      "id": "screenshot-analysis-missing",
+      "severity": "P0",
+      "message": "No screenshot_analysis evidence package — required before SUBSCRIBER READY for map/geo campaigns."
+    },
+    {
+      "id": "dynamic-visual-missing",
+      "severity": "P0",
+      "message": "No dynamic_visual_review evidence package — required for map/location stability before SUBSCRIBER READY."
+    },
+    {
+      "id": "commercial-cancel-risk",
+      "severity": "P0",
+      "message": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
+    },
+    {
+      "id": "red-team-disproof",
+      "severity": "P0",
+      "message": "Red Team disproved readiness with 2 finding(s).",
+      "items": [
+        "redteam:backlog:WB-014",
+        "redteam:commercial-cancel"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "board-blockers",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "platform-foundation",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "production-links",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "production-build",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "production-inspection",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "browser-smoke",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "screenshot-analysis",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "dynamic-visual",
+      "status": "skipped",
+      "required": true
+    },
+    {
+      "id": "a11y-smoke",
+      "status": "skipped",
+      "required": false
+    },
+    {
+      "id": "probe-placeholders",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-html-leakage",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-dead-controls",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-responsive",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-privacy",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "dim-loading-states",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "dim-network-perf-security",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "no-fake-functionality",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "primary-workflows",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "honest-data",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "visual-review",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "commercial-review",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "red-team-pass",
+      "status": "fail",
+      "required": true
+    }
+  ],
+  "commercial": {
+    "status": "fail",
+    "wouldCancel": true
+  },
+  "redTeam": {
+    "status": "fail",
+    "disproved": true
+  },
+  "attestations": {
+    "complete": false,
+    "pending": [],
+    "failed": [
+      {
+        "id": "no-fake-functionality",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "no-fake-functionality",
+          "role": "product-director",
+          "verdict": "fail",
+          "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      },
+      {
+        "id": "primary-workflows",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "primary-workflows",
+          "role": "product-director",
+          "verdict": "fail",
+          "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      },
+      {
+        "id": "honest-data",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "honest-data",
+          "role": "data-reliability",
+          "verdict": "fail",
+          "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      },
+      {
+        "id": "visual-review",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "visual-review",
+          "role": "ux-ui-lead",
+          "verdict": "fail",
+          "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      },
+      {
+        "id": "commercial-review",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "commercial-review",
+          "role": "commercial-subscriber",
+          "verdict": "fail",
+          "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+          "campaign": "sheds",
+          "commercialVisual": {
+            "wouldSupportPricing": false,
+            "productFeel": "prototype"
+          },
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      },
+      {
+        "id": "red-team-pass",
+        "attestation": {
+          "id": "AT-007",
+          "criterionId": "red-team-pass",
+          "role": "red-team",
+          "verdict": "fail",
+          "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+          "campaign": "sheds",
+          "at": "2026-08-10T18:00:00.000Z"
+        }
+      }
+    ],
+    "passed": [],
+    "byCriterion": {
+      "no-fake-functionality": {
+        "id": "AT-007",
+        "criterionId": "no-fake-functionality",
+        "role": "product-director",
+        "verdict": "fail",
+        "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      },
+      "primary-workflows": {
+        "id": "AT-007",
+        "criterionId": "primary-workflows",
+        "role": "product-director",
+        "verdict": "fail",
+        "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      },
+      "honest-data": {
+        "id": "AT-007",
+        "criterionId": "honest-data",
+        "role": "data-reliability",
+        "verdict": "fail",
+        "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      },
+      "visual-review": {
+        "id": "AT-007",
+        "criterionId": "visual-review",
+        "role": "ux-ui-lead",
+        "verdict": "fail",
+        "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      },
+      "commercial-review": {
+        "id": "AT-007",
+        "criterionId": "commercial-review",
+        "role": "commercial-subscriber",
+        "verdict": "fail",
+        "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+        "campaign": "sheds",
+        "commercialVisual": {
+          "wouldSupportPricing": false,
+          "productFeel": "prototype"
+        },
+        "at": "2026-08-10T18:00:00.000Z"
+      },
+      "red-team-pass": {
+        "id": "AT-007",
+        "criterionId": "red-team-pass",
+        "role": "red-team",
+        "verdict": "fail",
+        "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+        "campaign": "sheds",
+        "at": "2026-08-10T18:00:00.000Z"
+      }
+    }
+  },
+  "evidenceCompleteness": {
+    "complete": false,
+    "missing": [
+      "automated_tests",
+      "screenshot_analysis",
+      "dynamic_visual_review",
+      "production_url"
+    ],
+    "present": [
+      "static_probe",
+      "playwright_browser",
+      "attestation",
+      "commercial_review",
+      "red_team"
+    ]
+  },
+  "runId": "gate-2026-08-10T20-27-16-131Z",
+  "finalizedAt": "2026-08-10T20:27:16.146Z",
+  "entryCount": 11
+}

@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "value": {
+    "build": "d5f1692",
+    "userPulse": 1,
+    "targetDot": 1,
+    "targetRing": 1,
+    "leafletCircles": 4,
+    "here": "You are here \u00b7 \u00b135 m\n\u00b135 m\nSE \u00b7 586 m",
+    "suggest": "TODAY\u2019S SEARCH\nMorning looks workable\nMorning \u00b7 SE \u00b7 586 m\nConfidence: Medium",
+    "fabs": [
+      {
+        "id": "btn-locate",
+        "label": "Locate me"
+      },
+      {
+        "id": "btn-recenter",
+        "label": "Recenter on me"
+      },
+      {
+        "id": "btn-add-obs-fab",
+        "label": "Add note"
+      },
+      {
+        "id": "btn-track",
+        "label": "Start track"
+      },
+      {
+        "id": "btn-more",
+        "label": "Tools"
+      }
+    ],
+    "consoleErrors": []
+  }
+}

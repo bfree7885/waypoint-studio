@@ -1,6 +1,8 @@
 # Product Board (Agent Ops)
 
 **Standing bar: SUBSCRIBER READY** — never approve because “tests passed.”
+**Screenshot generation ≠ visual review.** Map/geo campaigns require dynamic
+marker-stability evidence on the production build receiving the verdict.
 
 Exact verdicts:
 

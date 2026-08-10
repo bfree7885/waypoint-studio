@@ -59,7 +59,10 @@
     "static_probe",
     "commercial_review",
     "red_team",
-    "playwright_browser"
+    "playwright_browser",
+    "screenshot_analysis",
+    "dynamic_visual_review",
+    "production_url"
   ],
   "criteria": [
     {
@@ -101,8 +104,19 @@
       "required": true,
       "defaultSeverity": "P1",
       "dimension": "functionality",
-      "evidenceKind": "automated_tests",
+      "evidenceKind": "production_url",
       "description": "Build/deploy integrity checks."
+    },
+    {
+      "id": "production-inspection",
+      "title": "Production-first inspection (URL + build + workflows)",
+      "kind": "command",
+      "command": "node automation/verify-production-build.mjs",
+      "required": false,
+      "defaultSeverity": "P0",
+      "dimension": "functionality",
+      "evidenceKind": "production_inspection",
+      "description": "Final SUBSCRIBER READY cannot be local-only. Campaign remap required for map/geo."
     },
     {
       "id": "browser-smoke",
@@ -114,6 +128,28 @@
       "dimension": "console",
       "evidenceKind": "console",
       "description": "Optional in constrained environments; required before claiming full browser readiness. Needs local server + ws."
+    },
+    {
+      "id": "screenshot-analysis",
+      "title": "Screenshot-first visual analysis (required viewports)",
+      "kind": "command",
+      "command": "node -e \"console.log('screenshot-analysis: campaign remap required'); process.exit(1)\"",
+      "required": false,
+      "defaultSeverity": "P0",
+      "dimension": "visual_consistency",
+      "evidenceKind": "screenshot_analysis",
+      "description": "Generating screenshots ≠ review. Must analyze 375/430/tablet/laptop/1440/1728 with explicit observations."
+    },
+    {
+      "id": "dynamic-visual",
+      "title": "Dynamic visual review (marker stability over time)",
+      "kind": "command",
+      "command": "node -e \"console.log('dynamic-visual: campaign remap required'); process.exit(1)\"",
+      "required": false,
+      "defaultSeverity": "P0",
+      "dimension": "visual_consistency",
+      "evidenceKind": "dynamic_visual_review",
+      "description": "Observe geo/map state over time; assert no duplicate user markers; stable input → stable representation."
     },
     {
       "id": "a11y-smoke",
@@ -177,7 +213,8 @@
       "kind": "dimension",
       "dimension": "loading_empty_error",
       "required": true,
-      "description": "Covered via QA attestation + product standards."
+      "attestationCriterion": "honest-data",
+      "description": "Requires honest-data attestation — not auto-covered."
     },
     {
       "id": "dim-mobile-tablet-desktop",
@@ -185,7 +222,8 @@
       "kind": "dimension",
       "dimension": "mobile_tablet_desktop",
       "required": true,
-      "description": "Requires visual/mobile evidence before SUBSCRIBER READY."
+      "attestationCriterion": "visual-review",
+      "description": "Requires screenshot-analysis evidence + visual attestation — not auto-covered."
     },
     {
       "id": "dim-contrast-keyboard",
@@ -193,7 +231,8 @@
       "kind": "dimension",
       "dimension": "contrast",
       "required": true,
-      "description": "A11y attestation dimension."
+      "attestationCriterion": "primary-workflows",
+      "description": "A11y attestation dimension — not auto-covered."
     },
     {
       "id": "dim-network-perf-security",
@@ -201,7 +240,8 @@
       "kind": "dimension",
       "dimension": "network_api",
       "required": true,
-      "description": "Covered by production checks + security attestation."
+      "attestationCriterion": "red-team-pass",
+      "description": "Covered by production checks + security attestation — not auto-covered."
     },
     {
       "id": "dim-content-visual-discovery",
@@ -209,7 +249,8 @@
       "kind": "dimension",
       "dimension": "content_quality",
       "required": true,
-      "description": "Product + UX attestations."
+      "attestationCriterion": "visual-review",
+      "description": "Product + UX attestations with screenshot analysis — not auto-covered."
     },
     {
       "id": "no-fake-functionality",
@@ -245,7 +286,7 @@
       "required": true,
       "defaultSeverity": "P1",
       "dimension": "visual_consistency",
-      "description": "UX/UI Lead attestation; failures route to repair."
+      "description": "UX/UI Lead attestation with screenshot_analysis + dynamic_visual evidenceRefs; failures route to repair."
     },
     {
       "id": "commercial-review",
@@ -254,7 +295,7 @@
       "required": true,
       "defaultSeverity": "P0",
       "dimension": "commercial_usefulness",
-      "description": "Independent commercial attestation. Paid today — would they cancel?"
+      "description": "Independent commercial attestation + commercial visual gate (pricing support + finished vs prototype)."
     },
     {
       "id": "red-team-pass",

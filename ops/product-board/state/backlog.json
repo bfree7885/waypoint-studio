@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T18:50:00.000Z",
+  "updatedAt": "2026-08-10T20:40:00.000Z",
   "policy": {
     "priorities": [
       "P0",
@@ -367,6 +367,34 @@
         }
       ],
       "campaign": "signalterrain",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-014",
+      "title": "Repair: Sheds dual markers, oscillation, chrome prototype quality",
+      "severity": "P0",
+      "area": "review",
+      "status": "fix",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "Owner rejected SUBSCRIBER READY @ d5f1692 (2nd false positive). Production: dual similar location indicators (user + search target), CSS scale-pulse oscillation, truncated/cramped chrome, unexplained FAB stack, ethics overlay showing map controls, map-dominating hierarchy. Board missed because attestations cited screenshots without analysis; no dynamic visual; commercial visual gate absent.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T20:27:16.096Z",
+      "updatedAt": "2026-08-10T20:27:16.096Z",
+      "failureOrigin": {
+        "phase": "release_gate",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T20:27:16.096Z",
+        "findings": "Owner rejected SUBSCRIBER READY @ d5f1692 (2nd false positive). Production: dual similar location indicators (user + search target), CSS scale-pulse oscillation, truncated/cramped chrome, unexplained FAB stack, ethics overlay showing map controls, map-dominating hierarchy. Board missed because attestations cited screenshots without analysis; no dynamic visual; commercial visual gate absent."
+      },
+      "evidence": [],
+      "campaign": "sheds",
       "blocksSubscriberReady": true
     }
   ]

@@ -108,6 +108,83 @@ export function runRedTeam({
     });
   }
 
+  // Attack 7: visual attestation theater — screenshots cited without analysis evidence
+  // Escaped class (Sheds ×2): visual-review attested pass after "CDP screenshots" while
+  // production showed dual markers, truncation, unexplained FABs, prototype chrome.
+  const visualAtt = attestations?.byCriterion?.["visual-review"];
+  const hasScreenshotAnalysis = (qaChecks || []).some(
+    (c) =>
+      (c.id === "screenshot-analysis" || c.evidenceKind === "screenshot_analysis") &&
+      c.status === "pass"
+  );
+  if (visualAtt?.verdict === "pass" && !hasScreenshotAnalysis) {
+    disproofs.push({
+      id: "redteam:visual-attestation-without-analysis",
+      severity: "P0",
+      message:
+        "Visual review attested pass without passing screenshot-analysis evidence (per-viewport written observations). Generating screenshots ≠ review."
+    });
+  }
+
+  // Attack 8: map/geo campaign without dynamic visual pass
+  const hasDynamic = (qaChecks || []).some(
+    (c) =>
+      (c.id === "dynamic-visual" || c.evidenceKind === "dynamic_visual_review") &&
+      c.status === "pass"
+  );
+  const mapLike = (qaChecks || []).some((c) =>
+    /sheds|map|geo|location|today/i.test(`${c.id} ${c.title || ""} ${c.command || ""}`)
+  );
+  if (
+    (mapLike || attestations?.byCriterion?.["primary-workflows"]?.campaign === "sheds") &&
+    visualAtt?.verdict === "pass" &&
+    !hasDynamic
+  ) {
+    disproofs.push({
+      id: "redteam:missing-dynamic-visual",
+      severity: "P0",
+      message:
+        "Map/location surface attested visually ready without dynamic visual review (marker stability over time, geo state transitions)."
+    });
+  }
+
+  // Attack 9: production-first — local-only SUBSCRIBER READY disproof
+  const hasProductionInspection = (qaChecks || []).some(
+    (c) =>
+      (c.id === "production-build" ||
+        c.id === "production-inspection" ||
+        c.evidenceKind === "production_inspection" ||
+        c.evidenceKind === "production_url") &&
+      c.status === "pass"
+  );
+  if (
+    attestations?.complete &&
+    visualAtt?.verdict === "pass" &&
+    !hasProductionInspection
+  ) {
+    disproofs.push({
+      id: "redteam:visual-not-production",
+      severity: "P0",
+      message:
+        "Visual/policy attestations complete without production inspection evidence — final SUBSCRIBER READY cannot be local-only."
+    });
+  }
+
+  // Attack 10: commercial visual gate unanswered while commercial attested
+  const commercialAtt = attestations?.byCriterion?.["commercial-review"];
+  if (
+    commercialAtt?.verdict === "pass" &&
+    commercial &&
+    (!commercial.visualGate || commercial.visualGate.status !== "pass")
+  ) {
+    disproofs.push({
+      id: "redteam:commercial-visual-unanswered",
+      severity: "P0",
+      message:
+        "Commercial attestation pass without commercial visual gate (pricing-page support + finished vs prototype)."
+    });
+  }
+
   let status = "pending";
   let disproved = false;
   let summary =

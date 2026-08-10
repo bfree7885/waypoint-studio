@@ -1,0 +1,17 @@
+{
+  "id": "attestation-primary-workflows",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.142Z",
+  "status": "fail",
+  "summary": "Attested fail by product-director: Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "primary-workflows",
+    "role": "product-director",
+    "verdict": "fail",
+    "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+    "campaign": "sheds",
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

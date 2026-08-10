@@ -6,7 +6,7 @@
       "id": "sheds",
       "title": "Sheds",
       "productPath": "apps/shed-hunting",
-      "status": "subscriber-ready-pilot-complete"
+      "status": "not-subscriber-ready-visual-false-positive"
     },
     {
       "id": "signalterrain",

@@ -199,11 +199,26 @@ await testAsync("full attestations + commercial pass + red-team pass → SUBSCRI
   await withTempState(async () => {
     const gateDef = subscriber.loadSubscriberReadyGate();
     for (const c of gateDef.criteria.filter((x) => x.kind === "policy")) {
+      const notes =
+        c.id === "visual-review"
+          ? "Observed all required viewports: no clipping, no truncation, no overlap, clear hierarchy, explained controls, stable markers, intentional commercial density, map-vs-product balance, next-action clarity."
+          : "Fixture attestation for self-test with enough detail for policy criteria.";
       attestations.recordAttestation({
         criterionId: c.id,
         role: "release-manager",
         verdict: "pass",
-        notes: "Fixture attestation for self-test"
+        notes,
+        evidenceRefs:
+          c.id === "visual-review"
+            ? [
+                { kind: "screenshot_analysis" },
+                { kind: "dynamic_visual_review" }
+              ]
+            : null,
+        commercialVisual:
+          c.id === "commercial-review"
+            ? { wouldSupportPricing: true, productFeel: "commercial" }
+            : null
       });
     }
     const gate = subscriber.evaluateFixture({
@@ -472,6 +487,148 @@ await testAsync("attest CLI records policy attestation", async () => {
   }
 });
 
+await testAsync("screenshot analysis fails without written observations", async () => {
+  const { evaluateScreenshotAnalysis } = await import("../lib/visual-review.mjs");
+  const empty = evaluateScreenshotAnalysis({
+    screenshotsGenerated: true,
+    productionVerified: true,
+    productionUrl: "https://example.com",
+    buildId: "abc",
+    viewports: []
+  });
+  assert.equal(empty.status, "fail");
+  assert.ok(empty.p0Count >= 1);
+
+  const thin = evaluateScreenshotAnalysis({
+    productionVerified: true,
+    productionUrl: "https://example.com/map/",
+    buildId: "abc1234",
+    viewports: [
+      {
+        id: "mobile-375",
+        width: 375,
+        height: 812,
+        screenshotPath: "/tmp/x.png",
+        observations: "ok",
+        checks: Object.fromEntries(
+          [
+            "clipping","overflow","truncation","overlap","escape","crowdedCorners",
+            "controlPlacement","unexplainedControls","hierarchy","readability",
+            "spacing","density","unusedSpace","mapVsProductHierarchy",
+            "nextActionClarity","intentionalDesign"
+          ].map((k) => [k, "pass"])
+        )
+      }
+    ]
+  });
+  assert.equal(thin.status, "fail");
+  assert.ok(thin.findings.some((f) => /thin-observations|missing-viewport/.test(f.id)));
+});
+
+await testAsync("dynamic visual detects marker screen oscillation", async () => {
+  const { evaluateDynamicVisual } = await import("../lib/dynamic-visual.mjs");
+  const samples = [];
+  for (let i = 0; i < 6; i += 1) {
+    samples.push({
+      t: i * 700,
+      markers: [{ role: "user_location", x: 100 + i * 10, y: 200 + i * 8 }]
+    });
+  }
+  const bad = evaluateDynamicVisual({
+    productionVerified: true,
+    stableInput: true,
+    samples,
+    scenariosCovered: ["initial_load", "geo_acquire", "marker_stability", "resize"]
+  });
+  assert.equal(bad.status, "fail");
+  assert.ok(bad.findings.some((f) => /oscillation|duplicate/.test(f.id)));
+
+  const goodSamples = Array.from({ length: 6 }, (_, i) => ({
+    t: i,
+    markers: [{ role: "user_location", x: 120, y: 240, lat: 40.44, lng: -80 }]
+  }));
+  const good = evaluateDynamicVisual({
+    productionVerified: true,
+    stableInput: true,
+    samples: goodSamples,
+    scenariosCovered: ["initial_load", "geo_acquire", "marker_stability", "resize"]
+  });
+  assert.equal(good.status, "pass");
+});
+
+await testAsync("commercial visual gate fails prototype quality", async () => {
+  const { evaluateCommercialVisual } = await import("../lib/commercial-visual.mjs");
+  const fail = evaluateCommercialVisual({
+    wouldSupportPricing: false,
+    productFeel: "prototype"
+  });
+  assert.equal(fail.status, "fail");
+  assert.equal(fail.wouldCancel, true);
+
+  const pass = evaluateCommercialVisual({
+    wouldSupportPricing: true,
+    productFeel: "commercial"
+  });
+  assert.equal(pass.status, "pass");
+});
+
+await testAsync("visual-review attestation rejects screenshot theater", async () => {
+  await withTempState(async () => {
+    assert.throws(() =>
+      attestations.recordAttestation({
+        criterionId: "visual-review",
+        role: "ux-ui-lead",
+        verdict: "pass",
+        notes: "Mobile/desktop CDP screenshots look fine.",
+        campaign: "sheds"
+      })
+    );
+  });
+});
+
+await testAsync("red team disproves visual pass without screenshot analysis", async () => {
+  const review = redTeam.runRedTeam({
+    qaChecks: [
+      { id: "platform-foundation", kind: "command", status: "pass" }
+    ],
+    attestations: {
+      complete: true,
+      byCriterion: {
+        "visual-review": { verdict: "pass", notes: "screenshots" },
+        "commercial-review": { verdict: "pass" },
+        "primary-workflows": { verdict: "pass", campaign: "sheds" }
+      }
+    },
+    commercial: { wouldCancel: false, visualGate: null }
+  });
+  assert.equal(review.disproved, true);
+  assert.ok(
+    review.disproofs.some((d) =>
+      /visual-attestation-without-analysis|missing-dynamic|commercial-visual/.test(d.id)
+    )
+  );
+});
+
+await testAsync("fail-review routes visual defects to repair queue", async () => {
+  await withTempState(async () => {
+    const state = boardState.loadBoardState();
+    const bl = backlog.loadBacklog();
+    const item = routing.routeFailedReview({
+      state,
+      backlog: bl,
+      title: "Repair: dual location markers + truncation",
+      severity: "P0",
+      findings:
+        "Production shows two user-like dots, oscillating marker, truncated status, unexplained FAB stack.",
+      phase: "visual_review",
+      area: "sheds"
+    });
+    assert.ok(item.id);
+    assert.equal(state.releaseGate.verdict, "NOT READY");
+    assert.ok(state.routing.openRepairQueue.includes(item.id));
+  });
+});
+
 await testAsync("signalterrain campaign is registered with product path + remaps", async () => {
   const { getCampaign, assertCampaignProductExists, campaignCommandRemap, campaignScanRoots } =
     await import("../lib/campaigns.mjs");
@@ -487,6 +644,19 @@ await testAsync("signalterrain campaign is registered with product path + remaps
   assert.ok(
     fs.existsSync(path.join(REPO_ROOT, "automation/verify-signalterrain-production.mjs"))
   );
+});
+
+await testAsync("sheds campaign forces screenshot + dynamic visual commands", async () => {
+  const { campaignCommandRemap, campaignForceRequired } = await import(
+    "../lib/campaigns.mjs"
+  );
+  const remap = campaignCommandRemap("sheds");
+  assert.ok(remap["screenshot-analysis"].includes("test-sheds-visual-board"));
+  assert.ok(remap["dynamic-visual"].includes("dynamic-visual"));
+  const forced = campaignForceRequired("sheds");
+  assert.ok(forced.includes("screenshot-analysis"));
+  assert.ok(forced.includes("dynamic-visual"));
+  assert.ok(forced.includes("production-inspection"));
 });
 
 console.log(`\n${passed} passed, ${failed} failed\n`);
