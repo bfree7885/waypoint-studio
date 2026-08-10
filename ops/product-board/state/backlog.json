@@ -1,10 +1,6 @@
 {
   "version": 1,
-<<<<<<< HEAD
-  "updatedAt": "2026-08-10T17:45:27.943Z",
-=======
-  "updatedAt": "2026-08-10T17:26:06.552Z",
->>>>>>> origin/main
+  "updatedAt": "2026-08-10T18:50:00.000Z",
   "policy": {
     "priorities": [
       "P0",
@@ -30,7 +26,7 @@
       "status": "ready",
       "acceptanceCriteria": [
         "visual_review phase invokes or records automation/capture-platform-visual-regression.mjs for scoped surfaces",
-        "Failures route through fail-review → fix → retest"
+        "Failures route through fail-review \u2192 fix \u2192 retest"
       ],
       "source": "foundation-seed",
       "notes": "Capture tooling exists; not yet orchestrated by the board loop.",
@@ -72,7 +68,7 @@
       "status": "done",
       "acceptanceCriteria": [
         "board.mjs supports recording role attestations for required policy criteria",
-        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0–P2 queue"
+        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0\u2013P2 queue"
       ],
       "source": "foundation-seed",
       "notes": "Implemented: board.mjs attest + state/attestations.json; gate requires policy attestations + Commercial + Red Team.",
@@ -202,17 +198,17 @@
     },
     {
       "id": "WB-008",
-      "title": "Sheds: production deploy of Today’s Search + observation heat",
+      "title": "Sheds: production deploy of Today\u2019s Search + observation heat",
       "severity": "P1",
       "area": "sheds",
       "status": "done",
       "acceptanceCriteria": [
-        "Production /apps/shed-hunting/map/ includes Today’s Search panel",
+        "Production /apps/shed-hunting/map/ includes Today\u2019s Search panel",
         "Observation heat mode present without demo seed data",
-        "verify-sheds-production notes Today’s Search present"
+        "verify-sheds-production notes Today\u2019s Search present"
       ],
       "source": "sheds-pilot-discover",
-      "notes": "Still blocking live SUBSCRIBER READY until Today’s Search is on production (merge/deploy). Local product verified.",
+      "notes": "Still blocking live SUBSCRIBER READY until Today\u2019s Search is on production (merge/deploy). Local product verified.",
       "relatedEngineeringId": null,
       "assignedRole": "qa",
       "createdAt": "2026-08-10T03:35:01.000Z",
@@ -222,7 +218,7 @@
         {
           "at": "2026-08-10T11:56:52.000Z",
           "kind": "production",
-          "notes": "PR #2 merged; production map shows Today’s Search; verify-sheds-production PASS (396608b)."
+          "notes": "PR #2 merged; production map shows Today\u2019s Search; verify-sheds-production PASS (396608b)."
         }
       ],
       "campaign": "sheds",
@@ -240,7 +236,7 @@
         "Attestations possible for primary-workflows + visual-review"
       ],
       "source": "sheds-pilot-discover",
-      "notes": "Primary workflows: locate, Today’s Search, add note, heat modes, tools, ethics/privacy.",
+      "notes": "Primary workflows: locate, Today\u2019s Search, add note, heat modes, tools, ethics/privacy.",
       "relatedEngineeringId": null,
       "assignedRole": "qa",
       "createdAt": "2026-08-10T03:35:01.000Z",
@@ -258,7 +254,7 @@
     },
     {
       "id": "WB-010",
-      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today’s Search on mobile",
+      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today\u2019s Search on mobile",
       "severity": "P1",
       "area": "sheds",
       "status": "done",
@@ -295,7 +291,7 @@
         "Ethics map-provider copy matches tile provider"
       ],
       "source": "commercial-red-team",
-      "notes": "Trust/honesty defect — repaired.",
+      "notes": "Trust/honesty defect \u2014 repaired.",
       "relatedEngineeringId": null,
       "assignedRole": "commercial-subscriber",
       "createdAt": "2026-08-10T10:39:26.000Z",
@@ -307,25 +303,7 @@
     },
     {
       "id": "WB-012",
-<<<<<<< HEAD
-      "title": "Stale Live cyber artifact presented as Live (age >24h)",
-      "severity": "P0",
-      "area": "signalterrain",
-      "status": "in_progress",
-      "acceptanceCriteria": [
-        "Observable fix verified by Product Board retest"
-      ],
-      "source": "manual",
-      "notes": "Production and local previously served July 19 data with trustState Live. Refresh engine + client effectiveTrust + production freshness check required.",
-      "relatedEngineeringId": null,
-      "assignedRole": null,
-      "createdAt": "2026-08-10T17:45:27.943Z",
-      "updatedAt": "2026-08-10T18:39:23.981Z",
-      "failureOrigin": null,
-      "evidence": [],
-      "campaign": "signalterrain",
-=======
-      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "title": "Sheds Today\u2019s Search skipped map-center weather on cold start",
       "severity": "P1",
       "area": "review",
       "status": "done",
@@ -336,7 +314,7 @@
         "Evidence recorded on the work item"
       ],
       "source": "failed-review-routing",
-      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today\u2019s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
       "relatedEngineeringId": null,
       "assignedRole": "senior-software-engineer",
       "createdAt": "2026-08-10T15:14:06.255Z",
@@ -345,7 +323,7 @@
         "phase": "release_gate",
         "relatedItemId": null,
         "routedAt": "2026-08-10T15:14:06.255Z",
-        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today\u2019s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
       },
       "evidence": [
         {
@@ -359,7 +337,7 @@
     },
     {
       "id": "WB-013",
-      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "title": "Sheds Today\u2019s Search skipped map-center weather on cold start",
       "severity": "P1",
       "area": "review",
       "status": "done",
@@ -370,7 +348,7 @@
         "Evidence recorded on the work item"
       ],
       "source": "failed-review-routing",
-      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today\u2019s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
       "relatedEngineeringId": null,
       "assignedRole": "senior-software-engineer",
       "createdAt": "2026-08-10T16:52:24.234Z",
@@ -379,7 +357,7 @@
         "phase": "fix",
         "relatedItemId": null,
         "routedAt": "2026-08-10T16:52:24.234Z",
-        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today\u2019s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
       },
       "evidence": [
         {
@@ -389,7 +367,6 @@
         }
       ],
       "campaign": null,
->>>>>>> origin/main
       "blocksSubscriberReady": true
     }
   ]
