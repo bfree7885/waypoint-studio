@@ -1,0 +1,17 @@
+{
+  "id": "attestation-no-fake-functionality",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.156Z",
+  "status": "pass",
+  "summary": "Attested pass by product-director: MSP surfaces: live brief uses data/cyber/live.json only; samples labeled; effectiveTrust prevents Live-on-stale. Verified local+production 2026-08-10.",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "no-fake-functionality",
+    "role": "product-director",
+    "verdict": "pass",
+    "notes": "MSP surfaces: live brief uses data/cyber/live.json only; samples labeled; effectiveTrust prevents Live-on-stale. Verified local+production 2026-08-10.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.232Z"
+  }
+}

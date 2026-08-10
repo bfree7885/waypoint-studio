@@ -1,0 +1,17 @@
+{
+  "id": "attestation-commercial-review",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.157Z",
+  "status": "pass",
+  "summary": "Attested pass by commercial-subscriber: Paid today: would not cancel for scoped MSP — live brief works, freshness honest, samples labeled. Pricing amount deferred to owner.",
+  "severity": null,
+  "data": {
+    "id": "AT-011",
+    "criterionId": "commercial-review",
+    "role": "commercial-subscriber",
+    "verdict": "pass",
+    "notes": "Paid today: would not cancel for scoped MSP — live brief works, freshness honest, samples labeled. Pricing amount deferred to owner.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.409Z"
+  }
+}

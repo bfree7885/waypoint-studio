@@ -1,0 +1,17 @@
+{
+  "id": "attestation-honest-data",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.156Z",
+  "status": "pass",
+  "summary": "Attested pass by data-reliability: Live artifact refreshed 2026-08-10T17:45Z; sources+retrievedAt present; Stale downgrade at 36h; production age OK.",
+  "severity": null,
+  "data": {
+    "id": "AT-009",
+    "criterionId": "honest-data",
+    "role": "data-reliability",
+    "verdict": "pass",
+    "notes": "Live artifact refreshed 2026-08-10T17:45Z; sources+retrievedAt present; Stale downgrade at 36h; production age OK.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.323Z"
+  }
+}

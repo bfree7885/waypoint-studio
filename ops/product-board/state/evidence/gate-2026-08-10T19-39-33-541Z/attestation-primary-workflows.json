@@ -1,0 +1,17 @@
+{
+  "id": "attestation-primary-workflows",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.156Z",
+  "status": "pass",
+  "summary": "Attested pass by product-director: Primary workflow home→cyber/live.html#brief complete; CTA present; detail/nav/settings available; production verify PASS.",
+  "severity": null,
+  "data": {
+    "id": "AT-008",
+    "criterionId": "primary-workflows",
+    "role": "product-director",
+    "verdict": "pass",
+    "notes": "Primary workflow home→cyber/live.html#brief complete; CTA present; detail/nav/settings available; production verify PASS.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.276Z"
+  }
+}

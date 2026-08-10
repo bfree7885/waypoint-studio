@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-10T17:25:32.447Z",
+  "updatedAt": "2026-08-10T19:39:33.453Z",
   "records": [
     {
       "id": "AT-006",
@@ -55,6 +55,60 @@
       "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
       "campaign": "sheds",
       "at": "2026-08-10T17:25:32.447Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "pass",
+      "notes": "MSP surfaces: live brief uses data/cyber/live.json only; samples labeled; effectiveTrust prevents Live-on-stale. Verified local+production 2026-08-10.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.232Z"
+    },
+    {
+      "id": "AT-008",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "pass",
+      "notes": "Primary workflow home→cyber/live.html#brief complete; CTA present; detail/nav/settings available; production verify PASS.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.276Z"
+    },
+    {
+      "id": "AT-009",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "pass",
+      "notes": "Live artifact refreshed 2026-08-10T17:45Z; sources+retrievedAt present; Stale downgrade at 36h; production age OK.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.323Z"
+    },
+    {
+      "id": "AT-010",
+      "criterionId": "visual-review",
+      "role": "visual-reviewer",
+      "verdict": "pass",
+      "notes": "Home MSP focus + live trust strip/stale warn CSS reviewed on desktop width; primary CTA clear; no placeholder UI.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.365Z"
+    },
+    {
+      "id": "AT-011",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "pass",
+      "notes": "Paid today: would not cancel for scoped MSP — live brief works, freshness honest, samples labeled. Pricing amount deferred to owner.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.409Z"
+    },
+    {
+      "id": "AT-012",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "pass",
+      "notes": "Independent disproof attempted: prior Live-on-stale P0 reproduced then fixed (refresh+effectiveTrust+prod verify). No remaining scoped disproof for frozen MSP.",
+      "campaign": "signalterrain",
+      "at": "2026-08-10T19:39:33.453Z"
     }
   ]
 }

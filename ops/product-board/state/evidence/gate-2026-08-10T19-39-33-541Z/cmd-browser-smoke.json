@@ -1,0 +1,13 @@
+{
+  "id": "cmd-browser-smoke",
+  "kind": "console",
+  "at": "2026-08-10T19:39:41.594Z",
+  "status": "pass",
+  "summary": "Browser smoke (console/network journeys): pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/smoke-signalterrain-msp.mjs",
+    "exitCode": 0,
+    "output": "=== st-home http://127.0.0.1:8080/apps/signalterrain/ ===\n{\"title\":\"SignalTerrain — Today’s cyber brief\",\"main\":true,\"cta\":true,\"trust\":true,\"sampleLeak\":false,\"href\":\"http://127.0.0.1:8080/apps/signalterrain/\"}\nPASS: st-home\n=== st-live http://127.0.0.1:8080/apps/signalterrain/cyber/live.html ===\n{\"title\":\"Cyber Intelligence — SignalTerrain\",\"main\":true,\"cta\":true,\"trust\":true,\"sampleLeak\":false,\"href\":\"http://127.0.0.1:8080/apps/signalterrain/cyber/live.html#brief\"}\nPASS: st-live\n\nSIGNALTERRAIN MSP SMOKE: PASS\n"
+  }
+}

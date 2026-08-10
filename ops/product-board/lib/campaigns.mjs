@@ -34,8 +34,10 @@ export const CAMPAIGNS = {
     commandRemap: {
       "production-build": "node automation/verify-signalterrain-production.mjs",
       "platform-foundation":
-        "node automation/test-signalterrain-msp.mjs && node automation/test-signalterrain-foundation.mjs && node automation/test-signalterrain-cyber-live.mjs && node automation/test-signalterrain-landing.mjs"
+        "node automation/test-signalterrain-msp.mjs && node automation/test-signalterrain-foundation.mjs && node automation/test-signalterrain-cyber-live.mjs && node automation/test-signalterrain-landing.mjs",
+      "browser-smoke": "node automation/smoke-signalterrain-msp.mjs"
     },
+    forceRequired: ["browser-smoke"],
     mspDoc: "ops/product-board/campaigns/signalterrain-msp.md"
   }
 };

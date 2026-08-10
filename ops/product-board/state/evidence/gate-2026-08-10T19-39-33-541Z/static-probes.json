@@ -1,0 +1,48 @@
+{
+  "id": "static-probes",
+  "kind": "static_probe",
+  "at": "2026-08-10T19:39:33.556Z",
+  "status": "pass",
+  "summary": "Scanned 31 files; 0 findings",
+  "severity": null,
+  "data": {
+    "evaluatedAt": "2026-08-10T19:39:33.556Z",
+    "filesScanned": 31,
+    "findings": [],
+    "playwright": {
+      "id": "playwright-capability",
+      "dimension": "playwright_browser",
+      "status": "available",
+      "message": "Playwright available under audits/live-site-qa",
+      "severity": null
+    },
+    "dimensionsCovered": [
+      "primary_workflows",
+      "functionality",
+      "live_data_integrity",
+      "placeholder_detection",
+      "dead_controls",
+      "broken_links_nav",
+      "raw_html_leakage",
+      "loading_empty_error",
+      "responsive",
+      "contrast",
+      "a11y",
+      "keyboard",
+      "console",
+      "network_api",
+      "performance",
+      "security",
+      "privacy",
+      "content_quality",
+      "visual_consistency",
+      "discoverability",
+      "onboarding",
+      "persistence",
+      "commercial_usefulness"
+    ],
+    "fakeAsReal": false,
+    "p0Count": 0,
+    "p1Count": 0
+  }
+}

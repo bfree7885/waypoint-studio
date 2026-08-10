@@ -340,7 +340,7 @@
       "title": "Stale Live cyber artifact presented as Live (age >24h)",
       "severity": "P0",
       "area": "signalterrain",
-      "status": "in_progress",
+      "status": "done",
       "acceptanceCriteria": [
         "Root cause named",
         "Fix applied without fake functionality",
@@ -348,11 +348,11 @@
         "Evidence recorded on the work item"
       ],
       "source": "failed-review-routing",
-      "notes": "Local refresh done + effectiveTrust Stale downgrade + MSP tests. Production still needs deploy of fresh live.json + JS.",
+      "notes": "Local refresh done + effectiveTrust Stale downgrade + MSP tests. Production still needs deploy of fresh live.json + JS. | Production verify PASS after merge d80e069.",
       "relatedEngineeringId": null,
       "assignedRole": "senior-software-engineer",
       "createdAt": "2026-08-10T16:52:24.234Z",
-      "updatedAt": "2026-08-10T18:55:00.000Z",
+      "updatedAt": "2026-08-10T19:00:00.000Z",
       "failureOrigin": {
         "phase": "fix",
         "relatedItemId": null,

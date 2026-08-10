@@ -62,6 +62,7 @@ const PAGES = [
   { name: "steepleaf-entity", path: "/apps/steepleaf/entity/?id=stl_tea-longjing-shifeng", ready: "shell" },
   { name: "signalterrain", path: "/apps/signalterrain/", ready: "shell" },
   { name: "signalterrain-cyber", path: "/apps/signalterrain/cyber/", ready: "shell" },
+  { name: "signalterrain-cyber-live", path: "/apps/signalterrain/cyber/live.html", ready: "shell" },
   { name: "signalterrain-cyber-brief", path: "/apps/signalterrain/cyber/brief.html", ready: "shell" },
   { name: "signalterrain-cyber-explorer", path: "/apps/signalterrain/cyber/explorer.html", ready: "shell" },
   { name: "signalterrain-topics", path: "/apps/signalterrain/topics.html", ready: "shell" },

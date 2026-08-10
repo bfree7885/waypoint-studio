@@ -1,0 +1,15 @@
+{
+  "id": "playwright-capability",
+  "kind": "playwright_browser",
+  "at": "2026-08-10T19:39:33.557Z",
+  "status": "available",
+  "summary": "Playwright available under audits/live-site-qa",
+  "severity": null,
+  "data": {
+    "id": "playwright-capability",
+    "dimension": "playwright_browser",
+    "status": "available",
+    "message": "Playwright available under audits/live-site-qa",
+    "severity": null
+  }
+}

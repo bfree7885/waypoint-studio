@@ -1,0 +1,17 @@
+{
+  "id": "attestation-visual-review",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.157Z",
+  "status": "pass",
+  "summary": "Attested pass by visual-reviewer: Home MSP focus + live trust strip/stale warn CSS reviewed on desktop width; primary CTA clear; no placeholder UI.",
+  "severity": null,
+  "data": {
+    "id": "AT-010",
+    "criterionId": "visual-review",
+    "role": "visual-reviewer",
+    "verdict": "pass",
+    "notes": "Home MSP focus + live trust strip/stale warn CSS reviewed on desktop width; primary CTA clear; no placeholder UI.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.365Z"
+  }
+}

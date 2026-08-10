@@ -1,0 +1,13 @@
+{
+  "id": "cmd-a11y-smoke",
+  "kind": "a11y",
+  "at": "2026-08-10T19:40:28.155Z",
+  "status": "optional_fail",
+  "summary": "Accessibility smoke: optional_fail",
+  "severity": null,
+  "data": {
+    "command": "node automation/a11y-smoke.mjs",
+    "exitCode": 1,
+    "output": "A11y smoke — http://127.0.0.1:8080\n\nhome: FAIL — 1 serious/critical: color-contrast(6)\nabout: PASS\ncontact: PASS\nsupport: PASS\nknowledge: PASS\nsettings: PASS\ndashboard: FAIL — 1 serious/critical: color-contrast(6)\nscenes: FAIL — 1 serious/critical: color-contrast(2)\nfieldry: PASS\nforagecast: PASS\n"
+  }
+}

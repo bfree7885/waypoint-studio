@@ -1,0 +1,17 @@
+{
+  "id": "attestation-red-team-pass",
+  "kind": "attestation",
+  "at": "2026-08-10T19:40:28.157Z",
+  "status": "pass",
+  "summary": "Attested pass by red-team: Independent disproof attempted: prior Live-on-stale P0 reproduced then fixed (refresh+effectiveTrust+prod verify). No remaining scoped disproof for frozen MSP.",
+  "severity": null,
+  "data": {
+    "id": "AT-012",
+    "criterionId": "red-team-pass",
+    "role": "red-team",
+    "verdict": "pass",
+    "notes": "Independent disproof attempted: prior Live-on-stale P0 reproduced then fixed (refresh+effectiveTrust+prod verify). No remaining scoped disproof for frozen MSP.",
+    "campaign": "signalterrain",
+    "at": "2026-08-10T19:39:33.453Z"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "cmd-production-build",
+  "kind": "automated_tests",
+  "at": "2026-08-10T19:39:35.590Z",
+  "status": "pass",
+  "summary": "Production build verification: pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/verify-signalterrain-production.mjs",
+    "exitCode": 0,
+    "output": "Verify SignalTerrain production — https://waypointstudio.org\nPASS: home HTTP 200\nPASS: home has viewport\nPASS: home brand present\nPASS: home links live brief\nPASS: no placeholder TODO UI on home\nPASS: sample disclosure present for sample links\nPASS: cyber live HTTP 200\nPASS: live has viewport\nPASS: live HTML does not reference sample/mock live paths\nPASS: live artifact path referenced\nPASS: live runtime has freshness honesty\nPASS: live.json HTTP 200\nPASS: live.json has generatedAt 2026-08-10T17:45:04\nPASS: live.json trustState=Live\nPASS: Live artifact age OK (2h)\nPASS: live.json records=292\nPASS: privacy.html reachable\n\nSIGNALTERRAIN PRODUCTION: PASS\n"
+  }
+}
