@@ -1106,3 +1106,19 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Policy criterion IDs are not probe failures.** Matching
    `primary-workflows` attestation-pending as “primary workflow broken” falsely
    forces `NOT READY`; keep workflow-broken detection separate from attestation ids.
+
+### 2026-08-10 — Sheds Subscriber Ready pilot (Product Board)
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `apps/shed-hunting/`, `ops/product-board/`
+
+1. **Campaign scope must not weaken severity.** Filter backlog/probes by
+   campaign tag; in-scope P0–P2 still block. Do not lower the bar to pass.
+2. **Wrong HTTP root silently audits the wrong product.** Confirm the static
+   server cwd before browser review — another worktree on the same port can
+   make Today’s Search appear “missing.”
+3. **Expanded bottom sheets need Leaflet chrome rules.** Attribution/zoom at
+   peek-height will float through expanded copy; use `:has([data-expanded])`
+   to hide/lift controls and add an overlap CDP assertion.
+4. **Ethics copy must match the real tile provider.** Claiming OSM/OpenTopoMap
+   while shipping CARTO/Esri is a trust defect, not copy polish.
