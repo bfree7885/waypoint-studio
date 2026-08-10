@@ -625,7 +625,10 @@
       fadeAnimation: false,
       zoomAnimation: !!(window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     });
-    L.control.zoom({ position: "bottomright" }).addTo(map);
+    // Zoom lives in the labeled field rail — avoid a second unexplained Leaflet stack.
+    if (map.attributionControl && map.attributionControl.setPosition) {
+      map.attributionControl.setPosition("bottomleft");
+    }
 
     var Tiles = window.WaypointShedsTiles;
     if (!Tiles || !Tiles.createBasemaps) {
@@ -2058,6 +2061,16 @@
     $("btn-locate").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     if ($("btn-here-chip")) {
       $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true, force: true }); });
+    }
+    if ($("btn-zoom-in")) {
+      $("btn-zoom-in").addEventListener("click", function () {
+        if (map) map.zoomIn();
+      });
+    }
+    if ($("btn-zoom-out")) {
+      $("btn-zoom-out").addEventListener("click", function () {
+        if (map) map.zoomOut();
+      });
     }
     els.btnTrack = $("btn-track");
     if (els.btnTrack) {

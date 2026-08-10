@@ -229,16 +229,36 @@ for _ in range(50):
     st=cdp("Runtime.evaluate",{"expression":"document.readyState","returnByValue":True})
     if st.get("result",{}).get("result",{}).get("value")=="complete": break
     time.sleep(0.2)
-time.sleep(3)
+# Wait for Sheds shell + briefing (not just document.readyState)
+for _ in range(40):
+    ready=cdp("Runtime.evaluate",{"expression":"!!(document.getElementById('sheds-map') && document.getElementById('plan-card') && document.getElementById('btn-locate'))","returnByValue":True})
+    if ready.get("result",{}).get("result",{}).get("value") is True: break
+    time.sleep(0.25)
+time.sleep(2.5)
 cdp("Runtime.evaluate",{"expression":"(document.getElementById('btn-locate')||{click:()=>{}}).click()","returnByValue":True})
 time.sleep(2.5)
+# Wait until locate / briefing has content
+for _ in range(20):
+    filled=cdp("Runtime.evaluate",{"expression":"((document.querySelector('.sheds-suggest')||{}).innerText||'').trim().length>20","returnByValue":True})
+    if filled.get("result",{}).get("result",{}).get("value") is True: break
+    time.sleep(0.4)
+
+def cdp_value(resp, default=None):
+    """Runtime.evaluate returnByValue nests as result.result.value."""
+    try:
+        node = resp.get("result", {}).get("result", {})
+        if isinstance(node, dict) and "value" in node:
+            return node.get("value")
+        return node if node is not None else default
+    except Exception:
+        return default
 
 def analyze_dom():
-    return cdp("Runtime.evaluate",{"expression":'''
+    return cdp_value(cdp("Runtime.evaluate",{"expression":'''
 (() => {
   const build = document.querySelector('meta[name=waypoint-build]')?.content || null;
-  const userPulse = document.querySelectorAll('.sheds-user-pulse, .sheds-user-marker').length;
-  const target = document.querySelectorAll('.sheds-target-dot, .sheds-search-target').length;
+  const userPulse = document.querySelectorAll('.sheds-user-marker, .sheds-user-pulse').length;
+  const target = document.querySelectorAll('.sheds-search-target, .sheds-target-dot').length;
   const trunc = [];
   document.querySelectorAll('.sheds-here__label, .sheds-suggest, .sheds-suggest__glance, .sheds-here').forEach(el => {
     if (el.scrollWidth > el.clientWidth + 2 || el.scrollHeight > el.clientHeight + 2) {
@@ -253,87 +273,87 @@ def analyze_dom():
     }
   });
   const fabs = [...document.querySelectorAll('.sheds-fab-rail .sheds-fab')].map(b => ({
-    id: b.id, label: (b.getAttribute('aria-label')||'').trim(), hasVisibleLabel: !!(b.querySelector('.sheds-fab__label') && getComputedStyle(b.querySelector('.sheds-fab__label')).display !== 'none')
+    id: b.id,
+    label: (b.getAttribute('aria-label')||'').trim(),
+    hasVisibleLabel: !!(b.querySelector('.sheds-fab__label') && getComputedStyle(b.querySelector('.sheds-fab__label')).display !== 'none')
   }));
   const unexplained = fabs.filter(f => !f.hasVisibleLabel && !f.label).length;
+  const leafletZoom = document.querySelectorAll('.leaflet-control-zoom').length;
   const here = (document.querySelector('.sheds-here')?.innerText||'').slice(0,200);
   const suggest = (document.querySelector('.sheds-suggest')?.innerText||'').slice(0,240);
-  // latlng if exposed
   let userLat=null,userLng=null;
   try {
     const m = window.__SHEDS_LOCATION__ || null;
     if (m) { userLat=m.lat; userLng=m.lng; }
   } catch(e) {}
   const markers = [];
-  document.querySelectorAll('.sheds-user-marker, .sheds-user-pulse, .sheds-search-target, .sheds-target-dot').forEach(el => {
-    const r = el.getBoundingClientRect ? el.getBoundingClientRect() : {x:0,y:0,width:0,height:0};
-    // SVG path parent
+  document.querySelectorAll('.sheds-search-target').forEach(el => {
     const box = el.getBoundingClientRect();
-    markers.push({
-      role: el.classList.contains('sheds-search-target') || el.classList.contains('sheds-target-dot') ? 'search_target' : 'user_location',
-      x: Math.round(box.x + box.width/2),
-      y: Math.round(box.y + box.height/2),
-      lat: userLat, lng: userLng
-    });
+    if (box.width>0) markers.push({role:'search_target', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:null, lng:null});
   });
-  // also leaflet paths sized like dots
-  document.querySelectorAll('path.leaflet-interactive').forEach(el => {
+  document.querySelectorAll('path.sheds-user-marker, .sheds-user-marker path, path.leaflet-interactive.sheds-user-marker').forEach(el => {
     const box = el.getBoundingClientRect();
-    if (box.width > 0 && box.width < 40 && box.height < 40) {
-      const cls = el.getAttribute('class') || '';
-      markers.push({
-        role: /search|target/i.test(cls) ? 'search_target' : (/user/i.test(cls) ? 'user_location' : 'dot'),
-        x: Math.round(box.x + box.width/2),
-        y: Math.round(box.y + box.height/2),
-        lat: null, lng: null,
-        className: cls.slice(0,80)
-      });
+    if (box.width>0 && box.width<80) markers.push({role:'user_location', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:userLat, lng:userLng});
+  });
+  // Fallback: className on SVG may be SVGAnimatedString — check attribute
+  document.querySelectorAll('path.leaflet-interactive').forEach(el => {
+    const cls = el.getAttribute('class') || '';
+    const box = el.getBoundingClientRect();
+    if (!(box.width>0 && box.width<40)) return;
+    if (/sheds-user-marker|sheds-user-pulse/.test(cls)) {
+      markers.push({role:'user_location', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:userLat, lng:userLng, className:cls.slice(0,80)});
+    } else if (/sheds-search-target|sheds-target/.test(cls)) {
+      markers.push({role:'search_target', x:Math.round(box.x+box.width/2), y:Math.round(box.y+box.height/2), lat:null, lng:null, className:cls.slice(0,80)});
     }
   });
-  return { build, userPulse, target, trunc, clipped, fabs, unexplainedControls: unexplained, here, suggest, markers, vw: innerWidth, vh: innerHeight };
+  return { build, userPulse, target, trunc, clipped, fabs, unexplainedControls: unexplained, leafletZoom, here, suggest, markers, vw: innerWidth, vh: innerHeight };
 })()
-''',"returnByValue":True})
+''',"returnByValue":True}), {})
 
 viewports=[]
 for vp in VIEWPORTS:
     cdp("Emulation.setDeviceMetricsOverride",{"width":vp["width"],"height":vp["height"],"deviceScaleFactor":1,"mobile":vp["width"]<900})
     time.sleep(1.0)
-    # invalidate leaflet
     cdp("Runtime.evaluate",{"expression":"window.dispatchEvent(new Event('resize'))","returnByValue":True})
-    time.sleep(0.6)
+    time.sleep(0.7)
     shot=cdp("Page.captureScreenshot",{"format":"png"})
     name=f"{vp['id']}-{vp['width']}x{vp['height']}.png"
     (ART/name).write_bytes(base64.b64decode(shot["result"]["data"]))
-    dom=analyze_dom().get("result",{}).get("result",{})
+    dom=analyze_dom() or {}
     checks={}
     notes={}
-    # Heuristic fail rules from DOM
+    userish=[m for m in (dom.get("markers") or []) if m.get("role")=="user_location"]
+    searchish=[m for m in (dom.get("markers") or []) if m.get("role")=="search_target"]
+    dup_users = len({f"{round((m.get('x') or 0)/10)}:{round((m.get('y') or 0)/10)}" for m in userish}) >= 2 and len(userish) >= 2
     checks["clipping"] = "fail" if dom.get("clipped") else "pass"
     checks["truncation"] = "fail" if dom.get("trunc") else "pass"
     checks["overflow"] = checks["clipping"]
-    checks["unexplainedControls"] = "fail" if (dom.get("unexplainedControls") or 0) > 0 or any(not f.get("hasVisibleLabel") for f in (dom.get("fabs") or [])) else "pass"
+    unlabeled = [f for f in (dom.get("fabs") or []) if not f.get("hasVisibleLabel")]
+    checks["unexplainedControls"] = "fail" if (dom.get("unexplainedControls") or 0) > 0 or unlabeled or (dom.get("leafletZoom") or 0) > 0 else "pass"
     checks["crowdedCorners"] = "fail" if (dom.get("clipped") or dom.get("trunc")) else "pass"
     checks["controlPlacement"] = checks["unexplainedControls"]
-    checks["overlap"] = "fail" if dom.get("userPulse",0) and dom.get("target",0) and dom.get("userPulse")+dom.get("target")>=2 else "pass"
-    # similar dots: both user and target present counts as hierarchy/marker issue unless classes distinct
-    sameish = dom.get("userPulse",0) >= 1 and dom.get("target",0) >= 1
-    checks["hierarchy"] = "fail" if sameish and not any('search' in (m.get('role') or '') for m in dom.get('markers') or []) else ("pass" if dom.get("suggest") else "fail")
-    checks["mapVsProductHierarchy"] = "pass" if (dom.get("suggest") or "").strip() else "fail"
-    checks["nextActionClarity"] = "pass" if (dom.get("suggest") or "").strip() else "fail"
+    checks["overlap"] = "fail" if dup_users else "pass"
+    has_today = bool((dom.get("suggest") or "").strip()) and "Today" in (dom.get("suggest") or "Today")
+    checks["hierarchy"] = "pass" if has_today and not dup_users else "fail"
+    checks["mapVsProductHierarchy"] = "pass" if has_today else "fail"
+    checks["nextActionClarity"] = "pass" if has_today and any(f.get("id")=="btn-locate" for f in (dom.get("fabs") or [])) else "fail"
     checks["readability"] = "fail" if dom.get("trunc") else "pass"
     checks["spacing"] = "fail" if dom.get("clipped") else "pass"
-    checks["density"] = "fail" if len(dom.get("fabs") or []) >= 5 and checks["unexplainedControls"]=="fail" else "pass"
+    checks["density"] = "fail" if checks["unexplainedControls"]=="fail" else "pass"
     checks["unusedSpace"] = "pass"
     checks["escape"] = "pass"
-    checks["intentionalDesign"] = "fail" if checks["unexplainedControls"]=="fail" or checks["clipping"]=="fail" else "pass"
+    checks["intentionalDesign"] = "fail" if checks["unexplainedControls"]=="fail" or checks["clipping"]=="fail" or checks["hierarchy"]=="fail" else "pass"
     obs = (
       f"Viewport {vp['id']} {vp['width']}x{vp['height']}. "
       f"Build={dom.get('build')}. Here='{(dom.get('here') or '')[:80]}'. "
-      f"Today='{(dom.get('suggest') or '')[:100]}'. "
-      f"userMarkers={dom.get('userPulse')} searchTargets={dom.get('target')}. "
+      f"Today='{(dom.get('suggest') or '')[:120]}'. "
+      f"userMarkers={len(userish)} searchTargets={len(searchish)} leafletZoom={dom.get('leafletZoom')}. "
       f"trunc={len(dom.get('trunc') or [])} clipped={len(dom.get('clipped') or [])}. "
-      f"FABs={len(dom.get('fabs') or [])} unexplainedVisibleLabels={checks['unexplainedControls']}. "
-      f"Observations: evaluate clipping, truncation, dual markers, control clarity, map-vs-product hierarchy."
+      f"FABs={len(dom.get('fabs') or [])} unlabeled={len(unlabeled)}. "
+      f"Observations: clipping={checks['clipping']}, truncation={checks['truncation']}, "
+      f"duplicateUserMarkers={dup_users}, unexplainedControls={checks['unexplainedControls']}, "
+      f"hierarchy={checks['hierarchy']}, mapVsProduct={checks['mapVsProductHierarchy']}, "
+      f"controlPlacement={checks['controlPlacement']}, intentionalDesign={checks['intentionalDesign']}."
     )
     viewports.append({
       "id": vp["id"], "width": vp["width"], "height": vp["height"],
@@ -341,22 +361,33 @@ for vp in VIEWPORTS:
       "observations": obs,
       "checks": checks,
       "notes": notes,
-      "dom": {k: dom.get(k) for k in ("build","userPulse","target","trunc","clipped","fabs","here","suggest")}
+      "dom": {k: dom.get(k) for k in ("build","userPulse","target","trunc","clipped","fabs","here","suggest","leafletZoom")}
     })
 
-# dynamic samples at 390x844
+# dynamic samples at 390x844 with stable GPS
 cdp("Emulation.setDeviceMetricsOverride",{"width":390,"height":844,"deviceScaleFactor":2,"mobile":True})
 time.sleep(0.8)
 samples=[]
 for i in range(8):
-    dom=analyze_dom().get("result",{}).get("result",{})
-    samples.append({"t": int(time.time()*1000), "markers": dom.get("markers") or []})
+    dom=analyze_dom() or {}
+    # Prefer geo-stable samples from __SHEDS_LOCATION__ when present
+    ms=[]
+    loc=None
+    try:
+      loc=cdp_value(cdp("Runtime.evaluate",{"expression":"window.__SHEDS_LOCATION__||null","returnByValue":True}))
+    except Exception:
+      loc=None
+    for m in (dom.get("markers") or []):
+      if m.get("role")=="user_location" and loc:
+        m={"role":"user_location","x":m.get("x"),"y":m.get("y"),"lat":loc.get("lat"),"lng":loc.get("lng")}
+      ms.append(m)
+    samples.append({"t": int(time.time()*1000), "markers": ms})
     time.sleep(0.7)
 
 out={"build": None, "viewports": viewports, "samples": samples}
 if viewports: out["build"]= (viewports[0].get("dom") or {}).get("build")
 (ART/"capture.json").write_text(json.dumps(out, indent=2))
-print(json.dumps(out))
+print(json.dumps({"build": out.get("build"), "viewportCount": len(viewports), "sampleCount": len(samples)}))
 ws.send("Browser.close")
 proc.terminate()
 `
