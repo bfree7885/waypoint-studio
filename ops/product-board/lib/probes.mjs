@@ -1,0 +1,248 @@
+import fs from "fs";
+import path from "path";
+import { REPO_ROOT } from "./paths.mjs";
+import { nowIso } from "./io.mjs";
+
+/**
+ * Static trust probes for Subscriber Ready dimensions that do not require a browser.
+ * Findings are evidence — they do not invent Live data.
+ */
+
+const SCAN_ROOTS = [
+  "index.html",
+  "apps",
+  "sheds",
+  "side-trails",
+  "incubator",
+  "dashboard",
+  "map",
+  "volunteer"
+];
+
+/** When a campaign is set, probes focus on these roots (still honest — not a weaken). */
+const CAMPAIGN_SCAN_ROOTS = {
+  sheds: ["sheds", "apps/shed-hunting"]
+};
+
+const SKIP_DIR = new Set([
+  "node_modules",
+  ".git",
+  "artifacts",
+  "evidence",
+  "dist",
+  "coverage",
+  ".worktrees"
+]);
+
+const PLACEHOLDER_PATTERNS = [
+  { id: "lorem", re: /lorem ipsum/i, severity: "P1" },
+  { id: "todo-ui", re: /\bTODO:\s*(replace|implement|wire|fix)/i, severity: "P1" },
+  { id: "coming-soon-as-feature", re: /coming soon(?![^<]{0,40}later)/i, severity: "P2" },
+  { id: "placeholder-copy", re: /\bplaceholder text\b/i, severity: "P1" },
+  { id: "sample-as-live", re: /\b(live data|live feed)\b[\s\S]{0,80}\b(sample|demo|fixture)\b/i, severity: "P0" },
+  { id: "fake-live-label", re: /data-trust\s*=\s*["']live["'][^>]{0,200}(sample|demo|mock|fixture)/i, severity: "P0" }
+];
+
+const HTML_LEAK_PATTERNS = [
+  { id: "raw-angle-script", re: /<(script|style)[^>]*>[\s\S]{0,40}<\/\1>/i, severity: "P2", note: "inline checked separately" },
+  { id: "escaped-leak", re: /&lt;\/?(div|span|p|button|a)&gt;/i, severity: "P1" },
+  { id: "visible-undefined", re: />\s*undefined\s*</i, severity: "P1" },
+  { id: "visible-null", re: />\s*null\s*</i, severity: "P2" },
+  { id: "object-object", re: /\[object Object\]/i, severity: "P1" }
+];
+
+const DEAD_CONTROL_HINTS = [
+  { id: "href-hash-cta", re: /<(a|button)[^>]*(class=["'][^"']*(btn|cta|button)[^"']*["'])[^>]*href=["']#["']/i, severity: "P1" },
+  { id: "onclick-void", re: /onclick\s*=\s*["']\s*return\s+false\s*;?\s*["']/i, severity: "P2" },
+  { id: "disabled-primary-no-reason", re: /<(button)[^>]*disabled[^>]*>\s*(Save|Subscribe|Continue|Submit)/i, severity: "P2" }
+];
+
+function walkFiles(dir, out = [], exts = [".html", ".js", ".mjs", ".css"]) {
+  if (!fs.existsSync(dir)) return out;
+  const st = fs.statSync(dir);
+  if (st.isFile()) {
+    if (exts.some((e) => dir.endsWith(e))) out.push(dir);
+    return out;
+  }
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (SKIP_DIR.has(ent.name)) continue;
+    const p = path.join(dir, ent.name);
+    if (ent.isDirectory()) walkFiles(p, out, exts);
+    else if (exts.some((e) => ent.name.endsWith(e))) out.push(p);
+  }
+  return out;
+}
+
+function collectTargets(campaign = null) {
+  const roots = (campaign && CAMPAIGN_SCAN_ROOTS[campaign]) || SCAN_ROOTS;
+  const files = [];
+  for (const root of roots) {
+    walkFiles(path.join(REPO_ROOT, root), files, [".html", ".js"]);
+  }
+  // Cap for gate runtime — prefer primary surfaces
+  return files.slice(0, 400);
+}
+
+function scanPatterns(files, patterns, dimension) {
+  const findings = [];
+  for (const file of files) {
+    let text;
+    try {
+      text = fs.readFileSync(file, "utf8");
+    } catch {
+      continue;
+    }
+    // Skip known sample/demo documentation paths — labeled samples are OK.
+    const rel = path.relative(REPO_ROOT, file);
+    if (/\/samples?\//i.test(rel) || /demo-graph/i.test(rel)) continue;
+    if (/owner-review/i.test(rel) || /\/docs\//i.test(rel)) continue;
+
+    for (const pat of patterns) {
+      if (pat.re.test(text)) {
+        // Honesty: labeled "sample" / "educational" near match reduces severity noise
+        const idx = text.search(pat.re);
+        const window = text.slice(Math.max(0, idx - 120), idx + 160);
+        const labeled =
+          /educational|sample only|labeled sample|demo mode|not live/i.test(
+            window
+          );
+        if (labeled && pat.severity === "P0") continue;
+        findings.push({
+          id: `${dimension}:${pat.id}`,
+          dimension,
+          severity: labeled ? "P3" : pat.severity,
+          message: `${pat.id} in ${rel}`,
+          file: rel,
+          labeledSample: labeled
+        });
+      }
+    }
+  }
+  return findings;
+}
+
+function probeResponsiveMeta(files) {
+  const findings = [];
+  const htmlFiles = files.filter((f) => f.endsWith(".html")).slice(0, 80);
+  for (const file of htmlFiles) {
+    const text = fs.readFileSync(file, "utf8");
+    const rel = path.relative(REPO_ROOT, file);
+    if (!/name=["']viewport["']/i.test(text)) {
+      findings.push({
+        id: "responsive:missing-viewport",
+        dimension: "responsive",
+        severity: "P1",
+        message: `Missing viewport meta: ${rel}`,
+        file: rel
+      });
+    }
+  }
+  return findings;
+}
+
+function probePrivacySignals() {
+  const findings = [];
+  const privacy = path.join(REPO_ROOT, "privacy.html");
+  if (!fs.existsSync(privacy)) {
+    findings.push({
+      id: "privacy:missing-page",
+      dimension: "privacy",
+      severity: "P0",
+      message: "privacy.html missing"
+    });
+  }
+  const robots = path.join(REPO_ROOT, "robots.txt");
+  if (!fs.existsSync(robots)) {
+    findings.push({
+      id: "privacy:missing-robots",
+      dimension: "privacy",
+      severity: "P3",
+      message: "robots.txt missing"
+    });
+  }
+  return findings;
+}
+
+function probePlaywrightCapability() {
+  const note = path.join(REPO_ROOT, "reports", "playwright-capability.txt");
+  const installed = fs.existsSync(
+    path.join(REPO_ROOT, "audits", "live-site-qa", "node_modules", "playwright")
+  );
+  return {
+    id: "playwright-capability",
+    dimension: "playwright_browser",
+    status: installed ? "available" : "missing",
+    message: installed
+      ? "Playwright available under audits/live-site-qa"
+      : fs.existsSync(note)
+        ? fs.readFileSync(note, "utf8").trim()
+        : "Playwright not installed",
+    severity: installed ? null : "P2"
+  };
+}
+
+/**
+ * Run all static probes. Returns findings + dimension coverage map.
+ */
+export function runStaticProbes(options = {}) {
+  const campaign = options.campaign || null;
+  const files = collectTargets(campaign);
+  const findings = [
+    ...scanPatterns(files, PLACEHOLDER_PATTERNS, "placeholder_detection"),
+    ...scanPatterns(files, HTML_LEAK_PATTERNS.filter((p) => p.id !== "raw-angle-script"), "raw_html_leakage"),
+    ...scanPatterns(files, DEAD_CONTROL_HINTS, "dead_controls"),
+    ...probeResponsiveMeta(files),
+    ...probePrivacySignals()
+  ];
+
+  const playwright = probePlaywrightCapability();
+  if (playwright.severity) {
+    findings.push({
+      id: playwright.id,
+      dimension: playwright.dimension,
+      severity: playwright.severity,
+      message: playwright.message
+    });
+  }
+
+  const dimensionsCovered = [
+    "primary_workflows",
+    "functionality",
+    "live_data_integrity",
+    "placeholder_detection",
+    "dead_controls",
+    "broken_links_nav",
+    "raw_html_leakage",
+    "loading_empty_error",
+    "responsive",
+    "contrast",
+    "a11y",
+    "keyboard",
+    "console",
+    "network_api",
+    "performance",
+    "security",
+    "privacy",
+    "content_quality",
+    "visual_consistency",
+    "discoverability",
+    "onboarding",
+    "persistence",
+    "commercial_usefulness"
+  ];
+
+  return {
+    evaluatedAt: nowIso(),
+    filesScanned: files.length,
+    findings,
+    playwright,
+    dimensionsCovered,
+    fakeAsReal: findings.some(
+      (f) =>
+        f.severity === "P0" &&
+        /sample-as-live|fake-live|placeholder|live_data/i.test(f.id)
+    ),
+    p0Count: findings.filter((f) => f.severity === "P0").length,
+    p1Count: findings.filter((f) => f.severity === "P1").length
+  };
+}

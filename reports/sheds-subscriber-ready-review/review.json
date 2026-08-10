@@ -1,0 +1,84 @@
+{
+  "at": "2026-08-10T10:39:03Z",
+  "base": "http://127.0.0.1:8877/apps/shed-hunting/map/",
+  "desktop": {
+    "title": "Sheds \u2014 Waypoint Studio",
+    "hasMap": true,
+    "hasTodayEyebrow": true,
+    "planTitle": "Limited briefing \u2014 location denied, weather unavailable",
+    "planGlance": "Best window: Morning \u00b7 Zoom in on your land",
+    "planStars": "Confidence: Low",
+    "todayStatus": "Location denied \u2014 briefing uses map center when possible.",
+    "heatMode": true,
+    "obsFab": true,
+    "locate": true,
+    "track": true,
+    "more": true,
+    "skip": true,
+    "loadingHidden": true,
+    "leafletLoaded": true,
+    "todaysSearch": true,
+    "patterns": true,
+    "tileProvider": false,
+    "trustHints": {
+      "guidance": false,
+      "noDemo": true
+    },
+    "scriptCount": 13,
+    "ariaBusy": "false"
+  },
+  "expanded": {
+    "detailsVisible": true,
+    "windowCount": 3,
+    "signalCount": 4,
+    "uncertain": "Sunrise/sunset unavailable for this location. Temperature unavailable. Pressure trend unavailable. Location denied \u2014 nearby suggestions use map center. Without live weather, time-window ranking is mostly seasonal and daylight heuristics. Observation patterns need more private deer/sign notes before they influence Today\u2019s Search.",
+    "status": "Location denied \u2014 briefing uses map center when possible.",
+    "headline": "Limited briefing \u2014 location denied, weather unavailable",
+    "conf": "Confidence: Low"
+  },
+  "tools": {
+    "open": true,
+    "hasEthics": true,
+    "hasPrivacyLink": true,
+    "hasExport": true
+  },
+  "heat": {
+    "present": true,
+    "options": [
+      "biological:Estimated opportunity (biological model)",
+      "observed:Observed activity (your notes only)"
+    ],
+    "value": "observed"
+  },
+  "heatState": {
+    "legend": "Empty \u2014 log observations to build heat",
+    "filtersVisible": true,
+    "bodyHasObserved": false
+  },
+  "mobile": {
+    "mapH": 844,
+    "fabVisible": true,
+    "planBottom": 844,
+    "vw": 390,
+    "vh": 844
+  },
+  "a11y": {
+    "issues": [],
+    "lang": "en"
+  },
+  "trust": {
+    "hasLiveAsCertainty": false,
+    "hasSampleAsReal": false,
+    "hasHtmlLeak": false,
+    "privacyLocal": true
+  },
+  "console": [],
+  "findings": [],
+  "screenshots": [
+    "desktop-1280.png",
+    "desktop-todays-search-expanded.png",
+    "desktop-tools.png",
+    "mobile-390.png",
+    "tablet-768.png"
+  ]
+}

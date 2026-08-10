@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/ops/product-board/schemas/board-state.schema.json",
+  "title": "Product Board State",
+  "type": "object",
+  "required": ["version", "phase", "mode"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "mode": {
+      "enum": ["idle", "loop", "repair", "gate", "discover"]
+    },
+    "phase": {
+      "enum": [
+        "discover",
+        "prioritize",
+        "fix",
+        "test",
+        "visual_review",
+        "red_team",
+        "retest",
+        "release_gate"
+      ]
+    },
+    "activeItemId": { "type": ["string", "null"] },
+    "activeRole": { "type": ["string", "null"] },
+    "releaseGate": { "type": "object" },
+    "routing": { "type": "object" },
+    "loopHistory": { "type": "array" }
+  }
+}

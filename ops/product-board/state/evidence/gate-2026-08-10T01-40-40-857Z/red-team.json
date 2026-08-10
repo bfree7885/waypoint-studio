@@ -1,0 +1,55 @@
+{
+  "id": "red-team",
+  "kind": "red_team",
+  "at": "2026-08-10T01:40:41.604Z",
+  "status": "fail",
+  "summary": "Red Team disproved readiness with 7 finding(s).",
+  "severity": null,
+  "data": {
+    "role": "red-team",
+    "evaluatedAt": "2026-08-10T01:40:41.604Z",
+    "status": "fail",
+    "disproved": true,
+    "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+    "disproofs": [
+      {
+        "id": "redteam:backlog:WB-004",
+        "severity": "P1",
+        "message": "Open P1 work disproves readiness: [eng] Confirm GitHub Pages source remains GitHub Actions only"
+      },
+      {
+        "id": "redteam:probe:responsive:missing-viewport",
+        "severity": "P1",
+        "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/hidden-landscapes/index.html"
+      },
+      {
+        "id": "redteam:probe:responsive:missing-viewport",
+        "severity": "P1",
+        "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/photo-coach/index.html"
+      },
+      {
+        "id": "redteam:probe:responsive:missing-viewport",
+        "severity": "P1",
+        "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/photo-library/index.html"
+      },
+      {
+        "id": "redteam:probe:responsive:missing-viewport",
+        "severity": "P1",
+        "message": "Probe finding disproves readiness: Missing viewport meta: sheds/index.html"
+      },
+      {
+        "id": "redteam:commercial-cancel",
+        "severity": "P0",
+        "message": "Commercial reviewer cancel/refund risk present — Red Team treats as disproof."
+      },
+      {
+        "id": "redteam:qa:production-build",
+        "severity": "P1",
+        "message": "Required check not passing: Production build verification"
+      }
+    ],
+    "summary": "Red Team disproved readiness with 7 finding(s).",
+    "rejectedAutoAccept": true,
+    "blocksVerdict": "NOT READY"
+  }
+}

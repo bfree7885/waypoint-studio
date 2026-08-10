@@ -39,8 +39,8 @@ assert("full-screen map shell absolute", /#sheds-map-shell[\s\S]*position:\s*abs
 assert("floating FAB rail", /sheds-fab-rail/.test(html) && /sheds-fab-rail/.test(css));
 assert("bottom sheet field class", /sheds-sheet-field/.test(html) && /sheds-sheet-field/.test(css));
 assert("plan card is floating suggest", /class="[^"]*sheds-suggest/.test(html) && /id="plan-card"/.test(html));
-assert("story sheet copy", /Start here/.test(html) && /sheds-story/.test(html));
-assert("plain-language confidence", /id="plan-stars"/.test(html) && /We’ll suggest where to look|We.ll suggest where to look/.test(html));
+assert("story sheet copy", /Today.?s Search/.test(html) && /sheds-story/.test(html) && /data-todays-search/.test(html));
+assert("plain-language confidence", /id="plan-stars"/.test(html) && /Confidence pending|Confidence/.test(html) && /aria-label="Confidence"/.test(html));
 assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
 assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
@@ -52,7 +52,9 @@ assert("add note on FAB for field speed", (() => {
     !/btn-layers/.test(fab[0]) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
 })());
 assert("legend deferred until heat", /id="heat-legend"/.test(html) && /hidden/.test(html.match(/id="heat-legend"[^>]*/)[0]));
-assert("ethics mentions tile providers", /Map providers|OpenTopoMap|tile/i.test(html));
+assert("expanded briefing hides attribution over copy", /plan-card\[data-expanded="true"\].*leaflet-control-attribution[\s\S]*display:\s*none/i.test(css.replace(/\s+/g, " ")) || /#sheds-map-shell:has\(#plan-card\[data-expanded="true"\]\)\s+\.leaflet-control-attribution\s*\{[^}]*display:\s*none/i.test(css));
+assert("expanded briefing lifts leaflet bottom chrome", /#sheds-map-shell:has\(#plan-card\[data-expanded="true"\]\)\s+\.leaflet-bottom/.test(css));
+
 assert("privacy honesty on obs sheet", /Map tiles still leave provider/i.test(html));
 assert("safe-area respected", /safe-area-inset-bottom/.test(css) && /safe-area-inset-top/.test(css));
 assert("no permanent multi-row secondary deck", /sheet-tools/.test(html));

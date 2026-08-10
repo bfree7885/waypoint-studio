@@ -1015,6 +1015,24 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-07 — Sheds Today’s Search + observation heatmaps
+
+**Branch:** `feature/sheds-todays-search`  
+**Report:** `docs/SHEDS-TODAYS-SEARCH-OWNER-REVIEW.md`
+
+1. **Separate epistemic layers on one map.** Biological heat = *estimated
+   opportunity*; observation heat = *observed activity* from private notes only.
+   Mixing them silently destroys trust — label the mode in the legend and briefing.
+2. **Empty observed heat is a feature.** Never seed demo sightings for first-run
+   polish. Tests must assert zero priorities with zero observations.
+3. **Today’s Search needs facts vs analysis vs uncertainty tags.** Weather numbers
+   are facts; dawn/dusk preference and fence-line wind notes are analysis; missing
+   pressure/location are uncertain. Confidence text must name the gaps.
+4. **Patterns need a sufficiency gate.** Do not whisper “your deer usually…” from
+   two notes. Require a minimum count + distinct days, then say when insufficient.
+5. **Rich Open-Meteo fetch stays fail-soft.** Sunrise/pressure/precip improve the
+   briefing; if the request fails, seasonal + note-based copy must still render.
+
 ### 2026-08-08 — Sheds map tile reliability
 
 **Branch:** `fix/sheds-map-reliability`  
@@ -1050,3 +1068,57 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Live impacts are optional and must not invent Shipping activations.** Overlay
    `live-impacts.json` when present; empty/missing → honest empty Live developments
    section while structural baseline still renders.
+
+### 2026-08-09 — Agent Ops Product Board foundation
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/`
+
+1. **Recover before inventing.** Waypoint already had an Engineering OS
+   (`engineering/orchestrator`, agents, backlog, gates). Agent Ops work should
+   extend that substrate; `docs/ai-agents/` is Scenes-era and obsolete for runtime.
+2. **Subscriber Ready ≠ tests pass.** Encode a formal gate with P0–P2 blockers,
+   repair-queue checks, required commands, and manual attestations that stay
+   `manual_required` until honestly recorded — never auto-APPROVE.
+3. **Failed review must route.** Visual/red-team/QA failure creates a fix-status
+   work item and blocks the gate; “write report and stop” is a process defect.
+4. **Prefer a clean worktree** when the main checkout is dirty with unrelated
+   HTML/docs noise; keep Agent Ops commits free of dirty-tree staging.
+
+### 2026-08-10 — Subscriber Ready executable gate
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/` (gate + evidence + Commercial + Red Team)
+
+1. **Exact verdicts matter.** Use only `NOT READY` | `CONDITIONALLY READY` |
+   `SUBSCRIBER READY`. Synonyms like `NOT_SUBSCRIBER_READY` break board consumers
+   and weaken the standing bar.
+2. **P0/P1 are automatic hard stops; P2 is not a free pass.** Open P0–P1 (or
+   repair queue) ⇒ `NOT READY`. Open P2 may yield `CONDITIONALLY READY` but never
+   `SUBSCRIBER READY`. Do not weaken this.
+3. **Commercial + Red Team must be independent modules.** Tests-pass alone must
+   bottom out at conditional/not-ready until commercial cancel-risk review and an
+   adversarial Red Team disproof pass are recorded. Red Team must never
+   auto-accept engineering self-certification.
+4. **Evidence belongs in board state.** Persist machine-readable packages under
+   `ops/product-board/state/evidence/<runId>/` (commands, probes, commercial,
+   red-team, Playwright capability honesty). A gate without evidence is theater.
+5. **Policy criterion IDs are not probe failures.** Matching
+   `primary-workflows` attestation-pending as “primary workflow broken” falsely
+   forces `NOT READY`; keep workflow-broken detection separate from attestation ids.
+
+### 2026-08-10 — Sheds Subscriber Ready pilot (Product Board)
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `apps/shed-hunting/`, `ops/product-board/`
+
+1. **Campaign scope must not weaken severity.** Filter backlog/probes by
+   campaign tag; in-scope P0–P2 still block. Do not lower the bar to pass.
+2. **Wrong HTTP root silently audits the wrong product.** Confirm the static
+   server cwd before browser review — another worktree on the same port can
+   make Today’s Search appear “missing.”
+3. **Expanded bottom sheets need Leaflet chrome rules.** Attribution/zoom at
+   peek-height will float through expanded copy; use `:has([data-expanded])`
+   to hide/lift controls and add an overlap CDP assertion.
+4. **Ethics copy must match the real tile provider.** Claiming OSM/OpenTopoMap
+   while shipping CARTO/Esri is a trust defect, not copy polish.

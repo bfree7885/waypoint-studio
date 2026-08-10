@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T03:35:01.000Z",
+  "mode": "loop",
+  "phase": "discover",
+  "activeItemId": "WB-004",
+  "activeRole": "product-director",
+  "campaign": "sheds",
+  "lastCommand": "gate",
+  "lastCommandAt": "2026-08-10T01:40:41.605Z",
+  "releaseGate": {
+    "status": "blocked",
+    "lastRunAt": "2026-08-10T01:40:41.605Z",
+    "verdict": "NOT READY",
+    "blockingFindings": [
+      {
+        "id": "open-p0-p1-work",
+        "severity": "P1",
+        "message": "1 open P0\u2013P1 item(s) automatically prevent SUBSCRIBER READY",
+        "items": [
+          "WB-004"
+        ]
+      },
+      {
+        "id": "open-p2-work",
+        "severity": "P2",
+        "message": "3 open P2 item(s) block SUBSCRIBER READY (may allow CONDITIONALLY READY)",
+        "items": [
+          "WB-005",
+          "WB-006",
+          "WB-007"
+        ]
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+        "file": "apps/scenes/hidden-landscapes/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+        "file": "apps/scenes/photo-coach/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/photo-library/index.html",
+        "file": "apps/scenes/photo-library/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: sheds/index.html",
+        "file": "sheds/index.html"
+      },
+      {
+        "id": "production-build",
+        "severity": "P1",
+        "message": "Command failed: node automation/verify-production-build.mjs",
+        "exitCode": 1
+      },
+      {
+        "id": "probe-responsive",
+        "severity": "P1",
+        "message": "Probe dimension responsive failed",
+        "items": [
+          "responsive:missing-viewport",
+          "responsive:missing-viewport",
+          "responsive:missing-viewport",
+          "responsive:missing-viewport"
+        ]
+      },
+      {
+        "id": "no-fake-functionality",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: No fake functionality / placeholders-as-finished"
+      },
+      {
+        "id": "primary-workflows",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Primary subscriber workflows complete"
+      },
+      {
+        "id": "honest-data",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Live / estimate / placeholder honesty"
+      },
+      {
+        "id": "visual-review",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Visual review pass for scoped surface"
+      },
+      {
+        "id": "commercial-review",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Commercial reviewer \u2014 cancel/refund/trust test"
+      },
+      {
+        "id": "red-team-pass",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Red Team independent disproof pass"
+      },
+      {
+        "id": "commercial-cancel-risk",
+        "severity": "P0",
+        "message": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
+      },
+      {
+        "id": "red-team-disproof",
+        "severity": "P0",
+        "message": "Red Team disproved readiness with 7 finding(s).",
+        "items": [
+          "redteam:backlog:WB-004",
+          "redteam:probe:responsive:missing-viewport",
+          "redteam:probe:responsive:missing-viewport",
+          "redteam:probe:responsive:missing-viewport",
+          "redteam:probe:responsive:missing-viewport",
+          "redteam:commercial-cancel",
+          "redteam:qa:production-build"
+        ]
+      }
+    ],
+    "evidenceRunId": "gate-2026-08-10T01-40-40-857Z",
+    "commercial": {
+      "status": "fail",
+      "wouldCancel": true,
+      "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
+    },
+    "redTeam": {
+      "status": "fail",
+      "disproved": true,
+      "summary": "Red Team disproved readiness with 7 finding(s)."
+    },
+    "attestations": {
+      "complete": false,
+      "pending": [
+        "no-fake-functionality",
+        "primary-workflows",
+        "honest-data",
+        "visual-review",
+        "commercial-review",
+        "red-team-pass"
+      ],
+      "failed": [],
+      "passed": []
+    },
+    "dimensions": [
+      "primary_workflows",
+      "functionality",
+      "live_data_integrity",
+      "placeholder_detection",
+      "dead_controls",
+      "broken_links_nav",
+      "raw_html_leakage",
+      "loading_empty_error",
+      "mobile_tablet_desktop",
+      "responsive",
+      "contrast",
+      "a11y",
+      "keyboard",
+      "console",
+      "network_api",
+      "performance",
+      "security",
+      "privacy",
+      "content_quality",
+      "visual_consistency",
+      "discoverability",
+      "onboarding",
+      "persistence",
+      "commercial_usefulness"
+    ]
+  },
+  "routing": {
+    "openRepairQueue": [],
+    "lastFailureId": null
+  },
+  "loopHistory": [
+    {
+      "at": "2026-08-10T01:09:28.748Z",
+      "event": "phase_set",
+      "phase": "discover",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T01:09:28.748Z",
+      "event": "discover",
+      "phase": "discover",
+      "imported": 4,
+      "skipped": 1
+    },
+    {
+      "at": "2026-08-10T01:09:28.775Z",
+      "event": "phase_set",
+      "phase": "prioritize",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T01:09:28.780Z",
+      "event": "prioritize",
+      "phase": "prioritize",
+      "top": "WB-004"
+    },
+    {
+      "at": "2026-08-10T01:09:28.810Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T01:09:28.810Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT_SUBSCRIBER_READY",
+      "findingCount": 5
+    },
+    {
+      "at": "2026-08-10T01:39:36.342Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T01:39:38.300Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 16,
+      "evidenceRunId": "gate-2026-08-10T01-39-36-343Z"
+    },
+    {
+      "at": "2026-08-10T01:40:40.857Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T01:40:41.605Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT READY",
+      "findingCount": 16,
+      "evidenceRunId": "gate-2026-08-10T01-40-40-857Z"
+    }
+  ],
+  "notes": [
+    "Sheds Subscriber Ready autonomous pilot active.",
+    "Today\u2019s Search recovered from feature/sheds-todays-search@506fb85.",
+    "Platform eng items tagged campaign=platform; Sheds work is campaign=sheds."
+  ]
+}

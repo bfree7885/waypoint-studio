@@ -1,0 +1,13 @@
+{
+  "id": "cmd-platform-foundation",
+  "kind": "automated_tests",
+  "at": "2026-08-10T01:39:36.423Z",
+  "status": "pass",
+  "summary": "Platform foundation suite: pass",
+  "severity": null,
+  "data": {
+    "command": "node automation/test-platform-foundation.mjs",
+    "exitCode": 0,
+    "output": "PASS catalog has core products\nPASS catalog has incubator/supporting\nPASS catalog demotes ForageCast from core\nPASS catalog lists Side Trails as core\nPASS resolve sheds href\nPASS resolve studio home\nPASS resolve dashboard app\nPASS nav config has apps\nPASS nav categories\nPASS shell explore launcher control\nPASS shell local nav\nPASS shell marks current feature\nPASS profile private default\nPASS profile saves\nPASS locations save\nPASS collections favorites\nPASS settings sync off\nPASS subscription readiness\nPASS foundation render\nPASS envelope id\nPASS envelope privacy\nPASS extension set\nPASS future data disabled\nPASS future gis blocked\nPASS no marketplace hook name\nPASS sheds species count\nPASS shed find private\nPASS steepleaf tea store\nPASS signalterrain receiver\nPASS savant site\nPASS fieldry categories\nPASS life list empty total\nPASS foundation json apps/shed-hunting/data/foundation.json\nPASS foundation json apps/steepleaf/data/foundation.json\nPASS foundation json apps/signalterrain/data/foundation.json\nPASS foundation json apps/savant-sommelier/data/foundation.json\n\nAll platform foundation tests passed.\n"
+  }
+}

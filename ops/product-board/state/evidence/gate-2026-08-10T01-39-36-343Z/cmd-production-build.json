@@ -1,0 +1,13 @@
+{
+  "id": "cmd-production-build",
+  "kind": "automated_tests",
+  "at": "2026-08-10T01:39:37.969Z",
+  "status": "fail",
+  "summary": "Production build verification: fail",
+  "severity": null,
+  "data": {
+    "command": "node automation/verify-production-build.mjs",
+    "exitCode": 1,
+    "output": "Verify production build — https://waypointstudio.org expect 6548846\nPASS: marker matches build-info\nPASS: Dashboard App Shell present\n"
+  }
+}

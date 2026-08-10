@@ -1,0 +1,268 @@
+{
+  "verdict": "NOT READY",
+  "findings": [
+    {
+      "id": "open-p0-p1-work",
+      "severity": "P1",
+      "message": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+      "items": [
+        "WB-004"
+      ]
+    },
+    {
+      "id": "open-p2-work",
+      "severity": "P2",
+      "message": "3 open P2 item(s) block SUBSCRIBER READY (may allow CONDITIONALLY READY)",
+      "items": [
+        "WB-005",
+        "WB-006",
+        "WB-007"
+      ]
+    },
+    {
+      "id": "responsive:missing-viewport",
+      "dimension": "responsive",
+      "severity": "P1",
+      "message": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+      "file": "apps/scenes/hidden-landscapes/index.html"
+    },
+    {
+      "id": "responsive:missing-viewport",
+      "dimension": "responsive",
+      "severity": "P1",
+      "message": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+      "file": "apps/scenes/photo-coach/index.html"
+    },
+    {
+      "id": "responsive:missing-viewport",
+      "dimension": "responsive",
+      "severity": "P1",
+      "message": "Missing viewport meta: apps/scenes/photo-library/index.html",
+      "file": "apps/scenes/photo-library/index.html"
+    },
+    {
+      "id": "responsive:missing-viewport",
+      "dimension": "responsive",
+      "severity": "P1",
+      "message": "Missing viewport meta: sheds/index.html",
+      "file": "sheds/index.html"
+    },
+    {
+      "id": "production-build",
+      "severity": "P1",
+      "message": "Command failed: node automation/verify-production-build.mjs",
+      "exitCode": 1
+    },
+    {
+      "id": "probe-responsive",
+      "severity": "P1",
+      "message": "Probe dimension responsive failed",
+      "items": [
+        "responsive:missing-viewport",
+        "responsive:missing-viewport",
+        "responsive:missing-viewport",
+        "responsive:missing-viewport"
+      ]
+    },
+    {
+      "id": "no-fake-functionality",
+      "severity": "P0",
+      "message": "Required criterion not yet attested: No fake functionality / placeholders-as-finished"
+    },
+    {
+      "id": "primary-workflows",
+      "severity": "P1",
+      "message": "Required criterion not yet attested: Primary subscriber workflows complete"
+    },
+    {
+      "id": "honest-data",
+      "severity": "P0",
+      "message": "Required criterion not yet attested: Live / estimate / placeholder honesty"
+    },
+    {
+      "id": "visual-review",
+      "severity": "P1",
+      "message": "Required criterion not yet attested: Visual review pass for scoped surface"
+    },
+    {
+      "id": "commercial-review",
+      "severity": "P0",
+      "message": "Required criterion not yet attested: Commercial reviewer — cancel/refund/trust test"
+    },
+    {
+      "id": "red-team-pass",
+      "severity": "P0",
+      "message": "Required criterion not yet attested: Red Team independent disproof pass"
+    },
+    {
+      "id": "commercial-cancel-risk",
+      "severity": "P0",
+      "message": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks."
+    },
+    {
+      "id": "red-team-disproof",
+      "severity": "P0",
+      "message": "Red Team disproved readiness with 9 finding(s).",
+      "items": [
+        "redteam:backlog:WB-004",
+        "redteam:probe:responsive:missing-viewport",
+        "redteam:probe:responsive:missing-viewport",
+        "redteam:probe:responsive:missing-viewport",
+        "redteam:probe:responsive:missing-viewport",
+        "redteam:commercial-cancel",
+        "redteam:qa:production-build",
+        "redteam:qa:browser-smoke",
+        "redteam:qa:a11y-smoke"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "board-blockers",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "platform-foundation",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-links",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "production-build",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "browser-smoke",
+      "status": "fail",
+      "required": false
+    },
+    {
+      "id": "a11y-smoke",
+      "status": "fail",
+      "required": false
+    },
+    {
+      "id": "probe-placeholders",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-html-leakage",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-dead-controls",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "probe-responsive",
+      "status": "fail",
+      "required": true
+    },
+    {
+      "id": "probe-privacy",
+      "status": "pass",
+      "required": true
+    },
+    {
+      "id": "dim-loading-states",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-mobile-tablet-desktop",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-contrast-keyboard",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-network-perf-security",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "dim-content-visual-discovery",
+      "status": "covered",
+      "required": true
+    },
+    {
+      "id": "no-fake-functionality",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "primary-workflows",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "honest-data",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "visual-review",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "commercial-review",
+      "status": "manual_required",
+      "required": true
+    },
+    {
+      "id": "red-team-pass",
+      "status": "manual_required",
+      "required": true
+    }
+  ],
+  "commercial": {
+    "status": "fail",
+    "wouldCancel": true
+  },
+  "redTeam": {
+    "status": "fail",
+    "disproved": true
+  },
+  "attestations": {
+    "complete": false,
+    "pending": [
+      "no-fake-functionality",
+      "primary-workflows",
+      "honest-data",
+      "visual-review",
+      "commercial-review",
+      "red-team-pass"
+    ],
+    "failed": [],
+    "passed": []
+  },
+  "evidenceCompleteness": {
+    "complete": true,
+    "missing": [],
+    "present": [
+      "static_probe",
+      "playwright_browser",
+      "automated_tests",
+      "console",
+      "a11y",
+      "commercial_review",
+      "red_team"
+    ]
+  },
+  "runId": "gate-2026-08-10T01-39-36-343Z",
+  "finalizedAt": "2026-08-10T01:39:38.300Z",
+  "entryCount": 10
+}

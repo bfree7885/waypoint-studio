@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T10:39:26.000Z",
+  "policy": {
+    "priorities": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "productionBugsAreP0": true,
+    "failedReviewCreatesRepairWork": true,
+    "subscriberReadyBlockedBy": [
+      "P0",
+      "P1",
+      "P2"
+    ]
+  },
+  "items": [
+    {
+      "id": "WB-001",
+      "title": "Wire visual regression capture into Product Board visual_review phase",
+      "severity": "P3",
+      "area": "agent-ops",
+      "status": "ready",
+      "acceptanceCriteria": [
+        "visual_review phase invokes or records automation/capture-platform-visual-regression.mjs for scoped surfaces",
+        "Failures route through fail-review \u2192 fix \u2192 retest"
+      ],
+      "source": "foundation-seed",
+      "notes": "Capture tooling exists; not yet orchestrated by the board loop.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-09T00:00:00.000Z",
+      "failureOrigin": null,
+      "evidence": [],
+      "blocksSubscriberReady": false,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-002",
+      "title": "Install/document Playwright path or explicit non-use for visual testing",
+      "severity": "P4",
+      "area": "agent-ops",
+      "status": "backlog",
+      "acceptanceCriteria": [
+        "Either Playwright is available with a Product Board command, or inventory remains honest that it is missing",
+        "No claim of Playwright coverage without executable proof"
+      ],
+      "source": "foundation-seed",
+      "notes": "reports/playwright-capability.txt currently reports not installed.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-09T00:00:00.000Z",
+      "failureOrigin": null,
+      "evidence": [],
+      "blocksSubscriberReady": false,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-003",
+      "title": "Attestation workflow for Subscriber Ready policy criteria",
+      "severity": "P2",
+      "area": "agent-ops",
+      "status": "done",
+      "acceptanceCriteria": [
+        "board.mjs supports recording role attestations for required policy criteria",
+        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0\u2013P2 queue"
+      ],
+      "source": "foundation-seed",
+      "notes": "Implemented: board.mjs attest + state/attestations.json; gate requires policy attestations + Commercial + Red Team.",
+      "relatedEngineeringId": null,
+      "assignedRole": "release-manager",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-10T01:30:00.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T01:30:00.000Z",
+          "kind": "implementation",
+          "notes": "attest command + requiredAttestationsStatus wired into evaluateSubscriberReady"
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": null
+    },
+    {
+      "id": "WB-004",
+      "title": "[eng] Confirm GitHub Pages source remains GitHub Actions only",
+      "severity": "P1",
+      "area": "devops",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Repo Pages settings use GitHub Actions (not branch deploy)",
+        "Deploy workflow injects GITHUB_SHA metadata",
+        "Production marker matches origin/main"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Prevents local stub markers from briefly shipping via branch Pages.",
+      "relatedEngineeringId": "WE-001",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.747Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-005",
+      "title": "[eng] Add Engineering OS onboarding note to docs README",
+      "severity": "P2",
+      "area": "docs",
+      "status": "done",
+      "acceptanceCriteria": [
+        "docs/README links to engineering/README.md",
+        "No application code changes"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Optional documentation cross-link only.",
+      "relatedEngineeringId": "WE-002",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-006",
+      "title": "[eng] Catalog known technical debt after App Shell migration",
+      "severity": "P2",
+      "area": "architecture",
+      "status": "done",
+      "acceptanceCriteria": [
+        "engineering/knowledge/technical-debt.yaml lists top debt items",
+        "Each item has severity and suggested owner role"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Knowledge capture only.",
+      "relatedEngineeringId": "WE-003",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-007",
+      "title": "[eng] Define accessibility gate checklist for App Shell pages",
+      "severity": "P2",
+      "area": "ux",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Playbook accessibility-gate.md covers focus, contrast, skip link, launcher a11y",
+        "QA references the checklist in sprint verification"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Checklist already scaffolded; keep current and enforce.",
+      "relatedEngineeringId": "WE-004",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-008",
+      "title": "Sheds: production deploy of Today\u2019s Search + observation heat",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "ready",
+      "acceptanceCriteria": [
+        "Production /apps/shed-hunting/map/ includes Today\u2019s Search panel",
+        "Observation heat mode present without demo seed data",
+        "verify-sheds-production notes Today\u2019s Search present"
+      ],
+      "source": "sheds-pilot-discover",
+      "notes": "Still blocking live SUBSCRIBER READY until Today\u2019s Search is on production (merge/deploy). Local product verified.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-10T03:35:01.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": null,
+      "evidence": [],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-009",
+      "title": "Sheds: browser product review desktop/tablet/mobile",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Desktop + mobile walkthrough evidence recorded",
+        "No console/network P0/P1 on primary journeys",
+        "Attestations possible for primary-workflows + visual-review"
+      ],
+      "source": "sheds-pilot-discover",
+      "notes": "Primary workflows: locate, Today\u2019s Search, add note, heat modes, tools, ethics/privacy.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-10T03:35:01.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T10:39:26.000Z",
+          "kind": "browser-review",
+          "notes": "CDP desktop/tablet/mobile review PASS; reports/sheds-subscriber-ready-review/"
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-010",
+      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today\u2019s Search on mobile",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Attribution hidden when briefing expanded",
+        "Leaflet bottom chrome lifted above expanded sheet",
+        "Field UX regression asserts CSS rules",
+        "CDP overlap check passes"
+      ],
+      "source": "browser-review",
+      "notes": "Fixed in sheds-map.css :has(#plan-card[data-expanded=true]) rules; ethics provider copy corrected to CARTO/Esri.",
+      "relatedEngineeringId": null,
+      "assignedRole": "ux-ui-lead",
+      "createdAt": "2026-08-10T10:39:26.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": "visual_review",
+      "evidence": [
+        {
+          "at": "2026-08-10T10:39:26.000Z",
+          "kind": "fix",
+          "notes": "CSS + regression + CDP pass"
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-011",
+      "title": "Sheds: ethics sheet claimed OSM/OpenTopoMap while production tiles are CARTO/Esri",
+      "severity": "P2",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Ethics map-provider copy matches tile provider"
+      ],
+      "source": "commercial-red-team",
+      "notes": "Trust/honesty defect \u2014 repaired.",
+      "relatedEngineeringId": null,
+      "assignedRole": "commercial-subscriber",
+      "createdAt": "2026-08-10T10:39:26.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": "red_team",
+      "evidence": [],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    }
+  ]
+}

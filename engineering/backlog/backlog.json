@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-12T00:00:00.000Z",
+  "updatedAt": "2026-08-10T03:35:01.000Z",
   "policy": {
     "priorities": [
       "P0",
@@ -18,7 +18,7 @@
       "estimate": "S",
       "dependencies": [],
       "assignedAgent": "devops-engineer",
-      "status": "ready",
+      "status": "done",
       "acceptanceCriteria": [
         "Repo Pages settings use GitHub Actions (not branch deploy)",
         "Deploy workflow injects GITHUB_SHA metadata",
@@ -26,7 +26,8 @@
       ],
       "area": "devops",
       "risk": "medium",
-      "notes": "Prevents local stub markers from briefly shipping via branch Pages."
+      "notes": "Confirmed 2026-08-10: gh pages build_type=workflow; build-info injects GITHUB_SHA. Production SHA may lag origin/main \u2014 tracked separately as platform deploy lag (not Sheds product defect).",
+      "updatedAt": "2026-08-10T03:35:01.000Z"
     },
     {
       "id": "WE-002",
@@ -35,14 +36,15 @@
       "estimate": "S",
       "dependencies": [],
       "assignedAgent": "documentation-engineer",
-      "status": "backlog",
+      "status": "done",
       "acceptanceCriteria": [
         "docs/README links to engineering/README.md",
         "No application code changes"
       ],
       "area": "docs",
       "risk": "low",
-      "notes": "Optional documentation cross-link only."
+      "notes": "docs/README.md links Engineering OS.",
+      "updatedAt": "2026-08-10T03:35:01.000Z"
     },
     {
       "id": "WE-003",
@@ -51,14 +53,15 @@
       "estimate": "M",
       "dependencies": [],
       "assignedAgent": "software-architect",
-      "status": "backlog",
+      "status": "done",
       "acceptanceCriteria": [
         "engineering/knowledge/technical-debt.yaml lists top debt items",
         "Each item has severity and suggested owner role"
       ],
       "area": "architecture",
       "risk": "low",
-      "notes": "Knowledge capture only."
+      "notes": "engineering/knowledge/technical-debt.yaml catalogs TD-001..TD-003 with severity + owner.",
+      "updatedAt": "2026-08-10T03:35:01.000Z"
     },
     {
       "id": "WE-004",
@@ -67,14 +70,15 @@
       "estimate": "S",
       "dependencies": [],
       "assignedAgent": "ux-designer",
-      "status": "ready",
+      "status": "done",
       "acceptanceCriteria": [
         "Playbook accessibility-gate.md covers focus, contrast, skip link, launcher a11y",
         "QA references the checklist in sprint verification"
       ],
       "area": "ux",
       "risk": "low",
-      "notes": "Checklist already scaffolded; keep current and enforce."
+      "notes": "engineering/playbooks/accessibility-gate.md covers skip/focus/escape/aria-current/contrast/mobile.",
+      "updatedAt": "2026-08-10T03:35:01.000Z"
     },
     {
       "id": "WE-005",

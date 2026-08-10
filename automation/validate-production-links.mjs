@@ -48,10 +48,27 @@ function attrs(html, attr) {
 
 function walkHtml(dir, files = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (ent.name === "node_modules" || ent.name === ".git") continue;
+    if (
+      ent.name === "node_modules" ||
+      ent.name === ".git" ||
+      ent.name === "chrome-profile" ||
+      ent.name.startsWith("chrome-profile-")
+    ) {
+      continue;
+    }
     const p = path.join(dir, ent.name);
-    if (ent.isDirectory()) walkHtml(p, files);
-    else if (ent.name.endsWith(".html")) files.push(p);
+    if (ent.isDirectory()) {
+      // Local CDP/browser artifacts must not pollute production link gates
+      const rel = path.relative(ROOT, p);
+      if (
+        rel === "reports/sheds-subscriber-ready-review" ||
+        rel.startsWith("reports/sheds-subscriber-ready-review/") ||
+        rel.includes(`${path.sep}chrome-profile`)
+      ) {
+        continue;
+      }
+      walkHtml(p, files);
+    } else if (ent.name.endsWith(".html")) files.push(p);
   }
   return files;
 }
