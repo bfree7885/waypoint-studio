@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "id": "subscriber-ready",
+  "title": "Subscriber Ready",
+  "description": "Formal release gate. Passing automated tests alone is never sufficient.",
+  "principles": [
+    "Never approve fake functionality",
+    "Never treat unexplained sample/demo content as finished product",
+    "Never treat placeholders as finished",
+    "No dead controls",
+    "No broken navigation",
+    "No unreadable text or HTML leakage",
+    "No broken responsive primary layouts",
+    "No misleading Live data",
+    "No unfinished primary workflows",
+    "No silent failures",
+    "No ignored console/network failures on primary journeys",
+    "No poor-value features presented as ready"
+  ],
+  "policy": {
+    "testsPassIsNotEnough": true,
+    "p0P1P2BlockApproval": true,
+    "failedReviewMustRouteToRepair": true,
+    "onlyOwnerMayWaiveWithRecord": true
+  },
+  "criteria": [
+    {
+      "id": "board-blockers",
+      "title": "No open P0–P2 Product Board items",
+      "kind": "board",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Open blocking work or repair queue fails the gate."
+    },
+    {
+      "id": "platform-foundation",
+      "title": "Platform foundation suite",
+      "kind": "command",
+      "command": "node automation/test-platform-foundation.mjs",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Core automated regression for shared platform."
+    },
+    {
+      "id": "browser-smoke",
+      "title": "Browser smoke",
+      "kind": "command",
+      "command": "node automation/smoke-browser.mjs",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "Structural navigation / App Shell smoke."
+    },
+    {
+      "id": "a11y-smoke",
+      "title": "Accessibility smoke",
+      "kind": "command",
+      "command": "node automation/a11y-smoke.mjs",
+      "required": false,
+      "defaultSeverity": "P2",
+      "description": "Optional until live-site-qa deps are reliable; still required before claiming full a11y readiness."
+    },
+    {
+      "id": "no-fake-functionality",
+      "title": "No fake functionality / placeholders-as-finished",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P0",
+      "description": "Product Director + Commercial/Subscriber attestation."
+    },
+    {
+      "id": "primary-workflows",
+      "title": "Primary subscriber workflows complete",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "QA + Product Director attestation for the scoped campaign."
+    },
+    {
+      "id": "honest-data",
+      "title": "Live / estimate / placeholder honesty",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P0",
+      "description": "Data/Reliability attestation."
+    },
+    {
+      "id": "visual-redteam",
+      "title": "Visual review + red-team pass for scoped surface",
+      "kind": "policy",
+      "required": true,
+      "defaultSeverity": "P1",
+      "description": "UX/UI Lead + Red-Team attestation; failures must route to repair."
+    }
+  ]
+}

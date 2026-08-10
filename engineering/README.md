@@ -4,6 +4,18 @@
 
 This is not a chat feature. It is repository infrastructure: roles, backlog, sprints, gates, playbooks, and an orchestrator that decides what happens next.
 
+> **Agent Ops / Product Board (2026-08):** The product-management execution
+> layer lives at [`ops/product-board/`](../ops/product-board/README.md).
+> Use it for P0–P4 board state, the discover→release loop, failed-review
+> routing, and the formal **Subscriber Ready** gate. This Engineering OS
+> remains the recovered sprint/agent substrate.
+
+Primary board command:
+
+```bash
+node ops/product-board/board.mjs status
+```
+
 ## Quick commands
 
 ```bash

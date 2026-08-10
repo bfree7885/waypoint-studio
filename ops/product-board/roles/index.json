@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "roles": [
+    "product-director",
+    "senior-software-engineer",
+    "ux-ui-lead",
+    "qa",
+    "data-reliability",
+    "accessibility",
+    "security",
+    "content-editorial",
+    "commercial-subscriber",
+    "red-team",
+    "release-manager"
+  ],
+  "loop": [
+    "discover",
+    "prioritize",
+    "fix",
+    "test",
+    "visual_review",
+    "red_team",
+    "retest",
+    "release_gate"
+  ],
+  "note": "Executable permanent roles. Contracts live in lib/roles.mjs; engineering YAML agents are mapped via engineeringAgent."
+}

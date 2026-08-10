@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T01:09:28.810Z",
+  "mode": "loop",
+  "phase": "release_gate",
+  "activeItemId": "WB-004",
+  "activeRole": "release-manager",
+  "campaign": null,
+  "lastCommand": "gate",
+  "lastCommandAt": "2026-08-10T01:09:28.810Z",
+  "releaseGate": {
+    "status": "blocked",
+    "lastRunAt": "2026-08-10T01:09:28.810Z",
+    "verdict": "NOT_SUBSCRIBER_READY",
+    "blockingFindings": [
+      {
+        "id": "open-blocking-work",
+        "severity": "P2",
+        "message": "5 open P0–P2 item(s) block Subscriber Ready",
+        "items": [
+          "WB-003",
+          "WB-004",
+          "WB-005",
+          "WB-006",
+          "WB-007"
+        ]
+      },
+      {
+        "id": "no-fake-functionality",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: No fake functionality / placeholders-as-finished"
+      },
+      {
+        "id": "primary-workflows",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Primary subscriber workflows complete"
+      },
+      {
+        "id": "honest-data",
+        "severity": "P0",
+        "message": "Required criterion not yet attested: Live / estimate / placeholder honesty"
+      },
+      {
+        "id": "visual-redteam",
+        "severity": "P1",
+        "message": "Required criterion not yet attested: Visual review + red-team pass for scoped surface"
+      }
+    ]
+  },
+  "routing": {
+    "openRepairQueue": [],
+    "lastFailureId": null
+  },
+  "loopHistory": [
+    {
+      "at": "2026-08-10T01:09:28.748Z",
+      "event": "phase_set",
+      "phase": "discover",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T01:09:28.748Z",
+      "event": "discover",
+      "phase": "discover",
+      "imported": 4,
+      "skipped": 1
+    },
+    {
+      "at": "2026-08-10T01:09:28.775Z",
+      "event": "phase_set",
+      "phase": "prioritize",
+      "role": "product-director"
+    },
+    {
+      "at": "2026-08-10T01:09:28.780Z",
+      "event": "prioritize",
+      "phase": "prioritize",
+      "top": "WB-004"
+    },
+    {
+      "at": "2026-08-10T01:09:28.810Z",
+      "event": "phase_set",
+      "phase": "release_gate",
+      "role": "release-manager"
+    },
+    {
+      "at": "2026-08-10T01:09:28.810Z",
+      "event": "subscriber_ready_gate",
+      "phase": "release_gate",
+      "verdict": "NOT_SUBSCRIBER_READY",
+      "findingCount": 5
+    }
+  ],
+  "notes": [
+    "Discovery refreshed from Engineering OS + static inventory.",
+    "Synced engineering tasks: imported=4 skipped=1",
+    "Next: prioritize, then next."
+  ]
+}

@@ -9,3 +9,9 @@ lessons:
   - id: L-003
     title: CI smoke must not depend on live weather
     detail: Structural App Shell assertions belong in default CI; gate live OIP checks behind WAYPOINT_SMOKE_LIVE.
+  - id: L-004
+    title: Recover Engineering OS before inventing Agent Ops
+    detail: Prefer extending engineering/ orchestrator+agents; mark docs/ai-agents obsolete for runtime; put execution loop in ops/product-board.
+  - id: L-005
+    title: Subscriber Ready is stricter than CI green
+    detail: Open P0–P2 items, repair queues, and unattested policy criteria must block approval even when automation passes.

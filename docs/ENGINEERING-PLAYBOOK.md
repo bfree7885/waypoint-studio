@@ -1050,3 +1050,19 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 4. **Live impacts are optional and must not invent Shipping activations.** Overlay
    `live-impacts.json` when present; empty/missing → honest empty Live developments
    section while structural baseline still renders.
+
+### 2026-08-09 — Agent Ops Product Board foundation
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/`
+
+1. **Recover before inventing.** Waypoint already had an Engineering OS
+   (`engineering/orchestrator`, agents, backlog, gates). Agent Ops work should
+   extend that substrate; `docs/ai-agents/` is Scenes-era and obsolete for runtime.
+2. **Subscriber Ready ≠ tests pass.** Encode a formal gate with P0–P2 blockers,
+   repair-queue checks, required commands, and manual attestations that stay
+   `manual_required` until honestly recorded — never auto-APPROVE.
+3. **Failed review must route.** Visual/red-team/QA failure creates a fix-status
+   work item and blocks the gate; “write report and stop” is a process defect.
+4. **Prefer a clean worktree** when the main checkout is dirty with unrelated
+   HTML/docs noise; keep Agent Ops commits free of dirty-tree staging.
