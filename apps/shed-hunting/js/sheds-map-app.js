@@ -24,9 +24,20 @@
   var SPECIES_LABEL = "Whitetail deer";
   var DEFAULT_HEAT_OPACITY = 0.42;
   var GPS_DENIED_KEY = "waypoint-sheds-gps-denied-v1";
+  /** Explicit location SOT — never conflate these into similar map dots. */
+  var LOCATION_KIND = Object.freeze({
+    USER_GPS: "user_gps",
+    USER_APPROXIMATE: "user_approximate",
+    SEARCH_TARGET: "search_target",
+    MAP_CENTER: "map_center",
+    NONE: "none"
+  });
+  var GPS_MOVE_MIN_M = 8; // ignore sub-threshold GPS jitter (stable input → stable marker)
+  var GPS_APPROX_M = 80;
 
   var state = {
     locationStatus: "idle",
+    locationKind: LOCATION_KIND.NONE,
     userLatLng: null,
     accuracyM: null,
     headingDeg: null,
@@ -108,10 +119,17 @@
 
   function setFabLabel(btn, label) {
     if (!btn) return;
+    var text = String(label || "").trim();
+    btn.setAttribute("aria-label", text);
+    btn.title = text;
     var span = btn.querySelector(".sheds-fab__label");
-    if (span) span.textContent = label;
-    btn.setAttribute("aria-label", label);
-    btn.title = label;
+    if (span) {
+      span.textContent = /^stop/i.test(text)
+        ? "Stop"
+        : /^(start|resume)/i.test(text)
+          ? "Track"
+          : text.split(/\s+/)[0];
+    }
   }
 
   function syncSessionPill(text, show) {
@@ -391,30 +409,79 @@
     meta.hidden = bits === 0;
   }
 
+  function metersBetween(a, b) {
+    if (!a || !b) return Infinity;
+    var R = 6371000;
+    var toRad = Math.PI / 180;
+    var dLat = (b.lat - a.lat) * toRad;
+    var dLng = (b.lng - a.lng) * toRad;
+    var lat1 = a.lat * toRad;
+    var lat2 = b.lat * toRad;
+    var h =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+
+  function publishLocationDebug() {
+    try {
+      window.__SHEDS_LOCATION__ = {
+        kind: state.locationKind,
+        lat: state.userLatLng ? state.userLatLng.lat : null,
+        lng: state.userLatLng ? state.userLatLng.lng : null,
+        accuracyM: state.accuracyM,
+        status: state.locationStatus
+      };
+    } catch (e) { /* */ }
+  }
+
+  /**
+   * USER LOCATION marker only — never used for search target / map center.
+   * Approximate GPS uses a hollow ring + honest tooltip (not a precise “you are here” pin).
+   */
   function upsertUserMarker(ll, accuracyM, headingDeg) {
     if (!map || !ll) return;
+    var approximate =
+      accuracyM != null && isFinite(accuracyM) && accuracyM > GPS_APPROX_M;
+    state.locationKind = approximate
+      ? LOCATION_KIND.USER_APPROXIMATE
+      : LOCATION_KIND.USER_GPS;
+    var fill = approximate ? "#8ec0ff" : "#f5f8f4";
+    var stroke = approximate ? "#8ec0ff" : "#d8ec5c";
+    var tip = approximate
+      ? "Approximate location (±" + Math.round(accuracyM) + " m) — not precise"
+      : "You";
     if (!userMarker) {
       userMarker = L.circleMarker(ll, {
-        radius: 9,
-        color: "#0a1410",
+        radius: approximate ? 8 : 7,
+        color: stroke,
         weight: 2,
-        fillColor: "#d4e85a",
-        fillOpacity: 0.98,
-        className: "sheds-user-pulse"
+        fillColor: fill,
+        fillOpacity: approximate ? 0.25 : 0.95,
+        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : "")
       }).addTo(map);
-      userMarker.bindTooltip("You (approximate)", { direction: "top" });
+      userMarker.bindTooltip(tip, { direction: "top", className: "sheds-map-tip" });
     } else {
       userMarker.setLatLng(ll);
+      userMarker.setStyle({
+        radius: approximate ? 8 : 7,
+        color: stroke,
+        fillColor: fill,
+        fillOpacity: approximate ? 0.25 : 0.95,
+        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : "")
+      });
+      userMarker.setTooltipContent(tip);
     }
     if (accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM < 5000) {
       if (!accuracyCircle) {
         accuracyCircle = L.circle(ll, {
           radius: accuracyM,
-          color: "#7eb6ff",
+          color: "#8ec0ff",
           weight: 1,
-          fillColor: "#7eb6ff",
-          fillOpacity: 0.12,
-          interactive: false
+          fillColor: "#8ec0ff",
+          fillOpacity: 0.1,
+          interactive: false,
+          className: "sheds-user-accuracy"
         }).addTo(map);
       } else {
         accuracyCircle.setLatLng(ll);
@@ -425,20 +492,42 @@
       map.removeLayer(headingLine);
       headingLine = null;
     }
-    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng) {
+    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng && !approximate) {
       var rad = (headingDeg * Math.PI) / 180;
       var len = 0.00045;
-      var tip = L.latLng(
+      var tipPt = L.latLng(
         ll.lat + Math.cos(rad) * len,
         ll.lng + (Math.sin(rad) * len) / Math.cos((ll.lat * Math.PI) / 180)
       );
-      headingLine = L.polyline([ll, tip], {
-        color: "#d4e85a",
-        weight: 3,
-        opacity: 0.9,
-        interactive: false
+      headingLine = L.polyline([ll, tipPt], {
+        color: "#8ec0ff",
+        weight: 2,
+        opacity: 0.85,
+        interactive: false,
+        className: "sheds-user-heading"
       }).addTo(map);
     }
+    publishLocationDebug();
+  }
+
+  /** Apply GPS only when movement exceeds threshold (or forced). Prevents oscillation. */
+  function applyUserPosition(ll, accuracyM, headingDeg, opts) {
+    opts = opts || {};
+    if (
+      !opts.force &&
+      state.userLatLng &&
+      metersBetween(state.userLatLng, ll) < GPS_MOVE_MIN_M &&
+      state.accuracyM != null &&
+      accuracyM != null &&
+      Math.abs(state.accuracyM - accuracyM) < 15
+    ) {
+      return false;
+    }
+    state.userLatLng = ll;
+    state.accuracyM = accuracyM;
+    if (headingDeg != null && isFinite(headingDeg)) state.headingDeg = headingDeg;
+    upsertUserMarker(ll, accuracyM, state.headingDeg);
+    return true;
   }
 
   function setMapLoading(done) {
@@ -1287,20 +1376,26 @@
     var r = plan.recommendation;
     recMarker = L.circle([r.lat, r.lng], {
       radius: r.suggestedRadiusM,
-      color: "#d4e85a",
+      color: "#e0a046",
       weight: 2,
-      fillColor: "#d4e85a",
-      fillOpacity: 0.12,
+      fillColor: "#e0a046",
+      fillOpacity: 0.1,
       className: "sheds-target-ring"
     }).addTo(planLayer);
-    var marker = L.circleMarker([r.lat, r.lng], {
-      radius: 8,
-      color: "#0a1410",
-      weight: 2,
-      fillColor: "#d4e85a",
-      fillOpacity: 1,
-      className: "sheds-target-dot"
-    }).bindTooltip("Suggested next search", { permanent: false });
+    // SEARCH TARGET — amber mark + label — never the same “you” lime dot.
+    var marker = L.marker([r.lat, r.lng], {
+      icon: L.divIcon({
+        className: "sheds-search-target",
+        html: "<span class=\"sheds-search-target__mark\" title=\"Suggested next search\"></span><span class=\"sheds-search-target__label\">Next</span>",
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      }),
+      keyboard: false,
+      riseOnHover: true
+    }).bindTooltip("Suggested next search (not your location)", {
+      permanent: false,
+      className: "sheds-map-tip"
+    });
     marker.addTo(planLayer);
     if (state.userLatLng) {
       L.polyline([
@@ -1350,15 +1445,21 @@
     state.watchId = navigator.geolocation.watchPosition(function (pos) {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
-      state.userLatLng = L.latLng(lat, lng);
-      state.accuracyM = pos.coords.accuracy;
-      if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
-      setLocStatus("available", "tracking");
-      upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
+      var ll = L.latLng(lat, lng);
+      var moved = applyUserPosition(
+        ll,
+        pos.coords.accuracy,
+        pos.coords.heading != null && !isNaN(pos.coords.heading) ? pos.coords.heading : null,
+        { force: false }
+      );
+      setLocStatus(
+        "available",
+        state.locationKind === LOCATION_KIND.USER_APPROXIMATE ? "tracking · approximate" : "tracking"
+      );
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
       if (updated) syncSessionPill("Tracking · " + Math.round(updated.distanceM || 0) + " m", true);
-      scheduleRecompute(800);
+      if (moved) scheduleRecompute(1200);
     }, function (err) {
       if (err && err.code === 1) setLocStatus("denied", "tracking stopped");
       else setLocStatus("unavailable", "tracking error");
@@ -1450,15 +1551,17 @@
     navigator.geolocation.getCurrentPosition(function (pos) {
       rememberGpsDenied(false);
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
-      state.userLatLng = ll;
-      state.accuracyM = pos.coords.accuracy;
       if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
+      applyUserPosition(ll, pos.coords.accuracy, state.headingDeg, { force: true });
       var accDetail = state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "";
-      if (state.accuracyM != null && state.accuracyM > 80) {
-        accDetail += " · approximate";
+      if (state.locationKind === LOCATION_KIND.USER_APPROXIMATE) {
+        accDetail = (accDetail ? accDetail + " · " : "") + "approximate — not precise";
+        setLocStatus("available", accDetail);
+        var locEl = $("loc-status");
+        if (locEl) locEl.textContent = "Approx. location" + (accDetail ? " · " + accDetail : "");
+      } else {
+        setLocStatus("available", accDetail);
       }
-      setLocStatus("available", accDetail);
-      upsertUserMarker(ll, state.accuracyM, state.headingDeg);
       if (opts.center !== false) {
         state.followUser = true;
         map.setView(ll, Math.max(map.getZoom(), 13), { animate: !document.documentElement.classList.contains("reduced-motion") });

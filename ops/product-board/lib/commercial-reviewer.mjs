@@ -1,11 +1,16 @@
 import { nowIso } from "./io.mjs";
 import { VERDICTS } from "./verdicts.mjs";
+import {
+  evaluateCommercialVisual,
+  COMMERCIAL_VISUAL_QUESTIONS
+} from "./commercial-visual.mjs";
 
 /**
  * Commercial / Subscriber reviewer — independent of engineering green checks.
  * Core question: if a customer paid today, what would cause cancel / refund / loss of trust?
  *
  * Never auto-pass because automated tests passed.
+ * Permanent commercial visual gate: pricing-page support + finished vs prototype.
  */
 export const COMMERCIAL_CANCEL_RISKS = Object.freeze([
   "Broken primary workflow after payment expectation",
@@ -15,7 +20,9 @@ export const COMMERCIAL_CANCEL_RISKS = Object.freeze([
   "Unreadable UI, HTML leakage, or silent failures",
   "Data that does not persist when the product claims it does",
   "Privacy surprise or unclear permissions",
-  "Feature that looks ready but delivers no commercial usefulness"
+  "Feature that looks ready but delivers no commercial usefulness",
+  "Prototype-quality visuals that cannot support a pricing ask",
+  "Unexplained controls, clipping, or map-dominating hierarchy that hides product value"
 ]);
 
 export function runCommercialReview({
@@ -23,9 +30,13 @@ export function runCommercialReview({
   probeFindings = [],
   gateChecks = [],
   attestations = null,
-  forced = null
+  forced = null,
+  commercialVisualAnswers = null
 } = {}) {
   const risks = [];
+  const visualGate = commercialVisualAnswers
+    ? evaluateCommercialVisual(commercialVisualAnswers)
+    : null;
 
   const p0p1 = [...backlogFindings, ...probeFindings].filter((f) =>
     ["P0", "P1"].includes(f.severity)
@@ -83,14 +94,37 @@ export function runCommercialReview({
     wouldCancel = false;
     summary =
       "Automated tests alone are insufficient — commercial attestation still required.";
+  } else if (visualGate && visualGate.status === "fail") {
+    status = "fail";
+    wouldCancel = true;
+    summary = visualGate.summary;
+    for (const f of visualGate.findings) {
+      risks.push({
+        id: `commercial:${f.id}`,
+        severity: f.severity,
+        reason: f.message,
+        cancelRisk: COMMERCIAL_CANCEL_RISKS[8]
+      });
+    }
   } else if (
     !risks.some((r) => ["P0", "P1"].includes(r.severity)) &&
-    attestations?.byCriterion?.["commercial-review"]?.verdict === "pass"
+    attestations?.byCriterion?.["commercial-review"]?.verdict === "pass" &&
+    visualGate &&
+    visualGate.status === "pass"
   ) {
     status = "pass";
     wouldCancel = false;
     summary =
-      "Commercial attestation recorded: paying customer would not cancel for known scoped risks.";
+      "Commercial attestation + visual gate: paying customer would not cancel for known scoped risks; visuals support paid expectation.";
+  } else if (
+    !risks.some((r) => ["P0", "P1"].includes(r.severity)) &&
+    attestations?.byCriterion?.["commercial-review"]?.verdict === "pass" &&
+    !visualGate
+  ) {
+    status = "pending";
+    wouldCancel = false;
+    summary =
+      "Commercial attestation present but commercial visual gate unanswered (pricing-page support + finished vs prototype).";
   } else if (!risks.length && attestations?.complete) {
     // Still pending unless an explicit commercial attestation exists.
     status = "pending";
@@ -105,6 +139,8 @@ export function runCommercialReview({
     wouldCancel,
     coreQuestion:
       "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+    visualQuestions: [...COMMERCIAL_VISUAL_QUESTIONS],
+    visualGate,
     cancelRiskCatalog: [...COMMERCIAL_CANCEL_RISKS],
     risks,
     summary,

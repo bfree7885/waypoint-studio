@@ -101,6 +101,8 @@ Commands:
   subscriber-ready    Alias for gate
   attest              Record policy attestation
                       --criterion ID --role ROLE --verdict pass|fail|waive [--notes N]
+                      [--campaign C] [--evidence-refs screenshot_analysis,dynamic_visual_review]
+                      [--would-support-pricing yes|no] [--product-feel commercial|prototype]
   evidence            Show latest gate evidence package path
   sync                Import open engineering WE-* tasks
   roles               List permanent executable roles
@@ -117,6 +119,7 @@ Long-term loop:
 
 Standing bar: SUBSCRIBER READY (not merely \"tests pass\").
 Commercial reviewer + Red Team are independent — tests alone never approve.
+Screenshot generation ≠ visual review; dynamic marker stability required for map/geo.
 Recovered Engineering OS: node engineering/orchestrator/run.mjs status
 `);
 }
@@ -393,17 +396,38 @@ function cmdAttest(args) {
   printHeader("Record Attestation");
   if (!args.criterion || !args.role || !args.verdict) {
     console.error(
-      "Usage: attest --criterion ID --role ROLE --verdict pass|fail|waive [--notes N] [--campaign C]"
+      "Usage: attest --criterion ID --role ROLE --verdict pass|fail|waive [--notes N] [--campaign C] [--evidence-refs kinds] [--would-support-pricing yes|no] [--product-feel commercial|prototype]"
     );
     process.exitCode = 1;
     return;
+  }
+  let evidenceRefs = null;
+  if (args["evidence-refs"]) {
+    evidenceRefs = String(args["evidence-refs"])
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((kind) => ({ kind }));
+  }
+  let commercialVisual = null;
+  if (
+    args["would-support-pricing"] != null ||
+    args["product-feel"] != null
+  ) {
+    commercialVisual = {
+      wouldSupportPricing: args["would-support-pricing"],
+      productFeel: args["product-feel"],
+      notes: args.notes || ""
+    };
   }
   const record = recordAttestation({
     criterionId: args.criterion,
     role: args.role,
     verdict: args.verdict,
     notes: args.notes || "",
-    campaign: args.campaign || null
+    campaign: args.campaign || null,
+    evidenceRefs,
+    commercialVisual
   });
   const state = loadBoardState();
   state.lastCommand = "attest";

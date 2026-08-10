@@ -31,7 +31,9 @@ export function recordAttestation({
   role,
   verdict,
   notes = "",
-  campaign = null
+  campaign = null,
+  evidenceRefs = null,
+  commercialVisual = null
 }) {
   if (!criterionId) throw new Error("criterionId required");
   if (!role) throw new Error("role required");
@@ -40,6 +42,64 @@ export function recordAttestation({
   }
   if (verdict === "waive" && !String(notes).trim()) {
     throw new Error("waive requires recorded notes (owner decision)");
+  }
+
+  const noteText = String(notes || "").trim();
+
+  // Permanent anti-theater: visual-review pass requires substantive analysis notes
+  // + evidence refs. Escaped twice on Sheds when "CDP screenshots" was attested as pass.
+  if (criterionId === "visual-review" && verdict === "pass") {
+    if (noteText.length < 160) {
+      throw new Error(
+        "visual-review pass requires ≥160 chars of explicit observations (clipping, truncation, hierarchy, controls, markers) — screenshot mention alone is insufficient"
+      );
+    }
+    if (
+      /screenshot|cdp|capture/i.test(noteText) &&
+      !/observ|clip|truncat|overlap|hierarch|marker|control|oscillat|prototype|commercial|density|crowded/i.test(
+        noteText
+      )
+    ) {
+      throw new Error(
+        "visual-review pass cannot cite screenshots without written analysis of what they show"
+      );
+    }
+    if (
+      !evidenceRefs ||
+      !Array.isArray(evidenceRefs) ||
+      !evidenceRefs.some((r) =>
+        /screenshot_analysis|dynamic_visual/i.test(String(r.kind || r))
+      )
+    ) {
+      throw new Error(
+        "visual-review pass requires evidenceRefs including screenshot_analysis and (for map/geo) dynamic_visual_review"
+      );
+    }
+  }
+
+  if (criterionId === "commercial-review" && verdict === "pass") {
+    if (
+      !commercialVisual ||
+      commercialVisual.wouldSupportPricing == null ||
+      !commercialVisual.productFeel
+    ) {
+      throw new Error(
+        "commercial-review pass requires commercialVisual answers: wouldSupportPricing + productFeel (commercial|prototype)"
+      );
+    }
+    if (/prototype/i.test(String(commercialVisual.productFeel))) {
+      throw new Error(
+        "commercial-review cannot pass while productFeel is prototype"
+      );
+    }
+    if (
+      commercialVisual.wouldSupportPricing === false ||
+      commercialVisual.wouldSupportPricing === "no"
+    ) {
+      throw new Error(
+        "commercial-review cannot pass when wouldSupportPricing is false"
+      );
+    }
   }
 
   const doc = loadAttestations();
@@ -56,8 +116,10 @@ export function recordAttestation({
     criterionId,
     role,
     verdict,
-    notes: String(notes || "").trim(),
+    notes: noteText,
     campaign: campaign || null,
+    evidenceRefs: evidenceRefs || null,
+    commercialVisual: commercialVisual || null,
     at: nowIso()
   };
   doc.records.push(record);

@@ -224,6 +224,47 @@ function probeLiveInputColdStart(campaign) {
         "UI claims map-center briefing without ensureWeatherForView implementation"
     });
   }
+  // Location SOT — dual similar dots + pulse-scale oscillation escaped twice
+  if (!/LOCATION_KIND|USER_GPS|SEARCH_TARGET|USER_APPROXIMATE/.test(app)) {
+    findings.push({
+      id: "live_data:missing-location-sot",
+      dimension: "live_data_integrity",
+      severity: "P0",
+      message:
+        "Sheds map lacks explicit location SOT (USER_GPS / USER_APPROXIMATE / SEARCH_TARGET / MAP_CENTER)"
+    });
+  }
+  if (!/sheds-user-marker/.test(app) || !/sheds-search-target/.test(app)) {
+    findings.push({
+      id: "live_data:marker-semantics-collapsed",
+      dimension: "visual_consistency",
+      severity: "P0",
+      message:
+        "User and search-target markers must use distinct classes (sheds-user-marker vs sheds-search-target)"
+    });
+  }
+  if (!/GPS_MOVE_MIN_M|applyUserPosition/.test(app)) {
+    findings.push({
+      id: "live_data:missing-gps-stability",
+      dimension: "visual_consistency",
+      severity: "P1",
+      message:
+        "GPS updates must be stability-filtered (applyUserPosition / GPS_MOVE_MIN_M) to prevent marker oscillation"
+    });
+  }
+  const cssPath = path.join(REPO_ROOT, "apps/shed-hunting/css/sheds-map.css");
+  if (fs.existsSync(cssPath)) {
+    const css = fs.readFileSync(cssPath, "utf8");
+    if (/@keyframes sheds-pulse[\s\S]{0,160}transform:\s*scale\(/i.test(css)) {
+      findings.push({
+        id: "live_data:pulse-scale-oscillation",
+        dimension: "visual_consistency",
+        severity: "P0",
+        message:
+          "sheds-pulse keyframes must not use transform:scale — causes screen-position oscillation under stable GPS"
+      });
+    }
+  }
   return findings;
 }
 
