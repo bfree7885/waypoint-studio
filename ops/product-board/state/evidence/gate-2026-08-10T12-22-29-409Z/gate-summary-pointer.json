@@ -1,0 +1,25 @@
+{
+  "id": "gate-summary-pointer",
+  "kind": "gate_summary",
+  "at": "2026-08-10T12:23:00.183Z",
+  "status": "pass",
+  "summary": "Verdict: SUBSCRIBER READY",
+  "severity": null,
+  "data": {
+    "verdict": "SUBSCRIBER READY",
+    "completeness": {
+      "complete": true,
+      "missing": [],
+      "present": [
+        "static_probe",
+        "playwright_browser",
+        "automated_tests",
+        "console",
+        "a11y",
+        "attestation",
+        "commercial_review",
+        "red_team"
+      ]
+    }
+  }
+}

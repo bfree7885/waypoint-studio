@@ -1,14 +1,14 @@
 {
   "productId": "signalterrain",
   "title": "SignalTerrain",
-  "eyebrow": "Waypoint Studio \u00b7 Understand the world's signals",
-  "status": "foundation",
-  "lead": "SignalTerrain helps people observe and understand invisible environments \u2014 radio spectrum and educational cyber awareness \u2014 with evidence, context, and calm summaries. Not a news feed, not a SIEM, not offensive security.",
-  "mission": "People who want to understand what changed in the radio environment or the public cyber landscape, why it matters, who may be affected, and what defensive next steps are worth considering \u2014 without hype, fear, or attack tooling.",
+  "eyebrow": "Waypoint Studio · Defensive cyber awareness",
+  "status": "live",
+  "lead": "One calm place to open each day: a cyber awareness brief from verified public sources — what changed, why it matters, who may be affected, and defensive next steps. Not a news feed, not a SIEM, not offensive security.",
+  "mission": "Defensive-minded professionals and serious amateurs who need trustworthy public-source cyber context without hype, fear, or attack tooling.",
   "problems": [
-    "Radio and RF conditions are hard to follow without literacy and private logging tools",
-    "Public cyber news is noisy; people need topics, history, and defensive guidance \u2014 not exploit kits",
-    "Infrastructure and research signals lack a calm place to connect evidence over time"
+    "Public cyber news is noisy and often hyped",
+    "People need sourced priorities and defensive guidance — not exploit kits or SIEM consoles",
+    "Sample demos must never be mistaken for live intelligence"
   ],
   "cta": {
     "href": "cyber/live.html#brief",
@@ -16,61 +16,47 @@
   },
   "capabilityGroups": [
     {
-      "title": "Radio & Spectrum Intelligence",
-      "status": "foundation",
-      "description": "Observe and learn the RF environment with private tools and educational framing.",
+      "title": "Cyber Awareness (MSP)",
+      "status": "live",
+      "description": "Daily brief from verified public sources with trust labels, refresh time, and provider health. Educational and defensive only.",
       "items": [
-        "SDR and receiver literacy",
-        "Receivers and private registries",
-        "Propagation awareness",
-        "Monitoring and RF observations",
-        "Signal catalogs and logging"
+        "Today’s cyber brief (live artifact)",
+        "Trust state and freshness honesty",
+        "Priority bands with plain-language why",
+        "Source + retrievedAt on every record",
+        "Defensive recommendations — never auto-execute"
       ]
     },
     {
-      "title": "Cyber Awareness",
+      "title": "Labeled samples",
       "status": "foundation",
-      "description": "Educational defensive awareness only \u2014 topics, advisories, and guidance. Not scanning, penetration testing, offense, SOC, IDS, or IPS.",
+      "description": "Topics, graph, and summary demos stay explicitly labeled samples — never substituted for live intelligence.",
       "items": [
-        "Ransomware campaigns as awareness topics",
-        "Zero-day and exploited vulnerability context",
-        "Major attacks and outages when sources exist",
-        "Advisories and defensive guidance",
-        "Changing threat priorities with confidence labels"
+        "Topics (samples)",
+        "Knowledge graph (samples)",
+        "Intelligence summary (samples)"
       ]
     },
     {
-      "title": "Infrastructure & Research",
+      "title": "Radio & spectrum (later)",
       "status": "blueprint",
-      "description": "Routing, cloud, communications, GPS disruptions, papers, standards, and Waypoint knowledge linked into the topic graph when cited sources exist."
+      "description": "RF literacy tools remain on the roadmap and are not part of the current cyber-brief Minimum Subscription Product."
     }
   ],
   "principles": [
     "Four questions: what changed, why it matters, who is affected, what should happen next",
-    "Evidence, context, and historical perspective over fear or hype",
-    "Everything important becomes a topic that evolves",
-    "The living knowledge graph accumulates connections over time",
-    "Events normalize into Unified Intelligence Objects",
-    "Recommendations guide \u2014 they never auto-execute",
-    "Educational cyber awareness only \u2014 not scanning, offense, SOC, IDS, or IPS",
-    "Audio, receivers, and precise locations stay local first",
+    "Evidence and trust labels over fear or hype",
+    "Live means a fresh public-source artifact — stale data is labeled Stale, not Live",
+    "Samples are labeled samples",
+    "Recommendations guide — they never auto-execute",
+    "Educational cyber awareness only — not scanning, offense, SOC, IDS, or IPS",
     "Never fabricate signals, incidents, or threat claims"
   ],
   "modules": [
     {
-      "title": "Cyber Awareness Intelligence Engine",
-      "status": "foundation",
-      "description": "Entity graph, explainable priority, and shared research workspace \u2014 educational defensive literacy only."
-    },
-    {
-      "title": "Intelligence Core",
-      "status": "foundation",
-      "description": "Unified Intelligence Objects, correlation patterns, recommendations, and provider interfaces \u2014 architecture first."
-    },
-    {
       "title": "Cyber Live intelligence",
       "status": "live",
-      "description": "Verified public sources — daily brief with priority, trust, and provider health. Defensive awareness only."
+      "description": "Verified public sources — daily brief with priority, trust, freshness, and provider health."
     },
     {
       "title": "Intelligence Summary (samples)",
@@ -78,24 +64,9 @@
       "description": "Educational sample UIOs — labeled samples, not live intelligence."
     },
     {
-      "title": "Living knowledge graph",
-      "status": "live",
-      "description": "Explore connected topics with expand/collapse, filters, search, and living timelines."
-    },
-    {
-      "title": "Topic foundation",
+      "title": "Topic foundation (samples)",
       "status": "foundation",
-      "description": "Shared topic model with overview, analysis, confidence, unknowns, and relationships."
-    },
-    {
-      "title": "Receiver management",
-      "status": "foundation",
-      "description": "Keep a private registry of receivers, locations, and capabilities."
-    },
-    {
-      "title": "Incident timeline",
-      "status": "foundation",
-      "description": "Structured events with confidence and clear source notes."
+      "description": "Shared topic model demos with confidence and unknowns."
     }
   ],
   "routes": [
@@ -111,12 +82,7 @@
     },
     {
       "path": "cyber/",
-      "label": "Cyber Awareness (live)",
-      "ready": true
-    },
-    {
-      "path": "cyber/ingest-health.html",
-      "label": "Cyber ingest health (internal)",
+      "label": "Cyber Awareness hub",
       "ready": true
     },
     {
@@ -133,23 +99,8 @@
       "path": "summary.html",
       "label": "Intelligence summary (samples)",
       "ready": true
-    },
-    {
-      "path": "receivers/",
-      "label": "Receivers (planned)",
-      "ready": false
-    },
-    {
-      "path": "incidents/",
-      "label": "Incident timeline (planned)",
-      "ready": false
-    },
-    {
-      "path": "audio/",
-      "label": "Audio library (planned)",
-      "ready": false
     }
   ],
-  "privacyPhilosophy": "Receivers, audio, notes, and precise locations stay on your device first. Samples are labeled samples \u2014 never presented as live intelligence. Nothing syncs until a path earns trust.",
-  "futureDirection": "Deeper RF observation tools, richer defensive cyber topic coverage, infrastructure awareness when sources exist, and carefully bounded future phases that remain educational \u2014 never offensive."
+  "privacyPhilosophy": "Persona preferences stay in your browser. Precise locations are not required for the cyber brief. Samples are labeled samples — never presented as live intelligence.",
+  "futureDirection": "Radio & spectrum literacy and deeper cyber topic coverage remain carefully bounded future phases — educational, never offensive."
 }

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { REPO_ROOT } from "./paths.mjs";
 import { nowIso } from "./io.mjs";
+import { campaignScanRoots } from "./campaigns.mjs";
 
 /**
  * Static trust probes for Subscriber Ready dimensions that do not require a browser.
@@ -18,11 +19,6 @@ const SCAN_ROOTS = [
   "map",
   "volunteer"
 ];
-
-/** When a campaign is set, probes focus on these roots (still honest — not a weaken). */
-const CAMPAIGN_SCAN_ROOTS = {
-  sheds: ["sheds", "apps/shed-hunting"]
-};
 
 const SKIP_DIR = new Set([
   "node_modules",
@@ -74,7 +70,8 @@ function walkFiles(dir, out = [], exts = [".html", ".js", ".mjs", ".css"]) {
 }
 
 function collectTargets(campaign = null) {
-  const roots = (campaign && CAMPAIGN_SCAN_ROOTS[campaign]) || SCAN_ROOTS;
+  const scoped = campaignScanRoots(campaign);
+  const roots = scoped || SCAN_ROOTS;
   const files = [];
   for (const root of roots) {
     walkFiles(path.join(REPO_ROOT, root), files, [".html", ".js"]);
