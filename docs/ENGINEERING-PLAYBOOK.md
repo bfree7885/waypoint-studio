@@ -1167,3 +1167,23 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
    USER_APPROXIMATE / SEARCH_TARGET / MAP_CENTER); distinct user vs amber “Next”
    search marker; GPS jitter filter; opacity-only pulse; labeled FAB rail;
    sheets hide map chrome at z-index 2400.
+
+### 2026-08-10 — Sheds commercial chrome + visual harness reliability (b20cf0f)
+
+**Surface:** Sheds map field chrome + Product Board visual CDP harness  
+**Production:** `b20cf0f` — gate **SUBSCRIBER READY** with screenshot_analysis +
+dynamic_visual + commercial visual + production inspection evidence.
+
+1. **Harness false fails.** Case-sensitive `"Today" in "TODAY’S SEARCH"` failed
+   hierarchy checks while UI was fine; overflow:hidden sheet containers flagged
+   as truncation; sticky Chrome `--user-data-dir` served stale `a193fa1` assets
+   after deploy. Fix: case-insensitive Today+Confidence; truncate only visible
+   copy / confidence-vs-peek; ephemeral profile + `Network.setCacheDisabled` +
+   probe cache-bust query.
+2. **Commercial chrome.** Horizontal labeled zoom pair; remove square FAB squash
+   at ≤480px; raise mobile sheet peek so Confidence fits; legend max-width clears
+   FAB rail; HUD drops duplicate accuracy/target lines (briefing owns next cue).
+3. **Gate env.** `browser-smoke` (live-weather coldstart) needs `npm install` for
+   root `ws`. Sheds-scoped axe on production `b20cf0f` returned 0 serious/critical.
+4. **Do not** restore SUBSCRIBER READY from attestations alone — required visual
+   evidence packages must green on the live build SHA.
