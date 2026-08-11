@@ -137,6 +137,7 @@ sandbox.WDS = {};
 [
   "design-system/js/platform/wds-app-nav-config.js",
   "design-system/js/platform/wds-app-nav.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -161,7 +162,7 @@ const defaults = Prefs.defaults ? Prefs.defaults() : Prefs.load();
 const enabled = defaults.enabled || [];
 assert(
   "defaults include Conditions Light Air Astronomy",
-  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy"].every(function (id) {
+  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy", "ph-next-hours", "ph-doorway", "ph-alerts"].every(function (id) {
     return enabled.indexOf(id) >= 0;
   })
 );

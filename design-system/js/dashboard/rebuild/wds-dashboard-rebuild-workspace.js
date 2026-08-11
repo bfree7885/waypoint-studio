@@ -330,7 +330,7 @@
       '<header class="wdb-r-workspace__header">' +
       "<div>" +
       '<h2 id="wdb-r-workspace-title" class="wdb-r-workspace__title">Workspace</h2>' +
-      '<p class="wdb-r-workspace__lede">Outdoor instruments for this place — facts first, each settling on its own.</p>' +
+      '<p class="wdb-r-workspace__lede">What is happening outside now, what comes soon, and what is worth knowing before you go.</p>' +
       "</div>" +
       customizeEntry +
       "</header>" +

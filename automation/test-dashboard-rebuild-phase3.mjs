@@ -30,11 +30,12 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1|dash-depth-1/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
   "design-system/js/wds-icons.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -139,7 +140,7 @@ const Kiosk = sandbox.WDS.dashboardRebuildKiosk;
 const Shell = sandbox.WDS.dashboardRebuild;
 const Data = sandbox.WDS.dashboardRebuildData;
 
-assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|tile-layout/.test(Reg.version)));
+assert("registry phase3", !!(Reg && Reg.version && /phase3|rc25-s6|tile-layout|depth/.test(Reg.version)));
 assert("prefs key preserved", Prefs.storageKey === "waypoint-dashboard-rebuild-prefs-v1");
 assert("prefs exposes favorites API", typeof Prefs.toggleFavorite === "function");
 assert("prefs exposes columns API", typeof Prefs.setGridColumns === "function");
@@ -148,20 +149,20 @@ assert("workspace lazy API", typeof Workspace.bindLazy === "function");
 
 const all = Reg.all();
 assert("catalog excludes travel placeholder", !Reg.get("ph-travel"));
-assert("catalog still has phase2 live four", Data.liveIds.length === 4);
+assert("catalog depth live set", Data.liveIds.length >= 9 && Data.liveIds.indexOf("ph-alerts") >= 0);
 assert(
   "library categories complete",
   Reg.libraryCategories()
     .map((c) => c.id)
-    .join(",") === "weather,photography,astronomy,safety,favorites"
+    .join(",") === "core,sky,air,weather,field,favorites"
 );
 
 [
-  ["ph-conditions", "weather", "Available"],
-  ["ph-light", "photography", "Available"],
-  ["ph-air", "weather", "Available"],
-  ["ph-astronomy", "astronomy", "Available"],
-  ["ph-alerts", "safety", "Available"]
+  ["ph-conditions", "core", "Available"],
+  ["ph-light", "sky", "Available"],
+  ["ph-air", "air", "Available"],
+  ["ph-astronomy", "sky", "Available"],
+  ["ph-alerts", "core", "Available"]
 ].forEach(function (row) {
   const w = Reg.get(row[0]);
   assert(row[0] + " library category", w && w.libraryCategory === row[1]);
@@ -265,12 +266,12 @@ Prefs.setGridColumns(2);
 const wsCols = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
 assert("workspace emits data-columns", /data-columns="2"/.test(wsCols));
 
-const lib = Customize.renderCatalog(Prefs.load(), { libraryFilter: "weather" });
+const lib = Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" });
 assert("library title", /Widget library/.test(lib));
 assert("library filter weather", /data-filter="weather"/.test(lib));
 assert("library shows Available badge", /wdb-r-badge--available/.test(lib));
 assert("library has no Coming Soon", !/Coming Soon/i.test(Customize.renderCatalog(Prefs.load(), { libraryFilter: "all" })));
-assert("library weather includes Conditions", /Conditions/.test(lib));
+assert("library includes Conditions", /Conditions/.test(lib));
 assert("library weather excludes Trails", !/Trail Conditions/.test(lib));
 assert("library has icons", /wdb-r-catalog__icon/.test(lib));
 assert("library favorite control", /data-wdb-r-action="favorite"/.test(lib));
@@ -361,7 +362,7 @@ const shellCustom = Shell.renderShell({ view: "customize", platform });
 assert("customize shell has library", /Widget library/.test(shellCustom));
 assert("customize shell has tabs", /wdb-r-library__tab/.test(shellCustom));
 assert("customize shell has column controls", /data-wdb-r-action="columns"/.test(shellCustom));
-assert("customize no Outdoor OS", !/data-wdb-os|Happening|Matters most/i.test(shellCustom));
+assert("customize no Outdoor OS", !/data-wdb-os|Matters most/i.test(shellCustom));
 
 const shellWs = Shell.renderShell({
   view: "workspace",

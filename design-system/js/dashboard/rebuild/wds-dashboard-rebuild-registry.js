@@ -1,24 +1,24 @@
 /**
- * Dashboard Rebuild — widget registry (tile layout repair).
- * Functional catalog only; Coming Soon placeholders removed from the library.
+ * Dashboard Rebuild — widget registry (depth attack).
+ * Functional catalog only; honest LIVE / DERIVED instruments.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md
  */
 (function (global) {
   "use strict";
 
   /**
-   * Authoritative tile size model — equal-width columns by default.
-   * Legacy sm/md/lg/anchor/half/compact map through normalizeSize.
+   * Authoritative tile size model.
+   * Small / Standard / Wide / Featured.
    */
-  var SIZES = ["standard", "wide", "featured"];
+  var SIZES = ["small", "standard", "wide", "featured"];
   var LEGACY_SIZE_MAP = {
-    sm: "standard",
+    sm: "small",
     md: "standard",
     lg: "wide",
     anchor: "featured",
-    small: "standard",
     half: "standard",
-    compact: "standard",
+    compact: "small",
+    small: "small",
     standard: "standard",
     wide: "wide",
     featured: "featured"
@@ -26,59 +26,122 @@
 
   /** Library filter groups. Favorites is prefs-driven. */
   var LIBRARY_CATEGORIES = [
+    { id: "core", label: "Core" },
+    { id: "sky", label: "Sky & light" },
+    { id: "air", label: "Air" },
     { id: "weather", label: "Weather" },
-    { id: "photography", label: "Photography" },
-    { id: "astronomy", label: "Astronomy" },
-    { id: "safety", label: "Safety" },
+    { id: "field", label: "Field" },
     { id: "favorites", label: "Favorites" }
   ];
 
+  var LIBRARY_GROUP_ORDER = ["core", "sky", "air", "weather", "field"];
+
   /** Workspace family labels — related instruments read as one group. */
   var FAMILIES = {
-    environmental: { id: "environmental", label: "Environmental" },
-    astronomy: { id: "astronomy", label: "Astronomy" },
-    photography: { id: "photography", label: "Photography" }
+    now: { id: "now", label: "Now outside" },
+    soon: { id: "soon", label: "Coming soon" },
+    environmental: { id: "environmental", label: "Air & alerts" },
+    sky: { id: "sky", label: "Sky & light" },
+    field: { id: "field", label: "Before you go" }
   };
 
   var CATEGORY_FAMILY = {
-    conditions: "environmental",
+    conditions: "now",
+    next: "soon",
+    precip: "soon",
+    range: "soon",
     air: "environmental",
     alerts: "environmental",
-    astronomy: "astronomy",
-    light: "photography"
+    wind: "environmental",
+    comfort: "environmental",
+    light: "sky",
+    astronomy: "sky",
+    uv: "sky",
+    doorway: "field"
   };
 
   /**
-   * Catalog — only functional instruments.
-   * Coming-soon placeholders are removed from the selectable library until they ship.
-   * Phase 2 live ids keep ph-* keys for local prefs continuity.
+   * Catalog — only functional instruments with real adapters.
    */
   var CATALOG = [
     {
       id: "ph-conditions",
       title: "Conditions",
       category: "conditions",
-      libraryCategory: "weather",
+      libraryCategory: "core",
+      libraryGroup: "core",
       icon: "weather",
-      size: "standard",
+      size: "featured",
       defaultVisible: true,
       defaultOrder: 10,
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
-      description: "Temperature, sky, precip, and wind near you.",
+      description: "Temperature, sky, precip, and wind near you — right now.",
       emptyMessage: "Waiting for weather data.",
       offlineMessage: "Weather is offline right now — try again when you are connected."
+    },
+    {
+      id: "ph-next-hours",
+      title: "Next hours",
+      category: "next",
+      libraryCategory: "core",
+      libraryGroup: "core",
+      icon: "weather",
+      size: "wide",
+      defaultVisible: true,
+      defaultOrder: 20,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "What the next few hours look like — temp, precip, sky.",
+      emptyMessage: "Hourly outlook will appear here.",
+      offlineMessage: "Hourly outlook needs a connection."
+    },
+    {
+      id: "ph-doorway",
+      title: "Before you go",
+      category: "doorway",
+      libraryCategory: "field",
+      libraryGroup: "field",
+      icon: "compass",
+      size: "wide",
+      defaultVisible: true,
+      defaultOrder: 30,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "A short derived brief from alerts, precip, air, UV, wind, and sunset.",
+      emptyMessage: "Before-you-go notes settle as instruments arrive.",
+      offlineMessage: "Before-you-go notes need a connection."
+    },
+    {
+      id: "ph-alerts",
+      title: "Alerts",
+      category: "alerts",
+      libraryCategory: "core",
+      libraryGroup: "core",
+      icon: "book",
+      size: "standard",
+      defaultVisible: true,
+      defaultOrder: 40,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "Official NWS alerts — shown when they matter.",
+      emptyMessage: "No active alerts for this place.",
+      offlineMessage: "Alerts need a connection."
     },
     {
       id: "ph-air",
       title: "Air",
       category: "air",
-      libraryCategory: "weather",
+      libraryCategory: "air",
+      libraryGroup: "air",
       icon: "weather",
       size: "standard",
       defaultVisible: true,
-      defaultOrder: 20,
+      defaultOrder: 50,
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
@@ -87,29 +150,49 @@
       offlineMessage: "Air quality needs a connection — it will appear when you are back online."
     },
     {
-      id: "ph-alerts",
-      title: "Alerts",
-      category: "alerts",
-      libraryCategory: "safety",
-      icon: "book",
+      id: "ph-precip-window",
+      title: "Rain timing",
+      category: "precip",
+      libraryCategory: "weather",
+      libraryGroup: "weather",
+      icon: "weather",
       size: "standard",
       defaultVisible: true,
-      defaultOrder: 30,
-      live: false,
+      defaultOrder: 60,
+      live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
-      description: "Official alerts — shown only when they matter.",
-      emptyMessage: "No active alerts for this place."
+      description: "When precip chance rises in the next hours.",
+      emptyMessage: "Rain timing will appear when hourly precip arrives.",
+      offlineMessage: "Rain timing needs a connection."
+    },
+    {
+      id: "ph-uv",
+      title: "UV",
+      category: "uv",
+      libraryCategory: "sky",
+      libraryGroup: "sky",
+      icon: "compass",
+      size: "small",
+      defaultVisible: true,
+      defaultOrder: 70,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "UV index now and today’s max when reported.",
+      emptyMessage: "UV will appear when the provider reports it.",
+      offlineMessage: "UV needs a connection."
     },
     {
       id: "ph-light",
       title: "Light",
       category: "light",
-      libraryCategory: "photography",
+      libraryCategory: "sky",
+      libraryGroup: "sky",
       icon: "compass",
       size: "standard",
       defaultVisible: true,
-      defaultOrder: 40,
+      defaultOrder: 80,
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
@@ -121,17 +204,68 @@
       id: "ph-astronomy",
       title: "Astronomy",
       category: "astronomy",
-      libraryCategory: "astronomy",
+      libraryCategory: "sky",
+      libraryGroup: "sky",
       icon: "species",
       size: "standard",
       defaultVisible: true,
-      defaultOrder: 50,
+      defaultOrder: 90,
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Night sky context and celestial timing.",
       emptyMessage: "Sky context will appear here.",
       offlineMessage: "Sky context is offline right now."
+    },
+    {
+      id: "ph-wind",
+      title: "Wind",
+      category: "wind",
+      libraryCategory: "weather",
+      libraryGroup: "weather",
+      icon: "weather",
+      size: "small",
+      defaultVisible: false,
+      defaultOrder: 100,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "Wind speed and gusts near you.",
+      emptyMessage: "Wind will appear with weather.",
+      offlineMessage: "Wind needs a connection."
+    },
+    {
+      id: "ph-comfort",
+      title: "How it feels",
+      category: "comfort",
+      libraryCategory: "air",
+      libraryGroup: "air",
+      icon: "weather",
+      size: "small",
+      defaultVisible: false,
+      defaultOrder: 110,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: false },
+      description: "Derived feel from temperature, humidity, and feels-like.",
+      emptyMessage: "Comfort reading settles with temperature."
+    },
+    {
+      id: "ph-day-range",
+      title: "Today’s range",
+      category: "range",
+      libraryCategory: "weather",
+      libraryGroup: "weather",
+      icon: "weather",
+      size: "standard",
+      defaultVisible: false,
+      defaultOrder: 120,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "Today’s high, low, and precip probability.",
+      emptyMessage: "Today’s range will appear with the daily forecast.",
+      offlineMessage: "Daily range needs a connection."
     }
   ];
 
@@ -187,6 +321,10 @@
     return LIBRARY_CATEGORIES.slice();
   }
 
+  function libraryGroupOrder() {
+    return LIBRARY_GROUP_ORDER.slice();
+  }
+
   function byLibraryCategory(categoryId, prefs) {
     var Prefs = global.WDS && global.WDS.dashboardRebuildPrefs;
     if (categoryId === "favorites") {
@@ -204,8 +342,14 @@
     }
     if (!categoryId || categoryId === "all") return all();
     return all().filter(function (w) {
-      return w.libraryCategory === categoryId;
+      return w.libraryCategory === categoryId || w.libraryGroup === categoryId;
     });
+  }
+
+  function familyFor(widget) {
+    var cat = widget && widget.category ? String(widget.category) : "";
+    var key = CATEGORY_FAMILY[cat] || cat || "environmental";
+    return FAMILIES[key] || { id: key, label: cat || "Instruments" };
   }
 
   function iconHtml(widget) {
@@ -219,10 +363,8 @@
     return '<span class="wdb-r-catalog__icon-fallback" aria-hidden="true">' + letter + "</span>";
   }
 
-  function familyFor(widget) {
-    var cat = widget && widget.category ? String(widget.category) : "";
-    var key = CATEGORY_FAMILY[cat] || cat || "environmental";
-    return FAMILIES[key] || { id: key, label: cat || "Instruments" };
+  function DataApi() {
+    return Data();
   }
 
   function trustChipLabel(trust) {
@@ -232,6 +374,7 @@
     if (t === "partial") return "Partial";
     if (t === "offline") return "Offline";
     if (t === "estimated") return "Estimated";
+    if (t === "derived") return "Derived";
     if (t === "unavailable") return "Unavailable";
     if (t === "pending" || t === "waiting") return "Waiting";
     return "Waiting";
@@ -241,6 +384,7 @@
     var t = String(trust || "waiting").toLowerCase();
     if (t === "pending") return "waiting";
     if (t === "estimated") return "estimated";
+    if (t === "derived") return "derived";
     if (t === "unavailable") return "unavailable";
     return t || "waiting";
   }
@@ -259,10 +403,6 @@
     return widget.emptyMessage || "Data will appear here.";
   }
 
-  /**
-   * Honest payload — live widgets use OIP adapters; catalog-available empty tiles
-   * keep a useful empty state (not Coming Soon).
-   */
   function getData(id, options) {
     options = options || {};
     var widget = get(id);
@@ -275,9 +415,9 @@
     }
 
     if (widget.live) {
-      var DataApi = Data();
-      if (DataApi && DataApi.buildWidgetPayload) {
-        return DataApi.buildWidgetPayload(id, options.platform || null);
+      var api = DataApi();
+      if (api && api.buildWidgetPayload) {
+        return api.buildWidgetPayload(id, options.platform || null);
       }
     }
 
@@ -333,6 +473,16 @@
     );
   }
 
+  function renderGraphic(data) {
+    var G = global.WDS && global.WDS.dashboardRebuildGraphics;
+    if (!G || !G.render || !data || !data.graphic) return "";
+    try {
+      return G.render(data.graphic) || "";
+    } catch (e) {
+      return "";
+    }
+  }
+
   function renderBody(widget, data) {
     widget = widget || {};
     data = data || getData(widget.id);
@@ -347,11 +497,13 @@
             : trust === "waiting"
               ? "waiting"
               : "ready";
+    var graphic = state === "ready" ? renderGraphic(data) : "";
     var inner = "";
     if (data.facts && data.facts.length) {
-      inner = renderFacts(data.facts);
+      inner = graphic + renderFacts(data.facts);
     } else {
       inner =
+        graphic +
         '<div class="wdb-r-widget__state wdb-r-widget__state--' +
         escapeHtml(state) +
         '">' +
@@ -394,9 +546,10 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "3.3.0-tile-layout",
+    version: "4.0.0-depth",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
+    libraryGroupOrder: libraryGroupOrder,
     all: all,
     get: get,
     defaultVisibleIds: defaultVisibleIds,

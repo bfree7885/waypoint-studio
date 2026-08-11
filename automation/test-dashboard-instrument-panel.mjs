@@ -102,6 +102,7 @@ function staticChecks() {
   sandbox.window = sandbox;
   sandbox.WDS = {};
   [
+    "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
     "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
     "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
     "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -117,7 +118,7 @@ function staticChecks() {
 
   const Prefs = sandbox.WDS.dashboardRebuildPrefs;
   const defaults = Prefs.defaults();
-  const need = ["ph-conditions", "ph-air", "ph-alerts", "ph-light", "ph-astronomy"];
+  const need = ["ph-conditions", "ph-next-hours", "ph-doorway", "ph-air", "ph-alerts", "ph-precip-window", "ph-uv", "ph-light", "ph-astronomy"];
   if (!need.every((id) => defaults.enabled.indexOf(id) >= 0)) fail("defaults missing core instruments");
   else pass("core instruments in defaults");
   const order = defaults.order || sandbox.WDS.dashboardRebuildRegistry.defaultOrderIds();
