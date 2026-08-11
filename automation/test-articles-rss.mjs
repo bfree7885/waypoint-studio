@@ -367,11 +367,11 @@ assert(
   )
 );
 
-// Dashboard deepeners
+// Dashboard deepeners — ONE APP surface: Articles live in Articles app / global nav
 const deepen = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js");
-assert("dashboard Field Notes section", /Field Notes/.test(deepen));
-assert("dashboard loads curated articles.json", /data\/articles\/articles\.json/.test(deepen));
-assert("dashboard links to original publishers", /canonicalUrl/.test(deepen));
+assert("dashboard deepeners omit Field Notes promo", !/Field Notes/.test(deepen));
+assert("dashboard deepeners omit articles.json promo fetch", !/data\/articles\/articles\.json/.test(deepen));
+assert("dashboard deepeners keep Take briefing", /data-deepen="take"/.test(deepen));
 
 // Scenes / Sheds quiet related
 assert("scenes related mount", /articlesFeed\.mountRelated/.test(read("apps/scenes/index.html")));

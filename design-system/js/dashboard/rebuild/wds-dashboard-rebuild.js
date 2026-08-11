@@ -1,8 +1,10 @@
 /**
  * Dashboard Rebuild — product shell (Phase 3).
  * Workspace + Today Outside + library Customize; OIP hydrates live widgets.
+ * Below-fold briefing is Dashboard-native only (no cross-product promo).
  * Internal glance mode (#/kiosk) retained without user-facing Kiosk chrome.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
+ * + docs/APP-SURFACE-ARCHITECTURE.md
  */
 (function (global) {
   "use strict";

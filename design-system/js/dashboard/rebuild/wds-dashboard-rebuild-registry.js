@@ -102,22 +102,6 @@
       emptyMessage: "No active alerts for this place."
     },
     {
-      id: "ph-astronomy",
-      title: "Astronomy",
-      category: "astronomy",
-      libraryCategory: "astronomy",
-      icon: "species",
-      size: "standard",
-      defaultVisible: true,
-      defaultOrder: 40,
-      live: true,
-      catalogAvailable: true,
-      kiosk: { show: true, chrome: "minimal" },
-      description: "Night sky context and celestial timing.",
-      emptyMessage: "Sky context will appear here.",
-      offlineMessage: "Sky context is offline right now."
-    },
-    {
       id: "ph-light",
       title: "Light",
       category: "light",
@@ -125,13 +109,29 @@
       icon: "compass",
       size: "standard",
       defaultVisible: true,
-      defaultOrder: 50,
+      defaultOrder: 40,
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
       description: "Sunrise, sunset, and observational light windows.",
       emptyMessage: "Sunrise and light windows will appear here.",
       offlineMessage: "Light windows are offline right now."
+    },
+    {
+      id: "ph-astronomy",
+      title: "Astronomy",
+      category: "astronomy",
+      libraryCategory: "astronomy",
+      icon: "species",
+      size: "standard",
+      defaultVisible: true,
+      defaultOrder: 50,
+      live: true,
+      catalogAvailable: true,
+      kiosk: { show: true, chrome: "minimal" },
+      description: "Night sky context and celestial timing.",
+      emptyMessage: "Sky context will appear here.",
+      offlineMessage: "Sky context is offline right now."
     }
   ];
 

@@ -70,6 +70,18 @@ Do **not** reintroduce neon lime, corporate blue, cyber cyan glow, Inter-as-defa
 
 Use App Shell classes (`was-global`, `was-brand`, `was-primary-nav`, `was-local`, `was-footer`) from `wds-app-shell.css` + aurora bridge helpers. Active nav uses accent color **and** underline inset — color is not the sole indicator.
 
+## ONE APP = ONE PRODUCT SURFACE
+
+Critical architecture rule (full detail: [`docs/APP-SURFACE-ARCHITECTURE.md`](./APP-SURFACE-ARCHITECTURE.md)):
+
+- **Waypoint Studio** = parent platform (global nav + shared chrome).
+- Each app body (Dashboard, Scenes, Sheds, Articles, …) = **one product job**.
+- Cross-product discovery belongs in **global nav only** — not in-app promo grids or studio directories inside app bodies.
+- App-local nav sits under global nav for **in-app** destinations (e.g. Dashboard Workspace · Customize).
+- **Homepage exception:** `/` may introduce multiple products; apps must not become mini Studio homepages.
+
+Regression gates: `automation/test-app-surface-isolation.mjs`, `automation/test-dashboard-instrument-panel.mjs`.
+
 ## Adoption checklist
 
 1. Set `data-product` on `<html>` (and shell if present).
@@ -93,5 +105,6 @@ Use App Shell classes (`was-global`, `was-brand`, `was-primary-nav`, `was-local`
 - Token source: `design-system/css/wds-tokens.css`
 - Token notes: `design-system/docs/TOKENS.md`
 - Product theming: `design-system/docs/PRODUCTS.md`
+- App surfaces: `docs/APP-SURFACE-ARCHITECTURE.md`
 - Field UI philosophy: `docs/WAYPOINT-FIELD-DESIGN-SYSTEM.md`
 - Engineering playbook: `docs/ENGINEERING-PLAYBOOK.md`

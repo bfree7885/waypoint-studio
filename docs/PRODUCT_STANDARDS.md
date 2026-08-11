@@ -74,6 +74,17 @@ Guiding principles:
 
 ------------------------------------------------------------------------
 
+# App surfaces (ONE APP = ONE PRODUCT SURFACE)
+
+Waypoint Studio is the parent platform. Each application is a distinct product
+surface. Cross-product discovery lives in the **global nav**. App bodies must
+not become studio directories or promo grids for sibling apps. The Homepage (`/`)
+may introduce multiple products; every other app keeps one job.
+
+Canonical rule: `docs/APP-SURFACE-ARCHITECTURE.md`.
+
+------------------------------------------------------------------------
+
 # User Experience
 
 Products should:

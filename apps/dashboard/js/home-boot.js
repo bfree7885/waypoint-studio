@@ -37,10 +37,16 @@
         source: loc.source || "pending"
       };
     }
+    var src = String(loc.source || "unknown");
+    var trust = "cached";
+    if (src === "unavailable") trust = "unavailable";
+    else if (src === "geo" || src === "gps" || src === "manual") trust = "live";
+    else if (src === "ip") trust = "estimated";
+    else if (src === "cached" || src === "storage") trust = "cached";
     return {
       placeLabel: loc.displayTitle || loc.name || "Place not set",
-      trust: loc.source === "unavailable" ? "unavailable" : "cached",
-      source: loc.source || "unknown",
+      trust: trust,
+      source: src,
       lat: loc.lat,
       lng: loc.lng,
       timezone: loc.timezone || null,
@@ -54,7 +60,7 @@
     if (!mount) return;
     mount.innerHTML =
       '<div class="wdb-boot-error" role="alert">' +
-      "<p>We couldn't open Home. Check your connection and try again.</p>" +
+      "<p>We couldn't open Dashboard. Check your connection and try again.</p>" +
       '<button type="button" class="wds-btn wds-btn--primary wds-btn--sm" onclick="location.reload()">Retry</button>' +
       "</div>";
     mount.removeAttribute("aria-busy");
