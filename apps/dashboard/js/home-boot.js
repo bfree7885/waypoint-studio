@@ -38,8 +38,10 @@
       };
     }
     var src = String(loc.source || "unknown");
+    var fromCache = !!(loc.cacheUsed || loc.refreshReason === "cache-fallback");
     var trust = "cached";
     if (src === "unavailable") trust = "unavailable";
+    else if (fromCache) trust = "cached";
     else if (src === "geo" || src === "gps" || src === "manual") trust = "live";
     else if (src === "ip") trust = "estimated";
     else if (src === "cached" || src === "storage") trust = "cached";
