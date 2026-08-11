@@ -372,14 +372,10 @@
       options.allowSamples ||
       /(?:\?|&)teaching=1(?:&|$)/.test(String(global.location && global.location.search));
     var liveGraphUrl = options.liveGraphUrl || "../../../data/cyber/graph.json";
+    // Production never substitutes teaching samples when the live graph is missing.
     var graphLoad = teaching
       ? G.loadBundle(base + "samples/cyber-intelligence.sample.json")
-      : G.loadBundle(liveGraphUrl).catch(function () {
-          return G.loadBundle(base + "samples/cyber-intelligence.sample.json").then(function (packed) {
-            packed._fallbackTeaching = true;
-            return packed;
-          });
-        });
+      : G.loadBundle(liveGraphUrl);
 
     return Promise.all([
       graphLoad,
@@ -407,6 +403,7 @@
       })
     ]).then(function (parts) {
       state.graph = parts[0].graph;
+      state.teaching = teaching;
       state.panelsDoc = parts[1];
       state.templates = parts[2];
       state.layout = ensureLayout(state.panelsDoc);
@@ -631,7 +628,7 @@
                 return (
                   "<li><strong>" +
                   esc(w.title) +
-                  "</strong><br/><span class=\"st-ws-meta\">No matches in the current sample — watchlist is ready.</span></li>"
+                  "</strong><br/><span class=\"st-ws-meta\">No matches in the current graph — watchlist is ready.</span></li>"
                 );
               }
               return (
@@ -1261,8 +1258,12 @@
       }
 
       function paint() {
+        var modeBadge = state.teaching
+          ? '<p class="st-badge" role="status">Teaching samples only — not live intelligence. <a href="live.html">Open live intelligence</a>.</p>'
+          : '<p class="st-badge" role="status">DATA STATUS: REAL · SOURCE: data/cyber/graph.json · refreshed about every 6 hours · not real-time.</p>';
         root.innerHTML =
           '<div class="st-ws st-demo">' +
+          modeBadge +
           nav() +
           '<div id="st-ws-body">' +
           body() +
@@ -1537,7 +1538,16 @@
         unifiedSearch: unifiedSearch,
         buildPersonalTimeline: buildPersonalTimeline
       };
-    });
+    })
+      .catch(function (err) {
+        root.innerHTML =
+          '<p role="alert">Could not open the workspace against live intelligence. ' +
+          esc((err && err.message) || "Live graph unavailable.") +
+          ' Sample data was not substituted. <a href="live.html">Live intelligence</a> · ' +
+          '<a href="teaching.html">Teaching samples</a> · ' +
+          '<button type="button" onclick="location.reload()">Retry</button></p>';
+        root.removeAttribute("aria-busy");
+      });
   }
 
   global.WDS = global.WDS || {};

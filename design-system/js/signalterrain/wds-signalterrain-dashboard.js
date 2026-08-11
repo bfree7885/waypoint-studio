@@ -338,6 +338,14 @@
           "<span class=\"st-chip\">Advisories " +
           esc(counts.advisories || 0) +
           "</span>" +
+          '<span class="st-chip">SOURCE: CISA KEV · NIST NVD · CISA Advisories</span>' +
+          '<span class="st-chip">LAST UPDATED ' +
+          fmtWhen(meta.generatedAt) +
+          "</span>" +
+          '<span class="st-chip">DATA STATUS: ' +
+          esc(meta.dataState || meta.trustState || "UNKNOWN") +
+          "</span>" +
+          '<span class="st-chip">Refresh ~every 6 hours · not real-time</span>' +
           "</div></header>" +
           '<section class="st-panel" aria-labelledby="st-changed-title">' +
           '<div class="st-panel__head"><h2 id="st-changed-title">What changed today</h2>' +

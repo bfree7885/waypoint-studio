@@ -490,34 +490,24 @@
             "href": "side-trails/signalterrain/"
           },
           {
-            "id": "overview",
-            "label": "Overview",
-            "href": "apps/signalterrain/"
+            "id": "dashboard",
+            "label": "Cyber intelligence dashboard",
+            "href": "side-trails/signalterrain/dashboard/"
           },
           {
-            "id": "topics",
-            "label": "Topics",
-            "href": "apps/signalterrain/topics.html"
-          },
-          {
-            "id": "graph",
-            "label": "Knowledge graph",
-            "href": "apps/signalterrain/graph.html"
-          },
-          {
-            "id": "summary",
-            "label": "Intelligence summary",
-            "href": "apps/signalterrain/summary.html"
-          },
-          {
-            "id": "cyber",
-            "label": "Cyber Awareness",
-            "href": "apps/signalterrain/cyber/"
+            "id": "cyber-live",
+            "label": "Live cyber intelligence",
+            "href": "apps/signalterrain/cyber/live.html"
           },
           {
             "id": "cyber-brief",
-            "label": "Daily cyber brief",
-            "href": "apps/signalterrain/cyber/brief.html"
+            "label": "Today’s cyber brief (live)",
+            "href": "apps/signalterrain/cyber/live.html#brief"
+          },
+          {
+            "id": "cyber-adaptive",
+            "label": "Adaptive Defense (live)",
+            "href": "apps/signalterrain/cyber/live.html#adaptive"
           },
           {
             "id": "cyber-explorer",
@@ -525,9 +515,9 @@
             "href": "apps/signalterrain/cyber/explorer.html"
           },
           {
-            "id": "cyber-advisor",
-            "label": "Adaptive defense advisor",
-            "href": "apps/signalterrain/cyber/advisor.html"
+            "id": "cyber-workspace",
+            "label": "Cyber workspace",
+            "href": "apps/signalterrain/cyber/workspace.html"
           },
           {
             "id": "cyber-knowledge",
@@ -535,16 +525,16 @@
             "href": "apps/signalterrain/cyber/knowledge.html"
           },
           {
-            "id": "cyber-ingest-health",
-            "label": "Cyber ingest (internal)",
-            "href": "apps/signalterrain/cyber/ingest-health.html"
+            "id": "overview",
+            "label": "App overview",
+            "href": "apps/signalterrain/"
           }
         ],
         "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype — under Side Trails, not a studio primary peer.",
         "maturity": "Experimental (Side Trails)",
         "startHere": {
-          "label": "Open today’s cyber brief",
-          "href": "apps/signalterrain/cyber/live.html#brief"
+          "label": "OPEN SIGNALTERRAIN",
+          "href": "side-trails/signalterrain/dashboard/"
         },
         "productLanding": {
           "label": "SignalTerrain product page",
