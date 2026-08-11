@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-11T07:38:08.334Z",
+  "updatedAt": "2026-08-11T13:43:23.901Z",
   "entries": [
+    {
+      "at": "2026-08-11T13:43:23.900Z",
+      "trustState": "Live",
+      "recordCount": 293,
+      "briefBullets": [
+        "Lead item: Progress LoadMaster Command Injection Vulnerability",
+        "25 KEV dateAdded entries in ~30 days deserve edge review.",
+        "3 active public cloud/SaaS status signal(s).",
+        "24 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-11T07:38:08.334Z",
       "trustState": "Live",

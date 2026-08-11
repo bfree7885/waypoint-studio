@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-11T07:38:08.326Z",
+  "generatedAt": "2026-08-11T13:43:23.892Z",
   "entityCount": 404,
-  "relationshipCount": 1022,
+  "relationshipCount": 1019,
   "entities": [
     {
       "id": "cve:CVE-2026-8037",
@@ -26,9 +26,9 @@
       "title": "Progress"
     },
     {
-      "id": "cve:CVE-2026-15410",
+      "id": "cve:CVE-2026-50751",
       "kind": "cve",
-      "title": "CVE-2026-15410"
+      "title": "CVE-2026-50751"
     },
     {
       "id": "theme:ransomware",
@@ -40,16 +40,6 @@
       "kind": "attack-technique",
       "title": "T1190 Exploit Public-Facing Application",
       "note": "Keyword heuristic from public record text — not a confirmed ATT&CK mapping from MITRE."
-    },
-    {
-      "id": "vendor:sonicwall",
-      "kind": "vendor",
-      "title": "SonicWall"
-    },
-    {
-      "id": "cve:CVE-2026-50751",
-      "kind": "cve",
-      "title": "CVE-2026-50751"
     },
     {
       "id": "attack:T1133",
@@ -120,9 +110,14 @@
       "title": "CVE-2026-15409"
     },
     {
-      "id": "cve:CVE-2026-58644",
+      "id": "vendor:sonicwall",
+      "kind": "vendor",
+      "title": "SonicWall"
+    },
+    {
+      "id": "cve:CVE-2026-15410",
       "kind": "cve",
-      "title": "CVE-2026-58644"
+      "title": "CVE-2026-15410"
     },
     {
       "id": "cve:CVE-2026-45659",
@@ -403,6 +398,11 @@
       "id": "cve:CVE-2026-50522",
       "kind": "cve",
       "title": "CVE-2026-50522"
+    },
+    {
+      "id": "cve:CVE-2026-58644",
+      "kind": "cve",
+      "title": "CVE-2026-58644"
     },
     {
       "id": "cve:CVE-2026-46817",
@@ -1521,11 +1521,6 @@
       "title": "CVE-2021-31196"
     },
     {
-      "id": "cve:CVE-2021-33766",
-      "kind": "cve",
-      "title": "CVE-2021-33766"
-    },
-    {
       "id": "cve:CVE-2012-1723",
       "kind": "cve",
       "title": "CVE-2012-1723"
@@ -1721,6 +1716,11 @@
       "title": "Cloudflare Status"
     },
     {
+      "id": "vendor:openai-status",
+      "kind": "vendor",
+      "title": "OpenAI Status"
+    },
+    {
       "id": "vendor:amazon-web-services",
       "kind": "vendor",
       "title": "Amazon Web Services"
@@ -1754,6 +1754,11 @@
       "id": "cve:CVE-2021-33744",
       "kind": "cve",
       "title": "CVE-2021-33744"
+    },
+    {
+      "id": "cve:CVE-2020-27339",
+      "kind": "cve",
+      "title": "CVE-2020-27339"
     },
     {
       "id": "cve:CVE-2026-71850",
@@ -1921,11 +1926,6 @@
       "title": "CVE-2025-71411"
     },
     {
-      "id": "cve:CVE-2026-18411",
-      "kind": "cve",
-      "title": "CVE-2026-18411"
-    },
-    {
       "id": "cve:CVE-2026-19141",
       "kind": "cve",
       "title": "CVE-2026-19141"
@@ -1986,11 +1986,6 @@
       "title": "GitHub Status"
     },
     {
-      "id": "vendor:openai-status",
-      "kind": "vendor",
-      "title": "OpenAI Status"
-    },
-    {
       "id": "cve:CVE-2023-45896",
       "kind": "cve",
       "title": "CVE-2023-45896"
@@ -2004,6 +1999,11 @@
       "id": "cve:CVE-2026-43503",
       "kind": "cve",
       "title": "CVE-2026-43503"
+    },
+    {
+      "id": "cve:CVE-2026-18411",
+      "kind": "cve",
+      "title": "CVE-2026-18411"
     },
     {
       "id": "cve:CVE-2026-5846",
@@ -2061,43 +2061,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-8037",
       "to": "vendor:progress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-15410",
-      "to": "cve:CVE-2026-15410",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-15410",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "ransomware-associated",
-      "from": "live_kev_cve-2026-15410",
-      "to": "theme:ransomware",
-      "evidence": "KEV ransomware flag or equivalent"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-15410",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-15410",
-      "to": "vendor:sonicwall",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-15410",
-      "to": "vendor:sonicwall",
       "evidence": "entity extraction"
     },
     {
@@ -2330,26 +2293,33 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-58644",
-      "to": "cve:CVE-2026-58644",
+      "from": "live_kev_cve-2026-15410",
+      "to": "cve:CVE-2026-15410",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-58644",
+      "from": "cve:CVE-2026-15410",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-58644",
-      "to": "vendor:microsoft",
-      "evidence": "entity extraction"
+      "type": "ransomware-associated",
+      "from": "live_kev_cve-2026-15410",
+      "to": "theme:ransomware",
+      "evidence": "KEV ransomware flag or equivalent"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-15410",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-58644",
-      "to": "vendor:microsoft",
+      "from": "live_kev_cve-2026-15410",
+      "to": "vendor:sonicwall",
       "evidence": "entity extraction"
     },
     {
@@ -3391,6 +3361,24 @@
     {
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-50522",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-58644",
+      "to": "cve:CVE-2026-58644",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-58644",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-58644",
       "to": "vendor:microsoft",
       "evidence": "entity extraction"
     },
@@ -7024,19 +7012,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_nvd_cve-2021-33766",
-      "to": "cve:CVE-2021-33766",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2021-33766",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_nvd_cve-2012-1723",
       "to": "cve:CVE-2012-1723",
       "evidence": "identifier"
@@ -7573,6 +7548,18 @@
     },
     {
       "type": "outage-affects",
+      "from": "live_outage_openai-status_5061727469616c20",
+      "to": "vendor:openai-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_openai-status_5061727469616c20",
+      "to": "vendor:openai-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
       "from": "live_outage_aws_68747470733a2f2f",
       "to": "vendor:amazon-web-services",
       "evidence": "service-outage record"
@@ -7624,6 +7611,12 @@
       "type": "mentions-cve",
       "from": "live_nvd_cve-2021-33744",
       "to": "cve:CVE-2021-33744",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_nvd_cve-2020-27339",
+      "to": "cve:CVE-2020-27339",
       "evidence": "identifier"
     },
     {
@@ -8103,18 +8096,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_cisa-advisories_2f6e6f64652f3235323539",
-      "to": "cve:CVE-2026-18411",
-      "evidence": "identifier"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_cisa-advisories_2f6e6f64652f3235323539",
-      "to": "cve:CVE-2026-18411",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_chrome-releases_7461673a626c6f676765722e",
       "to": "cve:CVE-2026-19141",
       "evidence": "identifier"
@@ -8258,18 +8239,6 @@
       "evidence": "entity extraction"
     },
     {
-      "type": "outage-affects",
-      "from": "live_outage_openai-status_ok",
-      "to": "vendor:openai-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_openai-status_ok",
-      "to": "vendor:openai-status",
-      "evidence": "entity extraction"
-    },
-    {
       "type": "mentions-cve",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "cve:CVE-2023-45896",
@@ -8316,6 +8285,18 @@
       "from": "live_outage_azure_unavailable",
       "to": "vendor:microsoft",
       "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_cisa-advisories_2f6e6f64652f3235323539",
+      "to": "cve:CVE-2026-18411",
+      "evidence": "identifier"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_cisa-advisories_2f6e6f64652f3235323539",
+      "to": "cve:CVE-2026-18411",
+      "evidence": "CVE extracted from advisory"
     },
     {
       "type": "mentions-cve",
