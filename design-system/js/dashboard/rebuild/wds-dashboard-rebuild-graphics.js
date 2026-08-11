@@ -333,7 +333,31 @@
     return skyPartly();
   }
 
-  function moonPhaseKey(phase, illum) {
+  function moonPhaseKeyFromFraction(frac) {
+    var pv = Number(frac);
+    if (!isFinite(pv)) return null;
+    if (pv < 0) pv = ((pv % 1) + 1) % 1;
+    if (pv > 1) pv = pv % 1;
+    if (pv < 0.03 || pv > 0.97) return "new";
+    if (pv < 0.22) return "waxing-crescent";
+    if (pv < 0.28) return "first-quarter";
+    if (pv < 0.47) return "waxing-gibbous";
+    if (pv < 0.53) return "full";
+    if (pv < 0.72) return "waning-gibbous";
+    if (pv < 0.78) return "last-quarter";
+    return "waning-crescent";
+  }
+
+  function moonPhaseFractionNow() {
+    var jd = Date.now() / 86400000 + 2440587.5;
+    var days = jd - 2451549.5;
+    var phase = days / 29.53058867;
+    phase = phase - Math.floor(phase);
+    if (phase < 0) phase += 1;
+    return phase;
+  }
+
+  function moonPhaseKey(phase, illum, phaseValue) {
     var p = String(phase || "").toLowerCase();
     if (/new/.test(p)) return "new";
     if (/full/.test(p)) return "full";
@@ -343,18 +367,24 @@
     if (/waning.?crescent/.test(p)) return "waning-crescent";
     if (/waxing.?gibbous/.test(p)) return "waxing-gibbous";
     if (/waning.?gibbous/.test(p)) return "waning-gibbous";
+    /* Prefer 0–1 phase fraction (distinguishes waxing vs waning); illum % cannot */
+    var fromValue = moonPhaseKeyFromFraction(phaseValue);
+    if (fromValue) return fromValue;
+    var fromNow = moonPhaseKeyFromFraction(moonPhaseFractionNow());
+    if (fromNow) return fromNow;
     var pct = Number(illum);
     if (!isFinite(pct)) return "waxing-crescent";
     if (pct < 5) return "new";
+    if (pct >= 95) return "full";
+    /* Amount-only last resort — still ambiguous for side; prefer quarter/gibbous neutrals */
     if (pct < 35) return "waxing-crescent";
     if (pct < 55) return "first-quarter";
     if (pct < 85) return "waxing-gibbous";
-    if (pct < 95) return "full";
     return "full";
   }
 
-  function moon(illum, phase) {
-    var key = moonPhaseKey(phase, illum);
+  function moon(illum, phase, phaseValue) {
+    var key = moonPhaseKey(phase, illum, phaseValue);
     var cx = 64;
     var cy = 22;
     var r = 12;
@@ -404,6 +434,13 @@
 
   function sunPath(kind) {
     var k = String(kind || "sunrise").toLowerCase();
+    if (/midday|noon|^day$/.test(k)) {
+      return wrap(
+        horizon() + sunDisc(48, 16, 10) + sunRays(48, 16, 13, 20, 8),
+        "midday",
+        "clear-day"
+      );
+    }
     if (/golden/.test(k)) {
       return wrap(
         horizon() +
@@ -577,7 +614,7 @@
     try {
       if (kind === "sky") return sky(graphic.state);
       if (kind === "aqi") return aqi(graphic.value);
-      if (kind === "moon") return moon(graphic.value, graphic.phase);
+      if (kind === "moon") return moon(graphic.value, graphic.phase, graphic.phaseValue);
       if (kind === "sun" || kind === "sunrise" || kind === "sunset" || kind === "golden" || kind === "blue-hour") {
         return sunPath(graphic.state || kind);
       }

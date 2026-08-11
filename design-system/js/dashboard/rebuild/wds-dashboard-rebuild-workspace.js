@@ -218,6 +218,15 @@
     slot.outerHTML = html;
     article.setAttribute("data-lazy", "ready");
     article.removeAttribute("aria-busy");
+    /* Card washes / alert borders target the article — sync after lazy body paint */
+    var bodyEl = article.querySelector(".wdb-r-widget__body");
+    var illum = (bodyEl && bodyEl.getAttribute("data-illum")) || "quiet";
+    article.setAttribute("data-illum", illum);
+    var alertActive =
+      !!(data && data.graphic && data.graphic.kind === "alert" && data.graphic.active) ||
+      !!(data && data.alerts && data.alerts.count > 0);
+    if (alertActive) article.setAttribute("data-alert-active", "true");
+    else article.removeAttribute("data-alert-active");
   }
 
   function bindLazy(root, options) {

@@ -198,24 +198,50 @@
   }
 
   function lightGraphicKind(dl) {
-    if (!dl) return { kind: "sun", state: "sunrise" };
-    var now = Date.now();
-    function inWindow(range) {
-      if (!range) return false;
-      var parts = String(range).split(/\s*[–—-]\s*/);
-      if (parts.length < 2) return false;
-      /* Text ranges like 6:55–7:25 PM are display-only; prefer ISO if present */
-      return false;
+    if (!dl) return { kind: "sun", state: "sunrise", illum: "golden" };
+    function parseT(v) {
+      if (!v) return null;
+      var t = Date.parse(v);
+      return isFinite(t) ? t : null;
     }
-    if (dl.goldenHourStatus === "live" || dl.goldenHourEvening || dl.goldenHour) {
-      /* Prefer golden illustration when golden window fields exist */
+    var now = Date.now();
+    var rise =
+      parseT(dl.sunrise) || parseT(dl.sunriseISO) || parseT(dl.rawSunrise);
+    var set = parseT(dl.sunset) || parseT(dl.sunsetISO) || parseT(dl.rawSunset);
+    if (rise != null && set != null) {
+      var hourMs = 60 * 60 * 1000;
+      var halfMs = 30 * 60 * 1000;
+      /* Align with daylight-utils: blue ±30m, golden ±60m around rise/set */
+      if (now >= rise - halfMs && now < rise) {
+        return { kind: "sun", state: "blue-hour", illum: "blue" };
+      }
+      if (now >= rise && now < rise + halfMs) {
+        return { kind: "sun", state: "sunrise", illum: "golden" };
+      }
+      if (now >= rise + halfMs && now < rise + hourMs) {
+        return { kind: "sun", state: "golden", illum: "golden" };
+      }
+      if (now >= rise + hourMs && now < set - hourMs) {
+        return { kind: "sun", state: "midday", illum: "clear-day" };
+      }
+      if (now >= set - hourMs && now < set - halfMs) {
+        return { kind: "sun", state: "golden", illum: "golden" };
+      }
+      if (now >= set - halfMs && now < set) {
+        return { kind: "sun", state: "sunset", illum: "golden" };
+      }
+      if (now >= set && now < set + halfMs) {
+        return { kind: "sun", state: "blue-hour", illum: "blue" };
+      }
+      return { kind: "sun", state: "blue-hour", illum: "blue" };
     }
     var h = new Date().getHours();
     if (h >= 5 && h < 9) return { kind: "sun", state: "sunrise", illum: "golden" };
+    if (h >= 9 && h < 16) return { kind: "sun", state: "midday", illum: "clear-day" };
+    if (h >= 16 && h < 17) return { kind: "sun", state: "sunset", illum: "golden" };
     if (h >= 17 && h < 19) return { kind: "sun", state: "golden", illum: "golden" };
     if (h >= 19 && h < 21) return { kind: "sun", state: "blue-hour", illum: "blue" };
-    if (h >= 16) return { kind: "sun", state: "sunset", illum: "golden" };
-    return { kind: "sun", state: "sunrise", illum: "golden" };
+    return { kind: "sun", state: "blue-hour", illum: "blue" };
   }
 
   function waitingOrUnavailable(platform, waitingMsg, unavailableMsg) {
@@ -336,13 +362,14 @@
     var dl = daylightSlice(platform);
     var cur = weatherCurrent(platform);
     var phase = dl && (dl.moonPhase || null);
+    var phaseValue = dl && dl.moonPhaseValue != null ? num(dl.moonPhaseValue) : null;
     var illum = dl && dl.moonIllumination != null ? num(dl.moonIllumination) : null;
     var moonrise = dl && (dl.moonrise || null);
     var moonset = dl && (dl.moonset || null);
     var cloud = cur && cur.cloudPct != null ? cur.cloudPct : null;
     var sky = nightSkyNote(cloud, illum);
 
-    if (!phase && illum == null && !moonrise && !moonset && cloud == null) {
+    if (!phase && phaseValue == null && illum == null && !moonrise && !moonset && cloud == null) {
       return waitingOrUnavailable(platform, "Sky context will appear here.", "Sky context will appear here.");
     }
 
@@ -361,17 +388,22 @@
     if (cloud != null) facts.push({ label: "Cloud cover", value: Math.round(cloud) + "%" });
 
     var trust = "partial";
-    if (phase || illum != null) trust = "estimated";
-    if (cur && cur.live && (phase || cloud != null)) trust = "partial";
+    if (phase || phaseValue != null || illum != null) trust = "estimated";
+    if (cur && cur.live && (phase || phaseValue != null || cloud != null)) trust = "partial";
 
     return {
       trust: trust,
       status: "live",
       message: null,
       facts: facts,
-      moon: { phase: phase, illumination: illum, rise: moonrise, set: moonset },
+      moon: { phase: phase, phaseValue: phaseValue, illumination: illum, rise: moonrise, set: moonset },
       nightSky: sky,
-      graphic: { kind: "moon", value: illum != null ? illum : 50, phase: phase }
+      graphic: {
+        kind: "moon",
+        value: illum != null ? illum : 50,
+        phase: phase,
+        phaseValue: phaseValue
+      }
     };
   }
 
