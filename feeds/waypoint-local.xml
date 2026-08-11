@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Aug 2026 00:50:07 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 11 Aug 2026 12:38:04 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -23,6 +23,25 @@ Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field 
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/registration-opens-for-backcountry-3p-in-saranac-lake/</description>
     <category>Weather</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Pendragon Theatre in Saranac Lake receives $750,000 in funding</title>
+    <link>https://www.adirondackexplorer.org/communities/arts/pendragon-theatre-in-saranac-lake-receives-750000-in-funding/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/pendragon-theatre-in-saranac-lake-receives-750000-in-funding/</guid>
+    <pubDate>Tue, 11 Aug 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A performance at Pendragon Theatre. Photo provided by Michael Aguirre, Pendragon Theatre Managing Director. &quot; data-image-caption=&quot; A performance at Pendragon Theatre. Photo courtesy of the Pendragon Theatre, Explorer files. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2022/12/SA78898-e1669911486631.jpg?fit=540%2C360&amp;ssl=1&quot; /&gt; The Pendragon Theatre received a final round of funding to finish off its new performance venue in downtown Saranac Lake
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/pendragon-theatre-in-saranac-lake-receives-750000-in-funding/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
@@ -47,22 +66,22 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</guid>
-    <pubDate>Sun, 09 Aug 2026 12:14:57 GMT</pubDate>
+    <title>Construction at Tupper Lake’s Oval Wood Dish factory moves toward late August groundbreaking</title>
+    <link>https://www.adirondackexplorer.org/communities/housing/construction-at-tupper-lakes-oval-wood-dish-factory-moves-toward-late-august-groundbreaking/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/construction-at-tupper-lakes-oval-wood-dish-factory-moves-toward-late-august-groundbreaking/</guid>
+    <pubDate>Tue, 11 Aug 2026 10:30:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+Summary: The old gym at oval wood dish . Photo by Mike Lynch &quot; data-image-caption=&quot; An interior view of the former Oval Wood Dish factory in Tupper Lake, seen in 2021. Explorer file photo by Mike Lynch &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2021/04/OWD_MikeLynch-3536.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; The ceremony, set for Aug. 24, comes after nearly seven years of construction and development delays.
 
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/construction-at-tupper-lakes-oval-wood-dish-factory-moves-toward-late-august-groundbreaking/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -123,37 +142,20 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Laid to rest: honoring unearthed Revolutionary War soldiers</title>
-    <link>https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</guid>
-    <pubDate>Sun, 09 Aug 2026 10:30:00 GMT</pubDate>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</guid>
+    <pubDate>Sun, 09 Aug 2026 12:14:57 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Honor Guards stand by four caskets containing remains from the Revolutionary War Era at the Repose of the Fallen Memorial where they were interred during a ceremony on Wednesday, May 22, 2026, at the Lake George Battlefield Park in Lake George, N.Y. PHOTO BY CINDY SCHULTZ &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/20260522_ADK_Remains_Ceremony_-016-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Revolutionary War soldiers reinterred in Lake George, closing a loop that began 7 years ago
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
 
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/laid-to-rest-honoring-unearthed-revolutionary-war-soldiers/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-184/</description>
     <category>Regional News</category>
     <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>COMMENTARY: DEC should remove the fence on the Adirondack Rail Trail</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-dec-should-remove-the-fence-on-the-adirondack-rail-trail/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-dec-should-remove-the-fence-on-the-adirondack-rail-trail/</guid>
-    <pubDate>Sat, 08 Aug 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Scene along the Adirondack Rail Trail, May 2026. Photo by Nancie Battaglia, Explorer files. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/07/nbRTrPhJoHR-4077-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Harrietstown Town Council Member George Connelly argues for the removal of a fence which cuts off access to Saranac Lake businesses
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-dec-should-remove-the-fence-on-the-adirondack-rail-trail/</description>
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
@@ -269,6 +271,23 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Meet the New Everglades Research Station Director, Bryant Dossman, PhD</title>
+    <link>https://www.audubon.org/florida/news/meet-new-everglades-research-station-director-bryant-dossman-phd</link>
+    <guid isPermaLink="true">https://www.audubon.org/florida/news/meet-new-everglades-research-station-director-bryant-dossman-phd</guid>
+    <pubDate>Mon, 10 Aug 2026 20:00:02 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: In 2026, Bryant Dossman, PhD, joined Audubon as the new director and principal scientist of the Audubon Everglades Research Station (AERS) in Tavernier. Hailing from Newark, New Jersey, his...
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
+
+Read the original article at the publisher: https://www.audubon.org/florida/news/meet-new-everglades-research-station-director-bryant-dossman-phd</description>
+    <category>Birds</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Spring 2026 SKYWARN Spotter Training Videos Posted on our YouTube Page</title>
     <link>https://www.youtube.com/playlist?list=PLQnSxMIiQ_f6GAjEQgFcYvM190vZw0C70</link>
     <guid isPermaLink="true">https://www.youtube.com/playlist?list=PLQnSxMIiQ_f6GAjEQgFcYvM190vZw0C70</guid>
@@ -339,23 +358,6 @@ Read the original article at the publisher: https://www.weather.gov/images/aly/N
     <category>Weather</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Albany</author>
-  </item>
-  <item>
-    <title>Dispatches from the AMC 150 Relay: One Month In</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/features/dispatches-from-the-amc-150-relay-one-month-in/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/features/dispatches-from-the-amc-150-relay-one-month-in/</guid>
-    <pubDate>Mon, 18 May 2026 17:30:51 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: I have a very normal job… I am following the volunteers of AMC’s 150th Anniversary Relay as they hike, bike, and paddle their way from Virginia to Maine, a journey that is over 2,000 miles.... Read More The post Dispatches from the AMC 150 Relay: One Month In appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/features/dispatches-from-the-amc-150-relay-one-month-in/</description>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
   </item>
   </channel>
 </rss>
