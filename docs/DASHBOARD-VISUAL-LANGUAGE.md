@@ -1,91 +1,68 @@
 # Dashboard Visual Language
 
-Authority for Dashboard instrument tiles: field-guide atmosphere, quiet illumination,
-Waypoint aubergine family. Complements `docs/DESIGN-SYSTEM-2.0.md` and
-`docs/APP-SURFACE-ARCHITECTURE.md`.
+Authority for Dashboard instrument tiles: atmospheric outdoor art, luminous field-instrument edges,
+Waypoint aubergine family + restrained environmental glow. Complements `docs/DESIGN-SYSTEM-2.0.md`.
 
 ## Principles
 
-1. **Measurements first.** Illustrations are atmospheric context in negative space — never
-   centered giant icons competing with facts.
-2. **One product surface.** Twelve instruments on one screen must read as one field panel,
-   not twelve unrelated widgets.
-3. **Palette discipline.** Aubergine / Bone / Sand / Terracotta / Clay / Sage / Plum /
-   Dust gold / Slate only. No neon cyan, lime, pink, or rainbow category outlines.
-4. **Honest state.** Illumination follows weather / AQI / alert state — not category
-   marketing color.
+1. **Measurements first.** Art lives behind data with darkening overlays.
+2. **One product surface.** Twelve instruments read as one night field panel.
+3. **Luminous edges.** Crisp card border + soft outer diffusion (`--wdb-r-glow`) — premium, not RGB gaming.
+4. **Data-honest art.** Imagery matches actual sky / AQI / alert / moon / light state.
+
+## Illumination
+
+## Semantic glow domains
+
+| Domain | Token | Color intent |
+| --- | --- | --- |
+| Weather / forecast | `--wdb-r-glow-weather` | Cool atmospheric cyan |
+| Precip | `--wdb-r-glow-precip` | Cool blue |
+| Light | `--wdb-r-glow-light` | Warm amber |
+| Astronomy | `--wdb-r-glow-astronomy` | Twilight violet |
+| Air (by AQI) | `--wdb-r-glow-air-*` | Sage → gold → terracotta → clay |
+| Alerts quiet / active | `--wdb-r-glow-alert-quiet` / `--wdb-r-glow-alert` | Slate → amber-clay |
+
+State (`data-illum`) retunes `--wdb-r-glow` without rainbow category outlines.
 
 ## Illustration system
 
-| Layer | Role |
-| --- | --- |
-| Module | `design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js` |
-| Markup | `.wdb-r-widget__atmosphere` → `.wdb-r-graphic` → SVG `viewBox="0 0 96 56"` |
-| CSS | `wds-dashboard-rebuild.css` — atmosphere absolute top-right; content z-index above |
+## Atmospheric art
 
-### Sky / weather states
+Module: `wds-dashboard-rebuild-graphics.js` (v3 atmospheric).
 
-`normalizeSkyState` + `sky()` cover:
+Markup: `.wdb-r-widget__art` → full scene SVG (`viewBox="0 0 160 100"`) with gradient sky + ground.
+Overlay gradient keeps text contrast. Mobile crops via `preserveAspectRatio="xMaxYMid slice"`.
 
+### Sky states
 clear · partly · cloudy · rain · heavy-rain · storm · snow · fog · wind · clear-night
 
 ### Moon phase
+`moonPhaseKey(phase, illum)` drives shadow disc — must match calculated phase.
 
-`moonPhaseKey(phase, illum)` maps calculated phase name (preferred) or illumination %
-to: new · waxing-crescent · first-quarter · waxing-gibbous · full · waning-gibbous ·
-last-quarter · waning-crescent.
+### Alerts
+Calm subdued scene when clear; dramatic treatment only when `active`.
 
-### Light / photography
+## Surface
 
-sunrise · sunset · golden · blue-hour — via `sunPath` / Light tile adapter.
+Cards: tonal aubergine surface + atmospheric art + gradient overlay + luminous edge.
 
-### Other instruments
+## Conditions hero
 
-AQI atmospheric haze · alert triangle · UV rays · wind · precip · hours bars · doorway ·
-comfort · day range — same stroke weight and horizon language.
+Large temperature + sky + feels-like + compact Wind / Humidity / Precip meta — not spreadsheet facts only.
 
-**Do not:** emoji, cartoon fills, glossy gradients, enlarged Lucide-style UI icons as the
-tile hero.
+## Mobile layout (non-negotiable)
 
-## Illumination (`data-illum`)
+At `max-width: 47.99rem` (375 / 390 / 430):
 
-Set on widget article and body from graphic `data-illum` / `illumFromGraphic`.
-
-| Token | Intent |
-| --- | --- |
-| `quiet` | Default — no wash |
-| `clear-day` / `partly` | Soft dust-gold inset |
-| `golden` | Warm dust-gold wash |
-| `blue` | Quiet purple wash |
-| `rain` / `cloudy` / `fog` / `snow` / `wind` | Cool slate wash |
-| `storm` | Stronger clay wash + quieter clay border |
-| `night` | Deep aubergine inset |
-| `alert` | Clay border + stronger wash (`data-alert-active`) |
-| `aqi-good` → `aqi-unhealthy` | Progressive sage → gold → terracotta → clay |
-
-Borders stay **quiet** (`--wdb-r-line-strong`). Category tokens tint surface gradients
-lightly — they do **not** draw neon full-card outlines or outer glow rings.
-
-## Surface / depth
-
-- Subtle top-to-bottom aubergine gradients on cards
-- Soft inset highlight + deep ambient shadow (`--wdb-r-shadow`)
-- Premium field-instrument night — not glassmorphism for its own sake
-- Reduced motion: keep shadow; drop decorative transitions / lower atmosphere opacity
-
-## Category tokens (presence, not neon)
-
-`--category-weather|light|nature|astronomy|photography|water|hiking|earth|alerts|travel`
-map to `--wp-slate|dust-gold|sage|purple|plum|terracotta|clay` — muted family accents only.
+- **Always one column** (`grid-template-columns: 1fr`; workspace forces `columns = 1`)
+- **No column-count control** in Customize (hidden in CSS; omitted in JS)
+- Add / remove / reorder / favorites / restore / save remain
 
 ## Accessibility
 
-- Graphics are `aria-hidden="true"`; facts remain the accessible content
-- Trust chips and fact labels keep contrast on aubergine surfaces
-- Responsive: atmosphere shrinks on ≤47.99rem; content reserves right padding so values
-  do not collide with the illustration
+Glow is not the sole meaning carrier. Labels + contrast + reduced-motion (static glow OK).
 
-## Change rule
+## Performance
 
-Visual refinement must not expand the tile catalog or change Dashboard architecture
-(customize / persistence / real data / ONE APP = ONE PRODUCT SURFACE).
+Prefer inline SVG / CSS atmospheres — no large photo payloads.

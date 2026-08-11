@@ -43,6 +43,14 @@
     );
   }
 
+  function isMobileViewport() {
+    try {
+      return !!(global.matchMedia && global.matchMedia("(max-width: 47.99rem)").matches);
+    } catch (e) {
+      return false;
+    }
+  }
+
   function openFamilySection(family, columns) {
     var id = family && family.id ? family.id : "instruments";
     return (
@@ -283,6 +291,8 @@
     var customize = !!options.customize;
     var columns = Number((prefs && prefs.gridColumns) || 3);
     if ([1, 2, 3].indexOf(columns) < 0) columns = 3;
+    /* Critical mobile rule: always one column regardless of saved preference */
+    if (isMobileViewport()) columns = 1;
     var reduce = prefersReducedMotion();
     var animate = !!options.animate && !reduce;
     var lazy = options.lazy === true;

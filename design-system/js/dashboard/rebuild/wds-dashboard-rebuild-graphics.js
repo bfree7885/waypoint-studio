@@ -1,13 +1,13 @@
 /**
- * Dashboard Rebuild — field-guide / weather-station illustrations.
- * Atmospheric context in negative space — secondary to measurements.
- * Coherent stroke system; not emoji, cartoon, or glossy UI icons.
- * Authority: docs/DESIGN-SYSTEM-2.0.md + docs/DASHBOARD-VISUAL-LANGUAGE.md
+ * Dashboard Rebuild — atmospheric outdoor card art + compact glyphs.
+ * Data-honest scenes for Conditions / Air / Alerts / Light / Astronomy / forecast.
+ * Authority: docs/DASHBOARD-VISUAL-LANGUAGE.md
  */
 (function (global) {
   "use strict";
 
-  var VIEW = "0 0 96 56";
+  var ART_VIEW = "0 0 160 100";
+  var MINI_VIEW = "0 0 24 16";
 
   function esc(s) {
     return String(s == null ? "" : s)
@@ -17,26 +17,62 @@
       .replace(/"/g, "&quot;");
   }
 
-  function wrap(inner, kind, illum) {
+  function artWrap(inner, kind, illum) {
     return (
-      '<div class="wdb-r-graphic wdb-r-graphic--' +
+      '<div class="wdb-r-widget__art wdb-r-widget__art--' +
       esc(kind || "generic") +
       '"' +
       (illum ? ' data-illum="' + esc(illum) + '"' : "") +
       ' aria-hidden="true">' +
-      '<svg class="wdb-r-graphic__svg" viewBox="' +
-      VIEW +
-      '" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">' +
+      '<svg class="wdb-r-widget__art-svg" viewBox="' +
+      ART_VIEW +
+      '" preserveAspectRatio="xMaxYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">' +
       inner +
       "</svg></div>"
     );
   }
 
-  /* Shared primitives — field atlas line weight */
-  var SW = 'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"';
-  var SWF = SW + ' fill="color-mix(in srgb, currentColor 10%, transparent)"';
+  function mini(inner) {
+    return (
+      '<span class="wdb-r-hours__icon" aria-hidden="true">' +
+      '<svg viewBox="' +
+      MINI_VIEW +
+      '" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">' +
+      inner +
+      "</svg></span>"
+    );
+  }
 
-  function sunDisc(cx, cy, r) {
+  function defsSky(id, c0, c1, c2) {
+    return (
+      '<defs><linearGradient id="' +
+      id +
+      '" x1="0" y1="0" x2="0" y2="1">' +
+      '<stop offset="0%" stop-color="' +
+      c0 +
+      '"/>' +
+      '<stop offset="55%" stop-color="' +
+      c1 +
+      '"/>' +
+      '<stop offset="100%" stop-color="' +
+      c2 +
+      '"/>' +
+      "</linearGradient></defs>" +
+      '<rect width="160" height="100" fill="url(#' +
+      id +
+      ')"/>'
+    );
+  }
+
+  function ground(opacity) {
+    return (
+      '<path d="M0 78 C40 70 70 82 100 74 C130 66 145 72 160 68 L160 100 L0 100 Z" fill="#17131c" opacity="' +
+      (opacity == null ? "0.55" : opacity) +
+      '"/>'
+    );
+  }
+
+  function sun(cx, cy, r) {
     return (
       '<circle cx="' +
       cx +
@@ -44,264 +80,124 @@
       cy +
       '" r="' +
       r +
-      '" ' +
-      SWF +
-      "/>"
+      '" fill="#f2ebe0" opacity="0.9"/>' +
+      '<circle cx="' +
+      cx +
+      '" cy="' +
+      cy +
+      '" r="' +
+      (r + 10) +
+      '" fill="#d4a05c" opacity="0.18"/>'
     );
   }
 
-  function sunRays(cx, cy, inner, outer, n) {
-    var out = "";
-    for (var i = 0; i < n; i++) {
-      var a = (i / n) * Math.PI * 2 - Math.PI / 2;
-      out +=
-        '<path d="M' +
-        (cx + Math.cos(a) * inner).toFixed(1) +
-        " " +
-        (cy + Math.sin(a) * inner).toFixed(1) +
-        "L" +
-        (cx + Math.cos(a) * outer).toFixed(1) +
-        " " +
-        (cy + Math.sin(a) * outer).toFixed(1) +
-        '" ' +
-        SW +
-        "/>";
+  function moonDisc(cx, cy, r, phaseKey) {
+    var base =
+      '<circle cx="' +
+      cx +
+      '" cy="' +
+      cy +
+      '" r="' +
+      r +
+      '" fill="#e8e0d4" opacity="0.92"/>';
+    var offsets = {
+      new: 0,
+      "waxing-crescent": 7,
+      "first-quarter": 10,
+      "waxing-gibbous": 14,
+      full: 30,
+      "waning-gibbous": -14,
+      "last-quarter": -10,
+      "waning-crescent": -7
+    };
+    var off = offsets[phaseKey] != null ? offsets[phaseKey] : 7;
+    if (phaseKey === "new") {
+      return (
+        base +
+        '<circle cx="' +
+        cx +
+        '" cy="' +
+        cy +
+        '" r="' +
+        r +
+        '" fill="#1f1a26" opacity="0.88"/>'
+      );
     }
-    return out;
-  }
-
-  function cloudMass(x, y, w) {
-    var h = w * 0.42;
+    if (phaseKey === "full") return base;
     return (
-      '<path d="M' +
-      (x + w * 0.22) +
-      " " +
-      (y + h) +
-      "C" +
-      (x + w * 0.08) +
-      " " +
-      (y + h) +
-      " " +
-      x +
-      " " +
-      (y + h * 0.72) +
-      " " +
-      x +
-      " " +
-      (y + h * 0.48) +
-      "C" +
-      x +
-      " " +
-      (y + h * 0.18) +
-      " " +
-      (x + w * 0.16) +
-      " " +
-      y +
-      " " +
-      (x + w * 0.34) +
-      " " +
-      (y + h * 0.12) +
-      "C" +
-      (x + w * 0.42) +
-      " " +
-      (y - h * 0.08) +
-      " " +
-      (x + w * 0.58) +
-      " " +
-      (y - h * 0.08) +
-      " " +
-      (x + w * 0.66) +
-      " " +
-      (y + h * 0.14) +
-      "C" +
-      (x + w * 0.86) +
-      " " +
-      (y + h * 0.08) +
-      " " +
-      (x + w) +
-      " " +
-      (y + h * 0.28) +
-      " " +
-      (x + w) +
-      " " +
-      (y + h * 0.52) +
-      "C" +
-      (x + w) +
-      " " +
-      (y + h * 0.78) +
-      " " +
-      (x + w * 0.86) +
-      " " +
-      (y + h) +
-      " " +
-      (x + w * 0.7) +
-      " " +
-      (y + h) +
-      "Z" +
-      '" ' +
-      SWF +
-      "/>"
+      base +
+      '<circle cx="' +
+      (cx + off) +
+      '" cy="' +
+      cy +
+      '" r="' +
+      (r + 0.4) +
+      '" fill="#1a1520"/>'
     );
   }
 
-  function rainStreaks(x, y, n, heavy) {
+  function stars() {
+    return (
+      '<circle cx="28" cy="18" r="1.1" fill="#f2ebe0" opacity="0.55"/>' +
+      '<circle cx="48" cy="28" r="0.8" fill="#f2ebe0" opacity="0.4"/>' +
+      '<circle cx="62" cy="14" r="0.7" fill="#f2ebe0" opacity="0.45"/>' +
+      '<circle cx="90" cy="22" r="0.9" fill="#f2ebe0" opacity="0.35"/>' +
+      '<circle cx="110" cy="12" r="0.6" fill="#f2ebe0" opacity="0.4"/>'
+    );
+  }
+
+  function cloud(x, y, s, opacity) {
+    var o = opacity == null ? 0.55 : opacity;
+    return (
+      '<ellipse cx="' +
+      (x + s * 0.35) +
+      '" cy="' +
+      y +
+      '" rx="' +
+      s * 0.42 +
+      '" ry="' +
+      s * 0.22 +
+      '" fill="#f2ebe0" opacity="' +
+      o +
+      '"/>' +
+      '<ellipse cx="' +
+      (x + s * 0.62) +
+      '" cy="' +
+      (y + s * 0.05) +
+      '" rx="' +
+      s * 0.38 +
+      '" ry="' +
+      s * 0.2 +
+      '" fill="#f2ebe0" opacity="' +
+      (o * 0.92) +
+      '"/>' +
+      '<ellipse cx="' +
+      (x + s * 0.48) +
+      '" cy="' +
+      (y - s * 0.12) +
+      '" rx="' +
+      s * 0.28 +
+      '" ry="' +
+      s * 0.18 +
+      '" fill="#f2ebe0" opacity="' +
+      (o * 0.85) +
+      '"/>'
+    );
+  }
+
+  function rainLines(heavy) {
+    var n = heavy ? 10 : 6;
     var out = "";
-    var gap = heavy ? 5 : 7;
     for (var i = 0; i < n; i++) {
-      var dx = x + i * gap;
+      var x = 70 + i * (heavy ? 7 : 9);
       out +=
         '<path d="M' +
-        dx +
-        " " +
-        y +
-        "l" +
-        (heavy ? -1.2 : -0.8) +
-        " " +
-        (heavy ? 10 : 7) +
-        '" ' +
-        SW +
-        "/>";
+        x +
+        " 58 l-2 " +
+        (heavy ? 16 : 12) +
+        '" stroke="#a8c8d8" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>';
     }
     return out;
-  }
-
-  function horizon() {
-    return '<path d="M8 44h80" ' + SW + ' opacity="0.35"/>';
-  }
-
-  function skyClearDay() {
-    return wrap(
-      horizon() + sunDisc(68, 18, 9) + sunRays(68, 18, 12, 18, 8),
-      "clear",
-      "clear-day"
-    );
-  }
-
-  function skyPartly() {
-    return wrap(
-      horizon() +
-        sunDisc(72, 14, 6) +
-        sunRays(72, 14, 9, 13, 6) +
-        cloudMass(18, 22, 52),
-      "partly",
-      "partly"
-    );
-  }
-
-  function skyCloudy() {
-    return wrap(
-      horizon() + cloudMass(12, 16, 48) + cloudMass(36, 24, 44),
-      "cloudy",
-      "cloudy"
-    );
-  }
-
-  function skyFog() {
-    return wrap(
-      horizon() +
-        '<path d="M14 18h56M18 26h50M16 34h54" ' +
-        SW +
-        ' opacity="0.55"/>' +
-        cloudMass(28, 10, 36),
-      "fog",
-      "fog"
-    );
-  }
-
-  function skyRain() {
-    return wrap(
-      horizon() + cloudMass(20, 10, 54) + rainStreaks(28, 32, 6, false),
-      "rain",
-      "rain"
-    );
-  }
-
-  function skyHeavyRain() {
-    return wrap(
-      horizon() + cloudMass(16, 8, 58) + rainStreaks(24, 30, 9, true),
-      "heavy-rain",
-      "rain"
-    );
-  }
-
-  function skyStorm() {
-    return wrap(
-      horizon() +
-        cloudMass(14, 8, 56) +
-        rainStreaks(26, 30, 5, true) +
-        '<path d="M48 28l-5 10h7l-4 10" ' +
-        SW +
-        "/>",
-      "storm",
-      "storm"
-    );
-  }
-
-  function skySnow() {
-    var flakes = "";
-    var pts = [
-      [28, 34],
-      [40, 38],
-      [52, 33],
-      [34, 42],
-      [46, 44]
-    ];
-    pts.forEach(function (p) {
-      flakes +=
-        '<path d="M' +
-        p[0] +
-        " " +
-        (p[1] - 3) +
-        "v6M" +
-        (p[0] - 3) +
-        " " +
-        p[1] +
-        "h6M" +
-        (p[0] - 2) +
-        " " +
-        (p[1] - 2) +
-        "l4 4M" +
-        (p[0] - 2) +
-        " " +
-        (p[1] + 2) +
-        "l4-4" +
-        '" ' +
-        SW +
-        ' opacity="0.7"/>';
-    });
-    return wrap(horizon() + cloudMass(18, 10, 52) + flakes, "snow", "snow");
-  }
-
-  function skyClearNight() {
-    return wrap(
-      horizon() +
-        '<circle cx="70" cy="16" r="8" ' +
-        SWF +
-        "/>" +
-        '<circle cx="74" cy="14" r="8" fill="var(--wdb-r-surface, #1f1a26)"/>' +
-        '<circle cx="28" cy="14" r="1" fill="currentColor" opacity="0.55"/>' +
-        '<circle cx="40" cy="22" r="0.8" fill="currentColor" opacity="0.45"/>' +
-        '<circle cx="52" cy="12" r="0.7" fill="currentColor" opacity="0.5"/>',
-      "clear-night",
-      "night"
-    );
-  }
-
-  function skyWind() {
-    return wrap(
-      horizon() +
-        '<path d="M16 18h40c4 0 7 2.5 7 5.5S60 29 56 29H34" ' +
-        SW +
-        "/>" +
-        '<path d="M20 32h44c3.5 0 6 2 6 4.5S67.5 41 64 41H28" ' +
-        SW +
-        "/>" +
-        '<path d="M24 46h28" ' +
-        SW +
-        ' opacity="0.5"/>',
-      "wind",
-      "wind"
-    );
   }
 
   function normalizeSkyState(state) {
@@ -319,18 +215,104 @@
     return "partly";
   }
 
-  function sky(state) {
+  function skyArt(state) {
     var k = normalizeSkyState(state);
-    if (k === "storm") return skyStorm();
-    if (k === "heavy-rain") return skyHeavyRain();
-    if (k === "snow") return skySnow();
-    if (k === "fog") return skyFog();
-    if (k === "rain") return skyRain();
-    if (k === "clear-night") return skyClearNight();
-    if (k === "wind") return skyWind();
-    if (k === "cloudy") return skyCloudy();
-    if (k === "clear") return skyClearDay();
-    return skyPartly();
+    if (k === "storm") {
+      return artWrap(
+        defsSky("ws", "#2a2432", "#3a3348", "#1f1a26") +
+          cloud(55, 38, 70, 0.45) +
+          cloud(85, 48, 55, 0.4) +
+          rainLines(true) +
+          '<path d="M108 52 L98 70 H110 L102 88" stroke="#d4a05c" stroke-width="1.6" fill="none" opacity="0.75"/>' +
+          ground(0.65),
+        "storm",
+        "storm"
+      );
+    }
+    if (k === "heavy-rain" || k === "rain") {
+      return artWrap(
+        defsSky("wr", "#2a3a48", "#3d5566", "#243038") +
+          cloud(50, 34, 75, 0.5) +
+          cloud(90, 44, 50, 0.42) +
+          rainLines(k === "heavy-rain") +
+          ground(0.6),
+        k,
+        "rain"
+      );
+    }
+    if (k === "snow") {
+      return artWrap(
+        defsSky("wsn", "#2c3340", "#4a5566", "#2a3038") +
+          cloud(55, 32, 70, 0.48) +
+          '<circle cx="78" cy="62" r="1.2" fill="#f2ebe0" opacity="0.7"/>' +
+          '<circle cx="92" cy="70" r="1" fill="#f2ebe0" opacity="0.55"/>' +
+          '<circle cx="108" cy="64" r="1.1" fill="#f2ebe0" opacity="0.6"/>' +
+          '<circle cx="118" cy="76" r="0.9" fill="#f2ebe0" opacity="0.5"/>' +
+          ground(0.55),
+        "snow",
+        "snow"
+      );
+    }
+    if (k === "fog") {
+      return artWrap(
+        defsSky("wf", "#3a4048", "#5a626c", "#343a42") +
+          '<ellipse cx="90" cy="52" rx="55" ry="14" fill="#f2ebe0" opacity="0.18"/>' +
+          '<ellipse cx="100" cy="64" rx="60" ry="12" fill="#f2ebe0" opacity="0.14"/>' +
+          '<ellipse cx="80" cy="74" rx="50" ry="10" fill="#f2ebe0" opacity="0.12"/>' +
+          ground(0.45),
+        "fog",
+        "fog"
+      );
+    }
+    if (k === "cloudy") {
+      return artWrap(
+        defsSky("wc", "#2f3a48", "#4a5a6a", "#2a323c") +
+          cloud(45, 36, 80, 0.48) +
+          cloud(85, 48, 60, 0.42) +
+          ground(0.55),
+        "cloudy",
+        "cloudy"
+      );
+    }
+    if (k === "clear-night") {
+      return artWrap(
+        defsSky("wn", "#17131c", "#2a2438", "#1a1524") +
+          stars() +
+          moonDisc(118, 28, 14, "waxing-crescent") +
+          ground(0.7),
+        "clear-night",
+        "night"
+      );
+    }
+    if (k === "wind") {
+      return artWrap(
+        defsSky("ww", "#2a3440", "#3d4e5c", "#243038") +
+          '<path d="M50 40 H120" stroke="#a8c4d4" stroke-width="1.4" opacity="0.45"/>' +
+          '<path d="M58 52 H128" stroke="#a8c4d4" stroke-width="1.4" opacity="0.35"/>' +
+          '<path d="M64 64 H118" stroke="#a8c4d4" stroke-width="1.2" opacity="0.28"/>' +
+          ground(0.5),
+        "wind",
+        "wind"
+      );
+    }
+    if (k === "clear") {
+      return artWrap(
+        defsSky("wcl", "#3a6a8a", "#6aa8c2", "#c4d8e4") +
+          sun(118, 28, 16) +
+          ground(0.4),
+        "clear",
+        "clear-day"
+      );
+    }
+    /* partly */
+    return artWrap(
+      defsSky("wp", "#3d5a72", "#6a90a8", "#a8c4d4") +
+        sun(122, 24, 12) +
+        cloud(48, 48, 70, 0.5) +
+        ground(0.45),
+      "partly",
+      "partly"
+    );
   }
 
   function moonPhaseKey(phase, illum) {
@@ -353,106 +335,58 @@
     return "full";
   }
 
-  function moon(illum, phase) {
+  function moonArt(illum, phase) {
     var key = moonPhaseKey(phase, illum);
-    var cx = 64;
-    var cy = 22;
-    var r = 12;
-    var disc = '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" ' + SWF + "/>";
-    var mask = "";
-    /* Shadow disc offsets approximate phase — field-guide style */
-    var offsets = {
-      new: 0,
-      "waxing-crescent": 9,
-      "first-quarter": 12,
-      "waxing-gibbous": 16,
-      full: 28,
-      "waning-gibbous": -16,
-      "last-quarter": -12,
-      "waning-crescent": -9
-    };
-    var off = offsets[key] != null ? offsets[key] : 9;
-    if (key === "new") {
-      mask =
-        '<circle cx="' +
-        cx +
-        '" cy="' +
-        cy +
-        '" r="' +
-        r +
-        '" fill="var(--wdb-r-surface, #1f1a26)" opacity="0.85"/>';
-    } else if (key !== "full") {
-      mask =
-        '<circle cx="' +
-        (cx + off) +
-        '" cy="' +
-        cy +
-        '" r="' +
-        (r + 0.5) +
-        '" fill="var(--wdb-r-surface, #1f1a26)"/>';
-    }
-    var stars =
-      '<circle cx="28" cy="14" r="0.9" fill="currentColor" opacity="0.45"/>' +
-      '<circle cx="38" cy="24" r="0.7" fill="currentColor" opacity="0.4"/>' +
-      '<circle cx="46" cy="12" r="0.6" fill="currentColor" opacity="0.35"/>';
-    return wrap(
-      horizon() + disc + mask + stars,
+    return artWrap(
+      defsSky("wm", "#17131c", "#241e32", "#1a1524") +
+        stars() +
+        moonDisc(112, 34, 18, key) +
+        ground(0.72),
       "moon",
       "night"
     );
   }
 
-  function sunPath(kind) {
+  function sunPathArt(kind) {
     var k = String(kind || "sunrise").toLowerCase();
     if (/golden/.test(k)) {
-      return wrap(
-        horizon() +
-          sunDisc(48, 36, 10) +
-          sunRays(48, 36, 13, 18, 7) +
-          '<path d="M12 36h72" ' +
-          SW +
-          ' opacity="0.4"/>',
+      return artWrap(
+        defsSky("wg", "#4a2e28", "#c17a5a", "#d4a05c") +
+          sun(100, 58, 18) +
+          ground(0.5),
         "golden",
         "golden"
       );
     }
     if (/blue/.test(k)) {
-      return wrap(
-        horizon() +
-          '<circle cx="48" cy="34" r="9" ' +
-          SWF +
-          "/>" +
-          '<path d="M18 34h60" ' +
-          SW +
-          ' opacity="0.35"/>' +
-          '<circle cx="30" cy="18" r="0.8" fill="currentColor" opacity="0.35"/>',
+      return artWrap(
+        defsSky("wb", "#1f1a2e", "#3a3358", "#6a7a9a") +
+          stars() +
+          '<circle cx="100" cy="58" r="14" fill="#8b7ab0" opacity="0.45"/>' +
+          ground(0.65),
         "blue-hour",
         "blue"
       );
     }
     if (/sunset/.test(k)) {
-      return wrap(
-        horizon() +
-          '<path d="M14 40c10-14 22-20 34-18 12 2 22 10 28 18" ' +
-          SW +
-          "/>" +
-          sunDisc(70, 28, 7),
+      return artWrap(
+        defsSky("wss", "#3a2430", "#c17a5a", "#d4a05c") +
+          sun(120, 52, 14) +
+          ground(0.55),
         "sunset",
         "golden"
       );
     }
-    return wrap(
-      horizon() +
-        '<path d="M14 40c10-14 22-20 34-18 12 2 22 10 28 18" ' +
-        SW +
-        "/>" +
-        sunDisc(28, 28, 7),
+    return artWrap(
+      defsSky("wsr", "#2a3a48", "#6aa8c2", "#d4a05c") +
+        sun(48, 52, 14) +
+        ground(0.5),
       "sunrise",
       "golden"
     );
   }
 
-  function aqi(level) {
+  function aqiArt(level) {
     var n = Number(level);
     var band = !isFinite(n)
       ? "unknown"
@@ -463,132 +397,168 @@
           : n <= 150
             ? "usg"
             : "unhealthy";
-    return wrap(
-      horizon() +
-        '<ellipse cx="48" cy="28" rx="28" ry="12" ' +
-        SW +
-        ' opacity="0.35"/>' +
-        '<ellipse cx="48" cy="26" rx="18" ry="8" ' +
-        SWF +
-        "/>" +
-        '<ellipse cx="48" cy="24" rx="8" ry="4" fill="currentColor" opacity="0.2"/>',
+    var skies = {
+      good: ["#2a3a32", "#4a6a52", "#7d9a6e"],
+      moderate: ["#3a3428", "#6a5a38", "#c4a46a"],
+      usg: ["#3a2a24", "#6a4030", "#c17a5a"],
+      unhealthy: ["#2e1e1c", "#5a3030", "#a85d52"],
+      unknown: ["#2a3038", "#3a4450", "#7a8a9a"]
+    };
+    var c = skies[band] || skies.unknown;
+    var haze =
+      band === "good"
+        ? 0.08
+        : band === "moderate"
+          ? 0.16
+          : band === "usg"
+            ? 0.24
+            : 0.32;
+    return artWrap(
+      defsSky("waqi", c[0], c[1], c[2]) +
+        '<ellipse cx="100" cy="48" rx="48" ry="18" fill="#f2ebe0" opacity="' +
+        haze +
+        '"/>' +
+        '<ellipse cx="90" cy="62" rx="55" ry="14" fill="#f2ebe0" opacity="' +
+        (haze * 0.8) +
+        '"/>' +
+        ground(0.5),
       "aqi-" + band,
       "aqi-" + band
     );
   }
 
-  function alert(active) {
-    return wrap(
-      horizon() +
-        '<path d="M48 10 72 42H24L48 10Z" ' +
-        SWF +
-        "/>" +
-        '<path d="M48 22v10M48 36.5v1" ' +
-        SW +
-        "/>",
-      active ? "alert-active" : "alert",
-      active ? "alert" : "quiet"
+  function alertArt(active) {
+    if (active) {
+      return artWrap(
+        defsSky("wal", "#2a1c1c", "#5a3030", "#3a2424") +
+          cloud(60, 36, 70, 0.35) +
+          '<path d="M108 52 L98 70 H110 L102 88" stroke="#d4a05c" stroke-width="1.6" fill="none" opacity="0.8"/>' +
+          ground(0.65),
+        "alert-active",
+        "alert"
+      );
+    }
+    return artWrap(
+      defsSky("waq", "#242830", "#343a44", "#2a3038") +
+        cloud(70, 42, 55, 0.22) +
+        ground(0.45),
+      "alert",
+      "quiet"
     );
   }
 
-  function uv(index) {
+  function uvArt(index) {
     var n = Math.max(0, Math.min(11, Number(index) || 0));
-    var rays = Math.max(3, Math.ceil(n / 2));
-    return wrap(
-      horizon() + sunDisc(52, 22, 7) + sunRays(52, 22, 10, 10 + rays, rays),
+    return artWrap(
+      defsSky("wuv", "#3a4a58", "#6aa8c2", n >= 6 ? "#d4a05c" : "#a8c4d4") +
+        sun(110, 34, 10 + Math.min(8, n)) +
+        ground(0.4),
       "uv",
       n >= 6 ? "golden" : "clear-day"
     );
   }
 
-  function precip() {
-    return skyRain();
-  }
-
-  function hours() {
-    return wrap(
-      horizon() +
-        '<path d="M20 40V22M34 40V16M48 40V24M62 40V14M76 40V20" ' +
-        SW +
-        "/>" +
-        '<path d="M16 40h64" ' +
-        SW +
-        ' opacity="0.4"/>',
+  function hoursArt() {
+    return artWrap(
+      defsSky("wh", "#243040", "#3a4e5c", "#2a3640") +
+        cloud(70, 40, 50, 0.28) +
+        ground(0.5),
       "hours",
       "quiet"
     );
   }
 
-  function doorway() {
-    return wrap(
-      horizon() +
-        '<rect x="36" y="12" width="24" height="32" rx="1.5" ' +
-        SWF +
-        "/>" +
-        '<path d="M48 12v32" ' +
-        SW +
-        ' opacity="0.5"/>' +
-        '<circle cx="54" cy="28" r="1.2" fill="currentColor" opacity="0.55"/>' +
-        sunDisc(72, 16, 4),
+  function doorwayArt() {
+    return artWrap(
+      defsSky("wd", "#2a3038", "#3d4a52", "#2a3238") +
+        '<rect x="95" y="28" width="28" height="48" rx="2" fill="#17131c" opacity="0.55"/>' +
+        '<path d="M109 28 V76" stroke="#f2ebe0" stroke-width="1" opacity="0.25"/>' +
+        sun(130, 24, 6) +
+        ground(0.5),
       "doorway",
       "quiet"
     );
   }
 
-  function comfort() {
-    return wrap(
-      horizon() +
-        '<path d="M40 38c0-10 4-18 8-22 4 4 8 12 8 22" ' +
-        SW +
-        "/>" +
-        '<path d="M40 38h16" ' +
-        SW +
-        "/>" +
-        sunDisc(48, 14, 3.5),
+  function comfortArt() {
+    return artWrap(
+      defsSky("wco", "#2a3430", "#4a5a48", "#3a4840") + ground(0.45),
       "comfort",
       "quiet"
     );
   }
 
-  function dayRange() {
-    return wrap(
-      horizon() +
-        '<path d="M22 40V28M74 40V18" ' +
-        SW +
-        "/>" +
-        '<path d="M22 28h52" ' +
-        SW +
-        ' stroke-dasharray="2 3" opacity="0.55"/>' +
-        '<path d="M22 40h52" ' +
-        SW +
-        ' opacity="0.35"/>',
+  function rangeArt() {
+    return artWrap(
+      defsSky("wrn", "#2a3440", "#4a5a68", "#2a343c") +
+        sun(120, 30, 8) +
+        ground(0.45),
       "range",
       "quiet"
     );
   }
 
-  function wind() {
-    return skyWind();
+  function precipArt() {
+    return skyArt("rain");
+  }
+
+  function windArt() {
+    return skyArt("wind");
+  }
+
+  function miniSky(state) {
+    var k = normalizeSkyState(state);
+    if (k === "rain" || k === "heavy-rain") {
+      return mini(
+        '<path d="M4 6h10" stroke="currentColor" stroke-width="1.2"/>' +
+          '<path d="M8 9v5M12 9v5M16 9v4" stroke="currentColor" stroke-width="1"/>'
+      );
+    }
+    if (k === "storm") {
+      return mini(
+        '<path d="M4 7h12" stroke="currentColor" stroke-width="1.2"/>' +
+          '<path d="M12 8l-2 4h3l-2 4" stroke="currentColor" stroke-width="1"/>'
+      );
+    }
+    if (k === "cloudy" || k === "fog") {
+      return mini('<ellipse cx="12" cy="9" rx="7" ry="4" stroke="currentColor" stroke-width="1.1" fill="none"/>');
+    }
+    if (k === "clear-night") {
+      return mini('<circle cx="14" cy="7" r="4" stroke="currentColor" stroke-width="1.1" fill="none"/>');
+    }
+    if (k === "clear") {
+      return mini('<circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.1" fill="none"/>');
+    }
+    return mini(
+      '<circle cx="16" cy="6" r="3" stroke="currentColor" stroke-width="1" fill="none"/>' +
+        '<ellipse cx="10" cy="10" rx="6" ry="3.5" stroke="currentColor" stroke-width="1" fill="none"/>'
+    );
   }
 
   function render(graphic) {
     if (!graphic || !graphic.kind) return "";
     var kind = graphic.kind;
     try {
-      if (kind === "sky") return sky(graphic.state);
-      if (kind === "aqi") return aqi(graphic.value);
-      if (kind === "moon") return moon(graphic.value, graphic.phase);
-      if (kind === "sun" || kind === "sunrise" || kind === "sunset" || kind === "golden" || kind === "blue-hour") {
-        return sunPath(graphic.state || kind);
+      if (kind === "sky") return skyArt(graphic.state);
+      if (kind === "aqi") return aqiArt(graphic.value);
+      if (kind === "moon") return moonArt(graphic.value, graphic.phase);
+      if (
+        kind === "sun" ||
+        kind === "sunrise" ||
+        kind === "sunset" ||
+        kind === "golden" ||
+        kind === "blue-hour"
+      ) {
+        return sunPathArt(graphic.state || kind);
       }
-      if (kind === "alert") return alert(!!graphic.active);
-      if (kind === "uv") return uv(graphic.value);
-      if (kind === "wind") return wind();
-      if (kind === "precip") return precip();
-      if (kind === "hours") return hours();
-      if (kind === "doorway") return doorway();
-      if (kind === "comfort") return comfort();
-      if (kind === "range") return dayRange();
+      if (kind === "alert") return alertArt(!!graphic.active);
+      if (kind === "uv") return uvArt(graphic.value);
+      if (kind === "wind") return windArt();
+      if (kind === "precip") return precipArt();
+      if (kind === "hours") return hoursArt();
+      if (kind === "doorway") return doorwayArt();
+      if (kind === "comfort") return comfortArt();
+      if (kind === "range") return rangeArt();
     } catch (e) {
       return "";
     }
@@ -605,10 +575,11 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildGraphics = {
-    version: "2.0.0-field-guide",
+    version: "3.0.0-atmospheric",
     render: render,
     normalizeSkyState: normalizeSkyState,
     moonPhaseKey: moonPhaseKey,
-    illumFromGraphic: illumFromGraphic
+    illumFromGraphic: illumFromGraphic,
+    miniSky: miniSky
   };
 })(typeof window !== "undefined" ? window : global);
