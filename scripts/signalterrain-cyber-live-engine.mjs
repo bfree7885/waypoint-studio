@@ -26,6 +26,8 @@ import {
   correlateRecords,
   SIGNAL_ENGINE_VERSION
 } from "./cyber-signal/signal-engine.mjs";
+import { enrichKevWithNvd } from "./cyber-signal/kev-nvd-enrich.mjs";
+import { buildDashboardViews } from "./cyber-signal/dashboard-views.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -33,13 +35,15 @@ const OUT_DIR = path.join(ROOT, "data", "cyber");
 const LIVE_PATH = process.env.CYBER_LIVE_OUT || path.join(OUT_DIR, "live.json");
 const HEALTH_PATH = process.env.CYBER_HEALTH_OUT || path.join(OUT_DIR, "health.json");
 const GRAPH_PATH = process.env.CYBER_GRAPH_OUT || path.join(OUT_DIR, "graph.json");
-const ENGINE_VERSION = "1.2.0";
+const DASHBOARD_PATH = process.env.CYBER_DASHBOARD_OUT || path.join(OUT_DIR, "dashboard.json");
+const ENGINE_VERSION = "1.4.0";
 const HISTORY_PATH = process.env.CYBER_HISTORY_OUT || path.join(OUT_DIR, "history.json");
 const CORRELATION_PATH = process.env.CYBER_CORRELATION_OUT || path.join(OUT_DIR, "correlation.json");
 const MAX_GHSA = Number(process.env.CYBER_MAX_GHSA || 25);
 const TIMEOUT_MS = Number(process.env.CYBER_PROVIDER_TIMEOUT_MS || 15000);
 const MAX_KEV = Number(process.env.CYBER_MAX_KEV || 200);
 const MAX_NVD = Number(process.env.CYBER_MAX_NVD || 40);
+const MAX_NVD_ENRICH = Number(process.env.CYBER_MAX_NVD_ENRICH || 25);
 const NVD_API_KEY = (process.env.NVD_API_KEY || "").trim();
 const DEBUG = String(process.env.CYBER_DEBUG || "").toLowerCase() === "true";
 
@@ -128,11 +132,29 @@ function freshnessOf(iso) {
   return "stale";
 }
 
-function stripHtml(s) {
+function decodeEntities(s) {
   return String(s || "")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, "&");
+}
+
+function stripHtml(s) {
+  return decodeEntities(String(s || ""))
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function honestyStateForProvider(status) {
+  if (status === "ok") return "REAL";
+  if (status === "cached") return "CACHED REAL";
+  if (status === "planned") return "NO CURRENT DATA";
+  return "SOURCE UNAVAILABLE";
 }
 
 function parseRssItems(xml, limit = 25) {
@@ -455,6 +477,7 @@ async function providerCisaKev() {
         mitigations: v.requiredAction ? [v.requiredAction] : []
       },
       confidence: "confirmed",
+      dataState: "REAL",
       rawProviderMetadata: {
         knownRansomwareCampaignUse: v.knownRansomwareCampaignUse,
         notes: v.notes,
@@ -483,17 +506,25 @@ async function providerNvdRecent() {
   const started = Date.now();
   const end = new Date();
   const start = new Date(Date.now() - 7 * 86400000);
+  const fmt = (d) => d.toISOString().replace(/\.\d{3}Z$/, ".000");
+  // Prefer last-modified window so "New/Updated NVD" reflects real change activity.
   const qs = new URLSearchParams({
     resultsPerPage: String(MAX_NVD),
-    pubStartDate: start.toISOString().replace(/\.\d{3}Z$/, ".000"),
-    pubEndDate: end.toISOString().replace(/\.\d{3}Z$/, ".000")
+    lastModStartDate: fmt(start),
+    lastModEndDate: fmt(end)
   });
-  // NVD expects format with timezone offset sometimes; try ISO-like
-  const url = `${ENDPOINTS.nvdRecent}?resultsPerPage=${MAX_NVD}`;
+  const url = `${ENDPOINTS.nvdRecent}?${qs.toString()}`;
   const headers = {};
   if (NVD_API_KEY) headers.apiKey = NVD_API_KEY;
-  const res = await fetchText(url, { headers });
-  if (!res.ok) throw new Error(`NVD HTTP ${res.status}: ${res.text.slice(0, 200)}`);
+  let res = await fetchText(url, { headers });
+  // Fallback: unauthenticated/windowed query can 404/400 on some runners — still serve useful recent page.
+  let usedFallback = false;
+  if (!res.ok) {
+    usedFallback = true;
+    const fallbackUrl = `${ENDPOINTS.nvdRecent}?resultsPerPage=${MAX_NVD}`;
+    res = await fetchText(fallbackUrl, { headers });
+    if (!res.ok) throw new Error(`NVD HTTP ${res.status}: ${res.text.slice(0, 200)}`);
+  }
   const data = JSON.parse(res.text);
   const retrievedAt = nowIso();
   const records = (data.vulnerabilities || []).map((wrap) => {
@@ -542,7 +573,12 @@ async function providerNvdRecent() {
       },
       remediation: { patchesAvailable: false },
       confidence: "high",
-      rawProviderMetadata: { referenceCount: refs.length }
+      dataState: "REAL",
+      rawProviderMetadata: {
+        referenceCount: refs.length,
+        references: refs.slice(0, 8),
+        nvdQuery: usedFallback ? "resultsPerPage-fallback" : "lastMod-7d"
+      }
     });
   });
 
@@ -557,7 +593,10 @@ async function providerNvdRecent() {
       responseMs: Date.now() - started,
       sourceUrl: url,
       apiKeyConfigured: Boolean(NVD_API_KEY),
-      note: "Recent page of NVD CVE 2.0 API (resultsPerPage capped)."
+      queryMode: usedFallback ? "resultsPerPage-fallback" : "lastMod-7d",
+      note: usedFallback
+        ? "NVD lastMod window rejected; fell back to recent resultsPerPage page (still official NVD)."
+        : "NVD CVE 2.0 last-modified window (7d), resultsPerPage capped."
     }
   };
 }
@@ -1444,11 +1483,35 @@ async function main() {
     if (p.status === "ok") allRecords = allRecords.concat(p.records || []);
   }
 
+  // Enrich newest KEV rows with official NVD description/CVSS/refs (rate-limited).
+  let nvdEnrichMeta = { attempted: 0, enriched: 0, failed: 0 };
+  const kevProvider = providers.find((p) => p.providerId === "cisa-kev");
+  if (kevProvider?.status === "ok" && (kevProvider.records || []).length) {
+    console.error(`Enriching up to ${MAX_NVD_ENRICH} KEV CVEs via NVD…`);
+    nvdEnrichMeta = await enrichKevWithNvd({
+      kevRecords: kevProvider.records,
+      fetchText,
+      nvdBaseUrl: ENDPOINTS.nvdRecent,
+      apiKey: NVD_API_KEY,
+      maxEnrich: MAX_NVD_ENRICH,
+      delayMs: NVD_API_KEY ? 250 : 700,
+      log
+    });
+    // Refresh allRecords KEV slice from enriched provider records
+    allRecords = [];
+    for (const p of providers) {
+      if (p.status === "ok") allRecords = allRecords.concat(p.records || []);
+    }
+    console.error(
+      `NVD enrichment: ${nvdEnrichMeta.enriched}/${nvdEnrichMeta.attempted} (failed ${nvdEnrichMeta.failed})`
+    );
+  }
+
   // If KEV failed but we have previous KEV records, keep them labeled cached
   if (providers.find((p) => p.providerId === "cisa-kev")?.status === "error" && previous?.records?.length) {
     const cachedKev = previous.records
       .filter((r) => r.source?.providerId === "cisa-kev")
-      .map((r) => Object.assign({}, r, { freshness: "stale", _fromCache: true }));
+      .map((r) => Object.assign({}, r, { freshness: "stale", dataState: "CACHED REAL", _fromCache: true }));
     allRecords = allRecords.concat(cachedKev);
     const kevP = providers.find((p) => p.providerId === "cisa-kev");
     if (kevP) {
@@ -1471,6 +1534,7 @@ async function main() {
     providerId: p.providerId,
     providerName: p.providerName,
     status: p.status,
+    dataState: honestyStateForProvider(p.status),
     lastAttemptedAt: startedAt,
     lastSuccessfulAt: p.status === "ok" ? startedAt : previous?.providers?.find((x) => x.providerId === p.providerId)?.lastSuccessfulAt || null,
     responseMs: p.meta?.responseMs ?? null,
@@ -1547,8 +1611,15 @@ async function main() {
       signalEngineVersion: SIGNAL_ENGINE_VERSION,
       generatedAt: nowIso(),
       trustState,
+      dataState:
+        trustState === "Live" || trustState === "Partial"
+          ? "REAL"
+          : trustState === "Cached"
+            ? "CACHED REAL"
+            : "SOURCE UNAVAILABLE",
       engine: "signalterrain-cyber-live-engine",
       signalProcessingMs: Date.now() - signalStarted,
+      nvdEnrichment: nvdEnrichMeta,
       principles: [
         "No sample or fixture data in this artifact",
         "Official sources preferred",
@@ -1556,7 +1627,8 @@ async function main() {
         "Defensive awareness only",
         "Briefing interprets provider facts — never invents incidents",
         "Enrichment and recommendations are decision support, not compliance mandates",
-        "Low-signal items hidden by default (noise reduction)"
+        "Low-signal items hidden by default (noise reduction)",
+        "Honesty labels: REAL | CACHED REAL | SOURCE UNAVAILABLE | NO CURRENT DATA"
       ],
       counts: {
         records: intelligenceRecords.length,
@@ -1566,7 +1638,8 @@ async function main() {
         providersOk: okCount,
         providersError: errCount,
         correlationEntities: signal.correlation.entityCount,
-        correlationRelationships: signal.correlation.relationshipCount
+        correlationRelationships: signal.correlation.relationshipCount,
+        nvdEnrichedKev: nvdEnrichMeta.enriched || 0
       }
     },
     brief,
@@ -1597,7 +1670,8 @@ async function main() {
         "Priority scores explain their factors; they are decision support, not risk scores for your firm.",
         "Recommendations explain why — they are not automated remediation.",
         "ATT&CK technique links are keyword heuristics unless marked otherwise.",
-        "Persona tags are relevance hints for future personalization, not assigned roles."
+        "Persona tags are relevance hints for future personalization, not assigned roles.",
+        "SignalTerrain does not invent a composite threat level or world attack map without an authoritative source."
       ]
     }
   };
@@ -1634,26 +1708,45 @@ async function main() {
   } else {
     writeJson(LIVE_PATH, live);
     writeJson(GRAPH_PATH, recordsToGraphBundle(intelligenceRecords));
+    const dash = buildDashboardViews(live, {
+      generatedAt: live.meta.generatedAt,
+      trustState: live.meta.trustState,
+      providers: providerHealth
+    });
+    writeJson(DASHBOARD_PATH, dash);
     console.error(
       `Wrote ${intelligenceRecords.length} records (${signal.meta.surfacedByDefault} surfaced) → ${LIVE_PATH} (${trustState})`
     );
     console.error(`Wrote live graph → ${GRAPH_PATH}`);
+    console.error(`Wrote dashboard views → ${DASHBOARD_PATH}`);
     console.error(`Wrote correlation → ${CORRELATION_PATH} (${fullCorrelation.relationshipCount} relationships)`);
     console.error(`Signal engine ${SIGNAL_ENGINE_VERSION} in ${signal.meta.processingMs}ms`);
   }
 
-  writeJson(HEALTH_PATH, {
+  const healthDoc = {
     generatedAt: nowIso(),
     engineVersion: ENGINE_VERSION,
     signalEngineVersion: SIGNAL_ENGINE_VERSION,
     trustState: readJsonSafe(LIVE_PATH)?.meta?.trustState || trustState,
+    dataState: readJsonSafe(LIVE_PATH)?.meta?.dataState || null,
     providers: providerHealth,
     livePath: path.relative(ROOT, LIVE_PATH),
+    dashboardPath: path.relative(ROOT, DASHBOARD_PATH),
     correlationPath: path.relative(ROOT, CORRELATION_PATH),
     recordCount: readJsonSafe(LIVE_PATH)?.records?.length || 0,
+    nvdEnrichment: nvdEnrichMeta,
     signalProcessingMs: signal.meta?.processingMs ?? null,
     noiseHidden: signal.meta?.hiddenByDefault ?? null
-  });
+  };
+  writeJson(HEALTH_PATH, healthDoc);
+
+  // Ensure dashboard artifact exists even when live refresh retained last-known-good.
+  const finalLive = readJsonSafe(LIVE_PATH);
+  if (finalLive?.records?.length) {
+    if (!fs.existsSync(DASHBOARD_PATH) || finalLive.meta?.trustState === "Cached") {
+      writeJson(DASHBOARD_PATH, buildDashboardViews(finalLive, healthDoc));
+    }
+  }
 
   console.error(`Health → ${HEALTH_PATH}`);
 }

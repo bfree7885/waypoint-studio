@@ -19,12 +19,11 @@ function exists(rel) {
 
 for (const rel of [
   "side-trails/signalterrain/index.html",
+  "side-trails/signalterrain/dashboard/index.html",
   "design-system/css/wds-signalterrain-landing.css",
+  "design-system/css/wds-signalterrain-dashboard.css",
   "docs/side-trails/signalterrain-landing.md",
-  "docs/product/signalterrain-landing-owner-review.md",
-  "assets/images/signalterrain/landing/threat-map.svg",
   "assets/images/signalterrain/landing/attack-timeline.svg",
-  "assets/images/signalterrain/landing/global-activity.svg",
   "assets/images/signalterrain/landing/defensive-posture.svg"
 ]) {
   assert.ok(exists(rel), "missing " + rel);
@@ -40,12 +39,11 @@ assert.match(html, /How SignalTerrain Works/);
 assert.match(html, /Threat Intelligence Sources/);
 assert.match(html, /Roadmap/);
 assert.match(html, /Part of Side Trails\./);
-assert.match(html, /threat-map\.svg/);
-assert.match(html, /attack-timeline\.svg/);
-assert.match(html, /global-activity\.svg/);
-assert.match(html, /defensive-posture\.svg/);
-assert.doesNotMatch(html, /maplibre|cyber\/live|wds-signalterrain-cyber/i);
-assert.doesNotMatch(html, /Open today’s cyber brief|SIEM console/i);
+assert.match(html, /OPEN SIGNALTERRAIN/);
+assert.match(html, /dashboard\//);
+assert.doesNotMatch(html, /View dashboard mockup/i);
+assert.doesNotMatch(html, /threat-map\.svg|global-activity\.svg/i);
+assert.doesNotMatch(html, /maplibre|SIEM console/i);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 const signal = catalog.projects.find((p) => p.id === "signalterrain");

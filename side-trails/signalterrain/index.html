@@ -9,7 +9,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waypoint Studio">
   <meta property="og:title" content="SignalTerrain — Observe invisible signals">
-  <meta property="og:description" content="Adaptive cyber intelligence for modern defenders. A Side Trails product page — not the application.">
+  <meta property="og:description" content="Adaptive cyber intelligence for modern defenders. Real read-only public cyber intelligence from CISA and NIST.">
   <meta property="og:url" content="https://waypointstudio.org/side-trails/signalterrain/">
   <title>SignalTerrain — Observe invisible signals</title>
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
@@ -27,7 +27,7 @@
       <a href="/">Home</a>
       <a href="/articles/">Articles</a>
       <a href="/side-trails/">Side Trails</a>
-      <a href="/apps/signalterrain/">Existing app</a>
+      <a href="./dashboard/">Dashboard</a>
       <a href="/support.html">Support</a>
       <a href="/about.html">About</a>
     </nav>
@@ -41,12 +41,12 @@
         <p class="st-hero__mission">Observe invisible signals.</p>
         <h1>Adaptive cyber intelligence for modern defenders.</h1>
         <p class="st-hero__support">
-          A calm product story for defensive awareness — trusted public intelligence, explainable guidance,
-          and honest limits. This page is not the application.
+          Calm, read-only public intelligence from authoritative sources — CISA KEV, NIST NVD, and CISA advisories —
+          with honest labels when a source is stale or unavailable. Beta, not a SIEM.
         </p>
         <div class="st-hero__cta">
-          <a class="st-cta st-cta--primary" href="#st-how">How it works</a>
-          <a class="st-cta" href="./mockups/dashboard.html">View dashboard mockup</a>
+          <a class="st-cta st-cta--primary" href="./dashboard/">OPEN SIGNALTERRAIN</a>
+          <a class="st-cta" href="#st-how">How it works</a>
           <a class="st-cta" href="../">Back to Side Trails</a>
         </div>
       </div>
@@ -58,15 +58,23 @@
         <h2>See what matters without theater.</h2>
         <p>
           Defenders are flooded with alerts, headlines, and dashboards that treat every signal as urgent.
-          SignalTerrain is designed to surface climate — patterns, cited public reports, and calm context —
+          SignalTerrain surfaces real catalog and advisory changes — cited, dated, and reviewable —
           so people can decide what deserves attention today.
         </p>
-        <p class="st-note">Illustrations on this page are schematics. They do not show live incidents or fabricated events.</p>
+        <p class="st-note">
+          No fabricated composite threat level and no schematic world attack map.
+          When an authoritative source is missing, the dashboard says so.
+        </p>
       </div>
-      <figure class="st-figure st-split__media">
-        <img src="../../assets/images/signalterrain/landing/threat-map.svg" alt="" width="960" height="540" loading="lazy">
-        <figcaption>Threat map · schematic</figcaption>
-      </figure>
+      <div class="st-split__copy">
+        <p class="st-eyebrow">Live now</p>
+        <h2>Open the real dashboard.</h2>
+        <p>
+          The first production surface shows What Changed Today, Actively Exploited KEV, New/Updated NVD,
+          CISA Advisories, authoritative ransomware associations when present, and Source Health.
+        </p>
+        <p><a class="st-cta st-cta--primary" href="./dashboard/">OPEN SIGNALTERRAIN</a></p>
+      </div>
     </section>
 
     <section class="st-section st-split st-split--flip" aria-labelledby="st-fail-title">
@@ -118,13 +126,13 @@
       <p class="st-eyebrow">How SignalTerrain Works</p>
       <h2 id="st-how-title">Observe → Understand → Decide.</h2>
       <p class="st-prose">
-        The product story stays educational and defensive. Live application features are separate and must
-        remain honest about empty or sample data.
+        Official sources are ingested on a schedule into normalized JSON, then rendered by the production dashboard.
+        Every important item carries source attribution and an honesty label: REAL, CACHED REAL, SOURCE UNAVAILABLE, or NO CURRENT DATA.
       </p>
       <ol class="st-steps">
         <li>
           <strong>Gather public signals</strong>
-          <p>Trusted public cyber intelligence sources — cited, dated, and reviewable.</p>
+          <p>CISA KEV, NIST NVD, and CISA advisories — cited, dated, and reviewable.</p>
         </li>
         <li>
           <strong>Add context</strong>
@@ -139,35 +147,30 @@
           <p>Explainable actions people can take — or skip — without fear marketing.</p>
         </li>
       </ol>
-      <figure class="st-figure" style="margin-top:1.5rem">
-        <img src="../../assets/images/signalterrain/landing/global-activity.svg" alt="" width="960" height="540" loading="lazy">
-        <figcaption>Global activity · schematic</figcaption>
-      </figure>
     </section>
 
     <section class="st-section" aria-labelledby="st-sources-title">
       <p class="st-eyebrow">Threat Intelligence Sources</p>
       <h2 id="st-sources-title">Public, cited, reviewable.</h2>
       <p class="st-prose">
-        SignalTerrain is designed around sources defenders can inspect — not anonymous rumor feeds.
-        This landing page does not stream live intelligence.
+        The live dashboard streams only authoritative public catalogs and advisories — not anonymous rumor feeds.
       </p>
       <div class="st-sources">
         <article class="st-source">
-          <h3>Government &amp; CERTs</h3>
-          <p>Public advisories and vulnerability notes with publisher provenance.</p>
+          <h3>CISA KEV</h3>
+          <p>Known Exploited Vulnerabilities catalog — the primary actively-exploited signal.</p>
         </article>
         <article class="st-source">
-          <h3>Vendor research (public)</h3>
-          <p>Published write-ups that can be linked and dated — never scraped into secrecy.</p>
+          <h3>NIST NVD</h3>
+          <p>CVE descriptions, CVSS, published/modified times, and references.</p>
         </article>
         <article class="st-source">
-          <h3>Standards &amp; frameworks</h3>
-          <p>Defensive literacy grounded in established frameworks, labeled as guidance.</p>
+          <h3>CISA Advisories</h3>
+          <p>Official cybersecurity advisories and alerts with source links.</p>
         </article>
         <article class="st-source">
           <h3>What we refuse</h3>
-          <p>Stolen data markets, exploit kits, and fear-driven urgency hacks.</p>
+          <p>Fabricated events, fake threat levels, exploit kits, and fear-driven urgency hacks.</p>
         </article>
       </div>
     </section>
@@ -176,16 +179,16 @@
       <p class="st-eyebrow">Roadmap</p>
       <h2 id="st-roadmap-title">Deliberate stages, honest status.</h2>
       <p class="st-prose">
-        SignalTerrain is Experimental on Side Trails. The roadmap below is directional — not a ship date promise.
+        SignalTerrain is Experimental / Beta on Side Trails. The roadmap below is directional — not a ship date promise.
       </p>
       <ol class="st-roadmap">
         <li>
           <span class="st-roadmap__phase">Now</span>
-          <p>Product story, Side Trails catalog, and the existing educational cyber experience kept separate from this landing page.</p>
+          <p>Real-data pipeline and production dashboard for KEV, NVD, and CISA advisories.</p>
         </li>
         <li>
           <span class="st-roadmap__phase">Next</span>
-          <p>Clearer source citations, confidence labels, and adaptive guidance that stays explainable.</p>
+          <p>Clearer enrichment coverage, confidence labels, and adaptive guidance that stays explainable.</p>
         </li>
         <li>
           <span class="st-roadmap__phase">Later</span>
@@ -193,7 +196,7 @@
         </li>
         <li>
           <span class="st-roadmap__phase">Not goals</span>
-          <p>Offensive tooling, engagement farming, or pretending unfinished live feeds are production-ready.</p>
+          <p>Offensive tooling, engagement farming, or pretending unfinished feeds are operational when they are not.</p>
         </li>
       </ol>
     </section>
@@ -204,7 +207,7 @@
     <p>Part of Side Trails.</p>
     <p>
       <a href="../">Side Trails</a>
-      <a href="../../apps/signalterrain/">Existing app</a>
+      <a href="./dashboard/">Dashboard</a>
       <a href="../../about.html">Waypoint Studio</a>
     </p>
   </footer>
