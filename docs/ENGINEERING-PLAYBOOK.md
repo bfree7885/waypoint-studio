@@ -1247,3 +1247,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Enlarged UI icons read as generic widgets; field-guide SVGs with shared horizon/stroke and `viewBox="0 0 96 56"` read as one instrument panel when parked in negative space (`.wdb-r-widget__atmosphere`).
 - Rainbow category outlines (`#4da3e0` / `#8fd14a` / full-card glow) fight Aubergine/Bone/Sand — map categories to muted `--wp-*` and drive presence via quiet borders + state `data-illum` washes instead.
 - Document illustration / illumination / surface rules in `docs/DASHBOARD-VISUAL-LANGUAGE.md` so depth attacks do not reintroduce neon.
+
+## Lessons Learned — Dashboard visual target (2026-08-11)
+
+- Eliminating neon entirely made cards blend into aubergine — restore **crisp edge + soft outer diffusion** via `--wdb-r-glow` semantic domain colors (not RGB gaming hexes).
+- Atmospheric SVG scenes behind data (with overlay) beat tiny line icons for outdoor instrument feel; keep art data-honest (alerts calm when clear; moon phase real).
+- Mobile Customize must **omit** column controls entirely (not disabled 2/3) — phones are always one column; force `columns=1` in workspace + CSS.

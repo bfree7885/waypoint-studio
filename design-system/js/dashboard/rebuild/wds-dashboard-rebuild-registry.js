@@ -473,6 +473,118 @@
     );
   }
 
+  function factValue(facts, label) {
+    if (!facts) return null;
+    var want = String(label).toLowerCase();
+    for (var i = 0; i < facts.length; i++) {
+      if (String(facts[i].label || "").toLowerCase() === want) return facts[i].value;
+    }
+    return null;
+  }
+
+  function renderConditionsHero(data) {
+    var cur = data && data.current;
+    var facts = (data && data.facts) || [];
+    var temp =
+      cur && cur.tempF != null
+        ? Math.round(cur.tempF) + "°"
+        : factValue(facts, "Temp") || factValue(facts, "Now");
+    if (temp && /°F$/.test(String(temp))) temp = String(temp).replace(/°F$/, "°");
+    var sky =
+      (cur && cur.conditions) || factValue(facts, "Sky") || factValue(facts, "Conditions");
+    var feels =
+      cur && cur.feelsF != null
+        ? "Feels like " + Math.round(cur.feelsF) + "°"
+        : factValue(facts, "Feels like")
+          ? "Feels like " + factValue(facts, "Feels like")
+          : null;
+    var wind = cur && cur.windMph != null ? Math.round(cur.windMph) + " mph" : factValue(facts, "Wind");
+    var humidity =
+      cur && cur.humidity != null
+        ? Math.round(cur.humidity) + "%"
+        : factValue(facts, "Humidity");
+    var precip =
+      cur && cur.precipProb != null
+        ? Math.round(cur.precipProb) + "%"
+        : factValue(facts, "Precip chance");
+    if (!temp) return renderFacts(facts);
+    return (
+      '<div class="wdb-r-hero">' +
+      '<p class="wdb-r-hero__temp">' +
+      escapeHtml(temp) +
+      "</p>" +
+      (sky ? '<p class="wdb-r-hero__sky">' + escapeHtml(sky) + "</p>" : "") +
+      (feels ? '<p class="wdb-r-hero__feels">' + escapeHtml(feels) + "</p>" : "") +
+      '<dl class="wdb-r-hero__meta">' +
+      (wind
+        ? "<div><dt>Wind</dt><dd>" + escapeHtml(wind) + "</dd></div>"
+        : "") +
+      (humidity
+        ? "<div><dt>Humidity</dt><dd>" + escapeHtml(humidity) + "</dd></div>"
+        : "") +
+      (precip
+        ? "<div><dt>Precip</dt><dd>" + escapeHtml(precip) + "</dd></div>"
+        : "") +
+      "</dl></div>"
+    );
+  }
+
+  function renderAirHero(data) {
+    var aq = data && data.air;
+    var facts = (data && data.facts) || [];
+    var aqi = aq && aq.aqi != null ? Math.round(aq.aqi) : factValue(facts, "US AQI");
+    var cat = (aq && aq.category) || factValue(facts, "Quality");
+    if (aqi == null) return renderFacts(facts);
+    var extras = facts.filter(function (f) {
+      var l = String(f.label || "").toLowerCase();
+      return l !== "us aqi" && l !== "quality";
+    });
+    return (
+      '<div class="wdb-r-aqi">' +
+      '<p class="wdb-r-aqi__value">' +
+      escapeHtml(String(aqi)) +
+      "</p>" +
+      (cat ? '<p class="wdb-r-aqi__label">' + escapeHtml(cat) + "</p>" : "") +
+      (extras.length ? renderFacts(extras) : "") +
+      "</div>"
+    );
+  }
+
+  function renderHoursStrip(data) {
+    var hours = (data && data.hours) || [];
+    if (!hours.length) return renderFacts(data && data.facts);
+    var G = global.WDS && global.WDS.dashboardRebuildGraphics;
+    return (
+      '<ul class="wdb-r-hours" role="list">' +
+      hours
+        .map(function (h) {
+          var icon =
+            G && G.miniSky
+              ? G.miniSky(h.conditions || h.sky || "partly")
+              : "";
+          return (
+            '<li class="wdb-r-hours__row">' +
+            '<span class="wdb-r-hours__time">' +
+            escapeHtml(h.label || "Soon") +
+            "</span>" +
+            icon +
+            '<span class="wdb-r-hours__sky">' +
+            escapeHtml(h.conditions || "—") +
+            "</span>" +
+            '<span class="wdb-r-hours__temp">' +
+            escapeHtml(h.tempF != null ? Math.round(h.tempF) + "°" : "—") +
+            "</span>" +
+            '<span class="wdb-r-hours__precip">' +
+            escapeHtml(h.precipProb != null ? Math.round(h.precipProb) + "%" : "") +
+            "</span>" +
+            "</li>"
+          );
+        })
+        .join("") +
+      "</ul>"
+    );
+  }
+
   function renderGraphic(data) {
     var G = global.WDS && global.WDS.dashboardRebuildGraphics;
     if (!G || !G.render || !data || !data.graphic) return "";
@@ -513,7 +625,13 @@
     var graphic = state === "ready" ? renderGraphic(data) : "";
     var illum = state === "ready" ? resolveIllum(data) : "quiet";
     var content = "";
-    if (data.facts && data.facts.length) {
+    if (state === "ready" && widget.id === "ph-conditions" && (data.current || (data.facts && data.facts.length))) {
+      content = renderConditionsHero(data);
+    } else if (state === "ready" && widget.id === "ph-air" && (data.air || (data.facts && data.facts.length))) {
+      content = renderAirHero(data);
+    } else if (state === "ready" && widget.id === "ph-next-hours" && data.hours && data.hours.length) {
+      content = renderHoursStrip(data);
+    } else if (data.facts && data.facts.length) {
       content = renderFacts(data.facts);
     } else {
       content =
@@ -525,9 +643,8 @@
         "</p>" +
         "</div>";
     }
-    var atmosphere = graphic
-      ? '<div class="wdb-r-widget__atmosphere">' + graphic + "</div>"
-      : "";
+    /* graphic module now emits .wdb-r-widget__art directly */
+    var art = graphic || "";
     return (
       '<div class="wdb-r-widget__body wdb-r-widget__body--' +
       escapeHtml(state) +
@@ -538,7 +655,7 @@
       '"' +
       (data.status ? ' data-status="' + escapeHtml(data.status) + '"' : "") +
       ">" +
-      atmosphere +
+      art +
       '<div class="wdb-r-widget__content">' +
       content +
       "</div>" +
@@ -567,7 +684,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "4.1.0-visual",
+    version: "4.2.0-visual-target",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
     libraryGroupOrder: libraryGroupOrder,

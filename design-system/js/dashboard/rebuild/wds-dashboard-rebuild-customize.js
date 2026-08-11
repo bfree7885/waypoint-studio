@@ -198,7 +198,17 @@
     );
   }
 
+  function isMobileViewport() {
+    try {
+      return !!(global.matchMedia && global.matchMedia("(max-width: 47.99rem)").matches);
+    } catch (e) {
+      return false;
+    }
+  }
+
   function renderColumnPicker(prefs) {
+    /* Phones are always one column — do not offer 2/3 choices (even disabled). */
+    if (isMobileViewport()) return "";
     var cols = Number(prefs && prefs.gridColumns) || 3;
     var options = (Prefs() && Prefs().columnOptions) || [1, 2, 3];
     var buttons = options
@@ -240,9 +250,10 @@
       renderColumnPicker(prefs) +
       '<p class="wdb-r-customize-bar__hint">Preset: ' +
       escapeHtml(prefs.preset || "default") +
-      " · " +
-      escapeHtml(String(prefs.gridColumns || 3)) +
-      " columns · Favorites rise to the top · Changes save when you tap Save.</p>" +
+      (isMobileViewport()
+        ? ""
+        : " · " + escapeHtml(String(prefs.gridColumns || 3)) + " columns") +
+      " · Favorites rise to the top · Changes save when you tap Save.</p>" +
       '<div class="wdb-r-customize-bar__commit" role="group" aria-label="Save or cancel customization">' +
       '<button type="button" class="wdb-r-btn wdb-r-btn--primary" data-wdb-r-action="save">Save</button>' +
       '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="cancel">Cancel</button>' +

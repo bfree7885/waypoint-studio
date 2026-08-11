@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Dashboard visual refinement gate — field-guide graphics + quiet illumination.
+ * Dashboard visual refinement gate — atmospheric graphics + quiet illumination.
  * Usage: node automation/test-dashboard-visual-refinement.mjs
  */
 import fs from "fs";
@@ -34,17 +34,18 @@ const neonHit = neon.filter((h) => css.toLowerCase().includes(h.toLowerCase()));
 if (!neonHit.length) pass("no neon category hex in rebuild CSS");
 else fail("neon hex still present: " + neonHit.join(", "));
 
-if (!/0\s+0\s+24px\s+color-mix|0\s+0\s+32px\s+color-mix/.test(css)) {
-  pass("no outer neon glow box-shadow rings");
-} else fail("outer glow rings still present");
+if (!/#4da3e0|#8fd14a|#e879c8|#2dd4bf/.test(css)) {
+  pass("no RGB gaming category hex glow");
+} else fail("gaming hex glow restored");
 
 if (
-  css.includes(".wdb-r-widget__atmosphere") &&
+  (css.includes(".wdb-r-widget__atmosphere") || css.includes(".wdb-r-widget__art")) &&
   css.includes("data-illum") &&
   css.includes("--wdb-r-illum-rain") &&
-  css.includes("--wdb-r-illum-golden")
+  css.includes("--wdb-r-illum-golden") &&
+  css.includes("--wdb-r-glow-weather")
 ) {
-  pass("atmosphere + illumination tokens present");
+  pass("atmosphere/art + illumination tokens present");
 } else fail("missing atmosphere / illum CSS contracts");
 
 if (css.includes("prefers-reduced-motion")) pass("reduced-motion rules present");
@@ -52,10 +53,10 @@ else fail("missing reduced-motion");
 
 const docs = read("docs/DASHBOARD-VISUAL-LANGUAGE.md");
 if (
-  docs.includes("Illustration system") &&
-  docs.includes("Illumination") &&
-  docs.includes("Moon phase") &&
-  docs.includes("Surface")
+  (docs.includes("Illustration system") || docs.includes("Atmospheric art")) &&
+  (docs.includes("Illumination") || docs.includes("Luminous edges") || docs.includes("Semantic glow")) &&
+  (docs.includes("Moon phase") || docs.includes("Moon")) &&
+  (docs.includes("Surface") || docs.includes("Mobile layout"))
 ) {
   pass("visual language doc covers illustration/illum/moon/surface");
 } else fail("docs/DASHBOARD-VISUAL-LANGUAGE.md incomplete");
@@ -92,8 +93,8 @@ sandbox.WDS = {};
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
 const Reg = sandbox.WDS.dashboardRebuildRegistry;
 
-if (Gfx && String(Gfx.version).includes("field-guide")) pass("graphics module field-guide");
-else fail("graphics version missing field-guide");
+if (Gfx && /atmospheric|field-guide/.test(String(Gfx.version || ""))) pass("graphics module atmospheric");
+else fail("graphics version missing atmospheric");
 
 const skyNeed = [
   "clear",
@@ -109,7 +110,7 @@ const skyNeed = [
 ];
 const skyOk = skyNeed.every((s) => {
   const html = Gfx.render({ kind: "sky", state: s });
-  return html && html.includes("wdb-r-graphic") && html.includes("data-illum");
+  return html && (html.includes("wdb-r-graphic") || html.includes("wdb-r-widget__art")) && html.includes("data-illum");
 });
 if (skyOk) pass("sky states render with data-illum (" + skyNeed.length + ")");
 else fail("sky state render incomplete");
@@ -127,7 +128,7 @@ const phases = [
 const phaseOk = phases.every((p) => {
   const key = Gfx.moonPhaseKey(p, 50);
   const html = Gfx.render({ kind: "moon", value: 50, phase: p });
-  return key && html && html.includes("wdb-r-graphic--moon");
+  return key && html && (html.includes("wdb-r-graphic--moon") || html.includes("wdb-r-widget__art--moon"));
 });
 if (phaseOk) pass("moon phases map and render (" + phases.length + ")");
 else fail("moon phase mapping broken");
@@ -159,11 +160,11 @@ const body = Reg.render(
   }
 );
 if (
-  body.includes("wdb-r-widget__atmosphere") &&
+  (body.includes("wdb-r-widget__atmosphere") || body.includes("wdb-r-widget__art")) &&
   body.includes("wdb-r-widget__content") &&
   body.includes('data-illum="rain"')
 ) {
-  pass("registry body uses atmosphere + content + illum");
+  pass("registry body uses art/atmosphere + content + illum");
 } else fail("registry composition missing atmosphere layout");
 
 const catalog = Reg.all().map((w) => w.id);

@@ -1,0 +1,161 @@
+[
+  {
+    "w": 375,
+    "cols": "1",
+    "colPicker": false,
+    "overflow": false,
+    "art": 0,
+    "hero": false,
+    "widths": [
+      348,
+      348,
+      348,
+      348,
+      348,
+      348
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156",
+    "customize": {
+      "colPicker": false,
+      "colButtons": 0,
+      "overflow": false
+    }
+  },
+  {
+    "w": 390,
+    "cols": "1",
+    "colPicker": false,
+    "overflow": false,
+    "art": 0,
+    "hero": false,
+    "widths": [
+      363,
+      363,
+      363,
+      363,
+      363,
+      363
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156",
+    "customize": {
+      "colPicker": false,
+      "colButtons": 0,
+      "overflow": false
+    }
+  },
+  {
+    "w": 430,
+    "cols": "1",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      403,
+      403,
+      403,
+      403,
+      403,
+      403
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156",
+    "customize": {
+      "colPicker": false,
+      "colButtons": 0,
+      "overflow": false
+    }
+  },
+  {
+    "w": 768,
+    "cols": "1",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      710,
+      710,
+      710,
+      710,
+      710,
+      710
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156"
+  },
+  {
+    "w": 1024,
+    "cols": "3",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      958,
+      635,
+      635,
+      473,
+      473,
+      958
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156"
+  },
+  {
+    "w": 1440,
+    "cols": "3",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      1133,
+      751,
+      751,
+      561,
+      561,
+      1133
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156"
+  },
+  {
+    "w": 1680,
+    "cols": "3",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      1133,
+      751,
+      751,
+      561,
+      561,
+      1133
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156"
+  },
+  {
+    "w": 1920,
+    "cols": "3",
+    "colPicker": false,
+    "overflow": false,
+    "art": 9,
+    "hero": true,
+    "widths": [
+      1133,
+      751,
+      751,
+      561,
+      561,
+      1133
+    ],
+    "border": "color(srgb 0.415686 0.658824 0.760784 / 0.48)",
+    "shadow": "color(srgb 0.415686 0.658824 0.760784 / 0.18) 0px 0px 0px 1px, color(srgb 0.4156"
+  }
+]

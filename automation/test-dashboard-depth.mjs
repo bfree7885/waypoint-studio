@@ -213,7 +213,8 @@ else fail("next-hours failed");
 // Graphics
 if (Gfx && Gfx.render({ kind: "sky", state: "rain" }).includes("<svg")) pass("sky graphic renders");
 else fail("sky graphic missing");
-if (Gfx.render({ kind: "aqi", value: 40 }).includes("wdb-r-graphic--aqi")) pass("aqi graphic renders");
+var aqiHtml = Gfx.render({ kind: "aqi", value: 40 });
+if (aqiHtml && (aqiHtml.includes("wdb-r-graphic--aqi") || aqiHtml.includes("wdb-r-widget__art--aqi"))) pass("aqi graphic renders");
 else fail("aqi graphic missing");
 
 // Customize grouped library
