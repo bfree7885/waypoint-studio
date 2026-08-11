@@ -10,9 +10,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { actionToCategory } from "./adaptive-defense.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export const SIGNAL_ENGINE_VERSION = "2.0.0";
+export const SIGNAL_ENGINE_VERSION = "2.1.0";
 
 function nowIso() {
   return new Date().toISOString();
@@ -34,7 +35,7 @@ function hourUtc(d = new Date()) {
 /** Persona framework — architecture for future personalization */
 export const PERSONA_FRAMEWORK = {
   version: 1,
-  note: "Personas bias ranking and noise thresholds. Full adaptive ranking arrives later; matching hooks are live.",
+  note: "Personas bias ranking and noise thresholds. Adaptive Defense uses live intel; optional local inventory only biases browser re-score — devices are never inspected.",
   personas: [
     {
       id: "windows-admin",
@@ -239,6 +240,12 @@ export function enrichRecord(rec) {
   };
 }
 
+function withDefenseCategory(rec, enrichment, recommendation) {
+  return Object.assign({}, recommendation, {
+    defenseCategory: actionToCategory(recommendation.action, enrichment, rec)
+  });
+}
+
 export function recommendAction(rec, enrichment) {
   const e = enrichment || rec.enrichment || enrichRecord(rec);
   const score = rec.priority?.score || 0;
@@ -248,76 +255,72 @@ export function recommendAction(rec, enrichment) {
   const outage = rec.type === "service-outage";
   const healthyOutage = outage && rec.rawProviderMetadata && rec.rawProviderMetadata.healthy;
 
+  let recommendation;
   if (healthyOutage) {
-    return {
+    recommendation = {
       action: "ignore",
-      label: "No action — status healthy",
+      label: "No immediate action",
       urgency: "none",
       why: "Public status feed reports no material disruption for this provider."
     };
-  }
-  if (outage) {
-    return {
+  } else if (outage) {
+    recommendation = {
       action: "increase-monitoring",
-      label: "Increase monitoring",
+      label: "Watch — service status",
       urgency: "now",
       why: "Public cloud/SaaS status indicates degradation — verify customer impact and open vendor status."
     };
-  }
-  if (known && edge) {
-    return {
+  } else if (known && edge) {
+    recommendation = {
       action: "patch-immediately",
-      label: "Patch immediately",
+      label: "Patch / update",
       urgency: "immediate",
       why: "Official known exploitation plus internet-facing / edge context. Prioritize before routine workstation work."
     };
-  }
-  if (known && patch) {
-    return {
+  } else if (known && patch) {
+    recommendation = {
       action: "patch-immediately",
-      label: "Patch immediately",
+      label: "Patch / update",
       urgency: "immediate",
       why: "Known exploited and a patch/fix is indicated by the source."
     };
-  }
-  if (known && !patch) {
-    return {
+  } else if (known && !patch) {
+    recommendation = {
       action: "disable-exposed-service",
-      label: "Reduce exposure / apply mitigations",
+      label: "Mitigate / reduce exposure",
       urgency: "immediate",
       why: "Known exploited without a clear patch signal — restrict exposure and follow vendor mitigations."
     };
-  }
-  if (score >= 70 || e.severity === "critical") {
-    return {
+  } else if (score >= 70 || e.severity === "critical") {
+    recommendation = {
       action: "review-vendor-advisory",
-      label: "Review vendor advisory",
+      label: "Review advisory",
       urgency: "today",
-      why: "High operational priority — confirm whether affected products are in your environment."
+      why: "High operational priority — confirm whether affected products are in your environment. This app has not inspected your devices."
     };
-  }
-  if (score >= 45 || e.severity === "high") {
-    return {
+  } else if (score >= 45 || e.severity === "high") {
+    recommendation = {
       action: "monitor",
-      label: "Monitor",
+      label: "Watch",
       urgency: "this-week",
       why: "Meaningful severity or priority, but not clearly an immediate edge/KEV emergency for all orgs."
     };
-  }
-  if (e.freshness === "stale" && !known && score < 35) {
-    return {
+  } else if (e.freshness === "stale" && !known && score < 35) {
+    recommendation = {
       action: "ignore",
-      label: "Defer / low attention",
+      label: "No immediate action",
       urgency: "none",
       why: "Older, not known-exploited, and low priority — hide by default to reduce noise."
     };
+  } else {
+    recommendation = {
+      action: "investigate-further",
+      label: "Review",
+      urgency: "when-convenient",
+      why: "Worth a skim against inventory; not an automatic emergency from connected sources alone."
+    };
   }
-  return {
-    action: "investigate-further",
-    label: "Investigate further",
-    urgency: "when-convenient",
-    why: "Worth a skim against inventory; not an automatic emergency from connected sources alone."
-  };
+  return withDefenseCategory(rec, e, recommendation);
 }
 
 export function explainRisk(rec, enrichment) {
@@ -894,7 +897,7 @@ export function buildSignalIntelligence(scoredRecords, options = {}) {
       entityCount: correlation.entityCount,
       relationshipCount: correlation.relationshipCount,
       // Keep payload lighter in live.json — full graph also written separately if requested
-      sampleRelationships: correlation.relationships.slice(0, 80),
+      relationshipPreview: correlation.relationships.slice(0, 80),
       note: correlation.note
     },
     noise: {

@@ -19,6 +19,7 @@
 
   var NAV = [
     ["brief", "Overview"],
+    ["adaptive", "Adaptive Defense"],
     ["briefings", "Briefings"],
     ["threats", "Threats"],
     ["vulnerabilities", "Vulnerabilities"],
@@ -247,9 +248,90 @@
 
   function actionClass(action) {
     if (action === "patch-immediately" || action === "disable-exposed-service") return "st-live-action st-live-action--urgent";
-    if (action === "increase-monitoring" || action === "review-vendor-advisory") return "st-live-action st-live-action--soon";
+    if (action === "increase-monitoring" || action === "review-vendor-advisory" || action === "investigate-further") {
+      return "st-live-action st-live-action--soon";
+    }
     if (action === "ignore") return "st-live-action st-live-action--quiet";
     return "st-live-action";
+  }
+
+  function defenseCategoryClass(cat) {
+    if (cat === "PATCH / UPDATE") return "st-ad-cat st-ad-cat--patch";
+    if (cat === "MITIGATE") return "st-ad-cat st-ad-cat--mitigate";
+    if (cat === "REVIEW") return "st-ad-cat st-ad-cat--review";
+    if (cat === "WATCH") return "st-ad-cat st-ad-cat--watch";
+    return "st-ad-cat st-ad-cat--none";
+  }
+
+  function adaptiveItemHtml(item) {
+    var products = (item.affectedProducts || []).join(", ") || "Not named in source entities";
+    var evidence = (item.evidence || [])
+      .map(function (e) {
+        return (
+          '<li><a href="' +
+          esc(e.url) +
+          '" rel="noopener noreferrer" target="_blank">' +
+          esc(e.providerName || e.providerId) +
+          "</a></li>"
+        );
+      })
+      .join("");
+    var why = (item.whyThisMovedUp || [])
+      .map(function (w) {
+        return "<li>" + esc(w) + "</li>";
+      })
+      .join("");
+    var actions = (item.defensiveActions || [])
+      .slice(0, 5)
+      .map(function (a) {
+        return "<li>" + esc(a) + "</li>";
+      })
+      .join("");
+    return (
+      '<article class="st-ad-card">' +
+      '<div class="st-live-card-top">' +
+      '<span class="' +
+      defenseCategoryClass(item.category) +
+      '">' +
+      esc(item.category) +
+      "</span>" +
+      '<span class="' +
+      bandClass(item.priorityBand) +
+      '">' +
+      esc(bandLabel(item.priorityBand)) +
+      " · " +
+      esc(String(item.priorityScore)) +
+      "</span></div>" +
+      "<h3>" +
+      (item.recordId
+        ? '<a href="#record/' + encodeURIComponent(item.recordId) + '">' + esc(item.title) + "</a>"
+        : esc(item.title)) +
+      "</h3>" +
+      (item.summary ? '<p class="st-live-lead">' + esc(item.summary) + "</p>" : "") +
+      '<p class="st-ad-field"><strong>Why this moved up</strong></p><ul class="st-live-meta">' +
+      why +
+      "</ul>" +
+      '<p class="st-ad-field"><strong>Evidence</strong></p><ul class="st-live-meta">' +
+      (evidence || "<li>No source URL on record</li>") +
+      "</ul>" +
+      '<p class="st-ad-field"><strong>Affected products (from sources)</strong> ' +
+      esc(products) +
+      "</p>" +
+      '<p class="st-ad-field"><strong>Confidence</strong> ' +
+      esc((item.confidence && item.confidence.level) || "—") +
+      " — " +
+      esc((item.confidence && item.confidence.note) || "") +
+      "</p>" +
+      '<p class="st-ad-field"><strong>Last updated</strong> ' +
+      esc(String(item.lastUpdated || "—").slice(0, 19)) +
+      "</p>" +
+      '<p class="st-ad-field"><strong>General defensive steps</strong></p><ul class="st-live-meta">' +
+      actions +
+      "</ul>" +
+      '<p class="st-ad-disclaimer">' +
+      esc(item.disclaimer || "This app has not inspected your devices.") +
+      "</p></article>"
+    );
   }
 
   function bandClass(band) {
@@ -281,43 +363,7 @@
   }
 
   function trustBadge(state) {
-    return '<span class="st-live-trust" data-trust="' + esc(state || "Unknown") + '">' + esc(state || "Unknown") + "</span>";
-  }
-
-  /** Max age for presenting trustState "Live" honestly (ms). */
-  var LIVE_MAX_AGE_MS = 36 * 60 * 60 * 1000;
-
-  /**
-   * Effective trust for display — never show Live when the artifact is stale.
-   * Returns { trustState, ageMs, generatedAt, stale }.
-   */
-  function effectiveTrust(doc, nowMs) {
-    var meta = (doc && doc.meta) || {};
-    var raw = meta.trustState || "Unknown";
-    var gen = meta.generatedAt || null;
-    var now = typeof nowMs === "number" ? nowMs : Date.now();
-    var ageMs = null;
-    if (gen) {
-      var t = Date.parse(gen);
-      if (!isNaN(t)) ageMs = Math.max(0, now - t);
-    }
-    var trust = raw;
-    var stale = ageMs != null && ageMs > LIVE_MAX_AGE_MS;
-    if (stale && (raw === "Live" || raw === "Partial")) {
-      trust = "Stale";
-    } else if (stale && raw === "Cached") {
-      trust = "Stale";
-    }
-    return { trustState: trust, ageMs: ageMs, generatedAt: gen, stale: !!stale, rawTrust: raw };
-  }
-
-  function formatAge(ageMs) {
-    if (ageMs == null) return "unknown age";
-    var h = Math.floor(ageMs / 3600000);
-    if (h < 1) return "under 1 hour old";
-    if (h < 48) return h + " hour" + (h === 1 ? "" : "s") + " old";
-    var d = Math.floor(h / 24);
-    return d + " day" + (d === 1 ? "" : "s") + " old";
+    return '<span class="st-live-trust">' + esc(state || "Unknown") + "</span>";
   }
 
   function providerTrustStrip(doc) {
@@ -334,26 +380,19 @@
     var cached = providers.filter(function (p) {
       return p.status === "cached" || p.status === "stale";
     }).length;
-    var eff = effectiveTrust(doc);
-    var gen = eff.generatedAt || "—";
+    var gen = (doc && doc.meta && doc.meta.generatedAt) || "—";
     return (
       '<div class="st-live-trust-strip" role="status">' +
       "<p><strong>Trust:</strong> " +
-      trustBadge(eff.trustState) +
+      trustBadge(doc && doc.meta && doc.meta.trustState) +
       " · refreshed " +
       esc(String(gen).slice(0, 19)) +
-      " (" +
-      esc(formatAge(eff.ageMs)) +
-      ")" +
       " · " +
       esc(String(ok)) +
       " providers ok" +
       (cached ? " · " + esc(String(cached)) + " cached" : "") +
       (planned ? " · " + esc(String(planned)) + " planned (not faked live)" : "") +
       "</p>" +
-      (eff.stale
-        ? "<p class=\"st-live-stale-warn\"><strong>Not current:</strong> This brief is older than 36 hours. Treat it as historical public-source context, not a live feed. Refresh has not completed recently.</p>"
-        : "") +
       (failed.length
         ? "<p><strong>Unavailable now:</strong> " +
           esc(
@@ -657,6 +696,123 @@
           );
         }
 
+        function adaptiveDefenseTeaser() {
+          var ad = state.doc.adaptiveDefense;
+          if (!ad || !(ad.headline && ad.headline.length)) {
+            return (
+              '<section class="st-ad-teaser" aria-label="Adaptive Defense">' +
+              "<h2 class=\"st-live-section-title\" style=\"font-size:1.05rem\">Adaptive Defense</h2>" +
+              '<p class="st-live-lead">No Adaptive Defense bundle in this artifact yet. Run the live engine to refresh. <a href="#adaptive">Open Adaptive Defense →</a></p></section>'
+            );
+          }
+          var counts = ad.counts || {};
+          return (
+            '<section class="st-ad-teaser" aria-labelledby="st-ad-teaser-title">' +
+            '<h2 class="st-live-section-title" id="st-ad-teaser-title" style="font-size:1.05rem">Adaptive Defense — what should I care about differently today?</h2>' +
+            '<p class="st-live-lead">' +
+            esc(ad.answerSummary || "") +
+            "</p>" +
+            '<p class="st-ad-counts" aria-label="Category counts">' +
+            "<span>Patch/Update " +
+            esc(String(counts["PATCH / UPDATE"] || 0)) +
+            "</span> · <span>Mitigate " +
+            esc(String(counts.MITIGATE || 0)) +
+            "</span> · <span>Review " +
+            esc(String(counts.REVIEW || 0)) +
+            "</span> · <span>Watch " +
+            esc(String(counts.WATCH || 0)) +
+            "</span></p>" +
+            '<ul class="st-live-brief__list">' +
+            ad.headline
+              .slice(0, 5)
+              .map(function (item) {
+                return (
+                  "<li><span class=\"" +
+                  defenseCategoryClass(item.category) +
+                  "\">" +
+                  esc(item.category) +
+                  "</span> " +
+                  esc(item.title) +
+                  (item.whyThisMovedUp && item.whyThisMovedUp[0]
+                    ? '<span class="st-live-brief__why"> — ' + esc(item.whyThisMovedUp[0]) + "</span>"
+                    : "") +
+                  "</li>"
+                );
+              })
+              .join("") +
+            "</ul>" +
+            '<p class="st-ad-disclaimer">This app has not inspected your devices. <a href="#adaptive">Full Adaptive Defense →</a></p></section>'
+          );
+        }
+
+        function adaptiveDefensePanel() {
+          var ad = state.doc.adaptiveDefense;
+          if (!ad) {
+            return (
+              "<h1 class=\"st-live-section-title\">Adaptive Defense</h1>" +
+              '<p class="st-live-lead" role="status">Adaptive Defense is not present in the current live artifact. Refresh with the live engine — production never substitutes sample threats.</p>'
+            );
+          }
+          var cats = ad.categories || [
+            "PATCH / UPDATE",
+            "MITIGATE",
+            "REVIEW",
+            "WATCH",
+            "NO IMMEDIATE ACTION"
+          ];
+          var byCat = ad.byCategory || {};
+          return (
+            "<h1 class=\"st-live-section-title\">Adaptive Defense</h1>" +
+            '<p class="st-live-brief__question">' +
+            esc(ad.question || "What should I care about differently today?") +
+            "</p>" +
+            '<p class="st-live-lead">' +
+            esc(ad.answerSummary || "") +
+            "</p>" +
+            providerTrustStrip(state.doc) +
+            '<p class="st-ad-disclaimer" role="note"><strong>Important:</strong> SignalTerrain has not inspected your devices, networks, or accounts. Priorities come from live public threat intelligence only. Optional local inventory (Settings) can bias browser re-scoring — it never leaves this browser.</p>' +
+            '<div class="st-ad-method"><h2 class="st-live-section-title" style="font-size:1.05rem">' +
+            esc((ad.method && ad.method.title) || "How priorities are computed") +
+            "</h2><ul class=\"st-live-meta\">" +
+            (((ad.method && ad.method.points) || [])
+              .map(function (p) {
+                return "<li>" + esc(p) + "</li>";
+              })
+              .join("") || "") +
+            "</ul></div>" +
+            cats
+              .map(function (cat) {
+                var list = byCat[cat] || [];
+                if (!list.length && cat === "NO IMMEDIATE ACTION") {
+                  return (
+                    '<section class="st-ad-section" aria-labelledby="st-ad-' +
+                    encodeURIComponent(cat) +
+                    '"><h2 class="st-live-section-title" id="st-ad-' +
+                    encodeURIComponent(cat) +
+                    '" style="font-size:1.05rem">' +
+                    esc(cat) +
+                    '</h2><p class="st-live-lead">Nothing elevated into this quiet band for the current surfacing rules.</p></section>'
+                  );
+                }
+                if (!list.length) return "";
+                return (
+                  '<section class="st-ad-section" aria-labelledby="st-ad-' +
+                  encodeURIComponent(cat) +
+                  '"><h2 class="st-live-section-title" id="st-ad-' +
+                  encodeURIComponent(cat) +
+                  '" style="font-size:1.05rem">' +
+                  esc(cat) +
+                  " (" +
+                  list.length +
+                  ")</h2>" +
+                  list.map(adaptiveItemHtml).join("") +
+                  "</section>"
+                );
+              })
+              .join("")
+          );
+        }
+
         function briefPanel() {
           var brief = state.doc.brief;
           var signal = state.doc.signal || {};
@@ -739,6 +895,7 @@
             esc(String(hidden)) +
             " low-signal hidden</p>" +
             providerTrustStrip(state.doc) +
+            adaptiveDefenseTeaser() +
             '<div class="st-live-stats" aria-label="Priority counts">' +
             '<div class="st-live-stat"><strong>' +
             byBand.Immediate.length +
@@ -1171,7 +1328,7 @@
             };
           return (
             "<h1 class=\"st-live-section-title\">Settings · profile &amp; personas</h1>" +
-            '<p class="st-live-lead">Local-only inventory and persona preference. Never leaves this browser. Full adaptive ranking comes later — hooks are live.</p>' +
+            '<p class="st-live-lead">Local-only inventory and persona preference. Never leaves this browser. Optional inventory only biases scoring here — SignalTerrain has not inspected your devices.</p>' +
             "<h2 class=\"st-live-section-title\" style=\"font-size:1.05rem\">Persona focus</h2>" +
             '<p class="st-live-lead">' +
             esc(fw.note || "") +
@@ -1379,6 +1536,7 @@
           }
           if (route.panel === "record") return recordDetail(route.id);
           if (route.panel === "brief") return briefPanel();
+          if (route.panel === "adaptive") return adaptiveDefensePanel();
           if (route.panel === "briefings") return briefingsPanel();
           if (route.panel === "trends") return trendsPanel();
           if (route.panel === "timeline") return timelinePanel();
@@ -1549,8 +1707,6 @@
     rescore: rescore,
     bandLabel: bandLabel,
     bandWhy: bandWhy,
-    effectiveTrust: effectiveTrust,
-    LIVE_MAX_AGE_MS: LIVE_MAX_AGE_MS,
     BANNED_SAMPLE_PATHS: BANNED_SAMPLE_PATHS
   };
 })(typeof window !== "undefined" ? window : globalThis);

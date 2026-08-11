@@ -1202,3 +1202,13 @@ dynamic_visual + commercial visual + production inspection evidence.
    Schematic threat/world maps removed from the landing primary story.
 4. **Tests.** `automation/test-signalterrain-real-data-pipeline.mjs` rejects sample markers in the
    production ST data path and asserts KEV/NVD/advisory contracts.
+
+### 2026-08-10 — SignalTerrain product reality (click-depth honesty)
+
+**Surface:** Entire user-reachable SignalTerrain product path  
+**Issue:** Real dashboard shipped, but deeper nav (app shell, explorer, advisor, brief, topics) reverted to sample/mock intelligence.
+
+1. **Root cause.** Product nav and peer strips still pointed at sample-backed HTML/JS (`brief.html`, `advisor.html`, topics/graph/summary, explorer sample graph + world map layers, workspace silent sample fallback).
+2. **Repair.** Nav/features → live dashboard + live.html panels; explorer/knowledge/workspace load `data/cyber/graph.json` only (teaching via `?teaching=1`); advisor/brief redirect to live unless teaching; world map is honest NO CURRENT DATA in live mode; mockups/teaching removed from ordinary product nav; archive section isolated.
+3. **Gate.** `automation/test-signalterrain-click-depth.mjs` is the permanent depth 0–3 release gate.
+

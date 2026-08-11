@@ -28,6 +28,10 @@ import {
 } from "./cyber-signal/signal-engine.mjs";
 import { enrichKevWithNvd } from "./cyber-signal/kev-nvd-enrich.mjs";
 import { buildDashboardViews } from "./cyber-signal/dashboard-views.mjs";
+import {
+  buildAdaptiveDefense,
+  ADAPTIVE_DEFENSE_VERSION
+} from "./cyber-signal/adaptive-defense.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -36,7 +40,7 @@ const LIVE_PATH = process.env.CYBER_LIVE_OUT || path.join(OUT_DIR, "live.json");
 const HEALTH_PATH = process.env.CYBER_HEALTH_OUT || path.join(OUT_DIR, "health.json");
 const GRAPH_PATH = process.env.CYBER_GRAPH_OUT || path.join(OUT_DIR, "graph.json");
 const DASHBOARD_PATH = process.env.CYBER_DASHBOARD_OUT || path.join(OUT_DIR, "dashboard.json");
-const ENGINE_VERSION = "1.4.0";
+const ENGINE_VERSION = "1.4.1";
 const HISTORY_PATH = process.env.CYBER_HISTORY_OUT || path.join(OUT_DIR, "history.json");
 const CORRELATION_PATH = process.env.CYBER_CORRELATION_OUT || path.join(OUT_DIR, "correlation.json");
 const MAX_GHSA = Number(process.env.CYBER_MAX_GHSA || 25);
@@ -1595,6 +1599,10 @@ async function main() {
   }
 
   const derived = buildDerivedViews(intelligenceRecords);
+  const adaptiveDefense = buildAdaptiveDefense(intelligenceRecords, {
+    previousRecords: previous?.records || [],
+    generatedAt: nowIso()
+  });
   const history = appendHistory(brief, {
     generatedAt: nowIso(),
     trustState,
@@ -1609,6 +1617,7 @@ async function main() {
     meta: {
       version: ENGINE_VERSION,
       signalEngineVersion: SIGNAL_ENGINE_VERSION,
+      adaptiveDefenseVersion: ADAPTIVE_DEFENSE_VERSION,
       generatedAt: nowIso(),
       trustState,
       dataState:
@@ -1628,7 +1637,8 @@ async function main() {
         "Briefing interprets provider facts — never invents incidents",
         "Enrichment and recommendations are decision support, not compliance mandates",
         "Low-signal items hidden by default (noise reduction)",
-        "Honesty labels: REAL | CACHED REAL | SOURCE UNAVAILABLE | NO CURRENT DATA"
+        "Honesty labels: REAL | CACHED REAL | SOURCE UNAVAILABLE | NO CURRENT DATA",
+        "Adaptive Defense never claims to have inspected user devices"
       ],
       counts: {
         records: intelligenceRecords.length,
@@ -1639,10 +1649,12 @@ async function main() {
         providersError: errCount,
         correlationEntities: signal.correlation.entityCount,
         correlationRelationships: signal.correlation.relationshipCount,
-        nvdEnrichedKev: nvdEnrichMeta.enriched || 0
+        nvdEnrichedKev: nvdEnrichMeta.enriched || 0,
+        adaptiveDefenseHeadline: adaptiveDefense.headline?.length || 0
       }
     },
     brief,
+    adaptiveDefense,
     signal: {
       meta: signal.meta,
       briefings: signal.briefings,
