@@ -1226,3 +1226,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - When splitting Home from Dashboard, update `studioPrimaryNav` Dashboard href and shell `aria-current` so `/` does not mark Dashboard active.
 - Mobile primary nav on the front door must not stack into a directory — prefer horizontal scroll over wrapping all architecture links.
 - Smoke “studio app cards” can use a hidden gate mount; visible IA should stay editorial pathways, not identical SaaS cards.
+
+## Lessons Learned — ONE APP + Dashboard instrument panel (2026-08-10)
+
+- **ONE APP = ONE PRODUCT SURFACE:** app bodies are not mini Studio homepages; cross-product discovery stays in global nav. Document in `docs/APP-SURFACE-ARCHITECTURE.md` and gate with `test-app-surface-isolation.mjs`.
+- Dashboard deepeners that promoted Scenes/Sheds/Articles/Side Trails violated the rule after Homepage became the portfolio door — strip them; keep only Dashboard-native briefing (Take).
+- When `/` stops being Dashboard, update stale RC1 asserts (`detectApp /`, `dashboard.html` redirect, product-name Home) or they silently fight the architecture.
+- Corrupt `$HOME` (e.g. HTML dumped into env) makes every `git` path resolve to ENAMETOOLONG — fix `HOME=/home/bryan` before blaming the repo.
