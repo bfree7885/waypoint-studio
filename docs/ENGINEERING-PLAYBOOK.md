@@ -1212,3 +1212,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 2. **Repair.** Nav/features → live dashboard + live.html panels; explorer/knowledge/workspace load `data/cyber/graph.json` only (teaching via `?teaching=1`); advisor/brief redirect to live unless teaching; world map is honest NO CURRENT DATA in live mode; mockups/teaching removed from ordinary product nav; archive section isolated.
 3. **Gate.** `automation/test-signalterrain-click-depth.mjs` is the permanent depth 0–3 release gate.
 
+## Lessons Learned — Design System 2.0 (2026-08-10)
+
+- Prefer a single `--wp-*` semantic layer with `--wds-*` aliases over a parallel token file that drifts.
+- Remap legacy neon names (`--wds-lime`) to muted accents so residual `var(--wds-lime)` call sites stop leaking lime without a mass rewrite.
+- Product identity belongs on `[data-product]` accents drawn from one Southwestern palette — do not flatten apps to one accent.
+- SignalTerrain/Global Signals may keep distinctive chrome; shared surfaces should still resolve through tokens so ST agents can adopt without fighting the shell.
+- Replace hardcoded lime/navy hex fallbacks and Inter on major routes when migrating visual identity.
+

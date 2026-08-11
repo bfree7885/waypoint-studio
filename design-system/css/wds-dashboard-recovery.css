@@ -195,7 +195,7 @@
 
 .wdb-recovery-tabs__tab.is-active {
   color: var(--wds-text, #e4eaf4);
-  background: color-mix(in srgb, var(--wdb-sum-accent, var(--wds-accent, #c8f055)) 22%, var(--wds-surface, #0c1628));
+  background: color-mix(in srgb, var(--wdb-sum-accent, var(--wds-accent, #c17a5a)) 22%, var(--wds-surface, #1f1a26));
 }
 
 .wdb-recovery-tabs__tab:focus-visible {

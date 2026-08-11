@@ -8,13 +8,13 @@ html[data-product="shed-hunting"],
 .was-shell[data-product="shed-hunting"] {
   --sheds-ink: var(--wds-text, #eef2f6);
   --sheds-muted: var(--wds-text-secondary, rgba(238, 242, 246, 0.78));
-  --sheds-gold: var(--aurora-aspen-gold, #d4c46a);
-  --sheds-orange: var(--aurora-burnt-orange, #c46a3a);
+  --sheds-gold: var(--wp-accent, var(--wp-clay-bright, #c47a72));
+  --sheds-orange: var(--wp-warm, var(--wp-dust-gold, #c4a46a));
   --sheds-bark: var(--aurora-bark, #5c4638);
   --sheds-slate: #6e8498;
-  background: var(--wds-bg, #080f1c);
+  background: var(--wp-bg, var(--wds-bg, #17131c));
   color: var(--sheds-ink);
-  font-family: var(--wds-font-body, Inter, system-ui, sans-serif);
+  font-family: var(--wp-font-body, var(--wds-font-body, system-ui, sans-serif));
 }
 
 .was-shell[data-product="shed-hunting"] .was-global {

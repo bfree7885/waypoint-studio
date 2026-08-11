@@ -35,7 +35,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--wds-accent, #c8f055);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .wpf-cta {
@@ -100,10 +100,10 @@
   display: inline-block;
   margin-left: 0.35rem;
   padding: 0.1rem 0.4rem;
-  border: 1px solid var(--wds-accent, #c8f055);
+  border: 1px solid var(--wds-accent, #c17a5a);
   border-radius: 0.25rem;
   font-size: 0.7rem;
-  color: var(--wds-accent, #c8f055);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .wpf-section--note p {
@@ -113,11 +113,11 @@
 
 .wpf-routes code {
   font-size: 0.85rem;
-  color: var(--wds-accent, #c8f055);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .ws-topnav a[aria-current="page"] {
-  color: var(--wds-accent, #c8f055);
+  color: var(--wds-accent, #c17a5a);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
