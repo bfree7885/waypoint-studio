@@ -82,6 +82,12 @@ Critical architecture rule (full detail: [`docs/APP-SURFACE-ARCHITECTURE.md`](./
 
 Regression gates: `automation/test-app-surface-isolation.mjs`, `automation/test-dashboard-instrument-panel.mjs`.
 
+## Dashboard instruments
+
+Field-guide illustrations, quiet illumination, and surface rules:
+[`docs/DASHBOARD-VISUAL-LANGUAGE.md`](./DASHBOARD-VISUAL-LANGUAGE.md).
+Gate: `automation/test-dashboard-visual-refinement.mjs`.
+
 ## Adoption checklist
 
 1. Set `data-product` on `<html>` (and shell if present).

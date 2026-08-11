@@ -159,13 +159,63 @@
     return "Mixed night sky";
   }
 
-  function skyGraphicState(conditions, cloudPct) {
+  function isNightContext(platform) {
+    var dl = daylightSlice(platform);
+    if (!dl) return false;
+    var now = Date.now();
+    function parseT(v) {
+      if (!v) return null;
+      var t = Date.parse(v);
+      return isFinite(t) ? t : null;
+    }
+    var rise = parseT(dl.sunrise) || parseT(dl.sunriseISO);
+    var set = parseT(dl.sunset) || parseT(dl.sunsetISO);
+    if (rise != null && set != null) {
+      if (set < rise) return now >= set || now < rise;
+      return now < rise || now >= set;
+    }
+    var h = new Date().getHours();
+    return h < 6 || h >= 20;
+  }
+
+  function skyGraphicState(conditions, cloudPct, platform) {
     var c = String(conditions || "").toLowerCase();
-    if (c) return c;
+    if (/thunder|storm|severe/.test(c)) return "storm";
+    if (/heavy.?rain|downpour/.test(c)) return "heavy-rain";
+    if (/snow|sleet|blizzard/.test(c)) return "snow";
+    if (/fog|mist|haze/.test(c)) return "fog";
+    if (/rain|drizzle|shower/.test(c)) return "rain";
+    if (/wind|breez|gust/.test(c) && !/cloud|clear|part|rain/.test(c)) return "wind";
+    if (/overcast/.test(c) || (cloudPct != null && cloudPct >= 85)) return "cloudy";
+    if (/part/.test(c) || (cloudPct != null && cloudPct >= 45 && cloudPct < 85)) return "partly";
+    if (/clear|sunny|fair/.test(c) || (cloudPct != null && cloudPct < 45)) {
+      return isNightContext(platform) ? "clear-night" : "clear";
+    }
     if (cloudPct == null) return "partly";
-    if (cloudPct >= 85) return "overcast";
-    if (cloudPct >= 45) return "cloudy";
-    return "clear";
+    if (cloudPct >= 85) return "cloudy";
+    if (cloudPct >= 45) return "partly";
+    return isNightContext(platform) ? "clear-night" : "clear";
+  }
+
+  function lightGraphicKind(dl) {
+    if (!dl) return { kind: "sun", state: "sunrise" };
+    var now = Date.now();
+    function inWindow(range) {
+      if (!range) return false;
+      var parts = String(range).split(/\s*[–—-]\s*/);
+      if (parts.length < 2) return false;
+      /* Text ranges like 6:55–7:25 PM are display-only; prefer ISO if present */
+      return false;
+    }
+    if (dl.goldenHourStatus === "live" || dl.goldenHourEvening || dl.goldenHour) {
+      /* Prefer golden illustration when golden window fields exist */
+    }
+    var h = new Date().getHours();
+    if (h >= 5 && h < 9) return { kind: "sun", state: "sunrise", illum: "golden" };
+    if (h >= 17 && h < 19) return { kind: "sun", state: "golden", illum: "golden" };
+    if (h >= 19 && h < 21) return { kind: "sun", state: "blue-hour", illum: "blue" };
+    if (h >= 16) return { kind: "sun", state: "sunset", illum: "golden" };
+    return { kind: "sun", state: "sunrise", illum: "golden" };
   }
 
   function waitingOrUnavailable(platform, waitingMsg, unavailableMsg) {
@@ -210,7 +260,7 @@
       message: null,
       facts: facts,
       current: cur,
-      graphic: { kind: "sky", state: skyGraphicState(cur.conditions, cur.cloudPct) }
+      graphic: { kind: "sky", state: skyGraphicState(cur.conditions, cur.cloudPct, platform) }
     };
   }
 
@@ -248,13 +298,14 @@
     if (dl.status === "editorial") trust = "partial";
     else if (windowEstimated) trust = "estimated";
     else if (dl.status === "live" || sunrise || sunset) trust = "live";
+    var g = lightGraphicKind(dl);
     return {
       trust: trust,
       status: "live",
       message: null,
       facts: facts,
       daylight: dl,
-      graphic: { kind: "sun" }
+      graphic: g
     };
   }
 
@@ -320,7 +371,7 @@
       facts: facts,
       moon: { phase: phase, illumination: illum, rise: moonrise, set: moonset },
       nightSky: sky,
-      graphic: { kind: "moon", value: illum != null ? illum : 50 }
+      graphic: { kind: "moon", value: illum != null ? illum : 50, phase: phase }
     };
   }
 
@@ -340,7 +391,7 @@
         message: null,
         facts: [{ label: "Status", value: "No active alerts" }],
         alerts: { count: 0, items: [] },
-        graphic: { kind: "alert" }
+        graphic: { kind: "alert", active: false }
       };
     }
     if (al.status === "unavailable") {
@@ -367,7 +418,7 @@
         message: null,
         facts: [{ label: "Status", value: "No active alerts" }],
         alerts: { count: 0, items: [] },
-        graphic: { kind: "alert" }
+        graphic: { kind: "alert", active: false }
       };
     }
     return {
@@ -376,7 +427,7 @@
       message: null,
       facts: facts,
       alerts: { count: items.length, items: items },
-      graphic: { kind: "alert" }
+      graphic: { kind: "alert", active: !!(items && items.length) }
     };
   }
 

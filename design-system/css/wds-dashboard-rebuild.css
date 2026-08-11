@@ -19,23 +19,38 @@
   --wdb-r-radius-sm: var(--wds-radius-sm, 6px);
   --wdb-r-pad: 0.85rem 0.95rem 0.8rem;
   --wdb-r-gap: 0.7rem;
-  --wdb-r-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 6px 22px rgba(4, 8, 18, 0.32);
-  --wdb-r-shadow-hover: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 12px 30px rgba(4, 8, 18, 0.42);
-  /* Category presence — atmospheric, luminous (not filled neon) */
-  /* Semantic category tokens — luminous identity at normal viewing distance */
-  --category-weather: #4da3e0;
-  --category-light: #e8a838;
-  --category-nature: #8fd14a;
-  --category-astronomy: #a78bfa;
-  --category-photography: #e879c8;
-  --category-water: #2dd4bf;
-  --category-hiking: #3d8f5a;
-  --category-earth: #d97757;
-  --category-alerts: #8b9bb0;
-  --category-alerts-active: #ef5350;
-  --category-travel: #9bb0c8;
+  --wdb-r-shadow: 0 1px 0 rgba(242, 235, 224, 0.035) inset,
+    0 8px 24px rgba(10, 8, 14, 0.38);
+  --wdb-r-shadow-hover: 0 1px 0 rgba(242, 235, 224, 0.05) inset,
+    0 14px 32px rgba(10, 8, 14, 0.46);
+  /*
+   * Category presence — Waypoint aubergine family only.
+   * No neon cyan / lime / pink / violet gaming outlines.
+   */
+  --category-weather: var(--wp-slate, #7a8a9a);
+  --category-light: var(--wp-dust-gold, #c4a46a);
+  --category-nature: var(--wp-sage, #7d8f72);
+  --category-astronomy: var(--wp-purple, #7a6b8a);
+  --category-photography: var(--wp-plum, #8b6f82);
+  --category-water: var(--wp-slate, #7a8a9a);
+  --category-hiking: var(--wp-sage, #7d8f72);
+  --category-earth: var(--wp-terracotta, #c17a5a);
+  --category-alerts: var(--wp-slate, #7a8a9a);
+  --category-alerts-active: var(--wp-clay, #a85d52);
+  --category-travel: var(--wp-plum, #8b6f82);
+  /* Illumination washes (state-based, subtle) */
+  --wdb-r-illum-quiet: transparent;
+  --wdb-r-illum-clear-day: color-mix(in srgb, var(--wp-dust-gold, #c4a46a) 10%, transparent);
+  --wdb-r-illum-golden: color-mix(in srgb, var(--wp-dust-gold, #c4a46a) 14%, transparent);
+  --wdb-r-illum-blue: color-mix(in srgb, var(--wp-purple, #7a6b8a) 12%, transparent);
+  --wdb-r-illum-rain: color-mix(in srgb, var(--wp-slate, #7a8a9a) 12%, transparent);
+  --wdb-r-illum-storm: color-mix(in srgb, var(--wp-clay, #a85d52) 12%, transparent);
+  --wdb-r-illum-night: color-mix(in srgb, var(--wp-aubergine-800, #2a2432) 40%, transparent);
+  --wdb-r-illum-alert: color-mix(in srgb, var(--wp-clay, #a85d52) 16%, transparent);
+  --wdb-r-illum-aqi-good: color-mix(in srgb, var(--wp-sage, #7d8f72) 12%, transparent);
+  --wdb-r-illum-aqi-moderate: color-mix(in srgb, var(--wp-dust-gold, #c4a46a) 12%, transparent);
+  --wdb-r-illum-aqi-usg: color-mix(in srgb, var(--wp-terracotta, #c17a5a) 14%, transparent);
+  --wdb-r-illum-aqi-unhealthy: color-mix(in srgb, var(--wp-clay, #a85d52) 16%, transparent);
   /* Widget aliases map onto semantic tokens */
   --wdb-r-cat-conditions: var(--category-weather);
   --wdb-r-cat-light: var(--category-light);
@@ -511,10 +526,54 @@
 
 .wdb-r-widget__body {
   flex: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5rem;
+  isolation: isolate;
+}
+
+/* Atmospheric illustration — negative space, secondary to measurements */
+.wdb-r-widget__atmosphere {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.1rem;
+  width: min(48%, 6.5rem);
+  max-height: 3.25rem;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wp-purple, #7a6b8a)) 45%, var(--wdb-r-muted));
+}
+
+.wdb-r-widget__content {
+  position: relative;
+  z-index: 1;
+  padding-right: 0.35rem;
+  max-width: 100%;
+}
+
+.wdb-r-widget__body:has(.wdb-r-widget__atmosphere) .wdb-r-widget__content {
+  padding-right: clamp(2.25rem, 24%, 4.75rem);
+}
+
+.wdb-r-widget__trust {
+  position: relative;
+  z-index: 1;
+}
+
+.wdb-r-widget[data-size="featured"] .wdb-r-widget__atmosphere,
+.wdb-r-widget[data-size="wide"] .wdb-r-widget__atmosphere {
+  width: min(36%, 7.5rem);
+  max-height: 3.6rem;
+  opacity: 0.36;
+}
+
+.wdb-r-widget[data-size="small"] .wdb-r-widget__atmosphere {
+  width: min(46%, 4.75rem);
+  max-height: 2.6rem;
+  opacity: 0.34;
 }
 
 .wdb-r-widget__status {
@@ -666,65 +725,113 @@
 }
 
 .wdb-r-widget[data-category] {
-  border: 1.5px solid color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 58%, transparent);
+  border: 1px solid var(--wdb-r-line-strong);
   background:
     linear-gradient(
       165deg,
-      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 16%, transparent) 0%,
-      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 7%, var(--wdb-r-surface)) 40%,
-      var(--wdb-r-surface) 78%
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 7%, var(--wdb-r-surface)) 0%,
+      var(--wdb-r-surface) 55%,
+      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 18%, var(--wdb-r-surface)) 100%
     );
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 18%, transparent),
-    0 0 24px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
-    var(--wdb-r-shadow);
+  box-shadow: var(--wdb-r-shadow);
 }
 
 .wdb-r-widget[data-category]:hover,
 .wdb-r-widget[data-category]:focus-within {
-  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 78%, transparent);
+  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, var(--wdb-r-line-strong));
   background:
     linear-gradient(
       165deg,
-      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 22%, transparent) 0%,
-      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 9%, var(--wdb-r-hover)) 42%,
-      var(--wdb-r-hover) 80%
+      color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 11%, var(--wdb-r-hover)) 0%,
+      var(--wdb-r-hover) 58%,
+      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 14%, var(--wdb-r-hover)) 100%
     );
+  box-shadow: var(--wdb-r-shadow-hover);
+}
+
+/* State illumination — quiet wash, not neon rim */
+.wdb-r-widget[data-illum="clear-day"],
+.wdb-r-widget[data-illum="partly"] {
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
-    0 0 32px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 34%, transparent),
-    inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 36%, transparent),
-    var(--wdb-r-shadow-hover);
+    inset 0 0 0 1px color-mix(in srgb, var(--wp-dust-gold, #c4a46a) 10%, transparent),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="golden"] {
+  box-shadow:
+    inset 0 0 28px var(--wdb-r-illum-golden),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="blue"] {
+  box-shadow:
+    inset 0 0 28px var(--wdb-r-illum-blue),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="rain"],
+.wdb-r-widget[data-illum="cloudy"],
+.wdb-r-widget[data-illum="fog"],
+.wdb-r-widget[data-illum="snow"],
+.wdb-r-widget[data-illum="wind"] {
+  box-shadow:
+    inset 0 0 28px var(--wdb-r-illum-rain),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="storm"] {
+  box-shadow:
+    inset 0 0 32px var(--wdb-r-illum-storm),
+    var(--wdb-r-shadow);
+  border-color: color-mix(in srgb, var(--wp-clay, #a85d52) 32%, var(--wdb-r-line-strong));
+}
+.wdb-r-widget[data-illum="night"] {
+  box-shadow:
+    inset 0 0 32px var(--wdb-r-illum-night),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="alert"],
+.wdb-r-widget[data-alert-active="true"] {
+  border-color: color-mix(in srgb, var(--wp-clay, #a85d52) 42%, var(--wdb-r-line-strong));
+  box-shadow:
+    inset 0 0 36px var(--wdb-r-illum-alert),
+    var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="aqi-good"] {
+  box-shadow: inset 0 0 26px var(--wdb-r-illum-aqi-good), var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="aqi-moderate"] {
+  box-shadow: inset 0 0 26px var(--wdb-r-illum-aqi-moderate), var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="aqi-usg"] {
+  box-shadow: inset 0 0 28px var(--wdb-r-illum-aqi-usg), var(--wdb-r-shadow);
+}
+.wdb-r-widget[data-illum="aqi-unhealthy"] {
+  border-color: color-mix(in srgb, var(--wp-clay, #a85d52) 36%, var(--wdb-r-line-strong));
+  box-shadow: inset 0 0 30px var(--wdb-r-illum-aqi-unhealthy), var(--wdb-r-shadow);
 }
 
 .wdb-r-widget[data-category] .wdb-r-widget__cat {
-  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 88%, #fff 12%);
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 55%, var(--wdb-r-muted));
 }
 
 .wdb-r-widget[data-category] .wdb-r-widget__icon {
-  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 40%, transparent);
-  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 88%, #fff 8%);
-  background: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 14%, var(--wdb-r-panel));
+  border-color: var(--wdb-r-line);
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 70%, var(--wdb-r-muted));
+  background: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 8%, var(--wdb-r-panel));
 }
 
 .wdb-r-widget[data-category] .wdb-r-widget__note {
-  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 58%, var(--wdb-r-faint));
+  color: var(--wdb-r-faint);
 }
 
 .wdb-r-widget[data-category] .wds-trust-chip {
-  border-color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 45%, transparent);
-  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 82%, var(--wdb-r-ink));
-  background: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 12%, var(--wdb-r-panel));
+  border-color: var(--wdb-r-line);
+  color: var(--wdb-r-muted);
+  background: color-mix(in srgb, var(--wdb-r-panel) 80%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wdb-r-widget[data-category] {
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 24%, transparent),
-      0 0 16px color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 22%, transparent),
-      inset 0 1px 0 color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-accent)) 28%, transparent),
-      var(--wdb-r-shadow);
+  .wdb-r-widget[data-category],
+  .wdb-r-widget[data-illum] {
+    box-shadow: var(--wdb-r-shadow);
+    transition: none;
   }
 }
 
@@ -1484,31 +1591,45 @@ html.wdb-r-kiosk .wdb-r,
   }
 }
 
-/* —— Depth attack: condition graphics + library groups + reduced motion —— */
+/* —— Visual language: field-guide graphics + library groups —— */
 .wdb-r-graphic {
-  margin: 0 0 0.55rem;
-  color: var(--wp-purple, #7a6b8a);
-  opacity: 0.92;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  color: inherit;
 }
 
 .wdb-r-graphic__svg {
   display: block;
   width: 100%;
-  max-width: 7.5rem;
   height: auto;
+  max-height: 100%;
 }
 
 .wdb-r-graphic--aqi-good { color: var(--wp-sage, #7d8f72); }
 .wdb-r-graphic--aqi-moderate { color: var(--wp-dust-gold, #c4a46a); }
 .wdb-r-graphic--aqi-usg { color: var(--wp-terracotta, #c17a5a); }
-.wdb-r-graphic--aqi-unhealthy { color: var(--wp-clay, #a85d52); }
+.wdb-r-graphic--aqi-unhealthy,
 .wdb-r-graphic--storm,
-.wdb-r-graphic--alert { color: var(--wp-clay, #a85d52); }
+.wdb-r-graphic--alert,
+.wdb-r-graphic--alert-active { color: var(--wp-clay, #a85d52); }
 .wdb-r-graphic--rain,
-.wdb-r-graphic--precip { color: var(--wp-slate, #7a8a9a); }
+.wdb-r-graphic--heavy-rain,
+.wdb-r-graphic--precip,
+.wdb-r-graphic--cloudy,
+.wdb-r-graphic--fog,
+.wdb-r-graphic--snow,
+.wdb-r-graphic--wind { color: var(--wp-slate, #7a8a9a); }
 .wdb-r-graphic--sun,
 .wdb-r-graphic--uv,
-.wdb-r-graphic--clear { color: var(--wp-dust-gold, #c4a46a); }
+.wdb-r-graphic--clear,
+.wdb-r-graphic--golden,
+.wdb-r-graphic--sunrise,
+.wdb-r-graphic--sunset { color: var(--wp-dust-gold, #c4a46a); }
+.wdb-r-graphic--blue-hour,
+.wdb-r-graphic--clear-night,
+.wdb-r-graphic--moon { color: var(--wp-purple, #7a6b8a); }
+.wdb-r-graphic--partly { color: var(--wp-dust-gold, #c4a46a); }
 
 .wdb-r-catalog__group {
   list-style: none;
@@ -1550,8 +1671,10 @@ html.wdb-r-kiosk .wdb-r,
 }
 
 @media (max-width: 47.99rem) {
-  .wdb-r-graphic__svg {
-    max-width: 5.5rem;
+  .wdb-r-widget__atmosphere {
+    width: min(48%, 5.75rem);
+    max-height: 3.1rem;
+    opacity: 0.38;
   }
 
   .wdb-r-widget__facts {
@@ -1560,5 +1683,11 @@ html.wdb-r-kiosk .wdb-r,
 
   .wdb-r-widget__controls {
     flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-r-widget__atmosphere {
+    opacity: 0.32;
   }
 }

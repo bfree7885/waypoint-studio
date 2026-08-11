@@ -1241,3 +1241,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Depth without forecast tiles cannot answer “what happens soon”; hourly precip/UV adapters from existing `weatherRef` beat inventing new providers.
 - Derived tiles (Before you go / How it feels) must use trust `derived` and never coach (“you should”).
 - Customize library filters need group headers when the catalog grows past a handful — otherwise Add Tile becomes a flat scroll.
+
+## Lessons Learned — Dashboard visual refinement (2026-08-11)
+
+- Enlarged UI icons read as generic widgets; field-guide SVGs with shared horizon/stroke and `viewBox="0 0 96 56"` read as one instrument panel when parked in negative space (`.wdb-r-widget__atmosphere`).
+- Rainbow category outlines (`#4da3e0` / `#8fd14a` / full-card glow) fight Aubergine/Bone/Sand — map categories to muted `--wp-*` and drive presence via quiet borders + state `data-illum` washes instead.
+- Document illustration / illumination / surface rules in `docs/DASHBOARD-VISUAL-LANGUAGE.md` so depth attacks do not reintroduce neon.
