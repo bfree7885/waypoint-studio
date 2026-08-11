@@ -193,7 +193,7 @@ function readyExpression(kind) {
       const cards = document.querySelectorAll('.was-home__card').length;
       const shell = !!document.querySelector('[data-was-global], .was-global, .was-home-hero, [data-wds-app-shell], #was-apps-btn, .was-apps-btn');
       const home = !!document.querySelector('.was-home, #was-home-apps, [data-product="studio-home"]');
-      // RC3 homePrimary is four human workflows (Outside, Scenes, Sheds, Volunteer).
+      // Front door gate: Dashboard, Scenes, Sheds, Articles (+ Side Trails) pathways.
       return { ok: shell && home && cards >= 4, cards: cards, shell: shell };
     })()`;
   }
@@ -503,10 +503,11 @@ async function main() {
         console.log("FAIL: Dashboard on Studio home");
       }
     }
-    if (r.name === "dashboard-redirect" && !/\/apps\/dashboard\//.test(r.checks.currentPath || "")) {
-      if ((r.checks.bodyLen || 0) < 1) {
+    if (r.name === "dashboard-redirect") {
+      const path = r.checks.currentPath || "";
+      if (!/\/apps\/dashboard\//.test(path) && path !== "/") {
         failed = true;
-        console.log("FAIL: dashboard.html redirect broken");
+        console.log("FAIL: dashboard.html redirect broken (got " + path + ")");
       }
     }
     if (r.name === "dashboard") {

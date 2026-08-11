@@ -133,8 +133,11 @@
         ? NavApi.resolveRoute(item.href, depth)
         : item.href;
       var pathNow = String((global.location && global.location.pathname) || "");
+      // Front door (/) is studio-home — do not mark Dashboard current there.
+      var onDashboard =
+        activeId === "dashboard" || /\/apps\/dashboard(\/|$)/i.test(pathNow);
       var current =
-        ((item.id === "home" || item.id === "dashboard") && (activeId === "dashboard" || pathNow === "/" || /\/index\.html$/i.test(pathNow))) ||
+        ((item.id === "home" || item.id === "dashboard") && onDashboard) ||
         (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
         (item.id === "sheds" && activeId === "sheds") ||
         (item.id === "articles" && /\/articles(\/|$)/.test(pathNow)) ||

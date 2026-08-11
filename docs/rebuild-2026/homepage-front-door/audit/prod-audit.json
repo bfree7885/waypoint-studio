@@ -1,0 +1,123 @@
+{
+  "title": "Home — Waypoint Studio",
+  "product": "studio-home",
+  "h1": [
+    "Home"
+  ],
+  "sections": [
+    "wdb-r-today:Today OutsideUnionville, NY (approximate) · Mon, Aug 10, 10:13 PM · WaitingSumma",
+    "wdb-r-workspace:WorkspaceOutdoor instruments for this place — facts first, each settling on its ",
+    "wdb-r-workspace__header:WorkspaceOutdoor instruments for this place — facts first, each settling on its ",
+    "wdb-r-workspace__title:Workspace",
+    "wdb-r-workspace__lede:Outdoor instruments for this place — facts first, each settling on its own.",
+    "wdb-r-workspace__grid wdb-r-workspace__grid--animate:EnvironmentalConditionsEnvironmentalWaiting for weather data.WaitingAirEnvironme",
+    "wdb-r-family:EnvironmentalConditionsEnvironmentalWaiting for weather data.WaitingAirEnvironme",
+    "wdb-r-family:AstronomyAstronomyAstronomySky context will appear here.Waiting",
+    "wdb-r-family:PhotographyLightPhotographySunrise and light windows will appear here.Waiting",
+    "wdb-r-deepen__section:Field NotesA few curated articles — local, seasonal, and conditions-related. Ful",
+    "wdb-r-deepen__section:Waypoint’s TakeEditorial interpretation — not a score, not a to-do list.Begin wi",
+    "wdb-r-deepen__section:Featured PhotographyFrames from the field — captioned and credited.Bog Bridge Th"
+  ],
+  "links": [
+    {
+      "t": "Skip to content",
+      "h": "#main"
+    },
+    {
+      "t": "Waypoint Studio",
+      "h": "./"
+    },
+    {
+      "t": "Dashboard",
+      "h": "/"
+    },
+    {
+      "t": "Scenes",
+      "h": "/apps/scenes/"
+    },
+    {
+      "t": "Sheds",
+      "h": "/apps/shed-hunting/map/"
+    },
+    {
+      "t": "Articles",
+      "h": "/articles/"
+    },
+    {
+      "t": "Side Trails",
+      "h": "/side-trails/"
+    },
+    {
+      "t": "Support",
+      "h": "/support.html"
+    },
+    {
+      "t": "About",
+      "h": "/about.html"
+    },
+    {
+      "t": "Workspace",
+      "h": "#/"
+    },
+    {
+      "t": "Customize",
+      "h": "#/customize"
+    },
+    {
+      "t": "Customize",
+      "h": "#/customize"
+    },
+    {
+      "t": "Hiking or camping? Get your Mountain For",
+      "h": "https://www.weather.gov/aly/mountain"
+    },
+    {
+      "t": "Expanding Parks and Rec in the Delaware ",
+      "h": "https://www.fws.gov/story/expanding-parks-and-rec-delaware-river-watershed"
+    },
+    {
+      "t": "Registration opens for Backcountry 3P in",
+      "h": "https://www.adirondackexplorer.org/recreation/registration-opens-for-backcountry-3p-in-saranac-lake/"
+    },
+    {
+      "t": "All Articles →",
+      "h": "articles/"
+    },
+    {
+      "t": "Open Scenes →",
+      "h": "apps/scenes/"
+    },
+    {
+      "t": "Open Sheds →",
+      "h": "apps/shed-hunting/map/"
+    },
+    {
+      "t": "BetaCivic TrailsEvidence-first civic tra",
+      "h": "https://github.com/bfree7885/civic-trails"
+    },
+    {
+      "t": "ExperimentalSignalTerrainAdaptive cyber ",
+      "h": "apps/signalterrain/"
+    },
+    {
+      "t": "ExperimentalGlobal SignalsHow world even",
+      "h": "side-trails/global-signals/"
+    },
+    {
+      "t": "View all Side Trails →",
+      "h": "side-trails/"
+    },
+    {
+      "t": "Contact",
+      "h": "./apps/dashboard/contact.html"
+    },
+    {
+      "t": "Privacy Policy",
+      "h": "privacy.html"
+    },
+    {
+      "t": "Terms of Service",
+      "h": "terms.html"
+    }
+  ]
+}
