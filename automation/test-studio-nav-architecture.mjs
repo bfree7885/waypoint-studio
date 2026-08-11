@@ -166,8 +166,12 @@ assert("platform catalog ForageCast not core", /id:\s*"foragecast"[\s\S]*?tier:\
 assert("platform catalog SignalTerrain under side-trails", /id:\s*"signalterrain"[\s\S]*?tier:\s*"side-trails"/.test(catalog));
 
 const studioHome = read("js/studio-home.js");
-assert("studio-home fallback lists Side Trails", /side-trails\//.test(studioHome));
-assert("studio-home fallback omits Volunteer peer", !/waypoint-volunteer/.test(studioHome.split("renderFallback")[1].slice(0, 600)));
+assert("studio-home lists Side Trails", /side-trails\//.test(studioHome));
+assert("studio-home omits Volunteer as home peer", !/waypoint-volunteer/.test(studioHome));
+assert("studio-home is front door (no dashboard boot)", !/home-boot\.js|wds-dashboard-rebuild/.test(studioHome));
+assert("studio-home mounts Useful now panel", /data-was-home-now|was-home-now/.test(studioHome));
+assert("index is front door HTML", /was-home-hero/.test(read("index.html")) && !/home-boot\.js/.test(read("index.html")));
+
 
 const shell = read("design-system/js/platform/wds-app-shell.js");
 assert("shell marks Side Trails active", /side-trails/.test(shell));

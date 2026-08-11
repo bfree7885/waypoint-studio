@@ -1220,3 +1220,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - SignalTerrain/Global Signals may keep distinctive chrome; shared surfaces should still resolve through tokens so ST agents can adopt without fighting the shell.
 - Replace hardcoded lime/navy hex fallbacks and Inter on major routes when migrating visual identity.
 
+## Lessons Learned — Homepage front door (2026-08-10)
+
+- `/` must be a studio front door; outdoor Dashboard belongs at `/apps/dashboard/` — do not boot `home-boot.js` on the root.
+- When splitting Home from Dashboard, update `studioPrimaryNav` Dashboard href and shell `aria-current` so `/` does not mark Dashboard active.
+- Mobile primary nav on the front door must not stack into a directory — prefer horizontal scroll over wrapping all architecture links.
+- Smoke “studio app cards” can use a hidden gate mount; visible IA should stay editorial pathways, not identical SaaS cards.
