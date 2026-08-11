@@ -1253,3 +1253,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Eliminating neon entirely made cards blend into aubergine — restore **crisp edge + soft outer diffusion** via `--wdb-r-glow` semantic domain colors (not RGB gaming hexes).
 - Atmospheric SVG scenes behind data (with overlay) beat tiny line icons for outdoor instrument feel; keep art data-honest (alerts calm when clear; moon phase real).
 - Mobile Customize must **omit** column controls entirely (not disabled 2/3) — phones are always one column; force `columns=1` in workspace + CSS.
+
+## Lessons Learned — Dashboard cinematic atmospheric art (2026-08-11)
+
+- Oval/ellipse cloud stacks read as placeholder UI; path-based cumulus + layered ridges/pines reads as field-guide landscape.
+- Keep a reusable layer library (sky, ridges, terrain, pines, weather overlays) so Conditions/Air/Light/Astronomy stay coherent without photo payloads.
+- Moon phases need mask-based terminator geometry — not a single offset circle for every phase.
