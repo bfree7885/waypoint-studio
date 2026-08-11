@@ -217,7 +217,7 @@
     if (presetId === "minimal") {
       prefs.enabled = all
         .filter(function (w) {
-          return w.id === "ph-conditions" || w.id === "ph-light";
+          return w.id === "ph-conditions" || w.id === "ph-next-hours" || w.id === "ph-light";
         })
         .map(function (w) {
           return w.id;

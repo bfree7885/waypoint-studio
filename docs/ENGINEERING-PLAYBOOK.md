@@ -1233,3 +1233,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dashboard deepeners that promoted Scenes/Sheds/Articles/Side Trails violated the rule after Homepage became the portfolio door — strip them; keep only Dashboard-native briefing (Take).
 - When `/` stops being Dashboard, update stale RC1 asserts (`detectApp /`, `dashboard.html` redirect, product-name Home) or they silently fight the architecture.
 - Corrupt `$HOME` (e.g. HTML dumped into env) makes every `git` path resolve to ENAMETOOLONG — fix `HOME=/home/bryan` before blaming the repo.
+
+## Lessons Learned — Dashboard depth attack (2026-08-11)
+
+- A tile marked `live: false` never calls `buildWidgetPayload` — Alerts sat empty while OIP already fetched NWS. Wire `live: true` + adapter, or the catalog lies.
+- Do not set `estimated = (dl.status === "live")` for daylight — that inverted honesty labels.
+- Depth without forecast tiles cannot answer “what happens soon”; hourly precip/UV adapters from existing `weatherRef` beat inventing new providers.
+- Derived tiles (Before you go / How it feels) must use trust `derived` and never coach (“you should”).
+- Customize library filters need group headers when the catalog grows past a handful — otherwise Add Tile becomes a flat scroll.
