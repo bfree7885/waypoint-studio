@@ -57,6 +57,9 @@ jobs:
         run: |
           node automation/test-signalterrain-cyber-live.mjs
           node automation/test-signalterrain-real-data-pipeline.mjs
+          node automation/test-signalterrain-production-reality.mjs
+          node automation/test-signalterrain-click-depth.mjs
+          node automation/test-signalterrain-adaptive-defense.mjs
 
       - name: Guard empty / sample-free dataset
         id: guard
