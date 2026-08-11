@@ -595,7 +595,7 @@
     /* Mask: white disc minus dark offset disc for crescent/gibbous/quarter */
     var offset;
     if (lit <= 0.5) {
-      offset = g.waxing ? r * (1.15 - lit * 1.1) : -r * (1.15 - lit * 1.1);
+      offset = g.waxing ? -r * (1.15 - lit * 1.1) : r * (1.15 - lit * 1.1);
     } else {
       offset = g.waxing ? -r * (lit - 0.15) : r * (lit - 0.15);
     }
