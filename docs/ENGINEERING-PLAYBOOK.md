@@ -1187,3 +1187,18 @@ dynamic_visual + commercial visual + production inspection evidence.
    root `ws`. Sheds-scoped axe on production `b20cf0f` returned 0 serious/critical.
 4. **Do not** restore SUBSCRIBER READY from attestations alone — required visual
    evidence packages must green on the live build SHA.
+
+### 2026-08-10 — SignalTerrain real-data pipeline (first production dashboard)
+
+**Surface:** SignalTerrain Side Trails dashboard + cyber live engine  
+**Goal:** Replace mockup-primary CTA with real read-only KEV / NVD / CISA advisory intelligence.
+
+1. **Pipeline.** `signalterrain-cyber-live-engine` v1.4 writes `live.json`, `health.json`, and
+   curated `dashboard.json`. Scheduled refresh via `.github/workflows/signalterrain-cyber-refresh.yml`
+   (every 6h). KEV→NVD enrichment is rate-limited and optional-key-friendly.
+2. **Honesty.** Panels use REAL / CACHED REAL / SOURCE UNAVAILABLE / NO CURRENT DATA. No fabricated
+   threat level or world attack map. Failure retains last-known-good rather than wiping.
+3. **Product entry.** Landing CTA is **OPEN SIGNALTERRAIN** → `side-trails/signalterrain/dashboard/`.
+   Schematic threat/world maps removed from the landing primary story.
+4. **Tests.** `automation/test-signalterrain-real-data-pipeline.mjs` rejects sample markers in the
+   production ST data path and asserts KEV/NVD/advisory contracts.

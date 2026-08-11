@@ -166,7 +166,9 @@ function collectCssImports(cssFile, seen = new Set()) {
   "design-system/css/wds-steepleaf.css",
   "design-system/css/wds-volunteer.css",
   "design-system/css/wds-signalterrain-foundation.css",
-  "design-system/css/wds-signalterrain-cyber-live.css"
+  "design-system/css/wds-signalterrain-cyber-live.css",
+  "design-system/css/wds-signalterrain-dashboard.css",
+  "design-system/css/wds-signalterrain-landing.css"
 ].forEach((rel) => {
   const abs = path.join(ROOT, rel);
   if (!fs.existsSync(abs)) {
