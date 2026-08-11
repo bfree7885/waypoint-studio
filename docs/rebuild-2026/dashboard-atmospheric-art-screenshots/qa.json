@@ -1,0 +1,101 @@
+[
+  {
+    "w": 390,
+    "name": "mobile",
+    "info": {
+      "art": 6,
+      "kinds": [
+        "wdb-r-widget__art--partly",
+        "wdb-r-widget__art--hours",
+        "wdb-r-widget__art--alert",
+        "wdb-r-widget__art--aqi-moderate",
+        "wdb-r-widget__art--golden",
+        "wdb-r-widget__art--moon"
+      ],
+      "paths": [
+        9,
+        9,
+        9,
+        7,
+        7,
+        7
+      ],
+      "ellipses": [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      "hero": true,
+      "cols": "1"
+    }
+  },
+  {
+    "w": 768,
+    "name": "tablet",
+    "info": {
+      "art": 6,
+      "kinds": [
+        "wdb-r-widget__art--partly",
+        "wdb-r-widget__art--aqi-moderate",
+        "wdb-r-widget__art--alert",
+        "wdb-r-widget__art--golden",
+        "wdb-r-widget__art--moon",
+        "wdb-r-widget__art--hours"
+      ],
+      "paths": [
+        9,
+        7,
+        9,
+        7,
+        7,
+        9
+      ],
+      "ellipses": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "hero": true,
+      "cols": "3"
+    }
+  },
+  {
+    "w": 1440,
+    "name": "desktop",
+    "info": {
+      "art": 6,
+      "kinds": [
+        "wdb-r-widget__art--partly",
+        "wdb-r-widget__art--aqi-moderate",
+        "wdb-r-widget__art--alert",
+        "wdb-r-widget__art--golden",
+        "wdb-r-widget__art--moon",
+        "wdb-r-widget__art--hours"
+      ],
+      "paths": [
+        9,
+        7,
+        9,
+        7,
+        7,
+        9
+      ],
+      "ellipses": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "hero": true,
+      "cols": "3"
+    }
+  }
+]

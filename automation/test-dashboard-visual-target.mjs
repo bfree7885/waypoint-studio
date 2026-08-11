@@ -110,7 +110,7 @@ const Customize = desk.WDS.dashboardRebuildCustomize;
 const Workspace = desk.WDS.dashboardRebuildWorkspace;
 const Prefs = desk.WDS.dashboardRebuildPrefs;
 
-if (Gfx && String(Gfx.version).includes("atmospheric")) pass("graphics atmospheric module");
+if (Gfx && /atmospheric|cinematic/.test(String(Gfx.version || ""))) pass("graphics atmospheric module");
 else fail("graphics not atmospheric");
 
 const skies = [

@@ -93,7 +93,7 @@ sandbox.WDS = {};
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
 const Reg = sandbox.WDS.dashboardRebuildRegistry;
 
-if (Gfx && /atmospheric|field-guide/.test(String(Gfx.version || ""))) pass("graphics module atmospheric");
+if (Gfx && /atmospheric|cinematic|field-guide/.test(String(Gfx.version || ""))) pass("graphics module atmospheric");
 else fail("graphics version missing atmospheric");
 
 const skyNeed = [

@@ -29,6 +29,21 @@ State (`data-illum`) retunes `--wdb-r-glow` without rainbow category outlines.
 
 ## Atmospheric art
 
+## Cinematic scene library (v4)
+
+Reusable SVG layers in `wds-dashboard-rebuild-graphics.js`:
+
+- `skyGradient` / `radialWash` — background atmosphere
+- `ridgesFar` / `ridgesMid` / `terrainNear` — multi-layer terrain depth
+- `pineRow` — foreground silhouettes
+- `cloudMass` / `cloudBank` — path-based cumulus (not oval placeholders)
+- `rainStreaks` / `snowFlakes` / `fogBands` / `lightningBolt`
+- `moonDisc` — 8-phase mask geometry
+- `hazeVeil` — AQI-responsive valley haze
+
+Scenes compose background → midground → weather → foreground.
+
+
 Module: `wds-dashboard-rebuild-graphics.js` (v3 atmospheric).
 
 Markup: `.wdb-r-widget__art` → full scene SVG (`viewBox="0 0 160 100"`) with gradient sky + ground.
