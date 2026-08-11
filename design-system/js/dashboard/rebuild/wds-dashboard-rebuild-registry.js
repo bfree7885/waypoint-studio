@@ -483,6 +483,19 @@
     }
   }
 
+  function resolveIllum(data) {
+    var G = global.WDS && global.WDS.dashboardRebuildGraphics;
+    if (data && data.graphic && data.graphic.illum) return String(data.graphic.illum);
+    if (G && G.illumFromGraphic && data && data.graphic) {
+      try {
+        return G.illumFromGraphic(data.graphic) || "quiet";
+      } catch (e) {
+        return "quiet";
+      }
+    }
+    return "quiet";
+  }
+
   function renderBody(widget, data) {
     widget = widget || {};
     data = data || getData(widget.id);
@@ -498,12 +511,12 @@
               ? "waiting"
               : "ready";
     var graphic = state === "ready" ? renderGraphic(data) : "";
-    var inner = "";
+    var illum = state === "ready" ? resolveIllum(data) : "quiet";
+    var content = "";
     if (data.facts && data.facts.length) {
-      inner = graphic + renderFacts(data.facts);
+      content = renderFacts(data.facts);
     } else {
-      inner =
-        graphic +
+      content =
         '<div class="wdb-r-widget__state wdb-r-widget__state--' +
         escapeHtml(state) +
         '">' +
@@ -512,15 +525,23 @@
         "</p>" +
         "</div>";
     }
+    var atmosphere = graphic
+      ? '<div class="wdb-r-widget__atmosphere">' + graphic + "</div>"
+      : "";
     return (
       '<div class="wdb-r-widget__body wdb-r-widget__body--' +
       escapeHtml(state) +
       '" data-trust="' +
       escapeHtml(trust) +
+      '" data-illum="' +
+      escapeHtml(illum) +
       '"' +
       (data.status ? ' data-status="' + escapeHtml(data.status) + '"' : "") +
       ">" +
-      inner +
+      atmosphere +
+      '<div class="wdb-r-widget__content">' +
+      content +
+      "</div>" +
       '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="' +
       escapeHtml(trust) +
       '">' +
@@ -546,7 +567,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "4.0.0-depth",
+    version: "4.1.0-visual",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
     libraryGroupOrder: libraryGroupOrder,

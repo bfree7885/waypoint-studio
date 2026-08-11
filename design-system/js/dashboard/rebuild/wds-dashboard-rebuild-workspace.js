@@ -110,6 +110,21 @@
       reg && reg.familyFor
         ? reg.familyFor(widget)
         : { id: widget.category || "", label: widget.category || "" };
+    var Gfx = global.WDS && global.WDS.dashboardRebuildGraphics;
+    var illum = "quiet";
+    var alertActive = false;
+    if (data && data.graphic) {
+      if (data.graphic.illum) illum = String(data.graphic.illum);
+      else if (Gfx && Gfx.illumFromGraphic) {
+        try {
+          illum = Gfx.illumFromGraphic(data.graphic) || "quiet";
+        } catch (e) {
+          illum = "quiet";
+        }
+      }
+      if (data.graphic.kind === "alert" && data.graphic.active) alertActive = true;
+      if (data.alerts && data.alerts.count > 0) alertActive = true;
+    }
     var icon =
       reg && reg.iconHtml
         ? '<span class="wdb-r-widget__icon" aria-hidden="true">' + reg.iconHtml(widget) + "</span>"
@@ -166,7 +181,10 @@
       escapeHtml(family.id || "") +
       '" data-size="' +
       escapeHtml(size) +
+      '" data-illum="' +
+      escapeHtml(illum) +
       '"' +
+      (alertActive ? ' data-alert-active="true"' : "") +
       (fav ? ' data-favorite="true"' : "") +
       (lazy ? ' data-lazy="pending"' : ' data-lazy="ready"') +
       ">" +
