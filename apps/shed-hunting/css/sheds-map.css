@@ -1,16 +1,16 @@
 /* Sheds Experience Redesign V1 — map is the product; chrome disappears */
 
 :root {
-  --sheds-bg: #07120e;
+  --sheds-bg: var(--wp-aubergine-950, #17131c);
   --sheds-surface: rgba(8, 22, 16, 0.92);
   --sheds-surface-solid: #0c1c15;
   --sheds-text: #f5f8f4;
   --sheds-muted: rgba(245, 248, 244, 0.78);
-  --sheds-accent: #d8ec5c;
-  --sheds-accent-deep: #9bb82e;
+  --sheds-accent: var(--wp-clay-bright, #c47a72);
+  --sheds-accent-deep: var(--wp-clay, #a85d52);
   --sheds-border: rgba(210, 230, 200, 0.22);
   --sheds-danger: #f0b8b0;
-  --sheds-info: #8ec0ff;
+  --sheds-info: var(--wp-slate, #7a8a9a);
   --sheds-safe-bottom: env(safe-area-inset-bottom, 0px);
   --sheds-safe-top: env(safe-area-inset-top, 0px);
   --sheds-safe-right: env(safe-area-inset-right, 0px);

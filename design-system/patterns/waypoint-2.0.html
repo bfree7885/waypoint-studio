@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-product="studio-home">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Waypoint Studio Design System 2.0 — Reference</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wds.css">
+  <link rel="stylesheet" href="../css/wds-app-shell.css">
+  <style>
+    .wp2-page { max-width: var(--wp-max-content); margin: 0 auto; padding: var(--wp-space-8) clamp(1.25rem, 4vw, 2rem) var(--wp-space-16); }
+    .wp2-hero { margin-bottom: var(--wp-space-10); }
+    .wp2-hero h1 { font-family: var(--wp-font-display); font-weight: 400; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; margin: 0.35rem 0; }
+    .wp2-hero p { max-width: 42rem; color: var(--wp-text-secondary); line-height: 1.6; }
+    .wp2-eyebrow { font-size: var(--wp-text-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--wp-accent); margin: 0; font-weight: 600; }
+    .wp2-section { margin-top: var(--wp-space-10); padding-top: var(--wp-space-8); border-top: 1px solid var(--wp-border-subtle); }
+    .wp2-section h2 { font-family: var(--wp-font-display); font-weight: 400; font-size: var(--wp-text-2xl); margin: 0 0 var(--wp-space-3); }
+    .wp2-section > p { color: var(--wp-text-secondary); max-width: 48rem; margin-top: 0; }
+    .wp2-swatches { display: grid; gap: var(--wp-space-3); grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); margin-top: var(--wp-space-5); }
+    .wp2-swatch { border: 1px solid var(--wp-border-subtle); border-radius: var(--wp-radius-md); overflow: hidden; background: var(--wp-surface); }
+    .wp2-swatch__chip { height: 4.25rem; }
+    .wp2-swatch__meta { padding: var(--wp-space-2) var(--wp-space-3) var(--wp-space-3); font-size: var(--wp-text-xs); }
+    .wp2-swatch__meta strong { display: block; font-weight: 600; margin-bottom: 0.15rem; }
+    .wp2-swatch__meta code { color: var(--wp-text-muted); font-family: var(--wp-font-mono); font-size: 0.65rem; }
+    .wp2-products { display: grid; gap: var(--wp-space-3); grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-top: var(--wp-space-5); }
+    .wp2-product { padding: var(--wp-space-4); border: 1px solid var(--wp-border); border-radius: var(--wp-radius-lg); background: var(--wp-elevated); border-top: 3px solid var(--wp-accent); }
+    .wp2-product h3 { margin: 0 0 0.35rem; font-size: var(--wp-text-md); font-weight: 600; }
+    .wp2-product p { margin: 0; font-size: var(--wp-text-sm); color: var(--wp-text-secondary); }
+    .wp2-product code { font-size: 0.7rem; color: var(--wp-text-muted); font-family: var(--wp-font-mono); }
+    .wp2-row { display: flex; flex-wrap: wrap; gap: var(--wp-space-3); align-items: center; margin-top: var(--wp-space-4); }
+    .wp2-status { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.7rem; border-radius: var(--wp-radius-sm); font-size: var(--wp-text-sm); border: 1px solid var(--wp-border); background: var(--wp-surface); }
+    .wp2-status__dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; }
+    .wp2-status--ok .wp2-status__dot { background: var(--wp-success); }
+    .wp2-status--warn .wp2-status__dot { background: var(--wp-warning); }
+    .wp2-status--danger .wp2-status__dot { background: var(--wp-danger); }
+    .wp2-topo {
+      margin-top: var(--wp-space-5);
+      min-height: 8rem;
+      border-radius: var(--wp-radius-lg);
+      border: 1px solid var(--wp-border);
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 11px, rgba(193, 122, 90, 0.07) 11px, rgba(193, 122, 90, 0.07) 12px),
+        repeating-linear-gradient(90deg, transparent, transparent 11px, rgba(125, 143, 114, 0.05) 11px, rgba(125, 143, 114, 0.05) 12px),
+        linear-gradient(160deg, var(--wp-elevated), var(--wp-surface));
+      display: grid;
+      place-items: center;
+      color: var(--wp-text-muted);
+      font-size: var(--wp-text-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .wp2-table { width: 100%; border-collapse: collapse; font-size: var(--wp-text-sm); margin-top: var(--wp-space-4); }
+    .wp2-table th, .wp2-table td { text-align: left; padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--wp-border-subtle); vertical-align: top; }
+    .wp2-table th { color: var(--wp-text-muted); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; font-size: var(--wp-text-xs); }
+    .wp2-picker { display: flex; flex-wrap: wrap; gap: var(--wp-space-2); margin: var(--wp-space-4) 0; }
+    .wp2-picker button {
+      appearance: none; border: 1px solid var(--wp-border); background: var(--wp-surface); color: var(--wp-text-secondary);
+      border-radius: var(--wp-radius-pill); padding: 0.4rem 0.85rem; min-height: 44px; font: inherit; cursor: pointer;
+    }
+    .wp2-picker button[aria-pressed="true"] { color: var(--wp-on-accent); background: var(--wp-accent); border-color: transparent; }
+    .wp2-picker button:focus-visible { outline: none; box-shadow: var(--wp-focus-ring); }
+  </style>
+</head>
+<body>
+  <a class="wds-skip" href="#main">Skip to reference</a>
+  <div class="wds-app was-shell">
+    <header class="was-global" role="banner">
+      <div class="was-global__inner">
+        <a class="was-brand" href="../../index.html">
+          <span class="was-brand__mark" aria-hidden="true"></span>
+          <span class="was-brand__name">Waypoint Studio</span>
+        </a>
+        <nav class="was-primary-nav" aria-label="Primary">
+          <a class="was-primary-nav__link" href="../../index.html">Home</a>
+          <a class="was-primary-nav__link" href="../../apps/dashboard/">Dashboard</a>
+          <a class="was-primary-nav__link" href="../../apps/scenes/">Scenes</a>
+          <a class="was-primary-nav__link" href="../../apps/shed-hunting/">Sheds</a>
+          <a class="was-primary-nav__link" href="../../articles/">Articles</a>
+          <a class="was-primary-nav__link" href="../../side-trails/">Side Trails</a>
+          <a class="was-primary-nav__link" href="./waypoint-2.0.html" aria-current="page">DS 2.0</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="wp2-page">
+      <header class="wp2-hero">
+        <p class="wp2-eyebrow">Design System 2.0</p>
+        <h1>Contemporary Field Station</h1>
+        <p>
+          Topographic Atlas · High-Desert / Southwestern Landscape.
+          Natural, warm, restrained, scientific, editorial — one coherent product family
+          with distinct application accents from a shared muted palette.
+        </p>
+      </header>
+
+      <section class="wp2-section" aria-labelledby="palette">
+        <h2 id="palette">Canonical palette</h2>
+        <p>Muted sand/bone, terracotta, dusty plum, muted purple, clay red, sage, charcoal/aubergine. Not neon. Not tourist-Southwest.</p>
+        <div class="wp2-swatches" id="swatches"></div>
+        <div class="wp2-topo" aria-hidden="true">Contour · restraint · latitude</div>
+      </section>
+
+      <section class="wp2-section" aria-labelledby="semantic">
+        <h2 id="semantic">Semantic tokens</h2>
+        <p>Prefer <code>--wp-*</code>. Compatibility: <code>--wds-*</code> and <code>--ws-*</code> map onto the same values.</p>
+        <table class="wp2-table">
+          <thead><tr><th>Token</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td><code>--wp-bg / --wp-surface / --wp-elevated</code></td><td>Page, panels, raised chrome</td></tr>
+            <tr><td><code>--wp-text / --wp-text-secondary / --wp-text-muted</code></td><td>Copy hierarchy (WCAG AA on aubergine)</td></tr>
+            <tr><td><code>--wp-accent / --wp-accent-dim / --wp-warm</code></td><td>Product accent + secondary emphasis</td></tr>
+            <tr><td><code>--wp-focus / --wp-focus-ring</code></td><td>Keyboard focus (dust-gold, never color-only status)</td></tr>
+            <tr><td><code>--wp-success / --wp-warning / --wp-danger / --wp-info</code></td><td>Status — always pair with label or icon</td></tr>
+            <tr><td><code>--wp-space-* / --wp-radius-* / --wp-shadow-*</code></td><td>Spacing, radius, elevation</td></tr>
+            <tr><td><code>--wp-header-h / --wp-max-content / --wp-transition-calm</code></td><td>Layout + motion</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="wp2-section" aria-labelledby="products">
+        <h2 id="products">Product identities</h2>
+        <p>Set <code>data-product</code> on <code>&lt;html&gt;</code>. Accents stay distinct; shell stays shared.</p>
+        <div class="wp2-picker" id="picker" role="group" aria-label="Preview product accent"></div>
+        <div class="wp2-products" id="products"></div>
+      </section>
+
+      <section class="wp2-section" aria-labelledby="components">
+        <h2 id="components">Shared components</h2>
+        <div class="wp2-row">
+          <a class="wds-btn wds-btn--primary" href="#">Primary</a>
+          <button type="button" class="wds-btn wds-btn--secondary">Secondary</button>
+          <button type="button" class="wds-btn wds-btn--ghost">Ghost</button>
+        </div>
+        <div class="wp2-row" style="margin-top:1.25rem">
+          <span class="wp2-status wp2-status--ok"><span class="wp2-status__dot" aria-hidden="true"></span> Live · labeled</span>
+          <span class="wp2-status wp2-status--warn"><span class="wp2-status__dot" aria-hidden="true"></span> Estimate · labeled</span>
+          <span class="wp2-status wp2-status--danger"><span class="wp2-status__dot" aria-hidden="true"></span> Error · labeled</span>
+        </div>
+        <blockquote class="wds-take" style="margin-top:1.5rem">
+          <p class="wds-take__title">Waypoint’s Take</p>
+          <p class="wds-take__body">Observation first. Chrome stays quiet. Accents name the trail, not the whole landscape.</p>
+          <p class="wds-take__meta">Design system · editorial · not marketing</p>
+        </blockquote>
+      </section>
+
+      <section class="wp2-section" aria-labelledby="agents">
+        <h2 id="agents">For future agents</h2>
+        <ul>
+          <li>Import <code>design-system/css/wds.css</code> (pulls tokens). Canonical docs: <code>docs/DESIGN-SYSTEM-2.0.md</code>.</li>
+          <li>Use <code>--wp-*</code> for new work; do not reintroduce lime/navy hex or Inter.</li>
+          <li>SignalTerrain / Global Signals may keep product chrome, but surfaces should resolve through tokens.</li>
+          <li>Never invent parallel design stacks. Extend product accents via <code>[data-product]</code>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="was-footer">
+      <div class="was-footer__links">
+        <a href="../../about.html">About</a>
+        <a href="../../support.html">Support</a>
+        <a href="./reference.html">Legacy WDS gallery</a>
+        <a href="../../docs/DESIGN-SYSTEM-2.0.md">Docs</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const palette = [
+      ["Aubergine 950", "--wp-aubergine-950", "#17131c"],
+      ["Aubergine 900", "--wp-aubergine-900", "#1f1a26"],
+      ["Bone", "--wp-bone", "#f2ebe0"],
+      ["Sand 200", "--wp-sand-200", "#e0d3c0"],
+      ["Terracotta", "--wp-terracotta", "#c17a5a"],
+      ["Clay", "--wp-clay", "#a85d52"],
+      ["Dusty plum", "--wp-plum", "#8b6f82"],
+      ["Muted purple", "--wp-purple", "#7a6b8a"],
+      ["Sage", "--wp-sage", "#7d8f72"],
+      ["Slate", "--wp-slate", "#7a8a9a"],
+      ["Dust gold", "--wp-dust-gold", "#c4a46a"]
+    ];
+    document.getElementById("swatches").innerHTML = palette.map(([name, token, hex]) => `
+      <div class="wp2-swatch">
+        <div class="wp2-swatch__chip" style="background:${hex}"></div>
+        <div class="wp2-swatch__meta"><strong>${name}</strong><code>${token}</code><br><code>${hex}</code></div>
+      </div>`).join("");
+
+    const products = [
+      ["studio-home", "Home", "Terracotta — trailhead warmth"],
+      ["dashboard", "Dashboard", "Muted purple — instruments"],
+      ["scenes", "Scenes", "Sage — stillness / light"],
+      ["shed-hunting", "Sheds", "Clay red — autumn field"],
+      ["articles", "Articles", "Dusty plum — editorial"],
+      ["side-trails", "Side Trails", "Muted purple — laboratory"],
+      ["signalterrain", "SignalTerrain", "Slate + clay — geographic intel"],
+      ["global-signals", "Global Signals", "Terracotta bright — signal pulse"],
+      ["civic-trails", "Civic Trails", "Sage — civic landscape"]
+    ];
+    const productsEl = document.getElementById("products");
+    const picker = document.getElementById("picker");
+    products.forEach(([id, name, note], i) => {
+      const card = document.createElement("article");
+      card.className = "wp2-product";
+      card.setAttribute("data-product", id);
+      card.innerHTML = `<h3>${name}</h3><p>${note}</p><code>data-product="${id}"</code>`;
+      productsEl.appendChild(card);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = name;
+      btn.setAttribute("aria-pressed", i === 0 ? "true" : "false");
+      btn.addEventListener("click", () => {
+        document.documentElement.setAttribute("data-product", id);
+        picker.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+        btn.setAttribute("aria-pressed", "true");
+      });
+      picker.appendChild(btn);
+    });
+  </script>
+</body>
+</html>

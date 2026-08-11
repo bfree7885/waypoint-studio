@@ -42,7 +42,7 @@
 }
 
 .wds-btn--primary:hover:not(:disabled) {
-  background: var(--wds-lime-bright);
+  background: var(--wp-accent-bright, var(--wds-lime-bright));
   opacity: 1;
 }
 

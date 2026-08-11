@@ -11,9 +11,9 @@
   --wdb-r-line: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
   --wdb-r-line-strong: var(--wds-border, rgba(155, 143, 217, 0.14));
   --wdb-r-panel: var(--wds-elevated, #112038);
-  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #0c1628) 88%, #fff 4%);
-  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #112038) 92%, var(--wds-accent, #6ea8c9) 8%);
-  --wdb-r-accent: var(--wds-accent, #6ea8c9);
+  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #1f1a26) 88%, #fff 4%);
+  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #112038) 92%, var(--wds-accent, #c17a5a) 8%);
+  --wdb-r-accent: var(--wds-accent, #c17a5a);
   --wdb-r-radius: var(--wds-radius-lg, 14px);
   --wdb-r-radius-md: var(--wds-radius-md, 10px);
   --wdb-r-radius-sm: var(--wds-radius-sm, 6px);
@@ -949,8 +949,8 @@
 }
 
 .wdb-r-badge--available {
-  border-color: color-mix(in srgb, var(--wds-accent, #c8f055) 40%, transparent);
-  color: var(--wds-accent, #c8f055);
+  border-color: color-mix(in srgb, var(--wds-accent, #c17a5a) 40%, transparent);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .wdb-r-badge--coming-soon {
@@ -1016,8 +1016,8 @@
 }
 
 .wdb-r .wds-trust-chip[data-trust="live"] {
-  border-color: color-mix(in srgb, var(--wds-accent, #c8f055) 45%, transparent);
-  color: var(--wds-accent, #c8f055);
+  border-color: color-mix(in srgb, var(--wds-accent, #c17a5a) 45%, transparent);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .wdb-r .wds-trust-chip[data-trust="estimated"],

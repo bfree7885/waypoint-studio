@@ -1,69 +1,27 @@
 /**
- * Aurora bridge — RC3 visual identity adapted into WDS (not a parallel system).
- * Maps official outdoor palette onto existing --wds-* tokens / product accents.
+ * Aurora bridge — Design System 2.0 product chrome helpers.
+ * Product accents live in wds-tokens.css (--wp-* / [data-product]).
+ * This file keeps shared shell patterns (primary nav, Waypoint's Take).
  */
 
+/* Soft alias: older aurora-* names → WP 2.0 (for residual references) */
 :root {
-  /* Foundation */
-  --aurora-charcoal: #0c1018;
-  --aurora-slate: #1a2332;
-  --aurora-off-white: #eef2f6;
-
-  /* Scenes */
-  --aurora-violet: #9b7ed4;
-  --aurora-midnight: #0b1a3a;
-  --aurora-lime: #c6ff4d;
-  --aurora-magenta: #d46ba8;
-
-  /* Dashboard day arc */
-  --aurora-morning-blue: #6ea8c9;
-  --aurora-golden-hour: #e8b86d;
-  --aurora-twilight: #7a6aad;
-
-  /* Sheds autumn */
-  --aurora-aspen-gold: #d4c46a;
-  --aurora-evergreen: #2f5c47;
-  --aurora-burnt-orange: #c46a3a;
+  --aurora-charcoal: var(--wp-aubergine-950);
+  --aurora-slate: var(--wp-aubergine-800);
+  --aurora-off-white: var(--wp-bone);
+  --aurora-violet: var(--wp-plum-bright);
+  --aurora-midnight: var(--wp-aubergine-900);
+  --aurora-lime: var(--wp-terracotta);
+  --aurora-magenta: var(--wp-plum);
+  --aurora-morning-blue: var(--wp-purple-bright);
+  --aurora-golden-hour: var(--wp-dust-gold);
+  --aurora-twilight: var(--wp-purple);
+  --aurora-aspen-gold: var(--wp-dust-gold);
+  --aurora-evergreen: var(--wp-sage-deep);
+  --aurora-burnt-orange: var(--wp-clay);
   --aurora-bark: #5c4638;
-
-  /* Volunteer */
-  --aurora-moss: #7a9b6a;
-  --aurora-forest: #1e4d3a;
-}
-
-/* Soft alignment: keep WDS navy; enrich parchment toward off-white */
-:root {
-  --wds-parchment: var(--aurora-off-white);
-}
-
-html[data-product="scenes"],
-html[data-product="photo-coach"],
-[data-product="scenes"] {
-  --wds-accent: var(--aurora-lime);
-  --wds-warm: var(--aurora-violet);
-  --wds-product-glow: rgba(155, 126, 212, 0.22);
-}
-
-html[data-product="dashboard"],
-[data-product="dashboard"] {
-  --wds-accent: var(--aurora-morning-blue);
-  --wds-warm: var(--aurora-golden-hour);
-}
-
-html[data-product="sheds"],
-html[data-product="shed-hunting"],
-[data-product="sheds"],
-[data-product="shed-hunting"] {
-  --wds-accent: var(--aurora-aspen-gold);
-  --wds-warm: var(--aurora-burnt-orange);
-  --wds-moss: var(--aurora-evergreen);
-}
-
-html[data-product="volunteer"],
-html[data-product="waypoint-volunteer"],
-[data-product="volunteer"] {
-  --wds-accent: var(--aurora-moss);
-  --wds-warm: var(--aurora-evergreen);
+  --aurora-moss: var(--wp-sage);
+  --aurora-forest: var(--wp-sage-deep);
 }
 
 /* Primary studio nav */
@@ -78,30 +36,38 @@ html[data-product="waypoint-volunteer"],
 }
 
 .was-primary-nav__link {
-  font-size: var(--wds-text-sm);
+  font-size: var(--wp-text-sm, var(--wds-text-sm));
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--wds-text-muted);
+  color: var(--wp-text-muted, var(--wds-text-muted));
   text-decoration: none;
   min-height: 2.5rem;
   display: inline-flex;
   align-items: center;
+  transition: color var(--wp-transition-calm, 280ms ease);
 }
 
 .was-primary-nav__link:hover,
 .was-primary-nav__link:focus-visible {
-  color: var(--wds-text);
+  color: var(--wp-text, var(--wds-text));
+}
+
+.was-primary-nav__link:focus-visible {
+  outline: none;
+  box-shadow: var(--wp-focus-ring);
+  border-radius: var(--wp-radius-sm, 6px);
 }
 
 .was-primary-nav__link[aria-current="page"] {
-  color: var(--wds-accent);
+  color: var(--wp-accent, var(--wds-accent));
+  box-shadow: inset 0 -2px 0 var(--wp-accent, var(--wds-accent));
 }
 
 .was-home__tagline {
-  font-family: var(--wds-font-display);
+  font-family: var(--wp-font-display, var(--wds-font-display));
   font-style: italic;
   font-size: clamp(1.1rem, 2.4vw, 1.4rem);
-  color: var(--wds-text);
+  color: var(--wp-text, var(--wds-text));
   margin: 0.35rem 0 0.85rem;
   max-width: 28ch;
 }
@@ -111,70 +77,70 @@ html[data-product="waypoint-volunteer"],
 }
 
 .was-home__card--primary {
-  border-color: color-mix(in srgb, var(--wds-accent) 28%, var(--wds-border));
+  border-color: color-mix(in srgb, var(--wp-accent, var(--wds-accent)) 28%, var(--wp-border, var(--wds-border)));
   min-height: 11rem;
 }
 
 .was-home__quiet-title {
-  font-size: var(--wds-text-sm);
+  font-size: var(--wp-text-sm, var(--wds-text-sm));
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--wds-text-muted);
-  font-family: var(--wds-font-body);
+  color: var(--wp-text-muted, var(--wds-text-muted));
+  font-family: var(--wp-font-body, var(--wds-font-body));
   font-weight: 500;
 }
 
 .was-home__incubator ul,
 .was-home__supporting {
-  color: var(--wds-text-secondary);
+  color: var(--wp-text-secondary, var(--wds-text-secondary));
 }
 
 /* Waypoint's Take pattern */
 .wds-take {
-  padding: var(--wds-space-5);
-  background: linear-gradient(160deg, var(--wds-elevated), var(--wds-surface));
-  border: 1px solid var(--wds-border);
-  border-left: 3px solid color-mix(in srgb, var(--wds-accent) 55%, transparent);
-  border-radius: 0 var(--wds-radius-md) var(--wds-radius-md) 0;
+  padding: var(--wp-space-5, var(--wds-space-5));
+  background: linear-gradient(160deg, var(--wp-elevated, var(--wds-elevated)), var(--wp-surface, var(--wds-surface)));
+  border: 1px solid var(--wp-border, var(--wds-border));
+  border-left: 3px solid color-mix(in srgb, var(--wp-accent, var(--wds-accent)) 55%, transparent);
+  border-radius: 0 var(--wp-radius-md, 10px) var(--wp-radius-md, 10px) 0;
   max-width: 58ch;
 }
 
 .wds-take__title {
-  margin: 0 0 var(--wds-space-3);
-  font-family: var(--wds-font-body);
-  font-size: var(--wds-text-xs);
+  margin: 0 0 var(--wp-space-3, var(--wds-space-3));
+  font-family: var(--wp-font-body, var(--wds-font-body));
+  font-size: var(--wp-text-xs, var(--wds-text-xs));
   font-weight: 600;
   font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--wds-accent);
+  color: var(--wp-accent, var(--wds-accent));
 }
 
 .wds-take__body {
-  font-family: var(--wds-font-display);
+  font-family: var(--wp-font-display, var(--wds-font-display));
   font-style: italic;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.5;
-  color: var(--wds-text);
-  margin: 0 0 var(--wds-space-3);
+  color: var(--wp-text, var(--wds-text));
+  margin: 0 0 var(--wp-space-3, var(--wds-space-3));
 }
 
 .wds-take__meta {
   margin: 0;
-  font-size: var(--wds-text-xs);
+  font-size: var(--wp-text-xs, var(--wds-text-xs));
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--wds-text-muted);
+  color: var(--wp-text-muted, var(--wds-text-muted));
 }
 
 .wds-take__sources {
-  margin: var(--wds-space-3) 0 0;
-  font-size: var(--wds-text-sm);
-  color: var(--wds-text-secondary);
+  margin: var(--wp-space-3, var(--wds-space-3)) 0 0;
+  font-size: var(--wp-text-sm, var(--wds-text-sm));
+  color: var(--wp-text-secondary, var(--wds-text-secondary));
 }
 
 .wds-take--restrained {
-  border-left-color: var(--wds-text-muted);
+  border-left-color: var(--wp-text-muted, var(--wds-text-muted));
   opacity: 0.92;
 }
 

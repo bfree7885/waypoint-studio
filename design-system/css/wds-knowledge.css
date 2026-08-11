@@ -308,7 +308,7 @@
   border: 1px solid var(--wds-border-subtle, rgba(180, 200, 180, 0.16));
   border-radius: 10px;
   padding: 0.7rem 0.75rem;
-  background: var(--wds-surface, #0c1628);
+  background: var(--wds-surface, #1f1a26);
   color: var(--wds-text, #e4eaf4);
 }
 

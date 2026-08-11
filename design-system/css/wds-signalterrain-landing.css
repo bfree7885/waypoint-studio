@@ -1,10 +1,12 @@
+@import url("wds-tokens.css");
+
 /* SignalTerrain public product landing — not the application */
 
 .st-landing {
   margin: 0;
   min-height: 100vh;
-  color: #e8eef7;
-  background: #070c14;
+  color: var(--wp-text, #f2ebe0);
+  background: var(--wp-bg, #17131c);
   font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
 }
 
@@ -16,8 +18,8 @@
   position: absolute;
   left: -999px;
   top: 0;
-  background: #121a2b;
-  color: #e8eef7;
+  background: var(--wp-elevated, #2a2432);
+  color: var(--wp-text, #f2ebe0);
   padding: 0.5rem 0.75rem;
   z-index: 20;
 }
@@ -56,14 +58,14 @@
 
 .st-top nav a {
   text-decoration: none;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
   font-size: 0.92rem;
   font-weight: 500;
 }
 
 .st-top nav a:hover,
 .st-top nav a:focus-visible {
-  color: #5eead4;
+  color: var(--wp-accent-bright, var(--wp-slate, #94a4b4));
   outline: none;
 }
 
@@ -83,7 +85,7 @@
   background:
     radial-gradient(900px 480px at 15% 20%, rgba(61, 139, 253, 0.18), transparent 55%),
     radial-gradient(700px 420px at 90% 10%, rgba(94, 234, 212, 0.12), transparent 50%),
-    linear-gradient(180deg, #0a101a 0%, #070c14 70%);
+    linear-gradient(180deg, var(--wp-aubergine-900, #1f1a26) 0%, var(--wp-bg, #17131c) 70%);
 }
 
 .st-hero__media::after {
@@ -114,7 +116,7 @@
   font-weight: 650;
   letter-spacing: -0.045em;
   line-height: 0.95;
-  color: #f4f7fc;
+  color: var(--wp-text, #f2ebe0);
 }
 
 .st-hero__mission {
@@ -122,7 +124,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #5eead4;
+  color: var(--wp-accent-bright, var(--wp-slate, #94a4b4));
   font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
 
@@ -133,13 +135,13 @@
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  color: #d7e2f2;
+  color: var(--wp-text-secondary, rgba(242,235,224,0.8));
 }
 
 .st-hero__support {
   margin: 1rem 0 0;
   max-width: 36rem;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
   line-height: 1.55;
   font-size: 1.02rem;
 }
@@ -158,22 +160,22 @@
   min-height: 44px;
   padding: 0.55rem 1rem;
   border-radius: 10px;
-  border: 1px solid #2a3b55;
+  border: 1px solid var(--wp-border, rgba(139, 111, 130, 0.18));
   text-decoration: none;
   font-weight: 600;
-  color: #d7e2f2;
+  color: var(--wp-text-secondary, rgba(242,235,224,0.8));
   background: transparent;
 }
 
 .st-cta--primary {
-  background: color-mix(in srgb, #3d8bfd 88%, #fff);
-  color: #071018;
+  background: var(--wp-accent, var(--wp-slate, #7a8a9a));
+  color: var(--wp-on-accent, #17131c);
   border-color: transparent;
 }
 
 .st-cta:hover,
 .st-cta:focus-visible {
-  border-color: #5eead4;
+  border-color: var(--wp-accent-bright, var(--wp-slate, #94a4b4));
   outline: none;
 }
 
@@ -207,7 +209,7 @@
 .st-prose {
   margin: 0;
   max-width: 40rem;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
   line-height: 1.55;
 }
 
@@ -237,7 +239,7 @@
   border: 1px solid rgba(148, 163, 184, 0.22);
   border-radius: 4px 16px 16px 4px;
   overflow: hidden;
-  background: #0b1220;
+  background: var(--wp-surface, #1f1a26);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 
@@ -310,7 +312,7 @@
   font-size: 0.75rem;
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   color: #071018;
-  background: #5eead4;
+  background: var(--wp-accent-bright, #94a4b4);
 }
 
 .st-steps strong {
@@ -320,7 +322,7 @@
 
 .st-steps p {
   margin: 0;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
   line-height: 1.45;
 }
 
@@ -350,7 +352,7 @@
 
 .st-source p {
   margin: 0;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
   font-size: 0.92rem;
   line-height: 1.45;
 }
@@ -377,7 +379,7 @@
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #5eead4;
+  color: var(--wp-accent-bright, var(--wp-slate, #94a4b4));
   min-width: 6.5rem;
   padding-top: 0.2rem;
 }
@@ -400,7 +402,7 @@
   border-top: 1px solid rgba(148, 163, 184, 0.16);
   padding: 2rem clamp(1rem, 4vw, 2rem) calc(2rem + env(safe-area-inset-bottom, 0px));
   text-align: center;
-  color: #9aa8bd;
+  color: var(--wp-text-muted, #9aa8bd);
 }
 
 .st-footer p {
@@ -408,7 +410,7 @@
 }
 
 .st-footer a {
-  color: #5eead4;
+  color: var(--wp-accent-bright, var(--wp-slate, #94a4b4));
   text-decoration: none;
   margin: 0 0.45rem;
 }
