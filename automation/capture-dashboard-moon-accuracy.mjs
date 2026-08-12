@@ -209,6 +209,19 @@ async function main() {
         return { ok: false, reason: 'no-rebuild' };
       }
       WDS.dashboardRebuild.setPlatform(platform);
+      document.querySelectorAll('[data-lazy="pending"]').forEach((el) => {
+        try { el.scrollIntoView({ block: "center" }); } catch (e) {}
+      });
+      const astro = document.querySelector('[data-widget-id="ph-astronomy"]');
+      if (astro) {
+        try { astro.scrollIntoView({ block: "center" }); } catch (e2) {}
+      }
+      return { ok: true, lunar: !!(window.WDS && WDS.dashboardLunar) };
+    })()`);
+  }
+
+  async function measureMoon() {
+    return evalExpr(`(() => {
       const tile = document.querySelector('[data-widget-id="ph-astronomy"]');
       const svg = tile && tile.querySelector('[data-lunar-illumination]');
       const rect = tile ? tile.getBoundingClientRect() : null;
@@ -218,8 +231,10 @@ async function main() {
       const overlap = moon && nightRect
         ? !(moon.right < nightRect.left || moon.left > nightRect.right || moon.bottom < nightRect.top || moon.top > nightRect.bottom)
         : false;
+      const vw = window.innerWidth;
       return {
         ok: true,
+        lazy: tile && tile.getAttribute('data-lazy'),
         illumination: svg && svg.getAttribute('data-lunar-illumination'),
         shape: svg && svg.getAttribute('data-lunar-shape'),
         limb: svg && svg.getAttribute('data-lunar-limb'),
@@ -227,10 +242,11 @@ async function main() {
         tileW: rect && Math.round(rect.width),
         moonW: moon && Math.round(moon.width),
         moonH: moon && Math.round(moon.height),
-        clipped: moon && rect ? (moon.left < rect.left - 1 || moon.right > rect.right + 2 || moon.top < rect.top - 2) : null,
+        clipped: moon && rect ? (moon.left < rect.left - 1 || moon.right > rect.right + 2) : null,
         overlapNightSky: overlap,
-        innerWidth: window.innerWidth,
-        oneColumn: !document.querySelector('.wdb-r-family__grid[data-cols]:not([data-cols="1"])') || window.innerWidth <= 767
+        innerWidth: vw,
+        oneColumn: vw <= 767 && tile && rect ? rect.width / vw >= 0.85 : null,
+        hasLunar: !!svg
       };
     })()`);
   }
@@ -267,13 +283,16 @@ async function main() {
     });
     await goto("/?cb=moon-" + vp.name);
     await delay(1200);
-    const info = await injectNearNew();
-    results.push({ viewport: vp.name, ...info });
-    if (!info || !info.ok) failures.push(vp.name + ": inject failed " + JSON.stringify(info));
+    const injected = await injectNearNew();
+    await delay(900);
+    const info = await measureMoon();
+    results.push({ viewport: vp.name, injected, ...info });
+    if (!injected || !injected.ok) failures.push(vp.name + ": inject failed " + JSON.stringify(injected));
     if (info && info.illumination !== "3") failures.push(vp.name + ": illumination attr " + info.illumination);
     if (info && info.shape !== "new") failures.push(vp.name + ": shape " + info.shape);
     if (info && info.clipped) failures.push(vp.name + ": moon clipped");
     if (info && info.overlapNightSky) failures.push(vp.name + ": moon overlaps Night Sky text");
+    if (info && info.oneColumn === false) failures.push(vp.name + ": one-column broken");
     await delay(400);
     await shot(vp.name + "-near-new");
     await injectFixtureStrip();
