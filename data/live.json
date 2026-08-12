@@ -2,8 +2,8 @@
   "version": 2,
   "engine": "waypoint-live-engine",
   "engineVersion": "2.1.0",
-  "updatedAt": "2026-08-12T16:00:01.407Z",
-  "nextScheduledUpdate": "2026-08-12T16:30:00.000Z",
+  "updatedAt": "2026-08-12T16:30:01.692Z",
+  "nextScheduledUpdate": "2026-08-12T17:00:00.000Z",
   "location": {
     "id": "engine-publish",
     "name": "U.S. regional engine publish point",
@@ -16,59 +16,59 @@
   },
   "timezone": "America/Chicago",
   "current": {
-    "temperatureF": 82,
-    "feelsLikeF": 85,
-    "humidity": 66,
-    "windMph": 13,
-    "windGustMph": 18,
-    "cloudCover": 29,
-    "uvIndex": 5.2,
+    "temperatureF": 84,
+    "feelsLikeF": 88,
+    "humidity": 63,
+    "windMph": 12,
+    "windGustMph": 16,
+    "cloudCover": 54,
+    "uvIndex": 5.8,
     "precipIn": 0,
-    "conditions": "Mainly clear",
-    "weatherCode": 1,
-    "observedAt": "2026-08-12T11:00"
+    "conditions": "Partly cloudy",
+    "weatherCode": 2,
+    "observedAt": "2026-08-12T11:30"
   },
   "forecast": {
     "highF": 92,
     "lowF": 72,
     "precipProbability": 7,
-    "summary": "Mainly clear · High 92° / Low 72°"
+    "summary": "Partly cloudy · High 92° / Low 72°"
   },
   "hourly": {
     "nextHours": [
       {
-        "time": "2026-08-12T12:00",
-        "temperatureF": 86,
-        "precipProbability": 3,
-        "conditions": "Mainly clear"
-      },
-      {
         "time": "2026-08-12T13:00",
         "temperatureF": 89,
-        "precipProbability": 3,
+        "precipProbability": 2,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-12T14:00",
         "temperatureF": 91,
-        "precipProbability": 2,
+        "precipProbability": 3,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-12T15:00",
         "temperatureF": 90,
-        "precipProbability": 4,
+        "precipProbability": 5,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-12T16:00",
         "temperatureF": 91,
-        "precipProbability": 4,
+        "precipProbability": 5,
         "conditions": "Overcast"
       },
       {
         "time": "2026-08-12T17:00",
         "temperatureF": 92,
+        "precipProbability": 4,
+        "conditions": "Overcast"
+      },
+      {
+        "time": "2026-08-12T18:00",
+        "temperatureF": 89,
         "precipProbability": 3,
         "conditions": "Overcast"
       }
@@ -85,7 +85,7 @@
   "moon": {
     "phase": "New moon",
     "illumination": 1,
-    "phaseValue": 0.003,
+    "phaseValue": 0.004,
     "trust": "Estimated"
   },
   "airQuality": {
@@ -99,7 +99,7 @@
       "data": {
         "latitude": 39.84103,
         "longitude": -98.59573,
-        "generationtime_ms": 832.9043388366699,
+        "generationtime_ms": 223.85525703430176,
         "utc_offset_seconds": -18000,
         "timezone": "America/Chicago",
         "timezone_abbreviation": "GMT-5",
@@ -120,18 +120,18 @@
           "precipitation": "inch"
         },
         "current": {
-          "time": "2026-08-12T11:00",
+          "time": "2026-08-12T11:30",
           "interval": 900,
-          "temperature_2m": 82.3,
-          "relative_humidity_2m": 66,
-          "apparent_temperature": 84.8,
-          "weather_code": 1,
-          "wind_speed_10m": 12.8,
-          "wind_direction_10m": 90,
-          "wind_gusts_10m": 17.9,
-          "cloud_cover": 29,
-          "surface_pressure": 942.5,
-          "uv_index": 5.2,
+          "temperature_2m": 84,
+          "relative_humidity_2m": 63,
+          "apparent_temperature": 87.6,
+          "weather_code": 2,
+          "wind_speed_10m": 12.1,
+          "wind_direction_10m": 95,
+          "wind_gusts_10m": 16.1,
+          "cloud_cover": 54,
+          "surface_pressure": 942.6,
+          "uv_index": 5.75,
           "precipitation": 0
         },
         "hourly_units": {
@@ -219,8 +219,8 @@
             79.4,
             78.7,
             77.9,
-            77.7,
             77.6,
+            78.5,
             73.7,
             73.5,
             72.5,
@@ -253,23 +253,23 @@
             0,
             0,
             0,
-            0,
             1,
-            1,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            1,
-            0,
-            0,
-            3,
-            0,
-            0,
-            0,
             2,
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            1,
+            3,
+            3,
+            0,
+            0,
+            0,
+            3,
+            3,
             3,
             2,
             0,
@@ -305,11 +305,12 @@
             1,
             1,
             1,
-            3,
-            3,
             2,
+            2,
+            3,
+            5,
+            5,
             4,
-            4,
             3,
             2,
             2,
@@ -317,9 +318,8 @@
             2,
             2,
             2,
-            2,
             3,
-            4,
+            3,
             4,
             5,
             3,
@@ -339,7 +339,7 @@
             3,
             3,
             4,
-            21,
+            2,
             21
           ],
           "precipitation": [
@@ -457,7 +457,7 @@
       "data": {
         "phase": "New moon",
         "illumination": 1,
-        "phaseValue": 0.003,
+        "phaseValue": 0.004,
         "trust": "Estimated"
       }
     },
@@ -471,7 +471,7 @@
     },
     "uv": {
       "data": {
-        "uvIndex": 5.2,
+        "uvIndex": 5.8,
         "status": "live"
       }
     },
@@ -526,7 +526,7 @@
     "photography_conditions": {
       "data": {
         "status": "estimated",
-        "cloudCover": 29,
+        "cloudCover": 54,
         "score": 92,
         "summary": "Strong outdoor light conditions",
         "sunrise": "6:43 AM",
@@ -548,12 +548,12 @@
       {
         "module": "river_gauges",
         "source": "USGS Water Services",
-        "error": "HTTP 503",
+        "error": "This operation was aborted",
         "retryAttempts": 3
       }
     ],
     "generatedBy": "waypoint-live-engine",
-    "generatedAt": "2026-08-12T16:00:01.407Z",
+    "generatedAt": "2026-08-12T16:30:01.692Z",
     "healthFile": "data/health.json",
     "blockStatus": {
       "weather": "live",
