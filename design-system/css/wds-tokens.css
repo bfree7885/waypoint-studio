@@ -319,16 +319,38 @@
 }
 
 [data-product="dashboard"] {
-  --wp-accent: var(--wp-purple-bright);
-  --wp-accent-dim: var(--wp-purple-dim);
-  --wp-accent-bright: #a898b8;
-  --wp-warm: var(--wp-dust-gold);
-  --wp-warm-dim: rgba(196, 164, 106, 0.16);
-  --wp-product-glow: rgba(122, 107, 138, 0.22);
+  /* High-desert dusk foundations — charcoal / volcanic / desert plum / dusty blue */
+  --wp-bg: #141210;
+  --wp-surface: #1c1816;
+  --wp-elevated: #26201c;
+  --wp-inset: #100e0c;
+  --wp-topbar-bg: rgba(20, 18, 16, 0.92);
+  --wp-border: rgba(224, 176, 144, 0.14);
+  --wp-border-subtle: rgba(224, 176, 144, 0.08);
+  --wp-fog: rgba(196, 144, 138, 0.16);
+  --wp-fog-subtle: rgba(196, 144, 138, 0.08);
+  --wp-journal-bg: linear-gradient(165deg, #1c1816 0%, #2a1e24 55%, #1a1618 100%);
+  --wp-on-accent: #141210;
+  /* Southwestern pastel accent — dusty rose / peach / coral / sand (purple is not the product) */
+  --wp-accent: #c4908a;
+  --wp-accent-dim: rgba(196, 144, 138, 0.18);
+  --wp-accent-bright: #e0b090;
+  --wp-warm: #e0d3c0;
+  --wp-warm-dim: rgba(224, 211, 192, 0.16);
+  --wp-product-glow: rgba(224, 176, 144, 0.2);
+  --wds-bg: var(--wp-bg);
+  --wds-surface: var(--wp-surface);
+  --wds-elevated: var(--wp-elevated);
+  --wds-inset: var(--wp-inset);
+  --wds-border: var(--wp-border);
+  --wds-border-subtle: var(--wp-border-subtle);
+  --wds-topbar-bg: var(--wp-topbar-bg);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
   --wds-product-glow: var(--wp-product-glow);
+  --wds-on-accent: var(--wp-on-accent);
+  --wds-journal-bg: var(--wp-journal-bg);
 }
 
 [data-product="scenes"],

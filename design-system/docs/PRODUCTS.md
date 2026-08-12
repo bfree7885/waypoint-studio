@@ -5,7 +5,7 @@ Set `data-product` on `<html>`. Accents come from the shared muted Southwestern 
 | Product | `data-product` | Accent | Warm |
 |---------|----------------|--------|------|
 | Home | `studio-home`, `studio` | Terracotta | Plum |
-| Dashboard | `dashboard` | Muted purple | Dust gold |
+| Dashboard | `dashboard` | Dusty rose / peach | Sand / pale amber |
 | Scenes / Photo Coach | `scenes`, `photo-coach` | Sage | Plum |
 | Sheds | `shed-hunting`, `sheds` | Clay red | Dust gold |
 | Articles | `articles` | Dusty plum | Terracotta |
