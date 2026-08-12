@@ -9,8 +9,8 @@
 <p><button id="copy-report" type="button">Copy Report</button> <span id="copy-status" aria-live="polite"></span></p>
 <pre id="debug-output">Waypoint Studio Debug
 ====================
-1) Current deployed commit hash: 7a9edfb0
-2) Build date/time: 2026-08-12T13:00:28.419Z
+1) Current deployed commit hash: dd2e8235
+2) Build date/time: 2026-08-12T13:30:43.518Z
 3) Active page title: Waypoint Studio
 4) Visible H1/H2/H3 headings from live dashboard:
 (none captured server-side; browser snapshot will fill this when available)
@@ -21,13 +21,13 @@
 (none captured server-side; browser snapshot will fill this when available)
 Engine health: HEALTHY
 Snapshot source: server pre-render
-Snapshot captured at: 2026-08-12T13:00:01.270Z
+Snapshot captured at: 2026-08-12T13:30:01.333Z
 Raw snapshot:
 {
-  &quot;commitHash&quot;: &quot;7a9edfb0&quot;,
-  &quot;buildTime&quot;: &quot;2026-08-12T13:00:28.419Z&quot;,
+  &quot;commitHash&quot;: &quot;dd2e8235&quot;,
+  &quot;buildTime&quot;: &quot;2026-08-12T13:30:43.518Z&quot;,
   &quot;activePageTitle&quot;: &quot;Waypoint Studio&quot;,
-  &quot;capturedAt&quot;: &quot;2026-08-12T13:00:01.270Z&quot;,
+  &quot;capturedAt&quot;: &quot;2026-08-12T13:30:01.333Z&quot;,
   &quot;headings&quot;: [],
   &quot;sectionsRendered&quot;: [],
   &quot;liveWeatherLoaded&quot;: true,
@@ -85,8 +85,8 @@ Raw snapshot:
 (function () {
   "use strict";
   var DEBUG_KEY = "waypointDebugSnapshot";
-  var FALLBACK_COMMIT = "7a9edfb0";
-  var FALLBACK_BUILD = "2026-08-12T13:00:28.419Z";
+  var FALLBACK_COMMIT = "dd2e8235";
+  var FALLBACK_BUILD = "2026-08-12T13:30:43.518Z";
   var TERMS = ["fallback", "coming-soon", "coming soon", "educational", "assignment"];
   function lines(list) { if (!list || !list.length) return ["(none)"]; return list.map(function (item) { return "- " + item; }); }
   function readSnapshot() {
@@ -156,7 +156,7 @@ Raw snapshot:
     try { document.execCommand("copy"); markCopied(); } catch (e) { /* noop */ }
     document.body.removeChild(ta);
   }
-  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"7a9edfb0","buildTime":"2026-08-12T13:00:28.419Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-08-12T13:00:01.270Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":true},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
+  document.getElementById("debug-output").textContent = buildReport(readSnapshot() || {"commitHash":"dd2e8235","buildTime":"2026-08-12T13:30:43.518Z","activePageTitle":"Waypoint Studio","capturedAt":"2026-08-12T13:30:01.333Z","headings":[],"sectionsRendered":[],"liveWeatherLoaded":true,"locationLoaded":true,"bannedTextPresent":false,"bannedTextHits":[],"engineHealth":"HEALTHY","moduleHealth":{"weather":{"status":"live","stale":false},"sunrise_sunset":{"status":"live","stale":false},"moon":{"status":"live","stale":false},"air_quality":{"status":"live","stale":false},"uv":{"status":"live","stale":false},"pollen":{"status":"unavailable","stale":false},"river_gauges":{"status":"fallback","stale":true},"ebird":{"status":"unavailable","stale":false},"alerts":{"status":"live","stale":false},"photography_conditions":{"status":"estimated","stale":false}},"ebirdStatus":"unavailable","ebirdObservations":0,"serverGenerated":true});
   var copyBtn = document.getElementById("copy-report");
   if (copyBtn) copyBtn.addEventListener("click", copyReport);
 })();
