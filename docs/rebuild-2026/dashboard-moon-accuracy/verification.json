@@ -1,0 +1,48 @@
+{
+  "failures": [],
+  "results": [
+    {
+      "viewport": "375x812",
+      "injected": {
+        "ok": true,
+        "lunar": true
+      },
+      "ok": true,
+      "lazy": "ready",
+      "illumination": "3",
+      "shape": "new",
+      "limb": "waning",
+      "phase": "new",
+      "tileW": 348,
+      "moonW": 66,
+      "moonH": 66,
+      "clipped": false,
+      "overlapNightSky": false,
+      "innerWidth": 375,
+      "oneColumn": true,
+      "hasLunar": true
+    },
+    {
+      "viewport": "430x932",
+      "injected": {
+        "ok": true,
+        "lunar": true
+      },
+      "ok": true,
+      "lazy": "ready",
+      "illumination": "3",
+      "shape": "new",
+      "limb": "waning",
+      "phase": "new",
+      "tileW": 403,
+      "moonW": 66,
+      "moonH": 66,
+      "clipped": false,
+      "overlapNightSky": false,
+      "innerWidth": 430,
+      "oneColumn": true,
+      "hasLunar": true
+    }
+  ],
+  "ok": true
+}

@@ -162,6 +162,29 @@ assert(
     Lunar.renderDisk(nearNew).indexOf('data-lunar-illumination="3"') >= 0
 );
 
+function sweepFlags(svg) {
+  const arcs = [...String(svg).matchAll(/\sA\s[\d.]+\s[\d.]+\s0\s0\s([01])/g)].map((m) => m[1]);
+  return arcs;
+}
+const wax10svg = Lunar.renderDisk(Lunar.normalize({ phaseValue: 0.05 }));
+const wax75svg = Lunar.renderDisk(Lunar.normalize({ phaseValue: 0.375 }));
+const w10 = sweepFlags(wax10svg);
+const w75 = sweepFlags(wax75svg);
+assert("waxing 10% has two arcs", w10.length >= 2);
+assert(
+  "waxing 10% crescent uses opposite terminator sweep",
+  w10[0] !== w10[1],
+  JSON.stringify(w10)
+);
+assert(
+  "waxing 75% gibbous uses same-side terminator sweep",
+  w75[0] === w75[1],
+  JSON.stringify(w75)
+);
+assert("3% marked crescent sliver", /data-lunar-crescent="1"/.test(Lunar.renderDisk(nearNew)));
+assert("10% marked crescent", /data-lunar-crescent="1"/.test(wax10svg));
+assert("75% not crescent", /data-lunar-crescent="0"/.test(wax75svg));
+
 const payload = Data.buildWidgetPayload("ph-astronomy", {
   daylight: {
     moonPhase: "New moon",

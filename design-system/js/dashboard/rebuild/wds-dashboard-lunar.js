@@ -328,7 +328,8 @@
     var limbSweep = litRight ? 1 : 0;
     var rx = Math.max(0.35, r * Math.abs(2 * k - 1));
     var crescent = k < 0.5;
-    var termSweep = crescent ? limbSweep : 1 - limbSweep;
+    /* Crescent: return along the same limb (opposite sweep). Gibbous: return on the far side (same sweep). */
+    var termSweep = crescent ? 1 - limbSweep : limbSweep;
     var top = cy - r;
     var bot = cy + r;
     return (
@@ -370,8 +371,8 @@
     var r = 44;
     var k = clamp(state.illumination, 0, 100) / 100;
     var path = litPath(cx, cy, r, state);
-    var glow = Math.round(Math.min(0.55, 0.06 + k * 0.42) * 100) / 100;
-    var litOpacity = state.almostDark ? 0.55 : 1;
+    var glow = Math.round(Math.min(0.42, 0.05 + k * 0.4) * 100) / 100;
+    var litOpacity = state.almostDark ? 0.92 : 1;
     var clip =
       path && !state.full
         ? '<clipPath id="' +
@@ -380,29 +381,45 @@
           path +
           '"/></clipPath>'
         : "";
-    var litGroupOpen = path && !state.full ? '<g clip-path="url(#' + id + '-lit)">' : "<g>";
+    var litFill =
+      state.full || !path
+        ? '<circle cx="50" cy="50" r="44" fill="url(#' + id + '-litgrad)" opacity="' + litOpacity + '"/>'
+        : '<path class="wdb-r-lunar__lit" d="' +
+          path +
+          '" fill="url(#' +
+          id +
+          '-litgrad)" opacity="' +
+          litOpacity +
+          '"/>';
     var maria =
-      litGroupOpen +
-      '<circle cx="50" cy="50" r="44" fill="url(#' +
-      id +
-      '-litgrad)" opacity="' +
-      litOpacity +
-      '"/>' +
-      '<ellipse cx="38" cy="42" rx="11" ry="8" fill="#6d6a78" opacity="0.22"/>' +
-      '<ellipse cx="58" cy="36" rx="7" ry="5.5" fill="#5c5a68" opacity="0.18"/>' +
-      '<ellipse cx="54" cy="58" rx="9" ry="7" fill="#636070" opacity="0.16"/>' +
-      '<circle cx="42" cy="62" r="3.2" fill="#4a4754" opacity="0.2"/>' +
-      '<circle cx="61" cy="48" r="2.4" fill="#4a4754" opacity="0.16"/>' +
-      "</g>";
-    var litPathEl =
-      path && !state.full && !state.almostDark
+      (path || state.full
+        ? '<g' +
+          (state.full ? ">" : ' clip-path="url(#' + id + '-lit)">') +
+          '<ellipse cx="38" cy="42" rx="11" ry="8" fill="#6d6a78" opacity="0.22"/>' +
+          '<ellipse cx="58" cy="36" rx="7" ry="5.5" fill="#5c5a68" opacity="0.18"/>' +
+          '<ellipse cx="54" cy="58" rx="9" ry="7" fill="#636070" opacity="0.16"/>' +
+          '<circle cx="42" cy="62" r="3.2" fill="#4a4754" opacity="0.2"/>' +
+          '<circle cx="61" cy="48" r="2.4" fill="#4a4754" opacity="0.16"/>' +
+          "</g>"
+        : "");
+    var glowEl =
+      path && glow > 0.02
+        ? '<path d="' +
+          path +
+          '" fill="rgba(210,198,255,' +
+          glow +
+          ')" transform="translate(50 50) scale(1.08) translate(-50 -50)"/>'
+        : "";
+    var termStroke =
+      path && !state.full
         ? '<path class="wdb-r-lunar__terminator" d="' +
           path +
-          '" fill="none" stroke="rgba(236,230,214,0.28)" stroke-width="0.9"/>'
+          '" fill="none" stroke="rgba(236,230,214,' +
+          (state.almostDark ? "0.45" : "0.22") +
+          ')" stroke-width="' +
+          (state.almostDark ? "1.2" : "0.8") +
+          '"/>'
         : "";
-    if (state.full) {
-      litPathEl = "";
-    }
     return (
       '<svg class="wdb-r-lunar__svg" viewBox="0 0 100 100" width="' +
       (options.size || 72) +
@@ -419,6 +436,8 @@
       String(state.litSide) +
       '" data-lunar-shape="' +
       String(state.shape) +
+      '" data-lunar-crescent="' +
+      (k < 0.5 && k > 0.005 ? "1" : "0") +
       '" data-lunar-signature="' +
       pathSignature(state) +
       '">' +
@@ -432,13 +451,12 @@
       "</radialGradient>" +
       clip +
       "</defs>" +
-      '<circle class="wdb-r-lunar__glow" cx="50" cy="50" r="48" fill="rgba(196,184,255,' +
-      glow +
-      ')"/>' +
-      '<circle class="wdb-r-lunar__unlit" cx="50" cy="50" r="44" fill="#1a1228"/>' +
+      glowEl +
+      '<circle class="wdb-r-lunar__unlit" cx="50" cy="50" r="44" fill="#140e1c"/>' +
+      litFill +
       maria +
-      litPathEl +
-      '<circle class="wdb-r-lunar__rim" cx="50" cy="50" r="44" fill="none" stroke="rgba(226,214,255,0.35)" stroke-width="1.1"/>' +
+      termStroke +
+      '<circle class="wdb-r-lunar__rim" cx="50" cy="50" r="44" fill="none" stroke="rgba(226,214,255,0.12)" stroke-width="0.8"/>' +
       "</svg>"
     );
   }

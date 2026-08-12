@@ -209,6 +209,22 @@ async function main() {
         return { ok: false, reason: 'no-rebuild' };
       }
       WDS.dashboardRebuild.setPlatform(platform);
+      const Reg = WDS.dashboardRebuildRegistry;
+      document.querySelectorAll('[data-lazy="pending"]').forEach((article) => {
+        const id = article.getAttribute("data-widget-id");
+        const widget = Reg && Reg.get && Reg.get(id);
+        const slot = article.querySelector("[data-lazy-slot]");
+        if (!widget || !slot || !Reg) return;
+        const data = Reg.getData(id, { platform: platform });
+        slot.outerHTML = Reg.render(widget, data);
+        article.setAttribute("data-lazy", "ready");
+        if (Reg.articleDataAttrs) {
+          const attrStr = String(Reg.articleDataAttrs(data) || "");
+          const re = /\\s(data-[a-z0-9-]+)="([^"]*)"/g;
+          let m;
+          while ((m = re.exec(attrStr))) article.setAttribute(m[1], m[2]);
+        }
+      });
       document.querySelectorAll('[data-lazy="pending"]').forEach((el) => {
         try { el.scrollIntoView({ block: "center" }); } catch (e) {}
       });
@@ -223,7 +239,7 @@ async function main() {
   async function measureMoon() {
     return evalExpr(`(() => {
       const tile = document.querySelector('[data-widget-id="ph-astronomy"]');
-      const svg = tile && tile.querySelector('[data-lunar-illumination]');
+      const svg = tile && tile.querySelector("svg[data-lunar-illumination]");
       const rect = tile ? tile.getBoundingClientRect() : null;
       const moon = svg ? svg.getBoundingClientRect() : null;
       const night = tile && [...tile.querySelectorAll('dt')].find(d => /Night sky/i.test(d.textContent || ''));
