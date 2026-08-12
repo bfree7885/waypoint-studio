@@ -590,6 +590,15 @@
   overflow: visible;
 }
 
+.wdb-r-lunar__unlit {
+  fill: #07040c;
+}
+
+.wdb-r-widget[data-precip="dry"][data-sky="rain"],
+.wdb-r-widget[data-precip="low"][data-sky="rain"] {
+  --wdb-r-cat: var(--category-weather);
+}
+
 .wdb-r-widget__reading .wdb-r-widget__facts {
   flex: 1 1 auto;
   min-width: 0;

@@ -223,7 +223,10 @@
         cloudCover: roundMeas(cur.cloudCover, "%"),
         uvIndex: roundMeas(cur.uvIndex, "index"),
         precipitation: {
-          probability: feed.forecast && feed.forecast.precipProbability,
+          probability:
+            hourly[0] && hourly[0].precipitation && hourly[0].precipitation.probability != null
+              ? hourly[0].precipitation.probability
+              : null,
           intensity: null,
           amount: roundMeas(cur.precipIn, "in")
         },

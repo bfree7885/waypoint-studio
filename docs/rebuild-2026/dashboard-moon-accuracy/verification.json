@@ -10,7 +10,7 @@
       "ok": true,
       "lazy": "ready",
       "illumination": "3",
-      "shape": "new",
+      "shape": "crescent",
       "limb": "waning",
       "phase": "new",
       "tileW": 348,
@@ -20,7 +20,12 @@
       "overlapNightSky": false,
       "innerWidth": 375,
       "oneColumn": true,
-      "hasLunar": true
+      "hasLunar": true,
+      "precipNow": {
+        "band": "dry",
+        "sky": "clear",
+        "iconRain": false
+      }
     },
     {
       "viewport": "430x932",
@@ -31,7 +36,7 @@
       "ok": true,
       "lazy": "ready",
       "illumination": "3",
-      "shape": "new",
+      "shape": "crescent",
       "limb": "waning",
       "phase": "new",
       "tileW": 403,
@@ -41,7 +46,90 @@
       "overlapNightSky": false,
       "innerWidth": 430,
       "oneColumn": true,
-      "hasLunar": true
+      "hasLunar": true,
+      "precipNow": {
+        "band": "dry",
+        "sky": "clear",
+        "iconRain": false
+      }
+    },
+    {
+      "viewport": "768x1024",
+      "injected": {
+        "ok": true,
+        "lunar": true
+      },
+      "ok": true,
+      "lazy": "ready",
+      "illumination": "3",
+      "shape": "crescent",
+      "limb": "waning",
+      "phase": "new",
+      "tileW": 725,
+      "moonW": 72,
+      "moonH": 72,
+      "clipped": false,
+      "overlapNightSky": false,
+      "innerWidth": 768,
+      "oneColumn": true,
+      "hasLunar": true,
+      "precipNow": {
+        "band": "dry",
+        "sky": "clear",
+        "iconRain": false
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "injected": {
+        "ok": true,
+        "lunar": true
+      },
+      "ok": true,
+      "lazy": "ready",
+      "illumination": "3",
+      "shape": "crescent",
+      "limb": "waning",
+      "phase": "new",
+      "tileW": 1133,
+      "moonW": 72,
+      "moonH": 72,
+      "clipped": false,
+      "overlapNightSky": false,
+      "innerWidth": 1440,
+      "oneColumn": true,
+      "hasLunar": true,
+      "precipNow": {
+        "band": "dry",
+        "sky": "clear",
+        "iconRain": false
+      }
+    },
+    {
+      "viewport": "1728x1117",
+      "injected": {
+        "ok": true,
+        "lunar": true
+      },
+      "ok": true,
+      "lazy": "ready",
+      "illumination": "3",
+      "shape": "crescent",
+      "limb": "waning",
+      "phase": "new",
+      "tileW": 1133,
+      "moonW": 72,
+      "moonH": 72,
+      "clipped": false,
+      "overlapNightSky": false,
+      "innerWidth": 1728,
+      "oneColumn": true,
+      "hasLunar": true,
+      "precipNow": {
+        "band": "dry",
+        "sky": "clear",
+        "iconRain": false
+      }
     }
   ],
   "ok": true

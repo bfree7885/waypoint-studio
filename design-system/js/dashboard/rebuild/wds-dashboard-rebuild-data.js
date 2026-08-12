@@ -35,10 +35,109 @@
     return "partial";
   }
 
+  function weatherHourly(platform) {
+    var wx = platform && platform.weatherRef;
+    var rows = wx && wx.hourly;
+    if (!Array.isArray(rows) || !rows.length) {
+      var feed = platform && platform.liveFeed && platform.liveFeed.hourly;
+      rows = feed && Array.isArray(feed.nextHours) ? feed.nextHours : [];
+    }
+    return rows.map(function (h) {
+      var precip = h.precipitation || {};
+      return {
+        time: h.time || null,
+        precipProb: precip.probability != null ? num(precip.probability) : num(h.precipProbability),
+        conditions: (h.conditions && h.conditions.summary) || h.conditions || "",
+        tempF: num(h.temperature != null ? h.temperature : h.temperatureF)
+      };
+    });
+  }
+
+  function formatHourLabel(iso) {
+    if (!iso) return null;
+    var d = Date.parse(iso);
+    if (!isFinite(d)) {
+      var m = String(iso).match(/T(\d{2}):(\d{2})/);
+      if (!m) return String(iso);
+      var hr = Number(m[1]);
+      var ap = hr >= 12 ? "PM" : "AM";
+      var h12 = hr % 12;
+      if (h12 === 0) h12 = 12;
+      return h12 + " " + ap;
+    }
+    try {
+      return new Date(d).toLocaleTimeString(undefined, { hour: "numeric" });
+    } catch (e) {
+      return String(iso);
+    }
+  }
+
+  /**
+   * Rain-timing bands from probability / intensity — never treat 1% as rainfall.
+   * dry <15%, low 15–39%, possible 40–59%, likely 60–79%, active ≥80% or measurable rain.
+   */
+  function precipBand(nowProb, amountIn, rainingText) {
+    var p = nowProb == null ? 0 : nowProb;
+    var amt = amountIn == null ? 0 : amountIn;
+    var raining = !!rainingText;
+    if (amt >= 0.05 || (raining && p >= 50)) return "active";
+    if (p >= 80) return "active";
+    if (p >= 60) return "likely";
+    if (p >= 40) return "possible";
+    if (p >= 15) return "low";
+    return "dry";
+  }
+
+  function precipBandLabel(band) {
+    if (band === "active") return "Active / heavy";
+    if (band === "likely") return "Likely rain";
+    if (band === "possible") return "Possible showers";
+    if (band === "low") return "Low chance";
+    return "Very low / dry";
+  }
+
+  function rainTiming(platform, cur) {
+    var hourly = weatherHourly(platform);
+    var nowProb = cur && cur.precipProb != null ? cur.precipProb : null;
+    if (nowProb == null && hourly[0] && hourly[0].precipProb != null) nowProb = hourly[0].precipProb;
+    var peak = null;
+    var i;
+    for (i = 0; i < hourly.length; i += 1) {
+      var p = hourly[i].precipProb;
+      if (p == null) continue;
+      if (!peak || p > peak.precipProb) {
+        peak = {
+          precipProb: p,
+          time: hourly[i].time,
+          timeLabel: formatHourLabel(hourly[i].time)
+        };
+      }
+    }
+    var amount = cur && cur.precipIn != null ? cur.precipIn : null;
+    var raining = cur && /rain|drizzle|shower|thunder/.test(String(cur.conditions || "").toLowerCase());
+    var band = precipBand(nowProb, amount, raining);
+    return {
+      nowProb: nowProb,
+      peakProb: peak ? peak.precipProb : nowProb,
+      peakTime: peak ? peak.time : null,
+      peakLabel: peak ? peak.timeLabel : null,
+      band: band,
+      bandLabel: precipBandLabel(band),
+      futurePeak: !!(peak && nowProb != null && peak.precipProb > nowProb + 2)
+    };
+  }
+
   function weatherCurrent(platform) {
     var wx = platform && platform.weatherRef;
     if (!wx || !wx.meta || wx.meta.isPlaceholder) return null;
     var cur = wx.current || {};
+    var hourly = weatherHourly(platform);
+    var nowPrecip =
+      hourly[0] && hourly[0].precipProb != null
+        ? hourly[0].precipProb
+        : cur.precipitation
+          ? num(cur.precipitation.probability)
+          : null;
     return {
       live: true,
       tempF: num(cur.temperature),
@@ -47,7 +146,9 @@
       windMph: cur.wind ? num(cur.wind.speed) : null,
       windGust: cur.wind ? num(cur.wind.gust) : null,
       cloudPct: num(cur.cloudCover),
-      precipProb: cur.precipitation ? num(cur.precipitation.probability) : null,
+      precipProb: nowPrecip,
+      precipIn: cur.precipitation ? num(cur.precipitation.amount) : null,
+      uvIndex: num(cur.uvIndex),
       conditions: (cur.conditions && cur.conditions.summary) || "",
       meta: wx.meta || {}
     };
@@ -125,14 +226,17 @@
   /**
    * Measured sky kind for Conditions artwork. Category identity icons must
    * not contradict the live summary (cloud glyph on a clear reading, etc.).
+   * Rain/storm glyphs require a meaningful precip band — 1% is not rainfall.
    */
-  function skyKind(cur, night) {
+  function skyKind(cur, night, timing) {
     if (!cur) return null;
     var s = String(cur.conditions || "").toLowerCase();
     var cloud = cur.cloudPct;
-    if (/thunder|lightning|storm/.test(s)) return "storm";
+    var band = timing && timing.band;
+    var wet = band === "active" || band === "likely" || band === "possible";
+    if (/thunder|lightning|storm/.test(s) && (wet || band === "low")) return "storm";
     if (/snow|sleet|blizzard|flurries|ice/.test(s)) return "snow";
-    if (/rain|drizzle|shower/.test(s)) return "rain";
+    if (/rain|drizzle|shower/.test(s) && wet) return "rain";
     if (/fog|mist|haze/.test(s)) return "fog";
     if (/overcast/.test(s) || (cloud != null && cloud >= 85)) return "overcast";
     if (/broken|mostly cloudy/.test(s) || (cloud != null && cloud >= 60)) return "clouds";
@@ -183,7 +287,25 @@
     if (cur.conditions) facts.push({ label: "Sky", value: cur.conditions });
     if (cur.windMph != null) facts.push({ label: "Wind", value: Math.round(cur.windMph) + " mph" });
     if (cur.humidity != null) facts.push({ label: "Humidity", value: Math.round(cur.humidity) + "%" });
-    if (cur.precipProb != null) facts.push({ label: "Precip chance", value: Math.round(cur.precipProb) + "%" });
+    var timing = rainTiming(platform, cur);
+    if (timing.nowProb != null) {
+      facts.push({
+        label: "Precip now",
+        value: Math.round(timing.nowProb) + "%",
+        note: timing.bandLabel
+      });
+    }
+    if (timing.futurePeak && timing.peakProb != null) {
+      facts.push({
+        label: "Precip peak",
+        value:
+          Math.round(timing.peakProb) +
+          "%" +
+          (timing.peakLabel ? " at " + timing.peakLabel : "")
+      });
+    } else if (cur.precipProb != null && timing.nowProb == null) {
+      facts.push({ label: "Precip chance", value: Math.round(cur.precipProb) + "%" });
+    }
     if (!facts.length) {
       return {
         trust: "unavailable",
@@ -194,7 +316,7 @@
     }
     var trust = platform && platform.meta && platform.meta.fromCache ? "cached" : "live";
     var night = isNightFromDaylight(daylightSlice(platform));
-    var sky = skyKind(cur, night);
+    var sky = skyKind(cur, night, timing);
     return {
       trust: trust,
       status: "live",
@@ -203,6 +325,8 @@
       current: cur,
       skyKind: sky,
       skyIcon: skyIcon(sky),
+      precipBand: timing.band,
+      rainTiming: timing,
       night: night
     };
   }

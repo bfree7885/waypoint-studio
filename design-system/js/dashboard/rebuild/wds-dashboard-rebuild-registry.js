@@ -357,6 +357,7 @@
     if (!data) return "";
     var attrs = "";
     if (data.skyKind) attrs += ' data-sky="' + escapeHtml(data.skyKind) + '"';
+    if (data.precipBand) attrs += ' data-precip="' + escapeHtml(data.precipBand) + '"';
     if (data.aqiBand) attrs += ' data-aqi="' + escapeHtml(data.aqiBand) + '"';
     if (data.alertActive) attrs += ' data-alert-active="true"';
     if (data.lunarState) {
