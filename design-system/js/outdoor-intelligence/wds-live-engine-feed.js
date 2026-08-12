@@ -271,6 +271,7 @@
       sunsetFormatted: feed.sun.sunsetFormatted,
       moonPhase: feed.moon && feed.moon.phase,
       moonIllumination: feed.moon && feed.moon.illumination,
+      moonPhaseValue: feed.moon && feed.moon.phaseValue,
       timezone: feed.timezone
     };
   }

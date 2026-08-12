@@ -106,7 +106,7 @@
       title: "Astronomy",
       category: "astronomy",
       libraryCategory: "astronomy",
-      icon: "species",
+      icon: "moon",
       size: "standard",
       defaultVisible: true,
       defaultOrder: 40,
@@ -208,9 +208,10 @@
     });
   }
 
-  function iconHtml(widget) {
+  function iconHtml(widget, data) {
     var Icons = global.WDS && global.WDS.icons;
     var name = (widget && widget.icon) || "compass";
+    if (data && data.skyIcon) name = data.skyIcon;
     if (Icons && Icons.svg) {
       var svg = Icons.svg(name, { className: "wdb-r-catalog__icon-svg", decorative: true });
       if (svg) return svg;
@@ -333,6 +334,40 @@
     );
   }
 
+  function renderLunar(data) {
+    var Lunar = global.WDS && global.WDS.dashboardLunar;
+    if (!data || !data.lunarState || !Lunar || !Lunar.renderDisk) return "";
+    return (
+      '<div class="wdb-r-lunar" data-lunar-root' +
+      ' data-lunar-phase="' +
+      escapeHtml(data.lunarState.phaseKey) +
+      '" data-lunar-illumination="' +
+      escapeHtml(String(data.lunarState.illumination)) +
+      '" data-lunar-limb="' +
+      escapeHtml(data.lunarState.limb) +
+      '">' +
+      '<div class="wdb-r-lunar__disk">' +
+      Lunar.renderDisk(data.lunarState, { size: 72 }) +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function articleDataAttrs(data) {
+    if (!data) return "";
+    var attrs = "";
+    if (data.skyKind) attrs += ' data-sky="' + escapeHtml(data.skyKind) + '"';
+    if (data.aqiBand) attrs += ' data-aqi="' + escapeHtml(data.aqiBand) + '"';
+    if (data.alertActive) attrs += ' data-alert-active="true"';
+    if (data.lunarState) {
+      attrs += ' data-lunar-phase="' + escapeHtml(data.lunarState.phaseKey) + '"';
+      attrs +=
+        ' data-lunar-illumination="' + escapeHtml(String(data.lunarState.illumination)) + '"';
+      attrs += ' data-lunar-limb="' + escapeHtml(data.lunarState.limb) + '"';
+    }
+    return attrs;
+  }
+
   function renderBody(widget, data) {
     widget = widget || {};
     data = data || getData(widget.id);
@@ -349,7 +384,10 @@
               : "ready";
     var inner = "";
     if (data.facts && data.facts.length) {
-      inner = renderFacts(data.facts);
+      var lunar = widget.id === "ph-astronomy" ? renderLunar(data) : "";
+      inner = lunar
+        ? '<div class="wdb-r-widget__reading">' + lunar + renderFacts(data.facts) + "</div>"
+        : renderFacts(data.facts);
     } else {
       inner =
         '<div class="wdb-r-widget__state wdb-r-widget__state--' +
@@ -409,6 +447,7 @@
     getData: getData,
     render: renderBody,
     renderPlaceholder: renderPlaceholder,
+    articleDataAttrs: articleDataAttrs,
     trustChipLabel: trustChipLabel,
     humanMessage: humanMessage,
     kioskEligibleIds: kioskEligibleIds

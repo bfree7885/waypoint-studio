@@ -92,6 +92,79 @@
     return "Mixed night sky";
   }
 
+  function lunarApi() {
+    return global.WDS && global.WDS.dashboardLunar;
+  }
+
+  function platformLat(platform) {
+    if (!platform) return null;
+    if (platform.lat != null && isFinite(Number(platform.lat))) return Number(platform.lat);
+    var loc = platform.location || {};
+    if (loc.lat != null && isFinite(Number(loc.lat))) return Number(loc.lat);
+    var meta = platform.meta || {};
+    if (meta.lat != null && isFinite(Number(meta.lat))) return Number(meta.lat);
+    var wx = platform.weatherRef && platform.weatherRef.meta;
+    if (wx && wx.lat != null && isFinite(Number(wx.lat))) return Number(wx.lat);
+    return null;
+  }
+
+  function isNightFromDaylight(dl, now) {
+    if (!dl) return null;
+    now = now || new Date();
+    var rise = dl.sunriseIso || dl.sunrise;
+    var set = dl.sunsetIso || dl.sunset;
+    if (!rise || !set) return null;
+    var t = now.getTime();
+    var r = Date.parse(rise);
+    var s = Date.parse(set);
+    if (!isFinite(r) || !isFinite(s)) return null;
+    if (s > r) return t < r || t > s;
+    return t > s && t < r;
+  }
+
+  /**
+   * Measured sky kind for Conditions artwork. Category identity icons must
+   * not contradict the live summary (cloud glyph on a clear reading, etc.).
+   */
+  function skyKind(cur, night) {
+    if (!cur) return null;
+    var s = String(cur.conditions || "").toLowerCase();
+    var cloud = cur.cloudPct;
+    if (/thunder|lightning|storm/.test(s)) return "storm";
+    if (/snow|sleet|blizzard|flurries|ice/.test(s)) return "snow";
+    if (/rain|drizzle|shower/.test(s)) return "rain";
+    if (/fog|mist|haze/.test(s)) return "fog";
+    if (/overcast/.test(s) || (cloud != null && cloud >= 85)) return "overcast";
+    if (/broken|mostly cloudy/.test(s) || (cloud != null && cloud >= 60)) return "clouds";
+    if (/cloud|scattered|partly/.test(s) || (cloud != null && cloud >= 35)) return "partly";
+    if (/clear|fair|sunny/.test(s) || (cloud != null && cloud < 25)) {
+      return night ? "clear-night" : "clear";
+    }
+    if (cloud != null && cloud < 35) return night ? "clear-night" : "clear";
+    return null;
+  }
+
+  function skyIcon(kind) {
+    if (kind === "storm") return "storm";
+    if (kind === "snow") return "snow";
+    if (kind === "rain") return "rain";
+    if (kind === "fog" || kind === "overcast" || kind === "clouds" || kind === "partly") return "weather";
+    if (kind === "clear-night") return "moon";
+    if (kind === "clear") return "sun";
+    return null;
+  }
+
+  function aqiBand(category, aqi) {
+    var s = String(category || "").toLowerCase();
+    if (/hazard/.test(s) || (aqi != null && aqi >= 301)) return "hazardous";
+    if (/very unhealthy/.test(s) || (aqi != null && aqi >= 201)) return "very-unhealthy";
+    if (/unhealthy for sensitive/.test(s) || (aqi != null && aqi >= 101 && aqi < 151)) return "sensitive";
+    if (/^unhealthy/.test(s) || (aqi != null && aqi >= 151)) return "unhealthy";
+    if (/moderate/.test(s) || (aqi != null && aqi >= 51)) return "moderate";
+    if (/good/.test(s) || (aqi != null && aqi >= 0 && aqi <= 50)) return "good";
+    return null;
+  }
+
   function conditionsPayload(platform) {
     var cur = weatherCurrent(platform);
     if (!cur) {
@@ -120,12 +193,17 @@
       };
     }
     var trust = platform && platform.meta && platform.meta.fromCache ? "cached" : "live";
+    var night = isNightFromDaylight(daylightSlice(platform));
+    var sky = skyKind(cur, night);
     return {
       trust: trust,
       status: "live",
       message: null,
       facts: facts,
-      current: cur
+      current: cur,
+      skyKind: sky,
+      skyIcon: skyIcon(sky),
+      night: night
     };
   }
 
@@ -190,15 +268,52 @@
       status: "live",
       message: null,
       facts: facts,
-      air: aq
+      air: aq,
+      aqiBand: aqiBand(aq.category, aq.aqi)
+    };
+  }
+
+  function moonInput(platform) {
+    var dl = daylightSlice(platform);
+    var feedMoon = platform && platform.liveFeed && platform.liveFeed.moon;
+    var platMoon = platform && platform.moon;
+    return {
+      phase: (dl && dl.moonPhase) || (feedMoon && feedMoon.phase) || (platMoon && platMoon.phase) || null,
+      illumination:
+        dl && dl.moonIllumination != null
+          ? dl.moonIllumination
+          : feedMoon && feedMoon.illumination != null
+            ? feedMoon.illumination
+            : platMoon && platMoon.illumination != null
+              ? platMoon.illumination
+              : null,
+      phaseValue:
+        dl && dl.moonPhaseValue != null
+          ? dl.moonPhaseValue
+          : feedMoon && feedMoon.phaseValue != null
+            ? feedMoon.phaseValue
+            : platMoon && platMoon.phaseValue != null
+              ? platMoon.phaseValue
+              : null,
+      lat: platformLat(platform)
     };
   }
 
   function astronomyPayload(platform) {
     var dl = daylightSlice(platform);
     var cur = weatherCurrent(platform);
-    var phase = dl && (dl.moonPhase || null);
-    var illum = dl && dl.moonIllumination != null ? num(dl.moonIllumination) : null;
+    var Lunar = lunarApi();
+    var lunarIn = moonInput(platform);
+    var lunarState =
+      Lunar && Lunar.normalize
+        ? Lunar.normalize(lunarIn, { lat: lunarIn.lat })
+        : null;
+    var phase = lunarState ? lunarState.phase : dl && (dl.moonPhase || null);
+    var illum = lunarState
+      ? lunarState.illumination
+      : dl && dl.moonIllumination != null
+        ? num(dl.moonIllumination)
+        : null;
     var moonrise = dl && (dl.moonrise || null);
     var moonset = dl && (dl.moonset || null);
     var cloud = cur && cur.cloudPct != null ? cur.cloudPct : null;
@@ -237,7 +352,16 @@
       status: "live",
       message: null,
       facts: facts,
-      moon: { phase: phase, illumination: illum, rise: moonrise, set: moonset },
+      lunarState: lunarState,
+      moon: lunarState
+        ? {
+            phase: lunarState.phase,
+            illumination: lunarState.illumination,
+            limb: lunarState.limb,
+            rise: moonrise,
+            set: moonset
+          }
+        : { phase: phase, illumination: illum, rise: moonrise, set: moonset },
       nightSky: sky
     };
   }

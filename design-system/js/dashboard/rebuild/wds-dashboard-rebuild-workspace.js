@@ -112,8 +112,12 @@
         : { id: widget.category || "", label: widget.category || "" };
     var icon =
       reg && reg.iconHtml
-        ? '<span class="wdb-r-widget__icon" aria-hidden="true">' + reg.iconHtml(widget) + "</span>"
+        ? '<span class="wdb-r-widget__icon" aria-hidden="true">' +
+          reg.iconHtml(widget, data) +
+          "</span>"
         : "";
+    var extraAttrs =
+      !lazy && data && reg && reg.articleDataAttrs ? reg.articleDataAttrs(data) : "";
     var controls = "";
     if (customize) {
       controls =
@@ -167,6 +171,7 @@
       '" data-size="' +
       escapeHtml(size) +
       '"' +
+      extraAttrs +
       (fav ? ' data-favorite="true"' : "") +
       (lazy ? ' data-lazy="pending"' : ' data-lazy="ready"') +
       ">" +
@@ -200,6 +205,18 @@
     slot.outerHTML = html;
     article.setAttribute("data-lazy", "ready");
     article.removeAttribute("aria-busy");
+    if (reg.articleDataAttrs) {
+      var attrStr = String(reg.articleDataAttrs(data) || "");
+      var re = /\s(data-[a-z0-9-]+)="([^"]*)"/g;
+      var m;
+      while ((m = re.exec(attrStr))) {
+        article.setAttribute(m[1], m[2]);
+      }
+    }
+    if (reg.iconHtml) {
+      var iconSlot = article.querySelector(".wdb-r-widget__icon");
+      if (iconSlot) iconSlot.innerHTML = reg.iconHtml(widget, data);
+    }
   }
 
   function bindLazy(root, options) {

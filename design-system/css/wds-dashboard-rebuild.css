@@ -563,6 +563,66 @@
   color: var(--wdb-r-ink);
 }
 
+.wdb-r-widget__reading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.wdb-r-lunar {
+  flex: 0 0 auto;
+}
+
+.wdb-r-lunar__disk {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.wdb-r-lunar__svg {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  overflow: visible;
+}
+
+.wdb-r-widget__reading .wdb-r-widget__facts {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.wdb-r-widget[data-sky="rain"] {
+  --wdb-r-cat: color-mix(in srgb, var(--category-weather) 70%, #7aa0c8 30%);
+}
+.wdb-r-widget[data-sky="storm"] {
+  --wdb-r-cat: color-mix(in srgb, var(--category-weather) 45%, #6b7c9a 55%);
+}
+.wdb-r-widget[data-sky="snow"] {
+  --wdb-r-cat: color-mix(in srgb, var(--category-weather) 55%, #d7e7f5 45%);
+}
+.wdb-r-widget[data-sky="clear-night"] {
+  --wdb-r-cat: color-mix(in srgb, var(--category-weather) 40%, var(--category-astronomy) 60%);
+}
+
+.wdb-r-widget[data-aqi="good"] {
+  --wdb-r-cat: var(--category-nature);
+}
+.wdb-r-widget[data-aqi="moderate"] {
+  --wdb-r-cat: #d4b43c;
+}
+.wdb-r-widget[data-aqi="sensitive"] {
+  --wdb-r-cat: #e0893a;
+}
+.wdb-r-widget[data-aqi="unhealthy"],
+.wdb-r-widget[data-aqi="very-unhealthy"],
+.wdb-r-widget[data-aqi="hazardous"] {
+  --wdb-r-cat: #e05b4a;
+}
+
 .wdb-r-widget__note {
   font-size: 0.6875rem;
   color: var(--wdb-r-faint);
@@ -1203,6 +1263,20 @@ html.wdb-r-kiosk .wdb-r,
 
   .wdb-r-widget__fact {
     grid-template-columns: minmax(4.5rem, 36%) 1fr;
+  }
+
+  .wdb-r-widget__reading {
+    gap: 0.6rem;
+  }
+
+  .wdb-r-lunar__disk,
+  .wdb-r-lunar__svg {
+    width: 3.65rem;
+    height: 3.65rem;
+  }
+
+  .wdb-r-widget[data-widget-id="ph-astronomy"] .wdb-r-widget__body {
+    overflow: visible;
   }
 
   .wdb-r-group {
