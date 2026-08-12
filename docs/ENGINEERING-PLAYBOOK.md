@@ -1267,3 +1267,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Aggressive right-shift/opacity for “text over art” can shove Astronomy’s moon disc off-canvas — carve an astronomy exception.
 - Illumination % alone cannot choose waxing vs waning; pass `moonPhaseValue` (synodic fraction) into graphics for honest orientation.
 - Uniform `0 0 16px/36px` glow reads as neon rectangles; corner radial washes + `--wdb-r-glow-strength` per domain keep luminous edges atmospheric.
+
+## Lessons Learned — Dashboard Southwestern pastel + unique instrument art (2026-08-11)
+
+- Recoloring the same alpine ridge + sun for every tile is not unique art. Conditions keep high-desert mesas; Light is a flat horizon; Air is receding haze planes; Moon is a close-up cratered disc; Wind is grass + directional flow; Precipitation is a probability curtain; Snow is winter drifts — not a tinted rain scene.
+- Dashboard product tokens were muted purple on aubergine; `[data-product="dashboard"]` must override `--wp-bg` **and** `--wds-bg` (root `--wds-bg: var(--wp-bg)` computes on `:root` and will not follow a later `--wp-bg` change).
+- Mobile art-shift that hides Astronomy’s moon also hides Light/Air/Wind/Precip subjects — carve those categories out of the aggressive right crop.
+- Live adapters must pass precip probability/intensity and wind speed/direction into `render()` or the unique scenes cannot be data-honest.

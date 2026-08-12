@@ -114,7 +114,7 @@ const html = Gfx.render({
   phase: "last quarter",
   phaseValue: 0.75
 });
-if (html.includes("mask") && html.includes("#e8e4d8") && html.includes("#2a2438")) {
+if (html.includes("mask") && html.includes("#e8e4d8") && (html.includes("#1a1618") || html.includes("wdb-r-luna"))) {
   pass("field-guide moon viz palette");
 } else fail("moon viz palette missing");
 

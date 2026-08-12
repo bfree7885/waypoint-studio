@@ -69,6 +69,8 @@
       windDir: cur.wind ? num(cur.wind.direction) : null,
       cloudPct: num(cur.cloudCover),
       precipProb: cur.precipitation ? num(cur.precipitation.probability) : null,
+      precipAmt: cur.precipitation && cur.precipitation.amount ? num(cur.precipitation.amount) : null,
+      precipIntensity: cur.precipitation ? cur.precipitation.intensity : null,
       pressure: num(cur.pressure),
       uvIndex: num(cur.uvIndex),
       conditions: (cur.conditions && cur.conditions.summary) || "",
@@ -200,22 +202,33 @@
   function lightGraphicKind(dl) {
     if (!dl) return { kind: "sun", state: "sunrise" };
     var now = Date.now();
-    function inWindow(range) {
-      if (!range) return false;
-      var parts = String(range).split(/\s*[–—-]\s*/);
-      if (parts.length < 2) return false;
-      /* Text ranges like 6:55–7:25 PM are display-only; prefer ISO if present */
-      return false;
+    function parseT(v) {
+      if (!v) return null;
+      var t = Date.parse(v);
+      return isFinite(t) ? t : null;
     }
-    if (dl.goldenHourStatus === "live" || dl.goldenHourEvening || dl.goldenHour) {
-      /* Prefer golden illustration when golden window fields exist */
+    var rise = parseT(dl.sunrise) || parseT(dl.sunriseISO);
+    var set = parseT(dl.sunset) || parseT(dl.sunsetISO);
+    if (rise != null && set != null) {
+      var hourMs = 60 * 60 * 1000;
+      if (now < rise - 0.4 * hourMs || now >= set + 0.75 * hourMs) {
+        return { kind: "sun", state: "night", illum: "night" };
+      }
+      if (now < rise + 0.75 * hourMs) return { kind: "sun", state: "sunrise", illum: "golden" };
+      if (now >= set - 0.35 * hourMs && now < set + 0.4 * hourMs) {
+        return { kind: "sun", state: "sunset", illum: "golden" };
+      }
+      if (now >= set - 1.1 * hourMs) return { kind: "sun", state: "golden", illum: "golden" };
+      if (now >= set + 0.4 * hourMs) return { kind: "sun", state: "blue-hour", illum: "blue" };
+      return { kind: "sun", state: "day", illum: "clear-day" };
     }
     var h = new Date().getHours();
-    if (h >= 5 && h < 9) return { kind: "sun", state: "sunrise", illum: "golden" };
-    if (h >= 17 && h < 19) return { kind: "sun", state: "golden", illum: "golden" };
-    if (h >= 19 && h < 21) return { kind: "sun", state: "blue-hour", illum: "blue" };
-    if (h >= 16) return { kind: "sun", state: "sunset", illum: "golden" };
-    return { kind: "sun", state: "sunrise", illum: "golden" };
+    if (h < 5 || h >= 21) return { kind: "sun", state: "night", illum: "night" };
+    if (h >= 5 && h < 8) return { kind: "sun", state: "sunrise", illum: "golden" };
+    if (h >= 8 && h < 16) return { kind: "sun", state: "day", illum: "clear-day" };
+    if (h >= 16 && h < 18) return { kind: "sun", state: "golden", illum: "golden" };
+    if (h >= 18 && h < 19) return { kind: "sun", state: "sunset", illum: "golden" };
+    return { kind: "sun", state: "blue-hour", illum: "blue" };
   }
 
   function waitingOrUnavailable(platform, waitingMsg, unavailableMsg) {
@@ -466,6 +479,23 @@
     };
   }
 
+  function precipGraphic(cur, peak) {
+    var cond = cur && cur.conditions ? String(cur.conditions) : "";
+    var ptype = /snow|sleet|blizzard|flurr/i.test(cond)
+      ? "snow"
+      : /rain|drizzle|shower|storm/i.test(cond)
+        ? "rain"
+        : "none";
+    var prob = cur && cur.precipProb != null ? cur.precipProb : peak && peak.precipProb;
+    return {
+      kind: "precip",
+      probability: prob,
+      amount: cur && cur.precipAmt,
+      intensity: (cur && cur.precipIntensity) || (prob >= 70 ? "heavy" : prob >= 40 ? "moderate" : "light"),
+      precipType: ptype
+    };
+  }
+
   function precipWindowPayload(platform) {
     var hours = upcomingHours(platform, 12);
     var cur = weatherCurrent(platform);
@@ -506,7 +536,7 @@
         status: "live",
         message: null,
         facts: [{ label: "Outlook", value: "No elevated precip in the next hours" }],
-        graphic: { kind: "precip" }
+        graphic: precipGraphic(cur, peak)
       };
     }
     return {
@@ -514,7 +544,7 @@
       status: "live",
       message: null,
       facts: facts,
-      graphic: { kind: "precip" }
+      graphic: precipGraphic(cur, peak)
     };
   }
 
@@ -574,7 +604,12 @@
       status: "live",
       message: null,
       facts: facts,
-      graphic: { kind: "wind" }
+      graphic: {
+        kind: "wind",
+        speed: cur.windMph,
+        gust: cur.windGust,
+        direction: cur.windDir
+      }
     };
   }
 

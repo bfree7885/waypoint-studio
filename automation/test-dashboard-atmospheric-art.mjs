@@ -18,15 +18,20 @@ sandbox.global = sandbox; sandbox.window = sandbox; sandbox.WDS = {};
 vm.runInNewContext(read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"), sandbox);
 
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
-if (Gfx && /cinematic/.test(String(Gfx.version||""))) pass("graphics cinematic module");
+if (Gfx && /cinematic|instrument/.test(String(Gfx.version||""))) pass("graphics cinematic module");
 else fail("missing cinematic graphics version");
 
 function assertNoOvalCloudHero(html, label) {
   // Hero cloud art should use path d= masses; reject dense ellipse-only cloud banks
   const ellipses = (html.match(/<ellipse /g) || []).length;
-  const paths = (html.match(/<path d="/g) || []).length;
-  const hasRidges = html.includes("L18 42") || html.includes("ridges") || paths >= 4;
-  if (paths >= 3 && hasRidges) pass(label + " uses path-based landscape layers");
+  const paths = (html.match(/<path[\s>]/g) || []).length;
+  const hasLand =
+    html.includes("wdb-r-mesa") ||
+    html.includes("wdb-r-winter") ||
+    html.includes("wdb-r-horizon") ||
+    html.includes("H20 V40 H48") ||
+    paths >= 4;
+  if (paths >= 3 && hasLand) pass(label + " uses path-based landscape layers");
   else fail(label + " lacks landscape path depth (paths=" + paths + ", ellipses=" + ellipses + ")");
   // cloudy/overcast should not be ONLY ellipses
   if (label.includes("cloudy") || label.includes("overcast")) {
@@ -55,12 +60,12 @@ if (snow.includes("M0-3.2v6.4") || snow.includes("translate(")) pass("snow has f
 else fail("snow missing flakes");
 
 const aqi = Gfx.render({ kind: "aqi", value: 120 });
-if (aqi.includes("ellipse") && aqi.includes("L18 42") || (aqi.match(/<path/g)||[]).length>=3) pass("Air valley/mountain with haze");
+if (aqi.includes("wdb-r-depth") && aqi.includes("ellipse")) pass("Air valley/mountain with haze");
 else fail("Air art missing landscape haze");
 
-["sunrise","sunset","golden","blue-hour"].forEach((k) => {
+["sunrise","sunset","golden","blue-hour","day"].forEach((k) => {
   const html = Gfx.render({ kind: "sun", state: k });
-  if (html && html.includes("wdb-r-widget__art") && (html.match(/<path/g)||[]).length>=3) pass("Light scene " + k);
+  if (html && html.includes("wdb-r-widget__art") && (html.includes("wdb-r-horizon") || html.includes("wdb-r-light-bands"))) pass("Light scene " + k);
   else fail("Light scene weak: " + k);
 });
 
@@ -102,7 +107,7 @@ const geo28 = Gfx.moonGeometry("waxing-crescent", 28);
 if (geo28 && Math.abs(geo28.lit - 0.28) < 0.001 && geo28.waxing) pass("illumination fraction drives lit amount");
 else fail("moonGeometry illumination not applied");
 const crescentHtml = Gfx.render({ kind: "moon", value: 28, phase: "waxing crescent", phaseValue: 0.15 });
-if (crescentHtml.includes("#e8e4d8") && crescentHtml.includes("#2a2438")) pass("moon ivory-silver lit + faint dark limb");
+if (crescentHtml.includes("#e8e4d8") && (crescentHtml.includes("#1a1618") || crescentHtml.includes("wdb-r-luna"))) pass("moon ivory-silver lit + faint dark limb");
 else fail("moon field-guide palette missing");
 
 if (failed) { console.error("\n" + failed + " failure(s)"); process.exit(1); }

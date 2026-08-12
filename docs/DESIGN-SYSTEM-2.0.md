@@ -24,7 +24,7 @@ Do **not** reintroduce neon lime, corporate blue, cyber cyan glow, Inter-as-defa
 | Terracotta | `--wp-terracotta` | `#c17a5a` | Default studio accent |
 | Clay red | `--wp-clay` | `#a85d52` | Sheds / warm alert adjacent |
 | Dusty plum | `--wp-plum` | `#8b6f82` | Editorial warmth |
-| Muted purple | `--wp-purple` | `#7a6b8a` | Instruments / Side Trails |
+| Muted purple | `--wp-purple` | `#7a6b8a` | Side Trails (Dashboard uses dusty rose; purple is astronomy only) |
 | Sage | `--wp-sage` | `#7d8f72` | Scenes / civic / success |
 | Slate | `--wp-slate` | `#7a8a9a` | SignalTerrain / info |
 | Dust gold | `--wp-dust-gold` | `#c4a46a` | Focus ring / caution |
@@ -51,7 +51,7 @@ Do **not** reintroduce neon lime, corporate blue, cyber cyan glow, Inter-as-defa
 | Product | `data-product` | Accent character |
 |---------|----------------|------------------|
 | Home | `studio-home` / `studio` | Terracotta |
-| Dashboard | `dashboard` | Muted purple + dust gold warm |
+| Dashboard | `dashboard` | Dusty rose / peach on charcoal dusk (lavender is astronomy only) |
 | Scenes | `scenes` | Sage |
 | Sheds | `shed-hunting` / `sheds` | Clay red |
 | Articles | `articles` | Dusty plum |

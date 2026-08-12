@@ -2,57 +2,88 @@
  * Dashboard Rebuild — RC2.5 Sprint 6 presentation polish.
  * Today Outside + Workspace; library Customize; family grouping; calm density.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 07-design-system.md
+ * Identity: high-desert dusk + Southwestern pastel atmospheric light.
  */
 
+html[data-product="dashboard"],
+html[data-product="dashboard"] body {
+  background-color: #141210;
+}
+
+html[data-product="dashboard"] body::before {
+  background:
+    radial-gradient(ellipse 78% 48% at 48% -10%, rgba(224, 176, 144, 0.22), transparent 58%),
+    radial-gradient(ellipse 52% 34% at 8% 100%, rgba(196, 136, 106, 0.12), transparent 62%),
+    radial-gradient(ellipse 42% 30% at 96% 38%, rgba(42, 64, 80, 0.28), transparent 52%);
+}
+
 .wdb-r {
-  --wdb-r-ink: var(--wds-text, #eef2f6);
-  --wdb-r-muted: var(--wds-text-secondary, rgba(238, 242, 246, 0.78));
-  --wdb-r-faint: var(--wds-text-tertiary, rgba(238, 242, 246, 0.62));
-  --wdb-r-line: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
-  --wdb-r-line-strong: var(--wds-border, rgba(155, 143, 217, 0.14));
-  --wdb-r-panel: var(--wds-elevated, #112038);
-  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #1f1a26) 88%, #fff 4%);
-  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #112038) 92%, var(--wds-accent, #c17a5a) 8%);
-  --wdb-r-accent: var(--wds-accent, #c17a5a);
+  /* High-desert dusk — charcoal / volcanic / desert plum / dusty blue */
+  --wdb-r-charcoal: #1a1614;
+  --wdb-r-volcanic: #120e0c;
+  --wdb-r-desert-plum: #2a1e24;
+  --wdb-r-dusty-blue: #2a3448;
+  --wdb-r-warm-slate: #3a4248;
+  /* Southwestern pastels — edges, art, accents (not pastel panels) */
+  --wdb-r-dusty-rose: #c4908a;
+  --wdb-r-adobe: #c4886a;
+  --wdb-r-terracotta: #c17a5a;
+  --wdb-r-peach: #e0b090;
+  --wdb-r-coral: #d08070;
+  --wdb-r-sand: #e0d3c0;
+  --wdb-r-sage: #7d8f72;
+  --wdb-r-turquoise: #6aa8a0;
+  --wdb-r-dusty-sky: #7aa0b8;
+  --wdb-r-lavender-dusk: #9a8aaa;
+  --wdb-r-pale-amber: #e8c888;
+  --wdb-r-ink: var(--wds-text, #f2ebe0);
+  --wdb-r-muted: var(--wds-text-secondary, rgba(242, 235, 224, 0.78));
+  --wdb-r-faint: var(--wds-text-tertiary, rgba(242, 235, 224, 0.62));
+  --wdb-r-line: var(--wds-border-subtle, rgba(224, 176, 144, 0.08));
+  --wdb-r-line-strong: var(--wds-border, rgba(224, 176, 144, 0.14));
+  --wdb-r-panel: var(--wds-elevated, #26201c);
+  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #1c1816) 92%, #e0d3c0 4%);
+  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #26201c) 90%, var(--wdb-r-adobe) 10%);
+  --wdb-r-accent: var(--wds-accent, #c4908a);
   --wdb-r-radius: var(--wds-radius-lg, 14px);
   --wdb-r-radius-md: var(--wds-radius-md, 10px);
   --wdb-r-radius-sm: var(--wds-radius-sm, 6px);
   --wdb-r-pad: 0.85rem 0.95rem 0.8rem;
   --wdb-r-gap: 0.7rem;
   --wdb-r-shadow: 0 1px 0 rgba(242, 235, 224, 0.035) inset,
-    0 8px 24px rgba(10, 8, 14, 0.38);
+    0 8px 24px rgba(18, 14, 12, 0.42);
   --wdb-r-shadow-hover: 0 1px 0 rgba(242, 235, 224, 0.05) inset,
-    0 14px 32px rgba(10, 8, 14, 0.46);
+    0 14px 32px rgba(18, 14, 12, 0.5);
   /*
-   * Semantic luminous domain colors — premium night field-instrument glow.
-   * Anchored in Waypoint aubergine/bone/sand/terracotta/clay; restrained env accents.
-   * NOT RGB gaming rims.
+   * Semantic luminous domain colors — desert sunset catching the instrument edge.
+   * Pastel accents on dark volcanic/charcoal panels. NOT RGB gaming rims.
+   * Lavender dusk is one astronomy ingredient, not the whole UI.
    */
-  --wdb-r-glow-weather: #6aa8c2;
-  --wdb-r-glow-precip: #5e9bb5;
-  --wdb-r-glow-light: #d4a05c;
-  --wdb-r-glow-astronomy: #8b7ab0;
+  --wdb-r-glow-weather: #7aa0b8;
+  --wdb-r-glow-precip: #6aa8a0;
+  --wdb-r-glow-light: #e8c888;
+  --wdb-r-glow-astronomy: #9a8aaa;
   --wdb-r-glow-air-good: #7d9a6e;
   --wdb-r-glow-air-moderate: #c4a46a;
   --wdb-r-glow-air-usg: #c17a5a;
   --wdb-r-glow-air-unhealthy: #a85d52;
   --wdb-r-glow-alert-quiet: #7a8a9a;
-  --wdb-r-glow-alert: #c4785a;
+  --wdb-r-glow-alert: #d08070;
   --wdb-r-glow-nature: #7d8f72;
   --wdb-r-glow-earth: #c17a5a;
-  --wdb-r-glow-default: #8b7ab0;
+  --wdb-r-glow-default: #c4908a;
 
   --category-weather: var(--wdb-r-glow-weather);
   --category-light: var(--wdb-r-glow-light);
   --category-nature: var(--wdb-r-glow-nature);
   --category-astronomy: var(--wdb-r-glow-astronomy);
-  --category-photography: var(--wp-plum, #8b6f82);
+  --category-photography: var(--wdb-r-dusty-rose, #c4908a);
   --category-water: var(--wdb-r-glow-precip);
   --category-hiking: var(--wdb-r-glow-nature);
   --category-earth: var(--wdb-r-glow-earth);
   --category-alerts: var(--wdb-r-glow-alert-quiet);
   --category-alerts-active: var(--wdb-r-glow-alert);
-  --category-travel: var(--wp-plum, #8b6f82);
+  --category-travel: var(--wdb-r-adobe, #c4886a);
   --category-next: var(--wdb-r-glow-weather);
   --category-precip: var(--wdb-r-glow-precip);
   --category-doorway: var(--wdb-r-glow-default);
@@ -117,12 +148,13 @@
   padding: 0.65rem 1rem 0.7rem;
   border: 1px solid var(--wdb-r-line-strong);
   border-radius: var(--wdb-r-radius);
+  /* Twilight charcoal → desert plum → adobe → peach — data stays dominant */
   background:
     linear-gradient(
       165deg,
-      color-mix(in srgb, var(--wdb-r-panel) 92%, var(--wdb-r-accent) 8%) 0%,
-      var(--wdb-r-surface) 55%,
-      var(--wdb-r-panel) 100%
+      color-mix(in srgb, var(--wdb-r-charcoal) 82%, var(--wdb-r-dusty-blue) 18%) 0%,
+      color-mix(in srgb, var(--wdb-r-adobe) 22%, var(--wdb-r-charcoal) 78%) 48%,
+      color-mix(in srgb, var(--wdb-r-peach) 16%, var(--wdb-r-charcoal) 84%) 100%
     );
   box-shadow: var(--wdb-r-shadow);
 }
@@ -570,7 +602,7 @@
   pointer-events: none;
   z-index: 0;
   opacity: 0.4;
-  color: color-mix(in srgb, var(--wdb-r-cat, var(--wp-purple, #7a6b8a)) 45%, var(--wdb-r-muted));
+  color: color-mix(in srgb, var(--wdb-r-cat, var(--wdb-r-dusty-rose, #c4908a)) 45%, var(--wdb-r-muted));
 }
 
 .wdb-r-widget__content {
@@ -760,7 +792,7 @@
     transparent
   );
   background:
-    /* Atmospheric corners: brighter near limbs, soft falloff into aubergine */
+    /* Atmospheric corners: desert sunset catching the instrument edge */
     radial-gradient(
       ellipse 85% 60% at 0% 0%,
       color-mix(in srgb, var(--wdb-r-glow) calc(20% * var(--wdb-r-glow-strength)), transparent),
@@ -784,8 +816,8 @@
     linear-gradient(
       155deg,
       color-mix(in srgb, var(--wdb-r-glow) calc(10% * var(--wdb-r-glow-strength)), var(--wdb-r-surface)) 0%,
-      color-mix(in srgb, var(--wp-aubergine-900, #1f1a26) 72%, var(--wdb-r-surface)) 48%,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 30%, var(--wdb-r-surface)) 100%
+      color-mix(in srgb, var(--wdb-r-charcoal, #1a1614) 72%, var(--wdb-r-surface)) 48%,
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 30%, var(--wdb-r-surface)) 100%
     );
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--wdb-r-glow) calc(10% * var(--wdb-r-glow-strength)), transparent),
@@ -851,8 +883,8 @@
     linear-gradient(
       155deg,
       color-mix(in srgb, var(--wdb-r-glow) calc(13% * var(--wdb-r-glow-strength)), var(--wdb-r-hover)) 0%,
-      color-mix(in srgb, var(--wp-aubergine-900, #1f1a26) 64%, var(--wdb-r-hover)) 50%,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 24%, var(--wdb-r-hover)) 100%
+      color-mix(in srgb, var(--wdb-r-charcoal, #1a1614) 64%, var(--wdb-r-hover)) 50%,
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 24%, var(--wdb-r-hover)) 100%
     );
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--wdb-r-glow) calc(14% * var(--wdb-r-glow-strength)), transparent),
@@ -1732,7 +1764,7 @@ html.wdb-r-kiosk .wdb-r,
 .wdb-r-graphic--sunset { color: var(--wp-dust-gold, #c4a46a); }
 .wdb-r-graphic--blue-hour,
 .wdb-r-graphic--clear-night,
-.wdb-r-graphic--moon { color: var(--wp-purple, #7a6b8a); }
+.wdb-r-graphic--moon { color: var(--wdb-r-lavender-dusk, #9a8aaa); }
 .wdb-r-graphic--partly { color: var(--wp-dust-gold, #c4a46a); }
 
 .wdb-r-catalog__group {
@@ -1827,9 +1859,9 @@ html.wdb-r-kiosk .wdb-r,
     ),
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 22%, transparent) 0%,
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 22%, transparent) 0%,
       transparent 42%,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 38%, transparent) 100%
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 38%, transparent) 100%
     );
   z-index: 1;
 }
@@ -1865,9 +1897,9 @@ html.wdb-r-kiosk .wdb-r,
     ),
     linear-gradient(
       180deg,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 20%, transparent) 0%,
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 20%, transparent) 0%,
       transparent 40%,
-      color-mix(in srgb, var(--wp-aubergine-950, #17131c) 36%, transparent) 100%
+      color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 36%, transparent) 100%
     );
 }
 
@@ -2074,9 +2106,9 @@ html.wdb-r-kiosk .wdb-r,
       ),
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 16%, transparent) 0%,
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 16%, transparent) 0%,
         transparent 45%,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 40%, transparent) 100%
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 40%, transparent) 100%
       );
   }
 
@@ -2132,8 +2164,8 @@ html.wdb-r-kiosk .wdb-r,
   }
 
   /* Non-featured tiles: stronger left wash so dense facts stay clear.
-     Keep Astronomy moon disc on-canvas (do not over-shift). */
-  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]) .wdb-r-widget__art::after {
+     Keep Moon / Light / Air / Wind / storm subjects on-canvas (do not over-shift). */
+  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]) .wdb-r-widget__art::after {
     background:
       linear-gradient(
         96deg,
@@ -2145,25 +2177,33 @@ html.wdb-r-kiosk .wdb-r,
       ),
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 14%, transparent) 0%,
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 14%, transparent) 0%,
         transparent 45%,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 42%, transparent) 100%
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 42%, transparent) 100%
       );
   }
 
-  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]) .wdb-r-widget__art-svg {
+  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]) .wdb-r-widget__art-svg {
     opacity: 0.42;
     right: -32%;
   }
 
-  .wdb-r-widget[data-category="astronomy"] .wdb-r-widget__art-svg {
-    right: -12%;
-    width: min(78%, 14rem);
+  .wdb-r-widget[data-category="astronomy"] .wdb-r-widget__art-svg,
+  .wdb-r-widget[data-category="light"] .wdb-r-widget__art-svg,
+  .wdb-r-widget[data-category="air"] .wdb-r-widget__art-svg,
+  .wdb-r-widget[data-category="wind"] .wdb-r-widget__art-svg,
+  .wdb-r-widget[data-category="precip"] .wdb-r-widget__art-svg {
+    right: -10%;
+    width: min(82%, 14.5rem);
     opacity: 0.78;
     top: 0;
   }
 
-  .wdb-r-widget[data-category="astronomy"] .wdb-r-widget__art::after {
+  .wdb-r-widget[data-category="astronomy"] .wdb-r-widget__art::after,
+  .wdb-r-widget[data-category="light"] .wdb-r-widget__art::after,
+  .wdb-r-widget[data-category="air"] .wdb-r-widget__art::after,
+  .wdb-r-widget[data-category="wind"] .wdb-r-widget__art::after,
+  .wdb-r-widget[data-category="precip"] .wdb-r-widget__art::after {
     background:
       linear-gradient(
         100deg,
@@ -2174,9 +2214,9 @@ html.wdb-r-kiosk .wdb-r,
       ),
       linear-gradient(
         180deg,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 12%, transparent) 0%,
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 12%, transparent) 0%,
         transparent 48%,
-        color-mix(in srgb, var(--wp-aubergine-950, #17131c) 36%, transparent) 100%
+        color-mix(in srgb, var(--wdb-r-volcanic, #120e0c) 36%, transparent) 100%
       );
   }
 
