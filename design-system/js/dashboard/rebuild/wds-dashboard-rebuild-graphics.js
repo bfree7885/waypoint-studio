@@ -524,19 +524,22 @@
     if (/waning.?crescent/.test(p)) return "waning-crescent";
     if (/waxing.?gibbous/.test(p)) return "waxing-gibbous";
     if (/waning.?gibbous/.test(p)) return "waning-gibbous";
-    /* Prefer synodic phase fraction 0..1 when label missing — honest waxing/waning */
-    var pv = Number(phaseValue);
-    if (isFinite(pv)) {
-      if (pv < 0) pv = ((pv % 1) + 1) % 1;
-      if (pv > 1 && pv <= 100) pv = pv / 100;
-      if (pv < 0.03 || pv > 0.97) return "new";
-      if (pv < 0.22) return "waxing-crescent";
-      if (pv < 0.28) return "first-quarter";
-      if (pv < 0.47) return "waxing-gibbous";
-      if (pv < 0.53) return "full";
-      if (pv < 0.72) return "waning-gibbous";
-      if (pv < 0.78) return "last-quarter";
-      return "waning-crescent";
+    /* Prefer synodic phase fraction 0..1 when label missing — honest waxing/waning.
+       Guard null/"" : Number(null)===0 would falsely read as new moon. */
+    if (phaseValue != null && phaseValue !== "") {
+      var pv = Number(phaseValue);
+      if (isFinite(pv)) {
+        if (pv < 0) pv = ((pv % 1) + 1) % 1;
+        if (pv > 1 && pv <= 100) pv = pv / 100;
+        if (pv < 0.03 || pv > 0.97) return "new";
+        if (pv < 0.22) return "waxing-crescent";
+        if (pv < 0.28) return "first-quarter";
+        if (pv < 0.47) return "waxing-gibbous";
+        if (pv < 0.53) return "full";
+        if (pv < 0.72) return "waning-gibbous";
+        if (pv < 0.78) return "last-quarter";
+        return "waning-crescent";
+      }
     }
     var pct = Number(illum);
     if (!isFinite(pct)) return "waxing-crescent";
@@ -551,9 +554,10 @@
 
   /**
    * Illumination fraction 0..1 and waxing flag.
-   * Prefer measured/computed illumination when available; phase key sets orientation.
+   * Prefer measured/computed illumination when available; phase key sets orientation
+   * unless synodic phaseValue is present (needed near new/full labels).
    */
-  function moonGeometry(key, illumPct) {
+  function moonGeometry(key, illumPct, phaseValue) {
     var map = {
       new: { lit: 0, waxing: true },
       "waxing-crescent": { lit: 0.2, waxing: true },
@@ -569,11 +573,20 @@
     if (illumPct != null && isFinite(Number(illumPct))) {
       lit = Math.max(0, Math.min(1, Number(illumPct) / 100));
     }
-    return { lit: lit, waxing: g.waxing };
+    var waxing = g.waxing;
+    if (phaseValue != null && phaseValue !== "") {
+      var pv = Number(phaseValue);
+      if (isFinite(pv)) {
+        if (pv < 0) pv = ((pv % 1) + 1) % 1;
+        if (pv > 1 && pv <= 100) pv = pv / 100;
+        waxing = pv <= 0.5;
+      }
+    }
+    return { lit: lit, waxing: waxing };
   }
 
-  function moonDisc(cx, cy, r, phaseKey, illumPct) {
-    var g = moonGeometry(phaseKey, illumPct);
+  function moonDisc(cx, cy, r, phaseKey, illumPct, phaseValue) {
+    var g = moonGeometry(phaseKey, illumPct, phaseValue);
     var mid = nid("moon");
     var lit = g.lit;
     /* Field-guide lunar viz: ivory-silver lit face, faintly visible dark limb */
@@ -900,7 +913,7 @@
         starsField(),
         ridgesFar("#14101c", 0.72),
         ridgesMid("#0e0c14", 0.9),
-        moonDisc(118, 34, 16, key, illum),
+        moonDisc(118, 34, 16, key, illum, phaseValue),
         terrainNear("#0a0810", 0.96),
         pineRow()
       ]),
