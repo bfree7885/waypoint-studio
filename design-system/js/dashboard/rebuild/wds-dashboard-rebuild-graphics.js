@@ -525,10 +525,17 @@
 
   function rainCurtain(prob, intensity) {
     var p = isFinite(Number(prob)) ? Number(prob) : 40;
+    /* Never depict falling rain for dry / very-low probability. */
+    if (p <= 10 && intensity !== "heavy" && intensity !== "moderate") {
+      return '<g class="wdb-r-curtain" data-rain="none"></g>';
+    }
     var heavy = intensity === "heavy" || intensity === "moderate" || p >= 70;
-    var n = p < 15 ? 3 : p < 35 ? 7 : p < 55 ? 12 : p < 75 ? 18 : 24;
-    if (intensity === "heavy") n += 4;
-    var out = '<g class="wdb-r-curtain">';
+    var n = p <= 30 ? 0 : p < 55 ? 8 : p < 75 ? 14 : p < 85 ? 18 : 24;
+    if (intensity === "heavy") n = Math.max(n, 18);
+    if (n === 0) {
+      return '<g class="wdb-r-curtain" data-rain="none"></g>';
+    }
+    var out = '<g class="wdb-r-curtain" data-rain="active">';
     for (var i = 0; i < n; i++) {
       var x = 52 + (i * 4.2 + (i % 5) * 1.1);
       var y0 = 8 + (i % 7) * 3;
@@ -666,206 +673,110 @@
     );
   }
 
-  /* ——— Moon phase (accurate 8-phase geometry via mask + real illumination) ——— */
+  /* ——— Moon phase: orthographic illuminated area only (no maria/craters/glow) ——— */
 
   function moonPhaseKey(phase, illum, phaseValue) {
-    var p = String(phase || "").toLowerCase();
-    if (/new/.test(p) && !/wane|wax/.test(p)) return "new";
-    if (/full/.test(p)) return "full";
-    if (/first.?quarter|waxing.?quarter/.test(p)) return "first-quarter";
-    if (/last.?quarter|third.?quarter|waning.?quarter/.test(p)) return "last-quarter";
-    if (/waxing.?crescent/.test(p)) return "waxing-crescent";
-    if (/waning.?crescent/.test(p)) return "waning-crescent";
-    if (/waxing.?gibbous/.test(p)) return "waxing-gibbous";
-    if (/waning.?gibbous/.test(p)) return "waning-gibbous";
     var pv = Number(phaseValue);
     if (isFinite(pv)) {
       if (pv < 0) pv = ((pv % 1) + 1) % 1;
       if (pv > 1 && pv <= 100) pv = pv / 100;
-      if (pv < 0.03 || pv > 0.97) return "new";
-      if (pv < 0.22) return "waxing-crescent";
-      if (pv < 0.28) return "first-quarter";
-      if (pv < 0.47) return "waxing-gibbous";
-      if (pv < 0.53) return "full";
-      if (pv < 0.72) return "waning-gibbous";
-      if (pv < 0.78) return "last-quarter";
-      return "waning-crescent";
+      if (pv < 0.005 || pv >= 0.995) return "new";
+      if (pv >= 0.495 && pv < 0.505) return "full";
+      return pv < 0.5 ? "waxing" : "waning";
     }
+    var p = String(phase || "").toLowerCase();
+    if (/waning|last.?quarter|third.?quarter/.test(p)) return "waning";
+    if (/waxing|first.?quarter/.test(p)) return "waxing";
+    if (/full/.test(p)) return "full";
+    if (/new/.test(p)) return "new";
     var pct = Number(illum);
-    if (!isFinite(pct)) return "waxing-crescent";
-    if (pct < 3) return "new";
-    if (pct < 35) return "waxing-crescent";
-    if (pct < 55) return "first-quarter";
-    if (pct < 85) return "waxing-gibbous";
-    if (pct < 97) return "full";
-    return "full";
+    if (!isFinite(pct)) return "waxing";
+    if (pct < 0.5) return "new";
+    if (pct >= 99.5) return "full";
+    return "waxing";
   }
 
-  function moonGeometry(key, illumPct) {
-    var map = {
-      new: { lit: 0, waxing: true },
-      "waxing-crescent": { lit: 0.2, waxing: true },
-      "first-quarter": { lit: 0.5, waxing: true },
-      "waxing-gibbous": { lit: 0.75, waxing: true },
-      full: { lit: 1, waxing: true },
-      "waning-gibbous": { lit: 0.75, waxing: false },
-      "last-quarter": { lit: 0.5, waxing: false },
-      "waning-crescent": { lit: 0.2, waxing: false }
-    };
-    var g = map[key] || map["waxing-crescent"];
-    var lit = g.lit;
-    if (illumPct != null && isFinite(Number(illumPct))) {
-      lit = Math.max(0, Math.min(1, Number(illumPct) / 100));
+  function moonIlluminationFraction(illumPct) {
+    var pct = Number(illumPct);
+    if (!isFinite(pct)) return 0;
+    /*
+     * Dashboard / Open-Meteo illumination is always 0–100 percent.
+     * Do NOT treat 1 as “100% of a unit fraction” — that paints a Full Moon
+     * for a 1% New Moon (the production failure case).
+     * Only rescale clearly fractional values strictly between 0 and 1 exclusive.
+     */
+    if (pct > 0 && pct < 1) pct = pct * 100;
+    return Math.max(0, Math.min(1, pct / 100));
+  }
+
+  /**
+   * Orthographic terminator: lit disk fraction k = illumination/100.
+   * Terminator x = (1 − 2k) · √(1 − y²). Waxing = lit on the right.
+   * Paint ONLY dark disk + solid lit polygon — no texture, glow, or craters.
+   */
+  function moonLitPath(cx, cy, r, k, waxing) {
+    if (k <= 0.002) return "";
+    if (k >= 0.998) {
+      return (
+        "M " +
+        (cx - r) +
+        " " +
+        cy +
+        " a " +
+        r +
+        " " +
+        r +
+        " 0 1 1 " +
+        r * 2 +
+        " 0 a " +
+        r +
+        " " +
+        r +
+        " 0 1 1 " +
+        -r * 2 +
+        " 0"
+      );
     }
-    return { lit: lit, waxing: g.waxing };
+    var n = 72;
+    var litRight = waxing !== false;
+    var d = "";
+    var i;
+    var y;
+    var half;
+    var xLimb;
+    var xTerm;
+    for (i = 0; i <= n; i++) {
+      y = 1 - (2 * i) / n;
+      half = Math.sqrt(Math.max(0, 1 - y * y));
+      xLimb = litRight ? half : -half;
+      d += (i === 0 ? "M " : " L ") + (cx + r * xLimb).toFixed(3) + " " + (cy - r * y).toFixed(3);
+    }
+    for (i = n; i >= 0; i--) {
+      y = 1 - (2 * i) / n;
+      half = Math.sqrt(Math.max(0, 1 - y * y));
+      xTerm = (1 - 2 * k) * half;
+      if (!litRight) xTerm = -xTerm;
+      d += " L " + (cx + r * xTerm).toFixed(3) + " " + (cy - r * y).toFixed(3);
+    }
+    return d + " Z";
   }
 
   function moonDisc(cx, cy, r, phaseKey, illumPct) {
-    var g = moonGeometry(phaseKey, illumPct);
-    var mid = nid("moon");
-    var lit = g.lit;
-    var darkFill = "#1a1618";
-    var darkStroke = "#8a7a90";
-    var litFill = "#e8e4d8";
-    var crater = "#d0c8b8";
-    var mare = "#c4b8a4";
-    function texture(maskAttr) {
-      var m = maskAttr || "";
-      return (
-        '<ellipse cx="' +
-        (cx - r * 0.22) +
-        '" cy="' +
-        (cy - r * 0.12) +
-        '" rx="' +
-        r * 0.38 +
-        '" ry="' +
-        r * 0.28 +
-        '" fill="' +
-        mare +
-        '" opacity="0.28"' +
-        m +
-        "/>" +
-        '<circle cx="' +
-        (cx + r * 0.18) +
-        '" cy="' +
-        (cy + r * 0.22) +
-        '" r="' +
-        r * 0.16 +
-        '" fill="' +
-        crater +
-        '" opacity="0.32"' +
-        m +
-        "/>" +
-        '<circle cx="' +
-        (cx - r * 0.28) +
-        '" cy="' +
-        (cy + r * 0.08) +
-        '" r="' +
-        r * 0.1 +
-        '" fill="' +
-        crater +
-        '" opacity="0.26"' +
-        m +
-        "/>" +
-        '<circle cx="' +
-        (cx + r * 0.08) +
-        '" cy="' +
-        (cy - r * 0.32) +
-        '" r="' +
-        r * 0.08 +
-        '" fill="' +
-        crater +
-        '" opacity="0.22"' +
-        m +
-        "/>"
-      );
-    }
-    if (lit <= 0.02) {
-      return (
-        '<g class="wdb-r-luna">' +
-        '<circle cx="' +
-        cx +
-        '" cy="' +
-        cy +
-        '" r="' +
-        (r + 3) +
-        '" fill="#d4c8a8" opacity="0.05"/>' +
-        '<circle cx="' +
-        cx +
-        '" cy="' +
-        cy +
-        '" r="' +
-        r +
-        '" fill="' +
-        darkFill +
-        '" stroke="' +
-        darkStroke +
-        '" stroke-width="0.55" opacity="0.92"/>' +
-        texture("") +
-        "</g>"
-      );
-    }
-    if (lit >= 0.98) {
-      return (
-        '<g class="wdb-r-luna">' +
-        '<circle cx="' +
-        cx +
-        '" cy="' +
-        cy +
-        '" r="' +
-        (r + 5) +
-        '" fill="#d4c8a8" opacity="0.14"/>' +
-        '<circle cx="' +
-        cx +
-        '" cy="' +
-        cy +
-        '" r="' +
-        r +
-        '" fill="' +
-        litFill +
-        '"/>' +
-        texture("") +
-        "</g>"
-      );
-    }
-    var offset;
-    if (lit <= 0.5) {
-      offset = g.waxing ? -r * (1.15 - lit * 1.1) : r * (1.15 - lit * 1.1);
-    } else {
-      offset = g.waxing ? -r * (lit - 0.15) : r * (lit - 0.15);
-    }
-    var maskUrl = ' mask="url(#' + mid + ')"';
-    return (
-      "<defs>" +
-      '<mask id="' +
-      mid +
+    var k = moonIlluminationFraction(illumPct);
+    var key = String(phaseKey || "");
+    var waxing = key !== "waning" && key !== "new";
+    if (key === "full") waxing = true;
+    if (key === "new" && k > 0.002 && k < 0.998) waxing = true;
+    var darkFill = "#0a080c";
+    var litFill = "#ebe6d8";
+    var rim = "rgba(226,214,255,0.14)";
+    var path = moonLitPath(cx, cy, r, k, waxing);
+    var out =
+      '<g class="wdb-r-luna" data-illum="' +
+      Math.round(k * 100) +
+      '" data-limb="' +
+      (k <= 0.002 ? "new" : k >= 0.998 ? "full" : waxing ? "waxing" : "waning") +
       '">' +
-      '<rect x="' +
-      (cx - r - 4) +
-      '" y="' +
-      (cy - r - 4) +
-      '" width="' +
-      (r * 2 + 8) +
-      '" height="' +
-      (r * 2 + 8) +
-      '" fill="black"/>' +
-      '<circle cx="' +
-      cx +
-      '" cy="' +
-      cy +
-      '" r="' +
-      r +
-      '" fill="white"/>' +
-      '<circle cx="' +
-      (cx + offset) +
-      '" cy="' +
-      cy +
-      '" r="' +
-      (r + 0.2) +
-      '" fill="black"/>' +
-      "</mask>" +
-      "</defs>" +
-      '<g class="wdb-r-luna">' +
       '<circle cx="' +
       cx +
       '" cy="' +
@@ -874,30 +785,22 @@
       r +
       '" fill="' +
       darkFill +
-      '" stroke="' +
-      darkStroke +
-      '" stroke-width="0.45" opacity="0.88"/>' +
-      '<circle cx="' +
-      cx +
-      '" cy="' +
-      cy +
-      '" r="' +
-      (r + 2.5) +
-      '" fill="#d4c8a8" opacity="0.07"/>' +
+      '"/>';
+    if (path) {
+      out += '<path d="' + path + '" fill="' + litFill + '"/>';
+    }
+    out +=
       '<circle cx="' +
       cx +
       '" cy="' +
       cy +
       '" r="' +
       r +
-      '" fill="' +
-      litFill +
-      '"' +
-      maskUrl +
-      "/>" +
-      texture(maskUrl) +
-      "</g>"
-    );
+      '" fill="none" stroke="' +
+      rim +
+      '" stroke-width="0.7"/>' +
+      "</g>";
+    return out;
   }
 
   /* ——— Sky / weather scenes (Conditions instrument) ——— */
@@ -1081,15 +984,21 @@
 
   function moonArt(illum, phase, phaseValue) {
     var key = moonPhaseKey(phase, illum, phaseValue);
-    return artWrap(
-      compose([
-        skyGradient("#0c0a10", "#16141c", "#100e14"),
-        starsField(),
-        moonDisc(108, 46, 28, key, illum)
-      ]),
-      "moon",
-      "night"
-    );
+    var k = moonIlluminationFraction(illum);
+    var layers = [skyGradient("#0c0a10", "#16141c", "#100e14")];
+    /* Keep stars away from the lunar disk so they cannot be read as maria/blobs. */
+    var stars = starsField();
+    if (k <= 0.03) {
+      /* Near-new: fewer, smaller stars, left of the moon only. */
+      stars =
+        '<circle cx="22" cy="14" r="0.7" fill="#f2ebe0" opacity="0.4"/>' +
+        '<circle cx="38" cy="22" r="0.5" fill="#f2ebe0" opacity="0.35"/>' +
+        '<circle cx="54" cy="12" r="0.55" fill="#f2ebe0" opacity="0.35"/>' +
+        '<circle cx="28" cy="36" r="0.4" fill="#f2ebe0" opacity="0.3"/>';
+    }
+    layers.push(stars);
+    layers.push(moonDisc(108, 46, 28, key, illum));
+    return artWrap(compose(layers), "moon", "night");
   }
 
   function sunPathArt(kind) {
@@ -1349,10 +1258,27 @@
 
   function precipArt(graphic) {
     var g = graphic || {};
-    var prob = g.probability != null ? Number(g.probability) : g.value != null ? Number(g.value) : 35;
-    var intensity = String(g.intensity || "");
+    /* Artwork follows NOW state — never paint active rain from a future peak alone. */
+    var nowProb =
+      g.nowProbability != null
+        ? Number(g.nowProbability)
+        : g.probability != null
+          ? Number(g.probability)
+          : g.value != null
+            ? Number(g.value)
+            : 0;
+    if (!isFinite(nowProb)) nowProb = 0;
+    var amount = g.amount != null ? Number(g.amount) : 0;
+    if (!isFinite(amount)) amount = 0;
+    var intensity = String(g.intensity || "").toLowerCase();
     var ptype = String(g.precipType || g.type || "").toLowerCase();
-    if (/snow|sleet|blizzard/.test(ptype)) {
+    var rainingNow =
+      amount >= 0.01 ||
+      intensity === "heavy" ||
+      intensity === "moderate" ||
+      /rain|drizzle|shower|storm/.test(String(g.conditions || "").toLowerCase());
+
+    if (/snow|sleet|blizzard/.test(ptype) && (rainingNow || nowProb >= 40)) {
       return artWrap(
         compose([
           skyGradient("#3a424c", "#6a7480", "#4a545c"),
@@ -1363,16 +1289,49 @@
         "snow"
       );
     }
-    var dry = !isFinite(prob) || prob < 18;
+
+    /*
+     * Conservative visual bands (NOW probability / intensity):
+     * 0–10  dry — NO rain streaks
+     * 11–30 possibility cues only — NO active rainfall streaks unless raining now
+     * 31–60 light curtain
+     * 61–80 denser curtain
+     * 81–100 strong curtain
+     */
+    if (!rainingNow && nowProb <= 10) {
+      return artWrap(
+        compose([
+          skyGradient("#1e2830", "#3a4a54", "#1a2228"),
+          cloudBank("light", "#8a98a0", 28),
+          horizonGround(86, "#12161a")
+        ]),
+        "precip-dry",
+        "quiet"
+      );
+    }
+
+    if (!rainingNow && nowProb <= 30) {
+      return artWrap(
+        compose([
+          skyGradient("#1e2830", "#354652", "#1a2228"),
+          cloudBank("scattered", "#8a98a0", 22),
+          horizonGround(86, "#12161a")
+        ]),
+        "precip-possible",
+        "quiet"
+      );
+    }
+
+    var bandProb = rainingNow ? Math.max(nowProb, 55) : nowProb;
     return artWrap(
       compose([
-        skyGradient("#1e2830", dry ? "#3a4a54" : "#2a3a44", "#1a2228"),
-        cloudBank(dry ? "light" : prob >= 60 ? "heavy" : "scattered", "#8a98a0", dry ? 22 : 16),
-        dry ? virga(prob) : rainCurtain(prob, intensity),
+        skyGradient("#1e2830", bandProb >= 60 ? "#2a3a44" : "#354652", "#1a2228"),
+        cloudBank(bandProb >= 60 ? "heavy" : "scattered", "#8a98a0", bandProb >= 60 ? 14 : 18),
+        rainCurtain(bandProb, intensity || (bandProb >= 70 ? "heavy" : "light")),
         horizonGround(86, "#12161a")
       ]),
       "precip",
-      dry ? "quiet" : "rain"
+      "rain"
     );
   }
 
@@ -1464,11 +1423,13 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildGraphics = {
-    version: "5.0.0-cinematic-instruments",
+    version: "5.1.0-moon-rain-visual-gate",
     render: render,
     normalizeSkyState: normalizeSkyState,
     moonPhaseKey: moonPhaseKey,
-    moonGeometry: moonGeometry,
+    moonIlluminationFraction: moonIlluminationFraction,
+    moonLitPath: moonLitPath,
+    moonDisc: moonDisc,
     illumFromGraphic: illumFromGraphic,
     miniSky: miniSky
   };

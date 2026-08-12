@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard visual gate fixtures (local)</title>
+  <link rel="stylesheet" href="../../../design-system/css/wds-dashboard-rebuild.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 1.25rem;
+      background: #1a1410;
+      color: #ece6d6;
+      font: 14px/1.4 Inter, system-ui, sans-serif;
+    }
+    h1 { font-size: 1.15rem; margin: 0 0 0.5rem; }
+    p { color: #b7ad9c; max-width: 48rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .wdb-r-widget {
+      min-height: 11rem;
+    }
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: #8a8098;
+    }
+  </style>
+</head>
+<body class="wdb-r">
+  <h1>Dashboard acceptance fixtures — live production state</h1>
+  <p>
+    Forced to the failing production readings: Astronomy New moon / 1% illumination,
+    Rain Timing NOW 0% / PEAK 7%. Artwork must follow those numbers.
+  </p>
+  <div class="grid" id="tiles"></div>
+  <p class="note" id="meta"></p>
+
+  <script src="../../../design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+  <script>
+    (function () {
+      var G = window.WDS && window.WDS.dashboardRebuildGraphics;
+      var host = document.getElementById("tiles");
+      if (!G) {
+        host.textContent = "Graphics failed to load.";
+        return;
+      }
+
+      function tile(title, factsHtml, graphicHtml, extra) {
+        return (
+          '<article class="wdb-r-widget" ' + (extra || "") + ">" +
+          graphicHtml +
+          '<header class="wdb-r-widget__head"><h3 class="wdb-r-widget__title">' + title + "</h3></header>" +
+          '<div class="wdb-r-widget__body">' + factsHtml + "</div>" +
+          "</article>"
+        );
+      }
+
+      function facts(rows) {
+        return (
+          '<dl class="wdb-r-widget__facts">' +
+          rows
+            .map(function (r) {
+              return (
+                '<div class="wdb-r-widget__fact"><dt>' +
+                r[0] +
+                "</dt><dd>" +
+                r[1] +
+                "</dd></div>"
+              );
+            })
+            .join("") +
+          "</dl>"
+        );
+      }
+
+      var moon = G.render({
+        kind: "moon",
+        value: 1,
+        phase: "New moon",
+        phaseValue: 0.01
+      });
+      var rain = G.render({
+        kind: "precip",
+        nowProbability: 0,
+        probability: 0,
+        peakProbability: 7,
+        intensity: null,
+        precipType: "none",
+        conditions: "Clear"
+      });
+
+      host.innerHTML =
+        tile(
+          "Astronomy",
+          facts([
+            ["Moon", "New moon"],
+            ["Illumination", "1% Computed"],
+            ["Moonrise", "—"],
+            ["Night sky", "Favorable for stars"]
+          ]),
+          moon
+        ) +
+        tile(
+          "Rain timing",
+          facts([
+            ["Now", "0% chance"],
+            ["Peak (12h)", "7%"]
+          ]),
+          rain,
+          'data-precip="dry"'
+        );
+
+      /* Pixel-ish sanity: count rain streak paths and moon lit path existence */
+      var rainStreaks = (rain.match(/l-1\.8 /g) || []).length;
+      var moonLit = /<path d="M /.test(moon);
+      document.getElementById("meta").textContent =
+        "Graphics " +
+        G.version +
+        " · rain streak paths in NOW=0 art: " +
+        rainStreaks +
+        " (must be 0) · moon lit path present: " +
+        moonLit;
+    })();
+  </script>
+</body>
+</html>
