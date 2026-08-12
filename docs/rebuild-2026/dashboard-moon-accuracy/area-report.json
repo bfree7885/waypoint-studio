@@ -1,0 +1,114 @@
+[
+  {
+    "id": "new-0",
+    "illumination": 0,
+    "limb": "new",
+    "raster": 0,
+    "path": 0
+  },
+  {
+    "id": "wax-3",
+    "illumination": 3,
+    "limb": "waxing",
+    "raster": 0.03,
+    "path": 0.0299
+  },
+  {
+    "id": "wan-3",
+    "illumination": 3,
+    "limb": "waning",
+    "raster": 0.03,
+    "path": 0.0299
+  },
+  {
+    "id": "wax-10",
+    "illumination": 10,
+    "limb": "waxing",
+    "raster": 0.1001,
+    "path": 0.0998
+  },
+  {
+    "id": "wan-10",
+    "illumination": 10,
+    "limb": "waning",
+    "raster": 0.1001,
+    "path": 0.0998
+  },
+  {
+    "id": "wax-25",
+    "illumination": 25,
+    "limb": "waxing",
+    "raster": 0.2501,
+    "path": 0.2496
+  },
+  {
+    "id": "wan-25",
+    "illumination": 25,
+    "limb": "waning",
+    "raster": 0.2501,
+    "path": 0.2496
+  },
+  {
+    "id": "wax-50",
+    "illumination": 50,
+    "limb": "waxing",
+    "raster": 0.5016,
+    "path": 0.4991
+  },
+  {
+    "id": "wan-50",
+    "illumination": 50,
+    "limb": "waning",
+    "raster": 0.5016,
+    "path": 0.4991
+  },
+  {
+    "id": "wax-75",
+    "illumination": 75,
+    "limb": "waxing",
+    "raster": 0.75,
+    "path": 0.7487
+  },
+  {
+    "id": "wan-75",
+    "illumination": 75,
+    "limb": "waning",
+    "raster": 0.75,
+    "path": 0.7487
+  },
+  {
+    "id": "wax-90",
+    "illumination": 90,
+    "limb": "waxing",
+    "raster": 0.9,
+    "path": 0.8984
+  },
+  {
+    "id": "wan-90",
+    "illumination": 90,
+    "limb": "waning",
+    "raster": 0.9,
+    "path": 0.8984
+  },
+  {
+    "id": "wax-97",
+    "illumination": 97,
+    "limb": "waxing",
+    "raster": 0.97,
+    "path": 0.9683
+  },
+  {
+    "id": "wan-97",
+    "illumination": 97,
+    "limb": "waning",
+    "raster": 0.97,
+    "path": 0.9683
+  },
+  {
+    "id": "full-100",
+    "illumination": 100,
+    "limb": "full",
+    "raster": 1,
+    "path": 1
+  }
+]

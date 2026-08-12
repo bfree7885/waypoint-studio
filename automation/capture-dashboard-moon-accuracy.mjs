@@ -59,9 +59,13 @@ const NEAR_NEW_PLATFORM = {
       humidity: 41,
       cloudCover: 12,
       wind: { speed: 4, gust: 6 },
-      precipitation: { probability: 5 },
+      precipitation: { probability: 1, amount: 0 },
       conditions: { summary: "Clear" }
-    }
+    },
+    hourly: [
+      { time: "2026-08-12T22:00", precipitation: { probability: 1 }, conditions: { summary: "Clear" } },
+      { time: "2026-08-12T03:00", precipitation: { probability: 5 }, conditions: { summary: "Clear" } }
+    ]
   },
   airQuality: { status: "live", usAqi: 39, category: "Good", pm25: 10.5 }
 };
@@ -261,8 +265,14 @@ async function main() {
         clipped: moon && rect ? (moon.left < rect.left - 1 || moon.right > rect.right + 2) : null,
         overlapNightSky: overlap,
         innerWidth: vw,
-        oneColumn: vw <= 767 && tile && rect ? rect.width / vw >= 0.85 : null,
-        hasLunar: !!svg
+        oneColumn: vw <= 767 && tile && rect ? rect.width / vw >= 0.85 : vw > 767 ? true : null,
+        hasLunar: !!svg,
+        precipNow: (() => {
+          const cond = document.querySelector('[data-widget-id="ph-conditions"]');
+          const band = cond && cond.getAttribute("data-precip");
+          const sky = cond && cond.getAttribute("data-sky");
+          return { band, sky, iconRain: !!(cond && cond.querySelector('.wdb-r-widget__icon svg path[d*="19.5"]')) };
+        })()
       };
     })()`);
   }
@@ -279,7 +289,7 @@ async function main() {
         document.body.prepend(host);
       }
       host.innerHTML = Lunar.FIXTURES.map(f => {
-        const s = Lunar.normalize({ phaseValue: f.phaseValue });
+        const s = Lunar.normalize({ phaseValue: f.phaseValue, illumination: f.illumination, phase: f.phase });
         return '<div style="text-align:center">' + Lunar.renderDisk(s, { size: 56 }) +
           '<div>' + f.illumination + '% ' + s.limb + '</div></div>';
       }).join('');
@@ -289,13 +299,16 @@ async function main() {
 
   for (const vp of [
     { name: "375x812", width: 375, height: 812 },
-    { name: "430x932", width: 430, height: 932 }
+    { name: "430x932", width: 430, height: 932 },
+    { name: "768x1024", width: 768, height: 1024 },
+    { name: "1440x900", width: 1440, height: 900 },
+    { name: "1728x1117", width: 1728, height: 1117 }
   ]) {
     await send("Emulation.setDeviceMetricsOverride", {
       width: vp.width,
       height: vp.height,
-      deviceScaleFactor: 2,
-      mobile: true
+      deviceScaleFactor: vp.width <= 430 ? 2 : 1,
+      mobile: vp.width <= 430
     });
     await goto("/?cb=moon-" + vp.name);
     await delay(1200);
@@ -305,10 +318,15 @@ async function main() {
     results.push({ viewport: vp.name, injected, ...info });
     if (!injected || !injected.ok) failures.push(vp.name + ": inject failed " + JSON.stringify(injected));
     if (info && info.illumination !== "3") failures.push(vp.name + ": illumination attr " + info.illumination);
-    if (info && info.shape !== "new") failures.push(vp.name + ": shape " + info.shape);
     if (info && info.clipped) failures.push(vp.name + ": moon clipped");
     if (info && info.overlapNightSky) failures.push(vp.name + ": moon overlaps Night Sky text");
     if (info && info.oneColumn === false) failures.push(vp.name + ": one-column broken");
+    if (info && info.precipNow && info.precipNow.band && info.precipNow.band !== "dry") {
+      failures.push(vp.name + ": precip band " + info.precipNow.band + " expected dry at 1%");
+    }
+    if (info && info.precipNow && info.precipNow.sky === "rain") {
+      failures.push(vp.name + ": rain sky art at 1% precip");
+    }
     await delay(400);
     await shot(vp.name + "-near-new");
     await injectFixtureStrip();

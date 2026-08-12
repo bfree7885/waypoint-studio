@@ -1,12 +1,17 @@
 /**
- * Dashboard Rebuild — canonical lunar state + data-driven disk.
- * Single source of truth for phase label, illumination %, limb, and SVG.
- * Authority: live daylight / moon package (phaseValue + illumination).
+ * Dashboard Rebuild — canonical lunar state + orthographic MoonPhase disk.
+ * Single source of truth for phase label, illumination %, limb, and geometry.
+ * Authority: live daylight / moon package. Printed illumination drives the mask.
+ *
+ * Disk fraction k (0–1) equals spherical phase function k = (1 + cos α) / 2.
+ * Terminator offset along the limb-to-limb axis is cos α = 2k − 1.
+ * Lit region (waxing / right): x >= (1 − 2k) * sqrt(1 − y²) in a unit disk.
  */
 (function (global) {
   "use strict";
 
   var clipSeq = 0;
+  var PATH_SAMPLES = 72;
 
   var PHASES = [
     { key: "new", label: "New moon", min: 0, max: 0.03 },
@@ -19,18 +24,27 @@
     { key: "waning-crescent", label: "Waning crescent", min: 0.78, max: 0.97 }
   ];
 
-  /** Deterministic fixtures for DATA + VISUAL STATE tests. */
+  /**
+   * Deterministic fixtures: illumination 0–100 with waxing and waning limbs.
+   * 0% and 100% are nodes (new / full). 3% must render a sliver, never a gibbous.
+   */
   var FIXTURES = [
-    { id: 1, name: "New Moon 0%", phaseValue: 0, illumination: 0, phase: "New moon", limb: "new" },
-    { id: 2, name: "Waxing Crescent ~10%", phaseValue: 0.05, illumination: 10, phase: "Waxing crescent", limb: "waxing" },
-    { id: 3, name: "Waxing Crescent ~25%", phaseValue: 0.125, illumination: 25, phase: "Waxing crescent", limb: "waxing" },
-    { id: 4, name: "First Quarter ~50%", phaseValue: 0.25, illumination: 50, phase: "First quarter", limb: "waxing" },
-    { id: 5, name: "Waxing Gibbous ~75%", phaseValue: 0.375, illumination: 75, phase: "Waxing gibbous", limb: "waxing" },
-    { id: 6, name: "Full Moon 100%", phaseValue: 0.5, illumination: 100, phase: "Full moon", limb: "full" },
-    { id: 7, name: "Waning Gibbous ~75%", phaseValue: 0.625, illumination: 75, phase: "Waning gibbous", limb: "waning" },
-    { id: 8, name: "Last Quarter ~50%", phaseValue: 0.75, illumination: 50, phase: "Last quarter", limb: "waning" },
-    { id: 9, name: "Waning Crescent ~25%", phaseValue: 0.875, illumination: 25, phase: "Waning crescent", limb: "waning" },
-    { id: 10, name: "Near New Moon ~3%", phaseValue: 0.985, illumination: 3, phase: "New moon", limb: "waning" }
+    { id: "new-0", name: "New Moon 0%", phaseValue: 0, illumination: 0, phase: "New moon", limb: "new" },
+    { id: "wax-3", name: "Waxing 3%", phaseValue: 0.015, illumination: 3, phase: "New moon", limb: "waxing" },
+    { id: "wan-3", name: "Waning 3%", phaseValue: 0.985, illumination: 3, phase: "New moon", limb: "waning" },
+    { id: "wax-10", name: "Waxing Crescent 10%", phaseValue: 0.05, illumination: 10, phase: "Waxing crescent", limb: "waxing" },
+    { id: "wan-10", name: "Waning Crescent 10%", phaseValue: 0.95, illumination: 10, phase: "Waning crescent", limb: "waning" },
+    { id: "wax-25", name: "Waxing Crescent 25%", phaseValue: 0.125, illumination: 25, phase: "Waxing crescent", limb: "waxing" },
+    { id: "wan-25", name: "Waning Crescent 25%", phaseValue: 0.875, illumination: 25, phase: "Waning crescent", limb: "waning" },
+    { id: "wax-50", name: "First Quarter 50%", phaseValue: 0.25, illumination: 50, phase: "First quarter", limb: "waxing" },
+    { id: "wan-50", name: "Last Quarter 50%", phaseValue: 0.75, illumination: 50, phase: "Last quarter", limb: "waning" },
+    { id: "wax-75", name: "Waxing Gibbous 75%", phaseValue: 0.375, illumination: 75, phase: "Waxing gibbous", limb: "waxing" },
+    { id: "wan-75", name: "Waning Gibbous 75%", phaseValue: 0.625, illumination: 75, phase: "Waning gibbous", limb: "waning" },
+    { id: "wax-90", name: "Waxing Gibbous 90%", phaseValue: 0.45, illumination: 90, phase: "Waxing gibbous", limb: "waxing" },
+    { id: "wan-90", name: "Waning Gibbous 90%", phaseValue: 0.55, illumination: 90, phase: "Waning gibbous", limb: "waning" },
+    { id: "wax-97", name: "Waxing 97%", phaseValue: 0.485, illumination: 97, phase: "Full moon", limb: "waxing" },
+    { id: "wan-97", name: "Waning 97%", phaseValue: 0.515, illumination: 97, phase: "Full moon", limb: "waning" },
+    { id: "full-100", name: "Full Moon 100%", phaseValue: 0.5, illumination: 100, phase: "Full moon", limb: "full" }
   ];
 
   function clamp(n, lo, hi) {
@@ -54,6 +68,11 @@
     return Math.round(k * 100);
   }
 
+  function phaseAngleRad(k) {
+    var c = clamp(2 * k - 1, -1, 1);
+    return Math.acos(c);
+  }
+
   function phaseMetaFromValue(p) {
     p = wrapPhase(p);
     if (p == null) return null;
@@ -68,7 +87,6 @@
   function limbFromPhaseValue(p) {
     p = wrapPhase(p);
     if (p == null) return "unknown";
-    /* True new/full only at the nodes. Near-new (e.g. 3%) keeps waxing/waning so the sliver faces correctly. */
     if (p < 0.005 || p >= 0.995) return "new";
     if (p >= 0.495 && p < 0.505) return "full";
     if (p < 0.5) return "waxing";
@@ -87,10 +105,10 @@
 
   function shapeFromIllumination(kPct) {
     var k = clamp(kPct, 0, 100);
-    if (k <= 3) return "new";
+    if (k < 0.5) return "new";
     if (k < 40) return "crescent";
     if (k < 60) return "quarter";
-    if (k < 97) return "gibbous";
+    if (k < 99.5) return "gibbous";
     return "full";
   }
 
@@ -100,8 +118,9 @@
   }
 
   /**
-   * Northern-hemisphere convention: waxing is lit on the right (west limb of sky / east of disk).
+   * Northern-hemisphere convention: waxing is lit on the right.
    * Southern hemisphere reverses the apparent disk.
+   * Hemisphere is not inferred from live data unless lat is present.
    */
   function litSideFor(limb, hemisphere) {
     var hemi = hemisphere === "S" ? "S" : "N";
@@ -138,15 +157,14 @@
     var n = Number(raw);
     if (!isFinite(n)) return null;
     if (n > 0 && n <= 1 && String(raw).indexOf("%") < 0) {
-      /* Ambiguous 0–1 vs 0–100. Treat values ≤1 as fraction only when not an integer percent. */
       if (n !== 1 && n < 1) n = n * 100;
     }
     return Math.round(clamp(n, 0, 100));
   }
 
   /**
-   * Canonical lunar state. Prefer phaseValue (lunation 0–1) when present so
-   * label, illumination, and limb cannot drift apart.
+   * Canonical lunar state. Printed illumination is authoritative for the mask.
+   * phaseValue (when present) drives limb / waxing-waning / phase label.
    */
   function normalize(input, options) {
     options = options || {};
@@ -160,8 +178,10 @@
 
     if (phaseValue != null) {
       var meta = phaseMetaFromValue(phaseValue);
-      illumination = illuminationFromPhaseValue(phaseValue);
-      named = meta.label;
+      if (illumination == null) illumination = illuminationFromPhaseValue(phaseValue);
+      named = named || meta.label;
+      if (!named) named = meta.label;
+      if (phaseValue >= 0.97 || phaseValue < 0.03) named = meta.label;
       var limb = limbFromPhaseValue(phaseValue);
       return finishState({
         phaseValue: phaseValue,
@@ -205,8 +225,8 @@
     var fromName = String(named || "").toLowerCase();
     if (/first quarter/.test(fromName)) return "first-quarter";
     if (/last quarter|third quarter/.test(fromName)) return "last-quarter";
-    if (limb === "new" || illum <= 3) return "new";
-    if (limb === "full" || illum >= 97) return "full";
+    if ((limb === "new" || illum < 0.5) && illum <= 3) return "new";
+    if (limb === "full" || illum >= 99.5) return "full";
     if (limb === "waxing") {
       if (illum < 40) return "waxing-crescent";
       if (illum < 60) return "first-quarter";
@@ -231,32 +251,43 @@
   function finishState(partial) {
     var k = clamp(partial.illumination, 0, 100) / 100;
     var limb = partial.limb;
+    if (k <= 0.002) limb = "new";
+    else if (k >= 0.998) limb = "full";
+    else if (limb === "new" || limb === "full") {
+      if (partial.phaseValue != null) limb = limbFromPhaseValue(partial.phaseValue);
+      if (limb === "new" || limb === "full") {
+        limb = partial.phaseValue != null && partial.phaseValue >= 0.5 ? "waning" : "waxing";
+      }
+    }
     var litSide = litSideFor(limb, partial.hemisphere);
     var shape = shapeFromIllumination(partial.illumination);
-    var terminatorScale = Math.abs(1 - 2 * k);
+    var cosAlpha = 1 - 2 * k;
+    var alpha = phaseAngleRad(k);
     return {
       phase: partial.phase,
       phaseKey: partial.phaseKey,
       illumination: Math.round(clamp(partial.illumination, 0, 100)),
       illuminationFraction: Math.round(k * 1000) / 1000,
+      phaseAngle: Math.round(alpha * 1000) / 1000,
+      cosPhaseAngle: Math.round(clamp(2 * k - 1, -1, 1) * 1000) / 1000,
       limb: limb,
       waxing: limb === "waxing",
       waning: limb === "waning",
       litSide: litSide,
       shape: shape,
-      terminatorScale: Math.round(terminatorScale * 1000) / 1000,
+      terminatorScale: Math.round(Math.abs(cosAlpha) * 1000) / 1000,
       phaseValue: partial.phaseValue,
       hemisphere: partial.hemisphere,
       orientationKnown: !!partial.orientationKnown && litSide !== "unspecified",
       almostDark: partial.illumination <= 3,
       half: partial.illumination >= 45 && partial.illumination <= 55,
-      full: partial.illumination >= 97
+      full: partial.illumination >= 99.5
     };
   }
 
   /**
    * Geometric lit test in unit-disk coords (x right, y up, x²+y² ≤ 1).
-   * Orthographic terminator: x_term = s * (1 − 2k) * sqrt(1 − y²)
+   * Orthographic terminator: x_term = (1 − 2k) * sqrt(1 − y²)
    * Waxing / right-lit: lit when x >= term. Waning / left-lit: mirrored.
    */
   function isLitAt(x, y, state) {
@@ -271,9 +302,135 @@
     if (litSide === "none") return false;
     var sqrt = Math.sqrt(Math.max(0, 1 - y * y));
     var s = litSide === "left" ? -1 : 1;
-    /* unspecified limb: still show area fraction, but do not claim a sky direction */
     if (litSide === "unspecified") s = 1;
     return s * x >= (1 - 2 * k) * sqrt - 1e-9;
+  }
+
+  function rasterLitFraction(state, size) {
+    size = size || 201;
+    if (!state) return 0;
+    var cx = (size - 1) / 2;
+    var r = cx;
+    var lit = 0;
+    var disk = 0;
+    var y;
+    var x;
+    var u;
+    var v;
+    for (y = 0; y < size; y += 1) {
+      for (x = 0; x < size; x += 1) {
+        u = (x - cx) / r;
+        v = (cx - y) / r;
+        if (u * u + v * v > 1) continue;
+        disk += 1;
+        if (isLitAt(u, v, state)) lit += 1;
+      }
+    }
+    return disk ? lit / disk : 0;
+  }
+
+  function litPolygon(cx, cy, r, state, samples) {
+    var k = clamp(state.illumination, 0, 100) / 100;
+    if (k <= 0.002) return [];
+    if (k >= 0.998) return null;
+    var n = samples || PATH_SAMPLES;
+    var litRight = state.litSide !== "left";
+    var pts = [];
+    var i;
+    var y;
+    var half;
+    var xLimb;
+    var xTerm;
+    for (i = 0; i <= n; i += 1) {
+      y = 1 - (2 * i) / n;
+      half = Math.sqrt(Math.max(0, 1 - y * y));
+      xLimb = litRight ? half : -half;
+      pts.push([cx + r * xLimb, cy - r * y]);
+    }
+    for (i = n; i >= 0; i -= 1) {
+      y = 1 - (2 * i) / n;
+      half = Math.sqrt(Math.max(0, 1 - y * y));
+      xTerm = (1 - 2 * k) * half;
+      if (!litRight) xTerm = -xTerm;
+      pts.push([cx + r * xTerm, cy - r * y]);
+    }
+    return pts;
+  }
+
+  function polygonArea(pts) {
+    if (!pts || pts.length < 3) return 0;
+    var a = 0;
+    var i;
+    var j = pts.length - 1;
+    for (i = 0; i < pts.length; j = i, i += 1) {
+      a += pts[j][0] * pts[i][1] - pts[i][0] * pts[j][1];
+    }
+    return Math.abs(a) / 2;
+  }
+
+  function pointInPolygon(x, y, pts) {
+    if (!pts || !pts.length) return false;
+    var inside = false;
+    var j = pts.length - 1;
+    var i;
+    for (i = 0; i < pts.length; i += 1) {
+      var xi = pts[i][0];
+      var yi = pts[i][1];
+      var xj = pts[j][0];
+      var yj = pts[j][1];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi + 0.0) + xi) {
+        inside = !inside;
+      }
+      j = i;
+    }
+    return inside;
+  }
+
+  function pathAreaFraction(state, r) {
+    r = r || 44;
+    var k = clamp(state.illumination, 0, 100) / 100;
+    if (k <= 0.002) return 0;
+    if (k >= 0.998) return 1;
+    var pts = litPolygon(0, 0, r, state, PATH_SAMPLES);
+    if (!pts) return 1;
+    return polygonArea(pts) / (Math.PI * r * r);
+  }
+
+  function pathD(pts) {
+    if (!pts || !pts.length) return "";
+    var d = "M " + pts[0][0].toFixed(3) + " " + pts[0][1].toFixed(3);
+    var i;
+    for (i = 1; i < pts.length; i += 1) {
+      d += " L " + pts[i][0].toFixed(3) + " " + pts[i][1].toFixed(3);
+    }
+    return d + " Z";
+  }
+
+  function litPath(cx, cy, r, state) {
+    var k = clamp(state.illumination, 0, 100) / 100;
+    if (k <= 0.002) return "";
+    if (k >= 0.998) {
+      return (
+        "M " +
+        (cx - r) +
+        " " +
+        cy +
+        " a " +
+        r +
+        " " +
+        r +
+        " 0 1 1 " +
+        r * 2 +
+        " 0 a " +
+        r +
+        " " +
+        r +
+        " 0 1 1 " +
+        -r * 2 +
+        " 0"
+      );
+    }
+    return pathD(litPolygon(cx, cy, r, state, PATH_SAMPLES));
   }
 
   function visualState(state) {
@@ -303,7 +460,8 @@
       full: state.full,
       terminatorScale: state.terminatorScale,
       samples: samples,
-      pathSignature: pathSignature(state)
+      pathSignature: pathSignature(state),
+      rasterFraction: Math.round(rasterLitFraction(state, 121) * 1000) / 1000
     };
   }
 
@@ -318,49 +476,6 @@
     ].join("|");
   }
 
-  function litPath(cx, cy, r, state) {
-    var k = clamp(state.illumination, 0, 100) / 100;
-    if (k <= 0.005) return "";
-    if (k >= 0.995) {
-      return "M " + (cx - r) + " " + cy + " a " + r + " " + r + " 0 1 1 " + r * 2 + " 0 a " + r + " " + r + " 0 1 1 " + -r * 2 + " 0";
-    }
-    var litRight = state.litSide !== "left";
-    var limbSweep = litRight ? 1 : 0;
-    var rx = Math.max(0.35, r * Math.abs(2 * k - 1));
-    var crescent = k < 0.5;
-    /* Crescent: return along the same limb (opposite sweep). Gibbous: return on the far side (same sweep). */
-    var termSweep = crescent ? 1 - limbSweep : limbSweep;
-    var top = cy - r;
-    var bot = cy + r;
-    return (
-      "M " +
-      cx +
-      " " +
-      top +
-      " A " +
-      r +
-      " " +
-      r +
-      " 0 0 " +
-      limbSweep +
-      " " +
-      cx +
-      " " +
-      bot +
-      " A " +
-      rx +
-      " " +
-      r +
-      " 0 0 " +
-      termSweep +
-      " " +
-      cx +
-      " " +
-      top +
-      " Z"
-    );
-  }
-
   function renderDisk(state, options) {
     options = options || {};
     if (!state) return "";
@@ -371,53 +486,34 @@
     var r = 44;
     var k = clamp(state.illumination, 0, 100) / 100;
     var path = litPath(cx, cy, r, state);
-    var glow = Math.round(Math.min(0.42, 0.05 + k * 0.4) * 100) / 100;
-    var litOpacity = state.almostDark ? 0.92 : 1;
+    var isFull = k >= 0.998 || state.full;
+    var hasLit = !!(path && k > 0.002);
     var clip =
-      path && !state.full
-        ? '<clipPath id="' +
-          id +
-          '-lit"><path d="' +
-          path +
-          '"/></clipPath>'
+      hasLit && !isFull
+        ? '<clipPath id="' + id + '-lit"><path d="' + path + '"/></clipPath>'
         : "";
-    var litFill =
-      state.full || !path
-        ? '<circle cx="50" cy="50" r="44" fill="url(#' + id + '-litgrad)" opacity="' + litOpacity + '"/>'
-        : '<path class="wdb-r-lunar__lit" d="' +
-          path +
-          '" fill="url(#' +
+    var surface =
+      hasLit
+        ? '<g class="wdb-r-lunar__surface"' +
+          (isFull ? ">" : ' clip-path="url(#' + id + '-lit)">') +
+          '<circle class="wdb-r-lunar__lit" cx="50" cy="50" r="44" fill="url(#' +
           id +
-          '-litgrad)" opacity="' +
-          litOpacity +
-          '"/>';
-    var maria =
-      (path || state.full
-        ? '<g' +
-          (state.full ? ">" : ' clip-path="url(#' + id + '-lit)">') +
+          '-litgrad)"/>' +
           '<ellipse cx="38" cy="42" rx="11" ry="8" fill="#6d6a78" opacity="0.22"/>' +
           '<ellipse cx="58" cy="36" rx="7" ry="5.5" fill="#5c5a68" opacity="0.18"/>' +
           '<ellipse cx="54" cy="58" rx="9" ry="7" fill="#636070" opacity="0.16"/>' +
           '<circle cx="42" cy="62" r="3.2" fill="#4a4754" opacity="0.2"/>' +
           '<circle cx="61" cy="48" r="2.4" fill="#4a4754" opacity="0.16"/>' +
           "</g>"
-        : "");
-    var glowEl =
-      path && glow > 0.02
-        ? '<path d="' +
-          path +
-          '" fill="rgba(210,198,255,' +
-          glow +
-          ')" transform="translate(50 50) scale(1.08) translate(-50 -50)"/>'
         : "";
     var termStroke =
-      path && !state.full
+      hasLit && !isFull
         ? '<path class="wdb-r-lunar__terminator" d="' +
           path +
           '" fill="none" stroke="rgba(236,230,214,' +
-          (state.almostDark ? "0.45" : "0.22") +
+          (state.almostDark ? "0.55" : "0.22") +
           ')" stroke-width="' +
-          (state.almostDark ? "1.2" : "0.8") +
+          (state.almostDark ? "1.35" : "0.8") +
           '"/>'
         : "";
     return (
@@ -437,7 +533,7 @@
       '" data-lunar-shape="' +
       String(state.shape) +
       '" data-lunar-crescent="' +
-      (k < 0.5 && k > 0.005 ? "1" : "0") +
+      (k < 0.5 && k > 0.002 ? "1" : "0") +
       '" data-lunar-signature="' +
       pathSignature(state) +
       '">' +
@@ -451,12 +547,12 @@
       "</radialGradient>" +
       clip +
       "</defs>" +
-      glowEl +
-      '<circle class="wdb-r-lunar__unlit" cx="50" cy="50" r="44" fill="#140e1c"/>' +
-      litFill +
-      maria +
+      '<circle class="wdb-r-lunar__unlit" cx="50" cy="50" r="44" fill="#07040c"/>' +
+      surface +
       termStroke +
-      '<circle class="wdb-r-lunar__rim" cx="50" cy="50" r="44" fill="none" stroke="rgba(226,214,255,0.12)" stroke-width="0.8"/>' +
+      '<circle class="wdb-r-lunar__rim" cx="50" cy="50" r="44" fill="none" stroke="rgba(226,214,255,' +
+      (hasLit ? "0.14" : "0.08") +
+      ')" stroke-width="0.8"/>' +
       "</svg>"
     );
   }
@@ -492,9 +588,8 @@
     );
   }
 
-  global.WDS = global.WDS || {};
-  global.WDS.dashboardLunar = {
-    version: "1.0.0-moon-accuracy",
+  var api = {
+    version: "2.0.0-moon-phase",
     FIXTURES: FIXTURES,
     normalize: normalize,
     fromDaylight: fromDaylight,
@@ -502,9 +597,19 @@
     renderDisk: renderDisk,
     visualState: visualState,
     isLitAt: isLitAt,
+    rasterLitFraction: rasterLitFraction,
+    pathAreaFraction: pathAreaFraction,
+    litPolygon: litPolygon,
+    litPath: litPath,
+    pointInPolygon: pointInPolygon,
     illuminationFromPhaseValue: illuminationFromPhaseValue,
     phaseMetaFromValue: phaseMetaFromValue,
     limbFromPhaseValue: limbFromPhaseValue,
-    shapeFromIllumination: shapeFromIllumination
+    shapeFromIllumination: shapeFromIllumination,
+    phaseAngleRad: phaseAngleRad
   };
+
+  global.WDS = global.WDS || {};
+  global.WDS.dashboardLunar = api;
+  global.WDS.MoonPhase = api;
 })(typeof window !== "undefined" ? window : global);

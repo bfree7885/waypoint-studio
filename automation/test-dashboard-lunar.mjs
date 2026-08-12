@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Data-driven lunar disk — fixtures, single source of truth, waxing vs waning.
+ * Data-driven lunar disk — orthographic area, fixtures, single source of truth.
  * Run: node automation/test-dashboard-lunar.mjs
  */
 import fs from "fs";
@@ -22,6 +22,10 @@ function assert(name, cond, detail) {
     failures.push(name + (detail ? ": " + detail : ""));
     console.error("FAIL", name, detail || "");
   }
+}
+
+function near(a, b, tol) {
+  return Math.abs(a - b) <= tol;
 }
 
 function load(rel, sandbox) {
@@ -53,10 +57,15 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Reg = sandbox.WDS.dashboardRebuildRegistry;
 
 assert("lunar module loaded", !!(Lunar && Lunar.normalize && Lunar.FIXTURES));
-assert("ten fixtures", Lunar.FIXTURES.length === 10);
+assert("MoonPhase alias", sandbox.WDS.MoonPhase === Lunar);
+assert("fixtures include 3% waxing and waning", Lunar.FIXTURES.some((f) => f.illumination === 3 && f.limb === "waxing") && Lunar.FIXTURES.some((f) => f.illumination === 3 && f.limb === "waning"));
 
 function sample(vs, id) {
   return vs.samples.find((s) => s.id === id);
+}
+
+function svgLooksFullLit(svg) {
+  return /wdb-r-lunar__lit/.test(svg) && !/clip-path/.test(svg) && !/data-lunar-crescent="1"/.test(svg);
 }
 
 Lunar.FIXTURES.forEach(function (fix) {
@@ -67,6 +76,9 @@ Lunar.FIXTURES.forEach(function (fix) {
   });
   const vis = Lunar.visualState(state);
   const svg = Lunar.renderDisk(state);
+  const raster = Lunar.rasterLitFraction(state, 201);
+  const pathFrac = Lunar.pathAreaFraction(state);
+  const k = fix.illumination / 100;
 
   assert(fix.id + " state exists: " + fix.name, !!state);
   assert(
@@ -74,36 +86,40 @@ Lunar.FIXTURES.forEach(function (fix) {
     state.illumination === fix.illumination,
     String(state.illumination)
   );
-  assert(
-    fix.id + " phase label",
-    state.phase === fix.phase,
-    state.phase
-  );
-  assert(
-    fix.id + " limb " + fix.limb,
-    state.limb === fix.limb,
-    state.limb
-  );
+  assert(fix.id + " phase label", state.phase === fix.phase, state.phase);
+  assert(fix.id + " limb " + fix.limb, state.limb === fix.limb, state.limb);
   assert(
     fix.id + " svg illumination attr",
     svg.indexOf('data-lunar-illumination="' + fix.illumination + '"') >= 0
   );
-  assert(
-    fix.id + " svg limb attr",
-    svg.indexOf('data-lunar-limb="' + fix.limb + '"') >= 0
-  );
+  assert(fix.id + " svg limb attr", svg.indexOf('data-lunar-limb="' + fix.limb + '"') >= 0);
   assert(fix.id + " visual illumination", vis.illumination === fix.illumination);
-  assert(fix.id + " visual limb", vis.limb === fix.limb);
 
-  if (fix.illumination <= 3) {
-    assert(fix.id + " almost dark", state.almostDark === true && vis.almostDark === true);
+  const areaTol = k <= 0.05 || k >= 0.95 ? 0.025 : 0.04;
+  assert(
+    fix.id + " raster area ≈ " + fix.illumination + "%",
+    near(raster, k, areaTol),
+    "raster=" + raster.toFixed(4) + " expected=" + k
+  );
+  assert(
+    fix.id + " path area ≈ " + fix.illumination + "%",
+    near(pathFrac, k, areaTol + 0.02),
+    "path=" + pathFrac.toFixed(4) + " expected=" + k
+  );
+  if (fix.illumination === 3) {
+    assert(fix.id + " 3% is not mostly lit", raster < 0.12 && pathFrac < 0.12, "raster=" + raster + " path=" + pathFrac);
+    assert(fix.id + " 3% svg is crescent sliver", /data-lunar-crescent="1"/.test(svg) && /clip-path/.test(svg));
+    assert(fix.id + " 3% does not fill full disk", !svgLooksFullLit(svg));
+    assert(fix.id + " almost dark", state.almostDark === true);
     assert(fix.id + " center unlit", sample(vis, "center").lit === false);
-    assert(fix.id + " right unlit", sample(vis, "right").lit === false);
+    assert(fix.id + " interior unlit", sample(vis, "right").lit === false && sample(vis, "left").lit === false);
   }
   if (fix.illumination === 0) {
     assert(fix.id + " nothing lit at 0%", vis.samples.every((s) => s.lit === false));
+    assert(fix.id + " raster 0%", raster < 0.005, String(raster));
+    assert(fix.id + " 0% has no lit surface", !/wdb-r-lunar__lit/.test(svg) && !/wdb-r-lunar__surface/.test(svg));
   }
-  if (fix.illumination >= 45 && fix.illumination <= 55) {
+  if (fix.illumination === 50) {
     assert(fix.id + " half flag", state.half === true);
     assert(fix.id + " center on terminator treated lit", sample(vis, "center").lit === true);
     if (fix.limb === "waxing") {
@@ -115,9 +131,10 @@ Lunar.FIXTURES.forEach(function (fix) {
       assert(fix.id + " waning right unlit", sample(vis, "right").lit === false);
     }
   }
-  if (fix.illumination >= 97) {
+  if (fix.illumination === 100) {
     assert(fix.id + " full flag", state.full === true && vis.full === true);
     assert(fix.id + " all samples lit", vis.samples.every((s) => s.lit === true));
+    assert(fix.id + " raster ~100%", raster > 0.98, String(raster));
   }
   if (fix.illumination === 25 || fix.illumination === 75 || fix.illumination === 10) {
     if (fix.limb === "waxing") {
@@ -129,6 +146,10 @@ Lunar.FIXTURES.forEach(function (fix) {
       assert(fix.id + " waning far-right unlit", sample(vis, "far-right").lit === false);
     }
   }
+  if (fix.illumination === 97) {
+    assert(fix.id + " 97% not treated as full disk", state.full !== true);
+    assert(fix.id + " 97% raster near 97% not 3%", raster > 0.9 && raster < 0.995, String(raster));
+  }
 });
 
 const wax25 = Lunar.normalize({ phaseValue: 0.125 });
@@ -138,9 +159,14 @@ assert("waxing 25% lit side right", wax25.litSide === "right");
 assert("waning 25% lit side left", wan25.litSide === "left");
 assert("same illumination 25", wax25.illumination === 25 && wan25.illumination === 25);
 
-const wax75 = Lunar.normalize({ phaseValue: 0.375 });
-const wan75 = Lunar.normalize({ phaseValue: 0.625 });
-assert("waxing 75% !== waning 75% signature", Lunar.visualState(wax75).pathSignature !== Lunar.visualState(wan75).pathSignature);
+const wax3 = Lunar.normalize({ phaseValue: 0.015, illumination: 3, phase: "New moon" });
+const wan3 = Lunar.normalize({ phaseValue: 0.985, illumination: 3, phase: "New moon" });
+assert("waxing 3% !== waning 3%", wax3.litSide === "right" && wan3.litSide === "left");
+assert(
+  "3% vs 97% are opposites not the same disk",
+  Lunar.rasterLitFraction(wax3, 161) < 0.1 &&
+    Lunar.rasterLitFraction(Lunar.normalize({ illumination: 97, phaseValue: 0.485 }), 161) > 0.9
+);
 
 const southWax = Lunar.normalize({ phaseValue: 0.125 }, { lat: -33.9 });
 assert("southern hemisphere flips waxing to left", southWax.litSide === "left");
@@ -151,39 +177,20 @@ const nearNew = Lunar.normalize({
   illumination: 3,
   phaseValue: 0.984
 });
-assert("live 3% new uses phaseValue illumination", nearNew.illumination === 3);
+assert("live 3% new uses printed illumination", nearNew.illumination === 3);
 assert("live 3% labeled New moon", nearNew.phase === "New moon");
 assert("live 3% almost dark", nearNew.almostDark === true);
-assert("live 3% not full shape", nearNew.shape === "new");
 assert("live 3% waning sliver (phaseValue 0.984)", nearNew.limb === "waning");
+assert("live 3% raster ~3% not ~70%", Lunar.rasterLitFraction(nearNew, 201) < 0.08);
 assert(
   "live 3% svg not mostly lit",
-  Lunar.renderDisk(nearNew).indexOf('data-lunar-shape="new"') >= 0 &&
-    Lunar.renderDisk(nearNew).indexOf('data-lunar-illumination="3"') >= 0
+  Lunar.renderDisk(nearNew).indexOf('data-lunar-illumination="3"') >= 0 &&
+    /clip-path/.test(Lunar.renderDisk(nearNew)) &&
+    /wdb-r-lunar__unlit/.test(Lunar.renderDisk(nearNew))
 );
 
-function sweepFlags(svg) {
-  const arcs = [...String(svg).matchAll(/\sA\s[\d.]+\s[\d.]+\s0\s0\s([01])/g)].map((m) => m[1]);
-  return arcs;
-}
-const wax10svg = Lunar.renderDisk(Lunar.normalize({ phaseValue: 0.05 }));
-const wax75svg = Lunar.renderDisk(Lunar.normalize({ phaseValue: 0.375 }));
-const w10 = sweepFlags(wax10svg);
-const w75 = sweepFlags(wax75svg);
-assert("waxing 10% has two arcs", w10.length >= 2);
-assert(
-  "waxing 10% crescent uses opposite terminator sweep",
-  w10[0] !== w10[1],
-  JSON.stringify(w10)
-);
-assert(
-  "waxing 75% gibbous uses same-side terminator sweep",
-  w75[0] === w75[1],
-  JSON.stringify(w75)
-);
-assert("3% marked crescent sliver", /data-lunar-crescent="1"/.test(Lunar.renderDisk(nearNew)));
-assert("10% marked crescent", /data-lunar-crescent="1"/.test(wax10svg));
-assert("75% not crescent", /data-lunar-crescent="0"/.test(wax75svg));
+const printed = Lunar.normalize({ illumination: 3, phase: "New moon", phaseValue: 0.984 });
+assert("printed 3% drives renderer", printed.illumination === 3);
 
 const payload = Data.buildWidgetPayload("ph-astronomy", {
   daylight: {
@@ -211,9 +218,9 @@ assert(
 );
 const html = Reg.render(Reg.get("ph-astronomy"), payload);
 assert("tile html has lunar disk", /data-lunar-illumination="3"/.test(html));
-assert("tile html has lunar shape new", /data-lunar-shape="new"/.test(html));
 assert("tile Moon label New moon", /New moon/.test(html));
 assert("tile illumination 3%", /3%/.test(html));
+assert("tile 3% uses illumination clip", /clip-path/.test(html));
 
 const condRain = Data.buildWidgetPayload("ph-conditions", {
   weatherRef: {
@@ -224,12 +231,40 @@ const condRain = Data.buildWidgetPayload("ph-conditions", {
       cloudCover: 90,
       wind: { speed: 12 },
       humidity: 80,
-      precipitation: { probability: 80 }
+      precipitation: { probability: 80, amount: 0.2 }
     }
   }
 });
 assert("storm sky kind", condRain.skyKind === "storm");
 assert("storm sky icon", condRain.skyIcon === "storm");
+
+const condDryRainLabel = Data.buildWidgetPayload("ph-conditions", {
+  weatherRef: {
+    meta: { isPlaceholder: false },
+    current: {
+      temperature: 52,
+      conditions: { summary: "Light rain" },
+      cloudCover: 40,
+      precipitation: { probability: 1, amount: 0 }
+    },
+    hourly: [
+      { time: "2026-08-12T22:00", precipitation: { probability: 1 } },
+      { time: "2026-08-12T03:00", precipitation: { probability: 5 } }
+    ]
+  }
+});
+assert("1% now is dry band", condDryRainLabel.precipBand === "dry", condDryRainLabel.precipBand);
+assert("1% does not use rain icon", condDryRainLabel.skyIcon !== "rain" && condDryRainLabel.skyKind !== "rain");
+assert(
+  "now 1% printed",
+  (condDryRainLabel.facts || []).some((f) => f.label === "Precip now" && f.value === "1%")
+);
+assert(
+  "peak 5% explicit",
+  (condDryRainLabel.facts || []).some((f) => f.label === "Precip peak" && /5%/.test(f.value)),
+  JSON.stringify(condDryRainLabel.facts)
+);
+assert("rain timing future peak flagged", condDryRainLabel.rainTiming && condDryRainLabel.rainTiming.futurePeak === true);
 
 const airBad = Data.buildWidgetPayload("ph-air", {
   airQuality: { status: "live", usAqi: 165, category: "Unhealthy", pm25: 80 }

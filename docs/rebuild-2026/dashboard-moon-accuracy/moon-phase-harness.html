@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoonPhase harness (not public)</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      font: 13px/1.35 Inter, system-ui, sans-serif;
+      background: #120c18;
+      color: #ece6d6;
+      padding: 1rem;
+    }
+    h1 { font-size: 1.1rem; font-weight: 600; margin: 0 0 0.35rem; }
+    p { margin: 0 0 1rem; color: #b7ad9c; max-width: 48rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+      gap: 0.75rem;
+    }
+    .card {
+      text-align: center;
+      padding: 0.65rem 0.4rem 0.55rem;
+      border: 1px solid rgba(226,214,255,0.16);
+      border-radius: 0.65rem;
+      background: linear-gradient(165deg, rgba(154,120,200,0.12), #1a1222 70%);
+    }
+    .card strong { display: block; margin-top: 0.35rem; font-size: 0.78rem; }
+    .card span { display: block; color: #9a90a8; font-size: 0.7rem; }
+    .note { margin-top: 1.25rem; font-size: 0.75rem; color: #8a8098; }
+  </style>
+</head>
+<body>
+  <h1>MoonPhase visual harness</h1>
+  <p>
+    Deterministic side-by-side phases. Not part of the public Dashboard.
+    Illumination fraction on the disk must match the printed percentage.
+  </p>
+  <div id="grid" class="grid"></div>
+  <p class="note" id="meta"></p>
+  <script src="../../../design-system/js/dashboard/rebuild/wds-dashboard-lunar.js"></script>
+  <script>
+    (function () {
+      var Lunar = window.WDS && (WDS.MoonPhase || WDS.dashboardLunar);
+      var host = document.getElementById("grid");
+      if (!Lunar) {
+        host.textContent = "Lunar module failed to load.";
+        return;
+      }
+      host.innerHTML = Lunar.FIXTURES.map(function (f) {
+        var s = Lunar.normalize({
+          phaseValue: f.phaseValue,
+          illumination: f.illumination,
+          phase: f.phase
+        });
+        var frac = Lunar.rasterLitFraction(s, 101);
+        return (
+          '<div class="card" data-illumination="' + f.illumination + '" data-limb="' + s.limb + '">' +
+          Lunar.renderDisk(s, { size: 88 }) +
+          "<strong>" + f.illumination + "% " + s.limb + "</strong>" +
+          "<span>" + s.phase + " · raster " + Math.round(frac * 100) + "%</span>" +
+          "</div>"
+        );
+      }).join("");
+      document.getElementById("meta").textContent =
+        "Fixtures: " + Lunar.FIXTURES.length + " · module " + Lunar.version;
+    })();
+  </script>
+</body>
+</html>
