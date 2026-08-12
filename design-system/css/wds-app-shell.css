@@ -699,6 +699,73 @@ article.was-home__card {
   opacity: 0.85;
 }
 
+/*
+ * Dashboard quiet chrome on phone / tablet portrait:
+ * keep the Waypoint header in document flow (not sticky over Conditions),
+ * compact primary destinations, zero nav/tile collision.
+ */
+@media (max-width: 48rem) {
+  .was-shell[data-product="dashboard"] .was-global,
+  .was-shell[data-product="dashboard"] .was-global--quiet {
+    position: relative;
+    top: auto;
+    z-index: 2;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-global__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.2rem 0.5rem;
+    min-height: 0;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand {
+    min-height: 1.75rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand__name {
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand__mark {
+    width: 0.55rem;
+    height: 0.55rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav {
+    order: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.05rem 0.4rem;
+    padding: 0;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav__link {
+    font-size: 0.6rem;
+    letter-spacing: 0.045em;
+    min-height: 1.7rem;
+    opacity: 0.58;
+  }
+
+  .was-shell[data-product="dashboard"] .was-local__inner {
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-local__nav a {
+    min-height: 2.25rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.875rem;
+  }
+}
+
 
 /* DS 2.0 focus + sticky header height */
 .was-global {

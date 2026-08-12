@@ -88,10 +88,22 @@ else if (alertA.includes("L98 54") && !alertQ.includes("L98 54")) pass("lightnin
 else fail("alerts lightning honesty failed");
 
 const css = read("design-system/css/wds-dashboard-rebuild.css");
-if (css.includes("--wdb-r-glow-weather") && css.includes("0 0 16px")) pass("neon edge system preserved");
+if (css.includes("--wdb-r-glow-weather") && (css.includes("0 0 22px") || css.includes("0 0 16px")) && css.includes("--wdb-r-glow-strength")) pass("atmospheric luminous edge system preserved");
 else fail("neon edge system missing");
 if (/customize-bar__columns[\s\S]*display:\s*none/.test(css) || css.includes(".wdb-r-customize-bar__columns")) pass("mobile column rules still present");
 else fail("mobile column CSS missing");
+
+/* Phase fraction drives waxing vs waning when label absent */
+const waxKey = Gfx.moonPhaseKey(null, 28, 0.15);
+const waneKey = Gfx.moonPhaseKey(null, 28, 0.85);
+if (waxKey === "waxing-crescent" && waneKey === "waning-crescent") pass("phaseValue distinguishes waxing vs waning");
+else fail("phaseValue moon key failed: " + waxKey + " / " + waneKey);
+const geo28 = Gfx.moonGeometry("waxing-crescent", 28);
+if (geo28 && Math.abs(geo28.lit - 0.28) < 0.001 && geo28.waxing) pass("illumination fraction drives lit amount");
+else fail("moonGeometry illumination not applied");
+const crescentHtml = Gfx.render({ kind: "moon", value: 28, phase: "waxing crescent", phaseValue: 0.15 });
+if (crescentHtml.includes("#e8e4d8") && crescentHtml.includes("#2a2438")) pass("moon ivory-silver lit + faint dark limb");
+else fail("moon field-guide palette missing");
 
 if (failed) { console.error("\n" + failed + " failure(s)"); process.exit(1); }
 console.log("\nAll atmospheric art quality gates passed.");

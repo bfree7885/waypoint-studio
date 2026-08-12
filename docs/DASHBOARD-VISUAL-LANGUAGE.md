@@ -7,7 +7,7 @@ Waypoint aubergine family + restrained environmental glow. Complements `docs/DES
 
 1. **Measurements first.** Art lives behind data with darkening overlays.
 2. **One product surface.** Twelve instruments read as one night field panel.
-3. **Luminous edges.** Crisp card border + soft outer diffusion (`--wdb-r-glow`) — premium, not RGB gaming.
+3. **Luminous edges.** Domain-colored corner washes + soft outer diffusion (`--wdb-r-glow` + `--wdb-r-glow-strength`) — atmospheric, not uniform neon rectangles.
 4. **Data-honest art.** Imagery matches actual sky / AQI / alert / moon / light state.
 
 ## Illumination
@@ -68,9 +68,12 @@ Large temperature + sky + feels-like + compact Wind / Humidity / Precip meta —
 
 ## Mobile layout (non-negotiable)
 
-At `max-width: 47.99rem` (375 / 390 / 430):
+At `max-width: 48rem` (320–768 inclusive):
 
 - **Always one column** (`grid-template-columns: 1fr`; workspace forces `columns = 1`)
+- Quiet site header stays in **document flow** (not sticky over Conditions)
+- Atmospheric art recomposes right/quieter; Astronomy keeps the moon disc on-canvas
+- Customize omits column picker entirely
 - **No column-count control** in Customize (hidden in CSS; omitted in JS)
 - Add / remove / reorder / favorites / restore / save remain
 

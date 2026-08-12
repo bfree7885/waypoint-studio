@@ -200,7 +200,7 @@
 
   function isMobileViewport() {
     try {
-      return !!(global.matchMedia && global.matchMedia("(max-width: 47.99rem)").matches);
+      return !!(global.matchMedia && global.matchMedia("(max-width: 48rem)").matches);
     } catch (e) {
       return false;
     }
