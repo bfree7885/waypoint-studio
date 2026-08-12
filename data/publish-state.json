@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-08-12T12:00:01.706Z",
-  "dataUpdatedAt": "2026-08-12T12:00:01.706Z",
-  "nextScheduledRun": "2026-08-12T12:30:00.000Z",
-  "lastPublishAt": "2026-07-22T06:00:44.719Z",
-  "lastPublishedDataAt": "2026-07-22T06:00:02.219Z",
-  "lastPublishCommit": "bba5424",
-  "lastPublishStatus": "skipped",
-  "lastPublishMessage": "Working tree has unrelated uncommitted changes (engine-data publish only; website still deploys from pushed main via GitHub Pages)"
+  "lastEngineRun": "2026-08-12T12:30:01.462Z",
+  "dataUpdatedAt": "2026-08-12T12:30:01.462Z",
+  "nextScheduledRun": "2026-08-12T13:00:00.000Z",
+  "lastPublishAt": "2026-08-12T12:00:36.310Z",
+  "lastPublishedDataAt": "2026-08-12T12:00:01.706Z",
+  "lastPublishCommit": "c667b97c",
+  "lastPublishStatus": "succeeded",
+  "lastPublishMessage": "Pushed c667b97c to origin/feature/dashboard-moon-accuracy"
 }
