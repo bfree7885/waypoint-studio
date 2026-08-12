@@ -204,6 +204,11 @@
     var now = Date.now();
     function parseT(v) {
       if (!v) return null;
+      var utils = global.WDS && global.WDS.daylightUtils;
+      if (utils && utils.wallClockToInstant) {
+        var d = utils.wallClockToInstant(v, dl.timezone);
+        if (d && isFinite(d.getTime())) return d.getTime();
+      }
       var t = Date.parse(v);
       return isFinite(t) ? t : null;
     }
@@ -218,8 +223,8 @@
       if (now >= set - 0.35 * hourMs && now < set + 0.4 * hourMs) {
         return { kind: "sun", state: "sunset", illum: "golden" };
       }
-      if (now >= set - 1.1 * hourMs) return { kind: "sun", state: "golden", illum: "golden" };
       if (now >= set + 0.4 * hourMs) return { kind: "sun", state: "blue-hour", illum: "blue" };
+      if (now >= set - 1.1 * hourMs) return { kind: "sun", state: "golden", illum: "golden" };
       return { kind: "sun", state: "day", illum: "clear-day" };
     }
     var h = new Date().getHours();

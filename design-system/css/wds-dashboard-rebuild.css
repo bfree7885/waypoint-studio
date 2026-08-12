@@ -2164,8 +2164,8 @@ html.wdb-r-kiosk .wdb-r,
   }
 
   /* Non-featured tiles: stronger left wash so dense facts stay clear.
-     Keep Moon / Light / Air / Wind / storm subjects on-canvas (do not over-shift). */
-  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]) .wdb-r-widget__art::after {
+     Keep Moon / Light / Air / Wind / Precip subjects on-canvas (do not over-shift). */
+  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]):not([data-category="precip"]) .wdb-r-widget__art::after {
     background:
       linear-gradient(
         96deg,
@@ -2183,7 +2183,7 @@ html.wdb-r-kiosk .wdb-r,
       );
   }
 
-  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]) .wdb-r-widget__art-svg {
+  .wdb-r-widget:not(.wdb-r-widget--featured):not([data-category="astronomy"]):not([data-category="light"]):not([data-category="air"]):not([data-category="wind"]):not([data-category="precip"]) .wdb-r-widget__art-svg {
     opacity: 0.42;
     right: -32%;
   }
