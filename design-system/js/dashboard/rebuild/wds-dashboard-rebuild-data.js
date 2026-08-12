@@ -486,12 +486,19 @@
       : /rain|drizzle|shower|storm/i.test(cond)
         ? "rain"
         : "none";
-    var prob = cur && cur.precipProb != null ? cur.precipProb : peak && peak.precipProb;
+    var nowProb = cur && cur.precipProb != null ? Number(cur.precipProb) : 0;
+    if (!isFinite(nowProb)) nowProb = 0;
+    var peakProb = peak && peak.precipProb != null ? Number(peak.precipProb) : nowProb;
+    if (!isFinite(peakProb)) peakProb = nowProb;
+    /* Visual authority is NOW — never substitute peak chance into current artwork. */
     return {
       kind: "precip",
-      probability: prob,
+      probability: nowProb,
+      nowProbability: nowProb,
+      peakProbability: peakProb,
       amount: cur && cur.precipAmt,
-      intensity: (cur && cur.precipIntensity) || (prob >= 70 ? "heavy" : prob >= 40 ? "moderate" : "light"),
+      intensity: (cur && cur.precipIntensity) || null,
+      conditions: cond,
       precipType: ptype
     };
   }

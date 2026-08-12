@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moon + Rain visual gate (local only)</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      font: 14px/1.4 Inter, system-ui, sans-serif;
+      background: #100c14;
+      color: #ece6d6;
+      padding: 1.25rem;
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 0.35rem; }
+    h2 { font-size: 1rem; margin: 1.5rem 0 0.65rem; color: #c8bfd8; }
+    p { margin: 0 0 1rem; color: #a89eb8; max-width: 52rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      text-align: center;
+      padding: 0.85rem 0.5rem 0.7rem;
+      border: 1px solid rgba(226,214,255,0.16);
+      border-radius: 0.75rem;
+      background: linear-gradient(165deg, rgba(154,120,200,0.1), #161018 72%);
+    }
+    .card strong { display: block; margin-top: 0.45rem; font-size: 0.95rem; }
+    .card span { display: block; color: #9a90a8; font-size: 0.75rem; margin-top: 0.15rem; }
+    .art-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      gap: 1rem;
+    }
+    .art-card {
+      border: 1px solid rgba(226,214,255,0.16);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #161018;
+    }
+    .art-card .label {
+      padding: 0.55rem 0.75rem;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(226,214,255,0.12);
+      color: #b7ad9c;
+    }
+    .wdb-r-widget__art-svg { display: block; width: 100%; height: auto; background: #0c0a10; }
+  </style>
+</head>
+<body>
+  <h1>Visual gate — moon phases + rain timing</h1>
+  <p>
+    Local development only. Moons are ~180px. Expected progression:
+    DARK → hairline → crescent → half → gibbous → FULL (and reverse for waning).
+    Rain cards at 0% / 7% must show ZERO falling rain streaks.
+  </p>
+
+  <h2>Moon illumination ladder</h2>
+  <div class="grid" id="moon-grid"></div>
+
+  <h2>Live acceptance fixture artwork</h2>
+  <div class="art-row" id="fixture-art"></div>
+
+  <script src="../../../design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+  <script>
+    (function () {
+      var G = window.WDS && window.WDS.dashboardRebuildGraphics;
+      if (!G || !G.moonDisc) {
+        document.body.insertAdjacentHTML("beforeend", "<p>Graphics module failed to load.</p>");
+        return;
+      }
+
+      var fixtures = [
+        { pct: 0, limb: "new", phase: "New moon", phaseValue: 0 },
+        { pct: 1, limb: "waxing", phase: "New moon", phaseValue: 0.01 },
+        { pct: 1, limb: "waning", phase: "New moon", phaseValue: 0.99 },
+        { pct: 3, limb: "waxing", phase: "New moon", phaseValue: 0.02 },
+        { pct: 3, limb: "waning", phase: "New moon", phaseValue: 0.98 },
+        { pct: 10, limb: "waxing", phase: "Waxing crescent", phaseValue: 0.05 },
+        { pct: 10, limb: "waning", phase: "Waning crescent", phaseValue: 0.95 },
+        { pct: 25, limb: "waxing", phase: "Waxing crescent", phaseValue: 0.125 },
+        { pct: 25, limb: "waning", phase: "Waning crescent", phaseValue: 0.875 },
+        { pct: 50, limb: "waxing", phase: "First quarter", phaseValue: 0.25 },
+        { pct: 50, limb: "waning", phase: "Last quarter", phaseValue: 0.75 },
+        { pct: 75, limb: "waxing", phase: "Waxing gibbous", phaseValue: 0.375 },
+        { pct: 75, limb: "waning", phase: "Waning gibbous", phaseValue: 0.625 },
+        { pct: 90, limb: "waxing", phase: "Waxing gibbous", phaseValue: 0.45 },
+        { pct: 90, limb: "waning", phase: "Waning gibbous", phaseValue: 0.55 },
+        { pct: 97, limb: "waxing", phase: "Full moon", phaseValue: 0.485 },
+        { pct: 97, limb: "waning", phase: "Full moon", phaseValue: 0.515 },
+        { pct: 100, limb: "full", phase: "Full moon", phaseValue: 0.5 }
+      ];
+
+      var host = document.getElementById("moon-grid");
+      host.innerHTML = fixtures.map(function (f) {
+        var key = G.moonPhaseKey(f.phase, f.pct, f.phaseValue);
+        var svg =
+          '<svg viewBox="0 0 100 100" width="180" height="180" aria-hidden="true">' +
+          '<rect width="100" height="100" fill="#100c14"/>' +
+          G.moonDisc(50, 50, 44, key, f.pct) +
+          "</svg>";
+        return (
+          '<div class="card" data-illumination="' + f.pct + '" data-limb="' + f.limb + '">' +
+          svg +
+          "<strong>" + f.pct + "% · " + f.limb + "</strong>" +
+          "<span>" + f.phase + "</span>" +
+          "</div>"
+        );
+      }).join("");
+
+      var art = document.getElementById("fixture-art");
+      var moonArt = G.render({ kind: "moon", value: 1, phase: "New moon", phaseValue: 0.01 });
+      var rain0 = G.render({
+        kind: "precip",
+        nowProbability: 0,
+        probability: 0,
+        peakProbability: 7,
+        intensity: null,
+        precipType: "none",
+        conditions: "Clear"
+      });
+      var rain7peak = G.render({
+        kind: "precip",
+        nowProbability: 0,
+        probability: 0,
+        peakProbability: 7,
+        intensity: null,
+        precipType: "none"
+      });
+      art.innerHTML =
+        '<div class="art-card">' + moonArt +
+        '<div class="label">Astronomy fixture — New moon · 1% illumination (must be ~99% dark, hairline crescent, NO blobs)</div></div>' +
+        '<div class="art-card">' + rain0 +
+        '<div class="label">Rain Timing fixture — NOW 0% · PEAK 7% (must show ZERO falling rain)</div></div>' +
+        '<div class="art-card">' + rain7peak +
+        '<div class="label">Confirm peak alone does not paint rain streaks</div></div>';
+    })();
+  </script>
+</body>
+</html>

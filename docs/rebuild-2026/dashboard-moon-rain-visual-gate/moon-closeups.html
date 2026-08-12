@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Moon closeups</title>
+<style>body{margin:0;background:#100c14;display:flex;flex-wrap:wrap;gap:24px;padding:24px;color:#eee;font:14px sans-serif}
+.card{text-align:center} svg{background:#0c0a10;border-radius:8px}</style></head>
+<body>
+<script src="../../../design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+<script>
+var G=WDS.dashboardRebuildGraphics;
+var cases=[[0,'new',0],[1,'waxing',0.01],[1,'waning',0.99],[3,'waxing',0.02],[25,'waxing',0.125],[50,'waxing',0.25],[75,'waxing',0.375],[100,'full',0.5]];
+document.body.innerHTML=cases.map(function(c){
+  var key=G.moonPhaseKey(c[1]==='full'?'Full moon':c[1]==='new'?'New moon':(c[1]==='waxing'?'Waxing crescent':'Waning crescent'), c[0], c[2]);
+  return '<div class="card"><svg viewBox="0 0 100 100" width="200" height="200">'+G.moonDisc(50,50,44,key,c[0])+'</svg><div>'+c[0]+'% '+c[1]+'</div></div>';
+}).join('');
+</script></body></html>
