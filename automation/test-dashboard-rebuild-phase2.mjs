@@ -36,6 +36,8 @@ assert("index product name Home", /data-product-name="Home"/.test(indexHtml));
 assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
+  "design-system/js/wds-icons.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-lunar.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",

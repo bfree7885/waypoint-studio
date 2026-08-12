@@ -315,6 +315,7 @@
   global.WDS = global.WDS || {};
   global.WDS.daylightUtils = {
     enrichFromWeather: enrichFromWeather,
+    fromWeatherPackage: enrichFromWeather,
     goldenHourWindows: goldenHourWindows,
     blueHourWindows: blueHourWindows,
     twilightWindows: twilightWindows,
