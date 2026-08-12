@@ -512,9 +512,9 @@
     ]);
   }
 
-  /* ——— Moon phase (accurate 8-phase geometry via mask) ——— */
+  /* ——— Moon phase (accurate 8-phase geometry via mask + real illumination) ——— */
 
-  function moonPhaseKey(phase, illum) {
+  function moonPhaseKey(phase, illum, phaseValue) {
     var p = String(phase || "").toLowerCase();
     if (/new/.test(p) && !/wane|wax/.test(p)) return "new";
     if (/full/.test(p)) return "full";
@@ -524,8 +524,23 @@
     if (/waning.?crescent/.test(p)) return "waning-crescent";
     if (/waxing.?gibbous/.test(p)) return "waxing-gibbous";
     if (/waning.?gibbous/.test(p)) return "waning-gibbous";
+    /* Prefer synodic phase fraction 0..1 when label missing — honest waxing/waning */
+    var pv = Number(phaseValue);
+    if (isFinite(pv)) {
+      if (pv < 0) pv = ((pv % 1) + 1) % 1;
+      if (pv > 1 && pv <= 100) pv = pv / 100;
+      if (pv < 0.03 || pv > 0.97) return "new";
+      if (pv < 0.22) return "waxing-crescent";
+      if (pv < 0.28) return "first-quarter";
+      if (pv < 0.47) return "waxing-gibbous";
+      if (pv < 0.53) return "full";
+      if (pv < 0.72) return "waning-gibbous";
+      if (pv < 0.78) return "last-quarter";
+      return "waning-crescent";
+    }
     var pct = Number(illum);
     if (!isFinite(pct)) return "waxing-crescent";
+    /* Illumination alone cannot distinguish waxing vs waning — stay honest with discrete bands */
     if (pct < 3) return "new";
     if (pct < 35) return "waxing-crescent";
     if (pct < 55) return "first-quarter";
@@ -535,10 +550,10 @@
   }
 
   /**
-   * Illumination fraction 0..1 and waxing flag from phase key.
-   * Shadow disc offset approximates terminator for field-guide readability.
+   * Illumination fraction 0..1 and waxing flag.
+   * Prefer measured/computed illumination when available; phase key sets orientation.
    */
-  function moonGeometry(key) {
+  function moonGeometry(key, illumPct) {
     var map = {
       new: { lit: 0, waxing: true },
       "waxing-crescent": { lit: 0.2, waxing: true },
@@ -549,13 +564,23 @@
       "last-quarter": { lit: 0.5, waxing: false },
       "waning-crescent": { lit: 0.2, waxing: false }
     };
-    return map[key] || map["waxing-crescent"];
+    var g = map[key] || map["waxing-crescent"];
+    var lit = g.lit;
+    if (illumPct != null && isFinite(Number(illumPct))) {
+      lit = Math.max(0, Math.min(1, Number(illumPct) / 100));
+    }
+    return { lit: lit, waxing: g.waxing };
   }
 
-  function moonDisc(cx, cy, r, phaseKey) {
-    var g = moonGeometry(phaseKey);
+  function moonDisc(cx, cy, r, phaseKey, illumPct) {
+    var g = moonGeometry(phaseKey, illumPct);
     var mid = nid("moon");
     var lit = g.lit;
+    /* Field-guide lunar viz: ivory-silver lit face, faintly visible dark limb */
+    var darkFill = "#2a2438";
+    var darkStroke = "#6a6280";
+    var litFill = "#e8e4d8";
+    var crater = "#d0c8b8";
     if (lit <= 0.02) {
       return (
         '<circle cx="' +
@@ -563,8 +588,19 @@
         '" cy="' +
         cy +
         '" r="' +
+        (r + 3) +
+        '" fill="#d4c8a8" opacity="0.05"/>' +
+        '<circle cx="' +
+        cx +
+        '" cy="' +
+        cy +
+        '" r="' +
         r +
-        '" fill="#2a2438" stroke="#6a6280" stroke-width="0.6" opacity="0.85"/>'
+        '" fill="' +
+        darkFill +
+        '" stroke="' +
+        darkStroke +
+        '" stroke-width="0.55" opacity="0.92"/>'
       );
     }
     if (lit >= 0.98) {
@@ -582,14 +618,18 @@
         cy +
         '" r="' +
         r +
-        '" fill="#e8e0d0"/>' +
+        '" fill="' +
+        litFill +
+        '"/>' +
         '<circle cx="' +
         (cx - r * 0.25) +
         '" cy="' +
         (cy - r * 0.2) +
         '" r="' +
         r * 0.18 +
-        '" fill="#d0c8b8" opacity="0.35"/>'
+        '" fill="' +
+        crater +
+        '" opacity="0.35"/>'
       );
     }
     /* Mask: white disc minus dark offset disc for crescent/gibbous/quarter */
@@ -631,20 +671,47 @@
         : "") +
       "</mask>" +
       "</defs>" +
+      /* Faintly visible unlit hemisphere */
       '<circle cx="' +
       cx +
       '" cy="' +
       cy +
       '" r="' +
       r +
-      '" fill="#1a1524" opacity="0.9"/>' +
+      '" fill="' +
+      darkFill +
+      '" stroke="' +
+      darkStroke +
+      '" stroke-width="0.45" opacity="0.88"/>' +
+      /* Soft limb glow */
+      '<circle cx="' +
+      cx +
+      '" cy="' +
+      cy +
+      '" r="' +
+      (r + 2.5) +
+      '" fill="#d4c8a8" opacity="0.07"/>' +
+      /* Ivory-silver illuminated face */
       '<circle cx="' +
       cx +
       '" cy="' +
       cy +
       '" r="' +
       r +
-      '" fill="#e8e0d0" mask="url(#' +
+      '" fill="' +
+      litFill +
+      '" mask="url(#' +
+      mid +
+      ')"/>' +
+      '<circle cx="' +
+      (cx - r * 0.22) +
+      '" cy="' +
+      (cy - r * 0.18) +
+      '" r="' +
+      r * 0.14 +
+      '" fill="' +
+      crater +
+      '" opacity="0.28" mask="url(#' +
       mid +
       ')"/>'
     );
@@ -825,15 +892,15 @@
     );
   }
 
-  function moonArt(illum, phase) {
-    var key = moonPhaseKey(phase, illum);
+  function moonArt(illum, phase, phaseValue) {
+    var key = moonPhaseKey(phase, illum, phaseValue);
     return artWrap(
       compose([
         skyGradient("#0c0a14", "#1a1528", "#100e18"),
         starsField(),
         ridgesFar("#14101c", 0.72),
         ridgesMid("#0e0c14", 0.9),
-        moonDisc(112, 30, 14, key),
+        moonDisc(118, 34, 16, key, illum),
         terrainNear("#0a0810", 0.96),
         pineRow()
       ]),
@@ -1101,7 +1168,7 @@
     try {
       if (kind === "sky") return skyArt(graphic.state);
       if (kind === "aqi") return aqiArt(graphic.value);
-      if (kind === "moon") return moonArt(graphic.value, graphic.phase);
+      if (kind === "moon") return moonArt(graphic.value, graphic.phase, graphic.phaseValue);
       if (
         kind === "sun" ||
         kind === "sunrise" ||

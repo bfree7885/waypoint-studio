@@ -1259,3 +1259,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Oval/ellipse cloud stacks read as placeholder UI; path-based cumulus + layered ridges/pines reads as field-guide landscape.
 - Keep a reusable layer library (sky, ridges, terrain, pines, weather overlays) so Conditions/Air/Light/Astronomy stay coherent without photo payloads.
 - Moon phases need mask-based terminator geometry — not a single offset circle for every phase.
+
+## Lessons Learned — Dashboard refinement pass (2026-08-11)
+
+- Sticky quiet chrome on iPhone makes the desktop primary-nav row float over Conditions when scrolling — keep dashboard header `position: relative` at ≤768.
+- `max-width: 47.99rem` excludes 768px; one-column mobile must use `48rem` in CSS + `matchMedia` or tablet 2-up leaks onto iPad portrait.
+- Aggressive right-shift/opacity for “text over art” can shove Astronomy’s moon disc off-canvas — carve an astronomy exception.
+- Illumination % alone cannot choose waxing vs waning; pass `moonPhaseValue` (synodic fraction) into graphics for honest orientation.
+- Uniform `0 0 16px/36px` glow reads as neon rectangles; corner radial washes + `--wdb-r-glow-strength` per domain keep luminous edges atmospheric.

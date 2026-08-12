@@ -38,7 +38,7 @@
 
   /** Workspace family labels — related instruments read as one group. */
   var FAMILIES = {
-    now: { id: "now", label: "Now outside" },
+    now: { id: "now", label: "NOW OUTSIDE" },
     soon: { id: "soon", label: "Coming soon" },
     environmental: { id: "environmental", label: "Air & alerts" },
     sky: { id: "sky", label: "Sky & light" },

@@ -30,8 +30,8 @@ function load(rel, sandbox) {
 
 const css = read("design-system/css/wds-dashboard-rebuild.css");
 
-if (css.includes("--wdb-r-glow-weather") && css.includes("0 0 16px color-mix")) {
-  pass("luminous edge tokens + outer diffusion present");
+if (css.includes("--wdb-r-glow-weather") && css.includes("0 0 22px color-mix") && css.includes("--wdb-r-glow-strength")) {
+  pass("luminous edge tokens + atmospheric corner diffusion present");
 } else fail("missing luminous edge system");
 
 const gaming = ["#4da3e0", "#8fd14a", "#e879c8", "#2dd4bf"];
@@ -48,7 +48,7 @@ if (
 } else fail("missing composition CSS");
 
 if (
-  /@media \(max-width:\s*47\.99rem\)[\s\S]*?\.wdb-r-customize-bar__columns\s*\{\s*display:\s*none/m.test(
+  /@media \(max-width:\s*48rem\)[\s\S]*?\.wdb-r-customize-bar__columns\s*\{\s*display:\s*none/m.test(
     css
   )
 ) {
@@ -56,7 +56,7 @@ if (
 } else fail("mobile column picker not hidden in CSS");
 
 if (
-  /@media \(max-width:\s*47\.99rem\)[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)/m.test(
+  /@media \(max-width:\s*48rem\)[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)/m.test(
     css
   )
 ) {
@@ -85,7 +85,7 @@ function makeSandbox(matchesMobile) {
       }
     },
     matchMedia(q) {
-      const mobile = String(q).includes("47.99");
+      const mobile = String(q).includes("48rem") || String(q).includes("47.99");
       return { matches: mobile ? !!matchesMobile : false };
     }
   };

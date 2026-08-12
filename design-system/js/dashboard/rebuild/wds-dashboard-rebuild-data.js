@@ -337,12 +337,13 @@
     var cur = weatherCurrent(platform);
     var phase = dl && (dl.moonPhase || null);
     var illum = dl && dl.moonIllumination != null ? num(dl.moonIllumination) : null;
+    var phaseValue = dl && dl.moonPhaseValue != null ? num(dl.moonPhaseValue) : null;
     var moonrise = dl && (dl.moonrise || null);
     var moonset = dl && (dl.moonset || null);
     var cloud = cur && cur.cloudPct != null ? cur.cloudPct : null;
     var sky = nightSkyNote(cloud, illum);
 
-    if (!phase && illum == null && !moonrise && !moonset && cloud == null) {
+    if (!phase && illum == null && phaseValue == null && !moonrise && !moonset && cloud == null) {
       return waitingOrUnavailable(platform, "Sky context will appear here.", "Sky context will appear here.");
     }
 
@@ -361,7 +362,7 @@
     if (cloud != null) facts.push({ label: "Cloud cover", value: Math.round(cloud) + "%" });
 
     var trust = "partial";
-    if (phase || illum != null) trust = "estimated";
+    if (phase || illum != null || phaseValue != null) trust = "estimated";
     if (cur && cur.live && (phase || cloud != null)) trust = "partial";
 
     return {
@@ -369,9 +370,14 @@
       status: "live",
       message: null,
       facts: facts,
-      moon: { phase: phase, illumination: illum, rise: moonrise, set: moonset },
+      moon: { phase: phase, illumination: illum, phaseValue: phaseValue, rise: moonrise, set: moonset },
       nightSky: sky,
-      graphic: { kind: "moon", value: illum != null ? illum : 50, phase: phase }
+      graphic: {
+        kind: "moon",
+        value: illum != null ? illum : (phaseValue != null ? Math.round((phaseValue <= 0.5 ? phaseValue * 2 : (1 - phaseValue) * 2) * 100) : null),
+        phase: phase,
+        phaseValue: phaseValue
+      }
     };
   }
 
