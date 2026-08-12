@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-12T02:45:06.458Z",
+  "generatedAt": "2026-08-12T07:53:24.230Z",
   "entityCount": 419,
-  "relationshipCount": 1081,
+  "relationshipCount": 1080,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -370,16 +370,6 @@
       "title": "N-able"
     },
     {
-      "id": "cve:CVE-2021-27137",
-      "kind": "cve",
-      "title": "CVE-2021-27137"
-    },
-    {
-      "id": "vendor:dd-wrt",
-      "kind": "vendor",
-      "title": "DD-WRT"
-    },
-    {
       "id": "cve:CVE-2025-48595",
       "kind": "cve",
       "title": "CVE-2025-48595"
@@ -568,6 +558,16 @@
       "id": "cve:CVE-2026-0770",
       "kind": "cve",
       "title": "CVE-2026-0770"
+    },
+    {
+      "id": "cve:CVE-2021-27137",
+      "kind": "cve",
+      "title": "CVE-2021-27137"
+    },
+    {
+      "id": "vendor:dd-wrt",
+      "kind": "vendor",
+      "title": "DD-WRT"
     },
     {
       "id": "cve:CVE-2023-4346",
@@ -1551,6 +1551,11 @@
       "title": "CVE-2012-4681"
     },
     {
+      "id": "cve:CVE-2019-2725",
+      "kind": "cve",
+      "title": "CVE-2019-2725"
+    },
+    {
       "id": "cve:CVE-2026-71851",
       "kind": "cve",
       "title": "CVE-2026-71851"
@@ -1636,11 +1641,6 @@
       "title": "CVE-2019-1694"
     },
     {
-      "id": "cve:CVE-2019-1703",
-      "kind": "cve",
-      "title": "CVE-2019-1703"
-    },
-    {
       "id": "cve:CVE-2017-6632",
       "kind": "cve",
       "title": "CVE-2017-6632"
@@ -1659,11 +1659,6 @@
       "id": "cve:CVE-2019-1696",
       "kind": "cve",
       "title": "CVE-2019-1696"
-    },
-    {
-      "id": "cve:CVE-2019-1704",
-      "kind": "cve",
-      "title": "CVE-2019-1704"
     },
     {
       "id": "cve:CVE-2026-63222",
@@ -1724,6 +1719,11 @@
       "id": "cve:CVE-2017-3887",
       "kind": "cve",
       "title": "CVE-2017-3887"
+    },
+    {
+      "id": "cve:CVE-2019-0752",
+      "kind": "cve",
+      "title": "CVE-2019-0752"
     },
     {
       "id": "cve:CVE-2017-3822",
@@ -3299,30 +3299,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2021-27137",
-      "to": "cve:CVE-2021-27137",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2021-27137",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2021-27137",
-      "to": "vendor:dd-wrt",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2021-27137",
-      "to": "vendor:dd-wrt",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2025-48595",
       "to": "cve:CVE-2025-48595",
       "evidence": "identifier"
@@ -4103,6 +4079,24 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-0770",
       "to": "vendor:langflow",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2021-27137",
+      "to": "cve:CVE-2021-27137",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2021-27137",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2021-27137",
+      "to": "vendor:dd-wrt",
       "evidence": "entity extraction"
     },
     {
@@ -7154,6 +7148,12 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_nvd_cve-2019-2725",
+      "to": "cve:CVE-2019-2725",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_ghsa_GHSA-rg76-677x-56q9",
       "to": "cve:CVE-2026-71851",
       "evidence": "identifier"
@@ -7353,19 +7353,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_nvd_cve-2019-1703",
-      "to": "cve:CVE-2019-1703",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2019-1703",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_nvd_cve-2017-6632",
       "to": "cve:CVE-2017-6632",
       "evidence": "identifier"
@@ -7412,19 +7399,6 @@
     {
       "type": "heuristic-attack-map",
       "from": "live_nvd_cve-2019-1696",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_nvd_cve-2019-1704",
-      "to": "cve:CVE-2019-1704",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2019-1704",
       "to": "attack:T1190",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
@@ -7655,6 +7629,26 @@
       "type": "heuristic-attack-map",
       "from": "live_nvd_cve-2017-3887",
       "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_nvd_cve-2019-0752",
+      "to": "cve:CVE-2019-0752",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_nvd_cve-2019-0752",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_nvd_cve-2019-0752",
+      "to": "attack:T1059",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
