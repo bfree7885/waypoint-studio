@@ -247,6 +247,22 @@ assert(
   "astronomy marks illumination computed",
   (astroLive.facts || []).some((f) => f.label === "Illumination" && f.note === "Computed")
 );
+assert("astronomy lunarState exists", !!(astroLive.lunarState));
+assert(
+  "astronomy lunarState matches illumination fact",
+  astroLive.lunarState &&
+    astroLive.lunarState.illumination === 32 &&
+    astroLive.lunarState.limb === "waxing"
+);
+assert(
+  "astronomy render includes data-driven disk",
+  /data-lunar-illumination="32"/.test(Reg.render(Reg.get("ph-astronomy"), astroLive))
+);
+assert(
+  "conditions sky kind from live summary",
+  condLive.skyKind === "partly" || condLive.skyKind === "clouds"
+);
+assert("air aqi band good", airLive.aqiBand === "good");
 
 const lines = Data.composeTodayLines(platform);
 assert("today lines max 8", lines.length <= 8 && lines.length >= 1, String(lines.length));
