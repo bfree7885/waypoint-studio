@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "lastEngineRun": "2026-08-12T17:30:01.446Z",
-  "dataUpdatedAt": "2026-08-12T17:30:01.446Z",
-  "nextScheduledRun": "2026-08-12T18:00:00.000Z",
-  "lastPublishAt": "2026-08-12T17:00:38.311Z",
-  "lastPublishedDataAt": "2026-08-12T17:00:01.904Z",
-  "lastPublishCommit": "6c98483f",
+  "lastEngineRun": "2026-08-12T18:00:01.671Z",
+  "dataUpdatedAt": "2026-08-12T18:00:01.671Z",
+  "nextScheduledRun": "2026-08-12T18:30:00.000Z",
+  "lastPublishAt": "2026-08-12T17:30:42.537Z",
+  "lastPublishedDataAt": "2026-08-12T17:30:01.446Z",
+  "lastPublishCommit": "b17d299f",
   "lastPublishStatus": "succeeded",
-  "lastPublishMessage": "Pushed 6c98483f to origin/feature/dashboard-moon-accuracy"
+  "lastPublishMessage": "Pushed b17d299f to origin/feature/dashboard-moon-accuracy"
 }
