@@ -762,8 +762,14 @@
   }
 
   function moonDisc(cx, cy, r, phaseKey, illumPct) {
-    var k = moonIlluminationFraction(illumPct);
     var key = String(phaseKey || "");
+    var k;
+    if (illumPct == null || illumPct === "") {
+      /* Phase-only decorative moons omit illumination; keep a readable crescent. */
+      k = key === "full" ? 1 : key === "new" ? 0 : 0.2;
+    } else {
+      k = moonIlluminationFraction(illumPct);
+    }
     var waxing = key !== "waning" && key !== "new";
     if (key === "full") waxing = true;
     if (key === "new" && k > 0.002 && k < 0.998) waxing = true;
@@ -1272,11 +1278,11 @@
     if (!isFinite(amount)) amount = 0;
     var intensity = String(g.intensity || "").toLowerCase();
     var ptype = String(g.precipType || g.type || "").toLowerCase();
+    var condText = String(g.conditions || "").toLowerCase();
     var rainingNow =
       amount >= 0.01 ||
-      intensity === "heavy" ||
-      intensity === "moderate" ||
-      /rain|drizzle|shower|storm/.test(String(g.conditions || "").toLowerCase());
+      (intensity !== "" && intensity !== "none") ||
+      /rain|drizzle|shower|storm|snow|sleet|blizzard|flurr/.test(condText);
 
     if (/snow|sleet|blizzard/.test(ptype) && (rainingNow || nowProb >= 40)) {
       return artWrap(
