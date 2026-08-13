@@ -36,6 +36,7 @@ assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/
 const modules = [
   "design-system/js/wds-icons.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intel.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",

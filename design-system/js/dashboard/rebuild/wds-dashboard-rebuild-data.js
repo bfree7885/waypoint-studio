@@ -693,6 +693,33 @@
         "Before-you-go notes unavailable right now."
       );
     }
+
+    var Intel = global.WDS && global.WDS.dashboardRebuildIntel;
+    if (Intel && typeof Intel.analyze === "function") {
+      try {
+        var analysis = Intel.analyze(platform, null);
+        var byo = analysis && analysis.beforeYouGo;
+        if (byo && byo.brief) {
+          var facts = (byo.facts && byo.facts.length ? byo.facts : []).slice(0, 4);
+          return {
+            trust: "derived",
+            status: "live",
+            message: null,
+            brief: byo.brief,
+            facts: facts,
+            signals: byo.signals || [],
+            evidence: byo.evidence || [],
+            happeningNow: analysis.happeningNow || [],
+            toolLinks: analysis.toolLinks || [],
+            envState: analysis.state || null,
+            graphic: { kind: "doorway" }
+          };
+        }
+      } catch (e) {
+        /* Fall through to legacy doorway composition */
+      }
+    }
+
     var facts = [];
     var alerts = alertsPayload(platform);
     if (alerts.status === "live" && alerts.alerts && alerts.alerts.count > 0) {
@@ -897,6 +924,16 @@
     }
     if (platform && liveCount === 0) trust = "unavailable";
 
+    var intel = null;
+    var Intel = global.WDS && global.WDS.dashboardRebuildIntel;
+    if (Intel && typeof Intel.analyze === "function" && platform) {
+      try {
+        intel = Intel.analyze(platform, location || null);
+      } catch (e) {
+        intel = null;
+      }
+    }
+
     return {
       widgets: widgets,
       today: {
@@ -906,13 +943,14 @@
           (location && (location.displayTitle || location.placeLabel || location.name)) || null
       },
       platform: platform || null,
-      location: location || null
+      location: location || null,
+      intel: intel
     };
   }
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildData = {
-    version: "4.0.0-depth",
+    version: "4.1.0-instrument-intelligence",
     liveIds: LIVE_IDS.slice(),
     isLiveWidget: isLiveWidget,
     fromPlatform: fromPlatform,

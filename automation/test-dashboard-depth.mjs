@@ -55,6 +55,7 @@ sandbox.WDS = {};
 
 [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intel.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -188,9 +189,15 @@ const doorway = Data.buildWidgetPayload("ph-doorway", {
   },
   daylight: { status: "live", sunsetFormatted: "7:48 PM" }
 });
-if (doorway && doorway.trust === "derived" && doorway.facts && doorway.facts.length) {
+if (
+  doorway &&
+  doorway.trust === "derived" &&
+  ((doorway.brief && doorway.brief.length > 5) || (doorway.facts && doorway.facts.length))
+) {
   pass("doorway derived brief works");
 } else fail("doorway derived brief failed");
+if (doorway && doorway.brief) pass("doorway intel brief present");
+else fail("doorway intel brief missing");
 
 // Hourly next hours
 const now = Date.now();
@@ -244,6 +251,8 @@ else pass("deepeners remain Dashboard-only");
 const wds = read("design-system/js/wds.js");
 if (/wds-dashboard-rebuild-graphics\.js/.test(wds)) pass("wds loads graphics module");
 else fail("wds missing graphics module");
+if (/rebuild-intel\.js[\s\S]*rebuild-data\.js/.test(wds)) pass("wds loads intel before data");
+else fail("wds missing intel before data");
 
 if (failed) {
   console.error("\nDASHBOARD DEPTH: FAIL (" + failed + ")");

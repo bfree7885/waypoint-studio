@@ -155,7 +155,7 @@ assert("Recovery stub disabled", /isEnabled:\s*function\s*\(\)\s*\{\s*return fal
 assert("quiet chrome attribute on Outside", fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8").includes('data-quiet-chrome="true"'));
 assert("Volunteer not in OS prefs catalog UI", !/value="volunteer"/.test(osRender));
 
-/* Legacy presentation must not become the normal production Outside route */
+/* Production Outside/Dashboard entry is Rebuild Home — not Outdoor OS / Recovery / V2. */
 const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 const navConfig = fs.readFileSync(
   path.join(ROOT, "design-system/js/platform/wds-app-nav-config.js"),
@@ -165,7 +165,15 @@ const navRegistry = fs.readFileSync(
   path.join(ROOT, "design-system/ecosystem/nav-registry.json"),
   "utf8"
 );
-assert("Outside entry loads Outdoor OS CSS", /wds-dashboard-os\.css/.test(dashHtml));
+const homeBoot = fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8");
+assert(
+  "Dashboard entry loads rebuild CSS",
+  /wds-dashboard-rebuild\.css/.test(dashHtml)
+);
+assert(
+  "Dashboard entry does not load Outdoor OS CSS as product stylesheet",
+  !/<link[^>]+wds-dashboard-os\.css/.test(dashHtml)
+);
 assert("Outside entry does not load V2/V3 CSS", !/wds-dashboard-v2\.css|wds-dashboard-v3\.css/.test(dashHtml));
 assert(
   "Outside entry has no Recovery/V2/V3 product chrome markers",
@@ -176,23 +184,29 @@ assert(
   /isOutsideProductSurface/.test(engineSrc) && /outdoorOsUnavailableHtml/.test(engineSrc)
 );
 assert(
-  "dashboard nav features empty (no Recovery/V2 tabs)",
-  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navConfig) &&
-    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[\]/.test(navRegistry)
+  "dashboard product titled Dashboard",
+  /"id":\s*"dashboard"[\s\S]*?"title":\s*"Dashboard"/.test(navConfig) &&
+    /"id":\s*"dashboard"[\s\S]*?"title":\s*"Dashboard"/.test(navRegistry)
 );
 assert(
-  "dashboard product titled Outside",
-  /"title":\s*"Outside"/.test(navConfig) && /"title":\s*"Outside"/.test(navRegistry)
+  "dashboard nav features are Workspace/Customize only (no Recovery/V2 tabs)",
+  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"customize"/.test(
+    navConfig
+  ) &&
+    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"customize"/.test(
+      navRegistry
+    ) &&
+    !/"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?(recovery|v2|v3)/i.test(navConfig)
+);
+assert(
+  "home-boot mounts Dashboard rebuild workspace",
+  /dashboardRebuild\.mount/.test(homeBoot) &&
+    /does not boot Outdoor OS/.test(homeBoot) &&
+    !/sections:\s*\[["']outdoor-dashboard["']\]/.test(homeBoot)
 );
 assert(
   "V2/V3 localStorage flags are not consulted by engine renderDashboard",
   !/waypoint-dashboard-v2/.test(engineSrc) && !/waypoint-dashboard-v3/.test(engineSrc)
-);
-assert(
-  "home-boot Outside sections are outdoor-dashboard only",
-  /sections:\s*\[["']outdoor-dashboard["']\]/.test(
-    fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8")
-  )
 );
 
 /* Runtime: stale V2/V3 flags must not change product render when OS is present */
