@@ -446,7 +446,11 @@
       message: null,
       facts: facts,
       alerts: { count: items.length, items: items },
-      graphic: { kind: "alert", active: !!(items && items.length) }
+      graphic: {
+        kind: "alert",
+        active: !!(items && items.length),
+        event: (items[0] && (items[0].event || items[0].headline)) || ""
+      }
     };
   }
 

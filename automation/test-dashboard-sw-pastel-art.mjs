@@ -85,8 +85,9 @@ sandbox.WDS = {};
 vm.runInNewContext(gfxSrc, sandbox);
 
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
-if (Gfx && /instrument/.test(String(Gfx.version || ""))) pass("instrument-scene graphics version");
-else fail("graphics version not instrument scenes");
+if (Gfx && /(instrument|semi-realistic|field-art|moon-rain)/.test(String(Gfx.version || ""))) {
+  pass("instrument-scene graphics version (" + Gfx.version + ")");
+} else fail("graphics version not instrument scenes");
 
 const cond = Gfx.render({ kind: "sky", state: "clear" });
 const rain = Gfx.render({ kind: "sky", state: "rain" });
@@ -117,8 +118,9 @@ else fail("Light still shares Conditions mesa");
 if (day.includes(HORIZON) && day.includes("cx=\"100\"") && !day.includes(MESA)) pass("midday Light is high sun on horizon");
 else fail("day Light scene missing");
 
-if (air.includes(DEPTH) && air.includes("ellipse") && !air.includes(MESA)) pass("Air is depth/visibility planes, not tinted mesas");
-else fail("Air still mesa clone");
+if (air.includes(DEPTH) && !air.includes(MESA) && (air.match(/<path/g) || []).length >= 2) {
+  pass("Air is depth/visibility terrain haze, not tinted mesas");
+} else fail("Air still mesa clone");
 
 if (moon.includes(LUNA) && moon.includes("r=\"28\"") && !moon.includes(MESA)) pass("Moon is close-up textured disc, not landscape with moon");
 else fail("Moon still landscape clone");
@@ -132,8 +134,9 @@ else fail("Precip still weather clone or not data-driven");
 if (snow.includes(WINTER) && !snow.includes(CURTAIN) && snow !== rain) pass("Snow is winter drifts, not recolored rain");
 else fail("Snow still recolored weather");
 
-if (storm.includes("108 36") && storm.includes(MESA)) pass("Storm keeps lightning on weather mesas");
-else fail("Storm lost lightning");
+if ((storm.includes("108 36") || storm.includes("108 34") || storm.includes("wdb-r-lightning")) && storm.includes(MESA)) {
+  pass("Storm keeps lightning on weather mesas");
+} else fail("Storm lost lightning");
 
 const scenes = [cond, light, air, moon, wind, precipWet, snow];
 const unique = new Set(scenes);
@@ -142,8 +145,13 @@ else fail("instrument scenes still share identical markup");
 
 const wax = Gfx.render({ kind: "moon", value: 22, phase: "waxing crescent", phaseValue: 0.14 });
 const wane = Gfx.render({ kind: "moon", value: 22, phase: "waning crescent", phaseValue: 0.86 });
-if (wax !== wane && wax.includes("mask") && wane.includes("mask")) pass("waxing vs waning moon geometry differs");
-else fail("waxing/waning moon not distinct");
+if (
+  wax !== wane &&
+  (/data-limb="waxing"/.test(wax) || wax.includes("clipPath")) &&
+  (/data-limb="waning"/.test(wane) || wane.includes("clipPath"))
+) {
+  pass("waxing vs waning moon geometry differs");
+} else fail("waxing/waning moon not distinct");
 
 if (precipWet.split("<path").length > precipDry.split("<path").length) pass("heavier precip draws denser curtain");
 else fail("precip density not driven by probability");

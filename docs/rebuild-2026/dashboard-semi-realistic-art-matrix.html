@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard semi-realistic art matrix</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      padding: 1.25rem;
+      background: #141210;
+      color: #e8e2d6;
+      font: 14px/1.4 "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+    h1 { font-size: 1.35rem; font-weight: 500; margin: 0 0 0.35rem; }
+    p { opacity: 0.72; margin: 0 0 1.25rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      position: relative;
+      min-height: 140px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, #c4908a 35%, transparent);
+      background: #1a1614;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(226, 176, 144, 0.08), 0 0 22px rgba(122, 160, 184, 0.12);
+    }
+    .card h2 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 0.85rem 0.95rem 0.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .card .meta {
+      position: relative;
+      z-index: 2;
+      padding: 0 0.95rem 0.85rem;
+      font-size: 0.75rem;
+      opacity: 0.65;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    .wdb-r-widget__art {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .wdb-r-widget__art-svg {
+      position: absolute;
+      right: -8%;
+      top: -6%;
+      width: min(78%, 18rem);
+      height: 112%;
+      opacity: 0.9;
+    }
+    .wdb-r-widget__art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #1a1614 18%, transparent 62%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Semi-realistic field art matrix</h1>
+  <p>Local visual gate for Dashboard instrument scenes — organic atmosphere, data-honest moon/rain.</p>
+  <div class="grid" id="grid"></div>
+  <script src="/design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+  <script>
+    var G = window.WDS.dashboardRebuildGraphics;
+    var cases = [
+      { title: "Conditions · clear", graphic: { kind: "sky", state: "clear" } },
+      { title: "Conditions · partly", graphic: { kind: "sky", state: "partly" } },
+      { title: "Conditions · cloudy", graphic: { kind: "sky", state: "cloudy" } },
+      { title: "Conditions · rain", graphic: { kind: "sky", state: "rain" } },
+      { title: "Conditions · storm", graphic: { kind: "sky", state: "storm" } },
+      { title: "Conditions · fog", graphic: { kind: "sky", state: "fog" } },
+      { title: "Conditions · snow", graphic: { kind: "sky", state: "snow" } },
+      { title: "Air · moderate", graphic: { kind: "aqi", value: 64 } },
+      { title: "Air · good", graphic: { kind: "aqi", value: 32 } },
+      { title: "UV · 0", graphic: { kind: "uv", value: 0 } },
+      { title: "UV · 2.2", graphic: { kind: "uv", value: 2.2 } },
+      { title: "UV · 8", graphic: { kind: "uv", value: 8 } },
+      { title: "Light · sunrise", graphic: { kind: "sun", state: "sunrise" } },
+      { title: "Light · golden", graphic: { kind: "sun", state: "golden" } },
+      { title: "Light · sunset", graphic: { kind: "sun", state: "sunset" } },
+      { title: "Light · blue hour", graphic: { kind: "sun", state: "blue-hour" } },
+      { title: "Light · day", graphic: { kind: "sun", state: "day" } },
+      { title: "Astronomy · 2%", graphic: { kind: "moon", value: 2, phase: "new moon", phaseValue: 0.02 } },
+      { title: "Astronomy · 22% waxing", graphic: { kind: "moon", value: 22, phase: "waxing crescent", phaseValue: 0.14 } },
+      { title: "Astronomy · 72%", graphic: { kind: "moon", value: 72, phase: "waxing gibbous", phaseValue: 0.4 } },
+      { title: "Rain · NOW 1%", graphic: { kind: "precip", nowProbability: 1, probability: 43 } },
+      { title: "Rain · NOW 80%", graphic: { kind: "precip", nowProbability: 80, intensity: "heavy" } },
+      { title: "Wind", graphic: { kind: "wind", speed: 18, direction: 260 } },
+      { title: "Alerts · quiet", graphic: { kind: "alert", active: false } },
+      { title: "Alerts · storm", graphic: { kind: "alert", active: true, event: "Severe Thunderstorm Warning" } },
+      { title: "Alerts · heat", graphic: { kind: "alert", active: true, event: "Excessive Heat Warning" } }
+    ];
+    var grid = document.getElementById("grid");
+    cases.forEach(function (c) {
+      var el = document.createElement("article");
+      el.className = "card";
+      el.innerHTML = G.render(c.graphic) + "<h2>" + c.title + "</h2><div class=\"meta\">" + (c.graphic.kind || "") + " · " + G.version + "</div>";
+      grid.appendChild(el);
+    });
+  </script>
+</body>
+</html>
