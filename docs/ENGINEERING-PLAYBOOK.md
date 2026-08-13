@@ -1289,3 +1289,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Soft solar bloom (blurred radials) reads more outdoor than a hard sun disc + ring icons.
 - Air haze = irregular ridge silhouettes + particulate + far blur, not stacked ellipses.
 - Keep precip NOW honesty while upgrading streak atmosphere; dry scenes still need depth without rain.
+
+## Lessons Learned — Alert hazard art classification (2026-08-13)
+
+- Classify winter/ice before generic `storm`: NWS titles like Winter Storm Warning contain “storm” and would otherwise paint lightning.
+- Every `alertHazardKind` return value needs a matching `alertArt` branch; fog/smoke/air-quality must not fall through to the thunderstorm template.

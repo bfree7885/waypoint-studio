@@ -162,6 +162,31 @@ if (alertStorm.includes("wdb-r-lightning") && !alertQ.includes("wdb-r-lightning"
 if (alertHeat !== alertStorm) pass("alert art responds to hazard type");
 else fail("alert art ignores hazard type");
 
+const alertWinter = Gfx.render({ kind: "alert", active: true, event: "Winter Storm Warning" });
+const alertIce = Gfx.render({ kind: "alert", active: true, event: "Ice Storm Warning" });
+if (
+  alertWinter.includes("wdb-r-winter") &&
+  !alertWinter.includes("wdb-r-lightning") &&
+  alertIce.includes("wdb-r-winter") &&
+  !alertIce.includes("wdb-r-lightning")
+) {
+  pass("winter/ice storm alerts use winter art, not lightning");
+} else fail("winter/ice storm alerts still classified as thunderstorms");
+
+const alertFog = Gfx.render({ kind: "alert", active: true, event: "Dense Fog Advisory" });
+const alertSmoke = Gfx.render({ kind: "alert", active: true, event: "Dense Smoke Advisory" });
+const alertAqi = Gfx.render({ kind: "alert", active: true, event: "Air Quality Alert" });
+if (
+  alertFog.includes("wdb-r-fog") &&
+  !alertFog.includes("wdb-r-lightning") &&
+  alertSmoke.includes("wdb-r-fog") &&
+  !alertSmoke.includes("wdb-r-lightning") &&
+  alertAqi.includes("wdb-r-fog") &&
+  !alertAqi.includes("wdb-r-lightning")
+) {
+  pass("fog/smoke/air-quality alerts use fog art, not lightning");
+} else fail("fog-family alerts still fall through to thunderstorm art");
+
 /* Instrument distinctness */
 const scenes = [
   Gfx.render({ kind: "sky", state: "clear" }),

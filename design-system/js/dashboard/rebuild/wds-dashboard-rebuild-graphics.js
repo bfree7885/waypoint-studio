@@ -1540,10 +1540,10 @@
 
   function alertHazardKind(eventText) {
     var t = String(eventText || "").toLowerCase();
+    if (/winter|snow|ice|blizzard|freeze|frost/.test(t)) return "winter";
     if (/thunder|storm|tornado|severe|lightning/.test(t)) return "storm";
     if (/wind|gale|hurricane|tropical/.test(t)) return "wind";
     if (/heat|excessive.?heat|hot/.test(t)) return "heat";
-    if (/winter|snow|ice|blizzard|freeze|frost/.test(t)) return "winter";
     if (/flood|rain|flash/.test(t)) return "flood";
     if (/fog|smoke|air.?quality|haze/.test(t)) return "fog";
     return "generic";
@@ -1599,6 +1599,20 @@
             rainStreaks(true),
             horizonGround(82, "#101418"),
             grainOverlay(0.035)
+          ]),
+          "alert-active",
+          "alert"
+        );
+      }
+      if (hz === "fog") {
+        return artWrap(
+          compose([
+            skyGradient("#383e46", "#565e68", "#3c424a"),
+            cloudBank("fog", "#d0ccc4", 40),
+            fogBands(0.3),
+            horizonGround(82, "#282e36"),
+            fogBands(0.16),
+            grainOverlay(0.05)
           ]),
           "alert-active",
           "alert"
