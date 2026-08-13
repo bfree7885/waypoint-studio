@@ -125,6 +125,106 @@ const data = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data
 if (/hoursArtTransition|transition:\s*hoursArtTransition/.test(data)) pass("Next Hours graphic carries transition hint");
 else fail("Next Hours transition wiring missing");
 
+/* Live hoursArtTransition: weather change beats evening labels (3 PM → 6 PM). */
+const dataSandbox = {
+  console,
+  Date,
+  Math,
+  Number,
+  String,
+  Array,
+  Object,
+  isFinite,
+  parseFloat,
+  parseInt,
+  JSON
+};
+dataSandbox.global = dataSandbox;
+dataSandbox.window = dataSandbox;
+dataSandbox.WDS = {};
+vm.runInNewContext(data, dataSandbox);
+const Data = dataSandbox.WDS.dashboardRebuildData;
+
+function afternoonISO(hour, rollDay) {
+  const d = new Date();
+  if (rollDay) d.setDate(d.getDate() + 1);
+  d.setHours(hour, 0, 0, 0);
+  d.setMilliseconds(0);
+  return d.toISOString();
+}
+const rollAfternoon = new Date().setHours(15, 0, 0, 0) < Date.now() - 20 * 60 * 1000;
+function afternoonHourly(rows) {
+  return [15, 16, 17, 18].map((hour, i) => {
+    const row = rows[i] || {};
+    return {
+      time: afternoonISO(hour, rollAfternoon),
+      temperature: 74,
+      precipitation: { probability: row.prob != null ? row.prob : 10 },
+      conditions: { summary: row.sky || "Clear" }
+    };
+  });
+}
+function nextHoursGraphic(hourly, currentProb) {
+  return Data.buildWidgetPayload("ph-next-hours", {
+    meta: {},
+    weatherRef: {
+      meta: { isPlaceholder: false },
+      current: { precipitation: { probability: currentProb } },
+      hourly
+    }
+  });
+}
+
+const origTLS = Date.prototype.toLocaleTimeString;
+Date.prototype.toLocaleTimeString = function () {
+  const h = this.getHours();
+  const h12 = h % 12 || 12;
+  return h12 + (h < 12 ? " AM" : " PM");
+};
+try {
+  const rainNh = nextHoursGraphic(
+    afternoonHourly([{ prob: 10, sky: "Clear" }, { prob: 18 }, { prob: 35 }, { prob: 50, sky: "Rain" }]),
+    10
+  );
+  if (rainNh && rainNh.graphic && rainNh.graphic.transition === "rain-approaching") {
+    pass("afternoon rising precip uses rain-approaching art, not day-evening");
+  } else {
+    fail("afternoon rising precip masked by evening art: " + ((rainNh && rainNh.graphic && rainNh.graphic.transition) || "missing"));
+  }
+
+  const cloudNh = nextHoursGraphic(
+    afternoonHourly([{ sky: "Clear", prob: 5 }, { sky: "Clear" }, { sky: "Partly cloudy" }, { sky: "Cloudy", prob: 10 }]),
+    5
+  );
+  if (cloudNh && cloudNh.graphic && cloudNh.graphic.transition === "clouds-building") {
+    pass("afternoon cloud-up uses clouds-building art, not day-evening");
+  } else {
+    fail("afternoon clouds-building masked by evening art: " + ((cloudNh && cloudNh.graphic && cloudNh.graphic.transition) || "missing"));
+  }
+
+  const clearNh = nextHoursGraphic(
+    afternoonHourly([{ sky: "Cloudy", prob: 30 }, { sky: "Cloudy" }, { sky: "Partly cloudy" }, { sky: "Clear", prob: 8 }]),
+    30
+  );
+  if (clearNh && clearNh.graphic && clearNh.graphic.transition === "clearing") {
+    pass("afternoon clearing uses clearing art, not day-evening");
+  } else {
+    fail("afternoon clearing masked by evening art: " + ((clearNh && clearNh.graphic && clearNh.graphic.transition) || "missing"));
+  }
+
+  const eveNh = nextHoursGraphic(
+    afternoonHourly([{ sky: "Clear", prob: 8 }, { prob: 8 }, { prob: 10 }, { sky: "Clear", prob: 10 }]),
+    8
+  );
+  if (eveNh && eveNh.graphic && eveNh.graphic.transition === "day-evening") {
+    pass("stable afternoon→evening still uses day-evening art");
+  } else {
+    fail("stable evening transition lost: " + ((eveNh && eveNh.graphic && eveNh.graphic.transition) || "missing"));
+  }
+} finally {
+  Date.prototype.toLocaleTimeString = origTLS;
+}
+
 const matrix = read("docs/rebuild-2026/dashboard-v1-visual-finish-matrix.html");
 const compare = read("docs/rebuild-2026/dashboard-v1-visual-finish-compare.html");
 if (matrix.includes("Thin crescent") && matrix.includes("Rain approaching") && compare.includes("cartoon")) {

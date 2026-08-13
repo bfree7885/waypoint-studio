@@ -491,11 +491,6 @@
     if (!isFinite(laterP)) laterP = nowP;
     var sky0 = String(first.conditions || "").toLowerCase();
     var sky1 = String(later.conditions || "").toLowerCase();
-    var lab0 = String(first.label || "").toLowerCase();
-    var lab1 = String(later.label || "").toLowerCase();
-    var eveningish = /(5|6|7|8|9)\s*pm|evening|dusk|sunset/.test(lab1);
-    var dayish = /am|noon|(1|2|3|4)\s*pm|afternoon|morning/.test(lab0) || /am|noon/.test(lab0);
-    if (eveningish && (dayish || /pm/.test(lab0))) return "day-evening";
     if (nowP <= 20 && laterP >= 40) return "rain-approaching";
     var clear0 = /clear|sunny|fair/.test(sky0);
     var cloud1 = /cloud|overcast|part/.test(sky1);
@@ -503,6 +498,11 @@
     var clear1 = /clear|sunny|fair/.test(sky1);
     if (clear0 && cloud1) return "clouds-building";
     if (cloud0 && clear1 && laterP + 5 < nowP) return "clearing";
+    var lab0 = String(first.label || "").toLowerCase();
+    var lab1 = String(later.label || "").toLowerCase();
+    var eveningish = /(5|6|7|8|9)\s*pm|evening|dusk|sunset/.test(lab1);
+    var dayish = /am|noon|(1|2|3|4)\s*pm|afternoon|morning/.test(lab0) || /am|noon/.test(lab0);
+    if (eveningish && (dayish || /pm/.test(lab0))) return "day-evening";
     return "stable";
   }
 
