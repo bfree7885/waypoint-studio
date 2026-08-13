@@ -696,6 +696,19 @@ html[data-product="dashboard"] body::before {
   font-weight: 500;
 }
 
+.wdb-r-doorway {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.wdb-r-widget__brief {
+  margin: 0;
+  font-size: var(--wds-text-sm, 0.875rem);
+  line-height: var(--wds-leading-snug, 1.4);
+  color: var(--wdb-r-ink);
+  font-weight: 500;
+}
+
 .wdb-r-widget__trust {
   margin: 0;
 }

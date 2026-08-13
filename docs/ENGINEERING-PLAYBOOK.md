@@ -1289,3 +1289,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Soft solar bloom (blurred radials) reads more outdoor than a hard sun disc + ring icons.
 - Air haze = irregular ridge silhouettes + particulate + far blur, not stacked ellipses.
 - Keep precip NOW honesty while upgrading streak atmosphere; dry scenes still need depth without rain.
+
+## Lessons Learned — Dashboard instrument intelligence (2026-08-12)
+
+- Stale product-surface asserts (Outdoor OS CSS/title/nav) fail CI after Rebuild Home ships — update contracts to `wds-dashboard-rebuild.css` + `dashboardRebuild.mount`, do not weaken or delete.
+- Before You Go must synthesize from evidence-backed signals; restating temp/precip/wind facts alone is OBSERVE, not DISCOVER/UNDERSTAND.
+- Keep derived intelligence local and synchronous on the existing platform payload — no LLM, no extra fetches.
+- Ordinary conditions must be allowed to yield **zero** noteworthy Happening Now signals; never manufacture interest.
+- Contextual tool links hard-filter to live products with justified reasons (Scenes only today); leave Sheds/Forage dormant.

@@ -98,6 +98,9 @@ jobs:
       - name: Dashboard Today Outside tests
         run: node automation/test-dashboard-today-outside.mjs
 
+      - name: Dashboard instrument intelligence tests
+        run: node automation/test-dashboard-rebuild-intel.mjs
+
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs
 

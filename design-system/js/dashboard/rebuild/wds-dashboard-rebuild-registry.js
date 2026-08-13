@@ -111,7 +111,8 @@
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
-      description: "A short derived brief from alerts, precip, air, UV, wind, and sunset.",
+      description:
+        "A short evidence-backed outdoor brief from derived environmental signals.",
       emptyMessage: "Before-you-go notes settle as instruments arrive.",
       offlineMessage: "Before-you-go notes need a connection."
     },
@@ -585,6 +586,20 @@
     );
   }
 
+  function renderDoorwayBrief(data) {
+    var brief = data && data.brief ? String(data.brief).trim() : "";
+    var facts = (data && data.facts) || [];
+    if (!brief && !facts.length) return "";
+    return (
+      '<div class="wdb-r-doorway">' +
+      (brief
+        ? '<p class="wdb-r-widget__brief" data-trust="derived">' + escapeHtml(brief) + "</p>"
+        : "") +
+      (facts.length ? renderFacts(facts) : "") +
+      "</div>"
+    );
+  }
+
   function renderGraphic(data) {
     var G = global.WDS && global.WDS.dashboardRebuildGraphics;
     if (!G || !G.render || !data || !data.graphic) return "";
@@ -631,6 +646,8 @@
       content = renderAirHero(data);
     } else if (state === "ready" && widget.id === "ph-next-hours" && data.hours && data.hours.length) {
       content = renderHoursStrip(data);
+    } else if (state === "ready" && widget.id === "ph-doorway" && (data.brief || (data.facts && data.facts.length))) {
+      content = renderDoorwayBrief(data);
     } else if (data.facts && data.facts.length) {
       content = renderFacts(data.facts);
     } else {
