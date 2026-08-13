@@ -1274,3 +1274,18 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dashboard product tokens were muted purple on aubergine; `[data-product="dashboard"]` must override `--wp-bg` **and** `--wds-bg` (root `--wds-bg: var(--wp-bg)` computes on `:root` and will not follow a later `--wp-bg` change).
 - Mobile art-shift that hides Astronomy’s moon also hides Light/Air/Wind/Precip subjects — carve those categories out of the aggressive right crop.
 - Live adapters must pass precip probability/intensity and wind speed/direction into `render()` or the unique scenes cannot be data-honest.
+
+## Lessons Learned — Moon/rain visual-gate ship (2026-08-12)
+
+- Open-Meteo / Dashboard illumination is 0–100 percent: never treat `1` as a unit fraction or a 1% New Moon paints Full.
+- Near-new pastel moons must not draw unmasked maria/crater ellipses — lit-path crescent only on a dark disc.
+- Rain art must follow NOW probability/observed precip, not the 12-hour peak alone; 0–10% NOW ⇒ zero streak paths (`precip-dry`).
+- After merge, confirm production serves `wds-dashboard-rebuild-graphics.js` with version `5.1.0-moon-rain-visual-gate` (Pages cache can lag briefly).
+
+## Lessons Learned — Semi-realistic Dashboard field art (2026-08-12)
+
+- Semi-realistic SVG art still needs distinct instrument subjects: mesa weather ≠ horizon light ≠ terrain haze ≠ lunar close-up.
+- Moon surface detail must live inside the lit clipPath; never unmasked maria at 1–3% illumination.
+- Soft solar bloom (blurred radials) reads more outdoor than a hard sun disc + ring icons.
+- Air haze = irregular ridge silhouettes + particulate + far blur, not stacked ellipses.
+- Keep precip NOW honesty while upgrading streak atmosphere; dry scenes still need depth without rain.
