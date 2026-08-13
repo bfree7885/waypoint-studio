@@ -9,7 +9,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.1.0-mobile-customize";
+  var VERSION = "3.2.0-happening-now";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -76,7 +76,8 @@
     var ctx = options.placeContext || {};
     var platform = options.platform || null;
     var Data = api("dashboardRebuildData");
-    var pack = Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx) : null;
+    var pack =
+      Data && Data.fromPlatform ? Data.fromPlatform(platform, ctx, options.now || null) : null;
     var trust = ctx.trust || "waiting";
     var lines = null;
     if (pack && pack.today) {
@@ -89,7 +90,36 @@
       trust: trust,
       now: options.now,
       lines: lines,
-      platform: platform
+      platform: platform,
+      intel: pack && pack.intel ? pack.intel : null,
+      location: ctx
+    };
+  }
+
+  function happeningContext(options) {
+    options = options || {};
+    var ctx = todayContext(options);
+    var signals = ctx.intel && ctx.intel.happeningNow ? ctx.intel.happeningNow : null;
+    /* Prefer a clock-aligned analyze when an explicit now is supplied (tests + paint). */
+    if (options.now && ctx.platform) {
+      var Intel = api("dashboardRebuildIntel");
+      if (Intel && typeof Intel.analyze === "function") {
+        try {
+          var analysis = Intel.analyze(ctx.platform, ctx.location || null, options.now);
+          signals = (analysis && analysis.happeningNow) || signals;
+          ctx.intel = analysis || ctx.intel;
+        } catch (e) {
+          /* keep pack intel */
+        }
+      }
+    }
+    return {
+      platform: ctx.platform,
+      intel: ctx.intel,
+      signals: signals,
+      now: options.now || new Date(),
+      location: ctx.location,
+      placeContext: options.placeContext || null
     };
   }
 
@@ -99,6 +129,7 @@
     var ctx = options.placeContext || {};
     var platform = options.platform || null;
     var Today = api("dashboardRebuildToday");
+    var Happening = api("dashboardRebuildHappening");
     var Workspace = api("dashboardRebuildWorkspace");
     var Customize = api("dashboardRebuildCustomize");
     var Kiosk = api("dashboardRebuildKiosk");
@@ -110,6 +141,12 @@
 
     var todayHtml =
       Today && Today.render ? Today.render(todayContext(options)) : "";
+
+    var happeningHtml = "";
+    if (view === "workspace" || view === "kiosk") {
+      happeningHtml =
+        Happening && Happening.render ? Happening.render(happeningContext(options)) : "";
+    }
 
     var mainHtml = "";
     if (view === "customize") {
@@ -154,6 +191,7 @@
       (platform ? ' data-hydrated="true"' : "") +
       ">" +
       todayHtml +
+      happeningHtml +
       mainHtml +
       deepenHtml +
       "</div>"
@@ -248,6 +286,12 @@
     }
     if (Workspace && Workspace.bindLazy && mountState.view !== "customize") {
       Workspace.bindLazy(mountState.host, { platform: mountState.platform || null });
+    }
+    if (mountState.view === "workspace" || mountState.view === "kiosk") {
+      var Happening = api("dashboardRebuildHappening");
+      if (Happening && Happening.bind) {
+        Happening.bind(mountState.host);
+      }
     }
     if (mountState.view === "workspace") {
       var Deepen = api("dashboardRebuildDeepeners");

@@ -101,6 +101,9 @@ jobs:
       - name: Dashboard instrument intelligence tests
         run: node automation/test-dashboard-rebuild-intel.mjs
 
+      - name: Dashboard Happening Now tests
+        run: node automation/test-dashboard-rebuild-happening.mjs
+
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs
 
