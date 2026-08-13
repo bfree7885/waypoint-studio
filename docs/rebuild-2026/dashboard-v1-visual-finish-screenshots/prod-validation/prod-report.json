@@ -1,0 +1,336 @@
+{
+  "base": "https://waypointstudio.org",
+  "dash": "https://waypointstudio.org/apps/dashboard/?v=v1-finish-1&t=vf-prod-1786634295663",
+  "startedAt": "2026-08-13T15:18:15.663Z",
+  "build": {
+    "commit": "9c8babcb373829e31d1ecbcce505183e7a62d705",
+    "shortCommit": "9c8babc",
+    "builtAt": "2026-08-13T15:09:58.983Z",
+    "workflowRunId": "31713897310",
+    "source": "github-pages",
+    "commitFull": "9c8babcb373829e31d1ecbcce505183e7a62d705",
+    "deployedAt": "2026-08-13T15:09:58.983Z",
+    "locationSchema": 4,
+    "loaderVersion": 2,
+    "migrationEpoch": 3,
+    "minRecoveryBuild": "cf51ce4"
+  },
+  "graphicsVersion": "5.3.0-v1-visual-finish",
+  "checks": [
+    {
+      "name": "production SHA",
+      "ok": true,
+      "detail": "9c8babc"
+    },
+    {
+      "name": "graphics version",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "moon renderer present in prod bundle",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 390 ready",
+      "ok": true,
+      "detail": "{\"ready\":false,\"toggles\":8,\"readyBodies\":9,\"gfx\":\"5.3.0-v1-visual-finish\"}"
+    },
+    {
+      "name": "viewport 390 gfx runtime",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "viewport 390 no h-scroll",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 390 Details affordance",
+      "ok": true,
+      "detail": "Details ›"
+    },
+    {
+      "name": "viewport 390 alerts quiet no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 390 rain dry no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 430 ready",
+      "ok": true,
+      "detail": "{\"ready\":false,\"toggles\":8,\"readyBodies\":9,\"gfx\":\"5.3.0-v1-visual-finish\"}"
+    },
+    {
+      "name": "viewport 430 gfx runtime",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "viewport 430 no h-scroll",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 430 Details affordance",
+      "ok": true,
+      "detail": "Details ›"
+    },
+    {
+      "name": "viewport 430 alerts quiet no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 430 rain dry no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 768 ready",
+      "ok": true,
+      "detail": "{\"ready\":false,\"toggles\":8,\"readyBodies\":9,\"gfx\":\"5.3.0-v1-visual-finish\"}"
+    },
+    {
+      "name": "viewport 768 gfx runtime",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "viewport 768 no h-scroll",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 768 Details affordance",
+      "ok": true,
+      "detail": "Details ›"
+    },
+    {
+      "name": "viewport 768 alerts quiet no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 768 rain dry no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1440 ready",
+      "ok": true,
+      "detail": "{\"ready\":false,\"toggles\":8,\"readyBodies\":9,\"gfx\":\"5.3.0-v1-visual-finish\"}"
+    },
+    {
+      "name": "viewport 1440 gfx runtime",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "viewport 1440 no h-scroll",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1440 Details affordance",
+      "ok": true,
+      "detail": "Details ›"
+    },
+    {
+      "name": "viewport 1440 alerts quiet no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1440 rain dry no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1728 ready",
+      "ok": true,
+      "detail": "{\"ready\":false,\"toggles\":8,\"readyBodies\":9,\"gfx\":\"5.3.0-v1-visual-finish\"}"
+    },
+    {
+      "name": "viewport 1728 gfx runtime",
+      "ok": true,
+      "detail": "5.3.0-v1-visual-finish"
+    },
+    {
+      "name": "viewport 1728 no h-scroll",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1728 Details affordance",
+      "ok": true,
+      "detail": "Details ›"
+    },
+    {
+      "name": "viewport 1728 alerts quiet no cloud-icon",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "viewport 1728 rain dry no cloud-icon",
+      "ok": true,
+      "detail": null
+    }
+  ],
+  "screenshots": [
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-390.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-430.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-768.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-1440.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-1728.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-1440-conditions-depth.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-1440-astronomy-depth.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-390-collapsed.png",
+    "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/dashboard-v1-visual-finish-screenshots/prod-validation/prod-390-conditions-depth.png"
+  ],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "mobile": true,
+      "ready": {
+        "ready": false,
+        "toggles": 8,
+        "readyBodies": 9,
+        "gfx": "5.3.0-v1-visual-finish"
+      },
+      "scenes": {
+        "gfx": "5.3.0-v1-visual-finish",
+        "alertScene": "alert",
+        "alertIllum": "quiet",
+        "alertCloudIcon": false,
+        "rainScene": "precip-dry",
+        "rainCloudIcon": false,
+        "conditionsScene": "partly",
+        "hoursScene": "hours-stable",
+        "airScene": "aqi-good",
+        "uvScene": "uv",
+        "lightScene": "day",
+        "moon": true,
+        "details": "Details ›",
+        "overflow": false
+      }
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "mobile": true,
+      "ready": {
+        "ready": false,
+        "toggles": 8,
+        "readyBodies": 9,
+        "gfx": "5.3.0-v1-visual-finish"
+      },
+      "scenes": {
+        "gfx": "5.3.0-v1-visual-finish",
+        "alertScene": "alert",
+        "alertIllum": "quiet",
+        "alertCloudIcon": false,
+        "rainScene": "precip-dry",
+        "rainCloudIcon": false,
+        "conditionsScene": "partly",
+        "hoursScene": "hours-stable",
+        "airScene": "aqi-good",
+        "uvScene": "uv",
+        "lightScene": "day",
+        "moon": true,
+        "details": "Details ›",
+        "overflow": false
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mobile": true,
+      "ready": {
+        "ready": false,
+        "toggles": 8,
+        "readyBodies": 9,
+        "gfx": "5.3.0-v1-visual-finish"
+      },
+      "scenes": {
+        "gfx": "5.3.0-v1-visual-finish",
+        "alertScene": "alert",
+        "alertIllum": "quiet",
+        "alertCloudIcon": false,
+        "rainScene": "precip-dry",
+        "rainCloudIcon": false,
+        "conditionsScene": "partly",
+        "hoursScene": "hours-stable",
+        "airScene": "aqi-good",
+        "uvScene": "uv",
+        "lightScene": "day",
+        "moon": true,
+        "details": "Details ›",
+        "overflow": false
+      }
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "mobile": false,
+      "ready": {
+        "ready": false,
+        "toggles": 8,
+        "readyBodies": 9,
+        "gfx": "5.3.0-v1-visual-finish"
+      },
+      "scenes": {
+        "gfx": "5.3.0-v1-visual-finish",
+        "alertScene": "alert",
+        "alertIllum": "quiet",
+        "alertCloudIcon": false,
+        "rainScene": "precip-dry",
+        "rainCloudIcon": false,
+        "conditionsScene": "partly",
+        "hoursScene": "hours-stable",
+        "airScene": "aqi-good",
+        "uvScene": "uv",
+        "lightScene": "day",
+        "moon": true,
+        "details": "Details ›",
+        "overflow": false
+      }
+    },
+    {
+      "width": 1728,
+      "height": 1000,
+      "mobile": false,
+      "ready": {
+        "ready": false,
+        "toggles": 8,
+        "readyBodies": 9,
+        "gfx": "5.3.0-v1-visual-finish"
+      },
+      "scenes": {
+        "gfx": "5.3.0-v1-visual-finish",
+        "alertScene": "alert",
+        "alertIllum": "quiet",
+        "alertCloudIcon": false,
+        "rainScene": "precip-dry",
+        "rainCloudIcon": false,
+        "conditionsScene": "partly",
+        "hoursScene": "hours-stable",
+        "airScene": "aqi-good",
+        "uvScene": "uv",
+        "lightScene": "day",
+        "moon": true,
+        "details": "Details ›",
+        "overflow": false
+      }
+    }
+  ],
+  "failed": [],
+  "finishedAt": "2026-08-13T15:24:32.393Z"
+}
