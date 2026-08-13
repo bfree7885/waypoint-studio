@@ -18,7 +18,7 @@ sandbox.global = sandbox; sandbox.window = sandbox; sandbox.WDS = {};
 vm.runInNewContext(read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"), sandbox);
 
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
-if (Gfx && /cinematic|instrument|semi-realistic|field-art|moon-rain/.test(String(Gfx.version || ""))) {
+if (Gfx && /cinematic|instrument|semi-realistic|field-art|moon-rain|visual-finish/.test(String(Gfx.version || ""))) {
   pass("graphics atmospheric module (" + Gfx.version + ")");
 } else fail("missing cinematic graphics version");
 

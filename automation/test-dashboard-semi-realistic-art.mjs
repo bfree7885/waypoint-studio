@@ -42,7 +42,7 @@ sandbox.WDS = {};
 vm.runInNewContext(read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"), sandbox);
 
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
-if (Gfx && /semi-realistic|field-art/.test(String(Gfx.version || ""))) {
+if (Gfx && /semi-realistic|field-art|visual-finish/.test(String(Gfx.version || ""))) {
   pass("semi-realistic field-art graphics version (" + Gfx.version + ")");
 } else fail("missing semi-realistic graphics version");
 
@@ -113,6 +113,9 @@ const wet = Gfx.render({
 if (/data-scene="precip-dry"/.test(dry) && !/data-rain="active"/.test(dry)) {
   pass("0–10% NOW stays precip-dry with no active rain");
 } else fail("low NOW still paints rain");
+if (!/wdb-r-cloud--cumulus|wdb-r-cloud--storm|wdb-r-cloud--stratus/.test(dry)) {
+  pass("precip-dry uses atmosphere/horizon, not weather-icon clouds");
+} else fail("precip-dry still paints cloud-icon silhouette");
 if (/data-rain="active"/.test(wet) && (wet.match(/l-1\.8/g) || []).length > 0) {
   pass("wet NOW paints active curtain");
 } else fail("wet precip missing rain curtain");
@@ -156,11 +159,26 @@ const alertHeat = Gfx.render({ kind: "alert", active: true, event: "Excessive He
 if (alertQ.includes('data-illum="quiet"') && alertStorm.includes('data-illum="alert"')) {
   pass("alerts state-honest");
 } else fail("alerts not state-honest");
+if (!/wdb-r-cloud--cumulus|wdb-r-cloud--storm|wdb-r-cloud--stratus|wdb-r-cloud--light/.test(alertQ)) {
+  pass("quiet alerts are calm horizon, not weather-icon cloud");
+} else fail("quiet alerts still paint cloud icon");
 if (alertStorm.includes("wdb-r-lightning") && !alertQ.includes("wdb-r-lightning")) {
   pass("lightning only when storm-like alert active");
 } else fail("alert lightning honesty failed");
 if (alertHeat !== alertStorm) pass("alert art responds to hazard type");
 else fail("alert art ignores hazard type");
+
+const hoursStable = Gfx.render({ kind: "hours", transition: "stable" });
+const hoursRain = Gfx.render({ kind: "hours", transition: "rain-approaching" });
+const hoursEve = Gfx.render({ kind: "hours", transition: "day-evening" });
+if (
+  hoursStable !== hoursRain &&
+  hoursStable !== hoursEve &&
+  !hoursStable.includes("wdb-r-hours-ticks") &&
+  /data-scene="hours-/.test(hoursStable)
+) {
+  pass("Next Hours transition art is distinct without tick infographic");
+} else fail("Next Hours transition art weak or tick-infographic remains");
 
 /* Instrument distinctness */
 const scenes = [

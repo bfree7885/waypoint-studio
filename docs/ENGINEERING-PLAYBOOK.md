@@ -1312,3 +1312,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Feels-like and gusts earn visual weight only past small deltas (≥3°F / ≥4 mph); otherwise they clutter glance hierarchy.
 - Keep optional instruments (`ph-comfort`, `ph-day-range`) in the catalog for saved layouts even when default experience absorbs or de-emphasizes them.
 - Happening Now → `openWidget` should open depth on the related instrument so discovery connects to evidence without a new navigation model.
+
+## Lessons Learned — Dashboard V1 visual finish (2026-08-13)
+
+- Quiet Alerts and dry Rain must not reuse “light cloud” banks — weather-icon clouds read as placeholder UI; calm horizon + atmosphere communicates status without fabricating weather.
+- Soft-edge SVG cloud families need *distinct* silhouettes (cirrus strokes vs soft cumulus variants vs stratus sheets vs storm anvil vs fog veils); one reusable blob stamps sameness.
+- Next Hours art should encode upcoming transition subtly (`stable` / `clearing` / `clouds-building` / `rain-approaching` / `day-evening`) and never as tick-mark mini-infographics.
+- Micro-type bumps belong only on secondary labels (family, WIND/HUMIDITY/PRECIP, Details) — enlarging everything flattens hierarchy.
+- Art footprint ~right 30–40% with stronger left wash keeps text primary; quality-reference tiles (Air/UV/Light/Astronomy) may keep a slightly fuller plane.
+- Moon geometry/illumination/waxing-waning must stay untouched in visual-finish passes — assert limb + lit-path gates separately from cloud work.
+- Feature opportunities noted (not built): richer hours transition from solar altitude; optional per-instrument `data-art-span` wiring from registry; fixture-driven visual regression screenshots in CI.
+

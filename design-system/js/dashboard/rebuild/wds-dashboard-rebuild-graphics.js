@@ -234,44 +234,344 @@
     return sageBrush(5, 0.85) + sageBrush(22, 1.2) + sageBrush(138, 1.05) + sageBrush(151, 0.7);
   }
 
-  /* ——— Organic clouds (distinct silhouettes; not circle stacks) ——— */
+  /* ——— Organic cloud families (irregular, soft-edged, no shared cartoon stamp) ——— */
 
-  function cloudCirrus(fill, opacity) {
+  function cloudSoftFilter() {
+    var id = nid("csf");
+    return {
+      id: id,
+      defs:
+        '<filter id="' +
+        id +
+        '" x="-18%" y="-28%" width="136%" height="156%">' +
+        '<feGaussianBlur in="SourceGraphic" stdDeviation="1.15" result="b"/>' +
+        '<feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.88 0"/>' +
+        "</filter>"
+    };
+  }
+
+  function cloudCirrus(fill, opacity, variant) {
     var f = fill || "#d8d2c6";
-    var o = opacity == null ? 0.28 : opacity;
+    var o = opacity == null ? 0.3 : opacity;
+    var v = variant == null ? 0 : variant % 3;
+    var strokes =
+      v === 1
+        ? [
+            ["M36 18 C58 12 84 22 112 14 C128 10 144 16 156 12", 1.05, 1],
+            ["M42 26 C70 20 98 30 126 22 C138 20 148 24 158 21", 0.72, 0.72],
+            ["M54 34 C78 30 104 38 132 31", 0.55, 0.5]
+          ]
+        : v === 2
+          ? [
+              ["M52 16 C74 22 96 12 122 18 C136 22 148 16 158 20", 0.95, 1],
+              ["M48 28 C76 22 102 32 130 24", 0.7, 0.7],
+              ["M60 38 C86 34 110 40 138 35", 0.5, 0.45]
+            ]
+          : [
+              ["M44 20 C66 14 90 24 116 16 C130 12 144 18 154 15", 1.1, 1],
+              ["M50 30 C76 24 100 34 128 26 C140 24 150 28 158 25", 0.78, 0.74],
+              ["M58 40 C84 36 108 42 136 37", 0.58, 0.52]
+            ];
     return (
       '<g class="wdb-r-cloud wdb-r-cloud--cirrus" fill="none" stroke="' +
       f +
       '" stroke-linecap="round">' +
-      '<path d="M48 22 C68 18 86 24 108 20 C122 18 136 22 148 19" stroke-width="1.1" opacity="' +
-      o +
-      '"/>' +
-      '<path d="M56 28 C78 24 96 30 118 26 C130 24 142 28 152 25" stroke-width="0.8" opacity="' +
-      o * 0.75 +
-      '"/>' +
-      '<path d="M62 34 C82 31 100 36 124 32" stroke-width="0.65" opacity="' +
-      o * 0.55 +
-      '"/>' +
+      strokes
+        .map(function (s) {
+          return (
+            '<path d="' +
+            s[0] +
+            '" stroke-width="' +
+            s[1] +
+            '" opacity="' +
+            (o * s[2]).toFixed(3) +
+            '"/>'
+          );
+        })
+        .join("") +
       "</g>"
     );
   }
 
-  function cloudCumulus(x, y, w, fill, opacity) {
-    var h = w * 0.52;
+  function cumulusPath(x, y, w, variant) {
+    var h = w * (0.46 + (variant % 3) * 0.04);
+    var v = variant % 3;
+    if (v === 1) {
+      /* Low, elongated, left-heavy */
+      return (
+        "M" +
+        (x + w * 0.02) +
+        " " +
+        (y + h * 0.72) +
+        " C" +
+        (x - w * 0.08) +
+        " " +
+        (y + h * 0.62) +
+        " " +
+        (x + w * 0.04) +
+        " " +
+        (y + h * 0.18) +
+        " " +
+        (x + w * 0.22) +
+        " " +
+        (y + h * 0.28) +
+        " C" +
+        (x + w * 0.2) +
+        " " +
+        (y - h * 0.02) +
+        " " +
+        (x + w * 0.38) +
+        " " +
+        (y - h * 0.14) +
+        " " +
+        (x + w * 0.5) +
+        " " +
+        (y + h * 0.08) +
+        " C" +
+        (x + w * 0.62) +
+        " " +
+        (y - h * 0.08) +
+        " " +
+        (x + w * 0.78) +
+        " " +
+        (y + h * 0.02) +
+        " " +
+        (x + w * 0.84) +
+        " " +
+        (y + h * 0.28) +
+        " C" +
+        (x + w * 1.02) +
+        " " +
+        (y + h * 0.22) +
+        " " +
+        (x + w * 1.08) +
+        " " +
+        (y + h * 0.58) +
+        " " +
+        (x + w * 0.9) +
+        " " +
+        (y + h * 0.7) +
+        " C" +
+        (x + w * 0.78) +
+        " " +
+        (y + h * 0.98) +
+        " " +
+        (x + w * 0.52) +
+        " " +
+        (y + h * 0.9) +
+        " " +
+        (x + w * 0.34) +
+        " " +
+        (y + h * 0.82) +
+        " C" +
+        (x + w * 0.2) +
+        " " +
+        (y + h * 1.02) +
+        " " +
+        (x + w * 0.08) +
+        " " +
+        (y + h * 0.9) +
+        " " +
+        (x + w * 0.02) +
+        " " +
+        (y + h * 0.72) +
+        " Z"
+      );
+    }
+    if (v === 2) {
+      /* Tall, right-leaning, ragged base */
+      return (
+        "M" +
+        (x + w * 0.12) +
+        " " +
+        (y + h * 0.82) +
+        " C" +
+        (x - w * 0.02) +
+        " " +
+        (y + h * 0.7) +
+        " " +
+        (x + w * 0.08) +
+        " " +
+        (y + h * 0.22) +
+        " " +
+        (x + w * 0.26) +
+        " " +
+        (y + h * 0.32) +
+        " C" +
+        (x + w * 0.22) +
+        " " +
+        (y - h * 0.08) +
+        " " +
+        (x + w * 0.42) +
+        " " +
+        (y - h * 0.22) +
+        " " +
+        (x + w * 0.56) +
+        " " +
+        (y - h * 0.02) +
+        " C" +
+        (x + w * 0.68) +
+        " " +
+        (y - h * 0.24) +
+        " " +
+        (x + w * 0.88) +
+        " " +
+        (y - h * 0.1) +
+        " " +
+        (x + w * 0.92) +
+        " " +
+        (y + h * 0.22) +
+        " C" +
+        (x + w * 1.12) +
+        " " +
+        (y + h * 0.18) +
+        " " +
+        (x + w * 1.06) +
+        " " +
+        (y + h * 0.62) +
+        " " +
+        (x + w * 0.88) +
+        " " +
+        (y + h * 0.7) +
+        " C" +
+        (x + w * 0.96) +
+        " " +
+        (y + h * 0.98) +
+        " " +
+        (x + w * 0.72) +
+        " " +
+        (y + h * 1.08) +
+        " " +
+        (x + w * 0.54) +
+        " " +
+        (y + h * 0.92) +
+        " C" +
+        (x + w * 0.4) +
+        " " +
+        (y + h * 1.12) +
+        " " +
+        (x + w * 0.22) +
+        " " +
+        (y + h * 1.02) +
+        " " +
+        (x + w * 0.12) +
+        " " +
+        (y + h * 0.82) +
+        " Z"
+      );
+    }
+    /* Default: asymmetric ragged mound */
+    return (
+      "M" +
+      (x + w * 0.05) +
+      " " +
+      (y + h * 0.78) +
+      " C" +
+      (x - w * 0.07) +
+      " " +
+      (y + h * 0.68) +
+      " " +
+      (x + w * 0.01) +
+      " " +
+      (y + h * 0.24) +
+      " " +
+      (x + w * 0.2) +
+      " " +
+      (y + h * 0.3) +
+      " C" +
+      (x + w * 0.14) +
+      " " +
+      (y + h * 0.02) +
+      " " +
+      (x + w * 0.34) +
+      " " +
+      (y - h * 0.14) +
+      " " +
+      (x + w * 0.46) +
+      " " +
+      (y + h * 0.04) +
+      " C" +
+      (x + w * 0.55) +
+      " " +
+      (y - h * 0.18) +
+      " " +
+      (x + w * 0.74) +
+      " " +
+      (y - h * 0.06) +
+      " " +
+      (x + w * 0.78) +
+      " " +
+      (y + h * 0.18) +
+      " C" +
+      (x + w * 0.94) +
+      " " +
+      (y - h * 0.02) +
+      " " +
+      (x + w * 1.06) +
+      " " +
+      (y + h * 0.26) +
+      " " +
+      (x + w * 0.98) +
+      " " +
+      (y + h * 0.5) +
+      " C" +
+      (x + w * 1.12) +
+      " " +
+      (y + h * 0.58) +
+      " " +
+      (x + w * 0.96) +
+      " " +
+      (y + h * 0.92) +
+      " " +
+      (x + w * 0.78) +
+      " " +
+      (y + h * 0.86) +
+      " C" +
+      (x + w * 0.66) +
+      " " +
+      (y + h * 1.1) +
+      " " +
+      (x + w * 0.48) +
+      " " +
+      (y + h * 0.98) +
+      " " +
+      (x + w * 0.34) +
+      " " +
+      (y + h * 0.88) +
+      " C" +
+      (x + w * 0.22) +
+      " " +
+      (y + h * 1.12) +
+      " " +
+      (x + w * 0.1) +
+      " " +
+      (y + h * 0.96) +
+      " " +
+      (x + w * 0.05) +
+      " " +
+      (y + h * 0.78) +
+      " Z"
+    );
+  }
+
+  function cloudCumulus(x, y, w, fill, opacity, variant) {
     var f = fill || "#e8e2d6";
     var o = opacity == null ? 0.5 : opacity;
+    var v = variant == null ? Math.abs(Math.round(x * 3 + w * 2 + y)) % 3 : variant % 3;
     var id = nid("cu");
-    /* Asymmetric ragged silhouette + soft internal density — not circle stacks */
+    var filt = cloudSoftFilter();
     return (
-      '<defs><linearGradient id="' +
+      "<defs>" +
+      filt.defs +
+      '<linearGradient id="' +
       id +
       '" x1="0" y1="0" x2="0" y2="1">' +
       '<stop offset="0%" stop-color="' +
       f +
       '" stop-opacity="' +
-      Math.min(0.85, o + 0.15) +
+      Math.min(0.88, o + 0.18) +
       '"/>' +
-      '<stop offset="55%" stop-color="' +
+      '<stop offset="48%" stop-color="' +
       f +
       '" stop-opacity="' +
       o +
@@ -279,99 +579,15 @@
       '<stop offset="100%" stop-color="' +
       f +
       '" stop-opacity="' +
-      o * 0.35 +
+      o * 0.28 +
       '"/>' +
       "</linearGradient></defs>" +
-      '<path class="wdb-r-cloud wdb-r-cloud--cumulus" d="M' +
-      (x + w * 0.05) +
-      " " +
-      (y + h * 0.78) +
-      " C" +
-      (x - w * 0.06) +
-      " " +
-      (y + h * 0.7) +
-      " " +
-      (x + w * 0.02) +
-      " " +
-      (y + h * 0.28) +
-      " " +
-      (x + w * 0.18) +
-      " " +
-      (y + h * 0.34) +
-      " C" +
-      (x + w * 0.16) +
-      " " +
-      (y + h * 0.08) +
-      " " +
-      (x + w * 0.32) +
-      " " +
-      (y - h * 0.1) +
-      " " +
-      (x + w * 0.44) +
-      " " +
-      (y + h * 0.06) +
-      " C" +
-      (x + w * 0.52) +
-      " " +
-      (y - h * 0.16) +
-      " " +
-      (x + w * 0.7) +
-      " " +
-      (y - h * 0.04) +
-      " " +
-      (x + w * 0.74) +
-      " " +
-      (y + h * 0.2) +
-      " C" +
-      (x + w * 0.88) +
-      " " +
-      (y + h * 0.02) +
-      " " +
-      (x + w * 1.02) +
-      " " +
-      (y + h * 0.22) +
-      " " +
-      (x + w * 0.96) +
-      " " +
-      (y + h * 0.48) +
-      " C" +
-      (x + w * 1.1) +
-      " " +
-      (y + h * 0.55) +
-      " " +
-      (x + w * 0.98) +
-      " " +
-      (y + h * 0.88) +
-      " " +
-      (x + w * 0.8) +
-      " " +
-      (y + h * 0.84) +
-      " C" +
-      (x + w * 0.7) +
-      " " +
-      (y + h * 1.08) +
-      " " +
-      (x + w * 0.5) +
-      " " +
-      (y + h * 0.96) +
-      " " +
-      (x + w * 0.38) +
-      " " +
-      (y + h * 0.88) +
-      " C" +
-      (x + w * 0.26) +
-      " " +
-      (y + h * 1.1) +
-      " " +
-      (x + w * 0.12) +
-      " " +
-      (y + h * 0.96) +
-      " " +
-      (x + w * 0.05) +
-      " " +
-      (y + h * 0.78) +
-      ' Z" fill="url(#' +
+      '<path class="wdb-r-cloud wdb-r-cloud--cumulus" d="' +
+      cumulusPath(x, y, w, v) +
+      '" fill="url(#' +
       id +
+      ')" filter="url(#' +
+      filt.id +
       ')"/>'
     );
   }
@@ -379,22 +595,28 @@
   function cloudStratus(fill, opacity) {
     var f = fill || "#c8c2b8";
     var o = opacity == null ? 0.42 : opacity;
+    var filt = cloudSoftFilter();
     return (
-      '<g class="wdb-r-cloud wdb-r-cloud--stratus">' +
-      '<path d="M18 30 C42 22 70 34 98 26 C118 20 140 28 162 24 L162 48 C140 52 118 44 96 50 C68 58 40 46 16 52 Z" fill="' +
+      "<defs>" +
+      filt.defs +
+      "</defs>" +
+      '<g class="wdb-r-cloud wdb-r-cloud--stratus" filter="url(#' +
+      filt.id +
+      ')">' +
+      '<path d="M8 24 C36 14 68 30 102 18 C124 10 146 22 168 16 L168 40 C146 46 124 34 100 42 C68 52 36 38 6 46 Z" fill="' +
       f +
       '" opacity="' +
       o +
       '"/>' +
-      '<path d="M10 44 C38 38 66 50 96 42 C122 36 146 46 168 40 L168 62 C144 66 120 56 94 64 C64 72 36 60 8 66 Z" fill="' +
+      '<path d="M-4 42 C30 32 64 48 98 36 C126 28 150 42 172 34 L172 58 C148 64 122 52 94 62 C60 74 28 58 -6 68 Z" fill="' +
       f +
       '" opacity="' +
-      o * 0.72 +
+      o * 0.7 +
       '"/>' +
-      '<path d="M22 58 C50 54 78 64 108 56 C130 52 148 60 166 56 L166 72 C148 74 128 68 106 74 C76 82 48 70 20 76 Z" fill="' +
+      '<path d="M12 58 C44 50 78 66 112 54 C136 48 156 58 170 54 L170 74 C148 78 126 70 102 78 C70 88 40 74 10 82 Z" fill="' +
       f +
       '" opacity="' +
-      o * 0.48 +
+      o * 0.42 +
       '"/>' +
       "</g>"
     );
@@ -403,22 +625,28 @@
   function cloudStorm(fill, opacity) {
     var f = fill || "#4a3840";
     var o = opacity == null ? 0.55 : opacity;
+    var filt = cloudSoftFilter();
     return (
-      '<g class="wdb-r-cloud wdb-r-cloud--storm">' +
-      '<path d="M28 18 C48 8 72 14 92 10 C112 6 132 14 152 12 L156 46 C136 42 116 50 94 44 C72 52 50 40 26 48 Z" fill="' +
+      "<defs>" +
+      filt.defs +
+      "</defs>" +
+      '<g class="wdb-r-cloud wdb-r-cloud--storm" filter="url(#' +
+      filt.id +
+      ')">' +
+      '<path d="M22 14 C46 2 78 12 104 4 C128 -2 148 10 162 8 L166 40 C140 34 116 46 90 38 C64 50 40 34 18 44 Z" fill="' +
       f +
       '" opacity="' +
       o +
       '"/>' +
-      '<path d="M20 36 C46 28 70 40 98 32 C122 26 142 36 158 34 L160 68 C138 62 116 72 90 66 C64 76 42 64 18 70 Z" fill="' +
+      '<path d="M10 34 C40 22 72 40 106 28 C132 20 152 34 168 30 L170 66 C146 58 120 72 90 62 C60 76 34 60 8 70 Z" fill="' +
       f +
       '" opacity="' +
-      o * 0.85 +
+      o * 0.82 +
       '"/>' +
-      '<path d="M34 58 C58 52 82 64 110 56 C132 52 148 60 162 58 L160 82 C140 78 118 86 92 80 C66 90 44 78 30 84 Z" fill="' +
+      '<path d="M28 58 C56 48 86 66 118 54 C140 48 156 60 168 56 L166 84 C142 78 116 90 86 80 C56 94 34 78 24 88 Z" fill="' +
       f +
       '" opacity="' +
-      o * 0.55 +
+      o * 0.5 +
       '"/>' +
       "</g>"
     );
@@ -431,30 +659,40 @@
   function cloudBank(density, fill, baseY) {
     var y = baseY == null ? 26 : baseY;
     var f = fill || "#d8d2c6";
-    if (density === "cirrus") return cloudCirrus(f, 0.34);
+    if (density === "cirrus") return cloudCirrus(f, 0.36, Math.round(y) % 3);
     if (density === "heavy" || density === "storm") {
-      return cloudStorm(f, 0.5) + cloudCumulus(58, y + 8, 72, f, 0.32);
+      return cloudStorm(f, 0.52) + cloudCumulus(52, y + 10, 68, f, 0.3, 2);
     }
     if (density === "overcast") {
-      return cloudStratus(f, 0.48) + cloudCumulus(48, y + 14, 88, f, 0.28);
+      return cloudStratus(f, 0.5) + cloudCumulus(40, y + 16, 82, f, 0.26, 1);
     }
     if (density === "light") {
-      return cloudCumulus(78, y, 52, f, 0.38) + cloudCirrus(f, 0.2);
+      return cloudCumulus(84, y, 48, f, 0.36, 0) + cloudCirrus(f, 0.18, 1);
     }
     if (density === "fog") {
+      var filt = cloudSoftFilter();
       return (
-        '<g class="wdb-r-cloud wdb-r-cloud--fog">' +
-        '<path d="M0 40 C40 34 80 46 120 38 C140 34 155 40 160 38 L160 78 C120 82 80 72 40 80 C20 84 0 78 0 78 Z" fill="' +
+        "<defs>" +
+        filt.defs +
+        "</defs>" +
+        '<g class="wdb-r-cloud wdb-r-cloud--fog" filter="url(#' +
+        filt.id +
+        ')">' +
+        '<path d="M-2 38 C42 28 86 48 128 34 C146 28 158 36 162 34 L162 76 C118 84 74 68 34 80 C14 86 -2 76 -2 76 Z" fill="' +
         f +
-        '" opacity="0.22"/>' +
-        '<path d="M0 58 C50 52 90 64 140 56 L160 58 L160 90 C110 94 60 84 0 92 Z" fill="' +
+        '" opacity="0.2"/>' +
+        '<path d="M-2 56 C48 46 96 66 146 52 L162 56 L162 92 C108 98 56 84 -2 94 Z" fill="' +
         f +
-        '" opacity="0.28"/>' +
+        '" opacity="0.26"/>' +
         "</g>"
       );
     }
-    /* scattered / default */
-    return cloudCumulus(62, y, 54, f, 0.42) + cloudCumulus(98, y + 10, 46, f, 0.32) + cloudCirrus(f, 0.16);
+    /* scattered / default — two dissimilar masses, not mirrored twins */
+    return (
+      cloudCumulus(58, y, 50, f, 0.4, 0) +
+      cloudCumulus(104, y + 12, 42, f, 0.3, 2) +
+      cloudCirrus(f, 0.14, 2)
+    );
   }
 
   function sunGlow(cx, cy, r, core, glow, strength) {
@@ -1334,15 +1572,15 @@
     if (k === "clear") {
       return artWrap(
         compose([
-          skyGradient("#35566e", "#72a0b6", "#dcb090"),
-          radialWash(118, 26, 56, "#f7e7c5", 0.28),
-          mesaFar("#564840", 0.36),
-          mesaMid("#362c28", 0.66),
-          sunGlow(118, 24, 9, "#f7f0e0", "#e8c888", 1.05),
-          cloudBank("cirrus", "#e8e2d6", 30),
+          skyGradient("#2e5470", "#6a9cb4", "#e0b898"),
+          radialWash(118, 24, 62, "#f7ebd0", 0.32),
+          mesaFar("#564840", 0.34),
+          mesaMid("#362c28", 0.64),
+          sunGlow(118, 22, 10, "#f7f0e0", "#e8c888", 1.12),
+          cloudBank("cirrus", "#e8e2d6", 32),
           canyonFloor("#181410", 0.92),
           sageRow(),
-          grainOverlay(0.028)
+          grainOverlay(0.026)
         ]),
         "clear",
         "clear-day"
@@ -1350,15 +1588,15 @@
     }
     return artWrap(
       compose([
-        skyGradient("#385264", "#7298a8", "#c4a090"),
-        radialWash(122, 20, 44, "#f0e0b8", 0.22),
-        mesaFar("#4a3e38", 0.38),
-        mesaMid("#28221e", 0.7),
-        sunGlow(124, 20, 7, "#f7f0e0", "#e8c888", 0.85),
-        cloudBank("scattered", "#e0dcd0", 32),
+        skyGradient("#345064", "#6e96a8", "#c8a090"),
+        radialWash(122, 18, 48, "#f0e0b8", 0.24),
+        mesaFar("#4a3e38", 0.4),
+        mesaMid("#28221e", 0.72),
+        sunGlow(126, 18, 7.5, "#f7f0e0", "#e8c888", 0.88),
+        cloudBank("scattered", "#e0dcd0", 30),
         canyonFloor("#141210", 0.92),
         sageRow(),
-        grainOverlay(0.03)
+        grainOverlay(0.028)
       ]),
       "partly",
       "partly"
@@ -1618,13 +1856,15 @@
         "alert"
       );
     }
+    /* Quiet alerts: calm atmospheric horizon — never a weather-icon cloud */
     return artWrap(
       compose([
-        skyGradient("#1a2226", "#2c3840", "#202830"),
-        distantRidge(58, "#2a3438", 0.28),
-        cloudBank("light", "#6a7880", 34),
-        horizonGround(80, "#14181a"),
-        grainOverlay(0.03)
+        skyGradient("#1a2228", "#2a3640", "#1e282e"),
+        radialWash(118, 36, 58, "#6a8898", 0.08),
+        distantRidge(60, "#243038", 0.32),
+        distantRidge(72, "#1a2228", 0.45),
+        horizonGround(82, "#121618"),
+        grainOverlay(0.028)
       ]),
       "alert",
       "quiet"
@@ -1653,24 +1893,82 @@
     return artWrap(compose(layers), "uv", n >= 6 ? "golden" : "clear-day");
   }
 
-  function hoursArt() {
-    return artWrap(
-      compose([
+  function hoursArt(graphic) {
+    var g = graphic || {};
+    var t = String(g.transition || g.state || "stable").toLowerCase().replace(/[_ ]+/g, "-");
+    var layers;
+    if (t === "rain-approaching" || t === "dry-to-rain" || t === "rain") {
+      layers = [
         skyBands([
-          ["0%", "#202c3a"],
-          ["50%", "#364a58"],
+          ["0%", "#1a242c"],
+          ["45%", "#2e3e48"],
+          ["100%", "#1c2428"]
+        ]),
+        cloudBank("scattered", "#7a8a94", 22),
+        distantRidge(70, "#182028", 0.4),
+        /* Distant rain suggestion only — no aggressive animation */
+        '<g class="wdb-r-hours-rainhint" opacity="0.22">' +
+          '<path d="M118 48 l-1.2 14M128 46 l-1.1 16M138 50 l-1.3 12" stroke="#9eb8c8" stroke-width="0.85" stroke-linecap="round"/>' +
+          "</g>",
+        horizonGround(80, "#10161c"),
+        grainOverlay(0.03)
+      ];
+    } else if (t === "clearing") {
+      layers = [
+        skyBands([
+          ["0%", "#2a4050"],
+          ["48%", "#5a8498"],
+          ["100%", "#2a343c"]
+        ]),
+        cloudBank("light", "#c8d0d4", 28),
+        radialWash(120, 24, 44, "#f0e8d0", 0.14),
+        distantRidge(68, "#1a2228", 0.32),
+        horizonGround(78, "#10161c"),
+        grainOverlay(0.026)
+      ];
+    } else if (t === "clouds-building" || t === "clear-to-clouds") {
+      layers = [
+        skyBands([
+          ["0%", "#35566e"],
+          ["42%", "#6a98ac"],
+          ["100%", "#2a343c"]
+        ]),
+        radialWash(48, 22, 40, "#f0e0b8", 0.12),
+        cloudBank("cirrus", "#d8d4c8", 20),
+        cloudCumulus(108, 30, 46, "#d0ccc4", 0.34, 1),
+        distantRidge(70, "#1c2428", 0.34),
+        horizonGround(80, "#10161c"),
+        grainOverlay(0.026)
+      ];
+    } else if (t === "day-evening" || t === "day-to-evening" || t === "evening") {
+      layers = [
+        skyBands([
+          ["0%", "#2a3848"],
+          ["35%", "#7a6a78"],
+          ["62%", "#c09070"],
+          ["100%", "#1a1416"]
+        ]),
+        radialWash(130, 52, 48, "#e8b878", 0.22),
+        cloudBank("cirrus", "#d4b8a4", 26),
+        distantRidge(68, "#1a1618", 0.4),
+        horizonGround(78, "#100e10"),
+        grainOverlay(0.03)
+      ];
+    } else {
+      /* stable — quiet atmosphere, no tick/infographic marks */
+      layers = [
+        skyBands([
+          ["0%", "#243440"],
+          ["50%", "#3a505c"],
           ["100%", "#263440"]
         ]),
-        '<g class="wdb-r-hours-ticks" stroke="#e0d3c0" stroke-width="1.15" opacity="0.32">' +
-          '<path d="M70 20 v12M90 16 v16M110 24 v10M130 18 v14"/>' +
-          "</g>",
+        cloudBank("cirrus", "#a8b4bc", 30),
         distantRidge(68, "#1a2228", 0.3),
-        horizonGround(76, "#10161c"),
+        horizonGround(78, "#10161c"),
         grainOverlay(0.025)
-      ]),
-      "hours",
-      "quiet"
-    );
+      ];
+    }
+    return artWrap(compose(layers), "hours-" + (t || "stable"), "quiet");
   }
 
   function doorwayArt() {
@@ -1756,14 +2054,16 @@
       );
     }
 
+    /* Dry NOW: clear dry atmosphere/horizon — not a cloud icon */
     if (!rainingNow && nowProb <= 10) {
       return artWrap(
         compose([
-          skyGradient("#1a242c", "#364650", "#182028"),
-          cloudBank("light", "#8a98a0", 26),
-          distantRidge(74, "#1a2228", 0.35),
-          horizonGround(86, "#101418"),
-          grainOverlay(0.03)
+          skyGradient("#1c2830", "#3a5060", "#243038"),
+          radialWash(112, 28, 52, "#a8c0c8", 0.1),
+          distantRidge(70, "#1e2830", 0.38),
+          distantRidge(80, "#161e24", 0.5),
+          horizonGround(88, "#101418"),
+          grainOverlay(0.028)
         ]),
         "precip-dry",
         "quiet"
@@ -1868,7 +2168,7 @@
       if (kind === "uv") return uvArt(graphic.value);
       if (kind === "wind") return windArt(graphic);
       if (kind === "precip") return precipArt(graphic);
-      if (kind === "hours") return hoursArt();
+      if (kind === "hours") return hoursArt(graphic);
       if (kind === "doorway") return doorwayArt();
       if (kind === "comfort") return comfortArt();
       if (kind === "range") return rangeArt();
@@ -1888,7 +2188,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildGraphics = {
-    version: "5.2.0-semi-realistic-field-art",
+    version: "5.3.0-v1-visual-finish",
     render: render,
     normalizeSkyState: normalizeSkyState,
     moonPhaseKey: moonPhaseKey,

@@ -107,6 +107,9 @@ jobs:
       - name: Dashboard rebuild instrument depth
         run: node automation/test-dashboard-rebuild-depth.mjs
 
+      - name: Dashboard V1 visual finish
+        run: node automation/test-dashboard-v1-visual-finish.mjs
+
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs
 

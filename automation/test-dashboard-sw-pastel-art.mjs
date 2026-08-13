@@ -85,7 +85,7 @@ sandbox.WDS = {};
 vm.runInNewContext(gfxSrc, sandbox);
 
 const Gfx = sandbox.WDS.dashboardRebuildGraphics;
-if (Gfx && /(instrument|semi-realistic|field-art|moon-rain)/.test(String(Gfx.version || ""))) {
+if (Gfx && /(instrument|semi-realistic|field-art|moon-rain|visual-finish)/.test(String(Gfx.version || ""))) {
   pass("instrument-scene graphics version (" + Gfx.version + ")");
 } else fail("graphics version not instrument scenes");
 
