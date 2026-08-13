@@ -1297,3 +1297,6 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep derived intelligence local and synchronous on the existing platform payload — no LLM, no extra fetches.
 - Ordinary conditions must be allowed to yield **zero** noteworthy Happening Now signals; never manufacture interest.
 - Contextual tool links hard-filter to live products with justified reasons (Scenes only today); leave Sheds/Forage dormant.
+- Calendar-day sunrise/sunset: after midnight, today’s sunset is still ahead — night signals must use sunrise **or** sunset, never sunset-in-the-past alone, and must not treat missing sunset as night.
+- `alert-none` is only honest when the alerts package is `live` or `empty`; weather present + empty items is not proof of “no official alerts.”
+- Doorway intel must receive the same `location` as `pack.intel` (`fromPlatform` → `doorwayPayload`); do not hardcode `null`.

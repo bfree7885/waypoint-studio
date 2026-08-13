@@ -431,6 +431,130 @@ fixtures.forEach(function (fx) {
   assert("alerts outrank heat in happeningNow", a.happeningNow[0].id === "alert-active");
 }
 
+/* After midnight: today's sunset is still ahead; dark-moon must still fire */
+{
+  const afterMidnight = new Date("2026-07-15T06:00:00.000Z"); // 2:00 AM EDT
+  const a = Intel.analyze(
+    platform({
+      current: {
+        temperature: 58,
+        humidity: 40,
+        cloudCover: 12,
+        wind: { speed: 3 },
+        precipitation: { probability: 0 },
+        uvIndex: 0
+      },
+      daylight: {
+        sunriseISO: "2026-07-15T10:00:00.000Z",
+        sunsetISO: "2026-07-16T00:00:00.000Z",
+        kind: "night",
+        moonIllumination: 2,
+        moonPhase: "New Moon"
+      }
+    }),
+    { timezone: "America/New_York" },
+    afterMidnight
+  );
+  assert(
+    "after-midnight dark-moon night",
+    hasId(a.signals, "astro-dark-moon-clear"),
+    ids(a.signals).join(",")
+  );
+}
+
+/* Missing sunset during day must not invent a dark-sky window */
+{
+  const a = Intel.analyze(
+    platform({
+      current: {
+        temperature: 78,
+        cloudCover: 10,
+        uvIndex: 7,
+        wind: { speed: 4 },
+        precipitation: { probability: 0 }
+      },
+      daylight: {
+        sunriseISO: isoOffset(-8 * 60),
+        sunsetISO: null,
+        sunsetFormatted: null,
+        kind: "day",
+        moonIllumination: 3,
+        moonPhase: "New Moon"
+      }
+    }),
+    null,
+    NOW
+  );
+  assert(
+    "no daytime dark-moon without night evidence",
+    !hasId(a.signals, "astro-dark-moon-clear"),
+    ids(a.signals).join(",")
+  );
+  assert(
+    "no dark-sky scenes link in daytime",
+    !(a.toolLinks || []).some((l) => /dark-sky/i.test(l.reason || ""))
+  );
+}
+
+/* alert-none only when the alerts package is a confirmed live/empty zero */
+{
+  const liveNone = Intel.analyze(platform({ alerts: { status: "live", items: [] } }), null, NOW);
+  assert("alert-none when live empty", hasId(liveNone.signals, "alert-none"));
+
+  const emptyStatus = Intel.analyze(platform({ alerts: { status: "empty", items: [] } }), null, NOW);
+  assert("alert-none when empty status", hasId(emptyStatus.signals, "alert-none"));
+
+  const unavailable = Intel.analyze(
+    platform({ alerts: { status: "unavailable", items: [] } }),
+    null,
+    NOW
+  );
+  assert(
+    "no alert-none when alerts unavailable",
+    !hasId(unavailable.signals, "alert-none"),
+    ids(unavailable.signals).join(",")
+  );
+
+  const missingAlerts = platform();
+  delete missingAlerts.alerts;
+  const missing = Intel.analyze(missingAlerts, null, NOW);
+  assert(
+    "no alert-none when alerts block missing",
+    !hasId(missing.signals, "alert-none"),
+    ids(missing.signals).join(",")
+  );
+}
+
+/* Doorway must analyze with the same location as pack.intel */
+{
+  const loc = {
+    lat: 41.3,
+    lng: -74.8,
+    timezone: "America/Chicago",
+    displayTitle: "Port Jervis"
+  };
+  const plat = platform();
+  plat.weatherRef.meta.timezone = null;
+  const pack = Data.fromPlatform(plat, loc);
+  const door = pack.widgets["ph-doorway"];
+  assert(
+    "doorway location timezone",
+    door && door.envState && door.envState.location.timezone === "America/Chicago",
+    door && door.envState && door.envState.location.timezone
+  );
+  assert(
+    "doorway location label",
+    door && door.envState && door.envState.location.label === "Port Jervis",
+    door && door.envState && door.envState.location.label
+  );
+  assert(
+    "doorway intel location matches pack.intel",
+    pack.intel &&
+      pack.intel.state.location.timezone === door.envState.location.timezone &&
+      pack.intel.state.location.label === door.envState.location.label
+  );
+}
+
 /* Catalog inventory still 12 instruments */
 assert("catalog has 12 instruments", Reg.all().length === 12, String(Reg.all().length));
 

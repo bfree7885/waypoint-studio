@@ -685,7 +685,7 @@
     };
   }
 
-  function doorwayPayload(platform) {
+  function doorwayPayload(platform, location) {
     if (!platform) {
       return waitingOrUnavailable(
         null,
@@ -697,7 +697,7 @@
     var Intel = global.WDS && global.WDS.dashboardRebuildIntel;
     if (Intel && typeof Intel.analyze === "function") {
       try {
-        var analysis = Intel.analyze(platform, null);
+        var analysis = Intel.analyze(platform, location || null);
         var byo = analysis && analysis.beforeYouGo;
         if (byo && byo.brief) {
           var facts = (byo.facts && byo.facts.length ? byo.facts : []).slice(0, 4);
@@ -785,7 +785,7 @@
     };
   }
 
-  function buildWidgetPayload(id, platform) {
+  function buildWidgetPayload(id, platform, location) {
     if (id === "ph-conditions") return conditionsPayload(platform);
     if (id === "ph-light") return lightPayload(platform);
     if (id === "ph-air") return airPayload(platform);
@@ -797,7 +797,7 @@
     if (id === "ph-wind") return windPayload(platform);
     if (id === "ph-comfort") return comfortPayload(platform);
     if (id === "ph-day-range") return dayRangePayload(platform);
-    if (id === "ph-doorway") return doorwayPayload(platform);
+    if (id === "ph-doorway") return doorwayPayload(platform, location);
     return null;
   }
 
@@ -911,7 +911,7 @@
   function fromPlatform(platform, location) {
     var widgets = Object.create(null);
     LIVE_IDS.forEach(function (id) {
-      widgets[id] = buildWidgetPayload(id, platform);
+      widgets[id] = buildWidgetPayload(id, platform, location);
     });
     var lines = platform ? composeTodayLines(platform) : waitingTodayLines();
     if (!lines.length) lines = waitingTodayLines();

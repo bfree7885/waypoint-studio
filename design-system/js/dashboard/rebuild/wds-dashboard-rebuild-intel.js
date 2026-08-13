@@ -103,6 +103,7 @@
       ? platform.airQuality
       : null;
     var alerts = platform && platform.alerts ? platform.alerts : null;
+    var alertsStatus = alerts && alerts.status ? String(alerts.status) : null;
     var daylight = platform && platform.daylight ? platform.daylight : null;
     var cond =
       (cur && cur.conditions && (cur.conditions.summary || cur.conditions.text)) ||
@@ -197,6 +198,7 @@
         phaseValue: moonPhaseValue
       },
       alerts: {
+        status: alertsStatus,
         count: alerts && alerts.items ? alerts.items.length : alerts && num(alerts.count),
         items: (alerts && alerts.items) || []
       },
@@ -212,6 +214,29 @@
     var t = asDate(iso);
     if (!t) return null;
     return Math.round((t.getTime() - now.getTime()) / 60000);
+  }
+
+  /**
+   * Calendar-day sunrise/sunset: night is after sunset or before sunrise.
+   * Missing sun times are not treated as night (avoids daytime false positives).
+   */
+  function isNightNow(light, now) {
+    light = light || {};
+    var rise = asDate(light.sunrise);
+    var set = asDate(light.sunset);
+    if (rise && set) {
+      var t = now.getTime();
+      var riseT = rise.getTime();
+      var setT = set.getTime();
+      if (setT < riseT) return t >= setT || t < riseT;
+      return t < riseT || t >= setT;
+    }
+    if (set) return now.getTime() >= set.getTime();
+    if (rise) return now.getTime() < rise.getTime();
+    var kind = String(light.kind || "").toLowerCase();
+    if (kind.indexOf("night") >= 0) return true;
+    if (light.solarElevationDeg != null) return light.solarElevationDeg < 0;
+    return false;
   }
 
   function formatClock(iso, timezone) {
@@ -269,7 +294,7 @@
           toolLinks: []
         })
       );
-    } else if (alerts.count === 0 || (state.meta && state.meta.hasWeather)) {
+    } else if (alerts.status === "live" || alerts.status === "empty") {
       out.push(
         signal({
           id: "alert-none",
@@ -588,7 +613,7 @@
 
     /* Astronomy */
     var illum = astro.illuminationPct;
-    if (illum != null && illum <= 5 && (cloud == null || cloud <= 45) && (sunsetMins == null || sunsetMins < 0)) {
+    if (illum != null && illum <= 5 && (cloud == null || cloud <= 45) && isNightNow(light, when)) {
       out.push(
         signal({
           id: "astro-dark-moon-clear",

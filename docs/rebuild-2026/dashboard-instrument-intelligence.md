@@ -83,7 +83,7 @@ Produces a single client-side object from already-fetched OIP/platform packages:
 - **air** — AQI, category, PM2.5
 - **light** — sunrise/sunset ISO + formatted, solar elevation, kind
 - **astronomy** — illumination %, phase, phase value
-- **alerts** — count + items
+- **alerts** — status, count + items (`alert-none` only when status is `live` or `empty`)
 - **meta** — cache/stale/hasWeather
 
 Unavailable fields remain `null`. No fabricated measurements.
@@ -99,7 +99,7 @@ Unavailable fields remain `null`. No fabricated measurements.
 | ID | Category | When | Noteworthy default | Score band |
 |----|----------|------|--------------------|------------|
 | `alert-active` | alerts | ≥1 NWS item | yes | 100 |
-| `alert-none` | alerts | zero alerts + weather present | no | 5 |
+| `alert-none` | alerts | live/empty alerts package with zero items | no | 5 |
 | `precip-active` | precipitation | raining / measurable precip now | yes | 78 |
 | `precip-ending` | precipitation | active or high now + later prob low | yes | 40–42 |
 | `precip-dry-now` | precipitation | now ≤10% and no near elevated | no | 12 |
@@ -116,7 +116,7 @@ Unavailable fields remain `null`. No fabricated measurements.
 | `light-golden-approaching` | light | sunset in 0–75 min | yes | 30–48 |
 | `light-blue-hour` | light | daylight kind contains blue | yes | 40 |
 | `uv-high` | light | UV ≥6 | yes | 36 |
-| `astro-dark-moon-clear` | astronomy | illum ≤5%, clouds ≤45%, after sunset | yes | 26–44 |
+| `astro-dark-moon-clear` | astronomy | illum ≤5%, clouds ≤45%, night (after sunset or before sunrise) | yes | 26–44 |
 | `astro-bright-moon-cloudy` | astronomy | illum ≥90%, clouds ≥70% | no | 14 |
 | `light-daylight-remaining` | light | 75–240 min to sunset | no | 11 |
 | `light-sunrise-soon` | light | sunrise in 0–90 min | yes | 38 |
