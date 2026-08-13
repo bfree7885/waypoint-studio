@@ -1323,3 +1323,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Moon geometry/illumination/waxing-waning must stay untouched in visual-finish passes — assert limb + lit-path gates separately from cloud work.
 - Feature opportunities noted (not built): richer hours transition from solar altitude; optional per-instrument `data-art-span` wiring from registry; fixture-driven visual regression screenshots in CI.
 
+
+## Lessons Learned — Scenes V1 product audit (2026-08-13)
+
+- Production truth beats pillar slides: Scenes live spine is Photo Coach + Library + Hidden Landscapes/Animal Vision; journals/books/Year in Nature are absent (404), Living Scenes hub is placeholder while `waypoint-scenes` is a separate prototype.
+- `/build-info.json` may 404 — confirm deploy via `<meta name="waypoint-build">` (here `b615963`). `/scenes/` skip-hub redirect to Coach diverges from hub IA.
+- Parallel trees are normal debt: hub redirects + engine stubs under `apps/scenes/` vs real tools in sibling apps; audit which path production loads before planning rebuilds.
+- “Demo” filenames can hide real on-device heuristic CV — treat trust labels and confidence gates as product risks, not as proof the feature is fake.
+- Dashboard→Scenes links are navigational only today (no opportunity query params); outdoor context depends on ecosystem bridge sessionStorage, not the click.
+- Headless Chrome screenshots need unrestricted network (or local server after curl SHA/route checks); sandboxed Chrome yields false `ERR_INTERNET_DISCONNECTED` artifacts.
+
