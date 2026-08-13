@@ -564,7 +564,7 @@
       '<div class="wdb-r-depth" data-wdb-r-depth>' +
       '<button type="button" class="wdb-r-depth__toggle" data-wdb-r-depth-toggle aria-expanded="false" aria-controls="' +
       escapeHtml(panelId) +
-      '">Details</button>' +
+      '">Details ›</button>' +
       '<div class="wdb-r-depth__panel" id="' +
       escapeHtml(panelId) +
       '" data-wdb-r-depth-panel hidden>' +

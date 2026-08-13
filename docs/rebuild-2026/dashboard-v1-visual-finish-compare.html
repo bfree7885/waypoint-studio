@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard V1 visual finish — comparison checklist</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      padding: 1.25rem 1.4rem 2.5rem;
+      background: #120e0c;
+      color: #e8e2d6;
+      font: 14px/1.5 ui-sans-serif, system-ui, sans-serif;
+    }
+    h1 { font-family: "Iowan Old Style", Palatino, serif; font-size: 1.45rem; font-weight: 500; margin: 0 0 0.35rem; }
+    .lede { opacity: 0.68; max-width: 48rem; margin: 0 0 1.25rem; }
+    .checks { display: grid; gap: 0.55rem; margin: 0 0 1.75rem; max-width: 42rem; }
+    .checks label { display: flex; gap: 0.55rem; align-items: flex-start; opacity: 0.88; }
+    .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+    @media (max-width: 720px) { .pair { grid-template-columns: 1fr; } }
+    .card {
+      position: relative;
+      min-height: 150px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, #c4908a 32%, transparent);
+      background: #1a1614;
+      overflow: hidden;
+    }
+    .card .tag {
+      position: relative; z-index: 2;
+      padding: 0.75rem 0.9rem 0.2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .card h2 {
+      position: relative; z-index: 2;
+      margin: 0;
+      padding: 0 0.9rem 0.85rem;
+      font-family: "Iowan Old Style", Palatino, serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .note {
+      margin: 0 0 1.5rem;
+      padding: 0.75rem 0.9rem;
+      border-left: 2px solid color-mix(in srgb, #c4908a 50%, transparent);
+      opacity: 0.75;
+      max-width: 46rem;
+    }
+    .wdb-r-widget__art { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .wdb-r-widget__art-svg {
+      position: absolute; right: -4%; top: -4%;
+      width: min(48%, 16rem); height: 110%; opacity: 0.92;
+    }
+    .wdb-r-widget__art::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, #1a1614 20%, transparent 66%);
+    }
+    .typo-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .typo-demo div {
+      padding: 0.85rem;
+      border-radius: 10px;
+      background: #1a1614;
+      border: 1px solid rgba(196, 144, 138, 0.28);
+    }
+    .family { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(242, 235, 224, 0.62); }
+    .meta-label { font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(242, 235, 224, 0.62); margin-top: 0.45rem; }
+    .details { font-size: 0.8125rem; color: rgba(232, 226, 214, 0.78); margin-top: 0.55rem; }
+  </style>
+</head>
+<body>
+  <h1>V1 visual finish — human comparison</h1>
+  <p class="lede">Non-production checklist for cartoon clouds, repeats, weak scenes, oversized cards, tiny secondary type, and Details affordance. Compare side-by-side against intended quiet atmospheres.</p>
+
+  <div class="checks">
+    <label><input type="checkbox" /> No rounded cloud-blob / overlapping-circle stamps</label>
+    <label><input type="checkbox" /> Cirrus / cumulus / stratus / storm / fog read as distinct</label>
+    <label><input type="checkbox" /> Alerts none = calm horizon (not weather-icon cloud)</label>
+    <label><input type="checkbox" /> Rain dry = dry atmosphere/horizon (no falling rain, no cloud icon)</label>
+    <label><input type="checkbox" /> Conditions feels like being outside</label>
+    <label><input type="checkbox" /> Next Hours hints transition without mini-infographic ticks</label>
+    <label><input type="checkbox" /> Art sits in right ~30–40%; text remains primary</label>
+    <label><input type="checkbox" /> Secondary labels (family / WIND·HUMIDITY·PRECIP / Details) readable, not oversized</label>
+    <label><input type="checkbox" /> Details › is quiet, not a bright CTA</label>
+    <label><input type="checkbox" /> Air / UV / Light / Astronomy still at least as strong; moon geometry untouched</label>
+  </div>
+
+  <p class="note">Weak-state pairs below: intended fixes on the right. Graphics version injects live from the module.</p>
+
+  <div id="pairs"></div>
+
+  <h2 style="font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.62;">Micro typography + Details sample</h2>
+  <div class="typo-demo">
+    <div>
+      <div class="family">Now outside</div>
+      <div class="meta-label">Wind</div>
+      <div>6 mph</div>
+      <div class="meta-label">Humidity</div>
+      <div>58%</div>
+      <div class="meta-label">Precip</div>
+      <div>4%</div>
+      <div class="details">Details ›</div>
+    </div>
+    <div>
+      <div class="family">Sky &amp; light</div>
+      <div style="font-size:1.05rem;margin-top:0.35rem;">Golden hour</div>
+      <div class="details">Details ›</div>
+    </div>
+  </div>
+
+  <script src="/design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+  <script>
+    var G = window.WDS.dashboardRebuildGraphics;
+    var pairs = [
+      {
+        left: { title: "Avoid: cloud-icon quiet alert", graphic: { kind: "hours", transition: "stable" } },
+        right: { title: "Alerts · none (calm horizon)", graphic: { kind: "alert", active: false } }
+      },
+      {
+        left: { title: "Avoid: dry with cloud stamp", graphic: { kind: "precip", nowProbability: 25 } },
+        right: { title: "Rain · dry atmosphere", graphic: { kind: "precip", nowProbability: 1 } }
+      },
+      {
+        left: { title: "Conditions · partly", graphic: { kind: "sky", state: "partly" } },
+        right: { title: "Conditions · clear", graphic: { kind: "sky", state: "clear" } }
+      },
+      {
+        left: { title: "Next Hours · stable", graphic: { kind: "hours", transition: "stable" } },
+        right: { title: "Next Hours · rain approaching", graphic: { kind: "hours", transition: "rain-approaching" } }
+      },
+      {
+        left: { title: "Air · good (preserve)", graphic: { kind: "aqi", value: 28 } },
+        right: { title: "Light · golden (preserve)", graphic: { kind: "sun", state: "golden" } }
+      },
+      {
+        left: { title: "UV · high (preserve)", graphic: { kind: "uv", value: 9 } },
+        right: { title: "Astronomy · crescent (untouched moon)", graphic: { kind: "moon", value: 12, phase: "waxing crescent", phaseValue: 0.1 } }
+      }
+    ];
+    var root = document.getElementById("pairs");
+    pairs.forEach(function (p) {
+      var row = document.createElement("div");
+      row.className = "pair";
+      [p.left, p.right].forEach(function (side) {
+        var card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML =
+          G.render(side.graphic) +
+          '<div class="tag">' +
+          G.version +
+          "</div><h2>" +
+          side.title +
+          "</h2>";
+        row.appendChild(card);
+      });
+      root.appendChild(row);
+    });
+  </script>
+</body>
+</html>
