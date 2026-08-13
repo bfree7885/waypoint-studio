@@ -72,6 +72,13 @@
       precipAmt: cur.precipitation && cur.precipitation.amount ? num(cur.precipitation.amount) : null,
       precipIntensity: cur.precipitation ? cur.precipitation.intensity : null,
       pressure: num(cur.pressure),
+      dewPointF:
+        num(cur.dewPoint) != null
+          ? num(cur.dewPoint)
+          : num(cur.dewpoint) != null
+            ? num(cur.dewpoint)
+            : null,
+      visibilityMi: num(cur.visibility),
       uvIndex: num(cur.uvIndex),
       conditions: (cur.conditions && cur.conditions.summary) || "",
       meta: wx.meta || {}
@@ -127,6 +134,7 @@
         precipProb: h.precipitation ? num(h.precipitation.probability) : null,
         cloudPct: num(h.cloudCover),
         windMph: h.wind ? num(h.wind.speed) : null,
+        windGust: h.wind ? num(h.wind.gust) : null,
         uvIndex: num(h.uvIndex),
         conditions: (h.conditions && h.conditions.summary) || ""
       });
@@ -251,7 +259,11 @@
     }
     var facts = [];
     if (cur.tempF != null) facts.push({ label: "Temp", value: Math.round(cur.tempF) + "°F" });
-    if (cur.feelsF != null && cur.tempF != null && Math.round(cur.feelsF) !== Math.round(cur.tempF)) {
+    if (
+      cur.feelsF != null &&
+      cur.tempF != null &&
+      Math.abs(Math.round(cur.feelsF) - Math.round(cur.tempF)) >= 3
+    ) {
       facts.push({ label: "Feels like", value: Math.round(cur.feelsF) + "°F" });
     }
     if (cur.conditions) facts.push({ label: "Sky", value: cur.conditions });
@@ -286,7 +298,18 @@
         "Light windows unavailable for this place right now."
       );
     }
+    var g = lightGraphicKind(dl);
+    var phaseMap = {
+      sunrise: "Sunrise approaching",
+      golden: "Golden hour",
+      sunset: "Sunset",
+      "blue-hour": "Blue hour",
+      night: "Night",
+      day: "Daylight"
+    };
+    var phaseLabel = (g && g.state && phaseMap[g.state]) || "Natural light";
     var facts = [];
+    facts.push({ label: "Now", value: phaseLabel, note: "Derived" });
     var sunrise = dl.sunriseFormatted || dl.sunrise;
     var sunset = dl.sunsetFormatted || dl.sunset;
     if (sunrise) facts.push({ label: "Sunrise", value: String(sunrise) });
@@ -311,7 +334,6 @@
     if (dl.status === "editorial") trust = "partial";
     else if (windowEstimated) trust = "estimated";
     else if (dl.status === "live" || sunrise || sunset) trust = "live";
-    var g = lightGraphicKind(dl);
     return {
       trust: trust,
       status: "live",
@@ -455,7 +477,7 @@
   }
 
   function nextHoursPayload(platform) {
-    var hours = upcomingHours(platform, 4);
+    var hours = upcomingHours(platform, 8);
     if (!hours.length) {
       return waitingOrUnavailable(
         platform,
@@ -463,7 +485,14 @@
         "Hourly outlook unavailable for this place right now."
       );
     }
-    var facts = hours.map(function (h) {
+    var glance = hours.slice(0, 4);
+    var cur = weatherCurrent(platform);
+    var change = null;
+    var Depth = global.WDS && global.WDS.dashboardRebuildDepth;
+    if (Depth && Depth.changeHeadline) {
+      change = Depth.changeHeadline(hours, cur && cur.precipProb);
+    }
+    var facts = glance.map(function (h) {
       var parts = [];
       if (h.tempF != null) parts.push(Math.round(h.tempF) + "°F");
       if (h.precipProb != null) parts.push(Math.round(h.precipProb) + "% precip");
@@ -473,12 +502,17 @@
         value: parts.join(" · ") || "Settling"
       };
     });
+    if (change) {
+      facts.unshift({ label: "Change", value: change, note: "Derived" });
+    }
     return {
       trust: platform && platform.meta && platform.meta.fromCache ? "cached" : "live",
       status: "live",
       message: null,
       facts: facts,
       hours: hours,
+      changeHeadline: change,
+      current: cur,
       graphic: { kind: "hours" }
     };
   }
@@ -525,6 +559,12 @@
       if (h.precipProb >= 40 && !soon) soon = h;
     });
     var facts = [];
+    var Depth = global.WDS && global.WDS.dashboardRebuildDepth;
+    var timing =
+      Depth && Depth.precipHeadline
+        ? Depth.precipHeadline({ current: cur }, platform)
+        : null;
+    if (timing) facts.push({ label: "Timing", value: timing, note: "Derived" });
     if (cur && cur.precipProb != null) {
       facts.push({ label: "Now", value: Math.round(cur.precipProb) + "% chance" });
     }
@@ -547,6 +587,9 @@
         status: "live",
         message: null,
         facts: [{ label: "Outlook", value: "No elevated precip in the next hours" }],
+        timingHeadline: timing,
+        hours: hours,
+        current: cur,
         graphic: precipGraphic(cur, peak)
       };
     }
@@ -554,7 +597,10 @@
       trust: "live",
       status: "live",
       message: null,
-      facts: facts,
+      facts: facts.slice(0, 4),
+      timingHeadline: timing,
+      hours: hours,
+      current: cur,
       graphic: precipGraphic(cur, peak)
     };
   }
@@ -607,7 +653,13 @@
     }
     var facts = [];
     if (cur.windMph != null) facts.push({ label: "Speed", value: Math.round(cur.windMph) + " mph" });
-    if (cur.windGust != null) facts.push({ label: "Gusts", value: Math.round(cur.windGust) + " mph" });
+    if (
+      cur.windGust != null &&
+      (cur.windMph == null || Math.round(cur.windGust) - Math.round(cur.windMph) >= 4)
+    ) {
+      facts.push({ label: "Gusts", value: Math.round(cur.windGust) + " mph" });
+    }
+    if (cur.windDir != null) facts.push({ label: "Direction", value: Math.round(cur.windDir) + "°" });
     var feel = windLabel(cur.windMph);
     if (feel) facts.push({ label: "Feel", value: feel, note: "Derived" });
     return {
@@ -615,6 +667,7 @@
       status: "live",
       message: null,
       facts: facts,
+      current: cur,
       graphic: {
         kind: "wind",
         speed: cur.windMph,
@@ -675,12 +728,25 @@
     var facts = [];
     if (high != null) facts.push({ label: "High", value: Math.round(high) + "°F" });
     if (low != null) facts.push({ label: "Low", value: Math.round(low) + "°F" });
+    var cur = weatherCurrent(platform);
+    if (cur && cur.tempF != null && high != null && low != null && high !== low) {
+      var pct = Math.round(((cur.tempF - low) / (high - low)) * 100);
+      pct = Math.max(0, Math.min(100, pct));
+      facts.push({
+        label: "Now",
+        value: Math.round(cur.tempF) + "°F · ~" + pct + "% of today's span",
+        note: "Derived"
+      });
+    }
     if (precip != null) facts.push({ label: "Precip max", value: Math.round(precip) + "%" });
     return {
       trust: "live",
       status: "live",
       message: null,
       facts: facts,
+      current: cur,
+      high: high,
+      low: low,
       graphic: { kind: "range" }
     };
   }
@@ -950,7 +1016,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildData = {
-    version: "4.1.0-instrument-intelligence",
+    version: "4.2.0-instrument-depth",
     liveIds: LIVE_IDS.slice(),
     isLiveWidget: isLiveWidget,
     fromPlatform: fromPlatform,
@@ -958,6 +1024,8 @@
     composeTodayLines: composeTodayLines,
     waitingTodayLines: waitingTodayLines,
     platformTrust: platformTrust,
-    bannedLine: bannedLine
+    bannedLine: bannedLine,
+    weatherCurrent: weatherCurrent,
+    upcomingHours: upcomingHours
   };
 })(typeof window !== "undefined" ? window : global);

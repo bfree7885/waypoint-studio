@@ -106,7 +106,10 @@
         : { trust: "waiting", message: "Data will appear here." };
       body =
         reg && reg.render
-          ? reg.render(widget, data)
+          ? reg.render(widget, data, {
+              customize: !!options.customize,
+              platform: options.platform || null
+            })
           : reg && reg.renderPlaceholder
             ? reg.renderPlaceholder(widget, data)
             : '<p class="wdb-r-widget__status">Data will appear here.</p>';
@@ -222,7 +225,9 @@
     var slot = article.querySelector("[data-lazy-slot]");
     if (!widget || !slot || !reg) return;
     var data = reg.getData(id, { platform: platform || null });
-    var html = reg.render ? reg.render(widget, data) : "";
+    var html = reg.render
+      ? reg.render(widget, data, { customize: false, platform: platform || null })
+      : "";
     slot.outerHTML = html;
     article.setAttribute("data-lazy", "ready");
     article.removeAttribute("aria-busy");

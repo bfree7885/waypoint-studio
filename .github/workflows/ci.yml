@@ -104,6 +104,9 @@ jobs:
       - name: Dashboard Happening Now tests
         run: node automation/test-dashboard-rebuild-happening.mjs
 
+      - name: Dashboard rebuild instrument depth
+        run: node automation/test-dashboard-rebuild-depth.mjs
+
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs
 
