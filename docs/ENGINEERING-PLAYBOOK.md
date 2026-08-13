@@ -1323,3 +1323,23 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Moon geometry/illumination/waxing-waning must stay untouched in visual-finish passes — assert limb + lit-path gates separately from cloud work.
 - Feature opportunities noted (not built): richer hours transition from solar altitude; optional per-instrument `data-art-span` wiring from registry; fixture-driven visual regression screenshots in CI.
 
+
+## Lessons Learned — Scenes V1 product audit (2026-08-13)
+
+- Production truth beats pillar slides: Scenes live spine is Photo Coach + Library + Hidden Landscapes/Animal Vision; journals/books/Year in Nature are absent (404), Living Scenes hub is placeholder while `waypoint-scenes` is a separate prototype.
+- `/build-info.json` may 404 — confirm deploy via `<meta name="waypoint-build">` (here `b615963`). `/scenes/` skip-hub redirect to Coach diverges from hub IA.
+- Parallel trees are normal debt: hub redirects + engine stubs under `apps/scenes/` vs real tools in sibling apps; audit which path production loads before planning rebuilds.
+- “Demo” filenames can hide real on-device heuristic CV — treat trust labels and confidence gates as product risks, not as proof the feature is fake.
+- Dashboard→Scenes links are navigational only today (no opportunity query params); outdoor context depends on ecosystem bridge sessionStorage, not the click.
+- Headless Chrome screenshots need unrestricted network (or local server after curl SHA/route checks); sandboxed Chrome yields false `ERR_INTERNET_DISCONNECTED` artifacts.
+
+## Lessons Learned — Photo Coach + Photo Library excellence (2026-08-13)
+
+- Authoritative Coach path is `apps/photo-coach/` UI + `apps/waypoint-scenes/js/photo-coach*.js` (analysis filename still `*-demo.js`); ignore `apps/scenes/js/engines/*` stubs.
+- Sharpness trust requires scene ambiguity gates (smooth sky/water, shallow DOF, low light) — Laplacian-on-downsample alone over-claims blur; soft language until CONF_SHARPNESS_CLAIM.
+- Product confidence language should be HIGH / REASONABLE / LOW on every surfaced critique; omit weak issues rather than hedging in place.
+- Shoot summary must prefer user Favorites/Keep labels over score-invented “favorite”; recurring patterns need count ≥ 2; progression only with EXIF timestamps.
+- Library SoT handoff: carry `shootId`, narrative summary, outdoor context source, and `?shootId=` / `?libraryId=` deep links — do not duplicate blobs.
+- Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
+- Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
+

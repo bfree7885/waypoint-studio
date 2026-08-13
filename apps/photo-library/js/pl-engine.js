@@ -90,10 +90,17 @@
     var images = [];
     var collections = [];
     var ready = false;
+    var lastPersistError = null;
 
     function persist() {
-      Store().saveIndex(images);
+      var ok = Store().saveIndex(images);
       Store().saveCollections(collections);
+      if (!ok) {
+        lastPersistError = "Could not save the library index (browser storage full or blocked). In-session changes may be lost if you close this tab.";
+      } else {
+        lastPersistError = null;
+      }
+      return ok;
     }
 
     function byId(id) {
@@ -309,6 +316,7 @@
       if (!img) return null;
       Object.keys(patch || {}).forEach(function (k) {
         if (k === "id" || k === "schemaVersion") return;
+        if (patch[k] === undefined) return;
         if (k === "camera" || k === "gps" || k === "media" || k === "moduleRefs" || k === "legacy") {
           img[k] = Object.assign({}, img[k] || {}, patch[k] || {});
         } else {
@@ -442,8 +450,17 @@
     function matchesFilters(img, filters) {
       filters = filters || {};
       if (filters.favorite && !img.favorite && img.selectionLabel !== "favorite") return false;
-      if (filters.keep && img.selectionLabel !== "keep") return false;
+      if (filters.keep && img.selectionLabel !== "keep" && img.selectionLabel !== "favorite") return false;
+      if (filters.maybe && img.selectionLabel !== "maybe") return false;
       if (filters.reject && img.selectionLabel !== "reject") return false;
+      if (filters.shootId) {
+        var sid = img.moduleRefs && img.moduleRefs.photoCoach && img.moduleRefs.photoCoach.shootId;
+        if (sid !== filters.shootId) return false;
+      }
+      if (filters.hasExif) {
+        var cam = img.camera || {};
+        if (!(cam.make || cam.model || cam.focalLengthMm || cam.iso || img.captureDate)) return false;
+      }
       if (filters.analyzed) {
         var st = img.moduleRefs && img.moduleRefs.photoCoach && img.moduleRefs.photoCoach.analysisStatus;
         if (st !== "analyzed") return false;
@@ -543,13 +560,24 @@
             shootImageId: payload.shootImageId || null,
             analyzedAt: payload.analyzedAt || new Date().toISOString(),
             letterGrade: payload.letterGrade || null,
-            overallScore: payload.overallScore != null ? payload.overallScore : null
+            overallScore: payload.overallScore != null ? payload.overallScore : null,
+            narrativeSummary: payload.narrativeSummary || null,
+            confidenceTier: payload.confidenceTier || null
           }
         },
         selectionLabel: payload.selectionLabel !== undefined
           ? payload.selectionLabel
           : (byId(libraryId) && byId(libraryId).selectionLabel),
-        subjectHints: payload.subjectHints || (byId(libraryId) && byId(libraryId).subjectHints) || []
+        favorite: payload.selectionLabel === "favorite"
+          ? true
+          : (payload.selectionLabel !== undefined
+            ? false
+            : (payload.favorite !== undefined ? !!payload.favorite : undefined)),
+        subjectHints: payload.subjectHints || (byId(libraryId) && byId(libraryId).subjectHints) || [],
+        coachSummary: payload.coachSummary || payload.narrativeSummary || null,
+        outdoorContext: payload.outdoorContext !== undefined
+          ? payload.outdoorContext
+          : (byId(libraryId) && byId(libraryId).outdoorContext)
       });
     }
 
@@ -572,7 +600,24 @@
       SUBJECT_FILTERS: SUBJECT_FILTERS,
       init: init,
       isReady: function () { return ready; },
+      getLastPersistError: function () { return lastPersistError; },
       list: function () { return images.slice(); },
+      listShoots: function () {
+        var map = Object.create(null);
+        images.forEach(function (img) {
+          var sid = img.moduleRefs && img.moduleRefs.photoCoach && img.moduleRefs.photoCoach.shootId;
+          if (!sid) return;
+          if (!map[sid]) {
+            map[sid] = { id: sid, imageIds: [], count: 0, analyzedAt: null };
+          }
+          map[sid].imageIds.push(img.id);
+          map[sid].count++;
+          var at = img.moduleRefs.photoCoach.analyzedAt;
+          if (at && (!map[sid].analyzedAt || at > map[sid].analyzedAt)) map[sid].analyzedAt = at;
+        });
+        return Object.keys(map).map(function (k) { return map[k]; })
+          .sort(function (a, b) { return String(b.analyzedAt || "").localeCompare(String(a.analyzedAt || "")); });
+      },
       listCollections: function () { return collections.slice(); },
       get: byId,
       getCollection: collectionById,

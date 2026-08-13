@@ -153,18 +153,61 @@ assert("session insights", Array.isArray(summary.sessionInsights) && summary.ses
 assert("session stats", !!summary.sessionStats && summary.sessionStats.percentages);
 assert("best of session", Array.isArray(summary.bestOfSession));
 assert("editing suggestions", Array.isArray(summary.editingSuggestions));
+assert("weather placeholder", summary.weatherPlaceholder && (summary.weatherPlaceholder.status === "unavailable" || summary.weatherPlaceholder.status === "linked"));
 assert("session date label", !!summary.sessionDateLabel);
-assert("weather placeholder", summary.weatherPlaceholder && summary.weatherPlaceholder.status === "future");
 assert("gear camera", summary.gear && summary.gear.camera);
+assert("progression field", summary.progression && typeof summary.progression.note === "string");
+
+const dateShoot = Shoot.createShoot({});
+const noExif = Shoot.createImageRecord({ name: "no-exif.jpg" });
+noExif.status = "done";
+noExif.exif = { hasExif: false };
+noExif.analysis = { overallScore: 70 };
+const laterExif = Shoot.createImageRecord({ name: "later-exif.jpg" });
+laterExif.status = "done";
+laterExif.exif = { hasExif: true, dateTimeOriginal: "2026:03:15 09:00:00" };
+laterExif.analysis = { overallScore: 72 };
+dateShoot.createdAt = "2020-01-01T00:00:00.000Z";
+dateShoot.images = [noExif, laterExif];
+const dateSummary = Shoot.buildSummary(dateShoot);
+assert("session date from later EXIF", /2026/.test(dateSummary.sessionDateLabel) && !/2020/.test(dateSummary.sessionDateLabel));
+
+const progShoot = Shoot.createShoot({});
+progShoot.images = [70, 66, 62].map(function (score, i) {
+  const rec = Shoot.createImageRecord({ name: "prog" + i + ".jpg" });
+  rec.status = "done";
+  rec.exif = { hasExif: true, dateTimeOriginal: "2026:07:14 10:0" + i + ":00" };
+  rec.analysis = { overallScore: score, overallGrade: { letter: "B", score: score } };
+  return rec;
+});
+const prog = Shoot.buildSummary(progShoot).progression;
+assert("odd-count progression available", prog && prog.available);
+assert("odd-count progression not dampened to steady", !/steady/i.test(prog.note));
+assert("odd-count progression declining", /earlier/i.test(prog.note));
+assert("next time tip", !!summary.nextTimeTip);
+assert("member photo ids", Array.isArray(summary.memberPhotoIds) && summary.memberPhotoIds.length === 4);
+assert("user keeper count", summary.userKeeperCount === 0);
 
 assert("set keep label", Shoot.setImageSelection(shoot, imgs[0].id, "keep"));
 assert("label stored", imgs[0].selectionLabel === "keep");
 assert("reject invalid label", Shoot.normalizeSelectionLabel("winner") === null);
 assert("favorite label", Shoot.setImageSelection(shoot, imgs[1].id, "favorite"));
+const summary2 = Shoot.buildSummary(shoot);
+assert("favorite respected", summary2.favoriteImage && summary2.favoriteImage.selectionLabel === "favorite");
+assert("keeper counts from labels", summary2.userKeeperCount === 2);
+assert("no invented favorite when unset", (() => {
+  Shoot.setImageSelection(shoot, imgs[1].id, null);
+  Shoot.setImageSelection(shoot, imgs[0].id, null);
+  const s3 = Shoot.buildSummary(shoot);
+  return s3.favoriteImage === null;
+})());
+Shoot.setImageSelection(shoot, imgs[0].id, "keep");
+Shoot.setImageSelection(shoot, imgs[1].id, "favorite");
 
-const html = Shoot.renderSummaryHtml(summary, shoot);
+const html = Shoot.renderSummaryHtml(summary2, shoot);
 assert("summary html title", /How did today/i.test(html));
 assert("no lorem", !/lorem ipsum/i.test(html));
+assert("mentor not leaderboard", /quiet mentor|not a leaderboard/i.test(html));
 assert("selection controls", /Private labels/.test(Shoot.renderSelectionControlsHtml(imgs[0].id, "keep")));
 
 const progress = Shoot.renderProgressHtml({

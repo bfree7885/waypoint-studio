@@ -72,9 +72,17 @@
     function renderCollections() {
       if (!els.collections) return;
       var cols = engine.listCollections();
+      var shoots = engine.listShoots ? engine.listShoots() : [];
       els.collections.innerHTML =
-        '<button type="button" class="pl-chip' + (!state.filters.collectionId ? " is-active" : "") +
+        '<button type="button" class="pl-chip' + (!state.filters.collectionId && !state.filters.shootId ? " is-active" : "") +
         '" data-collection="">All photographs</button>' +
+        (shoots.length
+          ? shoots.slice(0, 8).map(function (s) {
+              var active = state.filters.shootId === s.id;
+              return '<button type="button" class="pl-chip' + (active ? " is-active" : "") +
+                '" data-shoot="' + esc(s.id) + '">Shoot · ' + s.count + "</button>";
+            }).join("")
+          : "") +
         cols.map(function (c) {
           var active = state.filters.collectionId === c.id;
           return '<button type="button" class="pl-chip' + (active ? " is-active" : "") +
@@ -86,8 +94,18 @@
       els.collections.querySelectorAll("[data-collection]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           var id = btn.getAttribute("data-collection");
+          delete state.filters.shootId;
           if (!id) delete state.filters.collectionId;
           else state.filters.collectionId = id;
+          refresh();
+        });
+      });
+      els.collections.querySelectorAll("[data-shoot]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-shoot");
+          delete state.filters.collectionId;
+          if (state.filters.shootId === id) delete state.filters.shootId;
+          else state.filters.shootId = id;
           refresh();
         });
       });
@@ -105,13 +123,14 @@
     function renderFilters() {
       if (!els.filters) return;
       var defs = [
-        { key: "favorite", label: "Favorite" },
+        { key: "favorite", label: "Favorites" },
         { key: "keep", label: "Keep" },
+        { key: "maybe", label: "Maybe" },
         { key: "reject", label: "Reject" },
         { key: "analyzed", label: "Analyzed" },
         { key: "notAnalyzed", label: "Not yet analyzed" },
-        { key: "hiddenLandscapes", label: "Open in Hidden Landscapes" },
-        { key: "livingScene", label: "Living Scene created" }
+        { key: "hasExif", label: "Has EXIF" },
+        { key: "hiddenLandscapes", label: "Open in Hidden Landscapes" }
       ];
       var subjects = (engine.SUBJECT_FILTERS || []).map(function (s) {
         return { key: "subject:" + s, label: s.charAt(0).toUpperCase() + s.slice(1), subject: s };
@@ -261,7 +280,18 @@
           "</dd></div>" +
           "<div><dt>Analysis</dt><dd>" + esc(coach.analysisStatus || "not-analyzed") +
             (coach.letterGrade ? " · " + esc(coach.letterGrade) : "") +
+            (coach.confidenceTier ? " · " + esc(coach.confidenceTier) + " confidence" : "") +
           "</dd></div>" +
+          (coach.narrativeSummary || img.coachSummary
+            ? "<div><dt>Coach summary</dt><dd>" + esc(coach.narrativeSummary || img.coachSummary) + "</dd></div>"
+            : "") +
+          (coach.shootId
+            ? "<div><dt>Shoot</dt><dd><a href=\"../photo-coach/?shootId=" + encodeURIComponent(coach.shootId) +
+              "\">Open shoot summary</a></dd></div>"
+            : "") +
+          (img.outdoorContext
+            ? "<div><dt>Outdoor context</dt><dd>Stored field snapshot (not invented)</dd></div>"
+            : "") +
           "<div><dt>Collections</dt><dd>" + esc(cols.join(", ") || "None yet") + "</dd></div>" +
           "<div><dt>Tags</dt><dd>" + esc((img.tags || []).join(", ") || "—") + "</dd></div>" +
           "<div><dt>Label</dt><dd>" + esc(img.selectionLabel || (img.favorite ? "favorite" : "—")) + "</dd></div>" +
@@ -272,13 +302,15 @@
         "</textarea>" +
         '<div class="pl-actions" role="group" aria-label="Quick actions">' +
           '<a class="wds-btn wds-btn--primary wds-btn--sm" href="../photo-coach/?libraryId=' +
-            encodeURIComponent(img.id) + '">Open in Photo Coach</a>' +
+            encodeURIComponent(img.id) + '">Open Coach result</a>' +
+          (coach.shootId
+            ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="../photo-coach/?shootId=' +
+              encodeURIComponent(coach.shootId) + '">Return to shoot</a>'
+            : "") +
           '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
             '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(img.id) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
             ">Open in Hidden Landscapes</a>" +
-          '<span class="pl-actions__future" title="Coming as Living Scenes grows">Living Scenes · future</span>' +
-          '<span class="pl-actions__future" title="Coming as Scene Builder grows">Scene Builder · future</span>' +
         "</div>" +
         '<div class="pl-label-row" role="group" aria-label="Private labels">' +
           ["keep", "maybe", "reject", "favorite"].map(function (lab) {
