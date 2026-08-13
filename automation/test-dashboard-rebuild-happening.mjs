@@ -211,6 +211,8 @@ function analyze(plat) {
   const html = shell(plat);
   assert("3 precip-soon signal", a.happeningNow.some((s) => s.id === "precip-soon"));
   assert("3 precip in HN UI", /data-signal-id="precip-soon"/.test(html));
+  assert("3 precip minutesUntil not labeled as rise", !/Minutes until rise/i.test(html));
+  assert("3 precip minutesUntil labeled as precip", /Minutes until elevated precip/i.test(html));
 }
 
 /* 4 Rain ending */

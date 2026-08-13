@@ -1304,3 +1304,4 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty noteworthy list must render **no DOM** (hide entirely); filler empty states fight calm product feel.
 - When exposing time windows, thread an explicit `now` through `fromPlatform` / `analyze` / shell paint so fixtures and sunset math stay aligned.
 - Deduplicate BYO vs HN: discoveries own attention (precip/wind/air/light/astro); Before You Go keeps comfort/practical dress-for-outside prose.
+- Evidence labels must match the metric’s actual producer: `minutesUntil` is only emitted by `precip-soon`, not sunrise.

@@ -29,7 +29,7 @@
       "precip.amount": "Precip amount",
       "precip.intensity": "Intensity",
       conditions: "Conditions",
-      minutesUntil: "Minutes until rise",
+      minutesUntil: "Minutes until elevated precip",
       "wind.gustMph": "Wind gust",
       "wind.speedMph": "Wind speed",
       temperatureF: "Temperature",
