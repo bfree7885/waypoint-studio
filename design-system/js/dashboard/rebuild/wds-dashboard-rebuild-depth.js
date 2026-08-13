@@ -271,7 +271,7 @@
       rows.push(row("Cloud cover", c.cloudPct != null ? Math.round(c.cloudPct) + "%" : null));
       rows.push(row("Visibility", c.visibilityMi != null ? round(c.visibilityMi, 1) + " mi" : null));
       rows.push(row("Wind", c.windMph != null ? Math.round(c.windMph) + " mph" : null));
-      if (c.windGust != null && (c.windMph == null || c.windGust - c.windMph >= GUST_DELTA_MIN)) {
+      if (c.windGust != null && (c.windMph == null || Math.round(c.windGust) - Math.round(c.windMph) >= GUST_DELTA_MIN)) {
         rows.push(row("Gusts", Math.round(c.windGust) + " mph"));
       }
       rows.push(row("Precip chance", c.precipProb != null ? Math.round(c.precipProb) + "%" : null));
@@ -356,7 +356,7 @@
           : null;
       if (wc) {
         rows.push(row("Sustained", wc.windMph != null ? Math.round(wc.windMph) + " mph" : null));
-        if (wc.windGust != null && (wc.windMph == null || wc.windGust - wc.windMph >= GUST_DELTA_MIN)) {
+        if (wc.windGust != null && (wc.windMph == null || Math.round(wc.windGust) - Math.round(wc.windMph) >= GUST_DELTA_MIN)) {
           rows.push(row("Gusts", Math.round(wc.windGust) + " mph"));
         }
         if (wc.windDir != null) rows.push(row("Direction", Math.round(wc.windDir) + "°"));
