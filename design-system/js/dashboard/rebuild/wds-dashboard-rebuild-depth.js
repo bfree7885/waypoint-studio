@@ -369,7 +369,7 @@
         if (!maxG || g > maxG.g) maxG = { g: g, label: h.label };
         var windBits = [];
         if (h.windMph != null) windBits.push(Math.round(h.windMph) + " mph");
-        if (h.windGust != null && (h.windMph == null || h.windGust - h.windMph >= GUST_DELTA_MIN)) {
+        if (h.windGust != null && (h.windMph == null || Math.round(h.windGust) - Math.round(h.windMph) >= GUST_DELTA_MIN)) {
           windBits.push("gust " + Math.round(h.windGust));
         }
         rows.push(row(h.label || "Hour", windBits.join(" · ") || null));
