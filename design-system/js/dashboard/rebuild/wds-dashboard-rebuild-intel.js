@@ -774,11 +774,15 @@
 
     var brief = parts
       .slice(0, 3)
+      .map(function (p) {
+        p = String(p || "").replace(/\s+/g, " ").trim();
+        if (!p) return "";
+        return p.charAt(0).toUpperCase() + p.slice(1);
+      })
+      .filter(Boolean)
       .join(". ")
-      .replace(/\s+/g, " ")
       .trim();
     if (!/[.!?]$/.test(brief)) brief += ".";
-    brief = brief.charAt(0).toUpperCase() + brief.slice(1);
 
     var facts = [];
     if (alertSig) facts.push({ label: "Alerts", value: alertSig.title, note: "Live" });
