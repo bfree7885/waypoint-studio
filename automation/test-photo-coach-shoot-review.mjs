@@ -157,6 +157,33 @@ assert("weather placeholder", summary.weatherPlaceholder && (summary.weatherPlac
 assert("session date label", !!summary.sessionDateLabel);
 assert("gear camera", summary.gear && summary.gear.camera);
 assert("progression field", summary.progression && typeof summary.progression.note === "string");
+
+const dateShoot = Shoot.createShoot({});
+const noExif = Shoot.createImageRecord({ name: "no-exif.jpg" });
+noExif.status = "done";
+noExif.exif = { hasExif: false };
+noExif.analysis = { overallScore: 70 };
+const laterExif = Shoot.createImageRecord({ name: "later-exif.jpg" });
+laterExif.status = "done";
+laterExif.exif = { hasExif: true, dateTimeOriginal: "2026:03:15 09:00:00" };
+laterExif.analysis = { overallScore: 72 };
+dateShoot.createdAt = "2020-01-01T00:00:00.000Z";
+dateShoot.images = [noExif, laterExif];
+const dateSummary = Shoot.buildSummary(dateShoot);
+assert("session date from later EXIF", /2026/.test(dateSummary.sessionDateLabel) && !/2020/.test(dateSummary.sessionDateLabel));
+
+const progShoot = Shoot.createShoot({});
+progShoot.images = [70, 66, 62].map(function (score, i) {
+  const rec = Shoot.createImageRecord({ name: "prog" + i + ".jpg" });
+  rec.status = "done";
+  rec.exif = { hasExif: true, dateTimeOriginal: "2026:07:14 10:0" + i + ":00" };
+  rec.analysis = { overallScore: score, overallGrade: { letter: "B", score: score } };
+  return rec;
+});
+const prog = Shoot.buildSummary(progShoot).progression;
+assert("odd-count progression available", prog && prog.available);
+assert("odd-count progression not dampened to steady", !/steady/i.test(prog.note));
+assert("odd-count progression declining", /earlier/i.test(prog.note));
 assert("next time tip", !!summary.nextTimeTip);
 assert("member photo ids", Array.isArray(summary.memberPhotoIds) && summary.memberPhotoIds.length === 4);
 assert("user keeper count", summary.userKeeperCount === 0);

@@ -570,7 +570,9 @@
           : (byId(libraryId) && byId(libraryId).selectionLabel),
         favorite: payload.selectionLabel === "favorite"
           ? true
-          : (payload.favorite !== undefined ? !!payload.favorite : undefined),
+          : (payload.selectionLabel !== undefined
+            ? false
+            : (payload.favorite !== undefined ? !!payload.favorite : undefined)),
         subjectHints: payload.subjectHints || (byId(libraryId) && byId(libraryId).subjectHints) || [],
         coachSummary: payload.coachSummary || payload.narrativeSummary || null,
         outdoorContext: payload.outdoorContext !== undefined
